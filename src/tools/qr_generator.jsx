@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useCallback } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 import AdBanner from '../components/AdBanner'
@@ -12,6 +12,53 @@ const PRESETS = [
   { fg: '#ef4444', bg: '#ffffff', label: 'Red' },
   { fg: '#f59e0b', bg: '#ffffff', label: 'Amber' },
 ]
+
+function hexToHSL(hex) {
+  let r = parseInt(hex.slice(1, 3), 16) / 255
+  let g = parseInt(hex.slice(3, 5), 16) / 255
+  let b = parseInt(hex.slice(5, 7), 16) / 255
+  const max = Math.max(r, g, b), min = Math.min(r, g, b)
+  let h = 0, s = 0, l = (max + min) / 2
+  if (max !== min) {
+    const d = max - min
+    s = l > 0.5 ? d / (2 - max - min) : d / (max + min)
+    if (max === r) h = ((g - b) / d + (g < b ? 6 : 0)) / 6
+    else if (max === g) h = ((b - r) / d + 2) / 6
+    else h = ((r - g) / d + 4) / 6
+  }
+  return { h: Math.round(h * 360), s: Math.round(s * 100), l: Math.round(l * 100) }
+}
+
+function hslToHex(h, s, l) {
+  s /= 100; l /= 100
+  const a = s * Math.min(l, 1 - l)
+  const f = n => { const k = (n + h / 30) % 12; return l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1) }
+  return '#' + [f(0), f(8), f(4)].map(x => Math.round(x * 255).toString(16).padStart(2, '0')).join('')
+}
+
+function HueSlider({ label, color, onChange }) {
+  const hsl = hexToHSL(color)
+  const thumbLeft = `${(hsl.h / 360) * 100}%`
+  return (
+    <div className="mb-4">
+      <div className="flex items-center justify-between mb-2">
+        <span className="text-xs font-semibold text-slate-400">{label}</span>
+        <div className="flex items-center gap-2">
+          <div className="w-5 h-5 rounded-lg border-2 border-white/20 shadow-md" style={{ background: color }} />
+          <span className="text-xs font-mono font-bold px-2 py-0.5 rounded-md border border-white/10 text-slate-300">{color}</span>
+        </div>
+      </div>
+      <div className="relative h-10 rounded-xl overflow-hidden border-2 border-white/[0.1]"
+        style={{ background: 'linear-gradient(to right, hsl(0,85%,55%), hsl(30,85%,55%), hsl(60,85%,55%), hsl(90,85%,55%), hsl(120,85%,55%), hsl(150,85%,55%), hsl(180,85%,55%), hsl(210,85%,55%), hsl(240,85%,55%), hsl(270,85%,55%), hsl(300,85%,55%), hsl(330,85%,55%), hsl(360,85%,55%))' }}>
+        <input type="range" min="0" max="360" step="1" value={hsl.h}
+          onChange={e => onChange(hslToHex(parseInt(e.target.value), hsl.s || 85, hsl.l || 55))}
+          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" />
+        <div className="absolute top-1/2 -translate-y-1/2 w-5 h-5 rounded-full border-[3px] border-white shadow-xl pointer-events-none z-20 transition-all duration-100"
+          style={{ left: `calc(${thumbLeft} - 10px)`, background: color }} />
+      </div>
+    </div>
+  )
+}
 
 export default function qr_generator() {
   const [text, setText] = useState('')
@@ -63,12 +110,11 @@ export default function qr_generator() {
 
       <AdBanner />
 
-      {/* ─── SINGLE PAGE: Side-by-Side ─── */}
+      {/* ─── SIDE-BY-SIDE ─── */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
 
         {/* LEFT — Controls */}
         <div className="space-y-5">
-          {/* Content */}
           <div>
             <label className="block text-sm font-semibold text-slate-300 mb-2">Content</label>
             <textarea value={text} onChange={e => setText(e.target.value)}
@@ -77,46 +123,11 @@ export default function qr_generator() {
               className="w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-2xl px-5 py-4 text-white text-sm font-mono outline-none focus:border-purple-500/40 transition-all duration-300 placeholder:text-slate-600 resize-none" />
           </div>
 
-          {/* Colors */}
           <div className="p-5 rounded-2xl bg-white/[0.06] border border-white/[0.08]">
             <h3 className="text-sm font-semibold text-slate-300 mb-4">🎨 Colors</h3>
-
-            {/* FG Slider */}
-            <div className="mb-4">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-semibold text-slate-400">Foreground</span>
-                <span className="text-xs font-mono font-bold px-2 py-0.5 rounded-md border border-white/10" style={{ color: fg }}>{fg}</span>
-              </div>
-              <div className="relative h-10 rounded-xl overflow-hidden border-2 border-white/[0.1]"
-                style={{ background: 'linear-gradient(to right, #000,#333,#666,#999,#ccc,#fff,#f00,#f80,#ff0,#0f0,#0ff,#08f,#00f,#80f,#f0f)' }}>
-                <input type="range" min="0" max="360" step="1"
-                  value={(() => { const h = hexToHSL(fg); return h.h })()}
-                  onChange={e => setFg(hslToHex(parseInt(e.target.value), 75, 55))}
-                  className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
-                <div className="absolute top-1/2 -translate-y-1/2 w-5 h-5 rounded-full border-2 border-white shadow-xl pointer-events-none transition-all duration-150"
-                  style={{ left: `calc(${(() => hexToHSL(fg).h / 360 * 100)()}% - 10px)`, background: fg }} />
-              </div>
-            </div>
-
-            {/* BG Slider */}
-            <div className="mb-4">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-semibold text-slate-400">Background</span>
-                <span className="text-xs font-mono font-bold px-2 py-0.5 rounded-md border border-white/10" style={{ color: bg }}>{bg}</span>
-              </div>
-              <div className="relative h-10 rounded-xl overflow-hidden border-2 border-white/[0.1]"
-                style={{ background: 'linear-gradient(to right, #000,#333,#666,#999,#ccc,#fff,#f00,#f80,#ff0,#0f0,#0ff,#08f,#00f,#80f,#f0f)' }}>
-                <input type="range" min="0" max="360" step="1"
-                  value={(() => { const h = hexToHSL(bg); return h.h })()}
-                  onChange={e => setBg(hslToHex(parseInt(e.target.value), 75, 55))}
-                  className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
-                <div className="absolute top-1/2 -translate-y-1/2 w-5 h-5 rounded-full border-2 border-white shadow-xl pointer-events-none transition-all duration-150"
-                  style={{ left: `calc(${(() => hexToHSL(bg).h / 360 * 100)()}% - 10px)`, background: bg }} />
-              </div>
-            </div>
-
-            {/* Presets */}
-            <div className="flex flex-wrap gap-2">
+            <HueSlider label="Foreground (QR dots)" color={fg} onChange={setFg} />
+            <HueSlider label="Background" color={bg} onChange={setBg} />
+            <div className="flex flex-wrap gap-2 mt-2">
               {PRESETS.map((p, i) => (
                 <button key={i} onClick={() => { setFg(p.fg); setBg(p.bg) }}
                   className="flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold border-2 border-white/[0.08] hover:border-white/[0.15] transition-all"
@@ -128,7 +139,6 @@ export default function qr_generator() {
             </div>
           </div>
 
-          {/* Size */}
           <div>
             <label className="text-xs font-semibold text-slate-500 mb-2 block">Size</label>
             <div className="flex gap-2">
@@ -181,27 +191,4 @@ export default function qr_generator() {
       ]} />
     </>
   )
-}
-
-function hexToHSL(hex) {
-  let r = parseInt(hex.slice(1, 3), 16) / 255
-  let g = parseInt(hex.slice(3, 5), 16) / 255
-  let b = parseInt(hex.slice(5, 7), 16) / 255
-  const max = Math.max(r, g, b), min = Math.min(r, g, b)
-  let h = 0, s = 0, l = (max + min) / 2
-  if (max !== min) {
-    const d = max - min
-    s = l > 0.5 ? d / (2 - max - min) : d / (max + min)
-    if (max === r) h = ((g - b) / d + (g < b ? 6 : 0)) / 6
-    else if (max === g) h = ((b - r) / d + 2) / 6
-    else h = ((r - g) / d + 4) / 6
-  }
-  return { h: Math.round(h * 360), s: Math.round(s * 100), l: Math.round(l * 100) }
-}
-
-function hslToHex(h, s, l) {
-  s /= 100; l /= 100
-  const a = s * Math.min(l, 1 - l)
-  const f = n => { const k = (n + h / 30) % 12; return l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1) }
-  return '#' + [f(0), f(8), f(4)].map(x => Math.round(x * 255).toString(16).padStart(2, '0')).join('')
 }
