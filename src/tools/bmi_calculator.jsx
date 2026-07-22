@@ -62,7 +62,7 @@ export default function bmi_calculator() {
           {[['metric', 'Metric (kg/cm)'], ['imperial', 'Imperial (lbs/in)']].map(([val, label]) => (
             <button key={val} onClick={() => setUnit(val)}
               className={`flex-1 py-3 rounded-2xl text-sm font-bold transition-all duration-200 border-2
-                ${unit === val ? 'bg-teal-500/10 border-teal-500/30 text-teal-400 shadow-lg shadow-teal-500/10' : 'bg-white/[0.02] border-white/6 text-slate-500 hover:border-white/12'}`}>
+                ${unit === val ? 'bg-teal-500/10 border-teal-500/30 text-teal-400 shadow-lg shadow-teal-500/10' : 'bg-white/[0.05] border-white/8 text-slate-500 hover:border-white/12'}`}>
               {label}
             </button>
           ))}
@@ -73,12 +73,12 @@ export default function bmi_calculator() {
           <div>
             <label className="block text-sm font-semibold text-slate-300 mb-2">Weight ({unit === 'metric' ? 'kg' : 'lbs'})</label>
             <input type="number" value={weight} onChange={e => setWeight(e.target.value)} placeholder="0"
-              className="w-full bg-white/[0.03] border-2 border-white/8 rounded-2xl px-5 py-4 text-2xl font-extrabold text-white outline-none focus:border-teal-500/40 transition-all duration-300 placeholder:text-white/8" />
+              className="w-full bg-white/[0.06] border-2 border-white/8 rounded-2xl px-5 py-4 text-2xl font-extrabold text-white outline-none focus:border-teal-500/40 transition-all duration-300 placeholder:text-white/8" />
           </div>
           <div>
             <label className="block text-sm font-semibold text-slate-300 mb-2">Height ({unit === 'metric' ? 'cm' : 'inches'})</label>
             <input type="number" value={height} onChange={e => setHeight(e.target.value)} placeholder="0"
-              className="w-full bg-white/[0.03] border-2 border-white/8 rounded-2xl px-5 py-4 text-2xl font-extrabold text-white outline-none focus:border-teal-500/40 transition-all duration-300 placeholder:text-white/8" />
+              className="w-full bg-white/[0.06] border-2 border-white/8 rounded-2xl px-5 py-4 text-2xl font-extrabold text-white outline-none focus:border-teal-500/40 transition-all duration-300 placeholder:text-white/8" />
           </div>
         </div>
 
@@ -105,7 +105,7 @@ export default function bmi_calculator() {
             </div>
 
             {/* Ideal Weight */}
-            <div className="mt-6 p-4 rounded-2xl bg-white/[0.04] border border-white/6">
+            <div className="mt-6 p-4 rounded-2xl bg-white/[0.04] border border-white/8">
               <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider mb-1">Ideal Weight Range</div>
               <div className="text-lg font-bold text-white">{result.idealLow} – {result.idealHigh} kg</div>
               <div className="text-[11px] text-slate-500 mt-0.5">for height {result.heightCm} cm (BMI 18.5–24.9)</div>
@@ -122,8 +122,8 @@ export default function bmi_calculator() {
         )}
 
         {/* BMI Reference Table */}
-        <div className="rounded-2xl border border-white/6 overflow-hidden">
-          <div className="px-5 py-3 bg-white/[0.02] border-b border-white/6">
+        <div className="rounded-2xl border border-white/8 overflow-hidden">
+          <div className="px-5 py-3 bg-white/[0.05] border-b border-white/8">
             <h3 className="text-sm font-bold text-slate-300">BMI Categories</h3>
           </div>
           <div className="divide-y divide-white/4">

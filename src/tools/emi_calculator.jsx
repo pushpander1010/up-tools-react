@@ -73,7 +73,7 @@ export default function emi_calculator() {
           <div className="relative">
             <span className="absolute left-5 top-1/2 -translate-y-1/2 text-2xl font-bold text-green-500/30">₹</span>
             <input type="number" value={principal} onChange={e => setPrincipal(e.target.value)} placeholder="0"
-              className="w-full bg-white/[0.03] border-2 border-white/8 rounded-2xl pl-12 pr-5 py-4 text-3xl font-extrabold text-white outline-none focus:border-green-500/40 transition-all duration-300 placeholder:text-white/8" />
+              className="w-full bg-white/[0.06] border-2 border-white/8 rounded-2xl pl-12 pr-5 py-4 text-3xl font-extrabold text-white outline-none focus:border-green-500/40 transition-all duration-300 placeholder:text-white/8" />
           </div>
         </div>
 
@@ -83,7 +83,7 @@ export default function emi_calculator() {
             <label className="block text-sm font-semibold text-slate-300 mb-2">Interest Rate</label>
             <div className="relative">
               <input type="number" step="0.1" value={rate} onChange={e => setRate(e.target.value)} placeholder="0"
-                className="w-full bg-white/[0.03] border-2 border-white/8 rounded-2xl px-5 py-4 text-2xl font-extrabold text-white outline-none focus:border-green-500/40 transition-all duration-300 placeholder:text-white/8" />
+                className="w-full bg-white/[0.06] border-2 border-white/8 rounded-2xl px-5 py-4 text-2xl font-extrabold text-white outline-none focus:border-green-500/40 transition-all duration-300 placeholder:text-white/8" />
               <span className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-500 font-bold text-sm">% p.a.</span>
             </div>
           </div>
@@ -91,11 +91,11 @@ export default function emi_calculator() {
             <label className="block text-sm font-semibold text-slate-300 mb-2">Tenure</label>
             <div className="flex gap-2">
               <input type="number" value={tenure} onChange={e => setTenure(e.target.value)} placeholder="0"
-                className="flex-1 bg-white/[0.03] border-2 border-white/8 rounded-2xl px-5 py-4 text-2xl font-extrabold text-white outline-none focus:border-green-500/40 transition-all duration-300 placeholder:text-white/8" />
+                className="flex-1 bg-white/[0.06] border-2 border-white/8 rounded-2xl px-5 py-4 text-2xl font-extrabold text-white outline-none focus:border-green-500/40 transition-all duration-300 placeholder:text-white/8" />
               <div className="flex flex-col gap-1.5">
                 {['years', 'months'].map(u => (
                   <button key={u} onClick={() => setUnit(u)}
-                    className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${unit === u ? 'bg-green-500 text-white shadow-lg shadow-green-500/25' : 'bg-white/[0.03] text-slate-500 border border-white/6'}`}>
+                    className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${unit === u ? 'bg-green-500 text-white shadow-lg shadow-green-500/25' : 'bg-white/[0.06] text-slate-500 border border-white/8'}`}>
                     {u}
                   </button>
                 ))}
@@ -113,7 +113,7 @@ export default function emi_calculator() {
               { label: 'Total Interest', value: fmt(result.interest), color: 'text-rose-400', size: 'text-lg', bold: true },
               { label: 'Total Payment', value: fmt(result.total), color: 'text-white', size: 'text-lg', bold: true },
             ].map(card => (
-              <div key={card.label} className="p-4 rounded-2xl bg-white/[0.03] border border-white/6 text-center">
+              <div key={card.label} className="p-4 rounded-2xl bg-white/[0.06] border border-white/8 text-center">
                 <div className="text-[11px] text-slate-500 font-semibold uppercase tracking-wider">{card.label}</div>
                 <div className={`${card.size} font-extrabold ${card.color} mt-1.5`}>{card.value}</div>
               </div>
@@ -123,7 +123,7 @@ export default function emi_calculator() {
 
         {/* Pie Chart */}
         {result && (
-          <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/6">
+          <div className="p-6 rounded-2xl bg-white/[0.05] border border-white/8">
             <div className="text-sm font-semibold text-slate-300 mb-4">Principal vs Interest</div>
             <div className="flex items-center gap-8">
               <div className="w-32 h-32 shrink-0">
@@ -153,14 +153,14 @@ export default function emi_calculator() {
 
         {/* Amortization Table */}
         {visibleSchedule.length > 0 && (
-          <div className="rounded-2xl border border-white/6 overflow-hidden">
-            <div className="px-5 py-3 bg-white/[0.02] border-b border-white/6">
+          <div className="rounded-2xl border border-white/8 overflow-hidden">
+            <div className="px-5 py-3 bg-white/[0.05] border-b border-white/8">
               <h3 className="text-sm font-bold text-slate-300">Amortization Schedule</h3>
             </div>
             <div className="overflow-x-auto">
               <table className="w-full text-xs">
                 <thead>
-                  <tr className="text-slate-500 border-b border-white/6">
+                  <tr className="text-slate-500 border-b border-white/8">
                     <th className="text-left py-3 px-4 font-semibold">Month</th>
                     <th className="text-right py-3 px-4 font-semibold">EMI</th>
                     <th className="text-right py-3 px-4 font-semibold">Principal</th>
@@ -172,7 +172,7 @@ export default function emi_calculator() {
                   {visibleSchedule.map((row, i) => row === null ? (
                     <tr key={i}><td colSpan={5} className="text-center py-2 text-slate-600 font-mono">···</td></tr>
                   ) : (
-                    <tr key={i} className="border-b border-white/4 hover:bg-white/[0.02] transition-colors">
+                    <tr key={i} className="border-b border-white/6 hover:bg-white/[0.05] transition-colors">
                       <td className="py-3 px-4 text-slate-400 font-medium">{row.m}</td>
                       <td className="text-right py-3 px-4 text-white font-medium">{fmt(row.emi)}</td>
                       <td className="text-right py-3 px-4 text-emerald-400 font-medium">{fmt(row.principal)}</td>

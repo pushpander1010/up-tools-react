@@ -93,7 +93,7 @@ export default function currency_converter() {
         <div>
           <label className="block text-sm font-semibold text-slate-300 mb-2">Amount</label>
           <input type="number" value={amount} onChange={e => setAmount(e.target.value)}
-            className="w-full bg-white/[0.03] border-2 border-white/8 rounded-2xl px-5 py-4 text-3xl font-extrabold text-white outline-none focus:border-emerald-500/40 transition-all duration-300 placeholder:text-white/8" />
+            className="w-full bg-white/[0.06] border-2 border-white/8 rounded-2xl px-5 py-4 text-3xl font-extrabold text-white outline-none focus:border-emerald-500/40 transition-all duration-300 placeholder:text-white/8" />
         </div>
 
         {/* From / Swap / To */}
@@ -101,7 +101,7 @@ export default function currency_converter() {
           <div className="flex-1">
             <label className="block text-xs font-semibold text-slate-500 mb-1.5">From</label>
             <select value={from} onChange={e => setFrom(e.target.value)}
-              className="w-full bg-white/[0.03] border-2 border-white/8 rounded-xl px-4 py-3 text-white text-sm font-semibold outline-none focus:border-emerald-500/40 appearance-none cursor-pointer">
+              className="w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-3 text-white text-sm font-semibold outline-none focus:border-emerald-500/40 appearance-none cursor-pointer">
               {CURRENCIES.map(c => <option key={c.code} value={c.code}>{c.flag} {c.code} — {c.name}</option>)}
             </select>
           </div>
@@ -109,7 +109,7 @@ export default function currency_converter() {
           <div className="flex-1">
             <label className="block text-xs font-semibold text-slate-500 mb-1.5">To</label>
             <select value={to} onChange={e => setTo(e.target.value)}
-              className="w-full bg-white/[0.03] border-2 border-white/8 rounded-xl px-4 py-3 text-white text-sm font-semibold outline-none focus:border-emerald-500/40 appearance-none cursor-pointer">
+              className="w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-3 text-white text-sm font-semibold outline-none focus:border-emerald-500/40 appearance-none cursor-pointer">
               {CURRENCIES.map(c => <option key={c.code} value={c.code}>{c.flag} {c.code} — {c.name}</option>)}
             </select>
           </div>

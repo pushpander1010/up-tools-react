@@ -27,9 +27,9 @@ export default function poetry_search() {
           </div>
         </div>
         <div className="flex flex-wrap gap-1.5 mt-4">
-          <span key="poetry" className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/4 border border-white/6 text-slate-400">poetry</span>
-          <span key="books" className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/4 border border-white/6 text-slate-400">books</span>
-          <span key="education" className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/4 border border-white/6 text-slate-400">education</span>
+          <span key="poetry" className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/4 border border-white/8 text-slate-400">poetry</span>
+          <span key="books" className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/4 border border-white/8 text-slate-400">books</span>
+          <span key="education" className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/4 border border-white/8 text-slate-400">education</span>
         </div>
       </section>
 

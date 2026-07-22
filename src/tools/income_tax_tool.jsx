@@ -27,7 +27,7 @@ function Field({ label, value, onChange, placeholder }) {
     <div>
       <label className="block text-xs font-semibold text-slate-500 mb-1.5">{label}</label>
       <input type="number" value={value} onChange={e => onChange(e.target.value)} placeholder={placeholder || '0'}
-        className="w-full bg-white/[0.03] border-2 border-white/8 rounded-xl px-4 py-3 text-sm text-white font-semibold outline-none focus:border-brand/40 transition-all duration-200 placeholder:text-slate-600" />
+        className="w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-3 text-sm text-white font-semibold outline-none focus:border-brand/40 transition-all duration-200 placeholder:text-slate-600" />
     </div>
   )
 }
@@ -115,13 +115,13 @@ export default function income_tax_tool() {
           <div className="relative">
             <span className="absolute left-5 top-1/2 -translate-y-1/2 text-2xl font-bold text-green-500/30">₹</span>
             <input type="number" value={income} onChange={e => setIncome(e.target.value)} placeholder="0"
-              className="w-full bg-white/[0.03] border-2 border-white/8 rounded-2xl pl-12 pr-5 py-4 text-3xl font-extrabold text-white outline-none focus:border-green-500/40 transition-all duration-300 placeholder:text-white/8" />
+              className="w-full bg-white/[0.06] border-2 border-white/8 rounded-2xl pl-12 pr-5 py-4 text-3xl font-extrabold text-white outline-none focus:border-green-500/40 transition-all duration-300 placeholder:text-white/8" />
           </div>
         </div>
 
         {/* Standard Deduction */}
         <button onClick={() => setSd(!sd)}
-          className={`w-full p-4 rounded-2xl border-2 text-left transition-all duration-200 ${sd ? 'bg-green-500/8 border-green-500/25' : 'bg-white/[0.02] border-white/6 hover:border-white/12'}`}>
+          className={`w-full p-4 rounded-2xl border-2 text-left transition-all duration-200 ${sd ? 'bg-green-500/8 border-green-500/25' : 'bg-white/[0.05] border-white/8 hover:border-white/12'}`}>
           <div className="flex items-center gap-3">
             <div className={`w-5 h-5 rounded-md flex items-center justify-center text-xs font-bold transition-all ${sd ? 'bg-green-500 text-white' : 'bg-white/10 text-transparent'}`}>
               {sd && '✓'}
@@ -134,7 +134,7 @@ export default function income_tax_tool() {
         </button>
 
         {/* Old Regime Deductions */}
-        <div className="p-5 rounded-2xl border border-white/6 bg-white/[0.02]">
+        <div className="p-5 rounded-2xl border border-white/8 bg-white/[0.05]">
           <h3 className="text-sm font-bold text-slate-300 mb-4">📊 Old Regime Deductions</h3>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             <Field label="80C (max ₹1.5L)" value={ded.c80c} onChange={v => setDed(d => ({ ...d, c80c: v }))} />
@@ -144,7 +144,7 @@ export default function income_tax_tool() {
           </div>
 
           {/* HRA Section */}
-          <div className="mt-5 pt-4 border-t border-white/6">
+          <div className="mt-5 pt-4 border-t border-white/8">
             <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">HRA Exemption</h4>
             <div className="grid grid-cols-3 gap-3">
               <Field label="Basic Salary" value={hra.basic} onChange={v => setHra(h => ({ ...h, basic: v }))} />
@@ -153,7 +153,7 @@ export default function income_tax_tool() {
             </div>
             <button onClick={() => setHra(h => ({ ...h, metro: !h.metro }))}
               className={`mt-3 flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold transition-all border
-                ${hra.metro ? 'bg-purple-500/10 border-purple-500/25 text-purple-400' : 'bg-white/[0.03] border-white/6 text-slate-500 hover:border-white/12'}`}>
+                ${hra.metro ? 'bg-purple-500/10 border-purple-500/25 text-purple-400' : 'bg-white/[0.06] border-white/8 text-slate-500 hover:border-white/12'}`}>
               <div className={`w-3.5 h-3.5 rounded-sm flex items-center justify-center text-[9px] font-bold ${hra.metro ? 'bg-purple-500 text-white' : 'bg-white/10 text-transparent'}`}>
                 {hra.metro && '✓'}
               </div>
@@ -178,7 +178,7 @@ export default function income_tax_tool() {
                 { label: 'New Regime', data: result.newBreakdown, taxable: result.newTaxable, total: result.newTotal, color: 'brand', better: result.better === 'new' },
                 { label: 'Old Regime', data: result.oldBreakdown, taxable: result.oldTaxable, total: result.oldTotal, color: 'emerald', better: result.better === 'old' },
               ].map(regime => (
-                <div key={regime.label} className={`p-5 rounded-2xl border transition-all ${regime.better ? `bg-${regime.color === 'brand' ? 'brand' : 'emerald-500'}/5 border-${regime.color === 'brand' ? 'brand' : 'emerald-500'}/20` : 'bg-white/[0.02] border-white/6'}`}>
+                <div key={regime.label} className={`p-5 rounded-2xl border transition-all ${regime.better ? `bg-${regime.color === 'brand' ? 'brand' : 'emerald-500'}/5 border-${regime.color === 'brand' ? 'brand' : 'emerald-500'}/20` : 'bg-white/[0.05] border-white/8'}`}>
                   <div className="flex items-center justify-between mb-4">
                     <h3 className={`text-sm font-bold ${regime.better ? (regime.color === 'brand' ? 'text-brand-light' : 'text-emerald-400') : 'text-slate-400'}`}>{regime.label}</h3>
                     {regime.better && <span className="text-[10px] font-bold bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full">BETTER</span>}
@@ -188,7 +188,7 @@ export default function income_tax_tool() {
                     <div className="flex justify-between text-xs"><span className="text-slate-500">Tax</span><span className="text-white font-medium">{fmt(regime.data.tax)}</span></div>
                     {regime.data.surcharge > 0 && <div className="flex justify-between text-xs"><span className="text-slate-500">Surcharge</span><span className="text-white font-medium">{fmt(regime.data.surcharge)}</span></div>}
                     <div className="flex justify-between text-xs"><span className="text-slate-500">Cess (4%)</span><span className="text-white font-medium">{fmt(regime.data.cess)}</span></div>
-                    <div className="flex justify-between text-sm font-bold pt-2 border-t border-white/6">
+                    <div className="flex justify-between text-sm font-bold pt-2 border-t border-white/8">
                       <span className="text-white">Total Tax</span>
                       <span className={regime.better ? (regime.color === 'brand' ? 'text-brand-light' : 'text-emerald-400') : 'text-slate-300'}>{fmt(regime.total)}</span>
                     </div>

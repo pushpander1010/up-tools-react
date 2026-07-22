@@ -53,7 +53,7 @@ export default function text_case_converter() {
           <textarea value={input} onChange={e => setInput(e.target.value)}
             placeholder="Type or paste your text here..."
             rows={4}
-            className="w-full bg-white/[0.03] border-2 border-white/8 rounded-2xl px-5 py-4 text-white text-sm font-mono outline-none focus:border-brand/40 transition-all duration-300 placeholder:text-slate-600 resize-none" />
+            className="w-full bg-white/[0.06] border-2 border-white/8 rounded-2xl px-5 py-4 text-white text-sm font-mono outline-none focus:border-brand/40 transition-all duration-300 placeholder:text-slate-600 resize-none" />
           <div className="flex justify-between mt-2 text-[11px] text-slate-600">
             <span>{input.length} characters</span>
             <span>{input.split(/\s+/).filter(Boolean).length} words</span>
@@ -64,7 +64,7 @@ export default function text_case_converter() {
           {CASES.map(c => {
             const result = input ? c.fn(input) : ''
             return (
-              <div key={c.id} className="flex items-center gap-3 p-3 rounded-xl bg-white/[0.02] border border-white/6 hover:border-white/12 transition-all group">
+              <div key={c.id} className="flex items-center gap-3 p-3 rounded-xl bg-white/[0.05] border border-white/8 hover:border-white/12 transition-all group">
                 <span className="text-lg w-8 text-center shrink-0">{c.icon}</span>
                 <div className="flex-1 min-w-0">
                   <div className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-0.5">{c.label}</div>

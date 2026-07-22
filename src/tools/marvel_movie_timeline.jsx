@@ -27,9 +27,9 @@ export default function marvel_movie_timeline() {
           </div>
         </div>
         <div className="flex flex-wrap gap-1.5 mt-4">
-          <span key="marvel" className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/4 border border-white/6 text-slate-400">marvel</span>
-          <span key="movie" className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/4 border border-white/6 text-slate-400">movie</span>
-          <span key="timeline" className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/4 border border-white/6 text-slate-400">timeline</span>
+          <span key="marvel" className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/4 border border-white/8 text-slate-400">marvel</span>
+          <span key="movie" className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/4 border border-white/8 text-slate-400">movie</span>
+          <span key="timeline" className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/4 border border-white/8 text-slate-400">timeline</span>
         </div>
       </section>
 

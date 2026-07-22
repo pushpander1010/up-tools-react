@@ -54,7 +54,7 @@ export default function word_counter() {
           <textarea value={text} onChange={e => setText(e.target.value)}
             placeholder="Type or paste your text here..."
             rows={8}
-            className="w-full bg-white/[0.03] border-2 border-white/8 rounded-2xl px-5 py-4 text-white text-sm outline-none focus:border-brand/40 transition-all duration-300 placeholder:text-slate-600 resize-none" />
+            className="w-full bg-white/[0.06] border-2 border-white/8 rounded-2xl px-5 py-4 text-white text-sm outline-none focus:border-brand/40 transition-all duration-300 placeholder:text-slate-600 resize-none" />
         </div>
 
         {stats && (
@@ -69,7 +69,7 @@ export default function word_counter() {
               { label: 'Speaking Time', value: `${stats.speakingTime} min`, color: 'text-emerald-400' },
               { label: 'Pages (250 wpg)', value: stats.pages, color: 'text-brand-light' },
             ].map(s => (
-              <div key={s.label} className="p-4 rounded-2xl bg-white/[0.03] border border-white/6 text-center">
+              <div key={s.label} className="p-4 rounded-2xl bg-white/[0.06] border border-white/8 text-center">
                 <div className={`text-2xl font-extrabold ${s.color}`}>{s.value}</div>
                 <div className="text-[11px] text-slate-500 mt-1 font-medium">{s.label}</div>
               </div>
@@ -78,7 +78,7 @@ export default function word_counter() {
         )}
 
         {wordDensity.length > 0 && (
-          <div className="p-5 rounded-2xl bg-white/[0.02] border border-white/6" style={{ animation: 'slideUp 0.4s ease-out' }}>
+          <div className="p-5 rounded-2xl bg-white/[0.05] border border-white/8" style={{ animation: 'slideUp 0.4s ease-out' }}>
             <h3 className="text-sm font-bold text-slate-300 mb-3">Word Frequency</h3>
             <div className="space-y-1.5">
               {wordDensity.map(([word, count], i) => (

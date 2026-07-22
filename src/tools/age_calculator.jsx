@@ -93,7 +93,7 @@ function SelectField({ label, value, onChange, options, placeholder }) {
     <div className="flex-1">
       <label className="block text-xs font-semibold text-slate-500 mb-1.5">{label}</label>
       <select value={value} onChange={e => onChange(e.target.value)}
-        className="w-full bg-white/[0.03] border-2 border-white/8 rounded-xl px-3 py-3 text-sm text-white font-semibold outline-none focus:border-brand/40 transition-all duration-200 appearance-none cursor-pointer"
+        className="w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-3 py-3 text-sm text-white font-semibold outline-none focus:border-brand/40 transition-all duration-200 appearance-none cursor-pointer"
         style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2394a3b8' d='M2 4l4 4 4-4'/%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 12px center' }}>
         <option value="">{placeholder}</option>
         {options.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
@@ -103,7 +103,7 @@ function SelectField({ label, value, onChange, options, placeholder }) {
 }
 
 const StatCard = ({ value, label, color = 'gradient-text' }) => (
-  <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/6 text-center">
+  <div className="p-4 rounded-2xl bg-white/[0.06] border border-white/8 text-center">
     <div className={`text-3xl font-extrabold ${color}`}>{value}</div>
     <div className="text-xs text-slate-500 mt-1 font-medium">{label}</div>
   </div>
@@ -168,7 +168,7 @@ export default function age_calculator() {
               <StatCard value={age.months} label="Months" />
               <StatCard value={age.days} label="Days" />
             </div>
-            <div className="p-3 rounded-2xl bg-white/[0.02] border border-white/6 text-center">
+            <div className="p-3 rounded-2xl bg-white/[0.05] border border-white/8 text-center">
               <span className="text-sm text-slate-400">Born on a </span>
               <span className="text-sm font-bold text-brand-light">{age.dayOfWeek}</span>
             </div>
@@ -180,27 +180,27 @@ export default function age_calculator() {
           <div style={{ animation: 'slideUp 0.4s ease-out' }}>
             <h3 className="text-sm font-bold text-slate-300 mb-3">✨ Life Stats</h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-              <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/6">
+              <div className="p-4 rounded-2xl bg-white/[0.05] border border-white/8">
                 <div className="text-2xl font-extrabold gradient-text">{age.totalDays.toLocaleString()}</div>
                 <div className="text-[11px] text-slate-500 mt-1">Days Alive</div>
               </div>
-              <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/6">
+              <div className="p-4 rounded-2xl bg-white/[0.05] border border-white/8">
                 <div className="text-2xl font-extrabold gradient-text">{age.totalWeeks.toLocaleString()}</div>
                 <div className="text-[11px] text-slate-500 mt-1">Weeks Lived</div>
               </div>
-              <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/6">
+              <div className="p-4 rounded-2xl bg-white/[0.05] border border-white/8">
                 <div className="text-2xl font-extrabold gradient-text">{age.totalHours.toLocaleString()}</div>
                 <div className="text-[11px] text-slate-500 mt-1">Hours Breathed</div>
               </div>
-              <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/6">
+              <div className="p-4 rounded-2xl bg-white/[0.05] border border-white/8">
                 <div className="text-2xl font-extrabold text-rose-400">{age.heartbeats.toLocaleString()}</div>
                 <div className="text-[11px] text-slate-500 mt-1">Heartbeats 💓</div>
               </div>
-              <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/6">
+              <div className="p-4 rounded-2xl bg-white/[0.05] border border-white/8">
                 <div className="text-2xl font-extrabold text-emerald-400">{age.breaths.toLocaleString()}</div>
                 <div className="text-[11px] text-slate-500 mt-1">Breaths Taken</div>
               </div>
-              <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/6">
+              <div className="p-4 rounded-2xl bg-white/[0.05] border border-white/8">
                 <div className="text-2xl font-extrabold text-amber-400">{age.totalMinutes.toLocaleString()}</div>
                 <div className="text-[11px] text-slate-500 mt-1">Minutes Lived</div>
               </div>
@@ -219,13 +219,13 @@ export default function age_calculator() {
             </div>
 
             {/* Zodiac Quick */}
-            <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/6 text-center">
+            <div className="p-6 rounded-2xl bg-white/[0.05] border border-white/8 text-center">
               <div className="text-5xl mb-2">{zodiac.sym}</div>
               <div className="text-xl font-extrabold text-white">{zodiacName}</div>
               <div className="text-xs text-slate-500 mt-1">{zodiac.dates}</div>
               <div className="flex items-center justify-center gap-2 mt-3">
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-white/5 border border-white/6 text-slate-400">{zodiac.element}</span>
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-white/5 border border-white/6 text-slate-400">{zodiac.planet}</span>
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-white/5 border border-white/8 text-slate-400">{zodiac.element}</span>
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-white/5 border border-white/8 text-slate-400">{zodiac.planet}</span>
               </div>
             </div>
           </div>
@@ -233,7 +233,7 @@ export default function age_calculator() {
 
         {/* Zodiac Personality Card */}
         {zodiac && zodiacName && (
-          <div className="rounded-2xl bg-white/[0.02] border border-white/6 overflow-hidden" style={{ animation: 'slideUp 0.6s ease-out' }}>
+          <div className="rounded-2xl bg-white/[0.05] border border-white/8 overflow-hidden" style={{ animation: 'slideUp 0.6s ease-out' }}>
             <div className="p-6">
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-3xl">{zodiac.sym}</span>
@@ -256,7 +256,7 @@ export default function age_calculator() {
               <p className="text-sm text-slate-400 leading-relaxed mb-4">{zodiac.personality}</p>
 
               {/* Famous */}
-              <div className="p-3 rounded-xl bg-white/[0.03] border border-white/4">
+              <div className="p-3 rounded-xl bg-white/[0.06] border border-white/6">
                 <span className="text-xs text-slate-500 font-semibold">Famous {zodiacName}s: </span>
                 <span className="text-xs text-slate-300">{zodiac.famous}</span>
               </div>

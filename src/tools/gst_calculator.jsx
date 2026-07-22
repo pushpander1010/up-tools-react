@@ -118,7 +118,7 @@ export default function gst_calculator() {
             <input
               type="number" value={amount} onChange={e => setAmount(e.target.value)}
               placeholder="0.00"
-              className="w-full bg-white/[0.03] border-2 border-white/8 rounded-2xl pl-14 pr-5 py-5 text-4xl font-extrabold text-white outline-none
+              className="w-full bg-white/[0.06] border-2 border-white/8 rounded-2xl pl-14 pr-5 py-5 text-4xl font-extrabold text-white outline-none
                 focus:border-emerald-500/40 focus:bg-white/[0.05] focus:shadow-[0_0_40px_rgba(16,185,129,0.08)]
                 transition-all duration-300 placeholder:text-white/8"
             />
@@ -134,7 +134,7 @@ export default function gst_calculator() {
                 className={`relative py-3 rounded-xl text-sm font-bold transition-all duration-200 overflow-hidden
                   ${rate === r
                     ? 'bg-emerald-500 text-white shadow-lg shadow-emerald-500/30'
-                    : 'bg-white/[0.03] text-slate-400 border border-white/6 hover:bg-white/[0.06] hover:text-white hover:border-white/12'
+                    : 'bg-white/[0.06] text-slate-400 border border-white/8 hover:bg-white/[0.06] hover:text-white hover:border-white/12'
                   }`}>
                 {rate === r && <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />}
                 <span className="relative">{r === -1 ? 'Custom' : `${r}%`}</span>
@@ -145,7 +145,7 @@ export default function gst_calculator() {
             <div className="mt-3 relative">
               <input type="number" value={customRate} onChange={e => setCustomRate(e.target.value)}
                 placeholder="Enter custom rate" step="0.01"
-                className="w-full bg-white/[0.03] border-2 border-white/8 rounded-xl px-5 py-3 text-white font-semibold outline-none
+                className="w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3 text-white font-semibold outline-none
                   focus:border-emerald-500/40 transition-all duration-200 placeholder:text-slate-600" />
               <span className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-500 font-bold">%</span>
             </div>
@@ -159,7 +159,7 @@ export default function gst_calculator() {
             className={`group p-4 rounded-2xl border-2 text-left transition-all duration-200
               ${inclusive
                 ? 'bg-emerald-500/8 border-emerald-500/25 shadow-lg shadow-emerald-500/10'
-                : 'bg-white/[0.02] border-white/6 hover:border-white/12'
+                : 'bg-white/[0.05] border-white/8 hover:border-white/12'
               }`}>
             <div className="flex items-center gap-3">
               <div className={`w-5 h-5 rounded-md flex items-center justify-center text-xs font-bold transition-all duration-200
@@ -176,7 +176,7 @@ export default function gst_calculator() {
           </button>
 
           {/* Supply Type */}
-          <div className="p-4 rounded-2xl border-2 border-white/6 bg-white/[0.02]">
+          <div className="p-4 rounded-2xl border-2 border-white/8 bg-white/[0.05]">
             <div className="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-2">Supply Type</div>
             <div className="grid grid-cols-2 gap-2">
               {[['intra', 'Intra-state', 'CGST + SGST'], ['inter', 'Inter-state', 'IGST']].map(([val, label, sub]) => (
@@ -184,7 +184,7 @@ export default function gst_calculator() {
                   className={`p-3 rounded-xl text-left transition-all duration-200 border
                     ${supply === val
                       ? 'bg-purple-500/10 border-purple-500/25 shadow-lg shadow-purple-500/10'
-                      : 'bg-white/[0.02] border-white/6 hover:border-white/12'
+                      : 'bg-white/[0.05] border-white/8 hover:border-white/12'
                     }`}>
                   <div className={`text-xs font-bold ${supply === val ? 'text-purple-400' : 'text-slate-300'}`}>{label}</div>
                   <div className="text-[10px] text-slate-500 mt-0.5">{sub}</div>

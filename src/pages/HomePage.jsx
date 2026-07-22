@@ -118,7 +118,7 @@ export default function HomePage() {
         <InfiniteCarousel gap={8}>
           {gameChips.map(g => (
             <a key={g.href} href={g.href}
-              className="flex-none px-4 py-2 rounded-full text-xs font-semibold bg-white/4 border border-white/6 text-slate-300 hover:border-brand/40 hover:text-white hover:bg-brand/10 transition-all no-underline whitespace-nowrap">
+              className="flex-none px-4 py-2 rounded-full text-xs font-semibold bg-white/4 border border-white/8 text-slate-300 hover:border-brand/40 hover:text-white hover:bg-brand/10 transition-all no-underline whitespace-nowrap">
               {g.label}
             </a>
           ))}
@@ -147,7 +147,7 @@ export default function HomePage() {
         {catList.map(([key, cat]) => (
           <button key={key} onClick={() => toggleCat(key)}
             className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-semibold border whitespace-nowrap transition-all cursor-pointer shrink-0 ${
-              activeCats.has(key) ? 'bg-brand/15 border-brand/40 text-white' : 'border-white/6 text-slate-400 hover:bg-brand/10 hover:border-brand/30 hover:text-white'
+              activeCats.has(key) ? 'bg-brand/15 border-brand/40 text-white' : 'border-white/8 text-slate-400 hover:bg-brand/10 hover:border-brand/30 hover:text-white'
             }`} style={{ background: activeCats.has(key) ? undefined : 'rgba(255,255,255,0.02)' }}>
             {cat.icon} {cat.label}
           </button>

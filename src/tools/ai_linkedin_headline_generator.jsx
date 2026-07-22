@@ -27,9 +27,9 @@ export default function ai_linkedin_headline_generator() {
           </div>
         </div>
         <div className="flex flex-wrap gap-1.5 mt-4">
-          <span key="ai" className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/4 border border-white/6 text-slate-400">ai</span>
-          <span key="social" className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/4 border border-white/6 text-slate-400">social</span>
-          <span key="marketing" className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/4 border border-white/6 text-slate-400">marketing</span>
+          <span key="ai" className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/4 border border-white/8 text-slate-400">ai</span>
+          <span key="social" className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/4 border border-white/8 text-slate-400">social</span>
+          <span key="marketing" className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/4 border border-white/8 text-slate-400">marketing</span>
         </div>
       </section>
 

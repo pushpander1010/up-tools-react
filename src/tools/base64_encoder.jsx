@@ -56,7 +56,7 @@ export default function base64_encoder() {
         <div className="flex gap-2">
           {['encode', 'decode'].map(m => (
             <button key={m} onClick={() => { setMode(m); setOutput(''); setError('') }}
-              className={`px-5 py-2.5 rounded-xl text-sm font-bold transition-all ${mode === m ? 'bg-cyan-500/15 text-cyan-400 border border-cyan-500/30' : 'bg-white/[0.03] text-slate-500 border border-white/6'}`}>
+              className={`px-5 py-2.5 rounded-xl text-sm font-bold transition-all ${mode === m ? 'bg-cyan-500/15 text-cyan-400 border border-cyan-500/30' : 'bg-white/[0.06] text-slate-500 border border-white/8'}`}>
               {m === 'encode' ? '🔒 Encode' : '🔓 Decode'}
             </button>
           ))}

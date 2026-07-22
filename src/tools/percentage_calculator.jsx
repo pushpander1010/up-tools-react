@@ -57,7 +57,7 @@ export default function percentage_calculator() {
         <div className="flex flex-wrap gap-2">
           {MODES.map(m => (
             <button key={m.id} onClick={() => setMode(m.id)}
-              className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all border-2 ${mode === m.id ? 'bg-emerald-500/15 border-emerald-500/30 text-emerald-400 shadow-lg shadow-emerald-500/10' : 'bg-white/[0.03] border-white/6 text-slate-400 hover:border-white/12'}`}>
+              className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all border-2 ${mode === m.id ? 'bg-emerald-500/15 border-emerald-500/30 text-emerald-400 shadow-lg shadow-emerald-500/10' : 'bg-white/[0.06] border-white/8 text-slate-400 hover:border-white/12'}`}>
               {m.label}
             </button>
           ))}
@@ -70,14 +70,14 @@ export default function percentage_calculator() {
               {mode === 'of' ? 'Percentage (%)' : mode === 'is' ? 'Value (X)' : mode === 'change' ? 'From Value' : 'Value'}
             </label>
             <input type="number" value={x} onChange={e => setX(e.target.value)} placeholder="0"
-              className="w-full bg-white/[0.03] border-2 border-white/8 rounded-2xl px-5 py-4 text-2xl font-extrabold text-white outline-none focus:border-emerald-500/40 transition-all placeholder:text-white/8" />
+              className="w-full bg-white/[0.06] border-2 border-white/8 rounded-2xl px-5 py-4 text-2xl font-extrabold text-white outline-none focus:border-emerald-500/40 transition-all placeholder:text-white/8" />
           </div>
           <div>
             <label className="block text-sm font-semibold text-slate-300 mb-2">
               {mode === 'of' ? 'Of Value' : mode === 'is' ? 'Total (Y)' : mode === 'change' ? 'To Value' : 'Percentage (%)'}
             </label>
             <input type="number" value={y} onChange={e => setY(e.target.value)} placeholder="0"
-              className="w-full bg-white/[0.03] border-2 border-white/8 rounded-2xl px-5 py-4 text-2xl font-extrabold text-white outline-none focus:border-emerald-500/40 transition-all placeholder:text-white/8" />
+              className="w-full bg-white/[0.06] border-2 border-white/8 rounded-2xl px-5 py-4 text-2xl font-extrabold text-white outline-none focus:border-emerald-500/40 transition-all placeholder:text-white/8" />
           </div>
         </div>
 

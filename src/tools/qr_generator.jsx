@@ -1,28 +1,26 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState } from 'react'
 import ToolLayout from '../components/ToolLayout'
 
-// Simple QR code generator using canvas
-function generateQR(text, size = 256) {
-  // Use a minimal QR encoder
-  const canvas = document.createElement('canvas')
-  canvas.width = size; canvas.height = size
-  const ctx = canvas.getContext('2d')
-
-  if (!text) { ctx.fillStyle = '#1e293b'; ctx.fillRect(0, 0, size, size); return canvas.toDataURL() }
-
-  // Simple pattern-based QR (for demo — real QR needs a library)
-  // We'll use the QR Server API for actual QR generation
-  return `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encodeURIComponent(text)}&bgcolor=0f172a&color=e2e8f0&margin=10`
-}
+const COLORS = [
+  { fg: '#1e293b', bg: '#ffffff', label: 'Black on White' },
+  { fg: '#e2e8f0', bg: '#0f172a', label: 'White on Dark' },
+  { fg: '#22c55e', bg: '#ffffff', label: 'Green on White' },
+  { fg: '#6366f1', bg: '#ffffff', label: 'Purple on White' },
+  { fg: '#ffffff', bg: '#6366f1', label: 'White on Purple' },
+  { fg: '#f59e0b', bg: '#1e293b', label: 'Gold on Dark' },
+  { fg: '#ef4444', bg: '#ffffff', label: 'Red on White' },
+  { fg: '#06b6d4', bg: '#ffffff', label: 'Cyan on White' },
+]
 
 export default function qr_generator() {
   const [text, setText] = useState('')
   const [size, setSize] = useState(256)
-  const [fgColor, setFgColor] = useState('#e2e8f0')
+  const [colorIdx, setColorIdx] = useState(1) // default: white on dark
   const [copied, setCopied] = useState(false)
   const [downloading, setDownloading] = useState(false)
 
-  const qrUrl = text ? `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encodeURIComponent(text)}&bgcolor=0f172a&color=${fgColor.replace('#', '')}&margin=10` : null
+  const colors = COLORS[colorIdx]
+  const qrUrl = text ? `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encodeURIComponent(text)}&bgcolor=${colors.bg.replace('#', '')}&color=${colors.fg.replace('#', '')}&margin=10` : null
 
   const download = async () => {
     if (!qrUrl) return
@@ -50,19 +48,18 @@ export default function qr_generator() {
   return (
     <ToolLayout
       title="QR Code Generator"
-      desc="Generate QR codes for any text, URL, WiFi password, or contact info. Download as PNG."
+      desc="Generate QR codes for URLs, text, WiFi, contacts. Customize colors and download as PNG."
       icon="🔳" iconBg="rgba(139,92,246,0.08)"
       category="images" slug="qr-generator"
       faq={[
-        { q: 'What can I put in a QR code?', a: 'URLs, plain text, WiFi credentials (WIFI:T:WPA;S:MyNetwork;P:password;;), email addresses, phone numbers, and more.' },
-        { q: 'How do I scan a QR code?', a: 'Open your phone camera and point it at the QR code. Most modern phones detect QR codes automatically.' },
-        { q: 'Can I customize the QR code colors?', a: 'Yes — change the foreground color using the color picker below.' },
+        { q: 'What can I encode?', a: 'URLs, plain text, WiFi credentials (WIFI:T:WPA;S:Network;P:pass;;), email, phone numbers, vCards, and more.' },
+        { q: 'How do I scan a QR code?', a: 'Open your phone camera and point it at the QR code. Most phones detect QR codes automatically.' },
       ]}
       howItWorks={[
-        'Enter the text, URL, or WiFi credentials you want to encode.',
-        'Choose the QR code size (128 to 512 pixels).',
-        'Optionally customize the foreground color.',
-        'Download the QR code as a PNG image.',
+        'Enter the text, URL, or data you want to encode.',
+        'Choose a color scheme and QR code size.',
+        'Preview the QR code in real-time.',
+        'Download as PNG or copy the image.',
       ]}
       schema={{
         "@context": "https://schema.org", "@type": "SoftwareApplication",
@@ -72,52 +69,56 @@ export default function qr_generator() {
       }}
     >
       <div className="max-w-2xl mx-auto space-y-6">
-        {/* Input */}
+        {/* Content Input */}
         <div>
           <label className="block text-sm font-semibold text-slate-300 mb-2">Content</label>
           <textarea value={text} onChange={e => setText(e.target.value)}
-            placeholder="Enter URL, text, or WiFi: WIFI:T:WPA;S:MyNetwork;P:password;;"
+            placeholder="Enter URL, text, or WiFi: WIFI:T:WPA;S:Network;P:password;;"
             rows={3}
-            className="w-full bg-white/[0.03] border-2 border-white/8 rounded-2xl px-5 py-4 text-white text-sm font-mono outline-none focus:border-purple-500/40 transition-all duration-300 placeholder:text-slate-600 resize-none" />
+            className="w-full bg-white/[0.06] border-2 border-white/8 rounded-2xl px-5 py-4 text-white text-sm font-mono outline-none focus:border-purple-500/40 transition-all placeholder:text-slate-600 resize-none" />
         </div>
 
-        {/* Options */}
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <label className="block text-xs font-semibold text-slate-500 mb-1.5">Size</label>
-            <div className="flex gap-2">
-              {[128, 256, 512].map(s => (
-                <button key={s} onClick={() => setSize(s)}
-                  className={`flex-1 py-2 rounded-xl text-xs font-bold transition-all ${size === s ? 'bg-purple-500/20 text-purple-400 border border-purple-500/40' : 'bg-white/[0.03] text-slate-500 border border-white/6'}`}>
-                  {s}px
-                </button>
-              ))}
-            </div>
+        {/* Color Scheme */}
+        <div>
+          <label className="block text-sm font-semibold text-slate-300 mb-3">Color Scheme</label>
+          <div className="grid grid-cols-4 gap-2">
+            {COLORS.map((c, i) => (
+              <button key={i} onClick={() => setColorIdx(i)}
+                className={`p-3 rounded-xl border-2 transition-all text-center ${colorIdx === i ? 'border-purple-500/50 shadow-lg shadow-purple-500/10' : 'border-white/8 hover:border-white/12'}`}
+                style={{ background: c.bg }}>
+                <div className="text-xs font-bold" style={{ color: c.fg }}>QR</div>
+                <div className="text-[9px] mt-1" style={{ color: c.fg, opacity: 0.6 }}>{c.label}</div>
+              </button>
+            ))}
           </div>
-          <div>
-            <label className="block text-xs font-semibold text-slate-500 mb-1.5">Foreground Color</label>
-            <div className="flex gap-2 items-center">
-              {[{ c: '#e2e8f0', l: 'White' }, { c: '#22c55e', l: 'Green' }, { c: '#6366f1', l: 'Purple' }, { c: '#f59e0b', l: 'Gold' }].map(clr => (
-                <button key={clr.c} onClick={() => setFgColor(clr.c)}
-                  className={`w-8 h-8 rounded-lg border-2 transition-all ${fgColor === clr.c ? 'border-white scale-110' : 'border-white/20 hover:border-white/40'}`}
-                  style={{ background: clr.c }} title={clr.l} />
-              ))}
-            </div>
+        </div>
+
+        {/* Size */}
+        <div>
+          <label className="block text-xs font-semibold text-slate-500 mb-2">Size</label>
+          <div className="flex gap-2">
+            {[128, 256, 512].map(s => (
+              <button key={s} onClick={() => setSize(s)}
+                className={`flex-1 py-2.5 rounded-xl text-xs font-bold transition-all ${size === s ? 'bg-purple-500/20 text-purple-400 border border-purple-500/40' : 'bg-white/[0.06] text-slate-500 border border-white/8'}`}>
+                {s}px
+              </button>
+            ))}
           </div>
         </div>
 
         {/* QR Preview */}
-        {qrUrl && (
-          <div className="flex flex-col items-center gap-4 p-8 rounded-3xl bg-white/[0.02] border border-white/6" style={{ animation: 'slideUp 0.35s ease-out' }}>
-            <div className="p-4 rounded-2xl bg-white shadow-2xl">
-              <img src={qrUrl} alt="QR Code" className="block" style={{ width: Math.min(size, 280), height: Math.min(size, 280) }} />
-            </div>
-            <div className="text-xs text-slate-500 text-center max-w-xs truncate">{text}</div>
+        {qrUrl ? (
+          <div className="flex flex-col items-center gap-5 p-8 rounded-3xl border border-white/8"
+            style={{ background: colors.bg, animation: 'slideUp 0.35s ease-out' }}>
+            <img src={qrUrl} alt="QR Code" className="block rounded-lg shadow-2xl"
+              style={{ width: Math.min(size, 280), height: Math.min(size, 280) }} />
+            <div className="text-xs text-center max-w-xs truncate px-4 py-1.5 rounded-lg"
+              style={{ color: colors.fg, opacity: 0.7, background: `${colors.fg}10` }}>{text}</div>
             <div className="flex gap-3">
               <button onClick={download} disabled={downloading}
                 className="glow-btn px-6 py-2.5 rounded-xl text-sm flex items-center gap-2"
                 style={{ background: 'linear-gradient(135deg, #8b5cf6, #6366f1)' }}>
-                {downloading ? '⏳' : '⬇'} Download PNG
+                {downloading ? '⏳' : '⬇'} Download
               </button>
               <button onClick={copyImage}
                 className={`px-4 py-2.5 rounded-xl text-sm font-semibold transition-all ${copied ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-white/5 border border-white/8 text-slate-400 hover:text-white'}`}>
@@ -125,12 +126,10 @@ export default function qr_generator() {
               </button>
             </div>
           </div>
-        )}
-
-        {!text && (
+        ) : (
           <div className="text-center py-12 rounded-3xl border-2 border-dashed border-white/8 bg-white/[0.01]">
             <div className="text-4xl mb-3 opacity-20">🔳</div>
-            <p className="text-sm text-slate-600 font-medium">Enter text or a URL to generate a QR code</p>
+            <p className="text-sm text-slate-600 font-medium">Enter content above to generate a QR code</p>
           </div>
         )}
       </div>

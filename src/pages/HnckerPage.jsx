@@ -56,13 +56,13 @@ export default function HnckerPage() {
         <div className="px-6 pt-6 pb-4 flex items-center justify-between gap-3 flex-wrap">
           <div><h2 className="text-xl font-bold m-0">🎬 Latest Videos</h2><p className="text-xs text-slate-500 mt-1">Swipe to browse — tap to watch.</p></div>
           <a href="https://www.youtube.com/@hncker" target="_blank" rel="noopener"
-            className="px-3 py-1.5 rounded-full text-xs font-semibold bg-white/4 border border-white/6 text-slate-400 hover:text-white hover:border-white/12 transition-all no-underline">All on YouTube ↗</a>
+            className="px-3 py-1.5 rounded-full text-xs font-semibold bg-white/4 border border-white/8 text-slate-400 hover:text-white hover:border-white/12 transition-all no-underline">All on YouTube ↗</a>
         </div>
         <div className="px-6 pb-6">
           <InfiniteCarousel gap={16}>
             {videos.map(v => (
               <a key={v.id} href={`https://www.youtube.com/watch?v=${v.id}`} target="_blank" rel="noopener"
-                className="flex-none w-[300px] rounded-2xl overflow-hidden border border-white/6 hover:border-neon/30 transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-neon/5 no-underline group"
+                className="flex-none w-[300px] rounded-2xl overflow-hidden border border-white/8 hover:border-neon/30 transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-neon/5 no-underline group"
                 style={{ background: 'rgba(17,24,39,0.6)' }}>
                 <div className="relative aspect-video bg-black overflow-hidden">
                   <img src={`https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`} alt={v.title} loading="lazy"

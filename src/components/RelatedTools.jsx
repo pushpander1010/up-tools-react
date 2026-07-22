@@ -16,7 +16,7 @@ export default function RelatedTools({ currentSlug, category, limit = 6 }) {
       <div className="flex flex-wrap gap-2">
         {related.map(t => (
           <Link key={t.slug} to={t.href}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-white/4 border border-white/6 text-slate-400 hover:text-white hover:border-brand/40 transition-all no-underline">
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-white/4 border border-white/8 text-slate-400 hover:text-white hover:border-brand/40 transition-all no-underline">
             {t.icon} {t.title}
           </Link>
         ))}

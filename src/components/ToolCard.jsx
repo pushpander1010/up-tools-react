@@ -47,7 +47,7 @@ export default function ToolCard({ tool, categories }) {
       {/* Tags */}
       <div className="flex flex-wrap gap-1 mb-2.5">
         {tool.tags?.slice(0, 3).map(tag => (
-          <span key={tag} className="px-2 py-0.5 rounded-full text-[10px] font-medium bg-white/4 border border-white/6 text-slate-500">
+          <span key={tag} className="px-2 py-0.5 rounded-full text-[10px] font-medium bg-white/4 border border-white/8 text-slate-500">
             {tag}
           </span>
         ))}

@@ -54,7 +54,7 @@ export default function Navbar() {
 
         {/* Tabs */}
         <nav ref={navRef}
-          className="flex items-center gap-0.5 rounded-full p-[3px] border border-white/6"
+          className="flex items-center gap-0.5 rounded-full p-[3px] border border-white/8"
           style={{ background: 'rgba(255,255,255,0.04)' }}>
           {/* Indicator */}
           <div ref={indicatorRef}
