@@ -1,69 +1,203 @@
 import { useState, useMemo } from 'react'
 import ToolLayout from '../components/ToolLayout'
 
-const NEW_SLABS = [{upTo:300000,rate:0},{upTo:700000,rate:5},{upTo:1000000,rate:10},{upTo:1200000,rate:15},{upTo:1500000,rate:20},{upTo:Infinity,rate:30}]
-const OLD_SLABS = [{upTo:250000,rate:0},{upTo:500000,rate:5},{upTo:1000000,rate:20},{upTo:Infinity,rate:30}]
-const STD=50000
-function slabTax(inc,s){let t=0,p=0,r=inc;for(const x of s){const w=Math.min(r,x.upTo-p);if(w>0)t+=w*(x.rate/100);r-=w;p=x.upTo;if(r<=0)break}return t}
-function hra(b,h,rent,m){if(!b||!h||!rent)return 0;return Math.min(h,Math.max(0,rent-.1*b),(m?.5:.4)*b)}
-function fmt(n){return '\u20b9'+Math.round(n).toLocaleString('en-IN')}
+// ─── Tax Logic ───
+const NEW_SLABS = [{ upTo: 300000, rate: 0 }, { upTo: 700000, rate: 5 }, { upTo: 1000000, rate: 10 }, { upTo: 1200000, rate: 15 }, { upTo: 1500000, rate: 20 }, { upTo: Infinity, rate: 30 }]
+const OLD_SLABS = [{ upTo: 250000, rate: 0 }, { upTo: 500000, rate: 5 }, { upTo: 1000000, rate: 20 }, { upTo: Infinity, rate: 30 }]
+const STD = 50000
 
-export default function income_tax_tool(){
-  const[I,setI]=useState('');const[sd,setSd]=useState(true);const[c80c,setC80c]=useState('');const[c80d,setC80d]=useState('');const[nps,setNps]=useState('');
-  const[hraR,setHraR]=useState('');const[basic,setBasic]=useState('');const[rent,setRent]=useState('');const[metro,setMetro]=useState(false);const[hl,setHl]=useState('')
-  const inc=parseFloat(I)||0
-  const r=useMemo(()=>{if(inc<=0)return null;
-    let nt=inc-(sd?STD:0);nt=Math.max(0,nt);let ntx=slabTax(nt,NEW_SLABS);if(nt<=700000)ntx=0;
-    let ns=0;for(const b of[{o:5e6,rn:25,ro:37},{o:2e6,rn:15,ro:25},{o:1e6,rn:15,ro:15},{o:5e6,rn:10,ro:10}]){if(nt>b.o)ns=(b.rn/100)*ntx}
-    const nc=(ntx+ns)*.04;const nTotal=ntx+ns+nc;
-    const h=hra(parseFloat(basic)||0,parseFloat(hraR)||0,parseFloat(rent)||0,metro);
-    const ded=Math.min(parseFloat(c80c)||0,150000)+(parseFloat(c80d)||0)+Math.min(parseFloat(nps)||0,50000)+h+Math.min(parseFloat(hl)||0,200000);
-    let ot=inc-ded-(sd?STD:0);ot=Math.max(0,ot);let otx=slabTax(ot,OLD_SLABS);if(ot<=500000)otx=0;
-    let os=0;for(const b of[{o:5e6,rn:25,ro:37},{o:2e6,rn:15,ro:25},{o:1e6,rn:15,ro:15},{o:5e6,rn:10,ro:10}]){if(ot>b.o)os=(b.ro/100)*otx}
-    const oc=(otx+os)*.04;const oTotal=otx+os+oc;
-    return{nt,ntx,ns,nc,nTotal,ot,otx,os,oc,oTotal,better:nTotal<=oTotal?'new':'old',save:Math.abs(nTotal-oTotal)}
-  },[inc,sd,c80c,c80d,nps,hraR,basic,rent,metro,hl])
+function slabTax(inc, slabs) {
+  let tax = 0, prev = 0, rem = inc
+  for (const s of slabs) { const w = Math.min(rem, s.upTo - prev); if (w > 0) tax += w * (s.rate / 100); rem -= w; prev = s.upTo; if (rem <= 0) break }
+  return tax
+}
 
-  return(
-    <ToolLayout title="Income Tax Calculator India" desc="Compare old vs new income tax regime FY 2024-25. Calculate tax with 80C, 80D, HRA deductions."
-      icon="🧾" iconBg="rgba(34,197,94,0.08)" category="tax" slug="income-tax-tool"
-      faq={[{q:'Which regime is better?',a:'Enter your income and deductions — the calculator automatically shows which regime saves you more.'},{q:'What is standard deduction?',a:'₹50,000 flat deduction available in both old and new regimes for salaried individuals.'},{q:'What is cess?',a:'4% Health & Education cess is charged on total tax + surcharge.'}]}
-      howItWorks={['Enter your annual gross income.','Toggle standard deduction (₹50,000).','Fill old regime deductions: 80C, 80D, NPS, HRA, home loan.','Compare both regimes side-by-side.','The calculator shows which regime saves you more.']}
-      schema={{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Income Tax Calculator India","applicationCategory":"FinanceApplication","url":"https://www.uptools.in/income-tax-tool/","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"}}}
+function surcharge(tax, inc) {
+  if (inc > 5000000) return tax * 0.37
+  if (inc > 2000000) return tax * 0.25
+  if (inc > 1000000) return tax * 0.15
+  if (inc > 500000) return tax * 0.10
+  return 0
+}
+
+const fmt = (n) => '₹' + Math.round(n).toLocaleString('en-IN')
+
+function Field({ label, value, onChange, placeholder }) {
+  return (
+    <div>
+      <label className="block text-xs font-semibold text-slate-500 mb-1.5">{label}</label>
+      <input type="number" value={value} onChange={e => onChange(e.target.value)} placeholder={placeholder || '0'}
+        className="w-full bg-white/[0.03] border-2 border-white/8 rounded-xl px-4 py-3 text-sm text-white font-semibold outline-none focus:border-brand/40 transition-all duration-200 placeholder:text-slate-600" />
+    </div>
+  )
+}
+
+export default function income_tax_tool() {
+  const [income, setIncome] = useState('')
+  const [sd, setSd] = useState(true)
+  const [ded, setDed] = useState({ c80c: '', c80d: '', nps: '', homeLoan: '' })
+  const [hra, setHra] = useState({ basic: '', received: '', rent: '', metro: false })
+
+  const inc = parseFloat(income) || 0
+
+  const result = useMemo(() => {
+    if (inc <= 0) return null
+
+    // New Regime
+    const newTaxable = Math.max(0, inc - (sd ? STD : 0))
+    const newTaxBase = slabTax(newTaxable, NEW_SLABS)
+    const newRebate = newTaxable <= 700000 ? newTaxBase : 0
+    const newTaxAfterRebate = newTaxBase - newRebate
+    const newSurcharge = surcharge(newTaxAfterRebate, inc)
+    const newCess = (newTaxAfterRebate + newSurcharge) * 0.04
+    const newTotal = newTaxAfterRebate + newSurcharge + newCess
+
+    // Old Regime
+    const hraExempt = Math.min(
+      parseFloat(hra.received) || 0,
+      Math.max(0, (parseFloat(hra.rent) || 0) - 0.1 * (parseFloat(hra.basic) || 0)),
+      (hra.metro ? 0.5 : 0.4) * (parseFloat(hra.basic) || 0)
+    )
+    const totalDeductions = Math.min(parseFloat(ded.c80c) || 0, 150000)
+      + (parseFloat(ded.c80d) || 0)
+      + Math.min(parseFloat(ded.nps) || 0, 50000)
+      + hraExempt
+      + Math.min(parseFloat(ded.homeLoan) || 0, 200000)
+
+    const oldTaxable = Math.max(0, inc - totalDeductions - (sd ? STD : 0))
+    const oldTaxBase = slabTax(oldTaxable, OLD_SLABS)
+    const oldRebate = oldTaxable <= 500000 ? oldTaxBase : 0
+    const oldTaxAfterRebate = oldTaxBase - oldRebate
+    const oldSurcharge = surcharge(oldTaxAfterRebate, inc)
+    const oldCess = (oldTaxAfterRebate + oldSurcharge) * 0.04
+    const oldTotal = oldTaxAfterRebate + oldSurcharge + oldCess
+
+    const better = newTotal <= oldTotal ? 'new' : 'old'
+    const saving = Math.abs(newTotal - oldTotal)
+
+    return { newTotal, oldTotal, newTaxable, oldTaxable, totalDeductions, better, saving,
+      newBreakdown: { tax: newTaxAfterRebate, surcharge: newSurcharge, cess: newCess },
+      oldBreakdown: { tax: oldTaxAfterRebate, surcharge: oldSurcharge, cess: oldCess }
+    }
+  }, [inc, sd, ded, hra])
+
+  return (
+    <ToolLayout
+      title="Income Tax Calculator India FY 2024-25"
+      desc="Compare old vs new income tax regime. Calculate tax with deductions, HRA, 80C, 80D. See which regime saves you more."
+      icon="🧾" iconBg="rgba(34,197,94,0.08)"
+      category="tax" slug="income-tax-tool"
+      faq={[
+        { q: 'Which regime should I choose?', a: 'Enter your income and deductions — the calculator shows which regime saves you more automatically.' },
+        { q: 'What is the new regime rebate?', a: 'Under new regime, income up to ₹7L gets full rebate — you pay zero tax.' },
+        { q: 'What deductions are allowed in old regime?', a: '80C (₹1.5L), 80D (health insurance), NPS 1B (₹50K), HRA exemption, home loan interest (₹2L), and standard deduction (₹50K).' },
+        { q: 'What is cess?', a: '4% Health & Education cess is charged on total tax plus surcharge.' },
+      ]}
+      howItWorks={[
+        'Enter your annual gross income.',
+        'Toggle standard deduction (₹50,000 — available in both regimes).',
+        'Fill in old regime deductions: 80C, 80D, NPS, HRA, home loan interest.',
+        'Compare both regimes side by side.',
+        'The calculator shows which regime saves you more and by how much.',
+      ]}
+      schema={{
+        "@context": "https://schema.org", "@type": "SoftwareApplication",
+        "name": "Income Tax Calculator India", "applicationCategory": "FinanceApplication",
+        "url": "https://www.uptools.in/income-tax-tool/",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" }
+      }}
     >
-      <div className="space-y-4">
-        <div><label className="text-xs font-medium text-slate-400 mb-2 block">Annual Income (₹)</label>
-          <input type="number" value={I} onChange={e=>setI(e.target.value)} placeholder="e.g. 1200000" className="w-full bg-white/5 border border-white/8 rounded-xl px-4 py-3 text-white text-lg font-semibold outline-none focus:border-green-500/50 placeholder:text-slate-600"/></div>
-        <label className="flex items-center gap-3 cursor-pointer"><input type="checkbox" checked={sd} onChange={e=>setSd(e.target.checked)} className="w-4 h-4 accent-green-500"/><span className="text-sm text-white">Standard Deduction (₹50,000)</span></label>
-        <div className="p-5 rounded-2xl bg-white/3 border border-white/6">
-          <h3 className="text-sm font-semibold text-green-400 mb-3">Old Regime Deductions</h3>
-          <div className="grid grid-cols-2 gap-3">
-            {[{l:'80C (max ₹1.5L)',v:c80c,s:setC80c},{l:'80D (Health)',v:c80d,s:setC80d},{l:'NPS (max ₹50K)',v:nps,s:setNps},{l:'Home Loan Int',v:hl,s:setHl}].map(f=>(
-              <div key={f.l}><label className="text-[11px] text-slate-500 mb-1 block">{f.l}</label>
-              <input type="number" value={f.v} onChange={e=>f.s(e.target.value)} placeholder="0" className="w-full bg-white/5 border border-white/8 rounded-lg px-3 py-2 text-white text-sm outline-none"/></div>
-            ))}
-          </div>
-          <div className="mt-4 pt-3 border-t border-white/6">
-            <h4 className="text-xs text-slate-400 mb-2">HRA Exemption</h4>
-            <div className="grid grid-cols-3 gap-3">
-              <div><label className="text-[11px] text-slate-500 block">Basic</label><input type="number" value={basic} onChange={e=>setBasic(e.target.value)} placeholder="0" className="w-full bg-white/5 border border-white/8 rounded-lg px-3 py-2 text-white text-sm outline-none"/></div>
-              <div><label className="text-[11px] text-slate-500 block">HRA Recv</label><input type="number" value={hraR} onChange={e=>setHraR(e.target.value)} placeholder="0" className="w-full bg-white/5 border border-white/8 rounded-lg px-3 py-2 text-white text-sm outline-none"/></div>
-              <div><label className="text-[11px] text-slate-500 block">Rent</label><input type="number" value={rent} onChange={e=>setRent(e.target.value)} placeholder="0" className="w-full bg-white/5 border border-white/8 rounded-lg px-3 py-2 text-white text-sm outline-none"/></div>
-            </div>
-            <label className="flex items-center gap-2 mt-2 cursor-pointer"><input type="checkbox" checked={metro} onChange={e=>setMetro(e.target.checked)} className="w-3.5 h-3.5 accent-purple-500"/><span className="text-xs text-slate-400">Metro city</span></label>
+      <div className="max-w-3xl mx-auto space-y-6">
+
+        {/* Income Input */}
+        <div>
+          <label className="block text-sm font-semibold text-slate-300 mb-2">Annual Income</label>
+          <div className="relative">
+            <span className="absolute left-5 top-1/2 -translate-y-1/2 text-2xl font-bold text-green-500/30">₹</span>
+            <input type="number" value={income} onChange={e => setIncome(e.target.value)} placeholder="0"
+              className="w-full bg-white/[0.03] border-2 border-white/8 rounded-2xl pl-12 pr-5 py-4 text-3xl font-extrabold text-white outline-none focus:border-green-500/40 transition-all duration-300 placeholder:text-white/8" />
           </div>
         </div>
-        {r&&(<div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
-          <div className="p-5 rounded-2xl bg-brand/5 border border-brand/15">
-            <div className="flex items-center justify-between mb-3"><h3 className="text-sm font-semibold text-brand-light">New Regime</h3>{r.better==='new'&&<span className="text-[10px] font-bold bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full">BETTER</span>}</div>
-            <div className="space-y-1.5 text-sm"><div className="flex justify-between"><span className="text-slate-400">Taxable</span><span className="text-white">{fmt(r.nt)}</span></div><div className="flex justify-between"><span className="text-slate-400">Tax</span><span className="text-white">{fmt(r.ntx)}</span></div><div className="flex justify-between"><span className="text-slate-400">Surcharge</span><span className="text-white">{fmt(r.ns)}</span></div><div className="flex justify-between"><span className="text-slate-400">Cess 4%</span><span className="text-white">{fmt(r.nc)}</span></div><div className="flex justify-between font-bold pt-2 border-t border-white/6"><span>Total</span><span className="text-brand-light">{fmt(r.nTotal)}</span></div></div>
+
+        {/* Standard Deduction */}
+        <button onClick={() => setSd(!sd)}
+          className={`w-full p-4 rounded-2xl border-2 text-left transition-all duration-200 ${sd ? 'bg-green-500/8 border-green-500/25' : 'bg-white/[0.02] border-white/6 hover:border-white/12'}`}>
+          <div className="flex items-center gap-3">
+            <div className={`w-5 h-5 rounded-md flex items-center justify-center text-xs font-bold transition-all ${sd ? 'bg-green-500 text-white' : 'bg-white/10 text-transparent'}`}>
+              {sd && '✓'}
+            </div>
+            <div>
+              <div className="text-sm font-bold text-white">Standard Deduction — ₹50,000</div>
+              <div className="text-[11px] text-slate-500">Available in both old and new regimes</div>
+            </div>
           </div>
-          <div className="p-5 rounded-2xl bg-emerald-500/5 border border-emerald-500/15">
-            <div className="flex items-center justify-between mb-3"><h3 className="text-sm font-semibold text-emerald-400">Old Regime</h3>{r.better==='old'&&<span className="text-[10px] font-bold bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full">BETTER</span>}</div>
-            <div className="space-y-1.5 text-sm"><div className="flex justify-between"><span className="text-slate-400">Taxable</span><span className="text-white">{fmt(r.ot)}</span></div><div className="flex justify-between"><span className="text-slate-400">Tax</span><span className="text-white">{fmt(r.otx)}</span></div><div className="flex justify-between"><span className="text-slate-400">Surcharge</span><span className="text-white">{fmt(r.os)}</span></div><div className="flex justify-between"><span className="text-slate-400">Cess 4%</span><span className="text-white">{fmt(r.oc)}</span></div><div className="flex justify-between font-bold pt-2 border-t border-white/6"><span>Total</span><span className="text-emerald-400">{fmt(r.oTotal)}</span></div></div>
+        </button>
+
+        {/* Old Regime Deductions */}
+        <div className="p-5 rounded-2xl border border-white/6 bg-white/[0.02]">
+          <h3 className="text-sm font-bold text-slate-300 mb-4">📊 Old Regime Deductions</h3>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <Field label="80C (max ₹1.5L)" value={ded.c80c} onChange={v => setDed(d => ({ ...d, c80c: v }))} />
+            <Field label="80D (Health)" value={ded.c80d} onChange={v => setDed(d => ({ ...d, c80d: v }))} />
+            <Field label="NPS 1B (₹50K)" value={ded.nps} onChange={v => setDed(d => ({ ...d, nps: v }))} />
+            <Field label="Home Loan Int" value={ded.homeLoan} onChange={v => setDed(d => ({ ...d, homeLoan: v }))} />
           </div>
-          <div className="sm:col-span-2 p-4 rounded-2xl bg-gradient-to-r from-emerald-500/10 to-brand/10 border border-emerald-500/20 text-center"><div className="text-xs text-slate-400">You save with</div><div className="text-xl font-extrabold gradient-text">{r.better==='new'?'New Regime':'Old Regime'}</div><div className="text-emerald-400 font-bold">{fmt(r.save)}</div></div>
-        </div>)}
+
+          {/* HRA Section */}
+          <div className="mt-5 pt-4 border-t border-white/6">
+            <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">HRA Exemption</h4>
+            <div className="grid grid-cols-3 gap-3">
+              <Field label="Basic Salary" value={hra.basic} onChange={v => setHra(h => ({ ...h, basic: v }))} />
+              <Field label="HRA Received" value={hra.received} onChange={v => setHra(h => ({ ...h, received: v }))} />
+              <Field label="Rent Paid" value={hra.rent} onChange={v => setHra(h => ({ ...h, rent: v }))} />
+            </div>
+            <button onClick={() => setHra(h => ({ ...h, metro: !h.metro }))}
+              className={`mt-3 flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold transition-all border
+                ${hra.metro ? 'bg-purple-500/10 border-purple-500/25 text-purple-400' : 'bg-white/[0.03] border-white/6 text-slate-500 hover:border-white/12'}`}>
+              <div className={`w-3.5 h-3.5 rounded-sm flex items-center justify-center text-[9px] font-bold ${hra.metro ? 'bg-purple-500 text-white' : 'bg-white/10 text-transparent'}`}>
+                {hra.metro && '✓'}
+              </div>
+              Metro city (50% of basic)
+            </button>
+          </div>
+        </div>
+
+        {/* Results */}
+        {result && (
+          <div className="space-y-4" style={{ animation: 'slideUp 0.35s ease-out' }}>
+            {/* Winner Banner */}
+            <div className={`p-5 rounded-2xl border-2 text-center ${result.better === 'new' ? 'bg-brand/5 border-brand/20' : 'bg-green-500/5 border-green-500/20'}`}>
+              <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider mb-1">Better Regime</div>
+              <div className="text-2xl font-extrabold gradient-text">{result.better === 'new' ? 'New Regime' : 'Old Regime'}</div>
+              <div className="text-green-400 font-bold mt-1">You save {fmt(result.saving)}</div>
+            </div>
+
+            {/* Side by Side */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {[
+                { label: 'New Regime', data: result.newBreakdown, taxable: result.newTaxable, total: result.newTotal, color: 'brand', better: result.better === 'new' },
+                { label: 'Old Regime', data: result.oldBreakdown, taxable: result.oldTaxable, total: result.oldTotal, color: 'emerald', better: result.better === 'old' },
+              ].map(regime => (
+                <div key={regime.label} className={`p-5 rounded-2xl border transition-all ${regime.better ? `bg-${regime.color === 'brand' ? 'brand' : 'emerald-500'}/5 border-${regime.color === 'brand' ? 'brand' : 'emerald-500'}/20` : 'bg-white/[0.02] border-white/6'}`}>
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className={`text-sm font-bold ${regime.better ? (regime.color === 'brand' ? 'text-brand-light' : 'text-emerald-400') : 'text-slate-400'}`}>{regime.label}</h3>
+                    {regime.better && <span className="text-[10px] font-bold bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full">BETTER</span>}
+                  </div>
+                  <div className="space-y-2">
+                    <div className="flex justify-between text-xs"><span className="text-slate-500">Taxable Income</span><span className="text-white font-medium">{fmt(regime.taxable)}</span></div>
+                    <div className="flex justify-between text-xs"><span className="text-slate-500">Tax</span><span className="text-white font-medium">{fmt(regime.data.tax)}</span></div>
+                    {regime.data.surcharge > 0 && <div className="flex justify-between text-xs"><span className="text-slate-500">Surcharge</span><span className="text-white font-medium">{fmt(regime.data.surcharge)}</span></div>}
+                    <div className="flex justify-between text-xs"><span className="text-slate-500">Cess (4%)</span><span className="text-white font-medium">{fmt(regime.data.cess)}</span></div>
+                    <div className="flex justify-between text-sm font-bold pt-2 border-t border-white/6">
+                      <span className="text-white">Total Tax</span>
+                      <span className={regime.better ? (regime.color === 'brand' ? 'text-brand-light' : 'text-emerald-400') : 'text-slate-300'}>{fmt(regime.total)}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </ToolLayout>
   )
