@@ -1,45 +1,98 @@
-import { Helmet } from 'react-helmet-async'
-import { Link } from 'react-router-dom'
+import { useState } from 'react'
+import ToolLayout from '../components/ToolLayout'
 
 export default function base64_encoder() {
+  const [input, setInput] = useState('')
+  const [mode, setMode] = useState('encode')
+  const [output, setOutput] = useState('')
+  const [error, setError] = useState('')
+  const [copied, setCopied] = useState(false)
+
+  const process = () => {
+    try {
+      if (mode === 'encode') {
+        setOutput(btoa(unescape(encodeURIComponent(input))))
+      } else {
+        setOutput(decodeURIComponent(escape(atob(input))))
+      }
+      setError('')
+    } catch (e) {
+      setError(mode === 'decode' ? 'Invalid Base64 string' : e.message)
+      setOutput('')
+    }
+  }
+
+  const copy = () => {
+    navigator.clipboard.writeText(output)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 1500)
+  }
+
   return (
-    <>
-      <Helmet>
-        <title>Base64 Encoder & Decoder | UpTools</title>
-        <meta name="description" content="Encode or decode Base64 text & files." />
-        <link rel="canonical" href="https://www.uptools.in/base64-encoder/" />
-        <meta property="og:title" content="Base64 Encoder & Decoder | UpTools" />
-        <meta property="og:description" content="Encode or decode Base64 text & files." />
-      </Helmet>
+    <ToolLayout
+      title="Base64 Encoder & Decoder"
+      desc="Encode text to Base64 or decode Base64 strings back to text. Works with Unicode."
+      icon="🧬" iconBg="rgba(6,182,212,0.08)"
+      category="dev" slug="base64-encoder"
+      faq={[
+        { q: 'What is Base64?', a: 'A encoding scheme that converts binary data to ASCII text, commonly used in email, URLs, and data URLs.' },
+        { q: 'Why use Base64?', a: 'To safely transmit binary data over text-based protocols like HTTP, email, or JSON.' },
+      ]}
+      howItWorks={[
+        'Choose Encode or Decode mode.',
+        'Paste your text (encode) or Base64 string (decode).',
+        'Click the process button.',
+        'Copy the result.',
+      ]}
+      schema={{
+        "@context": "https://schema.org", "@type": "SoftwareApplication",
+        "name": "Base64 Encoder Decoder", "applicationCategory": "DeveloperApplication",
+        "url": "https://www.uptools.in/base64-encoder/",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      }}
+    >
+      <div className="max-w-3xl mx-auto space-y-4">
+        {/* Mode Toggle */}
+        <div className="flex gap-2">
+          {['encode', 'decode'].map(m => (
+            <button key={m} onClick={() => { setMode(m); setOutput(''); setError('') }}
+              className={`px-5 py-2.5 rounded-xl text-sm font-bold transition-all ${mode === m ? 'bg-cyan-500/15 text-cyan-400 border border-cyan-500/30' : 'bg-white/[0.03] text-slate-500 border border-white/6'}`}>
+              {m === 'encode' ? '🔒 Encode' : '🔓 Decode'}
+            </button>
+          ))}
+        </div>
 
-      <nav className="text-xs text-slate-500 mb-4">
-        <Link to="/" className="hover:text-white transition-colors">Home</Link>
-        <span className="mx-2 text-slate-700">›</span>
-        <span className="text-white">Base64 Encoder & Decoder</span>
-      </nav>
+        {/* Input */}
+        <textarea value={input} onChange={e => { setInput(e.target.value); setError('') }}
+          placeholder={mode === 'encode' ? 'Enter text to encode...' : 'Enter Base64 string to decode...'}
+          rows={6}
+          className="w-full bg-black/20 border-2 border-white/8 rounded-2xl px-5 py-4 text-sm font-mono outline-none focus:border-cyan-500/40 transition-all placeholder:text-slate-600 resize-none" />
 
-      <section className="glass p-6 mb-6" style={{ background: 'linear-gradient(135deg, rgba(99,102,241,0.08), rgba(17,24,39,0.6))', borderColor: 'rgba(99,102,241,0.2)' }}>
-        <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl" style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}>🧬</div>
-          <div>
-            <h1 className="text-xl font-bold text-white m-0">Base64 Encoder & Decoder</h1>
-            <p className="text-sm text-slate-400 mt-1">Encode or decode Base64 text & files.</p>
+        {/* Process Button */}
+        <button onClick={process}
+          className="glow-btn px-6 py-3 rounded-xl text-sm w-full"
+          style={{ background: 'linear-gradient(135deg, #06b6d4, #0891b2)' }}>
+          {mode === 'encode' ? '🔒 Encode to Base64' : '🔓 Decode from Base64'}
+        </button>
+
+        {/* Error */}
+        {error && <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-sm text-red-400">❌ {error}</div>}
+
+        {/* Output */}
+        {output && (
+          <div className="space-y-2" style={{ animation: 'slideUp 0.3s ease-out' }}>
+            <div className="flex items-center justify-between">
+              <label className="text-xs font-semibold text-slate-500">Output</label>
+              <button onClick={copy}
+                className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${copied ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-white/5 border border-white/8 text-slate-400 hover:text-white'}`}>
+                {copied ? '✓ Copied' : '📋 Copy'}
+              </button>
+            </div>
+            <textarea value={output} readOnly rows={6}
+              className="w-full bg-black/20 border-2 border-emerald-500/20 rounded-2xl px-5 py-4 text-sm font-mono text-emerald-400 resize-none" />
           </div>
-        </div>
-        <div className="flex flex-wrap gap-1.5 mt-4">
-          <span key="dev" className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/4 border border-white/6 text-slate-400">dev</span>
-          <span key="security" className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/4 border border-white/6 text-slate-400">security</span>
-        </div>
-      </section>
-
-      <iframe
-        src="/base64-encoder/index.html"
-        className="w-full border-0 rounded-2xl overflow-hidden"
-        style={{ minHeight: '700px', background: '#0f172a' }}
-        title="Base64 Encoder & Decoder"
-        loading="lazy"
-        sandbox="allow-scripts allow-same-origin"
-      />
-    </>
+        )}
+      </div>
+    </ToolLayout>
   )
 }
