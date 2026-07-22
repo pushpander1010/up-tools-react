@@ -47,12 +47,11 @@ export default function HomePage() {
     })
   }, [])
 
-  const handleSearch = (e) => {
-    setSearch(e.target.value)
-    if (e.target.value.length > 0) {
-      setTimeout(() => {
-        gridRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      }, 100)
+  const handleSearch = (e) => { setSearch(e.target.value) }
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      gridRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
   }
 
@@ -120,7 +119,7 @@ export default function HomePage() {
         <div className="flex items-center gap-3 rounded-2xl px-5 py-3.5 transition-all duration-300 focus-within:shadow-[0_0_0_3px_rgba(99,102,241,0.15),0_4px_20px_rgba(0,0,0,0.2)]"
           style={{ background: 'rgba(17,24,39,0.8)', border: '1px solid rgba(255,255,255,0.06)' }}>
           <span className="text-slate-500 text-lg">🔎</span>
-          <input type="search" value={search} onChange={handleSearch}
+          <input type="search" value={search} onChange={handleSearch} onKeyDown={handleKeyDown}
             placeholder="Search 300+ tools (tax, gst, currency, json)…"
             className="flex-1 min-w-0 bg-transparent border-none outline-none text-white text-sm placeholder:text-slate-500" />
           {search && (
