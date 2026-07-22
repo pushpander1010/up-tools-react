@@ -38,10 +38,9 @@ export default function GamesPage() {
       </section>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
-        {games.map((g, i) => (
-          <Link key={g.slug} to={`/games/${g.slug}/`}
-            className="glass p-5 group relative overflow-hidden no-underline"
-            style={{ animationDelay: `${i * 0.05}s` }}>
+        {games.map((g) => (
+          <a key={g.slug} href={`/games/${g.slug}/`}
+            className="glass p-5 group relative overflow-hidden no-underline block">
             <div className="absolute top-0 left-0 right-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity"
               style={{ background: 'linear-gradient(90deg, transparent, #f43f5e, transparent)' }} />
             <div className="text-4xl mb-3 group-hover:scale-110 transition-transform">{g.icon}</div>
@@ -51,7 +50,7 @@ export default function GamesPage() {
               style={{ background: 'linear-gradient(135deg, #f43f5e, #f97316)' }}>
               Play →
             </span>
-          </Link>
+          </a>
         ))}
       </div>
     </>

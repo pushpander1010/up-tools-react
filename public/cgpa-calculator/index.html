@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>CGPA Calculator – Free Online Tool | UpTools</title>
+  <link rel="icon" sizes="50x50" type="image/svg+xml" href="/assets/logo/uptools-logo.svg">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/logo/uptools-logo.svg">
+  <meta name="description" content="Calculate CGPA from subject grade points and credits. Supports 10-point and 4-point scales." />
+  <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:large" />
+  <link href="https://www.uptools.in/cgpa-calculator/" rel="canonical"/>
+  <meta name="keywords" content="cgpa calculator, uptools, cgpa calculator, cgpa to percentage, gpa calculator, grade point average" />
+  <meta property="og:title" content="CGPA Calculator – UpTools" />
+  <meta property="og:description" content="Calculate CGPA from subject grade points and credits. Supports 10-point and 4-point scales." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="UpTools" />
+  <meta property="og:url" content="https://www.uptools.in/cgpa-calculator/" />
+  <meta property="og:image" content="https://www.uptools.in/assets/og/cgpa-calculator.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="CGPA Calculator – UpTools" />
+  <meta name="twitter:description" content="Calculate CGPA from subject grade points and credits. Supports 10-point and 4-point scales." />
+  <meta name="twitter:image" content="https://www.uptools.in/assets/og/cgpa-calculator.png" />
+  
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How is CGPA calculated?", "acceptedAnswer": {"@type": "Answer", "text": "CGPA = sum(grade points \u00d7 credits) \u00f7 sum(credits) across all subjects."}}, {"@type": "Question", "name": "Is this CGPA calculator free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. It runs fully in your browser with no sign-up required."}}, {"@type": "Question", "name": "Does it support the 4.0 scale?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Enter grade points on your scale (0\u201310 or 0\u20134); the weighted formula works for any scale."}}]}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.uptools.in/"}, {"@type": "ListItem", "position": 2, "name": "CGPA Calculator", "item": "https://www.uptools.in/cgpa-calculator/"}]}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "UpTools CGPA Calculator", "applicationCategory": "UtilityApplication", "operatingSystem": "Any", "url": "https://www.uptools.in/cgpa-calculator/", "description": "Calculate CGPA from subject grade points and credits. Supports 10-point and 4-point scales.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "INR"}, "publisher": {"@type": "Organization", "name": "UpTools", "url": "https://www.uptools.in"}}</script>
+  <link rel="stylesheet" href="/style.css?v=5.0.0">
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6216304334889617" crossorigin="anonymous"></script>
+<script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-6216304334889617",enable_page_level_ads:true});</script>
+
+<!-- Paste your Google Analytics 4 Measurement ID below, e.g. G-ABC123XYZ9 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NN3GDL1LEJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-NN3GDL1LEJ');
+</script>
+</head>
+<body>
+  <!-- AdSense -->
+    <!-- AdSense display -->
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-6216304334889617"
+       data-ad-slot="9810172647"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+  <a href="#main" class="sr-only skip-link">Skip to content</a>
+  <header class="site" role="banner">
+<div class="header-inner">
+<a aria-label="UpTools Home" class="brand" href="/">
+<img alt="UpTools logo" height="28" loading="eager" src="/assets/logo/uptools-logo.svg" width="28"/>
+<b>UpTools</b>
+</a>
+<nav aria-label="Primary" class="nav-links nav-tabs" id="navTabs">
+<div class="tab-indicator" id="tabIndicator"></div>
+<a href="/" class="nav-tab" data-tab="home">Home</a>
+<a href="/games/" class="nav-tab" data-tab="games">🎮 Games</a>
+<a href="/hncker/" class="nav-tab" data-tab="hncker">HNCKER</a>
+</nav>
+</div>
+</header>
+  <main id="main" class="wrap" role="main">
+    <nav aria-label="Breadcrumb" style="margin-bottom:1.5rem;">
+      <ol style="display:flex; gap:.5rem; list-style:none; padding:0; margin:0; font-size:.9rem;">
+        <li><a href="/">Home</a></li><li style="color:var(--muted)">/</li>
+        <li><a href="/#education">Education</a></li><li style="color:var(--muted)">/</li>
+        <li style="color:var(--muted)">CGPA Calculator</li>
+      </ol>
+    </nav>
+    <article class="card">
+      <h1>🎓 CGPA Calculator</h1>
+      <p class="note">Calculate CGPA from subject grade points and credits. Supports 10-point and 4-point scales.</p>
+      <div id="cgpa-rows"></div>
+      <button class="btn" onclick="addCgpaRow()" style="margin-top:1rem">+ Add Subject</button>
+      <button class="btn" onclick="calcCgpa()" style="margin-top:1rem;background:var(--brand);color:#000">Calculate CGPA</button>
+      <div id="cgpa-result" class="result" style="display:none"></div>
+      <h2 style="margin-top:2rem">Features</h2>
+      <ul style="line-height:2"><li>✅ Weighted CGPA from credits</li><li>✅ 10-point & 4-point scales</li><li>✅ Add/remove subjects</li><li>✅ Instant, private & free</li></ul>
+    </article>
+    <section class="card" style="margin-top:16px">
+      <h2 style="margin-top:0">&#9989; Do's and &#10060; Don'ts</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+        <div class="card" style="border-color:rgba(34,197,94,.3)">
+          <h3 style="color:#22c55e;margin-top:0;font-size:1rem">&#9989; Do's</h3>
+          <ul style="list-style:none;padding:0;margin:0;color:#9aa4b2">
+            <li style="padding:.35rem 0">&#9989; <b>Do</b> verify inputs for accuracy.</li>
+            <li style="padding:.35rem 0">&#9989; <b>Do</b> bookmark this free tool for quick access.</li>
+            <li style="padding:.35rem 0">&#9989; <b>Do</b> share results with teammates.</li>
+          </ul>
+        </div>
+        <div class="card" style="border-color:rgba(239,68,68,.3)">
+          <h3 style="color:#ef4444;margin-top:0;font-size:1rem">&#10060; Don'ts</h3>
+          <ul style="list-style:none;padding:0;margin:0;color:#9aa4b2">
+            <li style="padding:.35rem 0">&#10060; <b>Don't</b> enter sensitive personal data.</li>
+            <li style="padding:.35rem 0">&#10060; <b>Don't</b> treat estimates as professional advice.</li>
+            <li style="padding:.35rem 0">&#10060; <b>Don't</b> assume results are guarantees.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section class="card" style="margin-top:16px">
+      <h2 style="margin-top:0">Frequently Asked Questions</h2>
+      <details><summary><b>How is CGPA calculated?</b></summary><p style="padding:6px 0;color:#9aa4b2">CGPA = sum(grade points × credits) ÷ sum(credits) across all subjects.</p></details>
+<details><summary><b>Is this CGPA calculator free?</b></summary><p style="padding:6px 0;color:#9aa4b2">Yes. It runs fully in your browser with no sign-up required.</p></details>
+<details><summary><b>Does it support the 4.0 scale?</b></summary><p style="padding:6px 0;color:#9aa4b2">Yes. Enter grade points on your scale (0–10 or 0–4); the weighted formula works for any scale.</p></details>
+    </section>
+    <section class="card" style="margin-top:16px">
+      <details open>
+        <summary style="cursor:pointer;font-weight:700;font-size:1.1rem;padding:4px 0">&#128206; How This Tool Works</summary>
+        <div style="margin-top:8px;color:#9aa4b2">
+          <p>This tool computes results entirely in your browser using JavaScript. No data is sent to any server, ensuring your privacy.</p>
+          <p>Results update instantly &mdash; no waiting for server responses.</p>
+          <p style="margin-top:8px">Also try: <a href="/gpa-calculator/">GPA Calculator</a> &middot; <a href="/percentage-calculator/">Percentage Calculator</a> &middot; <a href="/age-calculator/">Age Calculator</a></p>
+        </div>
+      </details>
+    </section>
+    <footer class="note small" style="text-align: center; margin-top: 2rem;">
+      &copy; 2026 UpTools . <a href="/privacy-policy/">Privacy</a> . <a href="/contact/">Contact</a>
+    </footer>
+  </main>
+  <script src="/scripts/utils.js?v=1.3.0" type="module"></script>
+  <script>
+    function addCgpaRow(gp="", cr=""){
+      const wrap=document.getElementById("cgpa-rows");
+      const d=document.createElement("div"); d.className="row"; d.style.marginTop=".6rem";
+      d.innerHTML='<input placeholder="Grade Points (0-10)" type="number" step="0.01" value="'+gp+'" class="gp" style="flex:1"><input placeholder="Credits" type="number" step="0.5" value="'+cr+'" class="cr" style="flex:1"><button class="btn" style="background:#ef4444;color:#fff" onclick="this.parentNode.remove()">✕</button>';
+      wrap.appendChild(d);
+    }
+    addCgpaRow("9","4"); addCgpaRow("8","3");
+    function calcCgpa(){
+      let gp=0,cr=0;
+      document.querySelectorAll("#cgpa-rows .row").forEach(r=>{
+        const g=parseFloat(r.querySelector(".gp").value)||0;
+        const c=parseFloat(r.querySelector(".cr").value)||0;
+        gp+=g*c; cr+=c;
+      });
+      const el=document.getElementById("cgpa-result");
+      if(cr===0){el.style.display="block";el.innerHTML="<p>Add at least one subject with credits.</p>";return;}
+      const cgpa=gp/cr;
+      el.style.display="block";
+      el.innerHTML='<div class="result-row"><span class="result-label">CGPA</span><span class="result-value">'+cgpa.toFixed(2)+'</span></div><div class="result-row"><span class="result-label">Approx Percentage (×9.5)</span><span class="result-value">'+(cgpa*9.5).toFixed(2)+'%</span></div>';
+    }</script>
+</body>
+</html>

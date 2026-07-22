@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Word Scramble Game Online - Unscramble Words Free | UpTools</title>
+  <link rel="icon" sizes="50x50" type="image/svg+xml" href="/assets/logo/uptools-logo.svg">
+  <meta name="description" content="Play Word Scramble online for free. Unscramble jumbled letters to find the hidden word. Multiple categories, hints, and scoring. No sign-up needed." />
+  <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:large" />
+  <link rel="canonical" href="https://www.uptools.in/games/word-scramble/" />
+  <meta property="og:title" content="Word Scramble Game Online - Unscramble Words Free | UpTools" />
+  <meta property="og:description" content="Word Scramble Game Online - Unscramble Words Free. Free online tool by UpTools." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="UpTools">
+  <meta property="og:url" content="https://www.uptools.in/games/word-scramble/" />
+  <meta property="og:image" content="https://www.uptools.in/assets/og/default.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Word Scramble Game Online - Unscramble Words Free | UpTools" />
+  <meta name="twitter:description" content="Word Scramble Game Online - Unscramble Words Free. Free online tool by UpTools." />
+  <meta name="twitter:image" content="https://www.uptools.in/assets/home.png" />
+
+  <script src="/games/fullscreen-utils.js" defer></script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"VideoGame","name":"Word Scramble","url":"https://www.uptools.in/games/word-scramble/","applicationCategory":"Game","genre":["Word","Puzzle","Brain"]}
+  </script>
+  
+
+  <link rel="stylesheet" href="/style.css?v=5.0.0">
+
+<!-- Paste your Google Analytics 4 Measurement ID below, e.g. G-ABC123XYZ9 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NN3GDL1LEJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-NN3GDL1LEJ');
+</script>
+</head>
+<body>
+  <a href="#main" class="sr-only skip-link">Skip to content</a>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6216304334889617" crossorigin="anonymous"></script>
+<script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-6216304334889617",enable_page_level_ads:true});</script>
+  <div style="display:flex;justify-content:center;width:100%;overflow:hidden">
+    <ins class="adsbygoogle" style="display:block;width:100%;max-width:500px;height:50px" data-ad-client="ca-pub-6216304334889617" data-ad-slot="9810172647"></ins>
+  </div>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+    <!-- Header -->
+  <header class="site" role="banner">
+<div class="header-inner">
+<a aria-label="UpTools Home" class="brand" href="/">
+<img alt="UpTools logo" height="28" loading="eager" src="/assets/logo/uptools-logo.svg" width="28"/>
+<b>UpTools</b>
+</a>
+<nav aria-label="Primary" class="nav-links">
+<a href="/" class="nav-home">Home</a>
+<a href="/games/" class="nav-games">Games</a>
+<a href="/hncker/" class="nav-hncker">HNCKER</a>
+</nav>
+</div>
+</header>
+
+  <main role="main" class="wrap">
+    <div class="game-wrap">
+      <section class="card hero" aria-labelledby="title">
+        <div>
+          <h1 id="title">🔀 Word Scramble</h1>
+          <p class="note">Unscramble the jumbled letters to find the hidden word. Use hints if you're stuck!</p>
+        </div>
+      </section>
+
+      <div id="gameContainer" class="game-container card" style="margin-top:12px; position:relative;">
+        <button class="fullscreen-btn" id="fullscreenBtn" title="Enter Fullscreen">⛶</button>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:8px;padding-right:45px;">
+          <select id="catSel" style="background:#0e1628;border:1px solid #212a3a;border-radius:.5rem;color:#e6edf3;padding:.4rem .6rem">
+            <option value="all">All Categories</option>
+            <option value="animals">Animals</option>
+            <option value="countries">Countries</option>
+            <option value="tech">Technology</option>
+            <option value="food">Food</option>
+            <option value="sports">Sports</option>
+          </select>
+          <button id="skipBtn" class="btn secondary">Skip</button>
+          <button id="newGameBtn" class="btn secondary">New Game</button>
+        </div>
+
+        <div class="score-row">
+          <div class="score-box"><div class="score-val" id="scoreVal">0</div><div class="score-lbl">Score</div></div>
+          <div class="score-box"><div class="score-val" id="streakVal">0</div><div class="score-lbl">Streak 🔥</div></div>
+          <div class="score-box"><div class="score-val" id="qVal">1</div><div class="score-lbl">Question</div></div>
+        </div>
+
+        <div class="scrambled" id="scrambledWord" aria-label="Scrambled word"></div>
+
+        <div class="hint-box" id="hintBox" title="Click to reveal hint">💡 Click for hint</div>
+
+        <input id="answerInput" class="answer-input" type="text" placeholder="TYPE YOUR ANSWER…" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-label="Your answer" />
+
+        <div style="display:flex;gap:8px;margin-top:12px;justify-content:center">
+          <button id="submitBtn" class="btn">✅ Submit</button>
+          <button id="revealBtn" class="btn secondary">Reveal Answer</button>
+        </div>
+
+        <p id="feedback" style="margin-top:12px"></p>
+
+        <div id="gameOverlay" class="overlay">
+          <h2 id="overlayTitle">🎉 Perfect!</h2>
+          <p id="overlayMessage" style="font-size:1.1rem; margin-top:8px;"></p>
+          <button id="overlayActionBtn" class="btn primary" style="margin-top:16px; min-height:44px; min-width:120px;">Continue</button>
+        </div>
+      </div>
+
+      <section class="card" style="margin-top:12px">
+        <h2 style="margin-top:0">🎥 Improve your vocabulary</h2>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube-nocookie.com/embed/HPUCB1Pyd4M?rel=0&modestbranding=1"
+            title="Use 2-Letter Words to Win at Word Games"
+            loading="lazy" referrerpolicy="strict-origin-when-cross-origin"
+            allow="accelerometer; clipboard-write; encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+        <p class="note small" style="margin-top:8px">Word games are proven to boost vocabulary and cognitive skills.</p>
+      </section>
+
+      <section class="card" style="margin-top:12px">
+        <h2 style="margin-top:0">More Games</h2>
+        <div style="display:flex;flex-wrap:wrap;gap:8px">
+          <a class="btn secondary" href="/games/hangman/">Hangman</a>
+          <a class="btn secondary" href="/games/typing-speed/">Typing Speed</a>
+          <a class="btn secondary" href="/games/memory-match/">Memory Match</a>
+          <a class="btn secondary" href="/games/">All Games</a>
+        </div>
+      </section>
+
+      <footer class="note small site-footer" role="contentinfo" style="margin-top:12px">
+        © <span id="y"></span> UpTools . <a href="/games/">Games</a> . <a href="/">Home</a>
+      </footer>
+    </div>
+  </main>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    const WORDS = {
+      animals: [
+        { word: 'elephant', hint: 'Largest land animal with a trunk' },
+        { word: 'giraffe', hint: 'Tallest animal with a long neck' },
+        { word: 'penguin', hint: 'Flightless bird from Antarctica' },
+        { word: 'dolphin', hint: 'Intelligent marine mammal' },
+        { word: 'cheetah', hint: 'Fastest land animal' },
+        { word: 'kangaroo', hint: 'Australian marsupial with a pouch' },
+        { word: 'butterfly', hint: 'Colorful flying insect' },
+        { word: 'crocodile', hint: 'Large ancient reptile' },
+        { word: 'flamingo', hint: 'Pink bird that stands on one leg' },
+        { word: 'octopus', hint: 'Eight-armed sea creature' },
+      ],
+      countries: [
+        { word: 'australia', hint: 'Country and continent down under' },
+        { word: 'brazil', hint: 'Largest country in South America' },
+        { word: 'canada', hint: 'Country north of USA with maple leaf flag' },
+        { word: 'germany', hint: 'European country, capital is Berlin' },
+        { word: 'japan', hint: 'Island nation known for sushi and anime' },
+        { word: 'mexico', hint: 'Country south of USA' },
+        { word: 'nigeria', hint: 'Most populous African country' },
+        { word: 'thailand', hint: 'Southeast Asian country, land of smiles' },
+        { word: 'argentina', hint: 'South American country, home of tango' },
+        { word: 'portugal', hint: 'European country, birthplace of explorers' },
+      ],
+      tech: [
+        { word: 'algorithm', hint: 'Step-by-step problem solving procedure' },
+        { word: 'database', hint: 'Organized collection of structured data' },
+        { word: 'javascript', hint: 'Popular web programming language' },
+        { word: 'blockchain', hint: 'Distributed ledger technology' },
+        { word: 'encryption', hint: 'Securing data with codes' },
+        { word: 'bandwidth', hint: 'Data transfer capacity of a network' },
+        { word: 'framework', hint: 'Software development structure' },
+        { word: 'interface', hint: 'Point of interaction between systems' },
+        { word: 'compiler', hint: 'Translates code to machine language' },
+        { word: 'protocol', hint: 'Set of rules for communication' },
+      ],
+      food: [
+        { word: 'spaghetti', hint: 'Long thin Italian pasta' },
+        { word: 'avocado', hint: 'Green creamy fruit used in guacamole' },
+        { word: 'chocolate', hint: 'Sweet made from cacao beans' },
+        { word: 'pineapple', hint: 'Tropical spiky yellow fruit' },
+        { word: 'broccoli', hint: 'Green tree-like vegetable' },
+        { word: 'croissant', hint: 'French buttery crescent pastry' },
+        { word: 'blueberry', hint: 'Small round blue fruit' },
+        { word: 'cinnamon', hint: 'Brown spice from tree bark' },
+        { word: 'mushroom', hint: 'Fungus used in cooking' },
+        { word: 'strawberry', hint: 'Red heart-shaped fruit' },
+      ],
+      sports: [
+        { word: 'basketball', hint: 'Sport with hoops and orange ball' },
+        { word: 'volleyball', hint: 'Net sport with six players per side' },
+        { word: 'badminton', hint: 'Racket sport with shuttlecock' },
+        { word: 'swimming', hint: 'Water sport' },
+        { word: 'gymnastics', hint: 'Sport with flips and balance beams' },
+        { word: 'archery', hint: 'Sport with bow and arrow' },
+        { word: 'wrestling', hint: 'Combat sport on a mat' },
+        { word: 'marathon', hint: '42.195 km running race' },
+        { word: 'cricket', hint: 'Bat and ball sport popular in India' },
+        { word: 'football', hint: 'Most popular sport in the world' },
+      ]
+    };
+
+    class SoundEffects {
+      constructor() {
+        this.ctx = null;
+      }
+      init() {
+        if (!this.ctx) {
+          this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+      }
+      playCorrect() {
+        this.init();
+        if (!this.ctx) return;
+        try {
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.frequency.setValueAtTime(587.33, this.ctx.currentTime); // D5
+          osc.frequency.setValueAtTime(880, this.ctx.currentTime + 0.08); // A5
+          gain.gain.setValueAtTime(0.04, this.ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.2);
+          osc.start();
+          osc.stop(this.ctx.currentTime + 0.2);
+        } catch (e) {}
+      }
+      playWrong() {
+        this.init();
+        if (!this.ctx) return;
+        try {
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(120, this.ctx.currentTime);
+          gain.gain.setValueAtTime(0.06, this.ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.18);
+          osc.start();
+          osc.stop(this.ctx.currentTime + 0.18);
+        } catch (e) {}
+      }
+      playHint() {
+        this.init();
+        if (!this.ctx) return;
+        try {
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(523.25, this.ctx.currentTime); // C5
+          osc.frequency.setValueAtTime(659.25, this.ctx.currentTime + 0.06); // E5
+          osc.frequency.setValueAtTime(783.99, this.ctx.currentTime + 0.12); // G5
+          gain.gain.setValueAtTime(0.03, this.ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.25);
+          osc.start();
+          osc.stop(this.ctx.currentTime + 0.25);
+        } catch (e) {}
+      }
+      playNeutral() {
+        this.init();
+        if (!this.ctx) return;
+        try {
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.frequency.setValueAtTime(440, this.ctx.currentTime);
+          gain.gain.setValueAtTime(0.02, this.ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.05);
+          osc.start();
+          osc.stop(this.ctx.currentTime + 0.05);
+        } catch (e) {}
+      }
+    }
+    const sounds = new SoundEffects();
+
+    let score = 0, streak = 0, questionNum = 1;
+    let currentWord = '', hintRevealed = false;
+
+    function scramble(word) {
+      const arr = word.split('');
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      const result = arr.join('');
+      return result === word ? scramble(word) : result;
+    }
+
+    function getPool() {
+      const cat = document.getElementById('catSel').value;
+      return cat === 'all' ? Object.values(WORDS).flat() : (WORDS[cat] || []);
+    }
+
+    function nextWord() {
+      const pool = getPool();
+      const entry = pool[Math.floor(Math.random() * pool.length)];
+      currentWord = entry.word;
+      hintRevealed = false;
+      document.getElementById('scrambledWord').textContent = scramble(currentWord);
+      document.getElementById('hintBox').textContent = '💡 Click for hint';
+      document.getElementById('answerInput').value = '';
+      document.getElementById('feedback').textContent = '';
+      document.getElementById('feedback').style.color = '';
+      document.getElementById('gameOverlay').style.display = 'none';
+      document.getElementById('answerInput').focus();
+      document.getElementById('hintBox').dataset.hint = entry.hint;
+    }
+
+    function submit() {
+      sounds.init();
+      const answer = document.getElementById('answerInput').value.trim().toLowerCase();
+      const fb = document.getElementById('feedback');
+      if (!answer) return;
+
+      if (answer === currentWord) {
+        score += hintRevealed ? 5 : 10;
+        streak++;
+        sounds.playCorrect();
+        fb.textContent = `✅ Correct! +${hintRevealed ? 5 : 10} points`;
+        fb.style.color = '#00e5a0';
+        document.getElementById('scoreVal').textContent = score;
+        document.getElementById('streakVal').textContent = streak;
+        questionNum++;
+        document.getElementById('qVal').textContent = questionNum;
+        setTimeout(nextWord, 1000);
+      } else {
+        sounds.playWrong();
+        streak = 0;
+        document.getElementById('streakVal').textContent = 0;
+        fb.textContent = `❌ Try again! (${answer.length} letters)`;
+        fb.style.color = '#ff6b6b';
+        document.getElementById('answerInput').value = '';
+      }
+    }
+
+    document.getElementById('hintBox').addEventListener('click', () => {
+      sounds.playHint();
+      hintRevealed = true;
+      document.getElementById('hintBox').textContent = `💡 ${document.getElementById('hintBox').dataset.hint}`;
+    });
+
+    document.getElementById('submitBtn').addEventListener('click', submit);
+    document.getElementById('answerInput').addEventListener('keydown', e => {
+      sounds.init();
+      if (e.key === 'Enter') submit();
+    });
+    document.getElementById('skipBtn').addEventListener('click', () => {
+      sounds.playNeutral();
+      streak = 0;
+      document.getElementById('streakVal').textContent = 0;
+      questionNum++;
+      document.getElementById('qVal').textContent = questionNum;
+      nextWord();
+    });
+    document.getElementById('revealBtn').addEventListener('click', () => {
+      sounds.playNeutral();
+      document.getElementById('overlayTitle').textContent = 'Reveal Answer';
+      document.getElementById('overlayMessage').textContent = `The word was: ${currentWord.toUpperCase()}`;
+      document.getElementById('gameOverlay').style.display = 'flex';
+      streak = 0;
+      document.getElementById('streakVal').textContent = 0;
+    });
+    document.getElementById('overlayActionBtn').addEventListener('click', () => {
+      sounds.playNeutral();
+      nextWord();
+    });
+    document.getElementById('newGameBtn').addEventListener('click', () => {
+      sounds.playNeutral();
+      score = 0; streak = 0; questionNum = 1;
+      document.getElementById('scoreVal').textContent = 0;
+      document.getElementById('streakVal').textContent = 0;
+      document.getElementById('qVal').textContent = 1;
+      nextWord();
+    });
+    document.getElementById('catSel').addEventListener('change', () => {
+      sounds.playNeutral();
+      nextWord();
+    });
+
+    // Proper FullscreenManager initialization
+    if (window.FullscreenManager) {
+      window.fullscreenManager = new FullscreenManager('#gameContainer', '#fullscreenBtn');
+    }
+
+    nextWord();
+  </script>
+</body>
+</html>

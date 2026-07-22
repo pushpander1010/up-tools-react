@@ -1,0 +1,703 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Best Friend Compatibility Test 👫 How Well Do You | UpTools</title>
+  <meta name="description" content="Play the ultimate best friend compatibility quiz! Answer questions about each other and see how well you really know your BFF. 2-player, challenge link," />
+  <meta name="keywords" content="best friend quiz,friendship test,bff quiz,how well do you know me,friend compatibility,friendship compatibility test,2 player quiz" />
+  <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:large" />
+  <meta name="theme-color" content="#08080f" />
+  <link rel="canonical" href="https://www.uptools.in/games/friendship-test/" />
+  <link rel="icon" type="image/svg+xml" href="/assets/logo/uptools-logo.svg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/logo/uptools-logo.svg" />
+  <meta property="og:title" content="Best Friend Compatibility Test 👫 How Well Do You | UpTools" />
+  <meta property="og:description" content="Best Friend Compatibility Test 👫 How Well Do You Know Each Other?. Free online tool by UpTools." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="UpTools">
+  <meta property="og:url" content="https://www.uptools.in/games/friendship-test/" />
+  <meta property="og:site_name" content="UpTools" />
+  <meta property="og:image" content="https://www.uptools.in/assets/og/default.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Best Friend Compatibility Test 👫 How Well Do You | UpTools" />
+  <meta name="twitter:description" content="Best Friend Compatibility Test 👫 How Well Do You Know Each Other?. Free online tool by UpTools." />
+  <meta name="twitter:image" content="https://www.uptools.in/assets/home.png" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication","name":"Best Friend Compatibility Test","applicationCategory":"Game","operatingSystem":"Any","url":"https://www.uptools.in/games/friendship-test/","publisher":{"@type":"Organization","name":"UpTools"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  </script>
+
+  
+
+  <link rel="stylesheet" href="/style.css?v=5.0.0">
+
+<!-- Paste your Google Analytics 4 Measurement ID below, e.g. G-ABC123XYZ9 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NN3GDL1LEJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-NN3GDL1LEJ');
+</script>
+</head>
+<body style="--accent:#6366f1;--accent2:#818cf8">
+  <a href="#main" class="sr-only skip-link">Skip to content</a>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6216304334889617" crossorigin="anonymous"></script>
+<script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-6216304334889617",enable_page_level_ads:true});</script>
+    <!-- AdSense display -->
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-6216304334889617"
+       data-ad-slot="9810172647"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+    <!-- Header -->
+  <header class="site" role="banner">
+<div class="header-inner">
+<a aria-label="UpTools Home" class="brand" href="/">
+<img alt="UpTools logo" height="28" loading="eager" src="/assets/logo/uptools-logo.svg" width="28"/>
+<b>UpTools</b>
+</a>
+<nav aria-label="Primary" class="nav-links">
+<a href="/" class="nav-home">Home</a>
+<a href="/games/" class="nav-games">Games</a>
+<a href="/hncker/" class="nav-hncker">HNCKER</a>
+</nav>
+</div>
+</header>
+
+  <main id="main" class="wrap" role="main">
+    <div style="text-align:center;margin:1rem 0 .25rem">
+      <h1 style="display:flex;gap:.5rem;align-items:center;justify-content:center">👫 Best Friend Compatibility Test</h1>
+      <p class="note">Two-player friendship quiz. Answer questions about each other and see your BFF score. Share a challenge link!</p>
+    </div>
+
+    <section class="game-wrap">
+      <div class="panel">
+        <div class="hud" aria-live="polite">
+          <div class="kpi"><div class="value" id="bestScore">--%</div><div class="label">Best BFF Score</div></div>
+          <div class="kpi"><div class="value" id="lastPair">—</div><div class="label">Last Played</div></div>
+          <div class="kpi"><div class="value" id="lastWhen">—</div><div class="label">Last Time</div></div>
+          <div class="kpi"><div class="value" id="plays">0</div><div class="label">Total Plays</div></div>
+        </div>
+        <div class="bar">
+          <button class="difficulty-btn active" data-len="10">Short (10)</button>
+          <button class="difficulty-btn" data-len="15">Standard (15)</button>
+          <button class="difficulty-btn" data-len="20">Long (20)</button>
+        </div>
+        <div class="controls">
+          <button id="startBtn" class="btn primary">Start Quiz</button>
+          <button id="joinBtn" class="btn secondary" hidden>🔗 Join Partner's Link</button>
+          <button id="copyInvite" class="btn secondary">🔗 Challenge Link</button>
+          <button id="resetStats" class="btn danger">Reset Stats</button>
+        </div>
+        <p class="note" style="text-align:center;margin:.5rem 0 0;font-size:.9rem">Scores saved on this device only.</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.85rem;margin-top:.85rem">
+        <article class="card">
+          <h3 style="margin-bottom:.25rem">You might also like</h3>
+          <ul style="padding-left:1.2rem;margin:0">
+            <li><a href="/games/love-test/">❤️ Couple Love Test</a></li>
+            <li><a href="/games/quiz-trivia/">🧠 Quiz Trivia</a></li>
+            <li><a href="/games/memory-match/">🧠 Memory Match</a></li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3 style="margin-bottom:.25rem">Friendship resources</h3>
+          <ul style="padding-left:1.2rem;margin:0">
+            <li><a href="https://www.psychologytoday.com/us/basics/friendship" target="_blank" rel="noopener">Psychology of Friendship</a></li>
+            <li><a href="https://greatergood.berkeley.edu/topic/friendship" target="_blank" rel="noopener">Greater Good: Friendship</a></li>
+          </ul>
+        </article>
+      </div>
+
+      <section style="margin-top:12px">
+        <h2>🎥 Fun friendship challenge ideas</h2>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube-nocookie.com/embed/gWiG3RrnUZQ?rel=0&modestbranding=1"
+            title="Best Friend Quiz Challenge"
+            loading="lazy" referrerpolicy="strict-origin-when-cross-origin"
+            allow="accelerometer; clipboard-write; encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+        <p class="note" style="margin-top:8px;font-size:.9rem">Fun challenges to try with your best friend after the quiz!</p>
+      </section>
+
+      <nav aria-label="Breadcrumb" style="margin-top:12px">
+        <ol class="breadcrumb" style="display:flex;gap:6px;list-style:none;padding:0;margin:0;font-size:.9rem;color:#a5b4fc">
+          <li><a href="/">Home</a></li>
+          <li aria-hidden="true">›</li>
+          <li><a href="/games/">Games</a></li>
+          <li aria-hidden="true">›</li>
+          <li aria-current="page">Best Friend Compatibility Test</li>
+        </ol>
+      </nav>
+
+      <section class="panel" style="margin-top:12px" aria-labelledby="faq-title">
+        <h2 id="faq-title" style="margin-top:0">Frequently Asked Questions</h2>
+        <details style="margin-bottom:10px">
+          <summary style="cursor:pointer;font-weight:600">How does the friendship test work?</summary>
+          <p class="note" style="margin-top:6px">Player 1 answers all questions first, then hands the device to Player 2 who answers the same questions. Your compatibility score is based on how many answers match.</p>
+        </details>
+        <details style="margin-bottom:10px">
+          <summary style="cursor:pointer;font-weight:600">Is the test free?</summary>
+          <p class="note" style="margin-top:6px">Yes, completely free with no sign-up required. Scores are saved locally on your device only.</p>
+        </details>
+        <details>
+          <summary style="cursor:pointer;font-weight:600">Can I share the test with my friend?</summary>
+          <p class="note" style="margin-top:6px">Yes! Use the Challenge Link button to copy the URL and share it with your friend so they can play on their own device.</p>
+        </details>
+      </section>
+
+      <footer style="text-align:center;margin:1rem 0 2rem">
+        <nav style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+          <a href="/">UpTools</a> <a href="/games/">Games</a> <a href="/about/">About</a>
+        </nav>
+        <p class="note" style="font-size:.85rem">Privacy-first · Works offline once loaded</p>
+      </footer>
+    </section>
+  </main>
+
+  <section id="playScreen" role="dialog" aria-modal="true" inert>
+    <div class="ps-top">
+      <div style="display:flex;gap:.5rem;align-items:center">
+        <button id="psBack" class="ps-btn">⟵ Back</button>
+        <span style="font-weight:900">Best Friend Compatibility Test</span>
+      </div>
+      <span class="ps-progress" id="psProg">Q 1/10</span>
+      <button id="psShare" class="ps-btn">🔗 Share</button>
+      <button id="fullscreenBtn" class="ps-btn" title="Fullscreen">⛶ Full</button>
+    </div>
+    <div class="ps-stage">
+      <div class="board game-container" id="gameContainer">
+        <div class="qs" id="qs" role="region" aria-live="polite"></div>
+        <div class="qnav">
+          <button id="prevBtn" class="ps-btn" disabled>◀ Prev</button>
+          <button id="nextBtn" class="ps-btn primary">Next ▶</button>
+        </div>
+      </div>
+    </div>
+    <div class="ps-bottom">
+      <div class="tiny">Tip: Use ↑/↓ to navigate options, Space/Enter to select.</div>
+    </div>
+  </section>
+
+  <!-- Friendship Test Share Modal -->
+  <div id="ftShareOverlay" style="position:fixed;inset:0;z-index:9500;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;pointer-events:none;transition:opacity .25s ease;" role="dialog" aria-modal="true">
+    <div id="ftShareCard" style="background:var(--card);border:1px solid var(--cardBorder);border-radius:1.2rem;padding:2rem;max-width:420px;width:100%;text-align:center;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.6),0 0 0 1px rgba(99,179,237,.15);transform:scale(.92);transition:transform .25s ease;">
+      <button onclick="closeFTShareModal()" style="position:absolute;top:.75rem;right:.9rem;background:none;border:none;font-size:1.5rem;color:var(--muted);cursor:pointer;line-height:1;padding:.2rem .4rem;border-radius:.4rem;">&times;</button>
+      <h3 style="margin:0 0 1rem;color:var(--accent);font-size:1.3rem;">&#128279; Share Challenge</h3>
+      <div style="margin:0 auto 1.25rem;width:164px;height:164px;background:#fff;border-radius:.75rem;overflow:hidden;display:flex;align-items:center;justify-content:center;">
+        <img id="ftShareQr" src="" alt="QR code" loading="lazy" style="width:160px;height:160px;display:block;">
+      </div>
+      <p style="color:var(--muted);font-size:.85rem;margin:0 0 .75rem;">Scan QR or share the link below</p>
+      <div style="display:flex;gap:.5rem;margin-bottom:1rem;">
+        <input aria-label="Text input" id="ftShareUrlInput" type="text" readonly style="flex:1;padding:.65rem .75rem;border:1px solid var(--cardBorder);border-radius:.5rem;background:rgba(255,255,255,.04);color:var(--text);font-size:.82rem;min-width:0;">
+        <button id="ftShareCopyBtn" onclick="copyFTShareUrl()" style="padding:.65rem 1rem;background:var(--accent);color:#fff;border:none;border-radius:.5rem;font-weight:700;cursor:pointer;white-space:nowrap;font-size:.9rem;">Copy</button>
+      </div>
+      <p style="color:var(--muted);font-size:.8rem;margin:0;">Your friend opens this link and answers the same questions &#129309;</p>
+    </div>
+  </div>
+  <div id="ftToast" style="position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(2rem);background:#222;color:#fff;padding:.65rem 1.4rem;border-radius:2rem;font-size:.9rem;font-weight:600;z-index:9999;opacity:0;transition:opacity .3s ease,transform .3s ease;pointer-events:none;white-space:nowrap;"></div>
+  <!-- Confirm overlay for reset stats -->
+  <div id="ftConfirmOverlay" style="position:fixed;inset:0;z-index:9600;background:rgba(0,0,0,.7);display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;pointer-events:none;transition:opacity .25s ease;" role="alertdialog">
+    <div style="background:var(--card);border:1px solid var(--cardBorder);border-radius:1rem;padding:1.5rem;max-width:320px;width:100%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.6);">
+      <p style="margin:0 0 1.25rem;font-size:1rem;">Reset all stats? This cannot be undone.</p>
+      <div style="display:flex;gap:.5rem;">
+        <button onclick="ftConfirmNo()" style="flex:1;padding:.75rem;background:transparent;border:1px solid var(--cardBorder);border-radius:.5rem;color:var(--text);cursor:pointer;font-weight:600;">Cancel</button>
+        <button onclick="ftConfirmYes()" style="flex:1;padding:.75rem;background:#f44336;border:none;border-radius:.5rem;color:#fff;cursor:pointer;font-weight:700;">Reset</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/scripts/utils.js" type="module"></script>
+  <script src="/games/fullscreen-utils.js" defer></script>
+  <script type="module">
+    import * as U from "/scripts/utils.js";
+    const $ = s => document.querySelector(s);
+    const $$ = s => [...document.querySelectorAll(s)];
+    const persist = (k, v) => localStorage.setItem(k, JSON.stringify(v));
+    const read = (k, d = null) => { try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch { return d; } };
+
+    // ── WebAudio sound system ──
+    let __audioCtx = null;
+    function _getCtx() {
+      if (!__audioCtx) __audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      return __audioCtx;
+    }
+    function playTone(freq, duration, type = 'sine', vol = 0.15) {
+      try {
+        const ctx = _getCtx();
+        if (ctx.state === 'suspended') ctx.resume();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+        gain.gain.setValueAtTime(vol, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(ctx.currentTime);
+        osc.stop(ctx.currentTime + duration);
+      } catch (_) { /* audio not available */ }
+    }
+    function playStartSound() {
+      playTone(523.25, 0.12, 'sine', 0.12);
+      setTimeout(() => playTone(659.25, 0.12, 'sine', 0.12), 100);
+      setTimeout(() => playTone(783.99, 0.18, 'sine', 0.12), 200);
+    }
+    function playResultSound() {
+      playTone(783.99, 0.18, 'sine', 0.13);
+      setTimeout(() => playTone(1046.50, 0.25, 'sine', 0.13), 150);
+      setTimeout(() => playTone(1318.51, 0.35, 'triangle', 0.10), 300);
+    }
+
+    // ── FullscreenManager initialization ──
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof FullscreenManager !== 'undefined') {
+        new FullscreenManager('#gameContainer', '#fullscreenBtn');
+      }
+    });
+
+    // ── Multiplayer localStorage sync helper ──
+    const FT_REMOTE_CACHE = 'ft-remote-cache';
+    function cacheRemoteState(data) { persist(FT_REMOTE_CACHE, data); }
+    function getCachedRemoteState() { return read(FT_REMOTE_CACHE, null); }
+    function clearRemoteCache() { localStorage.removeItem(FT_REMOTE_CACHE); }
+
+    const mulberry32 = (seed) => { let t = seed >>> 0; return () => { t += 0x6D2B79F5; let r = Math.imul(t ^ t >>> 15, 1 | t); r ^= r + Math.imul(r ^ r >>> 7, 61 | r); return ((r ^ r >>> 14) >>> 0) / 4294967296; }; };
+    const strHash = (s) => { let h = 2166136261 >>> 0; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; };
+
+    const b64u = {
+      enc: s => btoa(unescape(encodeURIComponent(s))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, ''),
+      dec: s => decodeURIComponent(escape(atob((s.replace(/-/g, '+').replace(/_/g, '/')) + '==='.slice((s.length + 3) % 4))))
+    };
+
+    const BANK = [
+      { id:1, t:"I prefer texting over calling.", a:["Always","Usually","Rarely","Never"] },
+      { id:2, t:"I'm the one who plans our hangouts.", a:["Always","Usually","Rarely","Never"] },
+      { id:3, t:"I'd rather stay in than go out.", a:["Strongly agree","Agree","Disagree","Strongly disagree"] },
+      { id:4, t:"I remember important dates (birthdays, anniversaries).", a:["Always","Usually","Rarely","Never"] },
+      { id:5, t:"I'm the one who starts conversations.", a:["Always","Usually","Rarely","Never"] },
+      { id:6, t:"I share food without being asked.", a:["Always","Usually","Rarely","Never"] },
+      { id:7, t:"I'm brutally honest even if it hurts.", a:["Always","Usually","Rarely","Never"] },
+      { id:8, t:"I'd drop everything for a friend in need.", a:["Always","Usually","Rarely","Never"] },
+      { id:9, t:"I enjoy long deep conversations.", a:["Strongly agree","Agree","Disagree","Strongly disagree"] },
+      { id:10, t:"I'm the funny one in the group.", a:["Strongly agree","Agree","Disagree","Strongly disagree"] },
+      { id:11, t:"I keep secrets well.", a:["Always","Usually","Rarely","Never"] },
+      { id:12, t:"I'm the one who suggests new activities.", a:["Always","Usually","Rarely","Never"] },
+      { id:13, t:"I get jealous when my friend hangs out with others.", a:["Always","Usually","Rarely","Never"] },
+      { id:14, t:"I prefer small gatherings over big parties.", a:["Strongly agree","Agree","Disagree","Strongly disagree"] },
+      { id:15, t:"I'm the one who apologizes first after a fight.", a:["Always","Usually","Rarely","Never"] },
+      { id:16, t:"I enjoy giving gifts and surprises.", a:["Strongly agree","Agree","Disagree","Strongly disagree"] },
+      { id:17, t:"I'm a good listener.", a:["Always","Usually","Rarely","Never"] },
+      { id:18, t:"I'd travel with my best friend.", a:["Strongly agree","Agree","Disagree","Strongly disagree"] },
+      { id:19, t:"I'm the one who takes photos for memories.", a:["Always","Usually","Rarely","Never"] },
+      { id:20, t:"I'd be friends with this person for life.", a:["Strongly agree","Agree","Disagree","Strongly disagree"] },
+    ];
+
+    const F_BEST = 'ft-best', F_PLAYS = 'ft-plays';
+    const state = { step: 'names', length: 10, seed: '', qIdx: [], cur: 0, a: [], b: [], nameA: '', nameB: '', remoteMode: false };
+
+    function renderHUD() {
+      const best = read(F_BEST, null);
+      $('#bestScore').textContent = best ? best.score.toFixed(1) + '%' : '--%';
+      $('#lastPair').textContent = best?.pair ?? '—';
+      $('#lastWhen').textContent = best?.when ?? '—';
+      $('#plays').textContent = String(read(F_PLAYS, 0));
+      $$('.difficulty-btn').forEach(b => b.classList.toggle('active', +b.dataset.len === state.length));
+    }
+    renderHUD();
+
+    $$('.difficulty-btn').forEach(b => b.addEventListener('click', () => {
+      state.length = +b.dataset.len;
+      $$('.difficulty-btn').forEach(x => x.classList.toggle('active', x === b));
+    }));
+
+    function selectQuestions(seed, n) {
+      const rng = mulberry32(strHash(seed));
+      const pool = [...BANK];
+      for (let i = pool.length - 1; i > 0; i--) {
+        const j = Math.floor(rng() * (i + 1));
+        [pool[i], pool[j]] = [pool[j], pool[i]];
+      }
+      return pool.slice(0, n).map(q => q.id);
+    }
+
+    function getQ(idx) { return BANK.find(q => q.id === state.qIdx[idx]); }
+
+    function baseURL() {
+      return location.origin + "/games/friendship-test/";
+    }
+
+    (function detectRemote() {
+      const u = new URL(location.href);
+      const hasAnswers = u.searchParams.get("a");
+      const hasSeed = u.searchParams.get("seed");
+      if (hasAnswers || hasSeed) {
+        $('#joinBtn').hidden = false;
+        $('#joinBtn').removeAttribute('hidden');
+      }
+    })();
+
+    function renderNameForm() {
+      state.step = 'names';
+      $('#qs').innerHTML = `
+        <div class="qcard">
+          <div class="qtitle">👫 Enter your names to begin</div>
+          <label style="display:block;margin-bottom:4px;font-size:.9rem;color:#a5b4fc">Player 1 (answers first)</label>
+          <input aria-label="Player 1 (answers first)" id="nameA" class="input" type="text" placeholder="Your name" maxlength="20" style="width:100%;margin-bottom:10px" />
+          <label style="display:block;margin-bottom:4px;font-size:.9rem;color:#a5b4fc">Player 2 (answers second)</label>
+          <input aria-label="Player 1 (answers first)" id="nameB" class="input" type="text" placeholder="Friend's name" maxlength="20" style="width:100%" />
+        </div>`;
+      $('#nextBtn').textContent = 'Start ▶';
+      $('#prevBtn').disabled = true;
+    }
+
+    function renderStepBIntro(fromRemote = false) {
+      state.step = 'b_intro';
+      $('#qs').innerHTML = `
+        <div class="qcard">
+          <div class="qtitle">${fromRemote ? "You're joining your friend's quiz!" : "Friend's turn"}</div>
+          ${fromRemote ? `
+            <p style="color:#a5b4fc;margin:5px 0 15px">You will answer the same ${state.length} questions. We will compare your answers with <b>${state.nameA}</b>.</p>
+          ` : ""}
+          <label style="display:block;margin-bottom:4px;font-size:.9rem;color:#a5b4fc">${fromRemote ? "Your name" : `Confirm ${state.nameB}'s name`}</label>
+          <input aria-label="${fromRemote ? "Your name" : `Confirm ${state.nameB}'s name`}" id="nameB2" class="input" type="text" placeholder="Your name" maxlength="20" style="width:100%" value="${state.nameB || ''}" />
+        </div>`;
+      $('#nextBtn').textContent = 'Start ▶';
+      $('#prevBtn').disabled = true;
+    }
+
+    function renderQuestion(idx, player) {
+      const q = getQ(idx);
+      const answers = player === 'a' ? state.a : state.b;
+      const name = player === 'a' ? state.nameA : state.nameB;
+      const chosen = answers[idx];
+
+      $('#qs').innerHTML = `
+        <div class="qcard">
+          <div style="font-size:.85rem;color:#a5b4fc;margin-bottom:4px">${name}'s turn · Question ${idx + 1} of ${state.length}</div>
+          <div class="qtitle">${q.t}</div>
+          ${q.a.map((opt, i) => `
+            <label class="opt">
+              <input aria-label="${q.t}" type="radio" name="q${idx}" value="${i}" ${chosen === i ? 'checked' : ''}>
+              <span>${opt}</span>
+            </label>`).join('')}
+        </div>`;
+
+      const radios = $$(".opt input", qs);
+      radios.forEach(r => r.addEventListener("change", e => {
+        const val = +e.target.value;
+        answers[state.cur] = val;
+        setTimeout(() => { $('#nextBtn').click(); }, 120);
+      }));
+
+      $('#prevBtn').disabled = idx === 0;
+      $('#nextBtn').textContent = (player === 'a' && idx === state.length - 1) ? 'Hand off to ' + state.nameB + ' ▶' : (player === 'b' && idx === state.length - 1) ? 'See Results ▶' : 'Next ▶';
+    }
+
+    function renderHandoff() {
+      state.step = 'handoff';
+      $('#qs').innerHTML = `
+        <div class="qcard" style="text-align:center">
+          <div style="font-size:3rem">🤝</div>
+          <div class="qtitle">${state.nameA} is done!</div>
+          <p style="color:#a5b4fc">Now hand the device to <strong>${state.nameB}</strong> to answer the same questions.</p>
+          <div style="margin:15px 0;padding:10px;border:1px dashed var(--cardBorder);border-radius:8px;background:rgba(255,255,255,0.02)">
+            Want to play on separate devices? Tap <b>Share</b> above to copy a challenge link containing your answers!
+          </div>
+          <p style="color:#a5b4fc;font-size:.9rem">Don't peek at ${state.nameA}'s answers!</p>
+        </div>`;
+      $('#nextBtn').textContent = state.nameB + "'s Turn ▶";
+      $('#prevBtn').disabled = true;
+    }
+
+    function calcScore() {
+      let matches = 0;
+      for (let i = 0; i < state.length; i++) {
+        if (state.a[i] === state.b[i]) matches++;
+      }
+      return Math.round((matches / state.length) * 100);
+    }
+
+    function renderResult() {
+      const score = calcScore();
+      const emoji = score >= 80 ? '🏆' : score >= 60 ? '🌟' : score >= 40 ? '👍' : '💪';
+      const msg = score >= 80 ? 'You two are basically the same person!' : score >= 60 ? 'Great friendship! You know each other well.' : score >= 40 ? 'Good friends with room to grow closer!' : 'You have a lot to learn about each other!';
+
+      const best = read(F_BEST, null);
+      if (!best || score > best.score) {
+        persist(F_BEST, { score, pair: `${state.nameA} & ${state.nameB}`, when: new Date().toLocaleDateString() });
+      }
+      persist(F_PLAYS, (read(F_PLAYS, 0) || 0) + 1);
+
+      playResultSound();
+
+      $('#qs').innerHTML = `
+        <div class="result">
+          <div style="font-size:3rem">${emoji}</div>
+          <div style="font-size:2.5rem;font-weight:900;color:var(--accent)">${score}%</div>
+          <div style="font-size:1.1rem;font-weight:700;margin:.5rem 0">BFF Compatibility Score</div>
+          <p style="color:#a5b4fc">${state.nameA} & ${state.nameB}: ${msg}</p>
+          <div class="bar" style="justify-content:center;margin:15px 0">
+            <button id="copyRes" class="btn secondary">Copy Result</button>
+            <button id="shareWA" class="btn secondary">WhatsApp</button>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px;text-align:left">
+            ${Array.from({length: state.length}, (_, i) => {
+              const q = getQ(i);
+              const match = state.a[i] === state.b[i];
+              return `<div style="background:#0d0f1a;border:1px solid ${match ? '#1e6641' : '#661e1e'};border-radius:.5rem;padding:.5rem;font-size:.8rem">
+                <div style="font-weight:700;color:${match ? '#00e5a0' : '#ff6b6b'}">${match ? '✅ Match' : '❌ Different'}</div>
+                <div style="color:#a5b4fc;margin-top:2px">${q.t.slice(0, 40)}…</div>
+                <div style="font-size:.75rem;margin-top:2px">${state.nameA}: ${q.a[state.a[i]] || '—'}</div>
+                <div style="font-size:.75rem">${state.nameB}: ${q.a[state.b[i]] || '—'}</div>
+              </div>`;
+            }).join('')}
+          </div>
+        </div>`;
+
+      $('#copyRes').onclick = () => {
+        const text = `Our BFF score on UpTools was ${score}% — ${msg} 👫\nPlay it here: ${baseURL()}`;
+        navigator.clipboard?.writeText(text);
+        alert('Result copied to clipboard!');
+      };
+      $('#shareWA').onclick = () => {
+        const text = encodeURIComponent(`Our BFF score on UpTools was ${score}% — ${msg} 👫\nPlay it here: ${baseURL()}`);
+        window.open(`https://wa.me/?text=${text}`, '_blank', 'noopener');
+      };
+
+      $('#nextBtn').textContent = 'Play Again ▶';
+      $('#prevBtn').disabled = true;
+      renderHUD();
+    }
+
+    function openPlay() {
+      const ps = $('#playScreen');
+      ps.classList.add('open');
+      ps.removeAttribute('inert');
+      document.body.style.overflow = 'hidden';
+
+      const u = new URL(location.href);
+      const len = +(u.searchParams.get("len") || state.length);
+      state.length = [10, 15, 20].includes(len) ? len : state.length;
+
+      state.seed = u.searchParams.get("seed") || Date.now().toString(36);
+      state.qIdx = selectQuestions(state.seed, state.length);
+      state.cur = 0;
+      state.a = [];
+      state.b = [];
+      state.remoteMode = Boolean(u.searchParams.get("a"));
+
+      if (state.remoteMode) {
+        try {
+          const raw = b64u.dec(u.searchParams.get("a"));
+          state.a = raw.split("").map(Number);
+          const names = u.searchParams.get("n") ? b64u.dec(u.searchParams.get("n")) : "";
+          [state.nameA, state.nameB] = names.includes("|") ? names.split("|") : ["Friend A", "Friend B"];
+          if (u.searchParams.get("q")) {
+            const idx = b64u.dec(u.searchParams.get("q")).split(",").map(Number);
+            if (idx.length) state.qIdx = idx;
+          }
+          state.length = state.a.length;
+          // Cache remote state so subsequent visits on same device can restore it
+          cacheRemoteState({ a: state.a, nameA: state.nameA, nameB: state.nameB, seed: state.seed, qIdx: state.qIdx, length: state.length });
+          renderStepBIntro(true);
+        } catch (err) {
+          // Try restoring from localStorage cache
+          const cached = getCachedRemoteState();
+          if (cached && cached.a && cached.a.length) {
+            state.a = cached.a;
+            state.nameA = cached.nameA || 'Friend A';
+            state.nameB = cached.nameB || 'Friend B';
+            state.seed = cached.seed || state.seed;
+            state.qIdx = cached.qIdx || state.qIdx;
+            state.length = cached.length || state.a.length;
+            state.remoteMode = true;
+            renderStepBIntro(true);
+          } else {
+            state.remoteMode = false;
+            renderNameForm();
+          }
+        }
+      } else {
+        renderNameForm();
+      }
+      updateProg();
+      playStartSound();
+    }
+
+    function closePlay() {
+      const ps = $('#playScreen');
+      ps.classList.remove('open');
+      ps.setAttribute('inert', '');
+      document.body.style.overflow = '';
+      const url = new URL(location.href);
+      ["a", "n", "seed", "len", "q"].forEach(k => url.searchParams.delete(k));
+      history.replaceState(null, "", url.toString());
+      renderHUD();
+    }
+
+    function handleNext() {
+      if (state.step === 'names') {
+        const nameA = $('#nameA')?.value.trim() || 'Player 1';
+        const nameB = $('#nameB')?.value.trim() || 'Player 2';
+        state.nameA = nameA; state.nameB = nameB;
+        state.step = 'a'; state.cur = 0;
+        state.a = new Array(state.length).fill(null);
+        renderQuestion(0, 'a');
+        updateProg();
+      } else if (state.step === 'a') {
+        const sel = document.querySelector(`input[name="q${state.cur}"]:checked`);
+        if (sel) {
+          state.a[state.cur] = parseInt(sel.value);
+        }
+        if (state.a[state.cur] === null || state.a[state.cur] === undefined) { alert('Please select an answer!'); return; }
+        if (state.cur < state.length - 1) { state.cur++; renderQuestion(state.cur, 'a'); updateProg(); }
+        else { renderHandoff(); updateProg(); }
+      } else if (state.step === 'handoff') {
+        state.step = 'b'; state.cur = 0;
+        state.b = new Array(state.length).fill(null);
+        renderQuestion(0, 'b');
+        updateProg();
+      } else if (state.step === 'b_intro') {
+        const bName = $('#nameB2')?.value.trim() || 'Friend B';
+        state.nameB = bName;
+        state.step = 'b'; state.cur = 0;
+        state.b = new Array(state.length).fill(null);
+        renderQuestion(0, 'b');
+        updateProg();
+      } else if (state.step === 'b') {
+        const sel = document.querySelector(`input[name="q${state.cur}"]:checked`);
+        if (sel) {
+          state.b[state.cur] = parseInt(sel.value);
+        }
+        if (state.b[state.cur] === null || state.b[state.cur] === undefined) { alert('Please select an answer!'); return; }
+        if (state.cur < state.length - 1) { state.cur++; renderQuestion(state.cur, 'b'); updateProg(); }
+        else { renderResult(); updateProg(); }
+      } else if (state.step === 'result') {
+        closePlay(); openPlay();
+      }
+    }
+
+    function handlePrev() {
+      if (state.step === 'a' && state.cur > 0) { state.cur--; renderQuestion(state.cur, 'a'); updateProg(); }
+      else if (state.step === 'b' && state.cur > 0) { state.cur--; renderQuestion(state.cur, 'b'); updateProg(); }
+    }
+
+    function updateProg() {
+      const total = state.length;
+      const cur = (state.step === 'a' || state.step === 'b') ? (state.cur + 1) : 0;
+      $('#psProg').textContent = cur ? `Q ${cur}/${total}` : (state.step === 'names' ? 'Names' : state.step === 'handoff' ? 'Handoff' : state.step === 'b_intro' ? 'Intro' : 'Results');
+    }
+
+    // ── Friendship Test Share Modal ──
+    function openFTShareModal(link) {
+      document.getElementById('ftShareUrlInput').value = link;
+      document.getElementById('ftShareQr').src =
+        `https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${encodeURIComponent(link)}`;
+      const overlay = document.getElementById('ftShareOverlay');
+      const card = document.getElementById('ftShareCard');
+      overlay.style.opacity = '0'; overlay.style.pointerEvents = 'none';
+      overlay.style.display = 'flex';
+      requestAnimationFrame(() => {
+        overlay.style.opacity = '1'; overlay.style.pointerEvents = 'all';
+        card.style.transform = 'scale(1)';
+      });
+    }
+    function closeFTShareModal() {
+      const overlay = document.getElementById('ftShareOverlay');
+      overlay.style.opacity = '0'; overlay.style.pointerEvents = 'none';
+      document.getElementById('ftShareCard').style.transform = 'scale(.92)';
+    }
+    function copyFTShareUrl() {
+      const input = document.getElementById('ftShareUrlInput');
+      const btn = document.getElementById('ftShareCopyBtn');
+      const val = input.value;
+      const doMark = () => {
+        btn.textContent = '\u2713 Copied'; btn.style.background = '#4caf50';
+        showFTToast('\u2705 Link copied! Share with your friend.');
+        setTimeout(() => { btn.textContent = 'Copy'; btn.style.background = ''; }, 2200);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(val).then(doMark).catch(() => {
+          input.select(); try { document.execCommand('copy'); doMark(); } catch(_) {}
+        });
+      } else {
+        input.select(); try { document.execCommand('copy'); doMark(); } catch(_) {}
+      }
+    }
+    function showFTToast(msg, ms = 2800) {
+      const el = document.getElementById('ftToast');
+      el.textContent = msg; el.style.opacity = '1'; el.style.transform = 'translateX(-50%) translateY(0)';
+      clearTimeout(el._timer);
+      el._timer = setTimeout(() => { el.style.opacity = '0'; el.style.transform = 'translateX(-50%) translateY(2rem)'; }, ms);
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeFTShareModal(); ftConfirmNo(); } });
+    document.getElementById('ftShareOverlay').addEventListener('click', e => {
+      if (e.target === e.currentTarget) closeFTShareModal();
+    });
+
+    // ── Confirm dialog ──
+    function ftShowConfirm() {
+      const overlay = document.getElementById('ftConfirmOverlay');
+      overlay.style.opacity = '1'; overlay.style.pointerEvents = 'all';
+    }
+    function ftConfirmNo() {
+      const overlay = document.getElementById('ftConfirmOverlay');
+      overlay.style.opacity = '0'; overlay.style.pointerEvents = 'none';
+    }
+    function ftConfirmYes() {
+      ftConfirmNo();
+      localStorage.removeItem(F_BEST); localStorage.removeItem(F_PLAYS); renderHUD();
+      showFTToast('\u2705 Stats reset.');
+    }
+
+    function copyChallengeLink() {
+      const url = new URL(baseURL());
+      if (state.a?.length && state.a.every(x => x !== null && x !== undefined)) {
+        url.searchParams.set("seed", state.seed);
+        url.searchParams.set("len", String(state.length));
+        url.searchParams.set("q", b64u.enc(state.qIdx.join(",")));
+        url.searchParams.set("a", b64u.enc(state.a.join("")));
+        url.searchParams.set("n", b64u.enc(`${state.nameA}|${state.nameB}`));
+        // Cache for offline/fallback use
+        cacheRemoteState({ a: state.a, nameA: state.nameA, nameB: state.nameB, seed: state.seed, qIdx: state.qIdx, length: state.length });
+      } else {
+        url.searchParams.set("seed", state.seed);
+        url.searchParams.set("len", String(state.length));
+      }
+      openFTShareModal(url.toString());
+    }
+
+    $('#startBtn').addEventListener('click', () => openPlay());
+    $('#joinBtn').addEventListener('click', () => openPlay());
+    $('#psBack').addEventListener('click', closePlay);
+    $('#nextBtn').addEventListener('click', handleNext);
+    $('#prevBtn').addEventListener('click', handlePrev);
+    $('#resetStats').addEventListener('click', () => ftShowConfirm());
+    $('#copyInvite').addEventListener('click', () => {
+      const seed = Date.now().toString(36);
+      const url = new URL(baseURL());
+      url.searchParams.set("seed", seed);
+      url.searchParams.set("len", String(state.length));
+      openFTShareModal(url.toString());
+    });
+    $('#psShare').addEventListener('click', copyChallengeLink);
+
+    document.addEventListener('keydown', e => {
+      if (!$('#playScreen').classList.contains('open')) return;
+      if (e.key === 'Enter') handleNext();
+      if (e.key === 'Escape') closePlay();
+    });
+
+    // Export to window so HTML onclick attributes can call these (module scope ≠ global scope)
+    window.closeFTShareModal = closeFTShareModal;
+    window.copyFTShareUrl    = copyFTShareUrl;
+    window.ftConfirmNo       = ftConfirmNo;
+    window.ftConfirmYes      = ftConfirmYes;
+  </script>
+</body>
+</html>

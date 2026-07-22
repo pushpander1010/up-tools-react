@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>NBA Stats - Player Stats, Teams &amp; Scores | UpTools</title>
+<meta name="description" content="Look up NBA player stats, team standings, and game scores. Free live NBA statistics tool with search and player comparison."/>
+<meta name="keywords" content="nba stats, nba player stats, nba scores, nba standings, basketball stats, nba team stats, nba player search"/>
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:large"/>
+<meta name="theme-color" content="#08080f"/>
+<link rel="canonical" href="https://www.uptools.in/nba-stats/"/>
+<link rel="icon" sizes="50x50" type="image/svg+xml" href="/assets/logo/uptools-logo.svg"/>
+<link rel="apple-touch-icon" href="/assets/logo/uptools-logo.svg"/>
+<meta property="og:title" content="NBA Stats - Player Stats, Teams &amp; Scores | UpTools"/>
+<meta property="og:description" content="Look up NBA player stats, team standings, and game scores. Free tool."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://www.uptools.in/nba-stats/"/>
+<meta property="og:site_name" content="UpTools"/>
+<meta property="og:image" content="/assets/og/nba-stats.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="NBA Stats - Player Stats, Teams &amp; Scores | UpTools"/>
+<meta name="twitter:description" content="Look up NBA player stats, team standings, and game scores."/>
+<meta name="twitter:image" content="/assets/og/nba-stats.png"/>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6216304334889617" crossorigin="anonymous"></script>
+<script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-6216304334889617",enable_page_level_ads:true});</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NN3GDL1LEJ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-NN3GDL1LEJ');</script>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"UpTools NBA Stats","applicationCategory":"SportsApplication","operatingSystem":"Any","url":"https://www.uptools.in/nba-stats/","description":"Look up NBA player stats, team standings, and game scores.","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"publisher":{"@type":"Organization","name":"UpTools","url":"https://www.uptools.in/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.uptools.in/"},{"@type":"ListItem","position":2,"name":"NBA Stats","item":"https://www.uptools.in/nba-stats/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Where does NBA data come from?","acceptedAnswer":{"@type":"Answer","text":"From the balldontlie API, a free open-source NBA statistics API with no authentication required."}},{"@type":"Question","name":"Can I search for any NBA player?","acceptedAnswer":{"@type":"Answer","text":"Yes, search by player name to find career stats, averages, and recent games."}},{"@type":"Question","name":"Are stats up to date?","acceptedAnswer":{"@type":"Answer","text":"Data is updated regularly by the balldontlie API. Current season stats may lag by a day or two."}},{"@type":"Question","name":"Is this tool free?","acceptedAnswer":{"@type":"Answer","text":"Yes, completely free. No API key or signup required."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"How to Look Up NBA Stats","step":[{"@type":"HowToStep","name":"Search Player","text":"Type a player name to find their profile and career stats."},{"@type":"HowToStep","name":"View Stats","text":"See season averages, career totals, and recent game logs."},{"@type":"HowToStep","name":"Check Games","text":"Browse recent NBA game scores and results."}]}</script>
+<link rel="stylesheet" href="/style.css?v=5.0.0"/>
+</head>
+<body>
+<header class="site" role="banner">
+<div class="header-inner">
+<a aria-label="UpTools Home" class="brand" href="/">
+<div style="width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#6366f1,#8b5cf6,#ec4899);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(99,102,241,0.3);flex-shrink:0"><img alt="UpTools logo" height="24" loading="eager" src="/assets/logo/uptools-logo.svg" width="24" style="border-radius:0"/></div>
+<b>UpTools</b>
+</a>
+<nav aria-label="Primary" class="nav-links nav-tabs" id="navTabs">
+<div class="tab-indicator" id="tabIndicator"></div>
+<a href="/" class="nav-tab" data-tab="home">Home</a>
+<a href="/games/" class="nav-tab" data-tab="games">🎮 Games</a>
+<a href="/hncker/" class="nav-tab" data-tab="hncker">HNCKER</a>
+</nav>
+</div>
+</header>
+
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6216304334889617" data-ad-slot="9810172647" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+<main class="container">
+<div class="tool-header">
+  <div class="icon">🏀</div>
+  <h1>NBA Stats</h1>
+  <p>Player stats, game scores &amp; team data — free, live API</p>
+</div>
+<div class="tabs">
+  <div class="tab active" data-tab="players">🔍 Player Search</div>
+  <div class="tab" data-tab="games">🎮 Recent Games</div>
+</div>
+
+<!-- Player Search -->
+<div id="playersTab">
+  <div class="card">
+    <div class="input-group">
+      <input type="text" id="playerInput" placeholder="Search player (e.g. LeBron, Curry, Jordan)" autocomplete="off"/>
+      <button class="btn" id="searchBtn">Search</button>
+    </div>
+  </div>
+  <div id="playerResults"></div>
+  <div id="playerDetail"></div>
+</div>
+
+<!-- Recent Games -->
+<div id="gamesTab" class="hidden">
+  <div class="card">
+    <div class="input-group">
+      <input type="date" id="gameDate" style="background:rgba(10,10,18,0.95);border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:12px 14px;font-size:1rem;outline:none"/>
+      <button class="btn" id="gameDateBtn">Look Up</button>
+    </div>
+  </div>
+  <div id="gameResults"></div>
+</div>
+
+<div class="card" style="margin-top:16px">
+  <div class="dos-donts">
+    <div class="dos"><h3>✅ Do's</h3><ul><li>Compare player stats before debates</li><li>Check game scores for recaps</li><li>Track your favorite player's season</li></ul></div>
+    <div class="donts"><h3>❌ Don'ts</h3><ul><li>Don't use stats to harass players</li><li>Don't ignore context (injuries, team quality)</li></ul></div>
+  </div>
+</div>
+<div class="card"><details open><summary>📐 How NBA Stats Works</summary><p style="color:var(--muted);font-size:.9rem;margin-top:8px">Uses the balldontlie API — free, no auth, CORS enabled. Search any NBA player for career stats, season averages, and game logs.</p></details></div>
+<div class="card">
+  <details><summary><b>Where does data come from?</b></summary><p>From the free balldontlie NBA API.</p></details>
+  <details><summary><b>Is this tool free?</b></summary><p>Yes, completely free. No API key needed.</p></details>
+</div>
+<div class="related"><p style="color:var(--muted);margin-bottom:8px">Related Tools</p><a href="/basketball-stats-calculator/">Basketball Calculator</a><a href="/cricket-score-predictor/">Cricket Predictor</a><a href="/age-calculator/">Age Calculator</a></div>
+<footer>© <span id="year"></span> UpTools. Privacy-first utilities.</footer>
+</main>
+<div class="toast" id="toast"></div>
+<script>
+document.getElementById('year').textContent=new Date().getFullYear();
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2000);}
+const API='https://api.balldontlie.io/v1';
+const API_KEY='demo'; // balldontlie allows demo access
+
+// Tabs
+document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+  t.classList.add('active');
+  document.getElementById('playersTab').classList.toggle('hidden',t.dataset.tab!=='players');
+  document.getElementById('gamesTab').classList.toggle('hidden',t.dataset.tab!=='games');
+  if(t.dataset.tab==='games')loadTodayGames();
+}));
+
+// Player search
+let searchTimeout;
+document.getElementById('playerInput').addEventListener('input',e=>{
+  clearTimeout(searchTimeout);
+  const q=e.target.value.trim();
+  if(q.length<2){document.getElementById('playerResults').innerHTML='';return;}
+  searchTimeout=setTimeout(()=>searchPlayers(q),400);
+});
+document.getElementById('searchBtn').addEventListener('click',()=>{
+  const q=document.getElementById('playerInput').value.trim();
+  if(q)searchPlayers(q);
+});
+
+async function searchPlayers(q){
+  const el=document.getElementById('playerResults');
+  el.innerHTML='<div class="loading"><div class="spinner"></div></div>';
+  try{
+    const r=await fetch(`${API}/players?search=${encodeURIComponent(q)}`,{headers:{'Authorization':API_KEY}});
+    const d=await r.json();
+    if(!d.data||!d.data.length){el.innerHTML='<p style="color:var(--muted);text-align:center">No players found.</p>';return;}
+    el.innerHTML=`<div class="section-title">${d.data.length} player${d.data.length>1?'s':''} found</div>`+d.data.map(p=>`<div class="player-card" onclick="showPlayer(${p.id},'${p.first_name.replace(/'/g,"\\'")} ${p.last_name.replace(/'/g,"\\'")}')"><div class="name">${p.first_name} ${p.last_name}</div><div class="meta">${p.position||''} · ${p.team?.full_name||'Free Agent'} · Height: ${p.height_feet||'?'}'${p.height_inches||0}"</div></div>`).join('');
+  }catch(e){el.innerHTML='<div class="error-msg">API error — try again later.</div>';}
+}
+
+async function showPlayer(id,name){
+  const el=document.getElementById('playerDetail');
+  el.innerHTML='<div class="loading"><div class="spinner"></div><p style="margin-top:8px">Loading stats for '+name+'...</p></div>';
+  try{
+    const [avgR,gameR]=await Promise.all([
+      fetch(`${API}/season_averages?player_ids[]=${id}`,{headers:{'Authorization':API_KEY}}),
+      fetch(`${API}/stats?player_ids[]=${id}&per_page=10&sort=date&order=desc`,{headers:{'Authorization':API_KEY}})
+    ]);
+    const avgD=await avgR.json();const gameD=await gameR.json();
+    let html=`<button style="background:none;border:none;color:var(--cyan);cursor:pointer;font-size:.9rem;margin-bottom:8px" onclick="document.getElementById('playerDetail').innerHTML=''">← Back to results</button>`;
+    html+=`<div class="card"><h2 style="font-size:1.3rem;margin-bottom:4px">${name}</h2>`;
+    if(avgD.data&&avgD.data.length){
+      const a=avgD.data[0];
+      html+=`<div class="section-title">2023-24 Season Averages</div>
+      <div class="stats-grid">
+        <div class="stat-box"><div class="stat-val">${(a.points||0).toFixed(1)}</div><div class="stat-label">PPG</div></div>
+        <div class="stat-box"><div class="stat-val">${(a.rebounds||0).toFixed(1)}</div><div class="stat-label">RPG</div></div>
+        <div class="stat-box"><div class="stat-val">${(a.assists||0).toFixed(1)}</div><div class="stat-label">APG</div></div>
+        <div class="stat-box"><div class="stat-val">${(a.steals||0).toFixed(1)}</div><div class="stat-label">SPG</div></div>
+        <div class="stat-box"><div class="stat-val">${(a.blocks||0).toFixed(1)}</div><div class="stat-label">BPG</div></div>
+        <div class="stat-box"><div class="stat-val">${((a.fg_pct||0)*100).toFixed(1)}%</div><div class="stat-label">FG%</div></div>
+        <div class="stat-box"><div class="stat-val">${((a.three_pt_pct||0)*100).toFixed(1)}%</div><div class="stat-label">3P%</div></div>
+        <div class="stat-box"><div class="stat-val">${((a.ft_pct||0)*100).toFixed(1)}%</div><div class="stat-label">FT%</div></div>
+        <div class="stat-box"><div class="stat-val">${(a.min||'0')}</div><div class="stat-label">MPG</div></div>
+        <div class="stat-box"><div class="stat-val">${a.games_played||0}</div><div class="stat-label">GP</div></div>
+      </div>`;
+    }else{
+      html+=`<p style="color:var(--muted);margin-top:8px">No season averages available (off-season or inactive).</p>`;
+    }
+    html+=`</div>`;
+    if(gameD.data&&gameD.data.length){
+      html+=`<div class="card"><div class="section-title">Recent Games</div>`;
+      gameD.data.forEach(g=>{
+        html+=`<div class="game-card"><div class="teams"><span>${g.team?.full_name||'N/A'}</span><span class="score">${g.pts||0} P</span></div><div class="date">${g.reb||0} REB · ${g.ast||0} AST · ${g.min||''} MIN · ${g.date||''}</div></div>`;
+      });
+      html+=`</div>`;
+    }
+    el.innerHTML=html;
+  }catch(e){el.innerHTML='<div class="error-msg">Could not load player stats.</div>';}
+}
+
+// Games
+function loadTodayGames(){
+  const today=new Date().toISOString().split('T')[0];
+  document.getElementById('gameDate').value=today;
+  fetchGames(today);
+}
+async function fetchGames(date){
+  const el=document.getElementById('gameResults');
+  el.innerHTML='<div class="loading"><div class="spinner"></div><p style="margin-top:8px">Loading games...</p></div>';
+  try{
+    const r=await fetch(`${API}/games?dates[]=${date}&per_page=25`,{headers:{'Authorization':API_KEY}});
+    const d=await r.json();
+    if(!d.data||!d.data.length){el.innerHTML='<p style="color:var(--muted);text-align:center">No games found for this date.</p>';return;}
+    el.innerHTML=`<div class="section-title">${d.data.length} game${d.data.length>1?'s':''} on ${date}</div>`+d.data.map(g=>{
+      const homeWon=(g.home_team_score||0)>(g.visitor_team_score||0);
+      return`<div class="game-card">
+        <div class="teams">
+          <span class="${homeWon?'winner':''}">${g.home_team?.full_name||'?'} ${g.home_team_score||0}</span>
+          <span style="color:var(--muted);font-size:.85rem">vs</span>
+          <span class="${!homeWon?'winner':''}">${g.visitor_team?.full_name||'?'} ${g.visitor_team_score||0}</span>
+        </div>
+        <div class="date">Status: ${g.status||'Final'} ${g.period?'· Q'+g.period:''} ${g.time||''}</div>
+      </div>`;
+    }).join('');
+  }catch(e){el.innerHTML='<div class="error-msg">Could not load games.</div>';}
+}
+document.getElementById('gameDateBtn').addEventListener('click',()=>fetchGames(document.getElementById('gameDate').value));
+
+// Init
+loadTodayGames();
+</script>
+</body>
+</html>

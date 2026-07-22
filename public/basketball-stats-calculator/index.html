@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Basketball Stats Calculator - Player Performance | UpTools</title>
+  <link rel="icon" sizes="50x50" type="image/svg+xml" href="/assets/logo/uptools-logo.svg">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/logo/uptools-logo.svg">
+  <meta name="description" content="Free Basketball Stats Calculator by UpTools. Calculate shooting percentages, PER, efficiency rating, and player performance metrics." />
+  <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:large" />
+  <meta name="theme-color" content="#08080f" />
+<link href="https://www.uptools.in/basketball-stats-calculator/" rel="canonical"/>
+  <meta name="keywords" content="basketball stats calculator, shooting percentage, player efficiency rating, per, basketball metrics, nba stats" />
+
+  <meta property="og:title" content="Basketball Stats Calculator - Player Performance | UpTools" />
+  <meta property="og:description" content="Basketball Stats Calculator - Player Performance & Shooting Stats. Free online tool by UpTools." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="UpTools">
+  <meta property="og:url" content="https://www.uptools.in/basketball-stats-calculator/" />
+  <meta property="og:site_name" content="UpTools" />
+  <meta property="og:image" content="/assets/og/basketball-stats-calculator.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Basketball Stats Calculator - Player Performance | UpTools" />
+  <meta name="twitter:description" content="Basketball Stats Calculator - Player Performance & Shooting Stats. Free online tool by UpTools." />
+  <meta name="twitter:image" content="https://www.uptools.in/assets/home.png" />
+
+  <script src="/scripts/utils.js?v=1.3.0" type="module"></script>
+  
+
+  <link rel="stylesheet" href="/style.css?v=5.0.0">
+
+<!-- Paste your Google Analytics 4 Measurement ID below, e.g. G-ABC123XYZ9 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NN3GDL1LEJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-NN3GDL1LEJ');
+</script>
+</head>
+<body>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6216304334889617" crossorigin="anonymous"></script>
+<script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-6216304334889617",enable_page_level_ads:true});</script>
+    <!-- AdSense display -->
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-6216304334889617"
+       data-ad-slot="9810172647"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+  <a href="#main" class="sr-only skip-link">Skip to content</a>
+
+  <!-- Header -->
+  <header class="site" role="banner">
+    <div class="header-inner">
+      <a class="brand" href="/" aria-label="UpTools Home">
+        <img src="/assets/logo/uptools-logo.svg" alt="UpTools logo" width="28" height="28" loading="eager">
+        <b>UpTools</b>
+      </a>
+      <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">☰</button>
+      <nav aria-label="Primary" class="nav-links nav-tabs" id="navTabs">
+<div class="tab-indicator" id="tabIndicator"></div>
+<a href="/" class="nav-tab" data-tab="home">Home</a>
+<a href="/games/" class="nav-tab" data-tab="games">🎮 Games</a>
+<a href="/hncker/" class="nav-tab" data-tab="hncker">HNCKER</a>
+</nav>
+    </div>
+  </header>
+
+  <main class="wrap" id="main" role="main">
+    <div class="grid">
+      <div>
+        <div class="card">
+          <div class="tool-header">
+            <div class="tool-icon">🏀</div>
+            <div>
+              <h1>Basketball Stats Calculator</h1>
+              <p class="note" style="margin:0">Calculate shooting & efficiency metrics</p>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="inputs">
+            <div class="row">
+              <label class="label">Field Goals Made</label>
+              <input aria-label="Field Goals Made" class="input" type="number" id="fgm" placeholder="0" min="0" />
+            </div>
+            <div class="row">
+              <label class="label">Field Goals Attempted</label>
+              <input aria-label="Field Goals Made" class="input" type="number" id="fga" placeholder="0" min="0" />
+            </div>
+            <div class="row">
+              <label class="label">3-Pointers Made</label>
+              <input aria-label="Field Goals Made" class="input" type="number" id="threepm" placeholder="0" min="0" />
+            </div>
+            <div class="row">
+              <label class="label">Free Throws Made</label>
+              <input aria-label="Field Goals Attempted" class="input" type="number" id="ftm" placeholder="0" min="0" />
+            </div>
+            <div class="row">
+              <label class="label">Free Throws Attempted</label>
+              <input aria-label="3-Pointers Made" class="input" type="number" id="fta" placeholder="0" min="0" />
+            </div>
+            <div class="row">
+              <label class="label">Rebounds</label>
+              <input aria-label="Free Throws Made" class="input" type="number" id="reb" placeholder="0" min="0" />
+            </div>
+            <div class="row">
+              <label class="label">Assists</label>
+              <input aria-label="Free Throws Attempted" class="input" type="number" id="ast" placeholder="0" min="0" />
+            </div>
+            <button class="btn" onclick="calculateStats()">Calculate</button>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="result" id="result" style="display:none;">
+          <h3 style="margin:0 0 12px 0;color:var(--accent);">Performance Metrics</h3>
+          <div id="resultContent"></div>
+        </div>
+        <div id="noResult" style="color:var(--muted);text-align:center;padding:20px;">
+          Enter stats to calculate metrics
+        </div>
+      </div>
+    </div>
+  </main>
+
+<!-- SEO: Do's and Don'ts -->
+<section class="card" style="margin-top:16px">
+<h2 style="margin-top:0">✅ Do's and ❌ Don'ts</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+<div class="card" style="border-color:rgba(34,197,94,.3)">
+<h3 style="color:#22c55e;margin-top:0;font-size:1rem">✅ Do's</h3>
+<ul style="list-style:none;padding:0;margin:0;color:#9aa4b2">
+<li style="padding:.35rem 0">✅ <b>Do</b> use this tool to save time on manual calculations.</li>
+<li style="padding:.35rem 0">✅ <b>Do</b> double-check your inputs for accuracy.</li>
+<li style="padding:.35rem 0">✅ <b>Do</b> share results with teammates using the Share feature.</li>
+<li style="padding:.35rem 0">✅ <b>Do</b> bookmark this tool for quick access.</li>
+</ul>
+</div>
+<div class="card" style="border-color:rgba(239,68,68,.3)">
+<h3 style="color:#ef4444;margin-top:0;font-size:1rem">❌ Don'ts</h3>
+<ul style="list-style:none;padding:0;margin:0;color:#9aa4b2">
+<li style="padding:.35rem 0">❌ <b>Don't</b> enter sensitive personal data — this tool doesn't store anything.</li>
+<li style="padding:.35rem 0">❌ <b>Don't</b> use results as professional financial/legal/medical advice.</li>
+<li style="padding:.35rem 0">❌ <b>Don't</b> forget to verify critical calculations with official tools.</li>
+<li style="padding:.35rem 0">❌ <b>Don't</b> assume results are guarantees — they are estimates.</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- SEO: FAQ -->
+<section class="card" style="margin-top:16px">
+<h2 style="margin-top:0">Frequently Asked Questions</h2>
+<details><summary><b>Is this tool free to use?</b></summary><p style="padding:6px 0;color:#9aa4b2">Yes. All UpTools calculators are completely free, with no sign-ups required.</p></details>
+<details><summary><b>Is my data private?</b></summary><p style="padding:6px 0;color:#9aa4b2">Yes. All calculations run locally in your browser. Nothing is uploaded to any server.</p></details>
+<details><summary><b>Does it work on mobile?</b></summary><p style="padding:6px 0;color:#9aa4b2">Yes. All tools are mobile-responsive and work on any device — phone, tablet, or desktop.</p></details>
+<details><summary><b>Can I use this offline?</b></summary><p style="padding:6px 0;color:#9aa4b2">Most tools work offline after the initial page load. No internet needed for calculations.</p></details>
+</section>
+<!-- SEO: How it works -->
+<section class="card" style="margin-top:16px">
+<details open>
+<summary style="cursor:pointer;font-weight:700;font-size:1.1rem;padding:4px 0">📐 How This Tool Works</summary>
+<div style="margin-top:8px;color:#9aa4b2">
+<p>This tool computes results entirely in your browser using JavaScript. No data is sent to any server, ensuring your privacy.</p>
+<p>Results update instantly as you type — no waiting for server responses.</p>
+<p style="margin-top:8px">Also try: <a href="/calculator/">Calculator</a> · <a href="/converter/">Converter</a> · <a href="/generator/">Generator</a></p>
+</div>
+</details>
+</section>
+<footer class="note small site-footer" role="contentinfo">
+    © <span id="y"></span> UpTools . <a href="/about/">About</a> . <a href="/contact/">Contact</a> . <a href="/sitemap.xml">Sitemap</a> . <a href="/privacy-policy/">Privacy Policy</a>
+  </footer>
+
+  <script defer>
+    document.getElementById('y').textContent = new Date().getFullYear();
+    function calculateStats() {
+      const fgm = parseInt(document.getElementById('fgm').value) || 0;
+      const fga = parseInt(document.getElementById('fga').value) || 0;
+      const threepm = parseInt(document.getElementById('threepm').value) || 0;
+      const ftm = parseInt(document.getElementById('ftm').value) || 0;
+      const fta = parseInt(document.getElementById('fta').value) || 0;
+      const reb = parseInt(document.getElementById('reb').value) || 0;
+      const ast = parseInt(document.getElementById('ast').value) || 0;
+
+      if (fga === 0) {
+        alert('Please enter field goals attempted');
+        return;
+      }
+
+      const fgPct = ((fgm / fga) * 100).toFixed(1);
+      const threePct = fga > 0 ? ((threepm / (fga - fgm + threepm)) * 100).toFixed(1) : 0;
+      const ftPct = fta > 0 ? ((ftm / fta) * 100).toFixed(1) : 0;
+      const ts = ((fgm + 0.44 * ftm) / (2 * (fga + 0.44 * fta)) * 100).toFixed(1);
+      const points = fgm * 2 - threepm + ftm;
+
+      const resultContent = document.getElementById('resultContent');
+      resultContent.innerHTML = `
+        <div class="row"><span>FG%</span><span class="amount">${fgPct}%</span></div>
+        <div class="row"><span>3P%</span><span class="amount">${threePct}%</span></div>
+        <div class="row"><span>FT%</span><span class="amount">${ftPct}%</span></div>
+        <div class="row"><span>True Shooting %</span><span class="amount">${ts}%</span></div>
+        <div class="row"><span>Points</span><span class="amount">${points}</span></div>
+        <div class="row"><span>Rebounds</span><span class="amount">${reb}</span></div>
+        <div class="row"><span>Assists</span><span class="amount">${ast}</span></div>
+      `;
+
+      document.getElementById('result').style.display = 'block';
+      document.getElementById('noResult').style.display = 'none';
+    }
+
+    document.getElementById('fga').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') calculateStats();
+    });
+  </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to Use Basketball Stats Calculator - Player Performance & Shooting Stats",
+  "description": "Step-by-step guide to using Basketball Stats Calculator - Player Performance & Shooting Stats.",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "position": 1,
+      "name": "Open Basketball Stats Calculator - Player Performance & Shooting Stats at https://www.uptools.in/basketball-stats-calculator/",
+      "text": "Open Basketball Stats Calculator - Player Performance & Shooting Stats at https://www.uptools.in/basketball-stats-calculator/"
+    },
+    {
+      "@type": "HowToStep",
+      "position": 2,
+      "name": "Enter your details in the provided fields",
+      "text": "Enter your details in the provided fields"
+    },
+    {
+      "@type": "HowToStep",
+      "position": 3,
+      "name": "Click Calculate to get instant results",
+      "text": "Click Calculate to get instant results"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Basketball Stats Calculator - Player Performance & Shooting Stats",
+  "applicationCategory": "UtilityApplication",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+  "operatingSystem": "Web"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+    "@type": "ListItem", "position": 1,
+    "name": "Home", "item": "https://www.uptools.in/"
+  },{ 
+    "@type": "ListItem", "position": 2,
+    "name": "Basketball Stats Calculator - Player Performance & Shooting Stats", "item": "https://www.uptools.in/basketball-stats-calculator/"
+  }]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "What is Basketball Stats Calculator - Player Performance & Shooting Stats?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Free Basketball Stats Calculator by UpTools. Calculate shooting percentages, PER, efficiency rating, and player performance metrics."
+    }
+  },{ 
+    "@type": "Question",
+    "name": "Is Basketball Stats Calculator - Player Performance & Shooting Stats free to use?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes, Basketball Stats Calculator - Player Performance & Shooting Stats is completely free. No sign-up or credit card required."
+    }
+  }]
+}
+</script>
+</body>
+</html>

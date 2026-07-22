@@ -1,0 +1,443 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<!-- Google Ads (async to avoid CLS) -->
+<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6216304334889617"></script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<title>UUID / GUID Generator &amp; Validator (v1, v4, v5) – UpTools</title>
+<meta content="Generate and validate UUIDs (v1, v4, v5). Batch create, copy, download CSV/TXT, toggle hyphens/uppercase/braces, and format as URN. Privacy-friendly:" name="description"/>
+<meta content="UUID generator, GUID generator, UUID v4, UUID v1, UUID v5, name-based UUID, RFC 4122, validate UUID, URN uuid, bulk uuid, download CSV, UpTools" name="keywords"/>
+<meta content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:large" name="robots"/>
+<meta content="#08080f" name="theme-color"/>
+<link href="https://www.uptools.in/uuid-generator/" rel="canonical"/>
+
+<!-- Favicons -->
+<link href="/assets/logo/uptools-logo.svg" rel="icon" sizes="50x50" type="image/svg+xml"/>
+<link href="/assets/logo/uptools-logo.svg" rel="apple-touch-icon" sizes="180x180"/>
+<!-- Open Graph / Twitter -->
+<meta content="UUID / GUID Generator &amp; Validator (v1, v4, v5) – UpTools" property="og:title"/>
+<meta content="Generate v1, v4, v5 UUIDs, validate, and export. Batch mode, copy, URN/braces/uppercase options. 100% client-side." property="og:description"/>
+<meta content="website" property="og:type"/>
+<meta content="https://www.uptools.in/uuid-generator/" property="og:url"/>
+<meta content="UpTools" property="og:site_name"/>
+<meta content="/assets/og/uuid-generator.png" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+  <meta name="twitter:title" content="UUID / GUID Generator &amp; Validator (v1, v4, v5) – UpTools" />
+  <meta name="twitter:description" content="Generate v1, v4, v5 UUIDs, validate, and export. Batch mode, copy, URN/braces/uppercase options. 100% client-side." />
+  <meta name="twitter:image" content="/assets/og/uuid-generator.png" />
+<!-- Performance hints -->
+<link crossorigin="" href="https://pagead2.googlesyndication.com" rel="preconnect"/>
+<link href="//pagead2.googlesyndication.com" rel="dns-prefetch"/>
+<!-- Common CSS -->
+
+<!-- Page-scoped styles (kept small; complements common CSS) -->
+
+<!-- Structured Data: WebApplication + FAQ -->
+
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.uptools.in/"}, {"@type": "ListItem", "position": 2, "name": "Uuid Generator", "item": "https://www.uptools.in/uuid-generator/"}]}
+</script>
+<script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebApplication",
+    "name":"UpTools UUID Generator",
+    "applicationCategory":"DeveloperApplication",
+    "operatingSystem":"Any",
+    "url":"https://www.uptools.in/uuid-generator/",
+    "description":"Generate and validate UUIDs (v1, v4, v5) with batch export, URN/braces/uppercase options. All client-side.",
+    "publisher":{"@type":"Organization","name":"UpTools","url":"https://www.uptools.in"},
+    "offers":{"@type":"Offer","price":"0","priceCurrency":"INR"}
+  }
+  </script>
+<script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"What versions of UUID can I generate?","acceptedAnswer":{"@type":"Answer","text":"UpTools supports UUID v1 (time-based), v4 (random), and v5 (name-based, SHA-1)."}},
+      {"@type":"Question","name":"Is this secure and private?","acceptedAnswer":{"@type":"Answer","text":"Yes. Everything runs locally in your browser using the Web Crypto API for randomness and hashing. No data ever leaves your device."}},
+      {"@type":"Question","name":"Can I export or format UUIDs?","acceptedAnswer":{"@type":"Answer","text":"Yes. You can batch-generate and download TXT/CSV. Toggle hyphens, braces, uppercase, and URN format (urn:uuid:...)."}}
+    ]
+  }
+  </script>
+
+  <meta property="og:description" content="Generate v1, v4, v5 UUIDs, validate, and export. Batch mode, copy, URN/braces/uppercase options. 100% client-side." />
+  <meta property="og:url" content="https://www.uptools.in/uuid-generator/" />
+  <meta property="og:type" content="website" />
+
+  <link rel="stylesheet" href="/style.css?v=5.0.0">
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6216304334889617" crossorigin="anonymous"></script>
+<script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-6216304334889617",enable_page_level_ads:true});</script>
+
+<!-- Paste your Google Analytics 4 Measurement ID below, e.g. G-ABC123XYZ9 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NN3GDL1LEJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-NN3GDL1LEJ');
+</script>
+</head>
+<body>
+  <a href="#main" class="sr-only skip-link">Skip to content</a>
+
+<!-- Site header (shared pattern) -->
+<!-- Header -->
+<header class="site" role="banner">
+<div class="header-inner">
+<a aria-label="UpTools Home" class="brand" href="/">
+<img alt="UpTools logo" height="28" loading="eager" src="/assets/logo/uptools-logo.svg" width="28"/>
+<b>UpTools</b>
+</a>
+<nav aria-label="Primary" class="nav-links nav-tabs" id="navTabs">
+<div class="tab-indicator" id="tabIndicator"></div>
+<a href="/" class="nav-tab" data-tab="home">Home</a>
+<a href="/games/" class="nav-tab" data-tab="games">🎮 Games</a>
+<a href="/hncker/" class="nav-tab" data-tab="hncker">HNCKER</a>
+</nav>
+</div>
+</header>
+<main role="main" class="wrap" id="main">
+<!-- Hero -->
+<section aria-labelledby="pg-title" class="card hero">
+<div class="two-col">
+<div>
+<h1 id="pg-title">UUID / GUID Generator &amp; Validator</h1>
+<p class="note">Generate <b>v1</b> (time-based), <b>v4</b> (random), and <b>v5</b> (name-based) UUIDs. Batch mode, copy, export, and a built-in validator. 100% client-side.</p>
+<div class="chips" style="margin-top:8px">
+<span class="pill">⚡ v1 . v4 . v5</span>
+<span class="pill">📦 Batch + Export</span>
+<span class="pill">🧪 Validate</span>
+<a class="chip" href="/password-generator/">Password</a>
+<a class="chip" href="/hash-generator/">Hash</a>
+<a class="chip" href="/random-string/">Random String</a>
+</div>
+</div>
+<div aria-label="UUIDs explained (video)" class="yt-wrap">
+<div class="video-wrap"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/cezbjYLsACc?rel=0" title="UUID Universally Unique Identifiers Explained"></iframe></div>
+</div>
+</div>
+</section>
+<!-- Generator + Validator -->
+<section aria-label="UUID tools" class="two-col">
+<!-- Generator -->
+<div class="card" id="gen-card">
+<h2 class="h3">Generator</h2>
+<div class="stack">
+<div class="row">
+<label class="label" for="version">Version</label>
+<select class="input" id="version">
+<option selected="" value="v4">v4 – Random</option>
+<option value="v1">v1 – Time-based</option>
+<option value="v5">v5 – Name-based (SHA-1)</option>
+</select>
+<label class="label" for="count">Count</label>
+<input class="input" id="count" max="1000" min="1" style="max-width:110px" type="number" value="1"/>
+<button class="btn" id="gen">Generate</button>
+<button class="btn ghost" id="copyOne">Copy</button>
+</div>
+<!-- v5 extra inputs -->
+<div class="row" hidden="" id="v5opts">
+<label class="label" for="ns">Namespace UUID</label>
+<input class="input grow" id="ns" placeholder="e.g., 6ba7b811-9dad-11d1-80b4-00c04fd430c8 (DNS)">
+<label class="label" for="name">Name</label>
+<input class="input grow" id="name" placeholder="e.g., example.com"/>
+<button class="btn sm ghost" id="presetDNS" type="button">DNS</button>
+<button class="btn sm ghost" id="presetURL" type="button">URL</button>
+</input></div>
+<!-- Format options -->
+<div class="opt-grid">
+<label class="check"><input aria-label="Namespace UUID" checked="" id="optHyphen" type="checkbox"/> <span>Hyphens</span></label>
+<label class="check"><input aria-label="Name" id="optUpper" type="checkbox"/> <span>Uppercase</span></label>
+<label class="check"><input aria-label="Hyphens" id="optBraces" type="checkbox"/> <span>Braces { }</span></label>
+<label class="check"><input aria-label="Hyphens" id="optURN" type="checkbox"/> <span>URN (urn:uuid:)</span></label>
+</div>
+<!-- Output -->
+<div class="row">
+<button class="btn" id="copyAll">Copy All</button>
+<button class="btn ghost" id="dlTxt">Download .txt</button>
+<button class="btn ghost" id="dlCsv">Download .csv</button>
+<span class="pill sec mini">Generated: <b id="genCount">0</b></span>
+</div>
+<textarea class="input mono" id="out" placeholder="Your UUIDs will appear here…" readonly="" rows="6"></textarea>
+<details>
+<summary class="mini">Tips</summary>
+<ul class="list-tight mini">
+<li><span class="kbd">v4</span> is best for most apps (random).</li>
+<li><span class="kbd">v1</span> encodes time (&amp; clock sequence).</li>
+<li><span class="kbd">v5</span> = stable ID from Name + Namespace.</li>
+</ul>
+</details>
+</div>
+</div>
+<!-- Validator -->
+<div class="card" id="val-card">
+<h2 class="h3">Validator</h2>
+<div class="stack">
+<input aria-label="Validator" class="input mono" id="valInput" placeholder="Paste a UUID here to validate…"/>
+<div class="row">
+<button class="btn" id="valBtn">Validate</button>
+<button class="btn ghost" id="valClear">Clear</button>
+</div>
+<div class="note" id="valResult">Format, version &amp; variant will appear here.</div>
+<div class="hr" style="height:1px;background:color-mix(in oklab,var(--accent) 25%, #243);"></div>
+<h3 class="h4" style="margin:0">Quick Links</h3>
+<div class="chips" style="margin-top:8px">
+<a class="chip" href="/password-generator/">Password</a>
+<a class="chip" href="/hash-generator/">Hash</a>
+<a class="chip" href="/json-formatter/">JSON Formatter</a>
+<a class="chip" href="/qr-code-generator/">QR Code</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Google Ad slot (stable height to avoid CLS) -->
+<section class="card">
+<ins class="adsbygoogle" data-ad-client="ca-pub-6216304334889617" data-ad-format="auto" data-ad-slot="9651757525" data-full-width-responsive="true" style="display:block;min-height:120px"></ins>
+<script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+</section>
+
+<!-- SEO: Do's and Don'ts -->
+<section class="card" style="margin-top:16px">
+<h2 style="margin-top:0">✅ Do's and ❌ Don'ts</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+<div class="card" style="border-color:rgba(34,197,94,.3)">
+<h3 style="color:#22c55e;margin-top:0;font-size:1rem">✅ Do's</h3>
+<ul style="list-style:none;padding:0;margin:0;color:#9aa4b2">
+<li style="padding:.35rem 0">✅ <b>Do</b> use this tool to save time on manual calculations.</li>
+<li style="padding:.35rem 0">✅ <b>Do</b> double-check your inputs for accuracy.</li>
+<li style="padding:.35rem 0">✅ <b>Do</b> share results with teammates using the Share feature.</li>
+<li style="padding:.35rem 0">✅ <b>Do</b> bookmark this tool for quick access.</li>
+</ul>
+</div>
+<div class="card" style="border-color:rgba(239,68,68,.3)">
+<h3 style="color:#ef4444;margin-top:0;font-size:1rem">❌ Don'ts</h3>
+<ul style="list-style:none;padding:0;margin:0;color:#9aa4b2">
+<li style="padding:.35rem 0">❌ <b>Don't</b> enter sensitive personal data — this tool doesn't store anything.</li>
+<li style="padding:.35rem 0">❌ <b>Don't</b> use results as professional financial/legal/medical advice.</li>
+<li style="padding:.35rem 0">❌ <b>Don't</b> forget to verify critical calculations with official tools.</li>
+<li style="padding:.35rem 0">❌ <b>Don't</b> assume results are guarantees — they are estimates.</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- SEO: FAQ -->
+<section class="card" style="margin-top:16px">
+<h2 style="margin-top:0">Frequently Asked Questions</h2>
+<details><summary><b>Is this tool free to use?</b></summary><p style="padding:6px 0;color:#9aa4b2">Yes. All UpTools calculators are completely free, with no sign-ups required.</p></details>
+<details><summary><b>Is my data private?</b></summary><p style="padding:6px 0;color:#9aa4b2">Yes. All calculations run locally in your browser. Nothing is uploaded to any server.</p></details>
+<details><summary><b>Does it work on mobile?</b></summary><p style="padding:6px 0;color:#9aa4b2">Yes. All tools are mobile-responsive and work on any device — phone, tablet, or desktop.</p></details>
+<details><summary><b>Can I use this offline?</b></summary><p style="padding:6px 0;color:#9aa4b2">Most tools work offline after the initial page load. No internet needed for calculations.</p></details>
+</section>
+<!-- SEO: How it works -->
+<section class="card" style="margin-top:16px">
+<details open>
+<summary style="cursor:pointer;font-weight:700;font-size:1.1rem;padding:4px 0">📐 How This Tool Works</summary>
+<div style="margin-top:8px;color:#9aa4b2">
+<p>This tool computes results entirely in your browser using JavaScript. No data is sent to any server, ensuring your privacy.</p>
+<p>Results update instantly as you type — no waiting for server responses.</p>
+<p style="margin-top:8px">Also try: <a href="/calculator/">Calculator</a> · <a href="/converter/">Converter</a> · <a href="/generator/">Generator</a></p>
+</div>
+</details>
+</section>
+<footer class="site-foot">
+<nav class="nav-links small">
+<a href="/">UpTools</a> .
+    <a href="/sitemap.xml">Sitemap</a> .
+    <a href="/about/">ABT</a> .
+    <a href="/contact/">CT</a>
+</nav>
+<div class="note small">Made with care. Privacy-first, no sign-ups.</div>
+</footer>
+</main>
+<!-- Shared helpers (if present) + page script -->
+<script src="/scripts/utils.js" type="module"></script>
+<script type="module">
+    // ===== Utilities (fallbacks if utils.js not present) =====
+    const U = {
+      copy: async (text) => { try { await navigator.clipboard.writeText(text); toast('Copied'); } catch { fallbackCopy(text); toast('Copied'); } },
+      saveFile: (name, text, type='text/plain') => {
+        const blob=new Blob([text],{type}); const a=document.createElement('a');
+        a.href=URL.createObjectURL(blob); a.download=name; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href), 500);
+      }
+    };
+    function fallbackCopy(text){ const t=document.createElement('textarea'); t.value=text; t.style.position='fixed'; t.style.top='-2000px'; document.body.appendChild(t); t.select(); try{document.execCommand('copy');}finally{t.remove();} }
+    function toast(msg){
+      const n=document.createElement('div'); n.className='toast';
+      Object.assign(n.style,{position:'fixed',left:'50%',bottom:'16px',transform:'translateX(-50%)',padding:'8px 12px',borderRadius:'999px',backdropFilter:'blur(3px)',border:'1px solid var(--line,#2b3142)',zIndex:'9999',opacity:'0',transition:'opacity .2s ease'});
+      n.textContent=msg; document.body.appendChild(n);
+      requestAnimationFrame(()=>n.style.opacity='1'); setTimeout(()=>{n.style.opacity='0'; setTimeout(()=>n.remove(),250);},1200);
+    }
+    const q = (s, r=document)=>r.querySelector(s);
+    const cryptoObj = (window.crypto || window.msCrypto);
+
+    // ===== DOM =====
+    const els = {
+      version:q('#version'), count:q('#count'), gen:q('#gen'), copyOne:q('#copyOne'),
+      out:q('#out'), genCount:q('#genCount'),
+      // formatting
+      optHyphen:q('#optHyphen'), optUpper:q('#optUpper'), optBraces:q('#optBraces'), optURN:q('#optURN'),
+      // v5
+      v5row:q('#v5opts'), ns:q('#ns'), name:q('#name'), presetDNS:q('#presetDNS'), presetURL:q('#presetURL'),
+      // exports
+      copyAll:q('#copyAll'), dlTxt:q('#dlTxt'), dlCsv:q('#dlCsv'),
+      // validator
+      valInput:q('#valInput'), valBtn:q('#valBtn'), valClear:q('#valClear'), valResult:q('#valResult')
+    };
+
+    // ===== RFC helpers =====
+    const HEX = [...Array(256).keys()].map(i=>i.toString(16).padStart(2,'0'));
+    const UUID_RX = /^[{]?[0-9a-fA-F]{8}[-]?[0-9a-fA-F]{4}[-]?[1-5][0-9a-fA-F]{3}[-]?[89abAB][0-9a-fA-F]{3}[-]?[0-9a-fA-F]{12}[}]?$/;
+
+    // Normalize namespace string to 16-byte array
+    function parseUUIDToBytes(uuid){
+      const s = uuid.replace(/[{}-]/g,'').toLowerCase();
+      if(s.length!==32 || !/^[0-9a-f]{32}$/.test(s)) return null;
+      const out = new Uint8Array(16);
+      for(let i=0;i<16;i++) out[i] = parseInt(s.slice(i*2, i*2+2), 16);
+      return out;
+    }
+    function bytesToUuid(b){
+      const s = [...b].map(v=>HEX[v]).join('');
+      return `${s.slice(0,8)}-${s.slice(8,12)}-${s.slice(12,16)}-${s.slice(16,20)}-${s.slice(20)}`;
+    }
+    function formatUUID(u){
+      let s=u;
+      if(!els.optHyphen.checked) s = s.replace(/-/g,'');
+      if(els.optUpper.checked) s = s.toUpperCase();
+      if(els.optBraces.checked) s = '{' + s + '}';
+      if(els.optURN.checked)  s = 'urn:uuid:' + u.toLowerCase(); // URN is always hyphenated lowercase
+      return s;
+    }
+
+    // ===== v4 (random) =====
+    function uuidv4(){
+      const rnds = new Uint8Array(16); cryptoObj.getRandomValues(rnds);
+      rnds[6] = (rnds[6] & 0x0f) | 0x40; // version 4
+      rnds[8] = (rnds[8] & 0x3f) | 0x80; // RFC variant
+      return bytesToUuid(rnds);
+    }
+
+    // ===== v1 (time-based) =====
+    // Implementation note: Generates time_low/time_mid/time_hi, clock_seq, node.
+    // Uses random node (48-bit) & random clock_seq as we don't access MAC.
+    let _lastV1 = { nsecs:0, lastMS:0, clockSeq: null, node: null };
+    function uuidv1(){
+      const nowMS = Date.now();
+      if(_lastV1.clockSeq==null){ _lastV1.clockSeq = (cryptoObj.getRandomValues(new Uint8Array(2))[0] << 8 | cryptoObj.getRandomValues(new Uint8Array(2))[1]) & 0x3fff; }
+      if(_lastV1.node==null){
+        const n = new Uint8Array(6); cryptoObj.getRandomValues(n);
+        n[0] |= 0x01; // set multicast bit per RFC (since not using IEEE MAC)
+        _lastV1.node = n;
+      }
+      if(nowMS === _lastV1.lastMS){ _lastV1.nsecs++; } else { _lastV1.nsecs = 0; _lastV1.lastMS = nowMS; }
+
+      // UUID time is 100ns intervals since 1582-10-15
+      const GREG_OFFSET = 12219292800000; // ms between 1582 and 1970
+      let t = BigInt((nowMS + GREG_OFFSET)) * 10000n + BigInt(_lastV1.nsecs);
+
+      const timeLow  = Number(t & 0xffffffffn) >>> 0;
+      const timeMid  = Number((t >> 32n) & 0xffffn);
+      let timeHi     = Number((t >> 48n) & 0x0fffn);
+      timeHi |= 0x1000; // version 1
+
+      let clockSeq = _lastV1.clockSeq & 0x3fff;
+      const b = new Uint8Array(16);
+      // time_low
+      b[3]= timeLow & 0xff; b[2]=(timeLow>>>8)&0xff; b[1]=(timeLow>>>16)&0xff; b[0]=(timeLow>>>24)&0xff;
+      // time_mid
+      b[5]= timeMid & 0xff; b[4]=(timeMid>>>8)&0xff;
+      // time_hi_and_version
+      b[7]= timeHi & 0xff; b[6]=(timeHi>>>8)&0xff;
+      // clock_seq_hi_and_reserved (variant) + clock_seq_low
+      b[8]= (clockSeq>>>8) | 0x80; b[9]= clockSeq & 0xff;
+      // node
+      b.set(_lastV1.node, 10);
+      return bytesToUuid(b);
+    }
+
+    // ===== v5 (name-based, SHA-1) =====
+    async function uuidv5(namespaceUuid, nameStr){
+      const nsBytes = parseUUIDToBytes(namespaceUuid);
+      if(!nsBytes) throw new Error('Invalid namespace UUID');
+      const enc = new TextEncoder();
+      const data = new Uint8Array(nsBytes.length + enc.encode(nameStr).length);
+      data.set(nsBytes, 0); data.set(enc.encode(nameStr), nsBytes.length);
+      const hash = new Uint8Array(await cryptoObj.subtle.digest('SHA-1', data)); // 20 bytes
+      // take first 16 bytes; set version & variant
+      hash[6] = (hash[6] & 0x0f) | 0x50; // version 5
+      hash[8] = (hash[8] & 0x3f) | 0x80; // variant
+      const out = hash.slice(0,16);
+      return bytesToUuid(out);
+    }
+    const NAMESPACE_DNS = '6ba7b810-9dad-11d1-80b4-00c04fd430c8';
+    const NAMESPACE_URL = '6ba7b811-9dad-11d1-80b4-00c04fd430c8';
+
+    // ===== Generate / Format / Export =====
+    function applyFormat(list){
+      return list.map(u => formatUUID(u));
+    }
+    async function generate(){
+      const n = Math.min(Math.max(parseInt(els.count.value||'1',10),1),1000);
+      const v = els.version.value;
+      const out = [];
+      if(v==='v4'){
+        for(let i=0;i<n;i++) out.push(uuidv4());
+      }else if(v==='v1'){
+        for(let i=0;i<n;i++) out.push(uuidv1());
+      }else{
+        const ns = els.ns.value.trim() || NAMESPACE_DNS;
+        const name = els.name.value.trim() || 'example.com';
+        for(let i=0;i<n;i++) out.push(await uuidv5(ns, name));
+      }
+      const fmt = applyFormat(out);
+      els.out.value = fmt.join('\n');
+      els.genCount.textContent = String(fmt.length);
+      toast('Generated');
+    }
+
+    // ===== Validate =====
+    function validateUUID(u){
+      const ok = UUID_RX.test(u);
+      let version='-', variant='-';
+      if(ok){
+        const s = u.replace(/[{}-]/g,'');
+        version = s[12];
+        const vi = parseInt(s[16],16);
+        variant = (vi>>3) >= 0b101 ? 'RFC 4122' : 'NCS/Reserved';
+      }
+      return { ok, version, variant };
+    }
+
+    // ===== Events =====
+    els.version.addEventListener('change', ()=>{ els.v5row.hidden = els.version.value!=='v5'; });
+    els.gen.addEventListener('click', generate);
+    els.copyOne.addEventListener('click', ()=>{ const t=els.out.value.split('\n').filter(Boolean)[0]||''; if(t) U.copy(t); });
+    els.copyAll.addEventListener('click', ()=>{ const t=els.out.value.trim(); if(t) U.copy(t); });
+    els.dlTxt.addEventListener('click', ()=>{ const t=els.out.value.trim(); if(t) U.saveFile('uuids.txt', t, 'text/plain'); });
+    els.dlCsv.addEventListener('click', ()=>{
+      const rows = els.out.value.trim().split('\n').filter(Boolean).map(v=>`"${v.replace(/"/g,'""')}"`).join('\n');
+      if(rows) U.saveFile('uuids.csv', rows, 'text/csv');
+    });
+    els.presetDNS.addEventListener('click', ()=>{ els.ns.value = NAMESPACE_DNS; els.name.value='example.com'; });
+    els.presetURL.addEventListener('click', ()=>{ els.ns.value = NAMESPACE_URL; els.name.value='https://example.com/page'; });
+
+    els.valBtn.addEventListener('click', ()=>{
+      const s = els.valInput.value.trim();
+      if(!s){ els.valResult.textContent='Enter a value to validate.'; return; }
+      const r = validateUUID(s);
+      if(!r.ok){ els.valResult.innerHTML = '❌ Not a valid RFC 4122 UUID.'; return; }
+      const v = parseInt(s.replace(/[{}-]/g,'')[12], 16); // numeric version
+      els.valResult.innerHTML = `✅ Valid UUID<br><span class="mini">Version: <b>v${v}</b> . Variant: <b>${r.variant}</b></span>`;
+    });
+    els.valClear.addEventListener('click', ()=>{ els.valInput.value=''; els.valResult.textContent='Format, version & variant will appear here.'; });
+
+    // First paint
+    generate(); // 1 UUID on load
+  </script>
+</body>
+</html>

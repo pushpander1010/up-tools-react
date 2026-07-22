@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.uptools.in/sitemap.xml
+LLMs.txt: https://www.uptools.in/llms.txt

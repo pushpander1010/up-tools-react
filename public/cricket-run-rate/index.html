@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Cricket Run Rate Calculator - Target Score & | UpTools</title>
+  <!-- Favicon -->
+  <link rel="icon" sizes="50x50" type="image/svg+xml" href="/assets/logo/uptools-logo.svg">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/logo/uptools-logo.svg">
+  <meta name="description" content="Free Cricket Run Rate Calculator by UpTools. Calculate required run rate, projected total, and target score for T20, ODI & Test cricket matches. Fast, accurate" />
+  <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:large" />
+  <meta name="theme-color" content="#08080f" />
+<link href="https://www.uptools.in/cricket-run-rate/" rel="canonical"/>
+  <meta name="keywords" content="cricket run rate calculator, required run rate, target score, t20 run rate, odi run rate, cricket target calculator, projected score, powerplay runs" />
+
+  <meta property="og:title" content="Cricket Run Rate Calculator - Target Score & | UpTools" />
+  <meta property="og:description" content="Cricket Run Rate Calculator - Target Score & Required Run Rate. Free online tool by UpTools." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="UpTools">
+  <meta property="og:url" content="https://www.uptools.in/cricket-run-rate/" />
+  <meta property="og:site_name" content="UpTools" />
+  <meta property="og:image" content="/assets/og/cricket-run-rate.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Cricket Run Rate Calculator - Target Score & | UpTools" />
+  <meta name="twitter:description" content="Cricket Run Rate Calculator - Target Score & Required Run Rate. Free online tool by UpTools." />
+  <meta name="twitter:image" content="https://www.uptools.in/assets/home.png" />
+
+  
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@graph":[
+      {"@type":"SoftwareApplication","name":"Cricket Run Rate Calculator","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},
+      {"@type":"BreadcrumbList","itemListElement":[
+        {"@type":"ListItem","position":1,"item":{"@id":"https://www.uptools.in/","name":"UpTools"}},
+        {"@type":"ListItem","position":2,"item":{"@id":"https://www.uptools.in/cricket-run-rate/","name":"Cricket Run Rate Calculator"}}
+      ]},
+      {"@type":"FAQPage","mainEntity":[
+        {"@type":"Question","name":"How is run rate calculated in cricket?","acceptedAnswer":{"@type":"Answer","text":"Run rate (RR) = Total Runs Scored / Overs Bowled. For example, if a team scores 160 runs in 20 overs, the run rate is 160/20 = 8.00 runs per over."}},
+        {"@type":"Question","name":"What is required run rate?","acceptedAnswer":{"@type":"Answer","text":"Required Run Rate (RRR) = (Target - Current Runs) / Remaining Overs. It tells the batting team how many runs they need to score per over to reach the target."}},
+        {"@type":"Question","name":"Can I use this for T20, ODI and Test matches?","acceptedAnswer":{"@type":"Answer","text":"Yes! Select the match format (T20/ODI/Test) and enter the overs bowled. The calculator works for all limited overs and Test cricket."}}
+      ]}
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="/style.css?v=5.0.0">
+
+<!-- Paste your Google Analytics 4 Measurement ID below, e.g. G-ABC123XYZ9 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NN3GDL1LEJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-NN3GDL1LEJ');
+</script>
+</head>
+<body>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6216304334889617" crossorigin="anonymous"></script>
+<script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-6216304334889617",enable_page_level_ads:true});</script>
+    <!-- AdSense display -->
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-6216304334889617"
+       data-ad-slot="9810172647"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+  <a href="#main" class="sr-only skip-link">Skip to content</a>
+
+    <!-- Header -->
+  <header class="site" role="banner">
+<div class="header-inner">
+<a aria-label="UpTools Home" class="brand" href="/">
+<img alt="UpTools logo" height="28" loading="eager" src="/assets/logo/uptools-logo.svg" width="28"/>
+<b>UpTools</b>
+</a>
+<nav aria-label="Primary" class="nav-links nav-tabs" id="navTabs">
+<div class="tab-indicator" id="tabIndicator"></div>
+<a href="/" class="nav-tab" data-tab="home">Home</a>
+<a href="/games/" class="nav-tab" data-tab="games">🎮 Games</a>
+<a href="/hncker/" class="nav-tab" data-tab="hncker">HNCKER</a>
+</nav>
+</div>
+</header>
+
+  <main id="main" class="wrap" role="main">
+    <div class="tool-header">
+      <div class="tool-icon" aria-hidden="true">🏏</div>
+      <h1>Cricket Run Rate Calculator</h1>
+    </div>
+
+    <section class="grid" id="tool">
+      <div class="card">
+        <div class="inputs">
+          <div class="row">
+            <label class="label" for="format">Match Format</label>
+            <div class="pill-sel" role="group" aria-label="Match format">
+              <button type="button" class="pill" data-overs="20" aria-pressed="true">T20 (20 ov)</button>
+              <button type="button" class="pill" data-overs="50" aria-pressed="false">ODI (50 ov)</button>
+              <button type="button" class="pill" data-overs="90" aria-pressed="false">Test (90 ov)</button>
+            </div>
+          </div>
+          <div class="row">
+            <label class="label" for="overs">Overs Completed</label>
+            <input id="overs" class="input" type="number" min="0" max="90" step="0.1" inputmode="decimal" placeholder="e.g., 10.3" value="10">
+          </div>
+          <div class="row">
+            <label class="label" for="runs">Runs Scored</label>
+            <input id="runs" class="input" type="number" min="0" step="1" inputmode="numeric" placeholder="e.g., 85" value="85">
+          </div>
+          <div class="row">
+            <label class="label" for="wickets">Wickets Lost</label>
+            <input id="wickets" class="input" type="number" min="0" max="10" step="1" inputmode="numeric" placeholder="e.g., 2" value="2">
+          </div>
+          <div class="row">
+            <label class="label" for="target">Target (optional - for chase)</label>
+            <input id="target" class="input" type="number" min="0" step="1" inputmode="numeric" placeholder="Leave empty if batting first">
+          </div>
+        </div>
+        <div style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap">
+          <button id="calc" class="btn" type="button">Calculate</button>
+          <button id="reset" class="btn secondary" type="button">Reset</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="result" id="out" aria-live="polite">
+          <div class="note">Enter values and hit Calculate</div>
+        </div>
+        <div class="rel-links">
+          <a href="/cricket-nrr/">NRR Calculator</a>
+          <a href="/cricket-score-predictor/">Score Predictor</a>
+          <a href="/emi-calculator/">EMI Calculator</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="card faq">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faqitem">
+        <h3>How is run rate calculated in cricket?</h3>
+        <p>Run rate (RR) = Total Runs Scored / Overs Bowled. For example, 160 runs in 20 overs = 8.00 run rate.</p>
+      </div>
+      <div class="faqitem">
+        <h3>What is required run rate?</h3>
+        <p>RRR tells how many runs per over are needed to reach the target. Formula: (Target - Current Runs) / Remaining Overs.</p>
+      </div>
+      <div class="faqitem">
+        <h3>Does this work for Test cricket?</h3>
+        <p>Yes! Select "Test (90 ov)" for first innings of a Test match. Works for all formats with configurable overs.</p>
+      </div>
+    </section>
+  </main>
+
+<!-- SEO: Do's and Don'ts -->
+<section class="card" style="margin-top:16px">
+<h2 style="margin-top:0">✅ Do's and ❌ Don'ts</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+<div class="card" style="border-color:rgba(34,197,94,.3)">
+<h3 style="color:#22c55e;margin-top:0;font-size:1rem">✅ Do's</h3>
+<ul style="list-style:none;padding:0;margin:0;color:#9aa4b2">
+<li style="padding:.35rem 0">✅ <b>Do</b> use this tool to save time on manual calculations.</li>
+<li style="padding:.35rem 0">✅ <b>Do</b> double-check your inputs for accuracy.</li>
+<li style="padding:.35rem 0">✅ <b>Do</b> share results with teammates using the Share feature.</li>
+<li style="padding:.35rem 0">✅ <b>Do</b> bookmark this tool for quick access.</li>
+</ul>
+</div>
+<div class="card" style="border-color:rgba(239,68,68,.3)">
+<h3 style="color:#ef4444;margin-top:0;font-size:1rem">❌ Don'ts</h3>
+<ul style="list-style:none;padding:0;margin:0;color:#9aa4b2">
+<li style="padding:.35rem 0">❌ <b>Don't</b> enter sensitive personal data — this tool doesn't store anything.</li>
+<li style="padding:.35rem 0">❌ <b>Don't</b> use results as professional financial/legal/medical advice.</li>
+<li style="padding:.35rem 0">❌ <b>Don't</b> forget to verify critical calculations with official tools.</li>
+<li style="padding:.35rem 0">❌ <b>Don't</b> assume results are guarantees — they are estimates.</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- SEO: FAQ -->
+<section class="card" style="margin-top:16px">
+<h2 style="margin-top:0">Frequently Asked Questions</h2>
+<details><summary><b>Is this tool free to use?</b></summary><p style="padding:6px 0;color:#9aa4b2">Yes. All UpTools calculators are completely free, with no sign-ups required.</p></details>
+<details><summary><b>Is my data private?</b></summary><p style="padding:6px 0;color:#9aa4b2">Yes. All calculations run locally in your browser. Nothing is uploaded to any server.</p></details>
+<details><summary><b>Does it work on mobile?</b></summary><p style="padding:6px 0;color:#9aa4b2">Yes. All tools are mobile-responsive and work on any device — phone, tablet, or desktop.</p></details>
+<details><summary><b>Can I use this offline?</b></summary><p style="padding:6px 0;color:#9aa4b2">Most tools work offline after the initial page load. No internet needed for calculations.</p></details>
+</section>
+<!-- SEO: How it works -->
+<section class="card" style="margin-top:16px">
+<details open>
+<summary style="cursor:pointer;font-weight:700;font-size:1.1rem;padding:4px 0">📐 How This Tool Works</summary>
+<div style="margin-top:8px;color:#9aa4b2">
+<p>This tool computes results entirely in your browser using JavaScript. No data is sent to any server, ensuring your privacy.</p>
+<p>Results update instantly as you type — no waiting for server responses.</p>
+<p style="margin-top:8px">Also try: <a href="/calculator/">Calculator</a> · <a href="/converter/">Converter</a> · <a href="/generator/">Generator</a></p>
+</div>
+</details>
+</section>
+<footer class="note small" style="margin-top:6px;text-align:center">
+    <span>&copy; <span id="yr"></span> <a href="/">UpTools</a> . Cricket utilities</span>
+  </footer>
+
+  <script type="module" src="/scripts/utils.js" defer></script>
+  <script type="module">
+    const $ = id => document.getElementById(id);
+    const oversIn = $('overs'), runsIn = $('runs'), wktsIn = $('wickets'), tgtIn = $('target');
+    const out = $('out'), btns = document.querySelectorAll('.pill_sel .pill, .pill-sel .pill');
+    $('yr').textContent = new Date().getFullYear();
+
+    let totalOvers = 20;
+    btns.forEach(b => b.addEventListener('click', () => {
+      btns.forEach(x => x.setAttribute('aria-pressed', 'false'));
+      b.setAttribute('aria-pressed', 'true');
+      totalOvers = +b.dataset.overs || 20;
+    }));
+
+    function fmtNum(n) { return new Intl.NumberFormat('en-IN').format(Math.round(n)); }
+    function fmtRate(n) { return n.toFixed(2); }
+
+    function calc() {
+      const overs = parseFloat(oversIn.value) || 0;
+      const runs = parseInt(runsIn.value) || 0;
+      const wickets = parseInt(wktsIn.value) || 0;
+      const target = parseInt(tgtIn.value) || 0;
+
+      if (overs <= 0 || runs < 0) {
+        out.innerHTML = '<div class="note">Enter valid overs and runs</div>';
+        return;
+      }
+
+      const currentRR = overs > 0 ? runs / overs : 0;
+      const ballFactor = overs % 1;
+      const fullOvers = Math.floor(overs);
+      const balls = fullOvers * 6 + (ballFactor * 10);
+      const totalBalls = fullOvers * 6 + Math.round(ballFactor * 6);
+
+      let html = `<div class="row"><span>Current Run Rate</span><span class="amount">${fmtRate(currentRR)}</span></div>`;
+      html += `<div class="row"><span>Balls Bowled</span><span class="amount">${balls}</span></div>`;
+
+      const projOvers = totalOvers;
+      const projRuns = currentRR * projOvers;
+      html += `<div class="row"><span>Projected Total (at current RR)</span><span class="amount positive">${fmtNum(projRuns)}</span></div>`;
+
+      if (target > 0) {
+        const remOvers = Math.max(0, totalOvers - overs);
+        const remRuns = target - runs;
+        const reqRR = remOvers > 0 ? remRuns / remOvers : (remRuns <= 0 ? 0 : 999);
+        const reqRunRate = remOvers > 0 ? remRuns / remOvers : 0;
+
+        html += `<div class="row"><span>Target</span><span class="amount">${fmtNum(target)}</span></div>`;
+        html += `<div class="row"><span>Remaining Runs</span><span class="amount">${fmtNum(remRuns)}</span></div>`;
+        html += `<div class="row"><span>Required Run Rate</span><span class="amount ${reqRunRate <= currentRR ? 'positive' : 'negative'}">${fmtRate(reqRunRate)}</span></div>`;
+        html += `<div class="row"><span>Remaining Overs</span><span class="amount">${remOvers.toFixed(1)}</span></div>`;
+
+        if (remRuns <= 0) {
+          html += `<div class="row"><span>Status</span><span class="amount positive">TARGET ACHIEVED!</span></div>`;
+        } else if (reqRunRate > 12 && totalOvers === 20) {
+          html += `<div class="row"><span>Difficulty</span><span class="amount negative">Very Hard (need 12+ RPO)</span></div>`;
+        } else if (reqRunRate > 10) {
+          html += `<div class="row"><span>Difficulty</span><span class="amount neutral">Challenging</span></div>`;
+        } else if (reqRunRate <= 6) {
+          html += `<div class="row"><span>Difficulty</span><span class="amount positive">Comfortable</span></div>`;
+        }
+      }
+
+      out.innerHTML = html;
+    }
+
+    $('calc').addEventListener('click', calc);
+    $('reset').addEventListener('click', () => {
+      oversIn.value = '10'; runsIn.value = '85'; wktsIn.value = '2'; tgtIn.value = '';
+      out.innerHTML = '<div class="note">Cleared. Enter values and hit Calculate.</div>';
+    });
+    [oversIn, runsIn, wktsIn, tgtIn].forEach(el => el.addEventListener('keydown', e => { if (e.key === 'Enter') calc(); }));
+  </script>
+</body>
+</html>

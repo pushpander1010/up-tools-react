@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>Weather Forecast - 7 Day &amp; Hourly Weather | UpTools</title>
+<meta name="description" content="Free 7-day weather forecast for any city worldwide. Hourly temperatures, wind, humidity, and precipitation. Powered by Open-Meteo API."/>
+<meta name="keywords" content="weather forecast, 7 day weather, hourly weather, weather by city, temperature, wind speed, precipitation, free weather tool"/>
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:large"/>
+<meta name="theme-color" content="#08080f"/>
+<link rel="canonical" href="https://www.uptools.in/weather-forecast/"/>
+<link rel="icon" sizes="50x50" type="image/svg+xml" href="/assets/logo/uptools-logo.svg"/>
+<link rel="apple-touch-icon" href="/assets/logo/uptools-logo.svg"/>
+<meta property="og:title" content="Weather Forecast - 7 Day &amp; Hourly Weather | UpTools"/>
+<meta property="og:description" content="Free 7-day weather forecast for any city worldwide. Hourly temperatures, wind, humidity, and precipitation."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://www.uptools.in/weather-forecast/"/>
+<meta property="og:site_name" content="UpTools"/>
+<meta property="og:image" content="/assets/og/weather-forecast.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Weather Forecast - 7 Day &amp; Hourly Weather | UpTools"/>
+<meta name="twitter:description" content="Free 7-day weather forecast for any city worldwide."/>
+<meta name="twitter:image" content="/assets/og/weather-forecast.png"/>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6216304334889617" crossorigin="anonymous"></script>
+<script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-6216304334889617",enable_page_level_ads:true});</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NN3GDL1LEJ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-NN3GDL1LEJ');</script>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"UpTools Weather Forecast","applicationCategory":"WeatherApplication","operatingSystem":"Any","url":"https://www.uptools.in/weather-forecast/","description":"Free 7-day weather forecast for any city worldwide with hourly data.","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"publisher":{"@type":"Organization","name":"UpTools","url":"https://www.uptools.in/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.uptools.in/"},{"@type":"ListItem","position":2,"name":"Weather Forecast","item":"https://www.uptools.in/weather-forecast/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Where does weather data come from?","acceptedAnswer":{"@type":"Answer","text":"Weather data is fetched from Open-Meteo, a free open-source weather API powered by national weather services worldwide."}},{"@type":"Question","name":"Is this tool free?","acceptedAnswer":{"@type":"Answer","text":"Yes, completely free with no API key required. Open-Meteo provides free non-commercial weather data."}},{"@type":"Question","name":"How accurate is the forecast?","acceptedAnswer":{"@type":"Answer","text":"Forecasts are based on ECMWF and NOAA models. Accuracy decreases beyond 3-5 days. Use for planning, not critical decisions."}},{"@type":"Question","name":"Can I use it on mobile?","acceptedAnswer":{"@type":"Answer","text":"Yes, the tool is fully responsive and works great on mobile browsers."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"How to Check Weather","step":[{"@type":"HowToStep","name":"Enter City","text":"Type a city name in the search box or click the location button for auto-detection."},{"@type":"HowToStep","name":"View Forecast","text":"See current conditions, 7-day forecast, and hourly breakdown instantly."},{"@type":"HowToStep","name":"Toggle Units","text":"Switch between Celsius and Fahrenheit using the unit toggle button."}]}</script>
+<link rel="stylesheet" href="/style.css?v=5.0.0"/>
+</head>
+<body>
+<header class="site" role="banner">
+<div class="header-inner">
+<a aria-label="UpTools Home" class="brand" href="/">
+<div style="width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#6366f1,#8b5cf6,#ec4899);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(99,102,241,0.3);flex-shrink:0"><img alt="UpTools logo" height="24" loading="eager" src="/assets/logo/uptools-logo.svg" width="24" style="border-radius:0"/></div>
+<b>UpTools</b>
+</a>
+<nav aria-label="Primary" class="nav-links nav-tabs" id="navTabs">
+<div class="tab-indicator" id="tabIndicator"></div>
+<a href="/" class="nav-tab" data-tab="home">Home</a>
+<a href="/games/" class="nav-tab" data-tab="games">🎮 Games</a>
+<a href="/hncker/" class="nav-tab" data-tab="hncker">HNCKER</a>
+</nav>
+</div>
+</header>
+
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6216304334889617" data-ad-slot="9810172647" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+<main class="container">
+<div class="tool-header">
+  <div class="icon">🌤️</div>
+  <h1>Weather Forecast</h1>
+  <p>7-day forecast &amp; hourly weather for any city worldwide</p>
+</div>
+<div class="card">
+  <div class="input-group">
+    <input type="text" id="cityInput" placeholder="Enter city name (e.g. Mumbai, London, Tokyo)" autocomplete="off"/>
+    <button class="btn" id="searchBtn">Search</button>
+    <button class="btn btn-outline" id="geoBtn" title="Use my location">📍</button>
+  </div>
+  <div style="display:flex;justify-content:space-between;align-items:center">
+    <div class="recent-cities" id="recentCities"></div>
+    <div class="unit-toggle">
+      <button class="unit-btn active" data-unit="celsius">°C</button>
+      <button class="unit-btn" data-unit="fahrenheit">°F</button>
+    </div>
+  </div>
+</div>
+<div id="weatherResult" style="display:none"></div>
+<div id="errorMsg" class="error-msg" style="display:none"></div>
+<div class="card">
+  <div class="dos-donts">
+    <div class="dos"><h3>✅ Do's</h3><ul><li>Check weather before traveling</li><li>Use hourly forecast for planning outdoor activities</li><li>Compare multiple days for trip planning</li></ul></div>
+    <div class="donts"><h3>❌ Don'ts</h3><ul><li>Don't rely on forecasts beyond 5 days</li><li>Don't use for emergency weather warnings</li><li>Don't ignore local weather alerts</li></ul></div>
+  </div>
+</div>
+<div class="card">
+  <details open><summary>📐 How Weather Forecast Works</summary><p style="color:var(--muted);font-size:.9rem;margin-top:8px">1. Geocode: Your city name is converted to coordinates using OpenStreetMap Nominatim.<br/>2. Fetch: Open-Meteo API returns current conditions + 7-day hourly data.<br/>3. Display: Data is formatted with weather icons, temperatures, and wind details.</p></details>
+</div>
+<div class="card">
+  <div class="section-title">FAQ</div>
+  <details><summary><b>Where does weather data come from?</b></summary><p>Open-Meteo, a free open-source weather API powered by national weather services worldwide.</p></details>
+  <details><summary><b>Is this tool free?</b></summary><p>Yes, completely free with no API key required.</p></details>
+  <details><summary><b>How accurate is the forecast?</b></summary><p>Based on ECMWF and NOAA models. Accuracy decreases beyond 3-5 days.</p></details>
+  <details><summary><b>Can I use it on mobile?</b></summary><p>Yes, fully responsive design works great on all devices.</p></details>
+</div>
+<div class="related">
+  <p style="color:var(--muted);margin-bottom:8px">Related Tools</p>
+  <a href="/ip-address/">IP Address</a><a href="/currency-converter/">Currency Converter</a><a href="/crypto-prices/">Crypto Prices</a>
+</div>
+<footer>© <span id="year"></span> UpTools. Privacy-first utilities.</footer>
+</main>
+<script>
+document.getElementById('year').textContent=new Date().getFullYear();
+const WMO={0:['☀️','Clear sky'],1:['🌤️','Mainly clear'],2:['⛅','Partly cloudy'],3:['☁️','Overcast'],45:['🌫️','Foggy'],48:['🌫️','Rime fog'],51:['🌦️','Light drizzle'],53:['🌦️','Moderate drizzle'],55:['🌧️','Dense drizzle'],61:['🌧️','Slight rain'],63:['🌧️','Moderate rain'],65:['🌧️','Heavy rain'],71:['❄️','Slight snow'],73:['❄️','Moderate snow'],75:['❄️','Heavy snow'],80:['🌦️','Rain showers'],81:['🌧️','Moderate showers'],82:['⛈️','Violent showers'],95:['⛈️','Thunderstorm'],96:['⛈️','Thunderstorm + hail'],99:['⛈️','Thunderstorm + heavy hail']};
+function wmoIcon(code){return (WMO[code]||['🌈','Unknown'])[0];}
+function wmoDesc(code){return (WMO[code]||['🌈','Unknown'])[1];}
+const dnames=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+let unit='celsius';
+let recent=JSON.parse(localStorage.getItem('uptools.weather.recent')||'[]');
+function saveRecent(city){recent=recent.filter(c=>c!==city);recent.unshift(city);recent=recent.slice(0,8);localStorage.setItem('uptools.weather.recent',JSON.stringify(recent));renderRecent();}
+function renderRecent(){document.getElementById('recentCities').innerHTML=recent.map(c=>`<span class="chip" onclick="searchCity('${c.replace(/'/g,"\\'")}')">${c}</span>`).join('');}
+renderRecent();
+document.querySelectorAll('.unit-btn').forEach(b=>b.addEventListener('click',()=>{unit=b.dataset.unit;document.querySelectorAll('.unit-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');if(window._lastData)renderWeather(window._lastData);}));
+function conv(t){return unit==='fahrenheit'?Math.round(t*9/5+32):Math.round(t);}
+function unitLabel(){return unit==='celsius'?'°C':'°F';}
+async function searchCity(city){
+  if(!city)return;
+  document.getElementById('errorMsg').style.display='none';
+  document.getElementById('weatherResult').style.display='none';
+  const container=document.getElementById('weatherResult');
+  container.innerHTML='<div class="loading"><div class="spinner"></div><p style="margin-top:8px">Fetching weather for '+city+'...</p></div>';
+  container.style.display='block';
+  try{
+    const geoR=await fetch('https://nominatim.openstreetmap.org/search?q='+encodeURIComponent(city)+'&format=json&limit=1',{headers:{'User-Agent':'uptools-weather/1.0'}});
+    const geo=await geoR.json();
+    if(!geo.length)throw new Error('City not found');
+    const{lat,lon,display_name}=geo[0];
+    const name=display_name.split(',')[0];
+    const wR=await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,wind_speed_10m_max&hourly=temperature_2m,weather_code&timezone=auto&forecast_days=7`);
+    const w=await wR.json();
+    w._name=name;w._lat=lat;w._lon=lon;
+    window._lastData=w;
+    saveRecent(name);
+    renderWeather(w);
+  }catch(e){document.getElementById('errorMsg').textContent='Could not find weather for "'+city+'". Please check the city name.';document.getElementById('errorMsg').style.display='block';document.getElementById('weatherResult').style.display='none';}
+}
+function renderWeather(w){
+  const c=w.current;
+  const now=new Date();
+  const hourlyStart=now.getHours();
+  let hourlyHTML='';
+  for(let i=0;i<24;i++){
+    const h=(hourlyStart+i)%24;
+    const idx=w.hourly.temperature_2m.indexOf!==undefined?Math.min(i+hourlyStart,w.hourly.temperature_2m.length-1):i;
+    const temp=w.hourly.temperature_2m[idx]??w.hourly.temperature_2m[i];
+    const code=w.hourly.weather_code[idx]??w.hourly.weather_code[i];
+    hourlyHTML+=`<div class="hour-card"><div class="time">${String(h).padStart(2,'0')}:00</div><div class="h-icon">${wmoIcon(code)}</div><div class="h-temp">${conv(temp)}${unitLabel()}</div></div>`;
+  }
+  let dailyHTML='';
+  for(let i=0;i<w.daily.time.length;i++){
+    const d=new Date(w.daily.time[i]+'T00:00:00');
+    const dayName=i===0?'Today':dnames[d.getDay()];
+    dailyHTML+=`<div class="day-card"><div class="day-name">${dayName}<br><span style="font-size:.75rem;color:var(--muted)">${d.toLocaleDateString('en',{month:'short',day:'numeric'})}</span></div><div class="day-icon">${wmoIcon(w.daily.weather_code[i])}</div><div class="day-temps"><span class="high">${conv(w.daily.temperature_2m_max[i])}${unitLabel()}</span><span class="low">${conv(w.daily.temperature_2m_min[i])}${unitLabel()}</span></div><div class="day-precip">💧${w.daily.precipitation_sum[i]}mm</div></div>`;
+  }
+  document.getElementById('weatherResult').innerHTML=`
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <div><h2 style="font-size:1.2rem">${w._name}</h2><p style="color:var(--muted);font-size:.85rem">${wmoDesc(c.weather_code)}</p></div>
+        <div style="text-align:right"><div style="font-size:2.5rem;font-weight:700">${conv(c.temperature_2m)}${unitLabel()}</div><div style="color:var(--muted);font-size:.85rem">Feels ${conv(c.apparent_temperature)}${unitLabel()}</div></div>
+      </div>
+      <div style="display:flex;gap:20px;flex-wrap:wrap;font-size:.9rem">
+        <span>💧 ${c.relative_humidity_2m}%</span>
+        <span>💨 ${c.wind_speed_10m} km/h</span>
+        <span>🌡️ ${wmoIcon(c.weather_code)}</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="section-title">Hourly Forecast</div>
+      <div class="hourly-scroll">${hourlyHTML}</div>
+    </div>
+    <div class="card">
+      <div class="section-title">7-Day Forecast</div>
+      <div class="daily-grid">${dailyHTML}</div>
+    </div>`;
+}
+document.getElementById('searchBtn').addEventListener('click',()=>searchCity(document.getElementById('cityInput').value.trim()));
+document.getElementById('cityInput').addEventListener('keydown',e=>{if(e.key==='Enter')searchCity(e.target.value.trim());});
+document.getElementById('geoBtn').addEventListener('click',()=>{
+  if(!navigator.geolocation)return;
+  navigator.geolocation.getCurrentPosition(async pos=>{
+    const{latitude:lat,longitude:lon}=pos.coords;
+    try{const r=await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`,{headers:{'User-Agent':'uptools-weather/1.0'}});const d=await r.json();const city=d.address.city||d.address.town||d.address.village||'';if(city)searchCity(city);}catch{searchCity(`${lat},${lon}`);}
+  });
+});
+</script>
+</body>
+</html>

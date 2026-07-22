@@ -1,0 +1,602 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<title>EMI Calculator 2025 | Home Loan, Car Loan, Personal Loan</title>
+<!-- Enhanced SEO -->
+<meta content="Calculate EMI for home loan, car loan, personal loan instantly. Get monthly EMI, total interest, amortization schedule with prepayment options. Compare loans," name="description"/>
+<meta content="emi calculator,home loan emi calculator,car loan emi,personal loan calculator,loan emi calculator,monthly emi calculator,loan interest calculator,amortization schedule,prepayment calculator" name="keywords"/>
+<meta content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" name="robots"/>
+<meta content="#08080f" name="theme-color"/>
+<link href="https://www.uptools.in/emi-calculator/" rel="canonical"/>
+
+<!-- Open Graph -->
+<meta content="EMI Calculator 2025 | Home Loan, Car Loan, Personal Loan EMI" property="og:title"/>
+<meta content="Calculate EMI for all loan types instantly. Get monthly EMI, total interest, amortization schedule with prepayment options. Compare loans &amp; export results. Updated for 2025." property="og:description"/>
+<meta content="website" property="og:type"/>
+<meta content="https://www.uptools.in/emi-calculator/" property="og:url"/>
+<meta content="UpTools" property="og:site_name"/>
+<meta content="https://www.uptools.in/assets/og/emi-calculator.png" property="og:image"/>
+<meta content="1200" property="og:image:width"/>
+<meta content="630" property="og:image:height"/>
+<meta content="summary_large_image" name="twitter:card"/>
+  <meta name="twitter:image" content="https://www.uptools.in/assets/og/emi-calculator.png" />
+<meta content="EMI Calculator 2025 | Free Online Tool" name="twitter:title"/>
+<meta content="Calculate EMI for home loan, car loan, personal loan. Get amortization schedule with prepayment options." name="twitter:description"/>
+<link href="/assets/logo/uptools-logo.svg" rel="icon" sizes="50x50" type="image/svg+xml"/>
+<link href="/assets/logo/uptools-logo.svg" rel="apple-touch-icon" sizes="180x180"/>
+<!-- 1) Inline ONLY tiny critical rules (below) -->
+
+<!-- 2) Load full stylesheet without blocking first paint -->
+
+<!-- JSON-LD: WebApplication + Breadcrumbs + FAQ -->
+<script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebApplication",
+    "name":"EMI Calculator",
+    "url":"https://www.uptools.in/emi-calculator/",
+    "applicationCategory":"FinanceApplication",
+    "operatingSystem":"Any",
+    "offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},
+    "featureList":[
+      "Monthly EMI & total interest",
+      "Amortization schedule",
+      "One-time prepayment",
+      "Compare two loans",
+      "CSV export",
+      "Shareable permalink"
+    ],
+    "description":"Enter loan amount, interest rate, and tenure to compute EMI, total interest, and payoff schedule. Add a one-time prepayment, compare two loans, export CSV, and share a permalink. Fast, private, no sign-ups."
+  }
+  </script>
+<script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"BreadcrumbList",
+    "itemListElement":[
+      {"@type":"ListItem","position":1,"name":"Home","item":"https://www.uptools.in/"},
+      {"@type":"ListItem","position":2,"name":"Tools","item":"https://www.uptools.in/#tools"},
+      {"@type":"ListItem","position":3,"name":"EMI Calculator","item":"https://www.uptools.in/emi-calculator/"}
+    ]
+  }
+  </script>
+<script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"How is EMI calculated?",
+       "acceptedAnswer":{"@type":"Answer","text":"EMI = P � r � (1 + r)^n / ((1 + r)^n - 1), where P is principal, r is monthly interest rate (annual rate/12/100), and n is number of months."}},
+      {"@type":"Question","name":"What if my interest rate is 0%?",
+       "acceptedAnswer":{"@type":"Answer","text":"If r = 0, EMI = P / n (principal divided by number of months)."}},
+      {"@type":"Question","name":"Does the calculator store my data?",
+       "acceptedAnswer":{"@type":"Answer","text":"No. All calculations run in your browser. Nothing is uploaded."}},
+      {"@type":"Question","name":"Can I add a prepayment?",
+       "acceptedAnswer":{"@type":"Answer","text":"Yes. Add an optional one-time prepayment month and amount. The tool recomputes the schedule and payoff time."}},
+      {"@type":"Question","name":"What is a good EMI-to-income ratio?",
+       "acceptedAnswer":{"@type":"Answer","text":"Financial advisors recommend keeping total EMI obligations below 40% of your monthly take-home income to maintain healthy cash flow."}},
+      {"@type":"Question","name":"Should I choose a shorter or longer tenure?",
+       "acceptedAnswer":{"@type":"Answer","text":"Shorter tenure means higher EMI but significantly lower total interest. Longer tenure reduces EMI but increases total cost. Choose based on your cash flow and budget."}}
+    ]
+  }
+  </script>
+<script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"HowTo","name":"How to Calculate EMI for Your Loan","description":"Step-by-step guide to calculating Equated Monthly Installment (EMI) for home loan, car loan, or personal loan using UpTools.","step":[
+    {"@type":"HowToStep","position":1,"name":"Enter loan details","text":"Type the loan amount, annual interest rate (%), and tenure in months or years."},
+    {"@type":"HowToStep","position":2,"name":"Click Calculate","text":"View your monthly EMI, total interest payable, and total payment instantly."},
+    {"@type":"HowToStep","position":3,"name":"Add prepayment (optional)","text":"Enter a one-time prepayment month and amount to see how it reduces your total interest and shortens the loan."},
+    {"@type":"HowToStep","position":4,"name":"Compare loans (optional)","text":"Fill in a second loan's details to compare EMI and total interest side-by-side."},
+    {"@type":"HowToStep","position":5,"name":"Export or share","text":"Download the full amortization schedule as CSV or share a permalink with your settings."}
+  ],
+  "totalTime":"PT2M",
+  "tool":{"@type":"HowToTool","name":"UpTools EMI Calculator","url":"https://www.uptools.in/emi-calculator/"},
+  "publisher":{"@type":"Organization","name":"UpTools","url":"https://www.uptools.in/"}}
+  </script>
+
+  <meta property="og:description" content="Calculate EMI for all loan types instantly. Get monthly EMI, total interest, amortization schedule with prepayment options. Compare loans &amp;amp; export results. Updated for 2025." />
+  <meta property="og:url" content="https://www.uptools.in/emi-calculator/" />
+  <meta property="og:type" content="website" />
+
+  <link rel="stylesheet" href="/style.css?v=5.0.0">
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6216304334889617" crossorigin="anonymous"></script>
+<script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-6216304334889617",enable_page_level_ads:true});</script>
+
+<!-- Paste your Google Analytics 4 Measurement ID below, e.g. G-ABC123XYZ9 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NN3GDL1LEJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-NN3GDL1LEJ');
+</script>
+</head>
+<body>
+<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6216304334889617"></script>
+<!-- small fixed -->
+<ins class="adsbygoogle" data-ad-client="ca-pub-6216304334889617" data-ad-slot="9810172647" style="display:inline-block;max-width:500px;height:50px"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+<a class="sr-only skip-link" href="#main">Skip to content</a>
+<!-- Header -->
+<header class="site" role="banner">
+<div class="header-inner">
+<a aria-label="UpTools Home" class="brand" href="/">
+<img alt="UpTools logo" height="28" loading="eager" src="/assets/logo/uptools-logo.svg" width="28"/>
+<b>UpTools</b>
+</a>
+<nav aria-label="Primary" class="nav-links nav-tabs" id="navTabs">
+<div class="tab-indicator" id="tabIndicator"></div>
+<a href="/" class="nav-tab" data-tab="home">Home</a>
+<a href="/games/" class="nav-tab" data-tab="games">🎮 Games</a>
+<a href="/hncker/" class="nav-tab" data-tab="hncker">HNCKER</a>
+</nav>
+</div>
+</header>
+<main class="wrap" id="main" role="main">
+<!-- Tool header -->
+<div aria-labelledby="page-title" class="tool-header">
+<div aria-hidden="true" class="tool-icon">💳</div>
+<div>
+<h1 id="page-title">EMI Calculator</h1>
+<div class="note">Compute monthly EMI, total interest, and amortization. Add prepayment, compare two loans,
+          export CSV, and share a permalink.</div>
+</div>
+</div>
+<!-- Inputs -->
+<section aria-labelledby="inputs-title" class="card">
+<h2 class="sr-only" id="inputs-title">Inputs</h2>
+<div class="grid" style="margin-bottom:12px;">
+<div>
+<label class="label" for="amount">Loan Amount (?)</label>
+<input class="input" id="amount" inputmode="decimal" min="0" placeholder="e.g., 1000000" type="number"/>
+<div class="chips" style="margin-top:8px;">
+<button class="chip" data-fill="amount" data-val="500000">?5L</button>
+<button class="chip" data-fill="amount" data-val="1000000">?10L</button>
+<button class="chip" data-fill="amount" data-val="2500000">?25L</button>
+</div>
+</div>
+<div>
+<label class="label" for="rate">Annual Interest (%)</label>
+<input class="input" id="rate" inputmode="decimal" min="0" placeholder="e.g., 9.5" step="0.01" type="number"/>
+<div class="chips" style="margin-top:8px;">
+<button class="chip" data-fill="rate" data-val="8.5">8.5%</button>
+<button class="chip" data-fill="rate" data-val="9">9%</button>
+<button class="chip" data-fill="rate" data-val="10.5">10.5%</button>
+</div>
+</div>
+<div>
+<label class="label" for="tenure">Tenure</label>
+<div class="flex" style="gap:8px;">
+<input class="input" id="tenure" inputmode="numeric" min="1" placeholder="e.g., 240" step="1" type="number"/>
+<select class="input" id="tenureUnit" style="max-width:140px;">
+<option value="months">Months</option>
+<option value="years">Years</option>
+</select>
+</div>
+<div class="chips" style="margin-top:8px;">
+<button class="chip" data-fill="tenure" data-unit="months" data-val="60">5y</button>
+<button class="chip" data-fill="tenure" data-unit="months" data-val="120">10y</button>
+<button class="chip" data-fill="tenure" data-unit="months" data-val="240">20y</button>
+</div>
+</div>
+</div>
+<div class="divider"></div>
+<!-- Advanced options -->
+<div class="grid">
+<div>
+<span class="label">Optional Prepayment</span>
+<div class="flex" style="gap:8px;">
+<input aria-label="Optional Prepayment" class="input" id="prepayMonth" min="1" placeholder="Month #" step="1" type="number"/>
+<input aria-label="Optional Prepayment" class="input" id="prepayAmount" min="0" placeholder="Amount (?)" type="number"/>
+</div>
+<div class="note">Adds a one-time prepayment in the chosen month; schedule shortens if possible.</div>
+</div>
+<div>
+<span class="label">Compare with Another Loan</span>
+<div class="flex" style="gap:8px;">
+<input aria-label="Optional Prepayment" class="input" id="amount2" min="0" placeholder="Amount (?)" type="number"/>
+<input aria-label="Compare with Another Loan" class="input" id="rate2" min="0" placeholder="Rate %" step="0.01" type="number"/>
+<input aria-label="Compare with Another Loan" class="input" id="tenure2" min="1" placeholder="Tenure (m)" step="1" type="number"/>
+</div>
+<div class="note">Leave blank if not comparing.</div>
+</div>
+</div>
+<div class="btn-group" style="margin-top:14px;">
+<button class="btn" id="calcBtn">Calculate</button>
+<button class="btn secondary" id="resetBtn">Reset</button>
+<button class="btn secondary" id="shareBtn">Copy Share Link</button>
+<button class="btn secondary" id="csvBtn">Download CSV</button>
+</div>
+</section>
+<!-- Results -->
+<section aria-labelledby="results-title" class="card">
+<h2 class="sr-only" id="results-title">Results</h2>
+<div class="grid">
+<div class="result">
+<div class="kvi"><span>Monthly EMI</span><span class="amount" id="emi">-</span></div>
+<div class="kvi"><span>Total Interest</span><span class="amount" id="interest">-</span></div>
+<div class="kvi"><span>Total Payment</span><span class="amount" id="total">-</span></div>
+<div class="kvi"><span>Payoff Months</span><span class="amount" id="monthsOut">-</span></div>
+</div>
+<div class="result" id="compareBox" style="display:none;">
+<div class="label">Comparison</div>
+<div class="kvi"><span>EMI (Loan B)</span><span class="amount" id="emi2">-</span></div>
+<div class="kvi"><span>Total Interest (B)</span><span class="amount" id="interest2">-</span></div>
+<div class="kvi"><span>Difference (Interest)</span><span class="amount" id="diffInt">-</span></div>
+</div>
+</div>
+<div class="btn-group" style="margin-top:12px;">
+<button class="btn ghost" id="toggleSchedule">Show Amortization Schedule</button>
+</div>
+<div aria-busy="false" aria-live="polite" class="result hidden" id="scheduleWrap">
+<div class="label">Amortization Schedule</div>
+<div class="muted" id="schedule">Run a calculation to see your schedule.</div>
+</div>
+</section>
+<!-- Helpful content for SEO + UX -->
+<section aria-labelledby="about-title" class="card">
+<h2 id="about-title">About this EMI Calculator</h2>
+<p class="note">
+        This EMI calculator uses the standard reducing-balance formula to compute your monthly payment. Results are
+        instant and calculated in your browser. Nothing is stored or uploaded.
+      </p>
+<details>
+<summary>📘 How to use</summary>
+<ul>
+<li>Enter loan amount (₹), annual interest (%), and tenure (months or years).</li>
+<li>Click <b>Calculate</b> to see EMI, total interest, and total payment.</li>
+<li>Optionally enter a <b>prepayment</b> month and amount to reduce total interest.</li>
+<li>Use <b>Compare</b> fields to evaluate a second loan offer.</li>
+<li>Export the full schedule as <b>CSV</b> or share a <b>permalink</b>.</li>
+</ul>
+</details>
+<details>
+<summary>❓ Formula</summary>
+<p>EMI = P × r × (1 + r)<sup>n</sup> ÷ [(1 + r)<sup>n</sup> − 1], where:</p>
+<ul>
+<li><b>P</b> = Loan principal</li>
+<li><b>r</b> = Monthly rate = (annual% ÷ 12 ÷ 100)</li>
+<li><b>n</b> = Number of months</li>
+</ul>
+<p>If r = 0, EMI = P ÷ n.</p>
+</details>
+<p class="note">Related: <a href="/fd-calculator/">FD Calculator</a> . <a href="/sip-calculator/">SIP
+          Calculator</a> . <a href="/income-tax-tool/">Income Tax Calculator</a></p>
+</section>
+<section class="card" style="margin-top:16px">
+<h2 style="margin-top:0">Quick explainer 🎥</h2>
+<div class="video-wrap"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/-2L7W3Xv2-4?rel=0&amp;modestbranding=1&amp;playsinline=1" title="How to Calculate Monthly EMI for Your Loan"></iframe></div>
+<p class="note small" style="margin-top:6px">Video: How EMI works — principal, interest, and amortization explained.</p>
+</section>
+
+<!-- SEO: FAQ -->
+<section class="card" style="margin-top:16px">
+<h2 style="margin-top:0">Frequently Asked Questions</h2>
+<details><summary><b>Is this tool free to use?</b></summary><p style="padding:6px 0;color:#9aa4b2">Yes. All UpTools calculators are completely free, with no sign-ups required.</p></details>
+<details><summary><b>Is my data private?</b></summary><p style="padding:6px 0;color:#9aa4b2">Yes. All calculations run locally in your browser. Nothing is uploaded to any server.</p></details>
+<details><summary><b>Does it work on mobile?</b></summary><p style="padding:6px 0;color:#9aa4b2">Yes. All tools are mobile-responsive and work on any device — phone, tablet, or desktop.</p></details>
+<details><summary><b>Can I use this offline?</b></summary><p style="padding:6px 0;color:#9aa4b2">Most tools work offline after the initial page load. No internet needed for calculations.</p></details>
+</section>
+<!-- SEO: How it works -->
+<section class="card" style="margin-top:16px">
+<details open>
+<summary style="cursor:pointer;font-weight:700;font-size:1.1rem;padding:4px 0">📐 How This Tool Works</summary>
+<div style="margin-top:8px;color:#9aa4b2">
+<p>This tool computes results entirely in your browser using JavaScript. No data is sent to any server, ensuring your privacy.</p>
+<p>Results update instantly as you type — no waiting for server responses.</p>
+<p style="margin-top:8px">Also try: <a href="/calculator/">Calculator</a> · <a href="/converter/">Converter</a> · <a href="/generator/">Generator</a></p>
+</div>
+</details>
+</section>
+<footer class="note small site-footer" role="contentinfo">
+      © <span id="y"></span> UpTools . <a href="/about/">About</a> . <a href="/contact/">Contact</a> . <a href="/sitemap.xml">Sitemap</a> . <a href="/robots.txt">Robots</a>
+</footer>
+<!-- Do's and Don'ts for EMI -->
+<section class="card" style="margin-top:16px">
+<h2 style="margin-top:0">✅ Do's and ❌ Don'ts for Loan EMI Planning</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+<div class="card" style="border-color:rgba(34,197,94,.3)">
+<h3 style="color:#22c55e;margin-top:0;font-size:1rem">✅ Do's</h3>
+<ul style="list-style:none;padding:0;margin:0;color:#9aa4b2">
+<li style="padding:.35rem 0">✅ <b>Do</b> keep total EMI under 40% of monthly take-home income.</li>
+<li style="padding:.35rem 0">✅ <b>Do</b> use prepayment to reduce total interest — even small amounts help.</li>
+<li style="padding:.35rem 0">✅ <b>Do</b> compare at least 2-3 lenders before choosing a loan.</li>
+<li style="padding:.35rem 0">✅ <b>Do</b> factor in processing fees and prepayment charges.</li>
+<li style="padding:.35rem 0">✅ <b>Do</b> use the amortization schedule to plan finances month by month.</li>
+<li style="padding:.35rem 0">✅ <b>Do</b> build an emergency fund covering 3-6 months of EMI before borrowing.</li>
+</ul>
+</div>
+<div class="card" style="border-color:rgba(239,68,68,.3)">
+<h3 style="color:#ef4444;margin-top:0;font-size:1rem">❌ Don'ts</h3>
+<ul style="list-style:none;padding:0;margin:0;color:#9aa4b2">
+<li style="padding:.35rem 0">❌ <b>Don't</b> choose tenure just for the lowest EMI — it may cost more interest.</li>
+<li style="padding:.35rem 0">❌ <b>Don't</b> ignore the impact of rate changes on floating-rate loans.</li>
+<li style="padding:.35rem 0">❌ <b>Don't</b> prepay without checking for prepayment penalties.</li>
+<li style="padding:.35rem 0">❌ <b>Don't</b> take on new debt before repaying existing EMIs.</li>
+<li style="padding:.35rem 0">❌ <b>Don't</b> forget insurance and processing fees in total cost.</li>
+<li style="padding:.35rem 0">❌ <b>Don't</b> share loan details with untrusted third-party apps.</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- How this EMI calculator works -->
+<section class="card" style="margin-top:16px">
+<details open>
+<summary style="cursor:pointer;font-weight:700;font-size:1.1rem;padding:4px 0">📐 How This EMI Calculator Works</summary>
+<div style="margin-top:8px;color:#9aa4b2">
+<p><b>Formula:</b> EMI = P × r × (1 + r)<sup>n</sup> ÷ [(1 + r)<sup>n</sup> − 1]</p>
+<ul style="margin:4px 0 8px 1.2rem">
+<li><b>P</b> = Loan principal (amount borrowed)</li>
+<li><b>r</b> = Monthly interest rate = annual rate ÷ 12 ÷ 100</li>
+<li><b>n</b> = Total number of months</li>
+</ul>
+<h3>Worked Example</h3>
+<p>₹10,00,000 at 9% p.a. for 240 months:</p>
+<p>r = 0.09 ÷ 12 = 0.0075</p>
+<p><b>EMI ≈ ₹8,997</b> | Total interest ≈ ₹11,59,280 | Total ≈ ₹21,59,280</p>
+<h3>Example with Prepayment</h3>
+<p>Prepay ₹2,00,000 in month 12 → remaining principal drops, tenure shortens, and total interest saved can be over ₹1,00,000.</p>
+<p style="margin-top:8px">Also try: <a href="/fd-calculator/">FD Calculator</a> · <a href="/sip-calculator/">SIP Calculator</a> · <a href="/income-tax-tool/">Income Tax Calculator</a></p>
+</div>
+</details>
+</section>
+<!-- FAQ Section -->
+<section class="card" style="margin-top:16px">
+<h2 style="margin-top:0">Frequently Asked Questions</h2>
+<details><summary><b>What is a good loan tenure?</b></summary><p style="padding:6px 0;color:#9aa4b2">Shorter tenures reduce total interest but increase EMI. Pick an EMI that fits your budget.</p></details>
+<details><summary><b>Fixed vs floating rates?</b></summary><p style="padding:6px 0;color:#9aa4b2">Floating rates are usually lower but can change. Fixed rates offer certainty but are higher.</p></details>
+<details><summary><b>Can I compare two loans?</b></summary><p style="padding:6px 0;color:#9aa4b2">Yes. Fill in the Compare fields to see EMI and total interest side-by-side.</p></details>
+<details><summary><b>How does prepayment reduce interest?</b></summary><p style="padding:6px 0;color:#9aa4b2">Prepayment reduces outstanding principal, so less interest accrues for all remaining months.</p></details>
+</section>
+<script defer="">
+    (function () {
+      const $ = id => document.getElementById(id);
+      const fmt = n => isFinite(n) ? "₹" + Number(n).toLocaleString("en-IN", { maximumFractionDigits: 0 }) : "-";
+      const fmt2 = n => isFinite(n) ? "₹" + Number(n).toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : "-";
+
+      const amount = $("amount"), rate = $("rate"), tenure = $("tenure"), tenureUnit = $("tenureUnit");
+      const prepayMonth = $("prepayMonth"), prepayAmount = $("prepayAmount");
+      const amount2 = $("amount2"), rate2 = $("rate2"), tenure2 = $("tenure2");
+
+      const emiOut = $("emi"), interestOut = $("interest"), totalOut = $("total"), monthsOut = $("monthsOut");
+      const emi2Out = $("emi2"), interest2Out = $("interest2"), diffIntOut = $("diffInt");
+      const compareBox = $("compareBox"), scheduleWrap = $("scheduleWrap"), scheduleDiv = $("schedule");
+
+      const calcBtn = $("calcBtn"), resetBtn = $("resetBtn"), shareBtn = $("shareBtn"), csvBtn = $("csvBtn"), toggleSchedule = $("toggleSchedule");
+
+      // Fill chips
+      document.querySelectorAll(".chip[data-fill]").forEach(chip => {
+        chip.addEventListener("click", () => {
+          const field = chip.getAttribute("data-fill");
+          const val = chip.getAttribute("data-val");
+          const unit = chip.getAttribute("data-unit");
+          if (field === "tenure" && unit) { tenureUnit.value = unit; }
+          const el = $(field);
+          if (el) { el.value = val; }
+          calc();
+        }, { passive: true });
+      });
+
+      // URL sync (query params) for shareability
+      function readQuery() {
+        const q = new URLSearchParams(location.search);
+        if (q.has("p")) amount.value = q.get("p");
+        if (q.has("r")) rate.value = q.get("r");
+        if (q.has("n")) { tenure.value = q.get("n"); tenureUnit.value = "months"; }
+        if (q.has("y")) { tenure.value = q.get("y"); tenureUnit.value = "years"; }
+        if (q.has("pm")) prepayMonth.value = q.get("pm");
+        if (q.has("pa")) prepayAmount.value = q.get("pa");
+        if (q.has("p2")) amount2.value = q.get("p2");
+        if (q.has("r2")) rate2.value = q.get("r2");
+        if (q.has("n2")) tenure2.value = q.get("n2");
+      }
+      function writeQuery() {
+        const q = new URLSearchParams();
+        if (amount.value) q.set("p", amount.value);
+        if (rate.value) q.set("r", rate.value);
+        const months = tenureUnit.value === "years" ? (Number(tenure.value || 0) * 12) : Number(tenure.value || 0);
+        if (months) q.set("n", String(months));
+        if (prepayMonth.value) q.set("pm", prepayMonth.value);
+        if (prepayAmount.value) q.set("pa", prepayAmount.value);
+        if (amount2.value) q.set("p2", amount2.value);
+        if (rate2.value) q.set("r2", rate2.value);
+        if (tenure2.value) q.set("n2", tenure2.value);
+        history.replaceState(null, "", "?" + q.toString());
+        return location.href;
+      }
+
+      // Core EMI calc
+      function compute(p, annualRate, months) {
+        p = Number(p || 0); annualRate = Number(annualRate || 0); months = Math.max(1, Number(months || 0));
+        const r = annualRate / 12 / 100;
+        let emi, total, interest;
+        if (r === 0) {
+          emi = p / months;
+        } else {
+          const pow = Math.pow(1 + r, months);
+          emi = p * r * pow / (pow - 1);
+        }
+        total = emi * months;
+        interest = total - p;
+        return { emi, total, interest, months, r, p };
+      }
+
+      // Build amortization, with optional prepayment (single one-time)
+      function buildSchedule(p, r, months, emi, prepayAtMonth, prepayAmt) {
+        let bal = p;
+        let rows = [];
+        let m = 0;
+        while (bal > 0 && m < 1200) { // hard cap for sanity
+          m++;
+          let interest = r === 0 ? 0 : bal * r;
+          let principal = emi - interest;
+          if (principal < 0) { // guard if rate too high for given EMI
+            principal = 0;
+          }
+          let newBal = bal - principal;
+
+          if (prepayAtMonth && prepayAmt && m === prepayAtMonth) {
+            newBal = Math.max(0, newBal - prepayAmt);
+          }
+
+          // last row correction
+          if (newBal < 0) {
+            principal += newBal; // reduce principal by negative overpay
+            newBal = 0;
+          }
+          rows.push({ m, opening: bal, interest, principal, emi: newBal > 0 ? emi : (principal + interest), closing: newBal });
+          bal = newBal;
+
+          if (months && m >= months && prepayAmt > 0) {
+            // If original tenure reached but prepayment happened, continue until closure
+            months = 0; // allow loop to continue to natural closure
+          }
+          if (months && prepayAmt === 0 && m >= months) break; // fixed tenure
+        }
+        return rows;
+      }
+
+      function calc() {
+        const P = Number(amount.value || 0);
+        const R = Number(rate.value || 0);
+        const n = tenureUnit.value === "years" ? Number(tenure.value || 0) * 12 : Number(tenure.value || 0);
+        const pm = Number(prepayMonth.value || 0);
+        const pa = Number(prepayAmount.value || 0);
+
+        if (!(P > 0 && R >= 0 && n > 0)) {
+          emiOut.textContent = interestOut.textContent = totalOut.textContent = monthsOut.textContent = "-";
+          scheduleDiv.textContent = "Enter valid numbers to calculate.";
+          scheduleWrap.classList.add("hidden");
+          compareBox.style.display = "none";
+          return;
+        }
+
+        // Base compute
+        const base = compute(P, R, n);
+        let rows = buildSchedule(base.p, base.r, base.months, base.emi, pm > 0 ? pm : 0, pa > 0 ? pa : 0);
+
+        // If prepayment reduces months, recompute stats from rows
+        const monthsActual = rows.length;
+        const paidTotal = rows.reduce((s, x) => s + x.emi, 0);
+        const interestTotal = paidTotal - P;
+
+        emiOut.textContent = fmt2(base.emi);
+        interestOut.textContent = fmt2(interestTotal);
+        totalOut.textContent = fmt2(paidTotal);
+        monthsOut.textContent = String(monthsActual);
+
+        // Compare (Loan B)
+        let hasB = Number(amount2.value) > 0 && Number(rate2.value) >= 0 && Number(tenure2.value) > 0;
+        if (hasB) {
+          const b = compute(Number(amount2.value), Number(rate2.value), Number(tenure2.value));
+          emi2Out.textContent = fmt2(b.emi);
+          interest2Out.textContent = fmt2(b.total - Number(amount2.value));
+          diffIntOut.textContent = fmt2((b.total - Number(amount2.value)) - interestTotal);
+          compareBox.style.display = "";
+        } else {
+          compareBox.style.display = "none";
+        }
+
+        // Schedule rendering (deferred until shown)
+        scheduleDiv.dataset.rows = JSON.stringify(rows.map(r => ({
+          m: r.m, opening: r.opening, interest: r.interest, principal: r.principal, emi: r.emi, closing: r.closing
+        })));
+
+        writeQuery(); // keep URL in sync
+      }
+
+      function renderSchedule() {
+        const dataStr = scheduleDiv.dataset.rows;
+        if (!dataStr) { scheduleDiv.textContent = "Run a calculation to see your schedule."; return; }
+        const rows = JSON.parse(dataStr);
+
+        // Build a lightweight table (no external CSS)
+        let html = '<div class="muted" style="overflow:auto; max-height:520px;">';
+        html += '<table style="width:100%; border-collapse:collapse; font-size:12px;">';
+        html += '<thead><tr>';
+        ["Month", "Opening", "Interest", "Principal", "EMI", "Closing"].forEach(h => {
+          html += `<th style="position:sticky; top:0; background:var(--bg); border-bottom:1px solid var(--cardBorder); text-align:right; padding:8px;">${h}</th>`;
+        });
+        html += '</tr></thead><tbody>';
+        rows.forEach(r => {
+          html += '<tr>';
+          html += `<td style="padding:6px; border-bottom:1px solid rgba(255,255,255,.05); text-align:right;">${r.m}</td>`;
+          html += `<td style="padding:6px; border-bottom:1px solid rgba(255,255,255,.05); text-align:right;">${fmt2(r.opening)}</td>`;
+          html += `<td style="padding:6px; border-bottom:1px solid rgba(255,255,255,.05); text-align:right;">${fmt2(r.interest)}</td>`;
+          html += `<td style="padding:6px; border-bottom:1px solid rgba(255,255,255,.05); text-align:right;">${fmt2(r.principal)}</td>`;
+          html += `<td style="padding:6px; border-bottom:1px solid rgba(255,255,255,.05); text-align:right;">${fmt2(r.emi)}</td>`;
+          html += `<td style="padding:6px; border-bottom:1px solid rgba(255,255,255,.05); text-align:right;">${fmt2(r.closing)}</td>`;
+          html += '</tr>';
+        });
+        html += '</tbody></table></div>';
+        scheduleDiv.innerHTML = html;
+      }
+
+      // CSV export
+      function toCSV() {
+        const dataStr = scheduleDiv.dataset.rows;
+        if (!dataStr) { alert("Please calculate first."); return; }
+        const rows = JSON.parse(dataStr);
+        const hdr = ["Month", "Opening", "Interest", "Principal", "EMI", "Closing"];
+        const csv = [hdr.join(",")].concat(rows.map(r => [
+          r.m, r.opening.toFixed(2), r.interest.toFixed(2), r.principal.toFixed(2), r.emi.toFixed(2), r.closing.toFixed(2)
+        ].join(","))).join("\n");
+        const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "emi_schedule.csv";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+      }
+
+      // Share link
+      function copyShare() {
+        const url = writeQuery();
+        navigator.clipboard.writeText(url).then(() => {
+          shareBtn.textContent = "✅ Link Copied";
+          setTimeout(() => shareBtn.textContent = "🔗 Copy Share Link", 1200);
+        });
+      }
+
+      // Toggle schedule
+      let scheduleShown = false;
+      toggleSchedule.addEventListener("click", () => {
+        scheduleShown = !scheduleShown;
+        toggleSchedule.textContent = scheduleShown ? "📄 Hide Amortization Schedule" : "📄 Show Amortization Schedule";
+        scheduleWrap.classList.toggle("hidden", !scheduleShown);
+        if (scheduleShown) { renderSchedule(); }
+      });
+
+      // Events
+      [amount, rate, tenure, tenureUnit, prepayMonth, prepayAmount, amount2, rate2, tenure2].forEach(el => {
+        el.addEventListener("input", () => { /* debounce-lite */ window.clearTimeout(el._t); el._t = setTimeout(calc, 120); }, { passive: true });
+      });
+      calcBtn.addEventListener("click", calc);
+      resetBtn.addEventListener("click", () => {
+        [amount, rate, tenure, prepayMonth, prepayAmount, amount2, rate2, tenure2].forEach(el => el.value = "");
+        tenureUnit.value = "months";
+        compareBox.style.display = "none";
+        scheduleWrap.classList.add("hidden");
+        scheduleDiv.textContent = "Run a calculation to see your schedule.";
+        history.replaceState(null, "", location.pathname);
+        calc();
+      });
+      csvBtn.addEventListener("click", toCSV);
+      shareBtn.addEventListener("click", copyShare);
+
+      // Init
+      $("y").textContent = new Date().getFullYear();
+      readQuery();
+      if (amount.value && rate.value && (tenure.value)) calc();
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<title>Internet Speed Test – Download, Upload & Ping | UpTools</title>
+<meta content="Free internet speed test. Measure your download speed, upload speed, and ping instantly. Uses Cloudflare CDN for accurate results. No ads tracking, works on" name="description"/>
+<meta content="speed test, internet speed, download speed, upload speed, ping test, wifi speed test, broadband test, network speed, uptools" name="keywords"/>
+<meta content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" name="robots"/>
+<meta content="#08080f" name="theme-color"/>
+<link href="https://www.uptools.in/speed-test/" rel="canonical"/>
+<meta content="Internet Speed Test – Download, Upload &amp; Ping | UpTools" property="og:title"/>
+<meta content="Free internet speed test. Measure download, upload and ping. Cloudflare-powered, accurate results." property="og:description"/>
+<meta content="website" property="og:type"/>
+<meta content="https://www.uptools.in/speed-test/" property="og:url"/>
+<meta content="UpTools" property="og:site_name"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta name="twitter:title" content="Internet Speed Test – Download, Upload &amp; Ping | UpTools" />
+<meta name="twitter:description" content="Free internet speed test. Measure download, upload and ping. Cloudflare-powered, accurate results." />
+<link href="/assets/logo/uptools-logo.svg" rel="icon" sizes="50x50" type="image/svg+xml"/>
+<link href="/assets/logo/uptools-logo.svg" rel="apple-touch-icon"/>
+<script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.uptools.in/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://www.uptools.in/#tools"},{"@type":"ListItem","position":3,"name":"Speed Test","item":"https://www.uptools.in/speed-test/"}]}
+</script>
+<script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How accurate is this speed test?","acceptedAnswer":{"@type":"Answer","text":"We use Cloudflare CDN edge servers (the same network behind speed.cloudflare.com) for download testing and our own Cloudflare Worker for upload. Results are averaged over 3 iterations for consistency."}},{"@type":"Question","name":"Does this speed test store my data?","acceptedAnswer":{"@type":"Answer","text":"No. We do not log, store, or track any speed test results. All measurements happen in your browser."}},{"@type":"Question","name":"Why is my speed different from what my ISP promises?","acceptedAnswer":{"@type":"Answer","text":"ISP speeds are measured in megabits per second (Mbps). Your actual speed depends on WiFi interference, distance from router, number of devices, server distance, and time of day. Run multiple tests for the most accurate result."}}]}
+</script>
+
+  <link rel="stylesheet" href="/style.css">
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6216304334889617" crossorigin="anonymous"></script>
+<script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-6216304334889617",enable_page_level_ads:true});</script>
+
+<!-- Paste your Google Analytics 4 Measurement ID below, e.g. G-ABC123XYZ9 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NN3GDL1LEJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-NN3GDL1LEJ');
+</script>
+<link rel="stylesheet" href="/style.css?v=5.0.0"/>
+</head>
+<body>
+  <!-- AdSense -->
+    <!-- AdSense display -->
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-6216304334889617"
+       data-ad-slot="9810172647"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+<header class="site" role="banner">
+<div class="header-inner">
+<a aria-label="UpTools Home" class="brand" href="/">
+<img alt="UpTools logo" height="28" loading="eager" src="/assets/logo/uptools-logo.svg" width="28"/>
+<b>UpTools</b>
+</a>
+<button class="mobile-menu-toggle" aria-label="Toggle menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+<nav aria-label="Primary" class="nav-links nav-tabs" id="navTabs">
+<div class="tab-indicator" id="tabIndicator"></div>
+<a href="/" class="nav-tab" data-tab="home">Home</a>
+<a href="/games/" class="nav-tab" data-tab="games">🎮 Games</a>
+<a href="/hncker/" class="nav-tab" data-tab="hncker">HNCKER</a>
+</nav>
+</div>
+</header>
+
+<main class="container" id="main">
+<nav aria-label="Breadcrumb" style="font-size:12px;color:var(--muted);margin-bottom:8px">
+<a href="/">Home</a> › <span aria-current="page">Speed Test</span>
+</nav>
+
+<section class="hero card" style="background:var(--surface);border:1px solid rgba(34,197,94,.1);border-radius:var(--radius)">
+<div class="tool-icon">⚡</div>
+<div>
+<h1>Internet Speed Test</h1>
+<p class="note">Measure your download, upload speed &amp; ping. Cloudflare-powered, 3-pass averaged.</p>
+</div>
+</section>
+
+<!-- Gauge -->
+<div class="gauge-wrap">
+<div class="gauge">
+<svg viewBox="0 0 240 240" width="240" height="240">
+<circle class="gauge-bg" cx="120" cy="120" r="106"/>
+<circle class="gauge-fill" id="gaugeRing" cx="120" cy="120" r="106"
+  stroke-dasharray="666" stroke-dashoffset="666"/>
+</svg>
+<div class="gauge-center">
+<div class="gauge-value" id="gaugeValue">—</div>
+<div class="gauge-label" id="gaugeLabel">Mbps</div>
+</div>
+</div>
+</div>
+
+<div class="status" id="statusText"></div>
+
+<!-- Stats -->
+<div class="stats">
+<div class="stat">
+<div class="stat-label">Ping</div>
+<div class="stat-value" id="pingVal">—</div>
+</div>
+<div class="stat">
+<div class="stat-label">Download</div>
+<div class="stat-value" id="dlVal">—</div>
+</div>
+<div class="stat">
+<div class="stat-label">Upload</div>
+<div class="stat-value" id="ulVal">—</div>
+</div>
+</div>
+
+<button class="test-btn" id="startBtn" onclick="runTest()">Start Speed Test</button>
+
+<!-- History -->
+<div class="history" id="historySection" style="display:none">
+<h2>Recent Results</h2>
+<div class="history-list" id="historyList"></div>
+</div>
+
+<!-- FAQ -->
+<div class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item open">
+<div class="faq-q" onclick="this.parentElement.classList.toggle('open')">How accurate is this speed test?</div>
+<div class="faq-a">We use Cloudflare CDN edge servers (the same network behind speed.cloudflare.com) for download testing and our own Cloudflare Worker for upload. Each test runs 3 iterations and takes the median for consistency.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Does this store my data?</div>
+<div class="faq-a">No. All measurements happen in your browser. We do not log, store, or transmit any speed test results to any server.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Why is my speed different from what my ISP promises?</div>
+<div class="faq-a">ISP speeds are advertised as "up to" maximums. Actual speed depends on WiFi interference, distance from router, number of connected devices, server location, and network congestion. Run multiple tests at different times for the most accurate picture.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What units are used?</div>
+<div class="faq-a">Speed is shown in Mbps (megabits per second). 1 Mbps = 0.125 MB/s. So 100 Mbps download = roughly 12.5 MB/s file download speed.</div>
+</div>
+</div>
+
+</main>
+
+<script>
+const ITERATIONS = 3;
+const CIRCUMFERENCE = 2 * Math.PI * 106; // ~666
+const DL_URLS = [
+  'https://speed.cloudflare.com/__down?bytes=25000000',
+  'https://speed.cloudflare.com/__down?bytes=10000000',
+  'https://speed.cloudflare.com/__down?bytes=5000000'
+];
+const UPLOAD_URL = 'https://www.uptools.in/speedtest/upload';
+const UL_PAYLOAD_SIZE = 5 * 1024 * 1024; // 5MB
+
+const $ = id => document.getElementById(id);
+const gaugeRing = $('gaugeRing');
+const gaugeValue = $('gaugeValue');
+const gaugeLabel = $('gaugeLabel');
+const statusText = $('statusText');
+const startBtn = $('startBtn');
+const pingVal = $('pingVal');
+const dlVal = $('dlVal');
+const ulVal = $('ulVal');
+
+let history = JSON.parse(localStorage.getItem('speedtest_history') || '[]');
+renderHistory();
+
+function setGauge(frac, label) {
+  const offset = CIRCUMFERENCE - (frac * CIRCUMFERENCE);
+  gaugeRing.style.strokeDashoffset = offset;
+  if (label !== undefined) gaugeLabel.textContent = label;
+}
+
+function setStatus(msg) {
+  statusText.textContent = msg;
+}
+
+function median(arr) {
+  const s = [...arr].sort((a, b) => a - b);
+  const mid = Math.floor(s.length / 2);
+  return s.length % 2 ? s[mid] : (s[mid - 1] + s[mid]) / 2;
+}
+
+async function measurePing() {
+  const hosts = ['https://1.1.1.1', 'https://www.gstatic.com/generate_204', 'https://cp.cloudflare.com/', 'https://www.google.com'];
+  const results = [];
+  for (let i = 0; i < 5; i++) {
+    for (const host of hosts) {
+      try {
+        const t0 = performance.now();
+        const resp = await fetch(host, { mode: 'no-cors', cache: 'no-store' });
+        const ms = Math.round(performance.now() - t0);
+        if (ms > 0 && ms < 5000) { results.push(ms); break; }
+      } catch (e) { /* try next host */ }
+    }
+  }
+  return results.length ? Math.round(median(results)) : -1;
+}
+
+async function testDownload(onProgress) {
+  for (const url of DL_URLS) {
+    try {
+      const t0 = performance.now();
+      const resp = await fetch(url, { cache: 'no-store' });
+      if (!resp.ok) continue;
+      const reader = resp.body.getReader();
+      const contentLen = parseInt(resp.headers.get('content-length') || '0', 10);
+      let received = 0;
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        received += value.byteLength;
+        if (contentLen > 0 && onProgress) onProgress(received, contentLen);
+      }
+      const ms = performance.now() - t0;
+      if (ms < 50) continue;
+      const mbps = (received * 8 / (ms / 1000) / 1e6 * 10) / 10;
+      if (mbps > 0) return Math.round(mbps * 10) / 10;
+    } catch (e) { /* try next */ }
+  }
+  return null;
+}
+
+async function testUpload(onProgress) {
+  const payload = new Uint8Array(UL_PAYLOAD_SIZE);
+  // Fill with pattern data
+  for (let i = 0; i < payload.length; i += 4096) payload[i] = 0x41;
+
+  try {
+    const t0 = performance.now();
+    const resp = await fetch(UPLOAD_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/octet-stream' },
+      body: payload,
+      cache: 'no-store'
+    });
+    if (!resp.ok) return null;
+    const ms = performance.now() - t0;
+    if (ms < 50) return null;
+    const mbps = (UL_PAYLOAD_SIZE * 8 / (ms / 1000) / 1e6 * 10) / 10;
+    if (onProgress) onProgress(UL_PAYLOAD_SIZE, UL_PAYLOAD_SIZE);
+    return Math.round(mbps * 10) / 10;
+  } catch (e) { return null; }
+}
+
+async function runTest() {
+  startBtn.disabled = true;
+  startBtn.textContent = 'Testing...';
+  gaugeValue.textContent = '0';
+  gaugeLabel.textContent = 'Mbps';
+  setGauge(0, 'Mbps');
+  pingVal.textContent = '—';
+  dlVal.textContent = '—';
+  ulVal.textContent = '—';
+
+  // Phase 1: Ping
+  setStatus('Measuring ping...');
+  setGauge(0.02);
+  const ping = await measurePing();
+  pingVal.textContent = ping > 0 ? ping + ' ms' : '—';
+
+  // Phase 2: Download (3 iterations)
+  const dlResults = [];
+  for (let i = 1; i <= ITERATIONS; i++) {
+    setStatus(`Download (${i}/${ITERATIONS})...`);
+    setGauge(0.05 + ((i - 1) / ITERATIONS) * 0.70);
+    const r = await testDownload((recv, total) => {
+      const base = 0.05 + ((i - 1) / ITERATIONS) * 0.70;
+      setGauge(base + (recv / total) * (0.70 / ITERATIONS));
+      gaugeValue.textContent = Math.round(recv * 8 / 1e6 / Math.max((performance.now() - t0) / 1000, 0.01) * 10) / 10;
+    });
+    var t0 = performance.now(); // track per-iteration for live display
+    if (r !== null) dlResults.push(r);
+  }
+
+  if (dlResults.length === 0) {
+    setStatus('Download failed — check your connection');
+    gaugeValue.textContent = '!';
+    startBtn.disabled = false;
+    startBtn.textContent = 'Retry Speed Test';
+    return;
+  }
+  const dlMbps = Math.round(median(dlResults) * 10) / 10;
+  dlVal.textContent = dlMbps + ' Mbps';
+  gaugeValue.textContent = dlMbps;
+  setGauge(1);
+  gaugeLabel.textContent = 'Mbps ↓';
+
+  // Phase 3: Upload (3 iterations)
+  const ulResults = [];
+  for (let i = 1; i <= ITERATIONS; i++) {
+    setStatus(`Upload (${i}/${ITERATIONS})...`);
+    const base = 0.80 + ((i - 1) / ITERATIONS) * 0.18;
+    setGauge(base);
+    const r = await testUpload();
+    if (r !== null) ulResults.push(r);
+  }
+  const ulMbps = ulResults.length ? Math.round(median(ulResults) * 10) / 10 : 0;
+  ulVal.textContent = ulMbps > 0 ? ulMbps + ' Mbps' : '—';
+
+  // Final
+  gaugeValue.textContent = dlMbps;
+  gaugeLabel.textContent = 'Mbps ↓';
+  setGauge(1);
+  setStatus('Done');
+  startBtn.disabled = false;
+  startBtn.textContent = 'Test Again';
+
+  // Save history
+  history.unshift({
+    time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+    date: new Date().toLocaleDateString(),
+    ping, dl: dlMbps, ul: ulMbps
+  });
+  if (history.length > 10) history = history.slice(0, 10);
+  localStorage.setItem('speedtest_history', JSON.stringify(history));
+  renderHistory();
+}
+
+function renderHistory() {
+  const section = $('historySection');
+  const list = $('historyList');
+  if (!history.length) { section.style.display = 'none'; return; }
+  section.style.display = '';
+  list.innerHTML = history.map(h => `
+    <div class="history-row">
+      <div>
+        <div style="font-weight:600">${h.dl} Mbps ↓ / ${h.ul} Mbps ↑</div>
+        <div class="time">${h.date} ${h.time} · Ping: ${h.ping}ms</div>
+      </div>
+      <div class="speeds">${h.dl}</div>
+    </div>
+  `).join('');
+}
+</script>
+</body>
+</html>

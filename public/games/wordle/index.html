@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Wordle - Daily Word Guess Game Online | UpTools Games</title>
+  <link rel="icon" sizes="50x50" type="image/svg+xml" href="/assets/logo/uptools-logo.svg" />
+  <meta name="description" content="Play Wordle free online. Guess the 5-letter word in 6 tries with color hints. A daily brain teaser for word lovers — no sign-up." />
+  <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:large" />
+  <link rel="canonical" href="https://www.uptools.in/games/wordle/" />
+  <meta property="og:title" content="Wordle - Daily Word Guess Game Online | UpTools Games" />
+  <meta property="og:description" content="Play Wordle free online. Guess the 5-letter word in 6 tries with color hints. A daily brain teaser for word lovers — no sign-up." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="UpTools" />
+  <meta property="og:url" content="https://www.uptools.in/games/wordle/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Wordle - Daily Word Guess Game Online | UpTools Games" />
+  <meta name="twitter:description" content="Play Wordle free online. Guess the 5-letter word in 6 tries with color hints. A daily brain teaser for word lovers — no sign-up." />
+
+  <link rel="stylesheet" href="/style.css?v=5.0.0">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6216304334889617" crossorigin="anonymous"></script>
+<script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-6216304334889617",enable_page_level_ads:true});</script>
+  <script src="/games/fullscreen-utils.js" defer></script>
+  
+
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "VideoGame", "name": "Wordle - Daily Word Guess Game Online Games", "url": "https://www.uptools.in/games/wordle/", "genre": ["Arcade", "Puzzle", "Casual"], "gamePlatform": ["Web Browser", "Desktop", "Mobile"], "operatingSystem": "Any", "applicationCategory": "Game", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "INR"}, "publisher": {"@type": "Organization", "name": "UpTools", "url": "https://www.uptools.in/"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "UpTools", "item": "https://www.uptools.in/"}, {"@type": "ListItem", "position": 2, "name": "Games", "item": "https://www.uptools.in/games/"}, {"@type": "ListItem", "position": 3, "name": "Wordle - Daily Word Guess Game Online Games", "item": "https://www.uptools.in/games/wordle/"}]}
+</script>
+
+<!-- Paste your Google Analytics 4 Measurement ID below, e.g. G-ABC123XYZ9 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NN3GDL1LEJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-NN3GDL1LEJ');
+</script>
+</head>
+<body>
+  <a href="#main" class="sr-only skip-link">Skip to content</a>
+  <header class="site" role="banner">
+    <div class="header-inner">
+      <a class="brand" href="/" aria-label="UpTools Home"><img alt="UpTools logo" height="28" loading="eager" src="/assets/logo/uptools-logo.svg" width="28"/><b>UpTools</b></a>
+      <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">☰</button>
+      <nav aria-label="Primary" class="nav-links">
+<a href="/" class="nav-home">Home</a>
+<a href="/games/" class="nav-games">Games</a>
+<a href="/hncker/" class="nav-hncker">HNCKER</a>
+</nav>
+    </div>
+  </header>
+
+  <!-- AdSense -->
+    <!-- AdSense display -->
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-6216304334889617"
+       data-ad-slot="9810172647"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+  <main id="main" class="wrap">
+  <div class="game-wrap">
+    <div class="tool-header"><button class="back-btn" onclick="location.href='/games/'">← Games</button><h1 class="h1">🔤 Wordle</h1><span class="badge">6 guesses</span></div>
+    <p class="muted">Guess the 5-letter word. Green = right letter & spot, yellow = right letter wrong spot, gray = not in word.</p>
+    <div class="panel center">
+      <div id="wdBoard" class="grid-board" style="grid-template-columns:repeat(5,1fr);max-width:320px"></div>
+      <input id="wdInput" maxlength="5" autocomplete="off" spellcheck="false" placeholder="type a word + Enter" style="margin-top:12px;text-align:center;text-transform:uppercase;font-size:1.2rem;padding:10px;border-radius:10px;border:1px solid var(--cardBorder);background:#0d1626;color:var(--text);width:100%;max-width:320px;letter-spacing:4px" />
+    </div>
+    <div class="stats">
+      <div class="stat"><b id="wdTries">–</b><span>This game</span></div>
+      <div class="stat"><b id="wdPlayed">0</b><span>Played</span></div>
+      <div class="stat"><b id="wdWins">0</b><span>Wins</span></div>
+    </div>
+    <p class="muted center" id="wdMsg"></p>
+  </div>
+  <script>
+  (()=>{
+    const WORDS=['apple','brain','crane','dream','eagle','flame','grape','heart','ivory','juice','knock','lemon','money','night','ocean','peace','queen','river','stone','tiger','ultra','vivid','water','xenon','yield','zebra','smile','cloud','light','train'];
+    const ANS=['crane','flame','stone','tiger','river','ocean','smile','light','train','dream','heart','money','night','peace','queen'];
+    const board=document.getElementById('wdBoard'),inp=document.getElementById('wdInput');
+    let answer=ANS[Math.floor(Math.random()*ANS.length)],row=0,won=false;
+    let played=+localStorage.getItem('wd_played')||0, wins=+localStorage.getItem('wd_wins')||0;
+    document.getElementById('wdPlayed').textContent=played;document.getElementById('wdWins').textContent=wins;
+    function newRow(){const r=document.createElement('div');r.style.display='contents';for(let i=0;i<5;i++){const c=document.createElement('div');c.className='cell';c.style.fontSize='1.4rem';r.appendChild(c);}board.appendChild(r);}
+    for(let i=0;i<6;i++)newRow();
+    function color(guess){const res=Array(5).fill('gray');const a=answer.split('');const g=guess.split('');const used=[false,false,false,false,false];
+      for(let i=0;i<5;i++)if(g[i]===a[i]){res[i]='green';used[i]=true;}
+      for(let i=0;i<5;i++)if(res[i]!=='green'){for(let j=0;j<5;j++)if(!used[j]&&g[i]===a[j]){res[i]='yellow';used[j]=true;break;}}
+      return res;}
+    inp.addEventListener('keydown',e=>{
+      if(won||row>=6)return;
+      if(e.key==='Enter'){const v=inp.value.toLowerCase();if(v.length!==5){msg('5 letters required.');return;}if(!WORDS.includes(v)&&!ANS.includes(v)){msg('Not in word list.');return;}
+        const cells=board.children[row].children;const res=color(v);
+        for(let i=0;i<5;i++){cells[i].textContent=v[i];cells[i].style.background=res[i]==='green'?'#15803d':res[i]==='yellow'?'#ca8a04':'#334155';}
+        row++;inp.value='';
+        if(v===answer){won=true;played++;wins++;localStorage.setItem('wd_played',played);localStorage.setItem('wd_wins',wins);document.getElementById('wdPlayed').textContent=played;document.getElementById('wdWins').textContent=wins;document.getElementById('wdTries').textContent=row;msg('You got it in '+row+'! The word was '+answer+'.');return;}
+        if(row>=6){played++;localStorage.setItem('wd_played',played);document.getElementById('wdPlayed').textContent=played;document.getElementById('wdTries').textContent='–';msg('Out of guesses! The word was '+answer+'.');}
+      }
+    });
+    function msg(t){document.getElementById('wdMsg').textContent=t;}
+    inp.focus();
+  })();
+  </script>
+
+  </main>
+  <footer class="note small site-footer" style="text-align:center;padding:20px;color:var(--muted)">© <span id="y"></span> UpTools · <a href="/games/">All Games</a></footer>
+  <script>document.getElementById('y').textContent=new Date().getFullYear();</script>
+</body>
+</html>

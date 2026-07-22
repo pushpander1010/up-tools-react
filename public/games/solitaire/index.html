@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Solitaire - Free Online Card Game | UpTools Games</title>
+  <link rel="icon" sizes="50x50" type="image/svg+xml" href="/assets/logo/uptools-logo.svg" />
+  <meta name="description" content="Play Solitaire (Klondike) free online. Tap cards to build suits and clear the deck. A classic card game that works great on mobile and desktop." />
+  <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:large" />
+  <link rel="canonical" href="https://www.uptools.in/games/solitaire/" />
+  <meta property="og:title" content="Solitaire - Free Online Card Game | UpTools Games" />
+  <meta property="og:description" content="Play Solitaire (Klondike) free online. Tap cards to build suits and clear the deck. A classic card game." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="UpTools" />
+  <meta property="og:url" content="https://www.uptools.in/games/solitaire/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Solitaire - Free Online Card Game | UpTools Games" />
+  <meta name="twitter:description" content="Play Solitaire (Klondike) free online. Tap cards to build suits and clear the deck. A classic card game." />
+  <link rel="stylesheet" href="/style.css?v=5.0.0" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6216304334889617" crossorigin="anonymous"></script>
+<script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-6216304334889617",enable_page_level_ads:true});</script>
+  <script src="/games/fullscreen-utils.js" defer></script>
+  
+
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "VideoGame", "name": "Solitaire - Free Online Card Game Games", "url": "https://www.uptools.in/games/solitaire/", "genre": ["Arcade", "Puzzle", "Casual"], "gamePlatform": ["Web Browser", "Desktop", "Mobile"], "operatingSystem": "Any", "applicationCategory": "Game", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "INR"}, "publisher": {"@type": "Organization", "name": "UpTools", "url": "https://www.uptools.in/"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "UpTools", "item": "https://www.uptools.in/"}, {"@type": "ListItem", "position": 2, "name": "Games", "item": "https://www.uptools.in/games/"}, {"@type": "ListItem", "position": 3, "name": "Solitaire - Free Online Card Game Games", "item": "https://www.uptools.in/games/solitaire/"}]}
+</script>
+
+<!-- Paste your Google Analytics 4 Measurement ID below, e.g. G-ABC123XYZ9 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NN3GDL1LEJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-NN3GDL1LEJ');
+</script>
+</head>
+<body>
+  <a href="#main" class="sr-only skip-link">Skip to content</a>
+  <header class="site" role="banner">
+    <div class="header-inner">
+      <a class="brand" href="/" aria-label="UpTools Home"><img alt="UpTools logo" height="28" loading="eager" src="/assets/logo/uptools-logo.svg" width="28"/><b>UpTools</b></a>
+      <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">☰</button>
+      <nav aria-label="Primary" class="nav-links">
+<a href="/" class="nav-home">Home</a>
+<a href="/games/" class="nav-games">Games</a>
+<a href="/hncker/" class="nav-hncker">HNCKER</a>
+</nav>
+    </div>
+  </header>
+
+  <!-- AdSense -->
+    <!-- AdSense display -->
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-6216304334889617"
+       data-ad-slot="9810172647"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+  <main id="main" class="wrap">
+  <div class="game-wrap">
+    <div class="tool-header"><button class="back-btn" onclick="location.href='/games/'">← Games</button><h1 class="h1">🃏 Solitaire</h1><span class="badge">Classic</span></div>
+    <p class="muted">Tap a card to auto-move it to a foundation or another column (build down by alternating color). New game deals a fresh shuffle.</p>
+    <div class="panel" style="overflow-x:auto">
+      <div class="row" style="justify-content:space-between;margin-bottom:10px">
+        <div id="solFoundations" class="row" style="gap:6px"></div>
+        <button class="btn alt" id="solNew">New Game</button>
+      </div>
+      <div id="solTableau" class="grid-board" style="grid-template-columns:repeat(7,1fr);gap:8px;align-items:start"></div>
+    </div>
+    <div class="stats">
+      <div class="stat"><b id="solMoves">0</b><span>Moves</span></div>
+      <div class="stat"><b id="solFoundation">0</b><span>Cards up</span></div>
+    </div>
+    <p class="muted center" id="solMsg">Tap a card to move it. Build down by alternating color.</p>
+  </div>
+  <script>
+  (function(){
+    const SUITS = [['♠','#111'],['♥','#dc2626'],['♦','#dc2626'],['♣','#111']];
+    const RANKS = ['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
+    const SUITC = {'♠':'b','♥':'r','♦':'r','♣':'b'};
+    let deck = [], tableau = [[],[],[],[],[],[],[]], foundations = {'♠':[],'♥':[],'♦':[],'♣':[]}, moves = 0;
+    const tEl = document.getElementById('solTableau');
+    const fEl = document.getElementById('solFoundations');
+
+    function shuffle(a){
+      for(let i=a.length-1;i>0;i--){
+        const j = Math.floor(Math.random()*(i+1));
+        const t = a[i]; a[i] = a[j]; a[j] = t;
+      }
+      return a;
+    }
+
+    function cardHTML(c){
+      const d = document.createElement('div');
+      d.className = 'cell';
+      d.style.fontSize = '1.1rem';
+      d.textContent = c.r + c.s;
+      d.style.color = c.color;
+      d.addEventListener('click', function(){ tryMove(c); });
+      return d;
+    }
+
+    function render(){
+      tEl.innerHTML = '';
+      tableau.forEach(function(col){
+        const wrap = document.createElement('div');
+        wrap.style.display = 'flex';
+        wrap.style.flexDirection = 'column';
+        wrap.style.gap = '4px';
+        if(col.length === 0){
+          const ph = document.createElement('div');
+          ph.className = 'cell';
+          ph.style.opacity = .3;
+          ph.textContent = '·';
+          wrap.appendChild(ph);
+        }
+        col.forEach(function(c){ wrap.appendChild(cardHTML(c)); });
+        tEl.appendChild(wrap);
+      });
+      fEl.innerHTML = '';
+      Object.keys(foundations).forEach(function(s){
+        const d = document.createElement('div');
+        d.className = 'cell';
+        d.style.minWidth = '44px';
+        d.textContent = foundations[s].length ? foundations[s][foundations[s].length-1].r + s : s;
+        d.style.color = SUITS.find(function(x){ return x[0] === s; })[1];
+        fEl.appendChild(d);
+      });
+      document.getElementById('solFoundation').textContent =
+        Object.values(foundations).reduce(function(a,b){ return a + b.length; }, 0);
+    }
+
+    function rankVal(r){ return RANKS.indexOf(r) + 1; }
+
+    function tryMove(c){
+      const f = foundations[c.s];
+      if((f.length === 0 && c.r === 'A') || (f.length > 0 && rankVal(c.r) === rankVal(f[f.length-1].r) + 1)){
+        f.push(c); removeFromTableau(c); moves++; afterMove(); return;
+      }
+      for(const col of tableau){
+        if(col.length && col[col.length-1] === c){
+          for(const other of tableau){
+            if(other.length > 1 && other[other.length-1] !== c){
+              const top = other[other.length-1];
+              if(SUITC[top.s] !== SUITC[c.s] && rankVal(top.r) === rankVal(c.r) + 1){
+                col.pop(); other.push(c); moves++; afterMove(); return;
+              }
+            }
+          }
+        }
+      }
+      document.getElementById('solMsg').textContent = 'No legal move for that card.';
+    }
+
+    function removeFromTableau(c){
+      tableau.forEach(function(col){
+        const i = col.indexOf(c);
+        if(i >= 0) col.splice(i, 1);
+      });
+    }
+
+    function afterMove(){
+      render();
+      document.getElementById('solMoves').textContent = moves;
+      const up = Object.values(foundations).reduce(function(a,b){ return a + b.length; }, 0);
+      if(up === 52) document.getElementById('solMsg').textContent = '🎉 You won!';
+    }
+
+    function deal(){
+      deck = [];
+      for(const s of SUITS) for(const r of RANKS) deck.push({ r: r, s: s[0], color: s[1] });
+      shuffle(deck);
+      tableau = [[],[],[],[],[],[],[]];
+      foundations = {'♠':[],'♥':[],'♦':[],'♣':[]};
+      moves = 0;
+      let di = 0;
+      for(let i=0;i<7;i++){
+        for(let j=0;j<=i;j++) tableau[i].push(deck[di++]);
+      }
+      render();
+      document.getElementById('solMoves').textContent = 0;
+      document.getElementById('solMsg').textContent = 'Tap a card to move it. Build down by alternating color.';
+    }
+
+    document.getElementById('solNew').addEventListener('click', deal);
+    deal();
+  })();
+  </script>
+  </main>
+  <footer class="note small site-footer" style="text-align:center;padding:20px;color:var(--muted)">© <span id="y"></span> UpTools · <a href="/games/">All Games</a></footer>
+  <script>document.getElementById('y').textContent=new Date().getFullYear();</script>
+</body>
+</html>

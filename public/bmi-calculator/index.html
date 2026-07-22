@@ -1,0 +1,772 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<link crossorigin="" href="https://pagead2.googlesyndication.com" rel="preconnect"/>
+<link href="//pagead2.googlesyndication.com" rel="dns-prefetch"/>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<meta content="IE=edge" http-equiv="x-ua-compatible"/>
+<meta content="dark light" name="color-scheme"/>
+<!-- Favicon -->
+<link href="/assets/logo/uptools-logo.svg" rel="icon" sizes="50x50" type="image/svg+xml"/>
+<link href="/assets/logo/uptools-logo.svg" rel="apple-touch-icon" sizes="180x180"/>
+<title>BMI Calculator (Metric &amp; US) - Healthy Range, | UpTools</title>
+<meta content="Free BMI Calculator with instant results. Works for Metric (cm/kg) and US (ft/in, lb). Shows category (WHO/Asian), healthy weight range, BMI Prime, estimated" name="description"/>
+<meta content="bmi calculator, body mass index, bmi chart, healthy bmi, bmi formula, weight calculator, bmi category, bmr calculator, tdee calculator, body fat calculator, waist to height ratio, who bmi, asian bmi, ideal weight, calorie planner" name="keywords"/>
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:large" />
+<meta content="#08080f" name="theme-color"/>
+<link href="https://www.uptools.in/bmi-calculator/" rel="canonical"/>
+
+<!-- Open Graph / Twitter -->
+<meta content="BMI Calculator - Healthy Range, Body Fat %, WHtR, BMR/TDEE" property="og:title"/>
+<meta content="Instant BMI with WHO/Asian categories, healthy weight range, BMI Prime, body fat %, WHtR, and calorie targets (BMR/TDEE). Metric &amp; US." property="og:description"/>
+<meta content="website" property="og:type"/>
+<meta content="https://www.uptools.in/bmi-calculator/" property="og:url"/>
+<meta content="UpTools" property="og:site_name"/>
+<meta content="https://www.uptools.in/assets/og/bmi.png" property="og:image"/>
+<meta content="summary" name="twitter:card"/>
+  <meta name="twitter:title" content="BMI Calculator - Healthy Range, Body Fat %, WHtR, BMR/TDEE" />
+  <meta name="twitter:description" content="Instant BMI with WHO/Asian categories, healthy weight range, BMI Prime, body fat %, WHtR, and calorie targets (BMR/TDEE). Metric &amp; US." />
+  <meta name="twitter:image" content="https://www.uptools.in/assets/og/bmi.png" />
+<!-- Common stylesheet (non-blocking) -->
+
+<!-- Preload shared utils used on every page -->
+<link href="/scripts/utils.js" rel="modulepreload"/>
+<!-- Small per-page critical CSS -->
+
+<!-- Structured data -->
+<script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://www.uptools.in/"},
+    {"@type":"ListItem","position":2,"name":"Health Tools","item":"https://www.uptools.in/#tools"},
+    {"@type":"ListItem","position":3,"name":"BMI Calculator","item":"https://www.uptools.in/bmi-calculator/"}]}
+  </script>
+<script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"What is a healthy BMI?","acceptedAnswer":{"@type":"Answer","text":"Using WHO adult cut-offs: 18.5-24.9 is considered normal. For many Asian populations, 18.5-22.9 is used as the normal range."}},
+    {"@type":"Question","name":"Is BMI accurate?","acceptedAnswer":{"@type":"Answer","text":"BMI is a screening tool and does not distinguish fat from muscle. Waist-to-height ratio and body fat % add context."}},
+    {"@type":"Question","name":"Does this work for children?","acceptedAnswer":{"@type":"Answer","text":"No. Children require age- and sex-specific percentiles, which this adult calculator does not provide."}}]}
+  </script>
+<script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"BMI Calculator","operatingSystem":"Any","applicationCategory":"HealthApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"url":"https://www.uptools.in/bmi-calculator/","publisher":{"@type":"Organization","name":"UpTools","url":"https://www.uptools.in/"}}  
+  </script>
+<script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"HowTo","name":"How to Calculate BMI (Body Mass Index)","description":"Step-by-step guide to calculating your BMI using metric or US units, interpreting WHO and Asian categories, and getting your healthy weight range.","step":[
+    {"@type":"HowToStep","position":1,"name":"Choose your unit system","text":"Select Metric (cm/kg) or US/UK (ft/in/lb) from the Units dropdown."},
+    {"@type":"HowToStep","position":2,"name":"Enter height and weight","text":"Type your height and weight. For US units, enter feet and inches separately."},
+    {"@type":"HowToStep","position":3,"name":"Optionally add age, sex and waist","text":"Adding age and sex improves body fat estimation. Waist circumference enables WHtR calculation."},
+    {"@type":"HowToStep","position":4,"name":"Select WHO or Asian cut-offs","text":"WHO uses 18.5-24.9 as normal. Asian cut-offs use 18.5-22.9 for many populations."},
+    {"@type":"HowToStep","position":5,"name":"Click Calculate and read results","text":"View your BMI, healthy weight range, BMI Prime, estimated body fat %, WHtR, BMR and TDEE."}
+  ],
+  "totalTime":"PT1M",
+  "tool":{"@type":"HowToTool","name":"UpTools BMI Calculator","url":"https://www.uptools.in/bmi-calculator/"},
+  "publisher":{"@type":"Organization","name":"UpTools","url":"https://www.uptools.in/"}}
+  </script>
+<script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"VideoObject","name":"BMI Calculation Formula Explained","description":"Quick video explaining BMI, categories, and context.","uploadDate":"2023-01-01","thumbnailUrl":"https://i.ytimg.com/vi/t9e46CV_pyM/hqdefault.jpg","embedUrl":"https://www.youtube-nocookie.com/embed/t9e46CV_pyM","publisher":{"@type":"Organization","name":"YouTube"}}
+  </script>
+</link>  
+
+  <meta property="og:title" content="BMI Calculator (Metric &amp; US) - Healthy Range, | UpTools" />
+  <meta property="og:description" content="Instant BMI with WHO/Asian categories, healthy weight range, BMI Prime, body fat %, WHtR, and calorie targets (BMR/TDEE). Metric &amp;amp; US." />
+  <meta property="og:url" content="https://www.uptools.in/bmi-calculator/" />
+  <meta property="og:type" content="website" />
+
+  <link rel="stylesheet" href="/style.css?v=5.0.0">
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6216304334889617" crossorigin="anonymous"></script>
+<script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-6216304334889617",enable_page_level_ads:true});</script>
+
+<!-- Paste your Google Analytics 4 Measurement ID below, e.g. G-ABC123XYZ9 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NN3GDL1LEJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-NN3GDL1LEJ');
+</script>
+</head>
+<body>
+<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6216304334889617"></script>
+<!-- small fixed -->
+<ins class="adsbygoogle" data-ad-client="ca-pub-6216304334889617" data-ad-slot="9810172647" style="display:inline-block;max-width:500px;height:50px"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+<a class="sr-only skip-link" href="#main">Skip to content</a>
+<!-- Header -->
+<!-- Header -->
+<header class="site" role="banner">
+<div class="header-inner">
+<a aria-label="UpTools Home" class="brand" href="/">
+<img alt="UpTools logo" height="28" loading="eager" src="/assets/logo/uptools-logo.svg" width="28"/>
+<b>UpTools</b>
+</a>
+<nav aria-label="Primary" class="nav-links nav-tabs" id="navTabs">
+<div class="tab-indicator" id="tabIndicator"></div>
+<a href="/" class="nav-tab" data-tab="home">Home</a>
+<a href="/games/" class="nav-tab" data-tab="games">🎮 Games</a>
+<a href="/hncker/" class="nav-tab" data-tab="hncker">HNCKER</a>
+</nav>
+</div>
+</header>
+<main class="wrap" id="main" role="main">
+<div class="container">
+<section aria-labelledby="title" class="tool-header">
+<div aria-hidden="true" class="tool-icon" title="BMI">BMI</div>
+<div>
+<h1 id="title">BMI Calculator</h1>
+<div aria-label="Highlights" class="chips">
+<span class="pill">⚡ Instant</span>
+<span class="pill">📏 Metric &amp; US</span>
+<span class="pill">🌍 WHO / 🌏 Asian</span>
+<span class="pill">🧮 Body fat % &amp; WHtR</span>
+<span class="pill">🔥 BMR &amp; TDEE</span>
+</div>
+</div>
+</section>
+<!-- Content column only; results open in overlay -->
+<section class="layout" style="margin-top:12px">
+<div style="display:grid;gap:12px;min-width:0">
+<article aria-labelledby="form-head" class="card">
+<h2 id="form-head">Enter your details</h2>
+<form autocomplete="off" class="form-grid" id="bmiForm">
+<div>
+<label class="label" for="unit">Units</label>
+<select aria-label="Select unit system" class="input" id="unit">
+<option value="metric">Metric (cm, kg)</option>
+<option value="us">US/UK (ft/in, lb)</option>
+</select>
+</div>
+<div>
+<label class="label" for="std">Cut-offs</label>
+<select aria-label="Select BMI boundaries" class="input" id="std">
+<option value="who">WHO (Global)</option>
+<option value="asian">Asian (SEAR/WPR)</option>
+</select>
+</div>
+<!-- Metric height -->
+<div id="gHeightMetric">
+<label class="label" for="heightCm">Height (cm)</label>
+<input class="input" id="heightCm" inputmode="decimal" min="0" placeholder="e.g., 170" step="0.1" type="number"/>
+</div>
+<!-- US height -->
+<div class="hidden" id="gHeightUS">
+<label class="label" for="heightFt">Height (ft &amp; in)</label>
+<div style="display:flex;gap:8px;">
+<input aria-label="Height feet" class="input" id="heightFt" inputmode="numeric" min="0" placeholder="ft" step="1" type="number"/>
+<input aria-label="Height inches" class="input" id="heightIn" inputmode="decimal" min="0" placeholder="in" step="0.1" type="number"/>
+</div>
+</div>
+<!-- Metric weight -->
+<div id="gWeightMetric">
+<label class="label" for="weightKg">Weight (kg)</label>
+<input class="input" id="weightKg" inputmode="decimal" min="0" placeholder="e.g., 70" step="0.1" type="number"/>
+</div>
+<!-- US weight -->
+<div class="hidden" id="gWeightUS">
+<label class="label" for="weightLb">Weight (lb)</label>
+<input class="input" id="weightLb" inputmode="decimal" min="0" placeholder="e.g., 154" step="0.1" type="number"/>
+</div>
+<div>
+<label class="label" for="age">Age (years, optional)</label>
+<input class="input" id="age" inputmode="numeric" min="0" placeholder="e.g., 30" step="1" type="number"/>
+</div>
+<div>
+<label class="label" for="sex">Sex (for body fat %, optional)</label>
+<select class="input" id="sex">
+<option value="none">Prefer not to say</option>
+<option value="female">Female</option>
+<option value="male">Male</option>
+</select>
+</div>
+<div class="full">
+<label class="label" for="waist">Waist circumference (cm, optional)</label>
+<input class="input" id="waist" inputmode="decimal" min="0" placeholder="Measure at navel level" step="0.1" type="number"/>
+</div>
+<div class="full toolbar" style="margin-top:4px;">
+<button class="btn" id="btnCalc" type="submit">Calculate</button>
+<button class="btn secondary" id="btnClear" type="button">Clear</button>
+<div class="menu" id="moreMenu">
+<button aria-controls="moreList" aria-expanded="false" aria-haspopup="true" class="btn ghost menu-btn" type="button">More ▾</button>
+<div aria-label="More actions" class="menu-list card" id="moreList" role="menu">
+<button id="btnCopy" role="menuitem" type="button">Copy result</button>
+<button id="btnPermalink" role="menuitem" type="button">Copy permalink</button>
+<button id="btnExample" role="menuitem" type="button">Example values</button>
+<button id="btnPrint" role="menuitem" type="button">Print summary</button>
+</div>
+</div>
+</div>
+</form>
+<div aria-live="polite" class="note" id="tips" style="margin-top:8px;"></div>
+</article>
+<!-- Education -->
+<section aria-labelledby="learn" class="card">
+<h2 id="learn">Understanding your BMI</h2>
+<p style="overflow-wrap:anywhere">BMI (Body Mass Index) = weight (kg) ÷ height (m)<sup>2</sup>. It's a quick
+              screen-not a diagnosis. Muscular people may read "high" despite low body fat, while some with "normal" BMI
+              may still have central obesity.</p>
+<!-- Mini scale -->
+<div class="scale" id="chart" style="margin:12px 0;">
+<div class="pin" id="pin" style="left:0%"></div>
+</div>
+<div class="note small">Your BMI position on the scale above adjusts in real time.</div>
+<div aria-label="Legend" class="chips legend" style="margin-top:8px">
+<span><span class="seg seg-u" style="width:16px;height:10px;border-radius:3px"></span>Under</span>
+<span><span class="seg seg-n" style="width:16px;height:10px;border-radius:3px"></span>Normal</span>
+<span><span class="seg seg-o" style="width:16px;height:10px;border-radius:3px"></span>Over</span>
+<span><span class="seg seg-ob" style="width:16px;height:10px;border-radius:3px"></span>Obese</span>
+</div>
+<p class="note">References: <a href="https://www.who.int/news-room/fact-sheets/detail/obesity-and-overweight" rel="nofollow noopener" target="_blank">WHO</a>, <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4890841/" rel="nofollow noopener" target="_blank">Asian BMI cut-offs</a>.</p>
+<!-- SEO image (fixed size to avoid CLS) -->
+<figure style="margin:8px 0">
+<img alt="BMI categories and healthy weight range explainer" height="540" loading="lazy" src="/assets/ui/bmi-explainer.png" width="960"/>
+<figcaption class="note small">Visual explainer: BMI categories &amp; healthy weight range.</figcaption>
+</figure>
+</section>
+<!-- Related tools (textual logos for subpages) -->
+<aside aria-labelledby="related" class="card">
+<h2 id="related">Related tools</h2>
+<ul class="tool-list">
+<li><a class="tool-link accent-amber" href="/age-calculator/"><span aria-hidden="true" class="tlogo">AC</span><span>Age Calculator</span></a></li>
+<li><a class="tool-link accent-green" href="/bmr-calculator/"><span aria-hidden="true" class="tlogo">BMR</span><span>BMR Calculator</span></a></li>
+<li><a class="tool-link accent-indigo" href="/emi-calculator/"><span aria-hidden="true" class="tlogo">EMI</span><span>EMI Calculator</span></a></li>
+<li><a class="tool-link accent-purple" href="/gst-calculator/"><span aria-hidden="true" class="tlogo">GST</span><span>GST Calculator</span></a></li>
+<li><a class="tool-link accent-cyan" href="/currency-converter/"><span aria-hidden="true" class="tlogo">FX</span><span>Currency Converter</span></a></li>
+</ul>
+</aside>
+<!-- FAQs -->
+<section aria-labelledby="faq" class="card" style="margin-top:16px">
+<h2 id="faq">Frequently Asked Questions</h2>
+<details>
+<summary>What is a healthy BMI?</summary>
+<div class="note" style="padding:6px 0">Using WHO adult cut-offs: <b>18.5–24.9</b> is normal. For many Asian populations, <b>18.5–22.9</b> is used. BMI Prime below 1.0 indicates healthy weight; above 1.0 indicates overweight risk.</div>
+</details>
+<details>
+<summary>Is BMI accurate for athletes or bodybuilders?</summary>
+<div class="note" style="padding:6px 0">BMI does not distinguish fat from muscle. Athletes with high muscle mass may register as "overweight" despite having low body fat. Use waist-to-height ratio (WHtR) and body fat % for better context.</div>
+</details>
+<details>
+<summary>Does this work for children?</summary>
+<div class="note" style="padding:6px 0">No. Children require age- and sex-specific percentiles, which this adult calculator does not provide. Consult a pediatrician for child BMI interpretation.</div>
+</details>
+<details>
+<summary>What is BMI Prime and why does it matter?</summary>
+<div class="note" style="padding:6px 0">BMI Prime = BMI ÷ 25. It's a simple ratio where values below 1.0 are below the overweight threshold and above 1.0 are above it. It helps quickly gauge how far you are from the healthy upper limit.</div>
+</details>
+<details>
+<summary>What is WHtR (Waist-to-Height Ratio)?</summary>
+<div class="note" style="padding:6px 0">WHtR = waist circumference ÷ height. Aim for <b>&lt;0.5</b>; 0.50–0.59 means increased risk; ≥0.60 means high risk. It's a simple screen for abdominal obesity, which is a key driver of metabolic disease.</div>
+</details>
+<details>
+<summary>How do I measure my waist correctly?</summary>
+<div class="note" style="padding:6px 0">Measure at the narrowest point of your torso (usually near the navel), or at the midpoint between your lowest rib and hip bone. Keep the tape snug but not tight, and breathe out normally.</div>
+</details>
+<details>
+<summary>What is the BMI formula?</summary>
+<div class="note" style="padding:6px 0"><b>Metric:</b> BMI = weight (kg) ÷ height² (m²). <b>US:</b> BMI = (weight (lb) ÷ height² (in²)) × 703. For example, a 70 kg person at 1.70 m has BMI = 70 ÷ 2.89 = <b>24.2</b>.</div>
+</details>
+<details>
+<summary>How do I calculate BMI manually?</summary>
+<div class="note" style="padding:6px 0">Take your weight in kg and your height in meters. Square the height, then divide the weight by that number. For imperial: multiply your weight in pounds by 703 and divide by your height in inches squared.</div>
+</details>
+</section>
+<!-- How to use this calculator -->
+<section class="card" style="margin-top:16px">
+<h2 style="margin-top:0">How to Use This BMI Calculator</h2>
+<ol class="note" style="margin:0 0 0 1.2rem; padding:0; list-style:decimal; color:var(--muted)">
+<li><b>Select your unit system</b> — Metric (cm/kg) for international, or US/UK (ft/in, lb).</li>
+<li><b>Enter height and weight</b> — for US units, type feet and inches separately.</li>
+<li><b>Choose WHO or Asian cut-offs</b> — WHO uses 18.5–24.9 as normal range; Asian uses 18.5–22.9.</li>
+<li><b>Optionally enter age, sex, and waist</b> — this enables body fat estimation and WHtR calculation.</li>
+<li><b>Click Calculate</b> — your BMI, healthy weight range, BMI Prime, body fat %, WHtR, BMR, and TDEE appear instantly in the results panel.</li>
+</ol>
+<p class="note small" style="margin-top:10px">💡 <b>Tip:</b> Use the Calorie Planner to set a target BMI and see suggested daily calories for your goal.</p>
+</section>
+<!-- Do's and Don'ts -->
+<section class="card" style="margin-top:16px">
+<h2 style="margin-top:0">✅ Do's and ❌ Don'ts for BMI &amp; Weight Management</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+<div class="card" style="border-color:rgba(34,197,94,.3)">
+<h3 style="color:#22c55e;margin-top:0;font-size:1rem">✅ Do's</h3>
+<ul style="list-style:none;padding:0;margin:0;color:var(--muted)">
+<li style="padding:.35rem 0">✅ <b>Do</b> measure your waist alongside BMI for a complete risk picture.</li>
+<li style="padding:.35rem 0">✅ <b>Do</b> use Asian cut-offs if you're of South Asian, East Asian, or Southeast Asian descent.</li>
+<li style="padding:.35rem 0">✅ <b>Do</b> recalculate BMI as your weight changes over time.</li>
+<li style="padding:.35rem 0">✅ <b>Do</b> combine BMI with other metrics (body fat %, WHtR, blood pressure).</li>
+<li style="padding:.35rem 0">✅ <b>Do</b> consult a doctor if your BMI is consistently above 25 or below 18.5.</li>
+<li style="padding:.35rem 0">✅ <b>Do</b> focus on sustainable habits rather than rapid weight loss.</li>
+</ul>
+</div>
+<div class="card" style="border-color:rgba(239,68,68,.3)">
+<h3 style="color:#ef4444;margin-top:0;font-size:1rem">❌ Don'ts</h3>
+<ul style="list-style:none;padding:0;margin:0;color:var(--muted)">
+<li style="padding:.35rem 0">❌ <b>Don't</b> rely on BMI alone to assess health — it can't measure body composition.</li>
+<li style="padding:.35rem 0">❌ <b>Don't</b> use this calculator for children or pregnant women — different standards apply.</li>
+<li style="padding:.35rem 0">❌ <b>Don't</b> panic about small daily weight fluctuations — measure weekly under the same conditions.</li>
+<li style="padding:.35rem 0">❌ <b>Don't</b> assume a "normal" BMI means you're healthy — fitness and blood markers matter too.</li>
+<li style="padding:.35rem 0">❌ <b>Don't</b> crash diet to lower BMI — it often leads to muscle loss and rebound weight gain.</li>
+<li style="padding:.35rem 0">❌ <b>Don't</b> ignore abdominal fat — a normal BMI with high WHtR still carries health risks.</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- How BMI is calculated -->
+<section class="card" style="margin-top:16px">
+<details open>
+<summary style="cursor:pointer;font-weight:700;font-size:1.1rem;padding:4px 0">📐 How BMI is Calculated</summary>
+<div style="margin-top:8px;color:var(--muted)">
+<p><b>Metric formula:</b> BMI = weight (kg) ÷ height² (m²)</p>
+<p><b>US formula:</b> BMI = (weight in lb ÷ height in inches²) × 703</p>
+<h3 style="margin-top:12px">WHO BMI Categories</h3>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin:8px 0">
+<div style="padding:8px 12px;border-radius:8px;background:#1a2332;border-left:4px solid #60a5fa"><b style="color:#60a5fa">Underweight</b><br>&lt;18.5</div>
+<div style="padding:8px 12px;border-radius:8px;background:#1a2332;border-left:4px solid #22c55e"><b style="color:#22c55e">Normal</b><br>18.5 – 24.9</div>
+<div style="padding:8px 12px;border-radius:8px;background:#1a2332;border-left:4px solid #f59e0b"><b style="color:#f59e0b">Overweight</b><br>25 – 29.9</div>
+<div style="padding:8px 12px;border-radius:8px;background:#1a2332;border-left:4px solid #ef4444"><b style="color:#ef4444">Obese</b><br>≥ 30</div>
+</div>
+<h3 style="margin-top:12px">Asian BMI Categories (WHO SEAR/WPR)</h3>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin:8px 0">
+<div style="padding:8px 12px;border-radius:8px;background:#1a2332;border-left:4px solid #60a5fa"><b style="color:#60a5fa">Underweight</b><br>&lt;18.5</div>
+<div style="padding:8px 12px;border-radius:8px;background:#1a2332;border-left:4px solid #22c55e"><b style="color:#22c55e">Normal</b><br>18.5 – 22.9</div>
+<div style="padding:8px 12px;border-radius:8px;background:#1a2332;border-left:4px solid #f59e0b"><b style="color:#f59e0b">Overweight</b><br>23 – 24.9</div>
+<div style="padding:8px 12px;border-radius:8px;background:#1a2332;border-left:4px solid #ef4444"><b style="color:#ef4444">Obese</b><br>≥ 25</div>
+</div>
+<h3 style="margin-top:12px">Worked Example</h3>
+<p>If you weigh <b>70 kg</b> and are <b>170 cm</b> tall:<br>
+BMI = 70 ÷ (1.70)² = 70 ÷ 2.89 = <b>24.2</b> → Normal range (WHO)</p>
+<p class="note small">Also try: <a href="/bmr-calculator/">BMR Calculator</a> · <a href="/calorie-calculator/">Calorie Calculator</a> · <a href="/ideal-weight-calculator/">Ideal Weight</a></p>
+</div>
+</details>
+</section>
+<!-- Video with fixed size to avoid layout shift -->
+<section aria-labelledby="vid" class="card">
+<h2 id="vid">Quick explainer 🎥</h2>
+<div class="video-wrap"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/t9e46CV_pyM?rel=0&amp;modestbranding=1" title="BMI Calculation Formula Explained"></iframe></div>
+</section>
+</div>
+</section>
+
+<!-- SEO: FAQ -->
+<section class="card" style="margin-top:16px">
+<h2 style="margin-top:0">Frequently Asked Questions</h2>
+<details><summary><b>Is this tool free to use?</b></summary><p style="padding:6px 0;color:#9aa4b2">Yes. All UpTools calculators are completely free, with no sign-ups required.</p></details>
+<details><summary><b>Is my data private?</b></summary><p style="padding:6px 0;color:#9aa4b2">Yes. All calculations run locally in your browser. Nothing is uploaded to any server.</p></details>
+<details><summary><b>Does it work on mobile?</b></summary><p style="padding:6px 0;color:#9aa4b2">Yes. All tools are mobile-responsive and work on any device — phone, tablet, or desktop.</p></details>
+<details><summary><b>Can I use this offline?</b></summary><p style="padding:6px 0;color:#9aa4b2">Most tools work offline after the initial page load. No internet needed for calculations.</p></details>
+</section>
+<!-- SEO: How it works -->
+<section class="card" style="margin-top:16px">
+<details open>
+<summary style="cursor:pointer;font-weight:700;font-size:1.1rem;padding:4px 0">📐 How This Tool Works</summary>
+<div style="margin-top:8px;color:#9aa4b2">
+<p>This tool computes results entirely in your browser using JavaScript. No data is sent to any server, ensuring your privacy.</p>
+<p>Results update instantly as you type — no waiting for server responses.</p>
+<p style="margin-top:8px">Also try: <a href="/calculator/">Calculator</a> · <a href="/converter/">Converter</a> · <a href="/generator/">Generator</a></p>
+</div>
+</details>
+</section>
+<footer class="note small site-footer" role="contentinfo" style="margin:18px 0">
+        © <span id="y"></span> UpTools . <a href="/about/">About</a> . <a href="/contact/">Contact</a> .
+        <a href="/sitemap.xml">Sitemap</a> . <a href="/robots.txt">Robots</a>
+</footer>
+</div>
+</main>
+<!-- UNIVERSAL RESULTS SHEET (works on all screens) -->
+<section aria-hidden="true" aria-label="Results and planner panel" class="sheet" id="resultsSheet">
+<div class="card" style="display:grid;gap:8px">
+<div class="sheet-head">
+<h2 style="margin:0">Your results</h2>
+<button aria-label="Close results" class="close-x" id="closeSheet" type="button">✕</button>
+</div>
+<div class="badge" id="status">-</div>
+<div class="kvi"><span>BMI</span><span class="amount" id="outBMI">-</span></div>
+<div class="kvi"><span>Category</span><span class="amount" id="outCat">-</span></div>
+<div class="kvi"><span>Healthy weight range</span><span class="amount" id="outRange">-</span></div>
+<div class="kvi"><span>BMI Prime</span><span class="amount" id="outPrime">-</span></div>
+<div class="kvi"><span>Body fat % (est.)</span><span class="amount" id="outBF">-</span></div>
+<div class="kvi"><span>Waist-to-height (WHtR)</span><span class="amount" id="outWHtR">-</span></div>
+<div class="divider"></div>
+<div class="btn-group" style="display:flex;gap:8px;flex-wrap:wrap">
+<button class="btn secondary" id="m_btnCopyOut">Copy</button>
+<button class="btn secondary" id="m_btnReset">Reset</button>
+</div>
+<div class="divider"></div>
+<h3 id="cal-head-m" style="margin:0">Calorie Planner</h3>
+<p class="note small" id="cal-note-m">Get BMR &amp; TDEE based on Mifflin-St Jeor. Add age &amp; sex above for
+        accuracy.</p>
+<label class="label" for="activity">Activity level</label>
+<select class="input" id="activity">
+<option value="1.2">Sedentary (little/no exercise)</option>
+<option value="1.375">Light (1-3 days/week)</option>
+<option value="1.55">Moderate (3-5 days/week)</option>
+<option value="1.725">Active (6-7 days/week)</option>
+<option value="1.9">Very active (physical job)</option>
+</select>
+<div class="kvi"><span>BMR</span><span class="amount" id="outBMR">-</span></div>
+<div class="kvi"><span>TDEE</span><span class="amount" id="outTDEE">-</span></div>
+<label class="label" for="goalRate">Goal pace</label>
+<select class="input" id="goalRate" title="Weekly change">
+<option value="0">Maintain</option>
+<option value="-250">Lose ~0.25 kg/wk</option>
+<option value="-500">Lose ~0.5 kg/wk</option>
+<option value="250">Gain ~0.25 kg/wk</option>
+<option value="500">Gain ~0.5 kg/wk</option>
+</select>
+<div class="kvi"><span>Suggested calories</span><span class="amount" id="outCals">-</span></div>
+<div class="divider"></div>
+<label class="label" for="targetBMI">Target BMI</label>
+<input class="input" id="targetBMI" max="30" min="16" placeholder="e.g., 22.5" step="0.1" type="number"/>
+<div class="kvi"><span>Target weight</span><span class="amount" id="outTargetW">-</span></div>
+<div class="kvi"><span>Δ from current</span><span class="amount" id="outDeltaW">-</span></div>
+</div>
+</section>
+<!-- Floating toggle button (ALL screens) -->
+<button aria-controls="resultsSheet" aria-expanded="false" class="sheet-toggle" id="toggleResults">Results</button>
+<!-- Logic -->
+<script type="module">
+    import { $, $$, fmtNum, debounce, serializeForm, setText, persist, read, clamp, num, createBreadcrumb, initMobileMenu } from '/scripts/utils.js';
+
+    // Grab nodes (IDs are shared across the page and sheet)
+    const E = {
+      form: $('#bmiForm'),
+      unit: $('#unit'), std: $('#std'),
+      heightCm: $('#heightCm'), heightFt: $('#heightFt'), heightIn: $('#heightIn'),
+      weightKg: $('#weightKg'), weightLb: $('#weightLb'),
+      age: $('#age'), sex: $('#sex'), waist: $('#waist'),
+      tips: $('#tips'),
+
+      // Outputs
+      status: $('#status'), outBMI: $('#outBMI'), outCat: $('#outCat'),
+      outRange: $('#outRange'), outPrime: $('#outPrime'),
+      outBF: $('#outBF'), outWHtR: $('#outWHtR'),
+      pin: $('#pin'), chart: $('#chart'),
+
+      // Planner
+      activity: $('#activity'), goalRate: $('#goalRate'),
+      outBMR: $('#outBMR'), outTDEE: $('#outTDEE'), outCals: $('#outCals'),
+      targetBMI: $('#targetBMI'), outTargetW: $('#outTargetW'), outDeltaW: $('#outDeltaW'),
+
+      // Actions
+      btnCalc: $('#btnCalc'), btnClear: $('#btnClear'),
+      btnCopy: $('#btnCopy'), btnPermalink: $('#btnPermalink'),
+      btnExample: $('#btnExample'),
+
+      // Sheet controls
+      sheet: $('#resultsSheet'), sheetToggle: $('#toggleResults'), sheetClose: $('#closeSheet'),
+      mBtnCopyOut: $('#m_btnCopyOut'), mBtnReset: $('#m_btnReset')
+    };
+
+    const WHO = { under: 18.5, normalHi: 24.9, overHi: 29.9 };   // obese >=30
+    const ASIAN = { under: 18.5, normalHi: 22.9, overHi: 24.9 };  // obese >=25
+    const KG_PER_LB = 0.45359237;
+    const CM_PER_IN = 2.54;
+
+    const toMetric = () => {
+      if (E.unit.value === 'metric') {
+        const cm = num(E.heightCm.value);
+        const kg = num(E.weightKg.value);
+        return { cm, kg };
+      } else {
+        const ft = num(E.heightFt.value), inch = num(E.heightIn.value);
+        const totalIn = ft * 12 + inch;
+        const cm = totalIn * CM_PER_IN;
+        const kg = num(E.weightLb.value) * KG_PER_LB;
+        return { cm, kg };
+      }
+    };
+
+    const bmiCalc = (kg, cm) => {
+      const m = cm / 100;
+      if (!kg || !cm || m <= 0) return 0;
+      return kg / (m * m);
+    };
+
+    const stdCfg = () => (E.std.value === 'asian' ? ASIAN : WHO);
+
+    const catFor = (bmi, std) => {
+      if (!bmi) return '-';
+      if (bmi < std.under) return 'Underweight';
+      if (bmi <= std.normalHi) return 'Normal';
+      if (bmi <= std.overHi) return 'Overweight';
+      return 'Obese';
+    };
+
+    const healthyWeightRange = (cm) => {
+      const m = cm / 100;
+      const s = stdCfg();
+      const lo = 18.5 * m * m;
+      const hi = s.normalHi * m * m;
+      return { lo, hi };
+    };
+
+    const bmiPrime = (bmi) => bmi ? (bmi / 25) : 0;
+
+    const bodyFat = (bmi, age, sex) => {
+      if (!bmi || !age || sex === 'none') return null;
+      const sx = (sex === 'male') ? 1 : 0;
+      const val = 1.20 * bmi + 0.23 * age - 10.8 * sx - 5.4;
+      return Math.max(2, Math.min(75, val));
+    };
+
+    const whtr = (waistCm, heightCm) => (!waistCm || !heightCm) ? null : (waistCm / heightCm);
+    const whtrLabel = (v) => v == null ? '-' : (v < 0.5 ? 'Healthy' : v < 0.6 ? 'Increased risk' : 'High risk');
+
+    const renderScale = () => {
+      const s = stdCfg();
+      const max = 40;
+      E.chart?.querySelectorAll('.seg').forEach(n => n.remove());
+      const mk = (w, cls) => {
+        const d = document.createElement('div');
+        d.className = `seg ${cls}`; d.style.width = (w * 100 / max) + '%'; E.chart.insertBefore(d, $('#pin'));
+      };
+      mk(s.under, 'seg-u');
+      mk(s.normalHi - s.under, 'seg-n');
+      mk(s.overHi - s.normalHi, 'seg-o');
+      mk(max - s.overHi, 'seg-ob');
+    };
+
+    const setStatus = (text, cls = '') => {
+      E.status.classList.remove('ok', 'warn', 'err');
+      if (cls) E.status.classList.add(cls);
+      E.status.textContent = text;
+    };
+
+    const fmt1 = (x) => (x == null || !isFinite(x)) ? '-' : Number(x).toFixed(1);
+    const updatePin = (bmi) => { const max = 40; const pct = clamp((bmi / max) * 100, 0, 100); $('#pin').style.left = pct + '%'; }
+
+    const updatePermalink = () => {
+      const u = new URL(location.href);
+      const { cm, kg } = toMetric();
+      if (cm) u.searchParams.set('h', String(cm)); else u.searchParams.delete('h');
+      if (kg) u.searchParams.set('w', String(kg)); else u.searchParams.delete('w');
+      u.searchParams.set('u', E.unit.value);
+      u.searchParams.set('s', E.std.value);
+      const a = E.age.value.trim(); if (a) u.searchParams.set('a', a); else u.searchParams.delete('a');
+      const sx = E.sex.value; if (sx !== 'none') u.searchParams.set('x', sx); else u.searchParams.delete('x');
+      const wc = E.waist.value.trim(); if (wc) u.searchParams.set('wc', wc); else u.searchParams.delete('wc');
+      history.replaceState(null, '', u.toString());
+    };
+
+    const bmr = (kg, cm, age, sex) => {
+      if (!kg || !cm || !age || sex === 'none') return null;
+      const s = (sex === 'male') ? 5 : -161;
+      return (10 * kg) + (6.25 * cm) - (5 * age) + s;
+    };
+
+    const updatePlanner = () => {
+      const { cm, kg } = toMetric();
+      const age = num(E.age.value);
+      const sex = E.sex.value;
+      const act = Number(E.activity.value || 1.2);
+      const base = bmr(kg, cm, age, sex);
+      const tdee = base ? base * act : null;
+
+      setText(E.outBMR, base ? Math.round(base) + ' kcal' : '-');
+      setText(E.outTDEE, tdee ? Math.round(tdee) + ' kcal' : '-');
+
+      const adj = Number(E.goalRate.value || 0);
+      const sug = tdee ? clamp(tdee + adj, 1000, 5000) : null;
+      setText(E.outCals, sug ? Math.round(sug) + ' kcal/day' : '-');
+
+      const tBMI = num(E.targetBMI.value);
+      if (tBMI && cm) {
+        const m = cm / 100;
+        const targetKg = tBMI * m * m;
+        const isUS = E.unit.value === 'us';
+        const outW = isUS ? (targetKg / KG_PER_LB) : targetKg;
+        const curW = isUS ? (kg / KG_PER_LB) : kg;
+        const delta = (curW && outW) ? (outW - curW) : 0;
+        setText(E.outTargetW, (isUS ? outW.toFixed(1) + ' lb' : outW.toFixed(1) + ' kg'));
+        setText(E.outDeltaW, (delta > 0 ? '+' : '') + (isUS ? delta.toFixed(1) + ' lb' : delta.toFixed(1) + ' kg'));
+      } else {
+        setText(E.outTargetW, '-'); setText(E.outDeltaW, '-');
+      }
+    };
+
+    const calculate = () => {
+      const { cm, kg } = toMetric();
+      if (!cm || !kg) { setStatus('Enter valid height and weight', 'warn'); return; }
+      const bmi = bmiCalc(kg, cm);
+      const s = stdCfg();
+      const cat = catFor(bmi, s);
+      const range = healthyWeightRange(cm);
+      const prime = bmiPrime(bmi);
+      const bf = bodyFat(bmi, num(E.age.value), E.sex.value);
+      const ratio = whtr(num(E.waist.value), cm);
+
+      setText(E.outBMI, fmt1(bmi));
+      setText(E.outCat, cat);
+      const isUS = E.unit.value === 'us';
+      const lo = isUS ? (range.lo / KG_PER_LB) : range.lo;
+      const hi = isUS ? (range.hi / KG_PER_LB) : range.hi;
+      setText(E.outRange, (isUS ? `${fmt1(lo)}-${fmt1(hi)} lb` : `${fmt1(range.lo)}-${fmt1(range.hi)} kg`));
+      setText(E.outPrime, fmt1(prime));
+      setText(E.outBF, bf == null ? '-' : `${fmt1(bf)}%`);
+      setText(E.outWHtR, ratio == null ? '-' : `${fmt1(ratio)} (${whtrLabel(ratio)})`);
+
+      const cls = (cat === 'Normal') ? 'ok' : (cat === 'Overweight' ? 'warn' : (cat === 'Obese' ? 'err' : 'warn'));
+      setStatus(`Result: ${cat}`, cls);
+      updatePin(bmi);
+      E.tips.innerHTML = [
+        (cat !== 'Normal') ? 'Tip: Aim for a healthy BMI range (see range above).' : 'Great! You are in the healthy BMI range.',
+        ratio != null ? 'Waist-to-height helps capture central fat; keep it &lt; 0.5.' : 'Add waist to get WHtR risk.',
+        (E.sex.value !== 'none' && E.age.value) ? 'Planner shows BMR/TDEE & calories.' : 'Add age & sex to unlock calorie planner.'
+      ].join(' ');
+
+      persist('bmi:last', { unit: E.unit.value, std: E.std.value, cm, kg, age: E.age.value, sex: E.sex.value, waist: E.waist.value, ts: Date.now() });
+      updatePermalink();
+      updatePlanner();
+    };
+
+    // Toggle unit blocks
+    const toggleUnits = () => {
+      const isMetric = E.unit.value === 'metric';
+      $('#gHeightMetric').classList.toggle('hidden', !isMetric);
+      $('#gHeightUS').classList.toggle('hidden', isMetric);
+      $('#gWeightMetric').classList.toggle('hidden', !isMetric);
+      $('#gWeightUS').classList.toggle('hidden', isMetric);
+    };
+
+    // Menu
+    $('.menu-btn').addEventListener('click', () => {
+      const menu = $('#moreMenu');
+      const open = menu.classList.toggle('open');
+      $('.menu-btn').setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    document.addEventListener('click', (e) => {
+      const mm = $('#moreMenu');
+      if (mm && !mm.contains(e.target)) { mm.classList.remove('open'); $('.menu-btn').setAttribute('aria-expanded', 'false'); }
+    });
+
+    // Actions
+    const copyOut = () => {
+      const text = [
+        `BMI: ${$('#outBMI').textContent}`,
+        `Category: ${$('#outCat').textContent} (${E.std.value.toUpperCase()})`,
+        `Healthy weight range: ${$('#outRange').textContent}`,
+        `BMI Prime: ${$('#outPrime').textContent}`,
+        `Body fat % (est.): ${$('#outBF').textContent}`,
+        `WHtR: ${$('#outWHtR').textContent}`,
+        `BMR: ${$('#outBMR').textContent}`,
+        `TDEE: ${$('#outTDEE').textContent}`,
+        `Suggested calories: ${$('#outCals').textContent}`
+      ].join('\n');
+      navigator.clipboard.writeText(text).then(() => alert('Copied!')).catch(() => alert('Copy failed'));
+    };
+    $('#btnCopy').addEventListener('click', copyOut);
+
+    $('#btnPermalink').addEventListener('click', () => { updatePermalink(); navigator.clipboard.writeText(location.href).then(() => alert('Link copied!')); });
+    $('#btnExample').addEventListener('click', () => {
+      E.unit.value = 'metric'; toggleUnits();
+      E.heightCm.value = '170'; E.weightKg.value = '70';
+      E.std.value = 'who'; E.age.value = '30'; E.sex.value = 'male'; E.waist.value = '82';
+      E.targetBMI.value = '22.5';
+      calculate();
+    });
+
+    // Events
+    E.form.addEventListener('submit', (e) => { e.preventDefault(); calculate(); });
+    $('#btnClear').addEventListener('click', () => {
+      ['heightCm', 'heightFt', 'heightIn', 'weightKg', 'weightLb', 'age', 'waist'].forEach(id => { const el = $('#' + id); if (el) el.value = ''; });
+      E.sex.value = 'none';
+      setStatus('Cleared', 'warn');
+      ['outBMI', 'outCat', 'outRange', 'outPrime', 'outBF', 'outWHtR', 'outBMR', 'outTDEE', 'outCals', 'outTargetW', 'outDeltaW'].forEach(id => setText($('#' + id), '-'));
+      $('#tips').textContent = '';
+      updatePermalink();
+    });
+
+    // Recalc on change
+    [E.heightCm, E.heightFt, E.heightIn, E.weightKg, E.weightLb, E.age, E.sex, E.waist, E.activity, E.goalRate, E.targetBMI].forEach(el => {
+      if (!el) return;
+      const fn = (el.id === 'activity' || el.id === 'goalRate' || el.id === 'targetBMI') ? updatePlanner : calculate;
+      el.addEventListener('input', debounce(fn, 150));
+      el.addEventListener('change', fn);
+    });
+
+    E.unit.addEventListener('change', () => { toggleUnits(); calculate(); });
+    E.std.addEventListener('change', () => { renderScale(); calculate(); });
+
+    // Keyboard: Enter triggers calc
+    document.addEventListener('keydown', (e) => { if (e.key === 'Enter' && document.activeElement && document.activeElement.tagName === 'INPUT') { e.preventDefault(); calculate(); } });
+
+    // Load: restore state, params, render
+    $('#y').textContent = new Date().getFullYear();
+    const last = read('bmi:last', null);
+    if (last) {
+      E.unit.value = last.unit || 'metric';
+      E.std.value = last.std || 'who';
+      toggleUnits();
+      if (E.unit.value === 'metric') { E.heightCm.value = last.cm || ''; E.weightKg.value = last.kg || ''; }
+      else {
+        const totalIn = (last.cm || 0) / CM_PER_IN;
+        const ft = Math.floor(totalIn / 12);
+        const inch = totalIn - ft * 12;
+        E.heightFt.value = ft || ''; E.heightIn.value = inch ? inch.toFixed(1) : '';
+        E.weightLb.value = last.kg ? (last.kg / KG_PER_LB).toFixed(1) : '';
+      }
+      E.age.value = last.age || ''; E.sex.value = last.sex || 'none'; E.waist.value = last.waist || '';
+    }
+
+    // Apply URL params
+    (function applyParams() {
+      const u = new URL(location.href);
+      const unit = u.searchParams.get('u');
+      const std = u.searchParams.get('s');
+      if (unit) E.unit.value = unit;
+      if (std) E.std.value = std;
+      toggleUnits();
+      const h = num(u.searchParams.get('h'));
+      const w = num(u.searchParams.get('w'));
+      if (h) {
+        if (E.unit.value === 'metric') { E.heightCm.value = (Number(h)).toFixed(1); }
+        else {
+          const totalIn = h / CM_PER_IN;
+          const ft = Math.floor(totalIn / 12);
+          const inch = totalIn - ft * 12;
+          E.heightFt.value = ft; E.heightIn.value = (Number(inch)).toFixed(1);
+        }
+      }
+      if (w) {
+        if (E.unit.value === 'metric') { E.weightKg.value = (Number(w)).toFixed(1); }
+        else { E.weightLb.value = (Number(w / KG_PER_LB)).toFixed(1); }
+      }
+      const a = u.searchParams.get('a'); if (a) E.age.value = a;
+      const x = u.searchParams.get('x'); if (x) E.sex.value = x;
+      const wc = u.searchParams.get('wc'); if (wc) E.waist.value = wc;
+    })();
+
+    renderScale();
+    calculate();
+
+    // ---- Universal results sheet controls
+    const openSheet = () => { E.sheet.classList.add('open'); E.sheet.setAttribute('aria-hidden', 'false'); E.sheetToggle.setAttribute('aria-expanded', 'true'); }
+    const closeSheet = () => { E.sheet.classList.remove('open'); E.sheet.setAttribute('aria-hidden', 'true'); E.sheetToggle.setAttribute('aria-expanded', 'false'); }
+    E.sheetToggle.addEventListener('click', () => E.sheet.classList.contains('open') ? closeSheet() : openSheet());
+    E.sheetClose.addEventListener('click', closeSheet);
+    E.mBtnCopyOut.addEventListener('click', () => copyOut());
+    E.mBtnReset.addEventListener('click', () => $('#btnClear').click());
+
+    // Auto-open results after first successful calculation (nice UX)
+    let firstOpen = false;
+    const maybeOpenAfterCalc = () => {
+      if (!firstOpen) { openSheet(); firstOpen = true; }
+    };
+    E.form.addEventListener('submit', maybeOpenAfterCalc, { once: true });
+
+    // Close drawer when resizing from desktop to mobile if needed (optional)
+    window.addEventListener('resize', () => {
+      // Keep it simple: do nothing; drawer adapts automatically.
+    });
+
+    // Initialize breadcrumb navigation and mobile menu
+    createBreadcrumb([
+      { label: 'Home', href: '/' },
+      { label: 'Health', href: '/#health' },
+      { label: 'BMI Calculator' }
+    ]);
+    initMobileMenu();
+  </script>
+</body>
+</html>

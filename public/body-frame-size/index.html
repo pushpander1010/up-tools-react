@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Body Frame Size Calculator - Small Medium Large | UpTools</title>
+  <meta name="description" content="Determine your body frame size (small, medium, or large) using wrist circumference or elbow breadth methods. Includes ideal weight range for your frame type." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Body Frame Size Calculator - Small Medium Large | UpTools" />
+  <meta property="og:description" content="Body Frame Size Calculator - Small Medium Large. Free online tool by UpTools." />
+  <meta property="og:url" content="https://www.uptools.in/body-frame-size/" />
+  <meta property="og:image" content="https://www.uptools.in/assets/og/body-frame-size.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="UpTools">
+  <meta property="og:site_name" content="UpTools" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://www.uptools.in/assets/home.png" />
+  <meta name="twitter:title" content="Body Frame Size Calculator - Small Medium Large | UpTools" />
+  <meta name="twitter:description" content="Determine your body frame size (small, medium, or large) using wrist circumference or elbow breadth methods. Includes ideal weight range for your frame type." />
+
+  <!-- AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6216304334889617" crossorigin="anonymous"></script>
+<script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-6216304334889617",enable_page_level_ads:true});</script>
+
+  <!-- Stylesheet -->
+
+  
+  <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:large" />
+<link href="https://www.uptools.in/body-frame-size/" rel="canonical"/>
+<meta name="keywords" content="body frame size, body frame size, online tool, free calculator, uptools" />
+
+  <link rel="stylesheet" href="/style.css?v=5.0.0">
+
+<!-- Paste your Google Analytics 4 Measurement ID below, e.g. G-ABC123XYZ9 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NN3GDL1LEJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-NN3GDL1LEJ');
+</script>
+</head>
+<body>
+  <a href="#main" class="sr-only skip-link">Skip to content</a>
+
+<!-- ─── Header ──────────────────────────────────────── -->
+<header class="site" role="banner">
+  <div class="header-inner">
+    <a class="brand" href="/" aria-label="UpTools Home">
+      <img src="/assets/logo/uptools-logo.svg" alt="UpTools logo" width="28" height="28" loading="eager">
+      <b>UpTools</b>
+    </a>
+    <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">☰</button>
+    <nav aria-label="Primary" class="nav-links nav-tabs" id="navTabs">
+<div class="tab-indicator" id="tabIndicator"></div>
+<a href="/" class="nav-tab" data-tab="home">Home</a>
+<a href="/games/" class="nav-tab" data-tab="games">🎮 Games</a>
+<a href="/hncker/" class="nav-tab" data-tab="hncker">HNCKER</a>
+</nav>
+  </div>
+</header>
+
+<!-- ─── Breadcrumb ───────────────────────────────────── -->
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list" itemscope itemtype="https://schema.org/BreadcrumbList">
+    <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+      <meta itemprop="position" content="1" />
+    </li>
+    <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" aria-current="page">
+      <span itemprop="name">Body Frame Size Calculator</span>
+      <meta itemprop="position" content="2" />
+    </li>
+  </ol>
+</nav>
+
+<!-- ─── AdSense ─────────────────────────────────────── -->
+<div class="ads-wrap" style="max-max-width:900px;margin:0 auto;padding:0 1rem;">
+  <ins class="adsbygoogle" style="display:block;min-height:250px" data-ad-client="ca-pub-6216304334889617" data-ad-slot="9810172647" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<!-- ─── Main Content ─────────────────────────────────── -->
+<main role="main" class="page-wrap">
+
+  <!-- Hero -->
+  <div class="page-hero">
+    <h1>Body Frame Size Calculator</h1>
+    <p>Discover if you have a small, medium, or large body frame using the wrist circumference or elbow breadth method — and find your ideal weight range.</p>
+  </div>
+
+  <!-- Unit Toggle -->
+  <div class="unit-toggle-wrap">
+    <span id="lbl-imperial" style="color:var(--text)">Imperial</span>
+    <div class="pill-switch" id="unitSwitch" role="switch" aria-checked="false" tabindex="0" aria-label="Toggle unit system">
+      <div class="pill-knob"></div>
+      <div class="pill-labels"><span>in</span><span>cm</span></div>
+    </div>
+    <span id="lbl-metric">Metric</span>
+  </div>
+
+  <!-- Sex Toggle -->
+  <div class="sex-toggle" role="group" aria-label="Select sex">
+    <button class="sex-btn active" id="btn-male" onclick="setSex('male')">&#9794; Male</button>
+    <button class="sex-btn" id="btn-female" onclick="setSex('female')">&#9792; Female</button>
+  </div>
+
+  <!-- Common Inputs -->
+  <div class="inputs-card">
+    <h2>Your Measurements</h2>
+    <div class="input-row">
+      <!-- Height imperial -->
+      <div class="input-group" id="height-imperial-group">
+        <label>Height</label>
+        <div class="height-inputs">
+          <input type="number" id="height-ft" placeholder="5" min="3" max="8" step="1" aria-label="Height feet" />
+          <input type="number" id="height-in" placeholder="7" min="0" max="11" step="1" aria-label="Height inches" />
+        </div>
+        <div class="height-sub"><span>ft</span><span>in</span></div>
+      </div>
+      <!-- Height metric -->
+      <div class="input-group" id="height-metric-group" style="display:none;">
+        <label>Height (cm)</label>
+        <input type="number" id="height-cm" placeholder="170" min="90" max="250" step="0.1" aria-label="Height in centimeters" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Two Methods -->
+  <div class="methods-grid">
+
+    <!-- Method 1: Wrist -->
+    <div class="method-card">
+      <h3>
+        Wrist Circumference
+        <span class="method-badge">Method 1</span>
+      </h3>
+      <p class="hint">Wrap a tape measure around the smallest part of your wrist, just below the wrist bone. Keep the tape snug but not tight.</p>
+      <div class="input-group">
+        <label id="wrist-label">Wrist Circumference (in)</label>
+        <input type="number" id="wrist-val" placeholder="6.5" min="3" max="15" step="0.01" aria-label="Wrist circumference" />
+      </div>
+      <button class="calc-btn" onclick="calcWrist()" id="btn-wrist">Calculate Frame Size</button>
+    </div>
+
+    <!-- Method 2: Elbow -->
+    <div class="method-card">
+      <h3>
+        Elbow Breadth
+        <span class="method-badge method-badge-2">Method 2</span>
+      </h3>
+      <p class="hint">Raise your arm forward to horizontal, bend your elbow 90&deg;, palm facing up. Measure the distance between the two prominent bones on each side of your elbow.</p>
+      <div class="input-group">
+        <label id="elbow-label">Elbow Breadth (in)</label>
+        <input type="number" id="elbow-val" placeholder="2.75" min="1" max="8" step="0.01" aria-label="Elbow breadth" />
+      </div>
+      <button class="calc-btn" onclick="calcElbow()" id="btn-elbow">Calculate Frame Size</button>
+    </div>
+
+  </div>
+
+  <!-- Result Area -->
+  <div class="result-area">
+    <div class="result-card" id="result-card">
+      <div class="result-method-label" id="result-method-label">Wrist Circumference Method</div>
+      <div class="result-size" id="result-size">Medium</div>
+      <p class="result-desc" id="result-desc">You have an average bone structure typical for your height and sex.</p>
+      <div class="result-divider"></div>
+      <div style="margin-bottom:0.5rem;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);">Ideal Weight Range (Hamwi)</div>
+      <div class="weight-section">
+        <div class="weight-label">Recommended Weight</div>
+        <div class="weight-range" id="weight-range">—</div>
+        <div class="weight-unit" id="weight-unit">lbs</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reference Table -->
+  <div class="ref-section">
+    <div class="section-title">Reference Chart</div>
+    <div class="table-wrap">
+      <div class="ref-tabs" role="tablist">
+        <button class="ref-tab active" role="tab" aria-selected="true" onclick="showRefTab('wrist', this)" id="tab-wrist-ref">Wrist Method</button>
+        <button class="ref-tab" role="tab" aria-selected="false" onclick="showRefTab('elbow', this)" id="tab-elbow-ref">Elbow Method</button>
+      </div>
+      <div class="ref-table-container">
+        <div id="ref-wrist-table"></div>
+        <div id="ref-elbow-table" style="display:none;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Explanation Accordions -->
+  <div class="ref-section">
+    <div class="section-title">Learn More</div>
+    <div class="accordion-list">
+
+      <div class="accordion" id="acc-what">
+        <button class="accordion-header" onclick="toggleAcc('acc-what')" aria-expanded="false">
+          What is Body Frame Size?
+          <span class="accordion-icon">&#9662;</span>
+        </button>
+        <div class="accordion-body" role="region">
+          <div class="accordion-body-inner">
+            <p>Body frame size refers to the size of your bone structure — not your weight or muscle mass. It reflects the density and breadth of your skeletal frame and is classified as <strong>small</strong>, <strong>medium</strong>, or <strong>large</strong>.</p>
+            <ul>
+              <li><strong>Small frame</strong> — finer, narrower bones; naturally lighter build</li>
+              <li><strong>Medium frame</strong> — average bone structure for your height and sex</li>
+              <li><strong>Large frame</strong> — broader, denser bones; naturally heavier even at a healthy weight</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion" id="acc-wrist">
+        <button class="accordion-header" onclick="toggleAcc('acc-wrist')" aria-expanded="false">
+          How to Measure Wrist Circumference
+          <span class="accordion-icon">&#9662;</span>
+        </button>
+        <div class="accordion-body" role="region">
+          <div class="accordion-body-inner">
+            <ol>
+              <li>Use a flexible tape measure or a piece of string + ruler.</li>
+              <li>Wrap it around the smallest part of your wrist — just below the wrist bone (distal end of the radius).</li>
+              <li>Keep the tape snug but not pinching. Don't compress the skin.</li>
+              <li>Record the measurement to the nearest 0.1 cm or 0.1 inch.</li>
+            </ol>
+            <p><strong>Tip:</strong> Measure your dominant wrist (right if right-handed) for the most consistent results.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion" id="acc-elbow">
+        <button class="accordion-header" onclick="toggleAcc('acc-elbow')" aria-expanded="false">
+          How to Measure Elbow Breadth
+          <span class="accordion-icon">&#9662;</span>
+        </button>
+        <div class="accordion-body" role="region">
+          <div class="accordion-body-inner">
+            <ol>
+              <li>Raise your right arm forward to horizontal (parallel to the floor).</li>
+              <li>Bend your elbow 90&deg; upward so your forearm is vertical.</li>
+              <li>Turn your palm toward your face.</li>
+              <li>Place your thumb and index finger on the two bony prominences on the inside and outside of your elbow.</li>
+              <li>Measure the distance between those two points with a ruler or calipers.</li>
+            </ol>
+            <p><strong>Note:</strong> This method is used in standard NHANES health surveys and is considered more accurate than the wrist method.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion" id="acc-why">
+        <button class="accordion-header" onclick="toggleAcc('acc-why')" aria-expanded="false">
+          Why Does Body Frame Size Matter?
+          <span class="accordion-icon">&#9662;</span>
+        </button>
+        <div class="accordion-body" role="region">
+          <div class="accordion-body-inner">
+            <ul>
+              <li><strong>Ideal weight:</strong> Two people with the same height can have very different healthy weights based on frame size. A large-framed person naturally weighs more.</li>
+              <li><strong>BMI limitations:</strong> BMI ignores frame size, which is why it can misclassify muscular or large-framed people as overweight.</li>
+              <li><strong>Clinical use:</strong> Clinicians use frame size to set individualized healthy weight targets using methods like Hamwi.</li>
+              <li><strong>Fitness goals:</strong> Understanding your frame helps set realistic body-composition and weight targets.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion" id="acc-hamwi">
+        <button class="accordion-header" onclick="toggleAcc('acc-hamwi')" aria-expanded="false">
+          What is the Hamwi Ideal Weight Method?
+          <span class="accordion-icon">&#9662;</span>
+        </button>
+        <div class="accordion-body" role="region">
+          <div class="accordion-body-inner">
+            <p>The Hamwi method (1964) is a clinical formula used to estimate ideal body weight:</p>
+            <ul>
+              <li><strong>Men:</strong> 106 lbs for 5 ft, plus 6 lbs for each additional inch over 5 ft</li>
+              <li><strong>Women:</strong> 100 lbs for 5 ft, plus 5 lbs for each additional inch over 5 ft</li>
+            </ul>
+            <p>Frame size adjustments:</p>
+            <ul>
+              <li>Small frame: &minus;10% from baseline</li>
+              <li>Medium frame: baseline (no adjustment)</li>
+              <li>Large frame: +10% from baseline</li>
+            </ul>
+            <p>A &plusmn;5 lb range is added to allow for natural variation.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+<!-- ─── Footer ───────────────────────────────────────── -->
+
+<!-- SEO: Do's and Don'ts -->
+<section class="card" style="margin-top:16px">
+<h2 style="margin-top:0">✅ Do's and ❌ Don'ts</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+<div class="card" style="border-color:rgba(34,197,94,.3)">
+<h3 style="color:#22c55e;margin-top:0;font-size:1rem">✅ Do's</h3>
+<ul style="list-style:none;padding:0;margin:0;color:#9aa4b2">
+<li style="padding:.35rem 0">✅ <b>Do</b> use this tool to save time on manual calculations.</li>
+<li style="padding:.35rem 0">✅ <b>Do</b> double-check your inputs for accuracy.</li>
+<li style="padding:.35rem 0">✅ <b>Do</b> share results with teammates using the Share feature.</li>
+<li style="padding:.35rem 0">✅ <b>Do</b> bookmark this tool for quick access.</li>
+</ul>
+</div>
+<div class="card" style="border-color:rgba(239,68,68,.3)">
+<h3 style="color:#ef4444;margin-top:0;font-size:1rem">❌ Don'ts</h3>
+<ul style="list-style:none;padding:0;margin:0;color:#9aa4b2">
+<li style="padding:.35rem 0">❌ <b>Don't</b> enter sensitive personal data — this tool doesn't store anything.</li>
+<li style="padding:.35rem 0">❌ <b>Don't</b> use results as professional financial/legal/medical advice.</li>
+<li style="padding:.35rem 0">❌ <b>Don't</b> forget to verify critical calculations with official tools.</li>
+<li style="padding:.35rem 0">❌ <b>Don't</b> assume results are guarantees — they are estimates.</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- SEO: FAQ -->
+<section class="card" style="margin-top:16px">
+<h2 style="margin-top:0">Frequently Asked Questions</h2>
+<details><summary><b>Is this tool free to use?</b></summary><p style="padding:6px 0;color:#9aa4b2">Yes. All UpTools calculators are completely free, with no sign-ups required.</p></details>
+<details><summary><b>Is my data private?</b></summary><p style="padding:6px 0;color:#9aa4b2">Yes. All calculations run locally in your browser. Nothing is uploaded to any server.</p></details>
+<details><summary><b>Does it work on mobile?</b></summary><p style="padding:6px 0;color:#9aa4b2">Yes. All tools are mobile-responsive and work on any device — phone, tablet, or desktop.</p></details>
+<details><summary><b>Can I use this offline?</b></summary><p style="padding:6px 0;color:#9aa4b2">Most tools work offline after the initial page load. No internet needed for calculations.</p></details>
+</section>
+<!-- SEO: How it works -->
+<section class="card" style="margin-top:16px">
+<details open>
+<summary style="cursor:pointer;font-weight:700;font-size:1.1rem;padding:4px 0">📐 How This Tool Works</summary>
+<div style="margin-top:8px;color:#9aa4b2">
+<p>This tool computes results entirely in your browser using JavaScript. No data is sent to any server, ensuring your privacy.</p>
+<p>Results update instantly as you type — no waiting for server responses.</p>
+<p style="margin-top:8px">Also try: <a href="/calculator/">Calculator</a> · <a href="/converter/">Converter</a> · <a href="/generator/">Generator</a></p>
+</div>
+</details>
+</section>
+<footer style="text-align:center; padding: 2rem 1rem; color: var(--muted); font-size: 0.85rem">
+  <nav style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-bottom:0.5rem">
+    <a href="/" style="color:var(--accent); text-decoration:none">UpTools</a>
+    <a href="/#tools" style="color:var(--accent); text-decoration:none">All Tools</a>
+    <a href="/games/" style="color:var(--accent); text-decoration:none">Games</a>
+    <a href="/about/" style="color:var(--accent); text-decoration:none">About</a>
+    <a href="/contact/" style="color:var(--accent); text-decoration:none">Contact</a>
+  </nav>
+  <div>&copy; 2025 UpTools. Free tools for everyone.</div>
+</footer>
+
+<!-- ─── JavaScript ───────────────────────────────────── -->
+<script>
+  /* ── State ── */
+  var isMetric = false;
+  var sex = 'male';
+
+  /* ── Unit Toggle ── */
+  var unitSwitch = document.getElementById('unitSwitch');
+  unitSwitch.addEventListener('click', toggleUnit);
+  unitSwitch.addEventListener('keydown', function(e) {
+    if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); toggleUnit(); }
+  });
+
+  function toggleUnit() {
+    isMetric = !isMetric;
+    unitSwitch.classList.toggle('metric', isMetric);
+    unitSwitch.setAttribute('aria-checked', String(isMetric));
+    document.getElementById('lbl-imperial').style.color = isMetric ? 'var(--muted)' : 'var(--text)';
+    document.getElementById('lbl-metric').style.color   = isMetric ? 'var(--text)'  : 'var(--muted)';
+    document.getElementById('height-imperial-group').style.display = isMetric ? 'none' : '';
+    document.getElementById('height-metric-group').style.display   = isMetric ? ''     : 'none';
+    document.getElementById('wrist-label').textContent = 'Wrist Circumference (' + (isMetric ? 'cm' : 'in') + ')';
+    document.getElementById('elbow-label').textContent = 'Elbow Breadth (' + (isMetric ? 'cm' : 'in') + ')';
+    ['wrist-val','elbow-val','height-cm','height-ft','height-in'].forEach(function(id) {
+      document.getElementById(id).value = '';
+    });
+    hideResult();
+    renderRefTables();
+  }
+
+  /* ── Sex Toggle ── */
+  function setSex(s) {
+    sex = s;
+    document.getElementById('btn-male').classList.toggle('active', s === 'male');
+    document.getElementById('btn-female').classList.toggle('active', s === 'female');
+    hideResult();
+    renderRefTables();
+  }
+
+  /* ── Get Height in total inches ── */
+  function getHeightInches() {
+    if (isMetric) {
+      var cm = parseFloat(document.getElementById('height-cm').value);
+      if (!cm || cm < 90 || cm > 250) return null;
+      return cm / 2.54;
+    } else {
+      var ft = parseFloat(document.getElementById('height-ft').value) || 0;
+      var inches = parseFloat(document.getElementById('height-in').value) || 0;
+      var total = ft * 12 + inches;
+      if (total < 36 || total > 100) return null;
+      return total;
+    }
+  }
+
+  /* ── Wrist Frame Size ── */
+  function wristFrameSize(heightIn, wristIn, sx) {
+    if (sx === 'female') {
+      if (heightIn < 62) {
+        if (wristIn < 5.5)   return 'small';
+        if (wristIn <= 5.75) return 'medium';
+        return 'large';
+      } else if (heightIn <= 65) {
+        if (wristIn < 6.0)  return 'small';
+        if (wristIn <= 6.25) return 'medium';
+        return 'large';
+      } else {
+        if (wristIn < 6.25) return 'small';
+        if (wristIn <= 6.5) return 'medium';
+        return 'large';
+      }
+    } else {
+      if (wristIn < 6.5)  return 'small';
+      if (wristIn <= 7.5) return 'medium';
+      return 'large';
+    }
+  }
+
+  /* ── Elbow Frame Size ── */
+  function elbowFrameSize(heightIn, elbowIn, sx) {
+    var s, m;
+    if (sx === 'male') {
+      if      (heightIn <= 63) { s = 2.5;   m = 2.875; }
+      else if (heightIn <= 67) { s = 2.625; m = 2.875; }
+      else if (heightIn <= 71) { s = 2.75;  m = 3.0;   }
+      else if (heightIn <= 75) { s = 2.75;  m = 3.125; }
+      else                     { s = 2.875; m = 3.25;  }
+    } else {
+      if      (heightIn <= 59) { s = 2.25;  m = 2.5;   }
+      else if (heightIn <= 63) { s = 2.25;  m = 2.5;   }
+      else if (heightIn <= 67) { s = 2.375; m = 2.625; }
+      else if (heightIn <= 71) { s = 2.375; m = 2.625; }
+      else                     { s = 2.5;   m = 2.75;  }
+    }
+    if (elbowIn < s)  return 'small';
+    if (elbowIn <= m) return 'medium';
+    return 'large';
+  }
+
+  /* ── Hamwi Ideal Weight (lbs) ── */
+  function hamwiWeight(heightIn, sx, frameSize) {
+    var extra = Math.max(0, heightIn - 60);
+    var base = (sx === 'male') ? (106 + extra * 6) : (100 + extra * 5);
+    if (frameSize === 'small') return base * 0.9;
+    if (frameSize === 'large') return base * 1.1;
+    return base;
+  }
+
+  /* ── Calculate Wrist ── */
+  function calcWrist() {
+    var heightIn = getHeightInches();
+    if (!heightIn) { alert('Please enter a valid height.'); return; }
+    var wristRaw = parseFloat(document.getElementById('wrist-val').value);
+    if (!wristRaw || wristRaw < 2) { alert('Please enter a valid wrist measurement.'); return; }
+    var wristIn = isMetric ? wristRaw / 2.54 : wristRaw;
+    var frame = wristFrameSize(heightIn, wristIn, sex);
+    showResult('Wrist Circumference Method', frame, heightIn);
+    highlightRefRow('wrist', heightIn);
+  }
+
+  /* ── Calculate Elbow ── */
+  function calcElbow() {
+    var heightIn = getHeightInches();
+    if (!heightIn) { alert('Please enter a valid height.'); return; }
+    var elbowRaw = parseFloat(document.getElementById('elbow-val').value);
+    if (!elbowRaw || elbowRaw < 1) { alert('Please enter a valid elbow measurement.'); return; }
+    var elbowIn = isMetric ? elbowRaw / 2.54 : elbowRaw;
+    var frame = elbowFrameSize(heightIn, elbowIn, sex);
+    showResult('Elbow Breadth Method', frame, heightIn);
+    highlightRefRow('elbow', heightIn);
+  }
+
+  /* ── Show Result ── */
+  var frameDescriptions = {
+    small: 'You have a fine, narrow bone structure. Your healthy weight range is naturally on the lower end for your height.',
+    medium: 'You have an average bone structure typical for your height and sex. Standard weight guidelines apply well to you.',
+    large: 'You have a broad, dense bone structure. Your healthy weight range is naturally higher — this is not the same as being overweight.'
+  };
+
+  function showResult(method, frame, heightIn) {
+    document.getElementById('result-method-label').textContent = method;
+    var sizeEl = document.getElementById('result-size');
+    sizeEl.textContent = frame.charAt(0).toUpperCase() + frame.slice(1);
+    sizeEl.className = 'result-size ' + frame;
+    document.getElementById('result-desc').textContent = frameDescriptions[frame];
+
+    var idealLbs = hamwiWeight(heightIn, sex, frame);
+    var lo = Math.round(idealLbs - 5);
+    var hi = Math.round(idealLbs + 5);
+
+    if (isMetric) {
+      var loKg = (lo * 0.453592).toFixed(1);
+      var hiKg = (hi * 0.453592).toFixed(1);
+      document.getElementById('weight-range').textContent = loKg + ' \u2013 ' + hiKg;
+      document.getElementById('weight-unit').textContent = 'kilograms (kg)';
+    } else {
+      document.getElementById('weight-range').textContent = lo + ' \u2013 ' + hi;
+      document.getElementById('weight-unit').textContent = 'pounds (lbs)';
+    }
+
+    var card = document.getElementById('result-card');
+    card.classList.remove('visible');
+    void card.offsetWidth; // force reflow for re-animation
+    card.classList.add('visible');
+    card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function hideResult() {
+    document.getElementById('result-card').classList.remove('visible');
+  }
+
+  /* ── Reference Tables ── */
+  function showRefTab(tab, el) {
+    document.querySelectorAll('.ref-tab').forEach(function(t) {
+      t.classList.remove('active');
+      t.setAttribute('aria-selected','false');
+    });
+    el.classList.add('active');
+    el.setAttribute('aria-selected','true');
+    document.getElementById('ref-wrist-table').style.display = tab === 'wrist' ? '' : 'none';
+    document.getElementById('ref-elbow-table').style.display = tab === 'elbow' ? '' : 'none';
+  }
+
+  function renderRefTables() {
+    renderWristTable();
+    renderElbowTable();
+  }
+
+  function toFtIn(totalIn) {
+    var ft = Math.floor(totalIn / 12);
+    var inches = totalIn % 12;
+    return ft + "'" + inches + '"';
+  }
+
+  function fmtH(loIn, hiIn) {
+    if (isMetric) {
+      return Math.round(loIn * 2.54) + '\u2013' + Math.round(hiIn * 2.54) + ' cm';
+    }
+    return toFtIn(loIn) + '\u2013' + toFtIn(hiIn);
+  }
+
+  function fmtIn(val) {
+    if (isMetric) return (val * 2.54).toFixed(1) + ' cm';
+    return val + '"';
+  }
+
+  function renderWristTable() {
+    var html = '<table><thead><tr><th>Height</th><th class="frame-small">Small Frame</th><th class="frame-medium">Medium Frame</th><th class="frame-large">Large Frame</th></tr></thead><tbody>';
+    if (sex === 'female') {
+      var rows = [
+        { id:'r48',  hLabel: isMetric ? '< ' + Math.round(62*2.54)+' cm' : '< 5\'2"',            s:5.5,   m:5.75 },
+        { id:'r62',  hLabel: isMetric ? Math.round(62*2.54)+'\u2013'+Math.round(65*2.54)+' cm' : '5\'2"\u20135\'5"', s:6.0,   m:6.25 },
+        { id:'r66',  hLabel: isMetric ? '> ' + Math.round(65*2.54)+' cm' : '> 5\'5"',            s:6.25,  m:6.5  },
+      ];
+      rows.forEach(function(r) {
+        html += '<tr id="ref-wrist-row-' + r.id + '">'
+          + '<td>' + r.hLabel + '</td>'
+          + '<td class="frame-small">< ' + fmtIn(r.s) + '</td>'
+          + '<td class="frame-medium">' + fmtIn(r.s) + '\u2013' + fmtIn(r.m) + '</td>'
+          + '<td class="frame-large">> ' + fmtIn(r.m) + '</td>'
+          + '</tr>';
+      });
+    } else {
+      html += '<tr id="ref-wrist-row-male">'
+        + '<td>All Heights</td>'
+        + '<td class="frame-small">< ' + (isMetric ? '16.5 cm' : '6.5"') + '</td>'
+        + '<td class="frame-medium">' + (isMetric ? '16.5\u201319.0 cm' : '6.5\u20137.5"') + '</td>'
+        + '<td class="frame-large">> ' + (isMetric ? '19.0 cm' : '7.5"') + '</td>'
+        + '</tr>';
+    }
+    html += '</tbody></table>';
+    document.getElementById('ref-wrist-table').innerHTML = html;
+  }
+
+  function renderElbowTable() {
+    var rows = (sex === 'male') ? [
+      { hLo:62, hHi:63, s:2.5,   m:2.875 },
+      { hLo:64, hHi:67, s:2.625, m:2.875 },
+      { hLo:68, hHi:71, s:2.75,  m:3.0   },
+      { hLo:72, hHi:75, s:2.75,  m:3.125 },
+      { hLo:76, hHi:84, s:2.875, m:3.25  },
+    ] : [
+      { hLo:58, hHi:59, s:2.25,  m:2.5   },
+      { hLo:60, hHi:63, s:2.25,  m:2.5   },
+      { hLo:64, hHi:67, s:2.375, m:2.625 },
+      { hLo:68, hHi:71, s:2.375, m:2.625 },
+      { hLo:72, hHi:84, s:2.5,   m:2.75  },
+    ];
+
+    var html = '<table><thead><tr><th>Height Range</th><th class="frame-small">Small Frame</th><th class="frame-medium">Medium Frame</th><th class="frame-large">Large Frame</th></tr></thead><tbody>';
+    rows.forEach(function(r) {
+      html += '<tr id="ref-elbow-row-' + r.hLo + '">'
+        + '<td>' + fmtH(r.hLo, r.hHi) + '</td>'
+        + '<td class="frame-small">< ' + fmtIn(r.s) + '</td>'
+        + '<td class="frame-medium">' + fmtIn(r.s) + '\u2013' + fmtIn(r.m) + '</td>'
+        + '<td class="frame-large">> ' + fmtIn(r.m) + '</td>'
+        + '</tr>';
+    });
+    html += '</tbody></table>';
+    document.getElementById('ref-elbow-table').innerHTML = html;
+  }
+
+  /* ── Highlight Reference Row ── */
+  function highlightRefRow(method, heightIn) {
+    document.querySelectorAll('tbody tr.highlighted').forEach(function(r) { r.classList.remove('highlighted'); });
+
+    if (method === 'wrist') {
+      showRefTab('wrist', document.getElementById('tab-wrist-ref'));
+      var rowId;
+      if (sex === 'male') {
+        rowId = 'ref-wrist-row-male';
+      } else {
+        if (heightIn < 62)       rowId = 'ref-wrist-row-r48';
+        else if (heightIn <= 65) rowId = 'ref-wrist-row-r62';
+        else                     rowId = 'ref-wrist-row-r66';
+      }
+      var row = document.getElementById(rowId);
+      if (row) row.classList.add('highlighted');
+    } else {
+      showRefTab('elbow', document.getElementById('tab-elbow-ref'));
+      var maleRanges   = [62, 64, 68, 72, 76];
+      var femaleRanges = [58, 60, 64, 68, 72];
+      var ranges = (sex === 'male') ? maleRanges : femaleRanges;
+      var rowLo = ranges[ranges.length - 1];
+      for (var i = 0; i < ranges.length - 1; i++) {
+        if (heightIn < ranges[i + 1]) { rowLo = ranges[i]; break; }
+      }
+      var eRow = document.getElementById('ref-elbow-row-' + rowLo);
+      if (eRow) eRow.classList.add('highlighted');
+    }
+  }
+
+  /* ── Accordions ── */
+  function toggleAcc(id) {
+    var acc = document.getElementById(id);
+    var btn = acc.querySelector('.accordion-header');
+    var isOpen = acc.classList.contains('open');
+    acc.classList.toggle('open', !isOpen);
+    btn.setAttribute('aria-expanded', String(!isOpen));
+  }
+
+  /* ── Init ── */
+  renderRefTables();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to Use Body Frame Size Calculator - Small Medium Large",
+  "description": "Step-by-step guide to using Body Frame Size Calculator - Small Medium Large.",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "position": 1,
+      "name": "Open Body Frame Size Calculator - Small Medium Large at https://www.uptools.in/body-frame-size/",
+      "text": "Open Body Frame Size Calculator - Small Medium Large at https://www.uptools.in/body-frame-size/"
+    },
+    {
+      "@type": "HowToStep",
+      "position": 2,
+      "name": "Enter your details in the provided fields",
+      "text": "Enter your details in the provided fields"
+    },
+    {
+      "@type": "HowToStep",
+      "position": 3,
+      "name": "Click Calculate to get instant results",
+      "text": "Click Calculate to get instant results"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Body Frame Size Calculator - Small Medium Large",
+  "applicationCategory": "UtilityApplication",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+  "operatingSystem": "Web"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+    "@type": "ListItem", "position": 1,
+    "name": "Home", "item": "https://www.uptools.in/"
+  },{ 
+    "@type": "ListItem", "position": 2,
+    "name": "Body Frame Size Calculator - Small Medium Large", "item": "https://www.uptools.in/body-frame-size/"
+  }]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "What is Body Frame Size Calculator - Small Medium Large?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Determine your body frame size (small, medium, or large) using wrist circumference or elbow breadth methods. Includes ideal weight range for your frame type."
+    }
+  },{ 
+    "@type": "Question",
+    "name": "Is Body Frame Size Calculator - Small Medium Large free to use?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes, Body Frame Size Calculator - Small Medium Large is completely free. No sign-up or credit card required."
+    }
+  }]
+}
+</script>
+</body>
+</html>
