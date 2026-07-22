@@ -32,15 +32,15 @@ function calculateEntropy(poolSize, length) {
 
 function formatTime(seconds) {
   if (seconds < 0.001) return 'Instant'
-  if (seconds < 1) return `${(seconds * 1000).toFixed(0)} milliseconds`
-  if (seconds < 60) return `${seconds.toFixed(1)} seconds`
-  if (seconds < 3600) return `${(seconds / 60).toFixed(1)} minutes`
+  if (seconds < 1) return `${(seconds * 1000).toFixed(0)} ms`
+  if (seconds < 60) return `${seconds.toFixed(1)} sec`
+  if (seconds < 3600) return `${(seconds / 60).toFixed(1)} min`
   if (seconds < 86400) return `${(seconds / 3600).toFixed(1)} hours`
   if (seconds < 31536000) return `${(seconds / 86400).toFixed(1)} days`
   if (seconds < 31536000 * 1000) return `${(seconds / 31536000).toFixed(1)} years`
-  if (seconds < 31536000 * 1e6) return `${(seconds / 31536000 / 1000).toFixed(1)} thousand years`
-  if (seconds < 31536000 * 1e9) return `${(seconds / 31536000 / 1e6).toFixed(1)} million years`
-  return `${(seconds / 31536000 / 1e9).toFixed(1)} billion years`
+  if (seconds < 31536000 * 1e6) return `${(seconds / 31536000 / 1e3).toFixed(1)}K years`
+  if (seconds < 31536000 * 1e9) return `${(seconds / 31536000 / 1e6).toFixed(1)}M years`
+  return `${(seconds / 31536000 / 1e9).toFixed(1)}B years`
 }
 
 function getStrength(entropy) {
@@ -68,9 +68,10 @@ export default function password_generator() {
   const [length, setLength] = useState(16)
   const [opts, setOpts] = useState({ upper: true, lower: true, numbers: true, symbols: false })
   const [count, setCount] = useState(5)
-  const [passwords, setPasswords] = useState(() => Array.from({ length: 5 }, () => generate(16, { upper: true, lower: true, numbers: true, symbols: false })))
+  const [passwords, setPasswords] = useState([])
   const [copied, setCopied] = useState(null)
   const [showAnalysis, setShowAnalysis] = useState(null)
+  const [generated, setGenerated] = useState(false)
 
   const poolSize = useMemo(() => {
     let s = 0
@@ -87,7 +88,7 @@ export default function password_generator() {
     const combinations = Math.pow(2, entropy)
     return ATTACK_SPEEDS.map(a => ({
       ...a,
-      time: formatTime(combinations / a.speed / 2) // average case = half
+      time: formatTime(combinations / a.speed / 2)
     }))
   }, [entropy])
 
@@ -97,13 +98,14 @@ export default function password_generator() {
     setPasswords(Array.from({ length: count }, () => generate(length, opts)))
     setCopied(null)
     setShowAnalysis(null)
+    setGenerated(true)
   }, [length, opts, count])
 
   const copy = (text, i) => {
     navigator.clipboard.writeText(text); setCopied(i); setTimeout(() => setCopied(null), 2000)
   }
 
-  const factIndex = useMemo(() => Math.floor(Math.random() * FUN_FACTS.length), [copied])
+  const factIndex = useMemo(() => Math.floor(Math.random() * FUN_FACTS.length), [generated])
 
   return (
     <ToolLayout
@@ -119,8 +121,8 @@ export default function password_generator() {
       howItWorks={[
         'Set the desired password length with the slider (6 to 64 characters).',
         'Toggle character sets: uppercase, lowercase, numbers, symbols.',
-        'Watch the real-time entropy and crack time analysis update.',
-        'Click Generate and copy the one you like best.',
+        'Click Generate to see passwords with strength analysis and crack times.',
+        'Copy the one you like best.',
       ]}
       schema={{
         "@context": "https://schema.org", "@type": "SoftwareApplication",
@@ -130,40 +132,6 @@ export default function password_generator() {
       }}
     >
       <div className="max-w-3xl mx-auto space-y-6">
-        {/* ─── Strength Meter (Live) ─── */}
-        <div className="p-5 rounded-2xl bg-white/[0.06] border border-white/[0.08]">
-          <div className="flex items-center justify-between mb-3">
-            <span className="text-sm font-semibold text-slate-300">Password Strength</span>
-            <span className="text-lg" style={{ color: strength.color }}>{strength.emoji} {strength.label}</span>
-          </div>
-          <div className="h-3 rounded-full bg-white/5 overflow-hidden mb-3">
-            <div className="h-full rounded-full transition-all duration-700 ease-out" style={{ width: `${strength.pct}%`, background: `linear-gradient(90deg, ${strength.color}80, ${strength.color})` }} />
-          </div>
-          <div className="flex items-center justify-between text-[11px]">
-            <span className="text-slate-500">{strength.tip}</span>
-            <span className="text-slate-500">{entropy.toFixed(1)} bits of entropy</span>
-          </div>
-        </div>
-
-        {/* ─── Crack Time Analysis ─── */}
-        <div className="p-5 rounded-2xl bg-white/[0.06] border border-white/[0.08]">
-          <h3 className="text-sm font-semibold text-slate-300 mb-3">⏱️ Time to Crack</h3>
-          <div className="space-y-2.5">
-            {crackTimes.map(ct => (
-              <div key={ct.label} className="flex items-center gap-3">
-                <span className="text-lg w-8 text-center">{ct.icon}</span>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-semibold text-slate-400">{ct.label}</span>
-                    <span className="text-xs font-bold text-white font-mono">{ct.time}</span>
-                  </div>
-                  <div className="text-[10px] text-slate-600">{ct.desc}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
         {/* ─── Length Slider ─── */}
         <div>
           <div className="flex justify-between items-baseline mb-3">
@@ -186,7 +154,7 @@ export default function password_generator() {
                 <div className="flex items-center justify-between">
                   <div>
                     <span className="text-sm font-bold text-white">{label}</span>
-                    <span className="text-[10px] text-slate-600 ml-2">({size} chars)</span>
+                    <span className="text-[10px] text-slate-600 ml-2">({size})</span>
                   </div>
                   <div className={`w-5 h-5 rounded-md flex items-center justify-center text-xs font-bold transition-all ${opts[key] ? 'bg-red-500 text-white' : 'bg-white/10 text-transparent'}`}>
                     {opts[key] && '✓'}
@@ -196,13 +164,13 @@ export default function password_generator() {
               </button>
             ))}
           </div>
-          <div className="mt-2 text-[11px] text-slate-600">Pool size: <span className="text-slate-400 font-mono">{poolSize}</span> characters → <span className="text-slate-400 font-mono">{poolSize}</span>^{length} = <span className="text-slate-400 font-mono">{Math.pow(poolSize, length).toExponential(2)}</span> combinations</div>
+          <div className="mt-2 text-[11px] text-slate-600">Pool: <span className="text-slate-400 font-mono">{poolSize}</span> chars → <span className="text-slate-400 font-mono">{poolSize}^{length}</span> = <span className="text-slate-400 font-mono">{Math.pow(poolSize, length).toExponential(1)}</span> combos</div>
         </div>
 
         {/* ─── Batch + Generate ─── */}
         <div className="flex gap-3">
           <div className="flex-1">
-            <label className="text-xs font-semibold text-slate-500 mb-2 block">Generate how many?</label>
+            <label className="text-xs font-semibold text-slate-500 mb-2 block">How many?</label>
             <div className="flex gap-2">
               {[1, 3, 5, 10].map(n => (
                 <button key={n} onClick={() => setCount(n)}
@@ -220,78 +188,119 @@ export default function password_generator() {
           </div>
         </div>
 
-        {/* ─── Password List ─── */}
-        <div ref={resultRef} className="space-y-3">
-          {passwords.map((pw, i) => {
-            const pwEntropy = calculateEntropy(poolSize, pw.length)
-            const pwStr = getStrength(pwEntropy)
-            const pwCracks = ATTACK_SPEEDS.map(a => ({
-              ...a,
-              time: formatTime(Math.pow(2, pwEntropy) / a.speed / 2)
-            }))
-            const isExpanded = showAnalysis === i
+        {/* ─── Results (only after Generate) ─── */}
+        {generated && (
+          <>
+            {/* Strength Meter */}
+            <div className="p-5 rounded-2xl bg-white/[0.06] border border-white/[0.08]">
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-sm font-semibold text-slate-300">Password Strength</span>
+                <span className="text-lg" style={{ color: strength.color }}>{strength.emoji} {strength.label}</span>
+              </div>
+              <div className="h-3 rounded-full bg-white/5 overflow-hidden mb-3">
+                <div className="h-full rounded-full transition-all duration-700 ease-out" style={{ width: `${strength.pct}%`, background: `linear-gradient(90deg, ${strength.color}80, ${strength.color})` }} />
+              </div>
+              <div className="flex items-center justify-between text-[11px]">
+                <span className="text-slate-500">{strength.tip}</span>
+                <span className="text-slate-500">{entropy.toFixed(1)} bits entropy</span>
+              </div>
+            </div>
 
-            return (
-              <div key={i} className="p-4 rounded-2xl bg-white/[0.05] border border-white/8 hover:border-white/12 transition-all group">
-                <div className="flex items-center gap-3 mb-3">
-                  <code className="flex-1 text-sm text-white font-mono break-all bg-black/20 rounded-xl px-4 py-3 border border-white/6">{pw}</code>
-                  <button onClick={() => copy(pw, i)}
-                    className={`px-4 py-3 rounded-xl text-xs font-bold shrink-0 transition-all duration-200 active:scale-95 ${
-                      copied === i
-                        ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
-                        : 'bg-white/5 border border-white/8 text-slate-400 hover:text-white hover:border-white/15 hover:bg-white/10'
-                    }`}>
-                    {copied === i ? '✓ Copied' : '📋 Copy'}
-                  </button>
-                </div>
-
-                {/* Strength Bar */}
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="flex-1 h-2 rounded-full bg-white/5 overflow-hidden">
-                    <div className="h-full rounded-full transition-all duration-500" style={{ width: `${pwStr.pct}%`, background: pwStr.color }} />
-                  </div>
-                  <span className="text-xs font-bold px-2 py-0.5 rounded-md" style={{ color: pwStr.color, background: pwStr.bg }}>{pwStr.emoji} {pwStr.label}</span>
-                </div>
-
-                {/* Quick Stats */}
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3 text-[10px] text-slate-600">
-                    <span>{pw.length} chars</span>
-                    <span>•</span>
-                    <span>{pwEntropy.toFixed(0)} bits</span>
-                    <span>•</span>
-                    <span>Fast crack: {pwCracks[1].time}</span>
-                  </div>
-                  <button onClick={() => setShowAnalysis(isExpanded ? null : i)}
-                    className="text-[10px] text-slate-500 hover:text-white transition-colors">
-                    {isExpanded ? '▲ Less' : '▼ Details'}
-                  </button>
-                </div>
-
-                {/* Expanded Analysis */}
-                {isExpanded && (
-                  <div className="mt-3 p-3 rounded-xl bg-black/20 border border-white/5 space-y-1.5" style={{ animation: 'slideUp 0.2s ease-out' }}>
-                    {pwCracks.map(ct => (
-                      <div key={ct.label} className="flex items-center justify-between text-[11px]">
-                        <span className="text-slate-500">{ct.icon} {ct.label}</span>
-                        <span className="font-mono font-bold text-white">{ct.time}</span>
+            {/* Crack Time Analysis */}
+            <div className="p-5 rounded-2xl bg-white/[0.06] border border-white/[0.08]">
+              <h3 className="text-sm font-semibold text-slate-300 mb-3">⏱️ Time to Crack</h3>
+              <div className="space-y-2.5">
+                {crackTimes.map(ct => (
+                  <div key={ct.label} className="flex items-center gap-3">
+                    <span className="text-lg w-8 text-center">{ct.icon}</span>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-semibold text-slate-400">{ct.label}</span>
+                        <span className="text-xs font-bold text-white font-mono">{ct.time}</span>
                       </div>
-                    ))}
-                    <div className="pt-1.5 border-t border-white/5 text-[10px] text-slate-600">
-                      Combinations: {Math.pow(poolSize, pw.length).toExponential(2)}
+                      <div className="text-[10px] text-slate-600">{ct.desc}</div>
                     </div>
                   </div>
-                )}
+                ))}
               </div>
-            )
-          })}
-        </div>
+            </div>
+
+            {/* Password List */}
+            <div ref={resultRef} className="space-y-3">
+              {passwords.map((pw, i) => {
+                const pwEntropy = calculateEntropy(poolSize, pw.length)
+                const pwStr = getStrength(pwEntropy)
+                const pwCracks = ATTACK_SPEEDS.map(a => ({
+                  ...a,
+                  time: formatTime(Math.pow(2, pwEntropy) / a.speed / 2)
+                }))
+                const isExpanded = showAnalysis === i
+
+                return (
+                  <div key={i} className="p-4 rounded-2xl bg-white/[0.05] border border-white/8 hover:border-white/12 transition-all group">
+                    <div className="flex items-center gap-3 mb-3">
+                      <code className="flex-1 text-sm text-white font-mono break-all bg-black/20 rounded-xl px-4 py-3 border border-white/6">{pw}</code>
+                      <button onClick={() => copy(pw, i)}
+                        className={`px-4 py-3 rounded-xl text-xs font-bold shrink-0 transition-all duration-200 active:scale-95 ${
+                          copied === i
+                            ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
+                            : 'bg-white/5 border border-white/8 text-slate-400 hover:text-white hover:border-white/15 hover:bg-white/10'
+                        }`}>
+                        {copied === i ? '✓ Copied' : '📋 Copy'}
+                      </button>
+                    </div>
+
+                    {/* Strength Bar */}
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="flex-1 h-2 rounded-full bg-white/5 overflow-hidden">
+                        <div className="h-full rounded-full transition-all duration-500" style={{ width: `${pwStr.pct}%`, background: pwStr.color }} />
+                      </div>
+                      <span className="text-xs font-bold px-2 py-0.5 rounded-md" style={{ color: pwStr.color, background: pwStr.bg }}>{pwStr.emoji} {pwStr.label}</span>
+                    </div>
+
+                    {/* Quick Stats + Expand */}
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3 text-[10px] text-slate-600">
+                        <span>{pw.length} chars</span>
+                        <span>•</span>
+                        <span>{pwEntropy.toFixed(0)} bits</span>
+                        <span>•</span>
+                        <span>Fast crack: {pwCracks[1].time}</span>
+                      </div>
+                      <button onClick={() => setShowAnalysis(isExpanded ? null : i)}
+                        className="text-[10px] text-slate-500 hover:text-white transition-colors">
+                        {isExpanded ? '▲ Less' : '▼ Details'}
+                      </button>
+                    </div>
+
+                    {/* Expanded */}
+                    {isExpanded && (
+                      <div className="mt-3 p-3 rounded-xl bg-black/20 border border-white/5 space-y-1.5" style={{ animation: 'slideUp 0.2s ease-out' }}>
+                        {pwCracks.map(ct => (
+                          <div key={ct.label} className="flex items-center justify-between text-[11px]">
+                            <span className="text-slate-500">{ct.icon} {ct.label}</span>
+                            <span className="font-mono font-bold text-white">{ct.time}</span>
+                          </div>
+                        ))}
+                        <div className="pt-1.5 border-t border-white/5 text-[10px] text-slate-600">
+                          Combinations: {Math.pow(poolSize, pw.length).toExponential(2)}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )
+              })}
+            </div>
+          </>
+        )}
 
         {/* ─── Fun Fact ─── */}
-        <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/[0.06]">
-          <div className="text-[11px] text-slate-500 font-semibold uppercase tracking-wider mb-1">💡 Did you know?</div>
-          <div className="text-sm text-slate-300">{FUN_FACTS[factIndex]}</div>
-        </div>
+        {generated && (
+          <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/[0.06]">
+            <div className="text-[11px] text-slate-500 font-semibold uppercase tracking-wider mb-1">💡 Did you know?</div>
+            <div className="text-sm text-slate-300">{FUN_FACTS[factIndex]}</div>
+          </div>
+        )}
       </div>
     </ToolLayout>
   )
