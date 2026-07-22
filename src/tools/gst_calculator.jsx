@@ -1,4 +1,3 @@
-import useJumpToResult from '../hooks/useJumpToResult'
 import { useState, useMemo, useCallback, useRef, useEffect } from 'react'
 import ToolLayout from '../components/ToolLayout'
 
@@ -51,7 +50,7 @@ function AnimatedNumber({ value, prefix = '' }) {
 
 export default function gst_calculator() {
 
-  const { ref: resultRef, trigger, reset } = useJumpToResult()
+  const { ref: resultRef, jumpTo } = useJumpToResult()
   const [amount, setAmount] = useState('')
   const [rate, setRate] = useState(18)
   const [customRate, setCustomRate] = useState('')
@@ -64,7 +63,6 @@ export default function gst_calculator() {
   const amt = parseFloat(amount) || 0
 
   const result = useMemo(() => computeGST(amt, effectiveRate, inclusive, supply), [amt, effectiveRate, inclusive, supply])
-  if (result !== null && result !== undefined && result !== 0) trigger()
 
   const handleCopy = useCallback(() => {
     if (!result) return
@@ -245,7 +243,7 @@ export default function gst_calculator() {
             <div className="p-5 rounded-2xl bg-emerald-500/10 border border-emerald-500/20">
               <div className="flex justify-between items-center">
                 <span className="text-sm font-bold text-white">Total Amount</span>
-                <span ref={resultRef} className="text-3xl font-extrabold text-emerald-400 tracking-tight">
+                <span className="text-3xl font-extrabold text-emerald-400 tracking-tight">
                   <AnimatedNumber value={result.total} />
                 </span>
               </div>
@@ -255,7 +253,7 @@ export default function gst_calculator() {
 
         {/* Empty State */}
         {!result && (
-          <div className="text-center py-12 rounded-3xl border-2 border-dashed border-white/8 bg-white/[0.01]">
+          <div ref={resultRef} className="text-center py-12 rounded-3xl border-2 border-dashed border-white/8 bg-white/[0.01]">
             <div className="text-4xl mb-3 opacity-20">🧮</div>
             <p className="text-sm text-slate-600 font-medium">Enter an amount and select a rate to calculate GST</p>
           </div>

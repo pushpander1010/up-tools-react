@@ -1,10 +1,9 @@
-import useJumpToResult from '../hooks/useJumpToResult'
 import { useState, useMemo } from 'react'
 import ToolLayout from '../components/ToolLayout'
 
 export default function word_counter() {
 
-  const { ref: resultRef, trigger, reset } = useJumpToResult()
+  const { ref: resultRef, jumpTo } = useJumpToResult()
   const [text, setText] = useState('')
 
   const stats = useMemo(() => {
@@ -19,7 +18,6 @@ export default function word_counter() {
     const pages = (words / 250).toFixed(1)
     return { words, chars, charsNoSpaces, sentences, paragraphs, readingTime, speakingTime, pages }
   }, [text])
-  if (result !== null && result !== undefined && result !== 0) trigger()
 
   const wordDensity = useMemo(() => {
     if (!text || !stats) return []
@@ -100,7 +98,7 @@ export default function word_counter() {
         )}
 
         {!text && (
-          <div className="text-center py-12 rounded-3xl border-2 border-dashed border-white/8 bg-white/[0.01]">
+          <div ref={resultRef} className="text-center py-12 rounded-3xl border-2 border-dashed border-white/8 bg-white/[0.01]">
             <div className="text-4xl mb-3 opacity-20">📝</div>
             <p className="text-sm text-slate-600 font-medium">Start typing to see word count statistics</p>
           </div>

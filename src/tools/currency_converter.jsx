@@ -1,4 +1,3 @@
-import useJumpToResult from '../hooks/useJumpToResult'
 import { useState, useEffect, useMemo } from 'react'
 import ToolLayout from '../components/ToolLayout'
 
@@ -34,7 +33,7 @@ const FALLBACK_RATES = {
 
 export default function currency_converter() {
 
-  const { ref: resultRef, trigger, reset } = useJumpToResult()
+  const { ref: resultRef, jumpTo } = useJumpToResult()
   const [amount, setAmount] = useState('1')
   const [from, setFrom] = useState('USD')
   const [to, setTo] = useState('INR')
@@ -63,7 +62,6 @@ export default function currency_converter() {
     const toRate = rates[to] || 1
     return (amt / fromRate) * toRate
   }, [amount, from, to, rates])
-  if (result !== null && result !== undefined && result !== 0) trigger()
 
   const swap = () => { setFrom(to); setTo(from) }
 
@@ -120,9 +118,9 @@ export default function currency_converter() {
         </div>
 
         {/* Result */}
-        <div className="p-6 rounded-3xl bg-gradient-to-br from-emerald-500/8 via-white/[0.02] to-transparent border border-emerald-500/15 text-center" style={{ animation: 'slideUp 0.3s ease-out' }}>
+        <div ref={resultRef} className="p-6 rounded-3xl bg-gradient-to-br from-emerald-500/8 via-white/[0.02] to-transparent border border-emerald-500/15 text-center" style={{ animation: 'slideUp 0.3s ease-out' }}>
           <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider mb-2">Converted Amount</div>
-          <div ref={resultRef} className="text-4xl font-extrabold text-emerald-400">
+          <div className="text-4xl font-extrabold text-emerald-400">
             {CURRENCIES.find(c => c.code === to)?.symbol} {fmt(result)}
           </div>
           <div className="text-sm text-slate-400 mt-2">

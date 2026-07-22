@@ -1,4 +1,3 @@
-import useJumpToResult from '../hooks/useJumpToResult'
 import { useState, useCallback } from 'react'
 import ToolLayout from '../components/ToolLayout'
 
@@ -8,7 +7,7 @@ function generateUUID() {
 
 export default function uuid_generator() {
 
-  const { ref: resultRef, trigger, reset } = useJumpToResult()
+  const { ref: resultRef, jumpTo } = useJumpToResult()
   const [uuids, setUuids] = useState(() => [generateUUID()])
   const [count, setCount] = useState(1)
   const [copied, setCopied] = useState(null)
@@ -86,7 +85,7 @@ export default function uuid_generator() {
         </div>
 
         {/* Generate */}
-        <button onClick={gen}
+        <button onClick={() => {gen(); jumpTo()}}
           className="glow-btn w-full py-3 rounded-xl text-sm">🔄 Generate</button>
 
         {/* UUIDs */}

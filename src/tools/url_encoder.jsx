@@ -1,10 +1,9 @@
-import useJumpToResult from '../hooks/useJumpToResult'
 import { useState } from 'react'
 import ToolLayout from '../components/ToolLayout'
 
 export default function url_encoder() {
 
-  const { ref: resultRef, trigger, reset } = useJumpToResult()
+  const { ref: resultRef, jumpTo } = useJumpToResult()
   const [input, setInput] = useState('')
   const [mode, setMode] = useState('encode')
   const [output, setOutput] = useState('')
@@ -72,7 +71,7 @@ export default function url_encoder() {
           className="w-full bg-black/20 border-2 border-white/8 rounded-2xl px-5 py-4 text-sm font-mono outline-none focus:border-cyan-500/40 transition-all placeholder:text-slate-600 resize-none" />
 
         {/* Process Button */}
-        <button onClick={process}
+        <button onClick={() => {process(); jumpTo()}}
           className="glow-btn w-full py-3 rounded-xl text-sm"
           style={{ background: 'linear-gradient(135deg, #06b6d4, #0891b2)' }}>
           {mode === 'encode' ? '🔒 Encode URL' : '🔓 Decode URL'}

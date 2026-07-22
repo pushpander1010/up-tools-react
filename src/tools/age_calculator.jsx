@@ -1,4 +1,3 @@
-import useJumpToResult from '../hooks/useJumpToResult'
 import { useState, useMemo } from 'react'
 import ToolLayout from '../components/ToolLayout'
 
@@ -112,13 +111,12 @@ const StatCard = ({ value, label, color = 'gradient-text' }) => (
 
 export default function age_calculator() {
 
-  const { ref: resultRef, trigger, reset } = useJumpToResult()
+  const { ref: resultRef, jumpTo } = useJumpToResult()
   const [day, setDay] = useState('')
   const [month, setMonth] = useState('')
   const [year, setYear] = useState('')
 
   const age = useMemo(() => calcAge(parseInt(day), parseInt(month), parseInt(year)), [day, month, year])
-  if (result !== null && result !== undefined && result !== 0) trigger()
   const zodiacName = useMemo(() => (day && month) ? getZodiac(parseInt(month), parseInt(day)) : null, [day, month])
   const zodiac = useMemo(() => zodiacName ? ZODIAC_DATA[zodiacName] : null, [zodiacName])
 
@@ -162,12 +160,19 @@ export default function age_calculator() {
               options={YEARS.map(y => ({ value: y, label: String(y) }))}
               placeholder="YYYY" />
           </div>
+          {hasAll && (
+            <button onClick={jumpTo}
+              className="w-full mt-4 glow-btn py-3 rounded-xl text-sm font-bold"
+              style={{ background: 'linear-gradient(135deg, #8b5cf6, #6366f1)' }}>
+              🎂 Calculate My Age
+            </button>
+          )}
         </div>
 
         {/* Age Display */}
         {age && (
           <div style={{ animation: 'slideUp 0.35s ease-out' }}>
-            <div className="grid grid-cols-3 gap-3 mb-4">
+            <div ref={resultRef} className="grid grid-cols-3 gap-3 mb-4">
               <StatCard value={age.years} label="Years" />
               <StatCard value={age.months} label="Months" />
               <StatCard value={age.days} label="Days" />
@@ -185,7 +190,7 @@ export default function age_calculator() {
             <h3 className="text-sm font-bold text-slate-300 mb-3">✨ Life Stats</h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
               <div className="p-4 rounded-2xl bg-white/[0.05] border border-white/8">
-                <div ref={resultRef} className="text-2xl font-extrabold gradient-text">{age.totalDays.toLocaleString()}</div>
+                <div className="text-2xl font-extrabold gradient-text">{age.totalDays.toLocaleString()}</div>
                 <div className="text-[11px] text-slate-500 mt-1">Days Alive</div>
               </div>
               <div className="p-4 rounded-2xl bg-white/[0.05] border border-white/8">

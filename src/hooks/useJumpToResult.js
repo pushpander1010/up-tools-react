@@ -1,19 +1,13 @@
 import { useRef, useCallback } from 'react'
 
-export default function useJumpToResult(deps) {
+export default function useJumpToResult() {
   const ref = useRef(null)
-  const jumped = useRef(false)
 
-  const trigger = useCallback(() => {
-    if (!jumped.current) {
-      jumped.current = true
-      setTimeout(() => {
-        ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      }, 150)
-    }
+  const jumpTo = useCallback(() => {
+    setTimeout(() => {
+      ref.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    }, 100)
   }, [])
 
-  const reset = useCallback(() => { jumped.current = false }, [])
-
-  return { ref, trigger, reset }
+  return { ref, jumpTo }
 }

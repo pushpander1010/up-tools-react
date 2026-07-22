@@ -1,4 +1,3 @@
-import useJumpToResult from '../hooks/useJumpToResult'
 import { useState, useCallback } from 'react'
 import ToolLayout from '../components/ToolLayout'
 
@@ -27,7 +26,7 @@ function getStrength(pw) {
 
 export default function password_generator() {
 
-  const { ref: resultRef, trigger, reset } = useJumpToResult()
+  const { ref: resultRef, jumpTo } = useJumpToResult()
   const [length, setLength] = useState(16)
   const [opts, setOpts] = useState({ upper: true, lower: true, numbers: true, symbols: false })
   const [count, setCount] = useState(5)
@@ -72,7 +71,7 @@ export default function password_generator() {
         <div>
           <div className="flex justify-between items-baseline mb-3">
             <label className="text-sm font-semibold text-slate-300">Password Length</label>
-            <span ref={resultRef} className="text-3xl font-extrabold text-white">{length}</span>
+            <span className="text-3xl font-extrabold text-white">{length}</span>
           </div>
           <input type="range" min="6" max="64" value={length} onChange={e => setLength(Number(e.target.value))}
             className="w-full h-2 rounded-full appearance-none bg-white/10 accent-red-500 cursor-pointer" />
@@ -113,7 +112,7 @@ export default function password_generator() {
             </div>
           </div>
           <div className="flex items-end">
-            <button onClick={gen}
+            <button onClick={() => {gen(); jumpTo()}}
               className="px-8 py-3 rounded-2xl bg-gradient-to-r from-red-500 to-rose-500 text-white font-bold text-sm shadow-lg shadow-red-500/25 hover:shadow-red-500/40 hover:scale-105 active:scale-95 transition-all duration-200">
               🔄 Generate
             </button>

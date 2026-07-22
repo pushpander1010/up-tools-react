@@ -1,4 +1,3 @@
-import useJumpToResult from '../hooks/useJumpToResult'
 import { useState } from 'react'
 import ToolLayout from '../components/ToolLayout'
 
@@ -17,7 +16,7 @@ const CASES = [
 
 export default function text_case_converter() {
 
-  const { ref: resultRef, trigger, reset } = useJumpToResult()
+  const { ref: resultRef, jumpTo } = useJumpToResult()
   const [input, setInput] = useState('')
   const [copied, setCopied] = useState(null)
 

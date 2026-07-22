@@ -1,4 +1,3 @@
-import useJumpToResult from '../hooks/useJumpToResult'
 import { useState, useMemo } from 'react'
 import ToolLayout from '../components/ToolLayout'
 
@@ -14,7 +13,7 @@ function calcEMI(P, annualRate, months) {
 
 export default function emi_calculator() {
 
-  const { ref: resultRef, trigger, reset } = useJumpToResult()
+  const { ref: resultRef, jumpTo } = useJumpToResult()
   const [principal, setPrincipal] = useState('')
   const [rate, setRate] = useState('')
   const [tenure, setTenure] = useState('')
@@ -25,7 +24,6 @@ export default function emi_calculator() {
   const n = unit === 'years' ? (parseFloat(tenure) || 0) * 12 : (parseFloat(tenure) || 0)
 
   const result = useMemo(() => calcEMI(p, r, n), [p, r, n])
-  if (result !== null && result !== undefined && result !== 0) trigger()
 
   const schedule = useMemo(() => {
     if (!result || n <= 0) return []
@@ -110,7 +108,7 @@ export default function emi_calculator() {
 
         {/* Stats Cards */}
         {result && (
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3" style={{ animation: 'slideUp 0.35s ease-out' }}>
+          <div ref={resultRef} className="grid grid-cols-2 sm:grid-cols-4 gap-3" style={{ animation: 'slideUp 0.35s ease-out' }}>
             {[
               { label: 'Monthly EMI', value: fmt(result.emi), color: 'text-emerald-400', size: 'text-2xl', bold: true },
               { label: 'Principal', value: fmt(p), color: 'text-white', size: 'text-lg', bold: true },

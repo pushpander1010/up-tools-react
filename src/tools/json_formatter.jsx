@@ -1,10 +1,9 @@
-import useJumpToResult from '../hooks/useJumpToResult'
 import { useState } from 'react'
 import ToolLayout from '../components/ToolLayout'
 
 export default function json_formatter() {
 
-  const { ref: resultRef, trigger, reset } = useJumpToResult()
+  const { ref: resultRef, jumpTo } = useJumpToResult()
   const [input, setInput] = useState('')
   const [output, setOutput] = useState('')
   const [error, setError] = useState('')
@@ -150,7 +149,7 @@ export default function json_formatter() {
             className="px-4 py-2.5 rounded-xl text-sm font-semibold bg-white/5 border border-white/8 text-slate-400 hover:text-white transition-all">
             📦 Minify
           </button>
-          <button onClick={formatInput}
+          <button onClick={() => {formatInput(); jumpTo()}}
             className="px-4 py-2.5 rounded-xl text-sm font-semibold bg-white/5 border border-white/8 text-slate-400 hover:text-white transition-all">
             🔧 Auto-Fix
           </button>

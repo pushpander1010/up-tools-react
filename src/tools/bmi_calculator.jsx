@@ -1,4 +1,3 @@
-import useJumpToResult from '../hooks/useJumpToResult'
 import { useState, useMemo } from 'react'
 import ToolLayout from '../components/ToolLayout'
 
@@ -27,13 +26,12 @@ const RANGES = [
 
 export default function bmi_calculator() {
 
-  const { ref: resultRef, trigger, reset } = useJumpToResult()
+  const { ref: resultRef, jumpTo } = useJumpToResult()
   const [weight, setWeight] = useState('')
   const [height, setHeight] = useState('')
   const [unit, setUnit] = useState('metric')
 
   const result = useMemo(() => calcBMI(parseFloat(weight), parseFloat(height), unit), [weight, height, unit])
-  if (result !== null && result !== undefined && result !== 0) trigger()
 
   return (
     <ToolLayout
@@ -119,7 +117,7 @@ export default function bmi_calculator() {
 
         {/* Empty State */}
         {!result && (
-          <div className="text-center py-12 rounded-3xl border-2 border-dashed border-white/8 bg-white/[0.01]">
+          <div ref={resultRef} className="text-center py-12 rounded-3xl border-2 border-dashed border-white/8 bg-white/[0.01]">
             <div className="text-4xl mb-3 opacity-20">⚖️</div>
             <p className="text-sm text-slate-600 font-medium">Enter your weight and height to calculate BMI</p>
           </div>
