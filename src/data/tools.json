@@ -4609,20 +4609,6 @@
       "new": true
     },
     {
-      "slug": "uuid-generator-pro",
-      "title": "UUID Generator",
-      "icon": "\ud83c\udd94",
-      "desc": "Generate UUIDs & GUIDs online.",
-      "href": "/uuid-generator-pro/",
-      "tags": [
-        "dev"
-      ],
-      "cats": [
-        "all",
-        "dev"
-      ]
-    },
-    {
       "slug": "word-counter-plus",
       "title": "Advanced Word Counter",
       "icon": "\ud83d\udcdd",
