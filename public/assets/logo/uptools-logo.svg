@@ -1,0 +1,37 @@
+<svg width="512" height="512" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="UpTools icon">
+  <defs>
+    <linearGradient id="ut-grad" x1="0" y1="0" x2="120" y2="120" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0EA5E9"></stop>
+      <stop offset="0.5" stop-color="#06B6D4"></stop>
+      <stop offset="1" stop-color="#22C55E"></stop>
+    </linearGradient>
+    <filter id="green-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#22C55E" flood-opacity="1"></feDropShadow>
+    </filter>
+  </defs>
+
+  <!-- Shield -->
+  <path d="M60 6 L102 24 V60 C102 86 85 108 60 114 C35 108 18 86 18 60 V24 Z" fill="url(#ut-grad)"></path>
+
+  <!-- AI Chip Icon -->
+  <g stroke="white" stroke-width="2" fill="none" filter="url(#green-glow)">
+    <!-- Chip body -->
+    <rect x="40" y="40" width="40" height="40" rx="4" ry="4" fill="none"></rect>
+    <!-- Inner pattern -->
+    <path d="M50 50h20v20H50z"></path>
+    <!-- Circuit lines -->
+    <line x1="60" y1="40" x2="60" y2="34"></line>
+    <line x1="60" y1="80" x2="60" y2="86"></line>
+    <line x1="40" y1="60" x2="34" y2="60"></line>
+    <line x1="80" y1="60" x2="86" y2="60"></line>
+    <!-- Extra small circuits -->
+    <line x1="46" y1="40" x2="46" y2="34"></line>
+    <line x1="74" y1="40" x2="74" y2="34"></line>
+    <line x1="46" y1="80" x2="46" y2="86"></line>
+    <line x1="74" y1="80" x2="74" y2="86"></line>
+    <line x1="40" y1="46" x2="34" y2="46"></line>
+    <line x1="40" y1="74" x2="34" y2="74"></line>
+    <line x1="80" y1="46" x2="86" y2="46"></line>
+    <line x1="80" y1="74" x2="86" y2="74"></line>
+  </g>
+</svg>

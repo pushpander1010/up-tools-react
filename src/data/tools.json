@@ -1,0 +1,5574 @@
+{
+  "tools": [
+    {
+      "slug": "income-tax-tool",
+      "title": "Income Tax Calculator",
+      "icon": "🧾",
+      "desc": "Estimate income tax quickly.",
+      "href": "/income-tax-tool/",
+      "tags": [
+        "tax",
+        "finance"
+      ],
+      "cats": [
+        "all",
+        "tax",
+        "finance"
+      ]
+    },
+    {
+      "slug": "gst-calculator",
+      "title": "GST Calculator",
+      "icon": "🧮",
+      "desc": "Add or remove GST in a click.",
+      "href": "/gst-calculator/",
+      "tags": [
+        "tax",
+        "finance"
+      ],
+      "cats": [
+        "all",
+        "tax",
+        "finance"
+      ]
+    },
+    {
+      "slug": "emi-calculator",
+      "title": "EMI Calculator",
+      "icon": "📊",
+      "desc": "Plan monthly loan repayments.",
+      "href": "/emi-calculator/",
+      "tags": [
+        "finance"
+      ],
+      "cats": [
+        "all",
+        "finance"
+      ]
+    },
+    {
+      "slug": "fd-calculator",
+      "title": "FD Calculator",
+      "icon": "🏦",
+      "desc": "Check fixed deposit maturity values.",
+      "href": "/fd-calculator/",
+      "tags": [
+        "finance"
+      ],
+      "cats": [
+        "all",
+        "finance",
+        "banking"
+      ]
+    },
+    {
+      "slug": "sip-calculator",
+      "title": "SIP Calculator",
+      "icon": "📈",
+      "desc": "Project SIP returns and wealth.",
+      "href": "/sip-calculator/",
+      "tags": [
+        "finance"
+      ],
+      "cats": [
+        "all",
+        "finance"
+      ]
+    },
+    {
+      "slug": "pnl-calculator",
+      "title": "Profit & Loss Calculator",
+      "icon": "💹",
+      "desc": "Track realised and unrealised gains.",
+      "href": "/pnl-calculator/",
+      "tags": [
+        "finance"
+      ],
+      "cats": [
+        "all",
+        "finance"
+      ]
+    },
+    {
+      "slug": "currency-converter",
+      "title": "Currency Converter",
+      "icon": "💱",
+      "desc": "Convert FX with live interbank rates.",
+      "href": "/currency-converter/",
+      "tags": [
+        "finance",
+        "networking"
+      ],
+      "cats": [
+        "all",
+        "finance",
+        "networking"
+      ]
+    },
+    {
+      "slug": "ai-stock-analyzer",
+      "title": "AI Stock Analyzer",
+      "icon": "🤖",
+      "desc": "AI verdicts with charts and sentiment.",
+      "href": "/ai-stock-analyzer/",
+      "tags": [
+        "ai",
+        "finance"
+      ],
+      "cats": [
+        "all",
+        "finance"
+      ]
+    },
+    {
+      "slug": "ai-top10-stocks",
+      "title": "AI Top 10 Stocks",
+      "icon": "🏆",
+      "desc": "Tomorrow's AI-picked trading ideas.",
+      "href": "/ai-top10-stocks/",
+      "tags": [
+        "ai",
+        "finance"
+      ],
+      "cats": [
+        "all",
+        "finance"
+      ]
+    },
+    {
+      "slug": "crypto-prices",
+      "title": "Cryptocurrency Prices",
+      "icon": "🪙",
+      "desc": "Track live cryptocurrency markets.",
+      "href": "/crypto-prices/",
+      "tags": [
+        "finance",
+        "crypto"
+      ],
+      "cats": [
+        "all",
+        "finance",
+        "crypto"
+      ]
+    },
+    {
+      "slug": "crypto-portfolio",
+      "title": "Crypto Portfolio Tracker",
+      "icon": "📊",
+      "desc": "Monitor holdings and net worth.",
+      "href": "/crypto-portfolio/",
+      "tags": [
+        "finance",
+        "crypto"
+      ],
+      "cats": [
+        "all",
+        "finance",
+        "crypto"
+      ]
+    },
+    {
+      "slug": "crypto-profitability",
+      "title": "Crypto Profitability",
+      "icon": "🚀",
+      "desc": "Gauge mining and trading profits.",
+      "href": "/crypto-profitability/",
+      "tags": [
+        "finance",
+        "crypto"
+      ],
+      "cats": [
+        "all",
+        "finance",
+        "crypto"
+      ]
+    },
+    {
+      "slug": "age-calculator",
+      "title": "Age Calculator",
+      "icon": "🎂",
+      "desc": "Compute age by date of birth.",
+      "href": "/age-calculator/",
+      "tags": [
+        "identity"
+      ],
+      "cats": [
+        "all",
+        "text"
+      ]
+    },
+    {
+      "slug": "bmi-calculator",
+      "title": "BMI Calculator",
+      "icon": "⚖️",
+      "desc": "Check BMI, body fat and wellness ranges.",
+      "href": "/bmi-calculator/",
+      "tags": [
+        "health"
+      ],
+      "cats": [
+        "all",
+        "health"
+      ]
+    },
+    {
+      "slug": "unit-converter",
+      "title": "Unit Converter",
+      "icon": "📏",
+      "desc": "Convert length, weight and temperature.",
+      "href": "/unit-converter/",
+      "tags": [
+        "dev"
+      ],
+      "cats": [
+        "all",
+        "dev"
+      ]
+    },
+    {
+      "slug": "pan-validator",
+      "title": "PAN Format Validator",
+      "icon": "🪪",
+      "desc": "Verify Indian PAN structure instantly.",
+      "href": "/pan-validator/",
+      "tags": [
+        "identity",
+        "text"
+      ],
+      "cats": [
+        "all",
+        "text"
+      ]
+    },
+    {
+      "slug": "pan-aadhaar-link-status",
+      "title": "PAN–Aadhaar Link Status Guide",
+      "icon": "🔗",
+      "desc": "Validate format and open the official status page.",
+      "href": "/pan-aadhaar-link-status/",
+      "tags": [
+        "identity",
+        "tax"
+      ],
+      "cats": [
+        "all",
+        "tax"
+      ]
+    },
+    {
+      "slug": "vehicle-registration-details",
+      "title": "Vehicle Registration Details",
+      "icon": "🚗",
+      "desc": "Select country and open the official registration portal.",
+      "href": "/vehicle-registration-details/",
+      "tags": [
+        "identity",
+        "security"
+      ],
+      "cats": [
+        "all",
+        "security"
+      ]
+    },
+    {
+      "slug": "ifsc-finder",
+      "title": "IFSC Finder",
+      "icon": "🏧",
+      "desc": "Search bank IFSC codes with branch data.",
+      "href": "/ifsc-finder/",
+      "tags": [
+        "banking",
+        "networking"
+      ],
+      "cats": [
+        "all",
+        "banking"
+      ]
+    },
+    {
+      "slug": "canada-crs-tool",
+      "title": "Canada CRS Calculator",
+      "icon": "🍁",
+      "desc": "Estimate Express Entry CRS score.",
+      "href": "/canada-crs-tool/",
+      "tags": [
+        "canada",
+        "identity"
+      ],
+      "cats": [
+        "all",
+        "canada"
+      ]
+    },
+    {
+      "slug": "canada-hst-tool",
+      "title": "Canada GST/HST Calculator",
+      "icon": "💸",
+      "desc": "Compute provincial GST/HST totals.",
+      "href": "/canada-hst-tool/",
+      "tags": [
+        "canada",
+        "tax"
+      ],
+      "cats": [
+        "all",
+        "canada",
+        "tax"
+      ]
+    },
+    {
+      "slug": "rrsp-optimizer",
+      "title": "RRSP Contribution Optimizer",
+      "icon": "🍁",
+      "desc": "Estimate RRSP refund impact.",
+      "href": "/rrsp-optimizer/",
+      "tags": [
+        "canada",
+        "finance"
+      ],
+      "cats": [
+        "all",
+        "canada",
+        "finance"
+      ]
+    },
+    {
+      "slug": "tfsa-room-tracker",
+      "title": "TFSA Room Tracker",
+      "icon": "🍁",
+      "desc": "Estimate TFSA contribution room.",
+      "href": "/tfsa-room-tracker/",
+      "tags": [
+        "canada",
+        "finance"
+      ],
+      "cats": [
+        "all",
+        "canada",
+        "finance"
+      ]
+    },
+    {
+      "slug": "cpp-ei-calculator",
+      "title": "CPP & EI Calculator",
+      "icon": "🍁",
+      "desc": "Estimate payroll deductions.",
+      "href": "/cpp-ei-calculator/",
+      "tags": [
+        "canada",
+        "finance"
+      ],
+      "cats": [
+        "all",
+        "canada",
+        "finance"
+      ]
+    },
+    {
+      "slug": "canada-tax-bracket-calculator",
+      "title": "Canada Tax Brackets",
+      "icon": "🍁",
+      "desc": "Federal tax estimate.",
+      "href": "/canada-tax-bracket-calculator/",
+      "tags": [
+        "canada",
+        "tax"
+      ],
+      "cats": [
+        "all",
+        "canada",
+        "tax"
+      ]
+    },
+    {
+      "slug": "canada-mortgage-affordability",
+      "title": "Canada Mortgage Affordability",
+      "icon": "🍁",
+      "desc": "Estimate max mortgage.",
+      "href": "/canada-mortgage-affordability/",
+      "tags": [
+        "canada",
+        "finance"
+      ],
+      "cats": [
+        "all",
+        "canada",
+        "finance"
+      ]
+    },
+    {
+      "slug": "cra-refund-estimator",
+      "title": "CRA Refund Estimator",
+      "icon": "🍁",
+      "desc": "Refund vs balance estimate.",
+      "href": "/cra-refund-estimator/",
+      "tags": [
+        "canada",
+        "tax"
+      ],
+      "cats": [
+        "all",
+        "canada",
+        "tax"
+      ]
+    },
+    {
+      "slug": "sin-validator",
+      "title": "SIN Validator",
+      "icon": "🍁",
+      "desc": "Validate SIN checksum.",
+      "href": "/sin-validator/",
+      "tags": [
+        "canada",
+        "identity"
+      ],
+      "cats": [
+        "all",
+        "canada",
+        "identity"
+      ]
+    },
+    {
+      "slug": "cra-noa-checklist",
+      "title": "CRA NOA Checklist",
+      "icon": "🍁",
+      "desc": "Document checklist.",
+      "href": "/cra-noa-checklist/",
+      "tags": [
+        "canada",
+        "text"
+      ],
+      "cats": [
+        "all",
+        "canada",
+        "text"
+      ]
+    },
+    {
+      "slug": "vehicle-import-duty-estimator",
+      "title": "Vehicle Import Duty Estimator",
+      "icon": "🍁",
+      "desc": "Estimate import costs.",
+      "href": "/vehicle-import-duty-estimator/",
+      "tags": [
+        "canada",
+        "finance"
+      ],
+      "cats": [
+        "all",
+        "canada",
+        "finance"
+      ]
+    },
+    {
+      "slug": "password-generator",
+      "title": "Password Generator",
+      "icon": "🔐",
+      "desc": "Create strong, random passwords.",
+      "href": "/password-generator/",
+      "tags": [
+        "security"
+      ],
+      "cats": [
+        "all",
+        "security",
+        "dev"
+      ]
+    },
+    {
+      "slug": "base64-encoder",
+      "title": "Base64 Encoder & Decoder",
+      "icon": "🧬",
+      "desc": "Encode or decode Base64 text & files.",
+      "href": "/base64-encoder/",
+      "tags": [
+        "dev",
+        "security"
+      ],
+      "cats": [
+        "all",
+        "dev",
+        "security"
+      ]
+    },
+    {
+      "slug": "uuid-generator",
+      "title": "UUID / GUID Generator",
+      "icon": "🆔",
+      "desc": "Generate and validate UUID v1/v4/v5.",
+      "href": "/uuid-generator/",
+      "tags": [
+        "dev"
+      ],
+      "cats": [
+        "all",
+        "dev"
+      ]
+    },
+    {
+      "slug": "json-formatter",
+      "title": "JSON Formatter",
+      "icon": "🛠️",
+      "desc": "Prettify and validate JSON payloads.",
+      "href": "/json-formatter/",
+      "tags": [
+        "dev"
+      ],
+      "cats": [
+        "all",
+        "dev"
+      ]
+    },
+    {
+      "slug": "ai-prompts",
+      "title": "AI Prompts Library",
+      "icon": "🧠",
+      "desc": "Curated prompts for design, SEO and resumes.",
+      "href": "/ai-prompts/",
+      "tags": [
+        "ai",
+        "text",
+        "images"
+      ],
+      "cats": [
+        "all",
+        "text",
+        "dev"
+      ]
+    },
+    {
+      "slug": "ai-writer",
+      "title": "AI Writing Assistant",
+      "icon": "✍️",
+      "desc": "Draft posts with Perplexity, Gemini & Groq.",
+      "href": "/ai-writer/",
+      "tags": [
+        "ai",
+        "text"
+      ],
+      "cats": [
+        "all",
+        "text",
+        "dev"
+      ]
+    },
+    {
+      "slug": "ai-blog-generator",
+      "title": "AI Blog Post Generator",
+      "icon": "📝",
+      "desc": "Generate full SEO-optimized blog posts instantly.",
+      "href": "/ai-blog-generator/",
+      "tags": [
+        "ai",
+        "text",
+        "content"
+      ],
+      "cats": [
+        "all",
+        "text"
+      ]
+    },
+    {
+      "slug": "ai-youtube-script",
+      "title": "AI YouTube Script Writer",
+      "icon": "🎬",
+      "desc": "Write retention-optimized YouTube scripts with AI.",
+      "href": "/ai-youtube-script/",
+      "tags": [
+        "ai",
+        "text",
+        "content",
+        "video"
+      ],
+      "cats": [
+        "all",
+        "text",
+        "social"
+      ]
+    },
+    {
+      "slug": "ai-email-writer",
+      "title": "AI Email Writer",
+      "icon": "📧",
+      "desc": "Write professional emails instantly — cold outreach, follow-ups, job applications.",
+      "href": "/ai-email-writer/",
+      "tags": [
+        "ai",
+        "text",
+        "email"
+      ],
+      "cats": [
+        "all",
+        "text"
+      ]
+    },
+    {
+      "slug": "ai-caption-generator",
+      "title": "AI Caption Generator",
+      "icon": "📸",
+      "desc": "Generate 5 captions for Instagram, Facebook, LinkedIn & TikTok.",
+      "href": "/ai-caption-generator/",
+      "tags": [
+        "ai",
+        "text",
+        "social",
+        "content"
+      ],
+      "cats": [
+        "all",
+        "text",
+        "social"
+      ]
+    },
+    {
+      "slug": "ai-budget-planner",
+      "title": "AI Budget Planner",
+      "icon": "💰",
+      "desc": "Get a personalized budget plan and savings strategy with AI.",
+      "href": "/ai-budget-planner/",
+      "tags": [
+        "ai",
+        "finance",
+        "budget"
+      ],
+      "cats": [
+        "all",
+        "finance"
+      ]
+    },
+    {
+      "slug": "ai-business-name-generator",
+      "title": "AI Business Name Generator",
+      "icon": "💡",
+      "desc": "Generate 20 unique brandable business names with taglines.",
+      "href": "/ai-business-name-generator/",
+      "tags": [
+        "ai",
+        "text",
+        "business",
+        "branding"
+      ],
+      "cats": [
+        "all",
+        "text"
+      ]
+    },
+    {
+      "slug": "ai-product-description",
+      "title": "AI Product Description Generator",
+      "icon": "🛒",
+      "desc": "Write SEO-optimized product descriptions for Amazon, Shopify & more.",
+      "href": "/ai-product-description/",
+      "tags": [
+        "ai",
+        "text",
+        "ecommerce",
+        "content"
+      ],
+      "cats": [
+        "all",
+        "text"
+      ]
+    },
+    {
+      "slug": "ai-plagiarism",
+      "title": "AI Plagiarism Checker",
+      "icon": "🛡️",
+      "desc": "Check originality and paraphrase safely.",
+      "href": "/ai-plagiarism/",
+      "tags": [
+        "ai",
+        "text"
+      ],
+      "cats": [
+        "all",
+        "text",
+        "dev"
+      ]
+    },
+    {
+      "slug": "resume-analyzer",
+      "title": "AI Resume Analyzer",
+      "icon": "💼",
+      "desc": "ATS score your resume against any JD.",
+      "href": "/resume-analyzer/",
+      "tags": [
+        "ai",
+        "text"
+      ],
+      "cats": [
+        "all",
+        "text",
+        "dev"
+      ]
+    },
+    {
+      "slug": "rawcv-resume-builder",
+      "title": "AI Resume Builder (rawcv)",
+      "icon": "📄",
+      "desc": "Build an ATS-friendly resume with AI. Free, no login, no watermark.",
+      "href": "https://www.rawcv.com/build",
+      "tags": [
+        "ai",
+        "career"
+      ],
+      "cats": [
+        "all",
+        "text",
+        "ai"
+      ]
+    },
+    {
+      "slug": "pokemon-stats",
+      "title": "Pokemon Stats Directory",
+      "icon": "🧬",
+      "desc": "Search all Pokemon base stats and export CSV.",
+      "href": "/pokemon-stats/",
+      "tags": [
+        "fun",
+        "data"
+      ],
+      "cats": [
+        "all",
+        "fun"
+      ]
+    },
+    {
+      "slug": "text-case-converter",
+      "title": "Text Case Converter",
+      "icon": "🔡",
+      "desc": "Switch between upper, lower and title case.",
+      "href": "/text-case-converter/",
+      "tags": [
+        "text"
+      ],
+      "cats": [
+        "all",
+        "text"
+      ]
+    },
+    {
+      "slug": "word-counter",
+      "title": "Word Counter",
+      "icon": "📝",
+      "desc": "Count words, characters and reading time.",
+      "href": "/word-counter/",
+      "tags": [
+        "text"
+      ],
+      "cats": [
+        "all",
+        "text"
+      ]
+    },
+    {
+      "slug": "qr-generator",
+      "title": "QR Code Generator",
+      "icon": "🔳",
+      "desc": "Create QR codes for links and text.",
+      "href": "/qr-generator/",
+      "tags": [
+        "images",
+        "dev"
+      ],
+      "cats": [
+        "all",
+        "images",
+        "dev"
+      ]
+    },
+    {
+      "slug": "qr-reader",
+      "title": "QR Reader",
+      "icon": "📷",
+      "desc": "Scan QR codes from camera or images.",
+      "href": "/qr-reader/",
+      "tags": [
+        "images",
+        "security"
+      ],
+      "cats": [
+        "all",
+        "images",
+        "security"
+      ]
+    },
+    {
+      "slug": "image-converter",
+      "title": "Image Converter",
+      "icon": "🖼️",
+      "desc": "Resize, crop and change image formats.",
+      "href": "/image-converter/",
+      "tags": [
+        "images"
+      ],
+      "cats": [
+        "all",
+        "images"
+      ]
+    },
+    {
+      "slug": "image-tool",
+      "title": "Image Tool",
+      "icon": "🪄",
+      "desc": "Remove backgrounds and apply filters.",
+      "href": "/image-tool/",
+      "tags": [
+        "images"
+      ],
+      "cats": [
+        "all",
+        "images"
+      ]
+    },
+    {
+      "slug": "color-picker",
+      "title": "Color Picker",
+      "icon": "🎨",
+      "desc": "Pick HEX/RGB, contrast check and save swatches.",
+      "href": "/color-picker/",
+      "tags": [
+        "images",
+        "dev"
+      ],
+      "cats": [
+        "all",
+        "images",
+        "dev"
+      ]
+    },
+    {
+      "slug": "exif-tool",
+      "title": "EXIF Tool",
+      "icon": "🕵️",
+      "desc": "Inspect, clean or embed photo metadata.",
+      "href": "/exif-tool/",
+      "tags": [
+        "images",
+        "security"
+      ],
+      "cats": [
+        "all",
+        "images",
+        "security"
+      ]
+    },
+    {
+      "slug": "ip-address",
+      "title": "IP Address & ISP Lookup",
+      "icon": "🌐",
+      "desc": "See your public IP, ISP and DNS speed tests.",
+      "href": "/ip-address/",
+      "tags": [
+        "networking",
+        "security"
+      ],
+      "cats": [
+        "all",
+        "networking",
+        "security"
+      ]
+    },
+    {
+      "slug": "wifi-router",
+      "title": "WiFi Router Tools",
+      "icon": "📡",
+      "desc": "Find default passwords, Wi-Fi QR & vendors.",
+      "href": "/wifi-router/",
+      "tags": [
+        "wifi",
+        "networking"
+      ],
+      "cats": [
+        "all",
+        "wifi",
+        "networking"
+      ]
+    },
+    {
+      "slug": "speed-test",
+      "title": "Internet Speed Test",
+      "icon": "⚡",
+      "desc": "Measure download, upload speed & ping.",
+      "href": "/speed-test/",
+      "tags": [
+        "networking",
+        "wifi"
+      ],
+      "cats": [
+        "all",
+        "networking",
+        "wifi"
+      ]
+    },
+    {
+      "slug": "domain-finder",
+      "title": "Domain Name Finder",
+      "icon": "🔍",
+      "desc": "Discover available domains instantly.",
+      "href": "/domain-finder/",
+      "tags": [
+        "networking",
+        "dev"
+      ],
+      "cats": [
+        "all",
+        "networking",
+        "dev"
+      ]
+    },
+    {
+      "slug": "whatsapp-chat",
+      "title": "WhatsApp Click-to-Chat",
+      "icon": "💬",
+      "desc": "Open chats without saving numbers.",
+      "href": "/whatsapp-chat/",
+      "tags": [
+        "whatsapp",
+        "networking"
+      ],
+      "cats": [
+        "all",
+        "whatsapp",
+        "networking"
+      ]
+    },
+    {
+      "slug": "whatsapp-stickers",
+      "title": "WhatsApp Sticker Maker",
+      "icon": "🧩",
+      "desc": "Design and export sticker packs.",
+      "href": "/whatsapp-stickers/",
+      "tags": [
+        "whatsapp",
+        "images"
+      ],
+      "cats": [
+        "all",
+        "whatsapp",
+        "images"
+      ]
+    },
+    {
+      "slug": "instagram-auditor",
+      "title": "Instagram Auditor",
+      "icon": "📊",
+      "desc": "Find non-followers, fans & mutuals. Privacy-first analysis.",
+      "href": "/instagram-auditor/",
+      "tags": [
+        "social",
+        "privacy",
+        "analytics"
+      ],
+      "cats": [
+        "all",
+        "social",
+        "security"
+      ]
+    },
+    {
+      "slug": "instagram-bio-generator",
+      "title": "Instagram Bio Generator",
+      "icon": "✨",
+      "desc": "Create engaging and creative Instagram bios with AI.",
+      "href": "/instagram-bio-generator/",
+      "tags": [
+        "social",
+        "ai",
+        "text"
+      ],
+      "cats": [
+        "all",
+        "social",
+        "text"
+      ]
+    },
+    {
+      "slug": "instagram-caption-generator",
+      "title": "Instagram Caption Generator",
+      "icon": "💬",
+      "desc": "Generate engaging captions for your Instagram posts.",
+      "href": "/instagram-caption-generator/",
+      "tags": [
+        "social",
+        "ai",
+        "text"
+      ],
+      "cats": [
+        "all",
+        "social",
+        "text"
+      ]
+    },
+    {
+      "slug": "instagram-hashtag-generator",
+      "title": "Instagram Hashtag Generator",
+      "icon": "#️⃣",
+      "desc": "Find trending hashtags to boost your reach.",
+      "href": "/instagram-hashtag-generator/",
+      "tags": [
+        "social",
+        "marketing"
+      ],
+      "cats": [
+        "all",
+        "social",
+        "text"
+      ]
+    },
+    {
+      "slug": "instagram-username-generator",
+      "title": "Instagram Username Generator",
+      "icon": "👤",
+      "desc": "Generate unique and catchy Instagram usernames.",
+      "href": "/instagram-username-generator/",
+      "tags": [
+        "social",
+        "creative"
+      ],
+      "cats": [
+        "all",
+        "social",
+        "text"
+      ]
+    },
+    {
+      "slug": "instagram-story-templates",
+      "title": "Instagram Story Templates",
+      "icon": "📱",
+      "desc": "Beautiful templates for Instagram Stories.",
+      "href": "/instagram-story-templates/",
+      "tags": [
+        "social",
+        "design",
+        "templates"
+      ],
+      "cats": [
+        "all",
+        "social",
+        "images"
+      ]
+    },
+    {
+      "slug": "instagram-story-downloader",
+      "title": "Instagram Story Downloader",
+      "icon": "📥",
+      "desc": "Download Instagram stories, reels and posts without watermark.",
+      "href": "/instagram-story-downloader/",
+      "tags": [
+        "social",
+        "download"
+      ],
+      "cats": [
+        "all",
+        "social",
+        "images"
+      ]
+    },
+    {
+      "slug": "instagram-dp-downloader",
+      "title": "Instagram DP Downloader",
+      "icon": "👤",
+      "desc": "Download Instagram profile pictures in full HD quality.",
+      "href": "/instagram-dp-downloader/",
+      "tags": [
+        "social",
+        "download"
+      ],
+      "cats": [
+        "all",
+        "social",
+        "images"
+      ]
+    },
+    {
+      "slug": "instagram-reels-downloader",
+      "title": "Instagram Reels Downloader",
+      "icon": "🎬",
+      "desc": "Download Instagram Reels videos without watermark.",
+      "href": "/instagram-reels-downloader/",
+      "tags": [
+        "social",
+        "download",
+        "video"
+      ],
+      "cats": [
+        "all",
+        "social",
+        "images"
+      ]
+    },
+    {
+      "slug": "instagram-post-downloader",
+      "title": "Instagram Post Downloader",
+      "icon": "📸",
+      "desc": "Download Instagram photos and carousel posts easily.",
+      "href": "/instagram-post-downloader/",
+      "tags": [
+        "social",
+        "download"
+      ],
+      "cats": [
+        "all",
+        "social",
+        "images"
+      ]
+    },
+    {
+      "slug": "instagram-video-downloader",
+      "title": "Instagram Video Downloader",
+      "icon": "🎥",
+      "desc": "Download Instagram videos in HD quality.",
+      "href": "/instagram-video-downloader/",
+      "tags": [
+        "social",
+        "download",
+        "video"
+      ],
+      "cats": [
+        "all",
+        "social",
+        "images"
+      ]
+    },
+    {
+      "slug": "instagram-igtv-downloader",
+      "title": "Instagram IGTV Downloader",
+      "icon": "📺",
+      "desc": "Download IGTV videos from Instagram.",
+      "href": "/instagram-igtv-downloader/",
+      "tags": [
+        "social",
+        "download",
+        "video"
+      ],
+      "cats": [
+        "all",
+        "social",
+        "images"
+      ]
+    },
+    {
+      "slug": "instagram-carousel-downloader",
+      "title": "Instagram Carousel Downloader",
+      "icon": "🖼️",
+      "desc": "Download all photos from Instagram carousel posts.",
+      "href": "/instagram-carousel-downloader/",
+      "tags": [
+        "social",
+        "download"
+      ],
+      "cats": [
+        "all",
+        "social",
+        "images"
+      ]
+    },
+    {
+      "slug": "instagram-highlight-downloader",
+      "title": "Instagram Highlight Downloader",
+      "icon": "⭐",
+      "desc": "Download Instagram story highlights from any profile.",
+      "href": "/instagram-highlight-downloader/",
+      "tags": [
+        "social",
+        "download"
+      ],
+      "cats": [
+        "all",
+        "social",
+        "images"
+      ]
+    },
+    {
+      "slug": "instagram-follower-list-exporter",
+      "title": "Instagram Follower List Exporter",
+      "icon": "📋",
+      "desc": "Export your Instagram followers list to CSV.",
+      "href": "/instagram-follower-list-exporter/",
+      "tags": [
+        "social",
+        "analytics",
+        "export"
+      ],
+      "cats": [
+        "all",
+        "social",
+        "marketing"
+      ]
+    },
+    {
+      "slug": "instagram-following-list-exporter",
+      "title": "Instagram Following List Exporter",
+      "icon": "📋",
+      "desc": "Export your Instagram following list to CSV.",
+      "href": "/instagram-following-list-exporter/",
+      "tags": [
+        "social",
+        "analytics",
+        "export"
+      ],
+      "cats": [
+        "all",
+        "social",
+        "marketing"
+      ]
+    },
+    {
+      "slug": "instagram-unfollower-tracker",
+      "title": "Instagram Unfollower Tracker",
+      "icon": "👋",
+      "desc": "Find who unfollowed you on Instagram.",
+      "href": "/instagram-unfollower-tracker/",
+      "tags": [
+        "social",
+        "analytics"
+      ],
+      "cats": [
+        "all",
+        "social",
+        "marketing"
+      ]
+    },
+    {
+      "slug": "instagram-fake-follower-checker",
+      "title": "Instagram Fake Follower Checker",
+      "icon": "🤖",
+      "desc": "Detect fake followers and bot accounts on Instagram.",
+      "href": "/instagram-fake-follower-checker/",
+      "tags": [
+        "social",
+        "analytics",
+        "security"
+      ],
+      "cats": [
+        "all",
+        "social",
+        "security"
+      ]
+    },
+    {
+      "slug": "instagram-bio-link-generator",
+      "title": "Instagram Bio Link Generator",
+      "icon": "🔗",
+      "desc": "Create clickable link trees for your Instagram bio.",
+      "href": "/instagram-bio-link-generator/",
+      "tags": [
+        "social",
+        "marketing",
+        "links"
+      ],
+      "cats": [
+        "all",
+        "social",
+        "marketing"
+      ]
+    },
+    {
+      "slug": "instagram-story-viewer",
+      "title": "Instagram Story Viewer",
+      "icon": "👁️",
+      "desc": "View Instagram stories anonymously without being seen.",
+      "href": "/instagram-story-viewer/",
+      "tags": [
+        "social",
+        "privacy"
+      ],
+      "cats": [
+        "all",
+        "social",
+        "security"
+      ]
+    },
+    {
+      "slug": "instagram-post-scheduler",
+      "title": "Instagram Post Scheduler",
+      "icon": "⏰",
+      "desc": "Schedule Instagram posts for optimal posting times.",
+      "href": "/instagram-post-scheduler/",
+      "tags": [
+        "social",
+        "marketing",
+        "scheduling"
+      ],
+      "cats": [
+        "all",
+        "social",
+        "marketing"
+      ]
+    },
+    {
+      "slug": "instagram-content-calendar",
+      "title": "Instagram Content Calendar",
+      "icon": "📅",
+      "desc": "Plan and organize your Instagram content strategy.",
+      "href": "/instagram-content-calendar/",
+      "tags": [
+        "social",
+        "planning",
+        "marketing"
+      ],
+      "cats": [
+        "all",
+        "social",
+        "marketing"
+      ]
+    },
+    {
+      "slug": "instagram-growth-calculator",
+      "title": "Instagram Growth Calculator",
+      "icon": "📈",
+      "desc": "Project your Instagram growth based on engagement rate.",
+      "href": "/instagram-growth-calculator/",
+      "tags": [
+        "social",
+        "analytics"
+      ],
+      "cats": [
+        "all",
+        "social",
+        "marketing"
+      ]
+    },
+    {
+      "slug": "instagram-reach-calculator",
+      "title": "Instagram Reach Calculator",
+      "icon": "🎯",
+      "desc": "Calculate potential reach for your Instagram posts.",
+      "href": "/instagram-reach-calculator/",
+      "tags": [
+        "social",
+        "analytics"
+      ],
+      "cats": [
+        "all",
+        "social",
+        "marketing"
+      ]
+    },
+    {
+      "slug": "instagram-story-ideas-generator",
+      "title": "Instagram Story Ideas Generator",
+      "icon": "💡",
+      "desc": "Generate creative Instagram story ideas with AI.",
+      "href": "/instagram-story-ideas-generator/",
+      "tags": [
+        "social",
+        "ai",
+        "content"
+      ],
+      "cats": [
+        "all",
+        "social",
+        "ai"
+      ]
+    },
+    {
+      "slug": "tiktok-hashtag-generator",
+      "title": "TikTok Hashtag Generator",
+      "icon": "🎵",
+      "desc": "Find viral hashtags for your TikTok videos.",
+      "href": "/tiktok-hashtag-generator/",
+      "tags": [
+        "social",
+        "tiktok",
+        "marketing"
+      ],
+      "cats": [
+        "all",
+        "social",
+        "text"
+      ]
+    },
+    {
+      "slug": "games",
+      "title": "Free Mini Games",
+      "icon": "🎮",
+      "desc": "Play fast, sign-up free browser games.",
+      "href": "/games/",
+      "tags": [
+        "fun"
+      ],
+      "cats": [
+        "all",
+        "fun"
+      ]
+    },
+    {
+      "slug": "games-love-test",
+      "title": "Love Compatibility Test",
+      "icon": "💘",
+      "desc": "Fun love quiz for couples.",
+      "href": "/games/love-test/",
+      "tags": [
+        "fun",
+        "romantic"
+      ],
+      "cats": [
+        "all",
+        "fun",
+        "romantic"
+      ]
+    },
+    {
+      "slug": "games-typing-speed",
+      "title": "Typing Speed Test",
+      "icon": "⌨️",
+      "desc": "Test your WPM and accuracy online.",
+      "href": "/games/typing-speed/",
+      "tags": [
+        "fun",
+        "text"
+      ],
+      "cats": [
+        "all",
+        "fun",
+        "text"
+      ]
+    },
+    {
+      "slug": "games-hangman",
+      "title": "Hangman",
+      "icon": "🪢",
+      "desc": "Classic word guessing game.",
+      "href": "/games/hangman/",
+      "tags": [
+        "fun",
+        "text"
+      ],
+      "cats": [
+        "all",
+        "fun"
+      ]
+    },
+    {
+      "slug": "games-word-scramble",
+      "title": "Word Scramble",
+      "icon": "🔀",
+      "desc": "Unscramble jumbled letters to find the word.",
+      "href": "/games/word-scramble/",
+      "tags": [
+        "fun",
+        "text"
+      ],
+      "cats": [
+        "all",
+        "fun"
+      ]
+    },
+    {
+      "slug": "games-quiz-trivia",
+      "title": "Quiz Trivia",
+      "icon": "🧠",
+      "desc": "100+ general knowledge trivia questions.",
+      "href": "/games/quiz-trivia/",
+      "tags": [
+        "fun",
+        "ai"
+      ],
+      "cats": [
+        "all",
+        "fun"
+      ]
+    },
+    {
+      "slug": "games-dice-roller",
+      "title": "Dice Roller",
+      "icon": "🎲",
+      "desc": "Roll D4 to D20 virtual dice.",
+      "href": "/games/dice-roller/",
+      "tags": [
+        "fun"
+      ],
+      "cats": [
+        "all",
+        "fun"
+      ]
+    },
+    {
+      "slug": "games-coin-flip",
+      "title": "Coin Flip",
+      "icon": "🪙",
+      "desc": "Virtual coin toss with stats.",
+      "href": "/games/coin-flip/",
+      "tags": [
+        "fun"
+      ],
+      "cats": [
+        "all",
+        "fun"
+      ]
+    },
+    {
+      "slug": "games-ping-pong",
+      "title": "Ping Pong",
+      "icon": "🏓",
+      "desc": "Classic Pong against AI.",
+      "href": "/games/ping-pong/",
+      "tags": [
+        "fun"
+      ],
+      "cats": [
+        "all",
+        "fun"
+      ]
+    },
+    {
+      "slug": "games-wheel-of-names",
+      "title": "Wheel of Names",
+      "icon": "🎡",
+      "desc": "Spin a custom wheel of names to pick a random winner.",
+      "href": "/games/wheel-of-names/",
+      "tags": [
+        "fun",
+        "decision"
+      ],
+      "cats": [
+        "all",
+        "fun"
+      ]
+    },
+    {
+      "slug": "ai-name-generator",
+      "title": "AI Name Generator",
+      "icon": "🤖",
+      "desc": "Generate baby, business, brand & character names.",
+      "href": "/ai-name-generator/",
+      "tags": [
+        "ai",
+        "text"
+      ],
+      "cats": [
+        "all",
+        "ai",
+        "text"
+      ]
+    },
+    {
+      "slug": "ai-joke-generator",
+      "title": "AI Joke Generator",
+      "icon": "😂",
+      "desc": "Get hilarious jokes, puns & one-liners instantly.",
+      "href": "/ai-joke-generator/",
+      "tags": [
+        "ai",
+        "fun"
+      ],
+      "cats": [
+        "all",
+        "ai",
+        "fun"
+      ]
+    },
+    {
+      "slug": "ai-grammar-checker",
+      "title": "AI Grammar Checker",
+      "icon": "✅",
+      "desc": "Fix grammar, spelling & punctuation instantly.",
+      "href": "/ai-grammar-checker/",
+      "tags": [
+        "ai",
+        "text"
+      ],
+      "cats": [
+        "all",
+        "ai",
+        "text"
+      ]
+    },
+    {
+      "slug": "ai-cover-letter",
+      "title": "AI Cover Letter Generator",
+      "icon": "📄",
+      "desc": "Generate professional cover letters in seconds.",
+      "href": "/ai-cover-letter/",
+      "tags": [
+        "ai",
+        "text"
+      ],
+      "cats": [
+        "all",
+        "ai",
+        "text"
+      ]
+    },
+    {
+      "slug": "pin-code-finder",
+      "title": "PIN Code Finder India",
+      "icon": "📮",
+      "desc": "Find post office, district & state by PIN code. Bulk lookup + CSV.",
+      "href": "/pin-code-finder/",
+      "tags": [
+        "banking",
+        "identity"
+      ],
+      "cats": [
+        "all",
+        "banking",
+        "networking"
+      ]
+    },
+    {
+      "slug": "gst-number-search",
+      "title": "GST Number Search & Validator",
+      "icon": "🧾",
+      "desc": "Verify GSTIN format, decode state, PAN & entity type.",
+      "href": "/gst-number-search/",
+      "tags": [
+        "tax",
+        "finance",
+        "identity"
+      ],
+      "cats": [
+        "all",
+        "tax",
+        "finance"
+      ]
+    },
+    {
+      "slug": "whatsapp-link-generator",
+      "title": "WhatsApp Link Generator",
+      "icon": "💬",
+      "desc": "Create wa.me links with pre-filled messages & QR codes.",
+      "href": "/whatsapp-link-generator/",
+      "tags": [
+        "whatsapp",
+        "social",
+        "marketing"
+      ],
+      "cats": [
+        "all",
+        "whatsapp",
+        "social"
+      ]
+    },
+    {
+      "slug": "games-friendship-test",
+      "title": "Best Friend Compatibility Test",
+      "icon": "👫",
+      "desc": "2-player BFF quiz with challenge link & score.",
+      "href": "/games/friendship-test/",
+      "tags": [
+        "fun",
+        "social"
+      ],
+      "cats": [
+        "all",
+        "fun",
+        "social"
+      ]
+    },
+    {
+      "slug": "ai-blog-generator",
+      "title": "AI Blog Post Generator",
+      "icon": "📝",
+      "desc": "Generate full SEO-optimized blog posts instantly with AI.",
+      "href": "/ai-blog-generator/",
+      "tags": [
+        "ai",
+        "text",
+        "content"
+      ],
+      "cats": [
+        "all",
+        "text",
+        "ai"
+      ]
+    },
+    {
+      "slug": "ai-youtube-script",
+      "title": "AI YouTube Script Writer",
+      "icon": "🎬",
+      "desc": "Write retention-optimized YouTube scripts with hook, intro & CTA.",
+      "href": "/ai-youtube-script/",
+      "tags": [
+        "ai",
+        "text",
+        "content"
+      ],
+      "cats": [
+        "all",
+        "text",
+        "ai",
+        "social"
+      ]
+    },
+    {
+      "slug": "ai-email-writer",
+      "title": "AI Email Writer",
+      "icon": "📧",
+      "desc": "Write professional emails instantly — cold outreach, follow-ups, job applications.",
+      "href": "/ai-email-writer/",
+      "tags": [
+        "ai",
+        "text",
+        "email"
+      ],
+      "cats": [
+        "all",
+        "text",
+        "ai"
+      ]
+    },
+    {
+      "slug": "ai-caption-generator",
+      "title": "AI Caption Generator",
+      "icon": "📸",
+      "desc": "Generate 5 captions for Instagram, Facebook, LinkedIn & TikTok.",
+      "href": "/ai-caption-generator/",
+      "tags": [
+        "ai",
+        "text",
+        "social"
+      ],
+      "cats": [
+        "all",
+        "text",
+        "ai",
+        "social"
+      ]
+    },
+    {
+      "slug": "ai-budget-planner",
+      "title": "AI Budget Planner",
+      "icon": "💰",
+      "desc": "Get a personalized budget plan and savings strategy with AI.",
+      "href": "/ai-budget-planner/",
+      "tags": [
+        "ai",
+        "finance",
+        "budget"
+      ],
+      "cats": [
+        "all",
+        "finance",
+        "ai"
+      ]
+    },
+    {
+      "slug": "ai-business-name-generator",
+      "title": "AI Business Name Generator",
+      "icon": "💡",
+      "desc": "Generate 20 unique brandable business names with taglines.",
+      "href": "/ai-business-name-generator/",
+      "tags": [
+        "ai",
+        "text",
+        "branding"
+      ],
+      "cats": [
+        "all",
+        "text",
+        "ai"
+      ]
+    },
+    {
+      "slug": "ai-product-description",
+      "title": "AI Product Description Generator",
+      "icon": "🛒",
+      "desc": "Write SEO-optimized product descriptions for Amazon, Shopify & more.",
+      "href": "/ai-product-description/",
+      "tags": [
+        "ai",
+        "text",
+        "ecommerce"
+      ],
+      "cats": [
+        "all",
+        "text",
+        "ai"
+      ]
+    },
+    {
+      "slug": "timezone-converter",
+      "title": "Time Zone Converter",
+      "icon": "🌍",
+      "desc": "Convert time zones, compare world clocks and find meeting overlaps.",
+      "href": "/timezone-converter/",
+      "tags": [
+        "productivity",
+        "time",
+        "international"
+      ],
+      "cats": [
+        "all",
+        "networking",
+        "marketing"
+      ]
+    },
+    {
+      "slug": "percentage-calculator",
+      "title": "Percentage Calculator",
+      "icon": "📈",
+      "desc": "Calculate discounts, markups, percent change and percentage of a number.",
+      "href": "/percentage-calculator/",
+      "tags": [
+        "finance",
+        "math",
+        "shopping"
+      ],
+      "cats": [
+        "all",
+        "finance",
+        "text"
+      ]
+    },
+    {
+      "slug": "cagr-calculator",
+      "title": "CAGR Calculator",
+      "icon": "📉",
+      "desc": "Calculate compound annual growth rate for investments, revenue and traffic.",
+      "href": "/cagr-calculator/",
+      "tags": [
+        "finance",
+        "investment",
+        "international"
+      ],
+      "cats": [
+        "all",
+        "finance"
+      ]
+    },
+    {
+      "slug": "markup-margin-calculator",
+      "title": "Markup vs Margin Calculator",
+      "icon": "🏷️",
+      "desc": "Convert cost, sale price, markup, margin and gross profit.",
+      "href": "/markup-margin-calculator/",
+      "tags": [
+        "finance",
+        "ecommerce",
+        "pricing"
+      ],
+      "cats": [
+        "all",
+        "finance",
+        "marketing"
+      ]
+    },
+    {
+      "slug": "salary-converter",
+      "title": "Salary Converter",
+      "icon": "💼",
+      "desc": "Convert hourly, daily, weekly, monthly and annual pay fast.",
+      "href": "/salary-converter/",
+      "tags": [
+        "salary",
+        "jobs",
+        "international"
+      ],
+      "cats": [
+        "all",
+        "finance",
+        "marketing"
+      ]
+    },
+    {
+      "slug": "break-even-calculator",
+      "title": "Break-Even Calculator",
+      "icon": "⚖️",
+      "desc": "Calculate break-even units, revenue and sales needed for profit.",
+      "href": "/break-even-calculator/",
+      "tags": [
+        "business",
+        "pricing",
+        "finance"
+      ],
+      "cats": [
+        "all",
+        "finance",
+        "marketing"
+      ]
+    },
+    {
+      "slug": "overtime-calculator",
+      "title": "Overtime Calculator",
+      "icon": "⏱️",
+      "desc": "Estimate overtime pay with custom hourly rates and multipliers.",
+      "href": "/overtime-calculator/",
+      "tags": [
+        "salary",
+        "work",
+        "payroll"
+      ],
+      "cats": [
+        "all",
+        "finance",
+        "marketing"
+      ]
+    },
+    {
+      "slug": "invoice-calculator",
+      "title": "Invoice Calculator",
+      "icon": "🧾",
+      "desc": "Calculate invoice subtotal, discount, tax and total due.",
+      "href": "/invoice-calculator/",
+      "tags": [
+        "invoice",
+        "freelance",
+        "tax"
+      ],
+      "cats": [
+        "all",
+        "finance",
+        "tax",
+        "marketing"
+      ]
+    },
+    {
+      "slug": "met-gala-2026",
+      "title": "Met Gala 2026 Fashion Looks",
+      "icon": "✨",
+      "desc": "Searchable red carpet guide with celebrity looks, designer credits & styling details.",
+      "href": "/met-gala-2026/",
+      "tags": [
+        "fashion",
+        "celebrity",
+        "social",
+        "style"
+      ],
+      "cats": [
+        "all",
+        "social",
+        "marketing"
+      ]
+    },
+    {
+      "slug": "cricket-run-rate",
+      "title": "Cricket Run Rate Calculator",
+      "icon": "🏏",
+      "desc": "Calculate required run rate, target and projected score for T20, ODI & Test matches.",
+      "href": "/cricket-run-rate/",
+      "tags": [
+        "cricket",
+        "sports"
+      ],
+      "cats": [
+        "all",
+        "cricket"
+      ]
+    },
+    {
+      "slug": "cricket-score-predictor",
+      "title": "Cricket Score Predictor",
+      "icon": "📊",
+      "desc": "Predict match outcome and winning probability based on current score and overs.",
+      "href": "/cricket-score-predictor/",
+      "tags": [
+        "cricket",
+        "sports"
+      ],
+      "cats": [
+        "all",
+        "cricket"
+      ]
+    },
+    {
+      "slug": "cricket-nrr",
+      "title": "Cricket Net Run Rate (NRR)",
+      "icon": "🧮",
+      "desc": "Calculate net run rate for tournament standings and league matches.",
+      "href": "/cricket-nrr/",
+      "tags": [
+        "cricket",
+        "sports"
+      ],
+      "cats": [
+        "all",
+        "cricket"
+      ]
+    },
+    {
+      "slug": "ipl-points-table",
+      "title": "IPL 2025 Points Table",
+      "icon": "🏆",
+      "desc": "Live IPL standings with NRR, wins, losses and playoff tracker.",
+      "href": "/ipl-points-table/",
+      "tags": [
+        "cricket",
+        "ipl",
+        "sports"
+      ],
+      "cats": [
+        "all",
+        "cricket"
+      ]
+    },
+    {
+      "slug": "ipl-fantasy-calculator",
+      "title": "IPL Fantasy Points Calculator",
+      "icon": "⭐",
+      "desc": "Calculate Dream11 fantasy points for batting, bowling and fielding.",
+      "href": "/ipl-fantasy-calculator/",
+      "tags": [
+        "cricket",
+        "ipl",
+        "fantasy"
+      ],
+      "cats": [
+        "all",
+        "cricket"
+      ]
+    },
+    {
+      "slug": "ipl-team-stats",
+      "title": "IPL Team Statistics",
+      "icon": "📈",
+      "desc": "All-time IPL records, wins, titles and performance stats.",
+      "href": "/ipl-team-stats/",
+      "tags": [
+        "cricket",
+        "ipl",
+        "stats"
+      ],
+      "cats": [
+        "all",
+        "cricket"
+      ]
+    },
+    {
+      "slug": "ai-linkedin-headline-generator",
+      "title": "AI LinkedIn Headline Generator",
+      "icon": "💼",
+      "desc": "Create keyword-rich LinkedIn headlines for jobs, freelancing and founders.",
+      "href": "/ai-linkedin-headline-generator/",
+      "tags": [
+        "ai",
+        "social",
+        "marketing"
+      ],
+      "cats": [
+        "all",
+        "ai",
+        "social",
+        "marketing"
+      ]
+    },
+    {
+      "slug": "ai-travel-planner",
+      "title": "AI Travel Planner",
+      "icon": "🧳",
+      "desc": "Generate day-by-day trip itineraries by destination, budget and pace.",
+      "href": "/ai-travel-planner/",
+      "tags": [
+        "ai",
+        "travel",
+        "international"
+      ],
+      "cats": [
+        "all",
+        "ai",
+        "marketing"
+      ]
+    },
+    {
+      "slug": "tip-calculator",
+      "title": "Tip Calculator",
+      "icon": "💵",
+      "desc": "Calculate tips and split bills for restaurants and services.",
+      "href": "/tip-calculator/",
+      "tags": [
+        "finance",
+        "calculator"
+      ],
+      "cats": [
+        "all",
+        "finance"
+      ]
+    },
+    {
+      "slug": "sales-tax-calculator",
+      "title": "US Sales Tax Calculator",
+      "icon": "🧾",
+      "desc": "Calculate sales tax for all 50 US states with accurate rates.",
+      "href": "/sales-tax-calculator/",
+      "tags": [
+        "tax",
+        "finance",
+        "usa"
+      ],
+      "cats": [
+        "all",
+        "tax",
+        "finance"
+      ]
+    },
+    {
+      "slug": "vat-calculator",
+      "title": "VAT Calculator",
+      "icon": "🇪🇺",
+      "desc": "Calculate European VAT for all EU countries and rates.",
+      "href": "/vat-calculator/",
+      "tags": [
+        "tax",
+        "finance",
+        "europe"
+      ],
+      "cats": [
+        "all",
+        "tax",
+        "finance"
+      ]
+    },
+    {
+      "slug": "mortgage-calculator",
+      "title": "Mortgage Calculator",
+      "icon": "🏠",
+      "desc": "Calculate monthly mortgage payments and total interest.",
+      "href": "/mortgage-calculator/",
+      "tags": [
+        "finance",
+        "calculator",
+        "housing"
+      ],
+      "cats": [
+        "all",
+        "finance"
+      ]
+    },
+    {
+      "slug": "calorie-calculator",
+      "title": "Calorie Calculator",
+      "icon": "🍎",
+      "desc": "Calculate daily calorie needs (TDEE) for weight goals.",
+      "href": "/calorie-calculator/",
+      "tags": [
+        "health",
+        "fitness",
+        "calculator"
+      ],
+      "cats": [
+        "all",
+        "health"
+      ]
+    },
+    {
+      "slug": "401k-calculator",
+      "title": "401k Calculator",
+      "icon": "💰",
+      "desc": "Calculate 401k retirement savings with employer match.",
+      "href": "/401k-calculator/",
+      "tags": [
+        "finance",
+        "retirement",
+        "usa"
+      ],
+      "cats": [
+        "all",
+        "finance"
+      ]
+    },
+    {
+      "slug": "house-affordability-calculator",
+      "title": "House Affordability Calculator",
+      "icon": "🏠",
+      "desc": "Calculate how much house you can afford based on income.",
+      "href": "/house-affordability-calculator/",
+      "tags": [
+        "finance",
+        "real-estate",
+        "housing"
+      ],
+      "cats": [
+        "all",
+        "finance"
+      ]
+    },
+    {
+      "slug": "car-loan-calculator",
+      "title": "Car Loan Calculator",
+      "icon": "🚗",
+      "desc": "Calculate car loan payments and total interest costs.",
+      "href": "/car-loan-calculator/",
+      "tags": [
+        "finance",
+        "automotive",
+        "loans"
+      ],
+      "cats": [
+        "all",
+        "finance"
+      ]
+    },
+    {
+      "slug": "retirement-calculator",
+      "title": "Retirement Calculator",
+      "icon": "🏖️",
+      "desc": "Calculate when you can retire based on savings and income.",
+      "href": "/retirement-calculator/",
+      "tags": [
+        "finance",
+        "retirement",
+        "planning"
+      ],
+      "cats": [
+        "all",
+        "finance"
+      ]
+    },
+    {
+      "slug": "life-insurance-calculator",
+      "title": "Life Insurance Calculator",
+      "icon": "🛡️",
+      "desc": "Calculate how much life insurance coverage you need.",
+      "href": "/life-insurance-calculator/",
+      "tags": [
+        "finance",
+        "insurance",
+        "planning"
+      ],
+      "cats": [
+        "all",
+        "finance"
+      ]
+    },
+    {
+      "slug": "investment-return-calculator",
+      "title": "Investment Return Calculator",
+      "icon": "📊",
+      "desc": "Calculate ROI and compound interest on investments.",
+      "href": "/investment-return-calculator/",
+      "tags": [
+        "finance",
+        "investment",
+        "calculator"
+      ],
+      "cats": [
+        "all",
+        "finance"
+      ]
+    },
+    {
+      "slug": "roth-ira-calculator",
+      "title": "Roth IRA Calculator",
+      "icon": "💎",
+      "desc": "Calculate tax-free retirement savings with Roth IRA.",
+      "href": "/roth-ira-calculator/",
+      "tags": [
+        "finance",
+        "retirement",
+        "usa"
+      ],
+      "cats": [
+        "all",
+        "finance"
+      ]
+    },
+    {
+      "slug": "debt-payoff-calculator",
+      "title": "Debt Payoff Calculator",
+      "icon": "💳",
+      "desc": "Calculate debt-free timeline with snowball or avalanche.",
+      "href": "/debt-payoff-calculator/",
+      "tags": [
+        "finance",
+        "debt",
+        "planning"
+      ],
+      "cats": [
+        "all",
+        "finance"
+      ]
+    },
+    {
+      "slug": "net-worth-calculator",
+      "title": "Net Worth Calculator",
+      "icon": "💰",
+      "desc": "Calculate your total net worth: assets minus liabilities.",
+      "href": "/net-worth-calculator/",
+      "tags": [
+        "finance",
+        "wealth",
+        "planning"
+      ],
+      "cats": [
+        "all",
+        "finance"
+      ]
+    },
+    {
+      "slug": "savings-goal-calculator",
+      "title": "Savings Goal Calculator",
+      "icon": "🎯",
+      "desc": "Calculate how long to reach your savings goal.",
+      "href": "/savings-goal-calculator/",
+      "tags": [
+        "finance",
+        "savings",
+        "planning"
+      ],
+      "cats": [
+        "all",
+        "finance"
+      ]
+    },
+    {
+      "slug": "rent-vs-buy-calculator",
+      "title": "Rent vs Buy Calculator",
+      "icon": "🏘️",
+      "desc": "Compare renting vs buying a home over time.",
+      "href": "/rent-vs-buy-calculator/",
+      "tags": [
+        "finance",
+        "real-estate",
+        "housing"
+      ],
+      "cats": [
+        "all",
+        "finance"
+      ]
+    },
+    {
+      "slug": "refinance-calculator",
+      "title": "Refinance Calculator",
+      "icon": "🔄",
+      "desc": "Calculate if refinancing your mortgage saves money.",
+      "href": "/refinance-calculator/",
+      "tags": [
+        "finance",
+        "mortgage",
+        "real-estate"
+      ],
+      "cats": [
+        "all",
+        "finance"
+      ]
+    },
+    {
+      "slug": "property-tax-calculator",
+      "title": "Property Tax Calculator",
+      "icon": "🏛️",
+      "desc": "Estimate annual property taxes on your home.",
+      "href": "/property-tax-calculator/",
+      "tags": [
+        "finance",
+        "tax",
+        "real-estate"
+      ],
+      "cats": [
+        "all",
+        "finance",
+        "tax"
+      ]
+    },
+    {
+      "slug": "stamp-duty-calculator",
+      "title": "UK Stamp Duty Calculator",
+      "icon": "🇬🇧",
+      "desc": "Calculate UK Stamp Duty Land Tax on property.",
+      "href": "/stamp-duty-calculator/",
+      "tags": [
+        "finance",
+        "tax",
+        "uk",
+        "real-estate"
+      ],
+      "cats": [
+        "all",
+        "finance",
+        "tax"
+      ]
+    },
+    {
+      "slug": "home-equity-calculator",
+      "title": "Home Equity Calculator",
+      "icon": "📊",
+      "desc": "Calculate equity in your home and track growth.",
+      "href": "/home-equity-calculator/",
+      "tags": [
+        "finance",
+        "real-estate",
+        "equity"
+      ],
+      "cats": [
+        "all",
+        "finance"
+      ]
+    },
+    {
+      "slug": "whatsapp-status-saver",
+      "title": "WhatsApp Status Saver",
+      "icon": "💾",
+      "desc": "Learn how to save WhatsApp status videos and photos.",
+      "href": "/whatsapp-status-saver/",
+      "tags": [
+        "whatsapp",
+        "social",
+        "guide"
+      ],
+      "cats": [
+        "all",
+        "whatsapp",
+        "social"
+      ]
+    },
+    {
+      "slug": "whatsapp-dp-downloader",
+      "title": "WhatsApp DP Downloader",
+      "icon": "📥",
+      "desc": "Download WhatsApp profile pictures in full size.",
+      "href": "/whatsapp-dp-downloader/",
+      "tags": [
+        "whatsapp",
+        "social",
+        "download"
+      ],
+      "cats": [
+        "all",
+        "whatsapp",
+        "social"
+      ]
+    },
+    {
+      "slug": "whatsapp-profile-picture-downloader",
+      "title": "WhatsApp Profile Pic Downloader",
+      "icon": "🖼️",
+      "desc": "Save any visible WhatsApp profile picture in full size.",
+      "href": "/whatsapp-profile-picture-downloader/",
+      "tags": [
+        "whatsapp",
+        "social",
+        "download"
+      ],
+      "cats": [
+        "all",
+        "whatsapp",
+        "social"
+      ]
+    },
+    {
+      "slug": "whatsapp-dp-by-number",
+      "title": "WhatsApp DP by Number Guide",
+      "icon": "🔢",
+      "desc": "Honest guide: saving WhatsApp DP from a number.",
+      "href": "/whatsapp-dp-by-number/",
+      "tags": [
+        "whatsapp",
+        "social",
+        "guide"
+      ],
+      "cats": [
+        "all",
+        "whatsapp",
+        "social"
+      ]
+    },
+    {
+      "slug": "instagram-profile-picture-downloader",
+      "title": "IG Profile Pic Downloader",
+      "icon": "📸",
+      "desc": "Save any public Instagram profile picture in full size.",
+      "href": "/instagram-profile-picture-downloader/",
+      "tags": [
+        "instagram",
+        "social",
+        "download"
+      ],
+      "cats": [
+        "all",
+        "instagram",
+        "social"
+      ]
+    },
+    {
+      "slug": "marvel-doomsday",
+      "title": "Marvel Doomsday 2026",
+      "icon": "🦸",
+      "desc": "Release date, cast & Multiverse Saga guide.",
+      "href": "/marvel-doomsday/",
+      "tags": [
+        "marvel",
+        "movie",
+        "entertainment"
+      ],
+      "cats": [
+        "all",
+        "entertainment"
+      ]
+    },
+    {
+      "slug": "marvel-movie-timeline",
+      "title": "MCU Movie Timeline",
+      "icon": "🎬",
+      "desc": "Complete Marvel watch order & phase guide.",
+      "href": "/marvel-movie-timeline/",
+      "tags": [
+        "marvel",
+        "movie",
+        "timeline"
+      ],
+      "cats": [
+        "all",
+        "entertainment"
+      ]
+    },
+    {
+      "slug": "avengers-doomsday-cast",
+      "title": "Doomsday Cast",
+      "icon": "🦹",
+      "desc": "Confirmed & rumored Avengers Doomsday cast.",
+      "href": "/avengers-doomsday-cast/",
+      "tags": [
+        "marvel",
+        "movie",
+        "cast"
+      ],
+      "cats": [
+        "all",
+        "entertainment"
+      ]
+    },
+    {
+      "slug": "how-to-calculate-gpa",
+      "title": "How to Calculate GPA",
+      "icon": "🎓",
+      "desc": "Step-by-step GPA & CGPA calculation guide.",
+      "href": "/how-to-calculate-gpa/",
+      "tags": [
+        "study",
+        "gpa",
+        "guide"
+      ],
+      "cats": [
+        "all",
+        "study"
+      ]
+    },
+    {
+      "slug": "cbse-result-guide",
+      "title": "CBSE Result Guide",
+      "icon": "📄",
+      "desc": "Check CBSE result & convert CGPA to %.",
+      "href": "/cbse-result-guide/",
+      "tags": [
+        "cbse",
+        "result",
+        "study"
+      ],
+      "cats": [
+        "all",
+        "study"
+      ]
+    },
+    {
+      "slug": "whatsapp-group-name-generator",
+      "title": "WhatsApp Group Name Generator",
+      "icon": "💬",
+      "desc": "Generate creative group names for any occasion.",
+      "href": "/whatsapp-group-name-generator/",
+      "tags": [
+        "whatsapp",
+        "social",
+        "generator"
+      ],
+      "cats": [
+        "all",
+        "whatsapp",
+        "social"
+      ]
+    },
+    {
+      "slug": "snapchat-username-generator",
+      "title": "Snapchat Username Generator",
+      "icon": "👻",
+      "desc": "Create unique and cool Snapchat usernames.",
+      "href": "/snapchat-username-generator/",
+      "tags": [
+        "snapchat",
+        "social",
+        "generator"
+      ],
+      "cats": [
+        "all",
+        "social"
+      ]
+    },
+    {
+      "slug": "snapchat-score-calculator",
+      "title": "Snapchat Score Calculator",
+      "icon": "📊",
+      "desc": "Calculate and understand your Snapchat score.",
+      "href": "/snapchat-score-calculator/",
+      "tags": [
+        "snapchat",
+        "social",
+        "calculator"
+      ],
+      "cats": [
+        "all",
+        "social"
+      ]
+    },
+    {
+      "slug": "whatsapp-message-scheduler",
+      "title": "WhatsApp Message Scheduler",
+      "icon": "⏰",
+      "desc": "Learn how to schedule WhatsApp messages for free.",
+      "href": "/whatsapp-message-scheduler/",
+      "tags": [
+        "whatsapp",
+        "social",
+        "guide"
+      ],
+      "cats": [
+        "all",
+        "whatsapp",
+        "social"
+      ]
+    },
+    {
+      "slug": "whatsapp-business-name-generator",
+      "title": "WhatsApp Business Name Generator",
+      "icon": "💼",
+      "desc": "Generate professional business names for WhatsApp.",
+      "href": "/whatsapp-business-name-generator/",
+      "tags": [
+        "whatsapp",
+        "business",
+        "generator"
+      ],
+      "cats": [
+        "all",
+        "whatsapp",
+        "social"
+      ]
+    },
+    {
+      "slug": "whatsapp-font-generator",
+      "title": "WhatsApp Font Generator",
+      "icon": "✍️",
+      "desc": "Generate bold, italic, strikethrough text for WhatsApp.",
+      "href": "/whatsapp-font-generator/",
+      "tags": [
+        "whatsapp",
+        "text",
+        "generator"
+      ],
+      "cats": [
+        "all",
+        "whatsapp",
+        "text"
+      ]
+    },
+    {
+      "slug": "whatsapp-emoji-translator",
+      "title": "WhatsApp Emoji Translator",
+      "icon": "😊",
+      "desc": "Convert text to emojis for WhatsApp messages.",
+      "href": "/whatsapp-emoji-translator/",
+      "tags": [
+        "whatsapp",
+        "emoji",
+        "fun"
+      ],
+      "cats": [
+        "all",
+        "whatsapp",
+        "fun"
+      ]
+    },
+    {
+      "slug": "whatsapp-group-invite-link",
+      "title": "WhatsApp Group Invite Link",
+      "icon": "🔗",
+      "desc": "Learn how to create and share group invite links.",
+      "href": "/whatsapp-group-invite-link/",
+      "tags": [
+        "whatsapp",
+        "social",
+        "guide"
+      ],
+      "cats": [
+        "all",
+        "whatsapp",
+        "social"
+      ]
+    },
+    {
+      "slug": "snapchat-filters-guide",
+      "title": "Snapchat Filters Guide",
+      "icon": "👻",
+      "desc": "Complete guide to using Snapchat filters and lenses.",
+      "href": "/snapchat-filters-guide/",
+      "tags": [
+        "snapchat",
+        "social",
+        "guide"
+      ],
+      "cats": [
+        "all",
+        "social"
+      ]
+    },
+    {
+      "slug": "snapchat-story-ideas",
+      "title": "Snapchat Story Ideas Generator",
+      "icon": "💡",
+      "desc": "Generate creative story ideas for Snapchat.",
+      "href": "/snapchat-story-ideas/",
+      "tags": [
+        "snapchat",
+        "social",
+        "generator"
+      ],
+      "cats": [
+        "all",
+        "social"
+      ]
+    },
+    {
+      "slug": "snapchat-streak-calculator",
+      "title": "Snapchat Streak Calculator",
+      "icon": "🔥",
+      "desc": "Calculate and track your Snapchat streaks.",
+      "href": "/snapchat-streak-calculator/",
+      "tags": [
+        "snapchat",
+        "social",
+        "calculator"
+      ],
+      "cats": [
+        "all",
+        "social"
+      ]
+    },
+    {
+      "slug": "contact",
+      "title": "Contact UpTools",
+      "icon": "✉️",
+      "desc": "Share feedback, bugs or feature requests.",
+      "href": "/contact/",
+      "tags": [
+        "text"
+      ],
+      "cats": [
+        "all",
+        "text"
+      ]
+    },
+    {
+      "slug": "privacy-policy",
+      "title": "Privacy Policy",
+      "icon": "📜",
+      "desc": "Understand how UpTools handles data.",
+      "href": "/privacy-policy/",
+      "tags": [
+        "security"
+      ],
+      "cats": [
+        "all",
+        "security"
+      ]
+    },
+    {
+      "slug": "whatsapp-web-guide",
+      "title": "WhatsApp Web Guide",
+      "icon": "💬",
+      "desc": "Complete guide to use WhatsApp on desktop.",
+      "href": "/whatsapp-web-guide/",
+      "tags": [
+        "whatsapp",
+        "guide"
+      ],
+      "cats": [
+        "all",
+        "whatsapp",
+        "social"
+      ]
+    },
+    {
+      "slug": "whatsapp-tricks",
+      "title": "WhatsApp Tricks & Hidden Features",
+      "icon": "🎯",
+      "desc": "Unlock hidden WhatsApp features and pro tips.",
+      "href": "/whatsapp-tricks/",
+      "tags": [
+        "whatsapp",
+        "tips"
+      ],
+      "cats": [
+        "all",
+        "whatsapp",
+        "social"
+      ]
+    },
+    {
+      "slug": "whatsapp-backup-guide",
+      "title": "WhatsApp Backup Guide",
+      "icon": "💾",
+      "desc": "How to backup and restore WhatsApp chats.",
+      "href": "/whatsapp-backup-guide/",
+      "tags": [
+        "whatsapp",
+        "guide"
+      ],
+      "cats": [
+        "all",
+        "whatsapp",
+        "social"
+      ]
+    },
+    {
+      "slug": "instagram-reels-ideas",
+      "title": "Instagram Reels Ideas Generator",
+      "icon": "🎬",
+      "desc": "Generate viral Instagram Reels ideas with AI.",
+      "href": "/instagram-reels-ideas/",
+      "tags": [
+        "social",
+        "ai",
+        "content"
+      ],
+      "cats": [
+        "all",
+        "social",
+        "ai"
+      ]
+    },
+    {
+      "slug": "instagram-engagement-calculator",
+      "title": "Instagram Engagement Calculator",
+      "icon": "📊",
+      "desc": "Calculate engagement rate and analyze performance.",
+      "href": "/instagram-engagement-calculator/",
+      "tags": [
+        "social",
+        "analytics"
+      ],
+      "cats": [
+        "all",
+        "social",
+        "marketing"
+      ]
+    },
+    {
+      "slug": "instagram-best-time-to-post",
+      "title": "Instagram Best Time to Post",
+      "icon": "⏰",
+      "desc": "Find optimal posting times for maximum reach.",
+      "href": "/instagram-best-time-to-post/",
+      "tags": [
+        "social",
+        "marketing"
+      ],
+      "cats": [
+        "all",
+        "social",
+        "marketing"
+      ]
+    },
+    {
+      "slug": "instagram-follower-tracker",
+      "title": "Instagram Follower Tracker",
+      "icon": "📈",
+      "desc": "Track follower growth and analyze trends.",
+      "href": "/instagram-follower-tracker/",
+      "tags": [
+        "social",
+        "analytics"
+      ],
+      "cats": [
+        "all",
+        "social",
+        "marketing"
+      ]
+    },
+    {
+      "slug": "instagram-profile-analyzer",
+      "title": "Instagram Profile Analyzer",
+      "icon": "📊",
+      "desc": "Analyze profile performance and get insights.",
+      "href": "/instagram-profile-analyzer/",
+      "tags": [
+        "social",
+        "analytics"
+      ],
+      "cats": [
+        "all",
+        "social",
+        "marketing"
+      ]
+    },
+    {
+      "slug": "tiktok-video-downloader",
+      "title": "TikTok Video Downloader",
+      "icon": "🎵",
+      "desc": "Download TikTok videos without watermark.",
+      "href": "/tiktok-video-downloader/",
+      "tags": [
+        "social",
+        "download"
+      ],
+      "cats": [
+        "all",
+        "social"
+      ]
+    },
+    {
+      "slug": "facebook-video-downloader",
+      "title": "Facebook Video Downloader",
+      "icon": "📹",
+      "desc": "Download Facebook videos in HD quality.",
+      "href": "/facebook-video-downloader/",
+      "tags": [
+        "social",
+        "download"
+      ],
+      "cats": [
+        "all",
+        "social"
+      ]
+    },
+    {
+      "slug": "youtube-video-downloader",
+      "title": "YouTube Video Downloader",
+      "icon": "🎥",
+      "desc": "Download YouTube videos and audio in HD.",
+      "href": "/youtube-video-downloader/",
+      "tags": [
+        "social",
+        "download"
+      ],
+      "cats": [
+        "all",
+        "social"
+      ]
+    },
+    {
+      "slug": "twitter-video-downloader",
+      "title": "Twitter/X Video Downloader",
+      "icon": "🐦",
+      "desc": "Download Twitter/X videos instantly.",
+      "href": "/twitter-video-downloader/",
+      "tags": [
+        "social",
+        "download"
+      ],
+      "cats": [
+        "all",
+        "social"
+      ]
+    },
+    {
+      "slug": "linkedin-profile-analyzer",
+      "title": "LinkedIn Profile Analyzer",
+      "icon": "💼",
+      "desc": "Analyze and optimize your LinkedIn profile.",
+      "href": "/linkedin-profile-analyzer/",
+      "tags": [
+        "social",
+        "professional"
+      ],
+      "cats": [
+        "all",
+        "social",
+        "marketing"
+      ]
+    },
+    {
+      "slug": "meeting-scheduler",
+      "title": "Meeting Scheduler",
+      "icon": "🌍",
+      "desc": "Find best meeting times across timezones.",
+      "href": "/meeting-scheduler/",
+      "tags": [
+        "productivity",
+        "time"
+      ],
+      "cats": [
+        "all",
+        "networking",
+        "marketing"
+      ]
+    },
+    {
+      "slug": "todo-list-maker",
+      "title": "Todo List Maker",
+      "icon": "✅",
+      "desc": "Simple online todo list with local storage.",
+      "href": "/todo-list-maker/",
+      "tags": [
+        "productivity",
+        "task"
+      ],
+      "cats": [
+        "all",
+        "text"
+      ]
+    },
+    {
+      "slug": "note-taking-app",
+      "title": "Note Taking App",
+      "icon": "📝",
+      "desc": "Quick notes online with local storage.",
+      "href": "/note-taking-app/",
+      "tags": [
+        "productivity",
+        "notes"
+      ],
+      "cats": [
+        "all",
+        "text"
+      ]
+    },
+    {
+      "slug": "habit-tracker",
+      "title": "Habit Tracker",
+      "icon": "📊",
+      "desc": "Track daily habits and build streaks.",
+      "href": "/habit-tracker/",
+      "tags": [
+        "productivity",
+        "health"
+      ],
+      "cats": [
+        "all",
+        "health"
+      ]
+    },
+    {
+      "slug": "multi-currency-converter",
+      "title": "Multi-Currency Converter",
+      "icon": "💱",
+      "desc": "Convert 150+ currencies with real-time rates.",
+      "href": "/multi-currency-converter/",
+      "tags": [
+        "finance",
+        "international"
+      ],
+      "cats": [
+        "all",
+        "finance"
+      ]
+    },
+    {
+      "slug": "world-clock",
+      "title": "World Clock",
+      "icon": "🌍",
+      "desc": "Check time in 200+ cities worldwide.",
+      "href": "/world-clock/",
+      "tags": [
+        "time",
+        "international"
+      ],
+      "cats": [
+        "all",
+        "networking"
+      ]
+    },
+    {
+      "slug": "roi-calculator",
+      "title": "ROI Calculator",
+      "icon": "📈",
+      "desc": "Calculate return on investment instantly.",
+      "href": "/roi-calculator/",
+      "tags": [
+        "business",
+        "finance"
+      ],
+      "cats": [
+        "all",
+        "finance",
+        "marketing"
+      ]
+    },
+    {
+      "slug": "calorie-intake-calculator",
+      "title": "Calorie Intake Calculator",
+      "icon": "🔥",
+      "desc": "Calculate daily calorie needs for your goals.",
+      "href": "/calorie-intake-calculator/",
+      "tags": [
+        "health",
+        "fitness"
+      ],
+      "cats": [
+        "all",
+        "health"
+      ]
+    },
+    {
+      "slug": "language-detector",
+      "title": "Language Detector",
+      "icon": "🌐",
+      "desc": "Automatically detect language from text. Supports 50+ languages.",
+      "href": "/language-detector/",
+      "tags": [
+        "language",
+        "text"
+      ],
+      "cats": [
+        "all",
+        "text"
+      ]
+    },
+    {
+      "slug": "english-to-devanagari",
+      "title": "English to Devanagari",
+      "icon": "अ",
+      "desc": "Convert English (Roman) text to Devanagari (Hindi) script instantly. Phonetic transliterator — no signup.",
+      "href": "/english-to-devanagari/",
+      "tags": [
+        "language",
+        "text",
+        "hindi",
+        "india"
+      ],
+      "cats": [
+        "all",
+        "text"
+      ]
+    },
+    {
+      "slug": "fancy-text-generator",
+      "title": "Fancy Text Generator",
+      "icon": "𝓕",
+      "desc": "Convert text to 15+ Unicode fancy styles — Bold, Italic, Script, Cursive, Upside Down. Perfect for Instagram bio & WhatsApp.",
+      "href": "/fancy-text-generator/",
+      "tags": [
+        "text",
+        "social",
+        "fun"
+      ],
+      "cats": [
+        "all",
+        "text",
+        "social",
+        "fun"
+      ]
+    },
+    {
+      "slug": "text-repeater",
+      "title": "Text Repeater",
+      "icon": "🔁",
+      "desc": "Repeat text online 1–1000 times with custom separators (newline, comma, pipe). Copy or download instantly.",
+      "href": "/text-repeater/",
+      "tags": [
+        "text",
+        "productivity"
+      ],
+      "cats": [
+        "all",
+        "text"
+      ]
+    },
+    {
+      "slug": "morse-code-translator",
+      "title": "Morse Code Translator",
+      "icon": "📡",
+      "desc": "Convert text to Morse code with audio playback.",
+      "href": "/morse-code-translator/",
+      "tags": [
+        "language",
+        "text"
+      ],
+      "cats": [
+        "all",
+        "text"
+      ]
+    },
+    {
+      "slug": "binary-code-translator",
+      "title": "Binary Code Translator",
+      "icon": "🔢",
+      "desc": "Convert text to binary, hex, and decimal codes.",
+      "href": "/binary-code-translator/",
+      "tags": [
+        "dev",
+        "text"
+      ],
+      "cats": [
+        "all",
+        "dev",
+        "text"
+      ]
+    },
+    {
+      "slug": "phonetic-alphabet-converter",
+      "title": "Phonetic Alphabet Converter",
+      "icon": "🔤",
+      "desc": "Convert text to NATO phonetic alphabet.",
+      "href": "/phonetic-alphabet-converter/",
+      "tags": [
+        "language",
+        "text"
+      ],
+      "cats": [
+        "all",
+        "text"
+      ]
+    },
+    {
+      "slug": "accent-mark-generator",
+      "title": "Accent Mark Generator",
+      "icon": "🎨",
+      "desc": "Add accent marks and diacritics to text.",
+      "href": "/accent-mark-generator/",
+      "tags": [
+        "language",
+        "text"
+      ],
+      "cats": [
+        "all",
+        "text"
+      ]
+    },
+    {
+      "slug": "unix-timestamp-converter",
+      "title": "Unix Timestamp Converter",
+      "icon": "⏱️",
+      "desc": "Convert Unix timestamps to dates and vice versa.",
+      "href": "/unix-timestamp-converter/",
+      "tags": [
+        "dev",
+        "time"
+      ],
+      "cats": [
+        "all",
+        "dev"
+      ]
+    },
+    {
+      "slug": "countdown-timer",
+      "title": "Countdown Timer",
+      "icon": "⏲️",
+      "desc": "Customizable countdown timer with notifications.",
+      "href": "/countdown-timer/",
+      "tags": [
+        "productivity",
+        "time"
+      ],
+      "cats": [
+        "all",
+        "text"
+      ]
+    },
+    {
+      "slug": "days-between-dates",
+      "title": "Days Between Dates",
+      "icon": "📅",
+      "desc": "Calculate days, weeks, months between two dates.",
+      "href": "/days-between-dates/",
+      "tags": [
+        "time",
+        "calculator"
+      ],
+      "cats": [
+        "all",
+        "text"
+      ]
+    },
+    {
+      "slug": "age-calculator-by-date",
+      "title": "Age Calculator by Date",
+      "icon": "🎂",
+      "desc": "Calculate exact age with zodiac sign and birthday countdown.",
+      "href": "/age-calculator-by-date/",
+      "tags": [
+        "time",
+        "calculator"
+      ],
+      "cats": [
+        "all",
+        "text"
+      ]
+    },
+    {
+      "slug": "lunar-calendar",
+      "title": "Lunar Calendar",
+      "icon": "🌙",
+      "desc": "View lunar calendar with moon phases and zodiac.",
+      "href": "/lunar-calendar/",
+      "tags": [
+        "time",
+        "calendar"
+      ],
+      "cats": [
+        "all",
+        "text"
+      ]
+    },
+    {
+      "slug": "temperature-converter",
+      "title": "Temperature Converter",
+      "icon": "🌡️",
+      "desc": "Convert temperature between Celsius, Fahrenheit, Kelvin.",
+      "href": "/temperature-converter/",
+      "tags": [
+        "conversion",
+        "science"
+      ],
+      "cats": [
+        "all",
+        "dev"
+      ]
+    },
+    {
+      "slug": "speed-converter",
+      "title": "Speed Converter",
+      "icon": "🚀",
+      "desc": "Convert speed units: km/h, mph, knots, m/s.",
+      "href": "/speed-converter/",
+      "tags": [
+        "conversion",
+        "science"
+      ],
+      "cats": [
+        "all",
+        "dev"
+      ]
+    },
+    {
+      "slug": "pressure-converter",
+      "title": "Pressure Converter",
+      "icon": "🔧",
+      "desc": "Convert pressure units: PSI, bar, pascal, atm.",
+      "href": "/pressure-converter/",
+      "tags": [
+        "conversion",
+        "science"
+      ],
+      "cats": [
+        "all",
+        "dev"
+      ]
+    },
+    {
+      "slug": "energy-converter",
+      "title": "Energy Converter",
+      "icon": "⚡",
+      "desc": "Convert energy units: Joules, calories, BTU, kWh.",
+      "href": "/energy-converter/",
+      "tags": [
+        "conversion",
+        "science"
+      ],
+      "cats": [
+        "all",
+        "dev"
+      ]
+    },
+    {
+      "slug": "power-converter",
+      "title": "Power Converter",
+      "icon": "💪",
+      "desc": "Convert power units: Watts, horsepower, kilowatts.",
+      "href": "/power-converter/",
+      "tags": [
+        "conversion",
+        "science"
+      ],
+      "cats": [
+        "all",
+        "dev"
+      ]
+    },
+    {
+      "slug": "density-converter",
+      "title": "Density Converter",
+      "icon": "📦",
+      "desc": "Convert density units: kg/m³, g/cm³, lb/ft³.",
+      "href": "/density-converter/",
+      "tags": [
+        "conversion",
+        "science"
+      ],
+      "cats": [
+        "all",
+        "dev"
+      ]
+    },
+    {
+      "slug": "viscosity-converter",
+      "title": "Viscosity Converter",
+      "icon": "🧴",
+      "desc": "Convert viscosity units: Centipoise, Stokes, Pa·s.",
+      "href": "/viscosity-converter/",
+      "tags": [
+        "conversion",
+        "science"
+      ],
+      "cats": [
+        "all",
+        "dev"
+      ]
+    },
+    {
+      "slug": "frequency-converter",
+      "title": "Frequency Converter",
+      "icon": "📻",
+      "desc": "Convert frequency units: Hz, kHz, MHz, GHz, rpm.",
+      "href": "/frequency-converter/",
+      "tags": [
+        "conversion",
+        "science"
+      ],
+      "cats": [
+        "all",
+        "dev"
+      ]
+    },
+    {
+      "slug": "macro-calculator",
+      "title": "Macro Calculator",
+      "icon": "🥗",
+      "desc": "Calculate macronutrient ratios for fitness goals.",
+      "href": "/macro-calculator/",
+      "tags": [
+        "health",
+        "fitness"
+      ],
+      "cats": [
+        "all",
+        "health"
+      ]
+    },
+    {
+      "slug": "water-intake-calculator",
+      "title": "Water Intake Calculator",
+      "icon": "💧",
+      "desc": "Calculate daily water intake needs.",
+      "href": "/water-intake-calculator/",
+      "tags": [
+        "health",
+        "fitness"
+      ],
+      "cats": [
+        "all",
+        "health"
+      ]
+    },
+    {
+      "slug": "sleep-calculator",
+      "title": "Sleep Calculator",
+      "icon": "😴",
+      "desc": "Calculate optimal sleep cycles and wake times.",
+      "href": "/sleep-calculator/",
+      "tags": [
+        "health",
+        "fitness"
+      ],
+      "cats": [
+        "all",
+        "health"
+      ]
+    },
+    {
+      "slug": "ideal-weight-calculator",
+      "title": "Ideal Weight Calculator",
+      "icon": "⚖️",
+      "desc": "Calculate ideal weight based on height and frame.",
+      "href": "/ideal-weight-calculator/",
+      "tags": [
+        "health",
+        "fitness"
+      ],
+      "cats": [
+        "all",
+        "health"
+      ]
+    },
+    {
+      "slug": "body-fat-percentage-calculator",
+      "title": "Body Fat Percentage Calculator",
+      "icon": "📊",
+      "desc": "Calculate body fat percentage with multiple methods.",
+      "href": "/body-fat-percentage-calculator/",
+      "tags": [
+        "health",
+        "fitness"
+      ],
+      "cats": [
+        "all",
+        "health"
+      ]
+    },
+    {
+      "slug": "ovulation-calculator",
+      "title": "Ovulation Calculator",
+      "icon": "🔄",
+      "desc": "Calculate ovulation date and fertility window.",
+      "href": "/ovulation-calculator/",
+      "tags": [
+        "health",
+        "fitness"
+      ],
+      "cats": [
+        "all",
+        "health"
+      ]
+    },
+    {
+      "slug": "instagram-video-downloader",
+      "title": "Instagram Video Downloader",
+      "icon": "📸",
+      "desc": "Download Instagram videos, reels, and stories in HD.",
+      "href": "/instagram-video-downloader/",
+      "tags": [
+        "social",
+        "downloader"
+      ],
+      "cats": [
+        "all",
+        "social"
+      ]
+    },
+    {
+      "slug": "ifsc-bulk-lookup",
+      "title": "IFSC Bulk Lookup",
+      "icon": "🏦",
+      "desc": "Search multiple IFSC codes at once. Download as CSV.",
+      "href": "/ifsc-bulk-lookup/",
+      "tags": [
+        "banking",
+        "finance"
+      ],
+      "cats": [
+        "all",
+        "banking"
+      ]
+    },
+    {
+      "slug": "youtube-audio-downloader",
+      "title": "YouTube Audio Downloader",
+      "icon": "🎵",
+      "desc": "Download YouTube audio as MP3 in high quality.",
+      "href": "/youtube-audio-downloader/",
+      "tags": [
+        "downloader",
+        "music"
+      ],
+      "cats": [
+        "all",
+        "social"
+      ]
+    },
+    {
+      "slug": "facebook-video-downloader-hd",
+      "title": "Facebook Video Downloader HD",
+      "icon": "👍",
+      "desc": "Download Facebook videos in HD from feed, pages, and groups.",
+      "href": "/facebook-video-downloader-hd/",
+      "tags": [
+        "social",
+        "downloader"
+      ],
+      "cats": [
+        "all",
+        "social"
+      ]
+    },
+    {
+      "slug": "snapchat-video-downloader",
+      "title": "Snapchat Video Downloader",
+      "icon": "👻",
+      "desc": "Download Snapchat snaps, stories, and memories before expiry.",
+      "href": "/snapchat-video-downloader/",
+      "tags": [
+        "social",
+        "downloader"
+      ],
+      "cats": [
+        "all",
+        "social"
+      ]
+    },
+    {
+      "slug": "twitter-video-downloader",
+      "title": "Twitter/X Video Downloader",
+      "icon": "𝕏",
+      "desc": "Download videos and GIFs from X (formerly Twitter) in HD.",
+      "href": "/twitter-video-downloader/",
+      "tags": [
+        "social",
+        "downloader"
+      ],
+      "cats": [
+        "all",
+        "social"
+      ]
+    },
+    {
+      "slug": "pinterest-video-downloader",
+      "title": "Pinterest Video Downloader",
+      "icon": "📌",
+      "desc": "Download Pinterest pins and videos in original quality.",
+      "href": "/pinterest-video-downloader/",
+      "tags": [
+        "social",
+        "downloader"
+      ],
+      "cats": [
+        "all",
+        "social"
+      ]
+    },
+    {
+      "slug": "linkedin-video-downloader",
+      "title": "LinkedIn Video Downloader",
+      "icon": "💼",
+      "desc": "Download LinkedIn videos from posts, articles, and courses.",
+      "href": "/linkedin-video-downloader/",
+      "tags": [
+        "social",
+        "downloader"
+      ],
+      "cats": [
+        "all",
+        "social"
+      ]
+    },
+    {
+      "slug": "telegram-video-downloader",
+      "title": "Telegram Video Downloader",
+      "icon": "✈️",
+      "desc": "Download videos and media from Telegram channels and groups.",
+      "href": "/telegram-video-downloader/",
+      "tags": [
+        "social",
+        "downloader"
+      ],
+      "cats": [
+        "all",
+        "social"
+      ]
+    },
+    {
+      "slug": "instagram-story-downloader",
+      "title": "Instagram Story Downloader",
+      "icon": "📖",
+      "desc": "Download Instagram stories and highlights before they expire.",
+      "href": "/instagram-story-downloader/",
+      "tags": [
+        "social",
+        "downloader"
+      ],
+      "cats": [
+        "all",
+        "social"
+      ]
+    },
+    {
+      "slug": "tiktok-audio-downloader",
+      "title": "TikTok Audio Downloader",
+      "icon": "🎵",
+      "desc": "Download TikTok music and sounds as MP3 in high quality.",
+      "href": "/tiktok-audio-downloader/",
+      "tags": [
+        "downloader",
+        "music"
+      ],
+      "cats": [
+        "all",
+        "social"
+      ]
+    },
+    {
+      "slug": "bank-branch-finder",
+      "title": "Bank Branch Finder",
+      "icon": "🏦",
+      "desc": "Find bank branches, ATMs, and contact details in your city.",
+      "href": "/bank-branch-finder/",
+      "tags": [
+        "banking",
+        "finance"
+      ],
+      "cats": [
+        "all",
+        "banking"
+      ]
+    },
+    {
+      "slug": "cbse-class-12-result",
+      "title": "CBSE Class 12 Result Checker",
+      "icon": "📋",
+      "desc": "Use official result links and analyze Class 12 marks locally.",
+      "href": "/cbse-class-12-result/",
+      "tags": [
+        "education",
+        "india"
+      ],
+      "cats": [
+        "all",
+        "text"
+      ]
+    },
+    {
+      "slug": "cbse-percentage-calculator",
+      "title": "CBSE Percentage Calculator",
+      "icon": "📊",
+      "desc": "Calculate Class 12 percentage from subject-wise marks instantly.",
+      "href": "/cbse-percentage-calculator/",
+      "tags": [
+        "education",
+        "calculator"
+      ],
+      "cats": [
+        "all",
+        "text"
+      ]
+    },
+    {
+      "slug": "best-of-five-calculator",
+      "title": "Best of Five Calculator",
+      "icon": "🧮",
+      "desc": "Find your best-of-five percentage and included subjects.",
+      "href": "/best-of-five-calculator/",
+      "tags": [
+        "education",
+        "calculator"
+      ],
+      "cats": [
+        "all",
+        "text"
+      ]
+    },
+    {
+      "slug": "india-college-rankings",
+      "title": "India College Rankings",
+      "icon": "📚",
+      "desc": "Explore top colleges and universities across India with rankings.",
+      "href": "/india-college-rankings/",
+      "tags": [
+        "education",
+        "india"
+      ],
+      "cats": [
+        "all",
+        "text"
+      ]
+    },
+    {
+      "slug": "career-after-12",
+      "title": "Career Path After 12",
+      "icon": "🎯",
+      "desc": "Discover career paths, streams, and courses after Class 12.",
+      "href": "/career-after-12/",
+      "tags": [
+        "education",
+        "career"
+      ],
+      "cats": [
+        "all",
+        "text"
+      ]
+    },
+    {
+      "slug": "exams-after-12",
+      "title": "Entrance Exams After 12",
+      "icon": "📝",
+      "desc": "Compare JEE, NEET, CUET, CLAT, NDA, design entrances, and more after Class 12.",
+      "href": "/exams-after-12/",
+      "tags": [
+        "education",
+        "exam"
+      ],
+      "cats": [
+        "all",
+        "text"
+      ]
+    },
+    {
+      "slug": "college-course-finder",
+      "title": "College Course Finder",
+      "icon": "🎓",
+      "desc": "Find suitable college courses after 12th based on stream and interests.",
+      "href": "/college-course-finder/",
+      "tags": [
+        "education",
+        "career"
+      ],
+      "cats": [
+        "all",
+        "text"
+      ]
+    },
+    {
+      "slug": "sports-score-converter",
+      "title": "Sports Score Converter",
+      "icon": "⚽",
+      "desc": "Convert scores between different sports formats and scoring systems.",
+      "href": "/sports-score-converter/",
+      "tags": [
+        "sports"
+      ],
+      "cats": [
+        "all",
+        "sports"
+      ]
+    },
+    {
+      "slug": "football-stats-calculator",
+      "title": "Football Stats Calculator",
+      "icon": "🏈",
+      "desc": "Calculate player performance metrics, completion percentage, and passer rating.",
+      "href": "/football-stats-calculator/",
+      "tags": [
+        "sports",
+        "football"
+      ],
+      "cats": [
+        "all",
+        "sports"
+      ]
+    },
+    {
+      "slug": "fifa-world-cup-countdown",
+      "title": "FIFA World Cup 2026 Countdown",
+      "icon": "⏱️",
+      "desc": "Live countdown timer to the FIFA World Cup 2026 Final at MetLife Stadium.",
+      "href": "/fifa-world-cup-countdown/",
+      "tags": [
+        "fifa",
+        "worldcup",
+        "countdown",
+        "sports"
+      ],
+      "cats": [
+        "all",
+        "fifa",
+        "sports"
+      ]
+    },
+    {
+      "slug": "fifa-world-cup-groups",
+      "title": "FIFA World Cup 2026 Groups & Standings",
+      "icon": "📊",
+      "desc": "All 12 groups, live standings, match results and fixtures for FIFA World Cup 2026.",
+      "href": "/fifa-world-cup-groups/",
+      "tags": [
+        "fifa",
+        "worldcup",
+        "groups",
+        "standings",
+        "sports"
+      ],
+      "cats": [
+        "all",
+        "fifa",
+        "sports"
+      ]
+    },
+    {
+      "slug": "fifa-world-cup-schedule",
+      "title": "FIFA World Cup 2026 Full Schedule",
+      "icon": "📅",
+      "desc": "Complete FIFA World Cup 2026 schedule with all 104 matches, dates, venues and times.",
+      "href": "/fifa-world-cup-schedule/",
+      "tags": [
+        "fifa",
+        "worldcup",
+        "schedule",
+        "fixtures",
+        "sports"
+      ],
+      "cats": [
+        "all",
+        "fifa",
+        "sports"
+      ]
+    },
+    {
+      "slug": "fifa-world-cup-golden-boot",
+      "title": "FIFA World Cup 2026 Golden Boot Tracker",
+      "icon": "🏆",
+      "desc": "Top goal scorers leaderboard for FIFA World Cup 2026 with goals, assists and stats.",
+      "href": "/fifa-world-cup-golden-boot/",
+      "tags": [
+        "fifa",
+        "worldcup",
+        "golden-boot",
+        "scorers",
+        "sports"
+      ],
+      "cats": [
+        "all",
+        "fifa",
+        "sports"
+      ]
+    },
+    {
+      "slug": "fifa-world-cup-bracket",
+      "title": "FIFA World Cup 2026 Knockout Bracket",
+      "icon": "🗺️",
+      "desc": "Interactive tournament bracket from Round of 32 to the Final. Make your predictions!",
+      "href": "/fifa-world-cup-bracket/",
+      "tags": [
+        "fifa",
+        "worldcup",
+        "bracket",
+        "knockout",
+        "sports"
+      ],
+      "cats": [
+        "all",
+        "fifa",
+        "sports"
+      ]
+    },
+    {
+      "slug": "fifa-world-cup-venues",
+      "title": "FIFA World Cup 2026 Venues & Stadiums",
+      "icon": "🏟️",
+      "desc": "All 16 FIFA World Cup 2026 venues across USA, Mexico and Canada with capacities.",
+      "href": "/fifa-world-cup-venues/",
+      "tags": [
+        "fifa",
+        "worldcup",
+        "venues",
+        "stadiums",
+        "sports"
+      ],
+      "cats": [
+        "all",
+        "fifa",
+        "sports"
+      ]
+    },
+    {
+      "slug": "fifa-world-cup-predictions",
+      "title": "FIFA World Cup 2026 Predictions",
+      "icon": "🔮",
+      "desc": "Make your FIFA World Cup 2026 predictions. Pick group winners and predict the champion.",
+      "href": "/fifa-world-cup-predictions/",
+      "tags": [
+        "fifa",
+        "worldcup",
+        "predictions",
+        "winner",
+        "sports"
+      ],
+      "cats": [
+        "all",
+        "fifa",
+        "sports"
+      ]
+    },
+    {
+      "slug": "fifa-world-cup-timezone",
+      "title": "FIFA World Cup 2026 Time Zone Converter",
+      "icon": "🌍",
+      "desc": "Convert World Cup 2026 match times to your local timezone. Never miss a game.",
+      "href": "/fifa-world-cup-timezone/",
+      "tags": [
+        "fifa",
+        "worldcup",
+        "timezone",
+        "match-times",
+        "sports"
+      ],
+      "cats": [
+        "all",
+        "fifa",
+        "sports"
+      ]
+    },
+    {
+      "slug": "fifa-world-cup-discipline",
+      "title": "FIFA World Cup 2026 Discipline Tracker",
+      "icon": "🟨",
+      "desc": "Yellow card and red card tracker for FIFA World Cup 2026. Live discipline stats.",
+      "href": "/fifa-world-cup-discipline/",
+      "tags": [
+        "fifa",
+        "worldcup",
+        "yellow-cards",
+        "red-cards",
+        "sports"
+      ],
+      "cats": [
+        "all",
+        "fifa",
+        "sports"
+      ]
+    },
+    {
+      "slug": "world-cup-2026-results",
+      "title": "World Cup 2026 Results",
+      "icon": "🏆",
+      "desc": "Champion, final & full standings for the 2026 World Cup.",
+      "href": "/world-cup-2026-results/",
+      "tags": [
+        "fifa",
+        "worldcup",
+        "results",
+        "champion",
+        "sports"
+      ],
+      "cats": [
+        "all",
+        "fifa",
+        "sports"
+      ]
+    },
+    {
+      "slug": "fifa-world-cup-red-cards",
+      "title": "World Cup 2026 Red Cards",
+      "icon": "🟥",
+      "desc": "Players sent off and suspensions at the 2026 World Cup.",
+      "href": "/fifa-world-cup-red-cards/",
+      "tags": [
+        "fifa",
+        "worldcup",
+        "red-cards",
+        "sports"
+      ],
+      "cats": [
+        "all",
+        "fifa",
+        "sports"
+      ]
+    },
+    {
+      "slug": "fifa-world-cup-fair-play",
+      "title": "World Cup 2026 Fair Play",
+      "icon": "⚖️",
+      "desc": "Fair play rankings & discipline for the 2026 World Cup.",
+      "href": "/fifa-world-cup-fair-play/",
+      "tags": [
+        "fifa",
+        "worldcup",
+        "fair-play",
+        "sports"
+      ],
+      "cats": [
+        "all",
+        "fifa",
+        "sports"
+      ]
+    },
+    {
+      "slug": "fifa-world-cup-trophy-counter",
+      "title": "FIFA World Cup Trophy History",
+      "icon": "🏆",
+      "desc": "Every FIFA World Cup winner since 1930. Interactive timeline with stats and records.",
+      "href": "/fifa-world-cup-trophy-counter/",
+      "tags": [
+        "fifa",
+        "worldcup",
+        "history",
+        "winners",
+        "trophy",
+        "sports"
+      ],
+      "cats": [
+        "all",
+        "fifa",
+        "sports"
+      ]
+    },
+    {
+      "slug": "fifa-world-cup-fantasy-team",
+      "title": "FIFA World Cup 2026 Fantasy Team Builder",
+      "icon": "⚽",
+      "desc": "Build your dream World Cup XI. Pick formations, place players, and share your team.",
+      "href": "/fifa-world-cup-fantasy-team/",
+      "tags": [
+        "fifa",
+        "worldcup",
+        "fantasy",
+        "team",
+        "xi",
+        "sports"
+      ],
+      "cats": [
+        "all",
+        "fifa",
+        "sports"
+      ]
+    },
+    {
+      "slug": "fifa-world-cup-match-simulator",
+      "title": "FIFA World Cup 2026 Match Simulator",
+      "icon": "🎮",
+      "desc": "Simulate any World Cup 2026 match. Pick teams, get scores, stats and goalscorers.",
+      "href": "/fifa-world-cup-match-simulator/",
+      "tags": [
+        "fifa",
+        "worldcup",
+        "simulator",
+        "match",
+        "score",
+        "sports"
+      ],
+      "cats": [
+        "all",
+        "fifa",
+        "sports"
+      ]
+    },
+    {
+      "slug": "fifa-world-cup-team-compare",
+      "title": "FIFA World Cup 2026 Team Comparison",
+      "icon": "📊",
+      "desc": "Compare any two national teams side-by-side with rankings, stats and radar chart.",
+      "href": "/fifa-world-cup-team-compare/",
+      "tags": [
+        "fifa",
+        "worldcup",
+        "compare",
+        "teams",
+        "ranking",
+        "sports"
+      ],
+      "cats": [
+        "all",
+        "fifa",
+        "sports"
+      ]
+    },
+    {
+      "slug": "fifa-world-cup-travel-planner",
+      "title": "FIFA World Cup 2026 Travel Planner",
+      "icon": "✈️",
+      "desc": "Plan your World Cup trip — venues, budget, visa info, weather and multi-city routing.",
+      "href": "/fifa-world-cup-travel-planner/",
+      "tags": [
+        "fifa",
+        "worldcup",
+        "travel",
+        "planner",
+        "visa",
+        "budget",
+        "sports"
+      ],
+      "cats": [
+        "all",
+        "fifa",
+        "sports"
+      ]
+    },
+    {
+      "slug": "basketball-stats-calculator",
+      "title": "Basketball Stats Calculator",
+      "icon": "🏀",
+      "desc": "Calculate shooting percentages, true shooting %, and player efficiency metrics.",
+      "href": "/basketball-stats-calculator/",
+      "tags": [
+        "sports",
+        "basketball"
+      ],
+      "cats": [
+        "all",
+        "sports"
+      ]
+    },
+    {
+      "slug": "tennis-score-tracker",
+      "title": "Tennis Score Tracker",
+      "icon": "🎾",
+      "desc": "Track live tennis match scores, sets, games, and points in real-time.",
+      "href": "/tennis-score-tracker/",
+      "tags": [
+        "sports",
+        "tennis"
+      ],
+      "cats": [
+        "all",
+        "sports"
+      ]
+    },
+    {
+      "slug": "golf-handicap-calculator",
+      "title": "Golf Handicap Calculator",
+      "icon": "⛳",
+      "desc": "Calculate your golf handicap index, course handicap, and net score.",
+      "href": "/golf-handicap-calculator/",
+      "tags": [
+        "sports",
+        "golf"
+      ],
+      "cats": [
+        "all",
+        "sports"
+      ]
+    },
+    {
+      "slug": "fantasy-sports-calculator",
+      "title": "Fantasy Sports Calculator",
+      "icon": "⭐",
+      "desc": "Calculate fantasy points for cricket, football, basketball and more. Dream11 points.",
+      "href": "/fantasy-sports-calculator/",
+      "tags": [
+        "sports",
+        "fantasy"
+      ],
+      "cats": [
+        "all",
+        "sports"
+      ]
+    },
+    {
+      "slug": "amortization-calculator",
+      "title": "Amortization Calculator",
+      "icon": "📋",
+      "desc": "Loan payment schedule & amortization table.",
+      "href": "/amortization-calculator/",
+      "tags": [
+        "finance"
+      ],
+      "cats": [
+        "all",
+        "finance"
+      ]
+    },
+    {
+      "slug": "compound-interest-calculator",
+      "title": "Compound Interest Calculator",
+      "icon": "📈",
+      "desc": "See how your investments grow over time.",
+      "href": "/compound-interest-calculator/",
+      "tags": [
+        "finance"
+      ],
+      "cats": [
+        "all",
+        "finance"
+      ]
+    },
+    {
+      "slug": "ctc-salary-calculator",
+      "title": "CTC to In-Hand Salary",
+      "icon": "💰",
+      "desc": "Calculate take-home salary from CTC.",
+      "href": "/ctc-salary-calculator/",
+      "tags": [
+        "finance",
+        "india"
+      ],
+      "cats": [
+        "all",
+        "finance",
+        "india"
+      ]
+    },
+    {
+      "slug": "epf-calculator",
+      "title": "EPF Calculator",
+      "icon": "🏦",
+      "desc": "Employee Provident Fund maturity estimate.",
+      "href": "/epf-calculator/",
+      "tags": [
+        "finance",
+        "india"
+      ],
+      "cats": [
+        "all",
+        "finance",
+        "india"
+      ]
+    },
+    {
+      "slug": "gratuity-calculator",
+      "title": "Gratuity Calculator",
+      "icon": "🎁",
+      "desc": "Calculate gratuity amount for employees.",
+      "href": "/gratuity-calculator/",
+      "tags": [
+        "finance",
+        "india"
+      ],
+      "cats": [
+        "all",
+        "finance",
+        "india"
+      ]
+    },
+    {
+      "slug": "hra-calculator",
+      "title": "HRA Exemption Calculator",
+      "icon": "🏠",
+      "desc": "Calculate House Rent Allowance exemption.",
+      "href": "/hra-calculator/",
+      "tags": [
+        "finance",
+        "india"
+      ],
+      "cats": [
+        "all",
+        "finance",
+        "india"
+      ]
+    },
+    {
+      "slug": "ltv-calculator",
+      "title": "LTV Calculator",
+      "icon": "🏠",
+      "desc": "Loan to Value ratio for home loans.",
+      "href": "/ltv-calculator/",
+      "tags": [
+        "finance"
+      ],
+      "cats": [
+        "all",
+        "finance"
+      ]
+    },
+    {
+      "slug": "nps-calculator",
+      "title": "NPS Calculator",
+      "icon": "🧓",
+      "desc": "National Pension Scheme retirement corpus.",
+      "href": "/nps-calculator/",
+      "tags": [
+        "finance",
+        "india"
+      ],
+      "cats": [
+        "all",
+        "finance",
+        "india"
+      ]
+    },
+    {
+      "slug": "post-office-rd-calculator",
+      "title": "Post Office RD Calculator",
+      "icon": "📮",
+      "desc": "Recurring deposit maturity calculator.",
+      "href": "/post-office-rd-calculator/",
+      "tags": [
+        "finance",
+        "india"
+      ],
+      "cats": [
+        "all",
+        "finance",
+        "india"
+      ]
+    },
+    {
+      "slug": "ppf-calculator",
+      "title": "PPF Calculator",
+      "icon": "🏦",
+      "desc": "Public Provident Fund maturity & returns.",
+      "href": "/ppf-calculator/",
+      "tags": [
+        "finance",
+        "india"
+      ],
+      "cats": [
+        "all",
+        "finance",
+        "india"
+      ]
+    },
+    {
+      "slug": "salary-hike-calculator",
+      "title": "Salary Hike Calculator",
+      "icon": "💸",
+      "desc": "New salary after raise or increment.",
+      "href": "/salary-hike-calculator/",
+      "tags": [
+        "finance"
+      ],
+      "cats": [
+        "all",
+        "finance"
+      ]
+    },
+    {
+      "slug": "sip-step-up-calculator",
+      "title": "SIP Step-Up Calculator",
+      "icon": "📊",
+      "desc": "SIP with annual increment projection.",
+      "href": "/sip-step-up-calculator/",
+      "tags": [
+        "finance",
+        "india"
+      ],
+      "cats": [
+        "all",
+        "finance",
+        "india"
+      ]
+    },
+    {
+      "slug": "tds-calculator",
+      "title": "TDS Calculator",
+      "icon": "📑",
+      "desc": "TDS on salary, rent & interest.",
+      "href": "/tds-calculator/",
+      "tags": [
+        "finance",
+        "india"
+      ],
+      "cats": [
+        "all",
+        "finance",
+        "india"
+      ]
+    },
+    {
+      "slug": "upi-qr-generator",
+      "title": "UPI QR Code Generator",
+      "icon": "📲",
+      "desc": "Generate UPI QR codes for payments.",
+      "href": "/upi-qr-generator/",
+      "tags": [
+        "finance",
+        "india"
+      ],
+      "cats": [
+        "all",
+        "finance",
+        "india"
+      ]
+    },
+    {
+      "slug": "upi-validator",
+      "title": "UPI ID Validator",
+      "icon": "✅",
+      "desc": "Validate UPI ID format & VPA.",
+      "href": "/upi-validator/",
+      "tags": [
+        "finance",
+        "india"
+      ],
+      "cats": [
+        "all",
+        "finance",
+        "india"
+      ]
+    },
+    {
+      "slug": "aadhaar-validator",
+      "title": "Aadhaar Number Validator",
+      "icon": "🇮🇳",
+      "desc": "Validate Aadhaar number format.",
+      "href": "/aadhaar-validator/",
+      "tags": [
+        "india",
+        "tools"
+      ],
+      "cats": [
+        "all",
+        "india"
+      ]
+    },
+    {
+      "slug": "electricity-bill-calculator",
+      "title": "Electricity Bill Calculator",
+      "icon": "⚡",
+      "desc": "Estimate monthly power bill from units.",
+      "href": "/electricity-bill-calculator/",
+      "tags": [
+        "india",
+        "finance"
+      ],
+      "cats": [
+        "all",
+        "india",
+        "finance"
+      ],
+      "new": true
+    },
+    {
+      "slug": "bmr-calculator",
+      "title": "BMR Calculator",
+      "icon": "🔥",
+      "desc": "Basal metabolic rate with 3 formulas.",
+      "href": "/bmr-calculator/",
+      "tags": [
+        "health"
+      ],
+      "cats": [
+        "all",
+        "health"
+      ]
+    },
+    {
+      "slug": "body-frame-size",
+      "title": "Body Frame Size Calculator",
+      "icon": "🦴",
+      "desc": "Determine small, medium or large frame.",
+      "href": "/body-frame-size/",
+      "tags": [
+        "health"
+      ],
+      "cats": [
+        "all",
+        "health"
+      ]
+    },
+    {
+      "slug": "tdee-calculator",
+      "title": "TDEE Calculator",
+      "icon": "🏋️",
+      "desc": "Total daily energy expenditure & macros.",
+      "href": "/tdee-calculator/",
+      "tags": [
+        "health"
+      ],
+      "cats": [
+        "all",
+        "health"
+      ]
+    },
+    {
+      "slug": "cron-expression-generator",
+      "title": "Cron Expression Generator",
+      "icon": "⏰",
+      "desc": "Build cron job schedules visually.",
+      "href": "/cron-expression-generator/",
+      "tags": [
+        "dev"
+      ],
+      "cats": [
+        "all",
+        "dev"
+      ]
+    },
+    {
+      "slug": "css-gradient-generator",
+      "title": "CSS Gradient Generator",
+      "icon": "🎨",
+      "desc": "Linear, radial & conic CSS gradients.",
+      "href": "/css-gradient-generator/",
+      "tags": [
+        "dev"
+      ],
+      "cats": [
+        "all",
+        "dev"
+      ]
+    },
+    {
+      "slug": "diff-checker",
+      "title": "Text Diff Checker",
+      "icon": "🔍",
+      "desc": "Compare two texts side by side.",
+      "href": "/diff-checker/",
+      "tags": [
+        "dev",
+        "text"
+      ],
+      "cats": [
+        "all",
+        "dev",
+        "text"
+      ]
+    },
+    {
+      "slug": "hash-generator",
+      "title": "Hash Generator",
+      "icon": "#️⃣",
+      "desc": "SHA256, SHA512, MD5 hash online.",
+      "href": "/hash-generator/",
+      "tags": [
+        "dev",
+        "security"
+      ],
+      "cats": [
+        "all",
+        "dev",
+        "security"
+      ]
+    },
+    {
+      "slug": "html-preview",
+      "title": "HTML Preview",
+      "icon": "🌐",
+      "desc": "Live HTML editor & preview.",
+      "href": "/html-preview/",
+      "tags": [
+        "dev"
+      ],
+      "cats": [
+        "all",
+        "dev"
+      ]
+    },
+    {
+      "slug": "markdown-preview",
+      "title": "Markdown Preview",
+      "icon": "📝",
+      "desc": "Live markdown editor & renderer.",
+      "href": "/markdown-preview/",
+      "tags": [
+        "dev",
+        "text"
+      ],
+      "cats": [
+        "all",
+        "dev",
+        "text"
+      ]
+    },
+    {
+      "slug": "regex-tester",
+      "title": "Regex Tester",
+      "icon": "🧪",
+      "desc": "Test regular expressions online.",
+      "href": "/regex-tester/",
+      "tags": [
+        "dev"
+      ],
+      "cats": [
+        "all",
+        "dev"
+      ]
+    },
+    {
+      "slug": "string-builder",
+      "title": "String Builder",
+      "icon": "🔧",
+      "desc": "Transform & manipulate text strings.",
+      "href": "/string-builder/",
+      "tags": [
+        "dev",
+        "text"
+      ],
+      "cats": [
+        "all",
+        "dev",
+        "text"
+      ]
+    },
+    {
+      "slug": "subnet-calculator",
+      "title": "Subnet Calculator",
+      "icon": "🌐",
+      "desc": "IP CIDR subnet mask calculator.",
+      "href": "/subnet-calculator/",
+      "tags": [
+        "dev",
+        "networking"
+      ],
+      "cats": [
+        "all",
+        "dev",
+        "networking"
+      ]
+    },
+    {
+      "slug": "url-encoder",
+      "title": "URL Encoder/Decoder",
+      "icon": "🔗",
+      "desc": "Encode & decode URLs instantly.",
+      "href": "/url-encoder/",
+      "tags": [
+        "dev"
+      ],
+      "cats": [
+        "all",
+        "dev"
+      ]
+    },
+    {
+      "slug": "favicon-generator",
+      "title": "Favicon Generator",
+      "icon": "🎨",
+      "desc": "Create favicons from text or emoji.",
+      "href": "/favicon-generator/",
+      "tags": [
+        "dev",
+        "images"
+      ],
+      "cats": [
+        "all",
+        "dev",
+        "images"
+      ]
+    },
+    {
+      "slug": "json-formatter-online",
+      "title": "JSON Formatter",
+      "icon": "{ }",
+      "desc": "Format, beautify & validate JSON.",
+      "href": "/json-formatter-online/",
+      "tags": [
+        "dev"
+      ],
+      "cats": [
+        "all",
+        "dev"
+      ]
+    },
+    {
+      "slug": "json-formatter-pro",
+      "title": "JSON Formatter Pro",
+      "icon": "📋",
+      "desc": "Format, validate & minify JSON.",
+      "href": "/json-formatter-pro/",
+      "tags": [
+        "dev"
+      ],
+      "cats": [
+        "all",
+        "dev"
+      ]
+    },
+    {
+      "slug": "json-to-csv-converter",
+      "title": "JSON to CSV Converter",
+      "icon": "📊",
+      "desc": "Convert a JSON array to CSV instantly.",
+      "href": "/json-to-csv-converter/",
+      "tags": [
+        "dev"
+      ],
+      "cats": [
+        "all",
+        "dev"
+      ],
+      "new": true
+    },
+    {
+      "slug": "ascii-art-generator",
+      "title": "ASCII Art Generator",
+      "icon": "🎨",
+      "desc": "Convert text to ASCII art.",
+      "href": "/ascii-art-generator/",
+      "tags": [
+        "text",
+        "fun"
+      ],
+      "cats": [
+        "all",
+        "text",
+        "fun"
+      ]
+    },
+    {
+      "slug": "lorem-ipsum-generator",
+      "title": "Lorem Ipsum Generator",
+      "icon": "📄",
+      "desc": "Generate placeholder text for designs.",
+      "href": "/lorem-ipsum-generator/",
+      "tags": [
+        "text"
+      ],
+      "cats": [
+        "all",
+        "text"
+      ]
+    },
+    {
+      "slug": "password-generator-pro",
+      "title": "Password Generator",
+      "icon": "🔐",
+      "desc": "Generate strong, secure passwords.",
+      "href": "/password-generator-pro/",
+      "tags": [
+        "security"
+      ],
+      "cats": [
+        "all",
+        "security"
+      ]
+    },
+    {
+      "slug": "random-number-generator",
+      "title": "Random Number Generator",
+      "icon": "🎲",
+      "desc": "Cryptographically secure random numbers.",
+      "href": "/random-number-generator/",
+      "tags": [
+        "text",
+        "fun"
+      ],
+      "cats": [
+        "all",
+        "text",
+        "fun"
+      ]
+    },
+    {
+      "slug": "random-password-generator",
+      "title": "Random Password Generator",
+      "icon": "🔑",
+      "desc": "Instant random passwords.",
+      "href": "/random-password-generator/",
+      "tags": [
+        "security"
+      ],
+      "cats": [
+        "all",
+        "security"
+      ]
+    },
+    {
+      "slug": "passphrase-generator",
+      "title": "Passphrase Generator",
+      "icon": "🔐",
+      "desc": "Diceware-style strong memorable passphrases.",
+      "href": "/passphrase-generator/",
+      "tags": [
+        "security"
+      ],
+      "cats": [
+        "all",
+        "security"
+      ],
+      "new": true
+    },
+    {
+      "slug": "uuid-generator-pro",
+      "title": "UUID Generator",
+      "icon": "🆔",
+      "desc": "Generate UUIDs & GUIDs online.",
+      "href": "/uuid-generator-pro/",
+      "tags": [
+        "dev"
+      ],
+      "cats": [
+        "all",
+        "dev"
+      ]
+    },
+    {
+      "slug": "word-counter-enhanced",
+      "title": "Word Counter",
+      "icon": "📊",
+      "desc": "Words, characters & reading time.",
+      "href": "/word-counter-enhanced/",
+      "tags": [
+        "text"
+      ],
+      "cats": [
+        "all",
+        "text"
+      ]
+    },
+    {
+      "slug": "word-counter-plus",
+      "title": "Advanced Word Counter",
+      "icon": "📝",
+      "desc": "Detailed word & character analysis.",
+      "href": "/word-counter-plus/",
+      "tags": [
+        "text"
+      ],
+      "cats": [
+        "all",
+        "text"
+      ]
+    },
+    {
+      "slug": "character-counter",
+      "title": "Character & Word Counter",
+      "icon": "🔡",
+      "desc": "Count chars, words, lines & sentences.",
+      "href": "/character-counter/",
+      "tags": [
+        "text"
+      ],
+      "cats": [
+        "all",
+        "text"
+      ],
+      "new": true
+    },
+    {
+      "slug": "word-frequency-counter",
+      "title": "Word Frequency Counter",
+      "icon": "📈",
+      "desc": "Count repeated words & keyword density.",
+      "href": "/word-frequency-counter/",
+      "tags": [
+        "text"
+      ],
+      "cats": [
+        "all",
+        "text"
+      ],
+      "new": true
+    },
+    {
+      "slug": "color-palette-generator",
+      "title": "Color Palette Generator",
+      "icon": "🎨",
+      "desc": "Generate HEX, RGB, HSL color palettes.",
+      "href": "/color-palette-generator/",
+      "tags": [
+        "images"
+      ],
+      "cats": [
+        "all",
+        "images"
+      ]
+    },
+    {
+      "slug": "color-palette-generator-pro",
+      "title": "Color Palette Pro",
+      "icon": "🌈",
+      "desc": "Create beautiful color schemes.",
+      "href": "/color-palette-generator-pro/",
+      "tags": [
+        "images"
+      ],
+      "cats": [
+        "all",
+        "images"
+      ]
+    },
+    {
+      "slug": "image-compressor",
+      "title": "Image Compressor",
+      "icon": "📦",
+      "desc": "Reduce image size in browser.",
+      "href": "/image-compressor/",
+      "tags": [
+        "images"
+      ],
+      "cats": [
+        "all",
+        "images"
+      ]
+    },
+    {
+      "slug": "image-resizer",
+      "title": "Image Resizer",
+      "icon": "🖼️",
+      "desc": "Resize photos online.",
+      "href": "/image-resizer/",
+      "tags": [
+        "images"
+      ],
+      "cats": [
+        "all",
+        "images"
+      ]
+    },
+    {
+      "slug": "date-calculator",
+      "title": "Date Calculator",
+      "icon": "📅",
+      "desc": "Add/subtract days & find date difference.",
+      "href": "/date-calculator/",
+      "tags": [
+        "tools"
+      ],
+      "cats": [
+        "all",
+        "tools"
+      ],
+      "new": true
+    },
+    {
+      "slug": "loan-comparison-calculator",
+      "title": "Loan Comparison Calculator",
+      "icon": "⚖️",
+      "desc": "Compare two loans: EMI, interest & total.",
+      "href": "/loan-comparison-calculator/",
+      "tags": [
+        "finance"
+      ],
+      "cats": [
+        "all",
+        "finance"
+      ],
+      "new": true
+    },
+    {
+      "slug": "fuel-cost-calculator",
+      "title": "Fuel Cost Calculator",
+      "icon": "⛽",
+      "desc": "Trip fuel cost & litres needed.",
+      "href": "/fuel-cost-calculator/",
+      "tags": [
+        "tools"
+      ],
+      "cats": [
+        "all",
+        "tools"
+      ],
+      "new": true
+    },
+    {
+      "slug": "gst-invoice-generator",
+      "title": "GST Invoice Generator",
+      "icon": "🧾",
+      "desc": "GST-compliant invoice totals (CGST/SGST/IGST).",
+      "href": "/gst-invoice-generator/",
+      "tags": [
+        "tax",
+        "india"
+      ],
+      "cats": [
+        "all",
+        "tax",
+        "india"
+      ],
+      "new": true
+    },
+    {
+      "slug": "age-calculator-pro",
+      "title": "Age Calculator Pro",
+      "icon": "🎂",
+      "desc": "Exact age in years, months, days.",
+      "href": "/age-calculator-pro/",
+      "tags": [
+        "tools"
+      ],
+      "cats": [
+        "all",
+        "tools"
+      ]
+    },
+    {
+      "slug": "percentage-calculator-pro",
+      "title": "Percentage Calculator",
+      "icon": "%",
+      "desc": "4 modes: %, fraction, increase, decrease.",
+      "href": "/percentage-calculator-pro/",
+      "tags": [
+        "tools"
+      ],
+      "cats": [
+        "all",
+        "tools"
+      ]
+    },
+    {
+      "slug": "pomodoro-timer",
+      "title": "Pomodoro Timer",
+      "icon": "🍅",
+      "desc": "Focus timer with work & break cycles.",
+      "href": "/pomodoro-timer/",
+      "tags": [
+        "tools",
+        "fun"
+      ],
+      "cats": [
+        "all",
+        "tools",
+        "fun"
+      ]
+    },
+    {
+      "slug": "stopwatch-timer",
+      "title": "Stopwatch & Timer",
+      "icon": "⏱️",
+      "desc": "Online stopwatch and countdown timer.",
+      "href": "/stopwatch-timer/",
+      "tags": [
+        "tools"
+      ],
+      "cats": [
+        "all",
+        "tools"
+      ]
+    },
+    {
+      "slug": "random-choice-generator",
+      "title": "Random Choice Generator",
+      "icon": "🎰",
+      "desc": "Decision maker — pick randomly.",
+      "href": "/random-choice-generator/",
+      "tags": [
+        "tools",
+        "fun"
+      ],
+      "cats": [
+        "all",
+        "tools",
+        "fun"
+      ]
+    },
+    {
+      "slug": "scientific-calculator",
+      "title": "Scientific Calculator",
+      "icon": "🧮",
+      "desc": "Full-featured scientific calculator.",
+      "href": "/scientific-calculator/",
+      "tags": [
+        "tools"
+      ],
+      "cats": [
+        "all",
+        "tools"
+      ]
+    },
+    {
+      "slug": "text-diff-checker",
+      "title": "Text Diff Checker",
+      "icon": "📝",
+      "desc": "Compare text differences side by side.",
+      "href": "/text-diff-checker/",
+      "tags": [
+        "tools",
+        "dev"
+      ],
+      "cats": [
+        "all",
+        "tools",
+        "dev"
+      ]
+    },
+    {
+      "slug": "tip-calculator-pro",
+      "title": "Tip Calculator",
+      "icon": "💵",
+      "desc": "Calculate tips & split bills.",
+      "href": "/tip-calculator-pro/",
+      "tags": [
+        "tools"
+      ],
+      "cats": [
+        "all",
+        "tools"
+      ]
+    },
+    {
+      "slug": "unit-converter-pro",
+      "title": "Unit Converter",
+      "icon": "🔄",
+      "desc": "Convert any unit online.",
+      "href": "/unit-converter-pro/",
+      "tags": [
+        "tools"
+      ],
+      "cats": [
+        "all",
+        "tools"
+      ]
+    },
+    {
+      "slug": "qr-code-generator-pro",
+      "title": "QR Code Generator",
+      "icon": "📱",
+      "desc": "Create QR codes for any content.",
+      "href": "/qr-code-generator-pro/",
+      "tags": [
+        "tools",
+        "images"
+      ],
+      "cats": [
+        "all",
+        "tools",
+        "images"
+      ]
+    },
+    {
+      "slug": "pdf-merger",
+      "title": "PDF Merger",
+      "icon": "📑",
+      "desc": "Merge multiple PDF files online.",
+      "href": "/pdf-merger/",
+      "tags": [
+        "tools"
+      ],
+      "cats": [
+        "all",
+        "tools"
+      ]
+    },
+    {
+      "slug": "pdf-splitter",
+      "title": "PDF Splitter",
+      "icon": "✂️",
+      "desc": "Split PDF files into pages.",
+      "href": "/pdf-splitter/",
+      "tags": [
+        "tools"
+      ],
+      "cats": [
+        "all",
+        "tools"
+      ]
+    },
+    {
+      "slug": "gpa-calculator",
+      "title": "GPA Calculator",
+      "icon": "🎓",
+      "desc": "Weighted & unweighted GPA on 4.0/5.0.",
+      "href": "/gpa-calculator/",
+      "tags": [
+        "education"
+      ],
+      "cats": [
+        "all",
+        "education"
+      ]
+    },
+    {
+      "slug": "cgpa-calculator",
+      "title": "CGPA Calculator",
+      "icon": "🎓",
+      "desc": "CGPA from grade points & credits.",
+      "href": "/cgpa-calculator/",
+      "tags": [
+        "education"
+      ],
+      "cats": [
+        "all",
+        "education"
+      ],
+      "new": true
+    },
+    {
+      "slug": "dice-roller",
+      "title": "Dice Roller",
+      "icon": "🎲",
+      "desc": "Roll d4–d20 dice online for games.",
+      "href": "/dice-roller/",
+      "tags": [
+        "fun"
+      ],
+      "cats": [
+        "all",
+        "fun"
+      ],
+      "new": true
+    },
+    {
+      "slug": "youtube-shorts-downloader",
+      "title": "YouTube Shorts Downloader",
+      "icon": "📱",
+      "desc": "Download YouTube Shorts free.",
+      "href": "/youtube-shorts-downloader/",
+      "tags": [
+        "social",
+        "downloader"
+      ],
+      "cats": [
+        "all",
+        "social",
+        "downloader"
+      ]
+    },
+    {
+      "slug": "email-validator",
+      "title": "Email Validator",
+      "icon": "✉️",
+      "desc": "Validate emails, check disposable & verify MX records.",
+      "href": "/email-validator/",
+      "tags": [
+        "security",
+        "email",
+        "validation"
+      ],
+      "cats": [
+        "all",
+        "security",
+        "tools"
+      ],
+      "new": true
+    },
+    {
+      "slug": "weather-forecast",
+      "title": "Weather Forecast",
+      "icon": "🌤️",
+      "desc": "7-day forecast & hourly weather for any city.",
+      "href": "/weather-forecast/",
+      "tags": [
+        "weather",
+        "forecast",
+        "tools"
+      ],
+      "cats": [
+        "all",
+        "tools"
+      ],
+      "new": true
+    },
+    {
+      "slug": "quote-generator",
+      "title": "Quote Generator",
+      "icon": "💬",
+      "desc": "200+ inspiring quotes from famous people.",
+      "href": "/quote-generator/",
+      "tags": [
+        "quotes",
+        "motivational",
+        "fun"
+      ],
+      "cats": [
+        "all",
+        "fun",
+        "tools"
+      ],
+      "new": true
+    },
+    {
+      "slug": "phone-specs",
+      "title": "Phone Specifications",
+      "icon": "📱",
+      "desc": "Search & compare phone specs side by side.",
+      "href": "/phone-specs/",
+      "tags": [
+        "phone",
+        "specs",
+        "compare"
+      ],
+      "cats": [
+        "all",
+        "tools"
+      ],
+      "new": true
+    },
+    {
+      "slug": "food-randomizer",
+      "title": "Food Randomizer",
+      "icon": "🍽️",
+      "desc": "Discover random dishes from around the world.",
+      "href": "/food-randomizer/",
+      "tags": [
+        "food",
+        "random",
+        "fun"
+      ],
+      "cats": [
+        "all",
+        "fun",
+        "health"
+      ],
+      "new": true
+    },
+    {
+      "slug": "random-fact-generator",
+      "title": "Random Fact Generator",
+      "icon": "🧠",
+      "desc": "300+ fun facts from science, history, nature & more.",
+      "href": "/random-fact-generator/",
+      "tags": [
+        "facts",
+        "trivia",
+        "fun"
+      ],
+      "cats": [
+        "all",
+        "fun"
+      ],
+      "new": true
+    },
+    {
+      "slug": "url-shortener",
+      "title": "URL Shortener",
+      "icon": "🔗",
+      "desc": "Shorten links & generate QR codes free.",
+      "href": "/url-shortener/",
+      "tags": [
+        "tools",
+        "links",
+        "qr"
+      ],
+      "cats": [
+        "all",
+        "tools"
+      ],
+      "new": true
+    },
+    {
+      "slug": "color-tool",
+      "title": "Color Picker & Converter",
+      "icon": "🎨",
+      "desc": "Pick colors, convert HEX/RGB/HSL, generate palettes.",
+      "href": "/color-tool/",
+      "tags": [
+        "design",
+        "color",
+        "tools"
+      ],
+      "cats": [
+        "all",
+        "tools",
+        "images"
+      ],
+      "new": true
+    },
+    {
+      "slug": "poetry-search",
+      "title": "Poetry Search",
+      "icon": "📖",
+      "desc": "Search thousands of poems by title, author, or line.",
+      "href": "/poetry-search/",
+      "tags": [
+        "poetry",
+        "books",
+        "education"
+      ],
+      "cats": [
+        "all",
+        "tools",
+        "education"
+      ],
+      "new": true
+    },
+    {
+      "slug": "bible-verse",
+      "title": "Bible Verse Lookup",
+      "icon": "✝️",
+      "desc": "Look up scripture in KJV, ASV, WEB translations.",
+      "href": "/bible-verse/",
+      "tags": [
+        "bible",
+        "scripture",
+        "religion"
+      ],
+      "cats": [
+        "all",
+        "tools"
+      ],
+      "new": true
+    },
+    {
+      "slug": "quran-verse",
+      "title": "Quran Verse Lookup",
+      "icon": "☪️",
+      "desc": "Read Quran in Arabic & English by Surah.",
+      "href": "/quran-verse/",
+      "tags": [
+        "quran",
+        "islam",
+        "religion"
+      ],
+      "cats": [
+        "all",
+        "tools"
+      ],
+      "new": true
+    },
+    {
+      "slug": "nba-stats",
+      "title": "NBA Stats",
+      "icon": "🏀",
+      "desc": "Player stats, game scores & team data live.",
+      "href": "/nba-stats/",
+      "tags": [
+        "nba",
+        "basketball",
+        "sports",
+        "stats"
+      ],
+      "cats": [
+        "all",
+        "sports"
+      ],
+      "new": true
+    }
+  ],
+  "categories": {
+    "all": {
+      "label": "All",
+      "icon": "",
+      "desc": "Every tool on UpTools"
+    },
+    "finance": {
+      "label": "Finance",
+      "icon": "",
+      "desc": "Money, loans & returns"
+    },
+    "tax": {
+      "label": "Tax",
+      "icon": "",
+      "desc": "GST, Income Tax & HST"
+    },
+    "banking": {
+      "label": "Banking",
+      "icon": "",
+      "desc": "IFSC & bank utilities"
+    },
+    "crypto": {
+      "label": "Crypto",
+      "icon": "",
+      "desc": "Prices, mining & portfolio"
+    },
+    "images": {
+      "label": "Images",
+      "icon": "",
+      "desc": "Convert, edit, generate"
+    },
+    "text": {
+      "label": "Text",
+      "icon": "",
+      "desc": "Formatters & counters"
+    },
+    "dev": {
+      "label": "Developer",
+      "icon": "",
+      "desc": "JSON, UUID, Base64, QR"
+    },
+    "security": {
+      "label": "Security",
+      "icon": "",
+      "desc": "Passwords & QR reader"
+    },
+    "networking": {
+      "label": "Networking",
+      "icon": "",
+      "desc": "IP & network helpers"
+    },
+    "fun": {
+      "label": "Fun",
+      "icon": "",
+      "desc": "Mini games"
+    },
+    "health": {
+      "label": "Health",
+      "icon": "",
+      "desc": "BMI & wellness"
+    },
+    "canada": {
+      "label": "Canada",
+      "icon": "",
+      "desc": "CRS & HST tools"
+    },
+    "romantic": {
+      "label": "Romantic",
+      "icon": "",
+      "desc": "Couple & love utilities"
+    },
+    "social": {
+      "label": "Social",
+      "icon": "",
+      "desc": "Social media tools"
+    },
+    "whatsapp": {
+      "label": "WhatsApp",
+      "icon": "",
+      "desc": "WhatsApp tools"
+    },
+    "wifi": {
+      "label": "WiFi",
+      "icon": "",
+      "desc": "WiFi tools"
+    },
+    "ai": {
+      "label": "AI",
+      "icon": "",
+      "desc": "AI-powered tools"
+    },
+    "marketing": {
+      "label": "Marketing",
+      "icon": "",
+      "desc": "SEO & marketing tools"
+    },
+    "cricket": {
+      "label": "Cricket",
+      "icon": "",
+      "desc": "Cricket calculators & stats"
+    },
+    "sports": {
+      "label": "Sports",
+      "icon": "",
+      "desc": "Sports calculators & trackers"
+    },
+    "fifa": {
+      "label": "FIFA WC 2026",
+      "icon": "",
+      "desc": "FIFA World Cup 2026 tools & calculators"
+    },
+    "india": {
+      "label": "India",
+      "icon": "",
+      "desc": "India-specific tools & calculators"
+    },
+    "education": {
+      "label": "Education",
+      "icon": "",
+      "desc": "GPA, grades & academic tools"
+    },
+    "downloader": {
+      "label": "Downloaders",
+      "icon": "",
+      "desc": "Video & content downloaders"
+    },
+    "tools": {
+      "label": "Utilities",
+      "icon": "",
+      "desc": "Converters, timers & helpers"
+    }
+  }
+}
