@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react'
 import ToolLayout from '../components/ToolLayout'
+import useJumpToResult from '../hooks/useJumpToResult'
 
 function calcBMI(weight, height, unit) {
   let w = weight, h = height

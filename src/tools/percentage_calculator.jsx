@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react'
 import ToolLayout from '../components/ToolLayout'
+import useJumpToResult from '../hooks/useJumpToResult'
 
 const MODES = [
   { id: 'of', label: 'X% of Y', desc: 'What is X% of Y?' },

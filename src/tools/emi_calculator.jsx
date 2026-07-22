@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react'
 import ToolLayout from '../components/ToolLayout'
+import useJumpToResult from '../hooks/useJumpToResult'
 
 const fmt = (n) => '₹' + Math.round(n).toLocaleString('en-IN')
 

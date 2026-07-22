@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from 'react'
 import ToolLayout from '../components/ToolLayout'
+import useJumpToResult from '../hooks/useJumpToResult'
 
 const CURRENCIES = [
   { code: 'INR', name: 'Indian Rupee', symbol: '₹', flag: '🇮🇳' },

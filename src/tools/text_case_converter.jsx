@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import ToolLayout from '../components/ToolLayout'
+import useJumpToResult from '../hooks/useJumpToResult'
 
 const CASES = [
   { id: 'upper', label: 'UPPER CASE', icon: '🔠', fn: (s) => s.toUpperCase() },
