@@ -1,4 +1,4 @@
-// Worker: serve static assets, React SPA for all HTML routes
+// Worker: serve static assets, React SPA for all routes
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -10,25 +10,42 @@ export default {
     if (response.status === 200) {
       const contentType = response.headers.get('content-type') || '';
 
-      // Serve non-HTML assets directly (JS, CSS, images, APKs, etc.)
+      // Serve non-HTML assets directly (JS, CSS, images, APKs, SVGs, etc.)
       if (!contentType.includes('text/html')) {
         return response;
       }
 
-      // For HTML: only serve if it's NOT a tool/game subdirectory page
-      // Tool pages like /gst-calculator/index.html should use React SPA instead
-      const isSubPage = path !== '/' && path !== '/index.html' && path.split('/').filter(Boolean).length >= 1;
-      if (isSubPage) {
-        // Skip old HTML, serve React SPA
-        const indexRequest = new Request(new URL('/index.html', request.url), request);
-        return env.ASSETS.fetch(indexRequest);
+      // HTML from root (/index.html) — serve it
+      if (path === '/' || path === '/index.html') {
+        return response;
       }
 
-      // Root index.html — serve it
-      return response;
+      // Any other HTML file — redirect to SPA
+      // (old tool pages that somehow still exist)
+      return Response.redirect(url.origin + '/', 302);
     }
 
-    // Fallback: serve React SPA for all unmatched routes
+    // 307/308 redirect from ASSETS (trailing slash issues etc)
+    // Follow it but if it leads to HTML, serve SPA instead
+    if (response.status === 307 || response.status === 308) {
+      const location = response.headers.get('location');
+      if (location) {
+        const redirectUrl = new URL(location, url.origin);
+        const subResponse = await env.ASSETS.fetch(new Request(redirectUrl, request));
+        if (subResponse.status === 200) {
+          const ct = subResponse.headers.get('content-type') || '';
+          if (!ct.includes('text/html')) {
+            return subResponse;
+          }
+          // HTML sub-page — serve SPA instead
+        }
+      }
+      // Serve SPA for all redirected HTML requests
+      const indexRequest = new Request(new URL('/index.html', request.url), request);
+      return env.ASSETS.fetch(indexRequest);
+    }
+
+    // 404 or other — serve SPA
     const indexRequest = new Request(new URL('/index.html', request.url), request);
     return env.ASSETS.fetch(indexRequest);
   }
