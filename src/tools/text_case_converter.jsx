@@ -53,7 +53,7 @@ export default function text_case_converter() {
       <div className="max-w-2xl mx-auto space-y-6">
         <div>
           <label className="block text-sm font-semibold text-slate-300 mb-2">Input Text</label>
-          <textarea value={input} onChange={e => setInput(e.target.value)}
+          <textarea value={input} onChange={e => { setInput(e.target.value); jumpTo() }}
             placeholder="Type or paste your text here..."
             rows={4}
             className="w-full bg-white/[0.06] border-2 border-white/8 rounded-2xl px-5 py-4 text-white text-sm font-mono outline-none focus:border-brand/40 transition-all duration-300 placeholder:text-slate-600 resize-none" />

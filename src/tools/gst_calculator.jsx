@@ -133,7 +133,7 @@ export default function gst_calculator() {
           <label className="block text-sm font-semibold text-slate-300 mb-3">Select GST Rate</label>
           <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
             {[...PRESET_RATES, -1].map(r => (
-              <button key={r} onClick={() => setRate(r)}
+              <button key={r} onClick={() => { setRate(r); jumpTo() }}
                 className={`relative py-3 rounded-xl text-sm font-bold transition-all duration-200 overflow-hidden
                   ${rate === r
                     ? 'bg-emerald-500 text-white shadow-lg shadow-emerald-500/30'

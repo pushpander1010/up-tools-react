@@ -72,7 +72,7 @@ export default function percentage_calculator() {
             <label className="block text-sm font-semibold text-slate-300 mb-2">
               {mode === 'of' ? 'Percentage (%)' : mode === 'is' ? 'Value (X)' : mode === 'change' ? 'From Value' : 'Value'}
             </label>
-            <input type="number" value={x} onChange={e => setX(e.target.value)} placeholder="0"
+            <input type="number" value={x} onChange={e => { setX(e.target.value); jumpTo() }} placeholder="0"
               className="w-full bg-white/[0.06] border-2 border-white/8 rounded-2xl px-5 py-4 text-2xl font-extrabold text-white outline-none focus:border-emerald-500/40 transition-all placeholder:text-white/8" />
           </div>
           <div>

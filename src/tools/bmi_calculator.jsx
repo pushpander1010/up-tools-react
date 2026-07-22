@@ -75,7 +75,7 @@ export default function bmi_calculator() {
         <div className="grid grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-semibold text-slate-300 mb-2">Weight ({unit === 'metric' ? 'kg' : 'lbs'})</label>
-            <input type="number" value={weight} onChange={e => setWeight(e.target.value)} placeholder="0"
+            <input type="number" value={weight} onChange={e => { setWeight(e.target.value); jumpTo() }} placeholder="0"
               className="w-full bg-white/[0.06] border-2 border-white/8 rounded-2xl px-5 py-4 text-2xl font-extrabold text-white outline-none focus:border-teal-500/40 transition-all duration-300 placeholder:text-white/8" />
           </div>
           <div>

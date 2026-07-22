@@ -95,7 +95,7 @@ export default function currency_converter() {
         {/* Amount */}
         <div>
           <label className="block text-sm font-semibold text-slate-300 mb-2">Amount</label>
-          <input type="number" value={amount} onChange={e => setAmount(e.target.value)}
+          <input type="number" value={amount} onChange={e => { setAmount(e.target.value); jumpTo() }}
             className="w-full bg-white/[0.06] border-2 border-white/8 rounded-2xl px-5 py-4 text-3xl font-extrabold text-white outline-none focus:border-emerald-500/40 transition-all duration-300 placeholder:text-white/8" />
         </div>
 

@@ -54,7 +54,7 @@ export default function word_counter() {
       <div className="max-w-3xl mx-auto space-y-6">
         <div>
           <label className="block text-sm font-semibold text-slate-300 mb-2">Your Text</label>
-          <textarea value={text} onChange={e => setText(e.target.value)}
+          <textarea value={text} onChange={e => { setText(e.target.value); jumpTo() }}
             placeholder="Type or paste your text here..."
             rows={8}
             className="w-full bg-white/[0.06] border-2 border-white/8 rounded-2xl px-5 py-4 text-white text-sm outline-none focus:border-brand/40 transition-all duration-300 placeholder:text-slate-600 resize-none" />
