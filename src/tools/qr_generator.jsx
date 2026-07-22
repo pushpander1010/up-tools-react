@@ -1,13 +1,13 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import ToolLayout from '../components/ToolLayout'
 
 const PRESETS = [
-  { fg: '#1e293b', bg: '#ffffff', label: 'Dark on Light' },
-  { fg: '#e2e8f0', bg: '#0f172a', label: 'Light on Dark' },
+  { fg: '#1e293b', bg: '#ffffff', label: 'Classic' },
+  { fg: '#e2e8f0', bg: '#0f172a', label: 'Dark Mode' },
   { fg: '#22c55e', bg: '#ffffff', label: 'Green' },
-  { fg: '#6366f1', bg: '#ffffff', label: 'Purple' },
+  { fg: '#6366f1', bg: '#ffffff', label: 'Indigo' },
   { fg: '#ef4444', bg: '#ffffff', label: 'Red' },
-  { fg: '#f59e0b', bg: '#ffffff', label: 'Gold' },
+  { fg: '#f59e0b', bg: '#ffffff', label: 'Amber' },
 ]
 
 export default function qr_generator() {
@@ -18,7 +18,9 @@ export default function qr_generator() {
   const [copied, setCopied] = useState(false)
   const [downloading, setDownloading] = useState(false)
 
-  const qrUrl = text ? `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encodeURIComponent(text)}&bgcolor=${bg.replace('#', '')}&color=${fg.replace('#', '')}&margin=10` : null
+  const qrUrl = useMemo(() =>
+    text ? `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encodeURIComponent(text)}&bgcolor=${bg.replace('#', '')}&color=${fg.replace('#', '')}&margin=10` : null
+  , [text, size, fg, bg])
 
   const download = async () => {
     if (!qrUrl) return
@@ -39,38 +41,14 @@ export default function qr_generator() {
       const res = await fetch(qrUrl)
       const blob = await res.blob()
       await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })])
-      setCopied(true); setTimeout(() => setCopied(false), 1500)
+      setCopied(true); setTimeout(() => setCopied(false), 2000)
     } catch (e) { console.error(e) }
   }
-
-  const ColorSlider = ({ label, value, onChange, accent }) => (
-    <div className="flex-1">
-      <div className="flex items-center justify-between mb-2">
-        <label className="text-xs font-semibold text-slate-400">{label}</label>
-        <span className="text-xs font-mono font-bold px-2 py-0.5 rounded-md border border-white/10" style={{ color: value, background: `${value}15` }}>{value}</span>
-      </div>
-      <div className="relative h-8 rounded-xl overflow-hidden border-2 border-white/10" style={{ background: `linear-gradient(to right, #000000, ${value}, #ffffff)` }}>
-        <input type="range" min="0" max="360" value={parseInt(value.replace('#', ''), 16) % 360}
-          onChange={e => {
-            const h = parseInt(e.target.value)
-            // Convert hue slider to hex-ish color
-            const s = 70, l = 50
-            const a2 = s/100 * Math.min(l/100, 1-l/100)
-            const f = n => { const k = (n + h/30) % 12; return l/100 - a2 * Math.max(Math.min(k-3, 9-k, 1), -1) }
-            const hex = '#' + [f(0), f(8), f(4)].map(x => Math.round(x*255).toString(16).padStart(2,'0')).join('')
-            onChange(hex)
-          }}
-          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
-        <div className="absolute top-1/2 -translate-y-1/2 w-4 h-4 rounded-full border-2 border-white shadow-lg pointer-events-none transition-all"
-          style={{ left: `calc(${(parseInt(value.replace('#', ''), 16) % 360) / 360 * 100}% - 8px)`, background: value }} />
-      </div>
-    </div>
-  )
 
   return (
     <ToolLayout
       title="QR Code Generator"
-      desc="Generate QR codes for URLs, text, WiFi, contacts. Customize colors with sliders."
+      desc="Generate QR codes for URLs, text, WiFi, contacts. Customize colors with sliders and presets."
       icon="🔳" iconBg="rgba(139,92,246,0.08)"
       category="images" slug="qr-generator"
       faq={[
@@ -79,7 +57,7 @@ export default function qr_generator() {
       ]}
       howItWorks={[
         'Enter the text, URL, or data you want to encode.',
-        'Adjust foreground and background color sliders.',
+        'Adjust foreground and background color sliders or pick a preset.',
         'Preview the QR code in real-time.',
         'Download as PNG or copy the image.',
       ]}
@@ -91,65 +69,102 @@ export default function qr_generator() {
       }}
     >
       <div className="max-w-2xl mx-auto space-y-6">
-        {/* Content */}
+        {/* ─── Content Input ─── */}
         <div>
           <label className="block text-sm font-semibold text-slate-300 mb-2">Content</label>
           <textarea value={text} onChange={e => setText(e.target.value)}
-            placeholder="Enter URL, text, or WiFi: WIFI:T:WPA;S:Network;P:password;;"
+            placeholder="Enter URL, text, or WiFi: WIFI:T:WPA;S:MyNetwork;P:password;;"
             rows={3}
-            className="w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-2xl px-5 py-4 text-white text-sm font-mono outline-none focus:border-purple-500/40 transition-all placeholder:text-slate-600 resize-none" />
+            className="w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-2xl px-5 py-4 text-white text-sm font-mono outline-none focus:border-purple-500/40 transition-all duration-300 placeholder:text-slate-600 resize-none" />
         </div>
 
-        {/* Color Sliders */}
+        {/* ─── Color Controls ─── */}
         <div className="p-5 rounded-2xl bg-white/[0.06] border border-white/[0.08]">
-          <label className="block text-sm font-semibold text-slate-300 mb-4">🎨 Colors</label>
-          <div className="space-y-4">
-            <ColorSlider label="Foreground (QR dots)" value={fg} onChange={setFg} accent="purple" />
-            <ColorSlider label="Background" value={bg} onChange={setBg} accent="cyan" />
+          <h3 className="text-sm font-semibold text-slate-300 mb-4">🎨 Customize Colors</h3>
+
+          {/* Foreground Slider */}
+          <div className="mb-5">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-xs font-semibold text-slate-400">Foreground (QR dots)</span>
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-4 rounded-md border border-white/20" style={{ background: fg }} />
+                <span className="text-xs font-mono font-bold text-slate-300">{fg}</span>
+              </div>
+            </div>
+            <div className="relative h-10 rounded-xl overflow-hidden border-2 border-white/[0.1]"
+              style={{ background: `linear-gradient(to right, #000000, #333333, #666666, #999999, #cccccc, #ffffff, #ff0000, #ff8800, #ffff00, #00ff00, #00ffff, #0088ff, #0000ff, #8800ff, #ff00ff)` }}>
+              <input type="range" min="0" max="360" step="1"
+                value={(() => { const h = hexToHSL(fg); return h.h })()}
+                onChange={e => setFg(hslToHex(parseInt(e.target.value), 75, 55))}
+                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
+              <div className="absolute top-1/2 -translate-y-1/2 w-5 h-5 rounded-full border-2 border-white shadow-xl pointer-events-none transition-all duration-150"
+                style={{ left: `calc(${(() => { const h = hexToHSL(fg); return h.h / 360 * 100 })()}% - 10px)`, background: fg }} />
+            </div>
           </div>
-          {/* Presets */}
-          <div className="flex flex-wrap gap-2 mt-4">
+
+          {/* Background Slider */}
+          <div className="mb-4">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-xs font-semibold text-slate-400">Background</span>
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-4 rounded-md border border-white/20" style={{ background: bg }} />
+                <span className="text-xs font-mono font-bold text-slate-300">{bg}</span>
+              </div>
+            </div>
+            <div className="relative h-10 rounded-xl overflow-hidden border-2 border-white/[0.1]"
+              style={{ background: `linear-gradient(to right, #000000, #333333, #666666, #999999, #cccccc, #ffffff, #ff0000, #ff8800, #ffff00, #00ff00, #00ffff, #0088ff, #0000ff, #8800ff, #ff00ff)` }}>
+              <input type="range" min="0" max="360" step="1"
+                value={(() => { const h = hexToHSL(bg); return h.h })()}
+                onChange={e => setBg(hslToHex(parseInt(e.target.value), 75, 55))}
+                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
+              <div className="absolute top-1/2 -translate-y-1/2 w-5 h-5 rounded-full border-2 border-white shadow-xl pointer-events-none transition-all duration-150"
+                style={{ left: `calc(${(() => { const h = hexToHSL(bg); return h.h / 360 * 100 })()}% - 10px)`, background: bg }} />
+            </div>
+          </div>
+
+          {/* Preset Swatches */}
+          <div className="flex flex-wrap gap-2">
             {PRESETS.map((p, i) => (
               <button key={i} onClick={() => { setFg(p.fg); setBg(p.bg) }}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-semibold border border-white/10 hover:border-white/20 transition-all"
-                style={{ background: p.bg, color: p.fg }}>
-                <span className="w-3 h-3 rounded-full border" style={{ background: p.fg }} />
-                {p.label}
+                className="flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold border-2 border-white/[0.08] hover:border-white/[0.15] transition-all"
+                style={{ background: p.bg }}>
+                <div className="w-4 h-4 rounded-md border border-white/20" style={{ background: p.fg }} />
+                <span style={{ color: p.fg }}>{p.label}</span>
               </button>
             ))}
           </div>
         </div>
 
-        {/* Size */}
+        {/* ─── Size ─── */}
         <div>
-          <label className="block text-xs font-semibold text-slate-500 mb-2">Size</label>
+          <label className="text-xs font-semibold text-slate-500 mb-2 block">Size</label>
           <div className="flex gap-2">
             {[128, 256, 512].map(s => (
               <button key={s} onClick={() => setSize(s)}
-                className={`flex-1 py-2.5 rounded-xl text-xs font-bold transition-all ${size === s ? 'bg-purple-500/20 text-purple-400 border border-purple-500/40' : 'bg-white/[0.06] text-slate-500 border border-white/[0.08]'}`}>
+                className={`flex-1 py-2.5 rounded-xl text-xs font-bold transition-all ${size === s ? 'bg-purple-500/20 text-purple-400 border border-purple-500/40 shadow-lg shadow-purple-500/10' : 'bg-white/[0.06] text-slate-500 border border-white/[0.08]'}`}>
                 {s}px
               </button>
             ))}
           </div>
         </div>
 
-        {/* Preview */}
+        {/* ─── Preview ─── */}
         {qrUrl ? (
-          <div className="flex flex-col items-center gap-5 p-8 rounded-3xl border-2 border-white/[0.08] transition-all"
+          <div className="flex flex-col items-center gap-5 p-8 rounded-3xl border-2 border-white/[0.08] transition-all duration-300"
             style={{ background: bg, animation: 'slideUp 0.35s ease-out' }}>
-            <img src={qrUrl} alt="QR Code" className="block rounded-lg shadow-2xl"
+            <img src={qrUrl} alt="QR Code" className="block rounded-xl shadow-2xl"
               style={{ width: Math.min(size, 280), height: Math.min(size, 280) }} />
             <div className="text-xs text-center max-w-xs truncate px-4 py-1.5 rounded-lg font-mono"
-              style={{ color: fg, opacity: 0.6, background: `${fg}10` }}>{text}</div>
+              style={{ color: fg, opacity: 0.5, background: `${fg}10` }}>{text}</div>
             <div className="flex gap-3">
               <button onClick={download} disabled={downloading}
                 className="glow-btn px-6 py-2.5 rounded-xl text-sm flex items-center gap-2"
                 style={{ background: 'linear-gradient(135deg, #8b5cf6, #6366f1)' }}>
-                {downloading ? '⏳' : '⬇'} Download
+                {downloading ? '⏳' : '⬇'} Download PNG
               </button>
               <button onClick={copyImage}
                 className={`px-4 py-2.5 rounded-xl text-sm font-semibold transition-all ${copied ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white'}`}>
-                {copied ? '✓ Copied' : '📋 Copy'}
+                {copied ? '✓ Copied' : '📋 Copy Image'}
               </button>
             </div>
           </div>
@@ -162,4 +177,28 @@ export default function qr_generator() {
       </div>
     </ToolLayout>
   )
+}
+
+// Helpers
+function hexToHSL(hex) {
+  let r = parseInt(hex.slice(1, 3), 16) / 255
+  let g = parseInt(hex.slice(3, 5), 16) / 255
+  let b = parseInt(hex.slice(5, 7), 16) / 255
+  const max = Math.max(r, g, b), min = Math.min(r, g, b)
+  let h = 0, s = 0, l = (max + min) / 2
+  if (max !== min) {
+    const d = max - min
+    s = l > 0.5 ? d / (2 - max - min) : d / (max + min)
+    if (max === r) h = ((g - b) / d + (g < b ? 6 : 0)) / 6
+    else if (max === g) h = ((b - r) / d + 2) / 6
+    else h = ((r - g) / d + 4) / 6
+  }
+  return { h: Math.round(h * 360), s: Math.round(s * 100), l: Math.round(l * 100) }
+}
+
+function hslToHex(h, s, l) {
+  s /= 100; l /= 100
+  const a = s * Math.min(l, 1 - l)
+  const f = n => { const k = (n + h / 30) % 12; return l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1) }
+  return '#' + [f(0), f(8), f(4)].map(x => Math.round(x * 255).toString(16).padStart(2, '0')).join('')
 }
