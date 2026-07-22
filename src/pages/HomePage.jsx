@@ -25,9 +25,12 @@ const featuredSlugs = [
 export default function HomePage() {
   const [search, setSearch] = useState('')
   const [activeCats, setActiveCats] = useState(new Set())
-  const gridRef = useRef(null)
+  const resultsRef = useRef(null)
+  const allToolsRef = useRef(null)
 
   const catList = useMemo(() => Object.entries(categories).filter(([k]) => k !== 'all'), [])
+
+  const isFiltering = search.length > 0 || activeCats.size > 0
 
   const filteredTools = useMemo(() => {
     return tools.filter(t => {
@@ -47,12 +50,17 @@ export default function HomePage() {
     })
   }, [])
 
-  const handleSearch = (e) => { setSearch(e.target.value) }
+  const scrollToResults = () => {
+    resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
 
   const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
-      gridRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }
+    if (e.key === 'Enter') scrollToResults()
+  }
+
+  const clearFilters = () => {
+    setSearch('')
+    setActiveCats(new Set())
   }
 
   return (
@@ -69,7 +77,6 @@ export default function HomePage() {
           style={{ background: 'radial-gradient(circle, rgba(99,102,241,0.15), transparent 70%)' }} />
         <div className="absolute -bottom-16 -left-16 w-48 h-48 rounded-full blur-3xl opacity-20 pointer-events-none"
           style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.12), transparent 70%)' }} />
-
         <div className="relative flex flex-col sm:flex-row items-start gap-8">
           <div className="flex-1">
             <div className="flex items-center gap-4 mb-5">
@@ -119,11 +126,11 @@ export default function HomePage() {
         <div className="flex items-center gap-3 rounded-2xl px-5 py-3.5 transition-all duration-300 focus-within:shadow-[0_0_0_3px_rgba(99,102,241,0.15),0_4px_20px_rgba(0,0,0,0.2)]"
           style={{ background: 'rgba(17,24,39,0.8)', border: '1px solid rgba(255,255,255,0.06)' }}>
           <span className="text-slate-500 text-lg">🔎</span>
-          <input type="search" value={search} onChange={handleSearch} onKeyDown={handleKeyDown}
+          <input type="search" value={search} onChange={e => setSearch(e.target.value)} onKeyDown={handleKeyDown}
             placeholder="Search 300+ tools (tax, gst, currency, json)…"
             className="flex-1 min-w-0 bg-transparent border-none outline-none text-white text-sm placeholder:text-slate-500" />
-          {search && (
-            <button onClick={() => { setSearch(''); gridRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }) }}
+          {isFiltering && (
+            <button onClick={clearFilters}
               className="px-3 py-1 rounded-lg text-xs font-semibold bg-white/5 border border-white/8 text-slate-400 hover:text-white transition-all cursor-pointer">
               Clear
             </button>
@@ -144,7 +151,7 @@ export default function HomePage() {
       </div>
 
       {/* Featured — Infinite Carousel */}
-      {featuredTools.length > 0 && (
+      {!isFiltering && featuredTools.length > 0 && (
         <div className="mb-8">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-bold text-white m-0">🔥 Featured</h2>
@@ -160,23 +167,43 @@ export default function HomePage() {
         </div>
       )}
 
-      {/* All Tools Grid */}
-      <div ref={gridRef} className="scroll-mt-20">
+      {/* ─── SEARCH RESULTS (only when filtering) ─── */}
+      {isFiltering && (
+        <div ref={resultsRef} className="scroll-mt-20 mb-8">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-lg font-bold text-white m-0">
+              🔍 Search Results
+              {search && <span className="text-sm font-normal text-slate-400 ml-2">"{search}"</span>}
+            </h2>
+            <span className="text-xs text-slate-500">{filteredTools.length} tools found</span>
+          </div>
+          {filteredTools.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+              {filteredTools.map(tool => (
+                <ToolCard key={tool.slug} tool={tool} categories={categories} />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-12 rounded-3xl border-2 border-dashed border-white/8 bg-white/[0.01]">
+              <div className="text-4xl mb-3 opacity-20">🔍</div>
+              <p className="text-sm text-slate-500 font-medium mb-2">No tools match "{search}"</p>
+              <button onClick={clearFilters} className="glow-btn text-xs px-4 py-1.5 rounded-xl">Clear filters</button>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* ─── ALL TOOLS (always visible) ─── */}
+      <div ref={allToolsRef}>
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-bold text-white m-0">🧰 All Tools</h2>
-          <span className="text-xs text-slate-500">{filteredTools.length} tools</span>
+          <span className="text-xs text-slate-500">{tools.length} tools</span>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
-          {filteredTools.map(tool => (
+          {tools.map(tool => (
             <ToolCard key={tool.slug} tool={tool} categories={categories} />
           ))}
         </div>
-        {filteredTools.length === 0 && (
-          <div className="text-center py-16 rounded-3xl border-2 border-dashed border-white/8 bg-white/[0.01]">
-            <div className="text-4xl mb-3 opacity-20">🔍</div>
-            <p className="text-sm text-slate-500 font-medium">No tools match your search. Try different keywords.</p>
-          </div>
-        )}
       </div>
     </>
   )
