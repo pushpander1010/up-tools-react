@@ -36,25 +36,32 @@ function hslToHex(h, s, l) {
   return '#' + [f(0), f(8), f(4)].map(x => Math.round(x * 255).toString(16).padStart(2, '0')).join('')
 }
 
+const RAINBOW = ['#ff0000','#ff4400','#ff8800','#ffcc00','#ffff00','#aaff00','#55ff00','#00ff00','#00ff55','#00ffaa','#00ffff','#00aaff','#0055ff','#0000ff','#4400ff','#8800ff','#cc00ff','#ff00ff','#ff00aa','#ff0055','#ff0000']
+
 function HueSlider({ label, color, onChange }) {
   const hsl = hexToHSL(color)
-  const thumbLeft = `${(hsl.h / 360) * 100}%`
+  const pct = (hsl.h / 360) * 100
   return (
-    <div className="mb-4">
-      <div className="flex items-center justify-between mb-2">
-        <span className="text-xs font-semibold text-slate-400">{label}</span>
-        <div className="flex items-center gap-2">
-          <div className="w-5 h-5 rounded-lg border-2 border-white/20 shadow-md" style={{ background: color }} />
-          <span className="text-xs font-mono font-bold px-2 py-0.5 rounded-md border border-white/10 text-slate-300">{color}</span>
+    <div className="mb-3">
+      <div className="flex items-center justify-between mb-1.5">
+        <span className="text-[11px] font-semibold text-slate-400">{label}</span>
+        <div className="flex items-center gap-1.5">
+          <div className="w-4 h-4 rounded-md border-2 border-white/20 shadow-sm" style={{ background: color }} />
+          <span className="text-[10px] font-mono font-bold text-slate-400">{color}</span>
         </div>
       </div>
-      <div className="relative h-10 rounded-xl overflow-hidden border-2 border-white/[0.1]"
-        style={{ background: 'linear-gradient(to right, hsl(0,85%,55%), hsl(30,85%,55%), hsl(60,85%,55%), hsl(90,85%,55%), hsl(120,85%,55%), hsl(150,85%,55%), hsl(180,85%,55%), hsl(210,85%,55%), hsl(240,85%,55%), hsl(270,85%,55%), hsl(300,85%,55%), hsl(330,85%,55%), hsl(360,85%,55%))' }}>
+      <div className="relative h-7 rounded-lg overflow-hidden border border-white/10"
+        style={{ background: 'linear-gradient(to right, #ff0000, #ff8800, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000)' }}>
         <input type="range" min="0" max="360" step="1" value={hsl.h}
-          onChange={e => onChange(hslToHex(parseInt(e.target.value), hsl.s || 85, hsl.l || 55))}
+          onChange={e => {
+            const h = parseInt(e.target.value)
+            const s = Math.max(hsl.s, 70)
+            const l = Math.max(Math.min(hsl.l, 65), 35)
+            onChange(hslToHex(h, s, l))
+          }}
           className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" />
-        <div className="absolute top-1/2 -translate-y-1/2 w-5 h-5 rounded-full border-[3px] border-white shadow-xl pointer-events-none z-20 transition-all duration-100"
-          style={{ left: `calc(${thumbLeft} - 10px)`, background: color }} />
+        <div className="absolute top-1/2 -translate-y-1/2 w-4 h-4 rounded-full border-2 border-white shadow-lg pointer-events-none z-20 transition-[left] duration-75"
+          style={{ left: `calc(${pct}% - 8px)`, background: color }} />
       </div>
     </div>
   )
