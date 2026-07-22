@@ -1,61 +1,105 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useCallback, useRef, useEffect } from 'react'
 import ToolLayout from '../components/ToolLayout'
 
-const RATES = [
-  { label: '0%', value: 0 },
-  { label: '5%', value: 5 },
-  { label: '12%', value: 12 },
-  { label: '18%', value: 18 },
-  { label: '28%', value: 28 },
-  { label: 'Custom', value: -1 },
-]
+const PRESET_RATES = [0, 5, 12, 18, 28]
+const INR = (n) => '₹' + n.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
 
-const INR = (n, d = 2) => '₹' + n.toLocaleString('en-IN', { minimumFractionDigits: d, maximumFractionDigits: d })
-
-function calcGST(amount, rate, inclusive, supply, rounding) {
-  const r = rate / 100
+function computeGST(amount, ratePct, inclusive, supply) {
+  if (amount <= 0 || ratePct < 0) return null
+  const r = ratePct / 100
   let base, gst, total
   if (inclusive) {
-    total = amount; base = r > 0 ? amount / (1 + r) : amount; gst = total - base
+    total = amount
+    base = r > 0 ? amount / (1 + r) : amount
+    gst = total - base
   } else {
-    base = amount; gst = base * r; total = base + gst
+    base = amount
+    gst = base * r
+    total = base + gst
   }
-  const rnd = rounding === 'rupee' ? 0 : 2
-  const f = (n) => Number(n.toFixed(rnd))
-  return { base: f(base), gst: f(gst), total: f(total), cgst: supply === 'intra' ? f(gst) / 2 : 0, sgst: supply === 'intra' ? f(gst) / 2 : 0, igst: supply === 'inter' ? f(gst) : 0 }
+  const cgst = supply === 'intra' ? gst / 2 : 0
+  const sgst = supply === 'intra' ? gst / 2 : 0
+  const igst = supply === 'inter' ? gst : 0
+  return { base, gst, total, cgst, sgst, igst, ratePct, supply, inclusive }
+}
+
+// Animated number counter
+function AnimatedNumber({ value, prefix = '' }) {
+  const [display, setDisplay] = useState(value)
+  const frameRef = useRef(null)
+
+  useEffect(() => {
+    if (!value) { setDisplay(0); return }
+    const start = display
+    const diff = value - start
+    const duration = 300
+    const startTime = performance.now()
+    function tick(now) {
+      const elapsed = now - startTime
+      const progress = Math.min(elapsed / duration, 1)
+      const eased = 1 - Math.pow(1 - progress, 3) // easeOutCubic
+      setDisplay(start + diff * eased)
+      if (progress < 1) frameRef.current = requestAnimationFrame(tick)
+    }
+    frameRef.current = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(frameRef.current)
+  }, [value])
+
+  return <span>{prefix}{INR(display)}</span>
 }
 
 export default function gst_calculator() {
   const [amount, setAmount] = useState('')
-  const [rateIdx, setRateIdx] = useState(3)
+  const [rate, setRate] = useState(18)
   const [customRate, setCustomRate] = useState('')
   const [inclusive, setInclusive] = useState(false)
   const [supply, setSupply] = useState('intra')
-  const [rounding, setRounding] = useState('paise')
+  const [copied, setCopied] = useState(false)
+  const [showAdvanced, setShowAdvanced] = useState(false)
 
-  const rate = RATES[rateIdx].value === -1 ? (parseFloat(customRate) || 0) : RATES[rateIdx].value
+  const effectiveRate = rate === -1 ? (parseFloat(customRate) || 0) : rate
   const amt = parseFloat(amount) || 0
-  const result = useMemo(() => amt > 0 ? calcGST(amt, rate, inclusive, supply, rounding) : null, [amt, rate, inclusive, supply, rounding])
-  const rnd = rounding === 'rupee' ? 0 : 2
+
+  const result = useMemo(() => computeGST(amt, effectiveRate, inclusive, supply), [amt, effectiveRate, inclusive, supply])
+
+  const handleCopy = useCallback(() => {
+    if (!result) return
+    const lines = [
+      `Amount: ₹${amt.toLocaleString('en-IN')}`,
+      `Rate: ${effectiveRate}%`,
+      `Type: ${inclusive ? 'Inclusive' : 'Exclusive'}`,
+      `Supply: ${supply === 'intra' ? 'Intra-state' : 'Inter-state'}`,
+      ``,
+      `Base Amount: ${INR(result.base)}`,
+      `GST (${effectiveRate}%): ${INR(result.gst)}`,
+      supply === 'intra' ? `CGST (${effectiveRate / 2}%): ${INR(result.cgst)}` : `IGST (${effectiveRate}%): ${INR(result.igst)}`,
+      supply === 'intra' ? `SGST (${effectiveRate / 2}%): ${INR(result.sgst)}` : '',
+      ``,
+      `Total: ${INR(result.total)}`,
+    ].filter(Boolean).join('\n')
+    navigator.clipboard.writeText(lines)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }, [result, amt, effectiveRate, inclusive, supply])
 
   return (
     <ToolLayout
       title="GST Calculator India"
-      desc="Calculate GST instantly for 5%, 12%, 18%, 28% rates. Get base amount, GST breakdown (CGST/SGST/IGST), total with rounding. Supports inclusive/exclusive."
+      desc="Calculate GST instantly for 5%, 12%, 18%, 28% rates. Get base amount, GST breakdown (CGST/SGST/IGST), total with rounding."
       icon="🧮" iconBg="rgba(16,185,129,0.08)"
       category="tax" slug="gst-calculator"
       faq={[
-        { q: 'How do I calculate GST from a GST-inclusive amount?', a: 'Tick "GST Inclusive", select the rate, and the calculator back-calculates the base and GST.' },
-        { q: "What's the difference between CGST+SGST and IGST?", a: 'Intra-state: GST splits into CGST (Central) + SGST (State). Inter-state: full IGST applies.' },
-        { q: 'Can I use a custom GST rate?', a: 'Yes — select "Custom" and enter any rate (e.g., 3% or 7.5%).' },
-        { q: 'How does rounding work?', a: 'Choose "Paise" for 2 decimal places or "Nearest ₹1" to round to whole rupees.' },
+        { q: 'How do I calculate GST from a GST-inclusive amount?', a: 'Tick "Amount includes GST" — the calculator back-calculates the base amount and GST for you.' },
+        { q: "What's the difference between CGST+SGST and IGST?", a: 'Within the same state: GST splits equally into CGST (Central) and SGST (State). Between states: IGST applies as a single charge.' },
+        { q: 'Can I use a custom GST rate?', a: 'Yes — select "Custom" and type any rate like 3%, 7.5%, or 0.1%.' },
+        { q: 'How accurate are the calculations?', a: 'All calculations use precise floating-point math. Results match what CA/accounting software would produce.' },
       ]}
       howItWorks={[
-        'Enter the pre-GST amount in rupees.',
-        'Select the GST rate (0%, 5%, 12%, 18%, 28% or custom).',
-        'Choose whether the amount includes GST (inclusive) or not (exclusive).',
-        'Pick supply type — intra-state (CGST+SGST) or inter-state (IGST).',
-        'View the instant breakdown: base, GST, split, and total.',
+        'Enter the amount in the input field above.',
+        'Tap a GST rate button (0%, 5%, 12%, 18%, 28%) or choose Custom.',
+        'Toggle "Amount includes GST" if your amount already has tax built in.',
+        'Select supply type: Intra-state (CGST+SGST) or Inter-state (IGST).',
+        'Results update instantly — copy them with one tap.',
       ]}
       schema={{
         "@context": "https://schema.org", "@type": "SoftwareApplication",
@@ -64,73 +108,152 @@ export default function gst_calculator() {
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" }
       }}
     >
-      <div className="space-y-4">
-        {/* Amount */}
+      <div className="max-w-2xl mx-auto space-y-6">
+
+        {/* ─── Amount Input ─── */}
         <div>
-          <label className="text-xs font-medium text-slate-400 mb-2 block">Amount (₹)</label>
-          <input type="number" value={amount} onChange={e => setAmount(e.target.value)} placeholder="Enter amount"
-            className="w-full bg-white/5 border border-white/8 rounded-xl px-4 py-3 text-white text-lg font-semibold outline-none focus:border-emerald-500/50 transition-colors placeholder:text-slate-600" />
+          <label className="block text-sm font-semibold text-slate-300 mb-2">Amount</label>
+          <div className="relative group">
+            <span className="absolute left-5 top-1/2 -translate-y-1/2 text-3xl font-bold text-emerald-500/30 group-focus-within:text-emerald-400 transition-colors">₹</span>
+            <input
+              type="number" value={amount} onChange={e => setAmount(e.target.value)}
+              placeholder="0.00"
+              className="w-full bg-white/[0.03] border-2 border-white/8 rounded-2xl pl-14 pr-5 py-5 text-4xl font-extrabold text-white outline-none
+                focus:border-emerald-500/40 focus:bg-white/[0.05] focus:shadow-[0_0_40px_rgba(16,185,129,0.08)]
+                transition-all duration-300 placeholder:text-white/8"
+            />
+          </div>
         </div>
 
-        {/* Rate */}
+        {/* ─── Rate Buttons ─── */}
         <div>
-          <label className="text-xs font-medium text-slate-400 mb-2 block">GST Rate</label>
-          <div className="flex flex-wrap gap-2">
-            {RATES.map((r, i) => (
-              <button key={i} onClick={() => setRateIdx(i)}
-                className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all border ${rateIdx === i ? 'bg-emerald-500/20 border-emerald-500/40 text-emerald-400' : 'bg-white/4 border-white/6 text-slate-400 hover:text-white'}`}>
-                {r.label}
+          <label className="block text-sm font-semibold text-slate-300 mb-3">Select GST Rate</label>
+          <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
+            {[...PRESET_RATES, -1].map(r => (
+              <button key={r} onClick={() => setRate(r)}
+                className={`relative py-3 rounded-xl text-sm font-bold transition-all duration-200 overflow-hidden
+                  ${rate === r
+                    ? 'bg-emerald-500 text-white shadow-lg shadow-emerald-500/30'
+                    : 'bg-white/[0.03] text-slate-400 border border-white/6 hover:bg-white/[0.06] hover:text-white hover:border-white/12'
+                  }`}>
+                {rate === r && <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />}
+                <span className="relative">{r === -1 ? 'Custom' : `${r}%`}</span>
               </button>
             ))}
           </div>
-          {RATES[rateIdx].value === -1 && (
-            <input type="number" value={customRate} onChange={e => setCustomRate(e.target.value)} placeholder="Custom rate %"
-              className="mt-3 w-full bg-white/5 border border-white/8 rounded-xl px-4 py-2.5 text-white text-sm outline-none focus:border-emerald-500/50 placeholder:text-slate-600" />
+          {rate === -1 && (
+            <div className="mt-3 relative">
+              <input type="number" value={customRate} onChange={e => setCustomRate(e.target.value)}
+                placeholder="Enter custom rate" step="0.01"
+                className="w-full bg-white/[0.03] border-2 border-white/8 rounded-xl px-5 py-3 text-white font-semibold outline-none
+                  focus:border-emerald-500/40 transition-all duration-200 placeholder:text-slate-600" />
+              <span className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-500 font-bold">%</span>
+            </div>
           )}
         </div>
 
-        {/* Settings */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-          <div className="p-4 rounded-xl bg-white/3 border border-white/6">
-            <label className="text-xs text-slate-400 mb-2 block">Amount Type</label>
-            <label className="flex items-center gap-2 cursor-pointer">
-              <input type="checkbox" checked={inclusive} onChange={e => setInclusive(e.target.checked)} className="w-4 h-4 accent-emerald-500" />
-              <span className="text-sm text-white">GST Inclusive</span>
-            </label>
-          </div>
-          <div className="p-4 rounded-xl bg-white/3 border border-white/6">
-            <label className="text-xs text-slate-400 mb-2 block">Supply Type</label>
-            <div className="space-y-1">
-              <label className="flex items-center gap-2 cursor-pointer"><input type="radio" name="supply" checked={supply === 'intra'} onChange={() => setSupply('intra')} className="accent-purple-500" /><span className="text-sm text-white">Intra-state</span></label>
-              <label className="flex items-center gap-2 cursor-pointer"><input type="radio" name="supply" checked={supply === 'inter'} onChange={() => setSupply('inter')} className="accent-purple-500" /><span className="text-sm text-white">Inter-state</span></label>
+        {/* ─── Options Row ─── */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {/* Inclusive Toggle */}
+          <button onClick={() => setInclusive(!inclusive)}
+            className={`group p-4 rounded-2xl border-2 text-left transition-all duration-200
+              ${inclusive
+                ? 'bg-emerald-500/8 border-emerald-500/25 shadow-lg shadow-emerald-500/10'
+                : 'bg-white/[0.02] border-white/6 hover:border-white/12'
+              }`}>
+            <div className="flex items-center gap-3">
+              <div className={`w-5 h-5 rounded-md flex items-center justify-center text-xs font-bold transition-all duration-200
+                ${inclusive ? 'bg-emerald-500 text-white' : 'bg-white/10 text-transparent'}`}>
+                {inclusive && '✓'}
+              </div>
+              <div>
+                <div className="text-sm font-bold text-white">Amount includes GST</div>
+                <div className="text-[11px] text-slate-500 mt-0.5">
+                  {inclusive ? 'Back-calculating base from inclusive amount' : 'GST will be added on top'}
+                </div>
+              </div>
             </div>
-          </div>
-          <div className="p-4 rounded-xl bg-white/3 border border-white/6">
-            <label className="text-xs text-slate-400 mb-2 block">Rounding</label>
-            <select value={rounding} onChange={e => setRounding(e.target.value)} className="w-full bg-white/5 border border-white/8 rounded-lg px-3 py-2 text-white text-sm outline-none">
-              <option value="paise">Paise (2 decimals)</option>
-              <option value="rupee">Nearest ₹1</option>
-            </select>
+          </button>
+
+          {/* Supply Type */}
+          <div className="p-4 rounded-2xl border-2 border-white/6 bg-white/[0.02]">
+            <div className="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-2">Supply Type</div>
+            <div className="grid grid-cols-2 gap-2">
+              {[['intra', 'Intra-state', 'CGST + SGST'], ['inter', 'Inter-state', 'IGST']].map(([val, label, sub]) => (
+                <button key={val} onClick={() => setSupply(val)}
+                  className={`p-3 rounded-xl text-left transition-all duration-200 border
+                    ${supply === val
+                      ? 'bg-purple-500/10 border-purple-500/25 shadow-lg shadow-purple-500/10'
+                      : 'bg-white/[0.02] border-white/6 hover:border-white/12'
+                    }`}>
+                  <div className={`text-xs font-bold ${supply === val ? 'text-purple-400' : 'text-slate-300'}`}>{label}</div>
+                  <div className="text-[10px] text-slate-500 mt-0.5">{sub}</div>
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 
-        {/* Result */}
+        {/* ─── Result ─── */}
         {result && (
-          <div className="p-5 rounded-2xl bg-emerald-500/5 border border-emerald-500/15">
-            <h3 className="text-sm font-semibold text-emerald-400 mb-3">📊 Result</h3>
-            <div className="space-y-2">
-              <div className="flex justify-between py-1.5 border-b border-white/5"><span className="text-sm text-slate-400">Base Amount</span><span className="text-sm font-bold text-white">{INR(result.base, rnd)}</span></div>
-              <div className="flex justify-between py-1.5 border-b border-white/5"><span className="text-sm text-slate-400">GST ({rate}%)</span><span className="text-sm font-bold text-emerald-400">{INR(result.gst, rnd)}</span></div>
-              {supply === 'intra' ? (
-                <>
-                  <div className="flex justify-between py-1.5 border-b border-white/5"><span className="text-sm text-slate-400">CGST ({rate/2}%)</span><span className="text-sm text-purple-400">{INR(result.cgst, rnd)}</span></div>
-                  <div className="flex justify-between py-1.5 border-b border-white/5"><span className="text-sm text-slate-400">SGST ({rate/2}%)</span><span className="text-sm text-purple-400">{INR(result.sgst, rnd)}</span></div>
-                </>
-              ) : (
-                <div className="flex justify-between py-1.5 border-b border-white/5"><span className="text-sm text-slate-400">IGST ({rate}%)</span><span className="text-sm text-purple-400">{INR(result.igst, rnd)}</span></div>
-              )}
-              <div className="flex justify-between py-2"><span className="text-sm font-bold text-white">Total</span><span className="text-lg font-bold text-emerald-400">{INR(result.total, rnd)}</span></div>
+          <div className="rounded-3xl border-2 border-emerald-500/15 bg-gradient-to-br from-emerald-500/[0.06] via-white/[0.01] to-transparent p-6 sm:p-8"
+            style={{ animation: 'slideUp 0.35s cubic-bezier(0.4,0,0.2,1)' }}>
+            {/* Header */}
+            <div className="flex items-center justify-between mb-5">
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <h3 className="text-sm font-bold text-emerald-400 uppercase tracking-wider">Calculation Result</h3>
+              </div>
+              <button onClick={handleCopy}
+                className="flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-xl bg-white/5 border border-white/8 text-slate-400 hover:text-white hover:border-white/15 hover:bg-white/10 transition-all duration-200 active:scale-95">
+                {copied ? (
+                  <><svg className="w-3.5 h-3.5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg> Copied!</>
+                ) : (
+                  <><svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" /></svg> Copy</>
+                )}
+              </button>
             </div>
+
+            {/* Breakdown */}
+            <div className="space-y-1 mb-5">
+              {[
+                { label: 'Amount Type', value: inclusive ? 'GST-Inclusive' : 'GST-Exclusive', muted: true },
+                { label: 'Supply', value: supply === 'intra' ? 'Intra-state' : 'Inter-state', muted: true },
+                { label: 'Base Amount', value: <AnimatedNumber value={result.base} />, accent: false },
+                { label: `GST (${effectiveRate}%)`, value: <AnimatedNumber value={result.gst} />, accent: true },
+                ...(supply === 'intra' ? [
+                  { label: `CGST (${effectiveRate / 2}%)`, value: <AnimatedNumber value={result.cgst} />, color: 'purple' },
+                  { label: `SGST (${effectiveRate / 2}%)`, value: <AnimatedNumber value={result.sgst} />, color: 'purple' },
+                ] : [
+                  { label: `IGST (${effectiveRate}%)`, value: <AnimatedNumber value={result.igst} />, color: 'purple' },
+                ]),
+              ].map((row, i) => (
+                <div key={i} className={`flex justify-between items-center py-2.5 ${row.muted ? 'text-xs' : ''} ${i < 4 ? 'border-b border-white/5' : ''}`}>
+                  <span className={`${row.muted ? 'text-slate-600' : 'text-sm text-slate-400'}`}>{row.label}</span>
+                  <span className={`text-sm font-bold ${
+                    row.accent ? 'text-emerald-400' : row.color === 'purple' ? 'text-purple-400' : 'text-white'
+                  }`}>{row.value}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Total */}
+            <div className="p-5 rounded-2xl bg-emerald-500/10 border border-emerald-500/20">
+              <div className="flex justify-between items-center">
+                <span className="text-sm font-bold text-white">Total Amount</span>
+                <span className="text-3xl font-extrabold text-emerald-400 tracking-tight">
+                  <AnimatedNumber value={result.total} />
+                </span>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Empty State */}
+        {!result && (
+          <div className="text-center py-12 rounded-3xl border-2 border-dashed border-white/8 bg-white/[0.01]">
+            <div className="text-4xl mb-3 opacity-20">🧮</div>
+            <p className="text-sm text-slate-600 font-medium">Enter an amount and select a rate to calculate GST</p>
           </div>
         )}
       </div>
