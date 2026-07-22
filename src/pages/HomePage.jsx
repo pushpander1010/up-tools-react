@@ -34,18 +34,11 @@ export default function HomePage() {
 
   const filteredTools = useMemo(() => {
     return tools.filter(t => {
-      const matchSearch = !search || (() => {
-        const q = search.toLowerCase()
-        const words = q.split(/\s+/).filter(Boolean)
-        const title = t.title.toLowerCase()
-        const desc = (t.desc || '').toLowerCase()
-        // Title must match ALL words
-        const titleMatch = words.every(w => title.includes(w))
-        if (titleMatch) return true
-        // Description: at least 2 words must match
-        const descMatches = words.filter(w => desc.includes(w)).length
-        return descMatches >= Math.min(2, words.length)
-      })()
+      const q = search.toLowerCase().trim()
+      const words = q ? q.split(/\s+/) : []
+      const title = t.title.toLowerCase()
+      const desc = (t.desc || '').toLowerCase()
+      const matchSearch = !q || words.every(w => title.includes(w)) || words.filter(w => desc.includes(w)).length >= words.length
       const matchCat = activeCats.size === 0 || t.cats?.some(c => activeCats.has(c))
       return matchSearch && matchCat
     })
