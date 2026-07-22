@@ -1,7 +1,10 @@
+import useJumpToResult from '../hooks/useJumpToResult'
 import { useState } from 'react'
 import ToolLayout from '../components/ToolLayout'
 
 export default function json_formatter() {
+
+  const { ref: resultRef, trigger, reset } = useJumpToResult()
   const [input, setInput] = useState('')
   const [output, setOutput] = useState('')
   const [error, setError] = useState('')

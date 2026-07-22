@@ -1,3 +1,4 @@
+import useJumpToResult from '../hooks/useJumpToResult'
 import { useState, useMemo } from 'react'
 import ToolLayout from '../components/ToolLayout'
 
@@ -33,6 +34,8 @@ function Field({ label, value, onChange, placeholder }) {
 }
 
 export default function income_tax_tool() {
+
+  const { ref: resultRef, trigger, reset } = useJumpToResult()
   const [income, setIncome] = useState('')
   const [sd, setSd] = useState(true)
   const [ded, setDed] = useState({ c80c: '', c80d: '', nps: '', homeLoan: '' })
@@ -80,6 +83,7 @@ export default function income_tax_tool() {
       oldBreakdown: { tax: oldTaxAfterRebate, surcharge: oldSurcharge, cess: oldCess }
     }
   }, [inc, sd, ded, hra])
+  if (result !== null && result !== undefined && result !== 0) trigger()
 
   return (
     <ToolLayout
@@ -168,7 +172,7 @@ export default function income_tax_tool() {
             {/* Winner Banner */}
             <div className={`p-5 rounded-2xl border-2 text-center ${result.better === 'new' ? 'bg-brand/5 border-brand/20' : 'bg-green-500/5 border-green-500/20'}`}>
               <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider mb-1">Better Regime</div>
-              <div className="text-2xl font-extrabold gradient-text">{result.better === 'new' ? 'New Regime' : 'Old Regime'}</div>
+              <div ref={resultRef} className="text-2xl font-extrabold gradient-text">{result.better === 'new' ? 'New Regime' : 'Old Regime'}</div>
               <div className="text-green-400 font-bold mt-1">You save {fmt(result.saving)}</div>
             </div>
 

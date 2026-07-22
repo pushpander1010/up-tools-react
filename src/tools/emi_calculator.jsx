@@ -1,3 +1,4 @@
+import useJumpToResult from '../hooks/useJumpToResult'
 import { useState, useMemo } from 'react'
 import ToolLayout from '../components/ToolLayout'
 
@@ -12,6 +13,8 @@ function calcEMI(P, annualRate, months) {
 }
 
 export default function emi_calculator() {
+
+  const { ref: resultRef, trigger, reset } = useJumpToResult()
   const [principal, setPrincipal] = useState('')
   const [rate, setRate] = useState('')
   const [tenure, setTenure] = useState('')
@@ -22,6 +25,7 @@ export default function emi_calculator() {
   const n = unit === 'years' ? (parseFloat(tenure) || 0) * 12 : (parseFloat(tenure) || 0)
 
   const result = useMemo(() => calcEMI(p, r, n), [p, r, n])
+  if (result !== null && result !== undefined && result !== 0) trigger()
 
   const schedule = useMemo(() => {
     if (!result || n <= 0) return []

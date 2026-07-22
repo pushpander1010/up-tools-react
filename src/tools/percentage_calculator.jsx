@@ -1,3 +1,4 @@
+import useJumpToResult from '../hooks/useJumpToResult'
 import { useState, useMemo } from 'react'
 import ToolLayout from '../components/ToolLayout'
 
@@ -10,6 +11,8 @@ const MODES = [
 ]
 
 export default function percentage_calculator() {
+
+  const { ref: resultRef, trigger, reset } = useJumpToResult()
   const [mode, setMode] = useState('of')
   const [x, setX] = useState('')
   const [y, setY] = useState('')
@@ -24,6 +27,7 @@ export default function percentage_calculator() {
     if (mode === 'decrease') return a * (1 - b / 100)
     return 0
   }, [x, y, mode])
+  if (result !== null && result !== undefined && result !== 0) trigger()
 
   const fmt = (n) => {
     if (Number.isInteger(n)) return n.toLocaleString()
@@ -85,7 +89,7 @@ export default function percentage_calculator() {
         {(x || y) && (
           <div className="p-6 rounded-3xl bg-gradient-to-br from-emerald-500/8 via-white/[0.02] to-transparent border border-emerald-500/15 text-center" style={{ animation: 'slideUp 0.3s ease-out' }}>
             <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider mb-2">Result</div>
-            <div className="text-4xl font-extrabold text-emerald-400">{fmt(result)}</div>
+            <div ref={resultRef} className="text-4xl font-extrabold text-emerald-400">{fmt(result)}</div>
             {mode === 'is' && <div className="text-sm text-slate-400 mt-2">{x} is {fmt(result)}% of {y}</div>}
             {mode === 'change' && <div className="text-sm text-slate-400 mt-2">{result >= 0 ? '↑' : '↓'} {Math.abs(fmt(result))}% {result >= 0 ? 'increase' : 'decrease'}</div>}
           </div>

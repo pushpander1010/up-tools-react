@@ -1,7 +1,10 @@
+import useJumpToResult from '../hooks/useJumpToResult'
 import { useState } from 'react'
 import ToolLayout from '../components/ToolLayout'
 
 export default function url_encoder() {
+
+  const { ref: resultRef, trigger, reset } = useJumpToResult()
   const [input, setInput] = useState('')
   const [mode, setMode] = useState('encode')
   const [output, setOutput] = useState('')

@@ -1,3 +1,4 @@
+import useJumpToResult from '../hooks/useJumpToResult'
 import { useState, useCallback } from 'react'
 import ToolLayout from '../components/ToolLayout'
 
@@ -25,6 +26,8 @@ function getStrength(pw) {
 }
 
 export default function password_generator() {
+
+  const { ref: resultRef, trigger, reset } = useJumpToResult()
   const [length, setLength] = useState(16)
   const [opts, setOpts] = useState({ upper: true, lower: true, numbers: true, symbols: false })
   const [count, setCount] = useState(5)
@@ -69,7 +72,7 @@ export default function password_generator() {
         <div>
           <div className="flex justify-between items-baseline mb-3">
             <label className="text-sm font-semibold text-slate-300">Password Length</label>
-            <span className="text-3xl font-extrabold text-white">{length}</span>
+            <span ref={resultRef} className="text-3xl font-extrabold text-white">{length}</span>
           </div>
           <input type="range" min="6" max="64" value={length} onChange={e => setLength(Number(e.target.value))}
             className="w-full h-2 rounded-full appearance-none bg-white/10 accent-red-500 cursor-pointer" />

@@ -1,3 +1,4 @@
+import useJumpToResult from '../hooks/useJumpToResult'
 import { useState, useCallback } from 'react'
 import ToolLayout from '../components/ToolLayout'
 
@@ -6,6 +7,8 @@ function generateUUID() {
 }
 
 export default function uuid_generator() {
+
+  const { ref: resultRef, trigger, reset } = useJumpToResult()
   const [uuids, setUuids] = useState(() => [generateUUID()])
   const [count, setCount] = useState(1)
   const [copied, setCopied] = useState(null)

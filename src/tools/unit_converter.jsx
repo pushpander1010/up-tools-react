@@ -1,3 +1,4 @@
+import useJumpToResult from '../hooks/useJumpToResult'
 import { useState, useMemo } from 'react'
 import ToolLayout from '../components/ToolLayout'
 
@@ -80,6 +81,8 @@ function convertTemp(value, from, to) {
 }
 
 export default function unit_converter() {
+
+  const { ref: resultRef, trigger, reset } = useJumpToResult()
   const [cat, setCat] = useState('length')
   const [value, setValue] = useState('1')
   const [fromUnit, setFromUnit] = useState('m')
@@ -93,6 +96,7 @@ export default function unit_converter() {
     if (isTemp) return convertTemp(v, fromUnit, toUnit)
     return (v * (TO_BASE[fromUnit] || 1)) / (TO_BASE[toUnit] || 1)
   }, [value, fromUnit, toUnit, cat, isTemp])
+  if (result !== null && result !== undefined && result !== 0) trigger()
 
   const swap = () => { setFromUnit(toUnit); setToUnit(fromUnit) }
 
@@ -165,7 +169,7 @@ export default function unit_converter() {
         {/* Result */}
         <div className="p-6 rounded-3xl bg-gradient-to-br from-cyan-500/8 via-white/[0.02] to-transparent border border-cyan-500/15 text-center" style={{ animation: 'slideUp 0.3s ease-out' }}>
           <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider mb-2">Result</div>
-          <div className="text-4xl font-extrabold text-cyan-400">{fmt(result)}</div>
+          <div ref={resultRef} className="text-4xl font-extrabold text-cyan-400">{fmt(result)}</div>
           <div className="text-sm text-slate-400 mt-2">
             {value || '0'} {currentCat.units.find(u => u.id === fromUnit)?.label} = {fmt(result)} {currentCat.units.find(u => u.id === toUnit)?.label}
           </div>
