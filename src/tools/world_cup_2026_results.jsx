@@ -1,48 +1,104 @@
-import { Helmet } from 'react-helmet-async'
+import ToolLayout from '../components/ToolLayout'
 import { Link } from 'react-router-dom'
 
 export default function world_cup_2026_results() {
+  const relatedTools = [
+    { label: 'Discipline Table', href: '/fifa-world-cup-discipline/', icon: '📋' },
+    { label: 'Golden Boot', href: '/fifa-world-cup-golden-boot/', icon: '⚽' },
+    { label: 'Red Cards', href: '/fifa-world-cup-red-cards/', icon: '🟥' },
+    { label: 'Fair Play', href: '/fifa-world-cup-fair-play/', icon: '🤝' },
+    { label: 'Schedule', href: '/fifa-world-cup-schedule/', icon: '📅' },
+    { label: 'Venues', href: '/fifa-world-cup-venues/', icon: '🏟️' },
+  ]
+
+  const faqs = [
+    { q: 'Who won the 2026 World Cup?', a: 'Spain won the 2026 World Cup, beating Argentina 1-0 in the final on July 19, 2026 at MetLife Stadium.' },
+    { q: 'Who was the 2026 Golden Boot winner?', a: 'Kylian Mbappé finished as the 2026 Golden Boot winner with 10 goals.' },
+    { q: 'Where was the 2026 final played?', a: 'The final was held at MetLife Stadium in East Rutherford, New Jersey on July 19, 2026.' },
+  ]
+
   return (
-    <>
-      <Helmet>
-        <title>World Cup 2026 Results | UpTools</title>
-        <meta name="description" content="Champion, final & full standings for the 2026 World Cup." />
-        <link rel="canonical" href="https://www.uptools.in/world-cup-2026-results/" />
-        <meta property="og:title" content="World Cup 2026 Results | UpTools" />
-        <meta property="og:description" content="Champion, final & full standings for the 2026 World Cup." />
-      </Helmet>
-
-      <nav className="text-xs text-slate-500 mb-4">
-        <Link to="/" className="hover:text-white transition-colors">Home</Link>
-        <span className="mx-2 text-slate-700">›</span>
-        <span className="text-white">World Cup 2026 Results</span>
-      </nav>
-
-      <section className="glass p-6 mb-6" style={{ background: 'linear-gradient(135deg, rgba(99,102,241,0.08), rgba(17,24,39,0.6))', borderColor: 'rgba(99,102,241,0.2)' }}>
-        <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl" style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}>🏆</div>
-          <div>
-            <h1 className="text-xl font-bold text-white m-0">World Cup 2026 Results</h1>
-            <p className="text-sm text-slate-400 mt-1">Champion, final & full standings for the 2026 World Cup.</p>
+    <ToolLayout
+      title="World Cup 2026 Results"
+      desc="World Cup 2026 final results: champion, runner-up, Golden Boot winner, and full standings. Spain lifted the trophy — complete recap by UpTools."
+      icon="🏆" iconBg="rgba(234,179,8,0.08)"
+      category="fifa" slug="world-cup-2026-results"
+      faq={faqs}
+      howItWorks={[
+        "Spain defeated Argentina 1–0 in the final on July 19, 2026.",
+        "Kylian Mbappé won the Golden Boot with 10 goals.",
+        "Browse related tools for discipline, fair play, and more.",
+      ]}
+      schema={{
+        "@context": "https://schema.org", "@type": "SoftwareApplication",
+        name: "World Cup 2026 Results", "applicationCategory": "SportsApplication",
+        url: "https://www.uptools.in/world-cup-2026-results/",
+        offers: { "@type": "Offer", price: "0", priceCurrency: "USD" }
+      }}
+    >
+      <div className="max-w-3xl mx-auto space-y-6">
+        {/* Champion Card */}
+        <div className="rounded-3xl border-2 border-amber-500/20 bg-gradient-to-br from-amber-500/[0.08] via-white/[0.02] to-transparent p-6 sm:p-8">
+          <div className="flex items-center gap-2 mb-3">
+            <div className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+            <h2 className="text-sm font-bold text-amber-400 uppercase tracking-wider">Champion</h2>
+          </div>
+          <div className="flex items-center gap-4">
+            <span className="text-5xl">🏆</span>
+            <div>
+              <h3 className="text-2xl font-extrabold text-white">Spain</h3>
+              <p className="text-sm text-slate-400 mt-1">
+                Won the 2026 World Cup, defeating <strong className="text-white">Argentina 1-0</strong> in the final on <strong className="text-white">July 19, 2026</strong> at MetLife Stadium.
+              </p>
+            </div>
           </div>
         </div>
-        <div className="flex flex-wrap gap-1.5 mt-4">
-          <span key="fifa" className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/4 border border-white/8 text-slate-400">fifa</span>
-          <span key="worldcup" className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/4 border border-white/8 text-slate-400">worldcup</span>
-          <span key="results" className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/4 border border-white/8 text-slate-400">results</span>
-          <span key="champion" className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/4 border border-white/8 text-slate-400">champion</span>
-          <span key="sports" className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/4 border border-white/8 text-slate-400">sports</span>
-        </div>
-      </section>
 
-      <iframe
-        src="/world-cup-2026-results/index.html"
-        className="w-full border-0 rounded-2xl overflow-hidden"
-        style={{ minHeight: '700px', background: '#0f172a' }}
-        title="World Cup 2026 Results"
-        loading="lazy"
-        sandbox="allow-scripts allow-same-origin"
-      />
-    </>
+        {/* Golden Boot */}
+        <div className="rounded-3xl border-2 border-emerald-500/15 bg-gradient-to-br from-emerald-500/[0.06] via-white/[0.01] to-transparent p-6">
+          <div className="flex items-center gap-2 mb-3">
+            <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <h2 className="text-sm font-bold text-emerald-400 uppercase tracking-wider">Top Scorer</h2>
+          </div>
+          <div className="flex items-center gap-4">
+            <span className="text-4xl">⚽</span>
+            <div>
+              <h3 className="text-lg font-extrabold text-white">Golden Boot: Kylian Mbappé</h3>
+              <p className="text-sm text-slate-400 mt-1">
+                <strong className="text-white">10 goals</strong> — the tournament's leading scorer.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Related Tools */}
+        <div className="rounded-3xl border-2 border-white/8 bg-white/[0.04] p-6">
+          <h3 className="text-sm font-bold text-slate-300 uppercase tracking-wider mb-4">More from the 2026 Tournament</h3>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            {relatedTools.map(tool => (
+              <Link key={tool.label} to={tool.href}
+                className="flex items-center gap-2 p-3 rounded-2xl bg-white/[0.06] border border-white/8 text-sm text-slate-300 font-medium hover:text-white hover:bg-white/[0.1] transition-all">
+                <span>{tool.icon}</span>
+                <span>{tool.label}</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* Quick Facts */}
+        <div className="grid grid-cols-3 gap-3">
+          {[
+            { n: '48', l: 'Teams' },
+            { n: '16', l: 'Venues' },
+            { n: '3', l: 'Host Countries' },
+          ].map(s => (
+            <div key={s.l} className="p-4 rounded-2xl bg-white/[0.06] border border-white/8 text-center">
+              <div className="text-2xl font-extrabold text-indigo-400">{s.n}</div>
+              <div className="text-xs text-slate-500 font-medium mt-1">{s.l}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </ToolLayout>
   )
 }

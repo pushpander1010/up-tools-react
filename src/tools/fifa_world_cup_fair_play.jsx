@@ -1,47 +1,74 @@
-import { Helmet } from 'react-helmet-async'
-import { Link } from 'react-router-dom'
+import ToolLayout from '../components/ToolLayout'
 
 export default function fifa_world_cup_fair_play() {
   return (
-    <>
-      <Helmet>
-        <title>World Cup 2026 Fair Play | UpTools</title>
-        <meta name="description" content="Fair play rankings & discipline for the 2026 World Cup." />
-        <link rel="canonical" href="https://www.uptools.in/fifa-world-cup-fair-play/" />
-        <meta property="og:title" content="World Cup 2026 Fair Play | UpTools" />
-        <meta property="og:description" content="Fair play rankings & discipline for the 2026 World Cup." />
-      </Helmet>
+    <ToolLayout
+      title="FIFA World Cup 2026 Fair Play"
+      desc="Which teams played the cleanest — and who's in the running for the Fair Play Award. Tied to the full discipline table."
+      icon="🤝" iconBg="rgba(34,197,94,0.08)"
+      category="fifa" slug="fifa-world-cup-fair-play"
+      faq={[
+        { q: "What is the FIFA Fair Play Award?", a: "It's given to the team with the best disciplinary record (fewest cards, positive play) plus advancement in the tournament." },
+        { q: "How is fair play calculated?", a: "FIFA scores teams on yellow/red cards (points deducted per card), plus advancement and match results. Fewer cards = higher fair-play score." },
+        { q: "Which team won fair play in 2026?", a: "Check the FIFA Discipline Tracker for the final fair-play standings once the tournament concludes." },
+      ]}
+      howItWorks={[
+        "Points deducted per yellow card and heavy penalty per red.",
+        "Teams advance further = bonus fair-play points.",
+        "Fewest cards + best conduct = highest score.",
+      ]}
+      schema={{
+        "@context": "https://schema.org", "@type": "WebApplication",
+        name: "FIFA World Cup 2026 Fair Play",
+        url: "https://www.uptools.in/fifa-world-cup-fair-play/",
+      }}
+    >
+      <div className="max-w-3xl mx-auto space-y-4">
+        <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-5">
+          <h2 className="text-sm font-bold text-white mb-3">How Fair Play is Scored</h2>
+          <ul className="space-y-2 text-sm text-slate-400">
+            <li className="flex items-start gap-2">
+              <span className="text-amber-400 mt-0.5">🟨</span>
+              Points deducted per <strong className="text-white">yellow card</strong> and heavy penalty per <strong className="text-red-400">red</strong>.
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-emerald-400 mt-0.5">🏆</span>
+              Teams advance further = bonus fair-play points.
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-indigo-400 mt-0.5">📊</span>
+              Fewest cards + best conduct = highest score.
+            </li>
+          </ul>
+        </div>
 
-      <nav className="text-xs text-slate-500 mb-4">
-        <Link to="/" className="hover:text-white transition-colors">Home</Link>
-        <span className="mx-2 text-slate-700">›</span>
-        <span className="text-white">World Cup 2026 Fair Play</span>
-      </nav>
+        <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-5">
+          <h2 className="text-sm font-bold text-white mb-3">Full Standings</h2>
+          <p className="text-xs text-slate-500 mb-3">
+            Our <a href="/fifa-world-cup-discipline/" className="text-indigo-400 hover:underline">FIFA Discipline Tracker</a> ranks every team by total cards — the backbone of the fair-play race.
+          </p>
+          <a href="/fifa-world-cup-discipline/"
+            className="inline-block px-4 py-2 rounded-xl bg-indigo-500 text-white text-sm font-bold hover:bg-indigo-400 transition-all">
+            Open Discipline Table →
+          </a>
+        </div>
 
-      <section className="glass p-6 mb-6" style={{ background: 'linear-gradient(135deg, rgba(99,102,241,0.08), rgba(17,24,39,0.6))', borderColor: 'rgba(99,102,241,0.2)' }}>
-        <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl" style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}>⚖️</div>
-          <div>
-            <h1 className="text-xl font-bold text-white m-0">World Cup 2026 Fair Play</h1>
-            <p className="text-sm text-slate-400 mt-1">Fair play rankings & discipline for the 2026 World Cup.</p>
+        <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-5">
+          <h2 className="text-sm font-bold text-white mb-3">Related Tools</h2>
+          <div className="flex flex-wrap gap-2">
+            {[
+              ['Discipline Table', '/fifa-world-cup-discipline/'],
+              ['Red Cards', '/fifa-world-cup-red-cards/'],
+              ['2026 Results', '/fifa-world-cup-predictions/'],
+            ].map(([label, href]) => (
+              <a key={label} href={href}
+                className="px-3 py-1.5 rounded-xl bg-white/[0.06] border border-white/[0.08] text-xs text-slate-400 hover:text-white transition-all">
+                {label}
+              </a>
+            ))}
           </div>
         </div>
-        <div className="flex flex-wrap gap-1.5 mt-4">
-          <span key="fifa" className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/4 border border-white/8 text-slate-400">fifa</span>
-          <span key="worldcup" className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/4 border border-white/8 text-slate-400">worldcup</span>
-          <span key="fair-play" className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/4 border border-white/8 text-slate-400">fair-play</span>
-          <span key="sports" className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/4 border border-white/8 text-slate-400">sports</span>
-        </div>
-      </section>
-
-      <iframe
-        src="/fifa-world-cup-fair-play/index.html"
-        className="w-full border-0 rounded-2xl overflow-hidden"
-        style={{ minHeight: '700px', background: '#0f172a' }}
-        title="World Cup 2026 Fair Play"
-        loading="lazy"
-        sandbox="allow-scripts allow-same-origin"
-      />
-    </>
+      </div>
+    </ToolLayout>
   )
 }

@@ -72,7 +72,7 @@ export default function percentage_calculator() {
             <label className="block text-sm font-semibold text-slate-300 mb-2">
               {mode === 'of' ? 'Percentage (%)' : mode === 'is' ? 'Value (X)' : mode === 'change' ? 'From Value' : 'Value'}
             </label>
-            <input type="number" value={x} onChange={e => { setX(e.target.value); jumpTo() }} placeholder="0"
+            <input type="number" value={x} onChange={e => setX(e.target.value)} placeholder="0"
               className="w-full bg-white/[0.06] border-2 border-white/8 rounded-2xl px-5 py-4 text-2xl font-extrabold text-white outline-none focus:border-emerald-500/40 transition-all placeholder:text-white/8" />
           </div>
           <div>
@@ -88,7 +88,7 @@ export default function percentage_calculator() {
         {(x || y) && (
           <div ref={resultRef} className="p-6 rounded-3xl bg-gradient-to-br from-emerald-500/8 via-white/[0.02] to-transparent border border-emerald-500/15 text-center" style={{ animation: 'slideUp 0.3s ease-out' }}>
             <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider mb-2">Result</div>
-            <div className="text-4xl font-extrabold text-emerald-400">{fmt(result)}</div>
+            <div className="text-4xl font-extrabold text-emerald-400 truncate">{fmt(result)}</div>
             {mode === 'is' && <div className="text-sm text-slate-400 mt-2">{x} is {fmt(result)}% of {y}</div>}
             {mode === 'change' && <div className="text-sm text-slate-400 mt-2">{result >= 0 ? '↑' : '↓'} {Math.abs(fmt(result))}% {result >= 0 ? 'increase' : 'decrease'}</div>}
           </div>

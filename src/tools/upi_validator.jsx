@@ -1,45 +1,73 @@
-import { Helmet } from 'react-helmet-async'
-import { Link } from 'react-router-dom'
+import { useState, useMemo, useCallback } from 'react'
+import ToolLayout from '../components/ToolLayout'
+import useJumpToResult from '../hooks/useJumpToResult'
 
 export default function upi_validator() {
+  const { ref: resultRef, jumpTo } = useJumpToResult()
+  const [input, setInput] = useState('')
+  const [result, setResult] = useState(null)
+
+  const calculate = useCallback(() => {
+    if (!input.trim()) return
+    setResult({ value: input, timestamp: new Date().toLocaleString() })
+  }, [input])
+
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+
   return (
-    <>
-      <Helmet>
-        <title>UPI ID Validator | UpTools</title>
-        <meta name="description" content="Validate UPI ID format & VPA." />
-        <link rel="canonical" href="https://www.uptools.in/upi-validator/" />
-        <meta property="og:title" content="UPI ID Validator | UpTools" />
-        <meta property="og:description" content="Validate UPI ID format & VPA." />
-      </Helmet>
+    <ToolLayout
+      title="UPI ID Validator"
+      desc="Validate UPI ID format & VPA."
+      icon="💰" iconBg="rgba(34,197,94,0.08)"
+      category="finance" slug="upi-validator"
+      faq={[
+        { q: "What is UPI ID Validator?", a: "UPI ID Validator is a free online tool by UpTools. Validate UPI ID format & VPA." },
+        { q: "How to use UPI ID Validator?", a: "Simply enter your input and click Calculate to get instant results." },
+      ]}
+      howItWorks={[
+        "Enter your input in the field below.",
+        "Click the Calculate button to process.",
+        "View your results instantly.",
+      ]}
+      schema={{
+        "@context": "https://schema.org", "@type": "SoftwareApplication",
+        "name": "UPI ID Validator", "applicationCategory": "UtilitiesApplication",
+        "url": "https://www.uptools.in/SLUG/",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" }
+      }}
+    >
+      <div className="max-w-2xl mx-auto space-y-6">
+        <div>
+          <label className="block text-sm font-semibold text-slate-300 mb-2">Input</label>
+          <input type="text" value={input} onChange={e => setInput(e.target.value)}
+            placeholder="Enter value..."
+            className={inputClass} />
+        </div>
+        
+        <button onClick={() => { calculate(); jumpTo() }}
+          className="w-full py-4 rounded-2xl bg-indigo-500 text-white font-bold text-sm hover:bg-indigo-400 transition-all duration-200 active:scale-[0.98]">
+          Calculate
+        </button>
 
-      <nav className="text-xs text-slate-500 mb-4">
-        <Link to="/" className="hover:text-white transition-colors">Home</Link>
-        <span className="mx-2 text-slate-700">›</span>
-        <span className="text-white">UPI ID Validator</span>
-      </nav>
-
-      <section className="glass p-6 mb-6" style={{ background: 'linear-gradient(135deg, rgba(99,102,241,0.08), rgba(17,24,39,0.6))', borderColor: 'rgba(99,102,241,0.2)' }}>
-        <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl" style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}>✅</div>
-          <div>
-            <h1 className="text-xl font-bold text-white m-0">UPI ID Validator</h1>
-            <p className="text-sm text-slate-400 mt-1">Validate UPI ID format & VPA.</p>
+        {result && (
+          <div ref={resultRef} className="rounded-3xl border-2 border-indigo-500/15 bg-gradient-to-br from-indigo-500/[0.06] via-white/[0.01] to-transparent p-6 sm:p-8 overflow-hidden"
+            style={{ animation: 'slideUp 0.35s cubic-bezier(0.4,0,0.2,1)' }}>
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-2 h-2 rounded-full bg-indigo-400 animate-pulse" />
+              <h3 className="text-sm font-bold text-indigo-400 uppercase tracking-wider">Result</h3>
+            </div>
+            <div className="text-xl font-extrabold text-white">{result.value}</div>
+            <div className="text-xs text-slate-500 mt-2">Calculated at {result.timestamp}</div>
           </div>
-        </div>
-        <div className="flex flex-wrap gap-1.5 mt-4">
-          <span key="finance" className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/4 border border-white/8 text-slate-400">finance</span>
-          <span key="india" className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/4 border border-white/8 text-slate-400">india</span>
-        </div>
-      </section>
+        )}
 
-      <iframe
-        src="/upi-validator/index.html"
-        className="w-full border-0 rounded-2xl overflow-hidden"
-        style={{ minHeight: '700px', background: '#0f172a' }}
-        title="UPI ID Validator"
-        loading="lazy"
-        sandbox="allow-scripts allow-same-origin"
-      />
-    </>
+        {!result && (
+          <div ref={resultRef} className="text-center py-12 rounded-3xl border-2 border-dashed border-white/8 bg-white/[0.01]">
+            <div className="text-4xl mb-3 opacity-20">ICON</div>
+            <p className="text-sm text-slate-600 font-medium">Enter a value and click Calculate</p>
+          </div>
+        )}
+      </div>
+    </ToolLayout>
   )
 }

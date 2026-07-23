@@ -95,7 +95,7 @@ export default function currency_converter() {
         {/* Amount */}
         <div>
           <label className="block text-sm font-semibold text-slate-300 mb-2">Amount</label>
-          <input type="number" value={amount} onChange={e => { setAmount(e.target.value); jumpTo() }}
+          <input type="number" value={amount} onChange={e => setAmount(e.target.value)}
             className="w-full bg-white/[0.06] border-2 border-white/8 rounded-2xl px-5 py-4 text-3xl font-extrabold text-white outline-none focus:border-emerald-500/40 transition-all duration-300 placeholder:text-white/8" />
         </div>
 
@@ -121,7 +121,7 @@ export default function currency_converter() {
         {/* Result */}
         <div ref={resultRef} className="p-6 rounded-3xl bg-gradient-to-br from-emerald-500/8 via-white/[0.02] to-transparent border border-emerald-500/15 text-center" style={{ animation: 'slideUp 0.3s ease-out' }}>
           <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider mb-2">Converted Amount</div>
-          <div className="text-4xl font-extrabold text-emerald-400">
+          <div className="text-4xl font-extrabold text-emerald-400 truncate">
             {CURRENCIES.find(c => c.code === to)?.symbol} {fmt(result)}
           </div>
           <div className="text-sm text-slate-400 mt-2">

@@ -142,7 +142,7 @@ export default function unit_converter() {
         {/* Value */}
         <div>
           <label className="block text-sm font-semibold text-slate-300 mb-2">Value</label>
-          <input type="number" value={value} onChange={e => { setValue(e.target.value); jumpTo() }}
+          <input type="number" value={value} onChange={e => setValue(e.target.value)}
             className="w-full bg-white/[0.06] border-2 border-white/8 rounded-2xl px-5 py-4 text-3xl font-extrabold text-white outline-none focus:border-cyan-500/40 transition-all placeholder:text-white/8" />
         </div>
 
@@ -168,7 +168,7 @@ export default function unit_converter() {
         {/* Result */}
         <div ref={resultRef} className="p-6 rounded-3xl bg-gradient-to-br from-cyan-500/8 via-white/[0.02] to-transparent border border-cyan-500/15 text-center" style={{ animation: 'slideUp 0.3s ease-out' }}>
           <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider mb-2">Result</div>
-          <div className="text-4xl font-extrabold text-cyan-400">{fmt(result)}</div>
+          <div className="text-4xl font-extrabold text-cyan-400 truncate">{fmt(result)}</div>
           <div className="text-sm text-slate-400 mt-2">
             {value || '0'} {currentCat.units.find(u => u.id === fromUnit)?.label} = {fmt(result)} {currentCat.units.find(u => u.id === toUnit)?.label}
           </div>

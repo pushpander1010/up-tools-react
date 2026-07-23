@@ -1,45 +1,104 @@
-import { Helmet } from 'react-helmet-async'
-import { Link } from 'react-router-dom'
+import { useState, useCallback } from 'react'
+import ToolLayout from '../components/ToolLayout'
+import useJumpToResult from '../hooks/useJumpToResult'
 
 export default function random_number_generator() {
+  const { ref: resultRef, jumpTo } = useJumpToResult()
+  const [min, setMin] = useState('1')
+  const [max, setMax] = useState('100')
+  const [count, setCount] = useState('1')
+  const [results, setResults] = useState(null)
+
+  const generate = useCallback(() => {
+    const mn = parseInt(min) || 1
+    const mx = parseInt(max) || 100
+    const cnt = parseInt(count) || 1
+    if (mn > mx) return
+    const nums = []
+    for (let i = 0; i < cnt; i++) {
+      const arr = new Uint32Array(1)
+      crypto.getRandomValues(arr)
+      nums.push(mn + arr[0] % (mx - mn + 1))
+    }
+    setResults(nums)
+    jumpTo()
+  }, [min, max, count, jumpTo])
+
   return (
-    <>
-      <Helmet>
-        <title>Random Number Generator | UpTools</title>
-        <meta name="description" content="Cryptographically secure random numbers." />
-        <link rel="canonical" href="https://www.uptools.in/random-number-generator/" />
-        <meta property="og:title" content="Random Number Generator | UpTools" />
-        <meta property="og:description" content="Cryptographically secure random numbers." />
-      </Helmet>
-
-      <nav className="text-xs text-slate-500 mb-4">
-        <Link to="/" className="hover:text-white transition-colors">Home</Link>
-        <span className="mx-2 text-slate-700">›</span>
-        <span className="text-white">Random Number Generator</span>
-      </nav>
-
-      <section className="glass p-6 mb-6" style={{ background: 'linear-gradient(135deg, rgba(99,102,241,0.08), rgba(17,24,39,0.6))', borderColor: 'rgba(99,102,241,0.2)' }}>
-        <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl" style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}>🎲</div>
-          <div>
-            <h1 className="text-xl font-bold text-white m-0">Random Number Generator</h1>
-            <p className="text-sm text-slate-400 mt-1">Cryptographically secure random numbers.</p>
+    <ToolLayout
+      title="Random Number Generator"
+      desc="Generate cryptographically secure random numbers. Choose range and count."
+      icon="🔢" iconBg="rgba(99,102,241,0.08)"
+      category="dev" slug="random-number-generator"
+      faq={[
+        { q: 'Is this truly random?', a: 'Yes. It uses the Web Crypto API (crypto.getRandomValues) which is cryptographically secure.' },
+        { q: 'What is the range?', a: 'You set the minimum and maximum. The generator produces integers within that inclusive range.' },
+      ]}
+      howItWorks={[
+        'Set the minimum and maximum values.',
+        'Choose how many numbers to generate.',
+        'Click Generate for cryptographically secure random numbers.',
+      ]}
+      schema={{
+        "@context": "https://schema.org", "@type": "SoftwareApplication",
+        "name": "Random Number Generator", "applicationCategory": "DeveloperApplication",
+        "url": "https://www.uptools.in/random-number-generator/",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      }}
+    >
+      <div className="max-w-2xl mx-auto space-y-5">
+        <div className="p-5 rounded-2xl bg-white/[0.06] border border-white/[0.08] space-y-4">
+          <div className="grid grid-cols-3 gap-3">
+            <div>
+              <label className="block text-xs font-semibold text-slate-400 mb-1">Min</label>
+              <input type="number" value={min} onChange={e => setMin(e.target.value)}
+                className="w-full bg-black/20 border-2 border-white/[0.08] rounded-xl px-3 py-2.5 text-sm outline-none focus:border-indigo-500/40 transition-all" />
+            </div>
+            <div>
+              <label className="block text-xs font-semibold text-slate-400 mb-1">Max</label>
+              <input type="number" value={max} onChange={e => setMax(e.target.value)}
+                className="w-full bg-black/20 border-2 border-white/[0.08] rounded-xl px-3 py-2.5 text-sm outline-none focus:border-indigo-500/40 transition-all" />
+            </div>
+            <div>
+              <label className="block text-xs font-semibold text-slate-400 mb-1">Count</label>
+              <input type="number" value={count} onChange={e => setCount(e.target.value)}
+                min="1" max="100"
+                className="w-full bg-black/20 border-2 border-white/[0.08] rounded-xl px-3 py-2.5 text-sm outline-none focus:border-indigo-500/40 transition-all" />
+            </div>
           </div>
+          <button onClick={generate}
+            className="w-full py-3 rounded-xl text-sm font-bold transition-all"
+            style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}>
+            🔢 Generate
+          </button>
         </div>
-        <div className="flex flex-wrap gap-1.5 mt-4">
-          <span key="text" className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/4 border border-white/8 text-slate-400">text</span>
-          <span key="fun" className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/4 border border-white/8 text-slate-400">fun</span>
-        </div>
-      </section>
 
-      <iframe
-        src="/random-number-generator/index.html"
-        className="w-full border-0 rounded-2xl overflow-hidden"
-        style={{ minHeight: '700px', background: '#0f172a' }}
-        title="Random Number Generator"
-        loading="lazy"
-        sandbox="allow-scripts allow-same-origin"
-      />
-    </>
+        {results ? (
+          <div ref={resultRef} className="rounded-3xl border-2 border-indigo-500/15 bg-gradient-to-br from-indigo-500/[0.06] via-white/[0.01] to-transparent p-6"
+            style={{ animation: 'slideUp 0.35s ease-out' }}>
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-2 h-2 rounded-full bg-indigo-400 animate-pulse" />
+              <h3 className="text-sm font-bold text-indigo-400 uppercase tracking-wider">Results</h3>
+            </div>
+            {results.length === 1 ? (
+              <div className="text-5xl font-extrabold text-white text-center py-4">{results[0]}</div>
+            ) : (
+              <div className="flex flex-wrap gap-2">
+                {results.map((n, i) => (
+                  <span key={i} className="px-3 py-1.5 rounded-lg bg-indigo-500/15 text-indigo-300 text-sm font-mono font-bold">
+                    {n}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+        ) : (
+          <div ref={resultRef} className="text-center py-12 rounded-3xl border-2 border-dashed border-white/[0.08] bg-white/[0.02]">
+            <div className="text-4xl mb-3 opacity-20">🔢</div>
+            <p className="text-sm text-slate-600 font-medium">Set range and count, then click Generate</p>
+          </div>
+        )}
+      </div>
+    </ToolLayout>
   )
 }

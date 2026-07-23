@@ -207,11 +207,11 @@ export default function age_calculator() {
                 <div className="text-[11px] text-slate-500 mt-1">Heartbeats 💓</div>
               </div>
               <div className="p-4 rounded-2xl bg-white/[0.05] border border-white/8">
-                <div className="text-2xl font-extrabold text-emerald-400">{age.breaths.toLocaleString()}</div>
+                <div className="text-2xl font-extrabold text-emerald-400 truncate">{age.breaths.toLocaleString()}</div>
                 <div className="text-[11px] text-slate-500 mt-1">Breaths Taken</div>
               </div>
               <div className="p-4 rounded-2xl bg-white/[0.05] border border-white/8">
-                <div className="text-2xl font-extrabold text-amber-400">{age.totalMinutes.toLocaleString()}</div>
+                <div className="text-2xl font-extrabold text-amber-400 truncate">{age.totalMinutes.toLocaleString()}</div>
                 <div className="text-[11px] text-slate-500 mt-1">Minutes Lived</div>
               </div>
             </div>

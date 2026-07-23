@@ -1,45 +1,96 @@
-import { Helmet } from 'react-helmet-async'
-import { Link } from 'react-router-dom'
+import { useState, useMemo } from 'react'
+import ToolLayout from '../components/ToolLayout'
+import useJumpToResult from '../hooks/useJumpToResult'
+
+const normalize = v => (v || '').replace(/\D/g, '').slice(0, 9)
+const maskVal = v => v ? '•••••' + v.slice(-4) : '-'
+
+function luhnCheck(num) {
+  let sum = 0, alt = false
+  for (let i = num.length - 1; i >= 0; i--) {
+    let n = parseInt(num[i], 10)
+    if (alt) { n *= 2; if (n > 9) n -= 9 }
+    sum += n
+    alt = !alt
+  }
+  return sum % 10 === 0
+}
+
+function validateSIN(sin, masked) {
+  const v = normalize(sin)
+  if (!v) return null
+  const ok = v.length === 9 && luhnCheck(v)
+  return {
+    valid: ok,
+    status: ok ? 'Valid checksum' : 'Invalid checksum',
+    color: ok ? '#22c55e' : '#ef4444',
+    display: masked ? maskVal(v) : v,
+    note: ok ? 'Checksum looks valid.' : 'Check digits and try again.',
+  }
+}
 
 export default function sin_validator() {
+  const { ref: resultRef, jumpTo } = useJumpToResult()
+  const [sin, setSin] = useState('')
+  const [masked, setMasked] = useState(false)
+
+  const normalized = normalize(sin)
+  const result = useMemo(() => validateSIN(sin, masked), [sin, masked])
+
+  const inputClass = 'w-full bg-white/[0.06] border-2 border-white/8 rounded-2xl px-5 py-4 text-2xl font-extrabold text-white outline-none focus:border-red-500/40 transition-all duration-300 placeholder:text-white/8 font-mono tracking-widest'
+
   return (
-    <>
-      <Helmet>
-        <title>SIN Validator | UpTools</title>
-        <meta name="description" content="Validate SIN checksum." />
-        <link rel="canonical" href="https://www.uptools.in/sin-validator/" />
-        <meta property="og:title" content="SIN Validator | UpTools" />
-        <meta property="og:description" content="Validate SIN checksum." />
-      </Helmet>
+    <ToolLayout
+      title="SIN Validator"
+      desc="Validate Canadian SIN numbers with checksum (Luhn). Privacy-first."
+      icon="🍁" iconBg="rgba(220,38,38,0.08)"
+      category="canada" slug="sin-validator"
+      faq={[
+        { q: 'What is a SIN?', a: 'A Social Insurance Number (SIN) is a 9-digit number issued by the Canadian government.' },
+        { q: 'Is my SIN stored?', a: 'No. All validation happens locally in your browser. Nothing is uploaded.' },
+      ]}
+      howItWorks={[
+        'Enter a 9-digit Canadian SIN number.',
+        'Optionally enable masking to hide most digits.',
+        'View whether the checksum is valid.',
+      ]}
+      schema={{
+        '@context': 'https://schema.org', '@type': 'SoftwareApplication',
+        name: 'SIN Validator', applicationCategory: 'UtilitiesApplication',
+        url: 'https://www.uptools.in/sin-validator/',
+        offers: { '@type': 'Offer', price: '0', priceCurrency: 'CAD' }
+      }}
+    >
+      <div className="max-w-2xl mx-auto space-y-6">
+        <div>
+          <label className="block text-sm font-semibold text-slate-300 mb-2">Enter SIN (9 digits)</label>
+          <input type="text" value={normalized} onChange={e => setSin(e.target.value)}
+            placeholder="e.g., 046454286" maxLength={9} inputMode="numeric"
+            className={inputClass} />
+        </div>
+        <label className="flex items-center gap-3 text-sm text-slate-400 cursor-pointer">
+          <input type="checkbox" checked={masked} onChange={e => setMasked(e.target.checked)}
+            className="w-4 h-4 rounded border-white/20 bg-white/10 text-red-500 focus:ring-red-500/40" />
+          Mask number on screen
+        </label>
 
-      <nav className="text-xs text-slate-500 mb-4">
-        <Link to="/" className="hover:text-white transition-colors">Home</Link>
-        <span className="mx-2 text-slate-700">›</span>
-        <span className="text-white">SIN Validator</span>
-      </nav>
-
-      <section className="glass p-6 mb-6" style={{ background: 'linear-gradient(135deg, rgba(99,102,241,0.08), rgba(17,24,39,0.6))', borderColor: 'rgba(99,102,241,0.2)' }}>
-        <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl" style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}>🍁</div>
-          <div>
-            <h1 className="text-xl font-bold text-white m-0">SIN Validator</h1>
-            <p className="text-sm text-slate-400 mt-1">Validate SIN checksum.</p>
+        {result ? (
+          <div ref={resultRef} className="rounded-3xl border-2 p-6 sm:p-8 overflow-hidden"
+            style={{ borderColor: result.color + '30', background: result.color.replace(')', ',0.06)').replace('rgb', 'rgba'), animation: 'slideUp 0.35s cubic-bezier(0.4,0,0.2,1)' }}>
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-2 h-2 rounded-full animate-pulse" style={{ background: result.color }} />
+              <h3 className="text-sm font-bold uppercase tracking-wider" style={{ color: result.color }}>{result.status}</h3>
+            </div>
+            <div className="text-2xl font-extrabold text-white font-mono tracking-wider">{result.display}</div>
+            <p className="text-xs text-slate-500 mt-4">{result.note}</p>
           </div>
-        </div>
-        <div className="flex flex-wrap gap-1.5 mt-4">
-          <span key="canada" className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/4 border border-white/8 text-slate-400">canada</span>
-          <span key="identity" className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/4 border border-white/8 text-slate-400">identity</span>
-        </div>
-      </section>
-
-      <iframe
-        src="/sin-validator/index.html"
-        className="w-full border-0 rounded-2xl overflow-hidden"
-        style={{ minHeight: '700px', background: '#0f172a' }}
-        title="SIN Validator"
-        loading="lazy"
-        sandbox="allow-scripts allow-same-origin"
-      />
-    </>
+        ) : (
+          <div ref={resultRef} className="text-center py-12 rounded-3xl border-2 border-dashed border-white/8 bg-white/[0.01]">
+            <div className="text-4xl mb-3 opacity-20">🍁</div>
+            <p className="text-sm text-slate-600 font-medium">Enter a SIN to validate</p>
+          </div>
+        )}
+      </div>
+    </ToolLayout>
   )
 }

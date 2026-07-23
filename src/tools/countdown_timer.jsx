@@ -1,45 +1,147 @@
-import { Helmet } from 'react-helmet-async'
-import { Link } from 'react-router-dom'
+import { useState, useCallback } from 'react'
+import ToolLayout from '../components/ToolLayout'
+import useJumpToResult from '../hooks/useJumpToResult'
 
 export default function countdown_timer() {
+  const { ref: resultRef, jumpTo } = useJumpToResult()
+  const [input, setInput] = useState('')
+  const [timeLeft, setTimeLeft] = useState(0)
+  const [running, setRunning] = useState(false)
+  const intervalRef = useState(null)
+
+  const setTimer = useCallback((seconds) => {
+    setTimeLeft(seconds)
+  }, [])
+
+  const startTimer = useCallback(() => {
+    const val = parseInt(input)
+    let current = timeLeft === 0 && input ? val : timeLeft
+    if (!current || current <= 0) return
+    setTimeLeft(current)
+    jumpTo()
+
+    if (intervalRef.current) return
+    const id = setInterval(() => {
+      setTimeLeft(prev => {
+        if (prev <= 1) {
+          clearInterval(id)
+          intervalRef.current = null
+          setRunning(false)
+          return 0
+        }
+        return prev - 1
+      })
+    }, 1000)
+    intervalRef.current = id
+    setRunning(true)
+  }, [input, timeLeft, intervalRef])
+
+  const pauseTimer = useCallback(() => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current)
+      intervalRef.current = null
+      setRunning(false)
+    }
+  }, [intervalRef])
+
+  const resetTimer = useCallback(() => {
+    pauseTimer()
+    setTimeLeft(0)
+    setInput('')
+  }, [pauseTimer])
+
+  const formatTime = (t) => {
+    const h = Math.floor(t / 3600)
+    const m = Math.floor((t % 3600) / 60)
+    const s = t % 60
+    return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`
+  }
+
+  const presets = [
+    { label: '1 min', value: 60 },
+    { label: '5 min', value: 300 },
+    { label: '10 min', value: 600 },
+    { label: '15 min', value: 900 },
+    { label: '30 min', value: 1800 },
+    { label: '1 hour', value: 3600 },
+  ]
+
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+
   return (
-    <>
-      <Helmet>
-        <title>Countdown Timer | UpTools</title>
-        <meta name="description" content="Customizable countdown timer with notifications." />
-        <link rel="canonical" href="https://www.uptools.in/countdown-timer/" />
-        <meta property="og:title" content="Countdown Timer | UpTools" />
-        <meta property="og:description" content="Customizable countdown timer with notifications." />
-      </Helmet>
-
-      <nav className="text-xs text-slate-500 mb-4">
-        <Link to="/" className="hover:text-white transition-colors">Home</Link>
-        <span className="mx-2 text-slate-700">›</span>
-        <span className="text-white">Countdown Timer</span>
-      </nav>
-
-      <section className="glass p-6 mb-6" style={{ background: 'linear-gradient(135deg, rgba(99,102,241,0.08), rgba(17,24,39,0.6))', borderColor: 'rgba(99,102,241,0.2)' }}>
-        <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl" style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}>⏲️</div>
-          <div>
-            <h1 className="text-xl font-bold text-white m-0">Countdown Timer</h1>
-            <p className="text-sm text-slate-400 mt-1">Customizable countdown timer with notifications.</p>
+    <ToolLayout
+      title="Countdown Timer"
+      desc="Set a countdown timer with custom or preset durations. Start, pause, and reset anytime."
+      icon="⏱️" iconBg="rgba(6,182,212,0.08)"
+      category="text" slug="countdown-timer"
+      faq={[
+        { q: "How do I set a timer?", a: "Enter seconds in the input field or click a preset button, then click Start." },
+        { q: "Can I pause and resume?", a: "Yes, click Pause to stop the timer and Start to resume from where it left off." },
+      ]}
+      howItWorks={[
+        "Enter a time in seconds or click a preset duration.",
+        "Click Start to begin the countdown.",
+        "Use Pause to stop and Reset to start over.",
+      ]}
+      schema={{
+        "@context": "https://schema.org", "@type": "SoftwareApplication",
+        "name": "Countdown Timer", "applicationCategory": "UtilitiesApplication",
+        "url": "https://www.uptools.in/countdown-timer/",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" }
+      }}
+    >
+      <div className="max-w-2xl mx-auto space-y-6">
+        <div className="bg-white/[0.06] border-2 border-white/8 rounded-2xl p-6 text-center">
+          <div className="font-mono text-5xl sm:text-6xl font-bold text-white mb-4 tracking-wider">
+            {formatTime(timeLeft)}
+          </div>
+          <div className="flex gap-2 justify-center">
+            <div className={`w-3 h-3 rounded-full ${running ? 'bg-emerald-400 animate-pulse' : timeLeft > 0 ? 'bg-amber-400' : 'bg-slate-600'}`} />
+            <span className="text-sm text-slate-400">
+              {running ? 'Running' : timeLeft > 0 ? 'Paused' : 'Ready'}
+            </span>
           </div>
         </div>
-        <div className="flex flex-wrap gap-1.5 mt-4">
-          <span key="productivity" className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/4 border border-white/8 text-slate-400">productivity</span>
-          <span key="time" className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/4 border border-white/8 text-slate-400">time</span>
-        </div>
-      </section>
 
-      <iframe
-        src="/countdown-timer/index.html"
-        className="w-full border-0 rounded-2xl overflow-hidden"
-        style={{ minHeight: '700px', background: '#0f172a' }}
-        title="Countdown Timer"
-        loading="lazy"
-        sandbox="allow-scripts allow-same-origin"
-      />
-    </>
+        <div>
+          <label className="block text-sm font-semibold text-slate-300 mb-2">Seconds</label>
+          <input type="number" value={input} onChange={e => setInput(e.target.value)}
+            placeholder="Enter seconds (e.g. 300)" min="0"
+            className={inputClass} />
+        </div>
+
+        <div className="flex flex-wrap gap-2">
+          {presets.map(p => (
+            <button key={p.value} onClick={() => { setInput(''); setTimeLeft(p.value); jumpTo() }}
+              className="px-4 py-2 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-indigo-500/10 hover:border-indigo-500/20 transition-all">
+              {p.label}
+            </button>
+          ))}
+        </div>
+
+        <div className="flex gap-3">
+          <button onClick={startTimer}
+            className="flex-1 py-3 rounded-xl bg-emerald-500 text-white font-bold text-sm hover:bg-emerald-400 transition-all active:scale-[0.98]">
+            ▶ {running ? 'Resume' : 'Start'}
+          </button>
+          <button onClick={pauseTimer}
+            className="flex-1 py-3 rounded-xl bg-amber-500 text-white font-bold text-sm hover:bg-amber-400 transition-all active:scale-[0.98]"
+            disabled={!running}>
+            ⏸ Pause
+          </button>
+          <button onClick={resetTimer}
+            className="flex-1 py-3 rounded-xl bg-red-500 text-white font-bold text-sm hover:bg-red-400 transition-all active:scale-[0.98]">
+            ↺ Reset
+          </button>
+        </div>
+
+        <div ref={resultRef} className="text-center py-12 rounded-3xl border-2 border-dashed border-white/8 bg-white/[0.01]">
+          <div className="text-4xl mb-3 opacity-20">⏱️</div>
+          <p className="text-sm text-slate-600 font-medium">
+            {timeLeft > 0 ? `${timeLeft} seconds remaining` : 'Set a time and click Start'}
+          </p>
+        </div>
+      </div>
+    </ToolLayout>
   )
 }

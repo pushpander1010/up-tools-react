@@ -1,44 +1,136 @@
-import { Helmet } from 'react-helmet-async'
-import { Link } from 'react-router-dom'
+import { useState, useCallback } from 'react'
+import ToolLayout from '../components/ToolLayout'
+import useJumpToResult from '../hooks/useJumpToResult'
+
+function flatten(obj, prefix = '', result = {}) {
+  for (const key in obj) {
+    const val = obj[key]
+    const newKey = prefix ? `${prefix}.${key}` : key
+    if (val && typeof val === 'object' && !Array.isArray(val)) {
+      flatten(val, newKey, result)
+    } else {
+      result[newKey] = val
+    }
+  }
+  return result
+}
 
 export default function json_to_csv_converter() {
+  const { ref: resultRef, jumpTo } = useJumpToResult()
+  const [input, setInput] = useState('')
+  const [output, setOutput] = useState('')
+  const [error, setError] = useState('')
+  const [copied, setCopied] = useState(false)
+  const [rowCount, setRowCount] = useState(0)
+
+  const convert = useCallback(() => {
+    try {
+      const arr = JSON.parse(input.trim())
+      if (!Array.isArray(arr)) {
+        setError('Input must be a JSON array of objects')
+        setOutput('')
+        return
+      }
+      const rows = arr.map(o => flatten(o))
+      const cols = [...new Set(rows.flatMap(r => Object.keys(r)))]
+      let csv = cols.join(',') + '\n'
+      rows.forEach(r => {
+        csv += cols.map(c => {
+          const v = r[c] === undefined ? '' : String(r[c])
+          return v.includes(',') || v.includes('"') ? '"' + v.replace(/"/g, '""') + '"' : v
+        }).join(',') + '\n'
+      })
+      setOutput(csv.trim())
+      setRowCount(rows.length)
+      setError('')
+    } catch (e) {
+      setError('Invalid JSON: ' + e.message)
+      setOutput('')
+    }
+  }, [input])
+
+  const copy = () => {
+    navigator.clipboard.writeText(output)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 1500)
+  }
+
+  const download = () => {
+    const blob = new Blob([output], { type: 'text/csv' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url; a.download = 'data.csv'
+    document.body.appendChild(a); a.click(); a.remove()
+    URL.revokeObjectURL(url)
+  }
+
   return (
-    <>
-      <Helmet>
-        <title>JSON to CSV Converter | UpTools</title>
-        <meta name="description" content="Convert a JSON array to CSV instantly." />
-        <link rel="canonical" href="https://www.uptools.in/json-to-csv-converter/" />
-        <meta property="og:title" content="JSON to CSV Converter | UpTools" />
-        <meta property="og:description" content="Convert a JSON array to CSV instantly." />
-      </Helmet>
+    <ToolLayout
+      title="JSON to CSV Converter"
+      desc="Convert a JSON array of objects into CSV instantly. Handles nested flattening and downloads the result."
+      icon="📊" iconBg="rgba(6,182,212,0.08)"
+      category="dev" slug="json-to-csv-converter"
+      faq={[
+        { q: 'What input format is supported?', a: 'An array of flat or nested JSON objects, e.g. [{"name":"A","age":20}].' },
+        { q: 'Does it flatten nested objects?', a: 'Yes — nested fields are flattened with dot notation (e.g. user.name).' },
+      ]}
+      howItWorks={[
+        'Paste a JSON array of objects in the input area.',
+        'Click Convert to CSV.',
+        'Copy or download the generated CSV.',
+      ]}
+      schema={{
+        "@context": "https://schema.org", "@type": "SoftwareApplication",
+        "name": "JSON to CSV Converter", "applicationCategory": "DeveloperApplication",
+        "url": "https://www.uptools.in/json-to-csv-converter/",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      }}
+    >
+      <div className="max-w-3xl mx-auto space-y-4">
+        {/* Input */}
+        <div>
+          <label className="block text-xs font-semibold text-slate-500 mb-1">Paste JSON Array</label>
+          <textarea value={input} onChange={e => { setInput(e.target.value); setError('') }}
+            placeholder='[{"name":"Alice","age":25},{"name":"Bob","age":30}]'
+            rows={7}
+            className="w-full bg-black/20 border-2 border-white/8 rounded-2xl px-5 py-4 text-sm text-white font-mono outline-none focus:border-cyan-500/40 transition-all placeholder:text-slate-600 resize-none" />
+        </div>
 
-      <nav className="text-xs text-slate-500 mb-4">
-        <Link to="/" className="hover:text-white transition-colors">Home</Link>
-        <span className="mx-2 text-slate-700">›</span>
-        <span className="text-white">JSON to CSV Converter</span>
-      </nav>
+        {/* Convert Button */}
+        <button onClick={() => { convert(); jumpTo() }}
+          className="glow-btn px-6 py-3 rounded-xl text-sm w-full"
+          style={{ background: 'linear-gradient(135deg, #06b6d4, #0891b2)' }}>
+          📊 Convert to CSV
+        </button>
 
-      <section className="glass p-6 mb-6" style={{ background: 'linear-gradient(135deg, rgba(99,102,241,0.08), rgba(17,24,39,0.6))', borderColor: 'rgba(99,102,241,0.2)' }}>
-        <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl" style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}>📊</div>
-          <div>
-            <h1 className="text-xl font-bold text-white m-0">JSON to CSV Converter</h1>
-            <p className="text-sm text-slate-400 mt-1">Convert a JSON array to CSV instantly.</p>
+        {/* Error */}
+        {error && (
+          <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-sm text-red-400">
+            ❌ {error}
           </div>
-        </div>
-        <div className="flex flex-wrap gap-1.5 mt-4">
-          <span key="dev" className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/4 border border-white/8 text-slate-400">dev</span>
-        </div>
-      </section>
+        )}
 
-      <iframe
-        src="/json-to-csv-converter/index.html"
-        className="w-full border-0 rounded-2xl overflow-hidden"
-        style={{ minHeight: '700px', background: '#0f172a' }}
-        title="JSON to CSV Converter"
-        loading="lazy"
-        sandbox="allow-scripts allow-same-origin"
-      />
-    </>
+        {/* Output */}
+        {output && (
+          <div ref={resultRef} className="space-y-2" style={{ animation: 'slideUp 0.3s ease-out' }}>
+            <div className="flex items-center justify-between">
+              <label className="text-xs font-semibold text-slate-500">CSV Output ({rowCount} rows)</label>
+              <div className="flex gap-2">
+                <button onClick={copy}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${copied ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-white/5 border border-white/8 text-slate-400 hover:text-white'}`}>
+                  {copied ? '✓ Copied' : '📋 Copy'}
+                </button>
+                <button onClick={download}
+                  className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/5 border border-white/8 text-slate-400 hover:text-white transition-all">
+                  💾 Download
+                </button>
+              </div>
+            </div>
+            <textarea value={output} readOnly rows={12}
+              className="w-full bg-black/20 border-2 border-emerald-500/20 rounded-2xl px-5 py-4 text-sm font-mono text-emerald-400 resize-none" />
+          </div>
+        )}
+      </div>
+    </ToolLayout>
   )
 }

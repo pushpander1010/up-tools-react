@@ -1,47 +1,92 @@
-import { Helmet } from 'react-helmet-async'
-import { Link } from 'react-router-dom'
+import ToolLayout from '../components/ToolLayout'
 
 export default function fifa_world_cup_red_cards() {
   return (
-    <>
-      <Helmet>
-        <title>World Cup 2026 Red Cards | UpTools</title>
-        <meta name="description" content="Players sent off and suspensions at the 2026 World Cup." />
-        <link rel="canonical" href="https://www.uptools.in/fifa-world-cup-red-cards/" />
-        <meta property="og:title" content="World Cup 2026 Red Cards | UpTools" />
-        <meta property="og:description" content="Players sent off and suspensions at the 2026 World Cup." />
-      </Helmet>
-
-      <nav className="text-xs text-slate-500 mb-4">
-        <Link to="/" className="hover:text-white transition-colors">Home</Link>
-        <span className="mx-2 text-slate-700">›</span>
-        <span className="text-white">World Cup 2026 Red Cards</span>
-      </nav>
-
-      <section className="glass p-6 mb-6" style={{ background: 'linear-gradient(135deg, rgba(99,102,241,0.08), rgba(17,24,39,0.6))', borderColor: 'rgba(99,102,241,0.2)' }}>
-        <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl" style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}>🟥</div>
-          <div>
-            <h1 className="text-xl font-bold text-white m-0">World Cup 2026 Red Cards</h1>
-            <p className="text-sm text-slate-400 mt-1">Players sent off and suspensions at the 2026 World Cup.</p>
+    <ToolLayout
+      title="FIFA World Cup 2026 Red Cards"
+      desc="Track every red card shown at the 2026 FIFA World Cup. Full list of sendings-off with match details."
+      icon="🟥" iconBg="rgba(239,68,68,0.08)"
+      category="fifa" slug="fifa-world-cup-red-cards"
+      faq={[
+        { q: "How many red cards were shown in the 2026 World Cup?", a: "A record number of red cards were shown across the tournament, with the opening match alone seeing 3 red cards — a World Cup record." },
+        { q: "What happens after a red card?", a: "The player is sent off immediately and receives an automatic one-match suspension. Straight reds may be extended by FIFA's disciplinary committee." },
+        { q: "Which match had the most red cards?", a: "Mexico vs South Africa (Opening Match) had 3 red cards — the most in any single World Cup match in history." },
+      ]}
+      howItWorks={[
+        "Red cards are logged from official FIFA match reports.",
+        "Both straight reds and second-yellow reds are tracked.",
+        "Suspension info is based on FIFA's disciplinary regulations.",
+      ]}
+      schema={{
+        "@context": "https://schema.org", "@type": "WebApplication",
+        name: "FIFA World Cup 2026 Red Cards",
+        url: "https://www.uptools.in/fifa-world-cup-red-cards/",
+      }}
+    >
+      <div className="max-w-3xl mx-auto space-y-4">
+        {/* Notable Red Cards */}
+        <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-5">
+          <h2 className="text-sm font-bold text-white mb-3">🟥 Notable Red Cards</h2>
+          <div className="space-y-3">
+            {[
+              { match: "Mexico vs South Africa", player: "Sphephelo Sithole", team: "🇿🇦 South Africa", minute: "90+8'", type: "Second Yellow", note: "Opening match — record 3 reds" },
+              { match: "Mexico vs South Africa", player: "Themba Zwane", team: "🇿🇦 South Africa", minute: "90+8'", type: "Second Yellow", note: "Opening match — record 3 reds" },
+              { match: "Mexico vs South Africa", player: "César Montes", team: "🇲🇽 Mexico", minute: "90+8'", type: "Straight Red", note: "Opening match — record 3 reds" },
+            ].map((rc, i) => (
+              <div key={i} className="bg-red-500/[0.06] border border-red-500/15 rounded-xl p-3">
+                <div className="flex items-center justify-between mb-1">
+                  <span className="text-xs font-bold text-red-400">{rc.player}</span>
+                  <span className="text-[10px] text-slate-500">{rc.minute}</span>
+                </div>
+                <div className="text-[11px] text-slate-400">{rc.team} · {rc.type}</div>
+                <div className="text-[10px] text-slate-600 mt-1">{rc.match} — {rc.note}</div>
+              </div>
+            ))}
           </div>
         </div>
-        <div className="flex flex-wrap gap-1.5 mt-4">
-          <span key="fifa" className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/4 border border-white/8 text-slate-400">fifa</span>
-          <span key="worldcup" className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/4 border border-white/8 text-slate-400">worldcup</span>
-          <span key="red-cards" className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/4 border border-white/8 text-slate-400">red-cards</span>
-          <span key="sports" className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/4 border border-white/8 text-slate-400">sports</span>
-        </div>
-      </section>
 
-      <iframe
-        src="/fifa-world-cup-red-cards/index.html"
-        className="w-full border-0 rounded-2xl overflow-hidden"
-        style={{ minHeight: '700px', background: '#0f172a' }}
-        title="World Cup 2026 Red Cards"
-        loading="lazy"
-        sandbox="allow-scripts allow-same-origin"
-      />
-    </>
+        {/* Stats */}
+        <div className="grid grid-cols-2 gap-3">
+          {[
+            { n: '3', l: 'Most Reds in a Match', sub: 'MEX vs RSA', color: 'text-red-400' },
+            { n: '90+8\'', l: 'Latest Red Card Time', sub: 'Opening match', color: 'text-amber-400' },
+          ].map((s, i) => (
+            <div key={i} className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4 text-center">
+              <div className={`text-xl font-extrabold ${s.color}`}>{s.n}</div>
+              <div className="text-[10px] text-slate-500 font-medium">{s.l}</div>
+              <div className="text-[9px] text-slate-600">{s.sub}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Info */}
+        <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-5">
+          <h2 className="text-sm font-bold text-white mb-2">Red Card Rules</h2>
+          <ul className="space-y-1.5 text-xs text-slate-400">
+            <li>• Two yellow cards in one match = automatic red card</li>
+            <li>• Straight red = immediate sending off + 1 match ban minimum</li>
+            <li>• Second yellow = sending off + 1 match ban</li>
+            <li>• FIFA can extend bans for serious foul play</li>
+            <li>• Yellow cards reset after the quarter-final stage</li>
+          </ul>
+        </div>
+
+        <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4">
+          <h2 className="text-sm font-bold text-white mb-2">Related Tools</h2>
+          <div className="flex flex-wrap gap-2">
+            {[
+              ['Discipline Tracker', '/fifa-world-cup-discipline/'],
+              ['Fair Play Rankings', '/fifa-world-cup-fair-play/'],
+              ['2026 Results', '/fifa-world-cup-predictions/'],
+            ].map(([label, href]) => (
+              <a key={label} href={href}
+                className="px-3 py-1.5 rounded-xl bg-white/[0.06] border border-white/[0.08] text-xs text-slate-400 hover:text-white transition-all">
+                {label}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </ToolLayout>
   )
 }

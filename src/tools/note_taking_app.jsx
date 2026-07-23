@@ -1,45 +1,99 @@
-import { Helmet } from 'react-helmet-async'
-import { Link } from 'react-router-dom'
+import { useState, useCallback } from 'react'
+import ToolLayout from '../components/ToolLayout'
+import useJumpToResult from '../hooks/useJumpToResult'
 
 export default function note_taking_app() {
+  const { ref: resultRef, jumpTo } = useJumpToResult()
+  const [note, setNote] = useState(() => {
+    try { return localStorage.getItem('uptools-note') || '' } catch { return '' }
+  })
+  const [saved, setSaved] = useState(false)
+
+  const saveNote = useCallback(() => {
+    try { localStorage.setItem('uptools-note', note) } catch {}
+    setSaved(true)
+    setTimeout(() => setSaved(false), 2000)
+  }, [note])
+
+  const clearNote = useCallback(() => {
+    if (window.confirm('Clear all notes?')) {
+      setNote('')
+      try { localStorage.removeItem('uptools-note') } catch {}
+    }
+  }, [])
+
+  const exportNote = useCallback(() => {
+    const blob = new Blob([note], { type: 'text/plain;charset=utf-8' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url; a.download = 'note.txt'
+    document.body.appendChild(a); a.click(); a.remove()
+    URL.revokeObjectURL(url)
+  }, [note])
+
+  const charCount = note.length
+  const wordCount = note.trim() ? note.trim().split(/\s+/).length : 0
+
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+
   return (
-    <>
-      <Helmet>
-        <title>Note Taking App | UpTools</title>
-        <meta name="description" content="Quick notes online with local storage." />
-        <link rel="canonical" href="https://www.uptools.in/note-taking-app/" />
-        <meta property="og:title" content="Note Taking App | UpTools" />
-        <meta property="og:description" content="Quick notes online with local storage." />
-      </Helmet>
-
-      <nav className="text-xs text-slate-500 mb-4">
-        <Link to="/" className="hover:text-white transition-colors">Home</Link>
-        <span className="mx-2 text-slate-700">›</span>
-        <span className="text-white">Note Taking App</span>
-      </nav>
-
-      <section className="glass p-6 mb-6" style={{ background: 'linear-gradient(135deg, rgba(99,102,241,0.08), rgba(17,24,39,0.6))', borderColor: 'rgba(99,102,241,0.2)' }}>
-        <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl" style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}>📝</div>
-          <div>
-            <h1 className="text-xl font-bold text-white m-0">Note Taking App</h1>
-            <p className="text-sm text-slate-400 mt-1">Quick notes online with local storage.</p>
+    <ToolLayout
+      title="Note Taking App"
+      desc="Quick note-taking tool with auto-save to your browser. Save, clear, and export notes as text files."
+      icon="📝" iconBg="rgba(99,102,241,0.08)"
+      category="text" slug="note-taking-app"
+      faq={[
+        { q: "Where are my notes saved?", a: "Notes are saved in your browser's localStorage, so they persist between sessions but are only on this device." },
+        { q: "Can I export my notes?", a: "Yes, click Export to download your note as a .txt file." },
+      ]}
+      howItWorks={[
+        "Type your notes in the text area below.",
+        "Click Save to store notes in your browser.",
+        "Export as a text file or clear when done.",
+      ]}
+      schema={{
+        "@context": "https://schema.org", "@type": "SoftwareApplication",
+        "name": "Note Taking App", "applicationCategory": "UtilitiesApplication",
+        "url": "https://www.uptools.in/note-taking-app/",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" }
+      }}
+    >
+      <div className="max-w-2xl mx-auto space-y-6">
+        <div>
+          <label className="block text-sm font-semibold text-slate-300 mb-2">Your Note</label>
+          <textarea value={note} onChange={e => setNote(e.target.value)}
+            placeholder="Start typing your note here..."
+            rows={12} className={inputClass + " resize-none"} />
+          <div className="flex justify-between mt-2 text-xs text-slate-500">
+            <span>{charCount} characters</span>
+            <span>{wordCount} words</span>
           </div>
         </div>
-        <div className="flex flex-wrap gap-1.5 mt-4">
-          <span key="productivity" className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/4 border border-white/8 text-slate-400">productivity</span>
-          <span key="notes" className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/4 border border-white/8 text-slate-400">notes</span>
-        </div>
-      </section>
 
-      <iframe
-        src="/note-taking-app/index.html"
-        className="w-full border-0 rounded-2xl overflow-hidden"
-        style={{ minHeight: '700px', background: '#0f172a' }}
-        title="Note Taking App"
-        loading="lazy"
-        sandbox="allow-scripts allow-same-origin"
-      />
-    </>
+        <div className="flex gap-3">
+          <button onClick={saveNote}
+            className={`flex-1 py-3 rounded-xl font-bold text-sm transition-all active:scale-[0.98] ${
+              saved ? 'bg-emerald-500 text-white' : 'bg-emerald-500 text-white hover:bg-emerald-400'
+            }`}>
+            {saved ? '✅ Saved!' : '💾 Save'}
+          </button>
+          <button onClick={exportNote}
+            className="flex-1 py-3 rounded-xl bg-blue-500 text-white font-bold text-sm hover:bg-blue-400 transition-all active:scale-[0.98]">
+            📥 Export
+          </button>
+          <button onClick={clearNote}
+            className="flex-1 py-3 rounded-xl bg-red-500/20 border border-red-500/30 text-red-400 font-bold text-sm hover:bg-red-500/30 transition-all active:scale-[0.98]">
+            🗑️ Clear
+          </button>
+        </div>
+
+        <div ref={resultRef} className="text-center py-12 rounded-3xl border-2 border-dashed border-white/8 bg-white/[0.01]">
+          <div className="text-4xl mb-3 opacity-20">📝</div>
+          <p className="text-sm text-slate-600 font-medium">
+            {note ? `${wordCount} words, ${charCount} characters` : 'Start typing to create a note'}
+          </p>
+        </div>
+      </div>
+    </ToolLayout>
   )
 }

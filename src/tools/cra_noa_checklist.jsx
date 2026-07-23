@@ -1,45 +1,91 @@
-import { Helmet } from 'react-helmet-async'
-import { Link } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import ToolLayout from '../components/ToolLayout'
+
+const STORAGE_KEY = 'uptools:cra-noa:checklist'
+
+const ITEMS = [
+  'Notice of Assessment (NOA)',
+  'T4 / T4A slips',
+  'RRSP contribution receipts',
+  'Tuition/T2202 slips',
+  'Medical expense receipts',
+  'Charitable donation receipts',
+  'Investment income slips (T5/T3)',
+  'Rent or property tax receipts (if applicable)',
+  'Business income/expense records (if self-employed)',
+]
+
+function loadSaved() {
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}')
+  } catch { return {} }
+}
+
+function saveChecked(data) {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)) } catch {}
+}
 
 export default function cra_noa_checklist() {
+  const [checked, setChecked] = useState(() => loadSaved())
+
+  useEffect(() => { saveChecked(checked) }, [checked])
+
+  const toggle = idx => {
+    setChecked(prev => ({ ...prev, [idx]: !prev[idx] }))
+  }
+
+  const reset = () => setChecked({})
+
+  const doneCount = Object.values(checked).filter(Boolean).length
+
   return (
-    <>
-      <Helmet>
-        <title>CRA NOA Checklist | UpTools</title>
-        <meta name="description" content="Document checklist." />
-        <link rel="canonical" href="https://www.uptools.in/cra-noa-checklist/" />
-        <meta property="og:title" content="CRA NOA Checklist | UpTools" />
-        <meta property="og:description" content="Document checklist." />
-      </Helmet>
-
-      <nav className="text-xs text-slate-500 mb-4">
-        <Link to="/" className="hover:text-white transition-colors">Home</Link>
-        <span className="mx-2 text-slate-700">›</span>
-        <span className="text-white">CRA NOA Checklist</span>
-      </nav>
-
-      <section className="glass p-6 mb-6" style={{ background: 'linear-gradient(135deg, rgba(99,102,241,0.08), rgba(17,24,39,0.6))', borderColor: 'rgba(99,102,241,0.2)' }}>
-        <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl" style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}>🍁</div>
-          <div>
-            <h1 className="text-xl font-bold text-white m-0">CRA NOA Checklist</h1>
-            <p className="text-sm text-slate-400 mt-1">Document checklist.</p>
+    <ToolLayout
+      title="CRA Notice of Assessment Checklist"
+      desc="Checklist for preparing your CRA Notice of Assessment review. Track documents locally."
+      icon="🍁" iconBg="rgba(220,38,38,0.08)"
+      category="canada" slug="cra-noa-checklist"
+      faq={[
+        { q: 'What is this checklist?', a: 'A document checklist for preparing your CRA Notice of Assessment review.' },
+        { q: 'Is my data stored?', a: 'Yes, locally in your browser using localStorage. Nothing is uploaded.' },
+      ]}
+      howItWorks={[
+        'Review the checklist items below.',
+        'Check off documents you have ready.',
+        'Your progress is saved automatically in your browser.',
+      ]}
+      schema={{
+        '@context': 'https://schema.org', '@type': 'SoftwareApplication',
+        name: 'CRA NOA Checklist', applicationCategory: 'UtilitiesApplication',
+        url: 'https://www.uptools.in/cra-noa-checklist/',
+        offers: { '@type': 'Offer', price: '0', priceCurrency: 'CAD' }
+      }}
+    >
+      <div className="max-w-2xl mx-auto space-y-6">
+        {/* Progress */}
+        <div className="rounded-2xl bg-white/[0.06] border-2 border-white/8 p-4">
+          <div className="flex justify-between items-center mb-2">
+            <span className="text-sm font-semibold text-slate-300">{doneCount} of {ITEMS.length} items ready</span>
+            <button onClick={reset} className="text-xs text-slate-500 hover:text-red-400 transition-colors font-medium">Reset</button>
+          </div>
+          <div className="h-2 rounded-full bg-white/5 overflow-hidden">
+            <div className="h-full rounded-full bg-red-500 transition-all duration-500"
+              style={{ width: `${(doneCount / ITEMS.length) * 100}%` }} />
           </div>
         </div>
-        <div className="flex flex-wrap gap-1.5 mt-4">
-          <span key="canada" className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/4 border border-white/8 text-slate-400">canada</span>
-          <span key="text" className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/4 border border-white/8 text-slate-400">text</span>
-        </div>
-      </section>
 
-      <iframe
-        src="/cra-noa-checklist/index.html"
-        className="w-full border-0 rounded-2xl overflow-hidden"
-        style={{ minHeight: '700px', background: '#0f172a' }}
-        title="CRA NOA Checklist"
-        loading="lazy"
-        sandbox="allow-scripts allow-same-origin"
-      />
-    </>
+        {/* Checklist */}
+        <div className="rounded-3xl border-2 border-white/8 bg-white/[0.03] overflow-hidden divide-y divide-white/4">
+          {ITEMS.map((item, idx) => (
+            <label key={idx} className="flex items-center gap-4 px-5 py-4 cursor-pointer hover:bg-white/[0.03] transition-colors">
+              <input type="checkbox" checked={!!checked[idx]} onChange={() => toggle(idx)}
+                className="w-5 h-5 rounded-lg border-white/20 bg-white/10 text-red-500 focus:ring-red-500/40 shrink-0" />
+              <span className={`text-sm font-medium transition-all duration-200 ${checked[idx] ? 'text-slate-500 line-through' : 'text-white'}`}>
+                {item}
+              </span>
+            </label>
+          ))}
+        </div>
+      </div>
+    </ToolLayout>
   )
 }
