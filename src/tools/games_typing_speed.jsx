@@ -208,7 +208,7 @@ export default function games_typing_speed() {
         </div>
 
         {/* Text display */}
-        <div ref={resultRef} className="glass p-4 text-base leading-relaxed font-mono min-h-[80px]">
+        <div ref={resultRef} className="glass p-4 text-sm sm:text-base leading-relaxed font-mono min-h-[80px] select-none">
           {currentText.split('').map((c, i) => {
             let cls = 'text-slate-600'
             if (i < typed.length) cls = typed[i] === c ? 'text-emerald-400' : 'text-red-400 bg-red-500/20'
@@ -221,7 +221,8 @@ export default function games_typing_speed() {
         <input ref={inputRef} type="text" value={typed} onChange={handleInput} disabled={testFinished}
           placeholder="Click here and start typing…"
           autoComplete="off" autoCorrect="off" autoCapitalize="off" spellCheck="false"
-          className="w-full bg-black/20 border-2 border-white/[0.08] rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-600 text-center" />
+          inputMode="text" autoFocus
+          className="w-full bg-black/20 border-2 border-white/[0.08] rounded-xl px-4 sm:px-5 py-3 sm:py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-600 text-center min-h-[48px] text-sm sm:text-base" />
 
         {/* Progress bar */}
         <div className="h-2 bg-white/[0.06] rounded-full overflow-hidden">
@@ -230,7 +231,7 @@ export default function games_typing_speed() {
 
         {/* Stats */}
         <div className="glass p-4">
-          <div className="grid grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
             <div className="text-center">
               <div className="text-2xl font-extrabold text-white">{wpm}</div>
               <div className="text-xs text-slate-500 font-medium mt-0.5">WPM</div>

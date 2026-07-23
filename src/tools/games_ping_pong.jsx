@@ -23,7 +23,7 @@ function playTone(freq, dur, type = 'square', vol = 0.12) {
   } catch {}
 }
 
-const W = 600, H = 360
+const DESIGN_W = 600, DESIGN_H = 360
 const PADDLE_W = 12, PADDLE_H = 70, BALL_SIZE = 10
 const WIN_SCORE = 7
 const AI_SPEED = { easy: 2.5, medium: 4, hard: 6 }
@@ -36,10 +36,12 @@ export default function games_ping_pong() {
   const [gameRunning, setGameRunning] = useState(false)
   const [gamePaused, setGamePaused] = useState(false)
   const gameRef = useRef({
-    player: { y: H / 2 - PADDLE_H / 2, score: 0 },
-    ai: { y: H / 2 - PADDLE_H / 2, score: 0 },
-    ball: { x: W / 2, y: H / 2, vx: 4, vy: 3 },
-    keys: {}
+    player: { y: DESIGN_H / 2 - PADDLE_H / 2, score: 0 },
+    ai: { y: DESIGN_H / 2 - PADDLE_H / 2, score: 0 },
+    ball: { x: DESIGN_W / 2, y: DESIGN_H / 2, vx: 4, vy: 3 },
+    keys: {},
+    W: DESIGN_W, H: DESIGN_H,
+    animId: null,
   })
   const animRef = useRef(null)
   const modeRef = useRef(gameMode)
@@ -52,8 +54,31 @@ export default function games_ping_pong() {
   useEffect(() => { runningRef.current = gameRunning }, [gameRunning])
   useEffect(() => { pausedRef.current = gamePaused }, [gamePaused])
 
+  const fitCanvas = useCallback(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+    const wrap = canvas.parentElement
+    if (!wrap) return
+    const maxW = Math.min(DESIGN_W, wrap.clientWidth - 16)
+    const H = Math.floor(maxW * (DESIGN_H / DESIGN_W))
+    const dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1))
+    gameRef.current.W = maxW; gameRef.current.H = H; gameRef.current.dpr = dpr
+    canvas.width = Math.floor(maxW * dpr); canvas.height = Math.floor(H * dpr)
+    canvas.style.width = maxW + 'px'; canvas.style.height = H + 'px'
+    const ctx = canvas.getContext('2d')
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+    // Scale paddle positions proportionally
+    const s = gameRef.current
+    const scaleY = H / DESIGN_H
+    s.player.y = Math.min(s.player.y * scaleY, H - PADDLE_H)
+    s.ai.y = Math.min(s.ai.y * scaleY, H - PADDLE_H)
+    s.ball.x = Math.min(s.ball.x * (maxW / DESIGN_W), maxW - BALL_SIZE)
+    s.ball.y = Math.min(s.ball.y * scaleY, H - BALL_SIZE)
+  }, [])
+
   const resetBall = useCallback((dir = 1) => {
     const b = gameRef.current.ball
+    const W = gameRef.current.W, H = gameRef.current.H
     b.x = W / 2; b.y = H / 2
     b.vx = (4 + Math.random() * 2) * dir
     b.vy = (Math.random() * 4 - 2)
@@ -64,6 +89,7 @@ export default function games_ping_pong() {
     if (!canvas) return
     const ctx = canvas.getContext('2d')
     const s = gameRef.current
+    const W = s.W, H = s.H
 
     ctx.fillStyle = '#050d1a'
     ctx.fillRect(0, 0, W, H)
@@ -116,6 +142,7 @@ export default function games_ping_pong() {
   const endGame = useCallback((winner) => {
     setGameRunning(false)
     const s = gameRef.current
+    const W = s.W, H = s.H
     draw()
     const canvas = canvasRef.current
     if (!canvas) return
@@ -146,6 +173,7 @@ export default function games_ping_pong() {
     const s = gameRef.current
     const b = s.ball, p = s.player, ai = s.ai
     const speed = 6
+    const W = s.W, H = s.H
 
     if (modeRef.current === 'ai') {
       if ((s.keys['w'] || s.keys['arrowup']) && p.y > 0) p.y -= speed
@@ -209,6 +237,7 @@ export default function games_ping_pong() {
 
   const startGame = useCallback(() => {
     const s = gameRef.current
+    const W = s.W, H = s.H
     s.player.score = 0; s.ai.score = 0
     s.player.y = H / 2 - PADDLE_H / 2; s.ai.y = H / 2 - PADDLE_H / 2
     resetBall(1)
@@ -231,10 +260,12 @@ export default function games_ping_pong() {
     return () => { window.removeEventListener('keydown', handler); window.removeEventListener('keyup', upHandler) }
   }, [])
 
-  useEffect(() => { draw() }, [draw])
+  useEffect(() => { fitCanvas(); draw() }, [fitCanvas, draw])
   useEffect(() => {
-    return () => { if (animRef.current) cancelAnimationFrame(animRef.current) }
-  }, [])
+    const h = () => { fitCanvas(); draw() }
+    window.addEventListener('resize', h)
+    return () => { window.removeEventListener('resize', h); if (animRef.current) cancelAnimationFrame(animRef.current) }
+  }, [fitCanvas, draw])
 
   // Pointer tracking for mobile
   const handlePointerDown = useCallback((e) => {
@@ -243,9 +274,9 @@ export default function games_ping_pong() {
       if (!canvas) return
       canvas.setPointerCapture(e.pointerId)
       const rect = canvas.getBoundingClientRect()
-      const scaleY = H / rect.height
+      const scaleY = gameRef.current.H / rect.height
       const canvasY = (e.clientY - rect.top) * scaleY
-      gameRef.current.player.y = Math.max(0, Math.min(H - PADDLE_H, canvasY - PADDLE_H / 2))
+      gameRef.current.player.y = Math.max(0, Math.min(gameRef.current.H - PADDLE_H, canvasY - PADDLE_H / 2))
       ensureAudio()
     }
   }, [])
@@ -256,9 +287,9 @@ export default function games_ping_pong() {
       const canvas = canvasRef.current
       if (!canvas) return
       const rect = canvas.getBoundingClientRect()
-      const scaleY = H / rect.height
+      const scaleY = gameRef.current.H / rect.height
       const canvasY = (e.clientY - rect.top) * scaleY
-      gameRef.current.player.y = Math.max(0, Math.min(H - PADDLE_H, canvasY - PADDLE_H / 2))
+      gameRef.current.player.y = Math.max(0, Math.min(gameRef.current.H - PADDLE_H, canvasY - PADDLE_H / 2))
     }
   }, [])
 
@@ -328,9 +359,9 @@ export default function games_ping_pong() {
 
         {/* Canvas */}
         <div ref={resultRef} className="glass p-3 overflow-hidden">
-          <canvas ref={canvasRef} width={W} height={H}
+          <canvas ref={canvasRef}
             onPointerDown={handlePointerDown} onPointerMove={handlePointerMove}
-            className="w-full" style={{ aspectRatio: `${W}/${H}`, touchAction: 'none' }}
+            className="w-full rounded-xl" style={{ touchAction: 'none' }}
             aria-label="Ping Pong game" />
         </div>
 

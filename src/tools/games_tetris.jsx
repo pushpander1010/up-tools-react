@@ -57,6 +57,9 @@ export default function games_tetris() {
     dpr: 1,
     W: 0, H: 0,
     cellSz: 0,
+    playing: false,
+    gameOver: false,
+    best: 0,
   })
 
   const initBoard = () => Array.from({length:ROWS}, ()=>Array(COLS).fill(null))
@@ -128,19 +131,21 @@ export default function games_tetris() {
     setNextPiece({ name: s.next.name, color: s.next.color })
     if (collides(s.board, s.piece.blocks, s.pieceX, s.pieceY)) {
       // Game over
+      s.gameOver = true
       setGameOver(true)
       playGameOver()
-      const newBest = Math.max(best, s.score)
+      const newBest = Math.max(s.best, s.score)
+      s.best = newBest
       setBest(newBest); setLastScore(s.score)
       try { localStorage.setItem(LS.BEST, String(newBest)); localStorage.setItem(LS.LAST, String(s.score)) } catch {}
     }
-  }, [best])
+  }, [])
 
   const startGame = useCallback(() => {
     const s = gRef.current
     s.board = initBoard()
     s.score = 0; s.lines = 0; s.level = 1; s.dropTimer = 0; s.lastTime = 0
-    s.next = null
+    s.next = null; s.playing = true; s.gameOver = false
     setScore(0); setLines(0); setLevel(1); setGameOver(false); setPlaying(true)
     fitCanvas()
     spawnPiece()
@@ -156,7 +161,7 @@ export default function games_tetris() {
       s.lastTime = ts
       const dropInterval = Math.max(50, 800 - (s.level-1) * 60)
 
-      if (playing && !gameOver && s.piece) {
+      if (s.playing && !s.gameOver && s.piece) {
         s.dropTimer += dt
         if (s.dropTimer >= dropInterval) {
           s.dropTimer = 0
@@ -186,7 +191,7 @@ export default function games_tetris() {
       s.animId = requestAnimationFrame(loop)
     }
     s.animId = requestAnimationFrame(loop)
-  }, [playing, gameOver, spawnPiece])
+  }, [spawnPiece])
 
   const draw = useCallback(() => {
     const canvas = canvasRef.current
@@ -215,7 +220,7 @@ export default function games_tetris() {
     }
 
     // Ghost piece
-    if (s.piece && playing && !gameOver) {
+    if (s.piece && s.playing && !s.gameOver) {
       const gy = getGhostY(s.board, s.piece.blocks, s.pieceX, s.pieceY)
       ctx.globalAlpha = 0.2
       for (const [bx,by] of s.piece.blocks) {
@@ -226,7 +231,7 @@ export default function games_tetris() {
     }
 
     // Current piece
-    if (s.piece && playing && !gameOver) {
+    if (s.piece && s.playing && !s.gameOver) {
       for (const [bx,by] of s.piece.blocks) {
         if (s.pieceY+by >= 0) {
           ctx.fillStyle = s.piece.color
@@ -239,7 +244,7 @@ export default function games_tetris() {
     }
 
     // Game over overlay
-    if (gameOver) {
+    if (s.gameOver) {
       ctx.fillStyle = 'rgba(5,13,26,0.85)'
       ctx.fillRect(0, 0, W, H)
       ctx.fillStyle = '#fff'
@@ -252,7 +257,7 @@ export default function games_tetris() {
       ctx.fillText('Tap to restart', W/2, H/2+35)
     }
 
-    if (!playing) {
+    if (!s.playing) {
       ctx.fillStyle = 'rgba(5,13,26,0.7)'
       ctx.fillRect(0,0,W,H)
       ctx.fillStyle = '#fff'
@@ -263,14 +268,14 @@ export default function games_tetris() {
       ctx.fillStyle = '#94a3b8'
       ctx.fillText('Press Start to play', W/2, H/2+15)
     }
-  }, [playing, gameOver])
+  }, [])
 
   // Keyboard
   useEffect(() => {
     const handler = (e) => {
-      if (gameOver) { if (e.key===' '||e.key==='Enter') startGame(); return }
-      if (!playing) return
       const s = gRef.current
+      if (s.gameOver) { if (e.key===' '||e.key==='Enter') startGame(); return }
+      if (!s.playing) return
       if (!s.piece) return
 
       if (e.key==='ArrowLeft'||e.key==='a') {
@@ -303,15 +308,15 @@ export default function games_tetris() {
     }
     window.addEventListener('keydown', handler)
     return () => window.removeEventListener('keydown', handler)
-  }, [playing, gameOver, startGame, spawnPiece])
+  }, [startGame, spawnPiece])
 
   // Touch
   const touchStart = useRef({x:0,y:0,time:0})
   const handlePointerDown = (e) => { touchStart.current = {x:e.clientX,y:e.clientY,time:Date.now()} }
   const handlePointerUp = (e) => {
-    if (gameOver) { startGame(); return }
-    if (!playing) return
     const s = gRef.current
+    if (s.gameOver) { startGame(); return }
+    if (!s.playing) return
     if (!s.piece) return
     const dx = e.clientX - touchStart.current.x
     const dy = e.clientY - touchStart.current.y

@@ -190,6 +190,22 @@ export default function games_quiz_trivia() {
     setSelectedIdx(null)
   }
 
+  // Keyboard shortcuts: 1-4 for options, Enter/Space for next
+  useEffect(() => {
+    const handler = (e) => {
+      if (!started || showResult) return
+      if (!answered && q) {
+        const keyMap = { '1': 0, '2': 1, '3': 2, '4': 3 }
+        if (keyMap[e.key] !== undefined) { e.preventDefault(); selectAnswer(keyMap[e.key]) }
+      }
+      if (answered && currentQ < questions.length - 1 && (e.key === 'Enter' || e.key === ' ')) {
+        e.preventDefault(); handleNext()
+      }
+    }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [answered, currentQ, questions, selectAnswer, handleNext, q, started, showResult])
+
   const q = questions[currentQ]
   const progressPct = questions.length ? ((currentQ + 1) / questions.length) * 100 : 0
   const msgs = ['Keep practicing! 💪', 'Not bad! 👍', 'Good job! 🎉', 'Excellent! 🌟', 'Perfect score! 🏆']

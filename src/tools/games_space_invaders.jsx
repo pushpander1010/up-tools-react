@@ -3,7 +3,6 @@ import ToolLayout from '../components/ToolLayout'
 import useJumpToResult from '../hooks/useJumpToResult'
 
 const LS = { BEST: 'ut_si_best_v1', LAST: 'ut_si_last_v1', WAVE: 'ut_si_wave_v1' }
-
 let audioCtx = null
 function ensureAudio() { if (!audioCtx) audioCtx = new (window.AudioContext||window.webkitAudioContext)(); if (audioCtx.state==='suspended') audioCtx.resume(); return audioCtx }
 function playTone(freq,dur,type='sine',vol=0.08) {
@@ -49,6 +48,10 @@ export default function games_space_invaders() {
     shootCooldown: 0,
     alienShootTimer: 0,
     frameCount: 0,
+    // Refs to avoid stale closures
+    playing: false,
+    gameOver: false,
+    best: 0,
   })
 
   const fitCanvas = useCallback(() => {
@@ -96,18 +99,147 @@ export default function games_space_invaders() {
     s.alienShootTimer = 0
   }, [])
 
-  const startGame = useCallback(() => {
+  const draw = useCallback(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
     const s = gRef.current
-    s.score = 0; s.lives = 3; s.wave = 1; s.frameCount = 0
-    s.bullets = []; s.alienBullets = []; s.particles = []
-    s.shootCooldown = 0; s.alienShootTimer = 0
-    spawnAliens(1)
-    setScore(0); setLives(3); setWave(1); setGameOver(false); setPlaying(true)
-    fitCanvas()
-    // Detect touch device
-    setTouchControls('ontouchstart' in window || navigator.maxTouchPoints > 0)
-    setTimeout(() => { startLoop() }, 30)
-  }, [fitCanvas, spawnAliens])
+    const ctx = canvas.getContext('2d')
+    const W = s.W, H = s.H
+
+    // Background
+    ctx.fillStyle = '#050d1a'
+    ctx.fillRect(0, 0, W, H)
+
+    // Stars
+    for (const star of s.stars) {
+      ctx.fillStyle = `rgba(255,255,255,${0.3 + star.r*0.3})`
+      ctx.beginPath(); ctx.arc(star.x, star.y, star.r, 0, Math.PI*2); ctx.fill()
+    }
+
+    // Player ship
+    if (s.lives > 0 || !s.gameOver) {
+      const px = s.player.x, py = s.H - 60
+      ctx.fillStyle = '#00e5ff'
+      ctx.shadowColor = '#00e5ff'
+      ctx.shadowBlur = 10
+      ctx.beginPath()
+      ctx.moveTo(px, py - 16)
+      ctx.lineTo(px - 18, py + 8)
+      ctx.lineTo(px - 10, py + 8)
+      ctx.lineTo(px - 10, py + 14)
+      ctx.lineTo(px + 10, py + 14)
+      ctx.lineTo(px + 10, py + 8)
+      ctx.lineTo(px + 18, py + 8)
+      ctx.closePath()
+      ctx.fill()
+      ctx.shadowBlur = 0
+    }
+
+    // Aliens
+    for (const a of s.aliens) {
+      if (a.hp <= 0) continue
+      const colors = { squid: '#c084fc', crab: '#34d399', octopus: '#f87171' }
+      ctx.fillStyle = a.hp > 1 ? '#fbbf24' : colors[a.type] || '#fff'
+      ctx.shadowColor = ctx.fillStyle
+      ctx.shadowBlur = 4
+      // Simple alien shape
+      const ax = a.x, ay = a.y, aw = a.w, ah = a.h
+      ctx.beginPath()
+      if (a.type === 'squid') {
+        ctx.roundRect(ax+2, ay, aw-4, ah, 4)
+      } else if (a.type === 'crab') {
+        ctx.roundRect(ax, ay+2, aw, ah-4, 3)
+        ctx.fillRect(ax-3, ay+6, 5, 4)
+        ctx.fillRect(ax+aw-2, ay+6, 5, 4)
+      } else {
+        ctx.roundRect(ax+4, ay, aw-8, ah, 6)
+        ctx.fillRect(ax, ay+4, aw, ah-8)
+      }
+      ctx.fill()
+      ctx.shadowBlur = 0
+      // Eyes
+      ctx.fillStyle = '#000'
+      ctx.fillRect(ax+aw*0.3, ay+ah*0.3, 3, 3)
+      ctx.fillRect(ax+aw*0.6, ay+ah*0.3, 3, 3)
+    }
+
+    // Bullets
+    for (const b of s.bullets) {
+      ctx.fillStyle = '#00e5ff'
+      ctx.shadowColor = '#00e5ff'
+      ctx.shadowBlur = 6
+      ctx.fillRect(b.x-1.5, b.y-6, 3, 12)
+      ctx.shadowBlur = 0
+    }
+    for (const b of s.alienBullets) {
+      ctx.fillStyle = '#ef4444'
+      ctx.shadowColor = '#ef4444'
+      ctx.shadowBlur = 4
+      ctx.fillRect(b.x-1.5, b.y-4, 3, 10)
+      ctx.shadowBlur = 0
+    }
+
+    // Particles
+    for (const p of s.particles) {
+      ctx.globalAlpha = Math.max(0, p.life * 2)
+      ctx.fillStyle = p.color
+      ctx.beginPath(); ctx.arc(p.x, p.y, 2 + (1-p.life)*3, 0, Math.PI*2); ctx.fill()
+    }
+    ctx.globalAlpha = 1
+
+    // HUD
+    ctx.fillStyle = '#fff'
+    ctx.font = 'bold 16px system-ui'
+    ctx.textAlign = 'left'
+    ctx.fillText(`Score: ${s.score}`, 10, 25)
+    ctx.textAlign = 'right'
+    ctx.fillText(`Wave: ${s.wave}`, W-10, 25)
+    // Lives
+    for (let i = 0; i < s.lives; i++) {
+      ctx.fillStyle = '#00e5ff'
+      ctx.beginPath()
+      ctx.moveTo(10+i*22, 45); ctx.lineTo(2+i*22, 53); ctx.lineTo(18+i*22, 53)
+      ctx.closePath(); ctx.fill()
+    }
+
+    // Game over
+    if (s.gameOver) {
+      ctx.fillStyle = 'rgba(5,13,26,0.85)'
+      ctx.fillRect(0,0,W,H)
+      ctx.fillStyle = '#fff'
+      ctx.font = 'bold 28px system-ui'
+      ctx.textAlign = 'center'
+      ctx.fillText('Game Over', W/2, H/2-30)
+      ctx.font = '16px system-ui'; ctx.fillStyle = '#94a3b8'
+      ctx.fillText(`Score: ${s.score}  |  Wave: ${s.wave}`, W/2, H/2)
+      ctx.fillText(`Best: ${Math.max(s.best, s.score)}`, W/2, H/2+25)
+      ctx.font = '14px system-ui'; ctx.fillStyle = '#64748b'
+      ctx.fillText('Tap or Space to restart', W/2, H/2+55)
+    }
+
+    if (!s.playing) {
+      ctx.fillStyle = 'rgba(5,13,26,0.7)'
+      ctx.fillRect(0,0,W,H)
+      ctx.fillStyle = '#fff'
+      ctx.font = 'bold 24px system-ui'
+      ctx.textAlign = 'center'
+      ctx.fillText('SPACE INVADERS', W/2, H/2-10)
+      ctx.font = '13px system-ui'; ctx.fillStyle = '#94a3b8'
+      ctx.fillText('Press Start to play', W/2, H/2+15)
+    }
+  }, [])
+
+  const die = useCallback(() => {
+    const s = gRef.current
+    s.gameOver = true
+    s.playing = false
+    setGameOver(true); setPlaying(false)
+    playGameOver()
+    const newBest = Math.max(s.best, s.score)
+    s.best = newBest
+    setBest(newBest); setLastScore(s.score)
+    try { localStorage.setItem(LS.BEST, String(newBest)); localStorage.setItem(LS.LAST, String(s.score)); localStorage.setItem(LS.WAVE, String(s.wave)) } catch {}
+  }, [])
 
   const startLoop = useCallback(() => {
     const s = gRef.current
@@ -118,7 +250,7 @@ export default function games_space_invaders() {
       s.lastTime = ts
       s.frameCount++
 
-      if (playing && !gameOver) {
+      if (s.playing && !s.gameOver) {
         // Player movement
         const spd = s.player.speed * dt
         if (s.keys.left && s.player.x - s.player.w/2 > 0) s.player.x -= spd
@@ -208,11 +340,7 @@ export default function games_space_invaders() {
               })
             }
             if (s.lives <= 0) {
-              setGameOver(true); setPlaying(false)
-              playGameOver()
-              const newBest = Math.max(best, s.score)
-              setBest(newBest); setLastScore(s.score)
-              try { localStorage.setItem(LS.BEST, String(newBest)); localStorage.setItem(LS.LAST, String(s.score)); localStorage.setItem(LS.WAVE, String(s.wave)) } catch {}
+              die()
             }
           }
         }
@@ -238,144 +366,31 @@ export default function games_space_invaders() {
       s.animId = requestAnimationFrame(loop)
     }
     s.animId = requestAnimationFrame(loop)
-  }, [playing, gameOver, best, spawnAliens])
+  }, [die, draw, spawnAliens])
 
-  const draw = useCallback(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
+  const startGame = useCallback(() => {
     const s = gRef.current
-    const ctx = canvas.getContext('2d')
-    const W = s.W, H = s.H
-
-    // Background
-    ctx.fillStyle = '#050d1a'
-    ctx.fillRect(0, 0, W, H)
-
-    // Stars
-    for (const star of s.stars) {
-      ctx.fillStyle = `rgba(255,255,255,${0.3 + star.r*0.3})`
-      ctx.beginPath(); ctx.arc(star.x, star.y, star.r, 0, Math.PI*2); ctx.fill()
-    }
-
-    // Player ship
-    if (s.lives > 0 || !gameOver) {
-      const px = s.player.x, py = s.H - 60
-      ctx.fillStyle = '#00e5ff'
-      ctx.shadowColor = '#00e5ff'
-      ctx.shadowBlur = 10
-      ctx.beginPath()
-      ctx.moveTo(px, py - 16)
-      ctx.lineTo(px - 18, py + 8)
-      ctx.lineTo(px - 10, py + 8)
-      ctx.lineTo(px - 10, py + 14)
-      ctx.lineTo(px + 10, py + 14)
-      ctx.lineTo(px + 10, py + 8)
-      ctx.lineTo(px + 18, py + 8)
-      ctx.closePath()
-      ctx.fill()
-      ctx.shadowBlur = 0
-    }
-
-    // Aliens
-    for (const a of s.aliens) {
-      if (a.hp <= 0) continue
-      const colors = { squid: '#c084fc', crab: '#34d399', octopus: '#f87171' }
-      ctx.fillStyle = a.hp > 1 ? '#fbbf24' : colors[a.type] || '#fff'
-      ctx.shadowColor = ctx.fillStyle
-      ctx.shadowBlur = 4
-      // Simple alien shape
-      const ax = a.x, ay = a.y, aw = a.w, ah = a.h
-      ctx.beginPath()
-      if (a.type === 'squid') {
-        ctx.roundRect(ax+2, ay, aw-4, ah, 4)
-      } else if (a.type === 'crab') {
-        ctx.roundRect(ax, ay+2, aw, ah-4, 3)
-        ctx.fillRect(ax-3, ay+6, 5, 4)
-        ctx.fillRect(ax+aw-2, ay+6, 5, 4)
-      } else {
-        ctx.roundRect(ax+4, ay, aw-8, ah, 6)
-        ctx.fillRect(ax, ay+4, aw, ah-8)
-      }
-      ctx.fill()
-      ctx.shadowBlur = 0
-      // Eyes
-      ctx.fillStyle = '#000'
-      ctx.fillRect(ax+aw*0.3, ay+ah*0.3, 3, 3)
-      ctx.fillRect(ax+aw*0.6, ay+ah*0.3, 3, 3)
-    }
-
-    // Bullets
-    for (const b of s.bullets) {
-      ctx.fillStyle = '#00e5ff'
-      ctx.shadowColor = '#00e5ff'
-      ctx.shadowBlur = 6
-      ctx.fillRect(b.x-1.5, b.y-6, 3, 12)
-      ctx.shadowBlur = 0
-    }
-    for (const b of s.alienBullets) {
-      ctx.fillStyle = '#ef4444'
-      ctx.shadowColor = '#ef4444'
-      ctx.shadowBlur = 4
-      ctx.fillRect(b.x-1.5, b.y-4, 3, 10)
-      ctx.shadowBlur = 0
-    }
-
-    // Particles
-    for (const p of s.particles) {
-      ctx.globalAlpha = Math.max(0, p.life * 2)
-      ctx.fillStyle = p.color
-      ctx.beginPath(); ctx.arc(p.x, p.y, 2 + (1-p.life)*3, 0, Math.PI*2); ctx.fill()
-    }
-    ctx.globalAlpha = 1
-
-    // HUD
-    ctx.fillStyle = '#fff'
-    ctx.font = 'bold 16px system-ui'
-    ctx.textAlign = 'left'
-    ctx.fillText(`Score: ${s.score}`, 10, 25)
-    ctx.textAlign = 'right'
-    ctx.fillText(`Wave: ${s.wave}`, W-10, 25)
-    // Lives
-    for (let i = 0; i < s.lives; i++) {
-      ctx.fillStyle = '#00e5ff'
-      ctx.beginPath()
-      ctx.moveTo(10+i*22, 45); ctx.lineTo(2+i*22, 53); ctx.lineTo(18+i*22, 53)
-      ctx.closePath(); ctx.fill()
-    }
-
-    // Game over
-    if (gameOver) {
-      ctx.fillStyle = 'rgba(5,13,26,0.85)'
-      ctx.fillRect(0,0,W,H)
-      ctx.fillStyle = '#fff'
-      ctx.font = 'bold 28px system-ui'
-      ctx.textAlign = 'center'
-      ctx.fillText('Game Over', W/2, H/2-30)
-      ctx.font = '16px system-ui'; ctx.fillStyle = '#94a3b8'
-      ctx.fillText(`Score: ${s.score}  |  Wave: ${s.wave}`, W/2, H/2)
-      ctx.fillText(`Best: ${Math.max(best, s.score)}`, W/2, H/2+25)
-      ctx.font = '14px system-ui'; ctx.fillStyle = '#64748b'
-      ctx.fillText('Tap or Space to restart', W/2, H/2+55)
-    }
-
-    if (!playing) {
-      ctx.fillStyle = 'rgba(5,13,26,0.7)'
-      ctx.fillRect(0,0,W,H)
-      ctx.fillStyle = '#fff'
-      ctx.font = 'bold 24px system-ui'
-      ctx.textAlign = 'center'
-      ctx.fillText('SPACE INVADERS', W/2, H/2-10)
-      ctx.font = '13px system-ui'; ctx.fillStyle = '#94a3b8'
-      ctx.fillText('Press Start to play', W/2, H/2+15)
-    }
-  }, [playing, gameOver, best])
+    s.score = 0; s.lives = 3; s.wave = 1; s.frameCount = 0
+    s.bullets = []; s.alienBullets = []; s.particles = []
+    s.shootCooldown = 0; s.alienShootTimer = 0
+    s.playing = true
+    s.gameOver = false
+    s.best = Number(localStorage.getItem(LS.BEST)||0)
+    spawnAliens(1)
+    setScore(0); setLives(3); setWave(1); setGameOver(false); setPlaying(true)
+    setBest(s.best)
+    fitCanvas()
+    // Detect touch device
+    setTouchControls('ontouchstart' in window || navigator.maxTouchPoints > 0)
+    setTimeout(() => { startLoop() }, 30)
+  }, [fitCanvas, spawnAliens, startLoop])
 
   // Keyboard
   useEffect(() => {
     const handler = (e) => {
       const s = gRef.current
-      if (gameOver) { if (e.key===' '||e.key==='Enter') startGame(); return }
-      if (!playing) return
+      if (s.gameOver) { if (e.key===' '||e.key==='Enter') startGame(); return }
+      if (!s.playing) return
       if (e.key==='ArrowLeft'||e.key==='a') { s.keys.left = true; e.preventDefault() }
       if (e.key==='ArrowRight'||e.key==='d') { s.keys.right = true; e.preventDefault() }
       if (e.key===' '||e.key==='ArrowUp') { s.keys.shoot = true; e.preventDefault() }
@@ -389,7 +404,7 @@ export default function games_space_invaders() {
     window.addEventListener('keydown', handler)
     window.addEventListener('keyup', handlerUp)
     return () => { window.removeEventListener('keydown', handler); window.removeEventListener('keyup', handlerUp) }
-  }, [playing, gameOver, startGame])
+  }, [startGame])
 
   // Touch controls
   const handleTouchBtn = (dir, pressed) => {
@@ -399,9 +414,9 @@ export default function games_space_invaders() {
     if (dir === 'shoot') s.keys.shoot = pressed
   }
 
-  const handlePointerDown = () => {
-    if (gameOver) { startGame(); return }
-  }
+  const handlePointerDown = useCallback(() => {
+    if (gRef.current.gameOver) { startGame(); return }
+  }, [startGame])
 
   useEffect(() => { fitCanvas(); draw() }, [fitCanvas, draw])
   useEffect(() => {

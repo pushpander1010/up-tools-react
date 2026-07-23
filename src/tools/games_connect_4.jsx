@@ -179,7 +179,7 @@ export default function games_connect_4() {
     }
   }, [board, isRed, winner, draw, animating, mode, rWins, yWins, draws, updateScores])
 
-  const cellSz = 'w-10 h-10 sm:w-12 sm:h-12'
+  const cellSz = 'w-11 h-11 sm:w-12 sm:h-12'
 
   return (
     <ToolLayout

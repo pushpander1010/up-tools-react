@@ -65,7 +65,7 @@ export default function games_minesweeper() {
   const timerRef = useRef(null)
   const longPressRef = useRef(null)
   const touchStartRef = useRef(null)
-  const [longPressActive, setLongPressActive] = useState(false)
+  const longPressActiveRef = useRef(false)
 
   const { rows, cols, mines } = DIFFICULTIES[difficulty]
 
@@ -109,8 +109,7 @@ export default function games_minesweeper() {
         playWin()
         const bestKey = difficulty==='easy'?LS.BEST_EASY:difficulty==='medium'?LS.BEST_MED:LS.BEST_EXP
         const timeKey = difficulty==='easy'?LS.TIME_EASY:difficulty==='medium'?LS.TIME_MED:LS.TIME_EXP
-        const prev = Number(localStorage.getItem(bestKey)||999999)
-        if (0<prev) { localStorage.setItem(bestKey,'0'); localStorage.setItem(timeKey,'0') }
+        try { const prev = Number(localStorage.getItem(bestKey)||999999); if (0<prev) { localStorage.setItem(bestKey,'0'); localStorage.setItem(timeKey,'0') } } catch {}
       }
       return
     }
@@ -133,8 +132,7 @@ export default function games_minesweeper() {
       playWin()
       const bestKey = difficulty==='easy'?LS.BEST_EASY:difficulty==='medium'?LS.BEST_MED:LS.BEST_EXP
       const timeKey = difficulty==='easy'?LS.TIME_EASY:difficulty==='medium'?LS.TIME_MED:LS.TIME_EXP
-      const prev = Number(localStorage.getItem(bestKey)||999999)
-      if (timer<prev) { localStorage.setItem(bestKey,String(timer)); localStorage.setItem(timeKey,String(timer)) }
+      try { const prev = Number(localStorage.getItem(bestKey)||999999); if (timer<prev) { localStorage.setItem(bestKey,String(timer)); localStorage.setItem(timeKey,String(timer)) } } catch {}
     }
   }, [board, gameState, firstClick, rows, cols, mines, difficulty, timer])
 
@@ -151,9 +149,9 @@ export default function games_minesweeper() {
 
   const handleTouchStart = useCallback((r, c, e) => {
     touchStartRef.current = { r, c, time: Date.now() }
-    setLongPressActive(false)
+    longPressActiveRef.current = false
     longPressRef.current = setTimeout(() => {
-      setLongPressActive(true)
+      longPressActiveRef.current = true
       handleFlag(r, c, e)
       touchStartRef.current = null
     }, 500)
@@ -161,12 +159,12 @@ export default function games_minesweeper() {
 
   const handleTouchEnd = useCallback((r, c, e) => {
     clearTimeout(longPressRef.current)
-    if (touchStartRef.current && !longPressActive) {
+    if (touchStartRef.current && !longPressActiveRef.current) {
       handleCellClick(r, c)
     }
     touchStartRef.current = null
-    setLongPressActive(false)
-  }, [handleCellClick, longPressActive])
+    longPressActiveRef.current = false
+  }, [handleCellClick])
 
   const handleContextMenu = useCallback((e) => { e.preventDefault() }, [])
 
@@ -243,7 +241,7 @@ export default function games_minesweeper() {
                   onContextMenu={(e) => handleFlag(r, c, e)}
                   onTouchStart={(e) => handleTouchStart(r, c, e)}
                   onTouchEnd={(e) => handleTouchEnd(r, c, e)}
-                  onTouchCancel={() => { clearTimeout(longPressRef.current); touchStartRef.current=null; setLongPressActive(false) }}>
+                  onTouchCancel={() => { clearTimeout(longPressRef.current); touchStartRef.current=null; longPressActiveRef.current=false }}>
                   {cell.flagged && !cell.revealed && <span style={{fontSize:Math.max(10,cellSize*0.55)}}>🚩</span>}
                   {cell.revealed && cell.mine && <span style={{fontSize:Math.max(10,cellSize*0.55)}}>💣</span>}
                   {cell.revealed && !cell.mine && cell.count>0 && <span style={{color:NUM_COLORS[cell.count]||'#fff'}}>{cell.count}</span>}

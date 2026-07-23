@@ -31,6 +31,7 @@ export default function games_whack_a_mole() {
   const moleTimerRef = useRef(null)
   const moleTimeoutRef = useRef(null)
   const scoreRef = useRef(0)
+  const spawnMoleRef = useRef(null)
 
   const getMoleSpeed = useCallback(() => {
     // Speed decreases (faster moles) as level increases
@@ -57,7 +58,14 @@ export default function games_whack_a_mole() {
     }, getMoleShowTime())
   }, [getMoleShowTime])
 
+  spawnMoleRef.current = spawnMole
+
   const startGame = useCallback(() => {
+    // Clear any existing timers first
+    clearInterval(timerRef.current)
+    clearInterval(moleTimerRef.current)
+    clearTimeout(moleTimeoutRef.current)
+
     setScore(0)
     scoreRef.current = 0
     setTimeLeft(GAME_DURATION)
@@ -85,15 +93,15 @@ export default function games_whack_a_mole() {
 
     // Initial mole spawn after short delay
     setTimeout(() => {
-      spawnMole()
+      spawnMoleRef.current()
       // Recurring mole spawn
       moleTimerRef.current = setInterval(() => {
         setMoles(Array(9).fill(false))
         setMoleIndex(-1)
-        setTimeout(() => spawnMole(), 200)
+        setTimeout(() => spawnMoleRef.current(), 200)
       }, getMoleSpeed())
     }, 500)
-  }, [spawnMole, getMoleSpeed])
+  }, [getMoleSpeed])
 
   useEffect(() => {
     return () => {
@@ -113,10 +121,10 @@ export default function games_whack_a_mole() {
       moleTimerRef.current = setInterval(() => {
         setMoles(Array(9).fill(false))
         setMoleIndex(-1)
-        setTimeout(() => spawnMole(), 200)
+        setTimeout(() => spawnMoleRef.current(), 200)
       }, getMoleSpeed())
     }
-  }, [score, level, gameState, spawnMole, getMoleSpeed])
+  }, [score, level, gameState, getMoleSpeed])
 
   // High score
   useEffect(() => {
@@ -141,12 +149,12 @@ export default function games_whack_a_mole() {
       setScore(s => s + 1)
 
       // Spawn next mole sooner
-      setTimeout(() => spawnMole(), 150)
+      setTimeout(() => spawnMoleRef.current(), 150)
     } else {
       // Miss
       playMiss()
     }
-  }, [gameState, moles, moleIndex, spawnMole])
+  }, [gameState, moles, moleIndex])
 
   return (
     <ToolLayout

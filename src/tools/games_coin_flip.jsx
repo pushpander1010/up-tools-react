@@ -113,6 +113,19 @@ export default function games_coin_flip() {
     }, 800)
   }, [flipping, applyResult])
 
+  // Keyboard: Space to flip
+  useEffect(() => {
+    const handleKey = (e) => {
+      if (e.code === 'Space' && !flipping && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+        e.preventDefault()
+        flip()
+        jumpTo()
+      }
+    }
+    window.addEventListener('keydown', handleKey)
+    return () => window.removeEventListener('keydown', handleKey)
+  }, [flipping, flip, jumpTo])
+
   const flip10 = useCallback(() => {
     if (flipping) return
     const results = Array.from({ length: 10 }, () => Math.random() < 0.5 ? 'H' : 'T')
@@ -145,14 +158,12 @@ export default function games_coin_flip() {
 
   const pct = data.total > 0 ? Math.round((data.heads / data.total) * 100) : 50
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
-
   return (
     <ToolLayout
       title="Coin Flip"
       desc="Virtual coin toss with heads/tails stats, streaks, and 10-flip mode."
       icon="🪙" iconBg="rgba(245,158,11,0.08)"
-      category="fun" slug="games/coin-flip"
+      category="fun" slug="games-coin-flip"
       faq={[
         { q: "How does the coin flip work?", a: "It uses a cryptographically random method to simulate a fair 50/50 coin toss." },
         { q: "Can I flip multiple coins?", a: "Yes! Use the 'Flip 10x' button for sequential 10-flip rounds with animated results." },
@@ -173,12 +184,14 @@ export default function games_coin_flip() {
       <div className="max-w-2xl mx-auto space-y-5">
         {/* Coin Display */}
         <div className="text-center">
-          <button onClick={() => { flip(); jumpTo() }}
-            className="w-32 h-32 mx-auto rounded-full text-6xl flex items-center justify-center transition-transform duration-500 select-none
-              bg-gradient-to-br from-yellow-400 to-yellow-600 shadow-2xl shadow-yellow-500/30 hover:scale-105 active:scale-95"
-            style={{ animation: flipping ? 'coinFlip 0.8s ease-in-out' : 'none' }}>
-            {coinSide === 'H' ? '🪙' : '🔘'}
-          </button>
+          <div style={{ perspective: '800px' }} className="inline-block">
+            <button onClick={() => { flip(); jumpTo() }}
+              className="w-32 h-32 rounded-full text-6xl flex items-center justify-center transition-transform duration-500 select-none
+                bg-gradient-to-br from-yellow-400 to-yellow-600 shadow-2xl shadow-yellow-500/30 hover:scale-105 active:scale-95"
+              style={{ animation: flipping ? 'coinFlip 0.8s ease-in-out' : 'none' }}>
+              {coinSide === 'H' ? '🪙' : '🔘'}
+            </button>
+          </div>
           <div ref={resultRef} className="mt-4 text-2xl font-extrabold" style={{ color: resultColor }}>
             {resultText}
           </div>
@@ -190,12 +203,12 @@ export default function games_coin_flip() {
         {/* Buttons */}
         <div className="flex gap-3">
           <button onClick={flip}
-            className="glow-btn flex-1 py-4 rounded-2xl font-bold text-sm transition-all duration-200 active:scale-[0.98] disabled:opacity-50"
+            className="glow-btn flex-1 py-4 min-h-[48px] rounded-2xl font-bold text-sm transition-all duration-200 active:scale-[0.98] disabled:opacity-50"
             disabled={flipping}>
             🪙 Flip
           </button>
           <button onClick={flip10}
-            className="glow-btn flex-1 py-4 rounded-2xl font-bold text-sm transition-all duration-200 active:scale-[0.98] disabled:opacity-50"
+            className="glow-btn flex-1 py-4 min-h-[48px] rounded-2xl font-bold text-sm transition-all duration-200 active:scale-[0.98] disabled:opacity-50"
             disabled={flipping}>
             ⚡ Flip 10x
           </button>
@@ -232,11 +245,11 @@ export default function games_coin_flip() {
         {/* Controls */}
         <div className="flex gap-3">
           <button onClick={() => setShowHistory(!showHistory)}
-            className="flex-1 py-3 rounded-xl bg-white/[0.06] border border-white/[0.08] text-slate-400 text-sm font-semibold hover:text-white hover:border-white/20 hover:bg-white/[0.1] transition-all">
+            className="flex-1 py-3 min-h-[44px] rounded-xl bg-white/[0.06] border border-white/[0.08] text-slate-400 text-sm font-semibold hover:text-white hover:border-white/20 hover:bg-white/[0.1] transition-all">
             History ({data.history.length})
           </button>
           <button onClick={reset}
-            className="flex-1 py-3 rounded-xl bg-white/[0.06] border border-white/[0.08] text-slate-400 text-sm font-semibold hover:text-white hover:border-white/20 hover:bg-white/[0.1] transition-all">
+            className="flex-1 py-3 min-h-[44px] rounded-xl bg-white/[0.06] border border-white/[0.08] text-slate-400 text-sm font-semibold hover:text-white hover:border-white/20 hover:bg-white/[0.1] transition-all">
             Reset
           </button>
         </div>

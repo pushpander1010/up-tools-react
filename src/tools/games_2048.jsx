@@ -84,8 +84,8 @@ export default function games_2048() {
   const [grid, setGrid] = useState(emptyGrid)
   const [score, setScore] = useState(0)
   const [moves, setMoves] = useState(0)
-  const [best, setBest] = useState(()=>Number(localStorage.getItem(LS.BEST)||0))
-  const [bestTile, setBestTile] = useState(()=>Number(localStorage.getItem(LS.BESTT)||0))
+  const [best, setBest] = useState(()=>{try{return Number(localStorage.getItem(LS.BEST)||0)}catch{return 0}})
+  const [bestTile, setBestTile] = useState(()=>{try{return Number(localStorage.getItem(LS.BESTT)||0)}catch{return 0}})
   const [gameOver, setGameOver] = useState(false)
   const [won, setWon] = useState(false)
   const [playing, setPlaying] = useState(false)
@@ -97,10 +97,12 @@ export default function games_2048() {
     stateRef.current = { ...stateRef.current, grid: g, score: s, moves: m }
     setGrid(g); setScore(s); setMoves(m)
     const biggest = Math.max(...g.flat())
-    const newBest = Math.max(best, s)
-    const newBestTile = Math.max(bestTile, biggest)
-    setBest(newBest); setBestTile(newBestTile)
-    saveLocal({ grid: g, score: s, moves: m, best: newBest, bestTile: newBestTile })
+    setBest(prev => { const nb = Math.max(prev, s); return nb })
+    setBestTile(prev => { const nbt = Math.max(prev, biggest); return nbt })
+    // Read current best/bestTile for save (we use functional updates so we need to pass latest)
+    const curBest = Math.max(best, s)
+    const curBestTile = Math.max(bestTile, biggest)
+    saveLocal({ grid: g, score: s, moves: m, best: curBest, bestTile: curBestTile })
   }, [best, bestTile])
 
   const startNew = useCallback(() => {
@@ -121,6 +123,12 @@ export default function games_2048() {
 
   useEffect(() => { resizeBoard() }, [])
 
+  useEffect(() => {
+    const h = () => resizeBoard()
+    window.addEventListener('resize', h)
+    return () => window.removeEventListener('resize', h)
+  }, [])
+
   const resizeBoard = () => {
     if (boardRef.current) {
       const w = Math.min(400, boardRef.current.parentElement.clientWidth - 32)
@@ -139,7 +147,7 @@ export default function games_2048() {
     }
     window.addEventListener('keydown', handler)
     return () => window.removeEventListener('keydown', handler)
-  })
+  }, [playing, gameOver])
 
   const doMove = useCallback((dir) => {
     const s = stateRef.current
@@ -176,9 +184,11 @@ export default function games_2048() {
   const handleTouchStart = (e) => {
     const t = e.touches[0]
     touchStart.current = { x: t.clientX, y: t.clientY }
+    e.currentTarget.style.touchAction = 'none'
   }
   const handleTouchEnd = (e) => {
     if (!playing || gameOver) return
+    e.preventDefault()
     const t = e.changedTouches[0]
     const dx = t.clientX - touchStart.current.x
     const dy = t.clientY - touchStart.current.y
@@ -250,7 +260,7 @@ export default function games_2048() {
 
             {/* Board */}
             <div ref={resultRef} className="glass p-3">
-              <div className="relative mx-auto" style={{ width: boardSize, height: boardSize, background: '#0b1628', borderRadius: 12, padding: gap }}
+              <div className="relative mx-auto" style={{ width: boardSize, height: boardSize, background: '#0b1628', borderRadius: 12, padding: gap, touchAction: 'none' }}
                 onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
                 {/* Background cells */}
                 {[0,1,2,3].map(r => [0,1,2,3].map(c => (

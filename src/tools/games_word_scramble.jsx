@@ -232,7 +232,7 @@ export default function games_word_scramble() {
         </div>
 
         {/* Scrambled word */}
-        <div className="text-center text-4xl font-bold tracking-[0.3em] text-white py-4">
+        <div className="text-center text-3xl sm:text-4xl font-bold tracking-[0.2em] sm:tracking-[0.3em] text-white py-4 overflow-hidden px-2">
           {scrambledWord.toUpperCase()}
         </div>
 

@@ -215,10 +215,10 @@ export default function games_color_rush() {
 
             {/* Grid */}
             <div className="flex justify-center">
-              <div className="grid gap-2" style={{ gridTemplateColumns: `repeat(${gridSize}, 1fr)`, width: `min(100vw - 4rem, 400px)` }}>
+              <div className="grid gap-2" style={{ gridTemplateColumns: `repeat(${gridSize}, 1fr)`, width: `min(calc(100vw - 3rem), 380px)` }}>
                 {grid.map((row, r) => row.map((cell, c) => (
                   <button key={`${r}-${c}`} onClick={() => handleTap(r, c)}
-                    className="rounded-xl transition-all active:scale-95 aspect-square"
+                    className="rounded-xl transition-all active:scale-95 aspect-square min-h-[44px]"
                     style={{
                       background: cell.color,
                       boxShadow: flashCorrect?.r === r && flashCorrect?.c === c ? '0 0 20px #22c55e' :

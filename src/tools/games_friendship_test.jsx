@@ -136,8 +136,15 @@ export default function games_friendship_test() {
 
   const copyResult = () => {
     const msg = `Our BFF score on UpTools was ${score}% 👫\nPlay it here: ${window.location.origin}/games/friendship-test/`
-    navigator.clipboard?.writeText(msg)
-    setCopied(true); setTimeout(() => setCopied(false), 1500)
+    if (navigator.share) {
+      navigator.share({ title: 'Friendship Test Result', text: msg }).catch(() => {})
+    } else {
+      navigator.clipboard?.writeText(msg).then(() => {
+        setCopied(true); setTimeout(() => setCopied(false), 1500)
+      }).catch(() => {
+        setCopied(true); setTimeout(() => setCopied(false), 1500)
+      })
+    }
   }
 
   const shareWA = () => {
@@ -178,7 +185,7 @@ export default function games_friendship_test() {
             {/* Stats */}
             <div className="grid grid-cols-4 gap-3">
               <div className="text-center glass p-4 rounded-xl">
-                <div className="text-2xl font-extrabold text-white">{best ? `${best.score.toFixed(1)}%` : '--%'}</div>
+                <div className="text-2xl font-extrabold text-white">{best ? `${best.score}%` : '--%'}</div>
                 <div className="text-xs text-slate-500">Best Score</div>
               </div>
               <div className="text-center glass p-4 rounded-xl">

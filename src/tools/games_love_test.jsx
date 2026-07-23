@@ -62,8 +62,8 @@ function playTone(freq, dur, type = 'triangle', vol = 0.06) {
     const ctx = ensureAudio()
     const osc = ctx.createOscillator(); const gain = ctx.createGain()
     osc.type = type; osc.frequency.value = freq
-    g.gain.setValueAtTime(vol, ctx.currentTime)
-    g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + dur)
+    gain.gain.setValueAtTime(vol, ctx.currentTime)
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + dur)
     osc.connect(gain); gain.connect(ctx.destination)
     osc.start(); osc.stop(ctx.currentTime + dur)
   } catch {}
@@ -145,8 +145,15 @@ export default function games_love_test() {
 
   const copyResult = () => {
     const msg = `Our love compatibility score on UpTools was ${score}% ❤️\nPlay it here: ${window.location.origin}/games/love-test/`
-    navigator.clipboard?.writeText(msg)
-    setCopied(true); setTimeout(() => setCopied(false), 1500)
+    if (navigator.share) {
+      navigator.share({ title: 'Love Test Result', text: msg }).catch(() => {})
+    } else {
+      navigator.clipboard?.writeText(msg).then(() => {
+        setCopied(true); setTimeout(() => setCopied(false), 1500)
+      }).catch(() => {
+        setCopied(true); setTimeout(() => setCopied(false), 1500)
+      })
+    }
   }
 
   const shareWA = () => {
@@ -185,7 +192,7 @@ export default function games_love_test() {
           <>
             <div className="grid grid-cols-4 gap-3">
               <div className="text-center glass p-4 rounded-xl">
-                <div className="text-2xl font-extrabold text-pink-400">{best ? `${best.score.toFixed(1)}%` : '--%'}</div>
+                <div className="text-2xl font-extrabold text-pink-400">{best ? `${best.score}%` : '--%'}</div>
                 <div className="text-xs text-slate-500">Best Score</div>
               </div>
               <div className="text-center glass p-4 rounded-xl">

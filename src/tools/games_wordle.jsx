@@ -278,6 +278,7 @@ export default function games_wordle() {
   const toastTimer = useRef(null)
 
   useEffect(() => { try { localStorage.setItem(LS.STATS, JSON.stringify(stats)) } catch {} }, [stats])
+  useEffect(() => { return () => clearTimeout(toastTimer.current) }, [])
 
   const showToast = useCallback((msg) => {
     setToast(msg)

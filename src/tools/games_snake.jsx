@@ -22,8 +22,8 @@ export default function games_snake() {
   const canvasRef = useRef(null)
   const [playing, setPlaying] = useState(false)
   const [score, setScore] = useState(0)
-  const [best, setBest] = useState(() => Number(localStorage.getItem(LS.BEST)||0))
-  const [lastScore, setLastScore] = useState(() => Number(localStorage.getItem(LS.LAST)||0))
+  const [best, setBest] = useState(()=>{try{return Number(localStorage.getItem(LS.BEST)||0)}catch{return 0}})
+  const [lastScore, setLastScore] = useState(()=>{try{return Number(localStorage.getItem(LS.LAST)||0)}catch{return 0}})
   const [gameOver, setGameOver] = useState(false)
   const [speed, setSpeed] = useState(140)
 
@@ -38,6 +38,9 @@ export default function games_snake() {
     animId: null,
     dpr: 1,
     touchStart: null,
+    playing: false,
+    gameOver: false,
+    speed: 140,
   })
 
   const placeFood = useCallback(() => {
@@ -67,6 +70,7 @@ export default function games_snake() {
     s.snake = [{x:10,y:10},{x:9,y:10},{x:8,y:10}]
     s.dir = DIR.RIGHT; s.nextDir = DIR.RIGHT
     s.score = 0; s.lastTick = 0
+    s.playing = true; s.gameOver = false; s.speed = 140
     placeFood()
     setScore(0); setGameOver(false); setPlaying(true); setSpeed(140)
     fitCanvas()
@@ -78,16 +82,16 @@ export default function games_snake() {
     if (s.animId) cancelAnimationFrame(s.animId)
 
     const loop = (ts) => {
-      if (!playing && s.score === 0) { s.animId = requestAnimationFrame(loop); return }
+      if (!s.playing && s.score === 0) { s.animId = requestAnimationFrame(loop); return }
       const dt = ts - s.lastTick
-      if (dt < speed) {
+      if (dt < s.speed) {
         draw()
         s.animId = requestAnimationFrame(loop)
         return
       }
       s.lastTick = ts
 
-      if (!gameOver) {
+      if (!s.gameOver) {
         s.dir = s.nextDir
         const head = { x: s.snake[0].x + s.dir.x, y: s.snake[0].y + s.dir.y }
 
@@ -107,6 +111,7 @@ export default function games_snake() {
           playEat()
           // Speed up
           const newSpd = Math.max(50, 140 - s.score * 3)
+          s.speed = newSpd
           setSpeed(newSpd)
           placeFood()
         } else {
@@ -118,12 +123,13 @@ export default function games_snake() {
       s.animId = requestAnimationFrame(loop)
     }
     s.animId = requestAnimationFrame(loop)
-  }, [playing, gameOver, speed, placeFood])
+  }, [placeFood])
 
   const die = useCallback(() => {
+    const s = gRef.current
+    s.gameOver = true
     setGameOver(true)
     playDie()
-    const s = gRef.current
     const newBest = Math.max(best, s.score)
     setBest(newBest)
     setLastScore(s.score)
@@ -179,7 +185,7 @@ export default function games_snake() {
     ctx.shadowBlur = 0
 
     // Game over overlay
-    if (gameOver) {
+    if (s.gameOver) {
       ctx.fillStyle = 'rgba(5,13,26,0.85)'
       ctx.fillRect(0, 0, W, H)
       ctx.fillStyle = '#fff'
@@ -193,17 +199,17 @@ export default function games_snake() {
       ctx.fillStyle = '#64748b'
       ctx.fillText('Tap to restart', W/2, H/2 + 40)
     }
-  }, [gameOver, best])
+  }, [best])
 
   // Keyboard
   useEffect(() => {
     const handler = (e) => {
       const s = gRef.current
-      if (gameOver) {
+      if (s.gameOver) {
         if (e.key === ' ' || e.key === 'Enter') startGame()
         return
       }
-      if (!playing) return
+      if (!s.playing) return
       const map = { ArrowUp:DIR.UP, ArrowDown:DIR.DOWN, ArrowLeft:DIR.LEFT, ArrowRight:DIR.RIGHT,
                      w:DIR.UP, s:DIR.DOWN, a:DIR.LEFT, d:DIR.RIGHT,
                      W:DIR.UP, S:DIR.DOWN, A:DIR.LEFT, D:DIR.RIGHT }
@@ -219,7 +225,7 @@ export default function games_snake() {
     }
     window.addEventListener('keydown', handler)
     return () => window.removeEventListener('keydown', handler)
-  }, [playing, gameOver, startGame])
+  }, [startGame])
 
   // Touch / pointer
   const handlePointerDown = (e) => {
@@ -227,7 +233,7 @@ export default function games_snake() {
   }
   const handlePointerUp = (e) => {
     const s = gRef.current
-    if (gameOver) { startGame(); return }
+    if (s.gameOver) { startGame(); return }
     if (!s.touchStart) return
     const dx = e.clientX - s.touchStart.x
     const dy = e.clientY - s.touchStart.y

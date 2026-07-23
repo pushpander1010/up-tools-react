@@ -4,6 +4,9 @@ import useJumpToResult from '../hooks/useJumpToResult'
 
 const LS = { WINS: 'ut_sol_wins', BEST: 'ut_sol_best', GAMES: 'ut_sol_games' }
 
+function safeGetItem(key, fallback) { try { return localStorage.getItem(key) ?? fallback } catch { return fallback } }
+function safeSetItem(key, val) { try { localStorage.setItem(key, val) } catch {} }
+
 let audioCtx = null
 function ensureAudio() { if (!audioCtx) audioCtx = new (window.AudioContext||window.webkitAudioContext)(); if (audioCtx.state==='suspended') audioCtx.resume(); return audioCtx }
 function playTone(freq,dur,type='sine',vol=0.08) {
@@ -85,6 +88,11 @@ export default function games_solitaire() {
   const [autoComplete, setAutoComplete] = useState(false)
   const timerRef = useRef(null)
   const boardRef = useRef(null)
+  const winsRef = useRef(0)
+  const bestMovesRef = useRef(Infinity)
+
+  useEffect(() => { winsRef.current = wins }, [wins])
+  useEffect(() => { bestMovesRef.current = bestMoves }, [bestMoves])
 
   const saveState = useCallback((state) => {
     setGameState(state)
@@ -204,8 +212,8 @@ export default function games_solitaire() {
         setWon(true)
         setPlaying(false)
         setMoves(m => {
-          const newWins = wins + 1
-          const newBest = Math.min(bestMoves, m + 1)
+          const newWins = winsRef.current + 1
+          const newBest = Math.min(bestMovesRef.current, m + 1)
           setWins(newWins)
           setBestMoves(newBest)
           try {
@@ -221,7 +229,7 @@ export default function games_solitaire() {
     }
 
     return moved
-  }, [gameState, pushUndo, saveState, wins, bestMoves])
+  }, [gameState, pushUndo, saveState])
 
   const handleDoubleClick = useCallback((fromType, fromIdx, cardIdx) => {
     if (!gameState) return
@@ -572,7 +580,7 @@ export default function games_solitaire() {
 
         {/* Game Board */}
         <div ref={resultRef} className="relative overflow-x-auto" style={{minHeight: 500}}>
-          <div ref={boardRef} className="relative" style={{width: 420, minHeight: 500, margin: '0 auto'}}>
+          <div ref={boardRef} className="relative" style={{width: 'min(420px, 100%)', minHeight: 500, margin: '0 auto'}}>
             {/* Top row: Stock, Waste, Foundation */}
             <div className="absolute" style={{top: 0, left: 0}}>
               {/* Stock */}

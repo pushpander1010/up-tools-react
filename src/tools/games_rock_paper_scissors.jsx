@@ -69,6 +69,8 @@ export default function games_rock_paper_scissors() {
   const [showHistory, setShowHistory] = useState(false)
   const timerRef = useRef(null)
 
+  useEffect(() => { return () => clearInterval(timerRef.current) }, [])
+
   useEffect(() => { try { localStorage.setItem(LS.STATS, JSON.stringify(stats)) } catch {} }, [stats])
   useEffect(() => { try { localStorage.setItem(LS.HISTORY, JSON.stringify(history.slice(0, 20))) } catch {} }, [history])
 
@@ -81,10 +83,11 @@ export default function games_rock_paper_scissors() {
 
     // Animate computer selection
     let animCount = 0
-    const animInterval = setInterval(() => {
+    clearInterval(timerRef.current)
+    timerRef.current = setInterval(() => {
       animCount++
       if (animCount >= 6) {
-        clearInterval(animInterval)
+        clearInterval(timerRef.current)
         const computerChoice = getComputerChoice(roundHistory.map(r => r.player))
         const result = getWinner(choice, computerChoice)
         setRoundResult({ player: choice, computer: computerChoice, winner: result })

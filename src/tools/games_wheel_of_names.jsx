@@ -244,7 +244,11 @@ export default function games_wheel_of_names() {
   }, [isSpinning, names, spinDuration, soundEnabled, drawWheel, startConfetti])
 
   useEffect(() => {
-    return () => { if (animRef.current) cancelAnimationFrame(animRef.current); stopConfetti() }
+    return () => {
+      if (animRef.current) cancelAnimationFrame(animRef.current)
+      confettiActiveRef.current = false
+      stopConfetti()
+    }
   }, [stopConfetti])
 
   const handleRemoveWinner = () => {
@@ -378,7 +382,7 @@ export default function games_wheel_of_names() {
         )}
 
         {/* Confetti canvas */}
-        <canvas ref={confettiRef} className="fixed inset-0 pointer-events-none z-[9999]"/>
+        <canvas ref={confettiRef} className="fixed inset-0 pointer-events-none z-[9999]" style={{ position: 'fixed' }}/>
       </div>
     </ToolLayout>
   )

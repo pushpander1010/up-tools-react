@@ -118,10 +118,8 @@ export default function games_number_guessing() {
 
   const rangeMin = difficulty !== null ? DIFFICULTIES[difficulty].min : 0
   const rangeMax = difficulty !== null ? DIFFICULTIES[difficulty].max : 100
-  const lowBound = guesses.length ? Math.max(rangeMin, Math.min(...guesses.filter(g => g > target).length ? [...guesses, rangeMax].filter(g => g > target) : [rangeMax])) : rangeMin
-  const highBound = guesses.length ? Math.min(rangeMax, Math.max(...guesses.filter(g => g < target).length ? [...guesses, rangeMin].filter(g => g < target) : [rangeMin])) : rangeMax
 
-  // Calculate actual narrowing range
+  // Calculate narrowing range based on guesses
   let currentLow = rangeMin, currentHigh = rangeMax
   for (const g of guesses) {
     if (g < target) currentLow = Math.max(currentLow, g + 1)

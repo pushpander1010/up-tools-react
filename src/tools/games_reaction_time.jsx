@@ -166,13 +166,13 @@ export default function games_reaction_time() {
         {/* Game area */}
         <div ref={resultRef}
           className="relative rounded-2xl overflow-hidden border border-white/[0.08] cursor-pointer select-none transition-colors duration-200"
-          style={{ background: bg, minHeight: '320px' }}
+          style={{ background: bg, minHeight: '280px' }}
           onClick={phase === 'idle' ? startRound :
                   phase === 'waiting' || phase === 'ready' ? handleClick :
                   phase === 'result' && currentRound + 1 < ROUNDS ? continueRounds :
                   phase === 'done' ? resetGame : undefined}
         >
-          <div className="flex flex-col items-center justify-center h-80 sm:h-96 p-6">
+          <div className="flex flex-col items-center justify-center min-h-[280px] sm:min-h-[380px] p-6">
             {phase === 'idle' && (
               <>
                 <div className="text-5xl mb-4">⚡</div>
@@ -246,7 +246,7 @@ export default function games_reaction_time() {
                 </div>
                 <div className="flex gap-2 justify-center">
                   <button onClick={(e) => { e.stopPropagation(); shareResults() }}
-                    className="px-4 py-2 rounded-xl text-xs font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">
+                    className="px-4 py-2.5 min-h-[44px] rounded-xl text-xs font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">
                     📋 Copy Results
                   </button>
                   <button onClick={(e) => { e.stopPropagation(); resetGame() }}
@@ -265,7 +265,7 @@ export default function games_reaction_time() {
             <h3 className="text-sm font-bold text-slate-400">Recent Attempts</h3>
             <div className="space-y-2 max-h-48 overflow-y-auto">
               {history.slice(0, 10).map((h, i) => (
-                <div key={i} className="flex items-center justify-between p-3 glass text-xs">
+                <div key={i} className="flex flex-wrap items-center justify-between p-3 glass text-xs gap-2">
                   <div className="text-xs text-slate-500">{h.date}</div>
                   <div className="flex gap-2">
                     {h.results.map((r, j) => (

@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from 'react'
+import { useState, useCallback, useEffect, useRef } from 'react'
 import ToolLayout from '../components/ToolLayout'
 import useJumpToResult from '../hooks/useJumpToResult'
 
@@ -136,12 +136,25 @@ export default function games_dice_roller() {
 
   const inputClass = "w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
 
+  // Keyboard: Space to roll
+  useEffect(() => {
+    const handleKey = (e) => {
+      if (e.code === 'Space' && !rolling && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+        e.preventDefault()
+        rollDice()
+        jumpTo()
+      }
+    }
+    window.addEventListener('keydown', handleKey)
+    return () => window.removeEventListener('keydown', handleKey)
+  }, [rolling, rollDice, jumpTo])
+
   return (
     <ToolLayout
       title="Dice Roller"
       desc="Roll D4–D20 virtual dice with sound effects, history, and statistics."
       icon="🎲" iconBg="rgba(99,102,241,0.08)"
-      category="fun" slug="games/dice-roller"
+      category="fun" slug="games-dice-roller"
       faq={[
         { q: "What dice types are supported?", a: "D4, D6, D8, D10, D12, D20, and any custom number of sides from 2 to 100." },
         { q: "How to roll multiple dice?", a: "Enter a number in the Count field (1–20) and click Roll. All dice roll simultaneously." },

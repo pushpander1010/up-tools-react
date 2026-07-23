@@ -214,7 +214,7 @@ export default function games_memory_match() {
         </div>
 
         {/* Card grid */}
-        <div className="mx-auto" style={{ display: 'grid', gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`, gap: '8px', maxWidth: cols * 80 + 'px' }}>
+        <div className="mx-auto w-full" style={{ display: 'grid', gridTemplateColumns: `repeat(${cols}, minmax(44px, 1fr))`, gap: '6px', maxWidth: Math.min(cols * 80, 480) + 'px' }}>
           {cards.map((card) => (
             <div key={card.id}
               onClick={() => handleCardClick(card.id)}

@@ -3,7 +3,6 @@ import ToolLayout from '../components/ToolLayout'
 import useJumpToResult from '../hooks/useJumpToResult'
 
 const LS = { STATE:'ut_breakout_state_v1', BEST:'ut_breakout_best_score', BESTLV:'ut_breakout_best_level', LAST:'ut_breakout_last_score', LASTLV:'ut_breakout_last_level', LASTAT:'ut_breakout_last_played', OPTS:'ut_breakout_opts' }
-
 let audioCtx = null
 function ensureAudio() { if (!audioCtx) audioCtx = new (window.AudioContext||window.webkitAudioContext)(); if (audioCtx.state==='suspended') audioCtx.resume(); return audioCtx }
 function playSound(name) {
@@ -47,7 +46,13 @@ export default function games_breakout() {
     paddle: null, ball: null, bricks: [],
     keys: { left: false, right: false },
     fireball: 0, expandTimer: 0, shield: 0,
-    lastTime: 0, animId: null
+    lastTime: 0, animId: null,
+    // Refs to avoid stale closures
+    playing: false,
+    gameState: 'ready',
+    difficulty: 'normal',
+    level: 1,
+    overlayMsg: { title: 'Ready', desc: 'Tap to launch' },
   })
 
   const fitCanvas = useCallback(() => {
@@ -94,16 +99,15 @@ export default function games_breakout() {
 
   const resetEntities = useCallback((lvl) => {
     const s = gameRef.current
-    const base = { easy: 250, normal: 300, hard: 360 }[difficulty] || 300
+    const base = { easy: 250, normal: 300, hard: 360 }[s.difficulty] || 300
     s.paddle = { x: s.W / 2, y: s.H - s.H * 0.08, w: Math.max(60, s.W * 0.14), h: Math.max(12, s.H * 0.018) }
     s.ball = { x: s.paddle.x, y: s.paddle.y - 14, r: Math.max(6, s.H * 0.012), vx: (Math.random()<0.5?-1:1)*base*0.58, vy: -base, launched: false }
     s.fireball = 0; s.expandTimer = 0; s.shield = 0
-    spawnBricks(lvl || level)
-  }, [difficulty, level, spawnBricks])
+    spawnBricks(lvl || s.level)
+  }, [spawnBricks])
 
   const refreshHUD = useCallback((sc, lv, li, bst) => {
     setActiveBuffs([])
-    // Update HUD via state is handled by parent
   }, [])
 
   const startLoop = useCallback(() => {
@@ -113,11 +117,11 @@ export default function games_breakout() {
     const ctx = canvas.getContext('2d')
 
     const loop = (timestamp) => {
-      if (!playing) return
+      if (!s.playing) return
       const dt = Math.min((timestamp - (s.lastTime || timestamp)) / 1000, 0.05)
       s.lastTime = timestamp
 
-      if (!s.paused && gameState === 'running') {
+      if (!s.paused && s.gameState === 'running') {
         // Move paddle
         const speed = Math.max(220, s.W * 0.45) * dt
         if (s.keys.left && s.paddle.x - s.paddle.w/2 > 0) s.paddle.x -= speed
@@ -139,7 +143,7 @@ export default function games_breakout() {
               s.ball.x >= s.paddle.x - s.paddle.w/2 && s.ball.x <= s.paddle.x + s.paddle.w/2) {
             s.ball.vy = -Math.abs(s.ball.vy)
             s.ball.vx += (s.ball.x - s.paddle.x) * 0.15
-            const base = { easy: 250, normal: 300, hard: 360 }[difficulty] || 300
+            const base = { easy: 250, normal: 300, hard: 360 }[s.difficulty] || 300
             const maxSpd = base * 1.5
             s.ball.vx = Math.max(-maxSpd, Math.min(maxSpd, s.ball.vx))
             playSound('paddleHit')
@@ -161,8 +165,10 @@ export default function games_breakout() {
 
           // Check level complete
           if (s.bricks.every(b => !b.alive)) {
-            setLevel(prev => prev + 1)
-            resetEntities(level + 1)
+            const newLevel = s.level + 1
+            s.level = newLevel
+            setLevel(newLevel)
+            resetEntities(newLevel)
             playSound('levelUp')
           }
 
@@ -171,12 +177,17 @@ export default function games_breakout() {
             if (s.shield > 0) { s.shield--; s.ball.vy = -Math.abs(s.ball.vy); s.ball.y = s.H - s.ball.r - 2 }
             else {
               setLives(prev => {
-                if (prev <= 1) { setGameState('gameOver'); playSound('gameOver'); return 0 }
+                if (prev <= 1) {
+                  s.gameState = 'gameOver'
+                  setGameState('gameOver')
+                  playSound('gameOver')
+                  return 0
+                }
                 return prev - 1
               })
               s.ball.launched = false
               s.ball.x = s.paddle.x; s.ball.y = s.paddle.y - s.paddle.h/2 - s.ball.r - 2
-              s.ball.vx = 0; s.ball.vy = -({ easy: 250, normal: 300, hard: 360 }[difficulty] || 300)
+              s.ball.vx = 0; s.ball.vy = -({ easy: 250, normal: 300, hard: 360 }[s.difficulty] || 300)
             }
           }
         } else {
@@ -200,18 +211,18 @@ export default function games_breakout() {
         ctx.beginPath(); ctx.roundRect(b.x, b.y, b.w, b.h, 3); ctx.fill()
       }
       // Overlay text
-      if (gameState !== 'running') {
+      if (s.gameState !== 'running') {
         ctx.fillStyle = 'rgba(5,13,26,.7)'; ctx.fillRect(0, 0, s.W, s.H)
         ctx.fillStyle = '#e6edf3'; ctx.font = 'bold 24px system-ui'; ctx.textAlign = 'center'
-        ctx.fillText(gameState === 'gameOver' ? 'Game Over' : overlayMsg.title, s.W/2, s.H/2 - 10)
+        ctx.fillText(s.gameState === 'gameOver' ? 'Game Over' : s.overlayMsg.title, s.W/2, s.H/2 - 10)
         ctx.font = '14px system-ui'; ctx.fillStyle = '#9aa4b2'
-        ctx.fillText(overlayMsg.desc, s.W/2, s.H/2 + 20)
+        ctx.fillText(s.overlayMsg.desc, s.W/2, s.H/2 + 20)
       }
 
       s.animId = requestAnimationFrame(loop)
     }
     s.animId = requestAnimationFrame(loop)
-  }, [playing, gameState, difficulty, level, overlayMsg, resetEntities])
+  }, [resetEntities])
 
   useEffect(() => {
     resizeBoard()
@@ -223,6 +234,12 @@ export default function games_breakout() {
   const resizeBoard = () => { fitCanvas() }
 
   const startGame = useCallback(() => {
+    const s = gameRef.current
+    s.playing = true
+    s.gameState = 'ready'
+    s.difficulty = gameRef.current.difficulty // keep current
+    s.level = 1
+    s.overlayMsg = { title: 'Ready', desc: 'Tap to launch' }
     setScore(0); setLevel(1); setLives(3); setGameState('ready')
     resetEntities(1)
     setShowOverlay(true); setOverlayMsg({ title: 'Ready', desc: 'Tap to launch' })
@@ -230,27 +247,30 @@ export default function games_breakout() {
     setTimeout(() => { fitCanvas(); startLoop() }, 50)
   }, [resetEntities, fitCanvas, startLoop])
 
-  const handleCanvasClick = () => {
+  const handleCanvasClick = useCallback(() => {
     const s = gameRef.current
-    if (gameState === 'ready' || gameState === 'running') {
+    if (s.gameState === 'ready' || s.gameState === 'running') {
       if (!s.ball.launched) {
         s.ball.launched = true
-        const base = { easy: 250, normal: 300, hard: 360 }[difficulty] || 300
+        const base = { easy: 250, normal: 300, hard: 360 }[s.difficulty] || 300
         s.ball.vx = (Math.random()<0.5?-1:1)*base*0.58; s.ball.vy = -base
+        s.gameState = 'running'
         setGameState('running'); setShowOverlay(false)
         playSound('launchBall')
       } else {
-        setGameState(g => g === 'running' ? 'paused' : 'running')
+        const next = s.gameState === 'running' ? 'paused' : 'running'
+        s.gameState = next
+        setGameState(next)
       }
     }
-  }
+  }, [])
 
   const handleKeyDown = useCallback((e) => {
     const s = gameRef.current
     if (e.key === 'ArrowLeft' || e.key === 'a') s.keys.left = true
     if (e.key === 'ArrowRight' || e.key === 'd') s.keys.right = true
     if (e.key === ' ' || e.key === 'p') { e.preventDefault(); handleCanvasClick() }
-  }, [gameState])
+  }, [handleCanvasClick])
 
   const handleKeyUp = useCallback((e) => {
     const s = gameRef.current
@@ -263,6 +283,9 @@ export default function games_breakout() {
     window.addEventListener('keyup', handleKeyUp)
     return () => { window.removeEventListener('keydown', handleKeyDown); window.removeEventListener('keyup', handleKeyUp) }
   }, [handleKeyDown, handleKeyUp])
+
+  // Sync difficulty ref when user changes it
+  useEffect(() => { gameRef.current.difficulty = difficulty }, [difficulty])
 
   return (
     <ToolLayout
@@ -326,9 +349,9 @@ export default function games_breakout() {
                 <span className="px-3 py-1 glass rounded-lg text-xs font-bold text-slate-400">Best: {best}</span>
               </div>
               <div className="flex gap-2">
-                <button onClick={()=>{gameRef.current.ball.launched=false;setGameState('ready');setShowOverlay(true);setOverlayMsg({title:'Ready',desc:'Tap to launch'})}}
+                <button onClick={()=>{gameRef.current.ball.launched=false;gameRef.current.gameState='ready';gameRef.current.overlayMsg={title:'Ready',desc:'Tap to launch'};setGameState('ready');setShowOverlay(true);setOverlayMsg({title:'Ready',desc:'Tap to launch'})}}
                   className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">⟲</button>
-                <button onClick={()=>{setPlaying(false);if(gameRef.current.animId)cancelAnimationFrame(gameRef.current.animId)}}
+                <button onClick={()=>{gameRef.current.playing=false;setPlaying(false);if(gameRef.current.animId)cancelAnimationFrame(gameRef.current.animId)}}
                   className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">⟵</button>
               </div>
             </div>

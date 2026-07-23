@@ -246,7 +246,7 @@ export default function games_simon_says() {
         )}
 
         {/* Simon buttons */}
-        <div className="relative mx-auto" style={{ width: '280px', height: '280px' }}>
+        <div className="relative mx-auto w-full max-w-[280px]" style={{ aspectRatio: '1' }}>
           {/* Center circle */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-slate-800 border-4 border-slate-700 flex items-center justify-center z-10">
             <span className="text-xl font-bold text-white">{sequence.length || '♪'}</span>

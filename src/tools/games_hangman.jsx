@@ -150,6 +150,7 @@ export default function games_hangman() {
   const [showOverlay, setShowOverlay] = useState(false)
   const [started, setStarted] = useState(false)
   const inputRef = useRef(null)
+  const wrongCountRef = useRef(0)
 
   const initGame = useCallback((cat) => {
     const entry = pickWord(cat || category)
@@ -165,6 +166,8 @@ export default function games_hangman() {
 
   useEffect(() => { initGame(category) }, [category, initGame])
 
+  useEffect(() => { wrongCountRef.current = wrongCount }, [wrongCount])
+
   useEffect(() => {
     const handler = (e) => {
       if (gameOver || showOverlay) return
@@ -175,7 +178,7 @@ export default function games_hangman() {
     }
     window.addEventListener('keydown', handler)
     return () => window.removeEventListener('keydown', handler)
-  })
+  }, [gameOver, showOverlay, guessLetter])
 
   const guessLetter = useCallback((letter) => {
     if (gameOver || guessed.has(letter)) return
@@ -195,12 +198,13 @@ export default function games_hangman() {
     }
 
     const wonNow = word.split('').every(c => newGuessed.has(c))
+    const newWrongCount = wrongCountRef.current + (word.includes(letter) ? 0 : 1)
     if (wonNow) {
       setGameOver(true)
       setWon(true)
       setShowOverlay(true)
       playWin()
-    } else if (wrongCount + (word.includes(letter) ? 0 : 1) >= PARTS.length) {
+    } else if (newWrongCount >= PARTS.length) {
       setGameOver(true)
       setWon(false)
       setShowOverlay(true)

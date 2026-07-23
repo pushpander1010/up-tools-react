@@ -22,6 +22,20 @@ function getMedal(score) {
   return null
 }
 
+function lerpColor(a, b, t) {
+  const ah = parseInt(a.slice(1), 16), bh = parseInt(b.slice(1), 16)
+  const ar = (ah>>16)&255, ag = (ah>>8)&255, ab = ah&255
+  const br = (bh>>16)&255, bg = (bh>>8)&255, bb = bh&255
+  const rr = Math.round(ar+(br-ar)*t), rg = Math.round(ag+(bg-ag)*t), rb = Math.round(ab+(bb-ab)*t)
+  return `#${((1<<24)+(rr<<16)+(rg<<8)+rb).toString(16).slice(1)}`
+}
+
+const GRAVITY = 0.45
+const FLAP = -7.5
+const PIPE_W = 52
+const PIPE_GAP = 140
+const PIPE_SPEED = 2.2
+
 export default function games_flappy_bird() {
   const { ref: resultRef, jumpTo } = useJumpToResult()
   const canvasRef = useRef(null)
@@ -44,13 +58,11 @@ export default function games_flappy_bird() {
     groundOffset: 0,
     dayPhase: 0,
     frameCount: 0,
+    // refs to avoid stale closures
+    gameState: 'idle',
+    best: 0,
+    playing: false,
   })
-
-  const GRAVITY = 0.45
-  const FLAP = -7.5
-  const PIPE_W = 52
-  const PIPE_GAP = 140
-  const PIPE_SPEED = 2.2
 
   const fitCanvas = useCallback(() => {
     const canvas = canvasRef.current
@@ -82,104 +94,14 @@ export default function games_flappy_bird() {
     setScore(0); setMedal(null)
   }, [])
 
-  const startGame = useCallback(() => {
-    resetGame()
-    setGameState('running'); setPlaying(true)
-    fitCanvas()
-    setTimeout(() => { startLoop() }, 30)
-  }, [resetGame, fitCanvas])
-
-  const flap = useCallback(() => {
-    const s = gRef.current
-    if (gameState === 'idle') { startGame(); return }
-    if (gameState === 'dead') return
-    s.bird.vy = FLAP
-    playFlap()
-  }, [gameState, startGame])
-
-  const startLoop = useCallback(() => {
-    const s = gRef.current
-    if (s.animId) cancelAnimationFrame(s.animId)
-
-    const loop = (ts) => {
-      const dt = Math.min((ts - (s.lastTime||ts))/16.67, 3)
-      s.lastTime = ts
-      s.frameCount++
-
-      if (gameState === 'running') {
-        // Bird physics
-        s.bird.vy += GRAVITY * dt
-        s.bird.y += s.bird.vy * dt
-        s.bird.rot = Math.min(90, Math.max(-30, s.bird.vy * 4))
-
-        // Ground scroll
-        s.groundOffset = (s.groundOffset + PIPE_SPEED * dt) % 40
-
-        // Day/night cycle
-        s.dayPhase = (s.dayPhase + 0.002 * dt) % (Math.PI * 2)
-
-        // Pipes
-        if (s.pipes.length === 0 || s.pipes[s.pipes.length-1].x < s.W - 200) {
-          const minY = 80
-          const maxY = s.H - PIPE_GAP - 80
-          const topH = minY + Math.random() * (maxY - minY)
-          s.pipes.push({ x: s.W + 10, topH: topH, scored: false })
-        }
-
-        for (const p of s.pipes) {
-          p.x -= PIPE_SPEED * dt
-          // Score
-          if (!p.scored && p.x + PIPE_W < s.bird.x) {
-            p.scored = true
-            s.score++
-            setScore(s.score)
-            playScore()
-          }
-        }
-        s.pipes = s.pipes.filter(p => p.x > -PIPE_W - 10)
-
-        // Collision detection
-        const bx = s.bird.x, by = s.bird.y, br = 12
-        // Ground / ceiling
-        if (by + br > s.H - 40 || by - br < 0) {
-          die(); draw(); s.animId = requestAnimationFrame(loop); return
-        }
-        // Pipes
-        for (const p of s.pipes) {
-          if (bx + br > p.x && bx - br < p.x + PIPE_W) {
-            if (by - br < p.topH || by + br > p.topH + PIPE_GAP) {
-              die(); draw(); s.animId = requestAnimationFrame(loop); return
-            }
-          }
-        }
-      } else if (gameState === 'idle') {
-        // Floating animation
-        s.bird.y = s.H * 0.4 + Math.sin(s.frameCount * 0.05) * 15
-        s.dayPhase = (s.dayPhase + 0.002) % (Math.PI * 2)
-      }
-
-      draw()
-      s.animId = requestAnimationFrame(loop)
-    }
-    s.animId = requestAnimationFrame(loop)
-  }, [gameState])
-
-  const die = useCallback(() => {
-    setGameState('dead'); setPlaying(false)
-    playHit()
-    const s = gRef.current
-    const newBest = Math.max(best, s.score)
-    setBest(newBest); setLastScore(s.score)
-    setMedal(getMedal(s.score))
-    try { localStorage.setItem(LS.BEST, String(newBest)); localStorage.setItem(LS.LAST, String(s.score)) } catch {}
-  }, [best])
-
   const draw = useCallback(() => {
     const canvas = canvasRef.current
     if (!canvas) return
     const s = gRef.current
     const ctx = canvas.getContext('2d')
     const W = s.W, H = s.H
+    const gs = s.gameState
+    const b = s.best
 
     // Sky gradient with day/night cycle
     const nightness = (Math.sin(s.dayPhase) + 1) / 2
@@ -262,7 +184,7 @@ export default function games_flappy_bird() {
     ctx.restore()
 
     // Score display
-    if (gameState === 'running' || gameState === 'idle') {
+    if (gs === 'running' || gs === 'idle') {
       ctx.fillStyle = '#fff'
       ctx.font = 'bold 36px system-ui'
       ctx.textAlign = 'center'
@@ -273,7 +195,7 @@ export default function games_flappy_bird() {
     }
 
     // Idle screen
-    if (gameState === 'idle') {
+    if (gs === 'idle') {
       ctx.fillStyle = '#fff'
       ctx.font = 'bold 28px system-ui'
       ctx.textAlign = 'center'
@@ -284,7 +206,7 @@ export default function games_flappy_bird() {
     }
 
     // Game over
-    if (gameState === 'dead') {
+    if (gs === 'dead') {
       ctx.fillStyle = 'rgba(5,13,26,0.75)'
       ctx.fillRect(0,0,W,H)
 
@@ -310,7 +232,7 @@ export default function games_flappy_bird() {
       ctx.font = '14px system-ui'; ctx.fillStyle = '#94a3b8'
       ctx.fillText('Best', W/2, cy+108)
       ctx.font = 'bold 20px system-ui'; ctx.fillStyle = '#fbbf24'
-      ctx.fillText(Math.max(best, s.score), W/2, cy+130)
+      ctx.fillText(Math.max(b, s.score), W/2, cy+130)
 
       // Medal
       const m = getMedal(s.score)
@@ -324,7 +246,107 @@ export default function games_flappy_bird() {
       ctx.font = '14px system-ui'; ctx.fillStyle = '#64748b'
       ctx.fillText('Tap or Space to restart', W/2, cy+cardH+25)
     }
-  }, [gameState, best])
+  }, [])
+
+  const startLoop = useCallback(() => {
+    const s = gRef.current
+    if (s.animId) cancelAnimationFrame(s.animId)
+
+    const loop = (ts) => {
+      const dt = Math.min((ts - (s.lastTime||ts))/16.67, 3)
+      s.lastTime = ts
+      s.frameCount++
+
+      if (s.gameState === 'running') {
+        // Bird physics
+        s.bird.vy += GRAVITY * dt
+        s.bird.y += s.bird.vy * dt
+        s.bird.rot = Math.min(90, Math.max(-30, s.bird.vy * 4))
+
+        // Ground scroll
+        s.groundOffset = (s.groundOffset + PIPE_SPEED * dt) % 40
+
+        // Day/night cycle
+        s.dayPhase = (s.dayPhase + 0.002 * dt) % (Math.PI * 2)
+
+        // Pipes
+        if (s.pipes.length === 0 || s.pipes[s.pipes.length-1].x < s.W - 200) {
+          const minY = 80
+          const maxY = s.H - PIPE_GAP - 80
+          const topH = minY + Math.random() * (maxY - minY)
+          s.pipes.push({ x: s.W + 10, topH: topH, scored: false })
+        }
+
+        for (const p of s.pipes) {
+          p.x -= PIPE_SPEED * dt
+          // Score
+          if (!p.scored && p.x + PIPE_W < s.bird.x) {
+            p.scored = true
+            s.score++
+            setScore(s.score)
+            playScore()
+          }
+        }
+        s.pipes = s.pipes.filter(p => p.x > -PIPE_W - 10)
+
+        // Collision detection
+        const bx = s.bird.x, by = s.bird.y, br = 12
+        // Ground / ceiling
+        if (by + br > s.H - 40 || by - br < 0) {
+          die(); draw(); s.animId = requestAnimationFrame(loop); return
+        }
+        // Pipes
+        for (const p of s.pipes) {
+          if (bx + br > p.x && bx - br < p.x + PIPE_W) {
+            if (by - br < p.topH || by + br > p.topH + PIPE_GAP) {
+              die(); draw(); s.animId = requestAnimationFrame(loop); return
+            }
+          }
+        }
+      } else if (s.gameState === 'idle') {
+        // Floating animation
+        s.bird.y = s.H * 0.4 + Math.sin(s.frameCount * 0.05) * 15
+        s.dayPhase = (s.dayPhase + 0.002) % (Math.PI * 2)
+      }
+
+      draw()
+      s.animId = requestAnimationFrame(loop)
+    }
+    s.animId = requestAnimationFrame(loop)
+  }, [die, draw])
+
+  const die = useCallback(() => {
+    const s = gRef.current
+    s.gameState = 'dead'
+    s.playing = false
+    setGameState('dead'); setPlaying(false)
+    playHit()
+    const newBest = Math.max(s.best, s.score)
+    s.best = newBest
+    setBest(newBest); setLastScore(s.score)
+    setMedal(getMedal(s.score))
+    try { localStorage.setItem(LS.BEST, String(newBest)); localStorage.setItem(LS.LAST, String(s.score)) } catch {}
+  }, [])
+
+  const flap = useCallback(() => {
+    const s = gRef.current
+    if (s.gameState === 'idle') { startGame(); return }
+    if (s.gameState === 'dead') return
+    s.bird.vy = FLAP
+    playFlap()
+  }, [startGame])
+
+  const startGame = useCallback(() => {
+    resetGame()
+    const s = gRef.current
+    s.gameState = 'running'
+    s.playing = true
+    s.best = Number(localStorage.getItem(LS.BEST)||0)
+    setGameState('running'); setPlaying(true)
+    setBest(s.best)
+    fitCanvas()
+    setTimeout(() => { startLoop() }, 30)
+  }, [resetGame, fitCanvas, startLoop])
 
   function lerpColor(a, b, t) {
     const ah = parseInt(a.slice(1), 16), bh = parseInt(b.slice(1), 16)
@@ -339,19 +361,21 @@ export default function games_flappy_bird() {
     const handler = (e) => {
       if (e.key === ' ' || e.key === 'ArrowUp' || e.key === 'w') {
         e.preventDefault()
-        if (gameState === 'dead') { startGame(); return }
+        const gs = gRef.current.gameState
+        if (gs === 'dead') { startGame(); return }
         flap()
       }
     }
     window.addEventListener('keydown', handler)
     return () => window.removeEventListener('keydown', handler)
-  }, [gameState, flap, startGame])
+  }, [startGame, flap])
 
   // Touch
-  const handlePointerDown = (e) => {
-    if (gameState === 'dead') { startGame(); return }
+  const handlePointerDown = useCallback(() => {
+    const gs = gRef.current.gameState
+    if (gs === 'dead') { startGame(); return }
     flap()
-  }
+  }, [startGame, flap])
 
   useEffect(() => { fitCanvas(); draw() }, [fitCanvas, draw])
   useEffect(() => {

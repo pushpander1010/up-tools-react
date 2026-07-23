@@ -2,6 +2,9 @@ import { useState, useCallback, useEffect, useRef } from 'react'
 import ToolLayout from '../components/ToolLayout'
 import useJumpToResult from '../hooks/useJumpToResult'
 
+// Read localStorage safely
+function safeGetItem(key, fallback) { try { return localStorage.getItem(key) ?? fallback } catch { return fallback } }
+function safeSetItem(key, val) { try { localStorage.setItem(key, val) } catch {} }
 const LS = { BEST: 'ut_pm_best', LIVES: 'ut_pm_lives', LEVEL: 'ut_pm_level' }
 
 let audioCtx = null
@@ -51,12 +54,13 @@ export default function games_pac_man() {
   const canvasRef = useRef(null)
   const [playing, setPlaying] = useState(false)
   const [score, setScore] = useState(0)
-  const [highScore, setHighScore] = useState(() => Number(localStorage.getItem(LS.BEST) || 0))
+  const [highScore, setHighScore] = useState(() => Number(safeGetItem(LS.BEST, '0')))
   const [lives, setLives] = useState(3)
   const [level, setLevel] = useState(1)
   const [gameOver, setGameOver] = useState(false)
   const [won, setWon] = useState(false)
   const [showStart, setShowStart] = useState(true)
+  const highScoreRef = useRef(highScore)
 
   const gameState = useRef({
     maze: [],
@@ -72,6 +76,9 @@ export default function games_pac_man() {
     running: false,
     ghostEatenCombo: 0,
   })
+
+  // Keep highScoreRef in sync so gameLoop never reads a stale closure
+  useEffect(() => { highScoreRef.current = highScore }, [highScore])
 
   const initMaze = useCallback(() => {
     const maze = MAZE_TEMPLATE.map(row => [...row])
@@ -128,14 +135,20 @@ export default function games_pac_man() {
     const { maze, pac, ghosts } = gs
 
     // Calculate cell size
+    const dpr = window.devicePixelRatio || 1
     const maxW = Math.min(canvas.parentElement.offsetWidth - 16, 420)
     const cellSize = Math.floor(maxW / COLS)
-    canvas.width = cellSize * COLS
-    canvas.height = cellSize * ROWS
+    const w = cellSize * COLS
+    const h = cellSize * ROWS
+    canvas.width = w * dpr
+    canvas.height = h * dpr
+    canvas.style.width = w + 'px'
+    canvas.style.height = h + 'px'
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
 
     // Background
     ctx.fillStyle = '#000000'
-    ctx.fillRect(0, 0, canvas.width, canvas.height)
+    ctx.fillRect(0, 0, w, h)
 
     // Draw maze
     for (let r = 0; r < ROWS; r++) {
@@ -309,9 +322,9 @@ export default function games_pac_man() {
             playWin()
             setWon(true)
             setGameOver(true)
-            if (gs.score > highScore) {
+            if (gs.score > highScoreRef.current) {
               setHighScore(gs.score)
-              try { localStorage.setItem(LS.BEST, String(gs.score)) } catch {}
+              safeSetItem(LS.BEST, String(gs.score))
             }
             return
           }
@@ -417,9 +430,9 @@ export default function games_pac_man() {
             if (gs.lives <= 0) {
               gs.running = false
               setGameOver(true)
-              if (gs.score > highScore) {
+              if (gs.score > highScoreRef.current) {
                 setHighScore(gs.score)
-                try { localStorage.setItem(LS.BEST, String(gs.score)) } catch {}
+                safeSetItem(LS.BEST, String(gs.score))
               }
               return
             }
@@ -437,7 +450,7 @@ export default function games_pac_man() {
 
     drawGame()
     gs.animFrame = requestAnimationFrame(gameLoop)
-  }, [canMove, drawGame, highScore])
+  }, [canMove, drawGame])
 
   // Keyboard controls
   useEffect(() => {
@@ -508,6 +521,14 @@ export default function games_pac_man() {
       if (gameState.current.animFrame) cancelAnimationFrame(gameState.current.animFrame)
     }
   }, [gameOver, playing])
+
+  // Redraw canvas on window resize
+  useEffect(() => {
+    if (!playing) return
+    const redraw = () => drawGame()
+    window.addEventListener('resize', redraw)
+    return () => window.removeEventListener('resize', redraw)
+  }, [playing, drawGame])
 
   return (
     <ToolLayout
