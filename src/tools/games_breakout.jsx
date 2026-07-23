@@ -255,9 +255,7 @@ export default function BreakoutGame() {
 
     draw()
     s.animId = requestAnimationFrame(loop)
-  }, [draw, resetLevel, sync])
-
-  function sync() {}
+  }, [draw, resetLevel])
 
   /* ── start ── */
   const startGame = useCallback(() => {
