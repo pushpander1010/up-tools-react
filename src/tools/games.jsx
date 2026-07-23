@@ -1,72 +1,180 @@
-import { useState, useMemo, useCallback } from 'react'
+import { useState, useMemo, useCallback, useEffect } from 'react'
 import ToolLayout from '../components/ToolLayout'
-import useJumpToResult from '../hooks/useJumpToResult'
+
+const GAMES = [
+  { slug: 'snake', title: 'Snake', icon: '🐍', desc: 'Eat food, grow your snake, avoid hitting yourself.', tags: ['arcade', 'classic', 'reflex'], href: '/games/snake/' },
+  { slug: 'tetris', title: 'Tetris', icon: '🧱', desc: 'Arrange falling blocks to clear lines.', tags: ['puzzle', 'classic', 'arcade', 'brain'], href: '/games/tetris/' },
+  { slug: '2048', title: '2048', icon: '🔢', desc: 'Slide and merge number tiles to reach 2048.', tags: ['puzzle', 'number', 'brain'], href: '/games/2048/' },
+  { slug: 'flappy-bird', title: 'Flappy Bird', icon: '🐦', desc: 'Navigate through pipes in this addictive arcade game.', tags: ['arcade', 'reflex', 'classic'], href: '/games/flappy-bird/' },
+  { slug: 'pac-man', title: 'Pac-Man', icon: '👾', desc: 'Eat dots and avoid ghosts in this classic arcade game.', tags: ['arcade', 'classic', 'reflex'], href: '/games/pac-man/' },
+  { slug: 'space-invaders', title: 'Space Invaders', icon: '🛸', desc: 'Blast the alien fleet and beat your high score.', tags: ['arcade', 'reflex', 'classic'], href: '/games/space-invaders/' },
+  { slug: 'breakout', title: 'Breakout', icon: '🧱', desc: 'Break all bricks with your paddle and ball.', tags: ['arcade', 'reflex', 'classic'], href: '/games/breakout/' },
+  { slug: 'ping-pong', title: 'Ping Pong', icon: '🏓', desc: 'Classic Pong against AI. First to 7 wins!', tags: ['arcade', 'classic', 'reflex'], href: '/games/ping-pong/' },
+  { slug: 'tic-tac-toe', title: 'Tic Tac Toe', icon: '⭕', desc: 'Play against AI or a friend in this classic game.', tags: ['classic', 'board', 'brain'], href: '/games/tic-tac-toe/' },
+  { slug: 'connect-4', title: 'Connect 4', icon: '🔵', desc: 'Drop discs and line up four in a row vs the computer.', tags: ['classic', 'board', 'brain'], href: '/games/connect-4/' },
+  { slug: 'minesweeper', title: 'Minesweeper', icon: '💣', desc: 'Flag mines and clear safe tiles to win.', tags: ['puzzle', 'logic', 'classic'], href: '/games/minesweeper/' },
+  { slug: 'wordle', title: 'Wordle', icon: '🔤', desc: 'Guess the 5-letter word in 6 tries with color hints.', tags: ['word', 'puzzle', 'brain'], href: '/games/wordle/' },
+  { slug: 'hangman', title: 'Hangman', icon: '🪢', desc: 'Guess the word letter by letter before time runs out.', tags: ['word', 'classic', 'puzzle', 'brain'], href: '/games/hangman/' },
+  { slug: 'word-scramble', title: 'Word Scramble', icon: '🔀', desc: 'Unscramble jumbled letters to find the hidden word.', tags: ['word', 'puzzle', 'brain'], href: '/games/word-scramble/' },
+  { slug: 'quiz-trivia', title: 'Quiz Trivia', icon: '🧠', desc: 'Test your general knowledge with 100+ trivia questions.', tags: ['quiz', 'brain', 'educational'], href: '/games/quiz-trivia/' },
+  { slug: 'memory-match', title: 'Memory Match', icon: '🃏', desc: 'Flip cards and match pairs to test your memory.', tags: ['puzzle', 'brain'], href: '/games/memory-match/' },
+  { slug: 'simon-says', title: 'Simon Says', icon: '🔴', desc: 'Remember and repeat the color sequence.', tags: ['brain', 'memory', 'reflex'], href: '/games/simon-says/' },
+  { slug: 'rock-paper-scissors', title: 'Rock Paper Scissors', icon: '✂️', desc: 'Play the classic hand game against the computer.', tags: ['classic', 'quick', 'brain'], href: '/games/rock-paper-scissors/' },
+  { slug: 'whack-a-mole', title: 'Whack-a-Mole', icon: '🔨', desc: 'Hit the moles as they pop up from their holes.', tags: ['arcade', 'reflex', 'quick'], href: '/games/whack-a-mole/' },
+  { slug: 'typing-speed', title: 'Typing Speed Test', icon: '⌨️', desc: 'Test your WPM and accuracy. How fast can you type?', tags: ['quick', 'brain', 'educational'], href: '/games/typing-speed/' },
+  { slug: 'number-guessing', title: 'Number Guessing', icon: '🎲', desc: 'Guess the hidden number in the fewest tries.', tags: ['quick', 'brain', 'logic'], href: '/games/number-guessing/' },
+  { slug: 'color-rush', title: 'Color Rush', icon: '🌈', desc: 'Spot the odd color before time runs out.', tags: ['reflex', 'quick', 'puzzle'], href: '/games/color-rush/' },
+  { slug: 'reaction-time', title: 'Reaction Time Test', icon: '⚡', desc: 'Tap as fast as you can when the screen turns green.', tags: ['reflex', 'quick', 'brain'], href: '/games/reaction-time/' },
+  { slug: 'love-test', title: 'Love Compatibility Test', icon: '💘', desc: 'Fun love quiz for couples.', tags: ['quiz', 'fun', 'social'], href: '/games/love-test/' },
+  { slug: 'friendship-test', title: 'Best Friend Compatibility', icon: '👫', desc: '2-player BFF quiz to test your friendship.', tags: ['quiz', 'fun', 'social'], href: '/games/friendship-test/' },
+  { slug: 'dice-roller', title: 'Dice Roller', icon: '🎲', desc: 'Roll D4 to D20 virtual dice for board games and RPGs.', tags: ['casual', 'quick', 'fun'], href: '/games/dice-roller/' },
+  { slug: 'coin-flip', title: 'Coin Flip', icon: '🪙', desc: 'Flip a virtual coin. Heads or tails? With stats.', tags: ['casual', 'quick', 'fun'], href: '/games/coin-flip/' },
+  { slug: 'wheel-of-names', title: 'Wheel of Names', icon: '🎡', desc: 'Spin a custom wheel to pick a random winner.', tags: ['casual', 'quick', 'fun'], href: '/games/wheel-of-names/' },
+  { slug: 'solitaire', title: 'Solitaire', icon: '🃏', desc: 'Classic Klondike card game. Build suits and clear the deck.', tags: ['classic', 'card', 'puzzle', 'casual'], href: '/games/solitaire/' },
+]
+
+const ALL_TAGS = [...new Set(GAMES.flatMap(g => g.tags))]
 
 export default function games() {
-  const { ref: resultRef, jumpTo } = useJumpToResult()
-  const [input, setInput] = useState('')
-  const [result, setResult] = useState(null)
+  const [search, setSearch] = useState('')
+  const [activeFilters, setActiveFilters] = useState(new Set())
+  const [recent, setRecent] = useState(() => {
+    try { return JSON.parse(localStorage.getItem('uptools-game-recent') || '[]') } catch { return [] }
+  })
+  const [favs, setFavs] = useState(() => {
+    try { return JSON.parse(localStorage.getItem('uptools-game-favs') || '[]') } catch { return [] }
+  })
 
-  const calculate = useCallback(() => {
-    if (!input.trim()) return
-    setResult({ value: input, timestamp: new Date().toLocaleString() })
-  }, [input])
+  const toggleFilter = useCallback((tag) => {
+    setActiveFilters(prev => {
+      const next = new Set(prev)
+      if (next.has(tag)) next.delete(tag); else next.add(tag)
+      return next
+    })
+  }, [])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const filtered = useMemo(() => {
+    let list = GAMES
+    if (search.trim()) {
+      const q = search.toLowerCase()
+      list = list.filter(g => g.title.toLowerCase().includes(q) || g.desc.toLowerCase().includes(q) || g.tags.some(t => t.includes(q)))
+    }
+    if (activeFilters.size > 0) {
+      list = list.filter(g => [...activeFilters].some(f => g.tags.includes(f)))
+    }
+    return list
+  }, [search, activeFilters])
+
+  const recentGames = useMemo(() => recent.map(slug => GAMES.find(g => g.slug === slug)).filter(Boolean), [recent])
+  const favGames = useMemo(() => favs.map(slug => GAMES.find(g => g.slug === slug)).filter(Boolean), [favs])
+
+  const toggleFav = useCallback((slug) => {
+    setFavs(prev => {
+      const next = prev.includes(slug) ? prev.filter(s => s !== slug) : [slug, ...prev]
+      localStorage.setItem('uptools-game-favs', JSON.stringify(next))
+      return next
+    })
+  }, [])
+
+  const GameCard = ({ game }) => (
+    <a href={game.href} className="block bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4 hover:bg-white/[0.1] transition-all group">
+      <div className="flex items-start gap-3">
+        <div className="text-2xl">{game.icon}</div>
+        <div className="flex-1 min-w-0">
+          <h3 className="text-sm font-bold text-white group-hover:text-indigo-400 transition-all">{game.title}</h3>
+          <p className="text-xs text-slate-400 mt-1 line-clamp-2">{game.desc}</p>
+          <div className="flex gap-1 mt-2 flex-wrap">
+            {game.tags.slice(0, 3).map(t => (
+              <span key={t} className="text-xs px-2 py-0.5 rounded bg-white/[0.06] text-slate-500 capitalize">{t}</span>
+            ))}
+          </div>
+        </div>
+        <button onClick={e => { e.preventDefault(); toggleFav(game.slug) }}
+          className="text-lg opacity-50 hover:opacity-100 transition-all">
+          {favs.includes(game.slug) ? '⭐' : '☆'}
+        </button>
+      </div>
+    </a>
+  )
 
   return (
     <ToolLayout
-      title="Free Mini Games"
-      desc="Play fast, sign-up free browser games."
-      icon="🎮" iconBg="rgba(244,63,94,0.08)"
+      title="Free Online Games"
+      desc={`${GAMES.length}+ free browser games. No sign-ups. Mobile-friendly.`}
+      icon="🎮" iconBg="rgba(99,102,241,0.08)"
       category="fun" slug="games"
       faq={[
-        { q: "What is Free Mini Games?", a: "Free Mini Games is a free online tool by UpTools. Play fast, sign-up free browser games." },
-        { q: "How to use Free Mini Games?", a: "Simply enter your input and click Calculate to get instant results." },
+        { q: "Are these games really free?", a: "Yes! All games are 100% free with no sign-ups required." },
+        { q: "Do games work on mobile?", a: "Yes, all games are mobile-responsive with touch controls." },
+        { q: "How many games are there?", a: `${GAMES.length}+ games across arcade, puzzle, word, board, and casual categories.` },
       ]}
       howItWorks={[
-        "Enter your input in the field below.",
-        "Click the Calculate button to process.",
-        "View your results instantly.",
+        "Browse or search games by name or category.",
+        "Filter by tags like arcade, puzzle, brain, etc.",
+        "Click any game to play instantly in your browser.",
       ]}
       schema={{
-        "@context": "https://schema.org", "@type": "SoftwareApplication",
-        "name": "Free Mini Games", "applicationCategory": "UtilitiesApplication",
-        "url": "https://www.uptools.in/SLUG/",
+        "@context": "https://schema.org", "@type": "WebApplication",
+        "name": "Free Online Games", "applicationCategory": "GameApplication",
+        "url": "https://www.uptools.in/games/",
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" }
       }}
     >
-      <div className="max-w-2xl mx-auto space-y-6">
-        <div>
-          <label className="block text-sm font-semibold text-slate-300 mb-2">Input</label>
-          <input type="text" value={input} onChange={e => setInput(e.target.value)}
-            placeholder="Enter value..."
-            className={inputClass} />
+      <div className="max-w-4xl mx-auto space-y-4">
+        {/* Stats */}
+        <div className="flex gap-4 justify-center text-center">
+          <div><div className="text-lg font-bold text-white">{GAMES.length}</div><div className="text-xs text-slate-500">Games</div></div>
+          <div><div className="text-lg font-bold text-white">0</div><div className="text-xs text-slate-500">Sign-ups</div></div>
+          <div><div className="text-lg font-bold text-white">100%</div><div className="text-xs text-slate-500">Free</div></div>
         </div>
-        
-        <button onClick={() => { calculate(); jumpTo() }}
-          className="w-full py-4 rounded-2xl bg-indigo-500 text-white font-bold text-sm hover:bg-indigo-400 transition-all duration-200 active:scale-[0.98]">
-          Calculate
-        </button>
 
-        {result && (
-          <div ref={resultRef} className="rounded-3xl border-2 border-indigo-500/15 bg-gradient-to-br from-indigo-500/[0.06] via-white/[0.01] to-transparent p-6 sm:p-8 overflow-hidden"
-            style={{ animation: 'slideUp 0.35s cubic-bezier(0.4,0,0.2,1)' }}>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-2 h-2 rounded-full bg-indigo-400 animate-pulse" />
-              <h3 className="text-sm font-bold text-indigo-400 uppercase tracking-wider">Result</h3>
+        {/* Search & Filters */}
+        <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4 space-y-3">
+          <input type="text" value={search} onChange={e => setSearch(e.target.value)}
+            placeholder="Search games (e.g., snake, puzzle, word)..."
+            className="w-full bg-black/20 border-2 border-white/[0.08] rounded-xl px-4 py-3 text-sm outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-500" />
+          <div className="flex flex-wrap gap-2">
+            {ALL_TAGS.map(tag => (
+              <button key={tag} onClick={() => toggleFilter(tag)}
+                className={`px-3 py-1.5 rounded-xl text-xs font-semibold capitalize transition-all border ${activeFilters.has(tag) ? 'bg-indigo-500/15 border-indigo-500/30 text-indigo-400' : 'bg-white/[0.06] border-white/[0.08] text-slate-500 hover:text-white'}`}>
+                {tag}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Recent */}
+        {recentGames.length > 0 && (
+          <div>
+            <h2 className="text-sm font-bold text-slate-400 mb-2">⏱️ Continue Playing</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              {recentGames.slice(0, 4).map(g => <GameCard key={g.slug} game={g} />)}
             </div>
-            <div className="text-xl font-extrabold text-white">{result.value}</div>
-            <div className="text-xs text-slate-500 mt-2">Calculated at {result.timestamp}</div>
           </div>
         )}
 
-        {!result && (
-          <div ref={resultRef} className="text-center py-12 rounded-3xl border-2 border-dashed border-white/8 bg-white/[0.01]">
-            <div className="text-4xl mb-3 opacity-20">ICON</div>
-            <p className="text-sm text-slate-600 font-medium">Enter a value and click Calculate</p>
+        {/* Favourites */}
+        {favGames.length > 0 && (
+          <div>
+            <h2 className="text-sm font-bold text-slate-400 mb-2">⭐ Your Favourites</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              {favGames.map(g => <GameCard key={g.slug} game={g} />)}
+            </div>
           </div>
         )}
+
+        {/* All Games */}
+        <div>
+          <h2 className="text-sm font-bold text-slate-400 mb-2">🕹️ All Games ({filtered.length})</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            {filtered.map(g => <GameCard key={g.slug} game={g} />)}
+          </div>
+          {filtered.length === 0 && (
+            <div className="text-center py-8 rounded-2xl border-2 border-dashed border-white/8 bg-white/[0.01]">
+              <p className="text-sm text-slate-600">No games match your search</p>
+            </div>
+          )}
+        </div>
       </div>
     </ToolLayout>
   )

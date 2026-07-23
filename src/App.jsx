@@ -20,7 +20,7 @@ function ToolRoute() {
       setNotFound(true)
       return
     }
-    const compName = slug.replace(/-/g, '_')
+    const compName = slug.replace(/\//g, '_').replace(/-/g, '_')
     const safeName = /^\d/.test(compName) ? 'tool_' + compName : compName
 
     import(`./tools/${safeName}.jsx`)
