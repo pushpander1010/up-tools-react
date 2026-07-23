@@ -286,16 +286,16 @@ export default function games_ping_pong() {
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <div className="max-w-2xl mx-auto space-y-6">
+      <div className="max-w-2xl mx-auto space-y-5">
         {/* Controls */}
         <div className="flex gap-2 items-center flex-wrap">
           <label className="text-sm font-semibold text-slate-300">Mode:</label>
           <button onClick={() => setGameMode('ai')}
-            className={`px-4 py-2 rounded-xl text-sm font-bold transition-all ${gameMode === 'ai' ? 'bg-indigo-500/15 text-indigo-400 border border-indigo-500/30' : 'bg-white/[0.06] text-slate-500 border border-white/[0.08]'}`}>
+            className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all ${gameMode === 'ai' ? 'bg-indigo-500/15 text-indigo-400 border border-indigo-500/30' : 'bg-white/[0.06] text-slate-500 border border-white/[0.08] hover:bg-white/[0.1]'}`}>
             vs AI
           </button>
           <button onClick={() => setGameMode('local')}
-            className={`px-4 py-2 rounded-xl text-sm font-bold transition-all ${gameMode === 'local' ? 'bg-indigo-500/15 text-indigo-400 border border-indigo-500/30' : 'bg-white/[0.06] text-slate-500 border border-white/[0.08]'}`}>
+            className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all ${gameMode === 'local' ? 'bg-indigo-500/15 text-indigo-400 border border-indigo-500/30' : 'bg-white/[0.06] text-slate-500 border border-white/[0.08] hover:bg-white/[0.1]'}`}>
             2 Players
           </button>
 
@@ -304,7 +304,7 @@ export default function games_ping_pong() {
               <label className="text-sm text-slate-400">Difficulty:</label>
               {['easy', 'medium', 'hard'].map(d => (
                 <button key={d} onClick={() => setDifficulty(d)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${difficulty === d ? 'bg-indigo-500/15 text-indigo-400 border border-indigo-500/30' : 'bg-white/[0.06] text-slate-500 border border-white/[0.08]'}`}>
+                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${difficulty === d ? 'bg-indigo-500/15 text-indigo-400 border border-indigo-500/30' : 'bg-white/[0.06] text-slate-500 border border-white/[0.08] hover:bg-white/[0.1]'}`}>
                   {d.charAt(0).toUpperCase() + d.slice(1)}
                 </button>
               ))}
@@ -314,13 +314,12 @@ export default function games_ping_pong() {
           <div className="ml-auto flex gap-2">
             {!gameRunning ? (
               <button onClick={startGame}
-                className="px-5 py-2 rounded-xl text-sm font-bold text-white transition-all"
-                style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}>
+                className="glow-btn px-5 py-2 text-sm">
                 ▶ Start
               </button>
             ) : (
               <button onClick={() => setGamePaused(p => !p)}
-                className="px-5 py-2 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-300 hover:text-white transition-all">
+                className="px-5 py-2 rounded-xl text-sm font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-300 hover:text-white hover:bg-white/[0.1] transition-all">
                 {gamePaused ? '▶ Resume' : '⏸ Pause'}
               </button>
             )}
@@ -328,7 +327,7 @@ export default function games_ping_pong() {
         </div>
 
         {/* Canvas */}
-        <div className="bg-[#050d1a] rounded-2xl border-2 border-white/8 overflow-hidden">
+        <div ref={resultRef} className="glass p-3 overflow-hidden">
           <canvas ref={canvasRef} width={W} height={H}
             onPointerDown={handlePointerDown} onPointerMove={handlePointerMove}
             className="w-full" style={{ aspectRatio: `${W}/${H}`, touchAction: 'none' }}

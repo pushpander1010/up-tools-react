@@ -426,32 +426,31 @@ export default function games_solitaire() {
         }}
       >
         <div className="max-w-xl mx-auto space-y-5">
-          <div className="text-center p-8 rounded-2xl bg-white/[0.06] border border-white/[0.08]">
+          <div className="text-center p-8 glass rounded-2xl">
             <div className="text-5xl mb-4">🃏</div>
             <h2 className="text-xl font-bold text-white mb-2">Klondike Solitaire</h2>
             <p className="text-sm text-slate-400 mb-6">The classic card game. Build foundations from Ace to King!</p>
             <div className="grid grid-cols-3 gap-3 mb-4 text-center">
-              <div className="p-3 rounded-xl bg-white/[0.04]">
-                <div className="text-lg font-bold text-white">{wins}</div>
-                <div className="text-xs text-slate-500">Wins</div>
+              <div className="p-3 rounded-xl glass">
+                <div className="text-2xl font-extrabold text-white">{wins}</div>
+                <div className="text-xs text-slate-500 font-medium mt-0.5">Wins</div>
               </div>
-              <div className="p-3 rounded-xl bg-white/[0.04]">
-                <div className="text-lg font-bold text-white">{bestMoves === Infinity ? '—' : bestMoves}</div>
-                <div className="text-xs text-slate-500">Best Moves</div>
+              <div className="p-3 rounded-xl glass">
+                <div className="text-2xl font-extrabold text-white">{bestMoves === Infinity ? '—' : bestMoves}</div>
+                <div className="text-xs text-slate-500 font-medium mt-0.5">Best Moves</div>
               </div>
-              <div className="p-3 rounded-xl bg-white/[0.04]">
-                <div className="text-lg font-bold text-white">{gamesPlayed}</div>
-                <div className="text-xs text-slate-500">Played</div>
+              <div className="p-3 rounded-xl glass">
+                <div className="text-2xl font-extrabold text-white">{gamesPlayed}</div>
+                <div className="text-xs text-slate-500 font-medium mt-0.5">Played</div>
               </div>
             </div>
             <div className="flex gap-2 justify-center">
               <button onClick={startNewGame}
-                className="px-6 py-3 rounded-xl text-sm font-bold text-white transition-all hover:opacity-90"
-                style={{background:'linear-gradient(135deg,#22c55e,#16a34a)'}}>
+                className="glow-btn px-6 py-3 text-sm">
                 Deal Cards
               </button>
               <button onClick={toggleDrawMode}
-                className="px-4 py-3 rounded-xl text-xs font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white transition-all">
+                className="px-4 py-3 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">
                 Draw {drawThree ? 3 : 1}
               </button>
             </div>
@@ -548,21 +547,20 @@ export default function games_solitaire() {
         "genre": "Card", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <div className="max-w-xl mx-auto space-y-3">
+      <div className="max-w-xl mx-auto space-y-5">
         {/* Controls */}
         <div className="flex items-center justify-between gap-2 flex-wrap">
           <div className="flex gap-2">
             <button onClick={startNewGame}
-              className="px-3 py-2 rounded-xl text-xs font-bold text-white transition-all hover:opacity-90"
-              style={{background:'linear-gradient(135deg,#22c55e,#16a34a)'}}>
+              className="glow-btn px-3 py-2 text-xs">
               New Game
             </button>
             <button onClick={undo} disabled={undoStack.length === 0}
-              className="px-3 py-2 rounded-xl text-xs font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white transition-all disabled:opacity-30">
+              className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all disabled:opacity-30">
               ↩ Undo
             </button>
             <button onClick={toggleDrawMode}
-              className="px-3 py-2 rounded-xl text-xs font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white transition-all">
+              className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">
               Draw {drawThree ? '3' : '1'}
             </button>
           </div>
@@ -668,8 +666,7 @@ export default function games_solitaire() {
             <h2 className="text-xl font-bold text-white mb-2">You Win!</h2>
             <p className="text-sm text-slate-400 mb-3">Completed in {moves} moves · {formatTime(timer)}</p>
             <button onClick={startNewGame}
-              className="px-6 py-3 rounded-xl text-sm font-bold text-white transition-all hover:opacity-90"
-              style={{background:'linear-gradient(135deg,#22c55e,#16a34a)'}}>
+              className="glow-btn px-6 py-3 text-sm">
               Play Again
             </button>
           </div>

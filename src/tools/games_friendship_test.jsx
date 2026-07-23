@@ -146,7 +146,7 @@ export default function games_friendship_test() {
   }
 
   const q = qIdx[cur] !== undefined ? getQ(qIdx[cur]) : null
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -171,26 +171,26 @@ export default function games_friendship_test() {
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <div className="max-w-2xl mx-auto space-y-6">
+      <div className="max-w-2xl mx-auto space-y-5">
         {/* Home screen */}
         {step === 'home' && (
           <>
             {/* Stats */}
             <div className="grid grid-cols-4 gap-3">
-              <div className="text-center p-3 bg-black/20 rounded-xl">
-                <div className="text-lg font-extrabold text-white">{best ? `${best.score.toFixed(1)}%` : '--%'}</div>
+              <div className="text-center glass p-4 rounded-xl">
+                <div className="text-2xl font-extrabold text-white">{best ? `${best.score.toFixed(1)}%` : '--%'}</div>
                 <div className="text-xs text-slate-500">Best Score</div>
               </div>
-              <div className="text-center p-3 bg-black/20 rounded-xl">
-                <div className="text-lg font-extrabold text-white">{best?.pair ?? '—'}</div>
+              <div className="text-center glass p-4 rounded-xl">
+                <div className="text-2xl font-extrabold text-white">{best?.pair ?? '—'}</div>
                 <div className="text-xs text-slate-500">Last Pair</div>
               </div>
-              <div className="text-center p-3 bg-black/20 rounded-xl">
-                <div className="text-lg font-extrabold text-white">{best?.when ?? '—'}</div>
+              <div className="text-center glass p-4 rounded-xl">
+                <div className="text-2xl font-extrabold text-white">{best?.when ?? '—'}</div>
                 <div className="text-xs text-slate-500">Last Time</div>
               </div>
-              <div className="text-center p-3 bg-black/20 rounded-xl">
-                <div className="text-lg font-extrabold text-white">{plays}</div>
+              <div className="text-center glass p-4 rounded-xl">
+                <div className="text-2xl font-extrabold text-white">{plays}</div>
                 <div className="text-xs text-slate-500">Total Plays</div>
               </div>
             </div>
@@ -199,7 +199,7 @@ export default function games_friendship_test() {
             <div className="flex gap-2 justify-center">
               {[10, 15, 20].map(len => (
                 <button key={len} onClick={() => setQuizLength(len)}
-                  className={`px-5 py-2.5 rounded-xl text-sm font-bold transition-all ${quizLength === len ? 'bg-indigo-500/15 text-indigo-400 border border-indigo-500/30' : 'bg-white/[0.06] text-slate-500 border border-white/[0.08]'}`}>
+                  className={`px-5 py-2.5 rounded-xl text-sm font-bold transition-all ${quizLength === len ? 'bg-indigo-500/15 text-indigo-400 border border-indigo-500/30' : 'bg-white/[0.06] text-slate-500 border border-white/[0.08] hover:bg-white/[0.1]'}`}>
                   {len === 10 ? 'Short' : len === 15 ? 'Standard' : 'Long'} ({len})
                 </button>
               ))}
@@ -208,8 +208,7 @@ export default function games_friendship_test() {
             {/* Start button */}
             <div className="text-center">
               <button onClick={startQuiz}
-                className="px-8 py-4 rounded-2xl text-sm font-bold text-white transition-all"
-                style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}>
+                className="glow-btn px-8 py-4 rounded-2xl text-sm font-bold text-white transition-all">
                 Start Quiz
               </button>
             </div>
@@ -219,7 +218,7 @@ export default function games_friendship_test() {
 
         {/* Name entry */}
         {step === 'names' && (
-          <div className="bg-white/[0.06] border-2 border-white/8 rounded-2xl p-6 space-y-4">
+          <div className="glass rounded-2xl p-6 space-y-5">
             <h2 className="text-lg font-bold text-white text-center">👫 Enter your names</h2>
             <div>
               <label className="block text-sm text-indigo-400 mb-1">Player 1 (answers first)</label>
@@ -232,8 +231,7 @@ export default function games_friendship_test() {
                 placeholder="Friend's name" maxLength={20} className={inputClass} />
             </div>
             <button onClick={handleStartNames} disabled={!nameA.trim() || !nameB.trim()}
-              className="w-full py-3 rounded-xl text-sm font-bold text-white transition-all disabled:opacity-50"
-              style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}>
+              className="glow-btn w-full py-3 rounded-xl text-sm font-bold text-white transition-all disabled:opacity-50">
               Start ▶
             </button>
           </div>
@@ -241,7 +239,7 @@ export default function games_friendship_test() {
 
         {/* Quiz questions */}
         {(step === 'a' || step === 'b') && q && (
-          <div ref={resultRef} className="bg-white/[0.06] border-2 border-white/8 rounded-2xl p-6">
+          <div ref={resultRef} className="glass rounded-2xl p-6">
             <p className="text-sm text-indigo-400 mb-1">{player === 'a' ? nameA : nameB}'s turn · Question {cur + 1} of {quizLength}</p>
             <h2 className="text-lg font-bold text-white mb-4">{q.t}</h2>
             <div className="space-y-3">
@@ -257,14 +255,13 @@ export default function games_friendship_test() {
 
         {/* Handoff screen */}
         {step === 'handoff' && (
-          <div className="bg-white/[0.06] border-2 border-white/8 rounded-2xl p-8 text-center">
+          <div className="glass rounded-2xl p-8 text-center">
             <div className="text-4xl mb-3">🤝</div>
             <h2 className="text-xl font-bold text-white mb-2">{nameA} is done!</h2>
             <p className="text-indigo-400 mb-4">Now hand the device to <strong>{nameB}</strong> to answer the same questions.</p>
             <p className="text-sm text-slate-500 mb-6">Don't peek at {nameA}'s answers!</p>
             <button onClick={handleNext}
-              className="px-8 py-3 rounded-xl text-sm font-bold text-white transition-all"
-              style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}>
+              className="glow-btn px-8 py-3 rounded-xl text-sm font-bold text-white transition-all">
               {nameB}'s Turn ▶
             </button>
           </div>
@@ -272,7 +269,7 @@ export default function games_friendship_test() {
 
         {/* Result */}
         {step === 'result' && score !== null && (
-          <div className="text-center p-8 bg-white/[0.06] border-2 border-white/8 rounded-2xl">
+          <div className="text-center p-8 glass rounded-2xl">
             <div className="text-4xl mb-2">{score >= 80 ? '🏆' : score >= 60 ? '🌟' : score >= 40 ? '👍' : '💪'}</div>
             <div className="text-5xl font-extrabold text-indigo-400 mb-2">{score}%</div>
             <div className="text-lg font-bold text-white mb-2">BFF Compatibility Score</div>
@@ -280,18 +277,17 @@ export default function games_friendship_test() {
 
             <div className="flex gap-3 justify-center mb-6">
               <button onClick={copyResult}
-                className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all ${copied ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white'}`}>
+                className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all hover:bg-white/[0.1] ${copied ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white'}`}>
                 {copied ? '✓ Copied' : '📋 Copy Result'}
               </button>
               <button onClick={shareWA}
-                className="px-6 py-2.5 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white transition-all">
+                className="px-6 py-2.5 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">
                 📱 WhatsApp
               </button>
             </div>
 
             <button onClick={handleNext}
-              className="px-8 py-3 rounded-xl text-sm font-bold text-white transition-all"
-              style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}>
+              className="glow-btn px-8 py-3 rounded-xl text-sm font-bold text-white transition-all">
               Play Again ▶
             </button>
           </div>

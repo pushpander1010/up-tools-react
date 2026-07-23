@@ -177,18 +177,20 @@ export default function games_whack_a_mole() {
     >
       <div className="max-w-sm mx-auto space-y-5">
         {/* Stats */}
-        <div ref={resultRef} className="grid grid-cols-3 gap-3 text-center">
-          <div className="p-3 bg-black/20 rounded-xl">
-            <div className="text-2xl font-extrabold text-white">{score}</div>
-            <div className="text-xs text-slate-500">Score</div>
-          </div>
-          <div className="p-3 bg-black/20 rounded-xl">
-            <div className={`text-2xl font-extrabold ${timeLeft <= 5 ? 'text-red-400 animate-pulse' : 'text-white'}`}>{timeLeft}s</div>
-            <div className="text-xs text-slate-500">Time</div>
-          </div>
-          <div className="p-3 bg-black/20 rounded-xl">
-            <div className="text-2xl font-extrabold text-amber-400">🏆 {highScore}</div>
-            <div className="text-xs text-slate-500">Best</div>
+        <div ref={resultRef} className="glass p-4">
+          <div className="grid grid-cols-3 gap-4 text-center">
+            <div className="text-center">
+              <div className="text-2xl font-extrabold text-white">{score}</div>
+              <div className="text-xs text-slate-500 font-medium mt-0.5">Score</div>
+            </div>
+            <div className="text-center">
+              <div className={`text-2xl font-extrabold ${timeLeft <= 5 ? 'text-red-400 animate-pulse' : 'text-white'}`}>{timeLeft}s</div>
+              <div className="text-xs text-slate-500 font-medium mt-0.5">Time</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-extrabold text-amber-400">🏆 {highScore}</div>
+              <div className="text-xs text-slate-500 font-medium mt-0.5">Best</div>
+            </div>
           </div>
         </div>
 
@@ -238,21 +240,21 @@ export default function games_whack_a_mole() {
             <div className="text-5xl">🔨</div>
             <h2 className="text-xl font-bold text-white">Whack-a-Mole!</h2>
             <p className="text-sm text-slate-400">Click or tap moles as they pop up. You have {GAME_DURATION} seconds!</p>
-            <button onClick={startGame} className="px-8 py-3 rounded-xl text-sm font-bold text-white transition-all" style={{ background: 'linear-gradient(135deg,#eab308,#ca8a04)' }}>
-              Start Game
-            </button>
+            <button onClick={startGame} className="glow-btn px-8 py-3 text-sm">
+             Start Game
+           </button>
           </div>
         )}
 
         {gameState === 'gameover' && (
-          <div className="text-center p-5 bg-black/30 rounded-2xl border border-white/[0.06] space-y-3">
+          <div className="text-center p-5 glass space-y-3">
             <div className="text-4xl">{score > highScore ? '🏆' : '⏰'}</div>
             <h2 className="text-xl font-bold text-white">Time's Up!</h2>
             <p className="text-sm text-slate-400">You scored <span className="text-white font-bold">{score}</span> points{score > highScore ? ' — New High Score!' : ''}</p>
             <p className="text-xs text-slate-500">Level reached: {level}</p>
-            <button onClick={startGame} className="px-6 py-3 rounded-xl text-sm font-bold text-white" style={{ background: 'linear-gradient(135deg,#eab308,#ca8a04)' }}>
-              Play Again
-            </button>
+            <button onClick={startGame} className="glow-btn px-6 py-3 text-sm">
+             Play Again
+           </button>
           </div>
         )}
 

@@ -288,20 +288,22 @@ export default function games_breakout() {
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <div className="max-w-2xl mx-auto space-y-6">
+      <div className="max-w-2xl mx-auto space-y-5">
         {!playing ? (
           <>
-            <div className="grid grid-cols-4 gap-3">
-              <div className="text-center p-3 bg-black/20 rounded-xl"><div className="text-lg font-extrabold text-white">{best}</div><div className="text-xs text-slate-500">Best Score</div></div>
-              <div className="text-center p-3 bg-black/20 rounded-xl"><div className="text-lg font-extrabold text-white">{bestLevel}</div><div className="text-xs text-slate-500">Best Level</div></div>
-              <div className="text-center p-3 bg-black/20 rounded-xl"><div className="text-lg font-extrabold text-white">{Number(localStorage.getItem(LS.LAST)||0)}</div><div className="text-xs text-slate-500">Last Score</div></div>
-              <div className="text-center p-3 bg-black/20 rounded-xl"><div className="text-lg font-extrabold text-white">{Number(localStorage.getItem(LS.LASTLV)||1)}</div><div className="text-xs text-slate-500">Last Level</div></div>
+            <div className="glass p-4">
+              <div className="grid grid-cols-4 gap-4">
+                <div className="text-center"><div className="text-2xl font-extrabold text-white">{best}</div><div className="text-xs text-slate-500 font-medium mt-0.5">Best Score</div></div>
+                <div className="text-center"><div className="text-2xl font-extrabold text-white">{bestLevel}</div><div className="text-xs text-slate-500 font-medium mt-0.5">Best Level</div></div>
+                <div className="text-center"><div className="text-2xl font-extrabold text-white">{Number(localStorage.getItem(LS.LAST)||0)}</div><div className="text-xs text-slate-500 font-medium mt-0.5">Last Score</div></div>
+                <div className="text-center"><div className="text-2xl font-extrabold text-white">{Number(localStorage.getItem(LS.LASTLV)||1)}</div><div className="text-xs text-slate-500 font-medium mt-0.5">Last Level</div></div>
+              </div>
             </div>
             <div className="flex gap-4 items-center justify-center">
               <div className="flex items-center gap-2">
                 <label className="text-sm text-slate-400">Difficulty:</label>
                 <select value={difficulty} onChange={e => setDifficulty(e.target.value)}
-                  className="bg-white/[0.06] border-2 border-white/8 rounded-xl px-3 py-2 text-sm text-white outline-none">
+                  className="bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-3 py-2 text-sm text-white outline-none">
                   <option value="easy" className="bg-gray-900">Easy 🐢</option>
                   <option value="normal" className="bg-gray-900">Normal ⚡</option>
                   <option value="hard" className="bg-gray-900">Hard 🔥</option>
@@ -309,7 +311,7 @@ export default function games_breakout() {
               </div>
             </div>
             <div className="flex gap-3 justify-center">
-              <button onClick={startGame} className="px-6 py-3 rounded-xl text-sm font-bold text-white transition-all" style={{background:'linear-gradient(135deg,#6366f1,#8b5cf6)'}}>New Game</button>
+              <button onClick={startGame} className="glow-btn px-6 py-3 text-sm">New Game</button>
             </div>
             <p className="text-center text-xs text-slate-500">Keyboard: ← / → or A / D. On mobile: drag to steer, tap to pause/resume.</p>
           </>
@@ -318,21 +320,21 @@ export default function games_breakout() {
             {/* HUD */}
             <div className="flex gap-3 items-center justify-between">
               <div className="flex gap-2 flex-wrap">
-                <span className="px-3 py-1 bg-black/20 rounded-lg text-xs font-bold text-white">Score: {score}</span>
-                <span className="px-3 py-1 bg-black/20 rounded-lg text-xs font-bold text-white">Level: {level}</span>
-                <span className="px-3 py-1 bg-black/20 rounded-lg text-xs font-bold text-red-400">♥ {lives}</span>
-                <span className="px-3 py-1 bg-black/20 rounded-lg text-xs font-bold text-slate-400">Best: {best}</span>
+                <span className="px-3 py-1 glass rounded-lg text-xs font-bold text-white">Score: {score}</span>
+                <span className="px-3 py-1 glass rounded-lg text-xs font-bold text-white">Level: {level}</span>
+                <span className="px-3 py-1 glass rounded-lg text-xs font-bold text-red-400">♥ {lives}</span>
+                <span className="px-3 py-1 glass rounded-lg text-xs font-bold text-slate-400">Best: {best}</span>
               </div>
               <div className="flex gap-2">
                 <button onClick={()=>{gameRef.current.ball.launched=false;setGameState('ready');setShowOverlay(true);setOverlayMsg({title:'Ready',desc:'Tap to launch'})}}
-                  className="px-3 py-1.5 rounded-lg text-xs font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white transition-all">⟲</button>
+                  className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">⟲</button>
                 <button onClick={()=>{setPlaying(false);if(gameRef.current.animId)cancelAnimationFrame(gameRef.current.animId)}}
-                  className="px-3 py-1.5 rounded-lg text-xs font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white transition-all">⟵</button>
+                  className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">⟵</button>
               </div>
             </div>
 
             {/* Canvas */}
-            <div ref={resultRef} className="bg-[#050d1a] rounded-2xl border-2 border-white/8 overflow-hidden cursor-pointer">
+            <div ref={resultRef} className="glass p-3 overflow-hidden cursor-pointer">
               <canvas ref={canvasRef} onClick={handleCanvasClick}
                 className="w-full block" style={{ touchAction: 'none' }}
                 aria-label="Breakout game area" />

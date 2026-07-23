@@ -218,37 +218,39 @@ export default function games_quiz_trivia() {
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <div className="max-w-2xl mx-auto space-y-6">
+      <div className="max-w-2xl mx-auto space-y-5">
         {!showResult && started && q && (
           <>
             {/* Category + New Quiz */}
             <div className="flex gap-2 items-center flex-wrap">
               <select value={category} onChange={e => handleCategoryChange(e.target.value)}
-                className="bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-2.5 text-sm text-white outline-none focus:border-indigo-500/40">
+                className="bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-4 py-2.5 text-sm text-white outline-none focus:border-indigo-500/40">
                 <option value="all" className="bg-gray-900">All Categories</option>
                 {Object.keys(QUESTIONS).map(cat => (
                   <option key={cat} value={cat} className="bg-gray-900">{cat.charAt(0).toUpperCase() + cat.slice(1)}</option>
                 ))}
               </select>
               <button onClick={() => startQuiz(category)}
-                className="ml-auto px-5 py-2.5 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-300 hover:text-white transition-all">
+                 className="ml-auto px-5 py-2.5 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-300 hover:text-white hover:bg-white/[0.1] transition-all">
                 New Quiz
               </button>
             </div>
 
             {/* Score row */}
-            <div className="grid grid-cols-3 gap-3">
-              <div className="text-center p-3 bg-black/20 rounded-xl">
-                <div className="text-xl font-extrabold text-white">{score}</div>
-                <div className="text-xs text-slate-500">Score</div>
-              </div>
-              <div className="text-center p-3 bg-black/20 rounded-xl">
-                <div className="text-xl font-extrabold text-white">{currentQ + 1}/10</div>
-                <div className="text-xs text-slate-500">Question</div>
-              </div>
-              <div className="text-center p-3 bg-black/20 rounded-xl">
-                <div className="text-xl font-extrabold text-white">{streak} 🔥</div>
-                <div className="text-xs text-slate-500">Streak</div>
+            <div className="glass p-4">
+              <div className="grid grid-cols-3 gap-4">
+                <div className="text-center">
+                  <div className="text-2xl font-extrabold text-white">{score}</div>
+                  <div className="text-xs text-slate-500 font-medium mt-0.5">Score</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-extrabold text-white">{currentQ + 1}/10</div>
+                  <div className="text-xs text-slate-500 font-medium mt-0.5">Question</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-extrabold text-white">{streak} 🔥</div>
+                  <div className="text-xs text-slate-500 font-medium mt-0.5">Streak</div>
+                </div>
               </div>
             </div>
 
@@ -268,7 +270,7 @@ export default function games_quiz_trivia() {
             </div>
 
             {/* Question */}
-            <div ref={resultRef} className="p-5 bg-black/20 rounded-xl text-lg font-semibold text-white">{q.q}</div>
+            <div ref={resultRef} className="glass p-5 text-lg font-semibold text-white">{q.q}</div>
 
             {/* Options */}
             <div className="grid grid-cols-1 gap-3">
@@ -304,8 +306,7 @@ export default function games_quiz_trivia() {
             {answered && currentQ < questions.length - 1 && (
               <div className="text-center">
                 <button onClick={handleNext}
-                  className="px-8 py-3 rounded-xl text-sm font-bold text-white transition-all"
-                  style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}>
+                   className="glow-btn px-8 py-3 text-sm">
                   Next Question →
                 </button>
               </div>
@@ -315,13 +316,12 @@ export default function games_quiz_trivia() {
 
         {/* Result */}
         {showResult && (
-          <div className="text-center p-8 bg-white/[0.06] border-2 border-white/8 rounded-2xl">
+          <div className="text-center p-8 glass">
             <div className="text-5xl font-extrabold text-white mb-2">{score}/10</div>
             <p className="text-slate-400 mb-2">Questions Correct</p>
             <p className="text-lg font-bold text-white mb-6">{msgs[Math.floor(score / 2.5)] || msgs[4]}</p>
             <button onClick={() => startQuiz(category)}
-              className="px-8 py-3 rounded-xl text-sm font-bold text-white transition-all"
-              style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}>
+               className="glow-btn px-8 py-3 text-sm">
               Play Again
             </button>
           </div>

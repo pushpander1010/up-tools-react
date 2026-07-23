@@ -174,18 +174,20 @@ export default function games_number_guessing() {
         )}
 
         {/* Stats bar */}
-        <div className="grid grid-cols-3 gap-2">
-          <div className="text-center p-3 rounded-xl bg-white/[0.06] border border-white/[0.08]">
-            <div className="text-xl font-extrabold text-white">{wins}</div>
-            <div className="text-xs text-slate-500">Wins</div>
-          </div>
-          <div className="text-center p-3 rounded-xl bg-white/[0.06] border border-white/[0.08]">
-            <div className="text-xl font-extrabold" style={{color: streak > 0 ? '#22c55e' : '#ef4444'}}>{streak}🔥</div>
-            <div className="text-xs text-slate-500">Streak</div>
-          </div>
-          <div className="text-center p-3 rounded-xl bg-white/[0.06] border border-white/[0.08]">
-            <div className="text-xl font-extrabold text-white">{difficulty !== null && best[difficulty] ? best[difficulty] + ' tries' : '—'}</div>
-            <div className="text-xs text-slate-500">Best</div>
+        <div className="glass p-4">
+          <div className="grid grid-cols-3 gap-4">
+            <div className="text-center">
+              <div className="text-2xl font-extrabold text-white">{wins}</div>
+              <div className="text-xs text-slate-500 font-medium mt-0.5">Wins</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-extrabold" style={{color: streak > 0 ? '#22c55e' : '#ef4444'}}>{streak}🔥</div>
+              <div className="text-xs text-slate-500 font-medium mt-0.5">Streak</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-extrabold text-white">{difficulty !== null && best[difficulty] ? best[difficulty] + ' tries' : '—'}</div>
+              <div className="text-xs text-slate-500 font-medium mt-0.5">Best</div>
+            </div>
           </div>
         </div>
 
@@ -241,8 +243,7 @@ export default function games_number_guessing() {
                   className="flex-1 px-4 py-3 rounded-xl bg-white/[0.06] border border-white/[0.08] text-white text-center text-lg font-mono focus:outline-none focus:border-indigo-500 placeholder:text-slate-500"
                 />
                 <button onClick={makeGuess}
-                  className="px-6 py-3 rounded-xl text-sm font-bold text-white transition-all hover:opacity-90 active:scale-95"
-                  style={{background:'linear-gradient(135deg,#6366f1,#8b5cf6)'}}>
+                  className="glow-btn px-6 py-3 text-sm">
                   Guess
                 </button>
               </div>
@@ -268,8 +269,7 @@ export default function games_number_guessing() {
             {gameOver && (
               <div className="text-center space-y-3">
                 <button onClick={() => { setDifficulty(null); setConfetti(false) }}
-                  className="px-6 py-3 rounded-xl text-sm font-bold text-white transition-all hover:opacity-90"
-                  style={{background:'linear-gradient(135deg,#6366f1,#8b5cf6)'}}>
+                  className="glow-btn px-6 py-3 text-sm">
                   {won ? '🎉 Play Again' : 'Try Again'}
                 </button>
               </div>

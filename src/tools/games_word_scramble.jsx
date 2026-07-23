@@ -197,35 +197,37 @@ export default function games_word_scramble() {
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <div className="max-w-2xl mx-auto space-y-6">
+      <div className="max-w-2xl mx-auto space-y-5">
         {/* Category selector */}
         <div className="flex gap-2 items-center flex-wrap">
           <select value={category} onChange={e => { setCategory(e.target.value); nextWord(e.target.value) }}
-            className="bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-2.5 text-sm text-white outline-none focus:border-indigo-500/40">
+            className="bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-4 py-2.5 text-sm text-white outline-none focus:border-indigo-500/40">
             <option value="all" className="bg-gray-900">All Categories</option>
             {Object.keys(WORDS).map(cat => (
               <option key={cat} value={cat} className="bg-gray-900">{cat.charAt(0).toUpperCase() + cat.slice(1)}</option>
             ))}
           </select>
           <button onClick={handleSkip}
-            className="px-4 py-2.5 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white transition-all">Skip</button>
+            className="px-4 py-2.5 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">Skip</button>
           <button onClick={handleNewGame}
-            className="px-4 py-2.5 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white transition-all">New Game</button>
+            className="px-4 py-2.5 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">New Game</button>
         </div>
 
         {/* Score row */}
-        <div className="grid grid-cols-3 gap-3">
-          <div className="text-center p-3 bg-black/20 rounded-xl">
-            <div className="text-xl font-extrabold text-white">{score}</div>
-            <div className="text-xs text-slate-500">Score</div>
-          </div>
-          <div className="text-center p-3 bg-black/20 rounded-xl">
-            <div className="text-xl font-extrabold text-white">{streak} 🔥</div>
-            <div className="text-xs text-slate-500">Streak</div>
-          </div>
-          <div className="text-center p-3 bg-black/20 rounded-xl">
-            <div className="text-xl font-extrabold text-white">{questionNum}</div>
-            <div className="text-xs text-slate-500">Question</div>
+        <div className="glass p-4">
+          <div className="grid grid-cols-3 gap-4">
+            <div className="text-center">
+              <div className="text-2xl font-extrabold text-white">{score}</div>
+              <div className="text-xs text-slate-500 font-medium mt-0.5">Score</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-extrabold text-white">{streak} 🔥</div>
+              <div className="text-xs text-slate-500 font-medium mt-0.5">Streak</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-extrabold text-white">{questionNum}</div>
+              <div className="text-xs text-slate-500 font-medium mt-0.5">Question</div>
+            </div>
           </div>
         </div>
 
@@ -249,14 +251,13 @@ export default function games_word_scramble() {
         {/* Buttons */}
         <div className="flex gap-3 justify-center">
           <button onClick={() => { ensureAudio(); handleSubmit(); jumpTo() }}
-            className="px-8 py-3 rounded-xl text-sm font-bold text-white transition-all"
-            style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}>
-            ✅ Submit
-          </button>
-          <button onClick={handleReveal}
-            className="px-6 py-3 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white transition-all">
-            Reveal Answer
-          </button>
+            className="glow-btn px-8 py-3 text-sm">
+           ✅ Submit
+         </button>
+         <button onClick={handleReveal}
+            className="px-6 py-3 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">
+           Reveal Answer
+         </button>
         </div>
 
         {/* Feedback */}
@@ -271,8 +272,7 @@ export default function games_word_scramble() {
               <h2 className="text-xl font-bold text-white mb-2">{overlayText.title}</h2>
               <p className="text-slate-400 mb-6">{overlayText.message}</p>
               <button onClick={() => { nextWord() }}
-                className="px-8 py-3 rounded-xl text-sm font-bold text-white transition-all"
-                style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}>
+                 className="glow-btn px-8 py-3 text-sm">
                 Continue
               </button>
             </div>

@@ -287,40 +287,39 @@ export default function games_wheel_of_names() {
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <div className="max-w-4xl mx-auto space-y-6">
+      <div className="max-w-4xl mx-auto space-y-5">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Wheel */}
-          <div className="space-y-4">
+          <div className="space-y-5">
             <div ref={resultRef} className="relative mx-auto" style={{ maxWidth: 400 }}>
               <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1 w-0 h-0 border-l-[12px] border-r-[12px] border-t-[20px] border-l-transparent border-r-transparent border-t-white z-10"/>
               <canvas ref={canvasRef} className="w-full rounded-full" style={{ aspectRatio: '1' }} aria-label="Name spinner wheel"/>
             </div>
             <div className="text-center">
               <button onClick={startSpin} disabled={isSpinning || names.length === 0}
-                className="px-8 py-3 rounded-xl text-sm font-bold text-white transition-all disabled:opacity-50"
-                style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}>
+                className="glow-btn px-8 py-3 rounded-xl text-sm font-bold text-white transition-all disabled:opacity-50">
                 🎡 Spin Wheel
               </button>
             </div>
           </div>
 
           {/* Controls */}
-          <div className="space-y-4">
-            <div className="bg-white/[0.06] border-2 border-white/8 rounded-2xl p-4">
+          <div className="space-y-5">
+            <div className="glass rounded-2xl p-4">
               <h3 className="text-sm font-bold text-white mb-3">📝 Edit Names</h3>
               <textarea value={namesText} onChange={e => setNamesText(e.target.value)}
                 placeholder="Enter one name per line..."
-                className="w-full bg-black/20 border-2 border-white/[0.08] rounded-xl px-4 py-3 text-sm font-mono text-white outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-600 resize-none h-40"/>
+                className="w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-4 py-3 text-sm font-mono text-white outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-600 resize-none h-40"/>
               <div className="flex gap-2 mt-3">
-                <button onClick={shuffle} className="px-4 py-2 rounded-xl text-xs font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white transition-all">🔀 Shuffle</button>
+                <button onClick={shuffle} className="px-4 py-2 rounded-xl text-xs font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">🔀 Shuffle</button>
                 <button onClick={() => setNamesText(["1","2","3","4","5","6","7","8","9","10"].join('\n'))}
-                  className="px-4 py-2 rounded-xl text-xs font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white transition-all">🔢 Numbers</button>
+                  className="px-4 py-2 rounded-xl text-xs font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">🔢 Numbers</button>
                 <button onClick={() => setNamesText('')}
-                  className="px-4 py-2 rounded-xl text-xs font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white transition-all">🗑️ Clear</button>
+                  className="px-4 py-2 rounded-xl text-xs font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">🗑️ Clear</button>
               </div>
             </div>
 
-            <div className="bg-white/[0.06] border-2 border-white/8 rounded-2xl p-4 space-y-4">
+            <div className="glass rounded-2xl p-4 space-y-5">
               <h3 className="text-sm font-bold text-white">⚙️ Settings</h3>
               <label className="flex items-center justify-between">
                 <span className="text-sm text-slate-300">Sound Effects</span>
@@ -337,7 +336,7 @@ export default function games_wheel_of_names() {
                   <span className="text-sm text-slate-300">Theme</span>
                 </div>
                 <select value={theme} onChange={e => setTheme(e.target.value)}
-                  className="w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-2.5 text-sm text-white outline-none focus:border-indigo-500/40">
+                  className="w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-4 py-2.5 text-sm text-white outline-none focus:border-indigo-500/40">
                   {Object.keys(THEMES).map(t => (
                     <option key={t} value={t} className="bg-gray-900">{t.charAt(0).toUpperCase() + t.slice(1)}</option>
                   ))}
@@ -358,19 +357,18 @@ export default function games_wheel_of_names() {
         {/* Winner Modal */}
         {showModal && (
           <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-            <div className="bg-[#0e1628] border border-white/10 rounded-2xl p-8 max-w-sm w-full text-center">
+            <div className="glass border border-white/10 rounded-2xl p-8 max-w-sm w-full text-center">
               <div className="text-4xl mb-2">👑</div>
               <h2 className="text-lg font-bold text-white mb-2">We have a winner!</h2>
               <div className="text-3xl font-extrabold text-indigo-400 mb-6">{winner}</div>
               <div className="flex gap-3 justify-center">
                 <button onClick={() => { setShowModal(false); stopConfetti() }}
-                  className="px-6 py-3 rounded-xl text-sm font-bold text-white transition-all"
-                  style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}>
+                  className="glow-btn px-6 py-3 rounded-xl text-sm font-bold text-white transition-all">
                   Got It!
                 </button>
                 {removeWinner && (
                   <button onClick={handleRemoveWinner}
-                    className="px-6 py-3 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white transition-all">
+                    className="px-6 py-3 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">
                     Remove Winner
                   </button>
                 )}

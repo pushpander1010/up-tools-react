@@ -221,14 +221,16 @@ export default function games_simon_says() {
     >
       <div className="max-w-sm mx-auto space-y-5">
         {/* Stats */}
-        <div ref={resultRef} className="grid grid-cols-2 gap-3 text-center">
-          <div className="p-3 bg-black/20 rounded-xl">
-            <div className="text-2xl font-extrabold text-white">{score}</div>
-            <div className="text-xs text-slate-500">Score (Rounds)</div>
-          </div>
-          <div className="p-3 bg-black/20 rounded-xl">
-            <div className="text-2xl font-extrabold text-amber-400">🏆 {highScore}</div>
-            <div className="text-xs text-slate-500">High Score</div>
+        <div ref={resultRef} className="glass p-4">
+          <div className="grid grid-cols-2 gap-4 text-center">
+            <div className="text-center">
+              <div className="text-2xl font-extrabold text-white">{score}</div>
+              <div className="text-xs text-slate-500 font-medium mt-0.5">Score (Rounds)</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-extrabold text-amber-400">🏆 {highScore}</div>
+              <div className="text-xs text-slate-500 font-medium mt-0.5">High Score</div>
+            </div>
           </div>
         </div>
 
@@ -306,9 +308,9 @@ export default function games_simon_says() {
                 <p className="text-sm text-slate-400">Watch the sequence and repeat it. Each round gets longer and faster!</p>
               </>
             )}
-            <button onClick={startGame} className="px-8 py-3 rounded-xl text-sm font-bold text-white transition-all" style={{ background: 'linear-gradient(135deg,#10b981,#059669)' }}>
-              {gameState === 'gameover' ? 'Play Again' : 'Start Game'}
-            </button>
+            <button onClick={startGame} className="glow-btn px-8 py-3 text-sm">
+             {gameState === 'gameover' ? 'Play Again' : 'Start Game'}
+           </button>
           </div>
         )}
 

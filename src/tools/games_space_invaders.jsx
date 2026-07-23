@@ -435,25 +435,39 @@ export default function games_space_invaders() {
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <div className="max-w-lg mx-auto space-y-4">
+      <div className="max-w-lg mx-auto space-y-5">
         {/* Stats */}
-        <div className="grid grid-cols-4 gap-2">
-          <div className="text-center p-2 bg-black/20 rounded-xl"><div className="text-sm sm:text-lg font-extrabold text-white">{score}</div><div className="text-xs text-slate-500">Score</div></div>
-          <div className="text-center p-2 bg-black/20 rounded-xl"><div className="text-sm sm:text-lg font-extrabold text-cyan-400">{best}</div><div className="text-xs text-slate-500">Best</div></div>
-          <div className="text-center p-2 bg-black/20 rounded-xl"><div className="text-sm sm:text-lg font-extrabold text-green-400">{wave}</div><div className="text-xs text-slate-500">Wave</div></div>
-          <div className="text-center p-2 bg-black/20 rounded-xl"><div className="text-sm sm:text-lg font-extrabold text-red-400">{lives}</div><div className="text-xs text-slate-500">Lives</div></div>
+        <div className="glass p-4">
+          <div className="grid grid-cols-4 gap-4">
+            <div className="text-center">
+              <div className="text-2xl font-extrabold text-white">{score}</div>
+              <div className="text-xs text-slate-500 font-medium mt-0.5">Score</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-extrabold text-cyan-400">{best}</div>
+              <div className="text-xs text-slate-500 font-medium mt-0.5">Best</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-extrabold text-green-400">{wave}</div>
+              <div className="text-xs text-slate-500 font-medium mt-0.5">Wave</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-extrabold text-red-400">{lives}</div>
+              <div className="text-xs text-slate-500 font-medium mt-0.5">Lives</div>
+            </div>
+          </div>
         </div>
 
         <div className="flex gap-3 justify-center">
-          <button onClick={startGame} className="px-6 py-3 rounded-xl text-sm font-bold text-white transition-all" style={{background:'linear-gradient(135deg,#6366f1,#8b5cf6)'}}>
+          <button onClick={startGame} className="glow-btn px-6 py-3 text-sm">
             {playing&&!gameOver?'⟲ Restart':'▶ Start'}
           </button>
         </div>
 
-        <div ref={resultRef} className="flex justify-center">
+        <div ref={resultRef} className="glass p-3 flex justify-center overflow-hidden">
           <canvas ref={canvasRef}
             onPointerDown={handlePointerDown}
-            className="rounded-xl border border-white/[0.08] cursor-pointer"
+            className="rounded-xl cursor-pointer"
             style={{ background: '#050d1a', touchAction: 'none' }}
           />
         </div>
@@ -465,20 +479,19 @@ export default function games_space_invaders() {
               onTouchStart={(e)=>{e.preventDefault();handleTouchBtn('left',true)}}
               onTouchEnd={(e)=>{e.preventDefault();handleTouchBtn('left',false)}}
               onTouchCancel={(e)=>{e.preventDefault();handleTouchBtn('left',false)}}
-              className="w-16 h-16 rounded-xl bg-white/[0.08] border border-white/[0.1] flex items-center justify-center text-2xl text-white active:bg-white/[0.15]"
+              className="w-16 h-16 rounded-xl bg-white/[0.08] border border-white/[0.1] flex items-center justify-center text-2xl text-white active:bg-white/[0.15] hover:bg-white/[0.12]"
             >◀</button>
             <button
               onTouchStart={(e)=>{e.preventDefault();handleTouchBtn('shoot',true)}}
               onTouchEnd={(e)=>{e.preventDefault();handleTouchBtn('shoot',false)}}
               onTouchCancel={(e)=>{e.preventDefault();handleTouchBtn('shoot',false)}}
-              className="w-16 h-16 rounded-xl flex items-center justify-center text-2xl text-white active:bg-white/[0.15]"
-              style={{background:'linear-gradient(135deg,#ef4444,#dc2626)'}}
+              className="w-16 h-16 rounded-xl flex items-center justify-center text-2xl text-white active:bg-white/[0.15] glow-btn"
             >🔥</button>
             <button
               onTouchStart={(e)=>{e.preventDefault();handleTouchBtn('right',true)}}
               onTouchEnd={(e)=>{e.preventDefault();handleTouchBtn('right',false)}}
               onTouchCancel={(e)=>{e.preventDefault();handleTouchBtn('right',false)}}
-              className="w-16 h-16 rounded-xl bg-white/[0.08] border border-white/[0.1] flex items-center justify-center text-2xl text-white active:bg-white/[0.15]"
+              className="w-16 h-16 rounded-xl bg-white/[0.08] border border-white/[0.1] flex items-center justify-center text-2xl text-white active:bg-white/[0.15] hover:bg-white/[0.12]"
             >▶</button>
           </div>
         )}

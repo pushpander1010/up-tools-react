@@ -534,26 +534,28 @@ export default function games_pac_man() {
         "genre": "Arcade", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <div className="max-w-xl mx-auto space-y-4">
+      <div className="max-w-xl mx-auto space-y-5">
         {/* Score display */}
-        <div className="grid grid-cols-3 gap-2">
-          <div className="text-center p-3 rounded-xl bg-white/[0.06] border border-white/[0.08]">
-            <div className="text-lg font-extrabold text-white">{score}</div>
-            <div className="text-xs text-slate-500">Score</div>
-          </div>
-          <div className="text-center p-3 rounded-xl bg-white/[0.06] border border-white/[0.08]">
-            <div className="text-lg font-extrabold text-yellow-400">{highScore}</div>
-            <div className="text-xs text-slate-500">Best</div>
-          </div>
-          <div className="text-center p-3 rounded-xl bg-white/[0.06] border border-white/[0.08]">
-            <div className="text-lg font-extrabold text-red-400">{'❤️'.repeat(lives)}</div>
-            <div className="text-xs text-slate-500">Lives</div>
+        <div className="glass p-4">
+          <div className="grid grid-cols-3 gap-4">
+            <div className="text-center">
+              <div className="text-2xl font-extrabold text-white">{score}</div>
+              <div className="text-xs text-slate-500 font-medium mt-0.5">Score</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-extrabold text-yellow-400">{highScore}</div>
+              <div className="text-xs text-slate-500 font-medium mt-0.5">Best</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-extrabold text-red-400">{'❤️'.repeat(lives)}</div>
+              <div className="text-xs text-slate-500 font-medium mt-0.5">Lives</div>
+            </div>
           </div>
         </div>
 
         {/* Canvas game area */}
-        <div ref={resultRef} className="flex justify-center">
-          <div className="relative rounded-2xl overflow-hidden border border-white/[0.08]" style={{background:'#000'}}>
+        <div ref={resultRef} className="glass p-3 flex justify-center overflow-hidden">
+          <div className="relative rounded-xl overflow-hidden" style={{background:'#000'}}>
             <canvas ref={canvasRef} className="block" style={{imageRendering: 'pixelated'}}/>
             {/* Start overlay */}
             {showStart && (
@@ -562,8 +564,7 @@ export default function games_pac_man() {
                 <h2 className="text-xl font-bold text-white mb-2">PAC-MAN</h2>
                 <p className="text-sm text-slate-400 text-center mb-4">Eat dots. Dodge ghosts. Grab power pellets!</p>
                 <button onClick={startGame}
-                  className="px-8 py-3 rounded-xl text-sm font-bold text-white transition-all hover:opacity-90"
-                  style={{background:'linear-gradient(135deg,#facc15,#eab308)', color:'#000'}}>
+                  className="glow-btn px-8 py-3 text-sm">
                   Start Game
                 </button>
                 <p className="text-xs text-slate-500 mt-3">Arrow keys / WASD / Swipe</p>
@@ -577,8 +578,7 @@ export default function games_pac_man() {
                 <p className="text-sm text-slate-400 mb-4">Score: {score}</p>
                 <div className="flex gap-2">
                   <button onClick={startGame}
-                    className="px-6 py-3 rounded-xl text-sm font-bold text-white transition-all hover:opacity-90"
-                    style={{background:'linear-gradient(135deg,#facc15,#eab308)', color:'#000'}}>
+                    className="glow-btn px-6 py-3 text-sm">
                     {won ? 'Next Level' : 'Play Again'}
                   </button>
                 </div>
@@ -591,16 +591,16 @@ export default function games_pac_man() {
         <div className="grid grid-cols-3 gap-1 max-w-[200px] mx-auto sm:hidden">
           <div/>
           <button onClick={() => { const gs = gameState.current; if (gs.running) gs.pac.nextDir = { x: 0, y: -1 } }}
-            className="p-3 rounded-xl bg-white/[0.06] border border-white/[0.08] text-white text-lg active:bg-white/[0.12]">▲</button>
+            className="p-3 rounded-xl bg-white/[0.06] border border-white/[0.08] text-white text-lg active:bg-white/[0.12] hover:bg-white/[0.1]">▲</button>
           <div/>
           <button onClick={() => { const gs = gameState.current; if (gs.running) gs.pac.nextDir = { x: -1, y: 0 } }}
-            className="p-3 rounded-xl bg-white/[0.06] border border-white/[0.08] text-white text-lg active:bg-white/[0.12]">◀</button>
+            className="p-3 rounded-xl bg-white/[0.06] border border-white/[0.08] text-white text-lg active:bg-white/[0.12] hover:bg-white/[0.1]">◀</button>
           <div className="p-3 text-center text-slate-500 text-xs">D-PAD</div>
           <button onClick={() => { const gs = gameState.current; if (gs.running) gs.pac.nextDir = { x: 1, y: 0 } }}
-            className="p-3 rounded-xl bg-white/[0.06] border border-white/[0.08] text-white text-lg active:bg-white/[0.12]">▶</button>
+            className="p-3 rounded-xl bg-white/[0.06] border border-white/[0.08] text-white text-lg active:bg-white/[0.12] hover:bg-white/[0.1]">▶</button>
           <div/>
           <button onClick={() => { const gs = gameState.current; if (gs.running) gs.pac.nextDir = { x: 0, y: 1 } }}
-            className="p-3 rounded-xl bg-white/[0.06] border border-white/[0.08] text-white text-lg active:bg-white/[0.12]">▼</button>
+            className="p-3 rounded-xl bg-white/[0.06] border border-white/[0.08] text-white text-lg active:bg-white/[0.12] hover:bg-white/[0.1]">▼</button>
           <div/>
         </div>
 

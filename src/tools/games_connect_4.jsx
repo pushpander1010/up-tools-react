@@ -206,30 +206,32 @@ export default function games_connect_4() {
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <div className="max-w-lg mx-auto space-y-4">
+      <div className="max-w-lg mx-auto space-y-5">
         {/* Mode */}
         <div className="flex gap-2 justify-center">
-          <button onClick={()=>{setMode('ai');resetGame()}} className={`px-4 py-2 rounded-xl text-sm font-bold transition-all ${mode==='ai'?'text-white':'bg-white/[0.06] border border-white/[0.08] text-slate-400'}`} style={mode==='ai'?{background:'linear-gradient(135deg,#6366f1,#8b5cf6)'}:{}}>
-            🤖 vs AI
-          </button>
-          <button onClick={()=>{setMode('2p');resetGame()}} className={`px-4 py-2 rounded-xl text-sm font-bold transition-all ${mode==='2p'?'text-white':'bg-white/[0.06] border border-white/[0.08] text-slate-400'}`} style={mode==='2p'?{background:'linear-gradient(135deg,#6366f1,#8b5cf6)'}:{}}>
-            👥 2 Player
-          </button>
+          <button onClick={()=>{setMode('ai');resetGame()}} className={`glow-btn px-4 py-2 text-sm transition-all ${mode==='ai'?'':'bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:bg-white/[0.1]'}`}>
+           🤖 vs AI
+         </button>
+          <button onClick={()=>{setMode('2p');resetGame()}} className={`glow-btn px-4 py-2 text-sm transition-all ${mode==='2p'?'':'bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:bg-white/[0.1]'}`}>
+           👥 2 Player
+         </button>
         </div>
 
         {/* Scoreboard */}
-        <div className="grid grid-cols-3 gap-3">
-          <div className="text-center p-3 bg-black/20 rounded-xl">
-            <div className="text-lg font-extrabold text-red-400">{rWins}</div>
-            <div className="text-xs text-slate-500">Red Wins</div>
-          </div>
-          <div className="text-center p-3 bg-black/20 rounded-xl">
-            <div className="text-lg font-extrabold text-slate-400">{draws}</div>
-            <div className="text-xs text-slate-500">Draws</div>
-          </div>
-          <div className="text-center p-3 bg-black/20 rounded-xl">
-            <div className="text-lg font-extrabold text-yellow-400">{yWins}</div>
-            <div className="text-xs text-slate-500">Yellow Wins</div>
+        <div className="glass p-4">
+          <div className="grid grid-cols-3 gap-4">
+            <div className="text-center">
+              <div className="text-2xl font-extrabold text-red-400">{rWins}</div>
+              <div className="text-xs text-slate-500 font-medium mt-0.5">Red Wins</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-extrabold text-slate-400">{draws}</div>
+              <div className="text-xs text-slate-500 font-medium mt-0.5">Draws</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-extrabold text-yellow-400">{yWins}</div>
+              <div className="text-xs text-slate-500 font-medium mt-0.5">Yellow Wins</div>
+            </div>
           </div>
         </div>
 
@@ -281,12 +283,12 @@ export default function games_connect_4() {
 
         {/* Controls */}
         <div className="flex gap-3 justify-center">
-          <button onClick={resetGame} className="px-6 py-3 rounded-xl text-sm font-bold text-white transition-all" style={{background:'linear-gradient(135deg,#6366f1,#8b5cf6)'}}>
-            ⟲ New Game
-          </button>
-          <button onClick={()=>updateScores(0,0,0)} className="px-4 py-3 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white transition-all">
-            Reset Scores
-          </button>
+          <button onClick={resetGame} className="glow-btn px-6 py-3 text-sm">
+           ⟲ New Game
+         </button>
+          <button onClick={()=>updateScores(0,0,0)} className="px-4 py-3 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">
+           Reset Scores
+         </button>
         </div>
 
         <p className="text-center text-xs text-slate-500">

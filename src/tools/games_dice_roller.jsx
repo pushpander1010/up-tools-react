@@ -134,7 +134,7 @@ export default function games_dice_roller() {
     saveStats(s)
   }, [])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -159,7 +159,7 @@ export default function games_dice_roller() {
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" }
       }}
     >
-      <div className="max-w-2xl mx-auto space-y-6">
+      <div className="max-w-2xl mx-auto space-y-5">
         {/* Dice Type Selection */}
         <div>
           <label className="block text-sm font-semibold text-slate-300 mb-2">Dice Type</label>
@@ -169,7 +169,7 @@ export default function games_dice_roller() {
                 className={`px-4 py-2 rounded-xl text-sm font-bold transition-all ${
                   activeSides === d && !customSides
                     ? 'bg-indigo-500 text-white shadow-lg shadow-indigo-500/25'
-                    : 'bg-white/[0.06] border border-white/8 text-slate-400 hover:text-white hover:border-white/20'
+                    : 'bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:border-white/20 hover:bg-white/[0.1]'
                 }`}>
                 D{d}
               </button>
@@ -196,7 +196,7 @@ export default function games_dice_roller() {
 
         {/* Roll Button */}
         <button onClick={() => { rollDice(); jumpTo() }}
-          className="w-full py-4 rounded-2xl bg-indigo-500 text-white font-bold text-sm hover:bg-indigo-400 transition-all duration-200 active:scale-[0.98] disabled:opacity-50"
+          className="glow-btn w-full py-4 rounded-2xl font-bold text-sm transition-all duration-200 active:scale-[0.98] disabled:opacity-50"
           disabled={rolling}>
           {rolling ? '🎲 Rolling...' : `🎲 Roll ${diceCount}D${sides}`}
         </button>
@@ -208,7 +208,7 @@ export default function games_dice_roller() {
               <div className="flex flex-wrap gap-3 justify-center mb-4">
                 {results.map((r, i) => (
                   <div key={i} className={`w-16 h-16 rounded-2xl flex items-center justify-center text-3xl font-bold
-                    ${rolling ? 'bg-white/10 animate-pulse' : 'bg-white/[0.06] border border-white/10'}`}>
+                    ${rolling ? 'bg-white/10 animate-pulse' : 'glass'}`}>
                     {rolling ? '🎲' : getDieContent(r, sides)}
                   </div>
                 ))}
@@ -233,26 +233,26 @@ export default function games_dice_roller() {
         {/* Controls */}
         <div className="flex gap-3">
           <button onClick={clearResults}
-            className="flex-1 py-3 rounded-xl bg-white/[0.06] border border-white/8 text-slate-400 text-sm font-semibold hover:text-white hover:border-white/20 transition-all">
+            className="flex-1 py-3 rounded-xl bg-white/[0.06] border border-white/[0.08] text-slate-400 text-sm font-semibold hover:text-white hover:border-white/20 hover:bg-white/[0.1] transition-all">
             Clear
           </button>
           <button onClick={() => setShowHistory(!showHistory)}
-            className="flex-1 py-3 rounded-xl bg-white/[0.06] border border-white/8 text-slate-400 text-sm font-semibold hover:text-white hover:border-white/20 transition-all">
+            className="flex-1 py-3 rounded-xl bg-white/[0.06] border border-white/[0.08] text-slate-400 text-sm font-semibold hover:text-white hover:border-white/20 hover:bg-white/[0.1] transition-all">
             History ({history.length})
           </button>
         </div>
 
         {/* Stats */}
         <div className="grid grid-cols-3 gap-3">
-          <div className="bg-white/[0.06] border border-white/8 rounded-2xl p-4 text-center">
+          <div className="glass rounded-2xl p-4 text-center">
             <div className="text-2xl font-extrabold text-white">{stats.totalRolls}</div>
             <div className="text-[11px] text-slate-500 mt-1">Total Rolls</div>
           </div>
-          <div className="bg-white/[0.06] border border-white/8 rounded-2xl p-4 text-center">
+          <div className="glass rounded-2xl p-4 text-center">
             <div className="text-2xl font-extrabold text-white">{stats.totalDiceRolled}</div>
             <div className="text-[11px] text-slate-500 mt-1">Dice Rolled</div>
           </div>
-          <div className="bg-white/[0.06] border border-white/8 rounded-2xl p-4 text-center">
+          <div className="glass rounded-2xl p-4 text-center">
             <div className="text-2xl font-extrabold text-white">{stats.largestTotal || '—'}</div>
             <div className="text-[11px] text-slate-500 mt-1">Largest Total</div>
           </div>
@@ -264,7 +264,7 @@ export default function games_dice_roller() {
 
         {/* History */}
         {showHistory && (
-          <div className="bg-white/[0.06] border border-white/8 rounded-2xl p-4">
+          <div className="glass rounded-2xl p-4">
             <div className="flex items-center justify-between mb-3">
               <h3 className="text-sm font-bold text-white">Roll History</h3>
               <button onClick={clearHistory} className="text-xs text-slate-600 hover:text-slate-400">Clear</button>
@@ -282,7 +282,7 @@ export default function games_dice_roller() {
         )}
 
         {/* Help */}
-        <div className="bg-white/[0.06] border border-white/8 rounded-2xl p-4">
+        <div className="glass rounded-2xl p-4">
           <h3 className="text-sm font-bold text-indigo-400 mb-2">🎲 How to Play</h3>
           <ul className="text-xs text-slate-400 space-y-1 list-disc list-inside">
             <li><b>Desktop:</b> Press <kbd className="px-1.5 py-0.5 rounded bg-white/10 text-slate-300">Space</kbd> to roll</li>

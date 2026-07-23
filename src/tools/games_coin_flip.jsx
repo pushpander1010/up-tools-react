@@ -145,7 +145,7 @@ export default function games_coin_flip() {
 
   const pct = data.total > 0 ? Math.round((data.heads / data.total) * 100) : 50
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -170,7 +170,7 @@ export default function games_coin_flip() {
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" }
       }}
     >
-      <div className="max-w-2xl mx-auto space-y-6">
+      <div className="max-w-2xl mx-auto space-y-5">
         {/* Coin Display */}
         <div className="text-center">
           <button onClick={() => { flip(); jumpTo() }}
@@ -190,12 +190,12 @@ export default function games_coin_flip() {
         {/* Buttons */}
         <div className="flex gap-3">
           <button onClick={flip}
-            className="flex-1 py-4 rounded-2xl bg-yellow-500 text-white font-bold text-sm hover:bg-yellow-400 transition-all duration-200 active:scale-[0.98] disabled:opacity-50"
+            className="glow-btn flex-1 py-4 rounded-2xl font-bold text-sm transition-all duration-200 active:scale-[0.98] disabled:opacity-50"
             disabled={flipping}>
             🪙 Flip
           </button>
           <button onClick={flip10}
-            className="flex-1 py-4 rounded-2xl bg-orange-500 text-white font-bold text-sm hover:bg-orange-400 transition-all duration-200 active:scale-[0.98] disabled:opacity-50"
+            className="glow-btn flex-1 py-4 rounded-2xl font-bold text-sm transition-all duration-200 active:scale-[0.98] disabled:opacity-50"
             disabled={flipping}>
             ⚡ Flip 10x
           </button>
@@ -203,22 +203,22 @@ export default function games_coin_flip() {
 
         {/* Stats */}
         <div className="grid grid-cols-3 gap-3">
-          <div className="bg-white/[0.06] border border-white/8 rounded-2xl p-4 text-center">
+          <div className="glass rounded-2xl p-4 text-center">
             <div className="text-2xl font-extrabold text-yellow-400">{data.heads}</div>
             <div className="text-[11px] text-slate-500 mt-1">Heads</div>
           </div>
-          <div className="bg-white/[0.06] border border-white/8 rounded-2xl p-4 text-center">
+          <div className="glass rounded-2xl p-4 text-center">
             <div className="text-2xl font-extrabold text-slate-300">{data.tails}</div>
             <div className="text-[11px] text-slate-500 mt-1">Tails</div>
           </div>
-          <div className="bg-white/[0.06] border border-white/8 rounded-2xl p-4 text-center">
+          <div className="glass rounded-2xl p-4 text-center">
             <div className="text-2xl font-extrabold text-white">{data.total}</div>
             <div className="text-[11px] text-slate-500 mt-1">Total</div>
           </div>
         </div>
 
         {/* Heads % Bar */}
-        <div className="bg-white/[0.06] border border-white/8 rounded-2xl p-4">
+        <div className="glass rounded-2xl p-4">
           <div className="flex items-center justify-between text-xs text-slate-400 mb-2">
             <span>Heads %</span>
             <span className="font-bold text-white">{pct}%</span>
@@ -232,18 +232,18 @@ export default function games_coin_flip() {
         {/* Controls */}
         <div className="flex gap-3">
           <button onClick={() => setShowHistory(!showHistory)}
-            className="flex-1 py-3 rounded-xl bg-white/[0.06] border border-white/8 text-slate-400 text-sm font-semibold hover:text-white hover:border-white/20 transition-all">
+            className="flex-1 py-3 rounded-xl bg-white/[0.06] border border-white/[0.08] text-slate-400 text-sm font-semibold hover:text-white hover:border-white/20 hover:bg-white/[0.1] transition-all">
             History ({data.history.length})
           </button>
           <button onClick={reset}
-            className="flex-1 py-3 rounded-xl bg-white/[0.06] border border-white/8 text-slate-400 text-sm font-semibold hover:text-white hover:border-white/20 transition-all">
+            className="flex-1 py-3 rounded-xl bg-white/[0.06] border border-white/[0.08] text-slate-400 text-sm font-semibold hover:text-white hover:border-white/20 hover:bg-white/[0.1] transition-all">
             Reset
           </button>
         </div>
 
         {/* History */}
         {showHistory && (
-          <div className="bg-white/[0.06] border border-white/8 rounded-2xl p-4">
+          <div className="glass rounded-2xl p-4">
             <h3 className="text-sm font-bold text-white mb-3">Flip History</h3>
             {data.history.length > 0 ? (
               <div className="flex flex-wrap gap-1.5">
@@ -260,7 +260,7 @@ export default function games_coin_flip() {
         )}
 
         {/* Help */}
-        <div className="bg-white/[0.06] border border-white/8 rounded-2xl p-4">
+        <div className="glass rounded-2xl p-4">
           <h3 className="text-sm font-bold text-yellow-400 mb-2">🪙 How to Play</h3>
           <ul className="text-xs text-slate-400 space-y-1 list-disc list-inside">
             <li><b>Desktop:</b> Press <kbd className="px-1.5 py-0.5 rounded bg-white/10 text-slate-300">Space</kbd> to flip</li>

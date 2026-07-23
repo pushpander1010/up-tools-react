@@ -272,36 +272,38 @@ export default function games_snake() {
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <div className="max-w-xl mx-auto space-y-4">
+      <div className="max-w-xl mx-auto space-y-5">
         {/* Stats */}
-        <div className="grid grid-cols-3 gap-3">
-          <div className="text-center p-3 bg-black/20 rounded-xl">
-            <div className="text-lg font-extrabold text-white">{score}</div>
-            <div className="text-xs text-slate-500">Score</div>
-          </div>
-          <div className="text-center p-3 bg-black/20 rounded-xl">
-            <div className="text-lg font-extrabold text-green-400">{best}</div>
-            <div className="text-xs text-slate-500">Best</div>
-          </div>
-          <div className="text-center p-3 bg-black/20 rounded-xl">
-            <div className="text-lg font-extrabold text-slate-300">{lastScore}</div>
-            <div className="text-xs text-slate-500">Last</div>
+        <div className="glass p-4">
+          <div className="grid grid-cols-3 gap-4">
+            <div className="text-center">
+              <div className="text-2xl font-extrabold text-white">{score}</div>
+              <div className="text-xs text-slate-500 font-medium mt-0.5">Score</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-extrabold text-green-400">{best}</div>
+              <div className="text-xs text-slate-500 font-medium mt-0.5">Best</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-extrabold text-slate-300">{lastScore}</div>
+              <div className="text-xs text-slate-500 font-medium mt-0.5">Last</div>
+            </div>
           </div>
         </div>
 
         {/* Controls */}
         <div className="flex gap-3 justify-center">
-          <button onClick={startGame} className="px-6 py-3 rounded-xl text-sm font-bold text-white transition-all" style={{background:'linear-gradient(135deg,#6366f1,#8b5cf6)'}}>
+          <button onClick={startGame} className="glow-btn px-6 py-3 text-sm">
             {playing && !gameOver ? '⟲ Restart' : '▶ Start Game'}
           </button>
         </div>
 
         {/* Canvas */}
-        <div ref={resultRef} className="flex justify-center">
+        <div ref={resultRef} className="glass p-3 flex justify-center overflow-hidden">
           <canvas ref={canvasRef}
             onPointerDown={handlePointerDown}
             onPointerUp={handlePointerUp}
-            className="rounded-xl border border-white/[0.08] cursor-pointer"
+            className="rounded-xl cursor-pointer"
             style={{ background: '#050d1a', touchAction: 'none' }}
           />
         </div>

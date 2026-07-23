@@ -176,15 +176,14 @@ export default function games_rock_paper_scissors() {
         <div className="flex gap-2 justify-center flex-wrap">
           {[1, 3, 5].map(n => (
             <button key={n} onClick={() => startGame(n)}
-              className={`px-4 py-2 rounded-xl text-sm font-bold transition-all ${bestOf === n && gameState === 'playing' ? 'text-white' : 'bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white'}`}
-              style={bestOf === n && gameState === 'playing' ? { background: 'linear-gradient(135deg,#eab308,#ca8a04)' } : {}}>
+              className={`px-4 py-2 rounded-xl text-sm font-bold transition-all ${bestOf === n && gameState === 'playing' ? 'glow-btn' : 'bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white'}`}>
               Best of {n}
             </button>
           ))}
         </div>
 
         {/* Scoreboard */}
-        <div ref={resultRef} className="grid grid-cols-3 gap-3 items-center px-4 py-4 bg-black/20 rounded-xl border border-white/[0.06]">
+        <div ref={resultRef} className="glass grid grid-cols-3 gap-3 items-center px-4 py-4">
           <div className="text-center">
             <div className="text-sm text-slate-400 mb-1">You</div>
             <div className="text-3xl font-extrabold text-white">{playerScore}</div>
@@ -215,7 +214,7 @@ export default function games_rock_paper_scissors() {
 
         {/* Round result */}
         {roundResult && (
-          <div className="text-center p-4 bg-black/20 rounded-xl border border-white/[0.06] space-y-2">
+          <div className="glass text-center p-4 space-y-2">
             <div className="flex items-center justify-center gap-4 text-3xl">
               <span className={roundResult.winner === 'win' ? 'animate-bounce' : ''}>
                 {CHOICES.find(c => c.id === roundResult.player)?.emoji}
@@ -239,17 +238,17 @@ export default function games_rock_paper_scissors() {
 
         {/* Game over */}
         {gameState === 'gameover' && (
-          <div className="text-center p-6 bg-black/30 rounded-2xl border border-white/[0.06] space-y-3">
+          <div className="glass p-6 text-center space-y-3">
             <div className="text-4xl">{playerScore >= needed ? '🏆' : '😤'}</div>
             <h2 className="text-xl font-bold text-white">
               {playerScore >= needed ? 'You Won the Match!' : 'Computer Won the Match!'}
             </h2>
             <p className="text-sm text-slate-400">Final Score: {playerScore} - {computerScore}</p>
             <div className="flex gap-2 justify-center">
-              <button onClick={() => startGame(bestOf)} className="px-5 py-2.5 rounded-xl text-sm font-bold text-white" style={{ background: 'linear-gradient(135deg,#eab308,#ca8a04)' }}>
+              <button onClick={() => startGame(bestOf)} className="glow-btn px-5 py-2.5 text-sm">
                 Rematch
               </button>
-              <button onClick={resetGame} className="px-5 py-2.5 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white transition-all">
+              <button onClick={resetGame} className="px-5 py-2.5 rounded-xl bg-white/[0.06] border border-white/[0.08] text-slate-400 text-sm font-semibold hover:text-white hover:bg-white/[0.1] transition-all">
                 Menu
               </button>
             </div>
@@ -257,11 +256,13 @@ export default function games_rock_paper_scissors() {
         )}
 
         {/* Stats */}
-        <div className="grid grid-cols-4 gap-2 text-center">
-          <div className="p-2 bg-black/20 rounded-xl"><div className="text-sm font-bold text-emerald-400">{stats.wins}</div><div className="text-xs text-slate-500">Wins</div></div>
-          <div className="p-2 bg-black/20 rounded-xl"><div className="text-sm font-bold text-red-400">{stats.losses}</div><div className="text-xs text-slate-500">Losses</div></div>
-          <div className="p-2 bg-black/20 rounded-xl"><div className="text-sm font-bold text-amber-400">🔥 {stats.bestStreak}</div><div className="text-xs text-slate-500">Best Streak</div></div>
-          <div className="p-2 bg-black/20 rounded-xl"><div className="text-sm font-bold text-white">{stats.wins + stats.losses}</div><div className="text-xs text-slate-500">Total</div></div>
+        <div className="glass p-4">
+          <div className="grid grid-cols-4 gap-4">
+            <div className="text-center"><div className="text-2xl font-extrabold text-emerald-400">{stats.wins}</div><div className="text-xs text-slate-500 font-medium mt-0.5">Wins</div></div>
+            <div className="text-center"><div className="text-2xl font-extrabold text-red-400">{stats.losses}</div><div className="text-xs text-slate-500 font-medium mt-0.5">Losses</div></div>
+            <div className="text-center"><div className="text-2xl font-extrabold text-amber-400">🔥 {stats.bestStreak}</div><div className="text-xs text-slate-500 font-medium mt-0.5">Best Streak</div></div>
+            <div className="text-center"><div className="text-2xl font-extrabold text-white">{stats.wins + stats.losses}</div><div className="text-xs text-slate-500 font-medium mt-0.5">Total</div></div>
+          </div>
         </div>
 
         {/* History */}

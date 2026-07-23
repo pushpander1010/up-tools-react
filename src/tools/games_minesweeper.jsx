@@ -206,15 +206,14 @@ export default function games_minesweeper() {
         <div className="flex gap-2 justify-center flex-wrap">
           {Object.entries(DIFFICULTIES).map(([key, d]) => (
             <button key={key} onClick={() => startGame(key)}
-              className={`px-4 py-2 rounded-xl text-sm font-bold transition-all ${difficulty===key && (gameState!=='idle') ? 'text-white' : 'bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white'}`}
-              style={difficulty===key && (gameState!=='idle') ? {background:'linear-gradient(135deg,#ef4444,#dc2626)'} : {}}>
+              className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all ${difficulty===key && (gameState!=='idle') ? 'glow-btn text-white' : 'bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1]'}`}>
               {d.label} ({d.cols}×{d.rows}, {d.mines} mines)
             </button>
           ))}
         </div>
 
         {/* Stats bar */}
-        <div ref={resultRef} className="flex items-center justify-between px-4 py-3 bg-black/20 rounded-xl border border-white/[0.06]">
+        <div ref={resultRef} className="flex items-center justify-between px-4 py-3 glass rounded-xl">
           <div className="flex items-center gap-2">
             <span className="text-lg">💣</span>
             <span className="text-xl font-mono font-bold text-white">{mines - flagCount}</span>
@@ -260,7 +259,7 @@ export default function games_minesweeper() {
             <div className="text-5xl mb-4">💣</div>
             <h2 className="text-xl font-bold text-white mb-2">Minesweeper</h2>
             <p className="text-sm text-slate-400 mb-6">Select a difficulty and click a cell to start!</p>
-            <button onClick={() => startGame(difficulty)} className="px-8 py-3 rounded-xl text-sm font-bold text-white transition-all" style={{background:'linear-gradient(135deg,#ef4444,#dc2626)'}}>
+            <button onClick={() => startGame(difficulty)} className="glow-btn px-8 py-3 text-sm">
               Start Game
             </button>
           </div>
@@ -268,11 +267,11 @@ export default function games_minesweeper() {
 
         {/* Game over overlay */}
         {(gameState==='won'||gameState==='lost') && (
-          <div className="text-center p-6 bg-black/30 rounded-2xl border border-white/[0.06]">
+          <div className="text-center p-6 glass rounded-2xl">
             <div className="text-4xl mb-2">{gameState==='won' ? '🎉' : '💀'}</div>
             <h2 className="text-xl font-bold text-white mb-1">{gameState==='won' ? 'You Win!' : 'Game Over!'}</h2>
             <p className="text-sm text-slate-400 mb-4">{gameState==='won' ? `Completed in ${formatTime(timer)}` : 'You hit a mine!'}</p>
-            <button onClick={() => startGame(difficulty)} className="px-6 py-3 rounded-xl text-sm font-bold text-white transition-all" style={{background:'linear-gradient(135deg,#ef4444,#dc2626)'}}>
+            <button onClick={() => startGame(difficulty)} className="glow-btn px-6 py-3 text-sm">
               Play Again
             </button>
           </div>

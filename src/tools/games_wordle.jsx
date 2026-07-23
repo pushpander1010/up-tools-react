@@ -408,20 +408,20 @@ export default function games_wordle() {
         "genre": "Word Game", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <div className="max-w-lg mx-auto space-y-4">
+      <div className="max-w-lg mx-auto space-y-5">
         {/* Toast */}
         {toast && <div className="text-center text-sm font-bold text-white bg-slate-800 py-2 px-4 rounded-xl animate-pulse">{toast}</div>}
 
         {/* Controls */}
         <div className="flex gap-2 justify-center items-center">
           <button onClick={() => setHardMode(h => !h)}
-            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${hardMode ? 'bg-amber-500/20 border border-amber-500/40 text-amber-400' : 'bg-white/[0.06] border border-white/[0.08] text-slate-400'}`}>
+             className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${hardMode ? 'bg-amber-500/20 border border-amber-500/40 text-amber-400' : 'bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:bg-white/[0.1]'}`}>
             {hardMode ? '🔒 Hard' : '🔓 Normal'}
           </button>
-          <button onClick={() => setShowStats(s => !s)} className="px-3 py-1.5 rounded-lg text-xs font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white transition-all">
+          <button onClick={() => setShowStats(s => !s)} className="px-3 py-1.5 rounded-lg text-xs font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">
             📊 Stats
           </button>
-          <button onClick={newGame} className="px-3 py-1.5 rounded-lg text-xs font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white transition-all">
+          <button onClick={newGame} className="px-3 py-1.5 rounded-lg text-xs font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">
             ⟲ New
           </button>
         </div>
@@ -529,14 +529,14 @@ export default function games_wordle() {
             <h2 className="text-xl font-bold text-white">{gameState === 'won' ? 'Brilliant!' : `The word was: ${answer.toUpperCase()}`}</h2>
             {gameState === 'won' && <p className="text-sm text-slate-400">You got it in {guesses.length}/6{hardMode ? ' (Hard Mode)' : ''}!</p>}
             <div className="flex gap-2 justify-center">
-              <button onClick={newGame} className="px-5 py-2.5 rounded-xl text-sm font-bold text-white" style={{background:'linear-gradient(135deg,#22c55e,#16a34a)'}}>
-                Play Again
-              </button>
-              {gameState === 'won' && (
-                <button onClick={shareResults} className="px-5 py-2.5 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white transition-all">
-                  📋 Share
-                </button>
-              )}
+              <button onClick={newGame} className="glow-btn px-5 py-2.5 text-sm">
+               Play Again
+             </button>
+             {gameState === 'won' && (
+                <button onClick={shareResults} className="px-5 py-2.5 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">
+                 📋 Share
+               </button>
+             )}
             </div>
           </div>
         )}

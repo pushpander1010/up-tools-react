@@ -192,7 +192,7 @@ export default function games_typing_speed() {
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <div className="max-w-2xl mx-auto space-y-6">
+      <div className="max-w-2xl mx-auto space-y-5">
         {/* Duration selector */}
         <div className="flex gap-2 items-center">
           {[30, 60, 120].map(d => (
@@ -208,7 +208,7 @@ export default function games_typing_speed() {
         </div>
 
         {/* Text display */}
-        <div ref={resultRef} className="p-4 bg-black/20 rounded-xl text-base leading-relaxed font-mono min-h-[80px]">
+        <div ref={resultRef} className="glass p-4 text-base leading-relaxed font-mono min-h-[80px]">
           {currentText.split('').map((c, i) => {
             let cls = 'text-slate-600'
             if (i < typed.length) cls = typed[i] === c ? 'text-emerald-400' : 'text-red-400 bg-red-500/20'
@@ -221,7 +221,7 @@ export default function games_typing_speed() {
         <input ref={inputRef} type="text" value={typed} onChange={handleInput} disabled={testFinished}
           placeholder="Click here and start typing…"
           autoComplete="off" autoCorrect="off" autoCapitalize="off" spellCheck="false"
-          className="w-full bg-black/20 border-2 border-white/[0.08] rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-600" />
+          className="w-full bg-black/20 border-2 border-white/[0.08] rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-600 text-center" />
 
         {/* Progress bar */}
         <div className="h-2 bg-white/[0.06] rounded-full overflow-hidden">
@@ -229,28 +229,30 @@ export default function games_typing_speed() {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-4 gap-3">
-          <div className="text-center p-3 bg-black/20 rounded-xl">
-            <div className="text-xl font-extrabold text-white">{wpm}</div>
-            <div className="text-xs text-slate-500">WPM</div>
-          </div>
-          <div className="text-center p-3 bg-black/20 rounded-xl">
-            <div className="text-xl font-extrabold text-white">{accuracy}%</div>
-            <div className="text-xs text-slate-500">Accuracy</div>
-          </div>
-          <div className="text-center p-3 bg-black/20 rounded-xl">
-            <div className="text-xl font-extrabold text-white">{timeLeft}</div>
-            <div className="text-xs text-slate-500">Time Left</div>
-          </div>
-          <div className="text-center p-3 bg-black/20 rounded-xl">
-            <div className="text-xl font-extrabold text-white">{errors}</div>
-            <div className="text-xs text-slate-500">Errors</div>
+        <div className="glass p-4">
+          <div className="grid grid-cols-4 gap-4">
+            <div className="text-center">
+              <div className="text-2xl font-extrabold text-white">{wpm}</div>
+              <div className="text-xs text-slate-500 font-medium mt-0.5">WPM</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-extrabold text-white">{accuracy}%</div>
+              <div className="text-xs text-slate-500 font-medium mt-0.5">Accuracy</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-extrabold text-white">{timeLeft}</div>
+              <div className="text-xs text-slate-500 font-medium mt-0.5">Time Left</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-extrabold text-white">{errors}</div>
+              <div className="text-xs text-slate-500 font-medium mt-0.5">Errors</div>
+            </div>
           </div>
         </div>
 
         {/* Result */}
         {testFinished && (
-          <div className="text-center p-8 bg-white/[0.06] border-2 border-white/8 rounded-2xl">
+          <div className="text-center p-8 glass">
             <div className="text-5xl font-extrabold text-indigo-400 mb-2">{wpm}</div>
             <p className="text-slate-400 mb-4">Words Per Minute</p>
             <div className="grid grid-cols-3 gap-4 mb-6">
@@ -260,12 +262,11 @@ export default function games_typing_speed() {
             </div>
             <div className="flex gap-3 justify-center">
               <button onClick={() => resetTest()}
-                className="px-6 py-3 rounded-xl text-sm font-bold text-white transition-all"
-                style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}>
+                 className="glow-btn px-6 py-3 text-sm">
                 Try Again
               </button>
               <button onClick={() => { setTestFinished(false); resetTest() }}
-                className="px-6 py-3 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white transition-all">
+                 className="px-6 py-3 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">
                 Change Duration
               </button>
             </div>
@@ -276,7 +277,7 @@ export default function games_typing_speed() {
         {!testFinished && (
           <div className="text-center">
             <button onClick={() => resetTest()}
-              className="px-6 py-3 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white transition-all">
+               className="px-6 py-3 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">
               ↺ Restart
             </button>
           </div>

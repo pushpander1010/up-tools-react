@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback, useEffect } from 'react'
+import { useState, useMemo, useCallback } from 'react'
 import ToolLayout from '../components/ToolLayout'
 
 const GAMES = [
@@ -77,20 +77,22 @@ export default function games() {
   }, [])
 
   const GameCard = ({ game }) => (
-    <a href={game.href} className="block bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4 hover:bg-white/[0.1] transition-all group">
+    <a href={game.href} className="glass p-4 group relative overflow-hidden no-underline block">
+      <div className="absolute top-0 left-0 right-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity"
+        style={{ background: 'linear-gradient(90deg, transparent, #f43f5e, transparent)' }} />
       <div className="flex items-start gap-3">
-        <div className="text-2xl">{game.icon}</div>
+        <div className="text-2xl group-hover:scale-110 transition-transform">{game.icon}</div>
         <div className="flex-1 min-w-0">
           <h3 className="text-sm font-bold text-white group-hover:text-indigo-400 transition-all">{game.title}</h3>
           <p className="text-xs text-slate-400 mt-1 line-clamp-2">{game.desc}</p>
-          <div className="flex gap-1 mt-2 flex-wrap">
+          <div className="flex gap-1.5 mt-2 flex-wrap">
             {game.tags.slice(0, 3).map(t => (
-              <span key={t} className="text-xs px-2 py-0.5 rounded bg-white/[0.06] text-slate-500 capitalize">{t}</span>
+              <span key={t} className="text-xs px-2 py-0.5 rounded-lg bg-white/[0.06] text-slate-500 capitalize">{t}</span>
             ))}
           </div>
         </div>
         <button onClick={e => { e.preventDefault(); toggleFav(game.slug) }}
-          className="text-lg opacity-50 hover:opacity-100 transition-all">
+          className="text-lg opacity-50 hover:opacity-100 transition-all shrink-0">
           {favs.includes(game.slug) ? '⭐' : '☆'}
         </button>
       </div>
@@ -120,23 +122,32 @@ export default function games() {
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" }
       }}
     >
-      <div className="max-w-4xl mx-auto space-y-4">
+      <div className="max-w-4xl mx-auto space-y-5">
         {/* Stats */}
-        <div className="flex gap-4 justify-center text-center">
-          <div><div className="text-lg font-bold text-white">{GAMES.length}</div><div className="text-xs text-slate-500">Games</div></div>
-          <div><div className="text-lg font-bold text-white">0</div><div className="text-xs text-slate-500">Sign-ups</div></div>
-          <div><div className="text-lg font-bold text-white">100%</div><div className="text-xs text-slate-500">Free</div></div>
+        <div className="glass p-4">
+          <div className="flex gap-8 justify-center text-center">
+            <div><div className="text-2xl font-extrabold text-white">{GAMES.length}</div><div className="text-xs text-slate-500 font-medium">Games</div></div>
+            <div><div className="text-2xl font-extrabold text-white">0</div><div className="text-xs text-slate-500 font-medium">Sign-ups</div></div>
+            <div><div className="text-2xl font-extrabold text-emerald-400">100%</div><div className="text-xs text-slate-500 font-medium">Free</div></div>
+          </div>
         </div>
 
         {/* Search & Filters */}
-        <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4 space-y-3">
-          <input type="text" value={search} onChange={e => setSearch(e.target.value)}
-            placeholder="Search games (e.g., snake, puzzle, word)..."
-            className="w-full bg-black/20 border-2 border-white/[0.08] rounded-xl px-4 py-3 text-sm outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-500" />
+        <div className="glass p-4 space-y-3">
+          <div className="relative">
+            <input type="text" value={search} onChange={e => setSearch(e.target.value)}
+              placeholder="Search games (e.g., snake, puzzle, word)..."
+              className="w-full bg-black/20 border-2 border-white/[0.08] rounded-xl px-4 py-3 pl-10 text-sm outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-500" />
+            <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 text-sm">🔍</span>
+          </div>
           <div className="flex flex-wrap gap-2">
             {ALL_TAGS.map(tag => (
               <button key={tag} onClick={() => toggleFilter(tag)}
-                className={`px-3 py-1.5 rounded-xl text-xs font-semibold capitalize transition-all border ${activeFilters.has(tag) ? 'bg-indigo-500/15 border-indigo-500/30 text-indigo-400' : 'bg-white/[0.06] border-white/[0.08] text-slate-500 hover:text-white'}`}>
+                className={`px-3 py-1.5 rounded-xl text-xs font-semibold capitalize transition-all border ${
+                  activeFilters.has(tag)
+                    ? 'bg-indigo-500/15 border-indigo-500/30 text-indigo-400'
+                    : 'bg-white/[0.04] border-white/[0.06] text-slate-500 hover:text-white hover:bg-white/[0.08]'
+                }`}>
                 {tag}
               </button>
             ))}
@@ -146,8 +157,8 @@ export default function games() {
         {/* Recent */}
         {recentGames.length > 0 && (
           <div>
-            <h2 className="text-sm font-bold text-slate-400 mb-2">⏱️ Continue Playing</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            <h2 className="text-sm font-bold text-slate-400 mb-3">⏱️ Continue Playing</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {recentGames.slice(0, 4).map(g => <GameCard key={g.slug} game={g} />)}
             </div>
           </div>
@@ -156,8 +167,8 @@ export default function games() {
         {/* Favourites */}
         {favGames.length > 0 && (
           <div>
-            <h2 className="text-sm font-bold text-slate-400 mb-2">⭐ Your Favourites</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            <h2 className="text-sm font-bold text-slate-400 mb-3">⭐ Your Favourites</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {favGames.map(g => <GameCard key={g.slug} game={g} />)}
             </div>
           </div>
@@ -165,13 +176,14 @@ export default function games() {
 
         {/* All Games */}
         <div>
-          <h2 className="text-sm font-bold text-slate-400 mb-2">🕹️ All Games ({filtered.length})</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          <h2 className="text-sm font-bold text-slate-400 mb-3">🕹️ All Games ({filtered.length})</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {filtered.map(g => <GameCard key={g.slug} game={g} />)}
           </div>
           {filtered.length === 0 && (
-            <div className="text-center py-8 rounded-2xl border-2 border-dashed border-white/8 bg-white/[0.01]">
-              <p className="text-sm text-slate-600">No games match your search</p>
+            <div className="glass p-12 text-center">
+              <p className="text-4xl mb-3">🔍</p>
+              <p className="text-sm text-slate-500">No games match your search</p>
             </div>
           )}
         </div>

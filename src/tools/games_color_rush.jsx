@@ -170,7 +170,7 @@ export default function games_color_rush() {
       <div className="max-w-xl mx-auto space-y-5">
         {!playing && !gameOver ? (
           <div className="space-y-4">
-            <div className="text-center p-4 rounded-xl bg-white/[0.06] border border-white/[0.08]">
+            <div className="glass text-center p-4">
               <div className="text-2xl mb-2">🏆</div>
               <div className="text-lg font-extrabold text-white">{highScore}</div>
               <div className="text-xs text-slate-500">High Score</div>
@@ -190,18 +190,20 @@ export default function games_color_rush() {
         ) : (
           <div ref={resultRef} className="space-y-4">
             {/* Score + Level + Timer */}
-            <div className="grid grid-cols-3 gap-2">
-              <div className="text-center p-3 rounded-xl bg-white/[0.06] border border-white/[0.08]">
-                <div className="text-xl font-extrabold text-white">{score}</div>
-                <div className="text-xs text-slate-500">Score</div>
-              </div>
-              <div className="text-center p-3 rounded-xl bg-white/[0.06] border border-white/[0.08]">
-                <div className="text-xl font-extrabold text-purple-400">Lv.{level}</div>
-                <div className="text-xs text-slate-500">Level</div>
-              </div>
-              <div className="text-center p-3 rounded-xl bg-white/[0.06] border border-white/[0.08]">
-                <div className="text-xl font-extrabold" style={{color: timerColor}}>{timer.toFixed(1)}s</div>
-                <div className="text-xs text-slate-500">Timer</div>
+            <div className="glass p-4">
+              <div className="grid grid-cols-3 gap-4">
+                <div className="text-center">
+                  <div className="text-2xl font-extrabold text-white">{score}</div>
+                  <div className="text-xs text-slate-500 font-medium mt-0.5">Score</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-extrabold text-purple-400">Lv.{level}</div>
+                  <div className="text-xs text-slate-500 font-medium mt-0.5">Level</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-extrabold" style={{color: timerColor}}>{timer.toFixed(1)}s</div>
+                  <div className="text-xs text-slate-500 font-medium mt-0.5">Timer</div>
+                </div>
               </div>
             </div>
 
@@ -232,7 +234,7 @@ export default function games_color_rush() {
             {/* Game Over */}
             {gameOver && (
               <div className="text-center space-y-3">
-                <div className="p-4 rounded-xl bg-white/[0.06] border border-white/[0.08]">
+                <div className="glass p-4">
                   <div className="text-3xl mb-2">{score >= highScore && score > 0 ? '🎉' : '😢'}</div>
                   <div className="text-lg font-bold text-white">Score: {score}</div>
                   {score >= highScore && score > 0 && <div className="text-sm text-green-400 mt-1">🏆 New High Score!</div>}
@@ -240,8 +242,7 @@ export default function games_color_rush() {
                 </div>
                 <div className="flex gap-2 justify-center">
                   <button onClick={() => { setPlaying(false); setGameOver(false) }}
-                    className="px-6 py-3 rounded-xl text-sm font-bold text-white transition-all hover:opacity-90"
-                    style={{background:'linear-gradient(135deg,#6366f1,#8b5cf6)'}}>
+                    className="glow-btn px-6 py-3 text-sm">
                     Play Again
                   </button>
                 </div>

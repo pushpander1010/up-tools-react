@@ -214,18 +214,20 @@ export default function games_2048() {
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <div className="max-w-xl mx-auto space-y-6">
+      <div className="max-w-xl mx-auto space-y-5">
         {!playing && (
           <>
-            <div className="grid grid-cols-4 gap-3">
-              <div className="text-center p-3 bg-black/20 rounded-xl"><div className="text-lg font-extrabold text-white">{best}</div><div className="text-xs text-slate-500">Best Score</div></div>
-              <div className="text-center p-3 bg-black/20 rounded-xl"><div className="text-lg font-extrabold text-white">{bestTile}</div><div className="text-xs text-slate-500">Best Tile</div></div>
-              <div className="text-center p-3 bg-black/20 rounded-xl"><div className="text-lg font-extrabold text-white">{Number(localStorage.getItem(LS.LAST)||0)}</div><div className="text-xs text-slate-500">Last Score</div></div>
-              <div className="text-center p-3 bg-black/20 rounded-xl"><div className="text-lg font-extrabold text-white">{Number(localStorage.getItem(LS.MOVES)||0)}</div><div className="text-xs text-slate-500">Last Moves</div></div>
+            <div className="glass p-4">
+              <div className="grid grid-cols-4 gap-4">
+                <div className="text-center"><div className="text-2xl font-extrabold text-white">{best}</div><div className="text-xs text-slate-500 font-medium mt-0.5">Best Score</div></div>
+                <div className="text-center"><div className="text-2xl font-extrabold text-white">{bestTile}</div><div className="text-xs text-slate-500 font-medium mt-0.5">Best Tile</div></div>
+                <div className="text-center"><div className="text-2xl font-extrabold text-white">{Number(localStorage.getItem(LS.LAST)||0)}</div><div className="text-xs text-slate-500 font-medium mt-0.5">Last Score</div></div>
+                <div className="text-center"><div className="text-2xl font-extrabold text-white">{Number(localStorage.getItem(LS.MOVES)||0)}</div><div className="text-xs text-slate-500 font-medium mt-0.5">Last Moves</div></div>
+              </div>
             </div>
             <div className="flex gap-3 justify-center">
-              <button onClick={startNew} className="px-6 py-3 rounded-xl text-sm font-bold text-white transition-all" style={{background:'linear-gradient(135deg,#f59e0b,#d97706)'}}>New Game</button>
-              <button onClick={continueSaved} className="px-6 py-3 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white transition-all">↩️ Continue</button>
+              <button onClick={startNew} className="glow-btn px-6 py-3 text-sm">New Game</button>
+              <button onClick={continueSaved} className="px-6 py-3 rounded-xl text-sm font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">↩️ Continue</button>
             </div>
             <p className="text-center text-xs text-slate-500">Keyboard: ← → ↑ ↓ or swipe on mobile. Bests saved on this device.</p>
           </>
@@ -236,51 +238,53 @@ export default function games_2048() {
             {/* Top bar */}
             <div className="flex gap-3 items-center justify-between">
               <div className="flex gap-3">
-                <div className="px-4 py-2 bg-black/20 rounded-xl text-sm font-bold text-white">{score}</div>
-                <div className="px-4 py-2 bg-black/20 rounded-xl text-sm font-bold text-slate-400">Best: {best}</div>
+                <div className="px-4 py-2 glass text-sm font-bold text-white">{score}</div>
+                <div className="px-4 py-2 glass text-sm font-bold text-slate-400">Best: {best}</div>
               </div>
               <div className="flex gap-2">
-                <button onClick={undo} disabled={!stateRef.current.history.length} className="px-4 py-2 rounded-xl text-xs font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white transition-all disabled:opacity-30">↶ Undo</button>
-                <button onClick={startNew} className="px-4 py-2 rounded-xl text-xs font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white transition-all">⟲ Restart</button>
-                <button onClick={()=>{setPlaying(false)}} className="px-4 py-2 rounded-xl text-xs font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white transition-all">⟵ Back</button>
+                <button onClick={undo} disabled={!stateRef.current.history.length} className="px-4 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all disabled:opacity-30">↶ Undo</button>
+                <button onClick={startNew} className="px-4 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">⟲ Restart</button>
+                <button onClick={()=>{setPlaying(false)}} className="px-4 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">⟵ Back</button>
               </div>
             </div>
 
             {/* Board */}
-            <div ref={resultRef} className="relative mx-auto" style={{ width: boardSize, height: boardSize, background: '#0b1628', borderRadius: 12, padding: gap }}
-              onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
-              {/* Background cells */}
-              {[0,1,2,3].map(r => [0,1,2,3].map(c => (
-                <div key={`${r}-${c}`} className="absolute rounded-lg" style={{
-                  left: gap + c * (cellSize + gap), top: gap + r * (cellSize + gap),
-                  width: cellSize, height: cellSize, background: 'rgba(255,255,255,0.04)'
-                }}/>
-              )))}
-
-              {/* Tiles */}
-              {grid.map((row, r) => row.map((val, c) => val !== 0 && (
-                <div key={`${r}-${c}-${val}`} className="absolute flex items-center justify-center rounded-lg font-bold transition-all duration-150"
-                  style={{
+            <div ref={resultRef} className="glass p-3">
+              <div className="relative mx-auto" style={{ width: boardSize, height: boardSize, background: '#0b1628', borderRadius: 12, padding: gap }}
+                onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+                {/* Background cells */}
+                {[0,1,2,3].map(r => [0,1,2,3].map(c => (
+                  <div key={`${r}-${c}`} className="absolute rounded-lg" style={{
                     left: gap + c * (cellSize + gap), top: gap + r * (cellSize + gap),
-                    width: cellSize, height: cellSize,
-                    background: TILE_COLORS[val] || '#3c3a32',
-                    color: TILE_TEXT[val] || '#f9f6f2',
-                    fontSize: Math.max(14, cellSize * 0.35),
-                    boxShadow: val >= 128 ? `0 0 ${Math.min(val/50, 20)}px ${TILE_COLORS[val]}40` : 'none',
-                  }}>
-                  {val}
-                </div>
-              )))}
+                    width: cellSize, height: cellSize, background: 'rgba(255,255,255,0.04)'
+                  }}/>
+                )))}
 
-              {/* Game over overlay */}
-              {(gameOver || (won && grid.flat().includes(2048))) && (
-                <div className="absolute inset-0 bg-black/80 backdrop-blur-sm rounded-xl flex flex-col items-center justify-center z-10">
-                  <div className="text-3xl mb-2">{won ? '🎉' : '💀'}</div>
-                  <h2 className="text-xl font-bold text-white mb-2">{won ? 'You Won!' : 'Game Over!'}</h2>
-                  <p className="text-sm text-slate-400 mb-4">Score: {score}</p>
-                  <button onClick={startNew} className="px-6 py-3 rounded-xl text-sm font-bold text-white" style={{background:'linear-gradient(135deg,#f59e0b,#d97706)'}}>Try Again</button>
-                </div>
-              )}
+                {/* Tiles */}
+                {grid.map((row, r) => row.map((val, c) => val !== 0 && (
+                  <div key={`${r}-${c}-${val}`} className="absolute flex items-center justify-center rounded-lg font-bold transition-all duration-150"
+                    style={{
+                      left: gap + c * (cellSize + gap), top: gap + r * (cellSize + gap),
+                      width: cellSize, height: cellSize,
+                      background: TILE_COLORS[val] || '#3c3a32',
+                      color: TILE_TEXT[val] || '#f9f6f2',
+                      fontSize: Math.max(14, cellSize * 0.35),
+                      boxShadow: val >= 128 ? `0 0 ${Math.min(val/50, 20)}px ${TILE_COLORS[val]}40` : 'none',
+                    }}>
+                    {val}
+                  </div>
+                )))}
+
+                {/* Game over overlay */}
+                {(gameOver || (won && grid.flat().includes(2048))) && (
+                  <div className="absolute inset-0 bg-black/80 backdrop-blur-sm rounded-xl flex flex-col items-center justify-center z-10">
+                    <div className="text-3xl mb-2">{won ? '🎉' : '💀'}</div>
+                    <h2 className="text-xl font-bold text-white mb-2">{won ? 'You Won!' : 'Game Over!'}</h2>
+                    <p className="text-sm text-slate-400 mb-4">Score: {score}</p>
+                    <button onClick={startNew} className="glow-btn px-6 py-3 text-sm">Try Again</button>
+                  </div>
+                )}
+              </div>
             </div>
 
             <p className="text-center text-xs text-slate-500">Tip: use WASD too. Press Back to stop — progress is saved.</p>

@@ -225,7 +225,7 @@ export default function games_hangman() {
   const wrongLetters = [...guessed].filter(c => !word.includes(c))
   const guessedLetters = [...guessed].filter(c => word.includes(c))
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -251,25 +251,25 @@ export default function games_hangman() {
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <div className="max-w-2xl mx-auto space-y-6">
+      <div className="max-w-2xl mx-auto space-y-5">
         {/* Category selector */}
         <div className="flex gap-2 items-center flex-wrap">
           <label className="text-sm font-semibold text-slate-300">Category:</label>
           <select value={category} onChange={e => handleCategoryChange(e.target.value)}
-            className="bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-2.5 text-sm text-white outline-none focus:border-indigo-500/40">
+            className="bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-4 py-2.5 text-sm text-white outline-none focus:border-indigo-500/40">
             <option value="all" className="bg-gray-900">All</option>
             {Object.keys(WORDS).map(cat => (
               <option key={cat} value={cat} className="bg-gray-900">{cat.charAt(0).toUpperCase() + cat.slice(1)}</option>
             ))}
           </select>
           <button onClick={handleNewGame}
-            className="ml-auto px-5 py-2.5 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-300 hover:text-white transition-all">
-            New Game
-          </button>
+            className="ml-auto px-5 py-2.5 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-300 hover:text-white hover:bg-white/[0.1] transition-all">
+           New Game
+         </button>
         </div>
 
         {/* Game area */}
-        <div ref={resultRef} className="bg-white/[0.06] border-2 border-white/8 rounded-2xl p-6 relative">
+        <div ref={resultRef} className="glass p-6 relative">
           {/* SVG Hangman */}
           <div className="flex gap-4 items-start flex-wrap">
             <svg width="140" height="160" viewBox="0 0 160 180" className="flex-shrink-0">
@@ -330,8 +330,7 @@ export default function games_hangman() {
               <h2 className="text-xl font-bold text-white mb-2">{won ? 'You Won!' : 'Game Over!'}</h2>
               <p className="text-sm text-slate-400 mb-4">The word was: {word.toUpperCase()}</p>
               <button onClick={() => initGame(category)}
-                className="px-8 py-3 rounded-xl text-sm font-bold text-white transition-all"
-                style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}>
+                 className="glow-btn px-8 py-3 text-sm">
                 Play Again
               </button>
             </div>

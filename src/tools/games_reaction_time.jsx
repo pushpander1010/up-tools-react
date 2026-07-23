@@ -146,18 +146,20 @@ export default function games_reaction_time() {
     >
       <div className="max-w-xl mx-auto space-y-5">
         {/* Stats */}
-        <div className="grid grid-cols-3 gap-2">
-          <div className="text-center p-3 rounded-xl bg-white/[0.06] border border-white/[0.08]">
-            <div className="text-lg font-extrabold text-white">{bestTime === Infinity ? '—' : bestTime + 'ms'}</div>
-            <div className="text-xs text-slate-500">Best</div>
-          </div>
-          <div className="text-center p-3 rounded-xl bg-white/[0.06] border border-white/[0.08]">
-            <div className="text-lg font-extrabold text-purple-400">{attempts}</div>
-            <div className="text-xs text-slate-500">Attempts</div>
-          </div>
-          <div className="text-center p-3 rounded-xl bg-white/[0.06] border border-white/[0.08]">
-            <div className="text-lg font-extrabold text-white">{currentRound + (phase === 'done' ? 0 : 1)}/{ROUNDS}</div>
-            <div className="text-xs text-slate-500">Round</div>
+        <div className="glass p-4">
+          <div className="grid grid-cols-3 gap-4">
+            <div className="text-center">
+              <div className="text-2xl font-extrabold text-white">{bestTime === Infinity ? '—' : bestTime + 'ms'}</div>
+              <div className="text-xs text-slate-500 font-medium mt-0.5">Best</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-extrabold text-purple-400">{attempts}</div>
+              <div className="text-xs text-slate-500 font-medium mt-0.5">Attempts</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-extrabold text-white">{currentRound + (phase === 'done' ? 0 : 1)}/{ROUNDS}</div>
+              <div className="text-xs text-slate-500 font-medium mt-0.5">Round</div>
+            </div>
           </div>
         </div>
 
@@ -176,7 +178,7 @@ export default function games_reaction_time() {
                 <div className="text-5xl mb-4">⚡</div>
                 <h2 className="text-xl font-bold text-white mb-2">Reaction Time Test</h2>
                 <p className="text-sm text-slate-400 text-center">Click the screen when it turns green!<br/>3 rounds · Average + Best tracked</p>
-                <div className="mt-6 px-8 py-3 rounded-xl text-sm font-bold text-white" style={{background:'linear-gradient(135deg,#6366f1,#8b5cf6)'}}>
+                <div className="glow-btn mt-6 px-8 py-3 text-sm">
                   Click to Start
                 </div>
               </>
@@ -199,7 +201,7 @@ export default function games_reaction_time() {
                 <div className="text-5xl mb-4">⚠️</div>
                 <h2 className="text-xl font-bold text-yellow-300 mb-2">Too Early!</h2>
                 <p className="text-sm text-slate-400">Wait for green before clicking</p>
-                <div className="mt-6 px-8 py-3 rounded-xl text-sm font-bold text-white" style={{background:'linear-gradient(135deg,#6366f1,#8b5cf6)'}}>
+                <div className="glow-btn mt-6 px-8 py-3 text-sm">
                   Try Again
                 </div>
               </>
@@ -244,12 +246,11 @@ export default function games_reaction_time() {
                 </div>
                 <div className="flex gap-2 justify-center">
                   <button onClick={(e) => { e.stopPropagation(); shareResults() }}
-                    className="px-4 py-2 rounded-xl text-xs font-bold bg-white/[0.08] text-white hover:bg-white/[0.12] transition-all">
+                    className="px-4 py-2 rounded-xl text-xs font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">
                     📋 Copy Results
                   </button>
                   <button onClick={(e) => { e.stopPropagation(); resetGame() }}
-                    className="px-4 py-2 rounded-xl text-xs font-bold text-white transition-all"
-                    style={{background:'linear-gradient(135deg,#6366f1,#8b5cf6)'}}>
+                    className="glow-btn px-4 py-2 text-xs">
                     Play Again
                   </button>
                 </div>
@@ -264,7 +265,7 @@ export default function games_reaction_time() {
             <h3 className="text-sm font-bold text-slate-400">Recent Attempts</h3>
             <div className="space-y-2 max-h-48 overflow-y-auto">
               {history.slice(0, 10).map((h, i) => (
-                <div key={i} className="flex items-center justify-between p-3 rounded-xl bg-white/[0.04] border border-white/[0.06]">
+                <div key={i} className="flex items-center justify-between p-3 glass text-xs">
                   <div className="text-xs text-slate-500">{h.date}</div>
                   <div className="flex gap-2">
                     {h.results.map((r, j) => (
