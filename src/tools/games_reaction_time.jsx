@@ -169,6 +169,7 @@ export default function games_reaction_time() {
           style={{ background: bg, minHeight: '280px' }}
           onClick={phase === 'idle' ? startRound :
                   phase === 'waiting' || phase === 'ready' ? handleClick :
+                  phase === 'tooEarly' ? startRound :
                   phase === 'result' && currentRound + 1 < ROUNDS ? continueRounds :
                   phase === 'done' ? resetGame : undefined}
         >

@@ -201,22 +201,22 @@ export default function games_ping_pong() {
 
     // Player paddle collision
     if (b.x <= PADDLE_W + 20 && b.y + BALL_SIZE >= p.y && b.y <= p.y + PADDLE_H && b.vx < 0) {
-      b.vx = Math.abs(b.vx) * 1.05
-      b.vy += (b.y - (p.y + PADDLE_H / 2)) * 0.1
+      b.vx = Math.abs(b.vx) * 1.02
+      b.vy += (b.y - (p.y + PADDLE_H / 2)) * 0.08
       b.x = PADDLE_W + 21
       playTone(440, 0.08)
     }
 
     // AI paddle collision
     if (b.x >= W - PADDLE_W - 20 - BALL_SIZE && b.y + BALL_SIZE >= ai.y && b.y <= ai.y + PADDLE_H && b.vx > 0) {
-      b.vx = -Math.abs(b.vx) * 1.05
-      b.vy += (b.y - (ai.y + PADDLE_H / 2)) * 0.1
+      b.vx = -Math.abs(b.vx) * 1.02
+      b.vy += (b.y - (ai.y + PADDLE_H / 2)) * 0.08
       b.x = W - PADDLE_W - 21 - BALL_SIZE
       playTone(440, 0.08)
     }
 
-    b.vx = Math.max(-12, Math.min(12, b.vx))
-    b.vy = Math.max(-8, Math.min(8, b.vy))
+    b.vx = Math.max(-8, Math.min(8, b.vx))
+    b.vy = Math.max(-6, Math.min(6, b.vy))
 
     if (b.x < 0) {
       ai.score++

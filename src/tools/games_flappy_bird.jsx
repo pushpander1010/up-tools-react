@@ -248,6 +248,19 @@ export default function games_flappy_bird() {
     }
   }, [])
 
+  const die = useCallback(() => {
+    const s = gRef.current
+    s.gameState = 'dead'
+    s.playing = false
+    setGameState('dead'); setPlaying(false)
+    playHit()
+    const newBest = Math.max(s.best, s.score)
+    s.best = newBest
+    setBest(newBest); setLastScore(s.score)
+    setMedal(getMedal(s.score))
+    try { localStorage.setItem(LS.BEST, String(newBest)); localStorage.setItem(LS.LAST, String(s.score)) } catch {}
+  }, [])
+
   const startLoop = useCallback(() => {
     const s = gRef.current
     if (s.animId) cancelAnimationFrame(s.animId)
@@ -315,27 +328,6 @@ export default function games_flappy_bird() {
     s.animId = requestAnimationFrame(loop)
   }, [die, draw])
 
-  const die = useCallback(() => {
-    const s = gRef.current
-    s.gameState = 'dead'
-    s.playing = false
-    setGameState('dead'); setPlaying(false)
-    playHit()
-    const newBest = Math.max(s.best, s.score)
-    s.best = newBest
-    setBest(newBest); setLastScore(s.score)
-    setMedal(getMedal(s.score))
-    try { localStorage.setItem(LS.BEST, String(newBest)); localStorage.setItem(LS.LAST, String(s.score)) } catch {}
-  }, [])
-
-  const flap = useCallback(() => {
-    const s = gRef.current
-    if (s.gameState === 'idle') { startGame(); return }
-    if (s.gameState === 'dead') return
-    s.bird.vy = FLAP
-    playFlap()
-  }, [startGame])
-
   const startGame = useCallback(() => {
     resetGame()
     const s = gRef.current
@@ -347,6 +339,14 @@ export default function games_flappy_bird() {
     fitCanvas()
     setTimeout(() => { startLoop() }, 30)
   }, [resetGame, fitCanvas, startLoop])
+
+  const flap = useCallback(() => {
+    const s = gRef.current
+    if (s.gameState === 'idle') { startGame(); return }
+    if (s.gameState === 'dead') return
+    s.bird.vy = FLAP
+    playFlap()
+  }, [startGame])
 
   function lerpColor(a, b, t) {
     const ah = parseInt(a.slice(1), 16), bh = parseInt(b.slice(1), 16)

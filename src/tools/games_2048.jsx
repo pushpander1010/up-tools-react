@@ -259,7 +259,7 @@ export default function games_2048() {
             </div>
 
             {/* Board */}
-            <div ref={resultRef} className="glass p-3">
+            <div ref={(el) => { resultRef.current = el; boardRef.current = el; }} className="glass p-3">
               <div className="relative mx-auto" style={{ width: boardSize, height: boardSize, background: '#0b1628', borderRadius: 12, padding: gap, touchAction: 'none' }}
                 onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
                 {/* Background cells */}

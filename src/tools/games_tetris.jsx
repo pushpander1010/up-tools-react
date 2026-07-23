@@ -45,7 +45,7 @@ export default function games_tetris() {
   const [nextPiece, setNextPiece] = useState(null)
 
   const gRef = useRef({
-    board: [],
+    board: Array.from({length:ROWS}, ()=>Array(COLS).fill(null)),
     piece: null,
     pieceX: 0, pieceY: 0,
     pieceName: '',

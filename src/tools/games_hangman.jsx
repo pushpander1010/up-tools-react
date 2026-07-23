@@ -168,18 +168,6 @@ export default function games_hangman() {
 
   useEffect(() => { wrongCountRef.current = wrongCount }, [wrongCount])
 
-  useEffect(() => {
-    const handler = (e) => {
-      if (gameOver || showOverlay) return
-      if (/^[a-z]$/i.test(e.key)) {
-        ensureAudio()
-        guessLetter(e.key.toLowerCase())
-      }
-    }
-    window.addEventListener('keydown', handler)
-    return () => window.removeEventListener('keydown', handler)
-  }, [gameOver, showOverlay, guessLetter])
-
   const guessLetter = useCallback((letter) => {
     if (gameOver || guessed.has(letter)) return
     const newGuessed = new Set(guessed)
@@ -211,6 +199,18 @@ export default function games_hangman() {
       playLose()
     }
   }, [gameOver, guessed, word, wrongCount])
+
+  useEffect(() => {
+    const handler = (e) => {
+      if (gameOver || showOverlay) return
+      if (/^[a-z]$/i.test(e.key)) {
+        ensureAudio()
+        guessLetter(e.key.toLowerCase())
+      }
+    }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [gameOver, showOverlay, guessLetter])
 
   const handleNewGame = () => {
     if (started && !gameOver) {

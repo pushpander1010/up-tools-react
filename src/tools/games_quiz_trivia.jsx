@@ -190,6 +190,10 @@ export default function games_quiz_trivia() {
     setSelectedIdx(null)
   }
 
+  const q = questions[currentQ]
+  const progressPct = questions.length ? ((currentQ + 1) / questions.length) * 100 : 0
+  const msgs = ['Keep practicing! 💪', 'Not bad! 👍', 'Good job! 🎉', 'Excellent! 🌟', 'Perfect score! 🏆']
+
   // Keyboard shortcuts: 1-4 for options, Enter/Space for next
   useEffect(() => {
     const handler = (e) => {
@@ -205,10 +209,6 @@ export default function games_quiz_trivia() {
     window.addEventListener('keydown', handler)
     return () => window.removeEventListener('keydown', handler)
   }, [answered, currentQ, questions, selectAnswer, handleNext, q, started, showResult])
-
-  const q = questions[currentQ]
-  const progressPct = questions.length ? ((currentQ + 1) / questions.length) * 100 : 0
-  const msgs = ['Keep practicing! 💪', 'Not bad! 👍', 'Good job! 🎉', 'Excellent! 🌟', 'Perfect score! 🏆']
 
   return (
     <ToolLayout
