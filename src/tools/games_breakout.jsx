@@ -32,6 +32,10 @@ const COLORS = ['#7dd3fc','#93c5fd','#a5b4fc','#c4b5fd','#f0abfc','#f9a8d4','#fd
 
 const LS = { BEST: 'ut_bk_best', BESTLV: 'ut_bk_bestlv' }
 
+function bestLevel() {
+  try { return +(localStorage.getItem(LS.BESTLV) || 1) } catch { return 1 }
+}
+
 export default function BreakoutGame() {
   const { ref: resultRef, jumpTo } = useJumpToResult()
   const cvs = useRef(null)
@@ -54,8 +58,9 @@ export default function BreakoutGame() {
     c.width = W * dpr; c.height = H * dpr
     c.style.width = W + 'px'; c.style.height = H + 'px'
     c.getContext('2d').setTransform(dpr, 0, 0, dpr, 0, 0)
-    const s = g.current; s.W = W; s.H = H; s.dpr = dpr
-    if (s.paddle) {
+    const s = g.current
+    if (s) { s.W = W; s.H = H; s.dpr = dpr }
+    if (s?.paddle) {
       s.paddle.y = H - H * 0.07
       s.paddle.w = Math.max(50, W * 0.15)
     }
@@ -64,6 +69,7 @@ export default function BreakoutGame() {
   /* ── spawn bricks ── */
   const spawnBricks = useCallback((lv) => {
     const s = g.current
+    if (!s) return
     const rows = Math.min(3 + Math.floor((lv - 1) % 8), 9)
     const cols = Math.min(6 + Math.floor((lv - 1) % 5), 10)
     const pad = Math.round(s.W * 0.025)
@@ -91,6 +97,7 @@ export default function BreakoutGame() {
   /* ── reset for new level ── */
   const resetLevel = useCallback((lv) => {
     const s = g.current
+    if (!s) return
     const W = s.W, H = s.H
     s.paddle = { x: W / 2, y: H - H * 0.07, w: Math.max(50, W * 0.15), h: Math.max(10, H * 0.018) }
     const spd = 260 + lv * 15
@@ -109,6 +116,7 @@ export default function BreakoutGame() {
   const draw = useCallback(() => {
     const c = cvs.current; if (!c) return
     const s = g.current
+    if (!s || !s.paddle || !s.ball) return
     const ctx = c.getContext('2d')
     const { W, H } = s
 
@@ -164,7 +172,7 @@ export default function BreakoutGame() {
   /* ── game loop ── */
   const loop = useCallback((ts) => {
     const s = g.current
-    if (!s.playing) return
+    if (!s || !s.playing) return
     const dt = Math.min((ts - (s.lt || ts)) / 1000, 0.05)
     s.lt = ts
 
@@ -302,7 +310,7 @@ export default function BreakoutGame() {
       best: +(() => { try { return +(localStorage.getItem(LS.BEST) || 0) } catch { return 0 } })(),
       title: 'BREAKOUT', subtitle: 'Tap to launch',
     }
-    resize(); draw()
+    resize()
     const h = () => { resize(); draw() }
     window.addEventListener('resize', h)
     return () => { window.removeEventListener('resize', h); if (g.current?.animId) cancelAnimationFrame(g.current.animId) }
@@ -312,12 +320,14 @@ export default function BreakoutGame() {
   useEffect(() => {
     const down = (e) => {
       const s = g.current
+      if (!s) return
       if (e.key === 'ArrowLeft' || e.key === 'a') { s.keys.left = true; e.preventDefault() }
       if (e.key === 'ArrowRight' || e.key === 'd') { s.keys.right = true; e.preventDefault() }
       if (e.key === ' ') { e.preventDefault(); handleTap() }
     }
     const up = (e) => {
       const s = g.current
+      if (!s) return
       if (e.key === 'ArrowLeft' || e.key === 'a') s.keys.left = false
       if (e.key === 'ArrowRight' || e.key === 'd') s.keys.right = false
     }
@@ -403,8 +413,4 @@ export default function BreakoutGame() {
       </div>
     </ToolLayout>
   )
-}
-
-function bestLevel() {
-  try { return +(localStorage.getItem(LS.BESTLV) || 1) } catch { return 1 }
 }
