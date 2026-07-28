@@ -1,8 +1,24 @@
+import { Component as ReactComponent } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { lazy, Suspense, useState, useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import MeshBackground from './components/MeshBackground'
+
+class ErrorBoundary extends ReactComponent {
+  state = { error: null }
+  static getDerivedStateFromError(error) { return { error } }
+  render() {
+    if (this.state.error) return (
+      <div className="text-center py-20">
+        <h1 className="text-xl font-bold text-white mb-4">Something went wrong</h1>
+        <p className="text-sm text-slate-400 mb-4 font-mono">{String(this.state.error)}</p>
+        <a href="/" className="glow-btn text-xs px-4 py-2 rounded-xl no-underline inline-block">← Back to Home</a>
+      </div>
+    )
+    return this.props.children
+  }
+}
 
 const HomePage = lazy(() => import('./pages/HomePage'))
 const GamesPage = lazy(() => import('./pages/GamesPage'))
@@ -45,7 +61,7 @@ function ToolRoute() {
     )
   }
 
-  return <Component />
+  return <ErrorBoundary><Component /></ErrorBoundary>
 }
 
 function Loading() {

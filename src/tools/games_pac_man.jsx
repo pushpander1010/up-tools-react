@@ -382,7 +382,8 @@ export default function games_pac_man() {
   useEffect(() => {
     const h = (e) => {
       const s = g.current
-      if (!s || !s.running) {
+      if (!s) return
+      if (!s.running) {
         if ((s.phase === 'idle' || s.phase === 'over' || s.phase === 'won') && (e.key === ' ' || e.key === 'Enter')) {
           e.preventDefault(); triggerAd(startGame)
         }
