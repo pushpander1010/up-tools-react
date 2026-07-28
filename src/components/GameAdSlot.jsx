@@ -3,8 +3,9 @@ import { useEffect, useRef } from 'react'
 /**
  * AdSense banner slot — renders a responsive ad unit.
  * Slot IDs: bottom=8865234201, left=4214854395, right=4462954769
+ * Pass width/height for fixed-size ads (e.g. aside skyscrapers), omit for auto-sizing.
  */
-export default function GameAdSlot({ slot = '8865234201', format = 'auto', className = '' }) {
+export default function GameAdSlot({ slot = '8865234201', format = 'auto', className = '', width, height }) {
   const adRef = useRef(null)
   const pushed = useRef(false)
 
@@ -23,12 +24,16 @@ export default function GameAdSlot({ slot = '8865234201', format = 'auto', class
     return () => clearTimeout(timer)
   }, [])
 
+  const insStyle = width && height
+    ? { display: 'inline-block', width: width + 'px', height: height + 'px' }
+    : { display: 'block', width: '100%', minWidth: '300px', minHeight: format === 'horizontal' ? '90px' : '250px' }
+
   return (
     <div className={`w-full overflow-hidden text-center ${className}`}>
       <ins
         ref={adRef}
         className="adsbygoogle"
-        style={{ display: 'block', width: '100%', minWidth: '300px', minHeight: format === 'horizontal' ? '90px' : '250px' }}
+        style={insStyle}
         data-ad-client="ca-pub-6216304334889617"
         data-ad-slot={slot}
         data-ad-format={format}

@@ -403,7 +403,7 @@ export default function BreakoutGame() {
       <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
         {/* Left aside ad */}
         <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="4214854395" format="vertical" className="mt-2" />
+          <GameAdSlot slot="3494503358" format="vertical" className="mt-2" width={160} height={600} />
         </div>
         {/* Game center */}
         <div className="flex-1 min-w-0 max-w-lg mx-auto space-y-4 overflow-hidden">
@@ -443,7 +443,7 @@ export default function BreakoutGame() {
         </div>
         {/* Right aside ad */}
         <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="4462954769" format="vertical" className="mt-2" />
+          <GameAdSlot slot="3414612309" format="vertical" className="mt-2" width={160} height={600} />
         </div>
       </div>
     </ToolLayout>

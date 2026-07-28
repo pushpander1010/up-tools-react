@@ -482,7 +482,7 @@ export default function SpaceInvadersGame() {
       <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
       <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
         <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="4214854395" format="vertical" className="mt-2" />
+          <GameAdSlot slot="3494503358" format="vertical" className="mt-2" width={160} height={600} />
         </div>
         <div className="flex-1 min-w-0 max-w-lg mx-auto space-y-5 overflow-hidden">
         {phase === 'idle' && (
@@ -521,7 +521,7 @@ export default function SpaceInvadersGame() {
         <GameAdSlot slot="8865234201" format="horizontal" className="mt-2" />
       </div>
       <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-        <GameAdSlot slot="4462954769" format="vertical" className="mt-2" />
+        <GameAdSlot slot="3414612309" format="vertical" className="mt-2" width={160} height={600} />
       </div>
       </div>
     </ToolLayout>

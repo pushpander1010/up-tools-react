@@ -4,6 +4,7 @@ import { lazy, Suspense, useState, useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import MeshBackground from './components/MeshBackground'
+import GameAdSlot from './components/GameAdSlot'
 
 class ErrorBoundary extends ReactComponent {
   state = { error: null }
@@ -72,6 +73,27 @@ function Loading() {
   )
 }
 
+function SidebarLayout({ children }) {
+  const location = useLocation()
+  // Games have their own aside ads inside the component
+  const isGame = location.pathname.startsWith('/games/')
+  if (isGame) return children
+
+  return (
+    <div className="flex gap-4">
+      <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
+        <GameAdSlot slot="3494503358" format="vertical" width={160} height={600} className="mt-2" />
+      </div>
+      <div className="flex-1 min-w-0">
+        {children}
+      </div>
+      <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
+        <GameAdSlot slot="3414612309" format="vertical" width={160} height={600} className="mt-2" />
+      </div>
+    </div>
+  )
+}
+
 export default function App() {
   return (
     <div className="relative min-h-screen">
@@ -80,12 +102,14 @@ export default function App() {
         <Navbar />
         <main className="max-w-6xl mx-auto px-5 py-8">
           <Suspense fallback={<Loading />}>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/games" element={<GamesPage />} />
-              <Route path="/hncker" element={<HnckerPage />} />
-              <Route path="*" element={<ToolRoute />} />
-            </Routes>
+            <SidebarLayout>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/games" element={<GamesPage />} />
+                <Route path="/hncker" element={<HnckerPage />} />
+                <Route path="*" element={<ToolRoute />} />
+              </Routes>
+            </SidebarLayout>
           </Suspense>
         </main>
         <Footer />
