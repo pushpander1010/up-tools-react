@@ -344,8 +344,6 @@ export default function games_pac_man() {
         gh.dir = chosen
         let nx = gh.x + chosen.x, ny = gh.y + chosen.y
         if (ny === 9) { nx = nx < 0 ? COLS-1 : nx >= COLS ? 0 : nx }
-        // don't let ghost re-enter house (block at type 4/5 when leaving)
-        if (gh.y <= 8 && (maze[ny]?.[nx] === 4 || maze[ny]?.[nx] === 5)) return
         gh.x = nx; gh.y = ny
 
         // collision with Pac-Man
