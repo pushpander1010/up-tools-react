@@ -480,15 +480,15 @@ export default function games_pac_man() {
     >
       <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
       <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
-        {/* Left aside ad */}
-        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
+        {/* Left aside ad - hide in fullscreen */}
+        {!isFs && <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
           <GameAdSlot slot="4214854395" format="vertical" className="mt-2" />
-        </div>
+        </div>}
 
         {/* Game center */}
         <div className="flex-1 min-w-0 max-w-xl mx-auto space-y-5">
-          {/* Score bar */}
-          <div className="glass p-4">
+          {/* Score bar - hide in fullscreen */}
+          {!isFs && <div className="glass p-4">
             <div className="grid grid-cols-3 gap-4">
               <div className="text-center">
                 <div className="text-2xl font-extrabold text-white">{score}</div>
@@ -503,10 +503,10 @@ export default function games_pac_man() {
                 <div className="text-xs text-slate-500 font-medium mt-0.5">Lives</div>
               </div>
             </div>
-          </div>
+          </div>}
 
           {/* Canvas */}
-          <div ref={resultRef} className="glass flex justify-center overflow-hidden" style={{padding:0}}>
+          <div ref={resultRef} className={`flex justify-center overflow-hidden ${!isFs ? 'glass' : ''}`} style={{padding:0}}>
             <div className="relative overflow-hidden" style={{background:'#000', lineHeight:0}}>
               <canvas ref={cvs} className="block" style={{imageRendering:'pixelated', touchAction:'none'}}
                 onPointerDown={onPointerDown}
@@ -541,53 +541,43 @@ export default function games_pac_man() {
                     className="glow-btn px-8 py-3 text-sm">Play Again</button>
                 </div>
               )}
+              {/* Exit fullscreen button */}
+              {isFs && (
+                <button onClick={toggleFs}
+                  className="absolute top-2 right-2 w-8 h-8 rounded-full bg-white/10 border border-white/20 text-white text-sm flex items-center justify-center hover:bg-white/20 transition-all z-10">
+                  ⊡
+                </button>
+              )}
             </div>
           </div>
 
-          {/* V-score */}
-          {phase === 'over' && lives <= 0 && (
+          {/* Game Over text */}
+          {!isFs && phase === 'over' && lives <= 0 && (
             <div className="text-center text-sm text-slate-500 font-medium">
               Game Over! Score: {score} · Best: {best}
             </div>
           )}
 
-          {/* D-pad */}
-          <div className="grid grid-cols-3 gap-1 max-w-[200px] mx-auto sm:hidden">
-            <div/>
-            <button onPointerDown={(e) => { e.preventDefault(); const s=g.current; if(s?.running) s.pac.nextDir={x:0,y:-1} }}
-              className="p-3 rounded-xl bg-white/[0.06] border border-white/[0.08] text-white text-lg active:bg-white/[0.12]">▲</button>
-            <div/>
-            <button onPointerDown={(e) => { e.preventDefault(); const s=g.current; if(s?.running) s.pac.nextDir={x:-1,y:0} }}
-              className="p-3 rounded-xl bg-white/[0.06] border border-white/[0.08] text-white text-lg active:bg-white/[0.12]">◀</button>
-            <div className="p-3 text-center text-slate-500 text-xs">D-PAD</div>
-            <button onPointerDown={(e) => { e.preventDefault(); const s=g.current; if(s?.running) s.pac.nextDir={x:1,y:0} }}
-              className="p-3 rounded-xl bg-white/[0.06] border border-white/[0.08] text-white text-lg active:bg-white/[0.12]">▶</button>
-            <div/>
-            <button onPointerDown={(e) => { e.preventDefault(); const s=g.current; if(s?.running) s.pac.nextDir={x:0,y:1} }}
-              className="p-3 rounded-xl bg-white/[0.06] border border-white/[0.08] text-white text-lg active:bg-white/[0.12]">▼</button>
-            <div/>
-          </div>
+          {/* Helper text + toolbar - hide in fullscreen */}
+          {!isFs && <p className="text-center text-xs text-slate-500">Swipe or use arrow keys / WASD</p>}
 
-          <p className="text-center text-xs text-slate-500">Desktop: Arrow keys or WASD · Mobile: Swipe or D-pad</p>
-
-          {/* Toolbar */}
-          <div className="flex gap-2 justify-center mt-4">
+          {!isFs && <div className="flex gap-2 justify-center mt-4">
             <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
-              {isFs ? '⊡' : '⛶'}
+              ⛶
             </button>
-          </div>
+          </div>}
         </div>
 
-        {/* Right aside ad */}
-        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
+        {/* Right aside ad - hide in fullscreen */}
+        {!isFs && <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
           <GameAdSlot slot="4462954769" format="vertical" className="mt-2" />
-        </div>
+        </div>}
       </div>
 
-      {/* Bottom banner ad */}
-      <div className="max-w-3xl mx-auto mt-6">
+      {/* Bottom banner ad - hide in fullscreen */}
+      {!isFs && <div className="max-w-3xl mx-auto mt-6">
         <GameAdSlot slot="8865234201" format="horizontal" />
-      </div>
+      </div>}
     </ToolLayout>
   )
 }
