@@ -5171,6 +5171,393 @@
         "health",
         "medical"
       ]
+    },
+    {
+      "slug": "games-super-sudoku",
+      "title": "Super Sudoku Online",
+      "icon": "🔢",
+      "desc": "Play Sudoku with multiple difficulty levels, notes mode, and timer.",
+      "href": "/games/super-sudoku/",
+      "tags": ["sudoku", "puzzle", "logic", "brain", "game"],
+      "cats": ["all", "fun", "puzzle"]
+    },
+    {
+      "slug": "games-bubble-shooter",
+      "title": "Bubble Shooter Online",
+      "icon": "🫧",
+      "desc": "Match and pop colored bubbles in this classic arcade shooter game.",
+      "href": "/games/bubble-shooter/",
+      "tags": ["bubble", "shooter", "arcade", "casual", "game"],
+      "cats": ["all", "fun", "arcade"]
+    },
+    {
+      "slug": "games-battleship",
+      "title": "Battleship Online",
+      "icon": "🚢",
+      "desc": "Place your fleet and sink enemy ships in this classic strategy game.",
+      "href": "/games/battleship/",
+      "tags": ["battleship", "strategy", "navy", "board", "game"],
+      "cats": ["all", "fun", "strategy"]
+    },
+    {
+      "slug": "slug-generator",
+      "title": "URL Slug Generator",
+      "icon": "🔗",
+      "desc": "Convert text to SEO-friendly URL slugs.",
+      "href": "/slug-generator/",
+      "tags": ["dev","seo","text"],
+      "cats": ["all","dev","tools"]
+    },
+    {
+      "slug": "css-minifier",
+      "title": "CSS Minifier & Beautifier",
+      "icon": "🎨",
+      "desc": "Minify, beautify & validate CSS code.",
+      "href": "/css-minifier/",
+      "tags": ["dev","css"],
+      "cats": ["all","dev","tools"]
+    },
+    {
+      "slug": "html-entity-encoder",
+      "title": "HTML Entity Encoder/Decoder",
+      "icon": "🔤",
+      "desc": "Encode/decode HTML entities instantly.",
+      "href": "/html-entity-encoder/",
+      "tags": ["dev","text"],
+      "cats": ["all","dev","tools"]
+    },
+    {
+      "slug": "xml-formatter",
+      "title": "XML Formatter & Validator",
+      "icon": "📄",
+      "desc": "Format, minify & validate XML online.",
+      "href": "/xml-formatter/",
+      "tags": ["dev","xml"],
+      "cats": ["all","dev","tools"]
+    },
+    {
+      "slug": "yaml-to-json-converter",
+      "title": "YAML ⇄ JSON Converter",
+      "icon": "🔄",
+      "desc": "Convert between YAML and JSON formats.",
+      "href": "/yaml-to-json-converter/",
+      "tags": ["dev","json"],
+      "cats": ["all","dev","tools"]
+    },
+    {
+      "slug": "password-strength-checker",
+      "title": "Password Strength Checker",
+      "icon": "🔒",
+      "desc": "Test password security & entropy.",
+      "href": "/password-strength-checker/",
+      "tags": ["security","dev"],
+      "cats": ["all","security","dev"]
+    },
+    {
+      "slug": "emoji-picker",
+      "title": "Emoji Picker",
+      "icon": "😄",
+      "desc": "Browse, search & copy 1500+ emojis.",
+      "href": "/emoji-picker/",
+      "tags": ["fun","text"],
+      "cats": ["all","fun","tools"]
+    },
+    {
+      "slug": "jwt-debugger",
+      "title": "JWT Debugger",
+      "icon": "🛡️",
+      "desc": "Decode & inspect JWT tokens client-side.",
+      "href": "/jwt-debugger/",
+      "tags": ["dev","security"],
+      "cats": ["all","dev","security"]
+    },
+    {
+      "slug": "hex-to-rgb-converter",
+      "title": "HEX ↔ RGB Converter",
+      "icon": "🌈",
+      "desc": "Convert between HEX, RGB & HSL with preview.",
+      "href": "/hex-to-rgb-converter/",
+      "tags": ["design","dev"],
+      "cats": ["all","images","dev"]
+    },
+    {
+      "slug": "image-placeholder-generator",
+      "title": "Image Placeholder Generator",
+      "icon": "🖼️",
+      "desc": "Generate custom placeholder images for mockups.",
+      "href": "/image-placeholder-generator/",
+      "tags": ["design","images","dev"],
+      "cats": ["all","images","dev"]
+    },
+    {
+      "slug": "roman-numeral-converter",
+      "title": "Roman Numeral Converter",
+      "icon": "🏛️",
+      "desc": "Convert numbers to Roman numerals & back.",
+      "href": "/roman-numeral-converter/",
+      "tags": ["math","tools"],
+      "cats": ["all","tools"]
+    },
+    {
+      "slug": "numbers-to-words",
+      "title": "Numbers to Words",
+      "icon": "🔢",
+      "desc": "Convert numbers to English & Indian words.",
+      "href": "/numbers-to-words/",
+      "tags": ["text","tools"],
+      "cats": ["all","tools","text"]
+    },
+    {
+      "slug": "list-sorter",
+      "title": "List Sorter",
+      "icon": "📋",
+      "desc": "Sort, shuffle, reverse & deduplicate lists.",
+      "href": "/list-sorter/",
+      "tags": ["text","tools"],
+      "cats": ["all","tools","text"]
+    },
+    {
+      "slug": "reverse-text",
+      "title": "Reverse Text",
+      "icon": "🔄",
+      "desc": "Reverse characters, words or lines.",
+      "href": "/reverse-text/",
+      "tags": ["text","tools"],
+      "cats": ["all","tools","text"]
+    },
+    {
+      "slug": "duplicate-line-remover",
+      "title": "Duplicate Line Remover",
+      "icon": "🗑️",
+      "desc": "Remove duplicate lines from text.",
+      "href": "/duplicate-line-remover/",
+      "tags": ["text","tools"],
+      "cats": ["all","tools","text"]
+    },
+    {
+      "slug": "text-to-image",
+      "title": "Text to Image",
+      "icon": "📝",
+      "desc": "Convert text to a downloadable PNG image.",
+      "href": "/text-to-image/",
+      "tags": ["images","tools"],
+      "cats": ["all","images","tools"]
+    },
+    {
+      "slug": "image-to-base64",
+      "title": "Image to Base64",
+      "icon": "🖼️",
+      "desc": "Convert any image to a Base64 data URL.",
+      "href": "/image-to-base64/",
+      "tags": ["dev","images"],
+      "cats": ["all","dev","images"]
+    },
+    {
+      "slug": "prefix-suffix-adder",
+      "title": "Prefix & Suffix Adder",
+      "icon": "📎",
+      "desc": "Add prefix/suffix to each line in bulk.",
+      "href": "/prefix-suffix-adder/",
+      "tags": ["text","tools"],
+      "cats": ["all","tools","text"]
+    },
+    {
+      "slug": "find-and-replace",
+      "title": "Find & Replace",
+      "icon": "🔍",
+      "desc": "Find and replace text with regex support.",
+      "href": "/find-and-replace/",
+      "tags": ["text","tools"],
+      "cats": ["all","tools","text"]
+    },
+    {
+      "slug": "text-statistics",
+      "title": "Text Statistics",
+      "icon": "📊",
+      "desc": "Analyze text with advanced word stats.",
+      "href": "/text-statistics/",
+      "tags": ["text","tools"],
+      "cats": ["all","tools","text"]
+    },
+    {
+      "slug": "http-status-codes",
+      "title": "HTTP Status Codes Reference",
+      "icon": "🌐",
+      "desc": "Full list of HTTP status codes with meanings.",
+      "href": "/http-status-codes/",
+      "tags": ["dev","reference"],
+      "cats": ["all","dev","tools"]
+    },
+    {
+      "slug": "color-palette-from-image",
+      "title": "Color Palette from Image",
+      "icon": "🎨",
+      "desc": "Extract dominant colors from any image.",
+      "href": "/color-palette-from-image/",
+      "tags": ["images","design"],
+      "cats": ["all","images","dev"]
+    },
+    {
+      "slug": "svg-to-jsx",
+      "title": "SVG to JSX Converter",
+      "icon": "⚛️",
+      "desc": "Convert SVG to React JSX components.",
+      "href": "/svg-to-jsx/",
+      "tags": ["dev","react"],
+      "cats": ["all","dev"]
+    },
+    {
+      "slug": "json-to-typescript",
+      "title": "JSON to TypeScript",
+      "icon": "📐",
+      "desc": "Generate TypeScript interfaces from JSON.",
+      "href": "/json-to-typescript/",
+      "tags": ["dev","typescript"],
+      "cats": ["all","dev"]
+    },
+    {
+      "slug": "sql-formatter",
+      "title": "SQL Formatter",
+      "icon": "🗄️",
+      "desc": "Format, beautify & minify SQL queries.",
+      "href": "/sql-formatter/",
+      "tags": ["dev","sql"],
+      "cats": ["all","dev"]
+    },
+    {
+      "slug": "css-animation-generator",
+      "title": "CSS Animation Generator",
+      "icon": "🎬",
+      "desc": "Visual CSS keyframe animation builder.",
+      "href": "/css-animation-generator/",
+      "tags": ["dev","css"],
+      "cats": ["all","dev"]
+    },
+    {
+      "slug": "code-to-image",
+      "title": "Code to Image",
+      "icon": "📸",
+      "desc": "Convert code to beautiful shareable images.",
+      "href": "/code-to-image/",
+      "tags": ["dev","images"],
+      "cats": ["all","dev","images"]
+    },
+    {
+      "slug": "mermaid-diagram-editor",
+      "title": "Mermaid Diagram Editor",
+      "icon": "📊",
+      "desc": "Create flowcharts & diagrams with Mermaid.js.",
+      "href": "/mermaid-diagram-editor/",
+      "tags": ["dev","diagrams"],
+      "cats": ["all","dev"]
+    },
+    {
+      "slug": "github-profile-readme-generator",
+      "title": "GitHub Profile README Generator",
+      "icon": "🐙",
+      "desc": "Generate a beautiful GitHub profile README.",
+      "href": "/github-profile-readme-generator/",
+      "tags": ["dev","github"],
+      "cats": ["all","dev"]
+    },
+    {
+      "slug": "regex-visualizer",
+      "title": "Regex Visualizer & Tester",
+      "icon": "🔍",
+      "desc": "Test, explain & visualize regular expressions.",
+      "href": "/regex-visualizer/",
+      "tags": ["dev","regex"],
+      "cats": ["all","dev"]
+    },
+    {
+      "slug": "color-contrast-checker",
+      "title": "Color Contrast Checker",
+      "icon": "👁️",
+      "desc": "WCAG contrast checker for accessible colors.",
+      "href": "/color-contrast-checker/",
+      "tags": ["design","accessibility"],
+      "cats": ["all","dev","images"]
+    },
+    {
+      "slug": "html-to-markdown",
+      "title": "HTML ⇄ Markdown Converter",
+      "icon": "📝",
+      "desc": "Convert between HTML and Markdown formats.",
+      "href": "/html-to-markdown/",
+      "tags": ["dev","text"],
+      "cats": ["all","dev"]
+    },
+    {
+      "slug": "aes-encryption",
+      "title": "AES Encryption Tool",
+      "icon": "🔐",
+      "desc": "Encrypt & decrypt text with AES-256-GCM.",
+      "href": "/aes-encryption/",
+      "tags": ["security","dev"],
+      "cats": ["all","security","dev"]
+    },
+    {
+      "slug": "css-filter-generator",
+      "title": "CSS Filter Generator",
+      "icon": "🎬",
+      "desc": "Visual CSS filter builder with live preview.",
+      "href": "/css-filter-generator/",
+      "tags": ["dev","css"],
+      "cats": ["all","dev"]
+    },
+    {
+      "slug": "calendar-generator",
+      "title": "Calendar Generator",
+      "icon": "📅",
+      "desc": "Generate printable monthly & yearly calendars.",
+      "href": "/calendar-generator/",
+      "tags": ["productivity","tools"],
+      "cats": ["all","tools"]
+    },
+    {
+      "slug": "graphing-calculator",
+      "title": "Graphing Calculator",
+      "icon": "📈",
+      "desc": "Plot math functions interactively with zoom.",
+      "href": "/graphing-calculator/",
+      "tags": ["math","tools"],
+      "cats": ["all","tools"]
+    },
+    {
+      "slug": "periodic-table",
+      "title": "Periodic Table",
+      "icon": "🧪",
+      "desc": "Interactive periodic table of elements.",
+      "href": "/periodic-table/",
+      "tags": ["education","science"],
+      "cats": ["all","education","tools"]
+    },
+    {
+      "slug": "barcode-generator",
+      "title": "Barcode Generator",
+      "icon": "📊",
+      "desc": "Generate CODE128, EAN-13, UPC-A & Code39.",
+      "href": "/barcode-generator/",
+      "tags": ["dev","tools"],
+      "cats": ["all","dev"]
+    },
+    {
+      "slug": "meme-generator",
+      "title": "Meme Generator",
+      "icon": "😂",
+      "desc": "Create memes with text on classic templates.",
+      "href": "/meme-generator/",
+      "tags": ["fun","images"],
+      "cats": ["all","fun","images"]
+    },
+    {
+      "slug": "pixel-art-editor",
+      "title": "Pixel Art Editor",
+      "icon": "🎨",
+      "desc": "Draw pixel art with fill, eyedropper & export.",
+      "href": "/pixel-art-editor/",
+      "tags": ["fun","images"],
+      "cats": ["all","fun","images"]
     }
   ],
   "categories": {
