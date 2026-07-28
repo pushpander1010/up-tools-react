@@ -285,7 +285,9 @@ export default function games_memory_match() {
           <GameAdSlot slot="4462954769" format="vertical" className="mt-2" />
         </div>
       </div>
-      <GameAdSlot slot="8865234201" format="horizontal" className="mt-2" />
+      <div className="w-full max-w-6xl mx-auto px-5">
+  <GameAdSlot slot="8865234201" format="horizontal" className="mt-2" />
+</div>
     </ToolLayout>
   )
 }

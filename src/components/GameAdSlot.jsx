@@ -17,11 +17,11 @@ export default function GameAdSlot({ slot = '8865234201', format = 'auto', class
   }, [])
 
   return (
-    <div className={`overflow-hidden text-center ${className}`}>
+    <div className={`w-full overflow-hidden text-center ${className}`}>
       <ins
         ref={ref}
         className="adsbygoogle"
-        style={{ display: 'block' }}
+        style={{ display: 'block', width: '100%' }}
         data-ad-client="ca-pub-6216304334889617"
         data-ad-slot={slot}
         data-ad-format={format}

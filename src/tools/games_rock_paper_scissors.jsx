@@ -318,9 +318,7 @@ export default function games_rock_paper_scissors() {
             </button>
           </div>
         </div>
-        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="8865234201" format="horizontal" className="mt-2" />
-          <GameAdSlot slot="4462954769" format="vertical" className="mt-2" />
+        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start"><GameAdSlot slot="4462954769" format="horizontal" className="mt-2" /><GameAdSlot slot="4462954769" format="vertical" className="mt-2" />
         </div>
       </div>
     </ToolLayout>

@@ -332,7 +332,9 @@ export default function games_dice_roller() {
         </div>
         </div>
       </div>
-      <GameAdSlot slot="8865234201" format="horizontal" className="mt-2" />
+      <div className="w-full max-w-6xl mx-auto px-5">
+  <GameAdSlot slot="8865234201" format="horizontal" className="mt-2" />
+</div>
     </ToolLayout>
   )
 }

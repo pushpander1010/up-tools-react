@@ -345,10 +345,12 @@ export default function games_snake() {
             </button>
           </div>
         </div>
-        <GameAdSlot slot="8865234201" format="horizontal" className="mt-2" />
         <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
           <GameAdSlot slot="4462954769" format="vertical" className="mt-2" />
         </div>
+      </div>
+      <div className="w-full max-w-6xl mx-auto px-5 mt-2">
+        <GameAdSlot slot="8865234201" format="horizontal" />
       </div>
     </ToolLayout>
   )
