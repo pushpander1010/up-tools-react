@@ -5153,6 +5153,24 @@
         "all",
         "fun"
       ]
+    },
+    {
+      "slug": "medicine-info",
+      "title": "Medicine Information",
+      "icon": "💊",
+      "desc": "Search FDA drug labels for uses, dosage, warnings, side effects and interactions.",
+      "href": "/medicine-info/",
+      "tags": [
+        "health",
+        "medicine",
+        "drugs",
+        "fda"
+      ],
+      "cats": [
+        "all",
+        "health",
+        "medical"
+      ]
     }
   ],
   "categories": {

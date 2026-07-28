@@ -1,5 +1,6 @@
 import { useState, useMemo, useCallback } from 'react'
 import { Helmet } from 'react-helmet-async'
+import { Link } from 'react-router-dom'
 
 const GAMES = [
   { slug: 'snake', title: 'Snake', icon: '🐍', desc: 'Eat food, grow your snake, avoid hitting yourself.', cat: 'Arcade', color: '#22c55e' },
@@ -72,6 +73,13 @@ export default function GamesPage() {
           "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" }
         }) }} />
       </Helmet>
+
+      {/* Breadcrumb */}
+      <nav className="flex items-center gap-2 text-xs text-slate-500 mb-5" aria-label="Breadcrumb">
+        <Link to="/" className="hover:text-white transition-colors">Home</Link>
+        <span className="text-slate-700">›</span>
+        <span className="text-slate-300 font-medium">Free Games</span>
+      </nav>
 
       {/* Hero */}
       <section className="glass p-7 mb-6 relative overflow-hidden">

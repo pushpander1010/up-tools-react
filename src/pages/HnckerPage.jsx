@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async'
+import { Link } from 'react-router-dom'
 import InfiniteCarousel from '../components/InfiniteCarousel'
 import videos from '../data/videos.json'
 
@@ -8,7 +9,23 @@ export default function HnckerPage() {
       <Helmet>
         <title>HNCKER - Apps, Instagram & Videos</title>
         <meta name="description" content="Follow HNCKER on Instagram, watch our tech videos, and download free Android apps." />
+        <link rel="canonical" href="https://www.uptools.in/hncker/" />
+        <meta property="og:title" content="HNCKER - Apps, Instagram & Videos | UpTools" />
+        <meta property="og:description" content="Follow HNCKER on Instagram, watch our tech videos, and download free Android apps." />
+        <meta property="og:url" content="https://www.uptools.in/hncker/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="UpTools" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="HNCKER - Apps, Instagram & Videos | UpTools" />
+        <meta name="twitter:description" content="Follow HNCKER on Instagram, watch our tech videos, and download free Android apps." />
       </Helmet>
+
+      {/* Breadcrumb */}
+      <nav className="flex items-center gap-2 text-xs text-slate-500 mb-5" aria-label="Breadcrumb">
+        <Link to="/" className="hover:text-white transition-colors">Home</Link>
+        <span className="text-slate-700">›</span>
+        <span className="text-slate-300 font-medium">HNCKER</span>
+      </nav>
 
       {/* Hero */}
       <div className="relative mb-6 overflow-hidden rounded-3xl border border-neon-border p-8 sm:p-10"

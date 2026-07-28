@@ -6,8 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "oxlint",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "npm run build && npx wrangler deploy && curl -s \"https://www.bing.com/indexnow?url=https://www.uptools.in/&key=2eb2c669f1984a5aab277087af544138\"",
+    "ping": "curl -s \"https://www.bing.com/indexnow?url=https://www.uptools.in/&key=2eb2c669f1984a5aab277087af544138\""
   },
   "dependencies": {
     "@tanstack/react-query": "^5.101.4",

@@ -100,7 +100,7 @@ export default function App() {
       <MeshBackground />
       <div className="relative z-10">
         <Navbar />
-        <main className="max-w-6xl mx-auto px-5 py-8">
+        <main className="max-w-6xl xl:max-w-7xl 2xl:max-w-screen-2xl mx-auto px-5 py-8">
           <Suspense fallback={<Loading />}>
             <SidebarLayout>
               <Routes>
