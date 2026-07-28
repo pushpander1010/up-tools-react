@@ -9,11 +9,15 @@ export default function GameAdSlot({ slot = '8865234201', format = 'auto', class
   const pushed = useRef(false)
 
   useEffect(() => {
-    if (pushed.current || !ref.current) return
-    try {
-      ;(window.adsbygoogle = window.adsbygoogle || []).push({})
-      pushed.current = true
-    } catch {}
+    if (pushed.current) return
+    const t = setTimeout(() => {
+      if (!ref.current) return
+      try {
+        ;(window.adsbygoogle = window.adsbygoogle || []).push({})
+        pushed.current = true
+      } catch {}
+    }, 300)
+    return () => clearTimeout(t)
   }, [])
 
   return (
