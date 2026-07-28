@@ -1,6 +1,9 @@
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback, useEffect, useRef } from 'react'
 import ToolLayout from '../components/ToolLayout'
 import useJumpToResult from '../hooks/useJumpToResult'
+import useFullscreen from '../hooks/useFullscreen'
+import GameAdSlot from '../components/GameAdSlot'
+import InterstitialAd from '../components/InterstitialAd'
 
 const STORAGE_KEY = 'uptools_coinflip_stats'
 
@@ -77,8 +80,19 @@ export default function games_coin_flip() {
   const [resultColor, setResultColor] = useState('')
   const [coinSide, setCoinSide] = useState('H')
   const [showHistory, setShowHistory] = useState(false)
+  const { isFs, toggle: toggleFs, onChange: onFsChange } = useFullscreen()
+  const [showAd, setShowAd] = useState(false)
+  const pendingAction = useRef(null)
+  const triggerAd = useCallback((action) => { pendingAction.current = action; setShowAd(true) }, [])
+  const onAdDismiss = useCallback(() => { setShowAd(false); if (pendingAction.current) { pendingAction.current(); pendingAction.current = null } }, [])
 
   useEffect(() => { saveStats(data) }, [data])
+  useEffect(() => {
+    const handler = () => onFsChange()
+    document.addEventListener('fullscreenchange', handler)
+    document.addEventListener('webkitfullscreenchange', handler)
+    return () => { document.removeEventListener('fullscreenchange', handler); document.removeEventListener('webkitfullscreenchange', handler) }
+  }, [onFsChange])
 
   const applyResult = useCallback((result) => {
     setData(prev => {
@@ -160,7 +174,7 @@ export default function games_coin_flip() {
 
   return (
     <ToolLayout
-      title="Coin Flip"
+      title="Coin Flip — Virtual Toss with Stats & Streaks" hideHeader={isFs}
       desc="Virtual coin toss with heads/tails stats, streaks, and 10-flip mode."
       icon="🪙" iconBg="rgba(245,158,11,0.08)"
       category="fun" slug="games-coin-flip"
@@ -181,7 +195,12 @@ export default function games_coin_flip() {
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" }
       }}
     >
-      <div className="max-w-2xl mx-auto space-y-5">
+      <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
+      <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
+        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
+          <GameAdSlot slot="4214854395" format="vertical" className="mt-2" />
+        </div>
+        <div className="flex-1 min-w-0 max-w-2xl mx-auto space-y-5 overflow-hidden">
         {/* Coin Display */}
         <div className="text-center">
           <div style={{ perspective: '800px' }} className="inline-block">
@@ -202,7 +221,7 @@ export default function games_coin_flip() {
 
         {/* Buttons */}
         <div className="flex gap-3">
-          <button onClick={flip}
+          <button onClick={() => triggerAd(flip)}
             className="glow-btn flex-1 py-4 min-h-[48px] rounded-2xl font-bold text-sm transition-all duration-200 active:scale-[0.98] disabled:opacity-50"
             disabled={flipping}>
             🪙 Flip
@@ -252,6 +271,9 @@ export default function games_coin_flip() {
             className="flex-1 py-3 min-h-[44px] rounded-xl bg-white/[0.06] border border-white/[0.08] text-slate-400 text-sm font-semibold hover:text-white hover:border-white/20 hover:bg-white/[0.1] transition-all">
             Reset
           </button>
+          <button onClick={toggleFs} className="px-3 py-2 rounded-xl bg-white/[0.06] border border-white/[0.08] text-slate-400 text-sm font-semibold hover:text-white hover:border-white/20 hover:bg-white/[0.1] transition-all" title="Fullscreen">
+            {isFs ? '⊡' : '⛶'}
+          </button>
         </div>
 
         {/* History */}
@@ -290,6 +312,11 @@ export default function games_coin_flip() {
             100% { transform: rotateY(1800deg) scale(1); }
           }
         `}</style>
+        <GameAdSlot slot="8865234201" format="horizontal" className="mt-2" />
+        </div>
+        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
+          <GameAdSlot slot="4462954769" format="vertical" className="mt-2" />
+        </div>
       </div>
     </ToolLayout>
   )
