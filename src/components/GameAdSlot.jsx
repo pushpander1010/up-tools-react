@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useLayoutEffect, useRef } from 'react'
 
 /**
  * AdSense banner slot — renders a responsive ad unit.
@@ -8,16 +8,12 @@ export default function GameAdSlot({ slot = '8865234201', format = 'auto', class
   const ref = useRef(null)
   const pushed = useRef(false)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (pushed.current) return
-    const t = setTimeout(() => {
-      if (!ref.current) return
-      try {
-        ;(window.adsbygoogle = window.adsbygoogle || []).push({})
-        pushed.current = true
-      } catch {}
-    }, 300)
-    return () => clearTimeout(t)
+    try {
+      ;(window.adsbygoogle = window.adsbygoogle || []).push({})
+      pushed.current = true
+    } catch {}
   }, [])
 
   return (

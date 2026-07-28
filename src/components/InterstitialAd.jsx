@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useLayoutEffect, useRef } from 'react'
 
 /**
  * Full-screen interstitial ad overlay. Shows on trigger, dismiss after countdown.
@@ -31,20 +31,13 @@ export default function InterstitialAd({ show, onDismiss, countdown = 5 }) {
     return () => clearTimeout(t)
   }, [visible, sec, onDismiss])
 
-  // Push ad when visible
-  useEffect(() => {
+  // Push ad immediately when visible
+  useLayoutEffect(() => {
     if (!visible || pushed.current) return
-    const tryPush = () => {
-      if (adRef.current) {
-        try {
-          ;(window.adsbygoogle = window.adsbygoogle || []).push({})
-          pushed.current = true
-        } catch {}
-      }
-    }
-    // Small delay to let DOM render
-    const t = setTimeout(tryPush, 200)
-    return () => clearTimeout(t)
+    try {
+      ;(window.adsbygoogle = window.adsbygoogle || []).push({})
+      pushed.current = true
+    } catch {}
   }, [visible])
 
   if (!visible) return null
