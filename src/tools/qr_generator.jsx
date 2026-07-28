@@ -1,7 +1,6 @@
 import { useState, useMemo, useCallback } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
-import AdBanner from '../components/AdBanner'
 import FAQ from '../components/FAQ'
 
 const PRESETS = [
@@ -115,7 +114,6 @@ export default function qr_generator() {
         <span className="text-white">QR Code Generator</span>
       </nav>
 
-      <AdBanner />
 
       {/* ─── SIDE-BY-SIDE ─── */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
@@ -189,7 +187,6 @@ export default function qr_generator() {
         </div>
       </div>
 
-      <AdBanner />
 
       <FAQ questions={[
         { q: 'What can I encode?', a: 'URLs, plain text, WiFi credentials (WIFI:T:WPA;S:Network;P:pass;;), email, phone numbers, vCards, and more.' },

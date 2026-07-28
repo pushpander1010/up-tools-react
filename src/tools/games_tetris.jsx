@@ -105,8 +105,9 @@ export default function games_tetris() {
     if (!canvas) return
     const wrap = canvas.parentElement
     if (!wrap) return
-    const maxW = Math.min(320, wrap.clientWidth - 16)
-    const cellSz = Math.floor(maxW / COLS)
+    const maxW = Math.min(wrap.clientWidth - 16, window.innerWidth - 32)
+    const maxH = window.innerHeight - 200
+    const cellSz = Math.min(Math.floor(maxW / COLS), Math.floor(maxH / ROWS))
     const W = cellSz * COLS
     const H = cellSz * ROWS
     const dpr = Math.max(1, Math.min(2, window.devicePixelRatio||1))
@@ -275,7 +276,7 @@ export default function games_tetris() {
     const handler = (e) => {
       const s = gRef.current
       if (s.gameOver) { if (e.key===' '||e.key==='Enter') startGame(); return }
-      if (!s.playing) return
+      if (!s.playing) { startGame(); return }
       if (!s.piece) return
 
       if (e.key==='ArrowLeft'||e.key==='a') {
@@ -316,7 +317,7 @@ export default function games_tetris() {
   const handlePointerUp = (e) => {
     const s = gRef.current
     if (s.gameOver) { startGame(); return }
-    if (!s.playing) return
+    if (!s.playing) { startGame(); return }
     if (!s.piece) return
     const dx = e.clientX - touchStart.current.x
     const dy = e.clientY - touchStart.current.y

@@ -1,6 +1,5 @@
 import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
-import AdBanner from './AdBanner'
 import RelatedTools from './RelatedTools'
 import FAQ from './FAQ'
 import HowItWorks from './HowItWorks'
@@ -49,17 +48,14 @@ export default function ToolLayout({ title, desc, icon, iconBg, category, slug, 
         </div>
       </div>
 
-      <AdBanner slot="9810172647" />
 
       <div className="mb-8">{children}</div>
 
-      <AdBanner slot="9810172647" />
 
       {howItWorks.length > 0 && <HowItWorks steps={howItWorks} />}
       {faq.length > 0 && <FAQ questions={faq} />}
       <RelatedTools currentSlug={slug} category={category} />
 
-      <AdBanner slot="9810172647" />
     </>
   )
 }
