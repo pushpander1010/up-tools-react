@@ -37,37 +37,32 @@ export default function currency_converter() {
   const [lastUpdated, setLastUpdated] = useState('')
 
   useEffect(() => {
-    // Try primary API (exchangerate-api.com — free, daily updates)
-    fetch('https://api.exchangerate-api.com/v4/latest/INR')
+    // Try primary API (open.er-api.com — free, no key, supports CORS)
+    fetch('https://open.er-api.com/v6/latest/USD')
       .then(r => {
         if (!r.ok) throw new Error('API returned ' + r.status)
         return r.json()
       })
       .then(data => {
         if (data.rates) {
-          const r = {}
-          CURRENCIES.forEach(c => { if (data.rates[c.code] !== undefined) r[c.code] = data.rates[c.code] })
-          // Fallback for INR itself
-          r.INR = 1
-          setRates(r)
-          setLastUpdated(data.date || new Date().toLocaleDateString('en-IN'))
+          setRates(data.rates)
+          setLastUpdated(data.time_last_update_utc || data.time_next_update_utc || new Date().toLocaleDateString('en-IN'))
           setError(null)
         } else {
           throw new Error('No rates in response')
         }
       })
       .catch(() => {
-        // Fallback API: frankfurter.app (open-source, no key needed)
-        fetch('https://api.frankfurter.app/latest?from=INR')
+        // Fallback: frankfurter.dev (open-source, no key needed, CORS-friendly)
+        fetch('https://api.frankfurter.dev/latest?from=USD')
           .then(r => {
             if (!r.ok) throw new Error('Fallback API returned ' + r.status)
             return r.json()
           })
           .then(data => {
             if (data.rates) {
-              const r = { INR: 1 }
-              CURRENCIES.forEach(c => { if (data.rates[c.code] !== undefined) r[c.code] = data.rates[c.code] })
-              setRates(r)
+              data.rates.USD = 1
+              setRates(data.rates)
               setLastUpdated(data.date || new Date().toLocaleDateString('en-IN'))
               setError('fallback')
             } else {
