@@ -1,6 +1,9 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
 import ToolLayout from '../components/ToolLayout'
 import useJumpToResult from '../hooks/useJumpToResult'
+import useFullscreen from '../hooks/useFullscreen'
+import GameAdSlot from '../components/GameAdSlot'
+import InterstitialAd from '../components/InterstitialAd'
 
 const QUESTIONS = {
   science: [
@@ -145,6 +148,12 @@ export default function games_quiz_trivia() {
   const [showResult, setShowResult] = useState(false)
   const [started, setStarted] = useState(false)
 
+  const { isFs, toggle: toggleFs, onChange: onFsChange } = useFullscreen()
+  const [showAd, setShowAd] = useState(false)
+  const pendingAction = useRef(null)
+  const triggerAd = useCallback((action) => { pendingAction.current = action; setShowAd(true) }, [])
+  const onAdDismiss = useCallback(() => { setShowAd(false); if (pendingAction.current) { pendingAction.current(); pendingAction.current = null } }, [])
+
   const startQuiz = useCallback((cat) => {
     const qs = getQuestions(cat || category)
     setQuestions(qs)
@@ -210,8 +219,15 @@ export default function games_quiz_trivia() {
     return () => window.removeEventListener('keydown', handler)
   }, [answered, currentQ, questions, selectAnswer, handleNext, q, started, showResult])
 
+  useEffect(() => {
+    const handler = () => onFsChange()
+    document.addEventListener('fullscreenchange', handler)
+    document.addEventListener('webkitfullscreenchange', handler)
+    return () => { document.removeEventListener('fullscreenchange', handler); document.removeEventListener('webkitfullscreenchange', handler) }
+  }, [onFsChange])
+
   return (
-    <ToolLayout
+    <ToolLayout hideHeader={isFs}
       title="Quiz Trivia Game Online - General Knowledge Quiz Free"
       desc="Test your general knowledge with 10 questions per round across science, history, sports, tech, and more."
       icon="🧠" iconBg="rgba(168,85,247,0.08)"
@@ -234,7 +250,12 @@ export default function games_quiz_trivia() {
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <div className="max-w-2xl mx-auto space-y-5">
+      <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
+      <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
+        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
+          <GameAdSlot slot="4214854395" format="vertical" className="mt-2" />
+        </div>
+        <div className="flex-1 min-w-0 max-w-2xl mx-auto space-y-5 overflow-hidden">
         {!showResult && started && q && (
           <>
             {/* Category + New Quiz */}
@@ -246,7 +267,7 @@ export default function games_quiz_trivia() {
                   <option key={cat} value={cat} className="bg-gray-900">{cat.charAt(0).toUpperCase() + cat.slice(1)}</option>
                 ))}
               </select>
-              <button onClick={() => startQuiz(category)}
+              <button onClick={() => triggerAd(() => startQuiz(category))}
                  className="ml-auto px-5 py-2.5 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-300 hover:text-white hover:bg-white/[0.1] transition-all">
                 New Quiz
               </button>
@@ -336,12 +357,23 @@ export default function games_quiz_trivia() {
             <div className="text-5xl font-extrabold text-white mb-2">{score}/10</div>
             <p className="text-slate-400 mb-2">Questions Correct</p>
             <p className="text-lg font-bold text-white mb-6">{msgs[Math.floor(score / 2.5)] || msgs[4]}</p>
-            <button onClick={() => startQuiz(category)}
+            <button onClick={() => triggerAd(() => startQuiz(category))}
                className="glow-btn px-8 py-3 text-sm">
               Play Again
             </button>
           </div>
         )}
+      </div>
+          <div className="flex gap-2 justify-center mt-4">
+            <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
+              {isFs ? '⊡' : '⛶'}
+            </button>
+          </div>
+        </div>
+        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
+          <GameAdSlot slot="8865234201" format="horizontal" className="mt-2" />
+          <GameAdSlot slot="4462954769" format="vertical" className="mt-2" />
+        </div>
       </div>
     </ToolLayout>
   )

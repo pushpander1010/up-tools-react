@@ -1,6 +1,9 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
 import ToolLayout from '../components/ToolLayout'
 import useJumpToResult from '../hooks/useJumpToResult'
+import useFullscreen from '../hooks/useFullscreen'
+import GameAdSlot from '../components/GameAdSlot'
+import InterstitialAd from '../components/InterstitialAd'
 
 const LS = { BEST: 'ut_rt_best', HISTORY: 'ut_rt_history', ATTEMPTS: 'ut_rt_attempts' }
 
@@ -30,6 +33,12 @@ export default function games_reaction_time() {
   })
   const startTimeRef = useRef(0)
   const timeoutRef = useRef(null)
+
+  const { isFs, toggle: toggleFs, onChange: onFsChange } = useFullscreen()
+  const [showAd, setShowAd] = useState(false)
+  const pendingAction = useRef(null)
+  const triggerAd = useCallback((action) => { pendingAction.current = action; setShowAd(true) }, [])
+  const onAdDismiss = useCallback(() => { setShowAd(false); if (pendingAction.current) { pendingAction.current(); pendingAction.current = null } }, [])
 
   const startRound = useCallback(() => {
     playSelect()
@@ -114,13 +123,19 @@ export default function games_reaction_time() {
     }).catch(() => {})
   }, [results, avg, bestRound])
 
+  useEffect(() => {
+    const handler = () => onFsChange()
+    document.addEventListener('fullscreenchange', handler)
+    document.addEventListener('webkitfullscreenchange', handler)
+    return () => { document.removeEventListener('fullscreenchange', handler); document.removeEventListener('webkitfullscreenchange', handler) }
+  }, [onFsChange])
+
   const bg = phase === 'ready' ? '#22c55e' :
-             phase === 'waiting' ? '#ef4444' :
              phase === 'tooEarly' ? '#f59e0b' :
              phase === 'result' ? '#3b82f6' : '#1e293b'
 
   return (
-    <ToolLayout
+    <ToolLayout hideHeader={isFs}
       title="Reaction Time Test - How Fast Are You?"
       desc="Test your reaction speed! See how fast you can respond to visual cues. Track your best times and compete with yourself."
       icon="⚡" iconBg="rgba(245,158,11,0.08)"
@@ -144,7 +159,12 @@ export default function games_reaction_time() {
         "genre": "Puzzle", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <div className="max-w-xl mx-auto space-y-5">
+      <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
+      <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
+        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
+          <GameAdSlot slot="4214854395" format="vertical" className="mt-2" />
+        </div>
+        <div className="flex-1 min-w-0 max-w-xl mx-auto space-y-5 overflow-hidden">
         {/* Stats */}
         <div className="glass p-4">
           <div className="grid grid-cols-3 gap-4">
@@ -284,6 +304,16 @@ export default function games_reaction_time() {
         )}
 
         <p className="text-center text-xs text-slate-500">Best times and history saved on this device.</p>
+          <div className="flex gap-2 justify-center mt-4">
+            <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
+              {isFs ? '⊡' : '⛶'}
+            </button>
+          </div>
+        </div>
+        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
+          <GameAdSlot slot="8865234201" format="horizontal" className="mt-2" />
+          <GameAdSlot slot="4462954769" format="vertical" className="mt-2" />
+        </div>
       </div>
     </ToolLayout>
   )

@@ -1,6 +1,9 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
 import ToolLayout from '../components/ToolLayout'
 import useJumpToResult from '../hooks/useJumpToResult'
+import useFullscreen from '../hooks/useFullscreen'
+import GameAdSlot from '../components/GameAdSlot'
+import InterstitialAd from '../components/InterstitialAd'
 
 /* ── audio ── */
 let audioCtx = null
@@ -40,6 +43,12 @@ export default function SpaceInvadersGame() {
   const [lives, setLives] = useState(3)
   const [wave, setWave]   = useState(1)
   const [phase, setPhase] = useState('idle')   // idle | playing | over
+
+  const { isFs, toggle: toggleFs, onChange: onFsChange } = useFullscreen()
+  const [showAd, setShowAd] = useState(false)
+  const pendingAction = useRef(null)
+  const triggerAd = useCallback((action) => { pendingAction.current = action; setShowAd(true) }, [])
+  const onAdDismiss = useCallback(() => { setShowAd(false); if (pendingAction.current) { pendingAction.current(); pendingAction.current = null } }, [])
 
   /* ── helpers ── */
   const sync = (s) => { setScore(s.score); setLives(s.lives); setWave(s.wave) }
@@ -443,8 +452,17 @@ export default function SpaceInvadersGame() {
   /* ── best display state (for idle screen) ── */
   const displayBest = phase === 'over' ? Math.max(best, score) : best
 
+
+  useEffect(() => {
+    const handler = () => onFsChange()
+    document.addEventListener('fullscreenchange', handler)
+    document.addEventListener('webkitfullscreenchange', handler)
+    return () => { document.removeEventListener('fullscreenchange', handler); document.removeEventListener('webkitfullscreenchange', handler) }
+  }, [onFsChange])
+
   return (
     <ToolLayout
+      hideHeader={isFs}
       title="Space Invaders Online - Classic Arcade Shooter"
       desc="Play Space Invaders online free. Defend Earth from alien invaders! Arrow keys to move, space to shoot. Waves get harder!"
       icon="👾" iconBg="rgba(0,229,255,0.08)"
@@ -461,7 +479,12 @@ export default function SpaceInvadersGame() {
         "genre": "Arcade", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <div className="max-w-lg mx-auto space-y-4">
+      <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
+      <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
+        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
+          <GameAdSlot slot="4214854395" format="vertical" className="mt-2" />
+        </div>
+        <div className="flex-1 min-w-0 max-w-lg mx-auto space-y-5 overflow-hidden">
         {phase === 'idle' && (
           <div className="glass p-4">
             <div className="grid grid-cols-2 gap-4 text-center">
@@ -469,7 +492,7 @@ export default function SpaceInvadersGame() {
               <div><div className="text-2xl font-extrabold text-cyan-400">{lastWave()}</div><div className="text-xs text-slate-500">Last Wave</div></div>
             </div>
             <div className="flex justify-center mt-4">
-              <button onClick={startGame} className="glow-btn px-8 py-3 text-sm font-bold">▶ Start Game</button>
+              <button onClick={() => triggerAd(startGame)} className="glow-btn px-8 py-3 text-sm font-bold">▶ Start Game</button>
             </div>
           </div>
         )}
@@ -482,6 +505,9 @@ export default function SpaceInvadersGame() {
             </div>
             <button onClick={() => { g.current.playing = false; if (g.current.animId) cancelAnimationFrame(g.current.animId); setPhase('idle') }}
               className="px-3 py-1.5 rounded-lg text-xs bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white transition">Menu</button>
+            <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
+              {isFs ? '⊡' : '⛶'}
+            </button>
           </div>
         )}
         <div ref={resultRef} className="glass !p-0 overflow-hidden rounded-xl">
@@ -491,6 +517,12 @@ export default function SpaceInvadersGame() {
         <p className="text-center text-xs text-slate-500">
           {'ontouchstart' in window ? 'Drag to move · Tap to shoot' : '← → Move · Space Shoot'}
         </p>
+      
+        <GameAdSlot slot="8865234201" format="horizontal" className="mt-2" />
+      </div>
+      <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
+        <GameAdSlot slot="4462954769" format="vertical" className="mt-2" />
+      </div>
       </div>
     </ToolLayout>
   )

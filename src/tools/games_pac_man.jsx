@@ -1,6 +1,9 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
 import ToolLayout from '../components/ToolLayout'
 import useJumpToResult from '../hooks/useJumpToResult'
+import useFullscreen from '../hooks/useFullscreen'
+import GameAdSlot from '../components/GameAdSlot'
+import InterstitialAd from '../components/InterstitialAd'
 
 // Read localStorage safely
 function safeGetItem(key, fallback) { try { return localStorage.getItem(key) ?? fallback } catch { return fallback } }
@@ -61,6 +64,12 @@ export default function games_pac_man() {
   const [won, setWon] = useState(false)
   const [showStart, setShowStart] = useState(true)
   const highScoreRef = useRef(highScore)
+
+  const { isFs, toggle: toggleFs, onChange: onFsChange } = useFullscreen()
+  const [showAd, setShowAd] = useState(false)
+  const pendingAction = useRef(null)
+  const triggerAd = useCallback((action) => { pendingAction.current = action; setShowAd(true) }, [])
+  const onAdDismiss = useCallback(() => { setShowAd(false); if (pendingAction.current) { pendingAction.current(); pendingAction.current = null } }, [])
 
   const gameState = useRef({
     maze: [],
@@ -530,8 +539,15 @@ export default function games_pac_man() {
     return () => window.removeEventListener('resize', redraw)
   }, [playing, drawGame])
 
+  useEffect(() => {
+    const handler = () => onFsChange()
+    document.addEventListener('fullscreenchange', handler)
+    document.addEventListener('webkitfullscreenchange', handler)
+    return () => { document.removeEventListener('fullscreenchange', handler); document.removeEventListener('webkitfullscreenchange', handler) }
+  }, [onFsChange])
+
   return (
-    <ToolLayout
+    <ToolLayout hideHeader={isFs}
       title="Pac-Man Online - Classic Arcade Game"
       desc="Play the classic Pac-Man arcade game in your browser! Eat dots, avoid ghosts, grab power pellets. Arrow keys or swipe to move."
       icon="👾" iconBg="rgba(250,204,21,0.08)"
@@ -555,7 +571,12 @@ export default function games_pac_man() {
         "genre": "Arcade", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <div className="max-w-xl mx-auto space-y-5">
+      <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
+      <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
+        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
+          <GameAdSlot slot="4214854395" format="vertical" className="mt-2" />
+        </div>
+        <div className="flex-1 min-w-0 max-w-xl mx-auto space-y-5 overflow-hidden">
         {/* Score display */}
         <div className="glass p-4">
           <div className="grid grid-cols-3 gap-4">
@@ -584,7 +605,7 @@ export default function games_pac_man() {
                 <div className="text-5xl mb-4">👾</div>
                 <h2 className="text-xl font-bold text-white mb-2">PAC-MAN</h2>
                 <p className="text-sm text-slate-400 text-center mb-4">Eat dots. Dodge ghosts. Grab power pellets!</p>
-                <button onClick={startGame}
+                <button onClick={() => triggerAd(startGame)}
                   className="glow-btn px-8 py-3 text-sm">
                   Start Game
                 </button>
@@ -598,7 +619,7 @@ export default function games_pac_man() {
                 <h2 className="text-xl font-bold text-white mb-2">{won ? 'You Win!' : 'Game Over!'}</h2>
                 <p className="text-sm text-slate-400 mb-4">Score: {score}</p>
                 <div className="flex gap-2">
-                  <button onClick={startGame}
+                  <button onClick={() => triggerAd(startGame)}
                     className="glow-btn px-6 py-3 text-sm">
                     {won ? 'Next Level' : 'Play Again'}
                   </button>
@@ -626,6 +647,16 @@ export default function games_pac_man() {
         </div>
 
         <p className="text-center text-xs text-slate-500">Desktop: Arrow keys or WASD · Mobile: Swipe or D-pad · High score saved on device.</p>
+          <div className="flex gap-2 justify-center mt-4">
+            <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
+              {isFs ? '⊡' : '⛶'}
+            </button>
+          </div>
+        </div>
+        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
+          <GameAdSlot slot="8865234201" format="horizontal" className="mt-2" />
+          <GameAdSlot slot="4462954769" format="vertical" className="mt-2" />
+        </div>
       </div>
     </ToolLayout>
   )

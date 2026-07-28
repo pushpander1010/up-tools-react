@@ -1,6 +1,9 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
 import ToolLayout from '../components/ToolLayout'
 import useJumpToResult from '../hooks/useJumpToResult'
+import useFullscreen from '../hooks/useFullscreen'
+import GameAdSlot from '../components/GameAdSlot'
+import InterstitialAd from '../components/InterstitialAd'
 
 const LS = { BEST: 'ut_ng_best', WINS: 'ut_ng_wins', STREAK: 'ut_ng_streak', HISTORY: 'ut_ng_history' }
 
@@ -39,6 +42,12 @@ export default function games_number_guessing() {
   const [streak, setStreak] = useState(() => Number(localStorage.getItem(LS.STREAK) || 0))
   const [confetti, setConfetti] = useState(false)
   const inputRef = useRef(null)
+
+  const { isFs, toggle: toggleFs, onChange: onFsChange } = useFullscreen()
+  const [showAd, setShowAd] = useState(false)
+  const pendingAction = useRef(null)
+  const triggerAd = useCallback((action) => { pendingAction.current = action; setShowAd(true) }, [])
+  const onAdDismiss = useCallback(() => { setShowAd(false); if (pendingAction.current) { pendingAction.current(); pendingAction.current = null } }, [])
 
   const startGame = useCallback((diff) => {
     playSelect()
@@ -129,8 +138,15 @@ export default function games_number_guessing() {
   const barLeft = ((currentLow - rangeMin) / (rangeMax - rangeMin)) * 100
   const barWidth = ((currentHigh - currentLow) / (rangeMax - rangeMin)) * 100
 
+  useEffect(() => {
+    const handler = () => onFsChange()
+    document.addEventListener('fullscreenchange', handler)
+    document.addEventListener('webkitfullscreenchange', handler)
+    return () => { document.removeEventListener('fullscreenchange', handler); document.removeEventListener('webkitfullscreenchange', handler) }
+  }, [onFsChange])
+
   return (
-    <ToolLayout
+    <ToolLayout hideHeader={isFs}
       title="Number Guessing Game - Guess the Number"
       desc="Test your luck and logic! Guess the secret number with hints. Choose difficulty and track your winning streak."
       icon="🔢" iconBg="rgba(99,102,241,0.08)"
@@ -154,7 +170,12 @@ export default function games_number_guessing() {
         "genre": "Puzzle", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <div className="max-w-xl mx-auto space-y-5">
+      <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
+      <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
+        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
+          <GameAdSlot slot="4214854395" format="vertical" className="mt-2" />
+        </div>
+        <div className="flex-1 min-w-0 max-w-xl mx-auto space-y-5 overflow-hidden">
         {/* Confetti */}
         {confetti && (
           <div className="fixed inset-0 pointer-events-none z-50">
@@ -195,7 +216,7 @@ export default function games_number_guessing() {
             <p className="text-center text-slate-400 text-sm">Choose your difficulty</p>
             <div className="grid grid-cols-3 gap-3">
               {DIFFICULTIES.map((d, i) => (
-                <button key={i} onClick={() => startGame(i)}
+                <button key={i} onClick={() => triggerAd(() => startGame(i))}
                   className="p-4 rounded-xl text-center transition-all hover:scale-105 active:scale-95 border border-white/[0.08]"
                   style={{ background: `linear-gradient(135deg, ${d.color}22, ${d.color}08)` }}>
                   <div className="text-2xl mb-2">{d.name === 'Easy' ? '😊' : d.name === 'Medium' ? '🤔' : '😤'}</div>
@@ -266,7 +287,7 @@ export default function games_number_guessing() {
             {/* Game over actions */}
             {gameOver && (
               <div className="text-center space-y-3">
-                <button onClick={() => { setDifficulty(null); setConfetti(false) }}
+                <button onClick={() => triggerAd(() => { setDifficulty(null); setConfetti(false) })}
                   className="glow-btn px-6 py-3 text-sm">
                   {won ? '🎉 Play Again' : 'Try Again'}
                 </button>
@@ -276,6 +297,16 @@ export default function games_number_guessing() {
         )}
 
         <p className="text-center text-xs text-slate-500">Best scores and streaks saved on this device.</p>
+          <div className="flex gap-2 justify-center mt-4">
+            <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
+              {isFs ? '⊡' : '⛶'}
+            </button>
+          </div>
+        </div>
+        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
+          <GameAdSlot slot="8865234201" format="horizontal" className="mt-2" />
+          <GameAdSlot slot="4462954769" format="vertical" className="mt-2" />
+        </div>
       </div>
     </ToolLayout>
   )

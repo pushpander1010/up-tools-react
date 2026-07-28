@@ -1,6 +1,9 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
 import ToolLayout from '../components/ToolLayout'
 import useJumpToResult from '../hooks/useJumpToResult'
+import useFullscreen from '../hooks/useFullscreen'
+import GameAdSlot from '../components/GameAdSlot'
+import InterstitialAd from '../components/InterstitialAd'
 
 const LS = { XW: 'ut_ttt_xw_v1', OW: 'ut_ttt_ow_v1', DR: 'ut_ttt_dr_v1', BEST: 'ut_ttt_best_v1' }
 
@@ -88,6 +91,12 @@ export default function games_tic_tac_toe() {
   const [animating, setAnimating] = useState(false)
   const boardRef = useRef(null)
 
+  const { isFs, toggle: toggleFs, onChange: onFsChange } = useFullscreen()
+  const [showAd, setShowAd] = useState(false)
+  const pendingAction = useRef(null)
+  const triggerAd = useCallback((action) => { pendingAction.current = action; setShowAd(true) }, [])
+  const onAdDismiss = useCallback(() => { setShowAd(false); if (pendingAction.current) { pendingAction.current(); pendingAction.current = null } }, [])
+
   const updateScores = useCallback((x,d,o) => {
     setXWins(x); setOWins(o); setDraws(d)
     try { localStorage.setItem(LS.XW, String(x)); localStorage.setItem(LS.OW, String(o)); localStorage.setItem(LS.DR, String(d)) } catch {}
@@ -157,8 +166,17 @@ export default function games_tic_tac_toe() {
 
   const cellSize = 'w-20 h-20 sm:w-24 sm:h-24'
 
+
+  useEffect(() => {
+    const handler = () => onFsChange()
+    document.addEventListener('fullscreenchange', handler)
+    document.addEventListener('webkitfullscreenchange', handler)
+    return () => { document.removeEventListener('fullscreenchange', handler); document.removeEventListener('webkitfullscreenchange', handler) }
+  }, [onFsChange])
+
   return (
     <ToolLayout
+      hideHeader={isFs}
       title="Tic Tac Toe Online - Play vs AI or Friend"
       desc="Play Tic Tac Toe online against AI or a friend. Animated X and O marks, win detection, and score tracking."
       icon="❌" iconBg="rgba(239,68,68,0.08)"
@@ -182,7 +200,12 @@ export default function games_tic_tac_toe() {
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <div className="max-w-md mx-auto space-y-5">
+      <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
+      <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
+        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
+          <GameAdSlot slot="4214854395" format="vertical" className="mt-2" />
+        </div>
+        <div className="flex-1 min-w-0 max-w-md mx-auto space-y-5 overflow-hidden">
         {/* Mode selector */}
         <div className="flex gap-2 justify-center">
           <button onClick={()=>{setMode('ai');resetGame()}} className={`glow-btn px-4 py-2 text-sm transition-all ${mode==='ai'?'':'bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:bg-white/[0.1]'}`}>
@@ -248,7 +271,10 @@ export default function games_tic_tac_toe() {
 
         {/* Reset */}
         <div className="flex gap-3 justify-center">
-          <button onClick={resetGame} className="glow-btn px-6 py-3 text-sm">
+          <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
+            {isFs ? '⊡' : '⛶'}
+          </button>
+          <button onClick={() => triggerAd(resetGame)} className="glow-btn px-6 py-3 text-sm">
            ⟲ New Game
          </button>
           <button onClick={()=>updateScores(0,0,0)} className="px-4 py-3 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">
@@ -264,6 +290,12 @@ export default function games_tic_tac_toe() {
           @keyframes drawLine { from { stroke-dashoffset: 85 } to { stroke-dashoffset: 0 } }
           @keyframes drawCircle { from { stroke-dashoffset: 188 } to { stroke-dashoffset: 0 } }
         `}</style>
+      
+        <GameAdSlot slot="8865234201" format="horizontal" className="mt-2" />
+      </div>
+      <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
+        <GameAdSlot slot="4462954769" format="vertical" className="mt-2" />
+      </div>
       </div>
     </ToolLayout>
   )

@@ -1,6 +1,9 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
 import ToolLayout from '../components/ToolLayout'
 import useJumpToResult from '../hooks/useJumpToResult'
+import useFullscreen from '../hooks/useFullscreen'
+import GameAdSlot from '../components/GameAdSlot'
+import InterstitialAd from '../components/InterstitialAd'
 
 const LS = { BEST: 'ut_flappy_best_v1', LAST: 'ut_flappy_last_v1', MEDALS: 'ut_flappy_medals_v1' }
 
@@ -45,6 +48,11 @@ export default function games_flappy_bird() {
   const [lastScore, setLastScore] = useState(() => Number(localStorage.getItem(LS.LAST)||0))
   const [gameState, setGameState] = useState('idle') // idle, running, dead
   const [medal, setMedal] = useState(null)
+  const { isFs, toggle: toggleFs, onChange: onFsChange } = useFullscreen()
+  const [showAd, setShowAd] = useState(false)
+  const pendingAction = useRef(null)
+  const triggerAd = useCallback((action) => { pendingAction.current = action; setShowAd(true) }, [])
+  const onAdDismiss = useCallback(() => { setShowAd(false); if (pendingAction.current) { pendingAction.current(); pendingAction.current = null } }, [])
 
   const gRef = useRef({
     bird: { x: 80, y: 200, vy: 0, rot: 0 },
@@ -384,9 +392,17 @@ export default function games_flappy_bird() {
     return () => { window.removeEventListener('resize', h); if (gRef.current.animId) cancelAnimationFrame(gRef.current.animId) }
   }, [fitCanvas, draw])
 
+  useEffect(() => {
+    const handler = () => onFsChange()
+    document.addEventListener('fullscreenchange', handler)
+    document.addEventListener('webkitfullscreenchange', handler)
+    return () => { document.removeEventListener('fullscreenchange', handler); document.removeEventListener('webkitfullscreenchange', handler) }
+  }, [onFsChange])
+
   return (
     <ToolLayout
       title="Flappy Bird Online - Free Arcade Game"
+      hideHeader={isFs}
       desc="Play Flappy Bird online. Tap to flap, avoid pipes, and try to beat your high score. Day/night cycle and medal system!"
       icon="🐦" iconBg="rgba(251,191,36,0.08)"
       category="fun" slug="games-flappy-bird"
@@ -409,7 +425,12 @@ export default function games_flappy_bird() {
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <div className="max-w-lg mx-auto space-y-5">
+      <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
+      <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
+        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
+          <GameAdSlot slot="4214854395" format="vertical" className="mt-2" />
+        </div>
+        <div className="flex-1 min-w-0 max-w-lg mx-auto space-y-5 overflow-hidden">
         <div className="glass p-4">
           <div className="grid grid-cols-3 gap-4">
             <div className="text-center">
@@ -428,8 +449,11 @@ export default function games_flappy_bird() {
         </div>
 
         <div className="flex gap-3 justify-center">
-          <button onClick={gameState === 'dead' ? startGame : flap} className="glow-btn px-6 py-3 text-sm">
+          <button onClick={gameState === 'dead' ? () => triggerAd(startGame) : flap} className="glow-btn px-6 py-3 text-sm">
             {gameState === 'dead' ? '⟲ Play Again' : gameState === 'running' ? '🐦 Flap!' : '▶ Start'}
+          </button>
+          <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
+            {isFs ? '⊡' : '⛶'}
           </button>
         </div>
 
@@ -444,7 +468,12 @@ export default function games_flappy_bird() {
         <p className="text-center text-xs text-slate-500">
           Space / Tap / Click to flap | Avoid pipes | Earn medals!
         </p>
+        </div>
+        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
+          <GameAdSlot slot="4462954769" format="vertical" className="mt-2" />
+        </div>
       </div>
+      <GameAdSlot slot="8865234201" format="horizontal" className="mt-2" />
     </ToolLayout>
   )
 }

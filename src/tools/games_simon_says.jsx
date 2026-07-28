@@ -1,6 +1,9 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
 import ToolLayout from '../components/ToolLayout'
 import useJumpToResult from '../hooks/useJumpToResult'
+import useFullscreen from '../hooks/useFullscreen'
+import GameAdSlot from '../components/GameAdSlot'
+import InterstitialAd from '../components/InterstitialAd'
 
 const LS = { HIGH: 'ut_simon_high' }
 
@@ -62,6 +65,12 @@ export default function games_simon_says() {
   const timerRef = useRef(null)
   const sequenceRef = useRef([])
   const playerIndexRef = useRef(0)
+
+  const { isFs, toggle: toggleFs, onChange: onFsChange } = useFullscreen()
+  const [showAd, setShowAd] = useState(false)
+  const pendingAction = useRef(null)
+  const triggerAd = useCallback((action) => { pendingAction.current = action; setShowAd(true) }, [])
+  const onAdDismiss = useCallback(() => { setShowAd(false); if (pendingAction.current) { pendingAction.current(); pendingAction.current = null } }, [])
 
   useEffect(() => {
     sequenceRef.current = sequence
@@ -192,8 +201,15 @@ export default function games_simon_says() {
     return () => window.removeEventListener('keydown', handleKey)
   }, [gameState, handleColorClick, startGame])
 
+  useEffect(() => {
+    const handler = () => onFsChange()
+    document.addEventListener('fullscreenchange', handler)
+    document.addEventListener('webkitfullscreenchange', handler)
+    return () => { document.removeEventListener('fullscreenchange', handler); document.removeEventListener('webkitfullscreenchange', handler) }
+  }, [onFsChange])
+
   return (
-    <ToolLayout
+    <ToolLayout hideHeader={isFs}
       title="Simon Says Game - Memory Challenge"
       desc="Play Simon Says online! Repeat the color sequence as it grows longer. Test your memory and reflexes in this classic arcade game."
       icon="🎮"
@@ -219,7 +235,12 @@ export default function games_simon_says() {
         "genre": "Memory", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <div className="max-w-sm mx-auto space-y-5">
+      <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
+      <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
+        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
+          <GameAdSlot slot="4214854395" format="vertical" className="mt-2" />
+        </div>
+        <div className="flex-1 min-w-0 max-w-sm mx-auto space-y-5 overflow-hidden">
         {/* Stats */}
         <div ref={resultRef} className="glass p-4">
           <div className="grid grid-cols-2 gap-4 text-center">
@@ -308,7 +329,7 @@ export default function games_simon_says() {
                 <p className="text-sm text-slate-400">Watch the sequence and repeat it. Each round gets longer and faster!</p>
               </>
             )}
-            <button onClick={startGame} className="glow-btn px-8 py-3 text-sm">
+            <button onClick={() => triggerAd(startGame)} className="glow-btn px-8 py-3 text-sm">
              {gameState === 'gameover' ? 'Play Again' : 'Start Game'}
            </button>
           </div>
@@ -317,6 +338,15 @@ export default function games_simon_says() {
         <div className="text-center space-y-1">
           <p className="text-xs text-slate-500">Keyboard: 1-4 or Arrow Keys to select colors</p>
           <p className="text-xs text-slate-500">Each color has a unique sound to help you remember</p>
+          <div className="flex gap-2 justify-center mt-4">
+            <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
+              {isFs ? '⊡' : '⛶'}
+            </button>
+          </div>
+        </div>
+        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
+          <GameAdSlot slot="8865234201" format="horizontal" className="mt-2" />
+          <GameAdSlot slot="4462954769" format="vertical" className="mt-2" />
         </div>
       </div>
     </ToolLayout>

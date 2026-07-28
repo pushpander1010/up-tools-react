@@ -1,6 +1,9 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
 import ToolLayout from '../components/ToolLayout'
 import useJumpToResult from '../hooks/useJumpToResult'
+import useFullscreen from '../hooks/useFullscreen'
+import GameAdSlot from '../components/GameAdSlot'
+import InterstitialAd from '../components/InterstitialAd'
 
 const DICE_FACES = {
   4: ['❶', '❷', '❸', '❹'],
@@ -88,6 +91,11 @@ export default function games_dice_roller() {
   const [history, setHistory] = useState([])
   const [stats, setStats] = useState(loadStats)
   const [showHistory, setShowHistory] = useState(false)
+  const { isFs, toggle: toggleFs, onChange: onFsChange } = useFullscreen()
+  const [showAd, setShowAd] = useState(false)
+  const pendingAction = useRef(null)
+  const triggerAd = useCallback((action) => { pendingAction.current = action; setShowAd(true) }, [])
+  const onAdDismiss = useCallback(() => { setShowAd(false); if (pendingAction.current) { pendingAction.current(); pendingAction.current = null } }, [])
 
   const sides = customSides ? Math.max(2, parseInt(customSides) || 6) : activeSides
 
@@ -149,9 +157,17 @@ export default function games_dice_roller() {
     return () => window.removeEventListener('keydown', handleKey)
   }, [rolling, rollDice, jumpTo])
 
+  useEffect(() => {
+    const handler = () => onFsChange()
+    document.addEventListener('fullscreenchange', handler)
+    document.addEventListener('webkitfullscreenchange', handler)
+    return () => { document.removeEventListener('fullscreenchange', handler); document.removeEventListener('webkitfullscreenchange', handler) }
+  }, [onFsChange])
+
   return (
     <ToolLayout
       title="Dice Roller"
+      hideHeader={isFs}
       desc="Roll D4–D20 virtual dice with sound effects, history, and statistics."
       icon="🎲" iconBg="rgba(99,102,241,0.08)"
       category="fun" slug="games-dice-roller"
@@ -172,7 +188,12 @@ export default function games_dice_roller() {
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" }
       }}
     >
-      <div className="max-w-2xl mx-auto space-y-5">
+      <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
+      <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
+        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
+          <GameAdSlot slot="4214854395" format="vertical" className="mt-2" />
+        </div>
+        <div className="flex-1 min-w-0 max-w-2xl mx-auto space-y-5 overflow-hidden">
         {/* Dice Type Selection */}
         <div>
           <label className="block text-sm font-semibold text-slate-300 mb-2">Dice Type</label>
@@ -213,6 +234,11 @@ export default function games_dice_roller() {
           disabled={rolling}>
           {rolling ? '🎲 Rolling...' : `🎲 Roll ${diceCount}D${sides}`}
         </button>
+        <div className="flex gap-3 justify-center">
+          <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
+            {isFs ? '⊡' : '⛶'}
+          </button>
+        </div>
 
         {/* Dice Display */}
         <div ref={resultRef} className="rounded-3xl border-2 border-indigo-500/15 bg-gradient-to-br from-indigo-500/[0.06] via-white/[0.01] to-transparent p-6 sm:p-8 overflow-hidden">
@@ -304,7 +330,9 @@ export default function games_dice_roller() {
             <li>Track your stats and roll history</li>
           </ul>
         </div>
+        </div>
       </div>
+      <GameAdSlot slot="8865234201" format="horizontal" className="mt-2" />
     </ToolLayout>
   )
 }

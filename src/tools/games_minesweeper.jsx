@@ -1,6 +1,9 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
 import ToolLayout from '../components/ToolLayout'
 import useJumpToResult from '../hooks/useJumpToResult'
+import useFullscreen from '../hooks/useFullscreen'
+import GameAdSlot from '../components/GameAdSlot'
+import InterstitialAd from '../components/InterstitialAd'
 
 const LS = { BEST_EASY: 'ut_ms_best_easy', BEST_MED: 'ut_ms_best_med', BEST_EXP: 'ut_ms_best_exp', TIME_EASY: 'ut_ms_time_easy', TIME_MED: 'ut_ms_time_med', TIME_EXP: 'ut_ms_time_exp' }
 
@@ -66,6 +69,11 @@ export default function games_minesweeper() {
   const longPressRef = useRef(null)
   const touchStartRef = useRef(null)
   const longPressActiveRef = useRef(false)
+  const { isFs, toggle: toggleFs, onChange: onFsChange } = useFullscreen()
+  const [showAd, setShowAd] = useState(false)
+  const pendingAction = useRef(null)
+  const triggerAd = useCallback((action) => { pendingAction.current = action; setShowAd(true) }, [])
+  const onAdDismiss = useCallback(() => { setShowAd(false); if (pendingAction.current) { pendingAction.current(); pendingAction.current = null } }, [])
 
   const { rows, cols, mines } = DIFFICULTIES[difficulty]
 
@@ -77,6 +85,13 @@ export default function games_minesweeper() {
   }, [gameState, firstClick])
 
   const flagCount = board ? board.flat().filter(c=>c.flagged).length : 0
+
+  useEffect(() => {
+    const handler = () => onFsChange()
+    document.addEventListener('fullscreenchange', handler)
+    document.addEventListener('webkitfullscreenchange', handler)
+    return () => { document.removeEventListener('fullscreenchange', handler); document.removeEventListener('webkitfullscreenchange', handler) }
+  }, [onFsChange])
 
   const startGame = useCallback((diff) => {
     setDifficulty(diff)
@@ -175,6 +190,7 @@ export default function games_minesweeper() {
   return (
     <ToolLayout
       title="Minesweeper Online - Classic Puzzle Game"
+      hideHeader={isFs}
       desc="Play the classic Minesweeper puzzle game online. Flag the mines, reveal safe cells, and test your logic skills across Easy, Medium, and Expert difficulties."
       icon="💣"
       iconBg="rgba(239,68,68,0.08)"
@@ -199,15 +215,23 @@ export default function games_minesweeper() {
         "genre": "Puzzle", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <div className="max-w-4xl mx-auto space-y-5">
+      <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
+      <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
+        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
+          <GameAdSlot slot="4214854395" format="vertical" className="mt-2" />
+        </div>
+        <div className="flex-1 min-w-0 max-w-4xl mx-auto space-y-5 overflow-hidden">
         {/* Difficulty selector */}
         <div className="flex gap-2 justify-center flex-wrap">
           {Object.entries(DIFFICULTIES).map(([key, d]) => (
-            <button key={key} onClick={() => startGame(key)}
+            <button key={key} onClick={() => triggerAd(() => startGame(key))}
               className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all ${difficulty===key && (gameState!=='idle') ? 'glow-btn text-white' : 'bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1]'}`}>
               {d.label} ({d.cols}×{d.rows}, {d.mines} mines)
             </button>
           ))}
+          <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
+            {isFs ? '⊡' : '⛶'}
+          </button>
         </div>
 
         {/* Stats bar */}
@@ -261,6 +285,11 @@ export default function games_minesweeper() {
               Start Game
             </button>
           </div>
+          <div className="flex gap-3 justify-center mt-4">
+            <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
+              {isFs ? '⊡' : '⛶'}
+            </button>
+          </div>
         )}
 
         {/* Game over overlay */}
@@ -269,14 +298,19 @@ export default function games_minesweeper() {
             <div className="text-4xl mb-2">{gameState==='won' ? '🎉' : '💀'}</div>
             <h2 className="text-xl font-bold text-white mb-1">{gameState==='won' ? 'You Win!' : 'Game Over!'}</h2>
             <p className="text-sm text-slate-400 mb-4">{gameState==='won' ? `Completed in ${formatTime(timer)}` : 'You hit a mine!'}</p>
-            <button onClick={() => startGame(difficulty)} className="glow-btn px-6 py-3 text-sm">
+            <button onClick={() => triggerAd(() => startGame(difficulty))} className="glow-btn px-6 py-3 text-sm">
               Play Again
             </button>
           </div>
         )}
 
         <p className="text-center text-xs text-slate-500">Left-click/tap to reveal • Right-click/long-press to flag • First click is always safe</p>
+        </div>
+        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
+          <GameAdSlot slot="4462954769" format="vertical" className="mt-2" />
+        </div>
       </div>
+      <GameAdSlot slot="8865234201" format="horizontal" className="mt-2" />
     </ToolLayout>
   )
 }

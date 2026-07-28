@@ -1,6 +1,9 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
 import ToolLayout from '../components/ToolLayout'
 import useJumpToResult from '../hooks/useJumpToResult'
+import useFullscreen from '../hooks/useFullscreen'
+import GameAdSlot from '../components/GameAdSlot'
+import InterstitialAd from '../components/InterstitialAd'
 
 const LS = { STATS: 'ut_wordle_stats_v1', LAST: 'ut_wordle_last_v1' }
 
@@ -280,6 +283,12 @@ export default function games_wordle() {
   useEffect(() => { try { localStorage.setItem(LS.STATS, JSON.stringify(stats)) } catch {} }, [stats])
   useEffect(() => { return () => clearTimeout(toastTimer.current) }, [])
 
+  const { isFs, toggle: toggleFs, onChange: onFsChange } = useFullscreen()
+  const [showAd, setShowAd] = useState(false)
+  const pendingAction = useRef(null)
+  const triggerAd = useCallback((action) => { pendingAction.current = action; setShowAd(true) }, [])
+  const onAdDismiss = useCallback(() => { setShowAd(false); if (pendingAction.current) { pendingAction.current(); pendingAction.current = null } }, [])
+
   const showToast = useCallback((msg) => {
     setToast(msg)
     clearTimeout(toastTimer.current)
@@ -382,8 +391,17 @@ export default function games_wordle() {
 
   const keyStates = getKeyStates(guesses, feedbacks)
 
+
+  useEffect(() => {
+    const handler = () => onFsChange()
+    document.addEventListener('fullscreenchange', handler)
+    document.addEventListener('webkitfullscreenchange', handler)
+    return () => { document.removeEventListener('fullscreenchange', handler); document.removeEventListener('webkitfullscreenchange', handler) }
+  }, [onFsChange])
+
   return (
     <ToolLayout
+      hideHeader={isFs}
       title="Wordle Online - Free Word Guessing Game"
       desc="Play Wordle online for free! Guess the 5-letter word in 6 tries. Get color-coded feedback after each guess. Play daily or unlimited rounds."
       icon="🔤"
@@ -409,20 +427,28 @@ export default function games_wordle() {
         "genre": "Word Game", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <div className="max-w-lg mx-auto space-y-5">
+      <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
+      <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
+        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
+          <GameAdSlot slot="4214854395" format="vertical" className="mt-2" />
+        </div>
+        <div className="flex-1 min-w-0 max-w-lg mx-auto space-y-5 overflow-hidden">
         {/* Toast */}
         {toast && <div className="text-center text-sm font-bold text-white bg-slate-800 py-2 px-4 rounded-xl animate-pulse">{toast}</div>}
 
         {/* Controls */}
         <div className="flex gap-2 justify-center items-center">
           <button onClick={() => setHardMode(h => !h)}
+            <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
+              {isFs ? '⊡' : '⛶'}
+            </button>
              className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${hardMode ? 'bg-amber-500/20 border border-amber-500/40 text-amber-400' : 'bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:bg-white/[0.1]'}`}>
             {hardMode ? '🔒 Hard' : '🔓 Normal'}
           </button>
           <button onClick={() => setShowStats(s => !s)} className="px-3 py-1.5 rounded-lg text-xs font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">
             📊 Stats
           </button>
-          <button onClick={newGame} className="px-3 py-1.5 rounded-lg text-xs font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">
+          <button onClick={() => triggerAd(newGame)} className="px-3 py-1.5 rounded-lg text-xs font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">
             ⟲ New
           </button>
         </div>
@@ -530,7 +556,7 @@ export default function games_wordle() {
             <h2 className="text-xl font-bold text-white">{gameState === 'won' ? 'Brilliant!' : `The word was: ${answer.toUpperCase()}`}</h2>
             {gameState === 'won' && <p className="text-sm text-slate-400">You got it in {guesses.length}/6{hardMode ? ' (Hard Mode)' : ''}!</p>}
             <div className="flex gap-2 justify-center">
-              <button onClick={newGame} className="glow-btn px-5 py-2.5 text-sm">
+              <button onClick={() => triggerAd(newGame)} className="glow-btn px-5 py-2.5 text-sm">
                Play Again
              </button>
              {gameState === 'won' && (
@@ -547,6 +573,12 @@ export default function games_wordle() {
           @keyframes flipIn { 0%{transform:rotateX(0)} 50%{transform:rotateX(90deg)} 100%{transform:rotateX(0)} }
           .animate-shake { animation: shake 0.5s ease; }
         `}</style>
+      
+        <GameAdSlot slot="8865234201" format="horizontal" className="mt-2" />
+      </div>
+      <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
+        <GameAdSlot slot="4462954769" format="vertical" className="mt-2" />
+      </div>
       </div>
     </ToolLayout>
   )

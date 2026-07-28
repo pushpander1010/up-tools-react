@@ -1,6 +1,9 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
 import ToolLayout from '../components/ToolLayout'
 import useJumpToResult from '../hooks/useJumpToResult'
+import useFullscreen from '../hooks/useFullscreen'
+import GameAdSlot from '../components/GameAdSlot'
+import InterstitialAd from '../components/InterstitialAd'
 
 let audioCtx = null
 function ensureAudio() {
@@ -48,6 +51,12 @@ export default function games_ping_pong() {
   const diffRef = useRef(difficulty)
   const runningRef = useRef(false)
   const pausedRef = useRef(false)
+
+  const { isFs, toggle: toggleFs, onChange: onFsChange } = useFullscreen()
+  const [showAd, setShowAd] = useState(false)
+  const pendingAction = useRef(null)
+  const triggerAd = useCallback((action) => { pendingAction.current = action; setShowAd(true) }, [])
+  const onAdDismiss = useCallback(() => { setShowAd(false); if (pendingAction.current) { pendingAction.current(); pendingAction.current = null } }, [])
 
   useEffect(() => { modeRef.current = gameMode }, [gameMode])
   useEffect(() => { diffRef.current = difficulty }, [difficulty])
@@ -267,6 +276,13 @@ export default function games_ping_pong() {
     return () => { window.removeEventListener('resize', h); if (animRef.current) cancelAnimationFrame(animRef.current) }
   }, [fitCanvas, draw])
 
+  useEffect(() => {
+    const handler = () => onFsChange()
+    document.addEventListener('fullscreenchange', handler)
+    document.addEventListener('webkitfullscreenchange', handler)
+    return () => { document.removeEventListener('fullscreenchange', handler); document.removeEventListener('webkitfullscreenchange', handler) }
+  }, [onFsChange])
+
   // Pointer tracking for mobile
   const handlePointerDown = useCallback((e) => {
     if (e.pointerType === 'touch' || e.pointerType === 'pen') {
@@ -294,7 +310,7 @@ export default function games_ping_pong() {
   }, [])
 
   return (
-    <ToolLayout
+    <ToolLayout hideHeader={isFs}
       title="Ping Pong Game Online - Play Pong Free"
       desc="Classic Pong against AI or a friend. First to 7 wins! Retro arcade game."
       icon="🏓" iconBg="rgba(0,229,255,0.08)"
@@ -317,7 +333,12 @@ export default function games_ping_pong() {
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <div className="max-w-2xl mx-auto space-y-5">
+      <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
+      <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
+        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
+          <GameAdSlot slot="4214854395" format="vertical" className="mt-2" />
+        </div>
+        <div className="flex-1 min-w-0 max-w-2xl mx-auto space-y-5 overflow-hidden">
         {/* Controls */}
         <div className="flex gap-2 items-center flex-wrap">
           <label className="text-sm font-semibold text-slate-300">Mode:</label>
@@ -344,7 +365,7 @@ export default function games_ping_pong() {
 
           <div className="ml-auto flex gap-2">
             {!gameRunning ? (
-              <button onClick={startGame}
+              <button onClick={() => triggerAd(startGame)}
                 className="glow-btn px-5 py-2 text-sm">
                 ▶ Start
               </button>
@@ -380,6 +401,16 @@ export default function games_ping_pong() {
               <span className="px-3 py-1 bg-white/[0.04] rounded-full">Space — Pause</span>
             </>
           )}
+        </div>
+          <div className="flex gap-2 justify-center mt-4">
+            <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
+              {isFs ? '⊡' : '⛶'}
+            </button>
+          </div>
+        </div>
+        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
+          <GameAdSlot slot="8865234201" format="horizontal" className="mt-2" />
+          <GameAdSlot slot="4462954769" format="vertical" className="mt-2" />
         </div>
       </div>
     </ToolLayout>

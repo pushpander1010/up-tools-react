@@ -1,6 +1,9 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
 import ToolLayout from '../components/ToolLayout'
 import useJumpToResult from '../hooks/useJumpToResult'
+import useFullscreen from '../hooks/useFullscreen'
+import GameAdSlot from '../components/GameAdSlot'
+import InterstitialAd from '../components/InterstitialAd'
 
 const LS = { STATS: 'ut_rps_stats_v1', HISTORY: 'ut_rps_history_v1' }
 
@@ -69,10 +72,23 @@ export default function games_rock_paper_scissors() {
   const [showHistory, setShowHistory] = useState(false)
   const timerRef = useRef(null)
 
+  const { isFs, toggle: toggleFs, onChange: onFsChange } = useFullscreen()
+  const [showAd, setShowAd] = useState(false)
+  const pendingAction = useRef(null)
+  const triggerAd = useCallback((action) => { pendingAction.current = action; setShowAd(true) }, [])
+  const onAdDismiss = useCallback(() => { setShowAd(false); if (pendingAction.current) { pendingAction.current(); pendingAction.current = null } }, [])
+
   useEffect(() => { return () => clearInterval(timerRef.current) }, [])
 
   useEffect(() => { try { localStorage.setItem(LS.STATS, JSON.stringify(stats)) } catch {} }, [stats])
   useEffect(() => { try { localStorage.setItem(LS.HISTORY, JSON.stringify(history.slice(0, 20))) } catch {} }, [history])
+
+  useEffect(() => {
+    const handler = () => onFsChange()
+    document.addEventListener('fullscreenchange', handler)
+    document.addEventListener('webkitfullscreenchange', handler)
+    return () => { document.removeEventListener('fullscreenchange', handler); document.removeEventListener('webkitfullscreenchange', handler) }
+  }, [onFsChange])
 
   const winnerToText = (w) => w === 'win' ? 'You Win!' : w === 'lose' ? 'Computer Wins!' : 'Tie!'
 
@@ -148,7 +164,7 @@ export default function games_rock_paper_scissors() {
   const computerNeeded = needed
 
   return (
-    <ToolLayout
+    <ToolLayout hideHeader={isFs}
       title="Rock Paper Scissors Online - Play vs Computer"
       desc="Play Rock Paper Scissors online against the computer! Choose your weapon and see if you can win. Track your wins and compete for the best streak."
       icon="✊"
@@ -174,11 +190,16 @@ export default function games_rock_paper_scissors() {
         "genre": "Game", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <div className="max-w-lg mx-auto space-y-5">
+      <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
+      <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
+        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
+          <GameAdSlot slot="4214854395" format="vertical" className="mt-2" />
+        </div>
+        <div className="flex-1 min-w-0 max-w-lg mx-auto space-y-5 overflow-hidden">
         {/* Mode selector */}
         <div className="flex gap-2 justify-center flex-wrap">
           {[1, 3, 5].map(n => (
-            <button key={n} onClick={() => startGame(n)}
+            <button key={n} onClick={() => triggerAd(() => startGame(n))}
               className={`px-4 py-2 rounded-xl text-sm font-bold transition-all ${bestOf === n && gameState === 'playing' ? 'glow-btn' : 'bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white'}`}>
               Best of {n}
             </button>
@@ -248,7 +269,7 @@ export default function games_rock_paper_scissors() {
             </h2>
             <p className="text-sm text-slate-400">Final Score: {playerScore} - {computerScore}</p>
             <div className="flex gap-2 justify-center">
-              <button onClick={() => startGame(bestOf)} className="glow-btn px-5 py-2.5 text-sm">
+              <button onClick={() => triggerAd(() => startGame(bestOf))} className="glow-btn px-5 py-2.5 text-sm">
                 Rematch
               </button>
               <button onClick={resetGame} className="px-5 py-2.5 rounded-xl bg-white/[0.06] border border-white/[0.08] text-slate-400 text-sm font-semibold hover:text-white hover:bg-white/[0.1] transition-all">
@@ -291,6 +312,16 @@ export default function games_rock_paper_scissors() {
         )}
 
         <p className="text-center text-xs text-slate-500">The computer adapts to your choices • First to win the majority wins the match</p>
+          <div className="flex gap-2 justify-center mt-4">
+            <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
+              {isFs ? '⊡' : '⛶'}
+            </button>
+          </div>
+        </div>
+        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
+          <GameAdSlot slot="8865234201" format="horizontal" className="mt-2" />
+          <GameAdSlot slot="4462954769" format="vertical" className="mt-2" />
+        </div>
       </div>
     </ToolLayout>
   )

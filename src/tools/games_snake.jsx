@@ -1,6 +1,9 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
 import ToolLayout from '../components/ToolLayout'
 import useJumpToResult from '../hooks/useJumpToResult'
+import useFullscreen from '../hooks/useFullscreen'
+import GameAdSlot from '../components/GameAdSlot'
+import InterstitialAd from '../components/InterstitialAd'
 
 const LS = { BEST: 'ut_snake_best_v1', LAST: 'ut_snake_last_v1' }
 const GRID = 20
@@ -26,6 +29,12 @@ export default function games_snake() {
   const [lastScore, setLastScore] = useState(()=>{try{return Number(localStorage.getItem(LS.LAST)||0)}catch{return 0}})
   const [gameOver, setGameOver] = useState(false)
   const [speed, setSpeed] = useState(140)
+
+  const { isFs, toggle: toggleFs, onChange: onFsChange } = useFullscreen()
+  const [showAd, setShowAd] = useState(false)
+  const pendingAction = useRef(null)
+  const triggerAd = useCallback((action) => { pendingAction.current = action; setShowAd(true) }, [])
+  const onAdDismiss = useCallback(() => { setShowAd(false); if (pendingAction.current) { pendingAction.current(); pendingAction.current = null } }, [])
 
   const gRef = useRef({
     snake: [{x:10,y:10}],
@@ -253,8 +262,15 @@ export default function games_snake() {
     return () => { window.removeEventListener('resize', h); if (gRef.current.animId) cancelAnimationFrame(gRef.current.animId) }
   }, [fitCanvas, draw])
 
+  useEffect(() => {
+    const handler = () => onFsChange()
+    document.addEventListener('fullscreenchange', handler)
+    document.addEventListener('webkitfullscreenchange', handler)
+    return () => { document.removeEventListener('fullscreenchange', handler); document.removeEventListener('webkitfullscreenchange', handler) }
+  }, [onFsChange])
+
   return (
-    <ToolLayout
+    <ToolLayout hideHeader={isFs}
       title="Snake Game Online - Classic Arcade"
       desc="Play the classic Snake game online. Guide the snake to eat food and grow longer. Keyboard and touch controls. High score saved!"
       icon="🐍" iconBg="rgba(34,197,94,0.08)"
@@ -278,7 +294,12 @@ export default function games_snake() {
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <div className="max-w-xl mx-auto space-y-5">
+      <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
+      <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
+        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
+          <GameAdSlot slot="4214854395" format="vertical" className="mt-2" />
+        </div>
+        <div className="flex-1 min-w-0 max-w-xl mx-auto space-y-5 overflow-hidden">
         {/* Stats */}
         <div className="glass p-4">
           <div className="grid grid-cols-3 gap-4">
@@ -299,7 +320,7 @@ export default function games_snake() {
 
         {/* Controls */}
         <div className="flex gap-3 justify-center">
-          <button onClick={startGame} className="glow-btn px-6 py-3 text-sm">
+          <button onClick={() => triggerAd(startGame)} className="glow-btn px-6 py-3 text-sm">
             {playing && !gameOver ? '⟲ Restart' : '▶ Start Game'}
           </button>
         </div>
@@ -316,8 +337,19 @@ export default function games_snake() {
 
         {/* Mobile D-pad hint */}
         <p className="text-center text-xs text-slate-500">
+        <p className="text-center text-xs text-slate-500">
           Desktop: ← → ↑ ↓ or WASD | Mobile: Swipe to steer
         </p>
+          <div className="flex gap-2 justify-center mt-4">
+            <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
+              {isFs ? '⊡' : '⛶'}
+            </button>
+          </div>
+        </div>
+        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
+          <GameAdSlot slot="8865234201" format="horizontal" className="mt-2" />
+          <GameAdSlot slot="4462954769" format="vertical" className="mt-2" />
+        </div>
       </div>
     </ToolLayout>
   )

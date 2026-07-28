@@ -1,6 +1,9 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
 import ToolLayout from '../components/ToolLayout'
 import useJumpToResult from '../hooks/useJumpToResult'
+import useFullscreen from '../hooks/useFullscreen'
+import GameAdSlot from '../components/GameAdSlot'
+import InterstitialAd from '../components/InterstitialAd'
 
 const LS = { BEST_EASY: 'ut_mm_best_easy', BEST_MED: 'ut_mm_best_med', BEST_HARD: 'ut_mm_best_hard' }
 
@@ -71,6 +74,11 @@ export default function games_memory_match() {
   })
   const timerRef = useRef(null)
   const lockRef = useRef(false)
+  const { isFs, toggle: toggleFs, onChange: onFsChange } = useFullscreen()
+  const [showAd, setShowAd] = useState(false)
+  const pendingAction = useRef(null)
+  const triggerAd = useCallback((action) => { pendingAction.current = action; setShowAd(true) }, [])
+  const onAdDismiss = useCallback(() => { setShowAd(false); if (pendingAction.current) { pendingAction.current(); pendingAction.current = null } }, [])
 
   const { rows, cols } = DIFFICULTIES[difficulty]
 
@@ -95,6 +103,13 @@ export default function games_memory_match() {
       }
     }
   }, [cards, difficulty, moves, bestScores, gameStarted])
+
+  useEffect(() => {
+    const handler = () => onFsChange()
+    document.addEventListener('fullscreenchange', handler)
+    document.addEventListener('webkitfullscreenchange', handler)
+    return () => { document.removeEventListener('fullscreenchange', handler); document.removeEventListener('webkitfullscreenchange', handler) }
+  }, [onFsChange])
 
   const handleCardClick = useCallback((id) => {
     if (lockRef.current) return
@@ -154,6 +169,7 @@ export default function games_memory_match() {
   return (
     <ToolLayout
       title="Memory Match Game - Test Your Memory"
+      hideHeader={isFs}
       desc="Play Memory Match online for free! Flip cards, find matching pairs, and test your memory skills. Multiple difficulty levels with score tracking."
       icon="🧠"
       iconBg="rgba(139,92,246,0.08)"
@@ -178,15 +194,23 @@ export default function games_memory_match() {
         "genre": "Puzzle", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <div className="max-w-2xl mx-auto space-y-5">
+      <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
+      <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
+        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
+          <GameAdSlot slot="4214854395" format="vertical" className="mt-2" />
+        </div>
+        <div className="flex-1 min-w-0 max-w-2xl mx-auto space-y-5 overflow-hidden">
         {/* Difficulty selector */}
         <div className="flex gap-2 justify-center flex-wrap">
           {Object.entries(DIFFICULTIES).map(([key, d]) => (
-            <button key={key} onClick={() => startGame(key)}
+            <button key={key} onClick={() => triggerAd(() => startGame(key))}
               className={`glow-btn px-4 py-2 text-sm transition-all ${difficulty === key ? '' : 'bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1]'}`}>
               {d.label}
             </button>
           ))}
+          <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
+            {isFs ? '⊡' : '⛶'}
+          </button>
         </div>
 
         {/* Stats */}
@@ -249,14 +273,19 @@ export default function games_memory_match() {
             {bestScores[difficulty] === moves && moves > 0 && (
               <p className="text-sm text-amber-400 font-bold">🏆 New Best Score!</p>
             )}
-            <button onClick={() => startGame(difficulty)} className="glow-btn px-6 py-3 text-sm">
+            <button onClick={() => triggerAd(() => startGame(difficulty))} className="glow-btn px-6 py-3 text-sm">
              Play Again
            </button>
           </div>
         )}
 
         <p className="text-center text-xs text-slate-500">Click cards to flip • Find all matching pairs • Fewest moves wins</p>
+        </div>
+        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
+          <GameAdSlot slot="4462954769" format="vertical" className="mt-2" />
+        </div>
       </div>
+      <GameAdSlot slot="8865234201" format="horizontal" className="mt-2" />
     </ToolLayout>
   )
 }

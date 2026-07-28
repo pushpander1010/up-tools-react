@@ -1,6 +1,9 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
 import ToolLayout from '../components/ToolLayout'
 import useJumpToResult from '../hooks/useJumpToResult'
+import useFullscreen from '../hooks/useFullscreen'
+import GameAdSlot from '../components/GameAdSlot'
+import InterstitialAd from '../components/InterstitialAd'
 
 const LS = { RW: 'ut_c4_rw_v1', YW: 'ut_c4_yw_v1', DR: 'ut_c4_dr_v1' }
 const ROWS = 6, COLS = 7
@@ -126,6 +129,11 @@ export default function games_connect_4() {
   const [animating, setAnimating] = useState(false)
   const [hoverCol, setHoverCol] = useState(-1)
   const boardRef = useRef(null)
+  const { isFs, toggle: toggleFs, onChange: onFsChange } = useFullscreen()
+  const [showAd, setShowAd] = useState(false)
+  const pendingAction = useRef(null)
+  const triggerAd = useCallback((action) => { pendingAction.current = action; setShowAd(true) }, [])
+  const onAdDismiss = useCallback(() => { setShowAd(false); if (pendingAction.current) { pendingAction.current(); pendingAction.current = null } }, [])
 
   const updateScores = useCallback((r,d,y) => {
     setRWins(r); setYWins(y); setDraws(d)
@@ -179,11 +187,19 @@ export default function games_connect_4() {
     }
   }, [board, isRed, winner, draw, animating, mode, rWins, yWins, draws, updateScores])
 
+  useEffect(() => {
+    const handler = () => onFsChange()
+    document.addEventListener('fullscreenchange', handler)
+    document.addEventListener('webkitfullscreenchange', handler)
+    return () => { document.removeEventListener('fullscreenchange', handler); document.removeEventListener('webkitfullscreenchange', handler) }
+  }, [onFsChange])
+
   const cellSz = 'w-11 h-11 sm:w-12 sm:h-12'
 
   return (
     <ToolLayout
       title="Connect 4 Online - Play vs AI or Friend"
+      hideHeader={isFs}
       desc="Play Connect 4 online against AI or a friend. Drop discs, connect four in a row to win. Animated disc drops!"
       icon="🔴" iconBg="rgba(239,68,68,0.08)"
       category="fun" slug="games-connect-4"
@@ -206,7 +222,12 @@ export default function games_connect_4() {
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <div className="max-w-lg mx-auto space-y-5">
+      <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
+      <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
+        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
+          <GameAdSlot slot="4214854395" format="vertical" className="mt-2" />
+        </div>
+        <div className="flex-1 min-w-0 max-w-lg mx-auto space-y-5 overflow-hidden">
         {/* Mode */}
         <div className="flex gap-2 justify-center">
           <button onClick={()=>{setMode('ai');resetGame()}} className={`glow-btn px-4 py-2 text-sm transition-all ${mode==='ai'?'':'bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:bg-white/[0.1]'}`}>
@@ -283,18 +304,26 @@ export default function games_connect_4() {
 
         {/* Controls */}
         <div className="flex gap-3 justify-center">
-          <button onClick={resetGame} className="glow-btn px-6 py-3 text-sm">
+          <button onClick={() => triggerAd(resetGame)} className="glow-btn px-6 py-3 text-sm">
            ⟲ New Game
          </button>
           <button onClick={()=>updateScores(0,0,0)} className="px-4 py-3 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">
            Reset Scores
-         </button>
+          </button>
+          <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
+            {isFs ? '⊡' : '⛶'}
+          </button>
         </div>
 
         <p className="text-center text-xs text-slate-500">
           Click a column to drop your disc | AI uses minimax for smart play
         </p>
+        </div>
+        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
+          <GameAdSlot slot="4462954769" format="vertical" className="mt-2" />
+        </div>
       </div>
+      <GameAdSlot slot="8865234201" format="horizontal" className="mt-2" />
     </ToolLayout>
   )
 }
