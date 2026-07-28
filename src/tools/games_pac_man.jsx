@@ -129,10 +129,10 @@ export default function games_pac_man() {
     s.maze = m
     s.pac = { x: 10, y: 15, dir: { x: 0, y: 0 }, nextDir: { x: 0, y: 0 }, mouth: 0, mouthDir: 1 }
     s.ghosts = [
-      { x: 8, y: 7, dir: { x: -1, y: 0 }, color: GHOST_COLORS[0], scared: false, inHouse: false, homeTimer: 0, scatterTarget: { x: COLS-3, y: 0 } },
-      { x: 9, y: 9, dir: { x: 0, y: -1 }, color: GHOST_COLORS[1], scared: false, inHouse: true, homeTimer: 0, scatterTarget: { x: 1, y: 0 } },
-      { x: 10, y: 9, dir: { x: 1, y: 0 }, color: GHOST_COLORS[2], scared: false, inHouse: true, homeTimer: 0, scatterTarget: { x: COLS-1, y: ROWS-1 } },
-      { x: 11, y: 9, dir: { x: -1, y: 0 }, color: GHOST_COLORS[3], scared: false, inHouse: true, homeTimer: 0, scatterTarget: { x: 0, y: ROWS-1 } },
+      { x: 8, y: 7, dir: { x: -1, y: 0 }, color: GHOST_COLORS[0], scared: false, inHouse: false, homeTimer: 0 },
+      { x: 9, y: 9, dir: { x: 0, y: -1 }, color: GHOST_COLORS[1], scared: false, inHouse: true, homeTimer: 0 },
+      { x: 10, y: 9, dir: { x: 1, y: 0 }, color: GHOST_COLORS[2], scared: false, inHouse: true, homeTimer: 0 },
+      { x: 11, y: 9, dir: { x: -1, y: 0 }, color: GHOST_COLORS[3], scared: false, inHouse: true, homeTimer: 0 },
     ]
     // Fast stagger release — nearly instant
     s.ghosts[1].homeTimer = 2
@@ -228,21 +228,9 @@ export default function games_pac_man() {
   }, [])
 
   /* ── ghost AI ── */
-  function ghostTarget(gh, gi, pac, ghosts) {
-    if (gh.scared) return null // random
-    switch (gi) {
-      case 0: return { x: pac.x, y: pac.y }                           // Blinky: direct
-      case 1: return { x: pac.x + pac.dir.x*4, y: pac.y + pac.dir.y*4 } // Pinky: ahead
-      case 2: { // Inky: 2 cells ahead of pac, then double vector from Blinky
-        const a = { x: pac.x + pac.dir.x*2, y: pac.y + pac.dir.y*2 }
-        const blinky = ghosts[0]
-        return { x: a.x + (a.x - blinky.x), y: a.y + (a.y - blinky.y) }
-      }
-      case 3: // Clyde: chase when far, scatter when close
-        const d = Math.abs(gh.x - pac.x) + Math.abs(gh.y - pac.y)
-        return d > 8 ? { x: pac.x, y: pac.y } : gh.scatterTarget
-      default: return { x: pac.x, y: pac.y }
-    }
+  function ghostTarget(gh, gi, pac) {
+    // All ghosts directly chase Pac-Man's current position
+    return { x: pac.x, y: pac.y }
   }
 
   /* ── game loop ── */
@@ -329,7 +317,7 @@ export default function games_pac_man() {
         if (gh.scared) {
           chosen = dirs[Math.floor(Math.random() * dirs.length)]
         } else {
-          const target = ghostTarget(gh, gi, pac, ghosts)
+          const target = ghostTarget(gh, gi, pac)
           if (target) {
             let minD = Infinity
             dirs.forEach(d => {
@@ -365,8 +353,9 @@ export default function games_pac_man() {
             // reset positions
             pac.x = 10; pac.y = 15; pac.dir = { x: 0, y: 0 }; pac.nextDir = { x: 0, y: 0 }
             s.ghosts.forEach((rg, ri) => {
-              rg.x = ri < 2 ? 10 - ri : 10 + (ri-1); rg.y = 8; rg.dir = { x: 0, y: -1 }
-              rg.scared = false; rg.inHouse = ri > 0; rg.homeTimer = ri * 30
+              const spawns = [[8,7],[9,9],[10,9],[11,9]]
+              rg.x = spawns[ri][0]; rg.y = spawns[ri][1]; rg.dir = { x: 0, y: -1 }
+              rg.scared = false; rg.inHouse = ri > 0; rg.homeTimer = ri === 1 ? 4 : ri * 6
             })
             s.powerTimer = 0; s.ghostCombo = 0
           }
