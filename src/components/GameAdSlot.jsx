@@ -1,28 +1,28 @@
 import { useEffect, useRef } from 'react'
+import { useLocation } from 'react-router-dom'
 
 /**
- * AdSense banner slot — renders a responsive ad unit.
- * Slot IDs: bottom=8865234201, left=4214854395, right=4462954769
- * Pass width/height for fixed-size ads (e.g. aside skyscrapers), omit for auto-sizing.
+ * AdSense banner slot — refreshes on every route change for max impressions.
  */
 export default function GameAdSlot({ slot = '8865234201', format = 'auto', className = '', width, height }) {
   const adRef = useRef(null)
-  const pushed = useRef(false)
+  const location = useLocation()
 
   useEffect(() => {
-    if (pushed.current) return
     const timer = setTimeout(() => {
       try {
-        if (adRef.current) {
+        const ins = adRef.current
+        if (ins) {
+          // Clear previous ad content so AdSense renders fresh
+          ins.innerHTML = ''
           ;(window.adsbygoogle = window.adsbygoogle || []).push({})
-          pushed.current = true
         }
       } catch (e) {
         console.warn('AdSense push error:', e)
       }
     }, 500)
     return () => clearTimeout(timer)
-  }, [])
+  }, [location.pathname]) // Re-run on every route change
 
   const insStyle = width && height
     ? { display: 'inline-block', width: width + 'px', height: height + 'px' }
