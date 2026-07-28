@@ -137,6 +137,8 @@ export default function games_tower_defense() {
     setGameOver(false); setPlacing(null); setSelectedTower(null); setWaveActive(false)
     fitCanvas()
     setTimeout(() => { startLoop() }, 30)
+    // Auto-start first wave after a brief delay
+    setTimeout(() => startWave(), 800)
   }, [fitCanvas])
 
   const startLoop = useCallback(() => {
