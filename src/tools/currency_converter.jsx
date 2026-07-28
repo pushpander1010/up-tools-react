@@ -25,28 +25,18 @@ const CURRENCIES = [
   { code: 'BRL', name: 'Brazilian Real', symbol: 'R$', flag: '🇧🇷' },
 ]
 
-// Hardcoded fallback rates (relative to USD) - used when live API is unavailable
-const FALLBACK_RATES = {
-  USD: 1, INR: 83.5, EUR: 0.92, GBP: 0.79, JPY: 149.5, AUD: 1.53,
-  CAD: 1.36, SGD: 1.34, AED: 3.67, SAR: 3.75, CHF: 0.88, CNY: 7.24,
-  KRW: 1320, THB: 35.8, MYR: 4.68, PHP: 56.2, IDR: 15650, NZD: 1.65,
-  ZAR: 18.3, BRL: 5.05
-}
-
 export default function currency_converter() {
   const { ref: resultRef, jumpTo } = useJumpToResult()
   const [amount, setAmount] = useState('1')
   const [from, setFrom] = useState('USD')
   const [to, setTo] = useState('INR')
-  const [rates, setRates] = useState(FALLBACK_RATES)
+  const [rates, setRates] = useState(null)
   const [loading, setLoading] = useState(true)
   const [status, setStatus] = useState('Loading rates...')
 
   useEffect(() => {
     let cancelled = false
-    const controller = new AbortController()
-
-    fetch('https://open.er-api.com/v6/latest/USD', { signal: controller.signal })
+    fetch('/api/rates')
       .then(r => r.ok ? r.json() : Promise.reject())
       .then(data => {
         if (cancelled) return
@@ -59,27 +49,10 @@ export default function currency_converter() {
       })
       .catch(() => {
         if (cancelled) return
-        fetch('https://api.frankfurter.dev/latest?from=USD', { signal: controller.signal })
-          .then(r => r.ok ? r.json() : Promise.reject())
-          .then(data => {
-            if (cancelled) return
-            if (data?.rates) {
-              data.rates.USD = 1
-              setRates(data.rates)
-              setStatus('Live rates')
-            } else {
-              throw new Error('no rates')
-            }
-          })
-          .catch(() => {
-            if (cancelled) return
-            setRates(FALLBACK_RATES)
-            setStatus('Approximate rates')
-          })
+        setStatus('Rate API unavailable')
       })
       .finally(() => { if (!cancelled) setLoading(false) })
-
-    return () => { cancelled = true; controller.abort() }
+    return () => { cancelled = true }
   }, [])
 
   const result = useMemo(() => {
@@ -102,8 +75,8 @@ export default function currency_converter() {
       icon="💱" iconBg="rgba(34,197,94,0.08)"
       category="finance" slug="currency-converter"
       faq={[
-        { q: 'Where do exchange rates come from?', a: 'Primary source: ExchangeRate API. Fallback: Frankfurter API. If both fail, preloaded approximate rates are used so the tool always works.' },
-        { q: 'Why use approximate rates?', a: 'Live APIs can be blocked by browsers (CORS). Hardcoded fallback rates ensure the converter works offline and in all environments.' },
+        { q: 'Where do exchange rates come from?', a: 'Live rates from ExchangeRate API proxied through our server, updated daily. These are mid-market interbank rates.' },
+        { q: 'Are these rates accurate for transactions?', a: 'These are mid-market interbank rates. Actual exchange rates include fees and spreads.' },
       ]}
       schema={{
         "@context": "https://schema.org", "@type": "SoftwareApplication",
