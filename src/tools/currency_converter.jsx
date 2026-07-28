@@ -25,61 +25,64 @@ const CURRENCIES = [
   { code: 'BRL', name: 'Brazilian Real', symbol: 'R$', flag: '🇧🇷' },
 ]
 
-export default function currency_converter() {
+// Hardcoded fallback rates (relative to USD) - used when live API is unavailable
+const FALLBACK_RATES = {
+  USD: 1, INR: 83.5, EUR: 0.92, GBP: 0.79, JPY: 149.5, AUD: 1.53,
+  CAD: 1.36, SGD: 1.34, AED: 3.67, SAR: 3.75, CHF: 0.88, CNY: 7.24,
+  KRW: 1320, THB: 35.8, MYR: 4.68, PHP: 56.2, IDR: 15650, NZD: 1.65,
+  ZAR: 18.3, BRL: 5.05
+}
 
+export default function currency_converter() {
   const { ref: resultRef, jumpTo } = useJumpToResult()
   const [amount, setAmount] = useState('1')
   const [from, setFrom] = useState('USD')
   const [to, setTo] = useState('INR')
-  const [rates, setRates] = useState(null)
+  const [rates, setRates] = useState(FALLBACK_RATES)
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
-  const [lastUpdated, setLastUpdated] = useState('')
+  const [status, setStatus] = useState('Loading rates...')
 
   useEffect(() => {
-    // Try primary API (open.er-api.com — free, no key, supports CORS)
-    fetch('https://open.er-api.com/v6/latest/USD')
-      .then(r => {
-        if (!r.ok) throw new Error('API returned ' + r.status)
-        return r.json()
-      })
+    let cancelled = false
+    const controller = new AbortController()
+
+    fetch('https://open.er-api.com/v6/latest/USD', { signal: controller.signal })
+      .then(r => r.ok ? r.json() : Promise.reject())
       .then(data => {
-        if (data.rates) {
+        if (cancelled) return
+        if (data?.rates) {
           setRates(data.rates)
-          setLastUpdated(data.time_last_update_utc || data.time_next_update_utc || new Date().toLocaleDateString('en-IN'))
-          setError(null)
+          setStatus('Live rates')
         } else {
-          throw new Error('No rates in response')
+          throw new Error('no rates')
         }
       })
       .catch(() => {
-        // Fallback: frankfurter.dev (open-source, no key needed, CORS-friendly)
-        fetch('https://api.frankfurter.dev/latest?from=USD')
-          .then(r => {
-            if (!r.ok) throw new Error('Fallback API returned ' + r.status)
-            return r.json()
-          })
+        if (cancelled) return
+        fetch('https://api.frankfurter.dev/latest?from=USD', { signal: controller.signal })
+          .then(r => r.ok ? r.json() : Promise.reject())
           .then(data => {
-            if (data.rates) {
+            if (cancelled) return
+            if (data?.rates) {
               data.rates.USD = 1
               setRates(data.rates)
-              setLastUpdated(data.date || new Date().toLocaleDateString('en-IN'))
-              setError('fallback')
+              setStatus('Live rates')
             } else {
-              throw new Error('No rates in fallback response')
+              throw new Error('no rates')
             }
           })
           .catch(() => {
-            setError('offline')
-            setLastUpdated('')
+            if (cancelled) return
+            setRates(FALLBACK_RATES)
+            setStatus('Approximate rates')
           })
-          .finally(() => setLoading(false))
       })
-      .finally(() => setLoading(false))
+      .finally(() => { if (!cancelled) setLoading(false) })
+
+    return () => { cancelled = true; controller.abort() }
   }, [])
 
   const result = useMemo(() => {
-    if (!rates) return 0
     const amt = parseFloat(amount) || 0
     const fromRate = rates[from] || 1
     const toRate = rates[to] || 1
@@ -88,89 +91,85 @@ export default function currency_converter() {
 
   const swap = () => { setFrom(to); setTo(from) }
 
-  const fmt = (n) => n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumDigits: 4, maximumFractionDigits: 4 })
-
-  const rateDisplay = rates && rates[from] && rates[to] ? fmt(rates[to] / rates[from]) : '—'
+  const displayRate = rates[from] && rates[to]
+    ? (rates[to] / rates[from]).toFixed(6)
+    : '—'
 
   return (
     <ToolLayout
       title="Currency Converter"
-      desc="Convert between 20+ currencies with live interbank rates. Supports INR, USD, EUR, GBP and more."
+      desc="Convert between 20+ currencies with live interbank rates. Falls back to approximate rates when offline."
       icon="💱" iconBg="rgba(34,197,94,0.08)"
       category="finance" slug="currency-converter"
       faq={[
-        { q: 'Where do exchange rates come from?', a: 'Live rates from ExchangeRate API (primary) and Frankfurter (fallback), updated daily. These are mid-market interbank rates.' },
-        { q: 'Are these rates accurate for transactions?', a: 'These are mid-market interbank rates. Actual exchange rates include fees and spreads.' },
-      ]}
-      howItWorks={[
-        'Enter the amount you want to convert.',
-        'Select the source currency (From) and target currency (To).',
-        'View the converted amount instantly.',
-        'Click the swap button to flip currencies.',
+        { q: 'Where do exchange rates come from?', a: 'Primary source: ExchangeRate API. Fallback: Frankfurter API. If both fail, preloaded approximate rates are used so the tool always works.' },
+        { q: 'Why use approximate rates?', a: 'Live APIs can be blocked by browsers (CORS). Hardcoded fallback rates ensure the converter works offline and in all environments.' },
       ]}
       schema={{
         "@context": "https://schema.org", "@type": "SoftwareApplication",
         "name": "Currency Converter", "applicationCategory": "FinanceApplication",
         "url": "https://www.uptools.in/currency-converter/",
-        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" }
       }}
     >
-      <div className="max-w-2xl mx-auto space-y-6">
-        {/* Offline warning */}
-        {error === 'offline' && (
-          <div className="px-4 py-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm font-semibold flex items-center gap-2">
-            <span>⚠️</span>
-            <span>Unable to fetch live rates. Please check your internet connection and reload.</span>
-          </div>
-        )}
-
-        {/* Amount */}
-        <div>
+      <div className="max-w-lg mx-auto space-y-6" ref={resultRef}>
+        <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-5">
           <label className="block text-sm font-semibold text-slate-300 mb-2">Amount</label>
-          <input type="number" value={amount} onChange={e => setAmount(e.target.value)}
-            className="w-full bg-white/[0.06] border-2 border-white/8 rounded-2xl px-5 py-4 text-3xl font-extrabold text-white outline-none focus:border-emerald-500/40 transition-all duration-300 placeholder:text-white/8" />
+          <input className="w-full bg-white/[0.04] border border-white/[0.1] rounded-xl px-4 py-3 text-lg text-white font-mono focus:outline-none focus:border-indigo-500/50"
+            type="number" value={amount} onChange={e => setAmount(e.target.value)} min="0" step="any"
+          />
         </div>
 
-        {/* From / Swap / To */}
-        <div className="flex items-center gap-3">
-          <div className="flex-1">
-            <label className="block text-xs font-semibold text-slate-500 mb-1.5">From</label>
-            <select value={from} onChange={e => setFrom(e.target.value)}
-              className="w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-3 text-white text-sm font-semibold outline-none focus:border-emerald-500/40 appearance-none cursor-pointer">
-              {CURRENCIES.map(c => <option key={c.code} value={c.code}>{c.flag} {c.code} — {c.name}</option>)}
+        <div className="grid grid-cols-[1fr,auto,1fr] gap-3 items-end">
+          <div>
+            <label className="block text-sm font-semibold text-slate-300 mb-2">From</label>
+            <select className="w-full bg-white/[0.04] border border-white/[0.1] rounded-xl px-3 py-3 text-sm text-white focus:outline-none focus:border-indigo-500/50"
+              value={from} onChange={e => setFrom(e.target.value)}>
+              {CURRENCIES.map(c => (
+                <option key={c.code} value={c.code}>{c.flag} {c.code} - {c.name}</option>
+              ))}
             </select>
           </div>
-          <button onClick={swap} className="mt-5 w-10 h-10 rounded-full bg-white/5 border border-white/8 flex items-center justify-center text-slate-400 hover:text-white hover:border-emerald-500/40 transition-all shrink-0 text-lg">⇄</button>
-          <div className="flex-1">
-            <label className="block text-xs font-semibold text-slate-500 mb-1.5">To</label>
-            <select value={to} onChange={e => setTo(e.target.value)}
-              className="w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-3 text-white text-sm font-semibold outline-none focus:border-emerald-500/40 appearance-none cursor-pointer">
-              {CURRENCIES.map(c => <option key={c.code} value={c.code}>{c.flag} {c.code} — {c.name}</option>)}
+
+          <button className="glow-btn text-lg px-3 py-3 rounded-xl mt-6" onClick={swap} title="Swap currencies">⇄</button>
+
+          <div>
+            <label className="block text-sm font-semibold text-slate-300 mb-2">To</label>
+            <select className="w-full bg-white/[0.04] border border-white/[0.1] rounded-xl px-3 py-3 text-sm text-white focus:outline-none focus:border-indigo-500/50"
+              value={to} onChange={e => setTo(e.target.value)}>
+              {CURRENCIES.map(c => (
+                <option key={c.code} value={c.code}>{c.flag} {c.code} - {c.name}</option>
+              ))}
             </select>
           </div>
         </div>
 
-        {/* Result */}
-        <div ref={resultRef} className="p-6 rounded-3xl bg-gradient-to-br from-emerald-500/8 via-white/[0.02] to-transparent border border-emerald-500/15 text-center" style={{ animation: 'slideUp 0.3s ease-out' }}>
-          <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider mb-2">Converted Amount</div>
-          <div className="text-4xl font-extrabold text-emerald-400 truncate">
-            {loading ? (
-              <span className="text-lg text-slate-400">Fetching rates...</span>
-            ) : error === 'offline' ? (
-              <span className="text-lg text-red-400">Rates unavailable</span>
-            ) : (
-              <>{CURRENCIES.find(c => c.code === to)?.symbol} {fmt(result)}</>
-            )}
+        <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-5 text-center">
+          <div className="text-3xl font-bold text-white mb-1">
+            {isNaN(result) ? '0.00' : result.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 4 })}
           </div>
-          <div className="text-sm text-slate-400 mt-2">
-            1 {from} = {rateDisplay} {to}
+          <div className="text-sm text-slate-400">
+            {amount || '0'} {from} = {displayRate} {to}
           </div>
-          {lastUpdated && (
-            <div className="text-[10px] text-slate-600 mt-2">
-              Rates as of {lastUpdated}
-              {error === 'fallback' && <span className="text-yellow-600/80 ml-1">(backup source)</span>}
-            </div>
-          )}
+          <div className="text-xs text-slate-500 mt-2">
+            {loading ? 'Loading...' : status}
+          </div>
+        </div>
+
+        <div className="grid grid-cols-2 gap-3">
+          {['USD', 'EUR', 'GBP', 'JPY', 'AED', 'SAR', 'CHF', 'SGD'].map(code => {
+            const c = CURRENCIES.find(c => c.code === code)
+            if (!c) return null
+            const val = rates[code] ? (1 / rates[code] * rates[to]).toFixed(2) : '—'
+            return (
+              <button key={code} className="bg-white/[0.04] border border-white/[0.08] rounded-xl px-3 py-2 text-left text-sm hover:border-indigo-500/30 transition-colors"
+                onClick={() => { setFrom(code); jumpTo() }}>
+                <span className="text-base">{c.flag}</span>
+                <span className="text-slate-400 ml-1">{code}</span>
+                <span className="text-white font-mono float-right">{val}</span>
+              </button>
+            )
+          })}
         </div>
       </div>
     </ToolLayout>
