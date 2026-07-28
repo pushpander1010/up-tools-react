@@ -431,7 +431,12 @@ export default function games_pac_man() {
 
   /* ── lifecycle ── */
   useEffect(() => {
-    g.current = { running: false, W: 0, H: 0, cell: 0, dpr: 1, maze: MAZE.map(r=>[...r]) }
+    g.current = { running: false, W: 0, H: 0, cell: 0, dpr: 1, maze: MAZE.map(r=>[...r]),
+      pac: { x: 10, y: 15, dir: { x: 0, y: 0 }, nextDir: { x: 0, y: 0 }, mouth: 0, mouthDir: 1 },
+      ghosts: [],
+      score: 0, lives: 3, powerTimer: 0, dotsEaten: 0, totalDots: 0,
+      moveTimer: 0, ghostCombo: 0, level: 1, animId: null,
+    }
     resize(); draw()
     return () => { if (g.current?.animId) cancelAnimationFrame(g.current.animId); g.current = null }
   // eslint-disable-next-line react-hooks/exhaustive-deps
