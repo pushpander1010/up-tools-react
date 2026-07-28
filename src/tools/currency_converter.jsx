@@ -30,7 +30,7 @@ export default function currency_converter() {
   const [amount, setAmount] = useState('1')
   const [from, setFrom] = useState('USD')
   const [to, setTo] = useState('INR')
-  const [rates, setRates] = useState(null)
+  const [rates, setRates] = useState({})
   const [loading, setLoading] = useState(true)
   const [status, setStatus] = useState('Loading rates...')
 
