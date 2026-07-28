@@ -238,8 +238,8 @@ export default function games_2048() {
 
   return (
     <ToolLayout
-      title="2048 - Free Online Game (Undo, Save, Share)"
-      desc="Play 2048 online. Smooth swipes & arrows, undo, auto-save, best score & best tile."
+      title="2048 : A Fun Numbers Puzzle Game Online — Play Free"
+      desc="Play 2048 online for free. Swipe or use arrow keys to merge tiles, beat your high score, and challenge yourself with this addictive number puzzle game."
       icon="🎲" iconBg="rgba(245,158,11,0.08)"
       category="fun" slug="games-2048"
       faq={[
@@ -261,7 +261,7 @@ export default function games_2048() {
       }}
     >
       {/* Interstitial ad on retry/start */}
-      <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
+
 
       <div className="max-w-xl mx-auto space-y-5">
         {!playing && (
@@ -275,8 +275,8 @@ export default function games_2048() {
               </div>
             </div>
             <div className="flex gap-3 justify-center mt-4">
-              <button onClick={(e) => { e.stopPropagation(); triggerAd(startNew) }} className="glow-btn px-6 py-3 text-sm">🎮 New Game</button>
-              <button onClick={(e) => { e.stopPropagation(); triggerAd(continueSaved) }} className="px-6 py-3 rounded-xl text-sm font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">↩️ Continue</button>
+              <button onClick={(e) => { e.stopPropagation(); startNew() }} className="glow-btn px-6 py-3 text-sm">🎮 New Game</button>
+              <button onClick={(e) => { e.stopPropagation(); continueSaved() }} className="px-6 py-3 rounded-xl text-sm font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">↩️ Continue</button>
             </div>
             <p className="text-center text-xs text-slate-500 mt-4">👆 Tap anywhere or use buttons to start</p>
           </div>
@@ -292,10 +292,8 @@ export default function games_2048() {
               </div>
               <div className="flex gap-2">
                 <button onClick={undo} disabled={!stateRef.current.history.length} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all disabled:opacity-30">↶</button>
-                <button onClick={() => triggerAd(startNew)} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">⟲</button>
-                <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
-                  {isFs ? '⊡' : '⛶'}
-                </button>
+                <button onClick={startNew} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">⟲</button>
+
                 <button onClick={()=>{setPlaying(false)}} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">⟵</button>
               </div>
             </div>
@@ -328,7 +326,7 @@ export default function games_2048() {
                     <div className="text-3xl mb-2">{won ? '🎉' : '💀'}</div>
                     <h2 className="text-xl font-bold text-white mb-2">{won ? 'You Won!' : 'Game Over!'}</h2>
                     <p className="text-sm text-slate-400 mb-4">Score: {score}</p>
-                    <button onClick={() => triggerAd(startNew)} className="glow-btn px-6 py-3 text-sm">↻ Try Again</button>
+                    <button onClick={startNew} className="glow-btn px-6 py-3 text-sm">↻ Try Again</button>
                   </div>
                 )}
               </div>
