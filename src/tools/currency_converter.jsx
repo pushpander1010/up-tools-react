@@ -56,6 +56,7 @@ export default function currency_converter() {
   }, [])
 
   const result = useMemo(() => {
+    if (!rates) return 0
     const amt = parseFloat(amount) || 0
     const fromRate = rates[from] || 1
     const toRate = rates[to] || 1
@@ -64,7 +65,7 @@ export default function currency_converter() {
 
   const swap = () => { setFrom(to); setTo(from) }
 
-  const displayRate = rates[from] && rates[to]
+  const displayRate = rates && rates[from] && rates[to]
     ? (rates[to] / rates[from]).toFixed(6)
     : '—'
 
