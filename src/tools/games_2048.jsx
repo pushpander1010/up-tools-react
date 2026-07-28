@@ -261,9 +261,16 @@ export default function games_2048() {
       }}
     >
       {/* Interstitial ad on retry/start */}
+      <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
 
+      <div className="flex gap-4 max-w-6xl mx-auto">
+        {/* Left aside ad */}
+        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
+          <GameAdSlot slot="4214854395" format="vertical" className="mt-2" />
+        </div>
 
-      <div className="max-w-xl mx-auto space-y-5">
+        {/* Game center */}
+        <div className="flex-1 max-w-xl mx-auto space-y-5">
         {!playing && (
           <div onClick={handleStartTap} className="cursor-pointer">
             <div className="glass p-4">
@@ -275,8 +282,8 @@ export default function games_2048() {
               </div>
             </div>
             <div className="flex gap-3 justify-center mt-4">
-              <button onClick={(e) => { e.stopPropagation(); startNew() }} className="glow-btn px-6 py-3 text-sm">🎮 New Game</button>
-              <button onClick={(e) => { e.stopPropagation(); continueSaved() }} className="px-6 py-3 rounded-xl text-sm font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">↩️ Continue</button>
+              <button onClick={(e) => { e.stopPropagation(); triggerAd(startNew) }} className="glow-btn px-6 py-3 text-sm">🎮 New Game</button>
+              <button onClick={(e) => { e.stopPropagation(); triggerAd(continueSaved) }} className="px-6 py-3 rounded-xl text-sm font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">↩️ Continue</button>
             </div>
             <p className="text-center text-xs text-slate-500 mt-4">👆 Tap anywhere or use buttons to start</p>
           </div>
@@ -292,7 +299,10 @@ export default function games_2048() {
               </div>
               <div className="flex gap-2">
                 <button onClick={undo} disabled={!stateRef.current.history.length} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all disabled:opacity-30">↶</button>
-                <button onClick={startNew} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">⟲</button>
+                <button onClick={() => triggerAd(startNew)} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">⟲</button>
+                <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
+                  {isFs ? '⊡' : '⛶'}
+                </button>
 
                 <button onClick={()=>{setPlaying(false)}} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">⟵</button>
               </div>
@@ -326,7 +336,7 @@ export default function games_2048() {
                     <div className="text-3xl mb-2">{won ? '🎉' : '💀'}</div>
                     <h2 className="text-xl font-bold text-white mb-2">{won ? 'You Won!' : 'Game Over!'}</h2>
                     <p className="text-sm text-slate-400 mb-4">Score: {score}</p>
-                    <button onClick={startNew} className="glow-btn px-6 py-3 text-sm">↻ Try Again</button>
+                    <button onClick={() => triggerAd(startNew)} className="glow-btn px-6 py-3 text-sm">↻ Try Again</button>
                   </div>
                 )}
               </div>
@@ -338,6 +348,12 @@ export default function games_2048() {
             <p className="text-center text-xs text-slate-500">Tip: use WASD too. Press Back to stop — progress is saved.</p>
           </>
         )}
+        </div>
+
+        {/* Right aside ad */}
+        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
+          <GameAdSlot slot="4462954769" format="vertical" className="mt-2" />
+        </div>
       </div>
     </ToolLayout>
   )
