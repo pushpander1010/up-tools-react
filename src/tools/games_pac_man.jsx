@@ -84,7 +84,7 @@ export default function games_pac_man() {
   const resize = useCallback(() => {
     const c = cvs.current, wrap = c?.parentElement
     if (!c || !wrap) return
-    const maxW = Math.min(wrap.clientWidth, window.innerWidth - 48, 600)
+    const maxW = Math.min(wrap.clientWidth, window.innerWidth - 48, 800)
     const cell = Math.floor(maxW / COLS)
     const W = cell * COLS
     const H = cell * ROWS
@@ -129,15 +129,15 @@ export default function games_pac_man() {
     s.maze = m
     s.pac = { x: 10, y: 15, dir: { x: 0, y: 0 }, nextDir: { x: 0, y: 0 }, mouth: 0, mouthDir: 1 }
     s.ghosts = [
-      { x: 10, y: 8, dir: { x: 0, y: -1 }, color: GHOST_COLORS[0], scared: false, inHouse: false, homeTimer: 0, scatterTarget: { x: COLS-3, y: 0 } },
-      { x: 9, y: 9, dir: { x: 0, y: 1 }, color: GHOST_COLORS[1], scared: false, inHouse: true, homeTimer: 0, scatterTarget: { x: 1, y: 0 } },
+      { x: 8, y: 7, dir: { x: -1, y: 0 }, color: GHOST_COLORS[0], scared: false, inHouse: false, homeTimer: 0, scatterTarget: { x: COLS-3, y: 0 } },
+      { x: 9, y: 9, dir: { x: 0, y: -1 }, color: GHOST_COLORS[1], scared: false, inHouse: true, homeTimer: 0, scatterTarget: { x: 1, y: 0 } },
       { x: 10, y: 9, dir: { x: 1, y: 0 }, color: GHOST_COLORS[2], scared: false, inHouse: true, homeTimer: 0, scatterTarget: { x: COLS-1, y: ROWS-1 } },
       { x: 11, y: 9, dir: { x: -1, y: 0 }, color: GHOST_COLORS[3], scared: false, inHouse: true, homeTimer: 0, scatterTarget: { x: 0, y: ROWS-1 } },
     ]
-    // Stagger ghost releases
-    s.ghosts[1].homeTimer = 60
-    s.ghosts[2].homeTimer = 120
-    s.ghosts[3].homeTimer = 180
+    // Fast stagger release — nearly instant
+    s.ghosts[1].homeTimer = 2
+    s.ghosts[2].homeTimer = 4
+    s.ghosts[3].homeTimer = 6
     s.score = 0; s.lives = 3; s.powerTimer = 0; s.dotsEaten = 0; s.totalDots = dots
     s.moveTimer = 0; s.running = true; s.ghostCombo = 0; s.level = 1
     setPhase('playing'); syncState(s)
