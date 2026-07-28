@@ -84,7 +84,7 @@ export default function games_pac_man() {
   const resize = useCallback(() => {
     const c = cvs.current, wrap = c?.parentElement
     if (!c || !wrap) return
-    const maxW = Math.min(wrap.clientWidth, window.innerWidth - 48, 420)
+    const maxW = Math.min(wrap.clientWidth, window.innerWidth - 48, 600)
     const cell = Math.floor(maxW / COLS)
     const W = cell * COLS
     const H = cell * ROWS
@@ -252,8 +252,8 @@ export default function games_pac_man() {
 
     s.moveTimer++
 
-    // ── Pac-Man movement (every 2 frames) ──
-    if (s.moveTimer % 2 === 0) {
+    // ── Pac-Man movement (every 10 frames) ──
+    if (s.moveTimer % 10 === 0) {
       const { pac, maze } = s
       // try next direction first
       if ((pac.nextDir.x || pac.nextDir.y) && canMove(maze, pac.x + pac.nextDir.x, pac.y + pac.nextDir.y)) {
@@ -286,8 +286,8 @@ export default function games_pac_man() {
       }
     }
 
-    // ── Ghosts (every 3 frames) ──
-    if (s.moveTimer % 3 === 0) {
+    // ── Ghosts (every 12 frames) ──
+    if (s.moveTimer % 12 === 0) {
       const { maze, pac, ghosts } = s
 
       // power timer
