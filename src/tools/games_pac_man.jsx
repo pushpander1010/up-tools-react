@@ -145,7 +145,7 @@ export default function games_pac_man() {
 
     // Calculate cell size
     const dpr = window.devicePixelRatio || 1
-    const maxW = Math.min(canvas.parentElement.offsetWidth - 16, 420)
+    const maxW = Math.min(window.innerWidth - 48, canvas.parentElement.offsetWidth - 16, 420)
     const cellSize = Math.floor(maxW / COLS)
     const w = cellSize * COLS
     const h = cellSize * ROWS
@@ -576,7 +576,7 @@ export default function games_pac_man() {
         <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
           <GameAdSlot slot="4214854395" format="vertical" className="mt-2" />
         </div>
-        <div className="flex-1 min-w-0 max-w-xl mx-auto space-y-5 overflow-hidden">
+        <div className="flex-1 min-w-0 max-w-xl mx-auto space-y-5">
         {/* Score display */}
         <div className="glass p-4">
           <div className="grid grid-cols-3 gap-4">
