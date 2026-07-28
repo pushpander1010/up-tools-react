@@ -1,373 +1,409 @@
 import { useState, useRef, useCallback, useEffect } from 'react'
 import ToolLayout from '../components/ToolLayout'
 
-const DEFAULT_SIZE = 32
-const PALETTE = [
-  '#000000','#ffffff','#ff0000','#00ff00','#0000ff','#ffff00','#ff00ff','#00ffff',
-  '#ff8800','#8800ff','#0088ff','#ff0088','#88ff00','#00ff88',
-  '#888888','#cccccc','#444444','#884400','#ff4444','#44ff44','#4444ff','#ffff88',
-  '#ff88ff','#88ffff','#c0392b','#2ecc71','#3498db','#f39c12','#9b59b6','#1abc9c',
-  'eraser',
-]
+const DEFAULT_PALETTE = [
+  '#000000','#ffffff','#ff0000','#00ff00','#0000ff','#ffff00',
+  '#ff00ff','#00ffff','#ff8800','#88ff00','#0088ff','#ff0088',
+  '#884400','#448800','#004488','#880044',
+  '#ff4444','#44ff44','#4444ff','#ffff44','#ff44ff','#44ffff',
+  '#888888','#444444','#cccccc','#f0f0f0'
+];
 
-function createEmptyGrid(size) {
-  return Array.from({ length: size }, () => Array(size).fill(null))
-}
-
-function floodFill(grid, row, col, newColor) {
-  const size = grid.length
-  const targetColor = grid[row][col]
-  if (targetColor === newColor) return grid
-
-  const newGrid = grid.map(r => [...r])
-  const stack = [[row, col]]
-
-  while (stack.length > 0) {
-    const [r, c] = stack.pop()
-    if (r < 0 || r >= size || c < 0 || c >= size) continue
-    if (newGrid[r][c] !== targetColor) continue
-    newGrid[r][c] = newColor
-    stack.push([r - 1, c], [r + 1, c], [r, c - 1], [r, c + 1])
+function floodFill(pixels, startR, startC, fillColor, GRID) {
+  const targetColor = pixels[startR][startC];
+  if (targetColor === fillColor) return pixels;
+  const result = pixels.map(r => [...r]);
+  const stack = [[startR, startC]];
+  const visited = new Set();
+  while (stack.length) {
+    const [r, c] = stack.pop();
+    if (r < 0 || r >= GRID || c < 0 || c >= GRID) continue;
+    const key = r * GRID + c;
+    if (visited.has(key)) continue;
+    if (result[r][c] !== targetColor) continue;
+    visited.add(key);
+    result[r][c] = fillColor;
+    stack.push([r - 1, c], [r + 1, c], [r, c - 1], [r, c + 1]);
   }
-  return newGrid
+  return result;
 }
 
-export default function PixelArtEditor() {
-  const canvasRef = useRef(null)
-  const [grid, setGrid] = useState(() => createEmptyGrid(DEFAULT_SIZE))
-  const [size, setSize] = useState(DEFAULT_SIZE)
-  const [color, setColor] = useState('#000000')
-  const [tool, setTool] = useState('brush')
-  const [isDrawing, setIsDrawing] = useState(false)
-  const [history, setHistory] = useState([createEmptyGrid(DEFAULT_SIZE)])
-  const [historyIdx, setHistoryIdx] = useState(0)
-  const [bgColor, setBgColor] = useState('transparent')
+function initPixels(GRID) {
+  const p = [];
+  for (let r = 0; r < GRID; r++) {
+    p[r] = [];
+    for (let c = 0; c < GRID; c++) p[r][c] = null;
+  }
+  return p;
+}
 
-  const pushHistory = useCallback((newGrid) => {
-    setHistory(prev => {
-      const truncated = prev.slice(0, historyIdx + 1)
-      return [...truncated, newGrid]
-    })
-    setHistoryIdx(prev => prev + 1)
-  }, [historyIdx])
+export default function pixel_art_editor() {
+  const canvasRef = useRef(null);
+  const gridCanvasRef = useRef(null);
+  const [gridSize, setGridSize] = useState(32);
+  const [tool, setTool] = useState('brush');
+  const [currentColor, setCurrentColor] = useState('#4488ff');
+  const [showGrid, setShowGrid] = useState(true);
+  const [pixels, setPixels] = useState(() => initPixels(32));
+  const [history, setHistory] = useState([]);
+  const [historyIdx, setHistoryIdx] = useState(-1);
+  const [palette, setPalette] = useState(() => {
+    try { const s = localStorage.getItem('uptools_pixel_palette'); return s ? JSON.parse(s) : [...DEFAULT_PALETTE]; }
+    catch { return [...DEFAULT_PALETTE]; }
+  });
+  const [isDrawing, setIsDrawing] = useState(false);
+  const drawingRef = useRef(false);
 
-  const draw = useCallback(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-    const ctx = canvas.getContext('2d')
-    const cellSize = Math.floor(canvas.width / grid.length)
+  const CELL = useRef(16);
+  const MAX_HISTORY = 100;
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
+  const calcCellSize = useCallback(() => {
+    const maxW = typeof window !== 'undefined' ? Math.min(window.innerWidth - 64, 700) : 700;
+    CELL.current = Math.max(4, Math.floor(maxW / gridSize));
+    return CELL.current;
+  }, [gridSize]);
 
-    // Background
-    if (bgColor === 'transparent') {
-      // Checkerboard pattern
-      for (let r = 0; r < grid.length; r++) {
-        for (let c = 0; c < grid.length; c++) {
-          ctx.fillStyle = (r + c) % 2 === 0 ? '#1a1a2e' : '#16162a'
-          ctx.fillRect(c * cellSize, r * cellSize, cellSize, cellSize)
-        }
+  const getCanvasSize = useCallback(() => calcCellSize() * gridSize, [calcCellSize, gridSize]);
+
+  const render = useCallback(() => {
+    const canvas = canvasRef.current;
+    const gridCvs = gridCanvasRef.current;
+    if (!canvas || !gridCvs) return;
+    const ctx = canvas.getContext('2d');
+    const gridCtx = gridCvs.getContext('2d');
+    const cell = calcCellSize();
+    const sz = cell * gridSize;
+    canvas.width = gridCvs.width = sz;
+    canvas.height = gridCvs.height = sz;
+    canvas.style.width = gridCvs.style.width = sz + 'px';
+    canvas.style.height = gridCvs.style.height = sz + 'px';
+
+    ctx.clearRect(0, 0, sz, sz);
+    // Checkerboard
+    for (let r = 0; r < gridSize; r++) {
+      for (let c = 0; c < gridSize; c++) {
+        ctx.fillStyle = ((r + c) % 2 === 0) ? '#1a1f2e' : '#1e2436';
+        ctx.fillRect(c * cell, r * cell, cell, cell);
       }
-    } else {
-      ctx.fillStyle = bgColor
-      ctx.fillRect(0, 0, canvas.width, canvas.height)
     }
-
     // Pixels
-    for (let r = 0; r < grid.length; r++) {
-      for (let c = 0; c < grid.length; c++) {
-        if (grid[r][c]) {
-          ctx.fillStyle = grid[r][c]
-          ctx.fillRect(c * cellSize, r * cellSize, cellSize, cellSize)
+    for (let r = 0; r < gridSize; r++) {
+      for (let c = 0; c < gridSize; c++) {
+        if (pixels[r][c]) {
+          ctx.fillStyle = pixels[r][c];
+          ctx.fillRect(c * cell, r * cell, cell, cell);
         }
       }
     }
-
-    // Grid lines
-    ctx.strokeStyle = 'rgba(255,255,255,0.08)'
-    ctx.lineWidth = 0.5
-    for (let i = 0; i <= grid.length; i++) {
-      ctx.beginPath()
-      ctx.moveTo(i * cellSize, 0)
-      ctx.lineTo(i * cellSize, canvas.height)
-      ctx.stroke()
-      ctx.beginPath()
-      ctx.moveTo(0, i * cellSize)
-      ctx.lineTo(canvas.width, i * cellSize)
-      ctx.stroke()
+    // Grid
+    gridCtx.clearRect(0, 0, sz, sz);
+    if (showGrid) {
+      gridCtx.strokeStyle = 'rgba(255,255,255,0.08)';
+      gridCtx.lineWidth = 0.5;
+      gridCtx.beginPath();
+      for (let i = 0; i <= gridSize; i++) {
+        const pos = i * cell;
+        gridCtx.moveTo(pos, 0); gridCtx.lineTo(pos, sz);
+        gridCtx.moveTo(0, pos); gridCtx.lineTo(sz, pos);
+      }
+      gridCtx.stroke();
     }
-  }, [grid, bgColor])
+  }, [pixels, gridSize, showGrid, calcCellSize]);
+
+  useEffect(() => { render(); }, [render]);
+
+  const snapshot = useCallback(() => pixels.map(row => [...row]), [pixels]);
+
+  const saveState = useCallback(() => {
+    setHistory(prev => {
+      const newHist = prev.slice(0, historyIdx + 1);
+      newHist.push(snapshot());
+      if (newHist.length > MAX_HISTORY) newHist.shift();
+      setHistoryIdx(newHist.length - 1);
+      return newHist;
+    });
+  }, [snapshot, historyIdx]);
+
+  const undo = useCallback(() => {
+    if (historyIdx > 0) {
+      const newIdx = historyIdx - 1;
+      setPixels(history[newIdx].map(r => [...r]));
+      setHistoryIdx(newIdx);
+    }
+  }, [historyIdx, history]);
+
+  const redo = useCallback(() => {
+    if (historyIdx < history.length - 1) {
+      const newIdx = historyIdx + 1;
+      setPixels(history[newIdx].map(r => [...r]));
+      setHistoryIdx(newIdx);
+    }
+  }, [historyIdx, history]);
+
+  // Keyboard shortcuts
+  useEffect(() => {
+    const handler = (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
+      if ((e.ctrlKey || e.metaKey) && e.key === 'z') { e.preventDefault(); undo(); }
+      else if ((e.ctrlKey || e.metaKey) && e.key === 'y') { e.preventDefault(); redo(); }
+      else if (e.key === 'b') setTool('brush');
+      else if (e.key === 'e') setTool('eraser');
+      else if (e.key === 'g') setTool('fill');
+      else if (e.key === 'i') setTool('eyedropper');
+    };
+    document.addEventListener('keydown', handler);
+    return () => document.removeEventListener('keydown', handler);
+  }, [undo, redo]);
+
+  const getCellFromEvent = useCallback((e) => {
+    const canvas = canvasRef.current;
+    if (!canvas) return null;
+    const rect = canvas.getBoundingClientRect();
+    const x = (e.clientX ?? e.pageX) - rect.left;
+    const y = (e.clientY ?? e.pageY) - rect.top;
+    const cell = calcCellSize();
+    const c = Math.floor(x / cell);
+    const r = Math.floor(y / cell);
+    if (r < 0 || r >= gridSize || c < 0 || c >= gridSize) return null;
+    return { r, c };
+  }, [gridSize, calcCellSize]);
+
+  const paintAt = useCallback((e) => {
+    const pos = getCellFromEvent(e);
+    if (!pos) return;
+    const { r, c } = pos;
+    setPixels(prev => {
+      const next = prev.map(row => [...row]);
+      if (tool === 'brush') {
+        if (next[r][c] !== currentColor) next[r][c] = currentColor;
+      } else if (tool === 'eraser') {
+        if (next[r][c] !== null) next[r][c] = null;
+      } else if (tool === 'fill') {
+        return floodFill(next, r, c, currentColor, gridSize);
+      } else if (tool === 'eyedropper') {
+        const picked = next[r][c];
+        if (picked) {
+          setCurrentColor(picked);
+          setTool('brush');
+        }
+        return next;
+      }
+      return next;
+    });
+  }, [tool, currentColor, gridSize, getCellFromEvent]);
+
+  const handleMouseDown = useCallback((e) => {
+    e.preventDefault();
+    drawingRef.current = true;
+    setIsDrawing(true);
+    paintAt(e);
+  }, [paintAt]);
+
+  const handleMouseMove = useCallback((e) => {
+    if (!drawingRef.current) return;
+    paintAt(e);
+  }, [paintAt]);
 
   useEffect(() => {
-    const canvas = canvasRef.current
-    if (canvas) {
-      const sz = Math.min(560, window.innerWidth - 48)
-      canvas.width = sz
-      canvas.height = sz
-    }
-    draw()
-  }, [draw, size])
-
-  const getCell = (e) => {
-    const canvas = canvasRef.current
-    if (!canvas) return null
-    const rect = canvas.getBoundingClientRect()
-    const scaleX = canvas.width / rect.width
-    const scaleY = canvas.height / rect.height
-    const x = (e.clientX - rect.left) * scaleX
-    const y = (e.clientY - rect.top) * scaleY
-    const cellSize = canvas.width / grid.length
-    const col = Math.floor(x / cellSize)
-    const row = Math.floor(y / cellSize)
-    if (row < 0 || row >= grid.length || col < 0 || col >= grid.length) return null
-    return { row, col }
-  }
-
-  const applyTool = useCallback((row, col) => {
-    setGrid(prev => {
-      const newGrid = prev.map(r => [...r])
-      if (tool === 'brush') {
-        newGrid[row][col] = color
-      } else if (tool === 'eraser') {
-        newGrid[row][col] = null
-      } else if (tool === 'eyedropper') {
-        const picked = newGrid[row][col]
-        if (picked) setColor(picked)
-        return prev
-      } else if (tool === 'fill') {
-        const filled = floodFill(newGrid, row, col, color)
-        if (filled !== newGrid) {
-          pushHistory(filled)
-          return filled
-        }
-        return prev
+    const handler = () => {
+      if (drawingRef.current) {
+        drawingRef.current = false;
+        setIsDrawing(false);
+        if (tool !== 'fill' && tool !== 'eyedropper') saveState();
       }
-      return newGrid
-    })
-  }, [tool, color, pushHistory])
+    };
+    document.addEventListener('mouseup', handler);
+    return () => document.removeEventListener('mouseup', handler);
+  }, [tool, saveState]);
 
-  const handleMouseDown = (e) => {
-    const cell = getCell(e)
-    if (!cell) return
-    setIsDrawing(true)
-    if (tool === 'fill' || tool === 'eyedropper') {
-      applyTool(cell.row, cell.col)
-    } else {
-      applyTool(cell.row, cell.col)
+  const handleMouseLeave = useCallback(() => {
+    drawingRef.current = false;
+    setIsDrawing(false);
+  }, []);
+
+  const handleContextMenu = useCallback((e) => {
+    e.preventDefault();
+    const pos = getCellFromEvent(e);
+    if (pos && pixels[pos.r][pos.c] !== null) {
+      setPixels(prev => {
+        const next = prev.map(row => [...row]);
+        next[pos.r][pos.c] = null;
+        return next;
+      });
+      saveState();
     }
-  }
+  }, [getCellFromEvent, pixels, saveState]);
 
-  const handleMouseMove = (e) => {
-    if (!isDrawing) return
-    if (tool === 'fill' || tool === 'eyedropper') return
-    const cell = getCell(e)
-    if (cell) applyTool(cell.row, cell.col)
-  }
-
-  const handleMouseUp = () => {
-    if (isDrawing && tool !== 'fill' && tool !== 'eyedropper') {
-      pushHistory(grid)
+  const handleGridChange = useCallback((newSize) => {
+    if (window.confirm('Changing grid size will clear the canvas. Continue?')) {
+      setGridSize(+newSize);
+      setPixels(initPixels(+newSize));
+      setHistory([]); setHistoryIdx(-1);
     }
-    setIsDrawing(false)
-  }
+  }, []);
 
-  const handleUndo = () => {
-    if (historyIdx > 0) {
-      setHistoryIdx(prev => prev - 1)
-      setGrid(history[historyIdx - 1])
-    }
-  }
-  const handleRedo = () => {
-    if (historyIdx < history.length - 1) {
-      setHistoryIdx(prev => prev + 1)
-      setGrid(history[historyIdx + 1])
-    }
-  }
+  const clearCanvas = useCallback(() => {
+    if (!window.confirm('Clear the entire canvas?')) return;
+    setPixels(initPixels(gridSize));
+    saveState();
+  }, [gridSize, saveState]);
 
-  const handleClear = () => {
-    const empty = createEmptyGrid(size)
-    setGrid(empty)
-    pushHistory(empty)
-  }
-
-  const handleResize = (newSize) => {
-    setSize(newSize)
-    const newGrid = createEmptyGrid(newSize)
-    // Copy old grid into new
-    const oldSize = grid.length
-    const min = Math.min(oldSize, newSize)
-    for (let r = 0; r < min; r++) {
-      for (let c = 0; c < min; c++) {
-        newGrid[r][c] = grid[r][c]
-      }
-    }
-    setGrid(newGrid)
-    setHistory([newGrid])
-    setHistoryIdx(0)
-  }
-
-  const handleExportPNG = () => {
-    // Create a clean export canvas without grid lines
-    const exportCanvas = document.createElement('canvas')
-    const pxSize = 16
-    exportCanvas.width = size * pxSize
-    exportCanvas.height = size * pxSize
-    const ctx = exportCanvas.getContext('2d')
-
-    if (bgColor !== 'transparent') {
-      ctx.fillStyle = bgColor
-      ctx.fillRect(0, 0, exportCanvas.width, exportCanvas.height)
-    }
-
-    for (let r = 0; r < grid.length; r++) {
-      for (let c = 0; c < grid.length; c++) {
-        if (grid[r][c]) {
-          ctx.fillStyle = grid[r][c]
-          ctx.fillRect(c * pxSize, r * pxSize, pxSize, pxSize)
+  const exportPNG = useCallback(() => {
+    const exportScale = Math.max(1, Math.floor(512 / gridSize));
+    const expCvs = document.createElement('canvas');
+    expCvs.width = gridSize * exportScale;
+    expCvs.height = gridSize * exportScale;
+    const expCtx = expCvs.getContext('2d');
+    for (let r = 0; r < gridSize; r++) {
+      for (let c = 0; c < gridSize; c++) {
+        if (pixels[r][c]) {
+          expCtx.fillStyle = pixels[r][c];
+          expCtx.fillRect(c * exportScale, r * exportScale, exportScale, exportScale);
         }
       }
     }
+    const link = document.createElement('a');
+    link.download = `pixel-art-${gridSize}x${gridSize}.png`;
+    link.href = expCvs.toDataURL('image/png');
+    link.click();
+  }, [pixels, gridSize]);
 
-    const link = document.createElement('a')
-    link.download = 'pixel-art.png'
-    link.href = exportCanvas.toDataURL('image/png')
-    link.click()
-  }
+  const addCurrentToPalette = useCallback(() => {
+    if (!palette.includes(currentColor)) {
+      const newPalette = [...palette, currentColor];
+      setPalette(newPalette);
+      try { localStorage.setItem('uptools_pixel_palette', JSON.stringify(newPalette)); } catch {}
+    }
+  }, [palette, currentColor]);
 
-  const handleExportJSON = () => {
-    const json = JSON.stringify(grid)
-    const blob = new Blob([json], { type: 'application/json' })
-    const url = URL.createObjectURL(blob)
-    const link = document.createElement('a')
-    link.download = 'pixel-art.json'
-    link.href = url
-    link.click()
-    URL.revokeObjectURL(url)
-  }
+  const removeSelectedPalette = useCallback(() => {
+    const idx = palette.indexOf(currentColor);
+    if (idx > -1) {
+      const newPalette = [...palette]; newPalette.splice(idx, 1);
+      setPalette(newPalette);
+      try { localStorage.setItem('uptools_pixel_palette', JSON.stringify(newPalette)); } catch {}
+    }
+  }, [palette, currentColor]);
 
-  const tools = [
-    { id: 'brush', icon: '✏️', label: 'Brush' },
-    { id: 'eraser', icon: '🧹', label: 'Eraser' },
-    { id: 'fill', icon: '🪣', label: 'Fill' },
-    { id: 'eyedropper', icon: '💉', label: 'Eyedropper' },
-  ]
+  const resetPalette = useCallback(() => {
+    if (window.confirm('Reset palette to default colors?')) {
+      setPalette([...DEFAULT_PALETTE]);
+      try { localStorage.setItem('uptools_pixel_palette', JSON.stringify(DEFAULT_PALETTE)); } catch {}
+    }
+  }, []);
+
+  // Touch handlers
+  const handleTouchStart = useCallback((e) => {
+    e.preventDefault();
+    drawingRef.current = true;
+    setIsDrawing(true);
+    const t = e.touches[0];
+    paintAt(t);
+  }, [paintAt]);
+
+  const handleTouchMove = useCallback((e) => {
+    e.preventDefault();
+    if (!drawingRef.current) return;
+    const t = e.touches[0];
+    paintAt(t);
+  }, [paintAt]);
+
+  const handleTouchEnd = useCallback(() => {
+    if (drawingRef.current) {
+      drawingRef.current = false;
+      setIsDrawing(false);
+      if (tool !== 'fill' && tool !== 'eyedropper') saveState();
+    }
+  }, [tool, saveState]);
 
   return (
     <ToolLayout
       title="Pixel Art Editor"
-      desc="Draw pixel art with brush, eraser, fill bucket, eyedropper tools. Export as PNG or JSON."
+      desc="Create pixel art in your browser. Click to paint, right-click to erase."
       icon="🎨" iconBg="rgba(99,102,241,0.08)"
       category="fun" slug="pixel-art-editor"
-      faq={[
-        { q: 'What tools are available?', a: 'Brush (draw), Eraser (erase), Fill Bucket (flood fill area), and Eyedropper (pick color from canvas).' },
-        { q: 'Can I export my artwork?', a: 'Yes! Export as a PNG image or save as JSON to reload and continue editing later.' },
-      ]}
-      howItWorks={[
-        'Select a tool from the toolbar (brush, eraser, fill, eyedropper).',
-        'Pick a color from the palette.',
-        'Draw on the canvas by clicking and dragging.',
-        'Export as PNG or JSON when done.',
-      ]}
-      schema={{
-        "@context": "https://schema.org", "@type": "SoftwareApplication",
-        "name": "Pixel Art Editor", "applicationCategory": "DesignApplication",
-        "url": "https://www.uptools.in/pixel-art-editor/",
-        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" }
-      }}
     >
-      <div className="max-w-3xl mx-auto space-y-4">
-        {/* Toolbar */}
-        <div className="flex flex-wrap items-center gap-3">
-          {/* Tools */}
-          <div className="flex rounded-xl overflow-hidden border border-white/[0.08]">
-            {tools.map(t => (
-              <button key={t.id} onClick={() => setTool(t.id)}
-                className={`px-3 py-2 text-sm font-medium transition-all ${tool === t.id ? 'bg-indigo-500/20 text-indigo-300' : 'bg-white/[0.04] text-slate-400 hover:text-white'}`}
-                title={t.label}>
-                {t.icon}
-              </button>
-            ))}
+      <div className="max-w-2xl mx-auto space-y-4">
+        <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-5">
+          <div className="flex flex-wrap gap-3 items-end">
+            <div>
+              <label className="block text-xs font-medium text-slate-400 mb-1.5">Grid Size</label>
+              <select className="bg-white/[0.04] border border-white/[0.1] rounded-xl px-3 py-2 text-sm text-white min-w-[90px] focus:outline-none focus:border-indigo-500/50"
+                value={gridSize} onChange={e => handleGridChange(e.target.value)}>
+                <option value="16">16×16</option>
+                <option value="24">24×24</option>
+                <option value="32">32×32</option>
+                <option value="48">48×48</option>
+                <option value="64">64×64</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-xs font-medium text-slate-400 mb-1.5">Tool</label>
+              <select className="bg-white/[0.04] border border-white/[0.1] rounded-xl px-3 py-2 text-sm text-white min-w-[110px] focus:outline-none focus:border-indigo-500/50"
+                value={tool} onChange={e => setTool(e.target.value)}>
+                <option value="brush">🖌️ Brush</option>
+                <option value="eraser">🧹 Eraser</option>
+                <option value="fill">🪣 Fill</option>
+                <option value="eyedropper">💉 Eyedropper</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-xs font-medium text-slate-400 mb-1.5">Color</label>
+              <div className="flex gap-1.5 items-center">
+                <input type="color" value={currentColor} onChange={e => setCurrentColor(e.target.value)}
+                  className="w-10 h-[34px] border border-white/10 rounded cursor-pointer bg-transparent p-0.5" />
+                <span className="text-xs text-slate-400 font-mono min-w-[56px]">{currentColor}</span>
+              </div>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <input type="checkbox" checked={showGrid} onChange={e => setShowGrid(e.target.checked)} className="accent-indigo-500" />
+              <label className="text-xs text-slate-400">Grid Lines</label>
+            </div>
+            <div className="flex gap-1.5 flex-wrap">
+              <button onClick={undo} disabled={historyIdx <= 0} className="glow-btn text-xs px-3 py-2 rounded-xl disabled:opacity-30 disabled:cursor-not-allowed">↩ Undo</button>
+              <button onClick={redo} disabled={historyIdx >= history.length - 1} className="glow-btn text-xs px-3 py-2 rounded-xl disabled:opacity-30 disabled:cursor-not-allowed">↪ Redo</button>
+              <button onClick={clearCanvas} className="bg-red-900/40 hover:bg-red-900/60 border border-red-500/20 text-xs px-3 py-2 rounded-xl text-slate-300 transition-all">🗑️ Clear</button>
+              <button onClick={exportPNG} className="bg-emerald-900/40 hover:bg-emerald-900/60 border border-emerald-500/20 text-xs px-3 py-2 rounded-xl text-slate-300 transition-all">💾 Export PNG</button>
+            </div>
           </div>
 
-          {/* Undo/Redo */}
-          <div className="flex rounded-xl overflow-hidden border border-white/[0.08]">
-            <button onClick={handleUndo} disabled={historyIdx === 0}
-              className="px-3 py-2 text-sm text-slate-400 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed">↩️</button>
-            <button onClick={handleRedo} disabled={historyIdx === history.length - 1}
-              className="px-3 py-2 text-sm text-slate-400 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed">↪️</button>
-          </div>
-
-          {/* Grid size */}
-          <select value={size} onChange={e => handleResize(Number(e.target.value))}
-            className="bg-white/[0.06] border border-white/[0.08] rounded-xl px-3 py-2 text-xs text-white outline-none">
-            {[8, 16, 24, 32, 48, 64].map(s => <option key={s} value={s}>{s}×{s}</option>)}
-          </select>
-
-          {/* Background */}
-          <select value={bgColor} onChange={e => setBgColor(e.target.value)}
-            className="bg-white/[0.06] border border-white/[0.08] rounded-xl px-3 py-2 text-xs text-white outline-none">
-            <option value="transparent">Transparent BG</option>
-            <option value="#ffffff">White BG</option>
-            <option value="#000000">Black BG</option>
-          </select>
-        </div>
-
-        <div className="flex flex-col md:flex-row gap-4">
-          {/* Canvas */}
-          <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-3 flex-shrink-0">
-            <canvas ref={canvasRef}
-              className="rounded-lg cursor-crosshair max-w-full"
-              style={{ imageRendering: 'pixelated' }}
-              onMouseDown={handleMouseDown}
-              onMouseMove={handleMouseMove}
-              onMouseUp={handleMouseUp}
-              onMouseLeave={handleMouseUp}
-            />
-          </div>
-
-          {/* Palette */}
-          <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4 flex-1">
-            <label className="block text-xs font-semibold text-slate-400 mb-2">Color Palette</label>
-            <div className="grid grid-cols-8 gap-1.5 mb-4">
-              {PALETTE.map((c, i) => (
-                c === 'eraser' ? (
-                  <button key={i} onClick={() => { setTool('eraser') }}
-                    className={`w-8 h-8 rounded-lg border-2 transition-all ${tool === 'eraser' ? 'border-white scale-110' : 'border-transparent hover:scale-105'}`}
-                    style={{ background: 'repeating-conic-gradient(#555 0% 25%, #333 0% 50%) 50% / 12px 12px' }}
-                    title="Eraser"
-                  />
-                ) : (
-                  <button key={i} onClick={() => { setColor(c); setTool('brush') }}
-                    className={`w-8 h-8 rounded-lg border-2 transition-all ${color === c && tool === 'brush' ? 'border-white scale-110' : 'border-transparent hover:scale-105'}`}
-                    style={{ background: c }}
-                    title={c}
-                  />
-                )
+          <div className="mt-3">
+            <label className="block text-xs font-medium text-slate-400 mb-1.5">Palette</label>
+            <div className="flex flex-wrap gap-1 min-h-[28px]">
+              {palette.map((c, i) => (
+                <button key={i} onClick={() => setCurrentColor(c)} className="w-6 h-6 rounded transition-all hover:scale-110"
+                  style={{ background: c, border: `2px solid ${c === currentColor ? '#fff' : '#1e293b'}` }}
+                  title={c} />
               ))}
             </div>
-
-            {/* Custom color picker */}
-            <div className="flex items-center gap-2 mb-4">
-              <input type="color" value={color} onChange={e => { setColor(e.target.value); setTool('brush') }}
-                className="w-10 h-10 rounded-xl cursor-pointer border-0" />
-              <span className="text-xs text-slate-400 font-mono">{color}</span>
+            <div className="flex gap-1.5 mt-2 flex-wrap">
+              <button onClick={addCurrentToPalette} className="bg-white/[0.06] border border-white/[0.08] text-[11px] px-2.5 py-1 rounded-lg text-slate-400 hover:text-white transition-all">+ Add Current</button>
+              <button onClick={removeSelectedPalette} className="bg-white/[0.06] border border-white/[0.08] text-[11px] px-2.5 py-1 rounded-lg text-slate-400 hover:text-white transition-all">− Remove</button>
+              <button onClick={resetPalette} className="bg-white/[0.06] border border-white/[0.08] text-[11px] px-2.5 py-1 rounded-lg text-slate-400 hover:text-white transition-all">↺ Reset</button>
             </div>
+          </div>
+        </div>
 
-            {/* Actions */}
-            <div className="space-y-2">
-              <button onClick={handleClear}
-                className="w-full text-xs px-3 py-2 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/20 font-medium">
-                🗑️ Clear Canvas
-              </button>
-              <button onClick={handleExportPNG}
-                className="glow-btn w-full text-xs px-3 py-2 rounded-xl font-semibold">
-                ⬇ Export PNG
-              </button>
-              <button onClick={handleExportJSON}
-                className="w-full text-xs px-3 py-2 rounded-xl bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white font-medium">
-                💾 Save JSON
-              </button>
-            </div>
+        <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4 flex justify-center overflow-auto">
+          <div className="relative inline-block shadow-2xl rounded">
+            <canvas ref={canvasRef}
+              onMouseDown={handleMouseDown} onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave} onContextMenu={handleContextMenu}
+              onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}
+              className="block rounded cursor-crosshair" />
+            <canvas ref={gridCanvasRef} className="absolute top-0 left-0 pointer-events-none" />
+          </div>
+        </div>
+
+        <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-5">
+          <h2 className="text-sm font-bold text-slate-300 mb-2">Keyboard Shortcuts</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5 text-xs text-slate-400">
+            {[
+              ['Ctrl+Z', 'Undo'], ['Ctrl+Y', 'Redo'], ['B', 'Brush'],
+              ['E', 'Eraser'], ['G', 'Fill'], ['I', 'Eyedropper'],
+            ].map(([key, action]) => (
+              <div key={key}><kbd className="bg-white/[0.06] px-1.5 py-0.5 rounded text-[11px]">{key}</kbd> {action}</div>
+            ))}
           </div>
         </div>
       </div>
