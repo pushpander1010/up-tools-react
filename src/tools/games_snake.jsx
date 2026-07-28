@@ -337,7 +337,6 @@ export default function games_snake() {
 
         {/* Mobile D-pad hint */}
         <p className="text-center text-xs text-slate-500">
-        <p className="text-center text-xs text-slate-500">
           Desktop: ← → ↑ ↓ or WASD | Mobile: Swipe to steer
         </p>
           <div className="flex gap-2 justify-center mt-4">
@@ -346,8 +345,8 @@ export default function games_snake() {
             </button>
           </div>
         </div>
+        <GameAdSlot slot="8865234201" format="horizontal" className="mt-2" />
         <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="8865234201" format="horizontal" className="mt-2" />
           <GameAdSlot slot="4462954769" format="vertical" className="mt-2" />
         </div>
       </div>

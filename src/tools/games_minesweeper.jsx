@@ -284,11 +284,11 @@ export default function games_minesweeper() {
             <button onClick={() => startGame(difficulty)} className="glow-btn px-8 py-3 text-sm">
               Start Game
             </button>
-          </div>
-          <div className="flex gap-3 justify-center mt-4">
-            <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
-              {isFs ? '⊡' : '⛶'}
-            </button>
+            <div className="flex gap-3 justify-center mt-4">
+              <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
+                {isFs ? '⊡' : '⛶'}
+              </button>
+            </div>
           </div>
         )}
 

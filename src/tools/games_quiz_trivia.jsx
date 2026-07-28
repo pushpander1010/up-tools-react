@@ -363,15 +363,14 @@ export default function games_quiz_trivia() {
             </button>
           </div>
         )}
-      </div>
           <div className="flex gap-2 justify-center mt-4">
             <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
               {isFs ? '⊡' : '⛶'}
             </button>
           </div>
         </div>
+        <GameAdSlot slot="8865234201" format="horizontal" className="mt-2" />
         <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="8865234201" format="horizontal" className="mt-2" />
           <GameAdSlot slot="4462954769" format="vertical" className="mt-2" />
         </div>
       </div>

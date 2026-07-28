@@ -439,11 +439,11 @@ export default function games_wordle() {
         {/* Controls */}
         <div className="flex gap-2 justify-center items-center">
           <button onClick={() => setHardMode(h => !h)}
-            <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
-              {isFs ? '⊡' : '⛶'}
-            </button>
              className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${hardMode ? 'bg-amber-500/20 border border-amber-500/40 text-amber-400' : 'bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:bg-white/[0.1]'}`}>
             {hardMode ? '🔒 Hard' : '🔓 Normal'}
+          </button>
+          <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
+            {isFs ? '⊡' : '⛶'}
           </button>
           <button onClick={() => setShowStats(s => !s)} className="px-3 py-1.5 rounded-lg text-xs font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">
             📊 Stats

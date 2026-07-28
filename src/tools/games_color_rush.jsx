@@ -283,13 +283,11 @@ export default function games_color_rush() {
           <GameAdSlot slot="4462954769" format="vertical" className="mt-2" />
         </div>
       </div>
-      </div>
 
       <style>{`
         @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-6px)} 75%{transform:translateX(6px)} }
         @keyframes flash { 0%{filter:brightness(1.5)} 100%{filter:brightness(1)} }
       `}</style>
-      <GameAdSlot slot="8865234201" format="horizontal" className="mt-2" />
       </ToolLayout>
   )
 }
