@@ -240,7 +240,7 @@ export default function games_2048() {
 
   return (
     <ToolLayout
-      title="2048 : A Fun Numbers Puzzle Game Online — Play Free"
+      title="2048 : A Fun Numbers Puzzle Game Online — Play Free" hideHeader={isFs}
       desc="Play 2048 online for free. Swipe or use arrow keys to merge tiles, beat your high score, and challenge yourself with this addictive number puzzle game."
       icon="🎲" iconBg="rgba(245,158,11,0.08)"
       category="fun" slug="games-2048"

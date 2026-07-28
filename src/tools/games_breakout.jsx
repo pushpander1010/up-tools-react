@@ -61,7 +61,7 @@ export default function BreakoutGame() {
     const c = cvs.current, wrap = c?.parentElement
     if (!c || !wrap) return
     const W = wrap.clientWidth
-    const H = Math.floor(W * 0.75)
+    const H = Math.floor(W * 1.0)
     const dpr = Math.min(2, devicePixelRatio || 1)
     c.width = W * dpr; c.height = H * dpr
     c.style.width = W + 'px'; c.style.height = H + 'px'
@@ -383,7 +383,7 @@ export default function BreakoutGame() {
 
   return (
     <ToolLayout
-      title="Breakout — Classic Brick Breaker Game Online Free"
+      title="Breakout — Classic Brick Breaker Game Online Free" hideHeader={isFs}
       desc="Play Breakout online free. Break all bricks with the ball! Arrow keys or touch to move paddle. Levels get harder!"
       icon="🧱" iconBg="rgba(0,229,255,0.08)"
       category="fun" slug="games-breakout"
