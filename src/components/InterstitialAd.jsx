@@ -1,4 +1,4 @@
-import { useState, useLayoutEffect, useRef } from 'react'
+import { useState, useLayoutEffect, useEffect, useRef } from 'react'
 
 /**
  * Full-screen interstitial ad overlay. Shows on trigger, dismiss after countdown.
