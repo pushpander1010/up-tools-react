@@ -65,7 +65,7 @@ export default function InterstitialAd({ show, onDismiss, countdown = 5 }) {
         <ins
           ref={adRef}
           className="adsbygoogle"
-          style={{ display: 'block' }}
+          style={{ display: 'block', background: 'transparent' }}
           data-ad-client="ca-pub-6216304334889617"
           data-ad-slot="4031056959"
           data-ad-format="auto"

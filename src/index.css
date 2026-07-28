@@ -89,8 +89,3 @@ body {
 
 /* Selection */
 ::selection { background: rgba(99, 102, 241, 0.3); color: #fff; }
-
-/* AdSense: transparent background instead of white boxes */
-ins.adsbygoogle { background: transparent !important; }
-ins.adsbygoogle[data-ad-status="unfilled"],
-ins.adsbygoogle[data-ad-status="unfill-optimized"] { display: none !important; }
