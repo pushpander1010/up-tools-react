@@ -5557,7 +5557,16 @@
       "desc": "Draw pixel art with fill, eyedropper & export.",
       "href": "/pixel-art-editor/",
       "tags": ["fun","images"],
-      "cats": ["all","fun","images"]
+      "cats": ["all", "fun", "images"]
+    },
+    {
+      "slug": "whatsapp-chat-analyzer",
+      "title": "WhatsApp Chat Analyzer",
+      "icon": "💬",
+      "desc": "Analyze exported WhatsApp chats: stats, senders, words, emojis & activity.",
+      "href": "/whatsapp-chat-analyzer/",
+      "tags": ["whatsapp","social","analytics"],
+      "cats": ["all","whatsapp","social"]
     }
   ],
   "categories": {
