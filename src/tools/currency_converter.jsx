@@ -25,39 +25,66 @@ const CURRENCIES = [
   { code: 'BRL', name: 'Brazilian Real', symbol: 'R$', flag: '🇧🇷' },
 ]
 
-// Fallback rates (approximate, used if API fails)
-const FALLBACK_RATES = {
-  INR: 1, USD: 0.012, EUR: 0.011, GBP: 0.0095, JPY: 1.8, AUD: 0.018, CAD: 0.016,
-  SGD: 0.016, AED: 0.044, SAR: 0.045, CHF: 0.011, CNY: 0.086, KRW: 16.5,
-  THB: 0.42, MYR: 0.054, PHP: 0.67, IDR: 190, NZD: 0.02, ZAR: 0.22, BRL: 0.06,
-}
-
 export default function currency_converter() {
 
   const { ref: resultRef, jumpTo } = useJumpToResult()
   const [amount, setAmount] = useState('1')
   const [from, setFrom] = useState('USD')
   const [to, setTo] = useState('INR')
-  const [rates, setRates] = useState(FALLBACK_RATES)
+  const [rates, setRates] = useState(null)
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
   const [lastUpdated, setLastUpdated] = useState('')
 
   useEffect(() => {
+    // Try primary API (exchangerate-api.com — free, daily updates)
     fetch('https://api.exchangerate-api.com/v4/latest/INR')
-      .then(r => r.json())
+      .then(r => {
+        if (!r.ok) throw new Error('API returned ' + r.status)
+        return r.json()
+      })
       .then(data => {
         if (data.rates) {
-          const r = { INR: 1 }
-          Object.entries(data.rates).forEach(([k, v]) => { if (FALLBACK_RATES[k] !== undefined) r[k] = v })
+          const r = {}
+          CURRENCIES.forEach(c => { if (data.rates[c.code] !== undefined) r[c.code] = data.rates[c.code] })
+          // Fallback for INR itself
+          r.INR = 1
           setRates(r)
-          setLastUpdated(data.date || new Date().toLocaleDateString())
+          setLastUpdated(data.date || new Date().toLocaleDateString('en-IN'))
+          setError(null)
+        } else {
+          throw new Error('No rates in response')
         }
-        setLoading(false)
       })
-      .catch(() => setLoading(false))
+      .catch(() => {
+        // Fallback API: frankfurter.app (open-source, no key needed)
+        fetch('https://api.frankfurter.app/latest?from=INR')
+          .then(r => {
+            if (!r.ok) throw new Error('Fallback API returned ' + r.status)
+            return r.json()
+          })
+          .then(data => {
+            if (data.rates) {
+              const r = { INR: 1 }
+              CURRENCIES.forEach(c => { if (data.rates[c.code] !== undefined) r[c.code] = data.rates[c.code] })
+              setRates(r)
+              setLastUpdated(data.date || new Date().toLocaleDateString('en-IN'))
+              setError('fallback')
+            } else {
+              throw new Error('No rates in fallback response')
+            }
+          })
+          .catch(() => {
+            setError('offline')
+            setLastUpdated('')
+          })
+          .finally(() => setLoading(false))
+      })
+      .finally(() => setLoading(false))
   }, [])
 
   const result = useMemo(() => {
+    if (!rates) return 0
     const amt = parseFloat(amount) || 0
     const fromRate = rates[from] || 1
     const toRate = rates[to] || 1
@@ -66,7 +93,9 @@ export default function currency_converter() {
 
   const swap = () => { setFrom(to); setTo(from) }
 
-  const fmt = (n) => n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+  const fmt = (n) => n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumDigits: 4, maximumFractionDigits: 4 })
+
+  const rateDisplay = rates && rates[from] && rates[to] ? fmt(rates[to] / rates[from]) : '—'
 
   return (
     <ToolLayout
@@ -75,7 +104,7 @@ export default function currency_converter() {
       icon="💱" iconBg="rgba(34,197,94,0.08)"
       category="finance" slug="currency-converter"
       faq={[
-        { q: 'Where do exchange rates come from?', a: 'Live rates from ExchangeRate API, updated daily. Fallback rates used if API is unavailable.' },
+        { q: 'Where do exchange rates come from?', a: 'Live rates from ExchangeRate API (primary) and Frankfurter (fallback), updated daily. These are mid-market interbank rates.' },
         { q: 'Are these rates accurate for transactions?', a: 'These are mid-market interbank rates. Actual exchange rates include fees and spreads.' },
       ]}
       howItWorks={[
@@ -92,6 +121,14 @@ export default function currency_converter() {
       }}
     >
       <div className="max-w-2xl mx-auto space-y-6">
+        {/* Offline warning */}
+        {error === 'offline' && (
+          <div className="px-4 py-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm font-semibold flex items-center gap-2">
+            <span>⚠️</span>
+            <span>Unable to fetch live rates. Please check your internet connection and reload.</span>
+          </div>
+        )}
+
         {/* Amount */}
         <div>
           <label className="block text-sm font-semibold text-slate-300 mb-2">Amount</label>
@@ -122,12 +159,23 @@ export default function currency_converter() {
         <div ref={resultRef} className="p-6 rounded-3xl bg-gradient-to-br from-emerald-500/8 via-white/[0.02] to-transparent border border-emerald-500/15 text-center" style={{ animation: 'slideUp 0.3s ease-out' }}>
           <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider mb-2">Converted Amount</div>
           <div className="text-4xl font-extrabold text-emerald-400 truncate">
-            {CURRENCIES.find(c => c.code === to)?.symbol} {fmt(result)}
+            {loading ? (
+              <span className="text-lg text-slate-400">Fetching rates...</span>
+            ) : error === 'offline' ? (
+              <span className="text-lg text-red-400">Rates unavailable</span>
+            ) : (
+              <>{CURRENCIES.find(c => c.code === to)?.symbol} {fmt(result)}</>
+            )}
           </div>
           <div className="text-sm text-slate-400 mt-2">
-            1 {from} = {fmt(rates[to] / rates[from])} {to}
+            1 {from} = {rateDisplay} {to}
           </div>
-          {lastUpdated && <div className="text-[10px] text-slate-600 mt-2">Rates as of {lastUpdated}</div>}
+          {lastUpdated && (
+            <div className="text-[10px] text-slate-600 mt-2">
+              Rates as of {lastUpdated}
+              {error === 'fallback' && <span className="text-yellow-600/80 ml-1">(backup source)</span>}
+            </div>
+          )}
         </div>
       </div>
     </ToolLayout>
