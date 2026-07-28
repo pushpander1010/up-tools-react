@@ -10,8 +10,6 @@ export default function GameAdSlot({ slot = '8865234201', format = 'auto', class
 
   useEffect(() => {
     if (pushed.current || !ref.current) return
-    // Check adblock
-    if (typeof window.adsbygoogle === 'undefined') return
     try {
       ;(window.adsbygoogle = window.adsbygoogle || []).push({})
       pushed.current = true

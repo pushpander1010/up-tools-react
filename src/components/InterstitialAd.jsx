@@ -35,7 +35,7 @@ export default function InterstitialAd({ show, onDismiss, countdown = 5 }) {
   useEffect(() => {
     if (!visible || pushed.current) return
     const tryPush = () => {
-      if (typeof window.adsbygoogle !== 'undefined' && adRef.current) {
+      if (adRef.current) {
         try {
           ;(window.adsbygoogle = window.adsbygoogle || []).push({})
           pushed.current = true
