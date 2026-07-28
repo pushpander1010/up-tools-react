@@ -125,8 +125,14 @@ export default function mermaid_diagram_editor() {
       return
     }
     try {
-      // Dynamic import mermaid
-      const mermaid = (await import('mermaid')).default
+      // Dynamic import mermaid from CDN
+      const mermaid = await new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js'
+        script.onload = () => resolve(window.mermaid)
+        script.onerror = reject
+        document.head.appendChild(script)
+      })
       mermaid.initialize({
         startOnLoad: false,
         theme: 'dark',
