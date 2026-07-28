@@ -161,8 +161,10 @@ export default function games_2048() {
 
   const resizeBoard = () => {
     if (boardRef.current) {
-      const w = Math.min(400, boardRef.current.parentElement.clientWidth - 32)
-      setBoardSize(Math.max(280, w))
+      const parentW = boardRef.current.parentElement.clientWidth
+      const vpW = window.innerWidth
+      const w = Math.min(400, parentW - 16, vpW - 32)
+      setBoardSize(Math.max(260, w))
     }
   }
 
@@ -263,14 +265,14 @@ export default function games_2048() {
       {/* Interstitial ad on retry/start */}
       <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
 
-      <div className="flex gap-4 max-w-6xl mx-auto">
+      <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
         {/* Left aside ad */}
         <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
           <GameAdSlot slot="4214854395" format="vertical" className="mt-2" />
         </div>
 
         {/* Game center */}
-        <div className="flex-1 max-w-xl mx-auto space-y-5">
+        <div className="flex-1 min-w-0 max-w-xl mx-auto space-y-5 overflow-hidden">
         {!playing && (
           <div onClick={handleStartTap} className="cursor-pointer">
             <div className="glass p-4">
