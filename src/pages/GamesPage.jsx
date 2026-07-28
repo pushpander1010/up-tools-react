@@ -32,6 +32,16 @@ const GAMES = [
   { slug: 'coin-flip', title: 'Coin Flip', icon: '🪙', desc: 'Flip a virtual coin. Heads or tails? With stats.', cat: 'Casual', color: '#eab308' },
   { slug: 'wheel-of-names', title: 'Wheel of Names', icon: '🎡', desc: 'Spin a custom wheel to pick a random winner.', cat: 'Casual', color: '#8b5cf6' },
   { slug: 'solitaire', title: 'Solitaire', icon: '🃏', desc: 'Classic Klondike card game. Build suits and clear the deck.', cat: 'Card', color: '#22c55e' },
+  { slug: 'hex-gl', title: 'HexGL Racing', icon: '🏎️', desc: '3D futuristic racing game. Race through neon-lit tracks at 60 FPS.', cat: 'Arcade', color: '#06b6d4' },
+  { slug: 'super-sudoku', title: 'Super Sudoku', icon: '🔢', desc: 'Classic Sudoku with multiple difficulties, notes mode, and timer.', cat: 'Puzzle', color: '#6366f1' },
+  { slug: 'bubble-shooter', title: 'Bubble Shooter', icon: '🫧', desc: 'Match and pop colored bubbles in this addictive arcade classic.', cat: 'Arcade', color: '#06b6d4' },
+  { slug: 'battleship', title: 'Battleship', icon: '🚢', desc: 'Place your fleet and sink the enemy ships before time runs out.', cat: 'Board', color: '#f59e0b' },
+  { slug: 'frogger', title: 'Frogger', icon: '🐸', desc: 'Guide your frog across roads and rivers to reach safety.', cat: 'Arcade', color: '#22c55e' },
+  { slug: 'doodle-jump', title: 'Doodle Jump', icon: '📔', desc: 'Bounce upward on platforms and reach new heights.', cat: 'Arcade', color: '#a855f7' },
+  { slug: 'chess', title: 'Chess', icon: '♟️', desc: 'Play chess against the AI. Full rules with check, castling, and promotion.', cat: 'Board', color: '#fbbf24' },
+  { slug: 'tower-defense', title: 'Tower Defense', icon: '🏰', desc: 'Build towers to defend against waves of enemies.', cat: 'Strategy', color: '#ef4444' },
+  { slug: 'memory-sequence', title: 'Memory Sequence', icon: '🧠', desc: 'Remember and repeat an increasingly long sequence of lights and sounds.', cat: 'Memory', color: '#8b5cf6' },
+  { slug: 'sudoku', title: 'Sudoku', icon: '🔢', desc: 'Fill the 9×9 grid so each row, column and 3×3 box contains digits 1-9.', cat: 'Puzzle', color: '#6366f1' },
 ]
 
 const CATEGORIES = ['All', ...new Set(GAMES.map(g => g.cat))]
