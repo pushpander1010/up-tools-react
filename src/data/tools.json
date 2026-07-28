@@ -5126,6 +5126,15 @@
         "sports"
       ],
       "new": true
+    },
+    {
+      "slug": "drug-information-tool",
+      "title": "Medicine Lookup",
+      "desc": "Search any drug name to get uses, dosage, warnings, side effects & interactions.",
+      "icon": "\ud83d\udc8a",
+      "cats": [
+        "health"
+      ]
     }
   ],
   "categories": {
