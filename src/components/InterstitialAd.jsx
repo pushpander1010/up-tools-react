@@ -60,15 +60,15 @@ export default function InterstitialAd({ show, onDismiss, countdown = 5 }) {
         </button>
       )}
 
-      {/* Ad unit */}
+      {/* Ad unit - square */}
       <div className="w-full max-w-lg mb-6">
         <ins
           ref={adRef}
           className="adsbygoogle"
-          style={{ display: 'block', minHeight: 250 }}
+          style={{ display: 'block' }}
           data-ad-client="ca-pub-6216304334889617"
-          data-ad-slot="8865234201"
-          data-ad-format="rectangle"
+          data-ad-slot="4031056959"
+          data-ad-format="auto"
           data-full-width-responsive="true"
         />
       </div>
