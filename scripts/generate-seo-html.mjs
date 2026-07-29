@@ -12,10 +12,16 @@ const template = readFileSync(join(dist, 'index.html'), 'utf-8')
 // Get all tool JSX/TSX files
 const toolFiles = readdirSync(toolsDir).filter(f => f.endsWith('.jsx') || f.endsWith('.tsx'))
 
+// Slugs that have dedicated static HTML in public/ — don't overwrite
+const SKIP_SLUGS = new Set(['games', 'about', 'contact', 'hncker', 'privacy-policy'])
+
 let count = 0
 for (const file of toolFiles) {
   const slug = file.replace(/\.(jsx|tsx)$/, '').replace(/_/g, '-')
     .replace(/^tool-/, '') // remove tool_ prefix for files starting with digits
+  
+  // Skip slugs with dedicated static pages
+  if (SKIP_SLUGS.has(slug)) continue
   
   // Read component to extract title/desc from ToolLayout props
   const content = readFileSync(join(toolsDir, file), 'utf-8')
