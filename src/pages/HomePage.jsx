@@ -71,7 +71,12 @@ export default function HomePage() {
     <>
       <Helmet>
         <title>UpTools - Free Online Games, Calculators & AI Tools</title>
-        <meta name="description" content="Free, privacy-first hub of 300+ tools and 30+ browser games: calculators, converters, AI writers, social tools, and instant mini-games. No sign-ups required." />
+        <meta name="description" content="Free online tools: 300+ calculators, converters, AI writers, dev tools, security tools, health calculators, and 24+ browser games. No sign-up required." />
+        <meta property="og:title" content="UpTools - Free Online Games, Calculators & AI Tools" />
+        <meta property="og:description" content="300+ free online tools: calculators, converters, AI tools, and 24+ browser games. No sign-up required." />
+        <meta property="og:url" content="https://www.uptools.in/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="UpTools" />
       </Helmet>
 
       {/* Hero */}

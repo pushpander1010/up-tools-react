@@ -2398,38 +2398,6 @@
       ]
     },
     {
-      "slug": "how-to-calculate-gpa",
-      "title": "How to Calculate GPA",
-      "icon": "🎓",
-      "desc": "Step-by-step GPA & CGPA calculation guide.",
-      "href": "/how-to-calculate-gpa/",
-      "tags": [
-        "study",
-        "gpa",
-        "guide"
-      ],
-      "cats": [
-        "all",
-        "study"
-      ]
-    },
-    {
-      "slug": "cbse-result-guide",
-      "title": "CBSE Result Guide",
-      "icon": "📄",
-      "desc": "Check CBSE result & convert CGPA to %.",
-      "href": "/cbse-result-guide/",
-      "tags": [
-        "cbse",
-        "result",
-        "study"
-      ],
-      "cats": [
-        "all",
-        "study"
-      ]
-    },
-    {
       "slug": "whatsapp-group-name-generator",
       "title": "WhatsApp Group Name Generator",
       "icon": "💬",
@@ -2564,22 +2532,6 @@
       ]
     },
     {
-      "slug": "snapchat-filters-guide",
-      "title": "Snapchat Filters Guide",
-      "icon": "👻",
-      "desc": "Complete guide to using Snapchat filters and lenses.",
-      "href": "/snapchat-filters-guide/",
-      "tags": [
-        "snapchat",
-        "social",
-        "guide"
-      ],
-      "cats": [
-        "all",
-        "social"
-      ]
-    },
-    {
       "slug": "snapchat-story-ideas",
       "title": "Snapchat Story Ideas Generator",
       "icon": "💡",
@@ -2623,68 +2575,6 @@
       "cats": [
         "all",
         "text"
-      ]
-    },
-    {
-      "slug": "privacy-policy",
-      "title": "Privacy Policy",
-      "icon": "📜",
-      "desc": "Understand how UpTools handles data.",
-      "href": "/privacy-policy/",
-      "tags": [
-        "security"
-      ],
-      "cats": [
-        "all",
-        "security"
-      ]
-    },
-    {
-      "slug": "whatsapp-web-guide",
-      "title": "WhatsApp Web Guide",
-      "icon": "💬",
-      "desc": "Complete guide to use WhatsApp on desktop.",
-      "href": "/whatsapp-web-guide/",
-      "tags": [
-        "whatsapp",
-        "guide"
-      ],
-      "cats": [
-        "all",
-        "whatsapp",
-        "social"
-      ]
-    },
-    {
-      "slug": "whatsapp-tricks",
-      "title": "WhatsApp Tricks & Hidden Features",
-      "icon": "🎯",
-      "desc": "Unlock hidden WhatsApp features and pro tips.",
-      "href": "/whatsapp-tricks/",
-      "tags": [
-        "whatsapp",
-        "tips"
-      ],
-      "cats": [
-        "all",
-        "whatsapp",
-        "social"
-      ]
-    },
-    {
-      "slug": "whatsapp-backup-guide",
-      "title": "WhatsApp Backup Guide",
-      "icon": "💾",
-      "desc": "How to backup and restore WhatsApp chats.",
-      "href": "/whatsapp-backup-guide/",
-      "tags": [
-        "whatsapp",
-        "guide"
-      ],
-      "cats": [
-        "all",
-        "whatsapp",
-        "social"
       ]
     },
     {
@@ -3566,36 +3456,6 @@
       "tags": [
         "education",
         "india"
-      ],
-      "cats": [
-        "all",
-        "text"
-      ]
-    },
-    {
-      "slug": "career-after-12",
-      "title": "Career Path After 12",
-      "icon": "🎯",
-      "desc": "Discover career paths, streams, and courses after Class 12.",
-      "href": "/career-after-12/",
-      "tags": [
-        "education",
-        "career"
-      ],
-      "cats": [
-        "all",
-        "text"
-      ]
-    },
-    {
-      "slug": "exams-after-12",
-      "title": "Entrance Exams After 12",
-      "icon": "📝",
-      "desc": "Compare JEE, NEET, CUET, CLAT, NDA, design entrances, and more after Class 12.",
-      "href": "/exams-after-12/",
-      "tags": [
-        "education",
-        "exam"
       ],
       "cats": [
         "all",
@@ -5178,8 +5038,18 @@
       "icon": "🔢",
       "desc": "Play Sudoku with multiple difficulty levels, notes mode, and timer.",
       "href": "/games/super-sudoku/",
-      "tags": ["sudoku", "puzzle", "logic", "brain", "game"],
-      "cats": ["all", "fun", "puzzle"]
+      "tags": [
+        "sudoku",
+        "puzzle",
+        "logic",
+        "brain",
+        "game"
+      ],
+      "cats": [
+        "all",
+        "fun",
+        "puzzle"
+      ]
     },
     {
       "slug": "games-bubble-shooter",
@@ -5187,8 +5057,18 @@
       "icon": "🫧",
       "desc": "Match and pop colored bubbles in this classic arcade shooter game.",
       "href": "/games/bubble-shooter/",
-      "tags": ["bubble", "shooter", "arcade", "casual", "game"],
-      "cats": ["all", "fun", "arcade"]
+      "tags": [
+        "bubble",
+        "shooter",
+        "arcade",
+        "casual",
+        "game"
+      ],
+      "cats": [
+        "all",
+        "fun",
+        "arcade"
+      ]
     },
     {
       "slug": "games-battleship",
@@ -5196,8 +5076,18 @@
       "icon": "🚢",
       "desc": "Place your fleet and sink enemy ships in this classic strategy game.",
       "href": "/games/battleship/",
-      "tags": ["battleship", "strategy", "navy", "board", "game"],
-      "cats": ["all", "fun", "strategy"]
+      "tags": [
+        "battleship",
+        "strategy",
+        "navy",
+        "board",
+        "game"
+      ],
+      "cats": [
+        "all",
+        "fun",
+        "strategy"
+      ]
     },
     {
       "slug": "slug-generator",
@@ -5205,8 +5095,16 @@
       "icon": "🔗",
       "desc": "Convert text to SEO-friendly URL slugs.",
       "href": "/slug-generator/",
-      "tags": ["dev","seo","text"],
-      "cats": ["all","dev","tools"]
+      "tags": [
+        "dev",
+        "seo",
+        "text"
+      ],
+      "cats": [
+        "all",
+        "dev",
+        "tools"
+      ]
     },
     {
       "slug": "css-minifier",
@@ -5214,8 +5112,15 @@
       "icon": "🎨",
       "desc": "Minify, beautify & validate CSS code.",
       "href": "/css-minifier/",
-      "tags": ["dev","css"],
-      "cats": ["all","dev","tools"]
+      "tags": [
+        "dev",
+        "css"
+      ],
+      "cats": [
+        "all",
+        "dev",
+        "tools"
+      ]
     },
     {
       "slug": "html-entity-encoder",
@@ -5223,8 +5128,15 @@
       "icon": "🔤",
       "desc": "Encode/decode HTML entities instantly.",
       "href": "/html-entity-encoder/",
-      "tags": ["dev","text"],
-      "cats": ["all","dev","tools"]
+      "tags": [
+        "dev",
+        "text"
+      ],
+      "cats": [
+        "all",
+        "dev",
+        "tools"
+      ]
     },
     {
       "slug": "xml-formatter",
@@ -5232,8 +5144,15 @@
       "icon": "📄",
       "desc": "Format, minify & validate XML online.",
       "href": "/xml-formatter/",
-      "tags": ["dev","xml"],
-      "cats": ["all","dev","tools"]
+      "tags": [
+        "dev",
+        "xml"
+      ],
+      "cats": [
+        "all",
+        "dev",
+        "tools"
+      ]
     },
     {
       "slug": "yaml-to-json-converter",
@@ -5241,8 +5160,15 @@
       "icon": "🔄",
       "desc": "Convert between YAML and JSON formats.",
       "href": "/yaml-to-json-converter/",
-      "tags": ["dev","json"],
-      "cats": ["all","dev","tools"]
+      "tags": [
+        "dev",
+        "json"
+      ],
+      "cats": [
+        "all",
+        "dev",
+        "tools"
+      ]
     },
     {
       "slug": "password-strength-checker",
@@ -5250,8 +5176,15 @@
       "icon": "🔒",
       "desc": "Test password security & entropy.",
       "href": "/password-strength-checker/",
-      "tags": ["security","dev"],
-      "cats": ["all","security","dev"]
+      "tags": [
+        "security",
+        "dev"
+      ],
+      "cats": [
+        "all",
+        "security",
+        "dev"
+      ]
     },
     {
       "slug": "emoji-picker",
@@ -5259,8 +5192,15 @@
       "icon": "😄",
       "desc": "Browse, search & copy 1500+ emojis.",
       "href": "/emoji-picker/",
-      "tags": ["fun","text"],
-      "cats": ["all","fun","tools"]
+      "tags": [
+        "fun",
+        "text"
+      ],
+      "cats": [
+        "all",
+        "fun",
+        "tools"
+      ]
     },
     {
       "slug": "jwt-debugger",
@@ -5268,8 +5208,15 @@
       "icon": "🛡️",
       "desc": "Decode & inspect JWT tokens client-side.",
       "href": "/jwt-debugger/",
-      "tags": ["dev","security"],
-      "cats": ["all","dev","security"]
+      "tags": [
+        "dev",
+        "security"
+      ],
+      "cats": [
+        "all",
+        "dev",
+        "security"
+      ]
     },
     {
       "slug": "hex-to-rgb-converter",
@@ -5277,8 +5224,15 @@
       "icon": "🌈",
       "desc": "Convert between HEX, RGB & HSL with preview.",
       "href": "/hex-to-rgb-converter/",
-      "tags": ["design","dev"],
-      "cats": ["all","images","dev"]
+      "tags": [
+        "design",
+        "dev"
+      ],
+      "cats": [
+        "all",
+        "images",
+        "dev"
+      ]
     },
     {
       "slug": "image-placeholder-generator",
@@ -5286,8 +5240,16 @@
       "icon": "🖼️",
       "desc": "Generate custom placeholder images for mockups.",
       "href": "/image-placeholder-generator/",
-      "tags": ["design","images","dev"],
-      "cats": ["all","images","dev"]
+      "tags": [
+        "design",
+        "images",
+        "dev"
+      ],
+      "cats": [
+        "all",
+        "images",
+        "dev"
+      ]
     },
     {
       "slug": "roman-numeral-converter",
@@ -5295,8 +5257,14 @@
       "icon": "🏛️",
       "desc": "Convert numbers to Roman numerals & back.",
       "href": "/roman-numeral-converter/",
-      "tags": ["math","tools"],
-      "cats": ["all","tools"]
+      "tags": [
+        "math",
+        "tools"
+      ],
+      "cats": [
+        "all",
+        "tools"
+      ]
     },
     {
       "slug": "numbers-to-words",
@@ -5304,8 +5272,15 @@
       "icon": "🔢",
       "desc": "Convert numbers to English & Indian words.",
       "href": "/numbers-to-words/",
-      "tags": ["text","tools"],
-      "cats": ["all","tools","text"]
+      "tags": [
+        "text",
+        "tools"
+      ],
+      "cats": [
+        "all",
+        "tools",
+        "text"
+      ]
     },
     {
       "slug": "list-sorter",
@@ -5313,8 +5288,15 @@
       "icon": "📋",
       "desc": "Sort, shuffle, reverse & deduplicate lists.",
       "href": "/list-sorter/",
-      "tags": ["text","tools"],
-      "cats": ["all","tools","text"]
+      "tags": [
+        "text",
+        "tools"
+      ],
+      "cats": [
+        "all",
+        "tools",
+        "text"
+      ]
     },
     {
       "slug": "reverse-text",
@@ -5322,8 +5304,15 @@
       "icon": "🔄",
       "desc": "Reverse characters, words or lines.",
       "href": "/reverse-text/",
-      "tags": ["text","tools"],
-      "cats": ["all","tools","text"]
+      "tags": [
+        "text",
+        "tools"
+      ],
+      "cats": [
+        "all",
+        "tools",
+        "text"
+      ]
     },
     {
       "slug": "duplicate-line-remover",
@@ -5331,8 +5320,15 @@
       "icon": "🗑️",
       "desc": "Remove duplicate lines from text.",
       "href": "/duplicate-line-remover/",
-      "tags": ["text","tools"],
-      "cats": ["all","tools","text"]
+      "tags": [
+        "text",
+        "tools"
+      ],
+      "cats": [
+        "all",
+        "tools",
+        "text"
+      ]
     },
     {
       "slug": "text-to-image",
@@ -5340,8 +5336,15 @@
       "icon": "📝",
       "desc": "Convert text to a downloadable PNG image.",
       "href": "/text-to-image/",
-      "tags": ["images","tools"],
-      "cats": ["all","images","tools"]
+      "tags": [
+        "images",
+        "tools"
+      ],
+      "cats": [
+        "all",
+        "images",
+        "tools"
+      ]
     },
     {
       "slug": "image-to-base64",
@@ -5349,8 +5352,15 @@
       "icon": "🖼️",
       "desc": "Convert any image to a Base64 data URL.",
       "href": "/image-to-base64/",
-      "tags": ["dev","images"],
-      "cats": ["all","dev","images"]
+      "tags": [
+        "dev",
+        "images"
+      ],
+      "cats": [
+        "all",
+        "dev",
+        "images"
+      ]
     },
     {
       "slug": "prefix-suffix-adder",
@@ -5358,8 +5368,15 @@
       "icon": "📎",
       "desc": "Add prefix/suffix to each line in bulk.",
       "href": "/prefix-suffix-adder/",
-      "tags": ["text","tools"],
-      "cats": ["all","tools","text"]
+      "tags": [
+        "text",
+        "tools"
+      ],
+      "cats": [
+        "all",
+        "tools",
+        "text"
+      ]
     },
     {
       "slug": "find-and-replace",
@@ -5367,8 +5384,15 @@
       "icon": "🔍",
       "desc": "Find and replace text with regex support.",
       "href": "/find-and-replace/",
-      "tags": ["text","tools"],
-      "cats": ["all","tools","text"]
+      "tags": [
+        "text",
+        "tools"
+      ],
+      "cats": [
+        "all",
+        "tools",
+        "text"
+      ]
     },
     {
       "slug": "text-statistics",
@@ -5376,8 +5400,15 @@
       "icon": "📊",
       "desc": "Analyze text with advanced word stats.",
       "href": "/text-statistics/",
-      "tags": ["text","tools"],
-      "cats": ["all","tools","text"]
+      "tags": [
+        "text",
+        "tools"
+      ],
+      "cats": [
+        "all",
+        "tools",
+        "text"
+      ]
     },
     {
       "slug": "http-status-codes",
@@ -5385,8 +5416,15 @@
       "icon": "🌐",
       "desc": "Full list of HTTP status codes with meanings.",
       "href": "/http-status-codes/",
-      "tags": ["dev","reference"],
-      "cats": ["all","dev","tools"]
+      "tags": [
+        "dev",
+        "reference"
+      ],
+      "cats": [
+        "all",
+        "dev",
+        "tools"
+      ]
     },
     {
       "slug": "color-palette-from-image",
@@ -5394,8 +5432,15 @@
       "icon": "🎨",
       "desc": "Extract dominant colors from any image.",
       "href": "/color-palette-from-image/",
-      "tags": ["images","design"],
-      "cats": ["all","images","dev"]
+      "tags": [
+        "images",
+        "design"
+      ],
+      "cats": [
+        "all",
+        "images",
+        "dev"
+      ]
     },
     {
       "slug": "svg-to-jsx",
@@ -5403,8 +5448,14 @@
       "icon": "⚛️",
       "desc": "Convert SVG to React JSX components.",
       "href": "/svg-to-jsx/",
-      "tags": ["dev","react"],
-      "cats": ["all","dev"]
+      "tags": [
+        "dev",
+        "react"
+      ],
+      "cats": [
+        "all",
+        "dev"
+      ]
     },
     {
       "slug": "json-to-typescript",
@@ -5412,8 +5463,14 @@
       "icon": "📐",
       "desc": "Generate TypeScript interfaces from JSON.",
       "href": "/json-to-typescript/",
-      "tags": ["dev","typescript"],
-      "cats": ["all","dev"]
+      "tags": [
+        "dev",
+        "typescript"
+      ],
+      "cats": [
+        "all",
+        "dev"
+      ]
     },
     {
       "slug": "sql-formatter",
@@ -5421,8 +5478,14 @@
       "icon": "🗄️",
       "desc": "Format, beautify & minify SQL queries.",
       "href": "/sql-formatter/",
-      "tags": ["dev","sql"],
-      "cats": ["all","dev"]
+      "tags": [
+        "dev",
+        "sql"
+      ],
+      "cats": [
+        "all",
+        "dev"
+      ]
     },
     {
       "slug": "css-animation-generator",
@@ -5430,8 +5493,14 @@
       "icon": "🎬",
       "desc": "Visual CSS keyframe animation builder.",
       "href": "/css-animation-generator/",
-      "tags": ["dev","css"],
-      "cats": ["all","dev"]
+      "tags": [
+        "dev",
+        "css"
+      ],
+      "cats": [
+        "all",
+        "dev"
+      ]
     },
     {
       "slug": "code-to-image",
@@ -5439,8 +5508,15 @@
       "icon": "📸",
       "desc": "Convert code to beautiful shareable images.",
       "href": "/code-to-image/",
-      "tags": ["dev","images"],
-      "cats": ["all","dev","images"]
+      "tags": [
+        "dev",
+        "images"
+      ],
+      "cats": [
+        "all",
+        "dev",
+        "images"
+      ]
     },
     {
       "slug": "mermaid-diagram-editor",
@@ -5448,8 +5524,14 @@
       "icon": "📊",
       "desc": "Create flowcharts & diagrams with Mermaid.js.",
       "href": "/mermaid-diagram-editor/",
-      "tags": ["dev","diagrams"],
-      "cats": ["all","dev"]
+      "tags": [
+        "dev",
+        "diagrams"
+      ],
+      "cats": [
+        "all",
+        "dev"
+      ]
     },
     {
       "slug": "github-profile-readme-generator",
@@ -5457,8 +5539,14 @@
       "icon": "🐙",
       "desc": "Generate a beautiful GitHub profile README.",
       "href": "/github-profile-readme-generator/",
-      "tags": ["dev","github"],
-      "cats": ["all","dev"]
+      "tags": [
+        "dev",
+        "github"
+      ],
+      "cats": [
+        "all",
+        "dev"
+      ]
     },
     {
       "slug": "regex-visualizer",
@@ -5466,8 +5554,14 @@
       "icon": "🔍",
       "desc": "Test, explain & visualize regular expressions.",
       "href": "/regex-visualizer/",
-      "tags": ["dev","regex"],
-      "cats": ["all","dev"]
+      "tags": [
+        "dev",
+        "regex"
+      ],
+      "cats": [
+        "all",
+        "dev"
+      ]
     },
     {
       "slug": "color-contrast-checker",
@@ -5475,8 +5569,15 @@
       "icon": "👁️",
       "desc": "WCAG contrast checker for accessible colors.",
       "href": "/color-contrast-checker/",
-      "tags": ["design","accessibility"],
-      "cats": ["all","dev","images"]
+      "tags": [
+        "design",
+        "accessibility"
+      ],
+      "cats": [
+        "all",
+        "dev",
+        "images"
+      ]
     },
     {
       "slug": "html-to-markdown",
@@ -5484,8 +5585,14 @@
       "icon": "📝",
       "desc": "Convert between HTML and Markdown formats.",
       "href": "/html-to-markdown/",
-      "tags": ["dev","text"],
-      "cats": ["all","dev"]
+      "tags": [
+        "dev",
+        "text"
+      ],
+      "cats": [
+        "all",
+        "dev"
+      ]
     },
     {
       "slug": "aes-encryption",
@@ -5493,8 +5600,15 @@
       "icon": "🔐",
       "desc": "Encrypt & decrypt text with AES-256-GCM.",
       "href": "/aes-encryption/",
-      "tags": ["security","dev"],
-      "cats": ["all","security","dev"]
+      "tags": [
+        "security",
+        "dev"
+      ],
+      "cats": [
+        "all",
+        "security",
+        "dev"
+      ]
     },
     {
       "slug": "css-filter-generator",
@@ -5502,8 +5616,14 @@
       "icon": "🎬",
       "desc": "Visual CSS filter builder with live preview.",
       "href": "/css-filter-generator/",
-      "tags": ["dev","css"],
-      "cats": ["all","dev"]
+      "tags": [
+        "dev",
+        "css"
+      ],
+      "cats": [
+        "all",
+        "dev"
+      ]
     },
     {
       "slug": "calendar-generator",
@@ -5511,8 +5631,14 @@
       "icon": "📅",
       "desc": "Generate printable monthly & yearly calendars.",
       "href": "/calendar-generator/",
-      "tags": ["productivity","tools"],
-      "cats": ["all","tools"]
+      "tags": [
+        "productivity",
+        "tools"
+      ],
+      "cats": [
+        "all",
+        "tools"
+      ]
     },
     {
       "slug": "graphing-calculator",
@@ -5520,8 +5646,14 @@
       "icon": "📈",
       "desc": "Plot math functions interactively with zoom.",
       "href": "/graphing-calculator/",
-      "tags": ["math","tools"],
-      "cats": ["all","tools"]
+      "tags": [
+        "math",
+        "tools"
+      ],
+      "cats": [
+        "all",
+        "tools"
+      ]
     },
     {
       "slug": "periodic-table",
@@ -5529,8 +5661,15 @@
       "icon": "🧪",
       "desc": "Interactive periodic table of elements.",
       "href": "/periodic-table/",
-      "tags": ["education","science"],
-      "cats": ["all","education","tools"]
+      "tags": [
+        "education",
+        "science"
+      ],
+      "cats": [
+        "all",
+        "education",
+        "tools"
+      ]
     },
     {
       "slug": "barcode-generator",
@@ -5538,8 +5677,14 @@
       "icon": "📊",
       "desc": "Generate CODE128, EAN-13, UPC-A & Code39.",
       "href": "/barcode-generator/",
-      "tags": ["dev","tools"],
-      "cats": ["all","dev"]
+      "tags": [
+        "dev",
+        "tools"
+      ],
+      "cats": [
+        "all",
+        "dev"
+      ]
     },
     {
       "slug": "meme-generator",
@@ -5547,8 +5692,15 @@
       "icon": "😂",
       "desc": "Create memes with text on classic templates.",
       "href": "/meme-generator/",
-      "tags": ["fun","images"],
-      "cats": ["all","fun","images"]
+      "tags": [
+        "fun",
+        "images"
+      ],
+      "cats": [
+        "all",
+        "fun",
+        "images"
+      ]
     },
     {
       "slug": "pixel-art-editor",
@@ -5556,8 +5708,15 @@
       "icon": "🎨",
       "desc": "Draw pixel art with fill, eyedropper & export.",
       "href": "/pixel-art-editor/",
-      "tags": ["fun","images"],
-      "cats": ["all", "fun", "images"]
+      "tags": [
+        "fun",
+        "images"
+      ],
+      "cats": [
+        "all",
+        "fun",
+        "images"
+      ]
     },
     {
       "slug": "whatsapp-chat-analyzer",
@@ -5565,8 +5724,99 @@
       "icon": "💬",
       "desc": "Analyze exported WhatsApp chats: stats, senders, words, emojis & activity.",
       "href": "/whatsapp-chat-analyzer/",
-      "tags": ["whatsapp","social","analytics"],
-      "cats": ["all","whatsapp","social"]
+      "tags": [
+        "whatsapp",
+        "social",
+        "analytics"
+      ],
+      "cats": [
+        "all",
+        "whatsapp",
+        "social"
+      ]
+    },
+    {
+      "slug": "whatsapp-font-formatter",
+      "title": "WhatsApp Font Formatter",
+      "icon": "𝐖",
+      "desc": "Type text & preview bold, italic, strikethrough & Unicode fonts for WhatsApp.",
+      "href": "/whatsapp-font-formatter/",
+      "tags": [
+        "whatsapp",
+        "social",
+        "text"
+      ],
+      "cats": [
+        "all",
+        "whatsapp",
+        "social",
+        "text"
+      ]
+    },
+    {
+      "slug": "chat-export-analyzer",
+      "title": "WhatsApp Chat Export Analyzer",
+      "icon": "📊",
+      "desc": "Upload exported WhatsApp chats (.txt) to see stats, senders, emojis & activity.",
+      "href": "/chat-export-analyzer/",
+      "tags": [
+        "whatsapp",
+        "social",
+        "analytics"
+      ],
+      "cats": [
+        "all",
+        "whatsapp",
+        "social"
+      ]
+    },
+    {
+      "slug": "story-template-generator",
+      "title": "Story Template Generator",
+      "icon": "🎨",
+      "desc": "Create story templates for Instagram, WhatsApp, Snapchat & TikTok. Download PNG.",
+      "href": "/story-template-generator/",
+      "tags": [
+        "social",
+        "design",
+        "image"
+      ],
+      "cats": [
+        "all",
+        "social"
+      ]
+    },
+    {
+      "slug": "cbse-marks-calculator",
+      "title": "CBSE Marks to Percentage Calculator",
+      "icon": "📝",
+      "desc": "Convert CBSE board marks to percentage, grade & division instantly.",
+      "href": "/cbse-marks-calculator/",
+      "tags": [
+        "study",
+        "education",
+        "calculator"
+      ],
+      "cats": [
+        "all",
+        "study"
+      ]
+    },
+    {
+      "slug": "career-aptitude-quiz",
+      "title": "Career Aptitude Quiz After 12th",
+      "icon": "🎯",
+      "desc": "Answer 8 questions to discover the best career path, exams & courses after 12th.",
+      "href": "/career-aptitude-quiz/",
+      "tags": [
+        "study",
+        "education",
+        "career"
+      ],
+      "cats": [
+        "all",
+        "study"
+      ]
     }
   ],
   "categories": {
