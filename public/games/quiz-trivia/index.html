@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quiz Trivia Game Online - General Knowledge Quiz Free |</title>
+  <link rel="icon" sizes="50x50" type="image/svg+xml" href="/assets/logo/uptools-logo.svg">
+  <meta name="description" content="Play free online trivia quiz. Test your general knowledge with 100+ questions across science, history, sports, tech, and more. No sign-up needed." />
+  <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:large" />
+  <link rel="canonical" href="https://www.uptools.in/games/quiz-trivia/" />
+  <meta property="og:title" content="Quiz Trivia Game Online - General Knowledge Quiz Free |" />
+  <meta property="og:description" content="Quiz Trivia Game Online - General Knowledge Quiz Free. Free online tool by UpTools." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="UpTools">
+  <meta property="og:url" content="https://www.uptools.in/games/quiz-trivia/" />
+  <meta property="og:image" content="https://www.uptools.in/assets/og/default.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Quiz Trivia Game Online - General Knowledge Quiz Free |" />
+  <meta name="twitter:description" content="Quiz Trivia Game Online - General Knowledge Quiz Free. Free online tool by UpTools." />
+  <meta name="twitter:image" content="https://www.uptools.in/assets/home.png" />
+
+  <script src="/games/fullscreen-utils.js" defer></script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"VideoGame","name":"Quiz Trivia","url":"https://www.uptools.in/games/quiz-trivia/","applicationCategory":"Game","genre":["Quiz","Brain","Educational"]}
+  </script>
+  
+
+  <link rel="stylesheet" href="/style.css?v=5.0.0">
+
+<!-- Paste your Google Analytics 4 Measurement ID below, e.g. G-ABC123XYZ9 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NN3GDL1LEJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-NN3GDL1LEJ');
+</script>
+</head>
+<body>
+  <a href="#main" class="sr-only skip-link">Skip to content</a>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6216304334889617" crossorigin="anonymous"></script>
+<script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-6216304334889617",enable_page_level_ads:true});</script>
+    <!-- AdSense display -->
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-6216304334889617"
+       data-ad-slot="9810172647"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+    <!-- Header -->
+  <header class="site" role="banner">
+<div class="header-inner">
+<a aria-label="UpTools Home" class="brand" href="/">
+<img alt="UpTools logo" height="28" loading="eager" src="/assets/logo/uptools-logo.svg" width="28"/>
+<b>UpTools</b>
+</a>
+<nav aria-label="Primary" class="nav-links">
+<a href="/" class="nav-home">Home</a>
+<a href="/games/" class="nav-games">Games</a>
+<a href="/hncker/" class="nav-hncker">HNCKER</a>
+</nav>
+</div>
+</header>
+
+  <main role="main" class="wrap">
+    <div class="game-wrap">
+      <section class="card hero" aria-labelledby="title">
+        <div>
+          <h1 id="title">🧠 Quiz Trivia</h1>
+          <p class="note">Test your general knowledge! 10 questions per round across science, history, sports, tech, and more.</p>
+        </div>
+      </section>
+
+      <div class="game-container" id="quizGameContainer">
+        <button class="fullscreen-btn" id="fullscreenBtn" title="Enter Fullscreen">⛶</button>
+
+        <section class="card" style="margin-top:0" id="quizSection">
+          <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:8px">
+            <select id="catSel" style="background:#0e1628;border:1px solid #212a3a;border-radius:.5rem;color:#e6edf3;padding:.4rem .6rem">
+              <option value="all">All Categories</option>
+              <option value="science">Science</option>
+              <option value="history">History</option>
+              <option value="tech">Technology</option>
+              <option value="sports">Sports</option>
+              <option value="geography">Geography</option>
+            </select>
+            <button id="newQuizBtn" class="btn secondary" style="margin-left:auto">New Quiz</button>
+          </div>
+
+          <div class="score-row">
+            <div class="score-box"><div class="score-val" id="scoreVal">0</div><div class="score-lbl">Score</div></div>
+            <div class="score-box"><div class="score-val" id="qNumVal">1/10</div><div class="score-lbl">Question</div></div>
+            <div class="score-box"><div class="score-val" id="streakVal">0</div><div class="score-lbl">Streak 🔥</div></div>
+          </div>
+
+          <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:10%"></div></div>
+
+          <div style="display:flex;gap:8px;align-items:center;margin-bottom:8px">
+            <span class="cat-pill" id="catLabel">Category</span>
+            <span class="cat-pill" id="diffLabel">Difficulty</span>
+          </div>
+
+          <div class="question-box" id="questionBox" aria-live="polite"></div>
+          <div class="options-grid" id="optionsGrid"></div>
+          <p id="feedback"></p>
+          <div style="text-align:center;margin-top:8px">
+            <button id="nextBtn" class="btn" style="display:none">Next Question →</button>
+          </div>
+        </section>
+
+        <div class="result-box card" id="resultBox" style="margin-top:0">
+          <div class="result-score" id="finalScore">0/10</div>
+          <p style="color:#9aa4b2;margin:4px 0">Questions Correct</p>
+          <p id="resultMsg" style="font-size:1.1rem;margin:8px 0"></p>
+          <button id="playAgainBtn" class="btn" style="margin-top:12px">Play Again</button>
+        </div>
+      </div>
+
+      <section class="card" style="margin-top:12px">
+        <h2 style="margin-top:0">🎥 How to improve general knowledge</h2>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube-nocookie.com/embed/G9r-LKc2cog?rel=0&modestbranding=1"
+            title="General Knowledge Trivia Quiz"
+            loading="lazy" referrerpolicy="strict-origin-when-cross-origin"
+            allow="accelerometer; clipboard-write; encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+        <p class="note small" style="margin-top:8px">Tips to boost your general knowledge and memory retention.</p>
+      </section>
+
+      <section class="card" style="margin-top:12px">
+        <h2 style="margin-top:0">More Games</h2>
+        <div style="display:flex;flex-wrap:wrap;gap:8px">
+          <a class="btn secondary" href="/games/hangman/">Hangman</a>
+          <a class="btn secondary" href="/games/word-scramble/">Word Scramble</a>
+          <a class="btn secondary" href="/games/sudoku/">Sudoku</a>
+          <a class="btn secondary" href="/games/">All Games</a>
+        </div>
+      </section>
+
+      <footer class="note small site-footer" role="contentinfo" style="margin-top:12px">
+        © <span id="y"></span> UpTools . <a href="/games/">Games</a> . <a href="/">Home</a>
+      </footer>
+    </div>
+  </main>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    const QUESTIONS = {
+      science: [
+        { q: "What is the chemical symbol for gold?", opts: ["Au", "Ag", "Fe", "Cu"], ans: 0, diff: "Easy" },
+        { q: "How many bones are in the adult human body?", opts: ["206", "208", "196", "212"], ans: 0, diff: "Medium" },
+        { q: "What planet is known as the Red Planet?", opts: ["Venus", "Jupiter", "Mars", "Saturn"], ans: 2, diff: "Easy" },
+        { q: "What is the speed of light (approx)?", opts: ["300,000 km/s", "150,000 km/s", "450,000 km/s", "200,000 km/s"], ans: 0, diff: "Medium" },
+        { q: "What gas do plants absorb from the atmosphere?", opts: ["Oxygen", "Nitrogen", "Carbon Dioxide", "Hydrogen"], ans: 2, diff: "Easy" },
+        { q: "What is the powerhouse of the cell?", opts: ["Nucleus", "Ribosome", "Mitochondria", "Golgi body"], ans: 2, diff: "Easy" },
+        { q: "What is the atomic number of Carbon?", opts: ["6", "8", "12", "14"], ans: 0, diff: "Medium" },
+        { q: "Which planet has the most moons?", opts: ["Jupiter", "Saturn", "Uranus", "Neptune"], ans: 1, diff: "Hard" },
+        { q: "What is the hardest natural substance on Earth?", opts: ["Gold", "Iron", "Diamond", "Quartz"], ans: 2, diff: "Easy" },
+        { q: "What is the most abundant gas in Earth's atmosphere?", opts: ["Oxygen", "Carbon Dioxide", "Nitrogen", "Argon"], ans: 2, diff: "Medium" },
+      ],
+      history: [
+        { q: "In which year did World War II end?", opts: ["1943", "1944", "1945", "1946"], ans: 2, diff: "Easy" },
+        { q: "Who was the first President of the United States?", opts: ["Abraham Lincoln", "George Washington", "Thomas Jefferson", "John Adams"], ans: 1, diff: "Easy" },
+        { q: "The Great Wall of China was primarily built during which dynasty?", opts: ["Han", "Tang", "Ming", "Qing"], ans: 2, diff: "Medium" },
+        { q: "In which year did India gain independence?", opts: ["1945", "1947", "1948", "1950"], ans: 1, diff: "Easy" },
+        { q: "Who painted the Mona Lisa?", opts: ["Michelangelo", "Raphael", "Leonardo da Vinci", "Donatello"], ans: 2, diff: "Easy" },
+        { q: "The Berlin Wall fell in which year?", opts: ["1987", "1988", "1989", "1990"], ans: 2, diff: "Medium" },
+        { q: "Which ancient wonder was located in Alexandria?", opts: ["Colossus of Rhodes", "Lighthouse of Alexandria", "Hanging Gardens", "Temple of Artemis"], ans: 1, diff: "Hard" },
+        { q: "Who was the first man to walk on the moon?", opts: ["Buzz Aldrin", "Yuri Gagarin", "Neil Armstrong", "John Glenn"], ans: 2, diff: "Easy" },
+        { q: "The French Revolution began in which year?", opts: ["1776", "1789", "1799", "1804"], ans: 1, diff: "Medium" },
+        { q: "Which empire was ruled by Genghis Khan?", opts: ["Ottoman", "Roman", "Mongol", "Persian"], ans: 2, diff: "Easy" },
+      ],
+      tech: [
+        { q: "What does 'HTTP' stand for?", opts: ["HyperText Transfer Protocol", "High Tech Transfer Protocol", "HyperText Transmission Process", "Hyper Transfer Text Protocol"], ans: 0, diff: "Easy" },
+        { q: "Who co-founded Apple with Steve Jobs?", opts: ["Bill Gates", "Steve Wozniak", "Paul Allen", "Larry Page"], ans: 1, diff: "Easy" },
+        { q: "What does 'CPU' stand for?", opts: ["Central Processing Unit", "Computer Processing Unit", "Central Program Unit", "Core Processing Unit"], ans: 0, diff: "Easy" },
+        { q: "Which programming language was created by Guido van Rossum?", opts: ["Java", "Ruby", "Python", "Perl"], ans: 2, diff: "Easy" },
+        { q: "What year was the first iPhone released?", opts: ["2005", "2006", "2007", "2008"], ans: 2, diff: "Medium" },
+        { q: "What does 'RAM' stand for?", opts: ["Random Access Memory", "Read Access Memory", "Rapid Access Module", "Random Application Memory"], ans: 0, diff: "Easy" },
+        { q: "Which company developed the Android operating system?", opts: ["Apple", "Microsoft", "Google", "Samsung"], ans: 2, diff: "Easy" },
+        { q: "What is the binary representation of the decimal number 10?", opts: ["1010", "1001", "1100", "0110"], ans: 0, diff: "Medium" },
+        { q: "What does 'URL' stand for?", opts: ["Universal Resource Locator", "Uniform Resource Locator", "Universal Reference Link", "Unified Resource Locator"], ans: 1, diff: "Easy" },
+        { q: "Which company created the Java programming language?", opts: ["Microsoft", "IBM", "Sun Microsystems", "Oracle"], ans: 2, diff: "Medium" },
+      ],
+      sports: [
+        { q: "How many players are on a standard soccer team?", opts: ["9", "10", "11", "12"], ans: 2, diff: "Easy" },
+        { q: "In which sport would you perform a 'slam dunk'?", opts: ["Volleyball", "Basketball", "Tennis", "Baseball"], ans: 1, diff: "Easy" },
+        { q: "How many Grand Slam tournaments are there in tennis?", opts: ["2", "3", "4", "5"], ans: 2, diff: "Easy" },
+        { q: "Which country has won the most FIFA World Cups?", opts: ["Germany", "Argentina", "Italy", "Brazil"], ans: 3, diff: "Medium" },
+        { q: "How long is a standard marathon?", opts: ["26.2 miles", "25 miles", "27 miles", "24.5 miles"], ans: 0, diff: "Medium" },
+        { q: "In cricket, how many balls are in an over?", opts: ["4", "5", "6", "8"], ans: 2, diff: "Easy" },
+        { q: "Which sport uses a shuttlecock?", opts: ["Tennis", "Squash", "Badminton", "Pickleball"], ans: 2, diff: "Easy" },
+        { q: "How many rings are on the Olympic flag?", opts: ["4", "5", "6", "7"], ans: 1, diff: "Easy" },
+        { q: "In which sport is the 'Ryder Cup' contested?", opts: ["Tennis", "Golf", "Cricket", "Rugby"], ans: 1, diff: "Medium" },
+        { q: "What is the maximum score in a single bowling frame?", opts: ["10", "20", "30", "300"], ans: 2, diff: "Medium" },
+      ],
+      geography: [
+        { q: "What is the capital of Australia?", opts: ["Sydney", "Melbourne", "Canberra", "Brisbane"], ans: 2, diff: "Medium" },
+        { q: "Which is the longest river in the world?", opts: ["Amazon", "Nile", "Yangtze", "Mississippi"], ans: 1, diff: "Easy" },
+        { q: "What is the smallest country in the world?", opts: ["Monaco", "San Marino", "Vatican City", "Liechtenstein"], ans: 2, diff: "Medium" },
+        { q: "Which continent is the Sahara Desert located in?", opts: ["Asia", "Australia", "Africa", "South America"], ans: 2, diff: "Easy" },
+        { q: "What is the capital of Canada?", opts: ["Toronto", "Vancouver", "Montreal", "Ottawa"], ans: 3, diff: "Medium" },
+        { q: "Which ocean is the largest?", opts: ["Atlantic", "Indian", "Arctic", "Pacific"], ans: 3, diff: "Easy" },
+        { q: "Mount Everest is located in which mountain range?", opts: ["Andes", "Alps", "Himalayas", "Rockies"], ans: 2, diff: "Easy" },
+        { q: "What is the capital of Japan?", opts: ["Osaka", "Kyoto", "Tokyo", "Hiroshima"], ans: 2, diff: "Easy" },
+        { q: "Which country has the most natural lakes?", opts: ["Russia", "USA", "Canada", "Brazil"], ans: 2, diff: "Hard" },
+        { q: "The Amazon River flows through which continent?", opts: ["Africa", "Asia", "South America", "North America"], ans: 2, diff: "Easy" },
+      ]
+    };
+
+    let questions = [], currentQ = 0, score = 0, streak = 0, answered = false;
+
+    let audioCtx = null;
+    function playSound(type) {
+      try {
+        if (!audioCtx) {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+
+        const now = audioCtx.currentTime;
+        if (type === 'correct') {
+          const notes = [523.25, 659.25];
+          notes.forEach((freq, idx) => {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, now + idx * 0.08);
+            gain.gain.setValueAtTime(0.0, now + idx * 0.08);
+            gain.gain.linearRampToValueAtTime(0.1, now + idx * 0.08 + 0.02);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.08 + 0.2);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start(now + idx * 0.08);
+            osc.stop(now + idx * 0.08 + 0.2);
+          });
+        } else if (type === 'wrong') {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(150, now);
+          osc.frequency.linearRampToValueAtTime(100, now + 0.25);
+          gain.gain.setValueAtTime(0.0, now);
+          gain.gain.linearRampToValueAtTime(0.08, now + 0.05);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start(now);
+          osc.stop(now + 0.25);
+        } else if (type === 'victory') {
+          const notes = [261.63, 329.63, 392.00, 523.25];
+          notes.forEach((freq, idx) => {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, now + idx * 0.1);
+            gain.gain.setValueAtTime(0.0, now + idx * 0.1);
+            gain.gain.linearRampToValueAtTime(0.12, now + idx * 0.1 + 0.02);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.1 + 0.35);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start(now + idx * 0.1);
+            osc.stop(now + idx * 0.1 + 0.35);
+          });
+        } else if (type === 'click') {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(600, now);
+          gain.gain.setValueAtTime(0.0, now);
+          gain.gain.linearRampToValueAtTime(0.05, now + 0.02);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start(now);
+          osc.stop(now + 0.08);
+        }
+      } catch (e) {
+        console.warn("Audio Context failed", e);
+      }
+    }
+
+    function getQuestions() {
+      const cat = document.getElementById('catSel').value;
+      let pool = cat === 'all' ? Object.values(QUESTIONS).flat() : (QUESTIONS[cat] || []);
+      pool = [...pool].sort(() => Math.random() - 0.5);
+      return pool.slice(0, 10);
+    }
+
+    function startQuiz(e) {
+      if (e) playSound('click');
+      questions = getQuestions();
+      currentQ = 0; score = 0; streak = 0;
+      document.getElementById('resultBox').style.display = 'none';
+      document.getElementById('quizSection').style.display = 'block';
+      showQuestion();
+    }
+
+    function showQuestion() {
+      answered = false;
+      const q = questions[currentQ];
+      document.getElementById('questionBox').textContent = q.q;
+      document.getElementById('qNumVal').textContent = `${currentQ + 1}/10`;
+      document.getElementById('progressFill').style.width = `${((currentQ + 1) / 10) * 100}%`;
+      document.getElementById('catLabel').textContent = document.getElementById('catSel').value === 'all' ? 'Mixed' : document.getElementById('catSel').value;
+      document.getElementById('diffLabel').textContent = q.diff;
+      document.getElementById('feedback').textContent = '';
+      document.getElementById('nextBtn').style.display = 'none';
+
+      const grid = document.getElementById('optionsGrid');
+      grid.innerHTML = q.opts.map((opt, i) =>
+        `<button class="opt-btn" data-idx="${i}">${String.fromCharCode(65 + i)}. ${opt}</button>`
+      ).join('');
+      grid.querySelectorAll('.opt-btn').forEach(btn => {
+        btn.addEventListener('click', () => selectAnswer(parseInt(btn.dataset.idx)));
+      });
+    }
+
+    function selectAnswer(idx) {
+      if (answered) return;
+      answered = true;
+      const q = questions[currentQ];
+      const btns = document.querySelectorAll('.opt-btn');
+      btns.forEach(b => b.disabled = true);
+      btns[q.ans].classList.add('correct');
+
+      const fb = document.getElementById('feedback');
+      if (idx === q.ans) {
+        playSound('correct');
+        score++;
+        streak++;
+        btns[idx].classList.add('correct');
+        fb.textContent = `✅ Correct! ${streak > 1 ? `🔥 ${streak} streak!` : ''}`;
+        fb.style.color = '#00e5a0';
+      } else {
+        playSound('wrong');
+        streak = 0;
+        btns[idx].classList.add('wrong');
+        fb.textContent = `❌ Wrong! The answer was: ${q.opts[q.ans]}`;
+        fb.style.color = '#ff6b6b';
+      }
+
+      document.getElementById('scoreVal').textContent = score;
+      document.getElementById('streakVal').textContent = streak;
+
+      if (currentQ < questions.length - 1) {
+        document.getElementById('nextBtn').style.display = 'inline-flex';
+      } else {
+        setTimeout(showResult, 1200);
+      }
+    }
+
+    function showResult() {
+      playSound('victory');
+      document.getElementById('quizSection').style.display = 'none';
+      document.getElementById('resultBox').style.display = 'block';
+      document.getElementById('finalScore').textContent = `${score}/10`;
+      const msgs = ['Keep practicing! 💪', 'Not bad! 👍', 'Good job! 🎉', 'Excellent! 🌟', 'Perfect score! 🏆'];
+      document.getElementById('resultMsg').textContent = msgs[Math.floor(score / 2.5)] || msgs[4];
+    }
+
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      playSound('click');
+      currentQ++;
+      showQuestion();
+    });
+    document.getElementById('newQuizBtn').addEventListener('click', startQuiz);
+    document.getElementById('playAgainBtn').addEventListener('click', startQuiz);
+    document.getElementById('catSel').addEventListener('change', startQuiz);
+
+    startQuiz(false);
+  </script>
+</body>
+</html>

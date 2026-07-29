@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>Bubble Shooter - Free Online Game | UpTools</title>
+<link rel="icon" sizes="50x50" type="image/svg+xml" href="/assets/logo/uptools-logo.svg">
+<meta name="description" content="Play Bubble Shooter free online. Aim, shoot and match 3 or more bubbles to pop them. Classic arcade bubble shooting game."/>
+<meta name="robots" content="index,follow"/><meta name="theme-color" content="#08080f"/>
+<link href="https://www.uptools.in/games/bubble-shooter/" rel="canonical"/>
+<meta property="og:title" content="Bubble Shooter - Free Online Game | UpTools"/>
+<meta property="og:description" content="Play Bubble Shooter free online. Match 3+ bubbles to pop them all."/>
+<meta property="og:type" content="website"/><meta property="og:site_name" content="UpTools"/>
+<script type="application/ld+json">{"@context":"https://***@type":"VideoGame","name":"Bubble Shooter","url":"https://www.uptools.in/games/bubble-shooter/","applicationCategory":"Game","operatingSystem":"Web","genre":["Arcade","Puzzle","Classic"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"UpTools","url":"https://www.uptools.in/"}}</script>
+<link rel="stylesheet" href="/style.css"/>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6216304334889617" crossorigin="anonymous"></script>
+<script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-6216304334889617",enable_page_level_ads:true});</script>
+<meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="Bubble Shooter - Free Online Game | UpTools"/>
+<meta name="twitter:description" content="Play Bubble Shooter free online. Match 3+ bubbles to pop them."/>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NN3GDL1LEJ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-NN3GDL1LEJ');</script>
+<link rel="stylesheet" href="/style.css?v=5.0.0"/>
+<style>
+canvas{display:block;margin:0 auto;max-width:100%;border-radius:12px;background:#0a0a1a;box-shadow:0 4px 24px rgba(0,0,0,.4)}
+.game-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:8px}
+.game-controls{display:flex;gap:8px}
+@media(max-width:500px){.game-header{flex-direction:column;align-items:stretch;text-align:center}}
+</style>
+</head>
+<body>
+<header class="site" role="banner"><div class="header-inner">
+<a aria-label="UpTools Home" class="brand" href="/"><div style="width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#6366f1,#8b5cf6,#ec4899);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(99,102,241,0.3);flex-shrink:0"><img alt="UpTools logo" height="24" loading="eager" src="/assets/logo/uptools-logo.svg" width="24" style="border-radius:0"/></div><b>UpTools</b></a>
+<nav aria-label="Primary" class="nav-links nav-tabs" id="navTabs"><div class="tab-indicator" id="tabIndicator"></div>
+<a href="/" class="nav-tab" data-tab="home">Home</a><a href="/games/" class="nav-tab" data-tab="games">🎮 Games</a><a href="/hncker/" class="nav-tab" data-tab="hncker">HNCKER</a></nav>
+</div></header>
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6216304334889617" data-ad-slot="9810172647" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+<main class="tool-wrap">
+<h1 style="font-size:1.5rem;margin-bottom:4px">🫧 Bubble Shooter</h1>
+<p class="note" style="margin-bottom:16px">Aim with mouse/touch, click to shoot. Match 3+ bubbles to pop them. Clear all bubbles to win!</p>
+<section class="tool-card">
+<div class="game-header">
+<div><span id="scoreDisplay" style="font-size:1.2rem;font-weight:700">Score: 0</span> <span style="color:#94a3b8;font-size:13px">|</span> <span id="bubbleCount" style="font-size:13px;color:#94a3b8">Bubbles: 0</span></div>
+<div class="game-controls"><button class="btn" style="padding:6px 16px;font-size:13px" onclick="newGame()">🔄 New Game</button></div>
+</div>
+<canvas id="gameCanvas" width="480" height="540"></canvas>
+</section>
+<script>
+const canvas=document.getElementById('gameCanvas');
+const ctx=canvas.getContext('2d');
+const COLS=12,ROWS=14,RADIUS=18,BUBBLE_DIAMETER=RADIUS*2;
+const COLS_WIDTH=COLS*BUBBLE_DIAMETER;
+const OFFSET_X=(canvas.width-COLS_WIDTH)/2;
+const COLORS=['#ef4444','#3b82f6','#22c55e','#eab308','#a855f7','#ec4899','#f97316','#06b6d4'];
+let grid=[],currentBubble=null,nextBubble=null,score=0,animating=false,gameOver=false;
+let shooting=false,shotBubble=null,shotVx=0,shotVy=0;
+let mouseX=canvas.width/2;
+
+function initGrid(){grid=[];for(let r=0;r<ROWS;r++){const row=[];const offset=r%2===0?0:RADIUS;for(let c=0;c<COLS;c++){row.push(r<10?Math.floor(Math.random()*6):null);}grid.push(row);}}
+function getBubblePos(r,c){const x=OFFSET_X+c*BUBBLE_DIAMETER+(r%2===0?0:RADIUS)+RADIUS;const y=RADIUS+r*BUBBLE_DIAMETER*0.85+RADIUS;return{x,y};}
+
+function drawGrid(){ctx.clearRect(0,0,canvas.width,canvas.height);
+for(let r=0;r<grid.length;r++){for(let c=0;c<grid[r].length;c++){const val=grid[r][c];if(val===null||val===undefined)continue;const pos=getBubblePos(r,c);drawBubble(pos.x,pos.y,COLORS[val],val);}}
+if(shotBubble&&!gameOver){drawBubble(shotBubble.x,shotBubble.y,COLORS[shotBubble.color],shotBubble.color);}
+if(currentBubble&&!shooting&&!gameOver){drawBubble(mouseX,RADIUS+20,COLORS[currentBubble],currentBubble,0.3);}
+if(nextBubble&&!gameOver){ctx.beginPath();ctx.arc(canvas.width-30,25,RADIUS-2,0,Math.PI*2);ctx.fillStyle=COLORS[nextBubble];ctx.fill();ctx.strokeStyle='rgba(255,255,255,.3)';ctx.lineWidth=1;ctx.stroke();ctx.fillStyle='#94a3b8';ctx.font='10px Inter,sans-serif';ctx.textAlign='center';ctx.fillText('NEXT',canvas.width-30,50);}
+if(gameOver){ctx.fillStyle='rgba(0,0,0,.6)';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.fillStyle='#fff';ctx.font='bold 32px Inter,sans-serif';ctx.textAlign='center';ctx.fillText('Game Over',canvas.width/2,canvas.height/2-20);ctx.font='18px Inter,sans-serif';ctx.fillStyle='#818cf8';ctx.fillText('Score: '+score,canvas.width/2,canvas.height/2+30);ctx.font='14px Inter,sans-serif';ctx.fillStyle='#94a3b8';ctx.fillText('Click "New Game" to play again',canvas.width/2,canvas.height/2+70);}
+updateUI();}
+
+function drawBubble(x,y,color,val,alpha){ctx.globalAlpha=alpha||1;
+const grad=ctx.createRadialGradient(x-RADIUS*0.3,y-RADIUS*0.3,RADIUS*0.1,x,y,RADIUS);grad.addColorStop(0,'rgba(255,255,255,0.4)');grad.addColorStop(0.3,color);grad.addColorStop(1,'rgba(0,0,0,0.2)');
+ctx.beginPath();ctx.arc(x,y,RADIUS,0,Math.PI*2);ctx.fillStyle=grad;ctx.fill();ctx.strokeStyle='rgba(255,255,255,0.15)';ctx.lineWidth=1;ctx.stroke();
+ctx.globalAlpha=1;}
+
+function findSnapPos(x,y){let bestR=-1,bestC=-1,bestDist=RADIUS;
+for(let r=0;r<grid.length;r++){for(let c=0;c<grid[r].length;c++){if(grid[r][c]!==null)continue;const pos=getBubblePos(r,c);const d=Math.sqrt((x-pos.x)**2+(y-pos.y)**2);if(d<bestDist){bestDist=d;bestR=r;bestC=c;}}}
+if(bestR>=0){const pos=getBubblePos(bestR,bestC);const d=Math.sqrt((x-pos.x)**2+(y-pos.y)**2);if(d<RADIUS*1.5)return{r:bestR,c:bestC};}
+// snap to edge
+let minR=-1,minC=-1,minD=RADIUS*3;
+for(let r=0;r<grid.length;r++){for(let c=0;c<grid[r].length;c++){if(grid[r][c]!==null)continue;const pos=getBubblePos(r,c);const d=Math.sqrt((x-pos.x)**2+(y-pos.y)**2);if(d<minD){minD=d;minR=r;minC=c;}}}
+if(minR>=0&&minD<RADIUS*2)return{r:minR,c:minC};
+return null;}
+
+function shoot(){if(shooting||gameOver||animating)return;
+const startX=mouseX;const startY=RADIUS+20;
+const angle=Math.atan2(startY-0,startX-canvas.width/2);
+shotBubble={x:startX,y:startY,color:currentBubble,dx:Math.cos(angle),dy:-Math.abs(Math.sin(angle))*0.8};// Shoot upward
+// Normalize
+const len=Math.sqrt(shotBubble.dx*shotBubble.dx+shotBubble.dy*shotBubble.dy);shotBubble.dx/=len;shotBubble.dy/=len;
+shotBubble.vx=shotBubble.dx*8;shotBubble.vy=shotBubble.dy*8;
+shooting=true;currentBubble=nextBubble;nextBubble=Math.floor(Math.random()*6);}
+
+function animate(){if(!shooting||!shotBubble||gameOver){drawGrid();requestAnimationFrame(animate);return;}
+shotBubble.x+=shotBubble.vx;shotBubble.y+=shotBubble.vy;
+// wall bounce
+if(shotBubble.x<RADIUS+OFFSET_X){shotBubble.x=RADIUS+OFFSET_X;shotBubble.vx=-shotBubble.vx;}
+if(shotBubble.x>canvas.width-RADIUS-OFFSET_X){shotBubble.x=canvas.width-RADIUS-OFFSET_X;shotBubble.vx=-shotBubble.vx;}
+// ceilling bounce or stop
+if(shotBubble.y<RADIUS+10){shotBubble.y=RADIUS+10;shotBubble.vy=Math.abs(shotBubble.vy);/*snap*/snapBubble();return;}
+// check collision with existing bubbles
+let hit=false;
+for(let r=0;r<grid.length&&!hit;r++){for(let c=0;c<grid[r].length&&!hit;c++){if(grid[r][c]===null)continue;const pos=getBubblePos(r,c);const d=Math.sqrt((shotBubble.x-pos.x)**2+(shotBubble.y-pos.y)**2);if(d<RADIUS*1.9){hit=true;const snap=findSnapPos(shotBubble.x,shotBubble.y);if(snap){snapBubble(snap.r,snap.c);}else{snapBubble();}return;}}}
+// check bottom
+if(shotBubble.y>canvas.height-RADIUS){snapBubble();return;}
+drawGrid();requestAnimationFrame(animate);}
+
+function snapBubble(sr,sc){if(!shotBubble)return;
+let r=-1,c=-1;
+if(sr!==undefined&&sc!==undefined){r=sr;c=sc;}else{const snap=findSnapPos(shotBubble.x,shotBubble.y);if(snap){r=snap.r;c=snap.c;}}
+if(r<0||c<0||r>=grid.length||c>=grid[r].length||grid[r][c]!==null){shooting=false;shotBubble=null;drawGrid();return;}
+grid[r][c]=shotBubble.color;shooting=false;const color=shotBubble.color;shotBubble=null;
+// find matches
+const matched=findMatches(r,c,color);
+if(matched.length>=3){animating=true;
+matched.forEach(([mr,mc])=>{grid[mr][mc]=null;});score+=matched.length*10;
+// remove floating
+let changed=true;let rounds=0;
+while(changed&&rounds<20){changed=false;rounds++;
+for(let rr=0;rr<grid.length;rr++){for(let cc=0;cc<grid[rr].length;cc++){if(grid[rr][cc]===null)continue;if(!isConnected(rr,cc)){grid[rr][cc]=null;score+=15;changed=true;}}}}
+animating=false;}else{//check game over
+let topBubbles=false;for(let c=0;c<COLS;c++){if(grid[0][c]!==null)topBubbles=true;}
+if(topBubbles||shotBubble&&shotBubble.y<50){checkGameOver();}}
+drawGrid();if(!gameOver)requestAnimationFrame(animate);}
+
+function isConnected(r,c,visited){visited=visited||new Set();const key=r+','+c;if(visited.has(key))return false;visited.add(key);if(r===0&&grid[r][c]!==null)return true;
+const neighbors=getNeighbors(r,c);for(const[nr,nc]of neighbors){if(nr>=0&&nr<grid.length&&nc>=0&&nc<grid[nr].length&&grid[nr][nc]!==null&&!visited.has(nr+','+nc)){if(isConnected(nr,nc,visited))return true;}}
+return false;}
+
+function getNeighbors(r,c){const offset=r%2===0?0:1;return[[r-1,c],[r-1,offset?c+1:c],[r,c-1],[r,c+1],[r+1,c],[r+1,offset?c+1:c]];}
+
+function findMatches(r,c,color,visited){visited=visited||new Set();const key=r+','+c;if(visited.has(key))return[];visited.add(key);const result=[[r,c]];
+const neighbors=getNeighbors(r,c);for(const[nr,nc]of neighbors){if(nr>=0&&nr<grid.length&&nc>=0&&nc<grid[nr].length&&grid[nr][nc]===color){result.push(...findMatches(nr,nc,color,visited));}}
+return result;}
+
+function checkGameOver(){for(let r=0;r<grid.length;r++){for(let c=0;c<grid[r].length;c++){if(grid[r][c]!==null&&r<2){gameOver=true;drawGrid();return;}}}
+let total=0;for(let r=0;r<grid.length;r++){for(let c=0;c<grid[r].length;c++){if(grid[r][c]!==null)total++;}}
+if(total===0){//win
+gameOver=true;drawGrid();ctx.fillStyle='rgba(0,0,0,.6)';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.fillStyle='#22c55e';ctx.font='bold 32px Inter,sans-serif';ctx.textAlign='center';ctx.fillText('🎉 You Win!',canvas.width/2,canvas.height/2-20);ctx.font='18px Inter,sans-serif';ctx.fillStyle='#818cf8';ctx.fillText('Score: '+score,canvas.width/2,canvas.height/2+30);}}
+
+function updateUI(){document.getElementById('scoreDisplay').textContent='Score: '+score;
+let count=0;for(let r=0;r<grid.length;r++){for(let c=0;c<grid[r].length;c++){if(grid[r][c]!==null)count++;}}document.getElementById('bubbleCount').textContent='Bubbles: '+count;}
+
+function newGame(){score=0;gameOver=false;shooting=false;shotBubble=null;animating=false;
+initGrid();currentBubble=Math.floor(Math.random()*6);nextBubble=Math.floor(Math.random()*6);
+drawGrid();requestAnimationFrame(animate);}
+
+canvas.addEventListener('mousemove',e=>{const rect=canvas.getBoundingClientRect();const scaleX=canvas.width/rect.width;mouseX=(e.clientX-rect.left)*scaleX;if(!shooting&&!gameOver)drawGrid();});
+canvas.addEventListener('click',e=>{if(gameOver)return;shoot();});
+canvas.addEventListener('touchmove',e=>{e.preventDefault();const rect=canvas.getBoundingClientRect();const touch=e.touches[0];const scaleX=canvas.width/rect.width;mouseX=(touch.clientX-rect.left)*scaleX;if(!shooting&&!gameOver)drawGrid();},{passive:false});
+canvas.addEventListener('touchend',e=>{e.preventDefault();if(!gameOver)shoot();},{passive:false});
+
+newGame();
+</script>
+<footer style="margin-top:24px;padding:16px 0;text-align:center;border-top:1px solid #212a3a"><p class="note">© <span id="y"></span> UpTools. Privacy-first utilities.</p></footer>
+</main>
+<script>document.getElementById('y').textContent=new Date().getFullYear();</script>
+</body>
+</html>

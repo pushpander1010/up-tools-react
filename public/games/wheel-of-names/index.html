@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+  <title>Wheel of Names - Free Random Name Picker & Spinner |</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Spin a custom wheel of names to pick a random winner! Free, fast, and highly customizable. Perfect for classroom raffles, giveaways, or decision-making." />
+  <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:large" />
+  <link rel="canonical" href="https://www.uptools.in/games/wheel-of-names/" />
+  <meta name="theme-color" content="#08080f" />
+
+  <!-- Favicons -->
+  <link rel="icon" sizes="48x48" type="image/svg+xml" href="/assets/logo/uptools-logo.svg">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/logo/uptools-logo.svg">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Wheel of Names - Free Random Name Picker & Spinner |" />
+  <meta property="og:description" content="Wheel of Names - Free Random Name Picker & Spinner. Free online tool by UpTools." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="UpTools">
+  <meta property="og:url" content="https://www.uptools.in/games/wheel-of-names/" />
+  <meta property="og:image" content="https://www.uptools.in/assets/og/default.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://www.uptools.in/assets/home.png" />
+  <meta name="twitter:title" content="Wheel of Names - Free Random Name Picker" />
+  <meta name="twitter:description" content="Spin the wheel of names online. Fully customizable, interactive, with animations and sound effects." />
+
+  <!-- Common CSS -->
+
+  <script src="/games/fullscreen-utils.js" defer></script>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Wheel of Names",
+    "url": "https://www.uptools.in/games/wheel-of-names/",
+    "applicationCategory": "GameApplication",
+    "operatingSystem": "All",
+    "isAccessibleForFree": true,
+    "creator": {
+      "@type": "Organization",
+      "name": "UpTools"
+    },
+    "featureList": [
+      "Custom name lists",
+      "Realistic physics-based wheel spinner",
+      "Sound effects (peg tick and win fanfare)",
+      "Confetti celebration modal",
+      "Multiple color themes",
+      "Automatic option removal"
+    ]
+  }
+  </script>
+
+  
+
+  <link rel="stylesheet" href="/style.css?v=5.0.0">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6216304334889617" crossorigin="anonymous"></script>
+<script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-6216304334889617",enable_page_level_ads:true});</script>
+
+<!-- Paste your Google Analytics 4 Measurement ID below, e.g. G-ABC123XYZ9 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NN3GDL1LEJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-NN3GDL1LEJ');
+</script>
+</head>
+
+<body>
+  <!-- AdSense -->
+    <!-- AdSense display -->
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-6216304334889617"
+       data-ad-slot="9810172647"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+  <a href="#main" class="sr-only skip-link">Skip to content</a>
+
+  <!-- Header -->
+  <header class="site" role="banner">
+<div class="header-inner">
+<a aria-label="UpTools Home" class="brand" href="/">
+<img alt="UpTools logo" height="28" loading="eager" src="/assets/logo/uptools-logo.svg" width="28"/>
+<b>UpTools</b>
+</a>
+<nav aria-label="Primary" class="nav-links">
+<a href="/" class="nav-home">Home</a>
+<a href="/games/" class="nav-games">Games</a>
+<a href="/hncker/" class="nav-hncker">HNCKER</a>
+</nav>
+</div>
+</header>
+
+  <main role="main" class="wrap">
+    <!-- Breadcrumbs -->
+    <div class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a> ➔
+      <a href="/games/">Games</a> ➔
+      <span>Wheel of Names</span>
+    </div>
+
+    <!-- Title / Hero -->
+    <section class="card hero" style="margin-bottom:12px;">
+      <h1 style="margin:0;">🎡 Wheel of Names</h1>
+      <p class="note" style="margin:6px 0 0;">Create a custom spinning wheel of names, choices, or numbers to pick a random winner. Perfect for classrooms, teachers, giveaways, and decision-making.</p>
+    </section>
+
+    <!-- Main Workspace Grid -->
+    <div class="game-container" id="gameContainer">
+      <button class="fullscreen-btn" id="fullscreenBtn" title="Enter Fullscreen">⛶</button>
+      <div class="main-grid">
+      <!-- Left side: The Wheel spinner -->
+      <section class="wheel-container" aria-label="Name Spinner Wheel">
+        <div class="wheel-canvas-container">
+          <div class="wheel-pointer"></div>
+          <canvas id="wheelCanvas" width="800" height="800"></canvas>
+          <div class="spin-center-btn" id="spinCenterBtn">SPIN</div>
+        </div>
+        <div style="margin-top: 20px; display:flex; gap: 10px;">
+          <button id="spinBtn" class="btn" style="font-size:1.1rem; padding: 10px 28px;">🎡 Spin Wheel</button>
+        </div>
+      </section>
+
+      <!-- Right side: Input list & settings -->
+      <section class="controls-panel" aria-label="Configuration Panel">
+        <!-- Input text area -->
+        <div class="card textarea-container">
+          <h2 style="margin-top:0;">📝 Edit Names</h2>
+          <textarea id="namesInput" class="names-textarea" placeholder="Enter one name per line..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+          <div class="quick-actions">
+            <button id="btnShuffle" class="btn secondary">🔀 Shuffle</button>
+            <button id="btnNumbers" class="btn secondary">🔢 Numbers 1-10</button>
+            <button id="btnClear" class="btn secondary">🗑️ Clear</button>
+          </div>
+        </div>
+
+        <!-- Customizations -->
+        <div class="card" style="display:flex; flex-direction:column; gap:12px;">
+          <h2 style="margin:0;">⚙️ Customizations</h2>
+
+          <div class="setting-row">
+            <div>
+              <div class="setting-label">Sound Effects</div>
+              <div class="setting-description">Play ticker sound and fanfare</div>
+            </div>
+            <input aria-label="Sound Effects" type="checkbox" id="chkSound" checked style="width: 20px; height: 20px; cursor:pointer;" />
+          </div>
+
+          <div class="setting-row">
+            <div>
+              <div class="setting-label">Remove Winner after Spin</div>
+              <div class="setting-description">Auto remove winner from the list</div>
+            </div>
+            <input aria-label="Remove Winner" type="checkbox" id="chkRemove" style="width: 20px; height: 20px; cursor:pointer;" />
+          </div>
+
+          <div class="setting-row" style="flex-direction:column; align-items:stretch; gap:6px;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span class="setting-label">Theme Palette</span>
+            </div>
+            <select id="selTheme" class="input" style="width: 100%;">
+              <option value="neon">Neon Nights (Cyan & Magenta)</option>
+              <option value="sunset">Sunset Breeze (Orange & Purple)</option>
+              <option value="emerald">Emerald Forest (Green & Gold)</option>
+              <option value="ocean">Ocean Waves (Blues & Teal)</option>
+              <option value="rainbow">Classic Rainbow (Full Spectrum)</option>
+            </select>
+          </div>
+
+          <div class="setting-row" style="flex-direction:column; align-items:stretch; gap:6px;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span class="setting-label">Spin Duration</span>
+              <span id="spinDurVal" style="font-weight:700; color:var(--accent);">5s</span>
+            </div>
+            <input aria-label="Spin Duration" type="range" id="rngDuration" min="2" max="10" value="5" step="1" style="cursor:pointer;" />
+          </div>
+        </div>
+      </section>
+    </div>
+    </div>
+
+    <!-- Educational section -->
+    <section class="card" style="margin-top: 16px;">
+      <h2 style="margin-top:0;">🎥 The math and probability of spinners</h2>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/5U_Qz4L5kXo?rel=0&modestbranding=1" 
+                title="Probability Spinners Explained" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowfullscreen></iframe>
+      </div>
+      <p class="note small" style="margin-top:8px;">Understand how spinner probability works, theoretical vs experimental outcomes, and why standard random generators are fair.</p>
+    </section>
+
+    <!-- FAQ & Guide -->
+    <section class="card" style="margin-top: 16px;">
+      <h2 style="margin-top:0;">Frequently Asked Questions</h2>
+      <details>
+        <summary><b>Is the spinner truly random?</b></summary>
+        <p class="note">Yes! The spinner uses JavaScript's built-in <code>Math.random()</code>, which provides high-quality pseudorandom numbers. The decelerating physics simulation transforms this randomness into an engaging visual spinning experience.</p>
+      </details>
+      <details>
+        <summary><b>Can I paste hundreds of names?</b></summary>
+        <p class="note">Yes, the wheel dynamically renders and scales text depending on the number of inputs. While it can support over 500 items, we recommend keeping it under 100 for optimal text readability on the screen.</p>
+      </details>
+      <details>
+        <summary><b>Does this tool work on mobile devices?</b></summary>
+        <p class="note">Absolutely! The wheel and editor layout adapt responsively to fit smartphone and tablet screens, ensuring a seamless touch-to-spin experience.</p>
+      </details>
+    </section>
+
+    <!-- Footer -->
+    <footer class="note small site-footer" role="contentinfo" style="margin-top:20px;">
+      © <span id="footerYear"></span> UpTools . <a href="/games/">Games</a> . <a href="/">Home</a>
+    </footer>
+  </main>
+
+  <!-- Winner Modal -->
+  <div class="winner-modal" id="winnerModal" role="dialog" aria-modal="true">
+    <div class="winner-card">
+      <span class="winner-crown" aria-hidden="true">👑</span>
+      <h3 class="winner-title">We have a winner!</h3>
+      <div class="winner-name" id="winnerNameDisplay">Alex</div>
+      <div class="winner-actions">
+        <button id="modalBtnGotIt" class="btn" style="padding: 10px 24px;">Got It!</button>
+        <button id="modalBtnRemove" class="btn secondary" style="padding: 10px 24px;">Remove Winner</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confetti Layer Canvas -->
+  <canvas id="confettiCanvas"></canvas>
+
+  <!-- Game Scripts -->
+  <script type="module">
+    import { $ } from "/scripts/utils.js";
+
+    // Standard footer year
+    document.getElementById("footerYear").textContent = new Date().getFullYear();
+
+    // Elements
+    const canvas = $("#wheelCanvas");
+    const ctx = canvas.getContext("2d");
+    const namesInput = $("#namesInput");
+    const spinBtn = $("#spinBtn");
+    const spinCenterBtn = $("#spinCenterBtn");
+    const selTheme = $("#selTheme");
+    const chkSound = $("#chkSound");
+    const chkRemove = $("#chkRemove");
+    const rngDuration = $("#rngDuration");
+    const spinDurVal = $("#spinDurVal");
+
+    // Modal & Confetti
+    const winnerModal = $("#winnerModal");
+    const winnerNameDisplay = $("#winnerNameDisplay");
+    const modalBtnGotIt = $("#modalBtnGotIt");
+    const modalBtnRemove = $("#modalBtnRemove");
+    const confettiCanvas = $("#confettiCanvas");
+    const confettiCtx = confettiCanvas.getContext("2d");
+
+    // FullscreenManager
+    // The fullscreen-utils.js auto-inits on DOMContentLoaded, but we also ensure
+    // the FullscreenManager instance is accessible and the container ID matches.
+    // If FullscreenManager didn't init (e.g. script loaded before container),
+    // manually initialize it.
+    if (!window.fullscreenManager && document.querySelector('.fullscreen-btn')) {
+      window.fullscreenManager = new FullscreenManager('#gameContainer', '.fullscreen-btn');
+    }
+
+    // Default list of names
+    const defaultNames = ["Emma", "Noah", "Olivia", "Liam", "Ava", "William", "Sophia", "Mason", "Isabella", "James"];
+
+    // State Variables
+    let names = [...defaultNames];
+    let isSpinning = false;
+    let currentAngle = 0; // in radians
+    let spinVelocity = 0;
+    let lastTickAngle = 0;
+
+    // Theme Palettes
+    const themes = {
+      neon: ["#06b6d4", "#ec4899", "#3b82f6", "#a855f7", "#14b8a6"],
+      sunset: ["#f97316", "#8b5cf6", "#ec4899", "#ef4444", "#f43f5e"],
+      emerald: ["#10b981", "#eab308", "#059669", "#84cc16", "#d97706"],
+      ocean: ["#0284c7", "#06b6d4", "#3b82f6", "#0d9488", "#2563eb"],
+      rainbow: ["#ef4444", "#f97316", "#eab308", "#10b981", "#3b82f6", "#6366f1", "#a855f7"]
+    };
+
+    // Confetti State
+    let confettiActive = false;
+    let confettiParticles = [];
+    const confettiColors = ["#f43f5e", "#3b82f6", "#10b981", "#eab308", "#ec4899", "#8b5cf6"];
+
+    // Initialize text area
+    namesInput.value = names.join("\n");
+
+    // ─── WebAudio with shared AudioContext ─────────────────────────────────
+    let audioCtx = null;
+
+    /** Create (or resume) the shared AudioContext on first user gesture */
+    function ensureAudioContext() {
+      if (!audioCtx) {
+        try {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        } catch (e) {
+          return null;
+        }
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume().catch(() => {});
+      }
+      return audioCtx;
+    }
+
+    // Web Audio peg tick and win fanfare
+    const playSound = (type) => {
+      if (!chkSound.checked) return;
+      const ctx = ensureAudioContext();
+      if (!ctx) return;
+      try {
+        if (type === "tick") {
+          const osc = ctx.createOscillator();
+          const gainNode = ctx.createGain();
+          osc.type = "triangle";
+          osc.frequency.setValueAtTime(650, ctx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(120, ctx.currentTime + 0.04);
+          gainNode.gain.setValueAtTime(0.08, ctx.currentTime);
+          gainNode.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.045);
+          osc.connect(gainNode);
+          gainNode.connect(ctx.destination);
+          osc.start(ctx.currentTime);
+          osc.stop(ctx.currentTime + 0.05);
+        } else if (type === "win") {
+          const notes = [261.63, 329.63, 392.00, 523.25, 659.25, 783.99, 1046.50];
+          notes.forEach((freq, idx) => {
+            const o = ctx.createOscillator();
+            const g = ctx.createGain();
+            o.type = "sine";
+            o.frequency.value = freq;
+            o.connect(g);
+            g.connect(ctx.destination);
+            g.gain.setValueAtTime(0.08, ctx.currentTime + idx * 0.09);
+            g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + idx * 0.09 + 0.45);
+            o.start(ctx.currentTime + idx * 0.09);
+            o.stop(ctx.currentTime + idx * 0.09 + 0.45);
+          });
+        }
+      } catch (err) {
+        // Audio not available
+      }
+    };
+
+    // ─── Responsive Canvas Sizing ─────────────────────────────────────────
+
+    /** Resize canvas backing-pixel dimensions to match CSS display size × devicePixelRatio */
+    function resizeCanvas() {
+      const container = canvas.parentElement;
+      if (!container) return;
+      const rect = container.getBoundingClientRect();
+      // Use container width as the canvas logical size (square aspect)
+      const size = Math.floor(rect.width);
+      if (size < 50) return;
+      // For sharp rendering, set canvas buffer to match pixel ratio
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = size * dpr;
+      canvas.height = size * dpr;
+      // Scale context so all drawing coordinates are in CSS pixels
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      drawWheel();
+    }
+
+    // Debounced resize listener
+    let resizeTimer = null;
+    window.addEventListener("resize", () => {
+      if (resizeTimer) cancelAnimationFrame(resizeTimer);
+      resizeTimer = requestAnimationFrame(() => {
+        resizeCanvas();
+        resizeTimer = null;
+      });
+    });
+
+    // Draw the Wheel
+    function drawWheel() {
+      const size = canvas.width / (window.devicePixelRatio || 1);
+      const center = size / 2;
+      const radius = center - 20;
+
+      ctx.save();
+      ctx.setTransform(window.devicePixelRatio || 1, 0, 0, window.devicePixelRatio || 1, 0, 0);
+      ctx.clearRect(0, 0, size, size);
+
+      if (names.length === 0) {
+        // Draw empty message inside wheel boundary
+        ctx.beginPath();
+        ctx.arc(center, center, radius, 0, 2 * Math.PI);
+        ctx.fillStyle = "#1e293b";
+        ctx.fill();
+        ctx.lineWidth = 4;
+        ctx.strokeStyle = "#475569";
+        ctx.stroke();
+
+        ctx.fillStyle = "#94a3b8";
+        ctx.font = `bold ${Math.max(16, Math.min(24, size / 20))}px system-ui, sans-serif`;
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText("Enter names to begin", center, center);
+        ctx.restore();
+        return;
+      }
+
+      const sliceAngle = (2 * Math.PI) / names.length;
+      const activeColors = themes[selTheme.value] || themes.neon;
+
+      // Draw slices
+      names.forEach((name, i) => {
+        const startAng = currentAngle + i * sliceAngle;
+        const endAng = startAng + sliceAngle;
+
+        ctx.beginPath();
+        ctx.moveTo(center, center);
+        ctx.arc(center, center, radius, startAng, endAng);
+        ctx.closePath();
+
+        // Assign colors in alternating order
+        ctx.fillStyle = activeColors[i % activeColors.length];
+        ctx.fill();
+
+        // Stroke border of slices
+        ctx.lineWidth = 1.5;
+        ctx.strokeStyle = "#0f172a";
+        ctx.stroke();
+
+        // Draw names on slices
+        ctx.save();
+        ctx.translate(center, center);
+        // Rotate text to the middle of the slice
+        ctx.rotate(startAng + sliceAngle / 2);
+
+        // Styling names text
+        ctx.fillStyle = "#ffffff";
+        ctx.shadowColor = "rgba(0,0,0,0.5)";
+        ctx.shadowBlur = 4;
+
+        // Scale font size according to slice sizes and canvas size
+        let fontSize = Math.min(size / 20, Math.max(12, Math.floor(400 / names.length)));
+        ctx.font = `bold ${fontSize}px system-ui, sans-serif`;
+        ctx.textAlign = "right";
+        ctx.textBaseline = "middle";
+
+        // Limit name text length to prevent overflow
+        let maxTextWidth = radius - 80;
+        let displayName = name;
+        if (ctx.measureText(name).width > maxTextWidth) {
+          while (ctx.measureText(displayName + "...").width > maxTextWidth && displayName.length > 0) {
+            displayName = displayName.slice(0, -1);
+          }
+          displayName += "...";
+        }
+
+        ctx.fillText(displayName, radius - 40, 0);
+        ctx.restore();
+      });
+
+      // Draw elegant outer border rim
+      ctx.beginPath();
+      ctx.arc(center, center, radius, 0, 2 * Math.PI);
+      ctx.lineWidth = Math.max(6, Math.min(10, size / 60));
+      ctx.strokeStyle = "#1e293b";
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.arc(center, center, radius + Math.max(3, Math.min(5, size / 100)), 0, 2 * Math.PI);
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = "rgba(255,255,255,0.1)";
+      ctx.stroke();
+
+      ctx.restore();
+    }
+
+    // Spin mechanism animation
+    let animationFrameId = null;
+    let spinStartTimestamp = null;
+    let targetSpinTime = 5000; // milliseconds
+    let initialSpinVelocity = 0;
+
+    function startSpin() {
+      if (isSpinning || names.length === 0) return;
+      // Ensure AudioContext is ready on user gesture (required by mobile browsers)
+      ensureAudioContext();
+      isSpinning = true;
+      spinBtn.disabled = true;
+
+      // Random speed and extra cycles
+      initialSpinVelocity = 0.4 + Math.random() * 0.25; // Speed multiplier
+      targetSpinTime = parseInt(rngDuration.value, 10) * 1000;
+
+      lastTickAngle = currentAngle;
+      spinStartTimestamp = performance.now();
+
+      requestAnimationFrame(animateSpin);
+    }
+
+    function animateSpin(timestamp) {
+      if (!spinStartTimestamp) spinStartTimestamp = timestamp;
+      const elapsed = timestamp - spinStartTimestamp;
+      const progress = Math.min(elapsed / targetSpinTime, 1);
+
+      // Deceleration easing curve (easeOutQuart)
+      const easeFactor = 1 - Math.pow(1 - progress, 4);
+
+      // Update angle based on ease out progress
+      currentAngle = (currentAngle + (initialSpinVelocity * Math.pow(1 - progress, 3))) % (2 * Math.PI);
+
+      // Web Audio peg tick ticker simulation
+      const sliceAngle = (2 * Math.PI) / names.length;
+
+      // Peg position is at 270 deg (top pointer) => -Math.PI/2 radians
+      // Calculate how many times slices passed the pointer peg
+      const currentTickIndex = Math.floor((currentAngle - Math.PI/2) / sliceAngle);
+      const lastTickIndex = Math.floor((lastTickAngle - Math.PI/2) / sliceAngle);
+
+      if (currentTickIndex !== lastTickIndex) {
+        playSound("tick");
+      }
+
+      lastTickAngle = currentAngle;
+      drawWheel();
+
+      if (progress < 1) {
+        requestAnimationFrame(animateSpin);
+      } else {
+        // Spin finished
+        isSpinning = false;
+        spinBtn.disabled = false;
+
+        // Find winner based on pointing top position (270 degrees)
+        // Point is opposite to rotation angle
+        const winningAngle = (1.5 * Math.PI - currentAngle + 2 * Math.PI) % (2 * Math.PI);
+        const sliceAngle = (2 * Math.PI) / names.length;
+        const winnerIndex = Math.floor(winningAngle / sliceAngle) % names.length;
+
+        const winnerName = names[winnerIndex];
+        showWinner(winnerName);
+      }
+    }
+
+    // Modal winner handlers
+    function showWinner(winnerName) {
+      winnerNameDisplay.textContent = winnerName;
+      winnerModal.classList.add("show");
+      playSound("win");
+      startConfetti();
+    }
+
+    function hideWinnerModal() {
+      winnerModal.classList.remove("show");
+      stopConfetti();
+    }
+
+    // Setup Confetti Celebration
+    function initConfetti() {
+      confettiCanvas.width = window.innerWidth;
+      confettiCanvas.height = window.innerHeight;
+      window.addEventListener("resize", () => {
+        confettiCanvas.width = window.innerWidth;
+        confettiCanvas.height = window.innerHeight;
+      });
+    }
+
+    function createConfettiParticle() {
+      return {
+        x: Math.random() * confettiCanvas.width,
+        y: Math.random() * confettiCanvas.height - confettiCanvas.height,
+        size: Math.random() * 8 + 4,
+        color: confettiColors[Math.floor(Math.random() * confettiColors.length)],
+        speedY: Math.random() * 4 + 3,
+        speedX: Math.random() * 3 - 1.5,
+        rotation: Math.random() * 360,
+        rotationSpeed: Math.random() * 6 - 3
+      };
+    }
+
+    function startConfetti() {
+      confettiActive = true;
+      confettiParticles = [];
+      for (let i = 0; i < 150; i++) {
+        confettiParticles.push(createConfettiParticle());
+      }
+      requestAnimationFrame(updateConfetti);
+    }
+
+    function stopConfetti() {
+      confettiActive = false;
+      confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+    }
+
+    function updateConfetti() {
+      if (!confettiActive) return;
+      confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+
+      confettiParticles.forEach((p) => {
+        p.y += p.speedY;
+        p.x += p.speedX;
+        p.rotation += p.rotationSpeed;
+
+        confettiCtx.save();
+        confettiCtx.translate(p.x, p.y);
+        confettiCtx.rotate((p.rotation * Math.PI) / 180);
+        confettiCtx.fillStyle = p.color;
+        confettiCtx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+        confettiCtx.restore();
+
+        // Recycle particles that hit bottom
+        if (p.y > confettiCanvas.height) {
+          p.y = -20;
+          p.x = Math.random() * confettiCanvas.width;
+        }
+      });
+
+      requestAnimationFrame(updateConfetti);
+    }
+
+    // Input handlers & sync
+    function parseInput() {
+      const text = namesInput.value;
+      names = text.split("\n")
+                  .map(n => n.trim())
+                  .filter(n => n.length > 0);
+      drawWheel();
+    }
+
+    // Remove Winner option handler
+    function handleRemoveWinner() {
+      const winner = winnerNameDisplay.textContent;
+      const lines = namesInput.value.split("\n").map(l => l.trim());
+      const idx = lines.indexOf(winner);
+      if (idx !== -1) {
+        lines.splice(idx, 1);
+        namesInput.value = lines.join("\n");
+        parseInput();
+      }
+      hideWinnerModal();
+    }
+
+    // ─── Touch Feedback on All Buttons ────────────────────────────────────
+
+    /** Add touch-active class to buttons on touch devices for visual feedback */
+    function setupTouchFeedback() {
+      const buttons = document.querySelectorAll('.btn, .btn.secondary, .spin-center-btn, .fullscreen-btn, #modalBtnGotIt, #modalBtnRemove');
+      buttons.forEach(btn => {
+        btn.addEventListener('touchstart', () => btn.classList.add('touch-active'), { passive: true });
+        btn.addEventListener('touchend', () => btn.classList.remove('touch-active'), { passive: true });
+        btn.addEventListener('touchcancel', () => btn.classList.remove('touch-active'), { passive: true });
+      });
+    }
+
+    // ─── Mobile keyboard handling ─────────────────────────────────────────
+    // When keyboard opens on mobile, scroll the textarea into view
+    namesInput.addEventListener('focus', () => {
+      // Small delay to let the keyboard open
+      setTimeout(() => namesInput.scrollIntoView({ behavior: 'smooth', block: 'center' }), 300);
+    });
+
+    // Wire listeners
+    namesInput.addEventListener("input", parseInput);
+
+    spinBtn.onclick = startSpin;
+    spinCenterBtn.onclick = startSpin;
+
+    selTheme.onchange = drawWheel;
+
+    rngDuration.oninput = () => {
+      spinDurVal.textContent = rngDuration.value + "s";
+    };
+
+    // Quick helpers
+    $("#btnShuffle").onclick = () => {
+      // Fisher-Yates Shuffle
+      for (let i = names.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [names[i], names[j]] = [names[j], names[i]];
+      }
+      namesInput.value = names.join("\n");
+      drawWheel();
+    };
+
+    $("#btnNumbers").onclick = () => {
+      names = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
+      namesInput.value = names.join("\n");
+      drawWheel();
+    };
+
+    $("#btnClear").onclick = () => {
+      names = [];
+      namesInput.value = "";
+      drawWheel();
+    };
+
+    modalBtnGotIt.onclick = () => {
+      if (chkRemove.checked) {
+        handleRemoveWinner();
+      } else {
+        hideWinnerModal();
+      }
+    };
+    modalBtnRemove.onclick = handleRemoveWinner;
+
+    // Click outside modal
+    winnerModal.onclick = (e) => {
+      if (e.target === winnerModal) {
+        hideWinnerModal();
+      }
+    };
+
+    // Initialize UI
+    setupTouchFeedback();
+    initConfetti();
+    resizeCanvas(); // Sets the canvas to correct size on load
+    drawWheel();
+  </script>
+</body>
+</html>

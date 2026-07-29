@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Whack-a-Mole - Free Online Game | UpTools</title>
+  <meta name="description" content="Play Whack-a-Mole online! Fast-paced reflex game with score tracking and increasing difficulty. Test your reaction time!">
+  <!-- Open Graph -->
+  <meta property="og:image" content="https://www.uptools.in/assets/home.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Whack-a-Mole - Free Online Game | UpTools" />
+  <meta name="twitter:description" content="Whack-a-Mole - Free Online Game. Free online tool by UpTools." />
+  <meta name="twitter:image" content="https://www.uptools.in/assets/home.png" />
+
+  <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:large" />
+  <link rel="canonical" href="https://www.uptools.in/games/whack-a-mole/" />
+
+  <link rel="icon" sizes="50x50" type="image/svg+xml" href="/assets/logo/uptools-logo.svg">
+
+  <script src="/games/fullscreen-utils.js" defer></script>
+
+  
+  <meta property="og:title" content="Whack-a-Mole - Free Online Game | UpTools" />
+  <meta property="og:description" content="Whack-a-Mole - Free Online Game. Free online tool by UpTools." />
+  <meta property="og:url" content="https://www.uptools.in/games/whack-a-mole/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="UpTools">
+
+  <link rel="stylesheet" href="/style.css?v=5.0.0">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6216304334889617" crossorigin="anonymous"></script>
+<script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-6216304334889617",enable_page_level_ads:true});</script>
+
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "VideoGame", "name": "Whack-a-Mole - Free Online Game", "url": "https://www.uptools.in/games/whack-a-mole/", "genre": ["Arcade", "Puzzle", "Casual"], "gamePlatform": ["Web Browser", "Desktop", "Mobile"], "operatingSystem": "Any", "applicationCategory": "Game", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "INR"}, "publisher": {"@type": "Organization", "name": "UpTools", "url": "https://www.uptools.in/"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "UpTools", "item": "https://www.uptools.in/"}, {"@type": "ListItem", "position": 2, "name": "Games", "item": "https://www.uptools.in/games/"}, {"@type": "ListItem", "position": 3, "name": "Whack-a-Mole - Free Online Game", "item": "https://www.uptools.in/games/whack-a-mole/"}]}
+</script>
+
+<!-- Paste your Google Analytics 4 Measurement ID below, e.g. G-ABC123XYZ9 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NN3GDL1LEJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-NN3GDL1LEJ');
+</script>
+</head>
+<body>
+  <!-- AdSense -->
+    <!-- AdSense display -->
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-6216304334889617"
+       data-ad-slot="9810172647"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+  <a href="#main" class="sr-only skip-link">Skip to content</a>
+
+    <!-- Header -->
+  <header class="site" role="banner">
+<div class="header-inner">
+<a aria-label="UpTools Home" class="brand" href="/">
+<img alt="UpTools logo" height="28" loading="eager" src="/assets/logo/uptools-logo.svg" width="28"/>
+<b>UpTools</b>
+</a>
+<nav aria-label="Primary" class="nav-links">
+<a href="/" class="nav-home">Home</a>
+<a href="/games/" class="nav-games">Games</a>
+<a href="/hncker/" class="nav-hncker">HNCKER</a>
+</nav>
+</div>
+</header>
+
+  <main role="main" class="wrap">
+    <div class="game-container" style="position: relative">
+      <button class="fullscreen-btn" id="fullscreenBtn" title="Enter Fullscreen">⛶</button>
+      <h1>🔨 Whack-a-Mole</h1>
+      <p>Hit the moles as fast as you can! Don't let them escape!</p>
+
+      <div class="game-stats">
+        <div class="stat">
+          <span class="stat-value" id="score">0</span>
+          <div class="stat-label">Score</div>
+        </div>
+        <div class="stat">
+          <span class="stat-value" id="timeLeft">30</span>
+          <div class="stat-label">Time Left</div>
+        </div>
+        <div class="stat">
+          <span class="stat-value" id="hits">0</span>
+          <div class="stat-label">Hits</div>
+        </div>
+        <div class="stat">
+          <span class="stat-value" id="misses">0</span>
+          <div class="stat-label">Misses</div>
+        </div>
+      </div>
+
+      <div class="progress-bar">
+        <div class="progress-fill" id="timeProgress"></div>
+      </div>
+
+      <div class="difficulty-selector">
+        <label>Difficulty:</label>
+        <button class="difficulty-btn active" data-difficulty="easy">Easy</button>
+        <button class="difficulty-btn" data-difficulty="medium">Medium</button>
+        <button class="difficulty-btn" data-difficulty="hard">Hard</button>
+      </div>
+
+      <div class="game-board" id="gameBoard">
+        <div class="hole" data-hole="0"><div class="mole">🐹</div></div>
+        <div class="hole" data-hole="1"><div class="mole">🐹</div></div>
+        <div class="hole" data-hole="2"><div class="mole">🐹</div></div>
+        <div class="hole" data-hole="3"><div class="mole">🐹</div></div>
+        <div class="hole" data-hole="4"><div class="mole">🐹</div></div>
+        <div class="hole" data-hole="5"><div class="mole">🐹</div></div>
+        <div class="hole" data-hole="6"><div class="mole">🐹</div></div>
+        <div class="hole" data-hole="7"><div class="mole">🐹</div></div>
+        <div class="hole" data-hole="8"><div class="mole">🐹</div></div>
+      </div>
+
+      <div class="game-controls">
+        <button class="control-btn" id="startBtn">Start Game</button>
+        <button class="control-btn" id="pauseBtn" disabled>Pause</button>
+        <button class="control-btn" id="resetBtn">Reset</button>
+      </div>
+    </div>
+
+    <div class="game-over" id="gameOver">
+      <div class="game-over-content">
+        <h2>🎉 Game Over!</h2>
+        <div class="final-score" id="finalScore">0</div>
+        <p id="gameOverMessage">Great job!</p>
+        <div id="gameOverStats"></div>
+        <button class="control-btn" id="playAgainBtn">Play Again</button>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    class SoundEffects {
+      constructor() {
+        this.ctx = null;
+      }
+      init() {
+        if (!this.ctx) {
+          this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+      }
+      playPop() {
+        this.init();
+        if (!this.ctx) return;
+        try {
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.frequency.setValueAtTime(300, this.ctx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(600, this.ctx.currentTime + 0.08);
+          gain.gain.setValueAtTime(0.04, this.ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.08);
+          osc.start();
+          osc.stop(this.ctx.currentTime + 0.08);
+        } catch (e) {}
+      }
+      playWhack() {
+        this.init();
+        if (!this.ctx) return;
+        try {
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(500, this.ctx.currentTime);
+          osc.frequency.linearRampToValueAtTime(200, this.ctx.currentTime + 0.15);
+          gain.gain.setValueAtTime(0.1, this.ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.15);
+          osc.start();
+          osc.stop(this.ctx.currentTime + 0.15);
+        } catch (e) {}
+      }
+      playMiss() {
+        this.init();
+        if (!this.ctx) return;
+        try {
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(150, this.ctx.currentTime);
+          osc.frequency.linearRampToValueAtTime(100, this.ctx.currentTime + 0.1);
+          gain.gain.setValueAtTime(0.03, this.ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.1);
+          osc.start();
+          osc.stop(this.ctx.currentTime + 0.1);
+        } catch (e) {}
+      }
+      playGameOver() {
+        this.init();
+        if (!this.ctx) return;
+        try {
+          const notes = [261.63, 329.63, 392.00, 523.25]; // C4, E4, G4, C5
+          notes.forEach((freq, i) => {
+            const osc = this.ctx.createOscillator();
+            const gain = this.ctx.createGain();
+            osc.connect(gain);
+            gain.connect(this.ctx.destination);
+            osc.frequency.setValueAtTime(freq, this.ctx.currentTime + i * 0.12);
+            gain.gain.setValueAtTime(0.05, this.ctx.currentTime + i * 0.12);
+            gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + i * 0.12 + 0.25);
+            osc.start(this.ctx.currentTime + i * 0.12);
+            osc.stop(this.ctx.currentTime + i * 0.12 + 0.25);
+          });
+        } catch (e) {}
+      }
+    }
+    const sounds = new SoundEffects();
+
+    class WhackAMole {
+      constructor() {
+        this.score = 0;
+        this.hits = 0;
+        this.misses = 0;
+        this.timeLeft = 30;
+        this.gameTime = 30;
+        this.isPlaying = false;
+        this.isPaused = false;
+        this.difficulty = 'easy';
+        this.moleTimer = null;
+        this.gameTimer = null;
+        this.activeMoles = new Set();
+
+        this.difficulties = {
+          easy: { minTime: 1000, maxTime: 2000, moleLife: 1500 },
+          medium: { minTime: 600, maxTime: 1200, moleLife: 1000 },
+          hard: { minTime: 300, maxTime: 800, moleLife: 700 }
+        };
+
+        this.init();
+      }
+
+      init() {
+        this.bindEvents();
+        this.updateDisplay();
+      }
+
+      bindEvents() {
+        // Control buttons
+        document.getElementById('startBtn').addEventListener('click', () => this.startGame());
+        document.getElementById('pauseBtn').addEventListener('click', () => this.togglePause());
+        document.getElementById('resetBtn').addEventListener('click', () => this.resetGame());
+        document.getElementById('playAgainBtn').addEventListener('click', () => this.playAgain());
+
+        // Difficulty buttons
+        document.querySelectorAll('.difficulty-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            if (!this.isPlaying) {
+              this.setDifficulty(e.target.dataset.difficulty);
+            }
+          });
+        });
+
+        // Hole clicks
+        document.querySelectorAll('.hole').forEach(hole => {
+          hole.addEventListener('click', (e) => {
+            if (this.isPlaying && !this.isPaused) {
+              this.whackMole(hole);
+            }
+          });
+        });
+
+        // Prevent context menu on holes
+        document.getElementById('gameBoard').addEventListener('contextmenu', (e) => {
+          e.preventDefault();
+        });
+      }
+
+      setDifficulty(difficulty) {
+        this.difficulty = difficulty;
+        document.querySelectorAll('.difficulty-btn').forEach(btn => {
+          btn.classList.toggle('active', btn.dataset.difficulty === difficulty);
+        });
+      }
+
+      startGame() {
+        this.isPlaying = true;
+        this.isPaused = false;
+        this.score = 0;
+        this.hits = 0;
+        this.misses = 0;
+        this.timeLeft = this.gameTime;
+
+        this.updateDisplay();
+        this.updateControls();
+
+        // Start timers
+        this.startGameTimer();
+        this.spawnMole();
+      }
+
+      startGameTimer() {
+        this.gameTimer = setInterval(() => {
+          if (!this.isPaused) {
+            this.timeLeft--;
+            this.updateDisplay();
+
+            if (this.timeLeft <= 0) {
+              this.endGame();
+            }
+          }
+        }, 1000);
+      }
+
+      spawnMole() {
+        if (!this.isPlaying || this.isPaused) return;
+
+        const config = this.difficulties[this.difficulty];
+        const availableHoles = [...document.querySelectorAll('.hole')]
+          .filter(hole => !hole.classList.contains('active'));
+
+        if (availableHoles.length > 0) {
+          const randomHole = availableHoles[Math.floor(Math.random() * availableHoles.length)];
+          this.showMole(randomHole);
+        }
+
+        // Schedule next mole
+        const nextSpawnTime = Math.random() * (config.maxTime - config.minTime) + config.minTime;
+        this.moleTimer = setTimeout(() => this.spawnMole(), nextSpawnTime);
+      }
+
+      showMole(hole) {
+        const holeIndex = hole.dataset.hole;
+        hole.classList.add('active');
+        this.activeMoles.add(holeIndex);
+        sounds.playPop();
+
+        // Hide mole after some time
+        const config = this.difficulties[this.difficulty];
+        setTimeout(() => {
+          if (hole.classList.contains('active')) {
+            this.hideMole(hole);
+            this.misses++;
+            this.updateDisplay();
+          }
+        }, config.moleLife);
+      }
+
+      hideMole(hole) {
+        const holeIndex = hole.dataset.hole;
+        hole.classList.remove('active');
+        this.activeMoles.delete(holeIndex);
+      }
+
+      whackMole(hole) {
+        if (hole.classList.contains('active')) {
+          // Hit!
+          hole.classList.add('hit');
+          this.hideMole(hole);
+          this.hits++;
+          this.score += this.getScoreForDifficulty();
+          sounds.playWhack();
+
+          // Remove hit animation
+          setTimeout(() => hole.classList.remove('hit'), 300);
+        } else {
+          // Miss!
+          this.misses++;
+          sounds.playMiss();
+        }
+
+        this.updateDisplay();
+      }
+
+      getScoreForDifficulty() {
+        const scores = { easy: 10, medium: 20, hard: 30 };
+        return scores[this.difficulty];
+      }
+
+      togglePause() {
+        this.isPaused = !this.isPaused;
+        document.getElementById('pauseBtn').textContent = this.isPaused ? 'Resume' : 'Pause';
+      }
+
+      endGame() {
+        this.isPlaying = false;
+        this.isPaused = false;
+
+        // Clear timers
+        clearTimeout(this.moleTimer);
+        clearInterval(this.gameTimer);
+
+        // Hide all moles
+        document.querySelectorAll('.hole').forEach(hole => {
+          hole.classList.remove('active');
+        });
+
+        this.activeMoles.clear();
+        this.updateControls();
+        this.showGameOver();
+        sounds.playGameOver();
+      }
+
+      showGameOver() {
+        const accuracy = this.hits + this.misses > 0 ? Math.round((this.hits / (this.hits + this.misses)) * 100) : 0;
+
+        document.getElementById('finalScore').textContent = this.score;
+        document.getElementById('gameOverMessage').textContent = this.getGameOverMessage();
+        document.getElementById('gameOverStats').innerHTML = `
+          <p>Hits: ${this.hits} | Misses: ${this.misses}</p>
+          <p>Accuracy: ${accuracy}%</p>
+          <p>Difficulty: ${this.difficulty.charAt(0).toUpperCase() + this.difficulty.slice(1)}</p>
+        `;
+
+        document.getElementById('gameOver').classList.add('show');
+      }
+
+      getGameOverMessage() {
+        if (this.score >= 500) return "🏆 Mole Master!";
+        if (this.score >= 300) return "🎯 Great Reflexes!";
+        if (this.score >= 150) return "👍 Nice Job!";
+        return "🎮 Keep Practicing!";
+      }
+
+      playAgain() {
+        document.getElementById('gameOver').classList.remove('show');
+        this.resetGame();
+      }
+
+      resetGame() {
+        this.isPlaying = false;
+        this.isPaused = false;
+        this.score = 0;
+        this.hits = 0;
+        this.misses = 0;
+        this.timeLeft = this.gameTime;
+
+        // Clear timers
+        clearTimeout(this.moleTimer);
+        clearInterval(this.gameTimer);
+
+        // Hide all moles
+        document.querySelectorAll('.hole').forEach(hole => {
+          hole.classList.remove('active', 'hit');
+        });
+
+        this.activeMoles.clear();
+        this.updateDisplay();
+        this.updateControls();
+        document.getElementById('gameOver').classList.remove('show');
+      }
+
+      updateDisplay() {
+        document.getElementById('score').textContent = this.score;
+        document.getElementById('timeLeft').textContent = this.timeLeft;
+        document.getElementById('hits').textContent = this.hits;
+        document.getElementById('misses').textContent = this.misses;
+
+        // Update progress bar
+        const progress = ((this.gameTime - this.timeLeft) / this.gameTime) * 100;
+        document.getElementById('timeProgress').style.width = progress + '%';
+      }
+
+      updateControls() {
+        const startBtn = document.getElementById('startBtn');
+        const pauseBtn = document.getElementById('pauseBtn');
+
+        startBtn.disabled = this.isPlaying;
+        pauseBtn.disabled = !this.isPlaying;
+        pauseBtn.textContent = this.isPaused ? 'Resume' : 'Pause';
+
+        // Disable difficulty buttons during game
+        document.querySelectorAll('.difficulty-btn').forEach(btn => {
+          btn.disabled = this.isPlaying;
+        });
+      }
+    }
+
+    // Initialize sound context on first user interaction
+    function initAudio() {
+      sounds.init();
+      window.removeEventListener('keydown', initAudio);
+      window.removeEventListener('mousedown', initAudio);
+    }
+    window.addEventListener('keydown', initAudio);
+    window.addEventListener('mousedown', initAudio);
+
+    // Initialize game when page loads
+    let fullscreenManager = null;
+    document.addEventListener('DOMContentLoaded', () => {
+      new WhackAMole();
+
+      if (typeof FullscreenManager !== 'undefined') {
+        fullscreenManager = new FullscreenManager(
+          document.querySelector('.game-container'),
+          document.getElementById('fullscreenBtn')
+        );
+      }
+    });
+
+    // Add to recent games when leaving
+    window.addEventListener('beforeunload', () => {
+      const url = new URL('/games/', location.origin);
+      url.searchParams.set('played', 'whack-a-mole');
+    });
+  </script>
+</body>
+</html>
