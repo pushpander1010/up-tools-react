@@ -56,7 +56,7 @@ export default function HnckerPage() {
           <div className="text-xl font-extrabold my-1"
             style={{ background: 'linear-gradient(135deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>@hncker</div>
           <div className="flex gap-6 mt-2">
-            <div className="text-center"><b className="block text-white text-lg">12K</b><span className="text-[11px] text-slate-500 uppercase tracking-wider">followers</span></div>
+            <div className="text-center"><b className="block text-white text-lg">15.5K</b><span className="text-[11px] text-slate-500 uppercase tracking-wider">followers</span></div>
             <div className="text-center"><b className="block text-white text-lg">Cyber/AI</b><span className="text-[11px] text-slate-500 uppercase tracking-wider">niche</span></div>
           </div>
         </div>
@@ -65,6 +65,10 @@ export default function HnckerPage() {
             style={{ background: 'linear-gradient(92deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5)' }}>Instagram ↗</a>
           <a href="https://www.youtube.com/@hncker" target="_blank" rel="noopener" className="glow-btn text-sm px-5 py-2.5 rounded-xl no-underline"
             style={{ background: '#ff0000' }}>▶ YouTube</a>
+          <a href="https://www.facebook.com/hncker" target="_blank" rel="noopener" className="glow-btn text-sm px-5 py-2.5 rounded-xl no-underline"
+            style={{ background: '#1877f2' }}>Facebook ↗</a>
+          <a href="https://www.threads.net/@hncker" target="_blank" rel="noopener" className="glow-btn text-sm px-5 py-2.5 rounded-xl no-underline"
+            style={{ background: '#000', border: '1px solid rgba(255,255,255,0.15)' }}>Threads ↗</a>
         </div>
       </div>
 
