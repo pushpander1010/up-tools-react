@@ -2,6 +2,151 @@
 
 const enc = new TextEncoder();
 
+// --- /ai LLM proxy (Together AI) ---
+const TOGETHER_BASE = "https://api.together.xyz/v1";
+const TOGETHER_MODEL = "meta-llama/Llama-3.3-70B-Instruct-Turbo";
+
+// --- GUARDRAILS: Content filtering & rate limiting ---
+const BLOCKED_PATTERNS = [
+  /how to (make|build|create).*(bomb|explosive|weapon|gun|rifle|firearm)/i,
+  /how to (kill|murder|assassinate|harm).*(someone|people|person|anyone)/i,
+  /(suicide|self-harm|kill yourself)/i,
+  /(child abuse|child exploitation|child pornography|child material)/i,
+  /(human trafficking|sex trafficking)/i,
+  /how to (hack|crack|phish|steal).*(website|account|password|credit card|bank)/i,
+  /dark web.*(marketplace|drug|weapon|hitman)/i,
+  /(money laundering|tax evasion|fraud)/i,
+  /(create|generate).*(fake|fraudulent).*(documents|id|passport|license|certificate)/i,
+  /(kill all|exterminate|genocide).*(jews|muslims|christians|blacks|whites|asians|hispanics|lgbtq)/i,
+  /poison.*(someone|people|food|water)/i,
+  /(make|cook|synthesize).*(meth|cocaine|heroin|drugs|fentanyl|lsd|mdma)/i,
+];
+
+const MAX_INPUT_CHARS = 50000;
+const RATE_LIMIT_WINDOW_MS = 60 * 1000;
+const RATE_LIMIT_MAX = 20;
+const rateLimitMap = new Map();
+
+async function runGuardrails(messages, req) {
+  const totalChars = messages.reduce((sum, m) => sum + (m.content?.length || 0), 0);
+  if (totalChars > MAX_INPUT_CHARS) {
+    return { blocked: true, reason: `Input too large (${totalChars} chars). Maximum is ${MAX_INPUT_CHARS}.` };
+  }
+  const allText = messages.map(m => m.content || '').join(' ');
+  for (const pattern of BLOCKED_PATTERNS) {
+    if (pattern.test(allText)) return { blocked: true, reason: 'Request blocked: content violates usage policy.' };
+  }
+  const ip = req.headers.get('cf-connecting-ip') || req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
+  const now = Date.now();
+  const entry = rateLimitMap.get(ip);
+  if (entry && now < entry.resetAt) {
+    entry.count++;
+    if (entry.count > RATE_LIMIT_MAX) return { blocked: true, reason: 'Rate limit exceeded. Please wait before trying again.' };
+  } else {
+    rateLimitMap.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
+  }
+  const injectionPatterns = [
+    /ignore (all |every |any )?(previous|prior|above|earlier) (instructions?|prompts?|rules?|guidelines?)/i,
+    /you are (now )?(a |an )?(unrestricted|uncensored|jailbroken)/i,
+    /bypass (all |every |any )?(safety|content|moderation|filter)/i,
+    /act as (if|though) (you have no|there are no) (rules?|restrictions?|limits?)/i,
+    / DAN (mode|prompt)|do anything now/i,
+    /ignore (your |all )?(safety|content|moderation) (guidelines?|rules?|policies?)/i,
+  ];
+  for (const pattern of injectionPatterns) {
+    if (pattern.test(allText)) return { blocked: true, reason: 'Request blocked: prompt injection detected.' };
+  }
+  return { blocked: false };
+}
+
+async function handleAI(req, env, cors) {
+  if (req.method === "GET" && new URL(req.url).searchParams.get("health") === "1") {
+    return new Response("ok", { headers: cors });
+  }
+  if (req.method !== "POST") {
+    return new Response(JSON.stringify({ error: "Use POST" }), { status: 405, headers: { ...cors, "Content-Type": "application/json" } });
+  }
+  let body;
+  try { body = await req.json(); }
+  catch { return json({ error: "Invalid JSON body" }, 400, cors); }
+
+  const messages = Array.isArray(body.messages) ? body.messages : null;
+  const temperature = clamp(Number(body.temperature ?? 0.4), 0, 2);
+  const stream = body.stream !== false;
+
+  if (!messages?.length) return json({ error: "messages[] required" }, 400, cors);
+  if (!env.TOGETHER_API_KEY) return json({ error: "TOGETHER_API_KEY missing" }, 500, cors);
+
+  const guardrailResult = await runGuardrails(messages, req);
+  if (guardrailResult.blocked) return json({ error: guardrailResult.reason }, 403, cors);
+
+  const payload = { model: body.model || TOGETHER_MODEL, messages, temperature, stream, max_tokens: 4096 };
+
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 25000);
+
+  let res;
+  try {
+    res = await fetch(`${TOGETHER_BASE}/chat/completions`, {
+      method: "POST",
+      headers: { "Authorization": `Bearer ${env.TOGETHER_API_KEY}`, "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+      signal: controller.signal,
+    });
+  } catch (e) {
+    clearTimeout(timeout);
+    const msg = e?.name === "AbortError" ? "Upstream timeout" : "Upstream unreachable";
+    return json({ error: msg }, 503, cors);
+  }
+  clearTimeout(timeout);
+
+  if (!res.ok) return relayJsonError(res, cors);
+  if (!res.body) return json({ error: "Empty upstream body" }, 502, cors);
+  if (!stream) return json(await res.json(), 200, cors);
+  return translateOpenAIStyleSSE(res, cors);
+}
+
+async function relayJsonError(res, cors) {
+  let payload = { error: `${res.status} ${res.statusText}` };
+  try { payload = await res.json(); } catch {}
+  return json(payload, res.status, cors);
+}
+
+function translateOpenAIStyleSSE(upstream, cors) {
+  const stream = new ReadableStream({
+    async start(controller) {
+      const reader = upstream.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = "";
+      const enqueue = (obj) => controller.enqueue(enc.encode(`data: ${JSON.stringify(obj)}\n\n`));
+      while (true) {
+        const { value, done } = await reader.read();
+        if (done) break;
+        buffer += decoder.decode(value, { stream: true });
+        let idx;
+        while ((idx = buffer.indexOf("\n")) >= 0) {
+          const line = buffer.slice(0, idx).trim();
+          buffer = buffer.slice(idx + 1);
+          if (!line || !line.startsWith("data:")) continue;
+          const payload = line.slice(5).trim();
+          if (payload === "[DONE]") { controller.enqueue(enc.encode("data: [DONE]\n\n")); controller.close(); return; }
+          try {
+            const j = JSON.parse(payload);
+            const delta = j?.choices?.[0]?.delta?.content ?? "";
+            if (delta) enqueue({ choices: [{ delta: { content: delta } }] });
+          } catch (e) { console.warn("SSE parse error:", e); }
+        }
+      }
+      controller.enqueue(enc.encode("data: [DONE]\n\n"));
+      controller.close();
+    }
+  });
+  return new Response(stream, {
+    status: 200,
+    headers: { ...cors, "Content-Type": "text/event-stream; charset=utf-8", "Cache-Control": "no-cache, no-transform", "X-Accel-Buffering": "no" }
+  });
+}
+
 // --- CORS helpers ---
 function corsHeaders(req, env) {
   const origin = req.headers.get("Origin") || "";
@@ -878,11 +1023,22 @@ export default {
       return new Response(null, {
         headers: {
           'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET, OPTIONS',
+          'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
           'Access-Control-Allow-Headers': '*',
           'Access-Control-Max-Age': '86400',
         }
       });
+    }
+
+    // /ai: Together AI LLM proxy (OpenAI-style SSE streaming)
+    if (url.pathname === '/ai') {
+      try {
+        if (req.method === 'OPTIONS') return new Response(null, { status: 204, headers: corsHeaders(req, env) });
+        const cors = corsHeaders(req, env);
+        return await handleAI(req, env, cors);
+      } catch {
+        return new Response("Internal Server Error", { status: 500, headers: { "Content-Type": "text/plain" } });
+      }
     }
 
     // Currency rates endpoint
