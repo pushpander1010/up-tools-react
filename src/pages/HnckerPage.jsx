@@ -3,21 +3,60 @@ import { Link } from 'react-router-dom'
 import InfiniteCarousel from '../components/InfiniteCarousel'
 import videos from '../data/videos.json'
 
+const tools = [
+  {
+    slug: 'apkleaks',
+    name: 'APKLeaks',
+    img: '/assets/tools/apkleaks/apkleaks_scan.png',
+    alt: 'APKLeaks scanning an Android APK file in the terminal',
+    desc: 'Scan Android APK files to extract URLs, API endpoints and hardcoded secrets.',
+    tag: 'APK scanner',
+    accent: 'linear-gradient(135deg, rgba(239,68,68,0.2), rgba(57,255,20,0.08))',
+  },
+  {
+    slug: 'ahmyth',
+    name: 'AhMyth',
+    img: '/assets/tools/ahmyth/ahmyth_logo.png',
+    alt: 'AhMyth Android remote administration tool logo',
+    desc: 'Open-source Android remote administration tool built with Electron & React.',
+    tag: 'RAT framework',
+    accent: 'linear-gradient(135deg, rgba(168,85,247,0.2), rgba(6,182,212,0.08))',
+  },
+  {
+    slug: 'mosint',
+    name: 'Mosint',
+    img: '/assets/tools/mosint/mosint_logo.png',
+    alt: 'Mosint automated email OSINT tool logo',
+    desc: 'Fast Go-based email OSINT tool — validate emails and surface public info.',
+    tag: 'Email OSINT',
+    accent: 'linear-gradient(135deg, rgba(6,182,212,0.2), rgba(34,211,238,0.08))',
+  },
+  {
+    slug: 'phunter',
+    name: 'Phunter',
+    img: '/assets/tools/phunter/phunter_logo.png',
+    alt: 'Phunter phone number OSINT tool logo',
+    desc: 'Python phone-number OSINT tool to look up public details from the terminal.',
+    tag: 'Phone OSINT',
+    accent: 'linear-gradient(135deg, rgba(34,197,94,0.2), rgba(16,185,129,0.08))',
+  },
+]
+
 export default function HnckerPage() {
   return (
     <>
       <Helmet>
-        <title>HNCKER - Apps, Instagram & Videos</title>
-        <meta name="description" content="Follow HNCKER on Instagram, watch our tech videos, and download free Android apps." />
+        <title>HNCKER - Apps, Tools, Instagram & Videos</title>
+        <meta name="description" content="Follow HNCKER on Instagram, browse the free security tools, watch our tech videos, and download free Android apps." />
         <link rel="canonical" href="https://www.uptools.in/hncker/" />
-        <meta property="og:title" content="HNCKER - Apps, Instagram & Videos | UpTools" />
-        <meta property="og:description" content="Follow HNCKER on Instagram, watch our tech videos, and download free Android apps." />
+        <meta property="og:title" content="HNCKER - Apps, Tools, Instagram & Videos | UpTools" />
+        <meta property="og:description" content="Follow HNCKER on Instagram, browse the free security tools, watch our tech videos, and download free Android apps." />
         <meta property="og:url" content="https://www.uptools.in/hncker/" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="UpTools" />
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="HNCKER - Apps, Instagram & Videos | UpTools" />
-        <meta name="twitter:description" content="Follow HNCKER on Instagram, watch our tech videos, and download free Android apps." />
+        <meta name="twitter:title" content="HNCKER - Apps, Tools, Instagram & Videos | UpTools" />
+        <meta name="twitter:description" content="Follow HNCKER on Instagram, browse the free security tools, watch our tech videos, and download free Android apps." />
       </Helmet>
 
       {/* Breadcrumb */}
@@ -38,10 +77,11 @@ export default function HnckerPage() {
           <div>
             <h1 className="text-3xl sm:text-4xl font-black tracking-tight m-0"
               style={{ background: 'linear-gradient(135deg, #39ff14, #00ffa3, #06b6d4)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>HNCKER</h1>
-            <p className="text-slate-400 text-sm mt-1">No-nonsense tech, apps & videos.</p>
+            <p className="text-slate-400 text-sm mt-1">No-nonsense tech, tools, apps & videos.</p>
           </div>
         </div>
         <div className="relative flex flex-wrap gap-2 mt-5">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-white/8 text-slate-300">🛠️ 4 free tools</span>
           <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-white/8 text-slate-300">📱 2 Android apps</span>
           <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-white/8 text-slate-300">🎬 Weekly videos</span>
           <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-white/8 text-slate-300">📸 Instagram</span>
@@ -56,7 +96,7 @@ export default function HnckerPage() {
           <div className="text-xl font-extrabold my-1"
             style={{ background: 'linear-gradient(135deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>@hncker</div>
           <div className="flex gap-6 mt-2">
-            <div className="text-center"><b className="block text-white text-lg">15.5K</b><span className="text-[11px] text-slate-500 uppercase tracking-wider">followers</span></div>
+            <div className="text-center"><b className="block text-white text-lg">16.2K</b><span className="text-[11px] text-slate-500 uppercase tracking-wider">followers</span></div>
             <div className="text-center"><b className="block text-white text-lg">Cyber/AI</b><span className="text-[11px] text-slate-500 uppercase tracking-wider">niche</span></div>
           </div>
         </div>
@@ -72,31 +112,36 @@ export default function HnckerPage() {
         </div>
       </div>
 
-      {/* Videos — Infinite Carousel */}
-      <div className="glass rounded-3xl mb-6 overflow-hidden">
-        <div className="px-6 pt-6 pb-4 flex items-center justify-between gap-3 flex-wrap">
-          <div><h2 className="text-xl font-bold m-0">🎬 Latest Videos</h2><p className="text-xs text-slate-500 mt-1">Swipe to browse — tap to watch.</p></div>
-          <a href="https://www.youtube.com/@hncker" target="_blank" rel="noopener"
-            className="px-3 py-1.5 rounded-full text-xs font-semibold bg-white/4 border border-white/8 text-slate-400 hover:text-white hover:border-white/12 transition-all no-underline">All on YouTube ↗</a>
+      {/* Tools showcase */}
+      <div className="glass rounded-3xl p-6 mb-6" style={{ borderColor: 'rgba(57,255,20,0.1)' }}>
+        <div className="flex items-end justify-between gap-3 flex-wrap mb-5">
+          <div>
+            <h2 className="text-xl font-bold m-0">🛠️ HNCKER Tools</h2>
+            <p className="text-xs text-slate-500 mt-1">Real guides with working examples — pick a tool and dive in.</p>
+          </div>
         </div>
-        <div className="px-6 pb-6">
-          <InfiniteCarousel gap={16}>
-            {videos.map(v => (
-              <a key={v.id} href={`https://www.youtube.com/watch?v=${v.id}`} target="_blank" rel="noopener"
-                className="flex-none w-[300px] rounded-2xl overflow-hidden border border-white/8 hover:border-neon/30 transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-neon/5 no-underline group"
-                style={{ background: 'rgba(17,24,39,0.6)' }}>
-                <div className="relative aspect-video bg-black overflow-hidden">
-                  <img src={`https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`} alt={v.title} loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                  <span className="absolute inset-0 flex items-center justify-center text-4xl text-white bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">▶</span>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {tools.map(t => (
+            <div key={t.slug} className="p-5 rounded-2xl flex flex-col" style={{ background: t.accent, border: '1px solid rgba(255,255,255,0.08)' }}>
+              <div className="flex items-center gap-3 mb-3">
+                <img src={t.img} alt={t.alt} loading="lazy"
+                  className="w-14 h-14 rounded-xl object-contain bg-black/30 p-1 border border-white/10"
+                  style={{ background: 'rgba(0,0,0,0.35)' }} />
+                <div>
+                  <h3 className="text-lg font-bold m-0">{t.name}</h3>
+                  <span className="text-[11px] text-neon font-semibold uppercase tracking-wider">{t.tag}</span>
                 </div>
-                <div className="p-4">
-                  <div className="text-sm font-semibold text-white line-clamp-2 mb-1">{v.title}</div>
-                  <div className="text-xs text-slate-500">{v.sub}</div>
-                </div>
-              </a>
-            ))}
-          </InfiniteCarousel>
+              </div>
+              <p className="text-xs text-slate-400 mb-4 flex-1">{t.desc}</p>
+              <div className="flex gap-2 flex-wrap">
+                <Link to={`/hncker/${t.slug}/`}
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-bold no-underline"
+                  style={{ background: 'linear-gradient(135deg, #39ff14, #00ffa3)', color: '#080d1a' }}>📖 View Guide</Link>
+                <a href={`https://www.youtube.com/@hncker`} target="_blank" rel="noopener"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-bold no-underline bg-white/5 border border-white/10 text-slate-200 hover:text-white hover:border-neon/40 transition-all">▶ Tutorial</a>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
@@ -121,6 +166,34 @@ export default function HnckerPage() {
                 style={{ background: 'linear-gradient(135deg, #39ff14, #00ffa3)', color: '#080d1a' }}>⬇ Download APK</a>
             </div>
           ))}
+        </div>
+      </div>
+
+      {/* Videos — Infinite Carousel (moved to end) */}
+      <div className="glass rounded-3xl mb-6 overflow-hidden">
+        <div className="px-6 pt-6 pb-4 flex items-center justify-between gap-3 flex-wrap">
+          <div><h2 className="text-xl font-bold m-0">🎬 Latest Videos</h2><p className="text-xs text-slate-500 mt-1">Swipe to browse — tap to watch.</p></div>
+          <a href="https://www.youtube.com/@hncker" target="_blank" rel="noopener"
+            className="px-3 py-1.5 rounded-full text-xs font-semibold bg-white/4 border border-white/8 text-slate-400 hover:text-white hover:border-white/12 transition-all no-underline">All on YouTube ↗</a>
+        </div>
+        <div className="px-6 pb-6">
+          <InfiniteCarousel gap={16}>
+            {videos.map(v => (
+              <a key={v.id} href={`https://www.youtube.com/watch?v=${v.id}`} target="_blank" rel="noopener"
+                className="flex-none w-[300px] rounded-2xl overflow-hidden border border-white/8 hover:border-neon/30 transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-neon/5 no-underline group"
+                style={{ background: 'rgba(17,24,39,0.6)' }}>
+                <div className="relative aspect-video bg-black overflow-hidden">
+                  <img src={`https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`} alt={v.title} loading="lazy"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <span className="absolute inset-0 flex items-center justify-center text-4xl text-white bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">▶</span>
+                </div>
+                <div className="p-4">
+                  <div className="text-sm font-semibold text-white line-clamp-2 mb-1">{v.title}</div>
+                  <div className="text-xs text-slate-500">{v.sub}</div>
+                </div>
+              </a>
+            ))}
+          </InfiniteCarousel>
         </div>
       </div>
     </>
