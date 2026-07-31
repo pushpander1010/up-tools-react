@@ -46,8 +46,8 @@ export default function ai_stock_analyzer() {
     setStatus('Fetching data...')
     try {
       const symbol = ticker.trim().toUpperCase() + getSuffix(market)
-      const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?range=${range}&interval=${interval}`
-      const r = await fetch(url)
+      const target = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?range=${range}&interval=${interval}`
+      const r = await fetch(`/proxy?u=${encodeURIComponent(target)}`)
       if (!r.ok) throw new Error('Ticker not found or market closed')
       const json = await r.json()
       const result = json.chart?.result?.[0]
