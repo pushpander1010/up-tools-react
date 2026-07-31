@@ -17,9 +17,14 @@ const SKIP_SLUGS = new Set(['games', 'about', 'contact', 'hncker', 'privacy-poli
 
 let count = 0
 for (const file of toolFiles) {
-  const slug = file.replace(/\.(jsx|tsx)$/, '').replace(/_/g, '-')
+  let slug = file.replace(/\.(jsx|tsx)$/, '').replace(/_/g, '-')
     .replace(/^tool-/, '') // remove tool_ prefix for files starting with digits
-  
+
+  // Nested hncker pages: hncker_ahmyth.jsx → /hncker/ahmyth/
+  if (slug.startsWith('hncker-')) {
+    slug = 'hncker/' + slug.slice('hncker-'.length)
+  }
+
   // Skip slugs with dedicated static pages
   if (SKIP_SLUGS.has(slug)) continue
   
