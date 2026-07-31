@@ -13,6 +13,9 @@ const UNIT_MUL = { H: 1, kH: 1e3, MH: 1e6, GH: 1e9, TH: 1e12, PH: 1e15 }
 const UNITS = ['H', 'kH', 'MH', 'GH', 'TH']
 const CURRENCIES = ['inr', 'usd']
 
+// Route through the worker /proxy to avoid CoinGecko rate limits (429) and cache server-side
+const cg = (path) => `/proxy?u=${encodeURIComponent('https://api.coingecko.com/api/v3' + path)}`
+
 function fmtCurrency(n, cur) {
   return new Intl.NumberFormat(cur === 'inr' ? 'en-IN' : 'en-US', {
     style: 'currency', currency: cur.toUpperCase(), maximumFractionDigits: Math.abs(n) >= 100 ? 0 : 2
@@ -41,7 +44,7 @@ export default function crypto_profitability() {
     setFetchingPrice(true)
     try {
       const id = COIN_META[coinKey].id
-      const res = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${id}&vs_currencies=${vsKey}`)
+      const res = await fetch(`${cg(`/simple/price?ids=${id}&vs_currencies=${vsKey}`)}`)
       const j = await res.json()
       const p = j?.[id]?.[vsKey]
       if (p) setPrice(String(p))

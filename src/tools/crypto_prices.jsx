@@ -6,6 +6,9 @@ const API_BASE = 'https://api.coingecko.com/api/v3'
 const CURRENCIES = { inr: '₹', usd: '$', eur: '€' }
 const LS_KEY = 'ertools_crypto_watchlist'
 
+// Route through the worker /proxy to avoid CoinGecko rate limits (429) and cache server-side
+const cg = (path) => `/proxy?u=${encodeURIComponent(API_BASE + path)}`
+
 function fmt(n, cur) {
   if (!n && n !== 0) return '—'
   const s = CURRENCIES[cur] || '$'
@@ -75,7 +78,7 @@ export default function crypto_prices() {
   const fetchCoins = useCallback(async () => {
     try {
       setError(null)
-      const url = `${API_BASE}/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=100&page=1&sparkline=true&price_change_percentage=1h,24h,7d`
+      const url = `${cg(`/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=100&page=1&sparkline=true&price_change_percentage=1h,24h,7d`)}`
       const res = await fetch(url)
       if (!res.ok) throw new Error(`API error ${res.status}`)
       const data = await res.json()
@@ -98,7 +101,7 @@ export default function crypto_prices() {
 
       // BTC dominance
       try {
-        const gl = await fetch(`${API_BASE}/global`)
+        const gl = await fetch(`${cg(`/global`)}`)
         if (gl.ok) { const gd = await gl.json(); setBtcDom(gd.data?.market_cap_percentage?.btc) }
       } catch {}
 

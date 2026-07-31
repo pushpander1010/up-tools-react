@@ -5,6 +5,9 @@ import useJumpToResult from '../hooks/useJumpToResult'
 const API = 'https://api.coingecko.com/api/v3'
 const DB_KEY = 'cpt:data:v1'
 
+// Route through the worker /proxy to avoid CoinGecko rate limits (429) and cache server-side
+const cg = (path) => `/proxy?u=${encodeURIComponent(API + path)}`
+
 const PRIORITY = [
   { id: 'bitcoin', name: 'Bitcoin', symbol: 'btc' },
   { id: 'ethereum', name: 'Ethereum', symbol: 'eth' },
@@ -34,7 +37,7 @@ export default function crypto_portfolio() {
 
   // Load coin list
   useEffect(() => {
-    fetch(`${API}/coins/list?include_platform=false`)
+    fetch(`${cg(`/coins/list?include_platform=false`)}`)
       .then(r => r.json()).then(j => { if (j) localStorage.setItem('cpt:coins', JSON.stringify(j)) })
       .catch(() => {})
   }, [])
@@ -43,7 +46,7 @@ export default function crypto_portfolio() {
   useEffect(() => {
     const ids = [...new Set(rows.map(r => r.id))]
     if (!ids.length) return
-    fetch(`${API}/simple/price?ids=${ids.join(',')}&vs_currencies=${currency}&include_24hr_change=true`)
+    fetch(`${cg(`/simple/price?ids=${ids.join(',')}&vs_currencies=${currency}&include_24hr_change=true`)}`)
       .then(r => r.json()).then(j => {
         const p = {}
         ids.forEach(id => { if (j?.[id]) p[id] = { price: j[id][currency], ch24: j[id][`${currency}_24h_change`] } })
@@ -54,7 +57,7 @@ export default function crypto_portfolio() {
   const search = useCallback(async (q) => {
     if (!q.trim()) { setSuggestions([]); return }
     try {
-      const r = await fetch(`${API}/search?query=${encodeURIComponent(q)}`)
+      const r = await fetch(`${cg(`/search?query=${encodeURIComponent(q)}`)}`)
       const j = await r.json()
       setSuggestions((j?.coins || []).slice(0, 8).map(c => ({ id: c.id, name: c.name, symbol: c.symbol })))
     } catch { setSuggestions([]) }
@@ -64,7 +67,7 @@ export default function crypto_portfolio() {
     setSelected(coin); setSearchQuery(`${coin.name} (${coin.symbol.toUpperCase()})`)
     setSuggestions([])
     try {
-      const r = await fetch(`${API}/simple/price?ids=${coin.id}&vs_currencies=${currency}`)
+      const r = await fetch(`${cg(`/simple/price?ids=${coin.id}&vs_currencies=${currency}`)}`)
       const j = await r.json()
       setLivePrice(j?.[coin.id]?.[currency] ?? null)
     } catch { setLivePrice(null) }
