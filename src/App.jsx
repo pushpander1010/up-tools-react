@@ -82,13 +82,13 @@ function SidebarLayout({ children }) {
   return (
     <div className="flex gap-4">
       <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-        <GameAdSlot slot="3494503358" format="vertical" width={160} height={600} className="mt-2" />
+        <GameAdSlot key={'l-' + location.pathname} slot="3494503358" format="vertical" width={160} height={600} className="mt-2" />
       </div>
       <div className="flex-1 min-w-0">
         {children}
       </div>
       <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-        <GameAdSlot slot="3414612309" format="vertical" width={160} height={600} className="mt-2" />
+        <GameAdSlot key={'r-' + location.pathname} slot="3414612309" format="vertical" width={160} height={600} className="mt-2" />
       </div>
     </div>
   )
