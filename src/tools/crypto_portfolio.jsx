@@ -5,8 +5,8 @@ import useJumpToResult from '../hooks/useJumpToResult'
 const API = 'https://api.coingecko.com/api/v3'
 const DB_KEY = 'cpt:data:v1'
 
-// CoinGecko allows CORS, so call directly from the browser (worker /proxy shared IP gets throttled)
-const cg = (path) => API + path
+// Route via worker /proxy so the CoinGecko demo API key stays server-side (avoids 429)
+const cg = (path) => `/proxy?u=${encodeURIComponent(API + path)}`
 
 const PRIORITY = [
   { id: 'bitcoin', name: 'Bitcoin', symbol: 'btc' },

@@ -13,8 +13,8 @@ const UNIT_MUL = { H: 1, kH: 1e3, MH: 1e6, GH: 1e9, TH: 1e12, PH: 1e15 }
 const UNITS = ['H', 'kH', 'MH', 'GH', 'TH']
 const CURRENCIES = ['inr', 'usd']
 
-// CoinGecko allows CORS, so call directly from the browser (worker /proxy shared IP gets throttled)
-const cg = (path) => 'https://api.coingecko.com/api/v3' + path
+// Route via worker /proxy so the CoinGecko demo API key stays server-side (avoids 429)
+const cg = (path) => `/proxy?u=${encodeURIComponent('https://api.coingecko.com/api/v3' + path)}`
 
 function fmtCurrency(n, cur) {
   return new Intl.NumberFormat(cur === 'inr' ? 'en-IN' : 'en-US', {

@@ -248,6 +248,10 @@ async function handleFinanceProxy(req, env) {
     "Accept-Language": "en-IN,en;q=0.9",
     "Cache-Control": "no-cache",
   };
+  // Inject CoinGecko demo API key server-side (kept secret; avoids free-tier 429 from shared IP)
+  if (target.hostname.includes("coingecko.com") && env.COINGECKO_API_KEY) {
+    upstreamHeaders["x-cg-demo-api-key"] = env.COINGECKO_API_KEY;
+  }
   applyYahooAuth(target, yahooAuth, upstreamHeaders, { url, key: targetKey });
 
   const makeUpstreamRequest = () => new Request(target.toString(), { method: "GET", headers: upstreamHeaders });
