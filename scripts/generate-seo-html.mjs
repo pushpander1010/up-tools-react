@@ -68,4 +68,34 @@ for (const file of toolFiles) {
   count++
 }
 
+// Build a static index.html for a given slug (used for landing pages skipped above)
+function buildHtml(slug, title, desc) {
+  let html = template
+  html = html.replace(/<title>.*?<\/title>/, `<title>${title}</title>`)
+  if (/<meta name="description"/.test(html)) {
+    html = html.replace(/<meta name="description"[^>]*\/>/, `<meta name="description" content="${desc}" />`)
+  }
+  html = html.replace(/<link rel="canonical"[^>]*\/>/, `<link rel="canonical" href="https://www.uptools.in/${slug}/" />`)
+  const og = `
+    <meta property="og:title" content="${title}" />
+    <meta property="og:description" content="${desc}" />
+    <meta property="og:url" content="https://www.uptools.in/${slug}/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="UpTools" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="${title}" />
+    <meta name="twitter:description" content="${desc}" />
+  `
+  html = html.replace('</head>', og + '\n  </head>')
+  const outDir = join(dist, slug)
+  mkdirSync(outDir, { recursive: true })
+  writeFileSync(join(outDir, 'index.html'), html)
+}
+
+// HNCKER landing page: it sits in SKIP_SLUGS, but once dist/hncker/ exists as a
+// directory (from the tool sub-pages) the worker 1101s on /hncker/ without a static
+// index.html. Give it one so the nested route resolves.
+buildHtml('hncker', 'HNCKER - Apps, Tools, Instagram & Videos',
+  'Follow HNCKER on Instagram, browse the free security tools, watch our tech videos, and download free Android apps.')
+
 console.log(`✅ Generated SEO HTML for ${count} tools`)
