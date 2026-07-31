@@ -6,8 +6,8 @@ const API_BASE = 'https://api.coingecko.com/api/v3'
 const CURRENCIES = { inr: '₹', usd: '$', eur: '€' }
 const LS_KEY = 'ertools_crypto_watchlist'
 
-// Route through the worker /proxy to avoid CoinGecko rate limits (429) and cache server-side
-const cg = (path) => `/proxy?u=${encodeURIComponent(API_BASE + path)}`
+// CoinGecko allows CORS, so call directly from the browser (worker /proxy shared IP gets throttled)
+const cg = (path) => API_BASE + path
 
 function fmt(n, cur) {
   if (!n && n !== 0) return '—'
