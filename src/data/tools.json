@@ -5835,6 +5835,25 @@
         "all",
         "security"
       ]
+    },
+    {
+      "slug": "hncker/apkleaks",
+      "title": "APKLeaks Android Scanner",
+      "icon": "\ud83d\udcf1",
+      "desc": "Extract URLs, API endpoints & secrets from Android APKs (educational).",
+      "href": "/hncker/apkleaks/",
+      "tags": [
+        "apkleaks",
+        "android",
+        "apk",
+        "secrets",
+        "security",
+        "pentesting"
+      ],
+      "cats": [
+        "all",
+        "security"
+      ]
     }
   ],
   "categories": {
