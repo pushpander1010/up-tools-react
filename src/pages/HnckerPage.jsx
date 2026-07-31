@@ -81,12 +81,30 @@ export default function HnckerPage() {
           </div>
         </div>
         <div className="relative flex flex-wrap gap-2 mt-5">
+          <a href="https://aistudio.instagram.com/ai/882454998272846/?utm_source=share" target="_blank" rel="noopener"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-neon/30 text-neon hover:bg-neon/10 hover:border-neon/50 transition-all no-underline">🤖 Hncker AI</a>
           <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-white/8 text-slate-300">🛠️ 4 free tools</span>
           <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-white/8 text-slate-300">📱 2 Android apps</span>
           <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-white/8 text-slate-300">🎬 Weekly videos</span>
           <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-white/8 text-slate-300">📸 Instagram</span>
         </div>
       </div>
+
+      {/* Hncker AI CTA */}
+      <a href="https://aistudio.instagram.com/ai/882454998272846/?utm_source=share" target="_blank" rel="noopener"
+        className="glass rounded-3xl p-7 mb-6 flex flex-col sm:flex-row items-center justify-between gap-5 no-underline group hover:border-neon/40 transition-all"
+        style={{ background: 'linear-gradient(135deg, rgba(57,255,20,0.08), rgba(6,182,212,0.05))', borderColor: 'rgba(57,255,20,0.2)' }}>
+        <div className="flex items-center gap-4">
+          <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl shrink-0"
+            style={{ background: 'linear-gradient(135deg, rgba(57,255,20,0.25), rgba(6,182,212,0.2))', border: '1px solid rgba(57,255,20,0.3)' }}>🤖</div>
+          <div>
+            <h2 className="text-xl font-bold m-0">Chat with Hncker AI</h2>
+            <p className="text-xs text-slate-400 mt-1 m-0">Got a doubt or need real code? Ask the official Hncker AI assistant on Instagram.</p>
+          </div>
+        </div>
+        <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold shrink-0"
+          style={{ background: 'linear-gradient(135deg, #39ff14, #00ffa3)', color: '#080d1a' }}>Try it now ↗</span>
+      </a>
 
       {/* Instagram CTA */}
       <div className="glass rounded-3xl p-7 mb-6 flex flex-col sm:flex-row items-center justify-between gap-5"
