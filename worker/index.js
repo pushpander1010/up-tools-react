@@ -1109,6 +1109,18 @@ export default {
       return handleNewsProxy(req, env);
     }
 
+    // Legacy redirects: old tool slugs -> renamed React tool pages
+    const LEGACY_REDIRECTS = {
+      '/whatsapp-private-dp-viewer': '/whatsapp-profile-picture-downloader',
+      '/whatsapp-private-dp-viewer/': '/whatsapp-profile-picture-downloader/',
+    };
+    if (LEGACY_REDIRECTS[url.pathname]) {
+      return new Response(null, {
+        status: 301,
+        headers: { Location: 'https://www.uptools.in' + LEGACY_REDIRECTS[url.pathname] },
+      });
+    }
+
     // Serve static assets for all other routes
     return env.ASSETS.fetch(req);
   }
