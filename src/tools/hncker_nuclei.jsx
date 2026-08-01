@@ -137,6 +137,22 @@ export default function hncker_nuclei() {
         <meta property="og:image" content="https://www.uptools.in/assets/tools/nuclei/nuclei_scan.png" />
       </Helmet>
 
+      <Section id="video" icon="🎬" title="Video Tutorial" subtitle="Watch the HNCKER walkthrough">
+        <div className="rounded-xl overflow-hidden border border-white/10" style={{ background: 'rgba(0,0,0,0.3)' }}>
+          <div className="relative w-full" style={{ aspectRatio: '16/9' }}>
+            <iframe
+              className="absolute inset-0 w-full h-full"
+              src="https://www.youtube.com/embed/Tew1N2CW2Ks?si=TVaV1ZnBWFuIX-sG"
+              title="Nuclei video tutorial"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            />
+          </div>
+        </div>
+      </Section>
+
       <WarningBox>
         Nuclei scans targets for known vulnerabilities. Use it <b>only on systems you own or have
         written permission to test</b>. Scanning someone else's website or network without
@@ -206,22 +222,6 @@ export default function hncker_nuclei() {
             className="w-full h-auto object-contain" loading="lazy" />
           <figcaption className="px-4 py-2 text-xs text-slate-400">Running Nuclei against a target</figcaption>
         </figure>
-      </Section>
-
-      <Section id="video" icon="🎬" title="Video Tutorial" subtitle="Watch the HNCKER walkthrough">
-        <div className="rounded-xl overflow-hidden border border-white/10" style={{ background: 'rgba(0,0,0,0.3)' }}>
-          <div className="relative w-full" style={{ aspectRatio: '16/9' }}>
-            <iframe
-              className="absolute inset-0 w-full h-full"
-              src="https://www.youtube.com/embed/Tew1N2CW2Ks?si=TVaV1ZnBWFuIX-sG"
-              title="Nuclei video tutorial"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen
-            />
-          </div>
-        </div>
       </Section>
 
       <Section id="issues" icon="🐞" title="Known Issues & How to Fix Them" subtitle="Real problems people hit, with working fixes">
