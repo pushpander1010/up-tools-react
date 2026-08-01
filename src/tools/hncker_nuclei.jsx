@@ -138,15 +138,14 @@ export default function hncker_nuclei() {
       </Helmet>
 
       <Section id="video" icon="🎬" title="Video Tutorial" subtitle="Watch the HNCKER walkthrough">
-        <div className="rounded-xl overflow-hidden border border-white/10" style={{ background: 'rgba(0,0,0,0.3)' }}>
-          <div className="relative w-full" style={{ aspectRatio: '16/9' }}>
+        <div className="max-w-3xl mx-auto">
+          <div className="rounded-xl overflow-hidden border border-white/10 aspect-video" style={{ background: '#000' }}>
             <iframe
-              className="absolute inset-0 w-full h-full"
-              src="https://www.youtube.com/embed/Tew1N2CW2Ks?si=TVaV1ZnBWFuIX-sG"
+              className="w-full h-full block"
+              src="https://www.youtube.com/embed/Tew1N2CW2Ks"
               title="Nuclei video tutorial"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
               allowFullScreen
             />
           </div>
