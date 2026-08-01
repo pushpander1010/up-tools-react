@@ -5873,6 +5873,26 @@
         "all",
         "security"
       ]
+    },
+    {
+      "slug": "hncker/hping3",
+      "title": "hping3 Packet Crafting & Stress-Testing",
+      "icon": "\ud83d\udce1",
+      "desc": "Craft raw TCP/UDP/ICMP packets, scan ports and stress-test firewalls (educational).",
+      "href": "/hncker/hping3/",
+      "tags": [
+        "hping3",
+        "packet",
+        "network",
+        "firewall",
+        "flood",
+        "security",
+        "pentesting"
+      ],
+      "cats": [
+        "all",
+        "security"
+      ]
     }
   ],
   "categories": {

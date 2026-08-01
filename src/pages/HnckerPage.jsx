@@ -49,6 +49,15 @@ const tools = [
     tag: 'Vuln scanner',
     accent: 'linear-gradient(135deg, rgba(0,255,65,0.2), rgba(6,182,212,0.08))',
   },
+  {
+    slug: 'hping3',
+    name: 'hping3',
+    img: '/assets/tools/hping3/hping3_logo.png',
+    alt: 'hping3 packet crafting tool logo',
+    desc: 'Craft raw TCP/UDP/ICMP packets, scan ports and stress-test firewalls.',
+    tag: 'Packet crafting',
+    accent: 'linear-gradient(135deg, rgba(0,255,65,0.2), rgba(6,182,212,0.08))',
+  },
 ]
 
 export default function HnckerPage() {
@@ -92,7 +101,7 @@ export default function HnckerPage() {
         <div className="relative flex flex-wrap gap-2 mt-5">
           <a href="https://aistudio.instagram.com/ai/882454998272846/?utm_source=share" target="_blank" rel="noopener"
             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-neon/30 text-neon hover:bg-neon/10 hover:border-neon/50 transition-all no-underline">🤖 Hncker AI</a>
-          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-white/8 text-slate-300">🛠️ 5 free tools</span>
+          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-white/8 text-slate-300">🛠️ 6 free tools</span>
           <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-white/8 text-slate-300">📱 2 Android apps</span>
           <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-white/8 text-slate-300">🎬 Weekly videos</span>
           <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-white/8 text-slate-300">📸 Instagram</span>
