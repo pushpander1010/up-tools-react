@@ -5854,6 +5854,25 @@
         "all",
         "security"
       ]
+    },
+    {
+      "slug": "hncker/nuclei",
+      "title": "Nuclei Vulnerability Scanner",
+      "icon": "\ud83c\udfaf",
+      "desc": "Fast template-driven vulnerability scanner for web targets (educational).",
+      "href": "/hncker/nuclei/",
+      "tags": [
+        "nuclei",
+        "scanner",
+        "vulnerability",
+        "cve",
+        "security",
+        "pentesting"
+      ],
+      "cats": [
+        "all",
+        "security"
+      ]
     }
   ],
   "categories": {
