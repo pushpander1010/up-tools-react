@@ -154,6 +154,19 @@ export default function hncker_ahmyth() {
         <meta property="og:image" content="https://www.uptools.in/assets/tools/ahmyth/ahmyth_logo.png" />
       </Helmet>
 
+      {/* Video Tutorial */}
+      <Section id="video" icon="🎬" title="Video Tutorial" subtitle="Watch the full walkthrough of AhMyth">
+        <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+          <iframe
+            className="absolute inset-0 w-full h-full rounded-xl border border-white/10"
+            src="https://www.youtube.com/embed/0RERLc1bjFA"
+            title="AhMyth Android RAT — Full Tutorial | HNCKER"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        </div>
+      </Section>
+
       {/* Warning */}
       <WarningBox>
         AhMyth is a <b>Remote Administration Tool</b> designed for security research. Using it to gain unauthorized access to
