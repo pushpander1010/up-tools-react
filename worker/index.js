@@ -1122,14 +1122,6 @@ export default {
     }
 
     // Serve static assets for all other routes
-    const res = await env.ASSETS.fetch(req);
-    const urlPath = url.pathname;
-    // Hashed assets + fonts are immutable — set a long cache (overrides CF default max-age=0).
-    if (urlPath.startsWith('/assets/') || urlPath.startsWith('/fonts/')) {
-      const headers = new Headers(res.headers);
-      headers.set('Cache-Control', 'public, max-age=31536000, immutable');
-      return new Response(res.body, { status: res.status, statusText: res.statusText, headers });
-    }
-    return res;
+    return env.ASSETS.fetch(req);
   }
 };
