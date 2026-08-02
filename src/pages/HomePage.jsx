@@ -89,7 +89,7 @@ export default function HomePage() {
         <div className="relative flex flex-col sm:flex-row items-start gap-8">
           <div className="flex-1">
             <div className="flex items-center gap-4 mb-5">
-              <img src="/assets/logo/uptools-logo.svg" alt="UpTools" className="w-16 h-16 rounded-2xl shadow-2xl shadow-brand/30" />
+              <img src="/assets/logo/uptools-logo.svg" alt="UpTools" className="w-16 h-16 rounded-2xl shadow-2xl shadow-brand/30" width="64" height="64" />
               <div>
                 <h1 className="text-3xl sm:text-4xl font-extrabold gradient-text leading-tight m-0">Games & Tools</h1>
                 <p className="text-slate-400 text-sm mt-1">All in one place.</p>

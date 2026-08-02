@@ -1,7 +1,7 @@
 export default function FAQ({ questions }) {
   // questions: [{ q: 'Question', a: 'Answer' }]
   return (
-    <section className="glass p-6 mt-6">
+    <section className="glass p-6 mt-6" style={{ contentVisibility: "auto", containIntrinsicSize: "0 300px" }}>
       <h2 className="text-lg font-bold text-white mb-4">Frequently Asked Questions</h2>
       <div className="space-y-3">
         {questions.map((faq, i) => (

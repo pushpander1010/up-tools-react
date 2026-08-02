@@ -1,7 +1,7 @@
 export default function HowItWorks({ steps }) {
   // steps: ['Enter your amount', 'Select the GST rate', 'View the breakdown']
   return (
-    <section className="glass p-6 mt-6">
+    <section className="glass p-6 mt-6" style={{ contentVisibility: "auto", containIntrinsicSize: "0 200px" }}>
       <h2 className="text-lg font-bold text-white mb-4">📐 How It Works</h2>
       <div className="space-y-3">
         {steps.map((step, i) => (
