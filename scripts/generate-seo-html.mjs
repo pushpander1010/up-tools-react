@@ -44,8 +44,11 @@ for (const file of toolFiles) {
   
   html = html.replace(/<title>.*?<\/title>/, `<title>${title} | UpTools</title>`)
   
+  const descTag = `<meta name="description" content="${desc}" />`
   if (/<meta name="description"/.test(html)) {
-    html = html.replace(/<meta name="description"[^>]*\/>/, `<meta name="description" content="${desc}" />`)
+    html = html.replace(/<meta name="description"[^>]*\/>/, descTag)
+  } else {
+    html = html.replace(/<\/title>/, `</title>\n    ${descTag}`)
   }
   
   html = html.replace(/<link rel="canonical"[^>]*\/>/, `<link rel="canonical" href="https://www.uptools.in/${slug}/" />`)
@@ -72,8 +75,11 @@ for (const file of toolFiles) {
 function buildHtml(slug, title, desc) {
   let html = template
   html = html.replace(/<title>.*?<\/title>/, `<title>${title}</title>`)
+  const descTag = `<meta name="description" content="${desc}" />`
   if (/<meta name="description"/.test(html)) {
-    html = html.replace(/<meta name="description"[^>]*\/>/, `<meta name="description" content="${desc}" />`)
+    html = html.replace(/<meta name="description"[^>]*\/>/, descTag)
+  } else {
+    html = html.replace(/<\/title>/, `</title>\n    ${descTag}`)
   }
   html = html.replace(/<link rel="canonical"[^>]*\/>/, `<link rel="canonical" href="https://www.uptools.in/${slug}/" />`)
   const og = `
