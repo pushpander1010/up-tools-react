@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 export default function Footer() {
   return (
-    <footer className="text-center py-8 mt-12 border-t border-white/5 relative z-10" style={{ minHeight: '180px' }}>
+    <footer className="text-center py-8 mt-12 border-t border-white/5 relative z-10" style={{ minHeight: '220px', containIntrinsicSize: '0 220px', contentVisibility: 'auto' }}>
       <div className="flex items-center justify-center gap-3 mb-3">
         <img src="/assets/logo/uptools-logo.svg" alt="" className="w-8 h-8 rounded-lg" width="32" height="32" />
         <span className="text-sm font-semibold text-white">UpTools</span>
