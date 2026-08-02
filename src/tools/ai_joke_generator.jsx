@@ -84,7 +84,7 @@ export default function ai_joke_generator() {
                 className={`px-3 py-2 rounded-xl text-xs font-bold transition-all ${
                   category === c.id
                     ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30'
-                    : 'bg-white/[0.04] text-slate-500 border border-white/[0.08] hover:text-white'
+                    : 'bg-white/[0.04] text-slate-400 border border-white/[0.08] hover:text-white'
                 }`}>
                 {c.label}
               </button>
@@ -119,7 +119,7 @@ export default function ai_joke_generator() {
         {/* Rating */}
         {output && !streaming && (
           <div className="flex items-center gap-3 p-3 rounded-xl bg-white/[0.04] border border-white/[0.08]">
-            <span className="text-xs text-slate-500 font-semibold">Rate this joke:</span>
+            <span className="text-xs text-slate-400 font-semibold">Rate this joke:</span>
             {['😂', '😐', '🙄'].map(emoji => (
               <button key={emoji} onClick={() => setRating(emoji)}
                 className={`text-xl transition-all hover:scale-125 ${rating === emoji ? 'scale-125' : 'opacity-60 hover:opacity-100'}`}>

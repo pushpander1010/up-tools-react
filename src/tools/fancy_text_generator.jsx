@@ -105,7 +105,7 @@ export default function fancy_text_generator() {
       <div className="max-w-3xl mx-auto space-y-4">
         {/* Input */}
         <div>
-          <label className="block text-xs font-semibold text-slate-500 mb-1">✎ Your Text</label>
+          <label className="block text-xs font-semibold text-slate-400 mb-1">✎ Your Text</label>
           <textarea value={input} onChange={e => setInput(e.target.value)}
             placeholder="Type or paste your text here..."
             rows={4}
@@ -118,7 +118,7 @@ export default function fancy_text_generator() {
           {results.map((style, idx) => (
             <div key={style.label} className="p-4 rounded-xl bg-white/[0.05] border border-white/8 hover:border-white/12 transition-all">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">{style.label}</span>
+                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">{style.label}</span>
                 {style.output && (
                   <button onClick={() => { copy(style.output, idx); jumpTo() }}
                     className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all ${copied === idx ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-white/5 border border-white/8 text-slate-400 hover:text-white'}`}>

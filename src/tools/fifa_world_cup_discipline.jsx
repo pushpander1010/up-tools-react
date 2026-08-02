@@ -101,7 +101,7 @@ export default function fifa_world_cup_discipline() {
           ].map((s, i) => (
             <div key={i} className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-3 text-center">
               <div className={`text-xl font-extrabold ${s.color}`}>{s.n}</div>
-              <div className="text-[10px] text-slate-500 font-medium">{s.l}</div>
+              <div className="text-[10px] text-slate-400 font-medium">{s.l}</div>
               {s.sub && <div className="text-[9px] text-slate-600">{s.sub}</div>}
             </div>
           ))}
@@ -111,7 +111,7 @@ export default function fifa_world_cup_discipline() {
         <div className="flex gap-2">
           {['teams', 'players'].map(t => (
             <button key={t} onClick={() => setTab(t)}
-              className={`px-5 py-2.5 rounded-xl text-sm font-bold transition-all ${tab === t ? 'bg-amber-500/15 text-amber-400 border border-amber-500/30' : 'bg-white/[0.06] text-slate-500 border border-white/[0.08]'}`}>
+              className={`px-5 py-2.5 rounded-xl text-sm font-bold transition-all ${tab === t ? 'bg-amber-500/15 text-amber-400 border border-amber-500/30' : 'bg-white/[0.06] text-slate-400 border border-white/[0.08]'}`}>
               {t === 'teams' ? '📊 Team Discipline' : '👤 Player Cards'}
             </button>
           ))}
@@ -122,7 +122,7 @@ export default function fifa_world_cup_discipline() {
           {tab === 'teams' ? (
             <table className="w-full text-xs">
               <thead>
-                <tr className="text-slate-500 border-b border-white/[0.08]">
+                <tr className="text-slate-400 border-b border-white/[0.08]">
                   <th className="text-left py-2 px-2">#</th>
                   <th className="text-left py-2 px-2">Team</th>
                   <th className="text-right py-2 px-2">Matches</th>
@@ -152,7 +152,7 @@ export default function fifa_world_cup_discipline() {
           ) : (
             <table className="w-full text-xs">
               <thead>
-                <tr className="text-slate-500 border-b border-white/[0.08]">
+                <tr className="text-slate-400 border-b border-white/[0.08]">
                   <th className="text-left py-2 px-2">#</th>
                   <th className="text-left py-2 px-2">Player</th>
                   <th className="text-left py-2 px-2">Team</th>
@@ -186,7 +186,7 @@ export default function fifa_world_cup_discipline() {
                 {f.q}
                 <span className="text-slate-600 group-open:rotate-180 transition-transform">▾</span>
               </summary>
-              <p className="text-xs text-slate-500 mt-2 pl-2">{f.a}</p>
+              <p className="text-xs text-slate-400 mt-2 pl-2">{f.a}</p>
             </details>
           ))}
         </div>

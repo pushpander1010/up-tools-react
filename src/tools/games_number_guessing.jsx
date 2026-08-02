@@ -197,15 +197,15 @@ export default function games_number_guessing() {
           <div className="grid grid-cols-3 gap-4">
             <div className="text-center">
               <div className="text-2xl font-extrabold text-white">{wins}</div>
-              <div className="text-xs text-slate-500 font-medium mt-0.5">Wins</div>
+              <div className="text-xs text-slate-400 font-medium mt-0.5">Wins</div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-extrabold" style={{color: streak > 0 ? '#22c55e' : '#ef4444'}}>{streak}🔥</div>
-              <div className="text-xs text-slate-500 font-medium mt-0.5">Streak</div>
+              <div className="text-xs text-slate-400 font-medium mt-0.5">Streak</div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-extrabold text-white">{difficulty !== null && best[difficulty] ? best[difficulty] + ' tries' : '—'}</div>
-              <div className="text-xs text-slate-500 font-medium mt-0.5">Best</div>
+              <div className="text-xs text-slate-400 font-medium mt-0.5">Best</div>
             </div>
           </div>
         </div>
@@ -221,7 +221,7 @@ export default function games_number_guessing() {
                   style={{ background: `linear-gradient(135deg, ${d.color}22, ${d.color}08)` }}>
                   <div className="text-2xl mb-2">{d.name === 'Easy' ? '😊' : d.name === 'Medium' ? '🤔' : '😤'}</div>
                   <div className="text-sm font-bold" style={{color: d.color}}>{d.name}</div>
-                  <div className="text-xs text-slate-500 mt-1">{d.min}-{d.max} · {d.tries} tries</div>
+                  <div className="text-xs text-slate-400 mt-1">{d.min}-{d.max} · {d.tries} tries</div>
                 </button>
               ))}
             </div>
@@ -259,7 +259,7 @@ export default function games_number_guessing() {
                 <input ref={inputRef} type="number" value={guess} onChange={e => setGuess(e.target.value)}
                   onKeyDown={handleKey}
                   placeholder={`${rangeMin} - ${rangeMax}`}
-                  className="flex-1 px-4 py-3 rounded-xl bg-white/[0.06] border border-white/[0.08] text-white text-center text-lg font-mono focus:outline-none focus:border-indigo-500 placeholder:text-slate-500"
+                  className="flex-1 px-4 py-3 rounded-xl bg-white/[0.06] border border-white/[0.08] text-white text-center text-lg font-mono focus:outline-none focus:border-indigo-500 placeholder:text-slate-400"
                 />
                 <button onClick={makeGuess}
                   className="glow-btn px-6 py-3 text-sm">
@@ -296,7 +296,7 @@ export default function games_number_guessing() {
           </div>
         )}
 
-        <p className="text-center text-xs text-slate-500">Best scores and streaks saved on this device.</p>
+        <p className="text-center text-xs text-slate-400">Best scores and streaks saved on this device.</p>
           <div className="flex gap-2 justify-center mt-4">
             <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
               {isFs ? '⊡' : '⛶'}

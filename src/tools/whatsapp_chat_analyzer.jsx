@@ -117,7 +117,7 @@ export default function whatsapp_chat_analyzer() {
             onClick={() => document.getElementById('chatFile').click()}>
             <div className="text-4xl mb-2">📁</div>
             <p className="text-slate-400 text-sm">Drop your chat .txt file here or click to browse</p>
-            <p className="text-slate-500 text-xs mt-1">Export: Chat ⋮ → More → Export chat → Without media</p>
+            <p className="text-slate-400 text-xs mt-1">Export: Chat ⋮ → More → Export chat → Without media</p>
           </div>
           <input id="chatFile" type="file" accept=".txt" className="hidden" onChange={e => handleFile(e.target.files[0])} />
           {fileName && <p className="text-xs text-green-400 mt-2">✓ {fileName} loaded</p>}
@@ -150,7 +150,7 @@ export default function whatsapp_chat_analyzer() {
               <div className="space-y-2">
                 {stats.senders.slice(0, 10).map(([name, count], i) => (
                   <div key={name} className="flex items-center gap-3">
-                    <span className="text-xs text-slate-500 w-5">{i + 1}.</span>
+                    <span className="text-xs text-slate-400 w-5">{i + 1}.</span>
                     <span className="text-sm text-white flex-1 truncate">{name}</span>
                     <div className="h-4 bg-indigo-500/30 rounded-full" style={{ width: `${(count / stats.senders[0][1]) * 100}%`, maxWidth: '120px' }} />
                     <span className="text-xs text-slate-400 w-16 text-right">{((count / stats.totalMsgs) * 100).toFixed(1)}%</span>
@@ -166,7 +166,7 @@ export default function whatsapp_chat_analyzer() {
                 {stats.hourCount.map((c, i) => (
                   <div key={i} className="flex-1 flex flex-col items-center gap-1">
                     <div className="w-full bg-indigo-500/40 rounded-t" style={{ height: `${Math.max(2, (c / Math.max(...stats.hourCount)) * 80)}px` }} title={`${i}:00 - ${c} msgs`} />
-                    <span className="text-[9px] text-slate-500">{i}h</span>
+                    <span className="text-[9px] text-slate-400">{i}h</span>
                   </div>
                 ))}
               </div>
@@ -179,7 +179,7 @@ export default function whatsapp_chat_analyzer() {
                 <div className="flex flex-wrap gap-2">
                   {stats.topWords.map(([word, count]) => (
                     <span key={word} className="px-3 py-1 rounded-full text-xs bg-white/[0.06] border border-white/[0.08] text-slate-300">
-                      {word} <span className="text-slate-500">×{count}</span>
+                      {word} <span className="text-slate-400">×{count}</span>
                     </span>
                   ))}
                 </div>
@@ -189,12 +189,12 @@ export default function whatsapp_chat_analyzer() {
             {/* Top Emojis */}
             {stats.topEmojis.length > 0 && (
               <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-5">
-                <h3 className="text-sm font-semibold text-slate-300 mb-3">Top Emojis <span className="text-xs text-slate-500">({stats.allEmojis.length} total used)</span></h3>
+                <h3 className="text-sm font-semibold text-slate-300 mb-3">Top Emojis <span className="text-xs text-slate-400">({stats.allEmojis.length} total used)</span></h3>
                 <div className="flex flex-wrap gap-3 text-2xl">
                   {stats.topEmojis.map(([emoji, count]) => (
                     <span key={emoji} className="flex flex-col items-center gap-1" title={`${emoji} ×${count}`}>
                       <span>{emoji}</span>
-                      <span className="text-xs text-slate-500">{count}</span>
+                      <span className="text-xs text-slate-400">{count}</span>
                     </span>
                   ))}
                 </div>

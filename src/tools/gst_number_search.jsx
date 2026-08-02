@@ -100,7 +100,7 @@ export default function gst_number_search() {
     }).catch(() => {})
   }
 
-  const inputClass = 'w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark] font-mono'
+  const inputClass = 'w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark] font-mono'
 
   return (
     <ToolLayout
@@ -138,13 +138,13 @@ export default function gst_number_search() {
               Verify
             </button>
           </div>
-          <p className="text-xs text-slate-500 mt-2">Format: 2-digit state + 10-digit PAN + entity + Z + check</p>
+          <p className="text-xs text-slate-400 mt-2">Format: 2-digit state + 10-digit PAN + entity + Z + check</p>
         </div>
 
         {/* Recent searches */}
         {recent.length > 0 && (
           <div>
-            <p className="text-xs font-semibold text-slate-500 mb-2">Recent searches</p>
+            <p className="text-xs font-semibold text-slate-400 mb-2">Recent searches</p>
             <div className="flex flex-wrap gap-2">
               {recent.map(code => (
                 <button key={code} onClick={() => { setInput(code); runSearch(code) }}
@@ -177,7 +177,7 @@ export default function gst_number_search() {
 
             {/* Visual breakdown */}
             <div className="mb-4">
-              <p className="text-xs text-slate-500 mb-2">GSTIN Breakdown</p>
+              <p className="text-xs text-slate-400 mb-2">GSTIN Breakdown</p>
               <div className="flex gap-1">
                 {[
                   { val: result.stateCode, label: 'State', color: 'bg-blue-500/20 text-blue-400 border-blue-500/30' },
@@ -188,7 +188,7 @@ export default function gst_number_search() {
                 ].map((seg, i) => (
                   <div key={i} className="flex-1 text-center">
                     <div className={`rounded-lg border px-2 py-1.5 text-sm font-mono font-bold ${seg.color}`}>{seg.val}</div>
-                    <div className="text-[10px] text-slate-500 mt-1">{seg.label}</div>
+                    <div className="text-[10px] text-slate-400 mt-1">{seg.label}</div>
                   </div>
                 ))}
               </div>
@@ -230,7 +230,7 @@ export default function gst_number_search() {
         {/* Bulk Validator */}
         <div className="rounded-2xl border border-white/8 p-4">
           <h3 className="text-sm font-bold text-slate-300 mb-2">Bulk GSTIN Validator</h3>
-          <p className="text-xs text-slate-500 mb-3">Paste multiple GSTINs (one per line) for batch format validation.</p>
+          <p className="text-xs text-slate-400 mb-3">Paste multiple GSTINs (one per line) for batch format validation.</p>
           <textarea value={bulkText} onChange={e => setBulkText(e.target.value)}
             rows={4} placeholder={"27AAPFU0939F1ZV\n07AAACR5055K1Z5\n29AABCT1332L1ZT"}
             className={`${inputClass} resize-none`} />
@@ -242,7 +242,7 @@ export default function gst_number_search() {
             <div className="mt-3 overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="text-left text-slate-500 border-b border-white/8">
+                  <tr className="text-left text-slate-400 border-b border-white/8">
                     <th className="py-2 pr-2">#</th>
                     <th className="py-2 pr-2">Status</th>
                     <th className="py-2 pr-2 font-mono">GSTIN</th>
@@ -254,7 +254,7 @@ export default function gst_number_search() {
                 <tbody>
                   {bulkResults.map((r, i) => (
                     <tr key={i} className="border-b border-white/4">
-                      <td className="py-2 pr-2 text-slate-500">{i + 1}</td>
+                      <td className="py-2 pr-2 text-slate-400">{i + 1}</td>
                       <td className="py-2 pr-2">
                         <span className={`text-xs font-bold ${r.valid ? 'text-emerald-400' : 'text-red-400'}`}>
                           {r.valid ? 'Valid' : 'Invalid'}

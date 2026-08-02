@@ -126,13 +126,13 @@ export default function cgpa_calculator() {
               style={{ animation: 'slideUp 0.2s ease' }}>
               <input value={s.name} onChange={e => updateSubject(s.id, 'name', e.target.value)}
                 placeholder="Subject name"
-                className="flex-1 min-w-0 bg-white/[0.06] border border-white/8 rounded-xl px-4 py-2.5 text-sm text-white font-medium outline-none focus:border-emerald-500/40 transition-all placeholder:text-slate-500" />
+                className="flex-1 min-w-0 bg-white/[0.06] border border-white/8 rounded-xl px-4 py-2.5 text-sm text-white font-medium outline-none focus:border-emerald-500/40 transition-all placeholder:text-slate-400" />
               <input type="number" value={s.gp} onChange={e => { const v = e.target.value; if (v === '' || (parseFloat(v) >= 0 && parseFloat(v) <= 10)) updateSubject(s.id, 'gp', v) }}
                 min="0" max="10" step="0.1" placeholder="Grade Points (0-10)"
-                className="w-20 bg-white/[0.06] border border-white/8 rounded-xl px-3 py-2.5 text-sm text-white font-semibold text-center outline-none focus:border-emerald-500/40 transition-all placeholder:text-slate-500" />
+                className="w-20 bg-white/[0.06] border border-white/8 rounded-xl px-3 py-2.5 text-sm text-white font-semibold text-center outline-none focus:border-emerald-500/40 transition-all placeholder:text-slate-400" />
               <input type="number" value={s.credits} onChange={e => updateSubject(s.id, 'credits', e.target.value)}
                 min="0.5" max="10" step="0.5" placeholder="Credits"
-                className="w-20 bg-white/[0.06] border border-white/8 rounded-xl px-3 py-2.5 text-sm text-white font-semibold text-center outline-none focus:border-emerald-500/40 transition-all placeholder:text-slate-500" />
+                className="w-20 bg-white/[0.06] border border-white/8 rounded-xl px-3 py-2.5 text-sm text-white font-semibold text-center outline-none focus:border-emerald-500/40 transition-all placeholder:text-slate-400" />
               {subjects.length > 1 && (
                 <button onClick={() => removeSubject(s.id)} className="text-red-400/30 hover:text-red-400 text-xs transition-colors">✕</button>
               )}
@@ -146,10 +146,10 @@ export default function cgpa_calculator() {
 
         {/* Class Average */}
         <div className="rounded-2xl border-2 border-white/8 bg-white/[0.03] p-4">
-          <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Class Average CGPA (optional)</label>
+          <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Class Average CGPA (optional)</label>
           <input type="number" value={classAvg} onChange={e => setClassAvg(e.target.value)}
             min="0" max="10" step="0.1" placeholder="e.g. 7.5"
-            className="w-32 bg-white/[0.06] border border-white/8 rounded-xl px-4 py-2.5 text-sm text-white font-semibold outline-none focus:border-emerald-500/40 transition-all placeholder:text-slate-500" />
+            className="w-32 bg-white/[0.06] border border-white/8 rounded-xl px-4 py-2.5 text-sm text-white font-semibold outline-none focus:border-emerald-500/40 transition-all placeholder:text-slate-400" />
         </div>
 
         {/* Result */}

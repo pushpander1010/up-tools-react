@@ -180,7 +180,7 @@ export default function fifa_world_cup_fantasy_team() {
             <div className="flex gap-1 mb-3">
               {['GK', 'DEF', 'MID', 'FWD'].map(pos => (
                 <button key={pos} onClick={() => setActiveTab(pos)}
-                  className={`flex-1 py-1.5 rounded-lg text-[10px] font-bold transition-all ${activeTab === pos ? 'bg-green-500 text-white' : 'bg-white/[0.04] text-slate-500'}`}>
+                  className={`flex-1 py-1.5 rounded-lg text-[10px] font-bold transition-all ${activeTab === pos ? 'bg-green-500 text-white' : 'bg-white/[0.04] text-slate-400'}`}>
                   {pos}
                 </button>
               ))}
@@ -191,7 +191,7 @@ export default function fifa_world_cup_fantasy_team() {
                   className={`w-full flex items-center gap-2 px-3 py-2 rounded-lg text-left text-xs transition-all ${selectedPlayer === p.id ? 'bg-green-500/20 border border-green-500/30' : 'bg-white/[0.02] hover:bg-white/[0.06] border border-transparent'}`}>
                   <span className="text-lg">{p.flag}</span>
                   <span className="flex-1 font-bold text-white truncate">{p.name}</span>
-                  <span className="text-[10px] text-slate-500">€{p.value}M</span>
+                  <span className="text-[10px] text-slate-400">€{p.value}M</span>
                 </button>
               ))}
             </div>

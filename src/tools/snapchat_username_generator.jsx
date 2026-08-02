@@ -61,7 +61,7 @@ export default function snapchat_username_generator() {
     setTimeout(() => setCopied(null), 2000)
   }, [])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -104,7 +104,7 @@ export default function snapchat_username_generator() {
                   className={`flex-1 py-2.5 rounded-xl text-xs font-bold transition-all duration-200 border-2 ${
                     style === s.id
                       ? 'bg-amber-500/15 border-amber-500/30 text-amber-400'
-                      : 'bg-white/[0.04] border-white/8 text-slate-500 hover:border-white/12'
+                      : 'bg-white/[0.04] border-white/8 text-slate-400 hover:border-white/12'
                   }`}>
                   {s.icon} {s.label}
                 </button>
@@ -125,7 +125,7 @@ export default function snapchat_username_generator() {
               <div className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
               <h3 className="text-sm font-bold text-amber-400 uppercase tracking-wider">Your Snapchat Usernames</h3>
             </div>
-            <p className="text-xs text-slate-500 mb-3">Click any username to copy it.</p>
+            <p className="text-xs text-slate-400 mb-3">Click any username to copy it.</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {usernames.map((u, i) => (
                 <button key={i} onClick={() => copyUsername(u)}
@@ -135,7 +135,7 @@ export default function snapchat_username_generator() {
                       : 'bg-black/20 border-white/8 hover:border-amber-500/30'
                   }`}>
                   <span className="text-sm font-mono font-semibold text-white">{u}</span>
-                  <span className={`text-xs font-bold ${copied === u ? 'text-emerald-400' : 'text-slate-500'}`}>
+                  <span className={`text-xs font-bold ${copied === u ? 'text-emerald-400' : 'text-slate-400'}`}>
                     {copied === u ? '✅ Copied!' : '📋 Copy'}
                   </span>
                 </button>

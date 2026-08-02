@@ -72,7 +72,7 @@ export default function instagram_post_scheduler() {
             <div className="flex gap-2">
               {[1, 2, 3, 4, 5, 6, 7].map(n => (
                 <button key={n} onClick={() => setPostsPerWeek(n)}
-                  className={`w-10 h-10 rounded-xl text-sm font-bold transition-all ${postsPerWeek === n ? 'bg-indigo-500/15 text-indigo-400 border border-indigo-500/30' : 'bg-white/[0.04] text-slate-500 border border-white/[0.08]'}`}>
+                  className={`w-10 h-10 rounded-xl text-sm font-bold transition-all ${postsPerWeek === n ? 'bg-indigo-500/15 text-indigo-400 border border-indigo-500/30' : 'bg-white/[0.04] text-slate-400 border border-white/[0.08]'}`}>
                   {n}
                 </button>
               ))}
@@ -110,10 +110,10 @@ export default function instagram_post_scheduler() {
                     <span className="text-lg font-extrabold text-white">{s.day}</span>
                     <span className="px-2 py-0.5 rounded-lg bg-purple-500/15 text-purple-400 text-xs font-bold">{s.type}</span>
                   </div>
-                  <span className="text-xs text-slate-500">⏰ {s.time}</span>
+                  <span className="text-xs text-slate-400">⏰ {s.time}</span>
                 </div>
                 <div className="text-sm font-semibold text-slate-300 mb-2">{s.topic}</div>
-                <div className="text-xs text-slate-500 bg-black/20 rounded-xl p-3 font-mono">{s.caption}</div>
+                <div className="text-xs text-slate-400 bg-black/20 rounded-xl p-3 font-mono">{s.caption}</div>
               </div>
             ))}
           </div>

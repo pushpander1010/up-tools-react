@@ -366,26 +366,26 @@ export default function games_super_sudoku() {
               {['easy','medium','hard','expert'].map(d=>(
                 <button key={d} onClick={()=>setDifficulty(d)}
                   className={`px-3 py-1.5 rounded-xl text-xs font-semibold capitalize transition-all border ${
-                    difficulty===d ? 'bg-indigo-500/15 border-indigo-500/30 text-indigo-400' : 'bg-white/[0.04] border-white/[0.06] text-slate-500 hover:text-white'
+                    difficulty===d ? 'bg-indigo-500/15 border-indigo-500/30 text-indigo-400' : 'bg-white/[0.04] border-white/[0.06] text-slate-400 hover:text-white'
                   }`}>{d}</button>
               ))}
             </div>
             <div className="grid grid-cols-4 gap-3 text-center">
               <div>
                 <div className="text-lg font-extrabold text-white">{gameStarted ? formatTime(timer) : '--:--'}</div>
-                <div className="text-xs text-slate-500">Time</div>
+                <div className="text-xs text-slate-400">Time</div>
               </div>
               <div>
                 <div className="text-lg font-extrabold text-red-400">{errors}</div>
-                <div className="text-xs text-slate-500">Errors</div>
+                <div className="text-xs text-slate-400">Errors</div>
               </div>
               <div>
                 <div className="text-lg font-extrabold text-green-400">{bestTime[difficulty] ? formatTime(bestTime[difficulty]) : '--'}</div>
-                <div className="text-xs text-slate-500">Best</div>
+                <div className="text-xs text-slate-400">Best</div>
               </div>
               <div>
-                <div className={`text-lg font-extrabold ${notesMode?'text-yellow-400':'text-slate-500'}`}>{notesMode?'ON':'OFF'}</div>
-                <div className="text-xs text-slate-500">Notes</div>
+                <div className={`text-lg font-extrabold ${notesMode?'text-yellow-400':'text-slate-400'}`}>{notesMode?'ON':'OFF'}</div>
+                <div className="text-xs text-slate-400">Notes</div>
               </div>
             </div>
           </div>
@@ -430,7 +430,7 @@ export default function games_super_sudoku() {
             ))}
           </div>
 
-          <p className="text-center text-xs text-slate-500">
+          <p className="text-center text-xs text-slate-400">
             Desktop: Click cell + 1-9 keys | N = notes toggle | ← → ↑ ↓ navigate
           </p>
 

@@ -87,7 +87,7 @@ export default function games() {
           <p className="text-xs text-slate-400 mt-1 line-clamp-2">{game.desc}</p>
           <div className="flex gap-1.5 mt-2 flex-wrap">
             {game.tags.slice(0, 3).map(t => (
-              <span key={t} className="text-xs px-2 py-0.5 rounded-lg bg-white/[0.06] text-slate-500 capitalize">{t}</span>
+              <span key={t} className="text-xs px-2 py-0.5 rounded-lg bg-white/[0.06] text-slate-400 capitalize">{t}</span>
             ))}
           </div>
         </div>
@@ -126,9 +126,9 @@ export default function games() {
         {/* Stats */}
         <div className="glass p-4">
           <div className="flex gap-8 justify-center text-center">
-            <div><div className="text-2xl font-extrabold text-white">{GAMES.length}</div><div className="text-xs text-slate-500 font-medium">Games</div></div>
-            <div><div className="text-2xl font-extrabold text-white">0</div><div className="text-xs text-slate-500 font-medium">Sign-ups</div></div>
-            <div><div className="text-2xl font-extrabold text-emerald-400">100%</div><div className="text-xs text-slate-500 font-medium">Free</div></div>
+            <div><div className="text-2xl font-extrabold text-white">{GAMES.length}</div><div className="text-xs text-slate-400 font-medium">Games</div></div>
+            <div><div className="text-2xl font-extrabold text-white">0</div><div className="text-xs text-slate-400 font-medium">Sign-ups</div></div>
+            <div><div className="text-2xl font-extrabold text-emerald-400">100%</div><div className="text-xs text-slate-400 font-medium">Free</div></div>
           </div>
         </div>
 
@@ -137,8 +137,8 @@ export default function games() {
           <div className="relative">
             <input type="text" value={search} onChange={e => setSearch(e.target.value)}
               placeholder="Search games (e.g., snake, puzzle, word)..."
-              className="w-full bg-black/20 border-2 border-white/[0.08] rounded-xl px-4 py-3 pl-10 text-sm outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-500" />
-            <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 text-sm">🔍</span>
+              className="w-full bg-black/20 border-2 border-white/[0.08] rounded-xl px-4 py-3 pl-10 text-sm outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-400" />
+            <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm">🔍</span>
           </div>
           <div className="flex flex-wrap gap-2">
             {ALL_TAGS.map(tag => (
@@ -146,7 +146,7 @@ export default function games() {
                 className={`px-3 py-1.5 rounded-xl text-xs font-semibold capitalize transition-all border ${
                   activeFilters.has(tag)
                     ? 'bg-indigo-500/15 border-indigo-500/30 text-indigo-400'
-                    : 'bg-white/[0.04] border-white/[0.06] text-slate-500 hover:text-white hover:bg-white/[0.08]'
+                    : 'bg-white/[0.04] border-white/[0.06] text-slate-400 hover:text-white hover:bg-white/[0.08]'
                 }`}>
                 {tag}
               </button>
@@ -183,7 +183,7 @@ export default function games() {
           {filtered.length === 0 && (
             <div className="glass p-12 text-center">
               <p className="text-4xl mb-3">🔍</p>
-              <p className="text-sm text-slate-500">No games match your search</p>
+              <p className="text-sm text-slate-400">No games match your search</p>
             </div>
           )}
         </div>

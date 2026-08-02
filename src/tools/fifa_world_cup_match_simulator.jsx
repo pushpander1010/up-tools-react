@@ -124,7 +124,7 @@ export default function fifa_world_cup_match_simulator() {
             className="flex-1 min-w-[140px] bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-3 text-white font-semibold outline-none focus:border-green-500/40 [color-scheme:dark]">
             {TEAMS.map(t => <option key={t.name} value={t.name}>{t.flag} {t.name}</option>)}
           </select>
-          <span className="text-lg font-extrabold text-slate-500">VS</span>
+          <span className="text-lg font-extrabold text-slate-400">VS</span>
           <select value={teamB} onChange={e => setTeamB(e.target.value)}
             className="flex-1 min-w-[140px] bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-3 text-white font-semibold outline-none focus:border-indigo-500/40 [color-scheme:dark]">
             {TEAMS.map(t => <option key={t.name} value={t.name}>{t.flag} {t.name}</option>)}
@@ -151,7 +151,7 @@ export default function fifa_world_cup_match_simulator() {
                   <div className="text-sm font-bold text-white">{result.teamB.name}</div>
                 </div>
               </div>
-              <div className="text-xs text-slate-500 mt-3">Full Time</div>
+              <div className="text-xs text-slate-400 mt-3">Full Time</div>
             </div>
 
             {/* Goalscorers */}
@@ -184,7 +184,7 @@ export default function fifa_world_cup_match_simulator() {
                     <div className="h-2 rounded-r bg-indigo-500/40" style={{ width: `${s.b / (s.a + s.b) * 100}%` }} />
                   </div>
                   <span className="w-8 text-indigo-400 font-bold">{s.b}</span>
-                  <span className="w-20 text-center text-slate-500">{s.label}</span>
+                  <span className="w-20 text-center text-slate-400">{s.label}</span>
                 </div>
               ))}
             </div>
@@ -201,7 +201,7 @@ export default function fifa_world_cup_match_simulator() {
                   <span>{h.teamA.flag}</span>
                   <span className="font-bold text-white">{h.scoreA}-{h.scoreB}</span>
                   <span>{h.teamB.flag}</span>
-                  <span className="text-slate-500 ml-auto">{h.ts}</span>
+                  <span className="text-slate-400 ml-auto">{h.ts}</span>
                 </div>
               ))}
             </div>

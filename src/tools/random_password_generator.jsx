@@ -124,7 +124,7 @@ export default function random_password_generator() {
               {[8, 12, 16, 24, 32].map(n => (
                 <button key={n} onClick={() => { setLength(n) }}
                   className={`flex-1 py-1.5 rounded-lg text-xs font-bold transition-all ${
-                    length === n ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40' : 'bg-white/[0.06] text-slate-500 border border-white/[0.08]'
+                    length === n ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40' : 'bg-white/[0.06] text-slate-400 border border-white/[0.08]'
                   }`}>
                   {n}
                 </button>
@@ -192,7 +192,7 @@ export default function random_password_generator() {
                 { label: 'Symbols', count: counts.s },
               ].map(c => (
                 <div key={c.label} className="text-center p-2 bg-black/20 rounded-xl">
-                  <div className="text-xs text-slate-500">{c.label}</div>
+                  <div className="text-xs text-slate-400">{c.label}</div>
                   <div className="text-sm font-bold text-white">{c.count}</div>
                 </div>
               ))}

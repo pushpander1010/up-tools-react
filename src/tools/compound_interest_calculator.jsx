@@ -44,7 +44,7 @@ export default function compound_interest_calculator() {
     setTimeout(() => jumpTo(), 50)
   }, [principal, rate, freq, years, monthly, jumpTo])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -111,7 +111,7 @@ export default function compound_interest_calculator() {
               ].map(item => (
                 <div key={item.label} className={`text-center p-4 rounded-xl ${item.highlight ? 'bg-emerald-500/10 border border-emerald-500/20' : 'bg-black/20'}`}>
                   <div className={`text-lg font-bold ${item.color}`}>{item.value}</div>
-                  <div className="text-xs text-slate-500 mt-1">{item.label}</div>
+                  <div className="text-xs text-slate-400 mt-1">{item.label}</div>
                 </div>
               ))}
             </div>
@@ -121,7 +121,7 @@ export default function compound_interest_calculator() {
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="text-left text-slate-500 border-b border-white/[0.08]">
+                  <tr className="text-left text-slate-400 border-b border-white/[0.08]">
                     <th className="py-2 px-2">Year</th>
                     <th className="py-2 px-2">Start</th>
                     <th className="py-2 px-2">Contrib</th>

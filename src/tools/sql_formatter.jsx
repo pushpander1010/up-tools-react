@@ -284,7 +284,7 @@ export default function sql_formatter() {
             <div className="flex gap-1">
               {['upper', 'lower', 'mixed'].map(c => (
                 <button key={c} onClick={() => setKeywordCase(c)}
-                  className={`px-3 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-wider transition-all duration-200 ${keywordCase === c ? 'bg-amber-500/20 text-amber-400 ring-1 ring-amber-500/30' : 'bg-white/[0.04] text-slate-500 hover:text-slate-300'}`}>
+                  className={`px-3 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-wider transition-all duration-200 ${keywordCase === c ? 'bg-amber-500/20 text-amber-400 ring-1 ring-amber-500/30' : 'bg-white/[0.04] text-slate-400 hover:text-slate-300'}`}>
                   {c}
                 </button>
               ))}
@@ -295,7 +295,7 @@ export default function sql_formatter() {
             <div className="flex gap-1">
               {[2, 4].map(s => (
                 <button key={s} onClick={() => setIndentSize(s)}
-                  className={`w-9 h-9 rounded-lg text-xs font-bold transition-all duration-200 ${indentSize === s ? 'bg-amber-500/20 text-amber-400 ring-1 ring-amber-500/30' : 'bg-white/[0.04] text-slate-500 hover:text-slate-300'}`}>
+                  className={`w-9 h-9 rounded-lg text-xs font-bold transition-all duration-200 ${indentSize === s ? 'bg-amber-500/20 text-amber-400 ring-1 ring-amber-500/30' : 'bg-white/[0.04] text-slate-400 hover:text-slate-300'}`}>
                   {s}
                 </button>
               ))}
@@ -307,7 +307,7 @@ export default function sql_formatter() {
               📄 Sample
             </button>
             <button onClick={minify}
-              className="px-4 py-2 rounded-xl bg-white/[0.04] text-slate-500 text-xs font-bold hover:bg-white/[0.08] hover:text-slate-300 transition-all duration-200">
+              className="px-4 py-2 rounded-xl bg-white/[0.04] text-slate-400 text-xs font-bold hover:bg-white/[0.08] hover:text-slate-300 transition-all duration-200">
               🗜️ Minify
             </button>
             <button onClick={format}

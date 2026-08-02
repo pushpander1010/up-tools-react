@@ -119,7 +119,7 @@ export default function instagram_hashtag_generator() {
             <input type="text" value={customKeyword} onChange={e => setCustomKeyword(e.target.value)}
               onKeyDown={e => e.key === 'Enter' && generateCustom()}
               placeholder="e.g., fitness, food, travel"
-              className="flex-1 bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-pink-500/40 transition-all placeholder:text-slate-500 [color-scheme:dark]" />
+              className="flex-1 bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-pink-500/40 transition-all placeholder:text-slate-400 [color-scheme:dark]" />
             <button onClick={() => { generateCustom(); jumpTo() }}
               className="px-6 py-3.5 rounded-xl bg-pink-500 text-white font-bold text-sm hover:bg-pink-400 transition-all active:scale-95">
               Generate
@@ -171,7 +171,7 @@ export default function instagram_hashtag_generator() {
                     📋 Copy Text
                   </button>
                 </div>
-                <p className="text-xs text-slate-500 font-mono leading-relaxed break-all">{selectedText}</p>
+                <p className="text-xs text-slate-400 font-mono leading-relaxed break-all">{selectedText}</p>
               </div>
             )}
           </div>

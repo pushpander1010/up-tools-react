@@ -221,15 +221,15 @@ export default function games_tic_tac_toe() {
           <div className="grid grid-cols-3 gap-4">
             <div className="text-center">
               <div className="text-2xl font-extrabold text-red-400">{xWins}</div>
-              <div className="text-xs text-slate-500 font-medium mt-0.5">X Wins</div>
+              <div className="text-xs text-slate-400 font-medium mt-0.5">X Wins</div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-extrabold text-slate-400">{draws}</div>
-              <div className="text-xs text-slate-500 font-medium mt-0.5">Draws</div>
+              <div className="text-xs text-slate-400 font-medium mt-0.5">Draws</div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-extrabold text-blue-400">{oWins}</div>
-              <div className="text-xs text-slate-500 font-medium mt-0.5">O Wins</div>
+              <div className="text-xs text-slate-400 font-medium mt-0.5">O Wins</div>
             </div>
           </div>
         </div>
@@ -282,7 +282,7 @@ export default function games_tic_tac_toe() {
          </button>
         </div>
 
-        <p className="text-center text-xs text-slate-500">
+        <p className="text-center text-xs text-slate-400">
           {mode === 'ai' ? 'AI uses minimax — it never loses!' : 'Take turns with a friend on the same device.'}
         </p>
 

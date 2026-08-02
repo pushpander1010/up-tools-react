@@ -237,15 +237,15 @@ export default function games_coin_flip() {
         <div className="grid grid-cols-3 gap-3">
           <div className="glass rounded-2xl p-4 text-center">
             <div className="text-2xl font-extrabold text-yellow-400">{data.heads}</div>
-            <div className="text-[11px] text-slate-500 mt-1">Heads</div>
+            <div className="text-[11px] text-slate-400 mt-1">Heads</div>
           </div>
           <div className="glass rounded-2xl p-4 text-center">
             <div className="text-2xl font-extrabold text-slate-300">{data.tails}</div>
-            <div className="text-[11px] text-slate-500 mt-1">Tails</div>
+            <div className="text-[11px] text-slate-400 mt-1">Tails</div>
           </div>
           <div className="glass rounded-2xl p-4 text-center">
             <div className="text-2xl font-extrabold text-white">{data.total}</div>
-            <div className="text-[11px] text-slate-500 mt-1">Total</div>
+            <div className="text-[11px] text-slate-400 mt-1">Total</div>
           </div>
         </div>
 

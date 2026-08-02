@@ -7,7 +7,7 @@ const normalizePan = v => (v || '').toUpperCase().replace(/[^A-Z0-9]/g, '').slic
 const normalizeAadhaar = v => (v || '').replace(/\D/g, '').slice(0, 12)
 const maskValue = (v, keep = 4) => v ? '•'.repeat(Math.max(0, v.length - keep)) + v.slice(-keep) : '-'
 
-const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 
 export default function pan_aadhaar_link_status() {
   const { ref: resultRef, jumpTo } = useJumpToResult()
@@ -54,13 +54,13 @@ export default function pan_aadhaar_link_status() {
             <label className="block text-sm font-semibold text-slate-400 mb-1">PAN (10 characters)</label>
             <input className={inputClass} value={pan} onChange={e => setPan(normalizePan(e.target.value))}
               placeholder="ABCDE1234F" maxLength={10} />
-            <div className="text-xs text-slate-500 mt-1">{nPan ? (panOk ? 'Valid PAN format' : 'Invalid PAN format') : '-'}</div>
+            <div className="text-xs text-slate-400 mt-1">{nPan ? (panOk ? 'Valid PAN format' : 'Invalid PAN format') : '-'}</div>
           </div>
           <div>
             <label className="block text-sm font-semibold text-slate-400 mb-1">Aadhaar (12 digits)</label>
             <input className={inputClass} value={aadhaar} onChange={e => setAadhaar(normalizeAadhaar(e.target.value))}
               placeholder="XXXX XXXX XXXX" maxLength={12} />
-            <div className="text-xs text-slate-500 mt-1">{nAadhaar ? (aadhaarOk ? 'Valid Aadhaar length' : 'Aadhaar must be 12 digits') : '-'}</div>
+            <div className="text-xs text-slate-400 mt-1">{nAadhaar ? (aadhaarOk ? 'Valid Aadhaar length' : 'Aadhaar must be 12 digits') : '-'}</div>
           </div>
 
           <label className="flex items-center gap-3 text-sm text-slate-400 cursor-pointer">
@@ -94,7 +94,7 @@ export default function pan_aadhaar_link_status() {
           <div className="space-y-3">
             <div className="flex justify-between items-center py-2 border-b border-white/[0.04]">
               <span className="text-sm text-slate-400">Readiness</span>
-              <span className={`text-sm font-bold ${ready ? 'text-indigo-400' : 'text-slate-500'}`}>
+              <span className={`text-sm font-bold ${ready ? 'text-indigo-400' : 'text-slate-400'}`}>
                 {nPan || nAadhaar ? (ready ? 'Ready to check status' : 'Incomplete') : '-'}
               </span>
             </div>
@@ -107,7 +107,7 @@ export default function pan_aadhaar_link_status() {
               <span className="text-sm font-semibold text-white">{showAadhaar}</span>
             </div>
           </div>
-          <p className="text-xs text-slate-500 mt-4">{msg}</p>
+          <p className="text-xs text-slate-400 mt-4">{msg}</p>
 
           <div className="mt-4 space-y-2">
             <h4 className="text-sm font-bold text-slate-400">Check status on official portal</h4>

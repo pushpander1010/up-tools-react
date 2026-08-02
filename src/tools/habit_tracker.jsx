@@ -64,13 +64,13 @@ export default function habit_tracker() {
             <input type="text" value={newName} onChange={e => setNewName(e.target.value)}
               onKeyDown={e => e.key === 'Enter' && addHabit()}
               placeholder="Add new habit (e.g., Exercise, Read, Meditate)"
-              className="flex-1 bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-green-500/40 transition-all placeholder:text-slate-500 [color-scheme:dark]" />
+              className="flex-1 bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-green-500/40 transition-all placeholder:text-slate-400 [color-scheme:dark]" />
             <button onClick={() => { addHabit(); jumpTo() }}
               className="px-6 py-3 rounded-xl bg-green-500 text-white font-bold text-sm hover:bg-green-400 transition-all active:scale-[0.98]">
               Add
             </button>
           </div>
-          <div className="text-sm text-slate-500">
+          <div className="text-sm text-slate-400">
             {completedCount}/{habits.length} completed today
           </div>
         </div>
@@ -93,13 +93,13 @@ export default function habit_tracker() {
                 <span className="text-2xl">{h.emoji}</span>
                 <div className="flex-1">
                   <h3 className={`font-bold ${h.completed ? 'text-green-400 line-through' : 'text-white'}`}>{h.name}</h3>
-                  <p className="text-xs text-slate-500">🔥 {h.streak} day streak</p>
+                  <p className="text-xs text-slate-400">🔥 {h.streak} day streak</p>
                 </div>
                 <button onClick={() => toggleComplete(h.id)}
                   className={`w-10 h-10 rounded-xl border-2 flex items-center justify-center transition-all ${
                     h.completed
                       ? 'bg-green-500 border-green-500 text-white'
-                      : 'border-white/12 bg-white/[0.04] text-slate-500 hover:border-green-500/40'
+                      : 'border-white/12 bg-white/[0.04] text-slate-400 hover:border-green-500/40'
                   }`}>
                   {h.completed ? '✓' : ''}
                 </button>

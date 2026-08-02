@@ -173,7 +173,7 @@ export default function canada_crs_tool() {
 
   const inputClass = 'w-full bg-white/[0.06] border-2 border-white/8 rounded-2xl px-5 py-4 text-2xl font-extrabold text-white outline-none focus:border-red-500/40 transition-all duration-300 placeholder:text-white/8'
   const selectClass = 'w-full bg-white/[0.06] border-2 border-white/8 rounded-2xl px-5 py-4 text-white font-semibold outline-none focus:border-red-500/40 transition-all duration-200 [color-scheme:dark]'
-  const smallInput = 'w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-3 text-white font-semibold outline-none focus:border-red-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]'
+  const smallInput = 'w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-3 text-white font-semibold outline-none focus:border-red-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]'
 
   return (
     <ToolLayout
@@ -239,7 +239,7 @@ export default function canada_crs_tool() {
               <option value="ielts">IELTS (General Training)</option>
             </select>
           </div>
-          <div className="flex items-end text-xs text-slate-500 pb-1">
+          <div className="flex items-end text-xs text-slate-400 pb-1">
             {isIELTS ? 'IELTS→CLB uses IRCC thresholds per skill' : 'Enter CLB 0-12 directly'}
           </div>
         </div>
@@ -269,7 +269,7 @@ export default function canada_crs_tool() {
               <input type="number" value={ieltsW} onChange={e => setIeltsW(e.target.value)} placeholder="e.g., 7.0" min="0" max="9" step="0.5" className={smallInput} /></div>
             <div><label className="block text-sm font-semibold text-slate-300 mb-2">IELTS Speaking</label>
               <input type="number" value={ieltsS} onChange={e => setIeltsS(e.target.value)} placeholder="e.g., 7.5" min="0" max="9" step="0.5" className={smallInput} /></div>
-            <div className="col-span-2 flex gap-2 flex-wrap text-xs text-slate-500">
+            <div className="col-span-2 flex gap-2 flex-wrap text-xs text-slate-400">
               {isIELTS && ieltsL && <span className="bg-white/[0.06] px-2 py-1 rounded-lg">L→CLB {bandToCLB('L', ieltsL)}</span>}
               {isIELTS && ieltsR && <span className="bg-white/[0.06] px-2 py-1 rounded-lg">R→CLB {bandToCLB('R', ieltsR)}</span>}
               {isIELTS && ieltsW && <span className="bg-white/[0.06] px-2 py-1 rounded-lg">W→CLB {bandToCLB('W', ieltsW)}</span>}
@@ -342,12 +342,12 @@ export default function canada_crs_tool() {
               <select value={cert} onChange={e => setCert(e.target.value)} className={selectClass}>
                 <option value="none">No</option><option value="yes">Yes (Canadian province/territory)</option>
               </select>
-              <p className="text-xs text-slate-500 mt-1">All CLB ≥7 → 50 pts | All CLB ≥5 with one &lt;7 → 25 pts</p>
+              <p className="text-xs text-slate-400 mt-1">All CLB ≥7 → 50 pts | All CLB ≥5 with one &lt;7 → 25 pts</p>
             </div>
           </div>
         )}
 
-        <div className="text-xs text-slate-500">IRCC removed job-offer CRS points (50/200) on Mar 25, 2025. This tool excludes them.</div>
+        <div className="text-xs text-slate-400">IRCC removed job-offer CRS points (50/200) on Mar 25, 2025. This tool excludes them.</div>
 
         {/* Calculate button */}
         <button onClick={jumpTo}
@@ -384,7 +384,7 @@ export default function canada_crs_tool() {
               {(result.sl.L || result.sl.R || result.sl.W || result.sl.S) &&
                 ` · Second: L ${result.sl.L}, R ${result.sl.R}, W ${result.sl.W}, S ${result.sl.S}`}
             </div>
-            <p className="text-xs text-slate-500 mt-3">Sources: IRCC CRS criteria (updated May/Jul 2025)</p>
+            <p className="text-xs text-slate-400 mt-3">Sources: IRCC CRS criteria (updated May/Jul 2025)</p>
           </div>
         ) : (
           <div ref={resultRef} className="text-center py-12 rounded-3xl border-2 border-dashed border-white/8 bg-white/[0.01]">

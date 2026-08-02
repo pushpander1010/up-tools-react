@@ -456,19 +456,19 @@ export default function games_battleship() {
             <div className="grid grid-cols-4 gap-3 text-center">
               <div>
                 <div className="text-lg font-extrabold text-white">{phase==='play'?formatTime(timer):'--:--'}</div>
-                <div className="text-xs text-slate-500">Time</div>
+                <div className="text-xs text-slate-400">Time</div>
               </div>
               <div>
                 <div className="text-lg font-extrabold text-green-400">{enemyShipsSunk}/{TOTAL_SHIPS}</div>
-                <div className="text-xs text-slate-500">Sunk</div>
+                <div className="text-xs text-slate-400">Sunk</div>
               </div>
               <div>
                 <div className="text-lg font-extrabold text-red-400">{playerShipsSunk}/{TOTAL_SHIPS}</div>
-                <div className="text-xs text-slate-500">Lost</div>
+                <div className="text-xs text-slate-400">Lost</div>
               </div>
               <div>
                 <div className="text-lg font-extrabold text-amber-400">{score}</div>
-                <div className="text-xs text-slate-500">Score</div>
+                <div className="text-xs text-slate-400">Score</div>
               </div>
             </div>
           </div>
@@ -542,7 +542,7 @@ export default function games_battleship() {
             </div>
           </div>
 
-          <p className="text-center text-xs text-slate-500">
+          <p className="text-center text-xs text-slate-400">
             Desktop: Click to fire | Mobile: Tap to place/fire | R = rotate ship
           </p>
 

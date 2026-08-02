@@ -118,7 +118,7 @@ export default function xml_formatter() {
               <span className="text-xs font-semibold text-slate-400">Indent:</span>
               {[2, 4].map(s => (
                 <button key={s} onClick={() => setIndent(s)}
-                  className={`px-3 py-1 text-xs font-bold rounded-lg transition-all ${indent === s ? 'bg-indigo-500/30 text-indigo-300' : 'text-slate-500 hover:text-slate-300'}`}>
+                  className={`px-3 py-1 text-xs font-bold rounded-lg transition-all ${indent === s ? 'bg-indigo-500/30 text-indigo-300' : 'text-slate-400 hover:text-slate-300'}`}>
                   {s}
                 </button>
               ))}
@@ -165,7 +165,7 @@ export default function xml_formatter() {
             </div>
             <textarea value={output} readOnly rows={12}
               className="w-full bg-black/20 border-2 border-white/[0.08] rounded-xl px-4 py-3 text-sm text-emerald-400 font-mono focus:outline-none resize-y" />
-            <div className="mt-2 text-xs text-slate-500">
+            <div className="mt-2 text-xs text-slate-400">
               Input: {input.length.toLocaleString()} chars → Output: {output.length.toLocaleString()} chars
             </div>
           </div>

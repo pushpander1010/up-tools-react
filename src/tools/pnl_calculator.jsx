@@ -241,7 +241,7 @@ export default function pnl_calculator() {
     setTimeout(() => setCopied(false), 2000)
   }, [trades, totals, market, prefix])
 
-  const inputClass = "bg-white/[0.06] border border-white/8 rounded-xl px-3 py-2.5 text-sm text-white font-semibold outline-none focus:border-yellow-500/40 transition-all placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "bg-white/[0.06] border border-white/8 rounded-xl px-3 py-2.5 text-sm text-white font-semibold outline-none focus:border-yellow-500/40 transition-all placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -274,7 +274,7 @@ export default function pnl_calculator() {
           {Object.entries(MARKETS).map(([key, m]) => (
             <button key={key} onClick={() => { setMarket(key); setRows([makeRow()]); setSearchQuery('') }}
               className={`py-3.5 rounded-2xl text-sm font-bold transition-all duration-200 border-2
-                ${market === key ? 'bg-yellow-500/15 border-yellow-500/30 text-yellow-400 shadow-lg shadow-yellow-500/10' : 'bg-white/[0.04] border-white/6 text-slate-500 hover:border-white/12 hover:text-slate-300'}`}>
+                ${market === key ? 'bg-yellow-500/15 border-yellow-500/30 text-yellow-400 shadow-lg shadow-yellow-500/10' : 'bg-white/[0.04] border-white/6 text-slate-400 hover:border-white/12 hover:text-slate-300'}`}>
               {m.label}
             </button>
           ))}
@@ -285,7 +285,7 @@ export default function pnl_calculator() {
           {trades.map((t, i) => (
             <div key={t.id} className="rounded-2xl border-2 border-white/8 bg-white/[0.03] p-4 space-y-3" style={{ animation: 'slideUp 0.2s ease' }}>
               <div className="flex items-center justify-between">
-                <span className="text-xs font-bold text-slate-500">Trade #{i + 1}</span>
+                <span className="text-xs font-bold text-slate-400">Trade #{i + 1}</span>
                 {trades.length > 1 && <button onClick={() => removeRow(t.id)} className="text-red-400/40 hover:text-red-400 text-xs transition-colors">✕ Remove</button>}
               </div>
 
@@ -293,29 +293,29 @@ export default function pnl_calculator() {
               <div className="relative">
                 <button onClick={() => { setActiveDropdown(activeDropdown === t.id ? null : t.id); setSearchQuery(t.symbol || '') }}
                   className={`w-full text-left ${inputClass} rounded-xl flex items-center justify-between cursor-pointer`}>
-                  <span className={t.symbol ? 'text-white' : 'text-slate-500'}>{t.symbol ? `${t.symbol} — ${t.name}` : `Search ${STOCKS[market]?.length || 0} stocks...`}</span>
-                  <svg className="w-4 h-4 text-slate-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                  <span className={t.symbol ? 'text-white' : 'text-slate-400'}>{t.symbol ? `${t.symbol} — ${t.name}` : `Search ${STOCKS[market]?.length || 0} stocks...`}</span>
+                  <svg className="w-4 h-4 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
                 </button>
 
                 {activeDropdown === t.id && (
                   <div className="absolute z-50 mt-1 w-full max-h-80 overflow-y-auto rounded-xl border border-white/10 bg-slate-900 shadow-2xl">
                     <div className="p-2 border-b border-white/8 sticky top-0 bg-slate-900 z-10">
                       <div className="relative">
-                        <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                        <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
                         <input value={searchQuery} onChange={e => setSearchQuery(e.target.value)}
                           placeholder={`Search ${filteredStocks.length} stocks...`}
-                          className="w-full bg-white/[0.06] border border-white/8 rounded-lg pl-9 pr-3 py-2 text-sm text-white outline-none placeholder:text-slate-500"
+                          className="w-full bg-white/[0.06] border border-white/8 rounded-lg pl-9 pr-3 py-2 text-sm text-white outline-none placeholder:text-slate-400"
                           onClick={e => e.stopPropagation()} autoFocus />
                       </div>
                     </div>
                     {filteredStocks.length === 0 && (
-                      <div className="p-4 text-center text-xs text-slate-500">No stocks match "{searchQuery}"</div>
+                      <div className="p-4 text-center text-xs text-slate-400">No stocks match "{searchQuery}"</div>
                     )}
                     {filteredStocks.slice(0, 50).map(([sym, name]) => (
                       <button key={sym} onClick={() => selectStock(t.id, sym, name)}
                         className="w-full text-left px-3 py-2 hover:bg-white/[0.06] transition-colors flex items-center justify-between border-b border-white/5 last:border-0">
                         <span className="text-sm font-bold text-white">{sym}</span>
-                        <span className="text-xs text-slate-500 ml-2 truncate">{name}</span>
+                        <span className="text-xs text-slate-400 ml-2 truncate">{name}</span>
                       </button>
                     ))}
                     {filteredStocks.length > 50 && <div className="p-2 text-center text-[10px] text-slate-600">Showing 50 of {filteredStocks.length} — type to narrow</div>}
@@ -326,15 +326,15 @@ export default function pnl_calculator() {
               {/* Inputs */}
               <div className="grid grid-cols-3 gap-2">
                 <div>
-                  <label className="text-[10px] font-bold text-slate-500 uppercase mb-1 block">Qty</label>
+                  <label className="text-[10px] font-bold text-slate-400 uppercase mb-1 block">Qty</label>
                   <input type="number" value={t.qty} onChange={e => updateRow(t.id, 'qty', e.target.value)} placeholder="0" min="1" className={`w-full ${inputClass} text-center`} />
                 </div>
                 <div>
-                  <label className="text-[10px] font-bold text-slate-500 uppercase mb-1 block">Buy {prefix}</label>
+                  <label className="text-[10px] font-bold text-slate-400 uppercase mb-1 block">Buy {prefix}</label>
                   <input type="number" value={t.buyPrice} onChange={e => updateRow(t.id, 'buyPrice', e.target.value)} placeholder="0.00" min="0" step="0.01" className={`w-full ${inputClass} text-center`} />
                 </div>
                 <div>
-                  <label className="text-[10px] font-bold text-slate-500 uppercase mb-1 block">Sell {prefix}</label>
+                  <label className="text-[10px] font-bold text-slate-400 uppercase mb-1 block">Sell {prefix}</label>
                   <input type="number" value={t.sellPrice} onChange={e => updateRow(t.id, 'sellPrice', e.target.value)} placeholder="0.00" min="0" step="0.01" className={`w-full ${inputClass} text-center`} />
                 </div>
               </div>
@@ -364,15 +364,15 @@ export default function pnl_calculator() {
             </div>
             <div className="grid grid-cols-3 gap-2 sm:gap-3 mb-6">
               <div className="p-2.5 sm:p-3 rounded-xl bg-white/[0.05] border border-white/8 min-w-0">
-                <div className="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Invested</div>
+                <div className="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Invested</div>
                 <div className="text-sm sm:text-lg font-extrabold text-white mt-1 truncate">{prefix}{Math.round(totals.totalInvested).toLocaleString('en-IN')}</div>
               </div>
               <div className="p-2.5 sm:p-3 rounded-xl bg-white/[0.05] border border-white/8 min-w-0">
-                <div className="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Current</div>
+                <div className="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Current</div>
                 <div className="text-sm sm:text-lg font-extrabold text-white mt-1 truncate">{prefix}{Math.round(totals.totalReturned).toLocaleString('en-IN')}</div>
               </div>
               <div className={`p-2.5 sm:p-3 rounded-xl border min-w-0 ${totals.totalPnl >= 0 ? 'bg-emerald-500/10 border-emerald-500/15' : 'bg-red-500/10 border-red-500/15'}`}>
-                <div className="text-[10px] text-slate-500 uppercase font-bold tracking-wider">P&L</div>
+                <div className="text-[10px] text-slate-400 uppercase font-bold tracking-wider">P&L</div>
                 <div className={`text-sm sm:text-lg font-extrabold mt-1 truncate ${totals.totalPnl >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>{totals.totalPnl >= 0 ? '+' : ''}{prefix}{Math.round(Math.abs(totals.totalPnl)).toLocaleString('en-IN')}</div>
               </div>
             </div>
@@ -380,7 +380,7 @@ export default function pnl_calculator() {
               <div className="bg-white/15 rounded-l-xl flex items-center justify-center text-[10px] font-bold text-white/80 transition-all duration-500" style={{ width: `${totals.totalInvested > 0 ? (totals.totalInvested / totals.totalReturned) * 100 : 50}%` }}>Invested</div>
               <div className={`rounded-r-xl flex items-center justify-center text-[10px] font-bold text-white/80 transition-all duration-500 ${totals.totalPnl >= 0 ? 'bg-emerald-500/70' : 'bg-red-500/70'}`} style={{ width: `${totals.totalReturned > 0 ? (Math.abs(totals.totalPnl) / totals.totalReturned) * 100 : 50}%` }}>{totals.totalPnl >= 0 ? 'Profit' : 'Loss'}</div>
             </div>
-            <div className="flex justify-between text-xs text-slate-500">
+            <div className="flex justify-between text-xs text-slate-400">
               <span>Invested: {prefix}{Math.round(totals.totalInvested).toLocaleString('en-IN')}</span>
               <span className={`font-bold ${totals.totalPnl >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>{totals.totalPnlPct >= 0 ? '+' : ''}{totals.totalPnlPct.toFixed(2)}% overall</span>
             </div>

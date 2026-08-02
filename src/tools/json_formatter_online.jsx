@@ -201,7 +201,7 @@ export default function json_formatter_online() {
       <div className="max-w-4xl mx-auto space-y-4">
         {/* Input */}
         <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4">
-          <label className="text-xs font-semibold text-slate-500 mb-2 block">Paste your JSON below</label>
+          <label className="text-xs font-semibold text-slate-400 mb-2 block">Paste your JSON below</label>
           <textarea value={input} onChange={e => setInput(e.target.value)}
             placeholder='{"key": "value", "nested": {"a": 1, "b": true}}'
             rows={8} spellCheck={false}
@@ -232,13 +232,13 @@ export default function json_formatter_online() {
         <div ref={resultRef} className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4">
           {!treeView ? (
             <>
-              <label className="text-xs font-semibold text-slate-500 mb-2 block">Formatted Output</label>
+              <label className="text-xs font-semibold text-slate-400 mb-2 block">Formatted Output</label>
               <textarea value={output} readOnly rows={8} spellCheck={false}
                 className="w-full bg-black/20 border-2 border-indigo-500/20 rounded-xl px-4 py-3 text-sm font-mono text-indigo-300 resize-none" />
             </>
           ) : (
             <>
-              <label className="text-xs font-semibold text-slate-500 mb-2 block">Tree View</label>
+              <label className="text-xs font-semibold text-slate-400 mb-2 block">Tree View</label>
               <div className="bg-black/20 border-2 border-indigo-500/20 rounded-xl p-4 max-h-[520px] overflow-auto font-mono text-xs whitespace-pre"
                 dangerouslySetInnerHTML={{ __html: treeHtml }} />
             </>
@@ -249,7 +249,7 @@ export default function json_formatter_online() {
             {[['Characters', stats.chars], ['Size (bytes)', stats.bytes], ['Depth', stats.depth], ['Keys', stats.keys]].map(([l, v]) => (
               <div key={l} className="text-center p-3 bg-black/20 rounded-xl">
                 <div className="text-lg font-bold text-indigo-400">{v}</div>
-                <div className="text-[11px] text-slate-500">{l}</div>
+                <div className="text-[11px] text-slate-400">{l}</div>
               </div>
             ))}
           </div>

@@ -623,19 +623,19 @@ export default function games_tower_defense() {
           <div className="grid grid-cols-4 gap-3">
             <div className="text-center">
               <div className="text-xl font-extrabold text-yellow-400">{gold}</div>
-              <div className="text-xs text-slate-500 font-medium">Gold</div>
+              <div className="text-xs text-slate-400 font-medium">Gold</div>
             </div>
             <div className="text-center">
               <div className="text-xl font-extrabold text-red-400">{lives}</div>
-              <div className="text-xs text-slate-500 font-medium">Lives</div>
+              <div className="text-xs text-slate-400 font-medium">Lives</div>
             </div>
             <div className="text-center">
               <div className="text-xl font-extrabold text-cyan-400">{wave}</div>
-              <div className="text-xs text-slate-500 font-medium">Wave</div>
+              <div className="text-xs text-slate-400 font-medium">Wave</div>
             </div>
             <div className="text-center">
               <div className="text-xl font-extrabold text-green-400">{score}</div>
-              <div className="text-xs text-slate-500 font-medium">Score</div>
+              <div className="text-xs text-slate-400 font-medium">Score</div>
             </div>
           </div>
         </div>
@@ -671,7 +671,7 @@ export default function games_tower_defense() {
                 <div className="text-lg">{tt.icon}</div>
                 <div className="text-xs font-bold text-white">{tt.name}</div>
                 <div className="text-xs text-yellow-400">{tt.cost}💰</div>
-                <div className="text-[10px] text-slate-500">{tt.damage}dmg | {tt.range}r</div>
+                <div className="text-[10px] text-slate-400">{tt.damage}dmg | {tt.range}r</div>
               </button>
             ))}
           </div>
@@ -686,7 +686,7 @@ export default function games_tower_defense() {
             <button onClick={startWave} disabled={waveActive}
               className={`px-6 py-3 text-sm rounded-xl font-semibold border transition-all ${
                 waveActive
-                  ? 'bg-white/[0.04] border-white/[0.06] text-slate-500 cursor-not-allowed'
+                  ? 'bg-white/[0.04] border-white/[0.06] text-slate-400 cursor-not-allowed'
                   : 'bg-green-500/10 border-green-500/30 text-green-400 hover:bg-green-500/20'
               }`}>
               🌊 {waveActive ? 'Wave Active...' : 'Send Wave'}
@@ -704,7 +704,7 @@ export default function games_tower_defense() {
           />
         </div>
 
-        <p className="text-center text-xs text-slate-500">
+        <p className="text-center text-xs text-slate-400">
           Keys: 1-4 select tower | Space = send wave | Esc = cancel
         </p>
           <div className="flex gap-2 justify-center mt-4">

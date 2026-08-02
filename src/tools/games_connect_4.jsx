@@ -243,15 +243,15 @@ export default function games_connect_4() {
           <div className="grid grid-cols-3 gap-4">
             <div className="text-center">
               <div className="text-2xl font-extrabold text-red-400">{rWins}</div>
-              <div className="text-xs text-slate-500 font-medium mt-0.5">Red Wins</div>
+              <div className="text-xs text-slate-400 font-medium mt-0.5">Red Wins</div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-extrabold text-slate-400">{draws}</div>
-              <div className="text-xs text-slate-500 font-medium mt-0.5">Draws</div>
+              <div className="text-xs text-slate-400 font-medium mt-0.5">Draws</div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-extrabold text-yellow-400">{yWins}</div>
-              <div className="text-xs text-slate-500 font-medium mt-0.5">Yellow Wins</div>
+              <div className="text-xs text-slate-400 font-medium mt-0.5">Yellow Wins</div>
             </div>
           </div>
         </div>
@@ -315,7 +315,7 @@ export default function games_connect_4() {
           </button>
         </div>
 
-        <p className="text-center text-xs text-slate-500">
+        <p className="text-center text-xs text-slate-400">
           Click a column to drop your disc | AI uses minimax for smart play
         </p>
         </div>

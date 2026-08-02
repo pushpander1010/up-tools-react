@@ -86,7 +86,7 @@ export default function css_animation_generator() {
   const [copied, setCopied] = useState(false)
   const [playing, setPlaying] = useState(true)
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-2.5 text-white text-sm font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-500"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-2.5 text-white text-sm font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-400"
 
   const addKeyframe = () => {
     setKeyframes(prev => {
@@ -187,7 +187,7 @@ export default function css_animation_generator() {
 
         {/* Presets */}
         <div>
-          <label className="text-xs font-semibold text-slate-500 mb-2 block">Presets</label>
+          <label className="text-xs font-semibold text-slate-400 mb-2 block">Presets</label>
           <div className="flex flex-wrap gap-2">
             {presets.map(p => (
               <button key={p.name} onClick={() => loadPreset(p)}
@@ -203,7 +203,7 @@ export default function css_animation_generator() {
           <div className="space-y-5">
             {/* Animation Name */}
             <div>
-              <label className="text-xs font-semibold text-slate-500 mb-2 block">Animation Name</label>
+              <label className="text-xs font-semibold text-slate-400 mb-2 block">Animation Name</label>
               <input type="text" value={animName} onChange={e => setAnimName(e.target.value)}
                 className={`${inputClass} font-mono`} placeholder="myAnimation" />
             </div>
@@ -211,7 +211,7 @@ export default function css_animation_generator() {
             {/* Keyframes */}
             <div>
               <div className="flex items-center justify-between mb-2">
-                <label className="text-xs font-semibold text-slate-500">Keyframes</label>
+                <label className="text-xs font-semibold text-slate-400">Keyframes</label>
                 <button onClick={addKeyframe}
                   className="px-3 py-1.5 rounded-lg text-xs font-bold bg-violet-500/15 text-violet-300 border border-violet-500/30 hover:bg-violet-500/25 transition-all">
                   + Add Step
@@ -242,22 +242,22 @@ export default function css_animation_generator() {
             {/* Animation Properties */}
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="text-xs font-semibold text-slate-500 mb-1 block">Duration</label>
+                <label className="text-xs font-semibold text-slate-400 mb-1 block">Duration</label>
                 <input type="text" value={duration} onChange={e => setDuration(e.target.value)}
                   className={inputClass} placeholder="1s" />
               </div>
               <div>
-                <label className="text-xs font-semibold text-slate-500 mb-1 block">Delay</label>
+                <label className="text-xs font-semibold text-slate-400 mb-1 block">Delay</label>
                 <input type="text" value={delay} onChange={e => setDelay(e.target.value)}
                   className={inputClass} placeholder="0s" />
               </div>
               <div>
-                <label className="text-xs font-semibold text-slate-500 mb-1 block">Iterations</label>
+                <label className="text-xs font-semibold text-slate-400 mb-1 block">Iterations</label>
                 <input type="text" value={iteration} onChange={e => setIteration(e.target.value)}
                   className={inputClass} placeholder="infinite" />
               </div>
               <div>
-                <label className="text-xs font-semibold text-slate-500 mb-1 block">Fill Mode</label>
+                <label className="text-xs font-semibold text-slate-400 mb-1 block">Fill Mode</label>
                 <select value={fillMode} onChange={e => setFillMode(e.target.value)}
                   className={inputClass}>
                   {fillOptions.map(f => <option key={f} value={f}>{f}</option>)}
@@ -266,14 +266,14 @@ export default function css_animation_generator() {
             </div>
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="text-xs font-semibold text-slate-500 mb-1 block">Timing</label>
+                <label className="text-xs font-semibold text-slate-400 mb-1 block">Timing</label>
                 <select value={timing} onChange={e => setTiming(e.target.value)}
                   className={inputClass}>
                   {timingOptions.map(t => <option key={t} value={t}>{t}</option>)}
                 </select>
               </div>
               <div>
-                <label className="text-xs font-semibold text-slate-500 mb-1 block">Direction</label>
+                <label className="text-xs font-semibold text-slate-400 mb-1 block">Direction</label>
                 <select value={direction} onChange={e => setDirection(e.target.value)}
                   className={inputClass}>
                   {directionOptions.map(d => <option key={d} value={d}>{d}</option>)}
@@ -285,7 +285,7 @@ export default function css_animation_generator() {
           {/* Right: Preview */}
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <label className="text-xs font-semibold text-slate-500">Live Preview</label>
+              <label className="text-xs font-semibold text-slate-400">Live Preview</label>
               <button onClick={togglePlay}
                 className="px-4 py-1.5 rounded-lg text-xs font-bold bg-white/[0.06] text-slate-400 border border-white/8 hover:bg-violet-500/15 hover:text-violet-300 transition-all">
                 {playing ? '⏹ Reset' : '▶ Play'}
@@ -310,7 +310,7 @@ export default function css_animation_generator() {
             {/* Generated CSS */}
             <div ref={resultRef}>
               <div className="flex items-center justify-between mb-2">
-                <label className="text-xs font-semibold text-slate-500">Generated CSS</label>
+                <label className="text-xs font-semibold text-slate-400">Generated CSS</label>
                 <button onClick={copyCSS}
                   className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${copied ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-white/5 border border-white/8 text-slate-400 hover:text-white'}`}>
                   {copied ? '✓ Copied' : '📋 Copy CSS'}

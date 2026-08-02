@@ -44,7 +44,7 @@ export default function tool_401k_calculator() {
     setResult({ years, totalYourContrib, totalEmployerContrib, growth, balance, tip })
   }, [age, retireAge, salary, contribution, employerMatch, matchLimit, currentBalance, returnRate, salaryIncrease])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 
   const fields = [
     { label: 'Current Age', value: age, set: setAge, min: 18, max: 100, step: 1 },
@@ -87,7 +87,7 @@ export default function tool_401k_calculator() {
               <label className="block text-sm font-semibold text-slate-300 mb-2">{f.label}</label>
               <input type="number" value={f.value} onChange={e => f.set(e.target.value)}
                 min={f.min} max={f.max} step={f.step || 1} className={inputClass} />
-              {f.help && <p className="text-[11px] text-slate-500 mt-1">{f.help}</p>}
+              {f.help && <p className="text-[11px] text-slate-400 mt-1">{f.help}</p>}
             </div>
           ))}
         </div>

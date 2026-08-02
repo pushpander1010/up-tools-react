@@ -65,13 +65,13 @@ export default function uuid_generator_pro() {
         <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4">
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="text-xs font-semibold text-slate-500 mb-2 block">Count</label>
+              <label className="text-xs font-semibold text-slate-400 mb-2 block">Count</label>
               <input type="number" value={count} onChange={e => setCount(parseInt(e.target.value) || 10)}
                 min={1} max={100}
                 className="w-full bg-black/20 border-2 border-white/[0.08] rounded-xl px-4 py-3 text-sm outline-none focus:border-indigo-500/40 transition-all" />
             </div>
             <div>
-              <label className="text-xs font-semibold text-slate-500 mb-2 block">Format</label>
+              <label className="text-xs font-semibold text-slate-400 mb-2 block">Format</label>
               <select value={format} onChange={e => setFormat(e.target.value)}
                 className="w-full bg-black/20 border-2 border-white/[0.08] rounded-xl px-4 py-3 text-sm outline-none focus:border-indigo-500/40 transition-all">
                 <option value="hyphen">With hyphens</option>

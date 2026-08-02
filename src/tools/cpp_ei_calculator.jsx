@@ -55,7 +55,7 @@ export default function cpp_ei_calculator() {
           <input type="number" value={income} onChange={e => setIncome(e.target.value)}
             placeholder="e.g., 65000" min="0" step="100"
             className={inputClass} />
-          <p className="text-xs text-slate-500 mt-2">CPP rate {CPP_RATE * 100}% on earnings ${CPP_EXEMPT.toLocaleString()} – ${CPP_YMPE.toLocaleString()} | EI rate {EI_RATE * 100}% on first ${EI_MAX.toLocaleString()}</p>
+          <p className="text-xs text-slate-400 mt-2">CPP rate {CPP_RATE * 100}% on earnings ${CPP_EXEMPT.toLocaleString()} – ${CPP_YMPE.toLocaleString()} | EI rate {EI_RATE * 100}% on first ${EI_MAX.toLocaleString()}</p>
         </div>
 
         {result ? (
@@ -76,7 +76,7 @@ export default function cpp_ei_calculator() {
                 <span className="font-bold text-white">{fmt(result.ei)}</span>
               </div>
             </div>
-            <p className="text-xs text-slate-500 mt-4">Approximate. Use CRA for exact figures.</p>
+            <p className="text-xs text-slate-400 mt-4">Approximate. Use CRA for exact figures.</p>
           </div>
         ) : (
           <div ref={resultRef} className="text-center py-12 rounded-3xl border-2 border-dashed border-white/8 bg-white/[0.01]">

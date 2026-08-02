@@ -111,7 +111,7 @@ export default function fifa_world_cup_predictions() {
             {[{ n: '48', l: 'Teams' }, { n: '12', l: 'Groups' }, { n: '104', l: 'Matches' }, { n: '🇺🇸🇲🇽🇨🇦', l: 'Hosts' }, { n: 'Jun 11 – Jul 19', l: '2026' }, { n: `${filledCount}/27`, l: 'Picks Made' }].map(s => (
               <div key={s.l} className="bg-black/20 rounded-xl p-2">
                 <div className="text-sm font-extrabold text-indigo-400">{s.n}</div>
-                <div className="text-[9px] text-slate-500">{s.l}</div>
+                <div className="text-[9px] text-slate-400">{s.l}</div>
               </div>
             ))}
           </div>

@@ -75,7 +75,7 @@ export default function SlugGenerator() {
             </button>
           </div>
           <div className="bg-white/[0.04] border border-white/[0.1] rounded-xl px-4 py-3 text-sm text-white font-mono break-all">
-            {output || <span className="text-slate-500">Enter text to generate a slug</span>}
+            {output || <span className="text-slate-400">Enter text to generate a slug</span>}
           </div>
         </div>
       </div>

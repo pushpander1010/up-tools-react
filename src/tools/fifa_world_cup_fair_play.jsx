@@ -44,7 +44,7 @@ export default function fifa_world_cup_fair_play() {
 
         <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-5">
           <h2 className="text-sm font-bold text-white mb-3">Full Standings</h2>
-          <p className="text-xs text-slate-500 mb-3">
+          <p className="text-xs text-slate-400 mb-3">
             Our <a href="/fifa-world-cup-discipline/" className="text-indigo-400 hover:underline">FIFA Discipline Tracker</a> ranks every team by total cards — the backbone of the fair-play race.
           </p>
           <a href="/fifa-world-cup-discipline/"

@@ -103,7 +103,7 @@ export default function word_counter_enhanced() {
           {cards.map(c => (
             <div key={c.label} className="text-center p-4 bg-white/[0.06] border border-white/[0.08] rounded-xl">
               <div className="text-2xl font-bold" style={{ color: c.color }}>{c.value}</div>
-              <div className="text-[11px] text-slate-500 mt-1">{c.label}</div>
+              <div className="text-[11px] text-slate-400 mt-1">{c.label}</div>
             </div>
           ))}
         </div>
@@ -120,10 +120,10 @@ export default function word_counter_enhanced() {
           {text.trim() ? (
             <div className="mt-2">
               <span className="text-lg font-bold text-white">{stats.readingLevel.label}</span>
-              <span className="text-sm text-slate-500 ml-2">(Score: {stats.readingLevel.score})</span>
+              <span className="text-sm text-slate-400 ml-2">(Score: {stats.readingLevel.score})</span>
             </div>
           ) : (
-            <p className="text-sm text-slate-500 mt-2">Enter text to see reading level.</p>
+            <p className="text-sm text-slate-400 mt-2">Enter text to see reading level.</p>
           )}
         </div>
       </div>

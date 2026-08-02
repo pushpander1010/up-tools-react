@@ -35,7 +35,7 @@ export default function sip_step_up_calculator() {
     }
   }, [m, su, r, y])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-4 py-3 text-white text-sm font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-4 py-3 text-white text-sm font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -112,12 +112,12 @@ export default function sip_step_up_calculator() {
             {/* Comparison Cards */}
             <div className="grid grid-cols-2 gap-3 mb-4">
               <div className="p-3 rounded-xl bg-white/[0.05] border border-white/[0.08] text-center">
-                <div className="text-[10px] text-slate-500 uppercase font-bold">Regular SIP</div>
+                <div className="text-[10px] text-slate-400 uppercase font-bold">Regular SIP</div>
                 <div className="text-lg font-extrabold text-white mt-1">{fmt(result.regular)}</div>
-                <div className="text-[10px] text-slate-500">Invested: {fmt(result.totalInvested)}</div>
+                <div className="text-[10px] text-slate-400">Invested: {fmt(result.totalInvested)}</div>
               </div>
               <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/15 text-center">
-                <div className="text-[10px] text-slate-500 uppercase font-bold">Step-Up SIP</div>
+                <div className="text-[10px] text-slate-400 uppercase font-bold">Step-Up SIP</div>
                 <div className="text-lg font-extrabold text-emerald-400 mt-1">{fmt(result.stepUp)}</div>
                 <div className="text-[10px] text-emerald-400/60">Extra: {fmt(result.extra)}</div>
               </div>

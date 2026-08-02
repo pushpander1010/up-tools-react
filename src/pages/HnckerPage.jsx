@@ -78,7 +78,7 @@ export default function HnckerPage() {
       </Helmet>
 
       {/* Breadcrumb */}
-      <nav className="flex items-center gap-2 text-xs text-slate-500 mb-5" aria-label="Breadcrumb">
+      <nav className="flex items-center gap-2 text-xs text-slate-400 mb-5" aria-label="Breadcrumb">
         <Link to="/" className="hover:text-white transition-colors">Home</Link>
         <span className="text-slate-700">›</span>
         <span className="text-slate-300 font-medium">HNCKER</span>
@@ -132,8 +132,8 @@ export default function HnckerPage() {
           <div className="text-xl font-extrabold my-1"
             style={{ background: 'linear-gradient(135deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>@hncker</div>
           <div className="flex gap-6 mt-2">
-            <div className="text-center"><b className="block text-white text-lg">16.2K</b><span className="text-[11px] text-slate-500 uppercase tracking-wider">followers</span></div>
-            <div className="text-center"><b className="block text-white text-lg">Cyber/AI</b><span className="text-[11px] text-slate-500 uppercase tracking-wider">niche</span></div>
+            <div className="text-center"><b className="block text-white text-lg">16.2K</b><span className="text-[11px] text-slate-400 uppercase tracking-wider">followers</span></div>
+            <div className="text-center"><b className="block text-white text-lg">Cyber/AI</b><span className="text-[11px] text-slate-400 uppercase tracking-wider">niche</span></div>
           </div>
         </div>
         <div className="flex gap-2 flex-wrap">
@@ -153,7 +153,7 @@ export default function HnckerPage() {
         <div className="flex items-end justify-between gap-3 flex-wrap mb-5">
           <div>
             <h2 className="text-xl font-bold m-0">🛠️ HNCKER Tools</h2>
-            <p className="text-xs text-slate-500 mt-1">Real guides with working examples — pick a tool and dive in.</p>
+            <p className="text-xs text-slate-400 mt-1">Real guides with working examples — pick a tool and dive in.</p>
           </div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -192,7 +192,7 @@ export default function HnckerPage() {
             <div key={app.name} className="p-5 rounded-2xl" style={{ background: 'rgba(0,0,0,0.3)', border: `1px solid ${app.iconBorder}` }}>
               <div className="flex items-center gap-3 mb-3">
                 <div className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl" style={{ background: app.iconBg, border: `1px solid ${app.iconBorder}` }}>{app.icon}</div>
-                <div><h3 className="text-lg font-bold m-0">{app.name}</h3><span className="text-xs text-slate-500 font-mono">{app.pkg}</span></div>
+                <div><h3 className="text-lg font-bold m-0">{app.name}</h3><span className="text-xs text-slate-400 font-mono">{app.pkg}</span></div>
               </div>
               <p className="text-xs text-slate-400 mb-3">{app.desc}</p>
               <ul className="list-none p-0 m-0 space-y-1.5">
@@ -208,7 +208,7 @@ export default function HnckerPage() {
       {/* Videos — Infinite Carousel (moved to end) */}
       <div className="glass rounded-3xl mb-6 overflow-hidden">
         <div className="px-6 pt-6 pb-4 flex items-center justify-between gap-3 flex-wrap">
-          <div><h2 className="text-xl font-bold m-0">🎬 Latest Videos</h2><p className="text-xs text-slate-500 mt-1">Swipe to browse — tap to watch.</p></div>
+          <div><h2 className="text-xl font-bold m-0">🎬 Latest Videos</h2><p className="text-xs text-slate-400 mt-1">Swipe to browse — tap to watch.</p></div>
           <a href="https://www.youtube.com/@hncker" target="_blank" rel="noopener"
             className="px-3 py-1.5 rounded-full text-xs font-semibold bg-white/4 border border-white/8 text-slate-400 hover:text-white hover:border-white/12 transition-all no-underline">All on YouTube ↗</a>
         </div>
@@ -225,7 +225,7 @@ export default function HnckerPage() {
                 </div>
                 <div className="p-4">
                   <div className="text-sm font-semibold text-white line-clamp-2 mb-1">{v.title}</div>
-                  <div className="text-xs text-slate-500">{v.sub}</div>
+                  <div className="text-xs text-slate-400">{v.sub}</div>
                 </div>
               </a>
             ))}

@@ -126,7 +126,7 @@ export default function random_choice_generator() {
         {/* Input */}
         <div>
           <label className="block text-sm font-semibold text-slate-300 mb-2">
-            Your Choices <span className="text-slate-500 font-normal">({choices.length} choices)</span>
+            Your Choices <span className="text-slate-400 font-normal">({choices.length} choices)</span>
           </label>
           <textarea value={input} onChange={e => setInput(e.target.value)}
             placeholder={"Option 1\nOption 2\nOption 3"}
@@ -182,7 +182,7 @@ export default function random_choice_generator() {
               {history.map((h, i) => (
                 <div key={i} className="flex justify-between items-center py-1 text-xs">
                   <span className="text-white/80">#{i + 1} {h.choice}</span>
-                  <span className="text-slate-500">{h.time}</span>
+                  <span className="text-slate-400">{h.time}</span>
                 </div>
               ))}
             </div>

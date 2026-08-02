@@ -113,7 +113,7 @@ Format as a numbered list. Make names memorable, unique, and brandable.`
             <div className="flex flex-wrap gap-2">
               {STYLES.map(s => (
                 <button key={s} onClick={() => toggleStyle(s)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-bold border transition-all ${activeStyles.has(s) ? 'bg-indigo-500/20 text-indigo-400 border-indigo-500/30' : 'bg-white/[0.06] text-slate-500 border-white/[0.08]'}`}>
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold border transition-all ${activeStyles.has(s) ? 'bg-indigo-500/20 text-indigo-400 border-indigo-500/30' : 'bg-white/[0.06] text-slate-400 border-white/[0.08]'}`}>
                   {s}
                 </button>
               ))}

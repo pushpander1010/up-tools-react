@@ -82,7 +82,7 @@ export default function whatsapp_group_name_generator() {
     })
   }
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -109,7 +109,7 @@ export default function whatsapp_group_name_generator() {
     >
       <div className="max-w-2xl mx-auto space-y-6">
         <div>
-          <label className="block text-xs font-semibold text-slate-500 mb-2">Group Type</label>
+          <label className="block text-xs font-semibold text-slate-400 mb-2">Group Type</label>
           <select value={groupType} onChange={e => setGroupType(e.target.value)}
             className={inputClass + " appearance-none"}>
             {Object.entries(typeLabels).map(([val, label]) => (
@@ -129,7 +129,7 @@ export default function whatsapp_group_name_generator() {
               <div className="w-2 h-2 rounded-full bg-indigo-400 animate-pulse" />
               <h3 className="text-sm font-bold text-indigo-400 uppercase tracking-wider">Your Group Names</h3>
             </div>
-            <p className="text-xs text-slate-500 mb-4">Click any name to copy it</p>
+            <p className="text-xs text-slate-400 mb-4">Click any name to copy it</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {groupNames[groupType].map(name => (
                 <button key={name} onClick={() => copyName(name)}
@@ -139,7 +139,7 @@ export default function whatsapp_group_name_generator() {
                       : 'bg-white/[0.06] border border-white/8 hover:border-indigo-500/40'
                   }`}>
                   <span className="text-sm text-white font-medium truncate mr-2">{name}</span>
-                  <span className="text-xs text-slate-500 shrink-0">{copied === name ? '✓' : '📋'}</span>
+                  <span className="text-xs text-slate-400 shrink-0">{copied === name ? '✓' : '📋'}</span>
                 </button>
               ))}
             </div>

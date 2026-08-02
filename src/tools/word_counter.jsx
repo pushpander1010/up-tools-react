@@ -16,7 +16,7 @@ export default function word_counter() {
     return { chars, words, sentences, paragraphs, lines }
   }, [text])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark] resize-none"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark] resize-none"
 
   return (
     <ToolLayout
@@ -62,7 +62,7 @@ export default function word_counter() {
           ].map(item => (
             <div key={item.label} className="text-center p-4 bg-black/20 rounded-xl">
               <div className="text-2xl font-bold text-indigo-400">{item.value}</div>
-              <div className="text-xs text-slate-500 mt-1">{item.label}</div>
+              <div className="text-xs text-slate-400 mt-1">{item.label}</div>
             </div>
           ))}
         </div>

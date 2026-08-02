@@ -497,15 +497,15 @@ export default function games_doodle_jump() {
           <div className="grid grid-cols-3 gap-4">
             <div className="text-center">
               <div className="text-2xl font-extrabold text-white">{score}</div>
-              <div className="text-xs text-slate-500 font-medium mt-0.5">Score</div>
+              <div className="text-xs text-slate-400 font-medium mt-0.5">Score</div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-extrabold text-purple-400">{best}</div>
-              <div className="text-xs text-slate-500 font-medium mt-0.5">Best</div>
+              <div className="text-xs text-slate-400 font-medium mt-0.5">Best</div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-extrabold text-slate-300">{lastScore}</div>
-              <div className="text-xs text-slate-500 font-medium mt-0.5">Last</div>
+              <div className="text-xs text-slate-400 font-medium mt-0.5">Last</div>
             </div>
           </div>
         </div>
@@ -529,14 +529,14 @@ export default function games_doodle_jump() {
         </div>
 
         {/* Platform legend */}
-        <div className="flex gap-3 justify-center text-xs text-slate-500">
+        <div className="flex gap-3 justify-center text-xs text-slate-400">
           <span className="flex items-center gap-1"><span className="inline-block w-3 h-3 rounded bg-green-500"></span> Normal</span>
           <span className="flex items-center gap-1"><span className="inline-block w-3 h-3 rounded bg-blue-500"></span> Moving</span>
           <span className="flex items-center gap-1"><span className="inline-block w-3 h-3 rounded bg-amber-500"></span> Fragile</span>
         </div>
 
         {/* Mobile D-pad hint */}
-        <p className="text-center text-xs text-slate-500">
+        <p className="text-center text-xs text-slate-400">
           Desktop: ← → to move | Mobile: Drag left/right to steer
         </p>
           <div className="flex gap-2 justify-center mt-4">

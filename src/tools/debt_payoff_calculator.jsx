@@ -58,7 +58,7 @@ export default function debt_payoff_calculator() {
     setTimeout(() => jumpTo(), 50)
   }, [monthlyPayment, method, debts, jumpTo])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-3 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-3 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -117,17 +117,17 @@ export default function debt_payoff_calculator() {
                   </div>
                   <div className="grid grid-cols-3 gap-2">
                     <div>
-                      <label className="text-xs text-slate-500">Balance ($)</label>
+                      <label className="text-xs text-slate-400">Balance ($)</label>
                       <input type="number" value={d.balance} onChange={e => updateDebt(i, 'balance', e.target.value)}
                         className={inputClass} />
                     </div>
                     <div>
-                      <label className="text-xs text-slate-500">Rate (%)</label>
+                      <label className="text-xs text-slate-400">Rate (%)</label>
                       <input type="number" value={d.rate} onChange={e => updateDebt(i, 'rate', e.target.value)}
                         className={inputClass} />
                     </div>
                     <div>
-                      <label className="text-xs text-slate-500">Min Payment ($)</label>
+                      <label className="text-xs text-slate-400">Min Payment ($)</label>
                       <input type="number" value={d.minPayment} onChange={e => updateDebt(i, 'minPayment', e.target.value)}
                         className={inputClass} />
                     </div>
@@ -150,7 +150,7 @@ export default function debt_payoff_calculator() {
               <div className="text-3xl font-bold text-emerald-400">
                 {result.months} months ({Math.floor(result.months / 12)}y {result.months % 12}m)
               </div>
-              <div className="text-sm text-slate-500 mt-1">Time to become debt-free</div>
+              <div className="text-sm text-slate-400 mt-1">Time to become debt-free</div>
             </div>
             <div className="grid grid-cols-3 gap-3">
               {[
@@ -160,7 +160,7 @@ export default function debt_payoff_calculator() {
               ].map(item => (
                 <div key={item.label} className="text-center p-3 bg-black/20 rounded-xl">
                   <div className={`text-lg font-bold ${item.color}`}>{item.value}</div>
-                  <div className="text-xs text-slate-500 mt-1">{item.label}</div>
+                  <div className="text-xs text-slate-400 mt-1">{item.label}</div>
                 </div>
               ))}
             </div>

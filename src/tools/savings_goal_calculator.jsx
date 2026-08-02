@@ -93,7 +93,7 @@ export default function savings_goal_calculator() {
               className={`flex-1 py-3 rounded-xl text-sm font-bold transition-all border-2 ${
                 mode === key
                   ? 'bg-amber-500/10 border-amber-500/30 text-amber-400'
-                  : 'bg-white/[0.06] border-white/8 text-slate-500 hover:border-white/15'
+                  : 'bg-white/[0.06] border-white/8 text-slate-400 hover:border-white/15'
               }`}>
               {label}
             </button>
@@ -103,30 +103,30 @@ export default function savings_goal_calculator() {
         {/* Inputs */}
         <div className="space-y-3">
           <div>
-            <label className="text-xs text-slate-500 font-medium mb-1 block">Savings Goal ($)</label>
+            <label className="text-xs text-slate-400 font-medium mb-1 block">Savings Goal ($)</label>
             <input type="number" value={goalAmount} onChange={(e) => setGoalAmount(e.target.value)} min="0" step="1000"
               className="w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3 text-white text-sm outline-none focus:border-amber-500/40 transition-all" />
           </div>
           <div>
-            <label className="text-xs text-slate-500 font-medium mb-1 block">Current Savings ($)</label>
+            <label className="text-xs text-slate-400 font-medium mb-1 block">Current Savings ($)</label>
             <input type="number" value={currentSavings} onChange={(e) => setCurrentSavings(e.target.value)} min="0" step="100"
               className="w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3 text-white text-sm outline-none focus:border-amber-500/40 transition-all" />
           </div>
           {mode === 'time' ? (
             <div>
-              <label className="text-xs text-slate-500 font-medium mb-1 block">Monthly Contribution ($)</label>
+              <label className="text-xs text-slate-400 font-medium mb-1 block">Monthly Contribution ($)</label>
               <input type="number" value={monthlyContribution} onChange={(e) => setMonthlyContribution(e.target.value)} min="0" step="50"
                 className="w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3 text-white text-sm outline-none focus:border-amber-500/40 transition-all" />
             </div>
           ) : (
             <div>
-              <label className="text-xs text-slate-500 font-medium mb-1 block">Months to Reach Goal</label>
+              <label className="text-xs text-slate-400 font-medium mb-1 block">Months to Reach Goal</label>
               <input type="number" value={monthsToGoal} onChange={(e) => setMonthsToGoal(e.target.value)} min="1" max="600"
                 className="w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3 text-white text-sm outline-none focus:border-amber-500/40 transition-all" />
             </div>
           )}
           <div>
-            <label className="text-xs text-slate-500 font-medium mb-1 block">Annual Interest Rate (%)</label>
+            <label className="text-xs text-slate-400 font-medium mb-1 block">Annual Interest Rate (%)</label>
             <input type="number" value={interestRate} onChange={(e) => setInterestRate(e.target.value)} min="0" max="20" step="0.1"
               className="w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3 text-white text-sm outline-none focus:border-amber-500/40 transition-all" />
           </div>

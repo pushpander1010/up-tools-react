@@ -92,7 +92,7 @@ function calcAge(day, month, year) {
 function SelectField({ label, value, onChange, options, placeholder }) {
   return (
     <div className="flex-1">
-      <label className="block text-xs font-semibold text-slate-500 mb-1.5">{label}</label>
+      <label className="block text-xs font-semibold text-slate-400 mb-1.5">{label}</label>
       <select value={value} onChange={e => onChange(e.target.value)}
         className="w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-3 py-3 text-sm text-white font-semibold outline-none focus:border-brand/40 transition-all duration-200 appearance-none cursor-pointer"
         style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2394a3b8' d='M2 4l4 4 4-4'/%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 12px center' }}>
@@ -106,7 +106,7 @@ function SelectField({ label, value, onChange, options, placeholder }) {
 const StatCard = ({ value, label, color = 'gradient-text' }) => (
   <div className="p-4 rounded-2xl bg-white/[0.06] border border-white/8 text-center">
     <div className={`text-3xl font-extrabold ${color}`}>{value}</div>
-    <div className="text-xs text-slate-500 mt-1 font-medium">{label}</div>
+    <div className="text-xs text-slate-400 mt-1 font-medium">{label}</div>
   </div>
 )
 
@@ -192,27 +192,27 @@ export default function age_calculator() {
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
               <div className="p-4 rounded-2xl bg-white/[0.05] border border-white/8">
                 <div className="text-2xl font-extrabold gradient-text">{age.totalDays.toLocaleString()}</div>
-                <div className="text-[11px] text-slate-500 mt-1">Days Alive</div>
+                <div className="text-[11px] text-slate-400 mt-1">Days Alive</div>
               </div>
               <div className="p-4 rounded-2xl bg-white/[0.05] border border-white/8">
                 <div className="text-2xl font-extrabold gradient-text">{age.totalWeeks.toLocaleString()}</div>
-                <div className="text-[11px] text-slate-500 mt-1">Weeks Lived</div>
+                <div className="text-[11px] text-slate-400 mt-1">Weeks Lived</div>
               </div>
               <div className="p-4 rounded-2xl bg-white/[0.05] border border-white/8">
                 <div className="text-2xl font-extrabold gradient-text">{age.totalHours.toLocaleString()}</div>
-                <div className="text-[11px] text-slate-500 mt-1">Hours Breathed</div>
+                <div className="text-[11px] text-slate-400 mt-1">Hours Breathed</div>
               </div>
               <div className="p-4 rounded-2xl bg-white/[0.05] border border-white/8">
                 <div className="text-2xl font-extrabold text-rose-400">{age.heartbeats.toLocaleString()}</div>
-                <div className="text-[11px] text-slate-500 mt-1">Heartbeats 💓</div>
+                <div className="text-[11px] text-slate-400 mt-1">Heartbeats 💓</div>
               </div>
               <div className="p-4 rounded-2xl bg-white/[0.05] border border-white/8">
                 <div className="text-2xl font-extrabold text-emerald-400 truncate">{age.breaths.toLocaleString()}</div>
-                <div className="text-[11px] text-slate-500 mt-1">Breaths Taken</div>
+                <div className="text-[11px] text-slate-400 mt-1">Breaths Taken</div>
               </div>
               <div className="p-4 rounded-2xl bg-white/[0.05] border border-white/8">
                 <div className="text-2xl font-extrabold text-amber-400 truncate">{age.totalMinutes.toLocaleString()}</div>
-                <div className="text-[11px] text-slate-500 mt-1">Minutes Lived</div>
+                <div className="text-[11px] text-slate-400 mt-1">Minutes Lived</div>
               </div>
             </div>
           </div>
@@ -225,14 +225,14 @@ export default function age_calculator() {
             <div className="p-6 rounded-2xl bg-gradient-to-br from-brand/5 to-purple-500/5 border border-brand/15 text-center">
               <div className="text-5xl font-extrabold text-brand-light">{age.nextBday}</div>
               <div className="text-sm text-slate-400 mt-2">days until your next birthday</div>
-              <div className="text-xs text-slate-500 mt-1">You'll be {age.years + 1} years old!</div>
+              <div className="text-xs text-slate-400 mt-1">You'll be {age.years + 1} years old!</div>
             </div>
 
             {/* Zodiac Quick */}
             <div className="p-6 rounded-2xl bg-white/[0.05] border border-white/8 text-center">
               <div className="text-5xl mb-2">{zodiac.sym}</div>
               <div className="text-xl font-extrabold text-white">{zodiacName}</div>
-              <div className="text-xs text-slate-500 mt-1">{zodiac.dates}</div>
+              <div className="text-xs text-slate-400 mt-1">{zodiac.dates}</div>
               <div className="flex items-center justify-center gap-2 mt-3">
                 <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-white/5 border border-white/8 text-slate-400">{zodiac.element}</span>
                 <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-white/5 border border-white/8 text-slate-400">{zodiac.planet}</span>
@@ -249,7 +249,7 @@ export default function age_calculator() {
                 <span className="text-3xl">{zodiac.sym}</span>
                 <div>
                   <h3 className="text-lg font-bold text-white">{zodiacName} Personality</h3>
-                  <p className="text-xs text-slate-500">{zodiac.element} sign • Ruled by {zodiac.planet}</p>
+                  <p className="text-xs text-slate-400">{zodiac.element} sign • Ruled by {zodiac.planet}</p>
                 </div>
               </div>
 
@@ -267,7 +267,7 @@ export default function age_calculator() {
 
               {/* Famous */}
               <div className="p-3 rounded-xl bg-white/[0.06] border border-white/6">
-                <span className="text-xs text-slate-500 font-semibold">Famous {zodiacName}s: </span>
+                <span className="text-xs text-slate-400 font-semibold">Famous {zodiacName}s: </span>
                 <span className="text-xs text-slate-300">{zodiac.famous}</span>
               </div>
             </div>

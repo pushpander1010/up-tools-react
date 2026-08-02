@@ -150,7 +150,7 @@ export default function gst_calculator() {
                 placeholder="Enter custom rate" step="0.01"
                 className="w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3 text-white font-semibold outline-none
                   focus:border-emerald-500/40 transition-all duration-200 placeholder:text-slate-600" />
-              <span className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-500 font-bold">%</span>
+              <span className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-400 font-bold">%</span>
             </div>
           )}
         </div>
@@ -171,7 +171,7 @@ export default function gst_calculator() {
               </div>
               <div>
                 <div className="text-sm font-bold text-white">Amount includes GST</div>
-                <div className="text-[11px] text-slate-500 mt-0.5">
+                <div className="text-[11px] text-slate-400 mt-0.5">
                   {inclusive ? 'Back-calculating base from inclusive amount' : 'GST will be added on top'}
                 </div>
               </div>
@@ -180,7 +180,7 @@ export default function gst_calculator() {
 
           {/* Supply Type */}
           <div className="p-4 rounded-2xl border-2 border-white/8 bg-white/[0.05]">
-            <div className="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-2">Supply Type</div>
+            <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2">Supply Type</div>
             <div className="grid grid-cols-2 gap-2">
               {[['intra', 'Intra-state', 'CGST + SGST'], ['inter', 'Inter-state', 'IGST']].map(([val, label, sub]) => (
                 <button key={val} onClick={() => setSupply(val)}
@@ -190,7 +190,7 @@ export default function gst_calculator() {
                       : 'bg-white/[0.05] border-white/8 hover:border-white/12'
                     }`}>
                   <div className={`text-xs font-bold ${supply === val ? 'text-purple-400' : 'text-slate-300'}`}>{label}</div>
-                  <div className="text-[10px] text-slate-500 mt-0.5">{sub}</div>
+                  <div className="text-[10px] text-slate-400 mt-0.5">{sub}</div>
                 </button>
               ))}
             </div>

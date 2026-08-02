@@ -112,7 +112,7 @@ export default function canada_hst_tool() {
           {[['add', 'Add tax'], ['remove', 'Remove tax']].map(([val, label]) => (
             <button key={val} onClick={() => setMode(val)}
               className={`flex-1 py-3 rounded-2xl text-sm font-bold transition-all duration-200 border-2
-                ${mode === val ? 'bg-red-500/10 border-red-500/30 text-red-400 shadow-lg shadow-red-500/10' : 'bg-white/[0.05] border-white/8 text-slate-500 hover:border-white/12'}`}>
+                ${mode === val ? 'bg-red-500/10 border-red-500/30 text-red-400 shadow-lg shadow-red-500/10' : 'bg-white/[0.05] border-white/8 text-slate-400 hover:border-white/12'}`}>
               {label}
             </button>
           ))}

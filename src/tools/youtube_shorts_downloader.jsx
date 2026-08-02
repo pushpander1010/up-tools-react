@@ -57,7 +57,7 @@ export default function youtube_shorts_downloader() {
             <div className="flex gap-2">
               {['360', '720', '1080'].map(q => (
                 <button key={q} onClick={() => setQuality(q)}
-                  className={`flex-1 py-2 rounded-xl text-sm font-bold transition-all border ${quality === q ? 'bg-red-500/15 border-red-500/30 text-red-400' : 'bg-white/[0.06] border-white/[0.08] text-slate-500'}`}>
+                  className={`flex-1 py-2 rounded-xl text-sm font-bold transition-all border ${quality === q ? 'bg-red-500/15 border-red-500/30 text-red-400' : 'bg-white/[0.06] border-white/[0.08] text-slate-400'}`}>
                   {q}p
                 </button>
               ))}

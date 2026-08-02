@@ -101,14 +101,14 @@ export default function bible_verse() {
         <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4">
           <div className="text-xs font-bold text-purple-400 uppercase tracking-wider mb-2">✨ Verse of the Day</div>
           <p className="text-sm text-slate-300 italic">{daily.text}</p>
-          <p className="text-xs text-slate-500 mt-1">{daily.ref} ({daily.trans})</p>
+          <p className="text-xs text-slate-400 mt-1">{daily.ref} ({daily.trans})</p>
         </div>
 
         {/* Translation Chips */}
         <div className="flex gap-2">
           {TRANSLATIONS.map(t => (
             <button key={t.id} onClick={() => setActiveTrans(t.id)}
-              className={`px-4 py-2 rounded-xl text-sm font-bold transition-all border ${activeTrans === t.id ? 'bg-purple-500/15 border-purple-500/30 text-purple-400' : 'bg-white/[0.06] border-white/[0.08] text-slate-500 hover:text-white'}`}>
+              className={`px-4 py-2 rounded-xl text-sm font-bold transition-all border ${activeTrans === t.id ? 'bg-purple-500/15 border-purple-500/30 text-purple-400' : 'bg-white/[0.06] border-white/[0.08] text-slate-400 hover:text-white'}`}>
               {t.label}
             </button>
           ))}

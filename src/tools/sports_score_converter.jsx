@@ -80,7 +80,7 @@ export default function sports_score_converter() {
         {/* Inputs */}
         <div className="grid grid-cols-2 gap-3">
           <div>
-            <label className="text-xs text-slate-500 font-medium mb-1 block">Sport</label>
+            <label className="text-xs text-slate-400 font-medium mb-1 block">Sport</label>
             <select value={sport} onChange={(e) => setSport(e.target.value)}
               className="w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3 text-white text-sm font-semibold outline-none focus:border-emerald-500/40 transition-all [color-scheme:dark]">
               {Object.entries(CONVERSIONS).map(([key, val]) => (
@@ -89,7 +89,7 @@ export default function sports_score_converter() {
             </select>
           </div>
           <div>
-            <label className="text-xs text-slate-500 font-medium mb-1 block">Score</label>
+            <label className="text-xs text-slate-400 font-medium mb-1 block">Score</label>
             <input type="number" value={score} onChange={(e) => setScore(e.target.value)} min="0" placeholder="Enter score"
               onKeyDown={(e) => { if (e.key === 'Enter') convert() }}
               className="w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3 text-white text-sm outline-none focus:border-emerald-500/40 transition-all placeholder:text-slate-600" />
@@ -118,7 +118,7 @@ export default function sports_score_converter() {
                 ))}
               </div>
             ) : (
-              <p className="text-sm text-slate-500">No conversions available for this score.</p>
+              <p className="text-sm text-slate-400">No conversions available for this score.</p>
             )}
           </div>
         ) : (

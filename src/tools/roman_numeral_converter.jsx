@@ -141,7 +141,7 @@ export default function RomanNumeralConverter() {
               <input type="number" value={numValue} onChange={e => handleNumInput(e.target.value)}
                 placeholder="Enter number…"
                 min="1" max="3999"
-                className="flex-1 bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3 text-white text-sm font-mono outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-500 [color-scheme:dark]" />
+                className="flex-1 bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3 text-white text-sm font-mono outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-400 [color-scheme:dark]" />
               <button onClick={() => handleCopy(numOutput, 'num')}
                 className="px-3 py-2 rounded-xl bg-white/[0.06] border border-white/[0.08] hover:bg-white/[0.1] text-slate-300 transition-all text-sm"
                 title="Copy Roman numeral">
@@ -162,7 +162,7 @@ export default function RomanNumeralConverter() {
             <div className="flex gap-2">
               <input type="text" value={romanValue} onChange={e => handleRomanInput(e.target.value)}
                 placeholder="Enter Roman numeral…"
-                className="flex-1 bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3 text-white text-sm font-mono outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-500 [color-scheme:dark] uppercase" />
+                className="flex-1 bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3 text-white text-sm font-mono outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-400 [color-scheme:dark] uppercase" />
               <button onClick={() => handleCopy(numValue, 'roman')}
                 className="px-3 py-2 rounded-xl bg-white/[0.06] border border-white/[0.08] hover:bg-white/[0.1] text-slate-300 transition-all text-sm"
                 title="Copy number">

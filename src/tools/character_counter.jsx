@@ -51,7 +51,7 @@ export default function character_counter() {
           <textarea value={text} onChange={e => setText(e.target.value)}
             placeholder="Type or paste your text here..."
             rows={8}
-            className="w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark] resize-none" />
+            className="w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark] resize-none" />
         </div>
 
         {/* Stats */}
@@ -73,7 +73,7 @@ export default function character_counter() {
               ].map(([label, val, color]) => (
                 <div key={label} className="p-2.5 sm:p-3 rounded-xl bg-black/20 border border-white/[0.05] text-center">
                   <div className={`text-xl sm:text-2xl font-extrabold ${color}`}>{val}</div>
-                  <div className="text-[10px] text-slate-500 uppercase font-bold mt-1">{label}</div>
+                  <div className="text-[10px] text-slate-400 uppercase font-bold mt-1">{label}</div>
                 </div>
               ))}
             </div>

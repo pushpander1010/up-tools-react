@@ -159,7 +159,7 @@ export default function fifa_world_cup_travel_planner() {
         <div className="flex flex-wrap gap-1.5">
           {tabs.map(t => (
             <button key={t.id} onClick={() => setTab(t.id)}
-              className={`px-3 py-2 rounded-xl text-xs font-bold transition-all ${tab === t.id ? 'bg-cyan-500/15 text-cyan-400 border border-cyan-500/30' : 'bg-white/[0.06] text-slate-500 border border-white/[0.08]'}`}>
+              className={`px-3 py-2 rounded-xl text-xs font-bold transition-all ${tab === t.id ? 'bg-cyan-500/15 text-cyan-400 border border-cyan-500/30' : 'bg-white/[0.06] text-slate-400 border border-white/[0.08]'}`}>
               {t.icon} {t.label}
             </button>
           ))}
@@ -178,10 +178,10 @@ export default function fifa_world_cup_travel_planner() {
                     <span className="text-lg">{v.flag}</span>
                     <div>
                       <div className="text-sm font-bold text-white">{v.city}</div>
-                      <div className="text-[10px] text-slate-500">{v.stadium}</div>
+                      <div className="text-[10px] text-slate-400">{v.stadium}</div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3 text-[10px] text-slate-500">
+                  <div className="flex items-center gap-3 text-[10px] text-slate-400">
                     <span>👥 {v.capacity.toLocaleString()}</span>
                     <span>⚽ {v.matches}</span>
                   </div>
@@ -231,7 +231,7 @@ export default function fifa_world_cup_travel_planner() {
                   {[['Total Distance', `${routeResult.totalMiles.toLocaleString()} mi`], ['Est. Drive Time', `${routeResult.driveHours}h`], ['Est. Flight Time', `${routeResult.flightHours.toFixed(1)}h`]].map(([l, v]) => (
                     <div key={l} className="bg-black/20 rounded-xl p-2 text-center">
                       <div className="text-sm font-bold text-white">{v}</div>
-                      <div className="text-[9px] text-slate-500">{l}</div>
+                      <div className="text-[9px] text-slate-400">{l}</div>
                     </div>
                   ))}
                 </div>
@@ -258,7 +258,7 @@ export default function fifa_world_cup_travel_planner() {
             <div className="overflow-x-auto">
               <table className="w-full text-[10px]">
                 <thead>
-                  <tr className="text-slate-500 border-b border-white/[0.08]">
+                  <tr className="text-slate-400 border-b border-white/[0.08]">
                     <th className="text-left py-2 px-2">From</th>
                     <th className="text-left py-2 px-2">To</th>
                     <th className="text-right py-2 px-2">Drive</th>
@@ -296,7 +296,7 @@ export default function fifa_world_cup_travel_planner() {
             <div className="overflow-x-auto">
               <table className="w-full text-[10px]">
                 <thead>
-                  <tr className="text-slate-500 border-b border-white/[0.08]">
+                  <tr className="text-slate-400 border-b border-white/[0.08]">
                     <th className="text-left py-2 px-2">City</th>
                     <th className="text-right py-2 px-2">Hotel/Night</th>
                     <th className="text-right py-2 px-2">Ticket</th>
@@ -332,7 +332,7 @@ export default function fifa_world_cup_travel_planner() {
               <div key={v.country} className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4">
                 <h3 className="text-sm font-bold text-white mb-1">{v.country === 'USA' ? '🇺🇸' : v.country === 'Mexico' ? '🇲🇽' : '🇨🇦'} {v.country}</h3>
                 <p className="text-xs text-indigo-400 font-semibold">{v.req}</p>
-                <p className="text-[10px] text-slate-500 mt-1">{v.note}</p>
+                <p className="text-[10px] text-slate-400 mt-1">{v.note}</p>
               </div>
             ))}
             <div className="bg-amber-500/[0.06] border border-amber-500/15 rounded-xl p-3 text-[11px] text-amber-400">
@@ -350,7 +350,7 @@ export default function fifa_world_cup_travel_planner() {
                 <div key={w.city} className="bg-black/20 rounded-xl p-2.5">
                   <div className="text-[11px] font-bold text-white">{w.city}</div>
                   <div className="text-[10px] text-cyan-400">{w.temp}</div>
-                  <div className="text-[9px] text-slate-500">{w.note}</div>
+                  <div className="text-[9px] text-slate-400">{w.note}</div>
                 </div>
               ))}
             </div>
@@ -369,7 +369,7 @@ export default function fifa_world_cup_travel_planner() {
             </div>
             {['Essentials', 'Clothing', 'Health', 'Optional'].map(cat => (
               <div key={cat} className="mb-3">
-                <h3 className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1.5">{cat}</h3>
+                <h3 className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">{cat}</h3>
                 <div className="space-y-1">
                   {PACKING.filter(p => p.cat === cat).map(p => (
                     <button key={p.item} onClick={() => togglePacking(p.item)}

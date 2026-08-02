@@ -125,7 +125,7 @@ export default function currency_converter() {
           <div className="text-sm text-slate-400">
             {amount || '0'} {from} = {displayRate} {to}
           </div>
-          <div className="text-xs text-slate-500 mt-2">
+          <div className="text-xs text-slate-400 mt-2">
             {loading ? 'Loading...' : status}
           </div>
         </div>

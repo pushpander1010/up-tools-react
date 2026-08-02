@@ -59,13 +59,13 @@ export default function ipl_points_table() {
       <div className="max-w-4xl mx-auto space-y-6">
         {/* Sort controls */}
         <div className="rounded-3xl border-2 border-white/8 bg-white/[0.06] p-4 flex items-center gap-3 flex-wrap">
-          <span className="text-sm text-slate-500 font-medium">Sort:</span>
+          <span className="text-sm text-slate-400 font-medium">Sort:</span>
           {SORT_OPTIONS.map(opt => (
             <button key={opt.key} onClick={() => handleSort(opt.key)}
               className={`px-4 py-2 rounded-full text-xs font-bold transition-all border ${
                 sortCol === opt.key
                   ? 'bg-amber-500/15 text-amber-400 border-amber-500/30'
-                  : 'bg-white/[0.04] text-slate-500 border-white/8 hover:bg-white/[0.08]'
+                  : 'bg-white/[0.04] text-slate-400 border-white/8 hover:bg-white/[0.08]'
               }`}>{opt.label}</button>
           ))}
         </div>
@@ -99,14 +99,14 @@ export default function ipl_points_table() {
                         <span className="text-lg">{t.logo}</span>
                         <div>
                           <div className="text-white font-bold text-xs">{t.short}</div>
-                          <div className="text-slate-500 text-[10px]">{t.name}</div>
+                          <div className="text-slate-400 text-[10px]">{t.name}</div>
                         </div>
                       </div>
                     </td>
                     <td className="py-3 px-2 text-center text-white">{t.m}</td>
                     <td className="py-3 px-2 text-center text-green-400 font-bold">{t.w}</td>
                     <td className="py-3 px-2 text-center text-red-400">{t.l}</td>
-                    <td className="py-3 px-2 text-center text-slate-500">{t.nr}</td>
+                    <td className="py-3 px-2 text-center text-slate-400">{t.nr}</td>
                     <td className="py-3 px-2 text-center text-white font-bold">{t.pts}</td>
                     <td className={`py-3 px-2 text-center font-bold ${nrrClass}`}>{nrrStr}</td>
                     <td className="py-3 px-2">
@@ -141,7 +141,7 @@ export default function ipl_points_table() {
             ['Most Wins', mostWins.short, `${mostWins.w} wins`],
           ].map(([label, val, sub]) => (
             <div key={label} className="rounded-2xl border-2 border-white/8 bg-white/[0.06] p-4 text-center">
-              <p className="text-xs text-slate-500 mb-1">{label}</p>
+              <p className="text-xs text-slate-400 mb-1">{label}</p>
               <p className="text-xl font-bold text-white">{val}</p>
               <p className="text-[10px] text-slate-600">{sub}</p>
             </div>

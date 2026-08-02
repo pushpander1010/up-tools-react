@@ -162,20 +162,20 @@ export default function scientific_calculator() {
           <div className="flex bg-white/[0.06] border border-white/8 rounded-xl overflow-hidden">
             {['deg', 'rad'].map(m => (
               <button key={m} onClick={() => setAngleMode(m)}
-                className={`px-4 py-2 text-xs font-bold uppercase transition-all ${angleMode === m ? 'bg-indigo-500/20 text-indigo-400' : 'text-slate-500 hover:text-white'}`}>
+                className={`px-4 py-2 text-xs font-bold uppercase transition-all ${angleMode === m ? 'bg-indigo-500/20 text-indigo-400' : 'text-slate-400 hover:text-white'}`}>
                 {m}
               </button>
             ))}
           </div>
           <button onClick={() => setInv(v => !v)}
-            className={`px-3 py-2 rounded-xl text-xs font-bold transition-all border-2 ${inv ? 'bg-purple-500/20 text-purple-400 border-purple-500/30' : 'bg-white/[0.06] text-slate-500 border-white/8'}`}>INV</button>
+            className={`px-3 py-2 rounded-xl text-xs font-bold transition-all border-2 ${inv ? 'bg-purple-500/20 text-purple-400 border-purple-500/30' : 'bg-white/[0.06] text-slate-400 border-white/8'}`}>INV</button>
           <button onClick={() => setHyp(v => !v)}
-            className={`px-3 py-2 rounded-xl text-xs font-bold transition-all border-2 ${hyp ? 'bg-cyan-500/20 text-cyan-400 border-cyan-500/30' : 'bg-white/[0.06] text-slate-500 border-white/8'}`}>HYP</button>
+            className={`px-3 py-2 rounded-xl text-xs font-bold transition-all border-2 ${hyp ? 'bg-cyan-500/20 text-cyan-400 border-cyan-500/30' : 'bg-white/[0.06] text-slate-400 border-white/8'}`}>HYP</button>
         </div>
 
         {/* Display */}
         <div className="bg-black/30 border-2 border-white/8 rounded-2xl p-4">
-          <div className="text-xs text-slate-500 font-mono h-5 text-right truncate">{expr}</div>
+          <div className="text-xs text-slate-400 font-mono h-5 text-right truncate">{expr}</div>
           <div className="text-3xl font-mono font-bold text-white text-right truncate mt-1">{display}</div>
         </div>
 
@@ -201,11 +201,11 @@ export default function scientific_calculator() {
         {/* History */}
         {history.length > 0 && (
           <div className="bg-white/[0.06] border border-white/8 rounded-2xl p-3 max-h-48 overflow-y-auto">
-            <div className="text-xs font-bold text-slate-500 mb-2">📜 History</div>
+            <div className="text-xs font-bold text-slate-400 mb-2">📜 History</div>
             {history.map((h, i) => (
               <div key={i} onClick={() => { setDisplay(h.val); setJustCalced(true) }}
                 className="flex justify-between items-center py-1.5 px-2 rounded-lg hover:bg-white/[0.04] cursor-pointer text-xs">
-                <span className="text-slate-500 font-mono truncate mr-2">{h.ex}</span>
+                <span className="text-slate-400 font-mono truncate mr-2">{h.ex}</span>
                 <span className="text-white font-mono font-bold">= {h.val}</span>
               </div>
             ))}

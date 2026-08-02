@@ -55,7 +55,7 @@ export default function tdee_calculator() {
     setResult({ bmr, tdee, goals })
   }, [age, hFt, hIn, hCm, weight, sex, unit, actMult])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
   const fmt = (n) => n.toLocaleString()
 
   return (
@@ -170,7 +170,7 @@ export default function tdee_calculator() {
               {result.goals.map((g, i) => (
                 <div key={i} className="rounded-xl p-3 border-2 border-white/8 bg-white/[0.03] text-center">
                   <div className="text-lg font-extrabold text-white">{fmt(g.cal)}</div>
-                  <div className="text-[11px] text-slate-500 mt-0.5">{g.name}</div>
+                  <div className="text-[11px] text-slate-400 mt-0.5">{g.name}</div>
                 </div>
               ))}
             </div>

@@ -82,7 +82,7 @@ export default function sin_validator() {
               <h3 className="text-sm font-bold uppercase tracking-wider" style={{ color: result.color }}>{result.status}</h3>
             </div>
             <div className="text-2xl font-extrabold text-white font-mono tracking-wider">{result.display}</div>
-            <p className="text-xs text-slate-500 mt-4">{result.note}</p>
+            <p className="text-xs text-slate-400 mt-4">{result.note}</p>
           </div>
         ) : (
           <div ref={resultRef} className="text-center py-12 rounded-3xl border-2 border-dashed border-white/8 bg-white/[0.01]">

@@ -462,15 +462,15 @@ export default function games_solitaire() {
             <div className="grid grid-cols-3 gap-3 mb-4 text-center">
               <div className="p-3 rounded-xl glass">
                 <div className="text-2xl font-extrabold text-white">{wins}</div>
-                <div className="text-xs text-slate-500 font-medium mt-0.5">Wins</div>
+                <div className="text-xs text-slate-400 font-medium mt-0.5">Wins</div>
               </div>
               <div className="p-3 rounded-xl glass">
                 <div className="text-2xl font-extrabold text-white">{bestMoves === Infinity ? '—' : bestMoves}</div>
-                <div className="text-xs text-slate-500 font-medium mt-0.5">Best Moves</div>
+                <div className="text-xs text-slate-400 font-medium mt-0.5">Best Moves</div>
               </div>
               <div className="p-3 rounded-xl glass">
                 <div className="text-2xl font-extrabold text-white">{gamesPlayed}</div>
-                <div className="text-xs text-slate-500 font-medium mt-0.5">Played</div>
+                <div className="text-xs text-slate-400 font-medium mt-0.5">Played</div>
               </div>
             </div>
             <div className="flex gap-2 justify-center">
@@ -626,7 +626,7 @@ export default function games_solitaire() {
                 ) : (
                   <EmptyPile type="stock"/>
                 )}
-                <div className="absolute -bottom-4 left-0 right-0 text-center text-xs text-slate-500">{gameState.stock.length}</div>
+                <div className="absolute -bottom-4 left-0 right-0 text-center text-xs text-slate-400">{gameState.stock.length}</div>
               </div>
             </div>
 
@@ -713,7 +713,7 @@ export default function games_solitaire() {
           </div>
         )}
 
-        <p className="text-center text-xs text-slate-500">Drag cards or double-click to auto-place. Stats saved on device.</p>
+        <p className="text-center text-xs text-slate-400">Drag cards or double-click to auto-place. Stats saved on device.</p>
 
         {/* Dragging card overlay */}
         {dragging && (

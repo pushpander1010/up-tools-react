@@ -94,7 +94,7 @@ export default function world_cup_2026_results() {
           ].map(s => (
             <div key={s.l} className="p-4 rounded-2xl bg-white/[0.06] border border-white/8 text-center">
               <div className="text-2xl font-extrabold text-indigo-400">{s.n}</div>
-              <div className="text-xs text-slate-500 font-medium mt-1">{s.l}</div>
+              <div className="text-xs text-slate-400 font-medium mt-1">{s.l}</div>
             </div>
           ))}
         </div>

@@ -106,7 +106,7 @@ export default function ip_address() {
             {/* IP Card */}
             <div className="rounded-3xl border border-white/8 bg-gradient-to-br from-sky-500/[0.06] to-transparent p-6 text-center">
               <div className="text-4xl mb-2">{flagEmoji}</div>
-              <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Your Public IP</div>
+              <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Your Public IP</div>
               <div className="text-3xl font-extrabold text-white font-mono mb-3">{data.ip}</div>
               <button onClick={handleCopy}
                 className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all ${copied
@@ -128,7 +128,7 @@ export default function ip_address() {
               ].map(([icon, label, value]) => (
                 <div key={label} className="rounded-2xl border border-white/8 bg-white/[0.04] p-4">
                   <div className="text-lg mb-1">{icon}</div>
-                  <div className="text-[10px] font-semibold text-slate-500 uppercase tracking-wider">{label}</div>
+                  <div className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">{label}</div>
                   <div className="text-sm text-white font-medium mt-0.5 break-all">{value}</div>
                 </div>
               ))}
@@ -136,7 +136,7 @@ export default function ip_address() {
 
             {/* Coordinates */}
             <div className="rounded-2xl border border-white/8 bg-white/[0.04] p-4">
-              <div className="text-[10px] font-semibold text-slate-500 uppercase tracking-wider mb-1">📍 Coordinates</div>
+              <div className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1">📍 Coordinates</div>
               <div className="text-sm text-white font-mono">
                 {data.lat.toFixed(4)}, {data.lon.toFixed(4)}
               </div>
@@ -149,7 +149,7 @@ export default function ip_address() {
                 />
                 <div className="relative text-center">
                   <div className="text-2xl mb-1">{flagEmoji}</div>
-                  <div className="text-[10px] text-slate-500">Approximate location</div>
+                  <div className="text-[10px] text-slate-400">Approximate location</div>
                 </div>
               </div>
             </div>

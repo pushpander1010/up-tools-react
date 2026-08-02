@@ -17,7 +17,7 @@ export default function InstagramStoryDownloader() {
     jumpTo()
   }, [url, jumpTo])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -72,7 +72,7 @@ export default function InstagramStoryDownloader() {
             <div className="rounded-2xl bg-emerald-500/[0.06] border border-emerald-500/15 p-5 text-center mb-4">
               <div className="text-4xl mb-3">✅</div>
               <p className="text-sm text-emerald-400 font-medium">Your Instagram content is ready!</p>
-              <p className="text-xs text-slate-500 mt-1">Click the button below to download</p>
+              <p className="text-xs text-slate-400 mt-1">Click the button below to download</p>
             </div>
             <button onClick={() => alert('In production, this would download your file. For now, please use a dedicated Instagram downloader service.')}
               className="w-full py-3 rounded-xl bg-emerald-500 text-white font-bold text-sm hover:bg-emerald-400 transition-all duration-200">

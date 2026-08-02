@@ -107,7 +107,7 @@ export default function resume_analyzer() {
     }
   }, [])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-3 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-500 [color-scheme:dark] resize-none"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-3 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-400 [color-scheme:dark] resize-none"
 
   return (
     <ToolLayout
@@ -145,7 +145,7 @@ export default function resume_analyzer() {
         {/* Resume Input */}
         <div className="p-5 rounded-2xl bg-white/[0.06] border border-white/[0.08] space-y-3">
           <div className="flex items-center justify-between">
-            <label className="text-xs font-semibold text-slate-500">Resume Text</label>
+            <label className="text-xs font-semibold text-slate-400">Resume Text</label>
             <div className="flex gap-2">
               <button onClick={() => fileRef.current?.click()}
                 className="px-3 py-1.5 rounded-lg text-[11px] font-bold bg-white/[0.06] text-slate-400 hover:text-white transition-all">
@@ -162,7 +162,7 @@ export default function resume_analyzer() {
         {/* JD Input */}
         {mode === 'againstJD' && (
           <div className="p-5 rounded-2xl bg-white/[0.06] border border-white/[0.08] space-y-3">
-            <label className="text-xs font-semibold text-slate-500">Job Description (optional)</label>
+            <label className="text-xs font-semibold text-slate-400">Job Description (optional)</label>
             <textarea value={jd} onChange={e => setJd(e.target.value)}
               placeholder="Paste the job description..." rows={6} className={inputClass} />
           </div>
@@ -186,7 +186,7 @@ export default function resume_analyzer() {
                 ...(result.matchScore != null ? [{ label: 'JD Match', value: `${result.matchScore}%`, color: result.matchScore >= 70 ? 'text-emerald-400' : result.matchScore >= 40 ? 'text-amber-400' : 'text-red-400' }] : []),
               ].map(k => (
                 <div key={k.label} className="p-4 rounded-2xl bg-white/[0.06] border border-white/[0.08] text-center">
-                  <div className="text-[10px] text-slate-500 uppercase tracking-wider mb-1">{k.label}</div>
+                  <div className="text-[10px] text-slate-400 uppercase tracking-wider mb-1">{k.label}</div>
                   <div className={`text-2xl font-extrabold ${k.color}`}>{k.value}</div>
                 </div>
               ))}

@@ -80,7 +80,7 @@ export default function sales_tax_calculator() {
   const rate = STATES[stateIdx].rate
   const result = useMemo(() => calcSalesTax(amount, rate, mode), [amount, rate, mode])
 
-  const inputClass = 'w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]'
+  const inputClass = 'w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]'
 
   return (
     <ToolLayout
@@ -109,7 +109,7 @@ export default function sales_tax_calculator() {
         <div className="flex gap-2">
           {['add', 'remove'].map(m => (
             <button key={m} onClick={() => setMode(m)}
-              className={`px-5 py-2.5 rounded-xl text-sm font-bold transition-all ${mode === m ? 'bg-indigo-500/15 text-indigo-400 border border-indigo-500/30' : 'bg-white/[0.06] text-slate-500 border border-white/[0.08]'}`}>
+              className={`px-5 py-2.5 rounded-xl text-sm font-bold transition-all ${mode === m ? 'bg-indigo-500/15 text-indigo-400 border border-indigo-500/30' : 'bg-white/[0.06] text-slate-400 border border-white/[0.08]'}`}>
               {m === 'add' ? '➕ Add Tax' : '➖ Remove Tax'}
             </button>
           ))}

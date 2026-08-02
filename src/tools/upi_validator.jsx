@@ -108,7 +108,7 @@ export default function upi_validator() {
       <div className="max-w-lg mx-auto space-y-4">
         {/* Input */}
         <div className="bg-white/[0.06] border border-white/8 rounded-2xl p-4">
-          <label className="text-xs font-semibold text-slate-500 mb-2 block">Enter UPI ID</label>
+          <label className="text-xs font-semibold text-slate-400 mb-2 block">Enter UPI ID</label>
           <input type="text" value={input} onChange={e => setInput(e.target.value)}
             onKeyDown={e => e.key === 'Enter' && validate()}
             placeholder="e.g. user@okicici, name@paytm"
@@ -135,7 +135,7 @@ export default function upi_validator() {
               <div className={`text-lg font-extrabold ${result.isValid ? 'text-emerald-400' : result.isFormatValid ? 'text-amber-400' : 'text-red-400'}`}>
                 {result.isValid ? 'Valid UPI ID' : result.isFormatValid ? 'Format Valid — Unknown Domain' : 'Invalid UPI ID'}
               </div>
-              <div className="text-xs text-slate-500 mt-1">
+              <div className="text-xs text-slate-400 mt-1">
                 {result.isValid ? 'Format and domain are recognized.' : result.isFormatValid ? 'The format is correct but the domain is not in our database.' : 'Please check the format and try again.'}
               </div>
             </div>
@@ -150,7 +150,7 @@ export default function upi_validator() {
                 { label: 'Domain recognized', value: result.isValid ? '✅ Yes' : result.warnings.length > 0 ? '⚠️ Unknown' : '❌ No', color: result.isValid ? '#22c55e' : result.warnings.length > 0 ? '#f59e0b' : '#ef4444' },
               ].map(row => (
                 <div key={row.label} className="flex justify-between items-center py-2 border-b border-white/[0.04]">
-                  <span className="text-slate-500 font-semibold">{row.label}</span>
+                  <span className="text-slate-400 font-semibold">{row.label}</span>
                   <span className="font-mono" style={{ color: row.color || '#e2e8f0' }}>{row.value}</span>
                 </div>
               ))}

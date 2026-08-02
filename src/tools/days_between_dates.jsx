@@ -21,7 +21,7 @@ export default function days_between_dates() {
     jumpTo()
   }, [date1, date2, jumpTo])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -78,7 +78,7 @@ export default function days_between_dates() {
                 ['Years', result.years],
               ].map(([label, val]) => (
                 <div key={label} className="rounded-xl border border-white/8 bg-white/[0.04] p-4 text-center">
-                  <div className="text-xs text-slate-500">{label}</div>
+                  <div className="text-xs text-slate-400">{label}</div>
                   <div className="text-2xl font-extrabold text-white mt-1">{val}</div>
                 </div>
               ))}

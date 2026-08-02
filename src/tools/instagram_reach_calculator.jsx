@@ -30,7 +30,7 @@ export default function instagram_reach_calculator() {
     jumpTo()
   }, [result, jumpTo])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -97,15 +97,15 @@ export default function instagram_reach_calculator() {
             <div className="grid grid-cols-3 gap-4 text-center mb-5">
               <div className="rounded-2xl p-4 bg-white/[0.04]">
                 <div className="text-2xl font-extrabold" style={{ color: result.reachColor }}>{result.reachRate}%</div>
-                <div className="text-xs text-slate-500 mt-1">Reach Rate</div>
+                <div className="text-xs text-slate-400 mt-1">Reach Rate</div>
               </div>
               <div className="rounded-2xl p-4 bg-white/[0.04]">
                 <div className="text-2xl font-extrabold" style={{ color: result.reachColor }}>{result.reachLevel}</div>
-                <div className="text-xs text-slate-500 mt-1">Performance</div>
+                <div className="text-xs text-slate-400 mt-1">Performance</div>
               </div>
               <div className="rounded-2xl p-4 bg-white/[0.04]">
                 <div className="text-2xl font-extrabold text-cyan-400">{result.reach.toLocaleString()}</div>
-                <div className="text-xs text-slate-500 mt-1">Reach</div>
+                <div className="text-xs text-slate-400 mt-1">Reach</div>
               </div>
             </div>
 

@@ -243,7 +243,7 @@ export default function instagram_auditor() {
     downloadCSV(csvLines, `${label}-${new Date().toISOString().slice(0, 10)}.csv`)
   }
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
   const fileInputClass = "w-full text-sm text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-bold file:bg-indigo-500/20 file:text-indigo-400 hover:file:bg-indigo-500/30 file:cursor-pointer"
 
   return (
@@ -324,7 +324,7 @@ export default function instagram_auditor() {
               ].map(s => (
                 <div key={s.label} className="text-center p-3 bg-black/20 rounded-xl">
                   <div className={`text-xl font-extrabold ${s.color}`}>{s.value.toLocaleString()}</div>
-                  <div className="text-xs text-slate-500">{s.label}</div>
+                  <div className="text-xs text-slate-400">{s.label}</div>
                 </div>
               ))}
             </div>
@@ -358,7 +358,7 @@ export default function instagram_auditor() {
                 { key: 'mutual', label: '🤝 Mutuals', count: result.mutuals.length },
               ].map(m => (
                 <button key={m.key} onClick={() => { setViewMode(m.key); setSelected(new Set()) }}
-                  className={`px-4 py-2 rounded-xl text-sm font-bold transition-all ${viewMode === m.key ? 'bg-indigo-500/15 text-indigo-400 border border-indigo-500/30' : 'bg-white/[0.06] text-slate-500 border border-white/[0.08]'}`}>
+                  className={`px-4 py-2 rounded-xl text-sm font-bold transition-all ${viewMode === m.key ? 'bg-indigo-500/15 text-indigo-400 border border-indigo-500/30' : 'bg-white/[0.06] text-slate-400 border border-white/[0.08]'}`}>
                   {m.label} ({m.count})
                 </button>
               ))}
@@ -397,7 +397,7 @@ export default function instagram_auditor() {
                           className="text-sm font-semibold text-white hover:text-indigo-400 transition-colors truncate block">
                           {u}
                         </a>
-                        <div className="text-xs text-slate-500">@{u}</div>
+                        <div className="text-xs text-slate-400">@{u}</div>
                       </div>
                     </div>
                     <div className="flex gap-2 shrink-0 ml-2">

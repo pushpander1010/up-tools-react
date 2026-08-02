@@ -45,7 +45,7 @@ export default function amortization_calculator() {
     setTimeout(() => jumpTo(), 50)
   }, [loanAmt, intRate, loanTerm, extraPmt, jumpTo])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -103,7 +103,7 @@ export default function amortization_calculator() {
               ].map(item => (
                 <div key={item.label} className="text-center p-4 bg-black/20 rounded-xl">
                   <div className={`text-lg font-bold ${item.color}`}>{item.value}</div>
-                  <div className="text-xs text-slate-500 mt-1">{item.label}</div>
+                  <div className="text-xs text-slate-400 mt-1">{item.label}</div>
                 </div>
               ))}
             </div>
@@ -118,7 +118,7 @@ export default function amortization_calculator() {
             <div className="overflow-x-auto max-h-96">
               <table className="w-full text-sm">
                 <thead className="sticky top-0 bg-[#1a1a2e]">
-                  <tr className="text-left text-slate-500 border-b border-white/[0.08]">
+                  <tr className="text-left text-slate-400 border-b border-white/[0.08]">
                     <th className="py-2 px-2">#</th>
                     <th className="py-2 px-2">Payment</th>
                     <th className="py-2 px-2">Principal</th>
@@ -129,7 +129,7 @@ export default function amortization_calculator() {
                 <tbody>
                   {result.rows.map(r => (
                     <tr key={r.n} className="border-b border-white/[0.04]">
-                      <td className="py-2 px-2 text-slate-500">{r.n}</td>
+                      <td className="py-2 px-2 text-slate-400">{r.n}</td>
                       <td className="py-2 px-2 text-slate-300">{fmtUSD(r.pmt)}</td>
                       <td className="py-2 px-2 text-slate-300">{fmtUSD(r.principal)}</td>
                       <td className="py-2 px-2 text-red-400">{fmtUSD(r.interest)}</td>

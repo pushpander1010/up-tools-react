@@ -170,15 +170,15 @@ export default function games_reaction_time() {
           <div className="grid grid-cols-3 gap-4">
             <div className="text-center">
               <div className="text-2xl font-extrabold text-white">{bestTime === Infinity ? '—' : bestTime + 'ms'}</div>
-              <div className="text-xs text-slate-500 font-medium mt-0.5">Best</div>
+              <div className="text-xs text-slate-400 font-medium mt-0.5">Best</div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-extrabold text-purple-400">{attempts}</div>
-              <div className="text-xs text-slate-500 font-medium mt-0.5">Attempts</div>
+              <div className="text-xs text-slate-400 font-medium mt-0.5">Attempts</div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-extrabold text-white">{currentRound + (phase === 'done' ? 0 : 1)}/{ROUNDS}</div>
-              <div className="text-xs text-slate-500 font-medium mt-0.5">Round</div>
+              <div className="text-xs text-slate-400 font-medium mt-0.5">Round</div>
             </div>
           </div>
         </div>
@@ -287,7 +287,7 @@ export default function games_reaction_time() {
             <div className="space-y-2 max-h-48 overflow-y-auto">
               {history.slice(0, 10).map((h, i) => (
                 <div key={i} className="flex flex-wrap items-center justify-between p-3 glass text-xs gap-2">
-                  <div className="text-xs text-slate-500">{h.date}</div>
+                  <div className="text-xs text-slate-400">{h.date}</div>
                   <div className="flex gap-2">
                     {h.results.map((r, j) => (
                       <span key={j} className="text-xs font-mono px-2 py-0.5 rounded"
@@ -303,7 +303,7 @@ export default function games_reaction_time() {
           </div>
         )}
 
-        <p className="text-center text-xs text-slate-500">Best times and history saved on this device.</p>
+        <p className="text-center text-xs text-slate-400">Best times and history saved on this device.</p>
           <div className="flex gap-2 justify-center mt-4">
             <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
               {isFs ? '⊡' : '⛶'}

@@ -78,13 +78,13 @@ export default function FindAndReplace() {
             <label className="block text-sm font-semibold text-slate-300 mb-2">Find</label>
             <input type="text" value={findText} onChange={e => setFindText(e.target.value)}
               placeholder="Text to find..."
-              className="w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3 text-white text-sm font-mono outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-500 [color-scheme:dark]" />
+              className="w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3 text-white text-sm font-mono outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-400 [color-scheme:dark]" />
           </div>
           <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-5">
             <label className="block text-sm font-semibold text-slate-300 mb-2">Replace with</label>
             <input type="text" value={replaceText} onChange={e => setReplaceText(e.target.value)}
               placeholder="Replacement text..."
-              className="w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3 text-white text-sm font-mono outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-500 [color-scheme:dark]" />
+              className="w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3 text-white text-sm font-mono outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-400 [color-scheme:dark]" />
           </div>
         </div>
 
@@ -100,7 +100,7 @@ export default function FindAndReplace() {
               className="accent-indigo-500 w-4 h-4 rounded" />
             Regex Mode
           </label>
-          <span className="text-sm text-slate-500 font-medium ml-auto">
+          <span className="text-sm text-slate-400 font-medium ml-auto">
             {error ? '⚠️ Error' : `${matchCount} replacement${matchCount !== 1 ? 's' : ''}`}
           </span>
         </div>
@@ -111,7 +111,7 @@ export default function FindAndReplace() {
           <textarea value={input} onChange={e => setInput(e.target.value)}
             placeholder="Enter text to search in..."
             rows={8}
-            className="w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3.5 text-white font-mono text-sm outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark] resize-none" />
+            className="w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3.5 text-white font-mono text-sm outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark] resize-none" />
         </div>
 
         {/* Output */}
@@ -120,7 +120,7 @@ export default function FindAndReplace() {
           <textarea value={output} readOnly
             placeholder="Result will appear here..."
             rows={8}
-            className={`w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3.5 text-white font-mono text-sm outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark] resize-none ${error ? 'border-red-500/40 text-red-400' : ''}`} />
+            className={`w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3.5 text-white font-mono text-sm outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark] resize-none ${error ? 'border-red-500/40 text-red-400' : ''}`} />
         </div>
 
         {/* Action Buttons */}

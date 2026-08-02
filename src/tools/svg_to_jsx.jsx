@@ -196,7 +196,7 @@ export default function svg_to_jsx() {
             ⚡ Convert to JSX
           </button>
           <button onClick={clearAll}
-            className="px-4 py-2.5 rounded-xl bg-white/[0.04] text-slate-500 text-sm font-bold hover:bg-white/[0.08] hover:text-slate-300 transition-all duration-200">
+            className="px-4 py-2.5 rounded-xl bg-white/[0.04] text-slate-400 text-sm font-bold hover:bg-white/[0.08] hover:text-slate-300 transition-all duration-200">
             🗑️ Clear
           </button>
           {output && (

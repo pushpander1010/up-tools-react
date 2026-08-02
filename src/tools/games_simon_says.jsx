@@ -246,11 +246,11 @@ export default function games_simon_says() {
           <div className="grid grid-cols-2 gap-4 text-center">
             <div className="text-center">
               <div className="text-2xl font-extrabold text-white">{score}</div>
-              <div className="text-xs text-slate-500 font-medium mt-0.5">Score (Rounds)</div>
+              <div className="text-xs text-slate-400 font-medium mt-0.5">Score (Rounds)</div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-extrabold text-amber-400">🏆 {highScore}</div>
-              <div className="text-xs text-slate-500 font-medium mt-0.5">High Score</div>
+              <div className="text-xs text-slate-400 font-medium mt-0.5">High Score</div>
             </div>
           </div>
         </div>
@@ -336,8 +336,8 @@ export default function games_simon_says() {
         )}
 
         <div className="text-center space-y-1">
-          <p className="text-xs text-slate-500">Keyboard: 1-4 or Arrow Keys to select colors</p>
-          <p className="text-xs text-slate-500">Each color has a unique sound to help you remember</p>
+          <p className="text-xs text-slate-400">Keyboard: 1-4 or Arrow Keys to select colors</p>
+          <p className="text-xs text-slate-400">Each color has a unique sound to help you remember</p>
           <div className="flex gap-2 justify-center mt-4">
             <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
               {isFs ? '⊡' : '⛶'}

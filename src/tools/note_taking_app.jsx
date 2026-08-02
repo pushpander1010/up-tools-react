@@ -34,7 +34,7 @@ export default function note_taking_app() {
   const charCount = note.length
   const wordCount = note.trim() ? note.trim().split(/\s+/).length : 0
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -64,7 +64,7 @@ export default function note_taking_app() {
           <textarea value={note} onChange={e => setNote(e.target.value)}
             placeholder="Start typing your note here..."
             rows={12} className={inputClass + " resize-none"} />
-          <div className="flex justify-between mt-2 text-xs text-slate-500">
+          <div className="flex justify-between mt-2 text-xs text-slate-400">
             <span>{charCount} characters</span>
             <span>{wordCount} words</span>
           </div>

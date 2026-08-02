@@ -60,7 +60,7 @@ export default function fantasy_sports_calculator() {
     jumpTo()
   }, [sport, values, jumpTo])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
   const selectClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all [color-scheme:dark]"
 
   return (
@@ -121,7 +121,7 @@ export default function fantasy_sports_calculator() {
               <h3 className="text-sm font-bold text-indigo-400 uppercase tracking-wider">Fantasy Points</h3>
             </div>
             <div className="rounded-xl border border-white/8 bg-white/[0.04] p-4 text-center">
-              <div className="text-xs text-slate-500 mb-1">Total Fantasy Points</div>
+              <div className="text-xs text-slate-400 mb-1">Total Fantasy Points</div>
               <div className="text-4xl font-extrabold text-indigo-400">{result}</div>
             </div>
           </div>

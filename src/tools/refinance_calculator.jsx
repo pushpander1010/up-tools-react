@@ -54,8 +54,8 @@ export default function refinance_calculator() {
   const result = useMemo(() => calcRefinance(balance, curRate, curYears, newRate, newTerm, closingCosts),
     [balance, curRate, curYears, newRate, newTerm, closingCosts])
 
-  const inputClass = 'w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]'
-  const sectionHeader = 'text-xs font-bold text-slate-500 uppercase tracking-wider pt-2 pb-1'
+  const inputClass = 'w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]'
+  const sectionHeader = 'text-xs font-bold text-slate-400 uppercase tracking-wider pt-2 pb-1'
 
   return (
     <ToolLayout
@@ -122,7 +122,7 @@ export default function refinance_calculator() {
             <input type="number" value={closingCosts} onChange={e => setClosingCosts(e.target.value)}
               placeholder="5000" min="0" step="500"
               className={inputClass} />
-            <p className="text-xs text-slate-500 mt-1">Typically 2-5% of loan amount</p>
+            <p className="text-xs text-slate-400 mt-1">Typically 2-5% of loan amount</p>
           </div>
         </div>
 

@@ -31,7 +31,7 @@ export default function github_profile_readme_generator() {
   const [theme, setTheme] = useState('tokyonight')
   const [copied, setCopied] = useState(false)
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-2.5 text-white text-sm font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-500"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-2.5 text-white text-sm font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-400"
 
   const themes = ['tokyonight', 'radical', 'merko', 'gruvbox', 'dracula', 'onedark', 'cobalt', 'synthwave', 'dracula-dark', 'tokyonight-bright']
 
@@ -180,35 +180,35 @@ export default function github_profile_readme_generator() {
               <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider">Basic Info</h3>
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="text-xs font-semibold text-slate-500 mb-1 block">GitHub Username *</label>
+                  <label className="text-xs font-semibold text-slate-400 mb-1 block">GitHub Username *</label>
                   <input type="text" value={username} onChange={e => setUsername(e.target.value)}
                     className={inputClass} placeholder="octocat" />
                 </div>
                 <div>
-                  <label className="text-xs font-semibold text-slate-500 mb-1 block">Display Name</label>
+                  <label className="text-xs font-semibold text-slate-400 mb-1 block">Display Name</label>
                   <input type="text" value={name} onChange={e => setName(e.target.value)}
                     className={inputClass} placeholder="The Octocat" />
                 </div>
               </div>
               <div>
-                <label className="text-xs font-semibold text-slate-500 mb-1 block">Bio / Tagline</label>
+                <label className="text-xs font-semibold text-slate-400 mb-1 block">Bio / Tagline</label>
                 <input type="text" value={bio} onChange={e => setBio(e.target.value)}
                   className={inputClass} placeholder="Full-stack developer | Open source enthusiast" />
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="text-xs font-semibold text-slate-500 mb-1 block">Currently Working On</label>
+                  <label className="text-xs font-semibold text-slate-400 mb-1 block">Currently Working On</label>
                   <input type="text" value={currentWork} onChange={e => setCurrentWork(e.target.value)}
                     className={inputClass} placeholder="A new open-source project" />
                 </div>
                 <div>
-                  <label className="text-xs font-semibold text-slate-500 mb-1 block">Pronouns</label>
+                  <label className="text-xs font-semibold text-slate-400 mb-1 block">Pronouns</label>
                   <input type="text" value={pronouns} onChange={e => setPronouns(e.target.value)}
                     className={inputClass} placeholder="they/them" />
                 </div>
               </div>
               <div>
-                <label className="text-xs font-semibold text-slate-500 mb-1 block">Fun Fact / Learning</label>
+                <label className="text-xs font-semibold text-slate-400 mb-1 block">Fun Fact / Learning</label>
                 <input type="text" value={funFact} onChange={e => setFunFact(e.target.value)}
                   className={inputClass} placeholder="Rust and WebAssembly" />
               </div>
@@ -234,22 +234,22 @@ export default function github_profile_readme_generator() {
               <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider">Social Links</h3>
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="text-xs font-semibold text-slate-500 mb-1 block">Twitter</label>
+                  <label className="text-xs font-semibold text-slate-400 mb-1 block">Twitter</label>
                   <input type="text" value={twitter} onChange={e => setTwitter(e.target.value)}
                     className={inputClass} placeholder="@octocat" />
                 </div>
                 <div>
-                  <label className="text-xs font-semibold text-slate-500 mb-1 block">LinkedIn</label>
+                  <label className="text-xs font-semibold text-slate-400 mb-1 block">LinkedIn</label>
                   <input type="text" value={linkedin} onChange={e => setLinkedin(e.target.value)}
                     className={inputClass} placeholder="username or full URL" />
                 </div>
                 <div>
-                  <label className="text-xs font-semibold text-slate-500 mb-1 block">Website</label>
+                  <label className="text-xs font-semibold text-slate-400 mb-1 block">Website</label>
                   <input type="text" value={website} onChange={e => setWebsite(e.target.value)}
                     className={inputClass} placeholder="https://yoursite.com" />
                 </div>
                 <div>
-                  <label className="text-xs font-semibold text-slate-500 mb-1 block">Email</label>
+                  <label className="text-xs font-semibold text-slate-400 mb-1 block">Email</label>
                   <input type="email" value={email} onChange={e => setEmail(e.target.value)}
                     className={inputClass} placeholder="you@example.com" />
                 </div>
@@ -271,7 +271,7 @@ export default function github_profile_readme_generator() {
                   ['skills', '🛠️ Skills', 'skills'],
                   ['socialLinks', '📬 Social Links', 'socialLinks'],
                 ].map(([key, label]) => (
-                  <label key={key} className={`flex items-center gap-2 px-3 py-2.5 rounded-xl cursor-pointer transition-all border ${sections[key] ? 'bg-indigo-500/10 border-indigo-500/30 text-indigo-300' : 'bg-white/[0.03] border-white/[0.06] text-slate-500'}`}>
+                  <label key={key} className={`flex items-center gap-2 px-3 py-2.5 rounded-xl cursor-pointer transition-all border ${sections[key] ? 'bg-indigo-500/10 border-indigo-500/30 text-indigo-300' : 'bg-white/[0.03] border-white/[0.06] text-slate-400'}`}>
                     <input type="checkbox" checked={sections[key]} onChange={() => toggleSection(key)}
                       className="accent-indigo-500" />
                     <span className="text-xs font-semibold">{label}</span>
@@ -286,7 +286,7 @@ export default function github_profile_readme_generator() {
               <div className="flex flex-wrap gap-2">
                 {themes.map(t => (
                   <button key={t} onClick={() => setTheme(t)}
-                    className={`px-3 py-2 rounded-xl text-xs font-bold transition-all capitalize ${theme === t ? 'bg-indigo-500/15 text-indigo-300 border border-indigo-500/30' : 'bg-white/[0.06] text-slate-500 border border-white/8 hover:bg-indigo-500/10'}`}>
+                    className={`px-3 py-2 rounded-xl text-xs font-bold transition-all capitalize ${theme === t ? 'bg-indigo-500/15 text-indigo-300 border border-indigo-500/30' : 'bg-white/[0.06] text-slate-400 border border-white/8 hover:bg-indigo-500/10'}`}>
                     {t}
                   </button>
                 ))}
@@ -297,7 +297,7 @@ export default function github_profile_readme_generator() {
           {/* Right: Preview */}
           <div className="space-y-3" ref={resultRef}>
             <div className="flex items-center justify-between">
-              <label className="text-xs font-semibold text-slate-500">README.md Preview</label>
+              <label className="text-xs font-semibold text-slate-400">README.md Preview</label>
               <button onClick={() => { copyMarkdown(); jumpTo() }}
                 className={`px-5 py-2 rounded-xl text-xs font-bold transition-all ${copied ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'glow-btn'}`}>
                 {copied ? '✓ Copied to Clipboard' : '📋 Copy Markdown'}
@@ -312,7 +312,7 @@ export default function github_profile_readme_generator() {
             {/* Quick preview of stats cards */}
             {username && (
               <div className="space-y-3">
-                <label className="text-xs font-semibold text-slate-500">Live Stats Preview</label>
+                <label className="text-xs font-semibold text-slate-400">Live Stats Preview</label>
                 <div className="bg-white/[0.04] rounded-2xl border border-white/[0.06] p-4 space-y-3 overflow-hidden">
                   {sections.stats && (
                     <img src={`https://github-readme-stats.vercel.app/api?username=${username}&show_icons=true&theme=${theme}&hide_border=true&count_private=true`}

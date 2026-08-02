@@ -125,7 +125,7 @@ export default function email_validator() {
 
         {/* Input */}
         <div>
-          <label className="text-xs font-semibold text-slate-500 mb-2 block">Email Address</label>
+          <label className="text-xs font-semibold text-slate-400 mb-2 block">Email Address</label>
           <div className="flex gap-3">
             <input
               type="email"
@@ -150,7 +150,7 @@ export default function email_validator() {
 
             {/* Score */}
             <div className="rounded-3xl border border-white/8 bg-white/[0.04] p-6 text-center">
-              <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Trust Score</div>
+              <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Trust Score</div>
               <div className={`text-5xl font-extrabold mb-1 ${
                 scoreColor === 'emerald' ? 'text-emerald-400' :
                 scoreColor === 'amber' ? 'text-amber-400' : 'text-rose-400'

@@ -92,7 +92,7 @@ export default function fifa_world_cup_bracket() {
         <div className="flex gap-3 overflow-x-auto pb-4">
           {/* R32 */}
           <div className="min-w-[160px]">
-            <div className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2 text-center">Round of 32</div>
+            <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2 text-center">Round of 32</div>
             <div className="space-y-2">
               {R32.map((m, i) => (
                 <Matchup key={i} t1={m[0]} t2={m[1]} label={`R32-${i+1}`}
@@ -105,7 +105,7 @@ export default function fifa_world_cup_bracket() {
 
           {/* R16 */}
           <div className="min-w-[160px]">
-            <div className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2 text-center">Round of 16</div>
+            <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2 text-center">Round of 16</div>
             <div className="space-y-6">
               {[0,1,2,3,4,5,6,7].map(i => {
                 const t1 = getR32Winner(i * 2) || 'TBD'
@@ -120,7 +120,7 @@ export default function fifa_world_cup_bracket() {
 
           {/* QF */}
           <div className="min-w-[140px]">
-            <div className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2 text-center">Quarter-Finals</div>
+            <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2 text-center">Quarter-Finals</div>
             <div className="space-y-8">
               {['QF1','QF2','QF3','QF4'].map((qf, i) => (
                 <div key={i} className="text-xs text-slate-400 px-2 py-1 rounded bg-white/[0.03] border border-white/5">
@@ -132,7 +132,7 @@ export default function fifa_world_cup_bracket() {
 
           {/* SF */}
           <div className="min-w-[120px]">
-            <div className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2 text-center">Semi-Finals</div>
+            <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2 text-center">Semi-Finals</div>
             <div className="space-y-12">
               <div className="text-xs text-slate-400 px-2 py-1 rounded bg-white/[0.03] border border-white/5">
                 <span className="text-[10px] text-slate-600">SF1</span><br/>TBD
@@ -157,7 +157,7 @@ export default function fifa_world_cup_bracket() {
           {[{n:'48',l:'Teams'},{n:'32',l:'Knockout'},{n:'16',l:'Venues'},{n:'3',l:'Hosts'},{n:'64',l:'Matches'}].map(s => (
             <div key={s.l} className="p-3 rounded-2xl bg-white/[0.06] border border-white/8 text-center">
               <div className="text-xl font-extrabold text-indigo-400">{s.n}</div>
-              <div className="text-[10px] text-slate-500 font-medium">{s.l}</div>
+              <div className="text-[10px] text-slate-400 font-medium">{s.l}</div>
             </div>
           ))}
         </div>

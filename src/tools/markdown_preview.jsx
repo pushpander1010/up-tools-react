@@ -94,7 +94,7 @@ export default function markdown_preview() {
         <div ref={resultRef} className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* Input */}
           <div>
-            <label className="block text-xs font-semibold text-slate-500 mb-1">Markdown</label>
+            <label className="block text-xs font-semibold text-slate-400 mb-1">Markdown</label>
             <textarea value={input} onChange={e => setInput(e.target.value)}
               placeholder="Write Markdown here..."
               rows={18}
@@ -102,7 +102,7 @@ export default function markdown_preview() {
           </div>
           {/* Preview */}
           <div>
-            <label className="block text-xs font-semibold text-slate-500 mb-1">Preview</label>
+            <label className="block text-xs font-semibold text-slate-400 mb-1">Preview</label>
             <div
               className="w-full bg-black/20 border-2 border-white/8 rounded-2xl px-5 py-4 text-sm text-slate-300 min-h-[460px] leading-relaxed overflow-y-auto"
               dangerouslySetInnerHTML={{ __html: preview }}

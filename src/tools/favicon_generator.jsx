@@ -89,7 +89,7 @@ export default function favicon_generator() {
               <div key={size} className="text-center">
                 <canvas ref={ref} width={size} height={size}
                   style={{ border: '1px solid rgba(255,255,255,0.1)', borderRadius: 4, width: Math.min(size, 96), height: Math.min(size, 96) }} />
-                <p className="text-xs text-slate-500 mt-1">{size}px</p>
+                <p className="text-xs text-slate-400 mt-1">{size}px</p>
               </div>
             ))}
           </div>

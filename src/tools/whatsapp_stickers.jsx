@@ -120,15 +120,15 @@ export default function whatsapp_stickers() {
     setTimeout(() => jumpTo(), 100)
   }
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-2.5 text-white font-semibold text-sm outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-2.5 text-white font-semibold text-sm outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 
   const Slider = ({ label, value, onChange, min, max, step = 1, unit = '' }) => (
     <div className="flex items-center gap-2">
-      <label className="text-xs font-semibold text-slate-500 w-16 shrink-0">{label}</label>
+      <label className="text-xs font-semibold text-slate-400 w-16 shrink-0">{label}</label>
       <input type="range" min={min} max={max} step={step} value={value}
         onChange={e => onChange(Number(e.target.value))}
         className="flex-1 accent-indigo-500" />
-      <span className="text-xs text-slate-500 w-12 text-right shrink-0">{value}{unit}</span>
+      <span className="text-xs text-slate-400 w-12 text-right shrink-0">{value}{unit}</span>
     </div>
   )
 
@@ -165,9 +165,9 @@ export default function whatsapp_stickers() {
                 <span className="text-xs font-bold text-slate-400">Preview</span>
                 <div className="flex gap-2">
                   <button onClick={() => { setZoom(1); setPanX(0); setPanY(0) }}
-                    className="px-2 py-1 rounded-lg bg-white/[0.06] text-[10px] text-slate-500 hover:text-white transition-all">Fit</button>
+                    className="px-2 py-1 rounded-lg bg-white/[0.06] text-[10px] text-slate-400 hover:text-white transition-all">Fit</button>
                   <button onClick={() => { setRotation(0); setPanX(0); setPanY(0) }}
-                    className="px-2 py-1 rounded-lg bg-white/[0.06] text-[10px] text-slate-500 hover:text-white transition-all">Reset</button>
+                    className="px-2 py-1 rounded-lg bg-white/[0.06] text-[10px] text-slate-400 hover:text-white transition-all">Reset</button>
                 </div>
               </div>
               <div className="flex justify-center bg-[#1a1a2e] rounded-xl overflow-hidden">
@@ -218,7 +218,7 @@ export default function whatsapp_stickers() {
               </label>
               {!bgTransparent && (
                 <div className="flex items-center gap-2">
-                  <span className="text-xs text-slate-500">BG Color</span>
+                  <span className="text-xs text-slate-400">BG Color</span>
                   <input type="color" value={bgColor} onChange={e => setBgColor(e.target.value)}
                     className="w-8 h-8 rounded cursor-pointer bg-transparent border-0" />
                 </div>
@@ -232,12 +232,12 @@ export default function whatsapp_stickers() {
               <Slider label="Size" value={textSize} onChange={setTextSize} min={10} max={160} unit="px" />
               <div className="flex items-center gap-3">
                 <div className="flex items-center gap-1.5">
-                  <span className="text-[10px] text-slate-500">Text</span>
+                  <span className="text-[10px] text-slate-400">Text</span>
                   <input type="color" value={textColor} onChange={e => setTextColor(e.target.value)}
                     className="w-7 h-7 rounded cursor-pointer bg-transparent border-0" />
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <span className="text-[10px] text-slate-500">Stroke</span>
+                  <span className="text-[10px] text-slate-400">Stroke</span>
                   <input type="color" value={textStroke} onChange={e => setTextStroke(e.target.value)}
                     className="w-7 h-7 rounded cursor-pointer bg-transparent border-0" />
                 </div>

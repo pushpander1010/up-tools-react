@@ -211,16 +211,16 @@ export default function games_rock_paper_scissors() {
           <div className="text-center">
             <div className="text-sm text-slate-400 mb-1">You</div>
             <div className="text-3xl font-extrabold text-white">{playerScore}</div>
-            <div className="text-xs text-slate-500">Need {needed}</div>
+            <div className="text-xs text-slate-400">Need {needed}</div>
           </div>
           <div className="text-center">
             <div className="text-sm text-slate-400 mb-1">VS</div>
-            <div className="text-lg font-bold text-slate-500">Best of {bestOf}</div>
+            <div className="text-lg font-bold text-slate-400">Best of {bestOf}</div>
           </div>
           <div className="text-center">
             <div className="text-sm text-slate-400 mb-1">CPU</div>
             <div className="text-3xl font-extrabold text-white">{computerScore}</div>
-            <div className="text-xs text-slate-500">Need {computerNeeded}</div>
+            <div className="text-xs text-slate-400">Need {computerNeeded}</div>
           </div>
         </div>
 
@@ -243,7 +243,7 @@ export default function games_rock_paper_scissors() {
               <span className={roundResult.winner === 'win' ? 'animate-bounce' : ''}>
                 {CHOICES.find(c => c.id === roundResult.player)?.emoji}
               </span>
-              <span className="text-slate-500 text-lg">vs</span>
+              <span className="text-slate-400 text-lg">vs</span>
               <span className={roundResult.winner === 'lose' ? 'animate-bounce' : ''}>
                 {CHOICES.find(c => c.id === roundResult.computer)?.emoji}
               </span>
@@ -282,10 +282,10 @@ export default function games_rock_paper_scissors() {
         {/* Stats */}
         <div className="glass p-4">
           <div className="grid grid-cols-4 gap-4">
-            <div className="text-center"><div className="text-2xl font-extrabold text-emerald-400">{stats.wins}</div><div className="text-xs text-slate-500 font-medium mt-0.5">Wins</div></div>
-            <div className="text-center"><div className="text-2xl font-extrabold text-red-400">{stats.losses}</div><div className="text-xs text-slate-500 font-medium mt-0.5">Losses</div></div>
-            <div className="text-center"><div className="text-2xl font-extrabold text-amber-400">🔥 {stats.bestStreak}</div><div className="text-xs text-slate-500 font-medium mt-0.5">Best Streak</div></div>
-            <div className="text-center"><div className="text-2xl font-extrabold text-white">{stats.wins + stats.losses}</div><div className="text-xs text-slate-500 font-medium mt-0.5">Total</div></div>
+            <div className="text-center"><div className="text-2xl font-extrabold text-emerald-400">{stats.wins}</div><div className="text-xs text-slate-400 font-medium mt-0.5">Wins</div></div>
+            <div className="text-center"><div className="text-2xl font-extrabold text-red-400">{stats.losses}</div><div className="text-xs text-slate-400 font-medium mt-0.5">Losses</div></div>
+            <div className="text-center"><div className="text-2xl font-extrabold text-amber-400">🔥 {stats.bestStreak}</div><div className="text-xs text-slate-400 font-medium mt-0.5">Best Streak</div></div>
+            <div className="text-center"><div className="text-2xl font-extrabold text-white">{stats.wins + stats.losses}</div><div className="text-xs text-slate-400 font-medium mt-0.5">Total</div></div>
           </div>
         </div>
 
@@ -303,7 +303,7 @@ export default function games_rock_paper_scissors() {
                       {h.result === 'win' ? '✓' : h.result === 'lose' ? '✗' : '='}
                     </span>
                     <span>{CHOICES.find(c => c.id === h.player)?.emoji} vs {CHOICES.find(c => c.id === h.computer)?.emoji}</span>
-                    <span className="ml-auto text-slate-500">{new Date(h.time).toLocaleTimeString()}</span>
+                    <span className="ml-auto text-slate-400">{new Date(h.time).toLocaleTimeString()}</span>
                   </div>
                 ))}
               </div>
@@ -311,7 +311,7 @@ export default function games_rock_paper_scissors() {
           </div>
         )}
 
-        <p className="text-center text-xs text-slate-500">The computer adapts to your choices • First to win the majority wins the match</p>
+        <p className="text-center text-xs text-slate-400">The computer adapts to your choices • First to win the majority wins the match</p>
           <div className="flex gap-2 justify-center mt-4">
             <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
               {isFs ? '⊡' : '⛶'}

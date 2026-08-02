@@ -122,7 +122,7 @@ export default function english_to_devanagari() {
           <div className="rounded-3xl border-2 border-white/8 bg-white/[0.06] p-4">
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs font-bold text-white">Input</span>
-              <span className="text-xs text-slate-500">English / Roman</span>
+              <span className="text-xs text-slate-400">English / Roman</span>
             </div>
             <textarea value={input} onChange={e => handleInput(e.target.value)}
               placeholder="Type phonetic English here…&#10;e.g. namaste, jai hind, aap kaise hain"

@@ -103,7 +103,7 @@ export default function crypto_portfolio() {
     return { total, pl }
   }, [rows, prices])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-3 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-3 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -142,7 +142,7 @@ export default function crypto_portfolio() {
         {/* Search & Add */}
         <div className="p-5 rounded-2xl bg-white/[0.06] border border-white/[0.08] space-y-3">
           <div className="relative">
-            <label className="text-xs font-semibold text-slate-500 mb-1 block">Search Coin</label>
+            <label className="text-xs font-semibold text-slate-400 mb-1 block">Search Coin</label>
             <input type="text" value={searchQuery} onChange={e => { setSearchQuery(e.target.value); search(e.target.value) }}
               placeholder="Bitcoin, ETH, SOL..." className={inputClass} />
             {suggestions.length > 0 && (
@@ -151,7 +151,7 @@ export default function crypto_portfolio() {
                   <button key={s.id} onClick={() => selectCoin(s)}
                     className="w-full px-4 py-2.5 text-left text-sm text-white hover:bg-white/[0.06] transition-all flex items-center gap-2">
                     <span className="font-bold">{s.name}</span>
-                    <span className="text-xs text-slate-500">({s.symbol.toUpperCase()})</span>
+                    <span className="text-xs text-slate-400">({s.symbol.toUpperCase()})</span>
                   </button>
                 ))}
               </div>
@@ -162,12 +162,12 @@ export default function crypto_portfolio() {
           )}
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="text-xs font-semibold text-slate-500 mb-1 block">Quantity</label>
+              <label className="text-xs font-semibold text-slate-400 mb-1 block">Quantity</label>
               <input type="number" value={qty} onChange={e => setQty(e.target.value)}
                 placeholder="0.5" step="any" className={inputClass} />
             </div>
             <div>
-              <label className="text-xs font-semibold text-slate-500 mb-1 block">Buy Price ({currency.toUpperCase()})</label>
+              <label className="text-xs font-semibold text-slate-400 mb-1 block">Buy Price ({currency.toUpperCase()})</label>
               <input type="number" value={buyPrice} onChange={e => setBuyPrice(e.target.value)}
                 placeholder={livePrice ? String(Math.round(livePrice)) : ''} step="any" className={inputClass} />
             </div>
@@ -187,7 +187,7 @@ export default function crypto_portfolio() {
               { label: 'Coins', value: rows.length, color: 'text-amber-400' },
             ].map(k => (
               <div key={k.label} className="p-3 rounded-xl bg-white/[0.04] border border-white/8 text-center">
-                <div className="text-[10px] text-slate-500 uppercase tracking-wider">{k.label}</div>
+                <div className="text-[10px] text-slate-400 uppercase tracking-wider">{k.label}</div>
                 <div className={`text-lg font-extrabold font-mono ${k.color}`}>{k.value}</div>
               </div>
             ))}
@@ -201,13 +201,13 @@ export default function crypto_portfolio() {
               <table className="w-full text-xs">
                 <thead>
                   <tr className="bg-white/[0.04] border-b border-white/8">
-                    <th className="text-left py-3 px-3 text-slate-500 font-semibold">Coin</th>
-                    <th className="text-right py-3 px-3 text-slate-500 font-semibold">Qty</th>
-                    <th className="text-right py-3 px-3 text-slate-500 font-semibold">Buy</th>
-                    <th className="text-right py-3 px-3 text-slate-500 font-semibold">Price</th>
-                    <th className="text-right py-3 px-3 text-slate-500 font-semibold">Value</th>
-                    <th className="text-right py-3 px-3 text-slate-500 font-semibold">P&L</th>
-                    <th className="text-right py-3 px-3 text-slate-500 font-semibold">24h</th>
+                    <th className="text-left py-3 px-3 text-slate-400 font-semibold">Coin</th>
+                    <th className="text-right py-3 px-3 text-slate-400 font-semibold">Qty</th>
+                    <th className="text-right py-3 px-3 text-slate-400 font-semibold">Buy</th>
+                    <th className="text-right py-3 px-3 text-slate-400 font-semibold">Price</th>
+                    <th className="text-right py-3 px-3 text-slate-400 font-semibold">Value</th>
+                    <th className="text-right py-3 px-3 text-slate-400 font-semibold">P&L</th>
+                    <th className="text-right py-3 px-3 text-slate-400 font-semibold">24h</th>
                     <th className="py-3 px-3"></th>
                   </tr>
                 </thead>
@@ -221,7 +221,7 @@ export default function crypto_portfolio() {
                       <tr key={r.id} className="border-b border-white/5 hover:bg-white/[0.02] transition-all">
                         <td className="py-2.5 px-3">
                           <div className="font-bold text-white">{r.name}</div>
-                          <div className="text-[10px] text-slate-500">{r.symbol.toUpperCase()}</div>
+                          <div className="text-[10px] text-slate-400">{r.symbol.toUpperCase()}</div>
                         </td>
                         <td className="py-2.5 px-3 text-right">
                           <input type="number" value={r.qty || ''} onChange={e => updateRow(r.id, 'qty', e.target.value)}
@@ -240,7 +240,7 @@ export default function crypto_portfolio() {
                           {Number.isFinite(ch) ? `${ch > 0 ? '+' : ''}${ch.toFixed(2)}%` : '—'}
                         </td>
                         <td className="py-2.5 px-3 text-right">
-                          <button onClick={() => removeRow(r.id)} className="text-slate-500 hover:text-red-400 transition-colors">✕</button>
+                          <button onClick={() => removeRow(r.id)} className="text-slate-400 hover:text-red-400 transition-colors">✕</button>
                         </td>
                       </tr>
                     )

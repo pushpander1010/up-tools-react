@@ -97,7 +97,7 @@ export default function vehicle_import_duty_estimator() {
                 <span className="font-bold text-white">{fmt(result.tax)}</span>
               </div>
             </div>
-            <p className="text-xs text-slate-500 mt-4">Estimate only. Actual rates depend on origin and province.</p>
+            <p className="text-xs text-slate-400 mt-4">Estimate only. Actual rates depend on origin and province.</p>
           </div>
         ) : (
           <div ref={resultRef} className="text-center py-12 rounded-3xl border-2 border-dashed border-white/8 bg-white/[0.01]">

@@ -85,7 +85,7 @@ export default function GamesPage() {
       </Helmet>
 
       {/* Breadcrumb */}
-      <nav className="flex items-center gap-2 text-xs text-slate-500 mb-5" aria-label="Breadcrumb">
+      <nav className="flex items-center gap-2 text-xs text-slate-400 mb-5" aria-label="Breadcrumb">
         <Link to="/" className="hover:text-white transition-colors">Home</Link>
         <span className="text-slate-700">›</span>
         <span className="text-slate-300 font-medium">Free Games</span>
@@ -102,9 +102,9 @@ export default function GamesPage() {
           </h1>
           <p className="text-slate-400 text-sm max-w-md">{GAMES.length}+ instant browser games — no download, no sign-up. Just click and play.</p>
           <div className="flex gap-6 mt-4">
-            <div className="text-center"><div className="text-xl font-extrabold text-white">{GAMES.length}</div><div className="text-xs text-slate-500">Games</div></div>
-            <div className="text-center"><div className="text-xl font-extrabold text-white">0</div><div className="text-xs text-slate-500">Sign-ups</div></div>
-            <div className="text-center"><div className="text-xl font-extrabold text-emerald-400">100%</div><div className="text-xs text-slate-500">Free</div></div>
+            <div className="text-center"><div className="text-xl font-extrabold text-white">{GAMES.length}</div><div className="text-xs text-slate-400">Games</div></div>
+            <div className="text-center"><div className="text-xl font-extrabold text-white">0</div><div className="text-xs text-slate-400">Sign-ups</div></div>
+            <div className="text-center"><div className="text-xl font-extrabold text-emerald-400">100%</div><div className="text-xs text-slate-400">Free</div></div>
           </div>
         </div>
       </section>
@@ -114,8 +114,8 @@ export default function GamesPage() {
         <div className="relative">
           <input type="text" value={search} onChange={e => setSearch(e.target.value)}
             placeholder="Search games..."
-            className="w-full bg-black/20 border-2 border-white/[0.08] rounded-xl px-4 py-3 pl-10 text-sm outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-500" />
-          <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 text-sm">🔍</span>
+            className="w-full bg-black/20 border-2 border-white/[0.08] rounded-xl px-4 py-3 pl-10 text-sm outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-400" />
+          <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm">🔍</span>
         </div>
         <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
           {CATEGORIES.map(cat => (
@@ -123,7 +123,7 @@ export default function GamesPage() {
               className={`px-4 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all border shrink-0 ${
                 activeCat === cat
                   ? 'bg-indigo-500/15 border-indigo-500/30 text-indigo-400'
-                  : 'bg-white/[0.04] border-white/[0.06] text-slate-500 hover:text-white hover:bg-white/[0.08]'
+                  : 'bg-white/[0.04] border-white/[0.06] text-slate-400 hover:text-white hover:bg-white/[0.08]'
               }`}>
               {cat}
             </button>
@@ -143,7 +143,7 @@ export default function GamesPage() {
                   style={{ background: `linear-gradient(90deg, transparent, ${g.color}, transparent)` }} />
                 <div className="text-3xl mb-2 group-hover:scale-110 transition-transform">{g.icon}</div>
                 <h3 className="text-sm font-bold text-white">{g.title}</h3>
-                <span className="text-xs text-slate-500">{g.cat}</span>
+                <span className="text-xs text-slate-400">{g.cat}</span>
               </a>
             ))}
           </div>
@@ -163,7 +163,7 @@ export default function GamesPage() {
                 <div className="text-4xl group-hover:scale-110 transition-transform">{g.icon}</div>
                 <div className="flex-1 min-w-0">
                   <h3 className="text-base font-bold text-white mb-0.5">{g.title}</h3>
-                  <p className="text-xs text-slate-500 line-clamp-2">{g.desc}</p>
+                  <p className="text-xs text-slate-400 line-clamp-2">{g.desc}</p>
                 </div>
                 <span className="glow-btn text-xs py-1.5 px-3 shrink-0">Play →</span>
               </div>
@@ -183,9 +183,9 @@ export default function GamesPage() {
                 style={{ background: `linear-gradient(90deg, transparent, ${g.color}, transparent)` }} />
               <div className="text-3xl mb-2 group-hover:scale-110 transition-transform">{g.icon}</div>
               <h3 className="text-sm font-bold text-white mb-0.5">{g.title}</h3>
-              <p className="text-xs text-slate-500 line-clamp-2 mb-2">{g.desc}</p>
+              <p className="text-xs text-slate-400 line-clamp-2 mb-2">{g.desc}</p>
               <div className="flex items-center justify-between">
-                <span className="text-xs px-2 py-0.5 rounded-lg bg-white/[0.06] text-slate-500">{g.cat}</span>
+                <span className="text-xs px-2 py-0.5 rounded-lg bg-white/[0.06] text-slate-400">{g.cat}</span>
                 <span className="glow-btn text-xs py-1 px-2.5">Play →</span>
               </div>
             </a>
@@ -194,7 +194,7 @@ export default function GamesPage() {
         {filtered.length === 0 && (
           <div className="glass p-12 text-center">
             <p className="text-4xl mb-3">🔍</p>
-            <p className="text-sm text-slate-500">No games match your search</p>
+            <p className="text-sm text-slate-400">No games match your search</p>
           </div>
         )}
       </div>

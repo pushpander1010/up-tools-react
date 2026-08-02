@@ -107,7 +107,7 @@ export default function college_course_finder() {
               {results.map((c, i) => (
                 <div key={i} className="rounded-xl border border-white/8 bg-white/[0.04] p-4">
                   <h4 className="font-bold text-white mb-1">{c.name}</h4>
-                  <p className="text-xs text-slate-500 mb-2">{c.path}</p>
+                  <p className="text-xs text-slate-400 mb-2">{c.path}</p>
                   <div className="text-xs text-slate-400 space-y-1">
                     <div><strong className="text-slate-300">Typical entry route:</strong> {c.exam}</div>
                     <div><strong className="text-slate-300">Why it fits:</strong> {c.fit}</div>

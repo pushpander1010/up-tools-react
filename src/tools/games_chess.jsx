@@ -732,18 +732,18 @@ export default function games_chess() {
             </div>
             <div className="text-right">
               <div className="text-lg font-extrabold text-yellow-400">{score}</div>
-              <div className="text-xs text-slate-500">Score</div>
+              <div className="text-xs text-slate-400">Score</div>
             </div>
           </div>
           {/* Captured pieces */}
           <div className="mt-2 flex gap-4">
             <div className="text-xs text-slate-400">
-              <span className="text-slate-500">AI captured:</span>{' '}
+              <span className="text-slate-400">AI captured:</span>{' '}
               {captured.white.map((p, i) => <span key={i}>{PIECES[p]}</span>)}
               {captured.white.length === 0 && '—'}
             </div>
             <div className="text-xs text-slate-400">
-              <span className="text-slate-500">You captured:</span>{' '}
+              <span className="text-slate-400">You captured:</span>{' '}
               {captured.black.map((p, i) => <span key={i}>{PIECES[p]}</span>)}
               {captured.black.length === 0 && '—'}
             </div>
@@ -766,7 +766,7 @@ export default function games_chess() {
           />
         </div>
 
-        <p className="text-center text-xs text-slate-500">
+        <p className="text-center text-xs text-slate-400">
           Click a piece to select, click a square to move | You play White
         </p>
           <div className="flex gap-2 justify-center mt-4">

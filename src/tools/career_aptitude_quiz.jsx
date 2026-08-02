@@ -131,7 +131,7 @@ export default function career_aptitude_quiz() {
         <div className="relative h-2 rounded-full bg-white/[0.06] overflow-hidden">
           <div className="absolute inset-y-0 left-0 bg-indigo-500 rounded-full transition-all duration-500" style={{ width: `${progress}%` }} />
         </div>
-        <div className="text-xs text-slate-500 text-center">{Object.keys(answers).length} / {QUESTIONS.length} answered</div>
+        <div className="text-xs text-slate-400 text-center">{Object.keys(answers).length} / {QUESTIONS.length} answered</div>
 
         {!showResult ? (
           <div className="rounded-3xl border border-white/6 bg-white/[0.02] p-6 sm:p-8">
@@ -151,7 +151,7 @@ export default function career_aptitude_quiz() {
             </div>
             {currentQ > 0 && (
               <button onClick={() => setCurrentQ(q => q - 1)}
-                className="mt-4 text-xs font-semibold text-slate-500 hover:text-white transition-colors">
+                className="mt-4 text-xs font-semibold text-slate-400 hover:text-white transition-colors">
                 ← Previous Question
               </button>
             )}
@@ -170,7 +170,7 @@ export default function career_aptitude_quiz() {
                   <span className="text-3xl">{r.icon}</span>
                   <div>
                     <h4 className="text-lg font-bold text-white">{r.title}</h4>
-                    <div className="text-xs text-slate-500">{r.pct}% match</div>
+                    <div className="text-xs text-slate-400">{r.pct}% match</div>
                   </div>
                 </div>
                 <div className="w-full h-2 rounded-full bg-white/[0.06] mb-5">
@@ -178,15 +178,15 @@ export default function career_aptitude_quiz() {
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   <div className="p-3 rounded-xl bg-white/[0.04] border border-white/6">
-                    <div className="text-[11px] font-bold text-slate-500 uppercase mb-1.5">Careers</div>
+                    <div className="text-[11px] font-bold text-slate-400 uppercase mb-1.5">Careers</div>
                     {r.careers.map((c, j) => <div key={j} className="text-xs text-slate-300">• {c}</div>)}
                   </div>
                   <div className="p-3 rounded-xl bg-white/[0.04] border border-white/6">
-                    <div className="text-[11px] font-bold text-slate-500 uppercase mb-1.5">Entrance Exams</div>
+                    <div className="text-[11px] font-bold text-slate-400 uppercase mb-1.5">Entrance Exams</div>
                     {r.exams.map((e, j) => <div key={j} className="text-xs text-slate-300">• {e}</div>)}
                   </div>
                   <div className="p-3 rounded-xl bg-white/[0.04] border border-white/6">
-                    <div className="text-[11px] font-bold text-slate-500 uppercase mb-1.5">Courses</div>
+                    <div className="text-[11px] font-bold text-slate-400 uppercase mb-1.5">Courses</div>
                     {r.courses.map((c, j) => <div key={j} className="text-xs text-slate-300">• {c}</div>)}
                   </div>
                 </div>

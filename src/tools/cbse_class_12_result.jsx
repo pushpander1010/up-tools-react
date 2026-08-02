@@ -63,7 +63,7 @@ export default function cbse_class_12_result() {
     jumpTo()
   }, [rows, jumpTo])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-3 text-white font-semibold text-sm outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-3 text-white font-semibold text-sm outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -102,7 +102,7 @@ export default function cbse_class_12_result() {
         {/* Subject Form */}
         <div className="rounded-3xl border-2 border-white/8 bg-white/[0.06] p-6">
           <h2 className="text-sm font-bold text-white mb-3">Analyze Your Marks</h2>
-          <p className="text-xs text-slate-500 mb-4">Enter up to six subjects exactly as shown in your marksheet. Empty rows are ignored.</p>
+          <p className="text-xs text-slate-400 mb-4">Enter up to six subjects exactly as shown in your marksheet. Empty rows are ignored.</p>
           <div className="space-y-3">
             {rows.map((row, idx) => (
               <div key={idx} className="grid grid-cols-[1fr_80px_80px] gap-2">
@@ -129,19 +129,19 @@ export default function cbse_class_12_result() {
             </div>
             <div className="grid grid-cols-2 gap-4 mb-4">
               <div className="rounded-xl border border-white/8 bg-white/[0.04] p-3 text-center">
-                <div className="text-xs text-slate-500">Total</div>
+                <div className="text-xs text-slate-400">Total</div>
                 <div className="text-lg font-extrabold text-white">{result.total}/{result.maxTotal}</div>
               </div>
               <div className="rounded-xl border border-white/8 bg-white/[0.04] p-3 text-center">
-                <div className="text-xs text-slate-500">Percentage</div>
+                <div className="text-xs text-slate-400">Percentage</div>
                 <div className="text-lg font-extrabold text-indigo-400">{result.percentage.toFixed(2)}%</div>
               </div>
               <div className="rounded-xl border border-white/8 bg-white/[0.04] p-3 text-center">
-                <div className="text-xs text-slate-500">Grade Band</div>
+                <div className="text-xs text-slate-400">Grade Band</div>
                 <div className="text-lg font-extrabold text-white">{gradeFor(result.percentage)}</div>
               </div>
               <div className="rounded-xl border border-white/8 bg-white/[0.04] p-3 text-center">
-                <div className="text-xs text-slate-500">Best of 5</div>
+                <div className="text-xs text-slate-400">Best of 5</div>
                 <div className="text-lg font-extrabold text-white">{result.bestFivePercent.toFixed(2)}%</div>
               </div>
             </div>
@@ -150,7 +150,7 @@ export default function cbse_class_12_result() {
               {result.subjectRows.map((r, i) => (
                 <div key={i} className="flex items-center justify-between text-sm">
                   <span className="text-slate-300">{r.name}</span>
-                  <span className="text-slate-500">{r.marks}/{r.max} ({r.pct.toFixed(1)}%)</span>
+                  <span className="text-slate-400">{r.marks}/{r.max} ({r.pct.toFixed(1)}%)</span>
                   <span className={`font-bold ${r.pct >= 60 ? 'text-emerald-400' : r.pct >= 33 ? 'text-amber-400' : 'text-rose-400'}`}>{r.grade}</span>
                 </div>
               ))}

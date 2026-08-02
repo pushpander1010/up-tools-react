@@ -104,7 +104,7 @@ Make it persuasive, benefit-focused (not just feature-focused), and ready to pub
                 className={`px-3 py-2 rounded-xl text-xs font-bold transition-all ${
                   platform === p
                     ? 'bg-purple-500/20 text-purple-400 border border-purple-500/30'
-                    : 'bg-white/[0.04] text-slate-500 border border-white/[0.08] hover:text-white'
+                    : 'bg-white/[0.04] text-slate-400 border border-white/[0.08] hover:text-white'
                 }`}>
                 {p}
               </button>

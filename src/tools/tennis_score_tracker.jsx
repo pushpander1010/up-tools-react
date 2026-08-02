@@ -78,7 +78,7 @@ export default function tennis_score_tracker() {
     <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-lg font-extrabold ${
       highlight ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30' :
       active ? 'bg-indigo-500/20 text-indigo-300 border border-indigo-500/30' :
-      'bg-white/[0.04] text-slate-500 border border-white/5'
+      'bg-white/[0.04] text-slate-400 border border-white/5'
     }`}>
       {value}
     </div>
@@ -108,7 +108,7 @@ export default function tennis_score_tracker() {
         <span className="w-12 text-center">PTS</span>
       </div>
       {/* Game score */}
-      <div className="text-center text-xs text-slate-500 font-medium">
+      <div className="text-center text-xs text-slate-400 font-medium">
         Games: {state[`${player}`].games[state.currentSet]}
       </div>
       {/* Buttons */}
@@ -158,7 +158,7 @@ export default function tennis_score_tracker() {
 
           {/* Set indicator */}
           <div className="mt-4 text-center">
-            <span className="text-xs text-slate-500 font-medium">
+            <span className="text-xs text-slate-400 font-medium">
               Set {state.currentSet + 1} of 3 · {totalSets()} total sets played
             </span>
           </div>

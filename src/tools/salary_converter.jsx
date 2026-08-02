@@ -33,7 +33,7 @@ export default function salary_converter() {
     return { hourly, daily, weekly, monthly, annual }
   }, [amt, period, hpd, dpw, wpy])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-4 py-3 text-white text-sm font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-4 py-3 text-white text-sm font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-400 [color-scheme:dark]"
   const selectClass = "w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-4 py-3 text-white text-sm font-semibold outline-none focus:border-indigo-500/40 transition-all [color-scheme:dark]"
 
   const periods = [
@@ -118,7 +118,7 @@ export default function salary_converter() {
                 { label: 'Annual', value: fmt(result.annual) },
               ].map((r, i) => (
                 <div key={i} className="p-3 rounded-xl bg-black/20 border border-white/[0.05] text-center">
-                  <div className="text-xs text-slate-500 uppercase font-bold mb-1">{r.label}</div>
+                  <div className="text-xs text-slate-400 uppercase font-bold mb-1">{r.label}</div>
                   <div className="text-lg font-extrabold text-white">{r.value}</div>
                 </div>
               ))}

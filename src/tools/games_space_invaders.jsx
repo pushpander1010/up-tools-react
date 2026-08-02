@@ -488,8 +488,8 @@ export default function SpaceInvadersGame() {
         {phase === 'idle' && (
           <div className="glass p-4">
             <div className="grid grid-cols-2 gap-4 text-center">
-              <div><div className="text-2xl font-extrabold text-white">{best}</div><div className="text-xs text-slate-500">Best Score</div></div>
-              <div><div className="text-2xl font-extrabold text-cyan-400">{lastWave()}</div><div className="text-xs text-slate-500">Last Wave</div></div>
+              <div><div className="text-2xl font-extrabold text-white">{best}</div><div className="text-xs text-slate-400">Best Score</div></div>
+              <div><div className="text-2xl font-extrabold text-cyan-400">{lastWave()}</div><div className="text-xs text-slate-400">Last Wave</div></div>
             </div>
             <div className="flex justify-center mt-4">
               <button onClick={() => triggerAd(startGame)} className="glow-btn px-8 py-3 text-sm font-bold">▶ Start Game</button>
@@ -514,7 +514,7 @@ export default function SpaceInvadersGame() {
           <canvas ref={cvs} className="block rounded-xl cursor-pointer" style={{ touchAction: 'none' }}
             onPointerDown={onDown} onPointerMove={onMove} onPointerUp={onUp} />
         </div>
-        <p className="text-center text-xs text-slate-500">
+        <p className="text-center text-xs text-slate-400">
           {'ontouchstart' in window ? 'Drag to move · Tap to shoot' : '← → Move · Space Shoot'}
         </p>
       

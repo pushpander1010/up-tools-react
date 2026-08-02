@@ -111,7 +111,7 @@ export default function instagram_username_generator() {
     setTimeout(() => setAllCopied(false), 2000)
   }, [usernames])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -150,7 +150,7 @@ export default function instagram_username_generator() {
             {Object.keys(CATEGORIES).map(cat => (
               <button key={cat} onClick={() => setCategory(cat)}
                 className={`px-3 py-2 rounded-xl text-xs font-semibold capitalize transition-all duration-200 border-2
-                  ${category === cat ? 'bg-indigo-500/10 border-indigo-500/30 text-indigo-400' : 'bg-white/[0.04] border-white/8 text-slate-500 hover:border-white/12'}`}>
+                  ${category === cat ? 'bg-indigo-500/10 border-indigo-500/30 text-indigo-400' : 'bg-white/[0.04] border-white/8 text-slate-400 hover:border-white/12'}`}>
                 {cat}
               </button>
             ))}
@@ -163,7 +163,7 @@ export default function instagram_username_generator() {
             {Object.keys(PATTERNS).map(s => (
               <button key={s} onClick={() => setStyle(s)}
                 className={`py-2.5 rounded-xl text-sm font-semibold capitalize transition-all duration-200 border-2
-                  ${style === s ? 'bg-indigo-500/10 border-indigo-500/30 text-indigo-400' : 'bg-white/[0.04] border-white/8 text-slate-500 hover:border-white/12'}`}>
+                  ${style === s ? 'bg-indigo-500/10 border-indigo-500/30 text-indigo-400' : 'bg-white/[0.04] border-white/8 text-slate-400 hover:border-white/12'}`}>
                 {s}
               </button>
             ))}

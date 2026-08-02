@@ -36,7 +36,7 @@ export default function gst_invoice_generator() {
     jumpTo()
   }
 
-  const inputClass = 'w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]'
+  const inputClass = 'w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]'
 
   return (
     <ToolLayout
@@ -88,7 +88,7 @@ export default function gst_invoice_generator() {
               { value: 'inter', label: 'Inter-state (IGST)' },
             ].map(opt => (
               <button key={opt.value} onClick={() => setType(opt.value)}
-                className={`flex-1 px-4 py-3 rounded-xl text-sm font-bold transition-all ${type === opt.value ? 'bg-indigo-500/15 text-indigo-400 border border-indigo-500/30' : 'bg-white/[0.06] text-slate-500 border border-white/[0.08]'}`}>
+                className={`flex-1 px-4 py-3 rounded-xl text-sm font-bold transition-all ${type === opt.value ? 'bg-indigo-500/15 text-indigo-400 border border-indigo-500/30' : 'bg-white/[0.06] text-slate-400 border border-white/[0.08]'}`}>
                 {opt.label}
               </button>
             ))}

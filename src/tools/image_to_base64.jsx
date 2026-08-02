@@ -86,7 +86,7 @@ export default function ImageToBase64() {
             <p className="text-slate-400 text-sm">
               Drop an image here or <span className="text-indigo-400 underline">browse</span>
             </p>
-            <p className="text-slate-500 text-xs mt-1">Supported: JPG, PNG, GIF, WebP, SVG, BMP, ICO</p>
+            <p className="text-slate-400 text-xs mt-1">Supported: JPG, PNG, GIF, WebP, SVG, BMP, ICO</p>
             <input
               ref={fileInputRef}
               type="file"
@@ -130,7 +130,7 @@ export default function ImageToBase64() {
             <img src={preview} alt="Preview" className="max-w-[200px] max-h-[200px] rounded-lg mt-3 shadow-lg" />
           )}
 
-          {sizeInfo && <p className="text-xs text-slate-500 mt-2">{sizeInfo}</p>}
+          {sizeInfo && <p className="text-xs text-slate-400 mt-2">{sizeInfo}</p>}
         </div>
 
         {/* About */}

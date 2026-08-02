@@ -24,7 +24,7 @@ export default function InstagramUnfollowerTracker() {
     jumpTo()
   }, [username, jumpTo])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -55,7 +55,7 @@ export default function InstagramUnfollowerTracker() {
             <input type="text" value={username} onChange={e => setUsername(e.target.value)}
               placeholder="Enter username (without @)"
               onKeyDown={e => e.key === 'Enter' && track()}
-              className="flex-1 bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]" />
+              className="flex-1 bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]" />
             <button onClick={track}
               className="px-6 py-3 rounded-xl bg-indigo-500 text-white font-bold text-sm hover:bg-indigo-400 transition-all duration-200 active:scale-[0.98]">
               Track 👥
@@ -73,11 +73,11 @@ export default function InstagramUnfollowerTracker() {
 
             <div className="grid grid-cols-2 gap-3 mb-6">
               <div className="rounded-2xl bg-white/[0.04] border border-white/5 p-5 text-center">
-                <div className="text-xs text-slate-500 mb-1 font-medium">Total Followers</div>
+                <div className="text-xs text-slate-400 mb-1 font-medium">Total Followers</div>
                 <div className="text-2xl font-extrabold text-white">{result.totalFollowers.toLocaleString()}</div>
               </div>
               <div className="rounded-2xl bg-white/[0.04] border border-white/5 p-5 text-center">
-                <div className="text-xs text-slate-500 mb-1 font-medium">Net Change</div>
+                <div className="text-xs text-slate-400 mb-1 font-medium">Net Change</div>
                 <div className={`text-2xl font-extrabold ${result.netChange >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
                   {result.netChange >= 0 ? '+' : ''}{result.netChange}
                 </div>
@@ -91,7 +91,7 @@ export default function InstagramUnfollowerTracker() {
                 <div className="text-2xl font-extrabold text-emerald-400">{result.newFollowers}</div>
               </div>
               <div className="rounded-2xl bg-white/[0.04] border border-white/5 p-5 text-center col-span-2">
-                <div className="text-xs text-slate-500 mb-1 font-medium">Ghost Followers (inactive)</div>
+                <div className="text-xs text-slate-400 mb-1 font-medium">Ghost Followers (inactive)</div>
                 <div className="text-2xl font-extrabold text-amber-400">{result.ghostFollowers}</div>
               </div>
             </div>

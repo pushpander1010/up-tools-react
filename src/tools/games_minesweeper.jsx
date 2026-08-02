@@ -304,7 +304,7 @@ export default function games_minesweeper() {
           </div>
         )}
 
-        <p className="text-center text-xs text-slate-500">Left-click/tap to reveal • Right-click/long-press to flag • First click is always safe</p>
+        <p className="text-center text-xs text-slate-400">Left-click/tap to reveal • Right-click/long-press to flag • First click is always safe</p>
         </div>
         <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
           <GameAdSlot slot="3414612309" format="vertical" className="mt-2" width={160} height={600} />

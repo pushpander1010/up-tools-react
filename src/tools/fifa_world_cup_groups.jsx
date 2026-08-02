@@ -61,7 +61,7 @@ export default function fifa_world_cup_groups() {
         <div className="flex flex-wrap gap-1.5">
           {GROUPS.map(g => (
             <button key={g.name} onClick={() => { setActiveGroup(g.name); jumpTo() }}
-              className={`w-9 h-9 rounded-xl text-sm font-bold transition-all ${activeGroup === g.name ? 'bg-indigo-500 text-white' : 'bg-white/[0.06] border border-white/8 text-slate-500 hover:text-white'}`}>
+              className={`w-9 h-9 rounded-xl text-sm font-bold transition-all ${activeGroup === g.name ? 'bg-indigo-500 text-white' : 'bg-white/[0.06] border border-white/8 text-slate-400 hover:text-white'}`}>
               {g.name}
             </button>
           ))}
@@ -89,22 +89,22 @@ export default function fifa_world_cup_groups() {
               <table className="w-full text-xs">
                 <thead>
                   <tr className="border-b border-white/5">
-                    <th className="px-3 py-2 text-left text-[10px] text-slate-500 font-bold">#</th>
-                    <th className="px-3 py-2 text-left text-[10px] text-slate-500 font-bold">Team</th>
-                    <th className="px-2 py-2 text-center text-[10px] text-slate-500 font-bold">P</th>
-                    <th className="px-2 py-2 text-center text-[10px] text-slate-500 font-bold">W</th>
-                    <th className="px-2 py-2 text-center text-[10px] text-slate-500 font-bold">D</th>
-                    <th className="px-2 py-2 text-center text-[10px] text-slate-500 font-bold">L</th>
-                    <th className="px-2 py-2 text-center text-[10px] text-slate-500 font-bold">GF</th>
-                    <th className="px-2 py-2 text-center text-[10px] text-slate-500 font-bold">GA</th>
-                    <th className="px-2 py-2 text-center text-[10px] text-slate-500 font-bold">GD</th>
-                    <th className="px-2 py-2 text-center text-[10px] text-slate-500 font-bold">Pts</th>
+                    <th className="px-3 py-2 text-left text-[10px] text-slate-400 font-bold">#</th>
+                    <th className="px-3 py-2 text-left text-[10px] text-slate-400 font-bold">Team</th>
+                    <th className="px-2 py-2 text-center text-[10px] text-slate-400 font-bold">P</th>
+                    <th className="px-2 py-2 text-center text-[10px] text-slate-400 font-bold">W</th>
+                    <th className="px-2 py-2 text-center text-[10px] text-slate-400 font-bold">D</th>
+                    <th className="px-2 py-2 text-center text-[10px] text-slate-400 font-bold">L</th>
+                    <th className="px-2 py-2 text-center text-[10px] text-slate-400 font-bold">GF</th>
+                    <th className="px-2 py-2 text-center text-[10px] text-slate-400 font-bold">GA</th>
+                    <th className="px-2 py-2 text-center text-[10px] text-slate-400 font-bold">GD</th>
+                    <th className="px-2 py-2 text-center text-[10px] text-slate-400 font-bold">Pts</th>
                   </tr>
                 </thead>
                 <tbody>
                   {group.teams.map((t, i) => (
                     <tr key={i} className={`border-b border-white/5 ${i < 2 ? 'bg-emerald-500/5' : ''}`}>
-                      <td className="px-3 py-2 text-slate-500 font-medium">{i + 1}</td>
+                      <td className="px-3 py-2 text-slate-400 font-medium">{i + 1}</td>
                       <td className="px-3 py-2 text-white font-semibold">{t.f} {t.n}</td>
                       <td className="px-2 py-2 text-center text-slate-400">{t.p}</td>
                       <td className="px-2 py-2 text-center text-slate-400">{t.w}</td>

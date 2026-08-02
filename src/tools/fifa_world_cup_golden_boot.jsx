@@ -21,7 +21,7 @@ const rankStyle = (r) => {
   if (r === 1) return 'bg-amber-500/20 text-amber-400 font-extrabold'
   if (r === 2) return 'bg-slate-300/10 text-slate-300 font-bold'
   if (r === 3) return 'bg-amber-700/20 text-amber-600 font-bold'
-  return 'text-slate-500'
+  return 'text-slate-400'
 }
 
 export default function fifa_world_cup_golden_boot() {
@@ -89,7 +89,7 @@ export default function fifa_world_cup_golden_boot() {
               <tr className="border-b border-white/8">
                 {[['rank','Rank'],['name','Player'],['country','Country'],['goals','Goals'],['assists','Assists']].map(([k,l]) => (
                   <th key={k} onClick={() => toggleSort(k)}
-                    className={`px-3 py-2.5 text-left text-[10px] font-bold uppercase tracking-wider cursor-pointer hover:text-white transition-colors ${sortKey === k ? 'text-indigo-400' : 'text-slate-500'}`}>
+                    className={`px-3 py-2.5 text-left text-[10px] font-bold uppercase tracking-wider cursor-pointer hover:text-white transition-colors ${sortKey === k ? 'text-indigo-400' : 'text-slate-400'}`}>
                     {l}<SortArrow col={k} />
                   </th>
                 ))}

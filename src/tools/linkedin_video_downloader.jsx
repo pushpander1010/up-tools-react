@@ -36,7 +36,7 @@ export default function linkedin_video_downloader() {
     jumpTo()
   }, [url, quality, extractVideoId, jumpTo])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -83,7 +83,7 @@ export default function linkedin_video_downloader() {
               className={`p-3 rounded-xl text-center transition-all border-2 ${
                 quality === q.key
                   ? 'bg-sky-500/10 border-sky-500/30 text-sky-400'
-                  : 'bg-white/[0.04] border-white/8 text-slate-500 hover:border-white/12'
+                  : 'bg-white/[0.04] border-white/8 text-slate-400 hover:border-white/12'
               }`}>
               <div className="text-xl mb-1">{q.icon}</div>
               <div className="text-[10px] font-bold">{q.label}</div>

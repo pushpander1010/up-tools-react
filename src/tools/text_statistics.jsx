@@ -139,7 +139,7 @@ export default function TextStatistics() {
           <textarea value={input} onChange={e => setInput(e.target.value)}
             placeholder="Paste or type your text here to analyze..."
             rows={8}
-            className="w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3.5 text-white font-semibold text-sm outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark] resize-y" />
+            className="w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3.5 text-white font-semibold text-sm outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark] resize-y" />
           <div className="flex gap-2 mt-3">
             <button onClick={handleCopy}
               className="px-4 py-2 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] hover:bg-white/[0.1] text-slate-300 transition-all">
@@ -165,7 +165,7 @@ export default function TextStatistics() {
                 {stats.overview.map(s => (
                   <div key={s.label} className="p-2.5 sm:p-3 rounded-xl bg-black/20 border border-white/[0.05] text-center">
                     <div className={`text-xl sm:text-2xl font-extrabold ${s.color}`}>{s.val}</div>
-                    <div className="text-[10px] text-slate-500 uppercase font-bold mt-1">{s.label}</div>
+                    <div className="text-[10px] text-slate-400 uppercase font-bold mt-1">{s.label}</div>
                   </div>
                 ))}
               </div>
@@ -177,7 +177,7 @@ export default function TextStatistics() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {stats.details.map(([key, val]) => (
                   <div key={key} className="flex justify-between items-center px-4 py-2.5 rounded-xl bg-black/20 border border-white/[0.05]">
-                    <span className="text-sm text-slate-500">{key}</span>
+                    <span className="text-sm text-slate-400">{key}</span>
                     <span className="text-sm text-white font-semibold">{val}</span>
                   </div>
                 ))}

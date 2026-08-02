@@ -105,7 +105,7 @@ export default function tfsa_room_tracker() {
                 <span className="font-bold text-white">{fmt(result.totalLimit)}</span>
               </div>
             </div>
-            <p className="text-xs text-slate-500 mt-4">Uses published yearly limits through 2025. This is an estimate — check CRA for exact room.</p>
+            <p className="text-xs text-slate-400 mt-4">Uses published yearly limits through 2025. This is an estimate — check CRA for exact room.</p>
           </div>
         ) : (
           <div ref={resultRef} className="text-center py-12 rounded-3xl border-2 border-dashed border-white/8 bg-white/[0.01]">

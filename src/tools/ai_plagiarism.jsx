@@ -159,7 +159,7 @@ export default function ai_plagiarism() {
                 className={`px-3 py-2 rounded-xl text-xs font-bold transition-all ${
                   task === t.id
                     ? 'bg-purple-500/20 text-purple-400 border border-purple-500/30'
-                    : 'bg-white/[0.04] text-slate-500 border border-white/[0.08] hover:text-white'
+                    : 'bg-white/[0.04] text-slate-400 border border-white/[0.08] hover:text-white'
                 }`}>
                 {t.label}
               </button>
@@ -172,11 +172,11 @@ export default function ai_plagiarism() {
           <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4">
             <label className="block text-sm font-semibold text-slate-300 mb-3">Options</label>
             <div className="flex gap-3 items-end">
-              <div><label className="block text-[10px] text-slate-500 mb-1">Depth</label>
+              <div><label className="block text-[10px] text-slate-400 mb-1">Depth</label>
                 <select value={depth} onChange={e => setDepth(e.target.value)} className={selectClass + ' w-32'}>
                   <option value="quick">Quick</option><option value="balanced">Balanced</option><option value="deep">Deep</option>
                 </select></div>
-              <div><label className="block text-[10px] text-slate-500 mb-1">Format</label>
+              <div><label className="block text-[10px] text-slate-400 mb-1">Format</label>
                 <select value={format} onChange={e => setFormat(e.target.value)} className={selectClass + ' w-32'}>
                   <option value="bullets">Bullets</option><option value="table">Table</option>
                 </select></div>
@@ -187,11 +187,11 @@ export default function ai_plagiarism() {
           <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4">
             <label className="block text-sm font-semibold text-slate-300 mb-3">Options</label>
             <div className="flex gap-3 items-end flex-wrap">
-              <div><label className="block text-[10px] text-slate-500 mb-1">Tone</label>
+              <div><label className="block text-[10px] text-slate-400 mb-1">Tone</label>
                 <select value={tone} onChange={e => setTone(e.target.value)} className={selectClass + ' w-32'}>
                   <option>Neutral</option><option>Friendly</option><option>Formal</option><option>Academic</option><option>Simple</option><option>Sales</option>
                 </select></div>
-              <div><label className="block text-[10px] text-slate-500 mb-1">Constraints</label>
+              <div><label className="block text-[10px] text-slate-400 mb-1">Constraints</label>
                 <input value={rules} onChange={e => setRules(e.target.value)} placeholder="e.g. shorter, active voice" className={smallInput + ' w-48'} /></div>
             </div>
           </div>
@@ -200,9 +200,9 @@ export default function ai_plagiarism() {
           <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4">
             <label className="block text-sm font-semibold text-slate-300 mb-3">Options</label>
             <div className="flex gap-3 items-end">
-              <div><label className="block text-[10px] text-slate-500 mb-1">Top N</label>
+              <div><label className="block text-[10px] text-slate-400 mb-1">Top N</label>
                 <input type="number" value={topN} onChange={e => setTopN(e.target.value)} className={smallInput + ' w-20'} /></div>
-              <div><label className="block text-[10px] text-slate-500 mb-1">Include Phrases</label>
+              <div><label className="block text-[10px] text-slate-400 mb-1">Include Phrases</label>
                 <select value={phrases} onChange={e => setPhrases(e.target.value)} className={selectClass + ' w-20'}>
                   <option>Yes</option><option>No</option>
                 </select></div>
@@ -214,7 +214,7 @@ export default function ai_plagiarism() {
         <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4 space-y-3">
           <div className="flex items-center justify-between">
             <label className="block text-sm font-semibold text-slate-300">Input Text *</label>
-            <div className="flex gap-3 text-xs text-slate-500">
+            <div className="flex gap-3 text-xs text-slate-400">
               <span>Words: {wordCount.toLocaleString()}</span>
               <span>Chars: {charCount.toLocaleString()}</span>
             </div>
@@ -224,11 +224,11 @@ export default function ai_plagiarism() {
             className={inputClass + ' resize-none'} />
           <div className="flex gap-2">
             <button onClick={() => fileRef.current?.click()}
-              className="px-4 py-2 rounded-xl text-xs font-bold bg-white/[0.04] border border-white/[0.08] text-slate-500 hover:text-white transition-all">
+              className="px-4 py-2 rounded-xl text-xs font-bold bg-white/[0.04] border border-white/[0.08] text-slate-400 hover:text-white transition-all">
               📁 Import File
             </button>
             <button onClick={() => { setInput('') }}
-              className="px-4 py-2 rounded-xl text-xs font-bold bg-white/[0.04] border border-white/[0.08] text-slate-500 hover:text-white transition-all">
+              className="px-4 py-2 rounded-xl text-xs font-bold bg-white/[0.04] border border-white/[0.08] text-slate-400 hover:text-white transition-all">
               Clear
             </button>
             <input ref={fileRef} type="file" accept=".txt,.md,.csv" onChange={importFile} className="hidden" />
@@ -246,7 +246,7 @@ export default function ai_plagiarism() {
             ].map(kpi => (
               <div key={kpi.label} className="bg-white/[0.04] border border-white/[0.08] rounded-xl p-3 text-center">
                 <div className={`text-lg font-bold ${kpi.color}`}>{kpi.value}</div>
-                <div className="text-[10px] text-slate-500 mt-1">{kpi.label}</div>
+                <div className="text-[10px] text-slate-400 mt-1">{kpi.label}</div>
               </div>
             ))}
           </div>

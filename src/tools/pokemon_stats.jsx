@@ -128,13 +128,13 @@ export default function pokemon_stats() {
               📥 CSV
             </button>
           </div>
-          {status && <div className="text-xs text-slate-500 mt-2">{status}</div>}
+          {status && <div className="text-xs text-slate-400 mt-2">{status}</div>}
         </div>
 
         {/* Pokemon List */}
         {filtered.length > 0 && !details && (
           <div>
-            <div className="text-xs text-slate-500 mb-2">Showing {Math.min(visibleCount, filtered.length)} of {filtered.length} Pokemon</div>
+            <div className="text-xs text-slate-400 mb-2">Showing {Math.min(visibleCount, filtered.length)} of {filtered.length} Pokemon</div>
             <div className="flex flex-wrap gap-2" ref={resultRef}>
               {filtered.slice(0, visibleCount).map(p => (
                 <button key={p.name} onClick={() => loadDetails(p.name)}
@@ -164,7 +164,7 @@ export default function pokemon_stats() {
                 <img src={details.sprites.front_default} alt={details.name} width={80} height={80} className="pixelated" />
               )}
               <div>
-                <div className="text-lg font-bold text-white capitalize">{details.name} <span className="text-xs text-slate-500">#{details.id}</span></div>
+                <div className="text-lg font-bold text-white capitalize">{details.name} <span className="text-xs text-slate-400">#{details.id}</span></div>
                 <div className="text-xs text-slate-400">Height: {fmt(details.height)} | Weight: {fmt(details.weight)}</div>
                 <div className="text-xs text-slate-400">Base Exp: {fmt(details.base_experience)}</div>
               </div>

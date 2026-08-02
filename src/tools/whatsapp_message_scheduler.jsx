@@ -83,7 +83,7 @@ export default function whatsapp_message_scheduler() {
               className={`flex-1 py-3 rounded-xl text-sm font-bold transition-all duration-200 border-2 ${
                 activeMethod === i
                   ? 'bg-emerald-500/15 border-emerald-500/30 text-emerald-400'
-                  : 'bg-white/[0.04] border-white/8 text-slate-500 hover:border-white/12'
+                  : 'bg-white/[0.04] border-white/8 text-slate-400 hover:border-white/12'
               }`}>
               {m.icon} {m.platform.split(' ')[0]}
             </button>
@@ -130,11 +130,11 @@ export default function whatsapp_message_scheduler() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <a href="/whatsapp-chat/" className="bg-black/20 rounded-xl p-4 border border-white/8 hover:border-emerald-500/30 transition-all">
               <div className="text-sm font-bold text-white">💬 WhatsApp Click-to-Chat</div>
-              <div className="text-xs text-slate-500 mt-1">Open chats without saving numbers</div>
+              <div className="text-xs text-slate-400 mt-1">Open chats without saving numbers</div>
             </a>
             <a href="/whatsapp-link-generator/" className="bg-black/20 rounded-xl p-4 border border-white/8 hover:border-emerald-500/30 transition-all">
               <div className="text-sm font-bold text-white">🔗 WhatsApp Link Generator</div>
-              <div className="text-xs text-slate-500 mt-1">Create wa.me links with pre-filled messages</div>
+              <div className="text-xs text-slate-400 mt-1">Create wa.me links with pre-filled messages</div>
             </a>
           </div>
         </div>

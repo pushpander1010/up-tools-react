@@ -133,7 +133,7 @@ export default function ai_writer() {
                 className={`px-3 py-2 rounded-xl text-xs font-bold transition-all ${
                   task === t.id
                     ? 'bg-indigo-500/20 text-indigo-400 border border-indigo-500/30'
-                    : 'bg-white/[0.04] text-slate-500 border border-white/[0.08] hover:text-white'
+                    : 'bg-white/[0.04] text-slate-400 border border-white/[0.08] hover:text-white'
                 }`}>
                 {t.label}
               </button>
@@ -147,41 +147,41 @@ export default function ai_writer() {
             <label className="block text-sm font-semibold text-slate-300 mb-3">Options</label>
             <div className="flex flex-wrap gap-3 items-end">
               {task === 'summarize' && <>
-                <div><label className="block text-[10px] text-slate-500 mb-1">Style</label>
+                <div><label className="block text-[10px] text-slate-400 mb-1">Style</label>
                   <select value={style} onChange={e => setStyle(e.target.value)} className={selectClass + ' w-32'}>
                     <option value="brief">Brief</option><option value="bullets">Bulleted</option><option value="detailed">Detailed</option>
                   </select></div>
-                <div><label className="block text-[10px] text-slate-500 mb-1">Max Words</label>
+                <div><label className="block text-[10px] text-slate-400 mb-1">Max Words</label>
                   <input type="number" value={maxWords} onChange={e => setMaxWords(e.target.value)} className={smallInput + ' w-24'} /></div>
               </>}
               {task === 'rewrite' && <>
-                <div><label className="block text-[10px] text-slate-500 mb-1">Tone</label>
+                <div><label className="block text-[10px] text-slate-400 mb-1">Tone</label>
                   <select value={tone} onChange={e => setTone(e.target.value)} className={selectClass + ' w-32'}>
                     <option>Neutral</option><option>Friendly</option><option>Formal</option><option>Academic</option><option>Sales</option><option>Playful</option>
                   </select></div>
-                <div><label className="block text-[10px] text-slate-500 mb-1">Constraints</label>
+                <div><label className="block text-[10px] text-slate-400 mb-1">Constraints</label>
                   <input value={rules} onChange={e => setRules(e.target.value)} placeholder="e.g. shorter, active voice" className={smallInput + ' w-48'} /></div>
               </>}
               {task === 'translate' && (
-                <div><label className="block text-[10px] text-slate-500 mb-1">Language</label>
+                <div><label className="block text-[10px] text-slate-400 mb-1">Language</label>
                   <input value={lang} onChange={e => setLang(e.target.value)} className={smallInput + ' w-32'} /></div>
               )}
               {task === 'keywords' && <>
-                <div><label className="block text-[10px] text-slate-500 mb-1">Top N</label>
+                <div><label className="block text-[10px] text-slate-400 mb-1">Top N</label>
                   <input type="number" value={topN} onChange={e => setTopN(e.target.value)} className={smallInput + ' w-20'} /></div>
-                <div><label className="block text-[10px] text-slate-500 mb-1">Phrases</label>
+                <div><label className="block text-[10px] text-slate-400 mb-1">Phrases</label>
                   <select value={phrases} onChange={e => setPhrases(e.target.value)} className={selectClass + ' w-20'}>
                     <option>Yes</option><option>No</option>
                   </select></div>
               </>}
               {task === 'outline' && (
-                <div><label className="block text-[10px] text-slate-500 mb-1">Depth</label>
+                <div><label className="block text-[10px] text-slate-400 mb-1">Depth</label>
                   <select value={depth} onChange={e => setDepth(e.target.value)} className={selectClass + ' w-24'}>
                     <option value="2">H2 + H3</option><option value="3">H2 + H3 + H4</option>
                   </select></div>
               )}
               {task === 'seometa' && (
-                <div><label className="block text-[10px] text-slate-500 mb-1">Brand</label>
+                <div><label className="block text-[10px] text-slate-400 mb-1">Brand</label>
                   <input value={brand} onChange={e => setBrand(e.target.value)} className={smallInput + ' w-32'} /></div>
               )}
             </div>
@@ -192,18 +192,18 @@ export default function ai_writer() {
         <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4 space-y-3">
           <div className="flex items-center justify-between">
             <label className="block text-sm font-semibold text-slate-300">Input Text *</label>
-            <span className="text-xs text-slate-500">{charCount.toLocaleString()} chars</span>
+            <span className="text-xs text-slate-400">{charCount.toLocaleString()} chars</span>
           </div>
           <textarea value={input} onChange={e => setInput(e.target.value)} rows={8}
             placeholder="Paste or type your text here..."
             className={inputClass + ' resize-none'} />
           <div className="flex gap-2">
             <button onClick={() => fileRef.current?.click()}
-              className="px-4 py-2 rounded-xl text-xs font-bold bg-white/[0.04] border border-white/[0.08] text-slate-500 hover:text-white transition-all">
+              className="px-4 py-2 rounded-xl text-xs font-bold bg-white/[0.04] border border-white/[0.08] text-slate-400 hover:text-white transition-all">
               📁 Import File
             </button>
             <button onClick={() => { setInput('') }}
-              className="px-4 py-2 rounded-xl text-xs font-bold bg-white/[0.04] border border-white/[0.08] text-slate-500 hover:text-white transition-all">
+              className="px-4 py-2 rounded-xl text-xs font-bold bg-white/[0.04] border border-white/[0.08] text-slate-400 hover:text-white transition-all">
               Clear
             </button>
             <input ref={fileRef} type="file" accept=".txt,.md,.csv" onChange={importFile} className="hidden" />

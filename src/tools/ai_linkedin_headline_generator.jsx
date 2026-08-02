@@ -92,7 +92,7 @@ Requirements:
           <div className="flex flex-wrap gap-2">
             {PRESETS.map((p, i) => (
               <button key={i} onClick={() => applyPreset(p)}
-                className="px-3 py-2 rounded-xl text-xs font-bold bg-white/[0.04] text-slate-500 border border-white/[0.08] hover:text-white hover:border-white/20 transition-all">
+                className="px-3 py-2 rounded-xl text-xs font-bold bg-white/[0.04] text-slate-400 border border-white/[0.08] hover:text-white hover:border-white/20 transition-all">
                 {p.label}
               </button>
             ))}

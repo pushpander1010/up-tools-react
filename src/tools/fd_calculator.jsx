@@ -192,7 +192,7 @@ export default function fd_calculator() {
               placeholder="1,00,000"
               className="w-full bg-white/[0.06] border-2 border-white/8 rounded-2xl pl-14 pr-5 py-5 text-4xl font-extrabold text-white outline-none
                 focus:border-indigo-500/40 focus:bg-white/[0.05] focus:shadow-[0_0_40px_rgba(99,102,241,0.08)]
-                transition-all duration-300 placeholder:text-slate-500"
+                transition-all duration-300 placeholder:text-slate-400"
             />
           </div>
         </div>
@@ -207,9 +207,9 @@ export default function fd_calculator() {
                 placeholder="7.5" step="0.1"
                 className="w-full bg-white/[0.06] border-2 border-white/8 rounded-2xl px-5 py-4 text-2xl font-bold text-white outline-none
                   focus:border-indigo-500/40 focus:bg-white/[0.05] focus:shadow-[0_0_30px_rgba(99,102,241,0.06)]
-                  transition-all duration-300 placeholder:text-slate-500"
+                  transition-all duration-300 placeholder:text-slate-400"
               />
-              <span className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-500 font-bold text-sm">%</span>
+              <span className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-400 font-bold text-sm">%</span>
             </div>
           </div>
           <div>
@@ -220,9 +220,9 @@ export default function fd_calculator() {
                 placeholder="5" step="0.5"
                 className="w-full bg-white/[0.06] border-2 border-white/8 rounded-2xl px-5 py-4 text-2xl font-bold text-white outline-none
                   focus:border-indigo-500/40 focus:bg-white/[0.05] focus:shadow-[0_0_30px_rgba(99,102,241,0.06)]
-                  transition-all duration-300 placeholder:text-slate-500"
+                  transition-all duration-300 placeholder:text-slate-400"
               />
-              <span className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-500 font-bold text-sm">yr</span>
+              <span className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-400 font-bold text-sm">yr</span>
             </div>
           </div>
         </div>
@@ -249,7 +249,7 @@ export default function fd_calculator() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {/* Mode Toggle */}
           <div className="p-4 rounded-2xl border-2 border-white/8 bg-white/[0.05]">
-            <div className="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-2">Interest Mode</div>
+            <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2">Interest Mode</div>
             <div className="grid grid-cols-2 gap-2">
               {[
                 ['cumulative', 'Cumulative', 'Compounded'],
@@ -262,7 +262,7 @@ export default function fd_calculator() {
                       : 'bg-white/[0.05] border-white/8 hover:border-white/12'
                     }`}>
                   <div className={`text-xs font-bold ${mode === val ? 'text-indigo-400' : 'text-slate-300'}`}>{label}</div>
-                  <div className="text-[10px] text-slate-500 mt-0.5">{sub}</div>
+                  <div className="text-[10px] text-slate-400 mt-0.5">{sub}</div>
                 </button>
               ))}
             </div>
@@ -282,7 +282,7 @@ export default function fd_calculator() {
               </div>
               <div>
                 <div className="text-sm font-bold text-white">Senior Citizen</div>
-                <div className="text-[11px] text-slate-500 mt-0.5">
+                <div className="text-[11px] text-slate-400 mt-0.5">
                   {seniorCitizen ? 'TDS threshold ₹50,000/yr' : 'TDS threshold ₹40,000/yr'}
                 </div>
               </div>
@@ -303,7 +303,7 @@ export default function fd_calculator() {
               </div>
               <div>
                 <div className="text-sm font-bold text-white">PAN Provided</div>
-                <div className="text-[11px] text-slate-500 mt-0.5">
+                <div className="text-[11px] text-slate-400 mt-0.5">
                   {hasPan ? 'TDS rate 10%' : 'TDS rate 20%'}
                 </div>
               </div>
@@ -334,15 +334,15 @@ export default function fd_calculator() {
             {/* Key metrics row */}
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-5">
               <div className="p-3 rounded-xl bg-indigo-500/10 border border-indigo-500/15">
-                <div className="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Maturity Amount</div>
+                <div className="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Maturity Amount</div>
                 <div className="text-xl font-extrabold text-indigo-400 mt-1"><AnimatedNumber value={result.maturityAmount} /></div>
               </div>
               <div className="p-3 rounded-xl bg-white/[0.05] border border-white/8">
-                <div className="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Total Interest</div>
+                <div className="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Total Interest</div>
                 <div className="text-xl font-extrabold text-emerald-400 mt-1"><AnimatedNumber value={result.totalInterest} /></div>
               </div>
               <div className="p-3 rounded-xl bg-white/[0.05] border border-white/8">
-                <div className="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Effective APY</div>
+                <div className="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Effective APY</div>
                 <div className="text-xl font-extrabold text-amber-400 mt-1">{(result.effectiveAPY * 100).toFixed(2)}%</div>
               </div>
             </div>
@@ -379,7 +379,7 @@ export default function fd_calculator() {
                   <AnimatedNumber value={result.netMaturity} />
                 </span>
               </div>
-              <div className="text-center text-xs text-slate-500 mt-1">Maturity Date: {result.maturityDate}</div>
+              <div className="text-center text-xs text-slate-400 mt-1">Maturity Date: {result.maturityDate}</div>
             </div>
           </div>
         )}
@@ -408,7 +408,7 @@ export default function fd_calculator() {
                 )
               })}
             </div>
-            <div className="flex justify-between mt-3 text-xs text-slate-500">
+            <div className="flex justify-between mt-3 text-xs text-slate-400">
               <span>Start: ₹{timelineYears[0].value.toLocaleString('en-IN')}</span>
               <span>Maturity: ₹{timelineYears[timelineYears.length - 1].value.toLocaleString('en-IN')}</span>
             </div>

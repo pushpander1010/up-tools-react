@@ -63,7 +63,7 @@ export default function tip_calculator() {
                   className={`flex-1 py-2.5 rounded-xl text-xs font-bold transition-all ${
                     tipPct === pct
                       ? 'bg-amber-500/20 text-amber-400 border border-amber-500/40 shadow-lg shadow-amber-500/10'
-                      : 'bg-white/[0.06] text-slate-500 border border-white/[0.08] hover:text-white'
+                      : 'bg-white/[0.06] text-slate-400 border border-white/[0.08] hover:text-white'
                   }`}>
                   {pct}%
                 </button>

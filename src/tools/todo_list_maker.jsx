@@ -86,7 +86,7 @@ export default function todo_list_maker() {
             <button key={f} onClick={() => setFilter(f)}
               className={`flex-1 py-2 rounded-xl text-xs font-bold transition-all capitalize ${filter === f
                 ? 'bg-indigo-500/20 text-indigo-400 border border-indigo-500/40'
-                : 'bg-white/[0.04] text-slate-500 border border-white/8 hover:text-white'}`}>
+                : 'bg-white/[0.04] text-slate-400 border border-white/8 hover:text-white'}`}>
               {f} {f === 'all' ? `(${stats.total})` : f === 'active' ? `(${stats.active})` : `(${stats.done})`}
             </button>
           ))}
@@ -101,7 +101,7 @@ export default function todo_list_maker() {
           ].map(s => (
             <div key={s.label} className="bg-black/20 rounded-xl py-3 px-2">
               <div className="text-lg font-extrabold" style={{ color: s.color }}>{s.val}</div>
-              <div className="text-[10px] text-slate-500 font-semibold uppercase">{s.label}</div>
+              <div className="text-[10px] text-slate-400 font-semibold uppercase">{s.label}</div>
             </div>
           ))}
         </div>
@@ -122,7 +122,7 @@ export default function todo_list_maker() {
                   todo.done ? 'bg-emerald-500/20 border-emerald-500/40 text-emerald-400' : 'border-white/15 hover:border-indigo-500/40'}`}>
                 {todo.done && '✓'}
               </button>
-              <span className={`flex-1 text-sm ${todo.done ? 'text-slate-500 line-through' : 'text-white'}`}>
+              <span className={`flex-1 text-sm ${todo.done ? 'text-slate-400 line-through' : 'text-white'}`}>
                 {todo.text}
               </span>
               <button onClick={() => remove(todo.id)}
@@ -133,7 +133,7 @@ export default function todo_list_maker() {
 
         {stats.done > 0 && (
           <button onClick={clearDone}
-            className="w-full py-3 rounded-xl text-xs font-bold bg-white/[0.06] border border-white/8 text-slate-500 hover:text-red-400 transition-all">
+            className="w-full py-3 rounded-xl text-xs font-bold bg-white/[0.06] border border-white/8 text-slate-400 hover:text-red-400 transition-all">
             🗑️ Clear {stats.done} completed task{stats.done > 1 ? 's' : ''}
           </button>
         )}

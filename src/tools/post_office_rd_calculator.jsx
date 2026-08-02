@@ -122,15 +122,15 @@ export default function post_office_rd_calculator() {
             {/* Stats */}
             <div className="grid grid-cols-3 gap-3">
               <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4 text-center">
-                <div className="text-xs text-slate-500 mb-1">Total Deposited</div>
+                <div className="text-xs text-slate-400 mb-1">Total Deposited</div>
                 <div className="text-lg font-bold text-white">{fmt(result.totalDeposited)}</div>
               </div>
               <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4 text-center">
-                <div className="text-xs text-slate-500 mb-1">Interest Earned</div>
+                <div className="text-xs text-slate-400 mb-1">Interest Earned</div>
                 <div className="text-lg font-bold text-emerald-400">{fmt(result.interest)}</div>
               </div>
               <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4 text-center">
-                <div className="text-xs text-slate-500 mb-1">Maturity Amount</div>
+                <div className="text-xs text-slate-400 mb-1">Maturity Amount</div>
                 <div className="text-lg font-bold text-amber-400">{fmt(result.maturity)}</div>
               </div>
             </div>
@@ -143,9 +143,9 @@ export default function post_office_rd_calculator() {
                   <table className="w-full text-xs">
                     <thead>
                       <tr className="border-b border-white/[0.08]">
-                        <th className="text-left py-2 text-slate-500">Month</th>
-                        <th className="text-right py-2 text-slate-500">Deposited</th>
-                        <th className="text-right py-2 text-slate-500">Balance</th>
+                        <th className="text-left py-2 text-slate-400">Month</th>
+                        <th className="text-right py-2 text-slate-400">Deposited</th>
+                        <th className="text-right py-2 text-slate-400">Balance</th>
                       </tr>
                     </thead>
                     <tbody>

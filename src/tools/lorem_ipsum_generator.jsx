@@ -44,7 +44,7 @@ export default function lorem_ipsum_generator() {
     setCopied(true); setTimeout(() => setCopied(false), 2000)
   }, [output])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
   const btnClass = "px-4 py-2.5 rounded-xl text-sm font-bold transition-all border-2"
 
   return (

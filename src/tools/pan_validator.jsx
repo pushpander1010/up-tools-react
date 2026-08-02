@@ -159,9 +159,9 @@ export default function pan_validator() {
   const validCount = bulkResults.filter(r => r.valid).length
   const invalidCount = bulkResults.filter(r => !r.valid).length
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-purple-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark] uppercase tracking-widest"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-purple-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark] uppercase tracking-widest"
   const btnActive = "bg-purple-500/15 border-purple-500/30 text-purple-400 shadow-lg shadow-purple-500/10"
-  const btnInactive = "bg-white/[0.04] border-white/6 text-slate-500 hover:border-white/12 hover:text-slate-300"
+  const btnInactive = "bg-white/[0.04] border-white/6 text-slate-400 hover:border-white/12 hover:text-slate-300"
 
   return (
     <ToolLayout
@@ -238,7 +238,7 @@ export default function pan_validator() {
             {/* PAN Anatomy Diagram */}
             {pan.length === 10 && (
               <div className="mt-4 p-4 rounded-xl bg-white/[0.03] border border-white/5">
-                <div className="text-xs text-slate-500 font-semibold mb-3">PAN Anatomy</div>
+                <div className="text-xs text-slate-400 font-semibold mb-3">PAN Anatomy</div>
                 <div className="flex justify-between text-center gap-0.5">
                   {[
                     { chars: pan.slice(0, 3), label: 'Issuer', span: '3' },
@@ -268,7 +268,7 @@ export default function pan_validator() {
               placeholder={"ABCDE1234F\nFGHIJ5678K\nKLMNO9012P"}
               rows={6}
               className="w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-mono text-sm outline-none
-                focus:border-purple-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark] resize-none" />
+                focus:border-purple-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark] resize-none" />
             {bulkResults.length > 0 && (
               <div className="flex gap-4 mt-3">
                 <div className="text-xs font-bold text-emerald-400">✓ {validCount} valid</div>
@@ -299,7 +299,7 @@ export default function pan_validator() {
                     </span>
                     <span className="text-sm font-mono font-bold text-white tracking-wider">{r.pan || bulkInput.split('\n')[i]?.trim()}</span>
                   </div>
-                  <div className="text-xs text-slate-500">
+                  <div className="text-xs text-slate-400">
                     {r.valid ? r.entity.label : r.error}
                   </div>
                 </div>
@@ -358,7 +358,7 @@ export default function pan_validator() {
               ].map((part, i) => (
                 <div key={i} className="p-2.5 rounded-xl bg-white/[0.04] border border-white/6 text-center">
                   <div className="text-sm font-extrabold text-purple-400 tracking-wider">{part.chars}</div>
-                  <div className="text-[10px] text-slate-500 font-bold mt-1">{part.label}</div>
+                  <div className="text-[10px] text-slate-400 font-bold mt-1">{part.label}</div>
                   <div className="text-[9px] text-slate-600">{part.sub}</div>
                 </div>
               ))}
@@ -366,11 +366,11 @@ export default function pan_validator() {
 
             {/* Entity Types Reference */}
             <div className="p-4 rounded-xl bg-white/[0.03] border border-white/5">
-              <div className="text-xs text-slate-500 font-semibold mb-3">Entity Types (4th Character)</div>
+              <div className="text-xs text-slate-400 font-semibold mb-3">Entity Types (4th Character)</div>
               <div className="grid grid-cols-2 gap-1.5">
                 {Object.entries(ENTITY_TYPES).map(([code, info]) => (
                   <div key={code} className={`flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-[11px] font-semibold
-                    ${result.entityType === code ? 'bg-purple-500/15 text-purple-400' : 'text-slate-500'}`}>
+                    ${result.entityType === code ? 'bg-purple-500/15 text-purple-400' : 'text-slate-400'}`}>
                     <span>{info.emoji}</span>
                     <span className="font-extrabold">{code}</span>
                     <span className="text-slate-600">{info.label}</span>
@@ -403,7 +403,7 @@ export default function pan_validator() {
               <span className="text-lg">🔗</span>
               <h4 className="text-sm font-bold text-white">GSTIN Cross-Check</h4>
             </div>
-            <p className="text-xs text-slate-500 mb-3">Validate GSTIN and extract embedded PAN</p>
+            <p className="text-xs text-slate-400 mb-3">Validate GSTIN and extract embedded PAN</p>
             <input type="text" value={gstin} onChange={e => setGstin(e.target.value.toUpperCase().slice(0, 15))}
               placeholder="Enter 15-character GSTIN" maxLength={15}
               className={`${inputClass} text-sm tracking-[0.15em]`} />
@@ -422,7 +422,7 @@ export default function pan_validator() {
                   </span>
                 </div>
                 {gstinResult.valid && (
-                  <div className="text-xs text-slate-500 mt-1 ml-5">
+                  <div className="text-xs text-slate-400 mt-1 ml-5">
                     State Code: {gstinResult.stateCode} · Entity: {gstinResult.entityType?.label}
                   </div>
                 )}

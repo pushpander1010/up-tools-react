@@ -65,7 +65,7 @@ export default function cra_noa_checklist() {
         <div className="rounded-2xl bg-white/[0.06] border-2 border-white/8 p-4">
           <div className="flex justify-between items-center mb-2">
             <span className="text-sm font-semibold text-slate-300">{doneCount} of {ITEMS.length} items ready</span>
-            <button onClick={reset} className="text-xs text-slate-500 hover:text-red-400 transition-colors font-medium">Reset</button>
+            <button onClick={reset} className="text-xs text-slate-400 hover:text-red-400 transition-colors font-medium">Reset</button>
           </div>
           <div className="h-2 rounded-full bg-white/5 overflow-hidden">
             <div className="h-full rounded-full bg-red-500 transition-all duration-500"
@@ -79,7 +79,7 @@ export default function cra_noa_checklist() {
             <label key={idx} className="flex items-center gap-4 px-5 py-4 cursor-pointer hover:bg-white/[0.03] transition-colors">
               <input type="checkbox" checked={!!checked[idx]} onChange={() => toggle(idx)}
                 className="w-5 h-5 rounded-lg border-white/20 bg-white/10 text-red-500 focus:ring-red-500/40 shrink-0" />
-              <span className={`text-sm font-medium transition-all duration-200 ${checked[idx] ? 'text-slate-500 line-through' : 'text-white'}`}>
+              <span className={`text-sm font-medium transition-all duration-200 ${checked[idx] ? 'text-slate-400 line-through' : 'text-white'}`}>
                 {item}
               </span>
             </label>

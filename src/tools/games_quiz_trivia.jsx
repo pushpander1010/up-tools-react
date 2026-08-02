@@ -278,15 +278,15 @@ export default function games_quiz_trivia() {
               <div className="grid grid-cols-3 gap-4">
                 <div className="text-center">
                   <div className="text-2xl font-extrabold text-white">{score}</div>
-                  <div className="text-xs text-slate-500 font-medium mt-0.5">Score</div>
+                  <div className="text-xs text-slate-400 font-medium mt-0.5">Score</div>
                 </div>
                 <div className="text-center">
                   <div className="text-2xl font-extrabold text-white">{currentQ + 1}/10</div>
-                  <div className="text-xs text-slate-500 font-medium mt-0.5">Question</div>
+                  <div className="text-xs text-slate-400 font-medium mt-0.5">Question</div>
                 </div>
                 <div className="text-center">
                   <div className="text-2xl font-extrabold text-white">{streak} 🔥</div>
-                  <div className="text-xs text-slate-500 font-medium mt-0.5">Streak</div>
+                  <div className="text-xs text-slate-400 font-medium mt-0.5">Streak</div>
                 </div>
               </div>
             </div>

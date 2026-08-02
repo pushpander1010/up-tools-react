@@ -94,7 +94,7 @@ export default function pomodoro_timer() {
           {MODES.map(m => (
             <button key={m.key} onClick={() => switchMode(m.key)}
               className={`flex-1 py-2.5 rounded-xl text-xs font-bold transition-all border-2 ${mode === m.key
-                ? 'border-white/20 text-white' : 'bg-white/[0.04] border-white/8 text-slate-500 hover:text-white'}`}
+                ? 'border-white/20 text-white' : 'bg-white/[0.04] border-white/8 text-slate-400 hover:text-white'}`}
               style={mode === m.key ? { background: `${m.color}20`, borderColor: `${m.color}40`, color: m.color } : {}}>
               {m.label}
             </button>
@@ -132,7 +132,7 @@ export default function pomodoro_timer() {
 
         {/* Session Counter */}
         <div className="bg-white/[0.06] border border-white/8 rounded-2xl p-4 text-center">
-          <div className="text-xs text-slate-500 mb-2">Sessions Completed</div>
+          <div className="text-xs text-slate-400 mb-2">Sessions Completed</div>
           <div className="text-3xl font-extrabold text-white">{completed}</div>
           <div className="text-xs text-slate-600 mt-1">{Array(completed).fill('🍅').join(' ')}</div>
         </div>

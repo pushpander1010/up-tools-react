@@ -85,7 +85,7 @@ export default function canada_mortgage_affordability() {
               className={inputClass} />
           </div>
         </div>
-        <p className="text-xs text-slate-500">Uses GDS 32% and TDS 40% as a simple guide.</p>
+        <p className="text-xs text-slate-400">Uses GDS 32% and TDS 40% as a simple guide.</p>
 
         {result ? (
           <div ref={resultRef} className="rounded-3xl border-2 border-red-500/15 bg-gradient-to-br from-red-500/[0.06] via-white/[0.01] to-transparent p-6 sm:p-8 overflow-hidden"
@@ -110,7 +110,7 @@ export default function canada_mortgage_affordability() {
                 <span className="font-bold text-slate-300">{fmt(result.tds)}</span>
               </div>
             </div>
-            <p className="text-xs text-slate-500 mt-4">Estimate only; excludes property taxes, heating, condo fees.</p>
+            <p className="text-xs text-slate-400 mt-4">Estimate only; excludes property taxes, heating, condo fees.</p>
           </div>
         ) : (
           <div ref={resultRef} className="text-center py-12 rounded-3xl border-2 border-dashed border-white/8 bg-white/[0.01]">

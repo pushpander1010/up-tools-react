@@ -69,7 +69,7 @@ export default function met_gala_2026() {
             <option value="">All designers</option>
             {designers.map(d => <option key={d} value={d}>{d}</option>)}
           </select>
-          <div className="text-xs text-slate-500">{filtered.length} looks</div>
+          <div className="text-xs text-slate-400">{filtered.length} looks</div>
         </div>
 
         {/* Gallery */}
@@ -86,7 +86,7 @@ export default function met_gala_2026() {
                   <span className="text-xs px-2 py-0.5 rounded bg-pink-500/10 text-pink-400">
                     {item.designer === 'Not specified' ? 'Designer not listed' : 'Designer credit'}
                   </span>
-                  <span className="text-xs px-2 py-0.5 rounded bg-white/[0.06] text-slate-500">Met Gala 2026</span>
+                  <span className="text-xs px-2 py-0.5 rounded bg-white/[0.06] text-slate-400">Met Gala 2026</span>
                 </div>
               </div>
             </div>

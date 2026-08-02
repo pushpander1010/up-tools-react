@@ -100,7 +100,7 @@ export default function pdf_merger() {
           }`}>
           <div className="text-3xl mb-2 opacity-40">📄</div>
           <p className="text-white font-semibold text-sm">Drop PDF files here or click to select</p>
-          <p className="text-slate-500 text-xs mt-1">Select multiple PDF files to merge them</p>
+          <p className="text-slate-400 text-xs mt-1">Select multiple PDF files to merge them</p>
           <input ref={fileInputRef} type="file" accept=".pdf" multiple className="hidden"
             onChange={e => addFiles(Array.from(e.target.files))} />
         </div>
@@ -112,7 +112,7 @@ export default function pdf_merger() {
               <div key={i} className="flex items-center justify-between py-2 px-4 rounded-xl bg-white/[0.06] border border-white/8">
                 <span className="text-white text-sm font-medium truncate">{f.name}</span>
                 <span className="flex items-center gap-3">
-                  <span className="text-slate-500 text-xs">{(f.size / 1024).toFixed(1)} KB</span>
+                  <span className="text-slate-400 text-xs">{(f.size / 1024).toFixed(1)} KB</span>
                   <button onClick={() => removeFile(i)} className="text-red-400 hover:text-red-300 text-sm">✕</button>
                 </span>
               </div>

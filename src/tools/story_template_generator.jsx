@@ -155,7 +155,7 @@ export default function story_template_generator() {
           {/* Controls */}
           <div className="space-y-5">
             <div>
-              <label className="block text-xs font-semibold text-slate-500 mb-2">Platform</label>
+              <label className="block text-xs font-semibold text-slate-400 mb-2">Platform</label>
               <div className="grid grid-cols-2 gap-1.5">
                 {PLATFORMS.map(p => (
                   <button key={p.id} onClick={() => setPlatform(p)}
@@ -172,7 +172,7 @@ export default function story_template_generator() {
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-500 mb-2">Background</label>
+              <label className="block text-xs font-semibold text-slate-400 mb-2">Background</label>
               <div className="grid grid-cols-4 gap-1.5">
                 {BG_PRESETS.map((b, i) => (
                   <button key={i} onClick={() => setBgPreset(b)}
@@ -185,13 +185,13 @@ export default function story_template_generator() {
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-500 mb-2">Heading Text</label>
+              <label className="block text-xs font-semibold text-slate-400 mb-2">Heading Text</label>
               <input type="text" value={heading} onChange={e => setHeading(e.target.value)}
                 className={inputClass} />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-500 mb-2">Subtext (optional)</label>
+              <label className="block text-xs font-semibold text-slate-400 mb-2">Subtext (optional)</label>
               <input type="text" value={subtext} onChange={e => setSubtext(e.target.value)}
                 placeholder="Add a caption or tagline..."
                 className={inputClass} />
@@ -199,12 +199,12 @@ export default function story_template_generator() {
 
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="block text-xs font-semibold text-slate-500 mb-2">Font Size: {fontSize}px</label>
+                <label className="block text-xs font-semibold text-slate-400 mb-2">Font Size: {fontSize}px</label>
                 <input type="range" min="24" max="120" value={fontSize} onChange={e => setFontSize(parseInt(e.target.value))}
                   className="w-full accent-indigo-500" />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-slate-500 mb-2">Font Family</label>
+                <label className="block text-xs font-semibold text-slate-400 mb-2">Font Family</label>
                 <select value={fontFamily} onChange={e => setFontFamily(e.target.value)}
                   className={inputClass + " appearance-none"}>
                   {FONT_OPTIONS.map(f => <option key={f.value} value={f.value} className="bg-gray-900">{f.label}</option>)}
@@ -213,7 +213,7 @@ export default function story_template_generator() {
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-500 mb-2">Text Alignment</label>
+              <label className="block text-xs font-semibold text-slate-400 mb-2">Text Alignment</label>
               <div className="flex gap-2">
                 {['left', 'center', 'right'].map(a => (
                   <button key={a} onClick={() => setTextAlign(a)}

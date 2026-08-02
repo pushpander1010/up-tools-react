@@ -68,7 +68,7 @@ export default function whatsapp_font_formatter() {
     setTimeout(() => setCopiedIdx(null), 1500)
   }, [formatted])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400"
 
   return (
     <ToolLayout
@@ -95,7 +95,7 @@ export default function whatsapp_font_formatter() {
     >
       <div className="max-w-2xl mx-auto space-y-6">
         <div>
-          <label className="block text-xs font-semibold text-slate-500 mb-2">Your Text</label>
+          <label className="block text-xs font-semibold text-slate-400 mb-2">Your Text</label>
           <textarea value={text} onChange={e => setText(e.target.value)}
             placeholder="Type something to format..."
             rows={3} className={inputClass + " resize-vertical"} />
@@ -114,7 +114,7 @@ export default function whatsapp_font_formatter() {
               {formatted.map((f, i) => (
                 <button key={i} onClick={() => copy(f.result, i)}
                   className="text-left p-3.5 rounded-xl bg-white/[0.04] border border-white/6 hover:border-indigo-500/40 hover:bg-indigo-500/[0.06] transition-all group">
-                  <div className="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1.5 group-hover:text-indigo-400 transition-colors">{f.label}</div>
+                  <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1.5 group-hover:text-indigo-400 transition-colors">{f.label}</div>
                   <div className="text-sm text-white font-medium break-all leading-relaxed">{f.result}</div>
                   <div className="text-[10px] text-slate-600 mt-1.5">{copiedIdx === i ? '✓ Copied!' : 'Click to copy'}</div>
                 </button>

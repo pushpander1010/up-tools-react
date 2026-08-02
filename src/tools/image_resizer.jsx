@@ -139,25 +139,25 @@ export default function image_resizer() {
           <div className="p-5 rounded-2xl bg-white/[0.05] border border-white/8 space-y-4">
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="block text-xs font-semibold text-slate-500 mb-1">Width (px)</label>
+                <label className="block text-xs font-semibold text-slate-400 mb-1">Width (px)</label>
                 <input type="number" value={width} onChange={e => handleWidth(e.target.value)}
                   placeholder="800"
                   className="w-full bg-black/20 border-2 border-white/8 rounded-xl px-4 py-2.5 text-sm text-white font-mono outline-none focus:border-indigo-500/40 transition-all" />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-slate-500 mb-1">Height (px)</label>
+                <label className="block text-xs font-semibold text-slate-400 mb-1">Height (px)</label>
                 <input type="number" value={height} onChange={e => handleHeight(e.target.value)}
                   placeholder="600"
                   className="w-full bg-black/20 border-2 border-white/8 rounded-xl px-4 py-2.5 text-sm text-white font-mono outline-none focus:border-indigo-500/40 transition-all" />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-slate-500 mb-1">Quality (1-100)</label>
+                <label className="block text-xs font-semibold text-slate-400 mb-1">Quality (1-100)</label>
                 <input type="number" value={quality} onChange={e => setQuality(parseInt(e.target.value) || 85)}
                   min={1} max={100}
                   className="w-full bg-black/20 border-2 border-white/8 rounded-xl px-4 py-2.5 text-sm text-white font-mono outline-none focus:border-indigo-500/40 transition-all" />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-slate-500 mb-1">Format</label>
+                <label className="block text-xs font-semibold text-slate-400 mb-1">Format</label>
                 <select value={format} onChange={e => setFormat(e.target.value)}
                   className="w-full bg-black/20 border-2 border-white/8 rounded-xl px-4 py-2.5 text-sm text-white outline-none">
                   <option className="bg-gray-900" value="image/jpeg">JPEG</option>
@@ -192,7 +192,7 @@ export default function image_resizer() {
         {outputUrl && (
           <div ref={resultRef} className="p-5 rounded-2xl bg-white/[0.05] border border-white/8 text-center space-y-3"
             style={{ animation: 'slideUp 0.3s ease-out' }}>
-            <div className="text-xs font-semibold text-slate-500">Resized Image</div>
+            <div className="text-xs font-semibold text-slate-400">Resized Image</div>
             <img src={outputUrl} alt="Resized" className="max-h-64 mx-auto rounded-lg" />
             <div className="text-xs text-slate-400">{outputInfo}</div>
             <button onClick={download}

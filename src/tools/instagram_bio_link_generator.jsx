@@ -107,7 +107,7 @@ export default function instagram_bio_link_generator() {
             <div className="grid grid-cols-3 gap-2">
               {Object.entries(TEMPLATES).map(([k, v]) => (
                 <button key={k} onClick={() => handleTemplateChange(k)}
-                  className={`p-3 rounded-xl text-sm font-bold transition-all text-center ${template === k ? 'bg-indigo-500/15 text-indigo-400 border border-indigo-500/30' : 'bg-white/[0.04] text-slate-500 border border-white/[0.08] hover:text-white'}`}>
+                  className={`p-3 rounded-xl text-sm font-bold transition-all text-center ${template === k ? 'bg-indigo-500/15 text-indigo-400 border border-indigo-500/30' : 'bg-white/[0.04] text-slate-400 border border-white/[0.08] hover:text-white'}`}>
                   {v.emoji} {v.label}
                 </button>
               ))}
@@ -145,7 +145,7 @@ export default function instagram_bio_link_generator() {
               </div>
             ))}
             <button onClick={addLink}
-              className="w-full py-2.5 rounded-xl border-2 border-dashed border-white/[0.08] text-slate-500 text-sm font-bold hover:text-white hover:border-white/20 transition-all">
+              className="w-full py-2.5 rounded-xl border-2 border-dashed border-white/[0.08] text-slate-400 text-sm font-bold hover:text-white hover:border-white/20 transition-all">
               + Add Link
             </button>
           </div>

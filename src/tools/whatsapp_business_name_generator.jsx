@@ -68,7 +68,7 @@ export default function whatsapp_business_name_generator() {
     })
   }
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -95,28 +95,28 @@ export default function whatsapp_business_name_generator() {
     >
       <div className="max-w-2xl mx-auto space-y-6">
         <div>
-          <label className="block text-xs font-semibold text-slate-500 mb-2">Business Type</label>
+          <label className="block text-xs font-semibold text-slate-400 mb-2">Business Type</label>
           <input type="text" value={businessType} onChange={e => setBusinessType(e.target.value)}
             placeholder="e.g., Bakery, Salon, Clothing Store"
             className={inputClass} />
         </div>
 
         <div>
-          <label className="block text-xs font-semibold text-slate-500 mb-2">Location (Optional)</label>
+          <label className="block text-xs font-semibold text-slate-400 mb-2">Location (Optional)</label>
           <input type="text" value={location} onChange={e => setLocation(e.target.value)}
             placeholder="e.g., Downtown, Mumbai, London"
             className={inputClass} />
         </div>
 
         <div>
-          <label className="block text-xs font-semibold text-slate-500 mb-2">Business Category</label>
+          <label className="block text-xs font-semibold text-slate-400 mb-2">Business Category</label>
           <div className="grid grid-cols-3 gap-2">
             {Object.entries(categoryLabels).map(([val, label]) => (
               <button key={val} onClick={() => setSelectedCategory(val)}
                 className={`py-2.5 rounded-xl text-xs font-bold transition-all ${
                   selectedCategory === val
                     ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30'
-                    : 'bg-white/[0.06] text-slate-500 border border-white/8'
+                    : 'bg-white/[0.06] text-slate-400 border border-white/8'
                 }`}>
                 {label}
               </button>

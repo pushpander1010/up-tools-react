@@ -56,15 +56,15 @@ export default function fifa_world_cup_countdown() {
           <div className="flex items-center justify-center gap-4 text-4xl font-extrabold">
             <div className="text-center">
               <div className="text-amber-400">1</div>
-              <div className="text-xs text-slate-500 font-medium mt-1">Spain 🇪🇸</div>
+              <div className="text-xs text-slate-400 font-medium mt-1">Spain 🇪🇸</div>
             </div>
             <div className="text-slate-600 text-lg">–</div>
             <div className="text-center">
               <div className="text-slate-400">0</div>
-              <div className="text-xs text-slate-500 font-medium mt-1">Argentina 🇦🇷</div>
+              <div className="text-xs text-slate-400 font-medium mt-1">Argentina 🇦🇷</div>
             </div>
           </div>
-          <div className="mt-4 text-xs text-slate-500">
+          <div className="mt-4 text-xs text-slate-400">
             <strong>MetLife Stadium</strong> · East Rutherford, NJ · July 19, 2026
           </div>
           <div className="mt-2 text-xs text-slate-600">
@@ -80,7 +80,7 @@ export default function fifa_world_cup_countdown() {
               <div key={i} className={`p-3 rounded-xl text-center transition-all ${t.active ? 'bg-amber-500/10 border border-amber-500/20' : 'bg-white/[0.03] border border-white/5'}`}>
                 <div className="text-2xl mb-1">{t.icon}</div>
                 <div className={`text-xs font-bold ${t.active ? 'text-amber-400' : 'text-slate-300'}`}>{t.title}</div>
-                <div className="text-[10px] text-slate-500 mt-0.5">{t.date}</div>
+                <div className="text-[10px] text-slate-400 mt-0.5">{t.date}</div>
               </div>
             ))}
           </div>
@@ -91,7 +91,7 @@ export default function fifa_world_cup_countdown() {
           {STATS.map(s => (
             <div key={s.label} className="p-4 rounded-2xl bg-white/[0.06] border border-white/8 text-center">
               <div className="text-2xl font-extrabold text-indigo-400">{s.num}</div>
-              <div className="text-[11px] text-slate-500 mt-1 font-medium">{s.label}</div>
+              <div className="text-[11px] text-slate-400 mt-1 font-medium">{s.label}</div>
             </div>
           ))}
         </div>

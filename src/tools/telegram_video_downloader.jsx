@@ -2,7 +2,7 @@ import { useState, useCallback } from 'react'
 import ToolLayout from '../components/ToolLayout'
 import useJumpToResult from '../hooks/useJumpToResult'
 
-const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 const QUALITY_OPTIONS = [
   { value: 'original', label: 'Original', icon: '🎬' },
   { value: '720p', label: '720p', icon: '📹' },
@@ -56,7 +56,7 @@ export default function telegram_video_downloader() {
               {QUALITY_OPTIONS.map(q => (
                 <button key={q.value} onClick={() => setQuality(q.value)}
                   className={`p-3 rounded-xl text-sm font-semibold transition-all border-2 ${quality === q.value
-                    ? 'bg-sky-500/15 text-sky-400 border-sky-500/30' : 'bg-white/[0.04] border-white/8 text-slate-500 hover:border-white/12'}`}>
+                    ? 'bg-sky-500/15 text-sky-400 border-sky-500/30' : 'bg-white/[0.04] border-white/8 text-slate-400 hover:border-white/12'}`}>
                   <span className="mr-1">{q.icon}</span> {q.label}
                 </button>
               ))}
@@ -89,7 +89,7 @@ export default function telegram_video_downloader() {
             style={{ animation: 'slideUp 0.35s cubic-bezier(0.4,0,0.2,1)' }}>
             <div className="text-4xl mb-3">✅</div>
             <p className="text-sm text-emerald-400 font-semibold">Download ready! In production, the download would start automatically.</p>
-            <p className="text-xs text-slate-500 mt-2">This is a demo — actual download connects to a third-party service.</p>
+            <p className="text-xs text-slate-400 mt-2">This is a demo — actual download connects to a third-party service.</p>
           </div>
         )}
       </div>

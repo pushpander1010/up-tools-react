@@ -153,7 +153,7 @@ export default function poetry_search() {
                 className="w-full text-left p-4 rounded-2xl bg-white/[0.06] border border-white/[0.08] hover:bg-white/[0.1] transition-all">
                 <div className="text-sm font-bold text-white">{p.title}</div>
                 <div className="text-xs text-slate-400">{p.author}</div>
-                <div className="text-xs text-slate-500 mt-1 truncate">
+                <div className="text-xs text-slate-400 mt-1 truncate">
                   {(p.lines || []).slice(0, 2).join(' / ')}
                 </div>
               </button>

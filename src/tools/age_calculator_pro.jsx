@@ -86,7 +86,7 @@ export default function age_calculator_pro() {
               ].map((item, i) => (
                 <div key={i} className="text-center p-4 bg-black/20 rounded-xl">
                   <div className="text-2xl font-bold text-purple-400">{item.value}</div>
-                  <div className="text-xs text-slate-500">{item.label}</div>
+                  <div className="text-xs text-slate-400">{item.label}</div>
                 </div>
               ))}
             </div>
@@ -98,7 +98,7 @@ export default function age_calculator_pro() {
                 { label: '⏰ Total Minutes', value: result.totalMinutes.toLocaleString() },
               ].map((item, i) => (
                 <div key={i} className="p-3 bg-black/20 rounded-xl">
-                  <div className="text-xs text-slate-500 mb-1">{item.label}</div>
+                  <div className="text-xs text-slate-400 mb-1">{item.label}</div>
                   <div className="text-sm font-bold text-white">{item.value}</div>
                 </div>
               ))}

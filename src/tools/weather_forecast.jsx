@@ -119,11 +119,11 @@ export default function weather_forecast() {
           </div>
           <div className="flex gap-2 mt-3">
             <button onClick={() => setUnit('celsius')}
-              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${unit === 'celsius' ? 'bg-cyan-500/15 text-cyan-400 border border-cyan-500/30' : 'bg-white/[0.06] text-slate-500 border border-white/[0.08]'}`}>
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${unit === 'celsius' ? 'bg-cyan-500/15 text-cyan-400 border border-cyan-500/30' : 'bg-white/[0.06] text-slate-400 border border-white/[0.08]'}`}>
               °C
             </button>
             <button onClick={() => setUnit('fahrenheit')}
-              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${unit === 'fahrenheit' ? 'bg-cyan-500/15 text-cyan-400 border border-cyan-500/30' : 'bg-white/[0.06] text-slate-500 border border-white/[0.08]'}`}>
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${unit === 'fahrenheit' ? 'bg-cyan-500/15 text-cyan-400 border border-cyan-500/30' : 'bg-white/[0.06] text-slate-400 border border-white/[0.08]'}`}>
               °F
             </button>
           </div>
@@ -181,7 +181,7 @@ export default function weather_forecast() {
                   const h = (new Date().getHours() + i) % 24
                   return (
                     <div key={i} className="flex-shrink-0 text-center p-2 rounded-xl bg-black/20 min-w-[60px]">
-                      <div className="text-xs text-slate-500">{String(h).padStart(2, '0')}:00</div>
+                      <div className="text-xs text-slate-400">{String(h).padStart(2, '0')}:00</div>
                       <div className="text-lg my-1">{wmoIcon(weather.hourly.weather_code[i])}</div>
                       <div className="text-xs text-white font-semibold">{conv(t)}{unitLabel}</div>
                     </div>
@@ -200,14 +200,14 @@ export default function weather_forecast() {
                     <div key={i} className="flex items-center justify-between py-2 border-b border-white/[0.04]">
                       <div className="flex-1">
                         <div className="text-sm text-white font-semibold">{i === 0 ? 'Today' : DNAMES[d.getDay()]}</div>
-                        <div className="text-xs text-slate-500">{d.toLocaleDateString('en', { month: 'short', day: 'numeric' })}</div>
+                        <div className="text-xs text-slate-400">{d.toLocaleDateString('en', { month: 'short', day: 'numeric' })}</div>
                       </div>
                       <div className="text-2xl mx-3">{wmoIcon(weather.daily.weather_code[i])}</div>
                       <div className="text-right">
                         <span className="text-sm text-white font-semibold">{conv(weather.daily.temperature_2m_max[i])}</span>
-                        <span className="text-sm text-slate-500 ml-1">{conv(weather.daily.temperature_2m_min[i])}</span>
+                        <span className="text-sm text-slate-400 ml-1">{conv(weather.daily.temperature_2m_min[i])}</span>
                       </div>
-                      <div className="text-xs text-slate-500 ml-3">💧{weather.daily.precipitation_sum[i]}mm</div>
+                      <div className="text-xs text-slate-400 ml-3">💧{weather.daily.precipitation_sum[i]}mm</div>
                     </div>
                   )
                 })}

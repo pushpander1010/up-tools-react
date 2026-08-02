@@ -24,7 +24,7 @@ export default function home_equity_calculator() {
     return { equity, equityPercent, totalDebt, availableBorrow }
   }, [hv, mb, ol])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-4 py-3 text-white text-sm font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-4 py-3 text-white text-sm font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -65,7 +65,7 @@ export default function home_equity_calculator() {
             <label className="block text-sm font-semibold text-slate-300 mb-1">Other Liens/Loans Against Property ($)</label>
             <input type="number" value={otherLiens} onChange={e => setOtherLiens(e.target.value)}
               min="0" step="1000" className={inputClass} />
-            <p className="text-xs text-slate-500 mt-1">HELOC, second mortgage, etc.</p>
+            <p className="text-xs text-slate-400 mt-1">HELOC, second mortgage, etc.</p>
           </div>
           <button onClick={() => { if (hv > 0) jumpTo() }}
             className="w-full py-4 rounded-2xl bg-indigo-500 text-white font-bold text-sm hover:bg-indigo-400 transition-all duration-200 active:scale-[0.98]">
@@ -91,7 +91,7 @@ export default function home_equity_calculator() {
             </div>
             <div className="text-center mb-4">
               <span className="text-lg font-bold text-emerald-400">{result.equityPercent.toFixed(1)}%</span>
-              <span className="text-sm text-slate-500 ml-1">equity</span>
+              <span className="text-sm text-slate-400 ml-1">equity</span>
             </div>
             <div className="space-y-2">
               {[

@@ -95,7 +95,7 @@ export default function CssFilterGenerator() {
         <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-5">
           <div className="flex items-center justify-between mb-4">
             <label className="text-sm font-semibold text-slate-300">Filter Controls</label>
-            <button onClick={handleReset} className="text-xs text-slate-500 hover:text-white transition-colors">
+            <button onClick={handleReset} className="text-xs text-slate-400 hover:text-white transition-colors">
               Reset All
             </button>
           </div>

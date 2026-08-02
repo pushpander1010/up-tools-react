@@ -147,7 +147,7 @@ export default function HexToRgbConverter() {
               placeholder="#6366f1 or rgb(99,102,241) or hsl(239,84%,67%)"
             />
           </div>
-          <p className="text-[11px] text-slate-500 mt-2">💡 Supports: <code className="bg-white/[0.06] px-1.5 py-0.5 rounded text-[10px]">#RRGGBB</code> <code className="bg-white/[0.06] px-1.5 py-0.5 rounded text-[10px]">#RGB</code> <code className="bg-white/[0.06] px-1.5 py-0.5 rounded text-[10px]">rgb(r,g,b)</code> <code className="bg-white/[0.06] px-1.5 py-0.5 rounded text-[10px]">hsl(h,s%,l%)</code></p>
+          <p className="text-[11px] text-slate-400 mt-2">💡 Supports: <code className="bg-white/[0.06] px-1.5 py-0.5 rounded text-[10px]">#RRGGBB</code> <code className="bg-white/[0.06] px-1.5 py-0.5 rounded text-[10px]">#RGB</code> <code className="bg-white/[0.06] px-1.5 py-0.5 rounded text-[10px]">rgb(r,g,b)</code> <code className="bg-white/[0.06] px-1.5 py-0.5 rounded text-[10px]">hsl(h,s%,l%)</code></p>
         </div>
 
         {/* Results */}
@@ -162,7 +162,7 @@ export default function HexToRgbConverter() {
             ].map(({ label, value }) => (
               <div key={label} className="flex items-center gap-3 py-2 border-b border-white/[0.04] last:border-0">
                 <div className="flex-1 min-w-0">
-                  <span className="text-[11px] uppercase tracking-wider text-slate-500">{label}</span>
+                  <span className="text-[11px] uppercase tracking-wider text-slate-400">{label}</span>
                   <div className="font-mono text-sm text-white break-all">{value}</div>
                 </div>
                 <button

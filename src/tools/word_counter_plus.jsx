@@ -88,7 +88,7 @@ export default function word_counter_plus() {
     })
   }, [text])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -148,7 +148,7 @@ export default function word_counter_plus() {
               ].map(([label, val]) => (
                 <div key={label} className="p-2.5 rounded-xl bg-black/20 border border-white/[0.05] text-center">
                   <div className="text-lg font-extrabold text-white">{val.toLocaleString('en-IN')}</div>
-                  <div className="text-[10px] text-slate-500 uppercase font-bold">{label}</div>
+                  <div className="text-[10px] text-slate-400 uppercase font-bold">{label}</div>
                 </div>
               ))}
             </div>
@@ -158,18 +158,18 @@ export default function word_counter_plus() {
               ].map(([label, val]) => (
                 <div key={label} className="p-2.5 rounded-xl bg-black/20 border border-white/[0.05] text-center">
                   <div className="text-lg font-extrabold text-white">{val}</div>
-                  <div className="text-[10px] text-slate-500 uppercase font-bold">{label}</div>
+                  <div className="text-[10px] text-slate-400 uppercase font-bold">{label}</div>
                 </div>
               ))}
             </div>
             <div className="grid grid-cols-2 gap-2 sm:gap-3 mb-5">
               <div className="p-2.5 rounded-xl bg-black/20 border border-white/[0.05] text-center">
                 <div className="text-lg font-extrabold text-white">{stats.avgWordLength}</div>
-                <div className="text-[10px] text-slate-500 uppercase font-bold">Avg Word Length</div>
+                <div className="text-[10px] text-slate-400 uppercase font-bold">Avg Word Length</div>
               </div>
               <div className="p-2.5 rounded-xl bg-black/20 border border-white/[0.05] text-center">
                 <div className="text-lg font-extrabold text-white">{stats.avgSentenceLength}</div>
-                <div className="text-[10px] text-slate-500 uppercase font-bold">Avg Words/Sentence</div>
+                <div className="text-[10px] text-slate-400 uppercase font-bold">Avg Words/Sentence</div>
               </div>
             </div>
 
@@ -177,15 +177,15 @@ export default function word_counter_plus() {
             <div className="text-center pt-4 border-t border-white/[0.06]">
               <h4 className="text-sm font-bold text-slate-300 mb-2">Readability Score</h4>
               <div className={`text-4xl font-extrabold ${stats.badgeClass}`}>{stats.fleschScore}</div>
-              <div className="text-xs text-slate-500 mt-1 mb-3">{stats.labelText}</div>
+              <div className="text-xs text-slate-400 mt-1 mb-3">{stats.labelText}</div>
               <div className="grid grid-cols-2 gap-2">
                 <div className="p-2.5 rounded-xl bg-black/20 border border-white/[0.05] text-center">
                   <div className="text-sm font-bold text-white">{stats.gradeLevel}</div>
-                  <div className="text-[10px] text-slate-500">Grade Level</div>
+                  <div className="text-[10px] text-slate-400">Grade Level</div>
                 </div>
                 <div className="p-2.5 rounded-xl bg-black/20 border border-white/[0.05] text-center">
                   <div className="text-sm font-bold text-white">{stats.readingAge}</div>
-                  <div className="text-[10px] text-slate-500">Reading Age</div>
+                  <div className="text-[10px] text-slate-400">Reading Age</div>
                 </div>
               </div>
             </div>

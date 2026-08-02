@@ -223,7 +223,7 @@ export default function games_typing_speed() {
               className={`px-5 py-2.5 rounded-xl text-sm font-bold transition-all ${
                 duration === d
                   ? 'bg-indigo-500/15 text-indigo-400 border border-indigo-500/30'
-                  : 'bg-white/[0.06] text-slate-500 border border-white/[0.08]'
+                  : 'bg-white/[0.06] text-slate-400 border border-white/[0.08]'
               }`}>
               {d === 30 ? '30 seconds' : d === 60 ? '1 minute' : '2 minutes'}
             </button>
@@ -257,19 +257,19 @@ export default function games_typing_speed() {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
             <div className="text-center">
               <div className="text-2xl font-extrabold text-white">{wpm}</div>
-              <div className="text-xs text-slate-500 font-medium mt-0.5">WPM</div>
+              <div className="text-xs text-slate-400 font-medium mt-0.5">WPM</div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-extrabold text-white">{accuracy}%</div>
-              <div className="text-xs text-slate-500 font-medium mt-0.5">Accuracy</div>
+              <div className="text-xs text-slate-400 font-medium mt-0.5">Accuracy</div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-extrabold text-white">{timeLeft}</div>
-              <div className="text-xs text-slate-500 font-medium mt-0.5">Time Left</div>
+              <div className="text-xs text-slate-400 font-medium mt-0.5">Time Left</div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-extrabold text-white">{errors}</div>
-              <div className="text-xs text-slate-500 font-medium mt-0.5">Errors</div>
+              <div className="text-xs text-slate-400 font-medium mt-0.5">Errors</div>
             </div>
           </div>
         </div>
@@ -280,9 +280,9 @@ export default function games_typing_speed() {
             <div className="text-5xl font-extrabold text-indigo-400 mb-2">{wpm}</div>
             <p className="text-slate-400 mb-4">Words Per Minute</p>
             <div className="grid grid-cols-3 gap-4 mb-6">
-              <div><div className="text-lg font-bold text-white">{accuracy}%</div><div className="text-xs text-slate-500">Accuracy</div></div>
-              <div><div className="text-lg font-bold text-white">{errors}</div><div className="text-xs text-slate-500">Errors</div></div>
-              <div><div className="text-lg font-bold text-white">{typedCharsTotal + typed.length}</div><div className="text-xs text-slate-500">Characters</div></div>
+              <div><div className="text-lg font-bold text-white">{accuracy}%</div><div className="text-xs text-slate-400">Accuracy</div></div>
+              <div><div className="text-lg font-bold text-white">{errors}</div><div className="text-xs text-slate-400">Errors</div></div>
+              <div><div className="text-lg font-bold text-white">{typedCharsTotal + typed.length}</div><div className="text-xs text-slate-400">Characters</div></div>
             </div>
             <div className="flex gap-3 justify-center">
               <button onClick={() => triggerAd(resetTest)}

@@ -84,7 +84,7 @@ export default function ifsc_finder() {
     window.open(`https://www.google.com/maps/search/?api=1&query=${q}`, '_blank')
   }, [])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-3 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-3 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-400 [color-scheme:dark]"
   const rs = v => (v || '').toString().trim()
 
   return (
@@ -113,7 +113,7 @@ export default function ifsc_finder() {
       <div className="max-w-3xl mx-auto space-y-6">
         {/* Search Input */}
         <div className="p-5 rounded-2xl bg-white/[0.06] border border-white/[0.08] space-y-3">
-          <label className="text-xs font-semibold text-slate-500 mb-1 block">IFSC Code</label>
+          <label className="text-xs font-semibold text-slate-400 mb-1 block">IFSC Code</label>
           <div className="flex gap-2">
             <input type="text" value={code} onChange={e => setCode(e.target.value.toUpperCase())}
               placeholder="SBIN0000001" maxLength={11}
@@ -172,7 +172,7 @@ export default function ifsc_finder() {
             ].map(([label, value]) => (
               <div key={label} className="flex justify-between items-center py-1.5 border-b border-white/5 last:border-0"
                 onClick={() => copy(String(value), label)}>
-                <span className="text-xs text-slate-500">{label}</span>
+                <span className="text-xs text-slate-400">{label}</span>
                 <span className="text-xs font-mono font-bold text-white">{value}</span>
               </div>
             ))}
@@ -213,12 +213,12 @@ export default function ifsc_finder() {
               <table className="w-full text-xs">
                 <thead>
                   <tr className="border-b border-white/10">
-                    <th className="text-left py-2 text-slate-500 font-semibold">#</th>
-                    <th className="text-left py-2 text-slate-500 font-semibold">Status</th>
-                    <th className="text-left py-2 text-slate-500 font-semibold">IFSC</th>
-                    <th className="text-left py-2 text-slate-500 font-semibold">Bank</th>
-                    <th className="text-left py-2 text-slate-500 font-semibold">Branch</th>
-                    <th className="text-left py-2 text-slate-500 font-semibold">City</th>
+                    <th className="text-left py-2 text-slate-400 font-semibold">#</th>
+                    <th className="text-left py-2 text-slate-400 font-semibold">Status</th>
+                    <th className="text-left py-2 text-slate-400 font-semibold">IFSC</th>
+                    <th className="text-left py-2 text-slate-400 font-semibold">Bank</th>
+                    <th className="text-left py-2 text-slate-400 font-semibold">Branch</th>
+                    <th className="text-left py-2 text-slate-400 font-semibold">City</th>
                   </tr>
                 </thead>
                 <tbody>

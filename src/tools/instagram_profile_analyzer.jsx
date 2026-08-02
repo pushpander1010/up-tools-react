@@ -28,7 +28,7 @@ export default function InstagramProfileAnalyzer() {
     jumpTo()
   }, [username, jumpTo])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -59,7 +59,7 @@ export default function InstagramProfileAnalyzer() {
             <input type="text" value={username} onChange={e => setUsername(e.target.value)}
               placeholder="Enter username (without @)"
               onKeyDown={e => e.key === 'Enter' && analyze()}
-              className="flex-1 bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]" />
+              className="flex-1 bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]" />
             <button onClick={analyze}
               className="px-6 py-3 rounded-xl bg-indigo-500 text-white font-bold text-sm hover:bg-indigo-400 transition-all duration-200 active:scale-[0.98]">
               Analyze 📊
@@ -83,7 +83,7 @@ export default function InstagramProfileAnalyzer() {
                 { label: 'Avg Likes/Post', value: result.avgLikes.toLocaleString() },
               ].map((m, i) => (
                 <div key={i} className="rounded-2xl bg-white/[0.04] border border-white/5 p-4 text-center">
-                  <div className="text-xs text-slate-500 mb-1 font-medium">{m.label}</div>
+                  <div className="text-xs text-slate-400 mb-1 font-medium">{m.label}</div>
                   <div className="text-lg font-extrabold text-white">{m.value}</div>
                 </div>
               ))}

@@ -116,7 +116,7 @@ export default function speed_converter() {
       <div className="max-w-2xl mx-auto space-y-6">
         {/* Quick Presets */}
         <div>
-          <label className="text-xs font-semibold text-slate-500 mb-2 block">Quick Presets</label>
+          <label className="text-xs font-semibold text-slate-400 mb-2 block">Quick Presets</label>
           <div className="flex flex-wrap gap-2">
             {PRESETS.map(p => (
               <button key={p.label} onClick={() => applyPreset(p)}
@@ -136,7 +136,7 @@ export default function speed_converter() {
 
         {/* Unit Selector */}
         <div>
-          <label className="text-xs font-semibold text-slate-500 mb-2 block">From Unit</label>
+          <label className="text-xs font-semibold text-slate-400 mb-2 block">From Unit</label>
           <div className="grid grid-cols-5 gap-2">
             {UNITS.map(u => (
               <button key={u.id} onClick={() => { setFromUnit(u.id); setShowResults(false) }}
@@ -153,7 +153,7 @@ export default function speed_converter() {
         {/* Visual Gauge */}
         <div className="p-4 rounded-2xl bg-white/[0.04] border border-white/8 space-y-2">
           <div className="flex justify-between items-center">
-            <span className="text-xs font-semibold text-slate-500">Visual Gauge</span>
+            <span className="text-xs font-semibold text-slate-400">Visual Gauge</span>
             <span className={`text-sm font-bold ${speedInfo.accent}`}>
               {fmt(kmh)} km/h — {speedInfo.label}
             </span>
@@ -177,18 +177,18 @@ export default function speed_converter() {
         {/* Results */}
         {showResults && converted && (
           <div ref={resultRef} className="space-y-3" style={{ animation: 'slideUp 0.3s ease-out' }}>
-            <div className="text-xs font-bold text-slate-500 uppercase tracking-wider">Conversion Results</div>
+            <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">Conversion Results</div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
               {converted.map(u => (
                 <div key={u.id} className={`p-4 rounded-2xl border transition-all ${u.id === fromUnit
                   ? 'bg-cyan-500/10 border-cyan-500/20'
                   : 'bg-white/[0.06] border-white/8'
                 }`}>
-                  <div className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">{u.label}</div>
+                  <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">{u.label}</div>
                   <div className={`text-2xl font-extrabold ${u.id === fromUnit ? 'text-cyan-400' : 'text-white'}`}>
                     {fmt(u.value)}
                   </div>
-                  <div className="text-xs text-slate-500 mt-1">{u.symbol}</div>
+                  <div className="text-xs text-slate-400 mt-1">{u.symbol}</div>
                 </div>
               ))}
             </div>

@@ -119,18 +119,18 @@ export default function body_frame_size() {
         {/* Toggles */}
         <div className="flex gap-2">
           <button onClick={() => setIsMetric(false)}
-            className={`flex-1 py-3 rounded-xl text-sm font-bold border-2 transition-all ${!isMetric ? 'bg-indigo-500/15 border-indigo-500/30 text-indigo-400' : 'bg-white/[0.06] border-white/[0.08] text-slate-500'}`}>
+            className={`flex-1 py-3 rounded-xl text-sm font-bold border-2 transition-all ${!isMetric ? 'bg-indigo-500/15 border-indigo-500/30 text-indigo-400' : 'bg-white/[0.06] border-white/[0.08] text-slate-400'}`}>
             📏 Imperial
           </button>
           <button onClick={() => setIsMetric(true)}
-            className={`flex-1 py-3 rounded-xl text-sm font-bold border-2 transition-all ${isMetric ? 'bg-indigo-500/15 border-indigo-500/30 text-indigo-400' : 'bg-white/[0.06] border-white/[0.08] text-slate-500'}`}>
+            className={`flex-1 py-3 rounded-xl text-sm font-bold border-2 transition-all ${isMetric ? 'bg-indigo-500/15 border-indigo-500/30 text-indigo-400' : 'bg-white/[0.06] border-white/[0.08] text-slate-400'}`}>
             📐 Metric
           </button>
         </div>
         <div className="flex gap-2">
           {[['male', '♂ Male'], ['female', '♀ Female']].map(([s, label]) => (
             <button key={s} onClick={() => setSex(s)}
-              className={`flex-1 py-3 rounded-xl text-sm font-bold border-2 transition-all ${sex === s ? 'bg-indigo-500/15 border-indigo-500/30 text-indigo-400' : 'bg-white/[0.06] border-white/[0.08] text-slate-500'}`}>
+              className={`flex-1 py-3 rounded-xl text-sm font-bold border-2 transition-all ${sex === s ? 'bg-indigo-500/15 border-indigo-500/30 text-indigo-400' : 'bg-white/[0.06] border-white/[0.08] text-slate-400'}`}>
               {label}
             </button>
           ))}

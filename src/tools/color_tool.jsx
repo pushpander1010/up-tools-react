@@ -70,7 +70,7 @@ export default function color_tool() {
 
   const SwatchRow = ({ label, hues }) => (
     <div className="mb-3">
-      <div className="text-xs text-slate-500 font-semibold mb-1.5">{label}</div>
+      <div className="text-xs text-slate-400 font-semibold mb-1.5">{label}</div>
       <div className="flex gap-1.5">
         {hues.map((hue, i) => {
           const [r, g, b] = hslToRgb(hue, s, l)
@@ -143,17 +143,17 @@ export default function color_tool() {
             { label: 'CMYK', value: `cmyk(${cmyk.join('%, ')}%)` },
           ].map(f => (
             <div key={f.label} className="flex items-center justify-between py-1.5 border-b border-white/[0.04] last:border-0">
-              <span className="text-xs font-bold text-slate-500 w-12">{f.label}</span>
+              <span className="text-xs font-bold text-slate-400 w-12">{f.label}</span>
               <span className="text-xs font-mono text-white flex-1 text-right mr-2">{f.value}</span>
               <button onClick={() => copySwatch(f.value)}
-                className={`text-xs px-2 py-1 rounded-lg transition-all ${copied === f.value ? 'bg-emerald-500/20 text-emerald-400' : 'bg-white/5 text-slate-500 hover:text-white'}`}>
+                className={`text-xs px-2 py-1 rounded-lg transition-all ${copied === f.value ? 'bg-emerald-500/20 text-emerald-400' : 'bg-white/5 text-slate-400 hover:text-white'}`}>
                 {copied === f.value ? '✓' : '📋'}
               </button>
             </div>
           ))}
           {/* Native Color Picker */}
           <div className="flex items-center justify-between py-1.5">
-            <span className="text-xs font-bold text-slate-500">Picker</span>
+            <span className="text-xs font-bold text-slate-400">Picker</span>
             <input type="color" value={hex}
               onChange={e => { const [r, g, b] = hexToRgb(e.target.value); const [nh, ns, nl] = rgbToHsl(r, g, b); setH(nh); setS(ns); setL(nl) }}
               className="w-8 h-8 rounded-lg border border-white/20 cursor-pointer bg-transparent" />
@@ -173,9 +173,9 @@ export default function color_tool() {
         {/* CSS Output */}
         <div className="bg-white/[0.06] border border-white/8 rounded-2xl p-4">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-xs font-bold text-slate-500">CSS Variables</span>
+            <span className="text-xs font-bold text-slate-400">CSS Variables</span>
             <button onClick={() => copySwatch(cssVars)}
-              className={`text-xs px-2 py-1 rounded-lg transition-all ${copied === 'css' ? 'bg-emerald-500/20 text-emerald-400' : 'bg-white/5 text-slate-500 hover:text-white'}`}
+              className={`text-xs px-2 py-1 rounded-lg transition-all ${copied === 'css' ? 'bg-emerald-500/20 text-emerald-400' : 'bg-white/5 text-slate-400 hover:text-white'}`}
               onMouseUp={() => { navigator.clipboard.writeText(cssVars); setCopied('css'); setTimeout(() => setCopied(null), 1500) }}>
               {copied === 'css' ? '✓' : '📋'}
             </button>

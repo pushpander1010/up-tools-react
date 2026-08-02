@@ -43,7 +43,7 @@ export default function investment_return_calculator() {
     setResult({ finalValue, totalContributions, totalInterest, roi, yearlyData })
   }, [initial, monthly, annualReturn, years, frequency])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
   const selectClass = "bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all [color-scheme:dark]"
 
   return (
@@ -117,7 +117,7 @@ export default function investment_return_calculator() {
               ].map((r, i) => (
                 <div key={i} className="rounded-xl p-3 border-2 border-white/8 bg-white/[0.03] text-center">
                   <div className="text-sm font-extrabold text-white">{r.value}</div>
-                  <div className="text-[11px] text-slate-500 mt-0.5">{r.label}</div>
+                  <div className="text-[11px] text-slate-400 mt-0.5">{r.label}</div>
                 </div>
               ))}
             </div>
@@ -133,7 +133,7 @@ export default function investment_return_calculator() {
                 <tbody>
                   {result.yearlyData.map((d, i) => (
                     <tr key={i} className="border-b border-white/5">
-                      <td className="py-1.5 text-slate-500">{d.year}</td>
+                      <td className="py-1.5 text-slate-400">{d.year}</td>
                       <td className="py-1.5 text-right text-white font-bold">{fmt(d.balance)}</td>
                       <td className="py-1.5 text-right text-slate-300">{fmt(d.contributions)}</td>
                       <td className="py-1.5 text-right text-emerald-400">{fmt(d.interest)}</td>

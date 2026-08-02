@@ -21,7 +21,7 @@ export default function tip_calculator_pro() {
   }, [bill, tipPct, split])
 
   const fmt = (n) => '$' + n.toFixed(2)
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-3 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-3 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -51,17 +51,17 @@ export default function tip_calculator_pro() {
         {/* Inputs */}
         <div className="grid grid-cols-3 gap-3">
           <div>
-            <label className="block text-xs text-slate-500 mb-1.5">Bill Amount ($)</label>
+            <label className="block text-xs text-slate-400 mb-1.5">Bill Amount ($)</label>
             <input type="number" value={bill} onChange={e => setBill(e.target.value)}
               placeholder="0.00" className={inputClass} />
           </div>
           <div>
-            <label className="block text-xs text-slate-500 mb-1.5">Tip %</label>
+            <label className="block text-xs text-slate-400 mb-1.5">Tip %</label>
             <input type="number" value={tipPct} onChange={e => setTipPct(Number(e.target.value))}
               className={inputClass} />
           </div>
           <div>
-            <label className="block text-xs text-slate-500 mb-1.5">Split Between</label>
+            <label className="block text-xs text-slate-400 mb-1.5">Split Between</label>
             <input type="number" min={1} value={split} onChange={e => setSplit(Math.max(1, parseInt(e.target.value) || 1))}
               className={inputClass} />
           </div>
@@ -71,7 +71,7 @@ export default function tip_calculator_pro() {
         <div className="flex gap-2">
           {TIP_PRESETS.map(t => (
             <button key={t} onClick={() => setTipPct(t)}
-              className={`flex-1 py-2.5 rounded-xl text-sm font-bold transition-all ${tipPct === t ? 'bg-green-500/15 text-green-400 border border-green-500/30' : 'bg-white/[0.06] text-slate-500 border border-white/8 hover:text-white'}`}>
+              className={`flex-1 py-2.5 rounded-xl text-sm font-bold transition-all ${tipPct === t ? 'bg-green-500/15 text-green-400 border border-green-500/30' : 'bg-white/[0.06] text-slate-400 border border-white/8 hover:text-white'}`}>
               {t}%
             </button>
           ))}
@@ -81,20 +81,20 @@ export default function tip_calculator_pro() {
         <div ref={resultRef} className="grid grid-cols-3 gap-3">
           <div className="text-center p-4 bg-black/20 rounded-xl">
             <div className="text-2xl font-extrabold text-green-400">{fmt(results.tipAmount)}</div>
-            <div className="text-xs text-slate-500 mt-1">Tip</div>
+            <div className="text-xs text-slate-400 mt-1">Tip</div>
           </div>
           <div className="text-center p-4 bg-black/20 rounded-xl">
             <div className="text-2xl font-extrabold text-indigo-400">{fmt(results.total)}</div>
-            <div className="text-xs text-slate-500 mt-1">Total</div>
+            <div className="text-xs text-slate-400 mt-1">Total</div>
           </div>
           <div className="text-center p-4 bg-black/20 rounded-xl">
             <div className="text-2xl font-extrabold text-amber-400">{fmt(results.perPerson)}</div>
-            <div className="text-xs text-slate-500 mt-1">Per Person</div>
+            <div className="text-xs text-slate-400 mt-1">Per Person</div>
           </div>
         </div>
 
         {split > 1 && (
-          <div className="text-center text-xs text-slate-500">
+          <div className="text-center text-xs text-slate-400">
             Splitting {fmt(results.total)} between {split} people
           </div>
         )}

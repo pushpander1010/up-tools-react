@@ -150,7 +150,7 @@ export default function diff_checker() {
         <tr key={i} className={`${cls} text-xs font-mono`}>
           <td className="px-2 py-0.5 text-slate-600 w-10 text-right select-none">{row.origLine || ''}</td>
           <td className="px-2 py-0.5 text-slate-600 w-10 text-right select-none">{row.modLine || ''}</td>
-          <td className="px-2 py-0.5 text-slate-500 w-6 text-center select-none">{prefix}</td>
+          <td className="px-2 py-0.5 text-slate-400 w-6 text-center select-none">{prefix}</td>
           <td className="px-3 py-0.5 whitespace-pre-wrap break-all">{row.value}</td>
         </tr>
       )
@@ -184,7 +184,7 @@ export default function diff_checker() {
         {/* Input Areas */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="flex items-center gap-2 text-xs font-semibold text-slate-500 mb-1">
+            <label className="flex items-center gap-2 text-xs font-semibold text-slate-400 mb-1">
               <span className="w-2 h-2 rounded-full bg-red-400" /> Original Text
             </label>
             <textarea value={original} onChange={e => setOriginal(e.target.value)}
@@ -193,7 +193,7 @@ export default function diff_checker() {
               className="w-full bg-black/20 border-2 border-white/8 rounded-2xl px-5 py-4 text-sm text-white font-mono outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-600 resize-none" />
           </div>
           <div>
-            <label className="flex items-center gap-2 text-xs font-semibold text-slate-500 mb-1">
+            <label className="flex items-center gap-2 text-xs font-semibold text-slate-400 mb-1">
               <span className="w-2 h-2 rounded-full bg-emerald-400" /> Modified Text
             </label>
             <textarea value={modified} onChange={e => setModified(e.target.value)}

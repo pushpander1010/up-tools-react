@@ -61,7 +61,7 @@ export default function json_formatter_pro() {
       <div className="max-w-3xl mx-auto space-y-4">
         {/* Input */}
         <div>
-          <label className="block text-xs font-semibold text-slate-500 mb-1">JSON Input</label>
+          <label className="block text-xs font-semibold text-slate-400 mb-1">JSON Input</label>
           <textarea value={input} onChange={e => { setInput(e.target.value); setStatus(null) }}
             placeholder='Paste JSON here... {"key": "value"}'
             rows={10}
@@ -96,7 +96,7 @@ export default function json_formatter_pro() {
         {output && (
           <div ref={resultRef} className="space-y-2" style={{ animation: 'slideUp 0.3s ease-out' }}>
             <div className="flex items-center justify-between">
-              <label className="text-xs font-semibold text-slate-500">Output</label>
+              <label className="text-xs font-semibold text-slate-400">Output</label>
               <button onClick={copy}
                 className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${copied ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-white/5 border border-white/8 text-slate-400 hover:text-white'}`}>
                 {copied ? '✓ Copied' : '📋 Copy'}

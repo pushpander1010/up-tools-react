@@ -126,14 +126,14 @@ export default function cbse_marks_calculator() {
             <div className="text-center mb-6">
               <div className="text-5xl font-extrabold text-white mb-1">{result.pct}%</div>
               <div className={`text-sm font-bold text-${result.color}-400 uppercase tracking-wider`}>{result.grade} — {result.div}</div>
-              <div className="text-xs text-slate-500 mt-1">Total: {result.totalObtained} / {result.totalMax}</div>
+              <div className="text-xs text-slate-400 mt-1">Total: {result.totalObtained} / {result.totalMax}</div>
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
               {result.subjectResults.map((s, i) => (
                 <div key={i} className="p-3 rounded-xl bg-white/[0.04] border border-white/6 text-center">
-                  <div className="text-[11px] font-semibold text-slate-500 mb-1 truncate">{s.name}</div>
-                  <div className="text-lg font-bold text-white">{s.got}<span className="text-xs text-slate-500">/{s.max}</span></div>
+                  <div className="text-[11px] font-semibold text-slate-400 mb-1 truncate">{s.name}</div>
+                  <div className="text-lg font-bold text-white">{s.got}<span className="text-xs text-slate-400">/{s.max}</span></div>
                   <div className="text-xs text-slate-400">{s.pct}%</div>
                 </div>
               ))}

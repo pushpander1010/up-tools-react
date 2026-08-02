@@ -102,7 +102,7 @@ export default function cricket_nrr() {
             <div className="overflow-x-auto">
               <table className="w-full text-xs">
                 <thead>
-                  <tr className="text-slate-500 border-b border-white/[0.08]">
+                  <tr className="text-slate-400 border-b border-white/[0.08]">
                     <th className="text-left py-2 px-2">#</th>
                     <th className="text-left py-2 px-2">Match</th>
                     <th className="text-right py-2 px-2">Our RR</th>

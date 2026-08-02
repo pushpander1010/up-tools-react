@@ -435,15 +435,15 @@ export default function games_flappy_bird() {
           <div className="grid grid-cols-3 gap-4">
             <div className="text-center">
               <div className="text-2xl font-extrabold text-yellow-400">{score}</div>
-              <div className="text-xs text-slate-500 font-medium mt-0.5">Score</div>
+              <div className="text-xs text-slate-400 font-medium mt-0.5">Score</div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-extrabold text-green-400">{best}</div>
-              <div className="text-xs text-slate-500 font-medium mt-0.5">Best</div>
+              <div className="text-xs text-slate-400 font-medium mt-0.5">Best</div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-extrabold text-slate-300">{lastScore}</div>
-              <div className="text-xs text-slate-500 font-medium mt-0.5">Last</div>
+              <div className="text-xs text-slate-400 font-medium mt-0.5">Last</div>
             </div>
           </div>
         </div>
@@ -465,7 +465,7 @@ export default function games_flappy_bird() {
           />
         </div>
 
-        <p className="text-center text-xs text-slate-500">
+        <p className="text-center text-xs text-slate-400">
           Space / Tap / Click to flap | Avoid pipes | Earn medals!
         </p>
         </div>

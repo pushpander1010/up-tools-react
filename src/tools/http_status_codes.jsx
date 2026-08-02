@@ -125,10 +125,10 @@ export default function http_status_codes() {
         {/* Search */}
         <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4">
           <div className="relative">
-            <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 text-sm">🔍</span>
+            <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm">🔍</span>
             <input value={search} onChange={e => setSearch(e.target.value)}
               placeholder="Search by code, title, or description..."
-              className="w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl pl-10 pr-4 py-3 text-white font-medium outline-none focus:border-sky-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark] text-sm" />
+              className="w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl pl-10 pr-4 py-3 text-white font-medium outline-none focus:border-sky-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark] text-sm" />
           </div>
         </div>
 
@@ -138,7 +138,7 @@ export default function http_status_codes() {
             const colors = cat === 'all' ? { badge: 'bg-slate-500/15 text-slate-400', dot: 'bg-slate-400' } : CATEGORY_COLORS[cat]
             return (
               <button key={cat} onClick={() => setActiveCategory(cat)}
-                className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-200 flex items-center gap-1.5 ${activeCategory === cat ? `${colors.badge} ring-1 ring-current/30` : 'bg-white/[0.04] text-slate-500 hover:bg-white/[0.08] hover:text-slate-300'}`}>
+                className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-200 flex items-center gap-1.5 ${activeCategory === cat ? `${colors.badge} ring-1 ring-current/30` : 'bg-white/[0.04] text-slate-400 hover:bg-white/[0.08] hover:text-slate-300'}`}>
                 <span className={`w-1.5 h-1.5 rounded-full ${colors.dot}`} />
                 {cat === 'all' ? 'All' : cat}
                 <span className="opacity-60">({categoryCounts[cat]})</span>
@@ -148,7 +148,7 @@ export default function http_status_codes() {
         </div>
 
         {/* Results count */}
-        <div className="text-xs text-slate-500 font-medium px-1">
+        <div className="text-xs text-slate-400 font-medium px-1">
           Showing {filtered.length} of {STATUS_CODES.length} status codes
         </div>
 

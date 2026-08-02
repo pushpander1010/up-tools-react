@@ -115,7 +115,7 @@ export default function meeting_scheduler() {
           {participants.map((p, i) => (
             <div key={i} className="flex gap-2 items-center">
               <input type="text" value={p.name} onChange={e => updateParticipant(i, 'name', e.target.value)}
-                className="flex-1 bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-3 text-white font-semibold text-sm outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-500 [color-scheme:dark]"
+                className="flex-1 bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-3 text-white font-semibold text-sm outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-400 [color-scheme:dark]"
                 placeholder="Name" />
               <select value={p.tzIdx} onChange={e => updateParticipant(i, 'tzIdx', Number(e.target.value))}
                 className="bg-white/[0.06] border-2 border-white/8 rounded-xl px-3 py-3 text-white font-semibold text-sm outline-none focus:border-indigo-500/40 transition-all [color-scheme:dark]">
@@ -157,7 +157,7 @@ export default function meeting_scheduler() {
                 <div className="grid gap-2">
                   {r.times.map((t, j) => (
                     <div key={j} className="flex items-center gap-3 text-sm">
-                      <span className="text-slate-500 w-28 truncate">{t.name}</span>
+                      <span className="text-slate-400 w-28 truncate">{t.name}</span>
                       <span className="text-white font-mono font-semibold">{t.time}</span>
                       <span className="text-[10px] text-slate-600">{t.tz}</span>
                     </div>

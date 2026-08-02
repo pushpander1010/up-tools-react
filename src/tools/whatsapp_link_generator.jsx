@@ -79,7 +79,7 @@ export default function whatsapp_link_generator() {
     a.click()
   }
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -113,7 +113,7 @@ export default function whatsapp_link_generator() {
 
         <div className="grid grid-cols-2 gap-3">
           <div>
-            <label className="block text-xs font-semibold text-slate-500 mb-2">Country Code</label>
+            <label className="block text-xs font-semibold text-slate-400 mb-2">Country Code</label>
             <select value={countryCode} onChange={e => setCountryCode(e.target.value)}
               className={inputClass + " appearance-none"}>
               {countryCodes.map(c => (
@@ -122,7 +122,7 @@ export default function whatsapp_link_generator() {
             </select>
           </div>
           <div>
-            <label className="block text-xs font-semibold text-slate-500 mb-2">Phone Number</label>
+            <label className="block text-xs font-semibold text-slate-400 mb-2">Phone Number</label>
             <input type="tel" inputMode="numeric" value={phone} onChange={e => setPhone(e.target.value)}
               placeholder="e.g. 9876543210"
               className={inputClass} />
@@ -131,7 +131,7 @@ export default function whatsapp_link_generator() {
 
         {countryCode === 'other' && (
           <div>
-            <label className="block text-xs font-semibold text-slate-500 mb-2">Custom Country Code</label>
+            <label className="block text-xs font-semibold text-slate-400 mb-2">Custom Country Code</label>
             <input type="number" value={otherCode} onChange={e => setOtherCode(e.target.value)}
               placeholder="e.g. 62 for Indonesia"
               className={inputClass + " max-w-[200px]"} />
@@ -139,7 +139,7 @@ export default function whatsapp_link_generator() {
         )}
 
         <div>
-          <label className="block text-xs font-semibold text-slate-500 mb-2">Pre-filled Message (optional)</label>
+          <label className="block text-xs font-semibold text-slate-400 mb-2">Pre-filled Message (optional)</label>
           <textarea value={message} onChange={e => setMessage(e.target.value)}
             placeholder="Hi! I found your contact on UpTools…"
             rows={3} className={inputClass + " resize-vertical"} />
@@ -158,13 +158,13 @@ export default function whatsapp_link_generator() {
         </div>
 
         <div>
-          <label className="block text-xs font-semibold text-slate-500 mb-2">Message Templates</label>
+          <label className="block text-xs font-semibold text-slate-400 mb-2">Message Templates</label>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
             {templates.map(t => (
               <button key={t.title} onClick={() => setMessage(t.msg)}
                 className="p-3 rounded-xl bg-white/[0.06] border border-white/8 hover:border-indigo-500/40 text-left transition-all">
                 <div className="text-xs font-bold text-white mb-1">{t.title}</div>
-                <div className="text-[11px] text-slate-500 leading-tight">{t.msg.slice(0, 40)}…</div>
+                <div className="text-[11px] text-slate-400 leading-tight">{t.msg.slice(0, 40)}…</div>
               </button>
             ))}
           </div>

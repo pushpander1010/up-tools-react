@@ -114,7 +114,7 @@ export default function InstagramBioGenerator() {
     setTimeout(() => setCopiedIdx(null), 1500)
   }
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-pink-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-pink-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -156,7 +156,7 @@ export default function InstagramBioGenerator() {
               <label className="block text-sm font-semibold text-slate-300 mb-2">Interests (comma separated):</label>
               <textarea value={interests} onChange={e => setInterests(e.target.value)}
                 placeholder="e.g., travel, food, photography" rows={2} className={inputClass + " resize-none"} />
-              <div className="text-xs text-slate-500 mt-1">{interests.length} characters</div>
+              <div className="text-xs text-slate-400 mt-1">{interests.length} characters</div>
             </div>
             <div>
               <label className="block text-sm font-semibold text-slate-300 mb-2">Tone:</label>
@@ -199,7 +199,7 @@ export default function InstagramBioGenerator() {
                   <div key={i} className="rounded-2xl bg-white/[0.04] border border-white/5 p-4">
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-sm font-bold text-pink-400">{bio.label}</span>
-                      <span className="text-xs text-slate-500">{bio.text.length} chars</span>
+                      <span className="text-xs text-slate-400">{bio.text.length} chars</span>
                     </div>
                     <div className="whitespace-pre-line text-sm text-slate-300 bg-white/[0.03] rounded-xl p-3 mb-3">{bio.text}</div>
                     <button onClick={() => copyBio(bio.text, i)}

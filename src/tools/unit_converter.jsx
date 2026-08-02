@@ -149,7 +149,7 @@ export default function unit_converter() {
         {/* From / Swap / To */}
         <div className="flex items-center gap-3">
           <div className="flex-1">
-            <label className="block text-xs font-semibold text-slate-500 mb-1.5">From</label>
+            <label className="block text-xs font-semibold text-slate-400 mb-1.5">From</label>
             <select value={fromUnit} onChange={e => setFromUnit(e.target.value)}
               className="w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-3 text-white text-sm font-semibold outline-none focus:border-cyan-500/40 appearance-none cursor-pointer">
               {currentCat.units.map(u => <option key={u.id} value={u.id}>{u.label}</option>)}
@@ -157,7 +157,7 @@ export default function unit_converter() {
           </div>
           <button onClick={swap} className="mt-5 w-10 h-10 rounded-full bg-white/5 border border-white/8 flex items-center justify-center text-slate-400 hover:text-white hover:border-cyan-500/40 transition-all shrink-0 text-lg">⇄</button>
           <div className="flex-1">
-            <label className="block text-xs font-semibold text-slate-500 mb-1.5">To</label>
+            <label className="block text-xs font-semibold text-slate-400 mb-1.5">To</label>
             <select value={toUnit} onChange={e => setToUnit(e.target.value)}
               className="w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-3 text-white text-sm font-semibold outline-none focus:border-cyan-500/40 appearance-none cursor-pointer">
               {currentCat.units.map(u => <option key={u.id} value={u.id}>{u.label}</option>)}
@@ -167,7 +167,7 @@ export default function unit_converter() {
 
         {/* Result */}
         <div ref={resultRef} className="p-6 rounded-3xl bg-gradient-to-br from-cyan-500/8 via-white/[0.02] to-transparent border border-cyan-500/15 text-center" style={{ animation: 'slideUp 0.3s ease-out' }}>
-          <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider mb-2">Result</div>
+          <div className="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-2">Result</div>
           <div className="text-4xl font-extrabold text-cyan-400 truncate">{fmt(result)}</div>
           <div className="text-sm text-slate-400 mt-2">
             {value || '0'} {currentCat.units.find(u => u.id === fromUnit)?.label} = {fmt(result)} {currentCat.units.find(u => u.id === toUnit)?.label}

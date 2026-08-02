@@ -87,13 +87,13 @@ export default function phone_specs() {
         {/* Search */}
         <input type="text" value={search} onChange={e => { setSearch(e.target.value); setViewing(null); setShowCompare(false) }}
           placeholder="Search phone (e.g. iPhone 15, Galaxy S24)"
-          className="w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-500" />
+          className="w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-400" />
 
         {/* Brand Filters */}
         <div className="flex flex-wrap gap-2">
           {BRANDS.map(b => (
             <button key={b} onClick={() => { setActiveBrand(activeBrand === b ? '' : b); setViewing(null); setShowCompare(false) }}
-              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all border-2 ${activeBrand === b ? 'border-indigo-500/40 bg-indigo-500/15 text-indigo-400' : 'border-white/[0.08] bg-white/[0.04] text-slate-500 hover:border-white/12'}`}>
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all border-2 ${activeBrand === b ? 'border-indigo-500/40 bg-indigo-500/15 text-indigo-400' : 'border-white/[0.08] bg-white/[0.04] text-slate-400 hover:border-white/12'}`}>
               {b}
             </button>
           ))}
@@ -102,7 +102,7 @@ export default function phone_specs() {
         {/* Compare Bar */}
         {compareList.length > 0 && !showCompare && (
           <div className="flex items-center gap-3 p-3 rounded-xl bg-white/[0.06] border border-white/[0.08]">
-            <span className="text-xs text-slate-500">Compare:</span>
+            <span className="text-xs text-slate-400">Compare:</span>
             {compareList.map(p => (
               <span key={p.n} className="px-2 py-1 rounded-lg bg-indigo-500/15 text-indigo-400 text-xs font-bold flex items-center gap-1">
                 {p.n}
@@ -114,7 +114,7 @@ export default function phone_specs() {
               Compare
             </button>
             <button onClick={() => { setCompareList([]); setShowCompare(false) }}
-              className="px-3 py-2 rounded-xl text-xs font-bold bg-white/[0.06] text-slate-500 hover:text-white transition-all">
+              className="px-3 py-2 rounded-xl text-xs font-bold bg-white/[0.06] text-slate-400 hover:text-white transition-all">
               Clear
             </button>
           </div>
@@ -131,13 +131,13 @@ export default function phone_specs() {
                     <div className="w-12 h-12 rounded-xl flex items-center justify-center text-lg font-bold text-white" style={{ background: BRAND_COLORS[p.b] || '#333' }}>{p.b[0]}</div>
                     <div>
                       <div className="text-sm font-bold text-white">{p.n}</div>
-                      <div className="text-xs text-slate-500">{p.b} · {p.y}</div>
+                      <div className="text-xs text-slate-400">{p.b} · {p.y}</div>
                     </div>
                   </div>
                   <div className="space-y-1.5">
                     {SPECS_KEYS.map((k, i) => (
                       <div key={k} className="flex justify-between py-1.5 border-b border-white/[0.04]">
-                        <span className="text-xs text-slate-500">{SPECS_LABELS[i]}</span>
+                        <span className="text-xs text-slate-400">{SPECS_LABELS[i]}</span>
                         <span className="text-xs font-semibold text-white text-right ml-2">{p[k]}</span>
                       </div>
                     ))}
@@ -175,7 +175,7 @@ export default function phone_specs() {
         {/* Phone Grid */}
         {!viewing && !showCompare && (
           <div className="space-y-2">
-            <div className="text-xs font-bold text-slate-500">{filtered.length} phone{filtered.length !== 1 ? 's' : ''}</div>
+            <div className="text-xs font-bold text-slate-400">{filtered.length} phone{filtered.length !== 1 ? 's' : ''}</div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {filtered.map(p => {
                 const isSelected = compareList.some(c => c.n === p.n)
@@ -185,7 +185,7 @@ export default function phone_specs() {
                       <div className="w-12 h-12 rounded-xl flex items-center justify-center text-lg font-bold text-white shrink-0" style={{ background: BRAND_COLORS[p.b] || '#333' }}>{p.b[0]}</div>
                       <div className="flex-1 min-w-0">
                         <div className="text-sm font-bold text-white truncate">{p.n}</div>
-                        <div className="text-xs text-slate-500">{p.b} · {p.y}</div>
+                        <div className="text-xs text-slate-400">{p.b} · {p.y}</div>
                         <div className="text-xs text-slate-400 mt-0.5">{p.price} · {p.ram} · {p.battery}</div>
                         <div className="flex gap-2 mt-2">
                           <button onClick={(e) => { e.stopPropagation(); setViewing(p) }}
@@ -193,7 +193,7 @@ export default function phone_specs() {
                             View Specs
                           </button>
                           <button onClick={(e) => { e.stopPropagation(); toggleCompare(p) }}
-                            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${isSelected ? 'bg-indigo-500 text-white' : 'bg-white/[0.06] text-slate-500 hover:text-white border border-white/[0.08]'}`}>
+                            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${isSelected ? 'bg-indigo-500 text-white' : 'bg-white/[0.06] text-slate-400 hover:text-white border border-white/[0.08]'}`}>
                             {isSelected ? '✓ Selected' : '+ Compare'}
                           </button>
                         </div>

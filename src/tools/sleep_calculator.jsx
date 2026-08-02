@@ -92,7 +92,7 @@ export default function sleep_calculator() {
         {showResult && wakeTimes && (
           <div ref={resultRef} className="space-y-3" style={{ animation: 'slideUp 0.35s ease-out' }}>
             <div className="text-center mb-4">
-              <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider">Bedtime</div>
+              <div className="text-xs text-slate-400 font-semibold uppercase tracking-wider">Bedtime</div>
               <div className="text-2xl font-extrabold text-white mt-1">{formatTime(new Date(`2000-01-01T${bedtime}`))}</div>
             </div>
 
@@ -116,7 +116,7 @@ export default function sleep_calculator() {
                           </span>
                         )}
                       </div>
-                      <div className="text-xs text-slate-500 mt-1">{wt.cycles} cycle{wt.cycles > 1 ? 's' : ''} · {formatMinutes(wt.totalSleep)} of sleep</div>
+                      <div className="text-xs text-slate-400 mt-1">{wt.cycles} cycle{wt.cycles > 1 ? 's' : ''} · {formatMinutes(wt.totalSleep)} of sleep</div>
                     </div>
                     <div className={`text-2xl font-extrabold ${wt.isRecommended ? 'text-violet-400' : 'text-slate-600'}`}>
                       {wt.cycles}×
@@ -128,7 +128,7 @@ export default function sleep_calculator() {
 
             {/* Tips */}
             <div className="mt-4 p-4 rounded-2xl bg-white/[0.04] border border-white/8">
-              <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider mb-2">💡 Tip</div>
+              <div className="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-2">💡 Tip</div>
               <p className="text-sm text-slate-400 leading-relaxed">Each sleep cycle is approximately 90 minutes. The first ~14 minutes are falling asleep, so the actual sleep time is slightly less than the cycle duration. Aim for 4–5 cycles for optimal rest.</p>
             </div>
           </div>

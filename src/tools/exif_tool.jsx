@@ -88,7 +88,7 @@ export default function exif_tool() {
     img.src = url
   }, [file])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-3 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-3 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -124,7 +124,7 @@ export default function exif_tool() {
             <div>
               <img src={URL.createObjectURL(file)} alt="Preview" className="max-h-40 mx-auto rounded-xl mb-3" />
               <div className="text-sm font-bold text-white">{file.name}</div>
-              <div className="text-xs text-slate-500">{toKB(file.size)}</div>
+              <div className="text-xs text-slate-400">{toKB(file.size)}</div>
             </div>
           ) : (
             <>
@@ -149,7 +149,7 @@ export default function exif_tool() {
                 { label: 'File Size', value: toKB(meta.fileSize) },
               ].map(k => (
                 <div key={k.label} className="p-3 rounded-xl bg-white/[0.04] border border-white/8 text-center">
-                  <div className="text-[10px] text-slate-500 uppercase">{k.label}</div>
+                  <div className="text-[10px] text-slate-400 uppercase">{k.label}</div>
                   <div className="text-sm font-bold text-white mt-1">{k.value}</div>
                 </div>
               ))}
@@ -170,14 +170,14 @@ export default function exif_tool() {
                 <div className="flex items-center justify-between mb-3">
                   <h3 className="text-sm font-bold text-white">📋 EXIF Tags</h3>
                   <button onClick={() => copy(JSON.stringify(meta.exif, null, 2), 'exif')}
-                    className={`text-xs font-bold transition-all ${copied === 'exif' ? 'text-emerald-400' : 'text-slate-500 hover:text-white'}`}>
+                    className={`text-xs font-bold transition-all ${copied === 'exif' ? 'text-emerald-400' : 'text-slate-400 hover:text-white'}`}>
                     {copied === 'exif' ? '✓ Copied' : '📋 Copy'}
                   </button>
                 </div>
                 <div className="space-y-1.5">
                   {Object.entries(meta.exif).map(([k, v]) => (
                     <div key={k} className="flex justify-between items-center py-1 border-b border-white/5 last:border-0">
-                      <span className="text-xs text-slate-500">{k}</span>
+                      <span className="text-xs text-slate-400">{k}</span>
                       <span className="text-xs font-mono text-white">{typeof v === 'object' ? JSON.stringify(v) : String(v).slice(0, 50)}</span>
                     </div>
                   ))}

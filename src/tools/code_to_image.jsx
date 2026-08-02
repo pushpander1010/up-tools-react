@@ -75,7 +75,7 @@ export default function code_to_image() {
   const [customBg, setCustomBg] = useState('')
   const [copied, setCopied] = useState(false)
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-2.5 text-white text-sm font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-500"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-2.5 text-white text-sm font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-400"
 
   const activeTheme = themes[theme]
   const bgColor = customBg || activeTheme.bg
@@ -290,22 +290,22 @@ export default function code_to_image() {
           <div className="space-y-4">
             {/* Code Input */}
             <div>
-              <label className="text-xs font-semibold text-slate-500 mb-2 block">Code</label>
+              <label className="text-xs font-semibold text-slate-400 mb-2 block">Code</label>
               <textarea value={code} onChange={e => setCode(e.target.value)}
-                className="w-full h-48 bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-3 text-white text-xs font-mono outline-none focus:border-orange-500/40 transition-all resize-none placeholder:text-slate-500"
+                className="w-full h-48 bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-3 text-white text-xs font-mono outline-none focus:border-orange-500/40 transition-all resize-none placeholder:text-slate-400"
                 placeholder="Paste your code here..." spellCheck={false} />
             </div>
 
             {/* Theme & Language */}
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="text-xs font-semibold text-slate-500 mb-1 block">Theme</label>
+                <label className="text-xs font-semibold text-slate-400 mb-1 block">Theme</label>
                 <select value={theme} onChange={e => setTheme(e.target.value)} className={inputClass}>
                   {Object.keys(themes).map(t => <option key={t} value={t}>{t}</option>)}
                 </select>
               </div>
               <div>
-                <label className="text-xs font-semibold text-slate-500 mb-1 block">Language</label>
+                <label className="text-xs font-semibold text-slate-400 mb-1 block">Language</label>
                 <select value={language} onChange={e => setLanguage(e.target.value)} className={inputClass}>
                   {languages.map(l => <option key={l} value={l}>{l}</option>)}
                 </select>
@@ -315,22 +315,22 @@ export default function code_to_image() {
             {/* Font Size & Padding */}
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="text-xs font-semibold text-slate-500 mb-1 block">Font Size</label>
+                <label className="text-xs font-semibold text-slate-400 mb-1 block">Font Size</label>
                 <div className="flex gap-1.5">
                   {fontSizes.map(s => (
                     <button key={s} onClick={() => setFontSize(s)}
-                      className={`flex-1 py-2 rounded-lg text-xs font-bold transition-all ${fontSize === s ? 'bg-orange-500/15 text-orange-300 border border-orange-500/30' : 'bg-white/[0.06] text-slate-500 border border-white/8'}`}>
+                      className={`flex-1 py-2 rounded-lg text-xs font-bold transition-all ${fontSize === s ? 'bg-orange-500/15 text-orange-300 border border-orange-500/30' : 'bg-white/[0.06] text-slate-400 border border-white/8'}`}>
                       {s}
                     </button>
                   ))}
                 </div>
               </div>
               <div>
-                <label className="text-xs font-semibold text-slate-500 mb-1 block">Padding</label>
+                <label className="text-xs font-semibold text-slate-400 mb-1 block">Padding</label>
                 <div className="flex gap-1.5">
                   {paddingOptions.map(p => (
                     <button key={p} onClick={() => setPadding(p)}
-                      className={`flex-1 py-2 rounded-lg text-xs font-bold transition-all ${padding === p ? 'bg-orange-500/15 text-orange-300 border border-orange-500/30' : 'bg-white/[0.06] text-slate-500 border border-white/8'}`}>
+                      className={`flex-1 py-2 rounded-lg text-xs font-bold transition-all ${padding === p ? 'bg-orange-500/15 text-orange-300 border border-orange-500/30' : 'bg-white/[0.06] text-slate-400 border border-white/8'}`}>
                       {p}
                     </button>
                   ))}
@@ -360,11 +360,11 @@ export default function code_to_image() {
 
             {/* Theme preview dots */}
             <div className="flex items-center gap-2">
-              <span className="text-xs font-semibold text-slate-500">Colors:</span>
+              <span className="text-xs font-semibold text-slate-400">Colors:</span>
               {['keyword', 'string', 'comment', 'function', 'number'].map(key => (
                 <div key={key} className="flex items-center gap-1">
                   <div className="w-3 h-3 rounded-full" style={{ backgroundColor: activeTheme[key] }} />
-                  <span className="text-[10px] text-slate-500">{key}</span>
+                  <span className="text-[10px] text-slate-400">{key}</span>
                 </div>
               ))}
             </div>
@@ -373,7 +373,7 @@ export default function code_to_image() {
           {/* Right: Preview & Download */}
           <div className="space-y-4" ref={resultRef}>
             <div className="flex items-center justify-between">
-              <label className="text-xs font-semibold text-slate-500">Preview</label>
+              <label className="text-xs font-semibold text-slate-400">Preview</label>
               <div className="flex gap-2">
                 <button onClick={copyToClipboard}
                   className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${copied ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-white/5 border border-white/8 text-slate-400 hover:text-white'}`}>

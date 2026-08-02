@@ -87,7 +87,7 @@ export default function domain_finder() {
     setCopied('all'); setTimeout(() => setCopied(null), 2000)
   }, [results])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-3 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-3 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -116,17 +116,17 @@ export default function domain_finder() {
         {/* Input */}
         <div className="p-5 rounded-2xl bg-white/[0.06] border border-white/[0.08] space-y-4">
           <div>
-            <label className="text-xs font-semibold text-slate-500 mb-1 block">Seed Keywords</label>
+            <label className="text-xs font-semibold text-slate-400 mb-1 block">Seed Keywords</label>
             <input type="text" value={keywords} onChange={e => setKeywords(e.target.value)}
               placeholder="ai, health, travel — or leave empty for random"
               className={inputClass} />
           </div>
           <div>
-            <label className="text-xs font-semibold text-slate-500 mb-2 block">TLDs</label>
+            <label className="text-xs font-semibold text-slate-400 mb-2 block">TLDs</label>
             <div className="flex flex-wrap gap-2">
               {TLDs.map(tld => (
                 <button key={tld} onClick={() => toggleTld(tld)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${selectedTlds.has(tld) ? 'bg-indigo-500/20 text-indigo-400 border border-indigo-500/30' : 'bg-white/[0.04] text-slate-500 border border-white/8'}`}>
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${selectedTlds.has(tld) ? 'bg-indigo-500/20 text-indigo-400 border border-indigo-500/30' : 'bg-white/[0.04] text-slate-400 border border-white/8'}`}>
                   {tld}
                 </button>
               ))}
@@ -134,7 +134,7 @@ export default function domain_finder() {
           </div>
           <div className="grid grid-cols-3 gap-3">
             <div>
-              <label className="text-xs font-semibold text-slate-500 mb-1 block">Max Length</label>
+              <label className="text-xs font-semibold text-slate-400 mb-1 block">Max Length</label>
               <input type="number" value={maxLen} onChange={e => setMaxLen(parseInt(e.target.value) || 14)}
                 min="3" max="30" className={inputClass} />
             </div>
@@ -160,7 +160,7 @@ export default function domain_finder() {
         {results.length > 0 ? (
           <div ref={resultRef} className="space-y-3" style={{ animation: 'slideUp 0.35s ease-out' }}>
             <div className="flex items-center justify-between">
-              <span className="text-xs text-slate-500 font-semibold">{results.length} domains found</span>
+              <span className="text-xs text-slate-400 font-semibold">{results.length} domains found</span>
               <button onClick={copyAll}
                 className={`px-3 py-1.5 rounded-lg text-[11px] font-bold transition-all ${copied === 'all' ? 'bg-emerald-500/20 text-emerald-400' : 'bg-white/[0.06] text-slate-400 hover:text-white'}`}>
                 {copied === 'all' ? '✓ Copied' : '📋 Copy All'}

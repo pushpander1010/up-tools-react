@@ -29,7 +29,7 @@ export default function instagram_highlight_downloader() {
     jumpTo()
   }, [username, jumpTo])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -84,7 +84,7 @@ export default function instagram_highlight_downloader() {
                 ✨
               </div>
               <div className="text-lg font-bold text-white">@{result.username}</div>
-              <div className="text-xs text-slate-500 mt-1">Story Highlights</div>
+              <div className="text-xs text-slate-400 mt-1">Story Highlights</div>
             </div>
 
             <div className="space-y-3">
@@ -104,7 +104,7 @@ export default function instagram_highlight_downloader() {
 
             <div className="mt-5 p-4 rounded-2xl bg-white/[0.03]">
               <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">💡 How to download highlights</h4>
-              <ol className="text-xs text-slate-500 space-y-1 list-decimal list-inside">
+              <ol className="text-xs text-slate-400 space-y-1 list-decimal list-inside">
                 <li>Click one of the services above to access the profile's highlights</li>
                 <li>Browse and select the highlight you want to download</li>
                 <li>Click download on each story within the highlight</li>

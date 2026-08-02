@@ -178,7 +178,7 @@ export default function ai_stock_analyzer() {
   }, [data])
 
   const fmt = (n, decimals = 2) => n != null ? Number(n).toFixed(decimals) : 'N/A'
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-3 text-white font-semibold text-sm outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-3 text-white font-semibold text-sm outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
   const selectClass = "bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-3 text-white font-semibold text-sm outline-none focus:border-indigo-500/40 transition-all [color-scheme:dark]"
 
   return (
@@ -238,7 +238,7 @@ export default function ai_stock_analyzer() {
               {loading ? 'Analyzing...' : 'Analyze'}
             </button>
           </div>
-          <div className="text-xs text-slate-500 mt-3">{status}</div>
+          <div className="text-xs text-slate-400 mt-3">{status}</div>
         </div>
 
         {error && (
@@ -257,17 +257,17 @@ export default function ai_stock_analyzer() {
               </div>
               <div className="grid grid-cols-3 gap-3">
                 <div className="text-center">
-                  <div className="text-xs text-slate-500">Price</div>
+                  <div className="text-xs text-slate-400">Price</div>
                   <div className="text-lg font-extrabold text-white">{fmt(data.price)}</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-xs text-slate-500">Change</div>
+                  <div className="text-xs text-slate-400">Change</div>
                   <div className={`text-lg font-extrabold ${data.change >= 0 ? 'text-emerald-400' : 'text-rose-400'}`}>
                     {data.change >= 0 ? '+' : ''}{fmt(data.change)} ({data.changePct >= 0 ? '+' : ''}{fmt(data.changePct)}%)
                   </div>
                 </div>
                 <div className="text-center">
-                  <div className="text-xs text-slate-500">Currency</div>
+                  <div className="text-xs text-slate-400">Currency</div>
                   <div className="text-lg font-extrabold text-white">{data.currency}</div>
                 </div>
               </div>
@@ -334,7 +334,7 @@ export default function ai_stock_analyzer() {
                 return (
                   <div className="text-center">
                     <div className={`inline-block px-6 py-3 rounded-2xl ${vBg} text-2xl font-extrabold ${vColor} mb-3`}>{verdict}</div>
-                    <p className="text-xs text-slate-500">Based on RSI, SMA trends, and price action. Not financial advice.</p>
+                    <p className="text-xs text-slate-400">Based on RSI, SMA trends, and price action. Not financial advice.</p>
                   </div>
                 )
               })()}

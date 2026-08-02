@@ -24,7 +24,7 @@ export default function regex_tester() {
     }
   }, [pattern, testStr, flagStr])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 
   const toggleFlag = (f) => setFlags(prev => ({ ...prev, [f]: !prev[f] }))
 
@@ -86,7 +86,7 @@ export default function regex_tester() {
             <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-sm text-red-400">❌ {error}</div>
           )}
           {!error && matches.length === 0 && pattern && testStr && (
-            <div className="text-sm text-slate-500">No matches found</div>
+            <div className="text-sm text-slate-400">No matches found</div>
           )}
           {matches.length > 0 && (
             <>
@@ -96,7 +96,7 @@ export default function regex_tester() {
                   <div key={i} className="p-3 bg-indigo-500/10 border border-indigo-500/20 rounded-xl">
                     <span className="text-xs font-bold text-indigo-400">Match {i + 1}:</span>{' '}
                     <span className="font-mono text-white">"{m.match}"</span>
-                    <span className="text-xs text-slate-500 ml-2">(index {m.index})</span>
+                    <span className="text-xs text-slate-400 ml-2">(index {m.index})</span>
                     {m.groups.length > 0 && (
                       <div className="mt-1 text-xs text-slate-400">
                         Groups: {m.groups.map((g, j) => <span key={j} className="font-mono text-cyan-400 ml-1">"{g}"</span>)}

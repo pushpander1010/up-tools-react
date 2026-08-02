@@ -27,7 +27,7 @@ export default function word_frequency_counter() {
     setCopied(true); setTimeout(() => setCopied(false), 1500)
   }, [frequencies])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -82,7 +82,7 @@ export default function word_frequency_counter() {
             <div className="space-y-1.5">
               {frequencies.map((f, i) => (
                 <div key={f.word} className="flex items-center gap-3 py-1.5 border-b border-white/[0.04] last:border-0">
-                  <span className="text-xs text-slate-500 w-6 text-right font-mono">{i + 1}</span>
+                  <span className="text-xs text-slate-400 w-6 text-right font-mono">{i + 1}</span>
                   <span className="text-sm font-bold text-white flex-1">{f.word}</span>
                   <div className="flex items-center gap-2">
                     <div className="w-24 h-1.5 bg-white/[0.06] rounded-full overflow-hidden">

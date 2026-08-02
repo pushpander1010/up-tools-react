@@ -162,7 +162,7 @@ export default function gpa_calculator() {
                     ? 'bg-blue-500/10 border-blue-500/25 shadow-lg shadow-blue-500/10'
                     : 'bg-white/[0.06] border-white/8 hover:border-white/12'}`}>
                 <div className={`text-sm font-bold ${scale === val ? 'text-blue-400' : 'text-slate-300'}`}>{label}</div>
-                <div className="text-[11px] text-slate-500 mt-0.5">{sub}</div>
+                <div className="text-[11px] text-slate-400 mt-0.5">{sub}</div>
               </button>
             ))}
           </div>
@@ -192,7 +192,7 @@ export default function gpa_calculator() {
                 style={{ animation: 'slideUp 0.2s ease' }}>
                 <input value={course.name} onChange={e => updateCourse(si, ci, 'name', e.target.value)}
                   placeholder="Course name"
-                  className="flex-1 min-w-0 bg-white/[0.06] border border-white/8 rounded-xl px-4 py-2.5 text-sm text-white font-medium outline-none focus:border-blue-500/40 transition-all placeholder:text-slate-500" />
+                  className="flex-1 min-w-0 bg-white/[0.06] border border-white/8 rounded-xl px-4 py-2.5 text-sm text-white font-medium outline-none focus:border-blue-500/40 transition-all placeholder:text-slate-400" />
                 <input type="number" value={course.credits} onChange={e => updateCourse(si, ci, 'credits', Math.max(0.5, Math.min(10, parseFloat(e.target.value) || 0.5)))}
                   min="0.5" max="10" step="0.5"
                   className="w-20 bg-white/[0.06] border border-white/8 rounded-xl px-3 py-2.5 text-sm text-white font-semibold text-center outline-none focus:border-blue-500/40 transition-all" />
@@ -202,7 +202,7 @@ export default function gpa_calculator() {
                     <option value="" className="bg-slate-900">Grade</option>
                     {GRADES.map(g => <option key={g} value={g} className="bg-slate-900">{g}</option>)}
                   </select>
-                  <svg className="absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3 text-slate-500 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" /></svg>
+                  <svg className="absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3 text-slate-400 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" /></svg>
                 </div>
                 {sem.courses.length > 1 && (
                   <button onClick={() => removeCourse(si, ci)} className="text-red-400/30 hover:text-red-400 text-xs transition-colors">✕</button>
@@ -241,7 +241,7 @@ export default function gpa_calculator() {
               <div className={`text-6xl font-extrabold tracking-tight ${gradeTextColor(cumulativeGPA)}`}>
                 <AnimatedNumber value={cumulativeGPA} decimals={2} />
               </div>
-              <div className="text-xs text-slate-500 mt-2">{totalCredits} total credits</div>
+              <div className="text-xs text-slate-400 mt-2">{totalCredits} total credits</div>
             </div>
 
             {/* Scale bar */}

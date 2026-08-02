@@ -112,7 +112,7 @@ export default function vehicle_registration_details() {
               </label>
             </div>
           </div>
-          <div className="text-xs text-slate-500">{c.hint}</div>
+          <div className="text-xs text-slate-400">{c.hint}</div>
         </div>
 
         {/* Results */}
@@ -120,25 +120,25 @@ export default function vehicle_registration_details() {
           <div ref={resultRef} className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4 space-y-3">
             <div className="flex items-center justify-between">
               <div className="text-xs font-bold text-slate-400">Registration</div>
-              <div className={`text-xs font-bold ${check.ok ? 'text-emerald-400' : 'text-slate-500'}`}>
+              <div className={`text-xs font-bold ${check.ok ? 'text-emerald-400' : 'text-slate-400'}`}>
                 {check.ok ? '✅ Ready' : '⏳ Incomplete'}
               </div>
             </div>
             <div className="grid grid-cols-2 gap-3">
               <div className="bg-black/20 rounded-xl p-3">
-                <div className="text-xs text-slate-500">Registration</div>
+                <div className="text-xs text-slate-400">Registration</div>
                 <div className="text-sm font-mono text-white">{masked ? maskValue(normalized) : normalized}</div>
               </div>
               <div className="bg-black/20 rounded-xl p-3">
-                <div className="text-xs text-slate-500">Country</div>
+                <div className="text-xs text-slate-400">Country</div>
                 <div className="text-sm text-white">{c.label}</div>
               </div>
               <div className="bg-black/20 rounded-xl p-3">
-                <div className="text-xs text-slate-500">Format Check</div>
+                <div className="text-xs text-slate-400">Format Check</div>
                 <div className={`text-sm ${check.ok ? 'text-emerald-400' : 'text-red-400'}`}>{check.label}</div>
               </div>
               <div className="bg-black/20 rounded-xl p-3">
-                <div className="text-xs text-slate-500">Region</div>
+                <div className="text-xs text-slate-400">Region</div>
                 <div className="text-sm text-white">{check.region}</div>
               </div>
             </div>

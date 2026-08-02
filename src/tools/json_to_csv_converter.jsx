@@ -89,7 +89,7 @@ export default function json_to_csv_converter() {
       <div className="max-w-3xl mx-auto space-y-4">
         {/* Input */}
         <div>
-          <label className="block text-xs font-semibold text-slate-500 mb-1">Paste JSON Array</label>
+          <label className="block text-xs font-semibold text-slate-400 mb-1">Paste JSON Array</label>
           <textarea value={input} onChange={e => { setInput(e.target.value); setError('') }}
             placeholder='[{"name":"Alice","age":25},{"name":"Bob","age":30}]'
             rows={7}
@@ -114,7 +114,7 @@ export default function json_to_csv_converter() {
         {output && (
           <div ref={resultRef} className="space-y-2" style={{ animation: 'slideUp 0.3s ease-out' }}>
             <div className="flex items-center justify-between">
-              <label className="text-xs font-semibold text-slate-500">CSV Output ({rowCount} rows)</label>
+              <label className="text-xs font-semibold text-slate-400">CSV Output ({rowCount} rows)</label>
               <div className="flex gap-2">
                 <button onClick={copy}
                   className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${copied ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-white/5 border border-white/8 text-slate-400 hover:text-white'}`}>

@@ -141,7 +141,7 @@ export default function fifa_world_cup_team_compare() {
             className="flex-1 min-w-[150px] bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-3 text-white font-semibold outline-none focus:border-cyan-500/40 [color-scheme:dark]">
             {TEAMS.map(t => <option key={t.id} value={t.name}>{t.flag} {t.name}</option>)}
           </select>
-          <span className="text-lg font-extrabold text-slate-500">VS</span>
+          <span className="text-lg font-extrabold text-slate-400">VS</span>
           <select value={nameB} onChange={e => setNameB(e.target.value)}
             className="flex-1 min-w-[150px] bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-3 text-white font-semibold outline-none focus:border-indigo-500/40 [color-scheme:dark]">
             {TEAMS.map(t => <option key={t.id} value={t.name}>{t.flag} {t.name}</option>)}
@@ -161,7 +161,7 @@ export default function fifa_world_cup_team_compare() {
                 <thead>
                   <tr className="border-b border-white/8">
                     <th className="px-4 py-3 text-left text-xs font-bold text-cyan-400">{result.tA.flag} {result.tA.name}</th>
-                    <th className="px-4 py-3 text-center text-xs font-bold text-slate-500">Stat</th>
+                    <th className="px-4 py-3 text-center text-xs font-bold text-slate-400">Stat</th>
                     <th className="px-4 py-3 text-right text-xs font-bold text-indigo-400">{result.tB.flag} {result.tB.name}</th>
                   </tr>
                 </thead>
@@ -174,7 +174,7 @@ export default function fifa_world_cup_team_compare() {
                     return (
                       <tr key={i} className="border-b border-white/5">
                         <td className={`px-4 py-2.5 font-semibold ${aBetter ? 'text-cyan-400' : 'text-slate-300'}`}>{s.a}</td>
-                        <td className="px-4 py-2.5 text-center text-xs text-slate-500 font-medium">{s.label}</td>
+                        <td className="px-4 py-2.5 text-center text-xs text-slate-400 font-medium">{s.label}</td>
                         <td className={`px-4 py-2.5 text-right font-semibold ${bBetter ? 'text-indigo-400' : 'text-slate-300'}`}>{s.b}</td>
                       </tr>
                     )

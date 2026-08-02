@@ -108,7 +108,7 @@ export default function qr_generator() {
         <meta name="description" content="Generate QR codes for URLs, text, WiFi, contacts. Live preview with customizable foreground and background colors." />
       </Helmet>
 
-      <nav className="text-xs text-slate-500 mb-6 flex items-center gap-2">
+      <nav className="text-xs text-slate-400 mb-6 flex items-center gap-2">
         <Link to="/" className="hover:text-white transition-colors no-underline text-slate-400">Home</Link>
         <span>›</span>
         <span className="text-white">QR Code Generator</span>
@@ -145,11 +145,11 @@ export default function qr_generator() {
           </div>
 
           <div>
-            <label className="text-xs font-semibold text-slate-500 mb-2 block">Size</label>
+            <label className="text-xs font-semibold text-slate-400 mb-2 block">Size</label>
             <div className="flex gap-2">
               {[128, 256, 512].map(s => (
                 <button key={s} onClick={() => setSize(s)}
-                  className={`flex-1 py-2.5 rounded-xl text-xs font-bold transition-all ${size === s ? 'bg-purple-500/20 text-purple-400 border border-purple-500/40 shadow-lg shadow-purple-500/10' : 'bg-white/[0.06] text-slate-500 border border-white/[0.08]'}`}>
+                  className={`flex-1 py-2.5 rounded-xl text-xs font-bold transition-all ${size === s ? 'bg-purple-500/20 text-purple-400 border border-purple-500/40 shadow-lg shadow-purple-500/10' : 'bg-white/[0.06] text-slate-400 border border-white/[0.08]'}`}>
                   {s}px
                 </button>
               ))}

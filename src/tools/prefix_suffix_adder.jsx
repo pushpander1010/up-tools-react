@@ -80,13 +80,13 @@ export default function PrefixSuffixAdder() {
             <label className="block text-sm font-semibold text-slate-300 mb-2">Prefix</label>
             <input type="text" value={prefix} onChange={e => setPrefix(e.target.value)}
               placeholder="e.g. https://"
-              className="w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3 text-white text-sm font-mono outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-500 [color-scheme:dark]" />
+              className="w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3 text-white text-sm font-mono outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-400 [color-scheme:dark]" />
           </div>
           <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-5">
             <label className="block text-sm font-semibold text-slate-300 mb-2">Suffix</label>
             <input type="text" value={suffix} onChange={e => setSuffix(e.target.value)}
               placeholder="e.g. .html"
-              className="w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3 text-white text-sm font-mono outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-500 [color-scheme:dark]" />
+              className="w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3 text-white text-sm font-mono outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-400 [color-scheme:dark]" />
           </div>
         </div>
 
@@ -118,7 +118,7 @@ export default function PrefixSuffixAdder() {
           <textarea value={input} onChange={e => setInput(e.target.value)}
             placeholder="One item per line..."
             rows={8}
-            className="w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3.5 text-white font-mono text-sm outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark] resize-none" />
+            className="w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3.5 text-white font-mono text-sm outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark] resize-none" />
         </div>
 
         {/* Output */}
@@ -129,7 +129,7 @@ export default function PrefixSuffixAdder() {
           <textarea value={output} readOnly
             placeholder="Result will appear here..."
             rows={8}
-            className="w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3.5 text-white font-mono text-sm outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark] resize-none" />
+            className="w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3.5 text-white font-mono text-sm outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark] resize-none" />
         </div>
 
         {/* Action Buttons */}

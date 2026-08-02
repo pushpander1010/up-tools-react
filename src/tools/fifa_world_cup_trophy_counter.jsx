@@ -102,7 +102,7 @@ export default function fifa_world_cup_trophy_counter() {
                 className={`p-2 rounded-xl text-center transition-all ${highlightTeam === normalizeTeam(t.team) ? 'bg-amber-500/15 border border-amber-500/30' : 'bg-black/20 border border-white/[0.04] hover:border-white/[0.12]'}`}>
                 <div className="text-lg">{t.flag}</div>
                 <div className="text-lg font-extrabold text-white">{t.wins}</div>
-                <div className="text-[9px] text-slate-500">{t.team}</div>
+                <div className="text-[9px] text-slate-400">{t.team}</div>
               </button>
             ))}
           </div>
@@ -136,7 +136,7 @@ export default function fifa_world_cup_trophy_counter() {
           <div className="flex flex-wrap gap-2 mb-3">
             {DECADES.map(d => (
               <button key={d} onClick={() => setDecade(d)}
-                className={`px-3 py-1.5 rounded-lg text-[11px] font-bold transition-all ${decade === d ? 'bg-amber-500/15 text-amber-400 border border-amber-500/30' : 'bg-white/[0.06] text-slate-500 border border-white/[0.08]'}`}>
+                className={`px-3 py-1.5 rounded-lg text-[11px] font-bold transition-all ${decade === d ? 'bg-amber-500/15 text-amber-400 border border-amber-500/30' : 'bg-white/[0.06] text-slate-400 border border-white/[0.08]'}`}>
                 {d}
               </button>
             ))}
@@ -162,7 +162,7 @@ export default function fifa_world_cup_trophy_counter() {
               return (
                 <div key={t.year} className={`flex items-center gap-3 p-2.5 rounded-xl transition-all ${isHighlighted ? 'bg-amber-500/10 border border-amber-500/20' : isDimmed ? 'opacity-30' : 'bg-black/20 border border-white/[0.04]'}`}>
                   <div className="text-sm font-extrabold text-amber-400 w-10 shrink-0">{t.year}</div>
-                  <div className="text-[10px] text-slate-500 w-20 shrink-0">{t.flagHost} {t.host}</div>
+                  <div className="text-[10px] text-slate-400 w-20 shrink-0">{t.flagHost} {t.host}</div>
                   <div className="flex-1 min-w-0">
                     <button onClick={() => handleTeamClick(nw)}
                       className={`text-xs font-bold transition-all ${isHighlighted ? 'text-amber-400' : 'text-white hover:text-amber-400'}`}>
@@ -171,7 +171,7 @@ export default function fifa_world_cup_trophy_counter() {
                     <span className="text-[10px] text-slate-600 mx-1">vs</span>
                     <span className="text-[11px] text-slate-400">{t.flagRunner} {t.runnerUp}</span>
                   </div>
-                  <div className="text-[11px] text-slate-500 shrink-0">{t.score}</div>
+                  <div className="text-[11px] text-slate-400 shrink-0">{t.score}</div>
                 </div>
               )
             })}

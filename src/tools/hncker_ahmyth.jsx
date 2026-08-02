@@ -9,7 +9,7 @@ function Section({ id, icon, title, subtitle, children }) {
         <span className="text-xl">{icon}</span>
         <h2 className="text-lg sm:text-xl font-extrabold text-white m-0">{title}</h2>
       </div>
-      {subtitle && <p className="text-xs text-slate-500 mt-1 mb-4">{subtitle}</p>}
+      {subtitle && <p className="text-xs text-slate-400 mt-1 mb-4">{subtitle}</p>}
       {!subtitle && <div className="mb-2" />}
       <div className="space-y-4 text-sm text-slate-300 leading-relaxed">{children}</div>
     </section>

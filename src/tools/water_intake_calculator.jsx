@@ -82,7 +82,7 @@ export default function water_intake_calculator() {
                 <span className="text-2xl">{a.icon}</span>
                 <div>
                   <div className={`text-sm font-bold ${activity === a.key ? 'text-sky-400' : 'text-white'}`}>{a.label}</div>
-                  <div className="text-[11px] text-slate-500">{a.desc}</div>
+                  <div className="text-[11px] text-slate-400">{a.desc}</div>
                 </div>
               </button>
             ))}
@@ -114,16 +114,16 @@ export default function water_intake_calculator() {
             <div className="flex justify-center gap-8 mt-6">
               <div className="p-4 rounded-2xl bg-white/[0.04] border border-white/8">
                 <div className="text-2xl font-extrabold text-white">{result.glasses}</div>
-                <div className="text-[11px] text-slate-500 mt-0.5">glasses (250ml)</div>
+                <div className="text-[11px] text-slate-400 mt-0.5">glasses (250ml)</div>
               </div>
               <div className="p-4 rounded-2xl bg-white/[0.04] border border-white/8">
                 <div className="text-2xl font-extrabold text-white">{(result.litres * 1000).toFixed(0)}</div>
-                <div className="text-[11px] text-slate-500 mt-0.5">millilitres</div>
+                <div className="text-[11px] text-slate-400 mt-0.5">millilitres</div>
               </div>
             </div>
 
             <div className="mt-5 p-4 rounded-2xl bg-white/[0.04] border border-white/8 text-left">
-              <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider mb-1">Formula Used</div>
+              <div className="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-1">Formula Used</div>
               <div className="text-sm text-slate-300">{parseFloat(weight)} kg × {multiplier} = <span className="text-sky-400 font-bold">{result.litres.toFixed(2)} L</span></div>
             </div>
           </div>

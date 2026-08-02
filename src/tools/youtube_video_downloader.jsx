@@ -58,14 +58,14 @@ export default function youtube_video_downloader() {
           onChange={(e) => { setUrl(e.target.value); setError('') }}
           onKeyDown={(e) => { if (e.key === 'Enter') handleSubmit() }}
           placeholder="Paste YouTube video URL here..."
-          className="w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-500"
+          className="w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-400"
         />
 
         {error && <p className="text-sm text-red-400 font-medium">❌ {error}</p>}
 
         {/* Quality Select */}
         <div>
-          <label className="text-xs text-slate-500 font-medium mb-2 block">Resolution / Format</label>
+          <label className="text-xs text-slate-400 font-medium mb-2 block">Resolution / Format</label>
           <select value={quality} onChange={(e) => setQuality(e.target.value)}
             className="w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3 text-white text-sm font-semibold outline-none focus:border-indigo-500/40 transition-all [color-scheme:dark]">
             {FORMATS.map(f => <option key={f.key} value={f.key}>{f.label}</option>)}

@@ -117,7 +117,7 @@ export default function color_picker() {
     try { localStorage.setItem('cp-saved', JSON.stringify(next)) } catch {}
   }, [savedColors])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -164,7 +164,7 @@ export default function color_picker() {
                 <span className="font-mono text-sm text-white">{item.value}</span>
                 <button onClick={() => copyToClipboard(item.value, item.label)}
                   className={`px-2 py-1 rounded text-xs transition-all ${
-                    copied === item.label ? 'bg-emerald-500/20 text-emerald-400' : 'bg-white/5 text-slate-500 hover:text-white'
+                    copied === item.label ? 'bg-emerald-500/20 text-emerald-400' : 'bg-white/5 text-slate-400 hover:text-white'
                   }`}>
                   {copied === item.label ? '✓' : '📋'}
                 </button>
@@ -210,7 +210,7 @@ export default function color_picker() {
             {palette.map((c, i) => (
               <button key={i} onClick={() => copyToClipboard(c, 'pal-' + i)}
                 className={`flex-1 text-center text-[8px] font-mono rounded transition-all ${
-                  copied === 'pal-' + i ? 'text-emerald-400' : 'text-slate-500 hover:text-white'
+                  copied === 'pal-' + i ? 'text-emerald-400' : 'text-slate-400 hover:text-white'
                 }`}>
                 {c}
               </button>

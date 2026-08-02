@@ -158,7 +158,7 @@ export default function json_to_typescript() {
             📄 Load Sample
           </button>
           <button onClick={formatInput}
-            className="px-4 py-2 rounded-xl bg-white/[0.04] text-slate-500 text-xs font-bold hover:bg-white/[0.08] hover:text-slate-300 transition-all duration-200">
+            className="px-4 py-2 rounded-xl bg-white/[0.04] text-slate-400 text-xs font-bold hover:bg-white/[0.08] hover:text-slate-300 transition-all duration-200">
             ✨ Format JSON
           </button>
           <button onClick={convert}
@@ -221,7 +221,7 @@ export default function json_to_typescript() {
             ].map(([json, ts]) => (
               <div key={json} className="bg-black/20 rounded-lg px-2.5 py-1.5 flex items-center gap-1">
                 <span className="text-amber-400">{json}</span>
-                <span className="text-slate-500">→</span>
+                <span className="text-slate-400">→</span>
                 <span className="text-blue-400">{ts}</span>
               </div>
             ))}

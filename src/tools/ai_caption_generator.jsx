@@ -81,7 +81,7 @@ Caption 2:
             <div className="flex gap-2 flex-wrap">
               {PLATFORMS.map(p => (
                 <button key={p} onClick={() => setPlatform(p)}
-                  className={`px-4 py-2 rounded-xl text-sm font-bold border transition-all ${platform === p ? 'bg-pink-500/20 text-pink-400 border-pink-500/30' : 'bg-white/[0.06] text-slate-500 border-white/[0.08]'}`}>
+                  className={`px-4 py-2 rounded-xl text-sm font-bold border transition-all ${platform === p ? 'bg-pink-500/20 text-pink-400 border-pink-500/30' : 'bg-white/[0.06] text-slate-400 border-white/[0.08]'}`}>
                   {p}
                 </button>
               ))}

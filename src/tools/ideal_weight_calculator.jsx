@@ -92,7 +92,7 @@ export default function ideal_weight_calculator() {
             {[['male', '♂️', 'Male'], ['female', '♀️', 'Female']].map(([val, emoji, label]) => (
               <button key={val} onClick={() => setGender(val)}
                 className={`flex-1 flex items-center justify-center gap-3 py-4 rounded-2xl text-sm font-bold transition-all duration-200 border-2
-                  ${gender === val ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400 shadow-lg shadow-emerald-500/10' : 'bg-white/[0.05] border-white/8 text-slate-500 hover:border-white/12'}`}>
+                  ${gender === val ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400 shadow-lg shadow-emerald-500/10' : 'bg-white/[0.05] border-white/8 text-slate-400 hover:border-white/12'}`}>
                 <span className="text-xl">{emoji}</span>
                 {label}
               </button>
@@ -116,11 +116,11 @@ export default function ideal_weight_calculator() {
             {/* Healthy Range */}
             <div className="flex justify-center gap-6 mt-6">
               <div className="p-4 rounded-2xl bg-white/[0.04] border border-white/8">
-                <div className="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">Min (−10%)</div>
+                <div className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider">Min (−10%)</div>
                 <div className="text-xl font-extrabold text-white mt-1">{result.idealLow} kg</div>
               </div>
               <div className="p-4 rounded-2xl bg-white/[0.04] border border-white/8">
-                <div className="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">Max (+10%)</div>
+                <div className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider">Max (+10%)</div>
                 <div className="text-xl font-extrabold text-white mt-1">{result.idealHigh} kg</div>
               </div>
             </div>
@@ -128,14 +128,14 @@ export default function ideal_weight_calculator() {
             {/* BMI at Ideal Weight */}
             {result.bmi && (
               <div className="mt-5 p-4 rounded-2xl bg-white/[0.04] border border-white/8">
-                <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider mb-1">BMI at Ideal Weight</div>
-                <div className="text-lg font-bold text-emerald-400">{result.bmi} <span className="text-sm text-slate-500">(Normal range)</span></div>
+                <div className="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-1">BMI at Ideal Weight</div>
+                <div className="text-lg font-bold text-emerald-400">{result.bmi} <span className="text-sm text-slate-400">(Normal range)</span></div>
               </div>
             )}
 
             {/* Weight Range Bar */}
             <div className="mt-6">
-              <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider mb-3">Weight Range Visual</div>
+              <div className="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-3">Weight Range Visual</div>
               <div className="relative">
                 <div className="h-4 rounded-full bg-white/5 overflow-hidden relative">
                   {/* Ideal range segment */}
@@ -160,7 +160,7 @@ export default function ideal_weight_calculator() {
 
             {/* Formula Detail */}
             <div className="mt-5 p-4 rounded-2xl bg-white/[0.04] border border-white/8 text-left">
-              <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider mb-1">Formula Used</div>
+              <div className="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-1">Formula Used</div>
               <div className="text-sm text-slate-300">
                 {result.gender === 'male' ? '50' : '45.5'} + 2.3 × ({result.heightCm}cm ÷ 2.54 − 60) = <span className="text-emerald-400 font-bold">{result.ideal} kg</span>
               </div>

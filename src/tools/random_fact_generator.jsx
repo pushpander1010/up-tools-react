@@ -192,12 +192,12 @@ export default function random_fact_generator() {
         {/* Categories */}
         <div className="flex flex-wrap gap-2">
           <button onClick={() => setActiveCat('')}
-            className={`px-3 py-2 rounded-xl text-xs font-bold transition-all border-2 ${activeCat === '' ? 'border-indigo-500/40 bg-indigo-500/15 text-indigo-400' : 'border-white/[0.08] bg-white/[0.04] text-slate-500 hover:border-white/12'}`}>
+            className={`px-3 py-2 rounded-xl text-xs font-bold transition-all border-2 ${activeCat === '' ? 'border-indigo-500/40 bg-indigo-500/15 text-indigo-400' : 'border-white/[0.08] bg-white/[0.04] text-slate-400 hover:border-white/12'}`}>
             🎲 All
           </button>
           {CATS.map(c => (
             <button key={c.key} onClick={() => setActiveCat(activeCat === c.key ? '' : c.key)}
-              className={`px-3 py-2 rounded-xl text-xs font-bold transition-all border-2 ${activeCat === c.key ? 'border-indigo-500/40 bg-indigo-500/15 text-indigo-400' : 'border-white/[0.08] bg-white/[0.04] text-slate-500 hover:border-white/12'}`}>
+              className={`px-3 py-2 rounded-xl text-xs font-bold transition-all border-2 ${activeCat === c.key ? 'border-indigo-500/40 bg-indigo-500/15 text-indigo-400' : 'border-white/[0.08] bg-white/[0.04] text-slate-400 hover:border-white/12'}`}>
               {c.label}
             </button>
           ))}
@@ -237,7 +237,7 @@ export default function random_fact_generator() {
         {/* Search */}
         <input type="text" value={search} onChange={e => setSearch(e.target.value)}
           placeholder="Search facts by keyword..."
-          className="w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3 text-white text-sm outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-500" />
+          className="w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3 text-white text-sm outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-400" />
 
         {/* History */}
         {history.length > 0 && (

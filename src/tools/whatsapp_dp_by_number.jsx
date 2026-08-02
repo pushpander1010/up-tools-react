@@ -85,7 +85,7 @@ export default function whatsapp_dp_by_number() {
               className={`flex-1 py-3 rounded-xl text-sm font-bold transition-all duration-200 border-2 ${
                 activeMethod === i
                   ? 'bg-emerald-500/15 border-emerald-500/30 text-emerald-400'
-                  : 'bg-white/[0.04] border-white/8 text-slate-500 hover:border-white/12'
+                  : 'bg-white/[0.04] border-white/8 text-slate-400 hover:border-white/12'
               }`}>
               {m.icon} Method {i + 1}
             </button>
@@ -110,7 +110,7 @@ export default function whatsapp_dp_by_number() {
             ))}
           </ol>
           {methods[activeMethod].note && (
-            <p className="text-xs text-slate-500 mt-3 p-3 bg-black/20 rounded-xl">{methods[activeMethod].note}</p>
+            <p className="text-xs text-slate-400 mt-3 p-3 bg-black/20 rounded-xl">{methods[activeMethod].note}</p>
           )}
           {methods[activeMethod].link && (
             <a href={methods[activeMethod].link}
@@ -125,11 +125,11 @@ export default function whatsapp_dp_by_number() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <a href="/whatsapp-dp-downloader/" className="bg-black/20 rounded-xl p-4 border border-white/8 hover:border-emerald-500/30 transition-all">
               <div className="text-sm font-bold text-white">💬 WhatsApp DP Downloader</div>
-              <div className="text-xs text-slate-500 mt-1">Save profile pictures in full size</div>
+              <div className="text-xs text-slate-400 mt-1">Save profile pictures in full size</div>
             </a>
             <a href="/whatsapp-status-saver/" className="bg-black/20 rounded-xl p-4 border border-white/8 hover:border-emerald-500/30 transition-all">
               <div className="text-sm font-bold text-white">📸 WhatsApp Status Saver</div>
-              <div className="text-xs text-slate-500 mt-1">Save statuses without reposting</div>
+              <div className="text-xs text-slate-400 mt-1">Save statuses without reposting</div>
             </a>
           </div>
         </div>

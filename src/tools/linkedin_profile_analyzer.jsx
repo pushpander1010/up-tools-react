@@ -94,7 +94,7 @@ export default function linkedin_profile_analyzer() {
     setResult(null)
   }, [])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -128,7 +128,7 @@ export default function linkedin_profile_analyzer() {
             <input type="text" value={headline} onChange={e => setHeadline(e.target.value)}
               placeholder="e.g., Senior Software Engineer at Google | React & Node.js Expert"
               className={inputClass} />
-            <p className="text-xs text-slate-500 mt-1">A strong headline includes your role, skills, and value proposition. (Optimal: 120+ characters)</p>
+            <p className="text-xs text-slate-400 mt-1">A strong headline includes your role, skills, and value proposition. (Optimal: 120+ characters)</p>
           </div>
 
           <div>
@@ -136,7 +136,7 @@ export default function linkedin_profile_analyzer() {
             <textarea value={about} onChange={e => setAbout(e.target.value)} rows={3}
               placeholder="Describe your professional background, achievements, and career goals..."
               className={inputClass + " resize-none"} />
-            <p className="text-xs text-slate-500 mt-1">A detailed about section helps recruiters understand your expertise. (Optimal: 200+ characters)</p>
+            <p className="text-xs text-slate-400 mt-1">A detailed about section helps recruiters understand your expertise. (Optimal: 200+ characters)</p>
           </div>
 
           <div className="grid grid-cols-2 gap-4">

@@ -150,7 +150,7 @@ export default function timezone_converter() {
         {/* Base timezone & time */}
         <div className="grid grid-cols-2 gap-3">
           <div>
-            <label className="text-xs font-semibold text-slate-500 mb-2 block">Base Timezone</label>
+            <label className="text-xs font-semibold text-slate-400 mb-2 block">Base Timezone</label>
             <select
               value={baseTz}
               onChange={e => setBaseTz(e.target.value)}
@@ -167,7 +167,7 @@ export default function timezone_converter() {
             </select>
           </div>
           <div>
-            <label className="text-xs font-semibold text-slate-500 mb-2 block">Time</label>
+            <label className="text-xs font-semibold text-slate-400 mb-2 block">Time</label>
             <input
               type="time"
               value={time}
@@ -179,13 +179,13 @@ export default function timezone_converter() {
 
         {/* Presets */}
         <div>
-          <label className="text-xs font-semibold text-slate-500 mb-2 block">Region Presets</label>
+          <label className="text-xs font-semibold text-slate-400 mb-2 block">Region Presets</label>
           <div className="flex gap-2">
             {[['americas', '🌎 Americas'], ['europe', '🌍 Europe'], ['asia', '🌏 Asia'], ['remote', '👥 Remote Team']].map(([val, label]) => (
               <button key={val} onClick={() => handlePreset(val)}
                 className={`flex-1 py-2.5 rounded-xl text-xs font-bold transition-all ${activePreset === val
                   ? 'bg-amber-500/15 text-amber-300 border border-amber-500/30'
-                  : 'bg-white/[0.06] text-slate-500 border border-white/8'}`}>
+                  : 'bg-white/[0.06] text-slate-400 border border-white/8'}`}>
                 {label}
               </button>
             ))}
@@ -203,7 +203,7 @@ export default function timezone_converter() {
         <div ref={resultRef} className="space-y-3"
           style={{ animation: 'slideUp 0.35s cubic-bezier(0.4,0,0.2,1)' }}>
 
-          <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+          <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
             Converted Times ({conversions.length} zones)
           </div>
 
@@ -217,13 +217,13 @@ export default function timezone_converter() {
                 <span className="text-xl">{c.flag}</span>
                 <div>
                   <div className="text-sm font-semibold text-white">{c.label}</div>
-                  <div className="text-[10px] text-slate-500">{c.offset} · {c.short}</div>
+                  <div className="text-[10px] text-slate-400">{c.offset} · {c.short}</div>
                 </div>
               </div>
               <div className="flex items-center gap-3">
                 <div className="text-right">
                   <div className="text-lg font-bold text-white font-mono">{c.localTime}</div>
-                  <div className="text-[10px] text-slate-500">{c.localDate}</div>
+                  <div className="text-[10px] text-slate-400">{c.localDate}</div>
                 </div>
                 {c.working && (
                   <div className="px-2 py-0.5 rounded-full text-[9px] font-bold bg-emerald-500/15 text-emerald-400 border border-emerald-500/20">
@@ -234,7 +234,7 @@ export default function timezone_converter() {
                   className={`px-2 py-1 rounded-lg text-xs transition-all ${
                     copiedIdx === i
                       ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
-                      : 'bg-white/5 border border-white/8 text-slate-500 hover:text-white'
+                      : 'bg-white/5 border border-white/8 text-slate-400 hover:text-white'
                   }`}>
                   {copiedIdx === i ? '✓' : '📋'}
                 </button>

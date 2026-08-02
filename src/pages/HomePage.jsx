@@ -108,7 +108,7 @@ export default function HomePage() {
           </div>
           <div className="flex gap-8 shrink-0">
             {[{ v: '300+', l: 'Tools' }, { v: '24+', l: 'Games' }, { v: '0', l: 'Sign-ups' }].map(s => (
-              <div key={s.l} className="text-center"><div className="text-3xl font-extrabold gradient-text">{s.v}</div><div className="text-xs text-slate-500 mt-1 font-medium">{s.l}</div></div>
+              <div key={s.l} className="text-center"><div className="text-3xl font-extrabold gradient-text">{s.v}</div><div className="text-xs text-slate-400 mt-1 font-medium">{s.l}</div></div>
             ))}
           </div>
         </div>
@@ -117,7 +117,7 @@ export default function HomePage() {
       {/* Games Rail */}
       <div className="glass rounded-3xl p-5 mb-6">
         <div className="flex items-center justify-between gap-4 flex-wrap mb-4">
-          <div><h2 className="text-lg font-bold text-white m-0">🎮 Free Mini Games</h2><p className="text-xs text-slate-500 mt-0.5">Instant browser games — click and play.</p></div>
+          <div><h2 className="text-lg font-bold text-white m-0">🎮 Free Mini Games</h2><p className="text-xs text-slate-400 mt-0.5">Instant browser games — click and play.</p></div>
           <Link to="/games" className="glow-btn text-xs py-1.5 px-4 rounded-xl no-underline">Play all 24+ →</Link>
         </div>
         <InfiniteCarousel gap={8}>
@@ -134,10 +134,10 @@ export default function HomePage() {
       <div className="mb-4">
         <div className="flex items-center gap-3 rounded-2xl px-5 py-3.5 transition-all duration-300 focus-within:shadow-[0_0_0_3px_rgba(99,102,241,0.15),0_4px_20px_rgba(0,0,0,0.2)]"
           style={{ background: 'rgba(17,24,39,0.8)', border: '1px solid rgba(255,255,255,0.06)' }}>
-          <span className="text-slate-500 text-lg">🔎</span>
+          <span className="text-slate-400 text-lg">🔎</span>
           <input type="search" value={search} onChange={e => setSearch(e.target.value)} onKeyDown={handleKeyDown}
             placeholder="Search 300+ tools (tax, gst, currency, json)…"
-            className="flex-1 min-w-0 bg-transparent border-none outline-none text-white text-sm placeholder:text-slate-500" />
+            className="flex-1 min-w-0 bg-transparent border-none outline-none text-white text-sm placeholder:text-slate-400" />
           {isFiltering && (
             <button onClick={clearFilters}
               className="px-3 py-1 rounded-lg text-xs font-semibold bg-white/5 border border-white/8 text-slate-400 hover:text-white transition-all cursor-pointer">
@@ -164,7 +164,7 @@ export default function HomePage() {
         <div className="mb-8">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-bold text-white m-0">🔥 Featured</h2>
-            <span className="text-xs text-slate-500">{featuredTools.length} tools</span>
+            <span className="text-xs text-slate-400">{featuredTools.length} tools</span>
           </div>
           <InfiniteCarousel gap={12}>
             {featuredTools.map(tool => (
@@ -184,7 +184,7 @@ export default function HomePage() {
               🔍 Search Results
               {search && <span className="text-sm font-normal text-slate-400 ml-2">"{search}"</span>}
             </h2>
-            <span className="text-xs text-slate-500">{filteredTools.length} tools found</span>
+            <span className="text-xs text-slate-400">{filteredTools.length} tools found</span>
           </div>
           {filteredTools.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
@@ -195,7 +195,7 @@ export default function HomePage() {
           ) : (
             <div className="text-center py-12 rounded-3xl border-2 border-dashed border-white/8 bg-white/[0.01]">
               <div className="text-4xl mb-3 opacity-20">🔍</div>
-              <p className="text-sm text-slate-500 font-medium mb-2">No tools match "{search}"</p>
+              <p className="text-sm text-slate-400 font-medium mb-2">No tools match "{search}"</p>
               <button onClick={clearFilters} className="glow-btn text-xs px-4 py-1.5 rounded-xl">Clear filters</button>
             </div>
           )}
@@ -206,7 +206,7 @@ export default function HomePage() {
       <div ref={allToolsRef}>
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-bold text-white m-0">🧰 All Tools</h2>
-          <span className="text-xs text-slate-500">{tools.length} tools</span>
+          <span className="text-xs text-slate-400">{tools.length} tools</span>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
           {tools.map(tool => (

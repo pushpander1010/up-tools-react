@@ -67,7 +67,7 @@ export default function avengers_doomsday_cast() {
                   className="w-full flex items-center justify-between px-5 py-4 text-left"
                 >
                   <span className="text-sm font-semibold text-white">{faq.q}</span>
-                  <span className={`text-slate-500 transition-transform ${openFaq === i ? 'rotate-180' : ''}`}>▾</span>
+                  <span className={`text-slate-400 transition-transform ${openFaq === i ? 'rotate-180' : ''}`}>▾</span>
                 </button>
                 {openFaq === i && (
                   <div className="px-5 pb-4 text-sm text-slate-400">{faq.a}</div>

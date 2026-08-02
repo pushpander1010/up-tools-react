@@ -113,7 +113,7 @@ export default function marvel_movie_timeline() {
             return (
               <button key={p.name} onClick={() => setActivePhase(p.name)}
                 className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all border-2
-                  ${isActive ? `${c.bg} ${c.border} ${c.text}` : 'bg-white/[0.06] border-white/8 text-slate-500 hover:text-white'}`}>
+                  ${isActive ? `${c.bg} ${c.border} ${c.text}` : 'bg-white/[0.06] border-white/8 text-slate-400 hover:text-white'}`}>
                 {p.name}
               </button>
             )
@@ -133,11 +133,11 @@ export default function marvel_movie_timeline() {
               {phase.movies.map((m, i) => (
                 <div key={i} className={`flex items-center gap-3 px-3 py-2 rounded-xl transition-all
                   ${m.upcoming ? 'bg-white/[0.06] border border-dashed border-white/12' : m.highlight ? 'bg-white/[0.06]' : ''}`}>
-                  <span className={`text-xs font-mono w-10 ${m.upcoming ? 'text-slate-600' : 'text-slate-500'}`}>{m.year}</span>
+                  <span className={`text-xs font-mono w-10 ${m.upcoming ? 'text-slate-600' : 'text-slate-400'}`}>{m.year}</span>
                   <span className={`text-sm font-semibold ${m.highlight ? 'text-white' : 'text-slate-300'} ${m.upcoming ? 'italic' : ''}`}>
                     {m.title}
                   </span>
-                  {m.note && <span className="text-[10px] text-slate-500 ml-auto">{m.note}</span>}
+                  {m.note && <span className="text-[10px] text-slate-400 ml-auto">{m.note}</span>}
                   {m.upcoming && <span className="text-[10px] text-amber-400 ml-auto font-bold">UPCOMING</span>}
                 </div>
               ))}
@@ -156,7 +156,7 @@ export default function marvel_movie_timeline() {
                   className={`p-3 rounded-xl text-center border transition-all
                     ${activePhase === p.name ? `${c.bg} ${c.border}` : 'bg-white/[0.03] border-white/5 hover:border-white/12'}`}>
                   <div className={`text-xs font-bold ${activePhase === p.name ? c.text : 'text-slate-300'}`}>{p.name}</div>
-                  <div className="text-[10px] text-slate-500 mt-0.5">{p.movies.length} titles</div>
+                  <div className="text-[10px] text-slate-400 mt-0.5">{p.movies.length} titles</div>
                 </button>
               )
             })}

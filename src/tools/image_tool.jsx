@@ -94,7 +94,7 @@ export default function image_tool() {
                 className="border-2 border-dashed border-white/12 rounded-xl p-8 text-center cursor-pointer hover:border-indigo-500/30 transition-all"
                 onClick={() => fileRef.current?.click()}>
                 <div className="text-3xl mb-2 opacity-30">🖼️</div>
-                <p className="text-xs text-slate-500">Drop image here or</p>
+                <p className="text-xs text-slate-400">Drop image here or</p>
                 <button className="mt-2 px-4 py-2 rounded-xl bg-indigo-500/15 text-indigo-400 text-xs font-semibold">Choose file</button>
               </div>
               <input ref={fileRef} type="file" accept="image/*" className="hidden"
@@ -108,7 +108,7 @@ export default function image_tool() {
                 {['transparent', 'white', 'black'].map(v => (
                   <button key={v} onClick={() => setBg(v)}
                     className={`flex-1 py-2 rounded-xl text-xs font-semibold transition-all border ${
-                      bg === v ? 'bg-indigo-500/15 text-indigo-400 border-indigo-500/30' : 'bg-white/[0.04] text-slate-500 border-white/8'
+                      bg === v ? 'bg-indigo-500/15 text-indigo-400 border-indigo-500/30' : 'bg-white/[0.04] text-slate-400 border-white/8'
                     }`}>{v.charAt(0).toUpperCase() + v.slice(1)}</button>
                 ))}
               </div>

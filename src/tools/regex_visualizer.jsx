@@ -218,7 +218,7 @@ export default function regex_visualizer() {
   const [error, setError] = useState('')
   const [copied, setCopied] = useState(false)
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-3 text-white text-sm font-mono outline-none focus:border-rose-500/40 transition-all placeholder:text-slate-500"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-3 text-white text-sm font-mono outline-none focus:border-rose-500/40 transition-all placeholder:text-slate-400"
 
   const flagStr = Object.entries(flags).filter(([, v]) => v).map(([k]) => k).join('')
 
@@ -302,11 +302,11 @@ export default function regex_visualizer() {
       <div className="max-w-5xl mx-auto space-y-5">
         {/* Presets */}
         <div>
-          <label className="text-xs font-semibold text-slate-500 mb-2 block">Common Patterns</label>
+          <label className="text-xs font-semibold text-slate-400 mb-2 block">Common Patterns</label>
           <div className="flex flex-wrap gap-2">
             {presets.map(p => (
               <button key={p.name} onClick={() => loadPreset(p)}
-                className="px-3 py-2 rounded-xl text-xs font-bold bg-white/[0.06] text-slate-500 border border-white/8 hover:bg-rose-500/10 hover:text-rose-300 hover:border-rose-500/30 transition-all group relative">
+                className="px-3 py-2 rounded-xl text-xs font-bold bg-white/[0.06] text-slate-400 border border-white/8 hover:bg-rose-500/10 hover:text-rose-300 hover:border-rose-500/30 transition-all group relative">
                 {p.name}
                 <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-1.5 bg-slate-800 text-xs text-slate-300 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none border border-white/10">
                   {p.desc}
@@ -321,7 +321,7 @@ export default function regex_visualizer() {
           <div className="grid grid-cols-[1fr_auto] gap-3 items-end">
             <div>
               <div className="flex items-center justify-between mb-2">
-                <label className="text-xs font-semibold text-slate-500">Pattern</label>
+                <label className="text-xs font-semibold text-slate-400">Pattern</label>
                 {pattern && (
                   <button onClick={copyPattern}
                     className={`px-3 py-1 rounded-lg text-[10px] font-bold transition-all ${copied ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-white/5 border border-white/8 text-slate-400 hover:text-white'}`}>
@@ -330,11 +330,11 @@ export default function regex_visualizer() {
                 )}
               </div>
               <div className="flex items-center">
-                <span className="text-slate-500 font-mono text-sm mr-1">/</span>
+                <span className="text-slate-400 font-mono text-sm mr-1">/</span>
                 <input type="text" value={pattern} onChange={e => { setPattern(e.target.value); setCopied(false) }}
                   className="flex-1 bg-transparent text-white font-mono text-sm outline-none placeholder:text-slate-600"
                   placeholder="Enter regex pattern..." />
-                <span className="text-slate-500 font-mono text-sm ml-1">/{flagStr}</span>
+                <span className="text-slate-400 font-mono text-sm ml-1">/{flagStr}</span>
               </div>
               {error && (
                 <p className="text-xs text-red-400 mt-1 font-mono">⚠ {error}</p>
@@ -353,10 +353,10 @@ export default function regex_visualizer() {
 
           {/* Flag descriptions */}
           <div className="flex flex-wrap gap-2 text-[10px] text-slate-600">
-            <span><b className="text-slate-500">g</b> global</span>
-            <span><b className="text-slate-500">i</b> case-insensitive</span>
-            <span><b className="text-slate-500">m</b> multiline</span>
-            <span><b className="text-slate-500">s</b> dotAll</span>
+            <span><b className="text-slate-400">g</b> global</span>
+            <span><b className="text-slate-400">i</b> case-insensitive</span>
+            <span><b className="text-slate-400">m</b> multiline</span>
+            <span><b className="text-slate-400">s</b> dotAll</span>
           </div>
         </div>
 
@@ -365,7 +365,7 @@ export default function regex_visualizer() {
           <div className="space-y-4">
             <div>
               <div className="flex items-center justify-between mb-2">
-                <label className="text-xs font-semibold text-slate-500">Test String</label>
+                <label className="text-xs font-semibold text-slate-400">Test String</label>
                 {matches.length > 0 && (
                   <span className="px-3 py-1 rounded-lg bg-rose-500/15 text-rose-300 text-xs font-bold border border-rose-500/20">
                     {matches.length} match{matches.length !== 1 ? 'es' : ''}
@@ -379,7 +379,7 @@ export default function regex_visualizer() {
 
             {/* Highlighted Output */}
             <div>
-              <label className="text-xs font-semibold text-slate-500 mb-2 block">Highlighted Matches</label>
+              <label className="text-xs font-semibold text-slate-400 mb-2 block">Highlighted Matches</label>
               <div className="bg-slate-950/60 rounded-xl border border-white/[0.08] p-4 min-h-[80px] font-mono text-sm leading-relaxed">
                 {pattern && highlightedTest && typeof highlightedTest !== 'string' ? (
                   highlightedTest.map((part, i) => (
@@ -402,7 +402,7 @@ export default function regex_visualizer() {
             {/* Match Details */}
             {matches.length > 0 && (
               <div>
-                <label className="text-xs font-semibold text-slate-500 mb-2 block">Match Details</label>
+                <label className="text-xs font-semibold text-slate-400 mb-2 block">Match Details</label>
                 <div className="space-y-1.5 max-h-48 overflow-y-auto">
                   {matches.map((m, i) => (
                     <div key={i} className="flex items-center gap-3 px-3 py-2 rounded-xl bg-white/[0.04] border border-white/[0.06]">
@@ -419,7 +419,7 @@ export default function regex_visualizer() {
 
           {/* Right: Pattern Explanation */}
           <div className="space-y-4" ref={resultRef}>
-            <label className="text-xs font-semibold text-slate-500">Pattern Breakdown</label>
+            <label className="text-xs font-semibold text-slate-400">Pattern Breakdown</label>
             {explanations.length > 0 ? (
               <div className="bg-slate-950/60 rounded-2xl border border-white/[0.08] p-4 space-y-1 max-h-[300px] overflow-y-auto">
                 {explanations.map((ex, i) => (
@@ -463,7 +463,7 @@ export default function regex_visualizer() {
                 ].map(([token, desc]) => (
                   <div key={token} className="flex gap-2">
                     <code className="font-mono text-rose-400 shrink-0">{token}</code>
-                    <span className="text-slate-500">{desc}</span>
+                    <span className="text-slate-400">{desc}</span>
                   </div>
                 ))}
               </div>

@@ -29,7 +29,7 @@ export default function instagram_engagement_calculator() {
     jumpTo()
   }, [followers, jumpTo])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -95,15 +95,15 @@ export default function instagram_engagement_calculator() {
             <div className="grid grid-cols-3 gap-4 text-center">
               <div className="rounded-2xl p-4 bg-white/[0.04]">
                 <div className="text-2xl font-extrabold" style={{ color: result.color }}>{result.rate}%</div>
-                <div className="text-xs text-slate-500 mt-1">Engagement Rate</div>
+                <div className="text-xs text-slate-400 mt-1">Engagement Rate</div>
               </div>
               <div className="rounded-2xl p-4 bg-white/[0.04]">
                 <div className="text-2xl font-extrabold text-white">{result.total.toLocaleString()}</div>
-                <div className="text-xs text-slate-500 mt-1">Total Interactions</div>
+                <div className="text-xs text-slate-400 mt-1">Total Interactions</div>
               </div>
               <div className="rounded-2xl p-4" style={{ background: result.bg }}>
                 <div className="text-2xl font-extrabold" style={{ color: result.color }}>{result.level}</div>
-                <div className="text-xs text-slate-500 mt-1">Performance</div>
+                <div className="text-xs text-slate-400 mt-1">Performance</div>
               </div>
             </div>
 

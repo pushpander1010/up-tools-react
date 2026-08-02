@@ -114,10 +114,10 @@ export default function instagram_content_calendar() {
                       <span className="text-lg font-extrabold text-white">{c.day}</span>
                       <span className="px-2 py-0.5 rounded-lg bg-indigo-500/15 text-indigo-400 text-xs font-bold">{c.type}</span>
                     </div>
-                    <span className="text-xs text-slate-500">⏰ {c.time}</span>
+                    <span className="text-xs text-slate-400">⏰ {c.time}</span>
                   </div>
                   <div className="text-sm font-semibold text-slate-300 mb-2">{c.topic}</div>
-                  <div className="text-xs text-slate-500 bg-black/20 rounded-xl p-3 font-mono">{c.caption}</div>
+                  <div className="text-xs text-slate-400 bg-black/20 rounded-xl p-3 font-mono">{c.caption}</div>
                 </div>
               ))}
             </div>

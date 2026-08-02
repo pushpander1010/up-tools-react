@@ -150,7 +150,7 @@ export default function fifa_world_cup_timezone() {
           <div className="flex flex-wrap gap-2">
             {QUICK_TZS.map(qt => (
               <button key={qt.tz} onClick={() => handleQuickTz(qt.tz)}
-                className={`px-3 py-1.5 rounded-lg text-[11px] font-bold transition-all ${activeQuick === qt.tz ? 'bg-indigo-500/15 text-indigo-400 border border-indigo-500/30' : 'bg-white/[0.06] text-slate-500 border border-white/[0.08]'}`}>
+                className={`px-3 py-1.5 rounded-lg text-[11px] font-bold transition-all ${activeQuick === qt.tz ? 'bg-indigo-500/15 text-indigo-400 border border-indigo-500/30' : 'bg-white/[0.06] text-slate-400 border border-white/[0.08]'}`}>
                 {qt.l}
               </button>
             ))}
@@ -163,7 +163,7 @@ export default function fifa_world_cup_timezone() {
           <div className="overflow-x-auto">
             <table className="w-full text-[11px]">
               <thead>
-                <tr className="text-slate-500 border-b border-white/[0.08]">
+                <tr className="text-slate-400 border-b border-white/[0.08]">
                   <th className="text-left py-2 px-2">Date</th>
                   <th className="text-left py-2 px-2">Stage</th>
                   <th className="text-left py-2 px-2">Match</th>
@@ -187,7 +187,7 @@ export default function fifa_world_cup_timezone() {
                         </span>
                       </td>
                       <td className="py-2 px-2 text-white font-medium">{m.home} vs {m.away}</td>
-                      <td className="py-2 px-2 text-slate-500 hidden sm:table-cell">{m.venue}</td>
+                      <td className="py-2 px-2 text-slate-400 hidden sm:table-cell">{m.venue}</td>
                       <td className="py-2 px-2 text-slate-400">{formatTimeShort(m.date, m.et, baseTz)}</td>
                       <td className="py-2 px-2 text-white font-bold">{formatTime(m.date, m.et, targetTz)}</td>
                     </tr>
@@ -205,7 +205,7 @@ export default function fifa_world_cup_timezone() {
           <div className="overflow-x-auto">
             <table className="w-full text-[10px]">
               <thead>
-                <tr className="text-slate-500 border-b border-white/[0.08]">
+                <tr className="text-slate-400 border-b border-white/[0.08]">
                   <th className="text-left py-2 px-2">Match</th>
                   {COMPARE_TZS.map(tz => <th key={tz.tz} className="text-left py-2 px-2">{tz.label}</th>)}
                 </tr>

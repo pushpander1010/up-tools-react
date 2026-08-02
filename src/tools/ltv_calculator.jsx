@@ -139,11 +139,11 @@ export default function ltv_calculator() {
             <label className="block text-xs font-bold text-slate-400 mb-1">Enter By</label>
             <div className="flex gap-2">
               <button onClick={() => setMode('down')}
-                className={`flex-1 py-2 rounded-xl text-sm font-bold transition-all border ${mode === 'down' ? 'bg-amber-500/15 border-amber-500/30 text-amber-400' : 'bg-white/[0.06] border-white/[0.08] text-slate-500'}`}>
+                className={`flex-1 py-2 rounded-xl text-sm font-bold transition-all border ${mode === 'down' ? 'bg-amber-500/15 border-amber-500/30 text-amber-400' : 'bg-white/[0.06] border-white/[0.08] text-slate-400'}`}>
                 Down Payment
               </button>
               <button onClick={() => setMode('loan')}
-                className={`flex-1 py-2 rounded-xl text-sm font-bold transition-all border ${mode === 'loan' ? 'bg-amber-500/15 border-amber-500/30 text-amber-400' : 'bg-white/[0.06] border-white/[0.08] text-slate-500'}`}>
+                className={`flex-1 py-2 rounded-xl text-sm font-bold transition-all border ${mode === 'loan' ? 'bg-amber-500/15 border-amber-500/30 text-amber-400' : 'bg-white/[0.06] border-white/[0.08] text-slate-400'}`}>
                 Loan Amount
               </button>
             </div>
@@ -158,16 +158,16 @@ export default function ltv_calculator() {
 
           {/* Optional CLTV */}
           <div className="border-t border-white/[0.08] pt-3 space-y-2">
-            <div className="text-xs font-bold text-slate-500">Optional — Combined LTV (CLTV)</div>
+            <div className="text-xs font-bold text-slate-400">Optional — Combined LTV (CLTV)</div>
             <div className="grid grid-cols-2 gap-2">
               <div>
-                <label className="block text-xs text-slate-500 mb-1">Existing Mortgage</label>
+                <label className="block text-xs text-slate-400 mb-1">Existing Mortgage</label>
                 <input type="number" value={secondMortgage} onChange={e => setSecondMortgage(e.target.value)}
                   placeholder="0" min={0}
                   className="w-full bg-black/20 border-2 border-white/[0.08] rounded-xl px-3 py-2 text-sm outline-none focus:border-amber-500/40 transition-all placeholder:text-slate-600" />
               </div>
               <div>
-                <label className="block text-xs text-slate-500 mb-1">Second Lien</label>
+                <label className="block text-xs text-slate-400 mb-1">Second Lien</label>
                 <input type="number" value={secondLien} onChange={e => setSecondLien(e.target.value)}
                   placeholder="0" min={0}
                   className="w-full bg-black/20 border-2 border-white/[0.08] rounded-xl px-3 py-2 text-sm outline-none focus:border-amber-500/40 transition-all placeholder:text-slate-600" />
@@ -211,26 +211,26 @@ export default function ltv_calculator() {
             {/* Metrics */}
             <div className="grid grid-cols-2 gap-3">
               <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4">
-                <div className="text-xs text-slate-500">Loan Amount</div>
+                <div className="text-xs text-slate-400">Loan Amount</div>
                 <div className="text-lg font-bold text-white">{fmt(result.loan)}</div>
-                <div className="text-xs text-slate-500">{pct(result.ltv)} of property</div>
+                <div className="text-xs text-slate-400">{pct(result.ltv)} of property</div>
               </div>
               <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4">
-                <div className="text-xs text-slate-500">Down Payment</div>
+                <div className="text-xs text-slate-400">Down Payment</div>
                 <div className="text-lg font-bold text-white">{fmt(result.down)}</div>
-                <div className="text-xs text-slate-500">{pct(result.downPct)} of property</div>
+                <div className="text-xs text-slate-400">{pct(result.downPct)} of property</div>
               </div>
               <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4">
-                <div className="text-xs text-slate-500">Equity</div>
+                <div className="text-xs text-slate-400">Equity</div>
                 <div className="text-lg font-bold text-emerald-400">{fmt(result.equity)}</div>
-                <div className="text-xs text-slate-500">{pct(result.equityPct)} equity stake</div>
+                <div className="text-xs text-slate-400">{pct(result.equityPct)} equity stake</div>
               </div>
               <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4">
-                <div className="text-xs text-slate-500">PMI Status</div>
+                <div className="text-xs text-slate-400">PMI Status</div>
                 <div className={`text-lg font-bold ${result.pmiRequired ? 'text-red-400' : 'text-emerald-400'}`}>
                   {result.pmiRequired ? 'Required' : 'Not needed'}
                 </div>
-                <div className="text-xs text-slate-500">{result.pmiRequired ? `${fmt(result.pmiLow)}–${fmt(result.pmiHigh)}/yr` : 'LTV < 80%'}</div>
+                <div className="text-xs text-slate-400">{result.pmiRequired ? `${fmt(result.pmiLow)}–${fmt(result.pmiHigh)}/yr` : 'LTV < 80%'}</div>
               </div>
             </div>
 
@@ -239,7 +239,7 @@ export default function ltv_calculator() {
               <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4">
                 <div className="text-xs font-bold text-slate-400 mb-2">📊 Combined LTV (CLTV)</div>
                 <div className="text-2xl font-bold text-amber-400">{pct(result.cltv)}</div>
-                <div className="text-xs text-slate-500">{fmt(result.totalLiens)} total liens</div>
+                <div className="text-xs text-slate-400">{fmt(result.totalLiens)} total liens</div>
               </div>
             )}
           </div>

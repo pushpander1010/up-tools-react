@@ -28,7 +28,7 @@ export default function instagram_growth_calculator() {
     jumpTo()
   }, [result, jumpTo])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -101,7 +101,7 @@ export default function instagram_growth_calculator() {
               ].map(item => (
                 <div key={item.label} className="rounded-2xl p-4 bg-white/[0.04] text-center">
                   <div className="text-xl font-extrabold" style={{ color: item.color }}>{item.value}</div>
-                  <div className="text-xs text-slate-500 mt-1">{item.label}</div>
+                  <div className="text-xs text-slate-400 mt-1">{item.label}</div>
                 </div>
               ))}
             </div>

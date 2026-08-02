@@ -141,7 +141,7 @@ export default function url_shortener() {
               {history.map((h, i) => (
                 <div key={i} className="flex items-center gap-2 p-2 rounded-xl bg-white/[0.04]">
                   <div className="flex-1 min-w-0">
-                    <div className="text-xs text-slate-500 truncate">{h.orig}</div>
+                    <div className="text-xs text-slate-400 truncate">{h.orig}</div>
                     <div className="text-xs font-mono text-cyan-400 truncate">{h.short}</div>
                     <div className="text-[10px] text-slate-600">{fmtTime(h.time)}</div>
                   </div>

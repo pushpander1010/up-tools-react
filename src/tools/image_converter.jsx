@@ -73,7 +73,7 @@ export default function image_converter() {
     a.click()
   }, [outUrl, format, file])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-3 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-3 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -109,7 +109,7 @@ export default function image_converter() {
           {file ? (
             <div>
               <div className="text-sm font-bold text-white">{file.name}</div>
-              <div className="text-xs text-slate-500">{img?.width}×{img?.height} · {(file.size / 1024).toFixed(1)} KB</div>
+              <div className="text-xs text-slate-400">{img?.width}×{img?.height} · {(file.size / 1024).toFixed(1)} KB</div>
             </div>
           ) : (
             <>
@@ -125,7 +125,7 @@ export default function image_converter() {
             <div className="p-5 rounded-2xl bg-white/[0.06] border border-white/[0.08] space-y-4">
               <h3 className="text-sm font-bold text-white">📐 Resize</h3>
               <div className="flex items-center gap-2">
-                <label className="text-xs text-slate-500 w-12">Lock</label>
+                <label className="text-xs text-slate-400 w-12">Lock</label>
                 <button onClick={() => setLockAR(!lockAR)}
                   className={`w-10 h-5 rounded-full transition-all ${lockAR ? 'bg-indigo-500' : 'bg-white/10'}`}>
                   <div className={`w-4 h-4 rounded-full bg-white transition-transform mx-0.5 ${lockAR ? 'translate-x-5' : ''}`} />
@@ -133,16 +133,16 @@ export default function image_converter() {
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="text-xs text-slate-500 mb-1 block">Width (px)</label>
+                  <label className="text-xs text-slate-400 mb-1 block">Width (px)</label>
                   <input type="number" value={width} onChange={e => onWidthChange(parseInt(e.target.value) || 1)} className={inputClass} />
                 </div>
                 <div>
-                  <label className="text-xs text-slate-500 mb-1 block">Height (px)</label>
+                  <label className="text-xs text-slate-400 mb-1 block">Height (px)</label>
                   <input type="number" value={height} onChange={e => onHeightChange(parseInt(e.target.value) || 1)} className={inputClass} />
                 </div>
               </div>
               <div>
-                <label className="text-xs text-slate-500 mb-1 block">Scale: {scale}%</label>
+                <label className="text-xs text-slate-400 mb-1 block">Scale: {scale}%</label>
                 <input type="range" min="10" max="200" value={scale} onChange={e => onScaleChange(parseInt(e.target.value))}
                   className="w-full h-2 rounded-full appearance-none bg-white/10 accent-indigo-500 cursor-pointer" />
               </div>
@@ -167,7 +167,7 @@ export default function image_converter() {
               </select>
               {format !== 'image/png' && (
                 <div>
-                  <label className="text-xs text-slate-500 mb-1 block">Quality: {Math.round(quality * 100)}%</label>
+                  <label className="text-xs text-slate-400 mb-1 block">Quality: {Math.round(quality * 100)}%</label>
                   <input type="range" min="0.1" max="1" step="0.01" value={quality} onChange={e => setQuality(parseFloat(e.target.value))}
                     className="w-full h-2 rounded-full appearance-none bg-white/10 accent-indigo-500 cursor-pointer" />
                 </div>

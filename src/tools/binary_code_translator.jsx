@@ -96,13 +96,13 @@ export default function binary_code_translator() {
 
         {/* Mode toggle */}
         <div>
-          <label className="text-xs font-semibold text-slate-500 mb-2 block">Mode</label>
+          <label className="text-xs font-semibold text-slate-400 mb-2 block">Mode</label>
           <div className="flex gap-2">
             {[['text', 'Text → Binary'], ['binary', 'Binary → Text']].map(([val, label]) => (
               <button key={val} onClick={() => { handleSwap(); if (val !== mode) setInput('') }}
                 className={`flex-1 py-2.5 rounded-xl text-xs font-bold transition-all ${mode === val
                   ? 'bg-indigo-500/15 text-indigo-300 border border-indigo-500/30'
-                  : 'bg-white/[0.06] text-slate-500 border border-white/8'}`}>
+                  : 'bg-white/[0.06] text-slate-400 border border-white/8'}`}>
                 {label}
               </button>
             ))}
@@ -111,7 +111,7 @@ export default function binary_code_translator() {
 
         {/* Input */}
         <div>
-          <label className="text-xs font-semibold text-slate-500 mb-2 block">
+          <label className="text-xs font-semibold text-slate-400 mb-2 block">
             {mode === 'text' ? 'Enter text' : 'Enter binary (space-separated 8-bit groups)'}
           </label>
           <textarea
@@ -140,7 +140,7 @@ export default function binary_code_translator() {
                 <button key={val} onClick={() => setActiveTab(val)}
                   className={`flex-1 py-2.5 rounded-xl text-xs font-bold transition-all ${activeTab === val
                     ? 'bg-indigo-500/15 text-indigo-300 border border-indigo-500/30'
-                    : 'bg-white/[0.06] text-slate-500 border border-white/8'}`}>
+                    : 'bg-white/[0.06] text-slate-400 border border-white/8'}`}>
                   {label}
                 </button>
               ))}
@@ -164,7 +164,7 @@ export default function binary_code_translator() {
               <div className="overflow-x-auto">
                 <table className="w-full text-xs">
                   <thead>
-                    <tr className="text-slate-500 text-left">
+                    <tr className="text-slate-400 text-left">
                       <th className="pb-2 pr-4 font-semibold">Char</th>
                       <th className="pb-2 pr-4 font-semibold">Decimal</th>
                       <th className="pb-2 pr-4 font-semibold">Binary</th>

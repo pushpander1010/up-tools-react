@@ -96,16 +96,16 @@ export default function instagram_best_time_to_post() {
           <div className="grid grid-cols-2 gap-4 mb-6">
             <div className="rounded-2xl bg-white/[0.04] p-4 text-center">
               <div className="text-2xl font-extrabold text-amber-400">{selected.engagement}</div>
-              <div className="text-xs text-slate-500 mt-1">Expected Engagement Boost</div>
+              <div className="text-xs text-slate-400 mt-1">Expected Engagement Boost</div>
             </div>
             <div className="rounded-2xl bg-white/[0.04] p-4 text-center">
               <div className="text-sm font-bold text-white">{selected.days}</div>
-              <div className="text-xs text-slate-500 mt-1">Best Days</div>
+              <div className="text-xs text-slate-400 mt-1">Best Days</div>
             </div>
           </div>
 
           <div className="rounded-2xl bg-black/20 p-4">
-            <div className="text-xs text-slate-500 mb-2">Optimal Posting Window</div>
+            <div className="text-xs text-slate-400 mb-2">Optimal Posting Window</div>
             <div className="text-lg font-bold text-white">{selected.times}</div>
           </div>
         </div>
@@ -116,7 +116,7 @@ export default function instagram_best_time_to_post() {
           <div className="rounded-2xl bg-white/[0.03] p-4 overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="text-slate-500">
+                <tr className="text-slate-400">
                   <th className="text-left py-2 px-2">Day</th>
                   <th className="py-2 px-2">🌅 Morning</th>
                   <th className="py-2 px-2">☀️ Afternoon</th>

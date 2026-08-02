@@ -97,7 +97,7 @@ export default function EmojiPicker() {
           ))}
         </div>
 
-        <p className="text-center text-xs text-slate-500 mt-2">
+        <p className="text-center text-xs text-slate-400 mt-2">
           {emojis.length} emojis{search ? ' found' : ''}
         </p>
       </div>

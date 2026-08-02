@@ -218,20 +218,20 @@ export default function games_memory_match() {
           <div className="flex items-center justify-between">
             <div className="text-center">
               <div className="text-2xl font-extrabold text-white">{moves}</div>
-              <div className="text-xs text-slate-500 font-medium mt-0.5">Moves</div>
+              <div className="text-xs text-slate-400 font-medium mt-0.5">Moves</div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-extrabold text-white">{matchedCount}/{totalPairs}</div>
-              <div className="text-xs text-slate-500 font-medium mt-0.5">Pairs</div>
+              <div className="text-xs text-slate-400 font-medium mt-0.5">Pairs</div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-extrabold text-white">{formatTime(timer)}</div>
-              <div className="text-xs text-slate-500 font-medium mt-0.5">Time</div>
+              <div className="text-xs text-slate-400 font-medium mt-0.5">Time</div>
             </div>
             {bestScores[difficulty] > 0 && (
               <div className="text-center">
                 <div className="text-2xl font-extrabold text-amber-400">🏆 {bestScores[difficulty]}</div>
-                <div className="text-xs text-slate-500 font-medium mt-0.5">Best</div>
+                <div className="text-xs text-slate-400 font-medium mt-0.5">Best</div>
               </div>
             )}
           </div>
@@ -279,7 +279,7 @@ export default function games_memory_match() {
           </div>
         )}
 
-        <p className="text-center text-xs text-slate-500">Click cards to flip • Find all matching pairs • Fewest moves wins</p>
+        <p className="text-center text-xs text-slate-400">Click cards to flip • Find all matching pairs • Fewest moves wins</p>
         </div>
         <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
           <GameAdSlot slot="3414612309" format="vertical" className="mt-2" width={160} height={600} />

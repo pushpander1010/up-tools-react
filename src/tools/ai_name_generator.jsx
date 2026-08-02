@@ -117,7 +117,7 @@ export default function ai_name_generator() {
                 className={`px-3 py-2 rounded-xl text-xs font-bold transition-all ${
                   nameType === t.id
                     ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30'
-                    : 'bg-white/[0.04] text-slate-500 border border-white/[0.08] hover:text-white'
+                    : 'bg-white/[0.04] text-slate-400 border border-white/[0.08] hover:text-white'
                 }`}>
                 {t.label}
               </button>
@@ -136,7 +136,7 @@ export default function ai_name_generator() {
                     className={`px-3 py-2 rounded-xl text-xs font-bold transition-all ${
                       gender === g.id
                         ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30'
-                        : 'bg-white/[0.04] text-slate-500 border border-white/[0.08] hover:text-white'
+                        : 'bg-white/[0.04] text-slate-400 border border-white/[0.08] hover:text-white'
                     }`}>
                     {g.label}
                   </button>
@@ -180,7 +180,7 @@ export default function ai_name_generator() {
         {/* Results */}
         {results.length > 0 && (
           <div ref={null} className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4">
-            <div className="text-xs text-slate-500 mb-3">{results.length} names generated. Click any to copy.</div>
+            <div className="text-xs text-slate-400 mb-3">{results.length} names generated. Click any to copy.</div>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
               {results.map((name, i) => (
                 <button key={i} onClick={() => copyName(name, i)}

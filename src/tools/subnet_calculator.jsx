@@ -190,7 +190,7 @@ export default function subnet_calculator() {
                 className="w-full bg-black/20 border-2 border-white/[0.08] rounded-xl px-3 py-2.5 text-sm font-mono outline-none focus:border-cyan-500/40 transition-all placeholder:text-slate-600" />
             </div>
           </div>
-          <div className="text-center text-xs text-slate-500">— OR use CIDR notation —</div>
+          <div className="text-center text-xs text-slate-400">— OR use CIDR notation —</div>
           <div className="flex gap-2">
             <input type="text" value={cidr} onChange={e => setCidr(e.target.value)}
               placeholder="192.168.1.0/24"
@@ -221,7 +221,7 @@ export default function subnet_calculator() {
               <div className="grid grid-cols-2 gap-2">
                 {cards.map(([label, val, color], i) => (
                   <div key={i} className="p-3 rounded-xl bg-black/20 border border-white/[0.04]">
-                    <div className="text-[10px] text-slate-500 uppercase tracking-wider">{label}</div>
+                    <div className="text-[10px] text-slate-400 uppercase tracking-wider">{label}</div>
                     <div className={`text-sm font-mono font-bold text-${color}-400`}>{val}</div>
                   </div>
                 ))}
@@ -233,7 +233,7 @@ export default function subnet_calculator() {
               <h3 className="text-sm font-bold text-slate-300 mb-3">Binary Representations</h3>
               <table className="w-full text-xs font-mono">
                 <thead>
-                  <tr className="text-slate-500 border-b border-white/[0.04]">
+                  <tr className="text-slate-400 border-b border-white/[0.04]">
                     <th className="text-left py-2 pr-3">Field</th>
                     <th className="text-left py-2 pr-3">Decimal</th>
                     <th className="text-left py-2">Binary</th>
@@ -268,7 +268,7 @@ export default function subnet_calculator() {
           <h3 className="text-sm font-bold text-slate-300 mb-3">📋 CIDR Reference Table</h3>
           <table className="w-full text-xs">
             <thead>
-              <tr className="text-slate-500 border-b border-white/[0.08]">
+              <tr className="text-slate-400 border-b border-white/[0.08]">
                 <th className="text-left py-2 pr-2">CIDR</th>
                 <th className="text-left py-2 pr-2">Mask</th>
                 <th className="text-left py-2 pr-2">Wildcard</th>

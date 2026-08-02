@@ -139,7 +139,7 @@ export default function quote_generator() {
         <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4">
           <div className="text-xs font-bold text-amber-400 uppercase tracking-wider mb-2">✨ Quote of the Day</div>
           <p className="text-sm text-slate-300 italic">"{daily.q}"</p>
-          <p className="text-xs text-slate-500 mt-1">— {daily.a}</p>
+          <p className="text-xs text-slate-400 mt-1">— {daily.a}</p>
         </div>
 
         {/* Search */}
@@ -152,12 +152,12 @@ export default function quote_generator() {
         {/* Categories */}
         <div className="flex flex-wrap gap-2">
           <button onClick={() => { setActiveCat('all'); setSearch(''); getQuote() }}
-            className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all border ${activeCat === 'all' ? 'bg-indigo-500/15 border-indigo-500/30 text-indigo-400' : 'bg-white/[0.06] border-white/[0.08] text-slate-500 hover:text-white'}`}>
+            className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all border ${activeCat === 'all' ? 'bg-indigo-500/15 border-indigo-500/30 text-indigo-400' : 'bg-white/[0.06] border-white/[0.08] text-slate-400 hover:text-white'}`}>
             All
           </button>
           {CATS.map(c => (
             <button key={c} onClick={() => { setActiveCat(c); setSearch(''); getQuote() }}
-              className={`px-3 py-1.5 rounded-xl text-xs font-semibold capitalize transition-all border ${activeCat === c ? 'bg-indigo-500/15 border-indigo-500/30 text-indigo-400' : 'bg-white/[0.06] border-white/[0.08] text-slate-500 hover:text-white'}`}>
+              className={`px-3 py-1.5 rounded-xl text-xs font-semibold capitalize transition-all border ${activeCat === c ? 'bg-indigo-500/15 border-indigo-500/30 text-indigo-400' : 'bg-white/[0.06] border-white/[0.08] text-slate-400 hover:text-white'}`}>
               {c}
             </button>
           ))}
@@ -202,7 +202,7 @@ export default function quote_generator() {
               <button key={i} onClick={() => { setCurrent(q); setSearch('') }}
                 className="w-full text-left p-3 rounded-xl bg-black/20 hover:bg-black/30 transition-all">
                 <p className="text-sm text-white truncate">"{q.q}"</p>
-                <p className="text-xs text-slate-500">— {q.a}</p>
+                <p className="text-xs text-slate-400">— {q.a}</p>
               </button>
             ))}
           </div>
@@ -217,7 +217,7 @@ export default function quote_generator() {
                 <div key={i} className="flex items-start gap-2 p-2 rounded-xl bg-black/20">
                   <div className="flex-1 min-w-0">
                     <p className="text-xs text-white truncate">"{f.q}"</p>
-                    <p className="text-xs text-slate-500">— {f.a}</p>
+                    <p className="text-xs text-slate-400">— {f.a}</p>
                   </div>
                   <button onClick={() => removeFav(i)} className="text-xs text-slate-600 hover:text-red-400">✕</button>
                 </div>

@@ -117,9 +117,9 @@ export default function fuel_cost_calculator() {
     setTimeout(() => setCopied(false), 2000)
   }, [result, dist, unit, eff, price, sym, showMonthly])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-orange-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-orange-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
   const btnActive = "bg-orange-500/15 border-orange-500/30 text-orange-400 shadow-lg shadow-orange-500/10"
-  const btnInactive = "bg-white/[0.04] border-white/6 text-slate-500 hover:border-white/12 hover:text-slate-300"
+  const btnInactive = "bg-white/[0.04] border-white/6 text-slate-400 hover:border-white/12 hover:text-slate-300"
 
   return (
     <ToolLayout
@@ -152,7 +152,7 @@ export default function fuel_cost_calculator() {
         <div className="grid grid-cols-2 gap-3">
           {/* Distance Unit */}
           <div>
-            <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-2">Distance Unit</label>
+            <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2">Distance Unit</label>
             <div className="grid grid-cols-2 gap-2">
               {UNITS.map(([u, abbr, label]) => (
                 <button key={u} onClick={() => setUnit(u)}
@@ -165,7 +165,7 @@ export default function fuel_cost_calculator() {
           </div>
           {/* Currency */}
           <div>
-            <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-2">Currency</label>
+            <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2">Currency</label>
             <div className="grid grid-cols-3 gap-2">
               {CURRENCIES.map(([s, code]) => (
                 <button key={code} onClick={() => setCurrency(s)}
@@ -190,7 +190,7 @@ export default function fuel_cost_calculator() {
                 placeholder={`Distance in ${unit}`} min="0"
                 className="w-full bg-white/[0.06] border-2 border-white/8 rounded-2xl pl-12 pr-16 py-4 text-2xl font-extrabold text-white outline-none
                   focus:border-orange-500/40 focus:bg-white/[0.05] focus:shadow-[0_0_40px_rgba(249,115,22,0.06)]
-                  transition-all duration-300 placeholder:text-slate-500 placeholder:text-base placeholder:font-semibold [color-scheme:dark]" />
+                  transition-all duration-300 placeholder:text-slate-400 placeholder:text-base placeholder:font-semibold [color-scheme:dark]" />
               <span className="absolute right-5 top-1/2 -translate-y-1/2 text-xs font-bold text-slate-600">{unit}</span>
             </div>
           </div>
@@ -203,7 +203,7 @@ export default function fuel_cost_calculator() {
                 placeholder="e.g. 18" min="0" step="0.1"
                 className="w-full bg-white/[0.06] border-2 border-white/8 rounded-2xl pl-12 pr-16 py-4 text-2xl font-extrabold text-white outline-none
                   focus:border-orange-500/40 focus:bg-white/[0.05] focus:shadow-[0_0_40px_rgba(249,115,22,0.06)]
-                  transition-all duration-300 placeholder:text-slate-500 placeholder:text-base placeholder:font-semibold [color-scheme:dark]" />
+                  transition-all duration-300 placeholder:text-slate-400 placeholder:text-base placeholder:font-semibold [color-scheme:dark]" />
               <span className="absolute right-5 top-1/2 -translate-y-1/2 text-xs font-bold text-slate-600">km/l</span>
             </div>
           </div>
@@ -216,7 +216,7 @@ export default function fuel_cost_calculator() {
                 placeholder="e.g. 105" min="0" step="0.01"
                 className="w-full bg-white/[0.06] border-2 border-white/8 rounded-2xl pl-14 pr-16 py-4 text-2xl font-extrabold text-white outline-none
                   focus:border-orange-500/40 focus:bg-white/[0.05] focus:shadow-[0_0_40px_rgba(249,115,22,0.06)]
-                  transition-all duration-300 placeholder:text-slate-500 placeholder:text-base placeholder:font-semibold [color-scheme:dark]" />
+                  transition-all duration-300 placeholder:text-slate-400 placeholder:text-base placeholder:font-semibold [color-scheme:dark]" />
               <span className="absolute right-5 top-1/2 -translate-y-1/2 text-xs font-bold text-slate-600">/L</span>
             </div>
           </div>
@@ -236,7 +236,7 @@ export default function fuel_cost_calculator() {
             </div>
             <div>
               <div className="text-sm font-bold text-white">Monthly Commute Estimator</div>
-              <div className="text-[11px] text-slate-500 mt-0.5">Calculate recurring fuel costs and savings</div>
+              <div className="text-[11px] text-slate-400 mt-0.5">Calculate recurring fuel costs and savings</div>
             </div>
           </div>
         </button>
@@ -244,13 +244,13 @@ export default function fuel_cost_calculator() {
         {showMonthly && (
           <div className="grid grid-cols-2 gap-3" style={{ animation: 'slideUp 0.3s cubic-bezier(0.4,0,0.2,1)' }}>
             <div>
-              <label className="block text-xs font-bold text-slate-500 mb-1">Working Days / Month</label>
+              <label className="block text-xs font-bold text-slate-400 mb-1">Working Days / Month</label>
               <input type="number" value={workingDays} onChange={e => setWorkingDays(e.target.value)}
                 placeholder="22" min="1" max="31"
                 className={inputClass} />
             </div>
             <div>
-              <label className="block text-xs font-bold text-slate-500 mb-1">Round Trip Distance ({unit})</label>
+              <label className="block text-xs font-bold text-slate-400 mb-1">Round Trip Distance ({unit})</label>
               <input type="number" value={roundTrip} onChange={e => setRoundTrip(e.target.value)}
                 placeholder={`Round trip ${unit}`} min="0"
                 className={inputClass} />
@@ -285,7 +285,7 @@ export default function fuel_cost_calculator() {
                 <AnimatedNumber value={result.totalCost} prefix={sym} />
               </div>
               <div className="flex items-center gap-4 mt-3">
-                <div className="text-xs text-slate-500">
+                <div className="text-xs text-slate-400">
                   {sym}{result.costPerKm.toFixed(2)} / {unit}
                 </div>
                 <div className="text-xs font-bold px-2 py-0.5 rounded-md bg-white/5 border border-white/8"
@@ -297,7 +297,7 @@ export default function fuel_cost_calculator() {
 
             {/* Fuel Gauge */}
             <div className="p-4 rounded-xl bg-white/[0.03] border border-white/5 mb-5">
-              <div className="text-xs text-slate-500 font-semibold mb-3">Fuel Gauge</div>
+              <div className="text-xs text-slate-400 font-semibold mb-3">Fuel Gauge</div>
               <div className="relative h-6 rounded-full bg-white/5 overflow-hidden">
                 <div className="absolute inset-y-0 left-0 rounded-full transition-all duration-700 ease-out"
                   style={{
@@ -327,7 +327,7 @@ export default function fuel_cost_calculator() {
                 <div key={i} className="p-3 rounded-xl bg-white/[0.04] border border-white/6">
                   <div className="text-sm mb-0.5">{item.icon}</div>
                   <div className="text-sm font-bold text-white">{item.value}</div>
-                  <div className="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">{item.label}</div>
+                  <div className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider">{item.label}</div>
                 </div>
               ))}
             </div>

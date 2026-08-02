@@ -363,7 +363,7 @@ export default function GamesSudoku() {
                     ) : pencil && pencil[r][c].size > 0 ? (
                       <div className="grid grid-cols-3 gap-0 w-full h-full leading-none">
                         {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(n => (
-                          <span key={n} className="flex items-center justify-center text-[7px] sm:text-[8px] text-slate-500">
+                          <span key={n} className="flex items-center justify-center text-[7px] sm:text-[8px] text-slate-400">
                             {pencil[r][c].has(n) ? n : ''}
                           </span>
                         ))}

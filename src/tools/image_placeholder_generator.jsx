@@ -165,11 +165,11 @@ export default function ImagePlaceholderGenerator() {
           />
           <div className="grid grid-cols-2 gap-2 mt-3">
             <div>
-              <label className="block text-[11px] text-slate-500 mb-1">HTML &lt;img&gt; tag</label>
+              <label className="block text-[11px] text-slate-400 mb-1">HTML &lt;img&gt; tag</label>
               <textarea className="w-full bg-white/[0.04] border border-white/[0.1] rounded-lg px-3 py-2 text-[11px] text-slate-300 font-mono h-[50px] resize-none focus:outline-none" readOnly value={htmlCode} onClick={e => { e.target.select(); navigator.clipboard.writeText(htmlCode) }} />
             </div>
             <div>
-              <label className="block text-[11px] text-slate-500 mb-1">Markdown</label>
+              <label className="block text-[11px] text-slate-400 mb-1">Markdown</label>
               <textarea className="w-full bg-white/[0.04] border border-white/[0.1] rounded-lg px-3 py-2 text-[11px] text-slate-300 font-mono h-[50px] resize-none focus:outline-none" readOnly value={mdCode} onClick={e => { e.target.select(); navigator.clipboard.writeText(mdCode) }} />
             </div>
           </div>

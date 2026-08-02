@@ -123,7 +123,7 @@ export default function ai_top10_stocks() {
               {MARKETS.map(m => (
                 <button key={m} onClick={() => setMarket(m)}
                   className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
-                    market === m ? 'bg-emerald-500/20 text-emerald-400' : 'text-slate-500 hover:text-white'
+                    market === m ? 'bg-emerald-500/20 text-emerald-400' : 'text-slate-400 hover:text-white'
                   }`}>
                   {m}
                 </button>
@@ -137,8 +137,8 @@ export default function ai_top10_stocks() {
             </select>
             {/* View Toggle */}
             <div className="flex gap-1 bg-black/20 rounded-xl p-1">
-              <button onClick={() => setView('cards')} className={`px-3 py-1.5 rounded-lg text-xs font-bold ${view === 'cards' ? 'bg-white/10 text-white' : 'text-slate-500'}`}>Cards</button>
-              <button onClick={() => setView('table')} className={`px-3 py-1.5 rounded-lg text-xs font-bold ${view === 'table' ? 'bg-white/10 text-white' : 'text-slate-500'}`}>Table</button>
+              <button onClick={() => setView('cards')} className={`px-3 py-1.5 rounded-lg text-xs font-bold ${view === 'cards' ? 'bg-white/10 text-white' : 'text-slate-400'}`}>Cards</button>
+              <button onClick={() => setView('table')} className={`px-3 py-1.5 rounded-lg text-xs font-bold ${view === 'table' ? 'bg-white/10 text-white' : 'text-slate-400'}`}>Table</button>
             </div>
             {/* Actions */}
             <button onClick={() => loadDaily(true)} disabled={loading}
@@ -169,7 +169,7 @@ export default function ai_top10_stocks() {
             ].map(s => (
               <div key={s.label} className="bg-white/[0.04] border border-white/[0.08] rounded-xl p-3 text-center">
                 <div className={`text-lg font-bold ${s.color}`}>{s.value}</div>
-                <div className="text-[10px] text-slate-500 mt-1">{s.label}</div>
+                <div className="text-[10px] text-slate-400 mt-1">{s.label}</div>
               </div>
             ))}
           </div>
@@ -194,12 +194,12 @@ export default function ai_top10_stocks() {
                 <div key={i} className={`bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4 space-y-3 ${rankClass(i)}`}>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${i === 0 ? 'bg-amber-500/20 text-amber-400' : i === 1 ? 'bg-slate-400/20 text-slate-300' : i === 2 ? 'bg-amber-700/20 text-amber-600' : 'bg-white/[0.06] text-slate-500'}`}>
+                      <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${i === 0 ? 'bg-amber-500/20 text-amber-400' : i === 1 ? 'bg-slate-400/20 text-slate-300' : i === 2 ? 'bg-amber-700/20 text-amber-600' : 'bg-white/[0.06] text-slate-400'}`}>
                         #{i + 1}
                       </span>
                       <div>
                         <div className="text-sm font-bold text-white">{p.symbol}</div>
-                        <div className="text-[10px] text-slate-500 truncate max-w-[140px]" title={p.name}>{p.name || '--'}</div>
+                        <div className="text-[10px] text-slate-400 truncate max-w-[140px]" title={p.name}>{p.name || '--'}</div>
                       </div>
                     </div>
                     <div className="text-right">
@@ -223,16 +223,16 @@ export default function ai_top10_stocks() {
                     </span>
                   </div>
                   <div className="grid grid-cols-3 gap-2 text-center">
-                    <div><div className="text-[10px] text-slate-500">Entry</div><div className="text-xs font-bold text-blue-400">{fmt(plan.entry)}</div></div>
-                    <div><div className="text-[10px] text-slate-500">T1 / T2</div><div className="text-xs font-bold text-emerald-400">{fmt(plan.t1)} / {fmt(plan.t2)}</div></div>
-                    <div><div className="text-[10px] text-slate-500">Stop</div><div className="text-xs font-bold text-red-400">{fmt(plan.stop)}</div></div>
+                    <div><div className="text-[10px] text-slate-400">Entry</div><div className="text-xs font-bold text-blue-400">{fmt(plan.entry)}</div></div>
+                    <div><div className="text-[10px] text-slate-400">T1 / T2</div><div className="text-xs font-bold text-emerald-400">{fmt(plan.t1)} / {fmt(plan.t2)}</div></div>
+                    <div><div className="text-[10px] text-slate-400">Stop</div><div className="text-xs font-bold text-red-400">{fmt(plan.stop)}</div></div>
                   </div>
                   {metrics.volumeShock > 0 && (
-                    <div className="text-[10px] text-slate-500">
+                    <div className="text-[10px] text-slate-400">
                       Vol {fmtShock(metrics.volumeShock)} — {fmtVol(metrics.lastVolume)} / avg {fmtVol(metrics.averageVolume)}
                     </div>
                   )}
-                  {p.why && <div className="text-[10px] text-slate-500 leading-relaxed">{p.why}</div>}
+                  {p.why && <div className="text-[10px] text-slate-400 leading-relaxed">{p.why}</div>}
                 </div>
               )
             })}
@@ -244,7 +244,7 @@ export default function ai_top10_stocks() {
           <div className="overflow-x-auto bg-white/[0.06] border border-white/[0.08] rounded-2xl">
             <table className="w-full text-xs">
               <thead>
-                <tr className="text-slate-500 border-b border-white/[0.08]">
+                <tr className="text-slate-400 border-b border-white/[0.08]">
                   <th className="px-3 py-2 text-left">#</th>
                   <th className="px-3 py-2 text-left">Symbol</th>
                   <th className="px-3 py-2 text-left">Name</th>
@@ -266,7 +266,7 @@ export default function ai_top10_stocks() {
                   const v = verdictInfo(scores.total || 0)
                   return (
                     <tr key={i} className="border-b border-white/[0.04] hover:bg-white/[0.02]">
-                      <td className="px-3 py-2 text-slate-500">{i + 1}</td>
+                      <td className="px-3 py-2 text-slate-400">{i + 1}</td>
                       <td className="px-3 py-2 font-bold text-white">{p.symbol}</td>
                       <td className="px-3 py-2 text-slate-400 truncate max-w-[120px]" title={p.name}>{p.name || '--'}</td>
                       <td className="px-3 py-2 text-right text-white">{fmtPrice(p.price, p.currency)}</td>

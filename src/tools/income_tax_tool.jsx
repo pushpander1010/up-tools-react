@@ -26,7 +26,7 @@ const fmt = (n) => '₹' + Math.round(n).toLocaleString('en-IN')
 function Field({ label, value, onChange, placeholder }) {
   return (
     <div>
-      <label className="block text-xs font-semibold text-slate-500 mb-1.5">{label}</label>
+      <label className="block text-xs font-semibold text-slate-400 mb-1.5">{label}</label>
       <input type="number" value={value} onChange={e => onChange(e.target.value)} placeholder={placeholder || '0'}
         className="w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-3 text-sm text-white font-semibold outline-none focus:border-brand/40 transition-all duration-200 placeholder:text-slate-600" />
     </div>
@@ -131,7 +131,7 @@ export default function income_tax_tool() {
             </div>
             <div>
               <div className="text-sm font-bold text-white">Standard Deduction — ₹50,000</div>
-              <div className="text-[11px] text-slate-500">Available in both old and new regimes</div>
+              <div className="text-[11px] text-slate-400">Available in both old and new regimes</div>
             </div>
           </div>
         </button>
@@ -156,7 +156,7 @@ export default function income_tax_tool() {
             </div>
             <button onClick={() => setHra(h => ({ ...h, metro: !h.metro }))}
               className={`mt-3 flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold transition-all border
-                ${hra.metro ? 'bg-purple-500/10 border-purple-500/25 text-purple-400' : 'bg-white/[0.06] border-white/8 text-slate-500 hover:border-white/12'}`}>
+                ${hra.metro ? 'bg-purple-500/10 border-purple-500/25 text-purple-400' : 'bg-white/[0.06] border-white/8 text-slate-400 hover:border-white/12'}`}>
               <div className={`w-3.5 h-3.5 rounded-sm flex items-center justify-center text-[9px] font-bold ${hra.metro ? 'bg-purple-500 text-white' : 'bg-white/10 text-transparent'}`}>
                 {hra.metro && '✓'}
               </div>
@@ -170,7 +170,7 @@ export default function income_tax_tool() {
           <div className="space-y-4" style={{ animation: 'slideUp 0.35s ease-out' }}>
             {/* Winner Banner */}
             <div className={`p-5 rounded-2xl border-2 text-center ${result.better === 'new' ? 'bg-brand/5 border-brand/20' : 'bg-green-500/5 border-green-500/20'}`}>
-              <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider mb-1">Better Regime</div>
+              <div className="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-1">Better Regime</div>
               <div className="text-2xl font-extrabold gradient-text">{result.better === 'new' ? 'New Regime' : 'Old Regime'}</div>
               <div className="text-green-400 font-bold mt-1">You save {fmt(result.saving)}</div>
             </div>
@@ -187,10 +187,10 @@ export default function income_tax_tool() {
                     {regime.better && <span className="text-[10px] font-bold bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full">BETTER</span>}
                   </div>
                   <div className="space-y-2">
-                    <div className="flex justify-between text-xs"><span className="text-slate-500">Taxable Income</span><span className="text-white font-medium">{fmt(regime.taxable)}</span></div>
-                    <div className="flex justify-between text-xs"><span className="text-slate-500">Tax</span><span className="text-white font-medium">{fmt(regime.data.tax)}</span></div>
-                    {regime.data.surcharge > 0 && <div className="flex justify-between text-xs"><span className="text-slate-500">Surcharge</span><span className="text-white font-medium">{fmt(regime.data.surcharge)}</span></div>}
-                    <div className="flex justify-between text-xs"><span className="text-slate-500">Cess (4%)</span><span className="text-white font-medium">{fmt(regime.data.cess)}</span></div>
+                    <div className="flex justify-between text-xs"><span className="text-slate-400">Taxable Income</span><span className="text-white font-medium">{fmt(regime.taxable)}</span></div>
+                    <div className="flex justify-between text-xs"><span className="text-slate-400">Tax</span><span className="text-white font-medium">{fmt(regime.data.tax)}</span></div>
+                    {regime.data.surcharge > 0 && <div className="flex justify-between text-xs"><span className="text-slate-400">Surcharge</span><span className="text-white font-medium">{fmt(regime.data.surcharge)}</span></div>}
+                    <div className="flex justify-between text-xs"><span className="text-slate-400">Cess (4%)</span><span className="text-white font-medium">{fmt(regime.data.cess)}</span></div>
                     <div className="flex justify-between text-sm font-bold pt-2 border-t border-white/8">
                       <span className="text-white">Total Tax</span>
                       <span className={regime.better ? (regime.color === 'brand' ? 'text-brand-light' : 'text-emerald-400') : 'text-slate-300'}>{fmt(regime.total)}</span>

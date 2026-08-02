@@ -88,7 +88,7 @@ export default function instagram_fake_follower_checker() {
 
   const riskColor = { high: '#ef4444', medium: '#f59e0b', low: '#22c55e' }
   const riskBg = { high: 'rgba(239,68,68,0.12)', medium: 'rgba(245,158,11,0.12)', low: 'rgba(34,197,94,0.12)' }
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -138,19 +138,19 @@ export default function instagram_fake_follower_checker() {
             <div className="grid grid-cols-4 gap-3">
               <div className="text-center p-3 bg-black/20 rounded-xl">
                 <div className="text-xl font-extrabold text-white">{stats.total}</div>
-                <div className="text-xs text-slate-500">Total</div>
+                <div className="text-xs text-slate-400">Total</div>
               </div>
               <div className="text-center p-3 rounded-xl" style={{ background: riskBg.high }}>
                 <div className="text-xl font-extrabold" style={{ color: riskColor.high }}>{stats.high}</div>
-                <div className="text-xs text-slate-500">High Risk</div>
+                <div className="text-xs text-slate-400">High Risk</div>
               </div>
               <div className="text-center p-3 rounded-xl" style={{ background: riskBg.medium }}>
                 <div className="text-xl font-extrabold" style={{ color: riskColor.medium }}>{stats.medium}</div>
-                <div className="text-xs text-slate-500">Medium</div>
+                <div className="text-xs text-slate-400">Medium</div>
               </div>
               <div className="text-center p-3 rounded-xl" style={{ background: riskBg.low }}>
                 <div className="text-xl font-extrabold" style={{ color: riskColor.low }}>{stats.low}</div>
-                <div className="text-xs text-slate-500">Low Risk</div>
+                <div className="text-xs text-slate-400">Low Risk</div>
               </div>
             </div>
 

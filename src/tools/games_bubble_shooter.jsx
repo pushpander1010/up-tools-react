@@ -581,11 +581,11 @@ export default function games_bubble_shooter() {
             <div className="grid grid-cols-2 gap-4">
               <div className="text-center">
                 <div className="text-2xl font-extrabold text-white">{score}</div>
-                <div className="text-xs text-slate-500 font-medium">Score</div>
+                <div className="text-xs text-slate-400 font-medium">Score</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-extrabold text-cyan-400">{best}</div>
-                <div className="text-xs text-slate-500 font-medium">Best</div>
+                <div className="text-xs text-slate-400 font-medium">Best</div>
               </div>
             </div>
           </div>
@@ -604,7 +604,7 @@ export default function games_bubble_shooter() {
               style={{background:'#0f172a', touchAction:'none'}} />
           </div>
 
-          <p className="text-center text-xs text-slate-500">
+          <p className="text-center text-xs text-slate-400">
             Desktop: Move mouse to aim, click to shoot | Mobile: Touch to aim & shoot
           </p>
 

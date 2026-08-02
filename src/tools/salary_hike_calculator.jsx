@@ -22,7 +22,7 @@ export default function salary_hike_calculator() {
     }
   }, [current, hike])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-4 py-3 text-white text-sm font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-4 py-3 text-white text-sm font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -62,7 +62,7 @@ export default function salary_hike_calculator() {
             <div className="flex gap-1.5 mt-2">
               {[10, 15, 20, 30, 50].map(h => (
                 <button key={h} onClick={() => setHikePercent(String(h))}
-                  className="text-[10px] px-2 py-1 rounded-lg bg-white/[0.06] text-slate-500 hover:text-white hover:bg-white/[0.1] transition-all font-semibold">
+                  className="text-[10px] px-2 py-1 rounded-lg bg-white/[0.06] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all font-semibold">
                   {h}%
                 </button>
               ))}
@@ -99,15 +99,15 @@ export default function salary_hike_calculator() {
             <div className="grid grid-cols-3 gap-2 mt-4">
               <div className="p-2.5 rounded-xl bg-black/20 border border-white/[0.05] text-center">
                 <div className="text-sm font-extrabold text-white">{fmt(result.newMonthly)}</div>
-                <div className="text-[10px] text-slate-500 uppercase font-bold">Monthly</div>
+                <div className="text-[10px] text-slate-400 uppercase font-bold">Monthly</div>
               </div>
               <div className="p-2.5 rounded-xl bg-black/20 border border-white/[0.05] text-center">
                 <div className="text-sm font-extrabold text-white">{fmt(result.newWeekly)}</div>
-                <div className="text-[10px] text-slate-500 uppercase font-bold">Weekly</div>
+                <div className="text-[10px] text-slate-400 uppercase font-bold">Weekly</div>
               </div>
               <div className="p-2.5 rounded-xl bg-black/20 border border-white/[0.05] text-center">
                 <div className="text-sm font-extrabold text-white">{fmt(result.newDaily)}</div>
-                <div className="text-[10px] text-slate-500 uppercase font-bold">Daily</div>
+                <div className="text-[10px] text-slate-400 uppercase font-bold">Daily</div>
               </div>
             </div>
           </div>

@@ -103,7 +103,7 @@ export default function drug_information_tool() {
         }) }} />
       </Helmet>
 
-      <nav className="flex items-center gap-2 text-xs text-slate-500 mb-5" aria-label="Breadcrumb">
+      <nav className="flex items-center gap-2 text-xs text-slate-400 mb-5" aria-label="Breadcrumb">
         <Link to="/" className="hover:text-white transition-colors">Home</Link>
         <span className="text-slate-700">›</span>
         <span className="text-slate-300 font-medium">Medicine Lookup</span>
@@ -142,7 +142,7 @@ export default function drug_information_tool() {
               {loading ? '...' : '🔍 Search'}
             </button>
           </form>
-          <p className="text-xs text-slate-500 mt-2">Try: ibuprofen, amoxicillin, metformin, omeprazole, aspirin, sildenafil</p>
+          <p className="text-xs text-slate-400 mt-2">Try: ibuprofen, amoxicillin, metformin, omeprazole, aspirin, sildenafil</p>
         </div>
 
         {error && (
@@ -170,7 +170,7 @@ export default function drug_information_tool() {
                     className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${isActive ? 'bg-green-500/20 text-green-400 border border-green-500/30' : 'bg-white/5 text-slate-400 border border-white/5 hover:bg-white/10'}`}
                   >
                     {brand}
-                    {generic && <span className="text-slate-500 ml-1">({generic})</span>}
+                    {generic && <span className="text-slate-400 ml-1">({generic})</span>}
                   </button>
                 )
               })}
@@ -212,7 +212,7 @@ export default function drug_information_tool() {
                     <button
                       key={f.key}
                       onClick={() => setActiveTab(f.key)}
-                      className={`px-2.5 py-1 rounded-lg text-xs font-medium transition-all ${activeTab === f.key ? 'bg-white/10 text-white border border-white/10' : 'text-slate-500 hover:text-slate-300'}`}
+                      className={`px-2.5 py-1 rounded-lg text-xs font-medium transition-all ${activeTab === f.key ? 'bg-white/10 text-white border border-white/10' : 'text-slate-400 hover:text-slate-300'}`}
                     >
                       {f.icon} {f.label}
                     </button>
@@ -223,7 +223,7 @@ export default function drug_information_tool() {
                 {(() => {
                   const field = FIELDS.find(f => f.key === activeTab)
                   const value = getFieldValue(selected, activeTab)
-                  if (!value) return <p className="text-sm text-slate-500">No data available for this section.</p>
+                  if (!value) return <p className="text-sm text-slate-400">No data available for this section.</p>
                   return (
                     <div className="bg-white/5 rounded-xl p-4">
                       <h4 className="text-sm font-semibold text-white mb-2">{field?.icon} {field?.label}</h4>
@@ -244,7 +244,7 @@ export default function drug_information_tool() {
           { q: 'Why can\'t I find my medicine?', a: 'OpenFDA primarily covers US-approved drugs. If your medicine isn\'t found, try searching by its generic/ingredient name instead of brand name.' },
         ]} />
 
-        <p className="text-center text-xs text-slate-500">
+        <p className="text-center text-xs text-slate-400">
           Data from <a href="https://open.fda.gov" target="_blank" rel="noopener" className="text-green-400 hover:underline">OpenFDA</a> — for informational purposes only. Not medical advice.
         </p>
       </div>

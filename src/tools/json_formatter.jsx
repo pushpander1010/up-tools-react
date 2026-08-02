@@ -102,16 +102,16 @@ export default function json_formatter() {
         {/* Tabs */}
         <div className="flex gap-2">
           <button onClick={() => setView('input')}
-            className={`px-4 py-2 rounded-xl text-sm font-bold transition-all ${view === 'input' ? 'bg-cyan-500/15 text-cyan-400 border border-cyan-500/30' : 'bg-white/[0.06] text-slate-500 border border-white/8'}`}>
+            className={`px-4 py-2 rounded-xl text-sm font-bold transition-all ${view === 'input' ? 'bg-cyan-500/15 text-cyan-400 border border-cyan-500/30' : 'bg-white/[0.06] text-slate-400 border border-white/8'}`}>
             Input
           </button>
           <button onClick={() => setView('output')} disabled={!output}
-            className={`px-4 py-2 rounded-xl text-sm font-bold transition-all ${view === 'output' ? 'bg-cyan-500/15 text-cyan-400 border border-cyan-500/30' : 'bg-white/[0.06] text-slate-500 border border-white/8 disabled:opacity-30'}`}>
+            className={`px-4 py-2 rounded-xl text-sm font-bold transition-all ${view === 'output' ? 'bg-cyan-500/15 text-cyan-400 border border-cyan-500/30' : 'bg-white/[0.06] text-slate-400 border border-white/8 disabled:opacity-30'}`}>
             Output
           </button>
           <div className="flex-1" />
           <div className="flex items-center gap-2">
-            <label className="text-xs text-slate-500">Indent:</label>
+            <label className="text-xs text-slate-400">Indent:</label>
             <select value={indent} onChange={e => setIndent(Number(e.target.value))}
               className="bg-white/[0.06] border border-white/8 rounded-lg px-2 py-1 text-xs text-white outline-none">
               <option value={2}>2</option>

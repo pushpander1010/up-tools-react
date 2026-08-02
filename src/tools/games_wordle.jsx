@@ -463,7 +463,7 @@ export default function games_wordle() {
                 { val: stats.played ? Math.round(stats.won/stats.played*100) : 0, label: 'Win %' },
                 { val: stats.streak, label: 'Streak' },
                 { val: stats.maxStreak, label: 'Max Streak' },
-              ].map(s => <div key={s.label}><div className="text-xl font-bold text-white">{s.val}</div><div className="text-xs text-slate-500">{s.label}</div></div>)}
+              ].map(s => <div key={s.label}><div className="text-xl font-bold text-white">{s.val}</div><div className="text-xs text-slate-400">{s.label}</div></div>)}
             </div>
             <div>
               <h4 className="text-sm font-bold text-white mb-2">Guess Distribution</h4>

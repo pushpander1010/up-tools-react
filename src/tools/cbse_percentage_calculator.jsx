@@ -166,19 +166,19 @@ export default function cbse_percentage_calculator() {
           <div ref={resultRef} className="space-y-4">
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
               <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4 text-center">
-                <div className="text-xs text-slate-500 mb-1">Total</div>
+                <div className="text-xs text-slate-400 mb-1">Total</div>
                 <div className="text-lg font-bold text-white">{result.total}/{result.max}</div>
               </div>
               <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4 text-center">
-                <div className="text-xs text-slate-500 mb-1">Percentage</div>
+                <div className="text-xs text-slate-400 mb-1">Percentage</div>
                 <div className="text-lg font-bold text-indigo-400">{result.percentage}%</div>
               </div>
               <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4 text-center">
-                <div className="text-xs text-slate-500 mb-1">Average</div>
+                <div className="text-xs text-slate-400 mb-1">Average</div>
                 <div className="text-lg font-bold text-white">{result.average}</div>
               </div>
               <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4 text-center">
-                <div className="text-xs text-slate-500 mb-1">Grade</div>
+                <div className="text-xs text-slate-400 mb-1">Grade</div>
                 <div className="text-lg font-bold text-emerald-400">{result.grade}</div>
               </div>
             </div>
@@ -191,7 +191,7 @@ export default function cbse_percentage_calculator() {
                   <div key={i} className="flex items-center justify-between py-2 border-b border-white/[0.04]">
                     <div className="flex-1">
                       <span className="text-sm text-white">{s.name}</span>
-                      <span className="text-xs text-slate-500 ml-2">{s.marks}/{s.max}</span>
+                      <span className="text-xs text-slate-400 ml-2">{s.marks}/{s.max}</span>
                     </div>
                     <div className="flex items-center gap-3">
                       <span className="text-xs text-slate-400">{s.pct}%</span>

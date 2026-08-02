@@ -105,7 +105,7 @@ export default function wifi_router() {
         <div className="flex gap-2">
           {[['passwords', '🔑 Passwords'], ['qrcode', '📳 Wi-Fi QR'], ['mac', '🔍 MAC Lookup']].map(([k, l]) => (
             <button key={k} onClick={() => setTab(k)}
-              className={`flex-1 py-2.5 rounded-xl text-xs font-bold transition-all ${tab === k ? 'bg-indigo-500/20 text-indigo-400 border border-indigo-500/30' : 'bg-white/[0.06] text-slate-500 border border-white/[0.08]'}`}>
+              className={`flex-1 py-2.5 rounded-xl text-xs font-bold transition-all ${tab === k ? 'bg-indigo-500/20 text-indigo-400 border border-indigo-500/30' : 'bg-white/[0.06] text-slate-400 border border-white/[0.08]'}`}>
               {l}
             </button>
           ))}
@@ -117,18 +117,18 @@ export default function wifi_router() {
             <div className="flex gap-2">
               <input type="text" value={search} onChange={e => setSearch(e.target.value)}
                 placeholder="Search brand, model..."
-                className="flex-1 bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-4 py-2.5 text-sm text-white outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-500" />
+                className="flex-1 bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-4 py-2.5 text-sm text-white outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-400" />
               <select value={brandFilter} onChange={e => setBrandFilter(e.target.value)}
                 className="bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-3 py-2.5 text-sm text-white outline-none">
                 <option value="">All Brands</option>
                 {BRANDS.map(b => <option key={b} value={b}>{b}</option>)}
               </select>
             </div>
-            <div className="text-xs text-slate-500">{filtered.length} router{filtered.length !== 1 ? 's' : ''}</div>
+            <div className="text-xs text-slate-400">{filtered.length} router{filtered.length !== 1 ? 's' : ''}</div>
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="text-xs text-slate-500 border-b border-white/[0.06]">
+                  <tr className="text-xs text-slate-400 border-b border-white/[0.06]">
                     <th className="text-left py-2 px-3 font-semibold">Brand</th>
                     <th className="text-left py-2 px-3 font-semibold">Model</th>
                     <th className="text-left py-2 px-3 font-semibold">Username</th>
@@ -143,7 +143,7 @@ export default function wifi_router() {
                       <td className="py-2.5 px-3 text-slate-300">{r.model}</td>
                       <td className="py-2.5 px-3 font-mono text-cyan-400">{r.user || '—'}</td>
                       <td className="py-2.5 px-3 font-mono text-amber-400">{r.pass || '(empty)'}</td>
-                      <td className="py-2.5 px-3 text-xs text-slate-500">{r.url}</td>
+                      <td className="py-2.5 px-3 text-xs text-slate-400">{r.url}</td>
                     </tr>
                   ))}
                 </tbody>

@@ -79,7 +79,7 @@ export default function world_clock() {
                   <div className="text-lg mb-1">{c.emoji}</div>
                   <div className="text-xs font-semibold text-slate-300 mb-2">{c.name}</div>
                   <div className="text-xl font-extrabold text-white font-mono">{times[c.tz] || '--:--:--'}</div>
-                  <div className="text-[10px] text-slate-500 mt-1">{c.label}</div>
+                  <div className="text-[10px] text-slate-400 mt-1">{c.label}</div>
                 </div>
               ))}
             </div>

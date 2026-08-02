@@ -193,7 +193,7 @@ export default function calorie_calculator() {
                 placeholder="25" min="1" max="120"
                 className="w-full bg-white/[0.06] border-2 border-white/8 rounded-2xl px-4 py-4 text-2xl font-bold text-white outline-none text-center
                   focus:border-red-500/40 focus:bg-white/[0.05] focus:shadow-[0_0_30px_rgba(239,68,68,0.06)]
-                  transition-all duration-300 placeholder:text-slate-500"
+                  transition-all duration-300 placeholder:text-slate-400"
               />
               <span className="absolute right-3 bottom-2 text-[10px] text-slate-600">yrs</span>
             </div>
@@ -206,7 +206,7 @@ export default function calorie_calculator() {
                 placeholder="70" step="0.1"
                 className="w-full bg-white/[0.06] border-2 border-white/8 rounded-2xl px-4 py-4 text-2xl font-bold text-white outline-none text-center
                   focus:border-red-500/40 focus:bg-white/[0.05] focus:shadow-[0_0_30px_rgba(239,68,68,0.06)]
-                  transition-all duration-300 placeholder:text-slate-500"
+                  transition-all duration-300 placeholder:text-slate-400"
               />
               <span className="absolute right-3 bottom-2 text-[10px] text-slate-600">kg</span>
             </div>
@@ -219,7 +219,7 @@ export default function calorie_calculator() {
                 placeholder="175" step="0.1"
                 className="w-full bg-white/[0.06] border-2 border-white/8 rounded-2xl px-4 py-4 text-2xl font-bold text-white outline-none text-center
                   focus:border-red-500/40 focus:bg-white/[0.05] focus:shadow-[0_0_30px_rgba(239,68,68,0.06)]
-                  transition-all duration-300 placeholder:text-slate-500"
+                  transition-all duration-300 placeholder:text-slate-400"
               />
               <span className="absolute right-3 bottom-2 text-[10px] text-slate-600">cm</span>
             </div>
@@ -295,11 +295,11 @@ export default function calorie_calculator() {
                   </svg>
                   <div className="absolute inset-0 flex flex-col items-center justify-center">
                     <span className="text-2xl font-extrabold text-white"><AnimatedNumber value={result.bmr} /></span>
-                    <span className="text-[10px] text-slate-500">kcal</span>
+                    <span className="text-[10px] text-slate-400">kcal</span>
                   </div>
                 </div>
                 <div className="text-xs font-bold text-slate-300">BMR</div>
-                <div className="text-[10px] text-slate-500">Basal Metabolic Rate</div>
+                <div className="text-[10px] text-slate-400">Basal Metabolic Rate</div>
               </div>
 
               {/* TDEE Circle */}
@@ -314,11 +314,11 @@ export default function calorie_calculator() {
                   </svg>
                   <div className="absolute inset-0 flex flex-col items-center justify-center">
                     <span className="text-2xl font-extrabold text-white"><AnimatedNumber value={result.tdee} /></span>
-                    <span className="text-[10px] text-slate-500">kcal</span>
+                    <span className="text-[10px] text-slate-400">kcal</span>
                   </div>
                 </div>
                 <div className="text-xs font-bold text-slate-300">TDEE</div>
-                <div className="text-[10px] text-slate-500">Total Daily Expenditure</div>
+                <div className="text-[10px] text-slate-400">Total Daily Expenditure</div>
               </div>
             </div>
 
@@ -327,19 +327,19 @@ export default function calorie_calculator() {
               <div className="p-4 rounded-2xl bg-blue-500/10 border border-blue-500/15 text-center">
                 <div className="text-[10px] text-blue-400 uppercase font-bold tracking-wider mb-1">Weight Loss</div>
                 <div className="text-xl font-extrabold text-blue-400"><AnimatedNumber value={result.weightLoss} /></div>
-                <div className="text-[10px] text-slate-500">kcal/day</div>
+                <div className="text-[10px] text-slate-400">kcal/day</div>
                 <div className="text-[9px] text-blue-400/60 mt-1">~0.5 kg/week</div>
               </div>
               <div className="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/15 text-center">
                 <div className="text-[10px] text-emerald-400 uppercase font-bold tracking-wider mb-1">Maintain</div>
                 <div className="text-xl font-extrabold text-emerald-400"><AnimatedNumber value={result.tdee} /></div>
-                <div className="text-[10px] text-slate-500">kcal/day</div>
+                <div className="text-[10px] text-slate-400">kcal/day</div>
                 <div className="text-[9px] text-emerald-400/60 mt-1">Current weight</div>
               </div>
               <div className="p-4 rounded-2xl bg-rose-500/10 border border-rose-500/15 text-center">
                 <div className="text-[10px] text-rose-400 uppercase font-bold tracking-wider mb-1">Weight Gain</div>
                 <div className="text-xl font-extrabold text-rose-400"><AnimatedNumber value={result.weightGain} /></div>
-                <div className="text-[10px] text-slate-500">kcal/day</div>
+                <div className="text-[10px] text-slate-400">kcal/day</div>
                 <div className="text-[9px] text-rose-400/60 mt-1">~0.5 kg/week</div>
               </div>
             </div>
@@ -348,14 +348,14 @@ export default function calorie_calculator() {
             <div className="p-5 rounded-2xl bg-white/[0.04] border border-white/8 mb-5">
               <div className="flex items-center justify-between mb-3">
                 <div>
-                  <span className="text-xs text-slate-500">Your BMI</span>
+                  <span className="text-xs text-slate-400">Your BMI</span>
                   <div className="flex items-baseline gap-2">
                     <span className="text-2xl font-extrabold text-white">{result.bmi}</span>
                     <span className={`text-xs font-bold ${colorMap[result.bmiColor]}`}>{result.bmiCategory}</span>
                   </div>
                 </div>
                 <div className="text-right">
-                  <span className="text-xs text-slate-500">Ideal Weight</span>
+                  <span className="text-xs text-slate-400">Ideal Weight</span>
                   <div className="text-lg font-bold text-white">{result.idealWeightLow}–{result.idealWeightHigh} kg</div>
                 </div>
               </div>
@@ -388,15 +388,15 @@ export default function calorie_calculator() {
               <div className="grid grid-cols-3 gap-3">
                 <div className="text-center">
                   <div className="text-lg font-extrabold text-indigo-400">{result.proteinGrams}g</div>
-                  <div className="text-[10px] text-slate-500">Protein</div>
+                  <div className="text-[10px] text-slate-400">Protein</div>
                 </div>
                 <div className="text-center">
                   <div className="text-lg font-extrabold text-emerald-400">{result.carbsGrams}g</div>
-                  <div className="text-[10px] text-slate-500">Carbs</div>
+                  <div className="text-[10px] text-slate-400">Carbs</div>
                 </div>
                 <div className="text-center">
                   <div className="text-lg font-extrabold text-amber-400">{result.fatGrams}g</div>
-                  <div className="text-[10px] text-slate-500">Fat</div>
+                  <div className="text-[10px] text-slate-400">Fat</div>
                 </div>
               </div>
             </div>

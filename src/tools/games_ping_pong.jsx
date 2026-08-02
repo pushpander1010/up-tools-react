@@ -343,11 +343,11 @@ export default function games_ping_pong() {
         <div className="flex gap-2 items-center flex-wrap">
           <label className="text-sm font-semibold text-slate-300">Mode:</label>
           <button onClick={() => setGameMode('ai')}
-            className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all ${gameMode === 'ai' ? 'bg-indigo-500/15 text-indigo-400 border border-indigo-500/30' : 'bg-white/[0.06] text-slate-500 border border-white/[0.08] hover:bg-white/[0.1]'}`}>
+            className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all ${gameMode === 'ai' ? 'bg-indigo-500/15 text-indigo-400 border border-indigo-500/30' : 'bg-white/[0.06] text-slate-400 border border-white/[0.08] hover:bg-white/[0.1]'}`}>
             vs AI
           </button>
           <button onClick={() => setGameMode('local')}
-            className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all ${gameMode === 'local' ? 'bg-indigo-500/15 text-indigo-400 border border-indigo-500/30' : 'bg-white/[0.06] text-slate-500 border border-white/[0.08] hover:bg-white/[0.1]'}`}>
+            className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all ${gameMode === 'local' ? 'bg-indigo-500/15 text-indigo-400 border border-indigo-500/30' : 'bg-white/[0.06] text-slate-400 border border-white/[0.08] hover:bg-white/[0.1]'}`}>
             2 Players
           </button>
 
@@ -356,7 +356,7 @@ export default function games_ping_pong() {
               <label className="text-sm text-slate-400">Difficulty:</label>
               {['easy', 'medium', 'hard'].map(d => (
                 <button key={d} onClick={() => setDifficulty(d)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${difficulty === d ? 'bg-indigo-500/15 text-indigo-400 border border-indigo-500/30' : 'bg-white/[0.06] text-slate-500 border border-white/[0.08] hover:bg-white/[0.1]'}`}>
+                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${difficulty === d ? 'bg-indigo-500/15 text-indigo-400 border border-indigo-500/30' : 'bg-white/[0.06] text-slate-400 border border-white/[0.08] hover:bg-white/[0.1]'}`}>
                   {d.charAt(0).toUpperCase() + d.slice(1)}
                 </button>
               ))}
@@ -387,7 +387,7 @@ export default function games_ping_pong() {
         </div>
 
         {/* Controls hint */}
-        <div className="flex gap-2 justify-center flex-wrap text-xs text-slate-500">
+        <div className="flex gap-2 justify-center flex-wrap text-xs text-slate-400">
           {gameMode === 'ai' ? (
             <>
               <span className="px-3 py-1 bg-white/[0.04] rounded-full">W / ▲ — Move Up</span>

@@ -187,7 +187,7 @@ export default function crypto_prices() {
               { label: 'ETH Price', value: ethPrice ? fmt(ethPrice, currency) : '—', color: 'text-cyan-400' },
             ].map((k, i) => (
               <div key={i} className="rounded-2xl border-2 border-white/8 bg-white/[0.04] p-4">
-                <div className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">{k.label}</div>
+                <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">{k.label}</div>
                 <div className={`text-sm font-extrabold ${k.color}`}>{k.value}</div>
               </div>
             ))}
@@ -197,7 +197,7 @@ export default function crypto_prices() {
         {/* Controls */}
         <div className="flex flex-col sm:flex-row gap-3">
           <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search coins..."
-            className="flex-1 bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-2.5 text-sm text-white font-medium outline-none focus:border-amber-500/40 transition-all placeholder:text-slate-500" />
+            className="flex-1 bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-2.5 text-sm text-white font-medium outline-none focus:border-amber-500/40 transition-all placeholder:text-slate-400" />
           <div className="flex gap-2">
             {Object.keys(CURRENCIES).map(c => (
               <button key={c} onClick={() => setCurrency(c)}
@@ -214,7 +214,7 @@ export default function crypto_prices() {
           {[['all', 'All'], ['gainers', '🚀 Gainers'], ['losers', '📉 Losers'], ['watchlist', '⭐ Watchlist']].map(([val, label]) => (
             <button key={val} onClick={() => setTab(val)}
               className={`px-4 py-2 rounded-xl text-xs font-bold transition-all
-                ${tab === val ? 'bg-amber-500/15 text-amber-400 border border-amber-500/25' : 'bg-white/[0.04] text-slate-500 border border-white/5 hover:text-white'}`}>
+                ${tab === val ? 'bg-amber-500/15 text-amber-400 border border-amber-500/25' : 'bg-white/[0.04] text-slate-400 border border-white/5 hover:text-white'}`}>
               {label}
             </button>
           ))}
@@ -223,7 +223,7 @@ export default function crypto_prices() {
         {/* Table */}
         <div className="rounded-3xl border-2 border-white/8 bg-white/[0.03] overflow-hidden">
           {/* Header */}
-          <div className="flex items-center gap-4 px-4 py-3 border-b border-white/8 text-[10px] font-bold text-slate-500 uppercase tracking-wider">
+          <div className="flex items-center gap-4 px-4 py-3 border-b border-white/8 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
             <div className="w-8">#</div>
             <div className="w-5"></div>
             <div className="flex-1"><SortBtn k="name">Coin</SortBtn></div>
@@ -252,14 +252,14 @@ export default function crypto_prices() {
                 <div key={c.id}
                   className={`flex items-center gap-4 px-4 py-3 border-b border-white/5 hover:bg-white/[0.03] transition-all duration-200
                     ${flash === 'up' ? 'bg-emerald-500/8' : flash === 'down' ? 'bg-red-500/8' : ''}`}>
-                  <div className="w-8 text-xs text-slate-500 font-medium">{c.market_cap_rank}</div>
+                  <div className="w-8 text-xs text-slate-400 font-medium">{c.market_cap_rank}</div>
                   <button onClick={() => toggleWatch(c.id)} className="w-5 text-center">
                     {watchlist.includes(c.id) ? '⭐' : <span className="text-white/10 hover:text-white/30 transition-colors">☆</span>}
                   </button>
                   <div className="flex items-center gap-2.5 flex-1 min-w-0">
                     <img src={c.image} alt="" className="w-6 h-6 rounded-full object-cover border border-white/10" loading="lazy" />
                     <span className="text-sm font-bold text-white truncate">{c.name}</span>
-                    <span className="text-[10px] font-semibold text-slate-500 uppercase">{c.symbol}</span>
+                    <span className="text-[10px] font-semibold text-slate-400 uppercase">{c.symbol}</span>
                   </div>
                   <div className="w-24 text-right text-sm font-bold text-white">{fmt(c.current_price, currency)}</div>
                   <div className={`w-16 text-right text-xs font-bold hidden sm:block ${ch1 >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>

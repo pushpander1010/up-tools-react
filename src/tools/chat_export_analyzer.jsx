@@ -109,7 +109,7 @@ export default function chat_export_analyzer() {
     setTimeout(() => resultRef.current?.scrollIntoView({ behavior: 'smooth' }), 100)
   }, [rawText])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-500"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-400"
 
   return (
     <ToolLayout
@@ -136,7 +136,7 @@ export default function chat_export_analyzer() {
     >
       <div className="max-w-2xl mx-auto space-y-6">
         <div>
-          <label className="block text-xs font-semibold text-slate-500 mb-2">Upload .txt Chat File</label>
+          <label className="block text-xs font-semibold text-slate-400 mb-2">Upload .txt Chat File</label>
           <input ref={fileRef} type="file" accept=".txt,.csv" onChange={handleFile}
             className="block w-full text-sm text-slate-400 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-indigo-500 file:text-white hover:file:bg-indigo-400 file:cursor-pointer" />
         </div>
@@ -144,7 +144,7 @@ export default function chat_export_analyzer() {
         <div className="text-center text-xs text-slate-600">— or paste chat text —</div>
 
         <div>
-          <label className="block text-xs font-semibold text-slate-500 mb-2">Chat Text</label>
+          <label className="block text-xs font-semibold text-slate-400 mb-2">Chat Text</label>
           <textarea value={rawText} onChange={e => { setRawText(e.target.value); setError('') }}
             placeholder={"12/07/2026, 10:30 - Alice: Hey!\n12/07/2026, 10:31 - Bob: Hi there!\n..."}
             rows={6} className={inputClass + " resize-vertical font-mono text-xs"} />
@@ -161,12 +161,12 @@ export default function chat_export_analyzer() {
           <div ref={resultRef} className="rounded-3xl border-2 border-indigo-500/15 bg-gradient-to-br from-indigo-500/[0.06] via-white/[0.01] to-transparent p-6 sm:p-8 space-y-6">
             <div className="text-center">
               <div className="text-4xl font-extrabold text-white mb-1">{result.totalMessages.toLocaleString()}</div>
-              <div className="text-xs text-slate-500 uppercase tracking-wider font-semibold">Total Messages</div>
+              <div className="text-xs text-slate-400 uppercase tracking-wider font-semibold">Total Messages</div>
             </div>
 
             {/* Top Senders */}
             <div className="p-4 rounded-xl bg-white/[0.04] border border-white/6">
-              <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">👤 Top Senders</div>
+              <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">👤 Top Senders</div>
               {result.senders.slice(0, 5).map(([name, count], i) => {
                 const pct = Math.round((count / result.totalMessages) * 100)
                 return (
@@ -195,14 +195,14 @@ export default function chat_export_analyzer() {
               ].map((s, i) => (
                 <div key={i} className="p-3 rounded-xl bg-white/[0.04] border border-white/6 text-center">
                   <div className="text-lg font-bold text-white">{s.value}</div>
-                  <div className="text-[10px] text-slate-500 uppercase">{s.label}</div>
+                  <div className="text-[10px] text-slate-400 uppercase">{s.label}</div>
                 </div>
               ))}
             </div>
 
             {/* Hourly Activity */}
             <div className="p-4 rounded-xl bg-white/[0.04] border border-white/6">
-              <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">⏰ Activity by Hour</div>
+              <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">⏰ Activity by Hour</div>
               <div className="flex items-end gap-0.5 h-20">
                 {result.hourBuckets.map((count, h) => {
                   const max = Math.max(...result.hourBuckets)
@@ -222,7 +222,7 @@ export default function chat_export_analyzer() {
             {/* Top Emojis */}
             {result.topEmojis.length > 0 && (
               <div className="p-4 rounded-xl bg-white/[0.04] border border-white/6">
-                <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">😀 Top Emojis</div>
+                <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">😀 Top Emojis</div>
                 <div className="flex flex-wrap gap-2">
                   {result.topEmojis.map(([emoji, count], i) => (
                     <div key={i} className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/[0.06] border border-white/8">

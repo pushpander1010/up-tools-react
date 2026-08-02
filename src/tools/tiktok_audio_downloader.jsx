@@ -27,7 +27,7 @@ export default function tiktok_audio_downloader() {
     setStatus({ ok: true, msg: `Audio ready for download at ${quality} kbps. Choose a service below.` })
   }, [url, quality])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -75,7 +75,7 @@ export default function tiktok_audio_downloader() {
             {QUALITIES.map(q => (
               <button key={q.id} onClick={() => setQuality(q.id)}
                 className={`p-3 rounded-xl text-center transition-all duration-200 border-2
-                  ${quality === q.id ? 'bg-indigo-500/10 border-indigo-500/30 text-indigo-400' : 'bg-white/[0.06] border-white/8 text-slate-500 hover:border-white/12'}`}>
+                  ${quality === q.id ? 'bg-indigo-500/10 border-indigo-500/30 text-indigo-400' : 'bg-white/[0.06] border-white/8 text-slate-400 hover:border-white/12'}`}>
                 <div className="text-xl mb-1">{q.icon}</div>
                 <div className="text-xs font-bold">{q.label}</div>
               </button>
@@ -113,7 +113,7 @@ export default function tiktok_audio_downloader() {
           ].map((f, i) => (
             <div key={i} className="bg-white/[0.06] border border-white/[0.08] rounded-xl p-3 text-center">
               <div className="text-lg mb-1">{f.icon}</div>
-              <div className="text-[10px] text-slate-500 font-semibold">{f.label}</div>
+              <div className="text-[10px] text-slate-400 font-semibold">{f.label}</div>
             </div>
           ))}
         </div>

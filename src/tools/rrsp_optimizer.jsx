@@ -96,7 +96,7 @@ export default function rrsp_optimizer() {
                 </div>
               )}
             </div>
-            <p className="text-xs text-slate-500 mt-4">Estimate based on marginal rate. Actual refund depends on deductions and credits.</p>
+            <p className="text-xs text-slate-400 mt-4">Estimate based on marginal rate. Actual refund depends on deductions and credits.</p>
           </div>
         ) : (
           <div ref={resultRef} className="text-center py-12 rounded-3xl border-2 border-dashed border-white/8 bg-white/[0.01]">

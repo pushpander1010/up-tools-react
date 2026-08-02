@@ -28,7 +28,7 @@ export default function snapchat_streak_calculator() {
     setResult({ diffDays, friendName: friendName.trim() })
   }, [startDate, friendName])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
   const labelClass = "block text-sm font-semibold text-slate-300 mb-2"
 
   return (
@@ -91,7 +91,7 @@ export default function snapchat_streak_calculator() {
                 }`}>
                   <div className="text-2xl mb-1">{m.emoji}</div>
                   <div className="text-xs font-bold text-white">{m.days} Days</div>
-                  <div className="text-[10px] text-slate-500">{m.label}</div>
+                  <div className="text-[10px] text-slate-400">{m.label}</div>
                 </div>
               ))}
             </div>

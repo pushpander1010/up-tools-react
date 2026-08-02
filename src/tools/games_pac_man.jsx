@@ -483,15 +483,15 @@ export default function games_pac_man() {
             <div className="grid grid-cols-3 gap-4">
               <div className="text-center">
                 <div className="text-2xl font-extrabold text-white">{score}</div>
-                <div className="text-xs text-slate-500 font-medium mt-0.5">Score</div>
+                <div className="text-xs text-slate-400 font-medium mt-0.5">Score</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-extrabold text-yellow-400">{best}</div>
-                <div className="text-xs text-slate-500 font-medium mt-0.5">Best</div>
+                <div className="text-xs text-slate-400 font-medium mt-0.5">Best</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-extrabold text-red-400">{'❤️'.repeat(Math.max(0, lives))}</div>
-                <div className="text-xs text-slate-500 font-medium mt-0.5">Lives</div>
+                <div className="text-xs text-slate-400 font-medium mt-0.5">Lives</div>
               </div>
             </div>
           </div>}
@@ -518,7 +518,7 @@ export default function games_pac_man() {
                     className="glow-btn px-8 py-3 text-sm">
                     {phase === 'idle' ? 'Start Game' : 'Play Again'}
                   </button>
-                  <p className="text-xs text-slate-500 mt-3">Arrow keys / WASD / Swipe</p>
+                  <p className="text-xs text-slate-400 mt-3">Arrow keys / WASD / Swipe</p>
                 </div>
               )}
               {/* Win overlay */}
@@ -544,13 +544,13 @@ export default function games_pac_man() {
 
           {/* Game Over text */}
           {!isFs && phase === 'over' && lives <= 0 && (
-            <div className="text-center text-sm text-slate-500 font-medium">
+            <div className="text-center text-sm text-slate-400 font-medium">
               Game Over! Score: {score} · Best: {best}
             </div>
           )}
 
           {/* Helper text + toolbar - hide in fullscreen */}
-          {!isFs && <p className="text-center text-xs text-slate-500">Swipe or use arrow keys / WASD</p>}
+          {!isFs && <p className="text-center text-xs text-slate-400">Swipe or use arrow keys / WASD</p>}
 
           {!isFs && <div className="flex gap-2 justify-center mt-4">
             <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">

@@ -33,7 +33,7 @@ export default function mortgage_calculator() {
     return { loanAmount: principal, monthly, totalPaid, totalInterest }
   }, [price, down, rate, years])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-4 py-3 text-white text-sm font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-4 py-3 text-white text-sm font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -96,21 +96,21 @@ export default function mortgage_calculator() {
               <h3 className="text-sm font-bold text-emerald-400 uppercase tracking-wider">Results</h3>
             </div>
             <div className="text-center mb-4">
-              <div className="text-[10px] text-slate-500 uppercase font-bold">Monthly Payment</div>
+              <div className="text-[10px] text-slate-400 uppercase font-bold">Monthly Payment</div>
               <div className="text-3xl font-extrabold text-emerald-400">{fmtUSD(result.monthly)}</div>
             </div>
             <div className="grid grid-cols-3 gap-2">
               <div className="p-2.5 rounded-xl bg-black/20 border border-white/[0.05] text-center">
                 <div className="text-sm font-extrabold text-white">{fmtUSD(result.loanAmount)}</div>
-                <div className="text-[10px] text-slate-500 uppercase font-bold">Loan Amount</div>
+                <div className="text-[10px] text-slate-400 uppercase font-bold">Loan Amount</div>
               </div>
               <div className="p-2.5 rounded-xl bg-black/20 border border-white/[0.05] text-center">
                 <div className="text-sm font-extrabold text-amber-400">{fmtUSD(result.totalInterest)}</div>
-                <div className="text-[10px] text-slate-500 uppercase font-bold">Total Interest</div>
+                <div className="text-[10px] text-slate-400 uppercase font-bold">Total Interest</div>
               </div>
               <div className="p-2.5 rounded-xl bg-black/20 border border-white/[0.05] text-center">
                 <div className="text-sm font-extrabold text-white">{fmtUSD(result.totalPaid)}</div>
-                <div className="text-[10px] text-slate-500 uppercase font-bold">Total Paid</div>
+                <div className="text-[10px] text-slate-400 uppercase font-bold">Total Paid</div>
               </div>
             </div>
           </div>

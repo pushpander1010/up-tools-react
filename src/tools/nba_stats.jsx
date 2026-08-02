@@ -65,7 +65,7 @@ export default function nba_stats() {
     setGamesLoading(false)
   }, [])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
   const btnClass = "px-6 py-3.5 rounded-xl bg-indigo-500 text-white font-bold text-sm hover:bg-indigo-400 transition-all active:scale-[0.98]"
 
   return (
@@ -95,11 +95,11 @@ export default function nba_stats() {
         {/* Tab Switcher */}
         <div className="flex gap-2">
           <button onClick={() => setTab('players')}
-            className={`flex-1 py-3 rounded-xl text-sm font-bold transition-all ${tab === 'players' ? 'bg-indigo-500/20 text-indigo-300 border border-indigo-500/30' : 'bg-white/[0.04] text-slate-500 border border-white/5 hover:text-white'}`}>
+            className={`flex-1 py-3 rounded-xl text-sm font-bold transition-all ${tab === 'players' ? 'bg-indigo-500/20 text-indigo-300 border border-indigo-500/30' : 'bg-white/[0.04] text-slate-400 border border-white/5 hover:text-white'}`}>
             🔍 Player Search
           </button>
           <button onClick={() => { setTab('games'); fetchGames(gameDate) }}
-            className={`flex-1 py-3 rounded-xl text-sm font-bold transition-all ${tab === 'games' ? 'bg-indigo-500/20 text-indigo-300 border border-indigo-500/30' : 'bg-white/[0.04] text-slate-500 border border-white/5 hover:text-white'}`}>
+            className={`flex-1 py-3 rounded-xl text-sm font-bold transition-all ${tab === 'games' ? 'bg-indigo-500/20 text-indigo-300 border border-indigo-500/30' : 'bg-white/[0.04] text-slate-400 border border-white/5 hover:text-white'}`}>
             🎮 Recent Games
           </button>
         </div>
@@ -134,7 +134,7 @@ export default function nba_stats() {
 
                   {playerStats.averages ? (
                     <>
-                      <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Season Averages</div>
+                      <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Season Averages</div>
                       <div className="grid grid-cols-5 gap-2">
                         {[
                           { l: 'PPG', v: (playerStats.averages.points || 0).toFixed(1) },
@@ -150,20 +150,20 @@ export default function nba_stats() {
                         ].map(s => (
                           <div key={s.l} className="p-2 rounded-xl bg-white/[0.04] border border-white/5 text-center">
                             <div className="text-sm font-extrabold text-white">{s.v}</div>
-                            <div className="text-[10px] text-slate-500 font-medium mt-0.5">{s.l}</div>
+                            <div className="text-[10px] text-slate-400 font-medium mt-0.5">{s.l}</div>
                           </div>
                         ))}
                       </div>
                     </>
                   ) : (
-                    <p className="text-sm text-slate-500">No season averages available.</p>
+                    <p className="text-sm text-slate-400">No season averages available.</p>
                   )}
                 </div>
 
                 {/* Recent Games */}
                 {playerStats.recentGames.length > 0 && (
                   <div className="rounded-3xl border-2 border-white/8 bg-white/[0.04] p-5">
-                    <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Recent Games</div>
+                    <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Recent Games</div>
                     <div className="space-y-2">
                       {playerStats.recentGames.map((g, i) => (
                         <div key={i} className="p-3 rounded-xl bg-white/[0.03] border border-white/5">
@@ -171,7 +171,7 @@ export default function nba_stats() {
                             <span className="text-sm text-white font-medium">{g.team?.full_name || 'N/A'}</span>
                             <span className="text-sm font-bold text-indigo-400">{g.pts || 0} P</span>
                           </div>
-                          <div className="text-xs text-slate-500 mt-1">
+                          <div className="text-xs text-slate-400 mt-1">
                             {g.reb || 0} REB · {g.ast || 0} AST · {g.min || ''} MIN · {g.date || ''}
                           </div>
                         </div>
@@ -185,12 +185,12 @@ export default function nba_stats() {
             {/* Player List */}
             {!selectedPlayer && players.length > 0 && (
               <div className="space-y-2">
-                <div className="text-xs font-bold text-slate-500 uppercase tracking-wider">{players.length} player{players.length !== 1 ? 's' : ''} found</div>
+                <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">{players.length} player{players.length !== 1 ? 's' : ''} found</div>
                 {players.map(p => (
                   <button key={p.id} onClick={() => showPlayer(p.id, `${p.first_name} ${p.last_name}`)}
                     className="w-full text-left p-4 rounded-2xl bg-white/[0.04] border border-white/8 hover:bg-white/[0.08] transition-all">
                     <div className="text-sm font-bold text-white">{p.first_name} {p.last_name}</div>
-                    <div className="text-xs text-slate-500 mt-1">
+                    <div className="text-xs text-slate-400 mt-1">
                       {p.position || ''} · {p.team?.full_name || 'Free Agent'} · {p.height_feet || '?'}'{p.height_inches || 0}"
                     </div>
                   </button>
@@ -215,7 +215,7 @@ export default function nba_stats() {
 
             {games.length > 0 && (
               <div className="space-y-2">
-                <div className="text-xs font-bold text-slate-500 uppercase tracking-wider">{games.length} game{games.length !== 1 ? 's' : ''} on {gameDate}</div>
+                <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">{games.length} game{games.length !== 1 ? 's' : ''} on {gameDate}</div>
                 {games.map((g, i) => {
                   const homeWon = (g.home_team_score || 0) > (g.visitor_team_score || 0)
                   return (
@@ -229,7 +229,7 @@ export default function nba_stats() {
                           {g.visitor_team?.full_name || '?'} {g.visitor_team_score || 0}
                         </span>
                       </div>
-                      <div className="text-xs text-slate-500 mt-1">
+                      <div className="text-xs text-slate-400 mt-1">
                         Status: {g.status || 'Final'} {g.period ? `· Q${g.period}` : ''} {g.time || ''}
                       </div>
                     </div>

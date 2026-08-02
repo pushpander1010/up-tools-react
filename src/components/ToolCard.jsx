@@ -40,14 +40,14 @@ export default function ToolCard({ tool, categories }) {
       </h3>
 
       {/* Description */}
-      <p className="text-xs text-slate-500 leading-relaxed line-clamp-2 mb-2.5">
+      <p className="text-xs text-slate-400 leading-relaxed line-clamp-2 mb-2.5">
         {tool.desc}
       </p>
 
       {/* Tags */}
       <div className="flex flex-wrap gap-1 mb-2.5">
         {tool.tags?.slice(0, 3).map(tag => (
-          <span key={tag} className="px-2 py-0.5 rounded-full text-[10px] font-medium bg-white/4 border border-white/8 text-slate-500">
+          <span key={tag} className="px-2 py-0.5 rounded-full text-[10px] font-medium bg-white/4 border border-white/8 text-slate-400">
             {tag}
           </span>
         ))}
@@ -58,7 +58,7 @@ export default function ToolCard({ tool, categories }) {
         <span className="glow-btn text-[13px] py-1.5 px-3.5 rounded-[10px] inline-flex">
           Open
         </span>
-        <button className="text-slate-500 hover:text-white text-sm transition-colors" onClick={e => e.preventDefault()}>
+        <button className="text-slate-400 hover:text-white text-sm transition-colors" onClick={e => e.preventDefault()}>
           ☆
         </button>
       </div>

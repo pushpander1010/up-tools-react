@@ -48,7 +48,7 @@ export default function medicine_info() {
 
   const handleKey = useCallback((e) => { if (e.key === 'Enter') search() }, [search])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout title="Medicine Information" desc="Search FDA-approved drug information — uses, dosage, warnings, side effects, and more."
@@ -96,7 +96,7 @@ export default function medicine_info() {
         {/* Results */}
         {results && (
           <div ref={resultRef} className="space-y-4">
-            <p className="text-xs text-slate-500 font-medium">{results.length} result{results.length > 1 ? 's' : ''} found</p>
+            <p className="text-xs text-slate-400 font-medium">{results.length} result{results.length > 1 ? 's' : ''} found</p>
             {results.map((drug, i) => {
               const brand = drug.openfda?.brand_name?.[0] || ''
               const generic = drug.openfda?.generic_name?.[0] || ''
@@ -111,7 +111,7 @@ export default function medicine_info() {
                     <span className="text-xl">{isOpen ? '▼' : '▶'}</span>
                     <div>
                       <h3 className="text-base font-bold text-white">{brand || generic}</h3>
-                      {brand && generic && <p className="text-xs text-slate-500">{generic}</p>}
+                      {brand && generic && <p className="text-xs text-slate-400">{generic}</p>}
                       {drug.openfda?.manufacturer_name && (
                         <p className="text-xs text-slate-600 mt-0.5">{drug.openfda.manufacturer_name[0]}</p>
                       )}

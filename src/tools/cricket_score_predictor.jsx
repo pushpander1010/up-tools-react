@@ -89,7 +89,7 @@ export default function cricket_score_predictor() {
             <div className="flex gap-2">
               {[{ v: 20, l: 'T20' }, { v: 50, l: 'ODI' }].map(f => (
                 <button key={f.v} onClick={() => setFormat(f.v)}
-                  className={`flex-1 py-2.5 rounded-xl text-xs font-bold transition-all ${format === f.v ? 'bg-cyan-500/15 text-cyan-400 border border-cyan-500/30' : 'bg-white/[0.06] text-slate-500 border border-white/[0.08]'}`}>
+                  className={`flex-1 py-2.5 rounded-xl text-xs font-bold transition-all ${format === f.v ? 'bg-cyan-500/15 text-cyan-400 border border-cyan-500/30' : 'bg-white/[0.06] text-slate-400 border border-white/[0.08]'}`}>
                   {f.l}
                 </button>
               ))}

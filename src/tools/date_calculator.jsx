@@ -146,7 +146,7 @@ export default function date_calculator() {
     setTimeout(() => setCopied(false), 2000)
   }, [mode, addResult, diffResult, startD, addDays, addDirection, endD])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-amber-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-amber-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -185,7 +185,7 @@ export default function date_calculator() {
               className={`relative py-4 rounded-2xl text-sm font-bold transition-all duration-300 overflow-hidden border-2
                 ${mode === m
                   ? 'bg-amber-500/15 border-amber-500/30 text-amber-400 shadow-lg shadow-amber-500/10'
-                  : 'bg-white/[0.04] border-white/6 text-slate-500 hover:border-white/12 hover:text-slate-300'
+                  : 'bg-white/[0.04] border-white/6 text-slate-400 hover:border-white/12 hover:text-slate-300'
                 }`}>
               {mode === m && <div className="absolute inset-0 bg-gradient-to-t from-amber-500/5 to-transparent" />}
               <span className="relative text-lg">{icon}</span>
@@ -215,7 +215,7 @@ export default function date_calculator() {
               ].map(([d, label, activeStyle]) => (
                 <button key={d} onClick={() => setAddDirection(d)}
                   className={`py-3 rounded-xl text-sm font-bold border-2 transition-all duration-200
-                    ${addDirection === d ? activeStyle : 'bg-white/[0.04] border-white/6 text-slate-500 hover:border-white/12'}`}>
+                    ${addDirection === d ? activeStyle : 'bg-white/[0.04] border-white/6 text-slate-400 hover:border-white/12'}`}>
                   {label}
                 </button>
               ))}
@@ -275,7 +275,7 @@ export default function date_calculator() {
                 </div>
                 <div>
                   <div className="text-sm font-bold text-white">Business Days</div>
-                  <div className="text-[11px] text-slate-500 mt-0.5">Exclude Saturdays & Sundays</div>
+                  <div className="text-[11px] text-slate-400 mt-0.5">Exclude Saturdays & Sundays</div>
                 </div>
               </div>
             </button>
@@ -324,17 +324,17 @@ export default function date_calculator() {
                   <div className="text-lg font-extrabold text-amber-400 truncate">
                     <AnimatedNumber value={item.value} />
                   </div>
-                  <div className="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">{item.label}</div>
+                  <div className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider">{item.label}</div>
                 </div>
               ))}
             </div>
 
             {/* Visual Timeline */}
             <div className="p-4 rounded-xl bg-white/[0.03] border border-white/5">
-              <div className="text-xs text-slate-500 font-semibold mb-3">Timeline</div>
+              <div className="text-xs text-slate-400 font-semibold mb-3">Timeline</div>
               <div className="flex items-center gap-3">
                 <div className="flex-1 text-center">
-                  <div className="text-xs text-slate-500">Start</div>
+                  <div className="text-xs text-slate-400">Start</div>
                   <div className="text-sm font-bold text-white mt-1">{formatDateShort(startD)}</div>
                 </div>
                 <div className="flex-1 relative h-2 rounded-full bg-white/5 overflow-hidden">
@@ -342,7 +342,7 @@ export default function date_calculator() {
                     style={{ width: `${Math.min((addResult.totalDays / 365) * 100, 100)}%` }} />
                 </div>
                 <div className="flex-1 text-center">
-                  <div className="text-xs text-slate-500">End</div>
+                  <div className="text-xs text-slate-400">End</div>
                   <div className="text-sm font-bold text-amber-400 mt-1">{formatDateShort(addResult.target)}</div>
                 </div>
               </div>
@@ -382,7 +382,7 @@ export default function date_calculator() {
                 <div className="text-4xl sm:text-5xl font-extrabold text-amber-400 tracking-tight">
                   <AnimatedNumber value={diffResult.totalDays} />
                 </div>
-                <div className="text-xs text-slate-500 mt-1">calendar days</div>
+                <div className="text-xs text-slate-400 mt-1">calendar days</div>
               </div>
             </div>
 
@@ -399,7 +399,7 @@ export default function date_calculator() {
                   <div className="text-xl font-extrabold text-amber-400 truncate">
                     <AnimatedNumber value={item.value} />
                   </div>
-                  <div className="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">{item.label}</div>
+                  <div className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider">{item.label}</div>
                 </div>
               ))}
             </div>
@@ -408,7 +408,7 @@ export default function date_calculator() {
             {showBusinessDays && (
               <div className="p-4 rounded-xl bg-white/[0.03] border border-white/5 flex items-center justify-between">
                 <div>
-                  <div className="text-xs text-slate-500 font-semibold">Business Days</div>
+                  <div className="text-xs text-slate-400 font-semibold">Business Days</div>
                   <div className="text-[11px] text-slate-600">Excluding weekends</div>
                 </div>
                 <div className="text-xl font-extrabold text-amber-400 truncate">
@@ -419,17 +419,17 @@ export default function date_calculator() {
 
             {/* Visual Timeline */}
             <div className="p-4 rounded-xl bg-white/[0.03] border border-white/5 mt-4">
-              <div className="text-xs text-slate-500 font-semibold mb-3">Timeline</div>
+              <div className="text-xs text-slate-400 font-semibold mb-3">Timeline</div>
               <div className="flex items-center gap-3">
                 <div className="flex-1 text-center">
-                  <div className="text-xs text-slate-500">Start</div>
+                  <div className="text-xs text-slate-400">Start</div>
                   <div className="text-sm font-bold text-white mt-1">{formatDateShort(startD)}</div>
                 </div>
                 <div className="flex-1 relative h-2 rounded-full bg-white/5 overflow-hidden">
                   <div className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-amber-500/40 to-amber-400/80" style={{ width: '100%' }} />
                 </div>
                 <div className="flex-1 text-center">
-                  <div className="text-xs text-slate-500">End</div>
+                  <div className="text-xs text-slate-400">End</div>
                   <div className="text-sm font-bold text-amber-400 mt-1">{formatDateShort(endD)}</div>
                 </div>
               </div>
@@ -443,7 +443,7 @@ export default function date_calculator() {
             <div className="flex items-center gap-3">
               <span className="text-2xl">🎂</span>
               <div>
-                <div className="text-xs text-slate-500 font-semibold">Days to next birthday</div>
+                <div className="text-xs text-slate-400 font-semibold">Days to next birthday</div>
                 <div className="text-lg font-extrabold text-amber-400 truncate">{daysToBirthday === 0 ? 'Today! 🎉' : daysToBirthday}</div>
               </div>
             </div>

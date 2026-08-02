@@ -71,7 +71,7 @@ export default function css_gradient_generator() {
               className={`flex-1 px-4 py-2.5 rounded-xl text-sm font-bold capitalize transition-all border-2 ${
                 type === t
                   ? 'bg-purple-500/15 text-purple-400 border-purple-500/30'
-                  : 'bg-white/[0.04] text-slate-500 border-white/8'
+                  : 'bg-white/[0.04] text-slate-400 border-white/8'
               }`}>
               {t}
             </button>

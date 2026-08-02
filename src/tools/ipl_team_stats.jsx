@@ -58,7 +58,7 @@ export default function ipl_team_stats() {
                         <span className="text-lg">{t.logo}</span>
                         <div>
                           <div className="text-white font-bold text-xs">{t.name}</div>
-                          <div className="text-slate-500 text-[10px]">{t.short}</div>
+                          <div className="text-slate-400 text-[10px]">{t.short}</div>
                         </div>
                       </div>
                     </td>

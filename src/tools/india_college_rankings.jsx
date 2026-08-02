@@ -67,7 +67,7 @@ export default function india_college_rankings() {
             <div>
               <label className="block text-sm font-bold text-slate-400 mb-2">Search</label>
               <input type="text" value={search} onChange={e => setSearch(e.target.value)} placeholder="College name..."
-                className="w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-500 [color-scheme:dark]" />
+                className="w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-400 [color-scheme:dark]" />
             </div>
           </div>
           <button onClick={reset}
@@ -90,7 +90,7 @@ export default function india_college_rankings() {
                   <span className="text-2xl font-bold text-indigo-400 w-8 text-center">#{c.rank}</span>
                   <div>
                     <h3 className="text-white font-bold text-sm">{c.name}</h3>
-                    <p className="text-xs text-slate-500">📍 {c.location}</p>
+                    <p className="text-xs text-slate-400">📍 {c.location}</p>
                   </div>
                 </div>
                 <span className="text-xs px-3 py-1.5 rounded-full bg-indigo-500/15 text-indigo-400 font-semibold capitalize">{c.category}</span>

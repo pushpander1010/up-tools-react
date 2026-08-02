@@ -78,7 +78,7 @@ export default function passphrase_generator() {
                 className={`flex-1 py-3 rounded-xl text-sm font-bold transition-all font-mono ${
                   separator === s
                     ? 'bg-red-500/15 text-red-400 border border-red-500/30'
-                    : 'bg-white/[0.06] text-slate-500 border border-white/8 hover:border-white/12'
+                    : 'bg-white/[0.06] text-slate-400 border border-white/8 hover:border-white/12'
                 }`}>
                 {s === ' ' ? '⎵' : s}
               </button>
@@ -96,7 +96,7 @@ export default function passphrase_generator() {
           <div className="flex items-center justify-between">
             <div>
               <span className="text-sm font-bold text-white">Add Number</span>
-              <span className="text-[11px] text-slate-500 ml-2">Appends 2-digit number to last word</span>
+              <span className="text-[11px] text-slate-400 ml-2">Appends 2-digit number to last word</span>
             </div>
             <div className={`w-5 h-5 rounded-md flex items-center justify-center text-xs font-bold transition-all ${addNumber ? 'bg-red-500 text-white' : 'bg-white/10 text-transparent'}`}>
               {addNumber && '✓'}

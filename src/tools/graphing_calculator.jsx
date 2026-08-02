@@ -369,7 +369,7 @@ export default function graphing_calculator() {
             <canvas ref={canvasRef} className="block w-full h-full" />
             <div ref={coordsRef} className="absolute top-2 right-2 bg-black/80 border border-white/[0.08] rounded-lg px-2.5 py-1 text-xs text-slate-400 pointer-events-none font-mono backdrop-blur-sm" />
           </div>
-          <p className="text-xs text-slate-500 mt-1.5">Mouse: drag to pan · scroll to zoom · hover for coordinates</p>
+          <p className="text-xs text-slate-400 mt-1.5">Mouse: drag to pan · scroll to zoom · hover for coordinates</p>
           <div className="flex gap-1.5 mt-2 flex-wrap">
             <button onClick={resetView} className="bg-white/[0.04] border border-white/[0.08] text-xs px-3 py-1.5 rounded-lg text-slate-300 hover:border-indigo-500/50 transition-all">Reset View</button>
             <button onClick={zoomIn} className="bg-white/[0.04] border border-white/[0.08] text-xs px-3 py-1.5 rounded-lg text-slate-300 hover:border-indigo-500/50 transition-all">Zoom In</button>

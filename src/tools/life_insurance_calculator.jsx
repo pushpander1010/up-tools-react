@@ -42,7 +42,7 @@ export default function life_insurance_calculator() {
     return { coverageNeeded, incomeReplacement, debt, mortgage: mort, education: edu, existingAssets, recommendation }
   }, [inc, yrs, debt, mort, edu, deps, existing, sav])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-4 py-3 text-white text-sm font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-4 py-3 text-white text-sm font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout

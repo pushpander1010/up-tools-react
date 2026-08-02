@@ -94,7 +94,7 @@ export default function snapchat_story_ideas() {
               className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all border-2 ${
                 activeCategory === cat.key
                   ? 'bg-yellow-500/10 border-yellow-500/30 text-yellow-400'
-                  : 'bg-white/[0.06] border-white/8 text-slate-500 hover:border-white/15'
+                  : 'bg-white/[0.06] border-white/8 text-slate-400 hover:border-white/15'
               }`}>
               {cat.label}
             </button>
@@ -116,7 +116,7 @@ export default function snapchat_story_ideas() {
               <p className="text-slate-400 text-xs mb-3">{idea.desc}</p>
               <div className="flex gap-2 flex-wrap">
                 {idea.tags.map(tag => (
-                  <span key={tag} className="px-2.5 py-1 rounded-lg bg-white/[0.06] text-[10px] text-slate-500 font-medium">
+                  <span key={tag} className="px-2.5 py-1 rounded-lg bg-white/[0.06] text-[10px] text-slate-400 font-medium">
                     #{tag}
                   </span>
                 ))}

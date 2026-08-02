@@ -4,7 +4,7 @@ import ToolLayout from '../components/ToolLayout'
 export default function whatsapp_status_saver() {
   const [activeTab, setActiveTab] = useState('android')
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -40,7 +40,7 @@ export default function whatsapp_status_saver() {
               className={`flex-1 py-3 rounded-xl text-sm font-bold transition-all ${
                 activeTab === tab
                   ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30'
-                  : 'bg-white/[0.06] text-slate-500 border border-white/8'
+                  : 'bg-white/[0.06] text-slate-400 border border-white/8'
               }`}>
               {label}
             </button>

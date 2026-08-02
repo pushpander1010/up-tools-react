@@ -150,7 +150,7 @@ export default function color_palette_from_image() {
           <input ref={fileRef} type="file" accept="image/*" onChange={handleFileChange} className="hidden" />
           <div className="text-5xl mb-3 opacity-40">🖼️</div>
           <p className="text-sm font-semibold text-slate-300 mb-1">Drop an image here or click to upload</p>
-          <p className="text-xs text-slate-500">PNG, JPG, GIF, WebP — up to 10 MB</p>
+          <p className="text-xs text-slate-400">PNG, JPG, GIF, WebP — up to 10 MB</p>
         </div>
 
         {/* Options */}
@@ -160,7 +160,7 @@ export default function color_palette_from_image() {
             <div className="flex gap-1">
               {[4, 6, 8, 10, 12].map(n => (
                 <button key={n} onClick={() => setNumColors(n)}
-                  className={`w-9 h-9 rounded-lg text-xs font-bold transition-all duration-200 ${numColors === n ? 'bg-purple-500/20 text-purple-400 ring-1 ring-purple-500/30' : 'bg-white/[0.04] text-slate-500 hover:text-slate-300'}`}>
+                  className={`w-9 h-9 rounded-lg text-xs font-bold transition-all duration-200 ${numColors === n ? 'bg-purple-500/20 text-purple-400 ring-1 ring-purple-500/30' : 'bg-white/[0.04] text-slate-400 hover:text-slate-300'}`}>
                   {n}
                 </button>
               ))}
@@ -201,8 +201,8 @@ export default function color_palette_from_image() {
                   </div>
                   <div className="p-3 space-y-1">
                     <div className="text-xs font-bold text-white uppercase tracking-wider">{c.hex}</div>
-                    <div className="text-[10px] text-slate-500 font-mono">RGB({c.r}, {c.g}, {c.b})</div>
-                    <div className="text-[10px] text-slate-500 font-mono">HSL({c.hsl.h}°, {c.hsl.s}%, {c.hsl.l}%)</div>
+                    <div className="text-[10px] text-slate-400 font-mono">RGB({c.r}, {c.g}, {c.b})</div>
+                    <div className="text-[10px] text-slate-400 font-mono">HSL({c.hsl.h}°, {c.hsl.s}%, {c.hsl.l}%)</div>
                   </div>
                 </div>
               ))}

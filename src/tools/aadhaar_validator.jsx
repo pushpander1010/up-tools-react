@@ -142,7 +142,7 @@ export default function aadhaar_validator() {
                   ['Checksum', result.checksumOk ? '✅ Valid' : '❌ Invalid'],
                 ].map(([label, val]) => (
                   <div key={label} className="py-1.5 border-b border-white/[0.04]">
-                    <span className="text-slate-500">{label}: </span>
+                    <span className="text-slate-400">{label}: </span>
                     <span className="text-white">{val}</span>
                   </div>
                 ))}

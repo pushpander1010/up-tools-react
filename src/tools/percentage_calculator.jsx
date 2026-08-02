@@ -87,7 +87,7 @@ export default function percentage_calculator() {
         {/* Result */}
         {(x || y) && (
           <div ref={resultRef} className="p-6 rounded-3xl bg-gradient-to-br from-emerald-500/8 via-white/[0.02] to-transparent border border-emerald-500/15 text-center" style={{ animation: 'slideUp 0.3s ease-out' }}>
-            <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider mb-2">Result</div>
+            <div className="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-2">Result</div>
             <div className="text-4xl font-extrabold text-emerald-400 truncate">{fmt(result)}</div>
             {mode === 'is' && <div className="text-sm text-slate-400 mt-2">{x} is {fmt(result)}% of {y}</div>}
             {mode === 'change' && <div className="text-sm text-slate-400 mt-2">{result >= 0 ? '↑' : '↓'} {Math.abs(fmt(result))}% {result >= 0 ? 'increase' : 'decrease'}</div>}

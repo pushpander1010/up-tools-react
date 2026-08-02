@@ -56,7 +56,7 @@ export default function contact() {
     jumpTo()
   }, [name, email, topic, message])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -129,7 +129,7 @@ export default function contact() {
             <textarea value={message} onChange={e => setMessage(e.target.value.slice(0, MAX_MSG))}
               placeholder="Write your message..." rows={6} required
               className={inputClass + " resize-none"} />
-            <div className="text-xs text-slate-500 mt-1 text-right">
+            <div className="text-xs text-slate-400 mt-1 text-right">
               {message.length} / {MAX_MSG}
             </div>
           </div>

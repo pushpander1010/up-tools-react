@@ -94,7 +94,7 @@ export default function text_repeater() {
       <div className="max-w-3xl mx-auto space-y-4">
         {/* Input */}
         <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4">
-          <label className="text-xs font-semibold text-slate-500 mb-2 block">Text to Repeat</label>
+          <label className="text-xs font-semibold text-slate-400 mb-2 block">Text to Repeat</label>
           <textarea value={input} onChange={e => setInput(e.target.value)}
             placeholder="Type or paste the text you want to repeat…"
             rows={4}
@@ -107,7 +107,7 @@ export default function text_repeater() {
 
           {/* Repeat count */}
           <div>
-            <label className="text-xs font-semibold text-slate-500 mb-2 block">
+            <label className="text-xs font-semibold text-slate-400 mb-2 block">
               Repeat Count: <span className="text-indigo-400 font-bold">{count}</span>
             </label>
             <div className="flex items-center gap-3">
@@ -123,7 +123,7 @@ export default function text_repeater() {
           {/* Separator + Case */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="text-xs font-semibold text-slate-500 mb-2 block">Separator</label>
+              <label className="text-xs font-semibold text-slate-400 mb-2 block">Separator</label>
               <select value={sepType} onChange={e => setSepType(e.target.value)}
                 className="w-full bg-black/20 border-2 border-white/[0.08] rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-indigo-500/40">
                 {SEPARATORS.map(s => <option key={s.id} value={s.id} className="bg-gray-900">{s.label}</option>)}
@@ -135,7 +135,7 @@ export default function text_repeater() {
               )}
             </div>
             <div>
-              <label className="text-xs font-semibold text-slate-500 mb-2 block">Case Transform</label>
+              <label className="text-xs font-semibold text-slate-400 mb-2 block">Case Transform</label>
               <select value={caseType} onChange={e => setCaseType(e.target.value)}
                 className="w-full bg-black/20 border-2 border-white/[0.08] rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-indigo-500/40">
                 {CASES.map(c => <option key={c.id} value={c.id} className="bg-gray-900">{c.label}</option>)}

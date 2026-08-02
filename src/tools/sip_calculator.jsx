@@ -174,14 +174,14 @@ export default function sip_calculator() {
                 placeholder="12" step="0.5"
                 className="w-full bg-white/[0.06] border-2 border-white/8 rounded-2xl px-5 py-4 text-2xl font-bold text-white outline-none
                   focus:border-emerald-500/40 focus:bg-white/[0.05] focus:shadow-[0_0_30px_rgba(34,197,94,0.06)]
-                  transition-all duration-300 placeholder:text-slate-500"
+                  transition-all duration-300 placeholder:text-slate-400"
               />
-              <span className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-500 font-bold text-sm">%</span>
+              <span className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-400 font-bold text-sm">%</span>
             </div>
             <div className="flex gap-1.5 mt-2">
               {[8, 12, 15, 18].map(r => (
                 <button key={r} onClick={() => setAnnualRate(String(r))}
-                  className="text-[10px] px-2 py-1 rounded-lg bg-white/[0.06] text-slate-500 hover:text-white hover:bg-white/[0.1] transition-all font-semibold">
+                  className="text-[10px] px-2 py-1 rounded-lg bg-white/[0.06] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all font-semibold">
                   {r}%
                 </button>
               ))}
@@ -195,14 +195,14 @@ export default function sip_calculator() {
                 placeholder="10" step="1" min="1" max="30"
                 className="w-full bg-white/[0.06] border-2 border-white/8 rounded-2xl px-5 py-4 text-2xl font-bold text-white outline-none
                   focus:border-emerald-500/40 focus:bg-white/[0.05] focus:shadow-[0_0_30px_rgba(34,197,94,0.06)]
-                  transition-all duration-300 placeholder:text-slate-500"
+                  transition-all duration-300 placeholder:text-slate-400"
               />
-              <span className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-500 font-bold text-sm">yr</span>
+              <span className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-400 font-bold text-sm">yr</span>
             </div>
             <div className="flex gap-1.5 mt-2">
               {[5, 10, 15, 20].map(yr => (
                 <button key={yr} onClick={() => setYears(String(yr))}
-                  className="text-[10px] px-2 py-1 rounded-lg bg-white/[0.06] text-slate-500 hover:text-white hover:bg-white/[0.1] transition-all font-semibold">
+                  className="text-[10px] px-2 py-1 rounded-lg bg-white/[0.06] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all font-semibold">
                   {yr}yr
                 </button>
               ))}
@@ -233,15 +233,15 @@ export default function sip_calculator() {
             {/* Key Metrics */}
             <div className="grid grid-cols-3 gap-2 sm:gap-3 mb-6">
               <div className="p-2.5 sm:p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/15 min-w-0">
-                <div className="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Invested</div>
+                <div className="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Invested</div>
                 <div className="text-sm sm:text-lg font-extrabold text-white mt-1 truncate"><AnimatedNumber value={result.totalInvested} /></div>
               </div>
               <div className="p-2.5 sm:p-3 rounded-xl bg-white/[0.05] border border-white/8 min-w-0">
-                <div className="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Returns</div>
+                <div className="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Returns</div>
                 <div className="text-sm sm:text-lg font-extrabold text-emerald-400 mt-1 truncate"><AnimatedNumber value={result.sipReturns} /></div>
               </div>
               <div className="p-2.5 sm:p-3 rounded-xl bg-white/[0.05] border border-white/8 min-w-0">
-                <div className="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Wealth</div>
+                <div className="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Wealth</div>
                 <div className="text-sm sm:text-lg font-extrabold text-amber-400 mt-1 truncate"><AnimatedNumber value={result.sipFV} /></div>
               </div>
             </div>
@@ -258,7 +258,7 @@ export default function sip_calculator() {
                   Returns
                 </div>
               </div>
-              <div className="flex justify-between mt-2 text-xs text-slate-500 min-w-0">
+              <div className="flex justify-between mt-2 text-xs text-slate-400 min-w-0">
                 <span className="flex items-center gap-1.5 min-w-0 truncate"><span className="w-2 h-2 rounded-sm bg-indigo-500 shrink-0" /> Invested ₹{result.totalInvested.toLocaleString('en-IN')}</span>
                 <span className="flex items-center gap-1.5 min-w-0 truncate"><span className="w-2 h-2 rounded-sm bg-emerald-500 shrink-0" /> Returns ₹{result.sipReturns.toLocaleString('en-IN')}</span>
               </div>
@@ -269,27 +269,27 @@ export default function sip_calculator() {
               <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">SIP vs Lump Sum</h4>
               <div className="grid grid-cols-2 gap-3 sm:gap-4">
                 <div className="min-w-0">
-                  <div className="text-[10px] text-slate-500 uppercase font-bold mb-1">SIP</div>
+                  <div className="text-[10px] text-slate-400 uppercase font-bold mb-1">SIP</div>
                   <div className="text-lg sm:text-2xl font-extrabold text-emerald-400 truncate"><AnimatedNumber value={result.sipFV} /></div>
-                  <div className="text-xs text-slate-500 mt-1 truncate">Returns: ₹{result.sipReturns.toLocaleString('en-IN')}</div>
+                  <div className="text-xs text-slate-400 mt-1 truncate">Returns: ₹{result.sipReturns.toLocaleString('en-IN')}</div>
                 </div>
                 <div className="min-w-0">
-                  <div className="text-[10px] text-slate-500 uppercase font-bold mb-1">Lump Sum</div>
+                  <div className="text-[10px] text-slate-400 uppercase font-bold mb-1">Lump Sum</div>
                   <div className="text-lg sm:text-2xl font-extrabold text-indigo-400 truncate"><AnimatedNumber value={result.lumpFV} /></div>
-                  <div className="text-xs text-slate-500 mt-1 truncate">Returns: ₹{result.lumpReturns.toLocaleString('en-IN')}</div>
+                  <div className="text-xs text-slate-400 mt-1 truncate">Returns: ₹{result.lumpReturns.toLocaleString('en-IN')}</div>
                 </div>
               </div>
               {/* Comparison bar */}
               <div className="mt-4 space-y-2">
                 <div className="flex items-center gap-2">
-                  <span className="text-[10px] text-slate-500 w-8">SIP</span>
+                  <span className="text-[10px] text-slate-400 w-8">SIP</span>
                   <div className="flex-1 h-3 bg-white/5 rounded-full overflow-hidden">
                     <div className="h-full bg-emerald-500/60 rounded-full transition-all duration-500"
                       style={{ width: `${(result.sipFV / Math.max(result.sipFV, result.lumpFV)) * 100}%` }} />
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-[10px] text-slate-500 w-8">Lump</span>
+                  <span className="text-[10px] text-slate-400 w-8">Lump</span>
                   <div className="flex-1 h-3 bg-white/5 rounded-full overflow-hidden">
                     <div className="h-full bg-indigo-500/60 rounded-full transition-all duration-500"
                       style={{ width: `${(result.lumpFV / Math.max(result.sipFV, result.lumpFV)) * 100}%` }} />
@@ -306,7 +306,7 @@ export default function sip_calculator() {
             <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">Year-by-Year Growth</h3>
             <table className="w-full text-sm">
               <thead>
-                <tr className="text-[10px] text-slate-500 uppercase font-bold tracking-wider">
+                <tr className="text-[10px] text-slate-400 uppercase font-bold tracking-wider">
                   <th className="text-left pb-3 pr-4">Year</th>
                   <th className="text-right pb-3 pr-4">Invested</th>
                   <th className="text-right pb-3 pr-4">Returns</th>

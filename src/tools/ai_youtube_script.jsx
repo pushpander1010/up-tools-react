@@ -94,7 +94,7 @@ Use natural, conversational language. Add pattern interrupts for retention.`
                 className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
                   niche === n
                     ? 'bg-red-500/20 text-red-400 border border-red-500/30'
-                    : 'bg-white/[0.04] text-slate-500 border border-white/[0.08] hover:text-white'
+                    : 'bg-white/[0.04] text-slate-400 border border-white/[0.08] hover:text-white'
                 }`}>
                 {n}
               </button>

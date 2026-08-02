@@ -64,7 +64,7 @@ export default function fifa_world_cup_venues() {
       <div className="rounded-2xl border border-white/8 bg-white/[0.04] p-4 hover:bg-white/[0.06] transition-all">
         <div className="text-lg mb-1">🏟️</div>
         <h3 className="text-sm font-bold text-white">{v.name}</h3>
-        <div className="text-[10px] text-slate-500 font-medium mt-0.5">{v.fifaName}</div>
+        <div className="text-[10px] text-slate-400 font-medium mt-0.5">{v.fifaName}</div>
         <div className="text-xs text-slate-400 mt-1">{FLAGS[v.countryCode]} {v.city}, {v.country}</div>
 
         {/* Tags */}
@@ -87,7 +87,7 @@ export default function fifa_world_cup_venues() {
         <div className="mt-3">
           <div className="flex justify-between text-xs mb-1">
             <span className="text-slate-400 font-medium"><strong className="text-white">{v.capacity.toLocaleString()}</strong> seats</span>
-            <span className="text-slate-500">{pct}%</span>
+            <span className="text-slate-400">{pct}%</span>
           </div>
           <div className="h-2 rounded-full bg-white/[0.06] overflow-hidden">
             <div className="h-full rounded-full bg-gradient-to-r from-indigo-500 to-purple-500"
@@ -134,7 +134,7 @@ export default function fifa_world_cup_venues() {
           ].map(s => (
             <div key={s.l} className="p-3 rounded-2xl bg-white/[0.06] border border-white/8 text-center">
               <div className={`font-extrabold ${s.n === '🏆' ? 'text-xl' : 'text-lg'} text-indigo-400`}>{s.n}</div>
-              <div className="text-[10px] text-slate-500 font-medium mt-0.5">{s.l}</div>
+              <div className="text-[10px] text-slate-400 font-medium mt-0.5">{s.l}</div>
             </div>
           ))}
         </div>

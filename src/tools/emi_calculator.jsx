@@ -87,7 +87,7 @@ export default function emi_calculator() {
             <div className="relative">
               <input type="number" step="0.1" value={rate} onChange={e => setRate(e.target.value)} placeholder="0"
                 className="w-full bg-white/[0.06] border-2 border-white/8 rounded-2xl px-5 py-4 text-2xl font-extrabold text-white outline-none focus:border-green-500/40 transition-all duration-300 placeholder:text-white/8" />
-              <span className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-500 font-bold text-sm">% p.a.</span>
+              <span className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-400 font-bold text-sm">% p.a.</span>
             </div>
           </div>
           <div>
@@ -98,7 +98,7 @@ export default function emi_calculator() {
               <div className="flex flex-col gap-1.5">
                 {['years', 'months'].map(u => (
                   <button key={u} onClick={() => setUnit(u)}
-                    className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${unit === u ? 'bg-green-500 text-white shadow-lg shadow-green-500/25' : 'bg-white/[0.06] text-slate-500 border border-white/8'}`}>
+                    className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${unit === u ? 'bg-green-500 text-white shadow-lg shadow-green-500/25' : 'bg-white/[0.06] text-slate-400 border border-white/8'}`}>
                     {u}
                   </button>
                 ))}
@@ -117,7 +117,7 @@ export default function emi_calculator() {
               { label: 'Total Payment', value: fmt(result.total), color: 'text-white', size: 'text-lg', bold: true },
             ].map(card => (
               <div key={card.label} className="p-4 rounded-2xl bg-white/[0.06] border border-white/8 text-center">
-                <div className="text-[11px] text-slate-500 font-semibold uppercase tracking-wider">{card.label}</div>
+                <div className="text-[11px] text-slate-400 font-semibold uppercase tracking-wider">{card.label}</div>
                 <div className={`${card.size} font-extrabold ${card.color} mt-1.5`}>{card.value}</div>
               </div>
             ))}
@@ -163,7 +163,7 @@ export default function emi_calculator() {
             <div className="overflow-x-auto">
               <table className="w-full text-xs">
                 <thead>
-                  <tr className="text-slate-500 border-b border-white/8">
+                  <tr className="text-slate-400 border-b border-white/8">
                     <th className="text-left py-3 px-4 font-semibold">Month</th>
                     <th className="text-right py-3 px-4 font-semibold">EMI</th>
                     <th className="text-right py-3 px-4 font-semibold">Principal</th>

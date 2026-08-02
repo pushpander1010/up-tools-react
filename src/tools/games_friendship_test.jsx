@@ -161,7 +161,7 @@ export default function games_friendship_test() {
   }
 
   const q = qIdx[cur] !== undefined ? getQ(qIdx[cur]) : null
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 
   useEffect(() => {
     const handler = () => onFsChange()
@@ -207,19 +207,19 @@ export default function games_friendship_test() {
             <div className="grid grid-cols-4 gap-3">
               <div className="text-center glass p-4 rounded-xl">
                 <div className="text-2xl font-extrabold text-white">{best ? `${best.score}%` : '--%'}</div>
-                <div className="text-xs text-slate-500">Best Score</div>
+                <div className="text-xs text-slate-400">Best Score</div>
               </div>
               <div className="text-center glass p-4 rounded-xl">
                 <div className="text-2xl font-extrabold text-white">{best?.pair ?? '—'}</div>
-                <div className="text-xs text-slate-500">Last Pair</div>
+                <div className="text-xs text-slate-400">Last Pair</div>
               </div>
               <div className="text-center glass p-4 rounded-xl">
                 <div className="text-2xl font-extrabold text-white">{best?.when ?? '—'}</div>
-                <div className="text-xs text-slate-500">Last Time</div>
+                <div className="text-xs text-slate-400">Last Time</div>
               </div>
               <div className="text-center glass p-4 rounded-xl">
                 <div className="text-2xl font-extrabold text-white">{plays}</div>
-                <div className="text-xs text-slate-500">Total Plays</div>
+                <div className="text-xs text-slate-400">Total Plays</div>
               </div>
             </div>
 
@@ -227,7 +227,7 @@ export default function games_friendship_test() {
             <div className="flex gap-2 justify-center">
               {[10, 15, 20].map(len => (
                 <button key={len} onClick={() => setQuizLength(len)}
-                  className={`px-5 py-2.5 rounded-xl text-sm font-bold transition-all ${quizLength === len ? 'bg-indigo-500/15 text-indigo-400 border border-indigo-500/30' : 'bg-white/[0.06] text-slate-500 border border-white/[0.08] hover:bg-white/[0.1]'}`}>
+                  className={`px-5 py-2.5 rounded-xl text-sm font-bold transition-all ${quizLength === len ? 'bg-indigo-500/15 text-indigo-400 border border-indigo-500/30' : 'bg-white/[0.06] text-slate-400 border border-white/[0.08] hover:bg-white/[0.1]'}`}>
                   {len === 10 ? 'Short' : len === 15 ? 'Standard' : 'Long'} ({len})
                 </button>
               ))}
@@ -292,7 +292,7 @@ export default function games_friendship_test() {
             <div className="text-4xl mb-3">🤝</div>
             <h2 className="text-xl font-bold text-white mb-2">{nameA} is done!</h2>
             <p className="text-indigo-400 mb-4">Now hand the device to <strong>{nameB}</strong> to answer the same questions.</p>
-            <p className="text-sm text-slate-500 mb-6">Don't peek at {nameA}'s answers!</p>
+            <p className="text-sm text-slate-400 mb-6">Don't peek at {nameA}'s answers!</p>
             <button onClick={handleNext}
               className="glow-btn px-8 py-3 rounded-xl text-sm font-bold text-white transition-all">
               {nameB}'s Turn ▶

@@ -76,7 +76,7 @@ export default function html_preview() {
         <div ref={resultRef} className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* Editor */}
           <div>
-            <label className="block text-xs font-semibold text-slate-500 mb-1">HTML</label>
+            <label className="block text-xs font-semibold text-slate-400 mb-1">HTML</label>
             <textarea value={html} onChange={e => setHtml(e.target.value)}
               placeholder="Write HTML here..."
               rows={18}
@@ -84,7 +84,7 @@ export default function html_preview() {
           </div>
           {/* Preview */}
           <div>
-            <label className="block text-xs font-semibold text-slate-500 mb-1">Preview</label>
+            <label className="block text-xs font-semibold text-slate-400 mb-1">Preview</label>
             <iframe
               ref={iframeRef}
               sandbox="allow-scripts allow-modals"

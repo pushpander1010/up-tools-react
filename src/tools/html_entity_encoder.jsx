@@ -142,7 +142,7 @@ export default function html_entity_encoder() {
             {entities.slice(0, 12).map(([char, entity]) => (
               <div key={entity} className="flex items-center gap-2 text-xs bg-black/20 rounded-lg px-3 py-2">
                 <span className="text-white font-bold">{char}</span>
-                <span className="text-slate-500">→</span>
+                <span className="text-slate-400">→</span>
                 <span className="text-emerald-400 font-mono">{entity}</span>
               </div>
             ))}

@@ -125,7 +125,7 @@ export default function pin_code_finder() {
       <div className="max-w-lg mx-auto space-y-4">
         {/* Input */}
         <div className="bg-white/[0.06] border border-white/8 rounded-2xl p-4">
-          <label className="text-xs font-semibold text-slate-500 mb-2 block">Enter PIN Code</label>
+          <label className="text-xs font-semibold text-slate-400 mb-2 block">Enter PIN Code</label>
           <div className="flex gap-2">
             <input type="text" value={input} onChange={e => setInput(e.target.value.replace(/\D/g, '').slice(0, 6))}
               onKeyDown={e => e.key === 'Enter' && search()}
@@ -142,7 +142,7 @@ export default function pin_code_finder() {
             <div className="flex flex-wrap gap-1.5 mt-3">
               {recent.map(c => (
                 <button key={c} onClick={() => { setInput(c); doSearch(c) }}
-                  className="px-2.5 py-1 rounded-lg text-xs font-mono font-bold bg-white/[0.06] border border-white/8 text-slate-500 hover:text-indigo-400 hover:border-indigo-500/30 transition-all">
+                  className="px-2.5 py-1 rounded-lg text-xs font-mono font-bold bg-white/[0.06] border border-white/8 text-slate-400 hover:text-indigo-400 hover:border-indigo-500/30 transition-all">
                   {c}
                 </button>
               ))}
@@ -161,7 +161,7 @@ export default function pin_code_finder() {
               <div className="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 grid place-items-center text-xl">📮</div>
               <div>
                 <div className="font-extrabold text-white">{input} — {first.District || '—'}</div>
-                <div className="text-xs text-slate-500">{first.State || '—'}, {first.Country || 'India'}</div>
+                <div className="text-xs text-slate-400">{first.State || '—'}, {first.Country || 'India'}</div>
               </div>
             </div>
             <div className="space-y-1.5">
@@ -174,7 +174,7 @@ export default function pin_code_finder() {
                 { label: 'Post Offices', value: offices.length },
               ].map(r => (
                 <div key={r.label} className="flex justify-between items-center py-2 border-b border-white/[0.04] text-sm">
-                  <span className="text-slate-500 font-semibold">{r.label}</span>
+                  <span className="text-slate-400 font-semibold">{r.label}</span>
                   <span className="text-white font-medium">{r.value}</span>
                 </div>
               ))}
@@ -186,7 +186,7 @@ export default function pin_code_finder() {
                 { label: '📋 JSON', text: JSON.stringify({ pinCode: input, district: first.District, state: first.State, postOffices: offices.length }, null, 2), key: 'json' },
               ].map(a => (
                 <button key={a.key} onClick={() => copyText(a.text, a.key)}
-                  className={`flex-1 py-2 rounded-xl text-xs font-bold transition-all ${copied === a.key ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-white/[0.06] border border-white/8 text-slate-500 hover:text-white'}`}>
+                  className={`flex-1 py-2 rounded-xl text-xs font-bold transition-all ${copied === a.key ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-white/[0.06] border border-white/8 text-slate-400 hover:text-white'}`}>
                   {copied === a.key ? '✓ Copied' : a.label}
                 </button>
               ))}
@@ -194,12 +194,12 @@ export default function pin_code_finder() {
             {/* Post Offices */}
             {offices.length > 0 && (
               <div>
-                <div className="text-xs font-bold text-slate-500 mb-2">All Post Offices ({offices.length})</div>
+                <div className="text-xs font-bold text-slate-400 mb-2">All Post Offices ({offices.length})</div>
                 <div className="grid grid-cols-2 gap-2 max-h-48 overflow-y-auto">
                   {offices.map((o, i) => (
                     <div key={i} className="p-2.5 rounded-xl bg-black/20 border border-white/[0.04]">
                       <div className="text-xs font-bold text-white">{o.Name || '—'}</div>
-                      <div className="text-[10px] text-slate-500">{o.BranchType || ''} · {o.DeliveryStatus || ''}</div>
+                      <div className="text-[10px] text-slate-400">{o.BranchType || ''} · {o.DeliveryStatus || ''}</div>
                     </div>
                   ))}
                 </div>
@@ -210,7 +210,7 @@ export default function pin_code_finder() {
 
         {/* Bulk Lookup */}
         <div className="bg-white/[0.06] border border-white/8 rounded-2xl p-4">
-          <div className="text-xs font-bold text-slate-500 mb-2">📦 Bulk Lookup</div>
+          <div className="text-xs font-bold text-slate-400 mb-2">📦 Bulk Lookup</div>
           <textarea value={bulkInput} onChange={e => setBulkInput(e.target.value)}
             placeholder="Enter PIN codes, one per line"
             rows={3}
@@ -223,7 +223,7 @@ export default function pin_code_finder() {
           {bulkResults && (
             <div className="mt-3 overflow-x-auto">
               <table className="w-full text-xs">
-                <thead><tr className="text-slate-500 border-b border-white/8">
+                <thead><tr className="text-slate-400 border-b border-white/8">
                   <th className="text-left py-2 px-2">#</th><th className="text-left py-2 px-2">Status</th>
                   <th className="text-left py-2 px-2">PIN</th><th className="text-left py-2 px-2">District</th>
                   <th className="text-left py-2 px-2">State</th><th className="text-left py-2 px-2">POs</th>

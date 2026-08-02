@@ -48,7 +48,7 @@ export default function whatsapp_chat() {
     else copyLink()
   }
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -76,7 +76,7 @@ export default function whatsapp_chat() {
     >
       <div className="max-w-2xl mx-auto space-y-6">
         <div>
-          <label className="block text-xs font-semibold text-slate-500 mb-2">Country</label>
+          <label className="block text-xs font-semibold text-slate-400 mb-2">Country</label>
           <select value={country} onChange={e => setCountry(e.target.value)}
             className={inputClass + " appearance-none"}>
             {countryCodes.map(c => (
@@ -86,14 +86,14 @@ export default function whatsapp_chat() {
         </div>
 
         <div>
-          <label className="block text-xs font-semibold text-slate-500 mb-2">Phone number (digits only)</label>
+          <label className="block text-xs font-semibold text-slate-400 mb-2">Phone number (digits only)</label>
           <input type="tel" inputMode="numeric" value={phone} onChange={e => setPhone(e.target.value)}
             placeholder="e.g., 9876543210"
             className={inputClass} />
         </div>
 
         <div>
-          <label className="block text-xs font-semibold text-slate-500 mb-2">Message (optional)</label>
+          <label className="block text-xs font-semibold text-slate-400 mb-2">Message (optional)</label>
           <textarea value={message} onChange={e => setMessage(e.target.value)}
             placeholder="Hi! I found you via UpTools WhatsApp click to chat."
             rows={3} className={inputClass + " resize-vertical"} />

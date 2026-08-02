@@ -36,7 +36,7 @@ export default function fifa_world_cup_red_cards() {
               <div key={i} className="bg-red-500/[0.06] border border-red-500/15 rounded-xl p-3">
                 <div className="flex items-center justify-between mb-1">
                   <span className="text-xs font-bold text-red-400">{rc.player}</span>
-                  <span className="text-[10px] text-slate-500">{rc.minute}</span>
+                  <span className="text-[10px] text-slate-400">{rc.minute}</span>
                 </div>
                 <div className="text-[11px] text-slate-400">{rc.team} · {rc.type}</div>
                 <div className="text-[10px] text-slate-600 mt-1">{rc.match} — {rc.note}</div>
@@ -53,7 +53,7 @@ export default function fifa_world_cup_red_cards() {
           ].map((s, i) => (
             <div key={i} className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4 text-center">
               <div className={`text-xl font-extrabold ${s.color}`}>{s.n}</div>
-              <div className="text-[10px] text-slate-500 font-medium">{s.l}</div>
+              <div className="text-[10px] text-slate-400 font-medium">{s.l}</div>
               <div className="text-[9px] text-slate-600">{s.sub}</div>
             </div>
           ))}

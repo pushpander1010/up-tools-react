@@ -137,13 +137,13 @@ export default function ascii_art_generator() {
         <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4">
           <div className="grid grid-cols-[1fr_auto] gap-4">
             <div>
-              <label className="text-xs font-semibold text-slate-500 mb-2 block">Text</label>
+              <label className="text-xs font-semibold text-slate-400 mb-2 block">Text</label>
               <input type="text" value={text} onChange={e => setText(e.target.value)}
                 placeholder="Enter text..."
                 className="w-full bg-black/20 border-2 border-white/[0.08] rounded-xl px-4 py-3 text-sm font-mono text-white outline-none focus:border-amber-500/40 transition-all placeholder:text-slate-600" />
             </div>
             <div>
-              <label className="text-xs font-semibold text-slate-500 mb-2 block">Font</label>
+              <label className="text-xs font-semibold text-slate-400 mb-2 block">Font</label>
               <select value={font} onChange={e => setFont(e.target.value)}
                 className="w-full bg-black/20 border-2 border-white/[0.08] rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-amber-500/40">
                 {FONTS.map(f => <option key={f} value={f} className="bg-gray-900">{f}</option>)}
@@ -157,7 +157,7 @@ export default function ascii_art_generator() {
           <div ref={resultRef} className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4 space-y-3"
             style={{ animation: 'slideUp 0.3s ease-out' }}>
             <div className="flex items-center justify-between">
-              <label className="text-xs font-semibold text-slate-500">ASCII Art</label>
+              <label className="text-xs font-semibold text-slate-400">ASCII Art</label>
               <div className="flex gap-2">
                 <button onClick={copy}
                   className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${copied ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-white/5 border border-white/[0.08] text-slate-400 hover:text-white'}`}>

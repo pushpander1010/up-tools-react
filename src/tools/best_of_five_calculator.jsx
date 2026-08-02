@@ -136,7 +136,7 @@ export default function best_of_five_calculator() {
             {result.remaining.length > 0 && (
               <div className="p-3 rounded-2xl bg-white/[0.03] border border-white/[0.06]">
                 <div className="text-[10px] text-slate-600 uppercase tracking-wider mb-1">Not counted</div>
-                <div className="text-xs text-slate-500">{result.remaining.map(s => s.name).join(', ')}</div>
+                <div className="text-xs text-slate-400">{result.remaining.map(s => s.name).join(', ')}</div>
               </div>
             )}
           </div>

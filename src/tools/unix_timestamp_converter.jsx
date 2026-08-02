@@ -158,7 +158,7 @@ export default function unix_timestamp_converter() {
 
         {/* Mode Toggle */}
         <div>
-          <label className="text-xs font-semibold text-slate-500 mb-2 block">Conversion Mode</label>
+          <label className="text-xs font-semibold text-slate-400 mb-2 block">Conversion Mode</label>
           <div className="flex gap-2">
             {[
               ['ts2date', '📅 Timestamp → Date'],
@@ -218,12 +218,12 @@ export default function unix_timestamp_converter() {
         {/* Results */}
         {showResults && results && (
           <div ref={resultRef} className="space-y-3" style={{ animation: 'slideUp 0.3s ease-out' }}>
-            <div className="text-xs font-bold text-slate-500 uppercase tracking-wider">Conversion Results</div>
+            <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">Conversion Results</div>
 
             {/* Seconds */}
             <div className="flex items-center gap-3 p-4 rounded-2xl bg-white/[0.06] border border-white/8 group">
               <div className="flex-1 min-w-0">
-                <div className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Unix Seconds</div>
+                <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Unix Seconds</div>
                 <div className="text-xl font-extrabold text-white font-mono">{results.seconds}</div>
               </div>
               <button onClick={() => copy(results.seconds, 'seconds')}
@@ -236,7 +236,7 @@ export default function unix_timestamp_converter() {
             {/* Milliseconds */}
             <div className="flex items-center gap-3 p-4 rounded-2xl bg-white/[0.06] border border-white/8 group">
               <div className="flex-1 min-w-0">
-                <div className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Milliseconds</div>
+                <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Milliseconds</div>
                 <div className="text-xl font-extrabold text-white font-mono">{results.milliseconds}</div>
               </div>
               <button onClick={() => copy(results.milliseconds, 'ms')}
@@ -262,7 +262,7 @@ export default function unix_timestamp_converter() {
             {/* Local Time */}
             <div className="flex items-center gap-3 p-4 rounded-2xl bg-white/[0.06] border border-white/8 group">
               <div className="flex-1 min-w-0">
-                <div className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Local Time</div>
+                <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Local Time</div>
                 <div className="text-sm font-bold text-white">{results.local}</div>
               </div>
               <button onClick={() => copy(results.local, 'local')}
@@ -275,7 +275,7 @@ export default function unix_timestamp_converter() {
             {/* UTC */}
             <div className="flex items-center gap-3 p-4 rounded-2xl bg-white/[0.06] border border-white/8 group">
               <div className="flex-1 min-w-0">
-                <div className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">UTC</div>
+                <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">UTC</div>
                 <div className="text-sm font-bold text-white">{results.utc}</div>
               </div>
               <button onClick={() => copy(results.utc, 'utc')}

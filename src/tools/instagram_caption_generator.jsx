@@ -55,7 +55,7 @@ export default function InstagramCaptionGenerator() {
     setTimeout(() => setCopiedIdx(null), 1500)
   }
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -123,7 +123,7 @@ export default function InstagramCaptionGenerator() {
                   <div key={i} className="rounded-2xl bg-white/[0.04] border border-white/5 p-4">
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-sm font-bold text-indigo-400">{cap.label}</span>
-                      <span className="text-xs text-slate-500">{cap.text.length} chars</span>
+                      <span className="text-xs text-slate-400">{cap.text.length} chars</span>
                     </div>
                     <div className="whitespace-pre-line text-sm text-slate-300 bg-white/[0.03] rounded-xl p-3 mb-3">{cap.text}</div>
                     <button onClick={() => copyCaption(cap.text, i)}

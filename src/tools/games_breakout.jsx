@@ -410,8 +410,8 @@ export default function BreakoutGame() {
         {phase === 'idle' && (
           <div className="glass p-4">
             <div className="grid grid-cols-2 gap-4 text-center">
-              <div><div className="text-2xl font-extrabold text-white">{best}</div><div className="text-xs text-slate-500">Best Score</div></div>
-              <div><div className="text-2xl font-extrabold text-cyan-400">{bestLevel()}</div><div className="text-xs text-slate-500">Best Level</div></div>
+              <div><div className="text-2xl font-extrabold text-white">{best}</div><div className="text-xs text-slate-400">Best Score</div></div>
+              <div><div className="text-2xl font-extrabold text-cyan-400">{bestLevel()}</div><div className="text-xs text-slate-400">Best Level</div></div>
             </div>
             <div className="flex justify-center mt-4">
               <button onClick={() => triggerAd(startGame)} className="glow-btn px-8 py-3 text-sm font-bold">▶ Start Game</button>
@@ -437,7 +437,7 @@ export default function BreakoutGame() {
             onPointerDown={onDown} onPointerMove={onMove} onPointerUp={onUp} />
         </div>
         <GameAdSlot slot="8865234201" format="horizontal" className="mt-2" />
-        <p className="text-center text-xs text-slate-500">
+        <p className="text-center text-xs text-slate-400">
           {'ontouchstart' in window ? 'Drag to move paddle · Tap to launch' : '← → Move · Space Launch'}
         </p>
         </div>

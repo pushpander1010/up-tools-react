@@ -65,7 +65,7 @@ export default function bmi_calculator() {
           {[['metric', 'Metric (kg/cm)'], ['imperial', 'Imperial (lbs/in)']].map(([val, label]) => (
             <button key={val} onClick={() => setUnit(val)}
               className={`flex-1 py-3 rounded-2xl text-sm font-bold transition-all duration-200 border-2
-                ${unit === val ? 'bg-teal-500/10 border-teal-500/30 text-teal-400 shadow-lg shadow-teal-500/10' : 'bg-white/[0.05] border-white/8 text-slate-500 hover:border-white/12'}`}>
+                ${unit === val ? 'bg-teal-500/10 border-teal-500/30 text-teal-400 shadow-lg shadow-teal-500/10' : 'bg-white/[0.05] border-white/8 text-slate-400 hover:border-white/12'}`}>
               {label}
             </button>
           ))}
@@ -109,9 +109,9 @@ export default function bmi_calculator() {
 
             {/* Ideal Weight */}
             <div className="mt-6 p-4 rounded-2xl bg-white/[0.04] border border-white/8">
-              <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider mb-1">Ideal Weight Range</div>
+              <div className="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-1">Ideal Weight Range</div>
               <div className="text-lg font-bold text-white">{result.idealLow} – {result.idealHigh} kg</div>
-              <div className="text-[11px] text-slate-500 mt-0.5">for height {result.heightCm} cm (BMI 18.5–24.9)</div>
+              <div className="text-[11px] text-slate-400 mt-0.5">for height {result.heightCm} cm (BMI 18.5–24.9)</div>
             </div>
           </div>
         )}
@@ -134,7 +134,7 @@ export default function bmi_calculator() {
               <div key={r.label} className="flex items-center gap-4 px-5 py-3">
                 <div className="w-2 h-2 rounded-full" style={{ background: r.color }} />
                 <span className="text-sm font-medium text-white flex-1">{r.label}</span>
-                <span className="text-xs text-slate-500">{r.range}</span>
+                <span className="text-xs text-slate-400">{r.range}</span>
                 <div className="w-20 h-1.5 rounded-full bg-white/5 overflow-hidden">
                   <div className="h-full rounded-full" style={{ width: r.width, background: r.color }} />
                 </div>

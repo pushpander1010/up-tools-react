@@ -25,7 +25,7 @@ export default function property_tax_calculator() {
 
   const result = useMemo(() => calcPropertyTax(homeValue, taxRate, assessmentRatio), [homeValue, taxRate, assessmentRatio])
 
-  const inputClass = 'w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]'
+  const inputClass = 'w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]'
 
   return (
     <ToolLayout
@@ -62,14 +62,14 @@ export default function property_tax_calculator() {
           <input type="number" value={taxRate} onChange={e => setTaxRate(e.target.value)}
             placeholder="1.2" min="0" max="5" step="0.1"
             className={inputClass} />
-          <p className="text-xs text-slate-500 mt-1">US avg: 1.1%, UK: 0.4-0.8%, Canada: 0.5-1.5%</p>
+          <p className="text-xs text-slate-400 mt-1">US avg: 1.1%, UK: 0.4-0.8%, Canada: 0.5-1.5%</p>
         </div>
         <div>
           <label className="block text-sm font-semibold text-slate-300 mb-2">Assessment Ratio (%)</label>
           <input type="number" value={assessmentRatio} onChange={e => setAssessmentRatio(e.target.value)}
             placeholder="100" min="0" max="100" step="5"
             className={inputClass} />
-          <p className="text-xs text-slate-500 mt-1">Percentage of market value used for tax (usually 100%)</p>
+          <p className="text-xs text-slate-400 mt-1">Percentage of market value used for tax (usually 100%)</p>
         </div>
 
         <button onClick={() => jumpTo()}

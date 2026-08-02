@@ -155,11 +155,11 @@ export default function upi_qr_generator() {
                 <canvas ref={canvasRef} width={250} height={250} className="block rounded-xl" style={{ width: 220, height: 220 }} />
               </div>
             </div>
-            <div className="font-mono text-xs text-slate-500 break-all bg-black/20 rounded-xl p-3">{upiString}</div>
+            <div className="font-mono text-xs text-slate-400 break-all bg-black/20 rounded-xl p-3">{upiString}</div>
             {amount && !isNaN(amount) ? (
               <div className="text-lg font-bold text-green-400">₹{Number(amount).toLocaleString('en-IN', { minimumFractionDigits: 2 })}</div>
             ) : (
-              <div className="text-xs text-slate-500">No fixed amount — user enters when scanning</div>
+              <div className="text-xs text-slate-400">No fixed amount — user enters when scanning</div>
             )}
             <div className="flex gap-2 justify-center flex-wrap">
               <button onClick={download}

@@ -46,13 +46,13 @@ export default function bank_branch_finder() {
               <label className="block text-sm font-bold text-slate-400 mb-2">Bank Name</label>
               <input type="text" value={bankName} onChange={e => setBankName(e.target.value)}
                 placeholder="e.g., HDFC, ICICI, SBI"
-                className="w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-green-500/40 transition-all placeholder:text-slate-500 [color-scheme:dark]" />
+                className="w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-green-500/40 transition-all placeholder:text-slate-400 [color-scheme:dark]" />
             </div>
             <div>
               <label className="block text-sm font-bold text-slate-400 mb-2">City</label>
               <input type="text" value={city} onChange={e => setCity(e.target.value)}
                 placeholder="e.g., Mumbai, Delhi"
-                className="w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-green-500/40 transition-all placeholder:text-slate-500 [color-scheme:dark]" />
+                className="w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-green-500/40 transition-all placeholder:text-slate-400 [color-scheme:dark]" />
             </div>
           </div>
           <button onClick={() => { search(); jumpTo() }}
@@ -66,7 +66,7 @@ export default function bank_branch_finder() {
           {[['🏦', 'Branch Locator'], ['🏧', 'ATM Finder'], ['📞', 'Contact Info']].map(([icon, label]) => (
             <div key={label} className="rounded-2xl border-2 border-white/8 bg-white/[0.06] p-4 text-center">
               <div className="text-2xl mb-1">{icon}</div>
-              <p className="text-xs text-slate-500 font-medium">{label}</p>
+              <p className="text-xs text-slate-400 font-medium">{label}</p>
             </div>
           ))}
         </div>
@@ -82,10 +82,10 @@ export default function bank_branch_finder() {
                   <span className="text-xs px-2 py-1 rounded-full bg-green-500/15 text-green-400 font-semibold">{b.branch}</span>
                 </div>
                 <div className="grid grid-cols-2 gap-2 text-sm">
-                  <div><span className="text-slate-500">City:</span> <span className="text-white">{b.city}</span></div>
-                  <div><span className="text-slate-500">Phone:</span> <span className="text-white">{b.phone}</span></div>
-                  <div><span className="text-slate-500">Hours:</span> <span className="text-white">{b.hours}</span></div>
-                  <div><span className="text-slate-500">Services:</span> <span className="text-white">{b.services.join(', ')}</span></div>
+                  <div><span className="text-slate-400">City:</span> <span className="text-white">{b.city}</span></div>
+                  <div><span className="text-slate-400">Phone:</span> <span className="text-white">{b.phone}</span></div>
+                  <div><span className="text-slate-400">Hours:</span> <span className="text-white">{b.hours}</span></div>
+                  <div><span className="text-slate-400">Services:</span> <span className="text-white">{b.services.join(', ')}</span></div>
                 </div>
               </div>
             ))}

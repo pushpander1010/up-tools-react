@@ -173,7 +173,7 @@ export default function GamesMemorySequence() {
             <span>Score: <strong className="text-white text-base">{score}</strong></span>
             <span>Best: <strong className="text-amber-400 text-base">{best}</strong></span>
           </div>
-          <span className="text-xs text-slate-500">
+          <span className="text-xs text-slate-400">
             Round {sequence.length || 1} · Speed {Math.round((1 / (speed / 1000)) * 10) / 10}×
           </span>
         </div>

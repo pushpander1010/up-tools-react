@@ -73,7 +73,7 @@ export default function number_base_converter() {
       <div className="max-w-2xl mx-auto space-y-4">
         {/* Input */}
         <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4">
-          <label className="text-xs font-semibold text-slate-500 mb-2 block">Number</label>
+          <label className="text-xs font-semibold text-slate-400 mb-2 block">Number</label>
           <input type="text" value={input} onChange={e => { setInput(e.target.value); setError(''); setResult(null) }}
             placeholder={BASES.find(b => b.value === fromBase)?.placeholder || '0'}
             className="w-full bg-black/20 border-2 border-white/[0.08] rounded-xl px-4 py-3 text-sm font-mono text-white outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-600" />
@@ -82,7 +82,7 @@ export default function number_base_converter() {
         {/* From / To + Swap */}
         <div className="grid grid-cols-[1fr_auto_1fr] gap-3 items-end">
           <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4">
-            <label className="text-xs font-semibold text-slate-500 mb-2 block">From</label>
+            <label className="text-xs font-semibold text-slate-400 mb-2 block">From</label>
             <select value={fromBase} onChange={e => setFromBase(e.target.value)}
               className="w-full bg-black/20 border-2 border-white/[0.08] rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-indigo-500/40">
               {BASES.map(b => <option key={b.value} value={b.value} className="bg-gray-900">{b.icon} {b.label} ({b.value})</option>)}
@@ -93,7 +93,7 @@ export default function number_base_converter() {
             ⇄
           </button>
           <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4">
-            <label className="text-xs font-semibold text-slate-500 mb-2 block">To</label>
+            <label className="text-xs font-semibold text-slate-400 mb-2 block">To</label>
             <select value={toBase} onChange={e => setToBase(e.target.value)}
               className="w-full bg-black/20 border-2 border-white/[0.08] rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-indigo-500/40">
               {BASES.map(b => <option key={b.value} value={b.value} className="bg-gray-900">{b.icon} {b.label} ({b.value})</option>)}
@@ -116,7 +116,7 @@ export default function number_base_converter() {
           <div ref={resultRef} className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4"
             style={{ animation: 'slideUp 0.3s ease-out' }}>
             <div className="flex items-center justify-between mb-3">
-              <label className="text-xs font-semibold text-slate-500">Result ({BASES.find(b => b.value === toBase)?.label})</label>
+              <label className="text-xs font-semibold text-slate-400">Result ({BASES.find(b => b.value === toBase)?.label})</label>
               <button onClick={copy}
                 className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${copied ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-white/5 border border-white/[0.08] text-slate-400 hover:text-white'}`}>
                 {copied ? '✓ Copied' : '📋 Copy'}
@@ -124,7 +124,7 @@ export default function number_base_converter() {
             </div>
             <div className="bg-black/20 border-2 border-indigo-500/20 rounded-xl p-5 text-center">
               <div className="text-3xl font-extrabold text-indigo-400 font-mono break-all">{result.value}</div>
-              <div className="text-xs text-slate-500 mt-2">Decimal: {result.decimal}</div>
+              <div className="text-xs text-slate-400 mt-2">Decimal: {result.decimal}</div>
             </div>
           </div>
         )}

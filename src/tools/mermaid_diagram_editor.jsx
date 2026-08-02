@@ -116,7 +116,7 @@ export default function mermaid_diagram_editor() {
   const [zoom, setZoom] = useState(1)
   const mermaidId = useRef(0)
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-3 text-white text-sm font-mono outline-none focus:border-cyan-500/40 transition-all placeholder:text-slate-500 resize-none"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-3 text-white text-sm font-mono outline-none focus:border-cyan-500/40 transition-all placeholder:text-slate-400 resize-none"
 
   const renderDiagram = useCallback(async () => {
     if (!code.trim()) {
@@ -241,7 +241,7 @@ export default function mermaid_diagram_editor() {
         <div className="flex flex-wrap gap-2">
           {Object.keys(examples).map(key => (
             <button key={key} onClick={() => loadExample(key)}
-              className={`px-4 py-2 rounded-xl text-xs font-bold capitalize transition-all ${activeExample === key ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/30' : 'bg-white/[0.06] text-slate-500 border border-white/8 hover:bg-cyan-500/10 hover:text-cyan-300'}`}>
+              className={`px-4 py-2 rounded-xl text-xs font-bold capitalize transition-all ${activeExample === key ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/30' : 'bg-white/[0.06] text-slate-400 border border-white/8 hover:bg-cyan-500/10 hover:text-cyan-300'}`}>
               {key}
             </button>
           ))}
@@ -251,7 +251,7 @@ export default function mermaid_diagram_editor() {
           {/* Left: Code Editor */}
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <label className="text-xs font-semibold text-slate-500">Mermaid Syntax</label>
+              <label className="text-xs font-semibold text-slate-400">Mermaid Syntax</label>
               <button onClick={copyCode}
                 className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${copied ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-white/5 border border-white/8 text-slate-400 hover:text-white'}`}>
                 {copied ? '✓ Copied' : '📋 Copy'}
@@ -266,14 +266,14 @@ export default function mermaid_diagram_editor() {
           <div className="space-y-3" ref={resultRef}>
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <label className="text-xs font-semibold text-slate-500">Preview</label>
+                <label className="text-xs font-semibold text-slate-400">Preview</label>
                 {error && <span className="text-xs text-red-400 font-mono truncate max-w-[200px]">⚠ {error}</span>}
               </div>
               <div className="flex items-center gap-2">
                 <div className="flex items-center gap-1 bg-white/[0.06] rounded-lg border border-white/8 px-2 py-1">
                   <button onClick={() => setZoom(z => Math.max(0.25, z - 0.25))}
                     className="text-xs text-slate-400 hover:text-white w-5 text-center transition-all">−</button>
-                  <span className="text-[10px] text-slate-500 font-mono w-8 text-center">{Math.round(zoom * 100)}%</span>
+                  <span className="text-[10px] text-slate-400 font-mono w-8 text-center">{Math.round(zoom * 100)}%</span>
                   <button onClick={() => setZoom(z => Math.min(3, z + 0.25))}
                     className="text-xs text-slate-400 hover:text-white w-5 text-center transition-all">+</button>
                 </div>
@@ -296,7 +296,7 @@ export default function mermaid_diagram_editor() {
                 <div className="text-center text-red-400 space-y-2">
                   <div className="text-3xl">⚠️</div>
                   <p className="text-sm font-semibold">Diagram Error</p>
-                  <p className="text-xs text-slate-500 max-w-xs">{error}</p>
+                  <p className="text-xs text-slate-400 max-w-xs">{error}</p>
                 </div>
               ) : (
                 <div className="text-center text-slate-600 space-y-2">

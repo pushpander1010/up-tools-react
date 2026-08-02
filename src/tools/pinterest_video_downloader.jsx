@@ -72,7 +72,7 @@ export default function pinterest_video_downloader() {
           <label className="text-sm font-semibold text-slate-300 mb-2 block">Pinterest Pin URL</label>
           <input type="text" value={url} onChange={e => setUrl(e.target.value)}
             placeholder="Paste Pinterest pin URL here..."
-            className="w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-red-500/40 transition-all placeholder:text-slate-500 [color-scheme:dark]" />
+            className="w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-red-500/40 transition-all placeholder:text-slate-400 [color-scheme:dark]" />
         </div>
 
         {/* Quality Selector */}
@@ -88,7 +88,7 @@ export default function pinterest_video_downloader() {
                 }`}>
                 <div className="text-2xl mb-1">{q.icon}</div>
                 <div className="text-sm font-bold text-white">{q.label}</div>
-                <div className="text-[10px] text-slate-500">{q.desc}</div>
+                <div className="text-[10px] text-slate-400">{q.desc}</div>
               </button>
             ))}
           </div>

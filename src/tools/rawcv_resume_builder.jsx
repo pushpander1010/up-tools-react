@@ -202,7 +202,7 @@ ${skills.length ? `<div class="section"><div class="section-title">Skills</div><
               className={`flex-1 p-3 rounded-xl text-xs font-bold transition-all border-2 ${
                 template === t.id
                   ? 'bg-indigo-500/15 text-indigo-400 border-indigo-500/30'
-                  : 'bg-white/[0.04] text-slate-500 border-white/8 hover:border-white/12'
+                  : 'bg-white/[0.04] text-slate-400 border-white/8 hover:border-white/12'
               }`}>
               <div>{t.label}</div>
               <div className="text-[10px] font-normal opacity-60 mt-0.5">{t.desc}</div>
@@ -217,7 +217,7 @@ ${skills.length ? `<div class="section"><div class="section-title">Skills</div><
               className={`px-4 py-2 rounded-xl text-xs font-bold capitalize whitespace-nowrap transition-all ${
                 activeSection === s
                   ? 'bg-indigo-500/15 text-indigo-400 border border-indigo-500/30'
-                  : 'bg-white/[0.04] text-slate-500 border border-white/8'
+                  : 'bg-white/[0.04] text-slate-400 border border-white/8'
               }`}>
               {s === 'contact' ? '📇 Contact' : s === 'summary' ? '📋 Summary' : s === 'experience' ? '💼 Experience' : s === 'education' ? '🎓 Education' : '🛠️ Skills'}
             </button>

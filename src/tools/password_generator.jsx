@@ -160,7 +160,7 @@ export default function password_generator() {
                     {opts[key] && '✓'}
                   </div>
                 </div>
-                <div className="text-[11px] text-slate-500 mt-1 font-mono">{sample}</div>
+                <div className="text-[11px] text-slate-400 mt-1 font-mono">{sample}</div>
               </button>
             ))}
           </div>
@@ -170,7 +170,7 @@ export default function password_generator() {
         {/* ─── Batch + Generate ─── */}
         <div className="flex gap-3">
           <div className="flex-1">
-            <label className="text-xs font-semibold text-slate-500 mb-2 block">How many?</label>
+            <label className="text-xs font-semibold text-slate-400 mb-2 block">How many?</label>
             <div className="flex gap-2">
               {[1, 3, 5, 10].map(n => (
                 <button key={n} onClick={() => setCount(n)}
@@ -201,8 +201,8 @@ export default function password_generator() {
                 <div className="h-full rounded-full transition-all duration-700 ease-out" style={{ width: `${strength.pct}%`, background: `linear-gradient(90deg, ${strength.color}80, ${strength.color})` }} />
               </div>
               <div className="flex items-center justify-between text-[11px]">
-                <span className="text-slate-500">{strength.tip}</span>
-                <span className="text-slate-500">{entropy.toFixed(1)} bits entropy</span>
+                <span className="text-slate-400">{strength.tip}</span>
+                <span className="text-slate-400">{entropy.toFixed(1)} bits entropy</span>
               </div>
             </div>
 
@@ -268,7 +268,7 @@ export default function password_generator() {
                         <span>Fast crack: {pwCracks[1].time}</span>
                       </div>
                       <button onClick={() => setShowAnalysis(isExpanded ? null : i)}
-                        className="text-[10px] text-slate-500 hover:text-white transition-colors">
+                        className="text-[10px] text-slate-400 hover:text-white transition-colors">
                         {isExpanded ? '▲ Less' : '▼ Details'}
                       </button>
                     </div>
@@ -278,7 +278,7 @@ export default function password_generator() {
                       <div className="mt-3 p-3 rounded-xl bg-black/20 border border-white/5 space-y-1.5" style={{ animation: 'slideUp 0.2s ease-out' }}>
                         {pwCracks.map(ct => (
                           <div key={ct.label} className="flex items-center justify-between text-[11px]">
-                            <span className="text-slate-500">{ct.icon} {ct.label}</span>
+                            <span className="text-slate-400">{ct.icon} {ct.label}</span>
                             <span className="font-mono font-bold text-white">{ct.time}</span>
                           </div>
                         ))}
@@ -297,7 +297,7 @@ export default function password_generator() {
         {/* ─── Fun Fact ─── */}
         {generated && (
           <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/[0.06]">
-            <div className="text-[11px] text-slate-500 font-semibold uppercase tracking-wider mb-1">💡 Did you know?</div>
+            <div className="text-[11px] text-slate-400 font-semibold uppercase tracking-wider mb-1">💡 Did you know?</div>
             <div className="text-sm text-slate-300">{FUN_FACTS[factIndex]}</div>
           </div>
         )}

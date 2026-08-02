@@ -37,7 +37,7 @@ export default function ppf_calculator() {
     URL.revokeObjectURL(url)
   }, [result])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-4 py-3 text-white text-sm font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-4 py-3 text-white text-sm font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -120,7 +120,7 @@ export default function ppf_calculator() {
             {/* Year Table */}
             <div className="max-h-[300px] overflow-y-auto">
               <table className="w-full text-xs">
-                <thead><tr className="text-slate-500 border-b border-white/[0.06]">
+                <thead><tr className="text-slate-400 border-b border-white/[0.06]">
                   <th className="text-left py-2 px-2">Year</th>
                   <th className="text-right py-2 px-2">Invested</th>
                   <th className="text-right py-2 px-2">Balance</th>

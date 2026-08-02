@@ -123,7 +123,7 @@ export default function instagram_story_ideas_generator() {
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
             {Object.entries(CATEGORIES).map(([k, v]) => (
               <button key={k} onClick={() => setCategory(k)}
-                className={`p-3 rounded-xl text-sm font-bold transition-all text-center ${category === k ? 'bg-indigo-500/15 text-indigo-400 border border-indigo-500/30' : 'bg-white/[0.04] text-slate-500 border border-white/[0.08] hover:text-white'}`}>
+                className={`p-3 rounded-xl text-sm font-bold transition-all text-center ${category === k ? 'bg-indigo-500/15 text-indigo-400 border border-indigo-500/30' : 'bg-white/[0.04] text-slate-400 border border-white/[0.08] hover:text-white'}`}>
                 {v.emoji} {v.label}
               </button>
             ))}
@@ -155,7 +155,7 @@ export default function instagram_story_ideas_generator() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="text-sm font-semibold text-white">{idea.text}</div>
-                  <div className="text-xs text-slate-500 mt-0.5">Click to copy</div>
+                  <div className="text-xs text-slate-400 mt-0.5">Click to copy</div>
                 </div>
                 <div className="text-lg opacity-0 group-hover:opacity-100 transition-opacity">📋</div>
               </div>

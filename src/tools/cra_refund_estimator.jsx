@@ -66,7 +66,7 @@ export default function cra_refund_estimator() {
               <h3 className="text-sm font-bold uppercase tracking-wider" style={{ color: result.color }}>{result.status}</h3>
             </div>
             <div className="text-3xl font-extrabold text-white">{fmt(result.amount)}</div>
-            <p className="text-xs text-slate-500 mt-4">Estimate only. Final results depend on CRA assessment.</p>
+            <p className="text-xs text-slate-400 mt-4">Estimate only. Final results depend on CRA assessment.</p>
           </div>
         ) : (
           <div ref={resultRef} className="text-center py-12 rounded-3xl border-2 border-dashed border-white/8 bg-white/[0.01]">

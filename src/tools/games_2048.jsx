@@ -277,17 +277,17 @@ export default function games_2048() {
           <div onClick={handleStartTap} className="cursor-pointer">
             <div className="glass p-4">
               <div className="grid grid-cols-4 gap-4">
-                <div className="text-center"><div className="text-2xl font-extrabold text-white">{best}</div><div className="text-xs text-slate-500 font-medium mt-0.5">Best Score</div></div>
-                <div className="text-center"><div className="text-2xl font-extrabold text-white">{bestTile}</div><div className="text-xs text-slate-500 font-medium mt-0.5">Best Tile</div></div>
-                <div className="text-center"><div className="text-2xl font-extrabold text-white">{Number(localStorage.getItem(LS.LAST)||0)}</div><div className="text-xs text-slate-500 font-medium mt-0.5">Last Score</div></div>
-                <div className="text-center"><div className="text-2xl font-extrabold text-white">{Number(localStorage.getItem(LS.MOVES)||0)}</div><div className="text-xs text-slate-500 font-medium mt-0.5">Last Moves</div></div>
+                <div className="text-center"><div className="text-2xl font-extrabold text-white">{best}</div><div className="text-xs text-slate-400 font-medium mt-0.5">Best Score</div></div>
+                <div className="text-center"><div className="text-2xl font-extrabold text-white">{bestTile}</div><div className="text-xs text-slate-400 font-medium mt-0.5">Best Tile</div></div>
+                <div className="text-center"><div className="text-2xl font-extrabold text-white">{Number(localStorage.getItem(LS.LAST)||0)}</div><div className="text-xs text-slate-400 font-medium mt-0.5">Last Score</div></div>
+                <div className="text-center"><div className="text-2xl font-extrabold text-white">{Number(localStorage.getItem(LS.MOVES)||0)}</div><div className="text-xs text-slate-400 font-medium mt-0.5">Last Moves</div></div>
               </div>
             </div>
             <div className="flex gap-3 justify-center mt-4">
               <button onClick={(e) => { e.stopPropagation(); triggerAd(startNew) }} className="glow-btn px-6 py-3 text-sm">🎮 New Game</button>
               <button onClick={(e) => { e.stopPropagation(); triggerAd(continueSaved) }} className="px-6 py-3 rounded-xl text-sm font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">↩️ Continue</button>
             </div>
-            <p className="text-center text-xs text-slate-500 mt-4">👆 Tap anywhere or use buttons to start</p>
+            <p className="text-center text-xs text-slate-400 mt-4">👆 Tap anywhere or use buttons to start</p>
           </div>
         )}
 
@@ -347,7 +347,7 @@ export default function games_2048() {
             {/* Bottom ad banner */}
             <GameAdSlot slot="8865234201" format="horizontal" className="mt-2" />
 
-            <p className="text-center text-xs text-slate-500">Tip: use WASD too. Press Back to stop — progress is saved.</p>
+            <p className="text-center text-xs text-slate-400">Tip: use WASD too. Press Back to stop — progress is saved.</p>
           </>
         )}
         </div>

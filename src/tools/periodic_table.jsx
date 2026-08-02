@@ -220,7 +220,7 @@ export default function periodic_table() {
           </div>
           <div className="flex flex-wrap gap-1.5 mt-2 justify-center">
             {Object.entries(CATS).map(([k, v]) => (
-              <span key={k} className="inline-flex items-center gap-1 text-[10px] text-slate-500 px-2 py-0.5 rounded-full bg-white/[0.04] border border-white/[0.06]">
+              <span key={k} className="inline-flex items-center gap-1 text-[10px] text-slate-400 px-2 py-0.5 rounded-full bg-white/[0.04] border border-white/[0.06]">
                 <span className="w-2 h-2 rounded-sm shrink-0" style={{ background: v.color }} />{v.name}
               </span>
             ))}
@@ -284,7 +284,7 @@ export default function periodic_table() {
                 ['Year Discovered', selectedEl[12]],
               ].map(([label, value]) => (
                 <div key={label} className="px-3 py-2.5 bg-white/[0.04] border border-white/[0.06] rounded-lg">
-                  <div className="text-[10px] text-slate-500 uppercase tracking-wider mb-0.5">{label}</div>
+                  <div className="text-[10px] text-slate-400 uppercase tracking-wider mb-0.5">{label}</div>
                   <div className="text-sm text-white font-medium break-words">{value}</div>
                 </div>
               ))}

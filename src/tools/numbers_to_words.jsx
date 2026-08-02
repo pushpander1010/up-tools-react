@@ -151,7 +151,7 @@ export default function NumbersToWords() {
           <label className="block text-sm font-semibold text-slate-300 mb-2">Enter a Number</label>
           <input type="text" value={input} onChange={e => setInput(e.target.value)}
             placeholder="e.g. 1234567 or -1,23,456.78"
-            className="w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3.5 text-white font-mono text-lg outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]" />
+            className="w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3.5 text-white font-mono text-lg outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]" />
           {error && <p className="text-red-400 text-xs mt-2 font-semibold">{error}</p>}
         </div>
 

@@ -102,7 +102,7 @@ export default function canada_tax_bracket_calculator() {
                 <span className="font-bold text-red-400">{result.effectiveRate}%</span>
               </div>
             </div>
-            <p className="text-xs text-slate-500 mt-4">Uses federal brackets only. Provincial tax not included.</p>
+            <p className="text-xs text-slate-400 mt-4">Uses federal brackets only. Provincial tax not included.</p>
           </div>
         ) : (
           <div ref={resultRef} className="text-center py-12 rounded-3xl border-2 border-dashed border-white/8 bg-white/[0.01]">

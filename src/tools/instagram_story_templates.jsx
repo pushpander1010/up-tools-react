@@ -104,7 +104,7 @@ export default function instagram_story_templates() {
     setSelectedTemplate(tmpl.title)
   }, [category])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -137,7 +137,7 @@ export default function instagram_story_templates() {
             {Object.keys(STORY_TEMPLATES).map(cat => (
               <button key={cat} onClick={() => { setCategory(cat); setSelectedTemplate(null) }}
                 className={`px-4 py-2.5 rounded-xl text-sm font-semibold capitalize transition-all duration-200 border-2
-                  ${category === cat ? 'bg-pink-500/10 border-pink-500/30 text-pink-400' : 'bg-white/[0.04] border-white/8 text-slate-500 hover:border-white/12'}`}>
+                  ${category === cat ? 'bg-pink-500/10 border-pink-500/30 text-pink-400' : 'bg-white/[0.04] border-white/8 text-slate-400 hover:border-white/12'}`}>
                 {cat}
               </button>
             ))}
@@ -153,7 +153,7 @@ export default function instagram_story_templates() {
                   ? 'bg-pink-500/10 border-pink-500/30'
                   : 'bg-white/[0.04] border-white/6 hover:border-white/15'}`}>
               <div className="text-sm font-bold text-white mb-1">{tmpl.title}</div>
-              <div className="text-xs text-slate-500 line-clamp-2">{tmpl.text.substring(0, 60)}...</div>
+              <div className="text-xs text-slate-400 line-clamp-2">{tmpl.text.substring(0, 60)}...</div>
             </button>
           ))}
         </div>
@@ -176,7 +176,7 @@ export default function instagram_story_templates() {
                 className={`px-3 py-2 rounded-xl text-xs font-semibold transition-all duration-200 border
                   ${activeElements.has(el.key)
                     ? 'bg-pink-500/20 border-pink-500/40 text-pink-300'
-                    : 'bg-white/[0.04] border-white/8 text-slate-500 hover:border-white/12'}`}>
+                    : 'bg-white/[0.04] border-white/8 text-slate-400 hover:border-white/12'}`}>
                 {el.label}
               </button>
             ))}

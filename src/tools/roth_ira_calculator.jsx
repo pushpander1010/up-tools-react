@@ -127,15 +127,15 @@ export default function roth_ira_calculator() {
             <div className="grid grid-cols-3 gap-4 mb-6">
               <div className="p-3 rounded-xl bg-white/[0.04] border border-white/8 text-center">
                 <div className="text-lg font-bold text-white">{fmt.format(result.totalContrib)}</div>
-                <div className="text-[10px] text-slate-500 font-semibold">Total Contributions</div>
+                <div className="text-[10px] text-slate-400 font-semibold">Total Contributions</div>
               </div>
               <div className="p-3 rounded-xl bg-white/[0.04] border border-white/8 text-center">
                 <div className="text-lg font-bold text-green-400">{fmt.format(result.earnings)}</div>
-                <div className="text-[10px] text-slate-500 font-semibold">Investment Earnings</div>
+                <div className="text-[10px] text-slate-400 font-semibold">Investment Earnings</div>
               </div>
               <div className="p-3 rounded-xl bg-white/[0.04] border border-white/8 text-center">
                 <div className="text-lg font-bold text-white">{result.years} yrs</div>
-                <div className="text-[10px] text-slate-500 font-semibold">Years to Retirement</div>
+                <div className="text-[10px] text-slate-400 font-semibold">Years to Retirement</div>
               </div>
             </div>
 

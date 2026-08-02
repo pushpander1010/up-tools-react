@@ -83,7 +83,7 @@ export default function password_strength_checker() {
               placeholder="Enter a password to analyze..."
               className="w-full bg-black/20 border-2 border-white/[0.08] rounded-xl px-5 py-4 text-white text-lg font-mono focus:outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-600 pr-14" />
             <button onClick={() => setShowPassword(s => !s)}
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300 transition-all text-sm font-bold">
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-300 transition-all text-sm font-bold">
               {showPassword ? '👁️‍🗨️' : '👁️'}
             </button>
           </div>
@@ -113,11 +113,11 @@ export default function password_strength_checker() {
             <div className="grid grid-cols-2 gap-3">
               <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4 text-center">
                 <div className="text-2xl font-extrabold text-indigo-400">{password.length}</div>
-                <div className="text-[10px] text-slate-500 uppercase font-bold mt-1">Length</div>
+                <div className="text-[10px] text-slate-400 uppercase font-bold mt-1">Length</div>
               </div>
               <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4 text-center">
                 <div className="text-2xl font-extrabold text-purple-400">{analysis.entropy} bits</div>
-                <div className="text-[10px] text-slate-500 uppercase font-bold mt-1">Entropy</div>
+                <div className="text-[10px] text-slate-400 uppercase font-bold mt-1">Entropy</div>
               </div>
               <div className="col-span-2 bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4 text-center">
                 <div className="text-xs font-bold text-slate-400 mb-1">Est. Crack Time (10B guesses/sec)</div>
@@ -136,7 +136,7 @@ export default function password_strength_checker() {
                       <div className={`w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold ${passed ? 'bg-emerald-500 text-white' : 'bg-white/[0.08] text-slate-600'}`}>
                         {passed ? '✓' : '○'}
                       </div>
-                      <span className={`text-sm font-medium ${passed ? 'text-emerald-300' : 'text-slate-500'}`}>{c.label}</span>
+                      <span className={`text-sm font-medium ${passed ? 'text-emerald-300' : 'text-slate-400'}`}>{c.label}</span>
                     </div>
                   )
                 })}

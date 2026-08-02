@@ -77,7 +77,7 @@ export default function bmr_calculator() {
         <div className="flex gap-2">
           {['imperial', 'metric'].map(u => (
             <button key={u} onClick={() => setUnit(u)}
-              className={`flex-1 py-3 rounded-xl text-sm font-bold transition-all border-2 ${unit === u ? 'bg-indigo-500/15 border-indigo-500/30 text-indigo-400' : 'bg-white/[0.06] border-white/[0.08] text-slate-500'}`}>
+              className={`flex-1 py-3 rounded-xl text-sm font-bold transition-all border-2 ${unit === u ? 'bg-indigo-500/15 border-indigo-500/30 text-indigo-400' : 'bg-white/[0.06] border-white/[0.08] text-slate-400'}`}>
               {u === 'imperial' ? '📏 Imperial (lbs, ft/in)' : '📐 Metric (kg, cm)'}
             </button>
           ))}
@@ -87,7 +87,7 @@ export default function bmr_calculator() {
         <div className="flex gap-2">
           {[['male', '♂ Male'], ['female', '♀ Female']].map(([s, label]) => (
             <button key={s} onClick={() => setSex(s)}
-              className={`flex-1 py-3 rounded-xl text-sm font-bold transition-all border-2 ${sex === s ? 'bg-indigo-500/15 border-indigo-500/30 text-indigo-400' : 'bg-white/[0.06] border-white/[0.08] text-slate-500'}`}>
+              className={`flex-1 py-3 rounded-xl text-sm font-bold transition-all border-2 ${sex === s ? 'bg-indigo-500/15 border-indigo-500/30 text-indigo-400' : 'bg-white/[0.06] border-white/[0.08] text-slate-400'}`}>
               {label}
             </button>
           ))}

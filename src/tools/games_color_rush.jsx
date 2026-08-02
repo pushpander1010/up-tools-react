@@ -194,7 +194,7 @@ export default function games_color_rush() {
             <div className="glass text-center p-4">
               <div className="text-2xl mb-2">🏆</div>
               <div className="text-lg font-extrabold text-white">{highScore}</div>
-              <div className="text-xs text-slate-500">High Score</div>
+              <div className="text-xs text-slate-400">High Score</div>
             </div>
             <p className="text-center text-slate-400 text-sm">Choose your grid size</p>
             <div className="grid grid-cols-3 gap-3">
@@ -215,15 +215,15 @@ export default function games_color_rush() {
               <div className="grid grid-cols-3 gap-4">
                 <div className="text-center">
                   <div className="text-2xl font-extrabold text-white">{score}</div>
-                  <div className="text-xs text-slate-500 font-medium mt-0.5">Score</div>
+                  <div className="text-xs text-slate-400 font-medium mt-0.5">Score</div>
                 </div>
                 <div className="text-center">
                   <div className="text-2xl font-extrabold text-purple-400">Lv.{level}</div>
-                  <div className="text-xs text-slate-500 font-medium mt-0.5">Level</div>
+                  <div className="text-xs text-slate-400 font-medium mt-0.5">Level</div>
                 </div>
                 <div className="text-center">
                   <div className="text-2xl font-extrabold" style={{color: timerColor}}>{timer.toFixed(1)}s</div>
-                  <div className="text-xs text-slate-500 font-medium mt-0.5">Timer</div>
+                  <div className="text-xs text-slate-400 font-medium mt-0.5">Timer</div>
                 </div>
               </div>
             </div>
@@ -259,7 +259,7 @@ export default function games_color_rush() {
                   <div className="text-3xl mb-2">{score >= highScore && score > 0 ? '🎉' : '😢'}</div>
                   <div className="text-lg font-bold text-white">Score: {score}</div>
                   {score >= highScore && score > 0 && <div className="text-sm text-green-400 mt-1">🏆 New High Score!</div>}
-                  <div className="text-xs text-slate-500 mt-1">Level reached: {level}</div>
+                  <div className="text-xs text-slate-400 mt-1">Level reached: {level}</div>
                 </div>
                 <div className="flex gap-2 justify-center">
                   <button onClick={() => triggerAd(() => { setPlaying(false); setGameOver(false) })}
@@ -272,7 +272,7 @@ export default function games_color_rush() {
           </div>
         )}
 
-        <p className="text-center text-xs text-slate-500">High scores saved on this device.</p>
+        <p className="text-center text-xs text-slate-400">High scores saved on this device.</p>
         <div className="flex gap-3 justify-center">
           <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
             {isFs ? '⊡' : '⛶'}

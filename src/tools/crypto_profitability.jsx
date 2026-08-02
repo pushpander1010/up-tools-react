@@ -111,7 +111,7 @@ export default function crypto_profitability() {
 
   const Row = ({ label, h, d, w, m }) => (
     <div className="grid grid-cols-5 gap-2 text-xs py-2 border-b border-white/[0.04]">
-      <span className="text-slate-500 font-semibold">{label}</span>
+      <span className="text-slate-400 font-semibold">{label}</span>
       {[h, d, w, m].map((v, i) => (
         <span key={i} className={`text-right font-mono ${i === 3 ? 'text-emerald-400 font-bold' : 'text-slate-300'}`}>
           {v != null && v !== '—' ? fmtCurrency(v, vs) : '—'}
@@ -147,14 +147,14 @@ export default function crypto_profitability() {
         {/* Coin + Currency */}
         <div className="bg-white/[0.06] border border-white/8 rounded-2xl p-4 grid grid-cols-2 gap-3">
           <div>
-            <label className="text-xs font-semibold text-slate-500 mb-1 block">Coin</label>
+            <label className="text-xs font-semibold text-slate-400 mb-1 block">Coin</label>
             <select value={coin} onChange={e => changeCoin(e.target.value)}
               className="w-full bg-black/20 border-2 border-white/8 rounded-xl px-3 py-2.5 text-sm text-white outline-none [color-scheme:dark]">
               {Object.entries(COIN_META).map(([k, v]) => <option key={k} value={k}>{v.symbol}</option>)}
             </select>
           </div>
           <div>
-            <label className="text-xs font-semibold text-slate-500 mb-1 block">Currency</label>
+            <label className="text-xs font-semibold text-slate-400 mb-1 block">Currency</label>
             <select value={vs} onChange={e => setVs(e.target.value)}
               className="w-full bg-black/20 border-2 border-white/8 rounded-xl px-3 py-2.5 text-sm text-white outline-none [color-scheme:dark]">
               {CURRENCIES.map(c => <option key={c} value={c}>{c.toUpperCase()}</option>)}
@@ -176,7 +176,7 @@ export default function crypto_profitability() {
               { label: 'Hardware Cost', val: hwCost, set: setHwCost, type: 'number' },
             ].map(inp => (
               <div key={inp.label}>
-                <label className="text-[10px] font-semibold text-slate-500 mb-1 block">{inp.label}</label>
+                <label className="text-[10px] font-semibold text-slate-400 mb-1 block">{inp.label}</label>
                 <div className="flex">
                   {inp.type === 'select' ? (
                     <select value={inp.val} onChange={e => inp.set(e.target.value)}
@@ -201,7 +201,7 @@ export default function crypto_profitability() {
           {/* Network */}
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="text-[10px] font-semibold text-slate-500 mb-1 block">Network Mode</label>
+              <label className="text-[10px] font-semibold text-slate-400 mb-1 block">Network Mode</label>
               <select value={netMode} onChange={e => setNetMode(e.target.value)}
                 className="w-full bg-black/20 border-2 border-white/8 rounded-xl px-3 py-2 text-xs text-white outline-none [color-scheme:dark]">
                 <option value="difficulty">Difficulty</option>
@@ -209,19 +209,19 @@ export default function crypto_profitability() {
               </select>
             </div>
             <div>
-              <label className="text-[10px] font-semibold text-slate-500 mb-1 block">{netMode === 'difficulty' ? 'Network Difficulty' : 'Network Hashrate'}</label>
+              <label className="text-[10px] font-semibold text-slate-400 mb-1 block">{netMode === 'difficulty' ? 'Network Difficulty' : 'Network Hashrate'}</label>
               <input type="number" value={netVal} onChange={e => setNetVal(e.target.value)}
                 className="w-full bg-black/20 border-2 border-white/8 rounded-xl px-3 py-2 text-xs text-white outline-none focus:border-indigo-500/40 transition-all [color-scheme:dark]" />
             </div>
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="text-[10px] font-semibold text-slate-500 mb-1 block">Block Reward</label>
+              <label className="text-[10px] font-semibold text-slate-400 mb-1 block">Block Reward</label>
               <input type="number" value={blockReward} onChange={e => setBlockReward(e.target.value)}
                 className="w-full bg-black/20 border-2 border-white/8 rounded-xl px-3 py-2 text-xs text-white outline-none [color-scheme:dark]" />
             </div>
             <div>
-              <label className="text-[10px] font-semibold text-slate-500 mb-1 block">Block Time (s)</label>
+              <label className="text-[10px] font-semibold text-slate-400 mb-1 block">Block Time (s)</label>
               <input type="number" value={blockTime} onChange={e => setBlockTime(e.target.value)}
                 className="w-full bg-black/20 border-2 border-white/8 rounded-xl px-3 py-2 text-xs text-white outline-none [color-scheme:dark]" />
             </div>
@@ -248,14 +248,14 @@ export default function crypto_profitability() {
               ].map(k => (
                 <div key={k.label} className="bg-black/20 rounded-xl py-3 px-2">
                   <div className="text-sm font-extrabold" style={{ color: k.color }}>{k.val}</div>
-                  <div className="text-[10px] text-slate-500 font-semibold">{k.label}</div>
+                  <div className="text-[10px] text-slate-400 font-semibold">{k.label}</div>
                 </div>
               ))}
             </div>
 
             {/* Revenue Table */}
             <div className="text-xs">
-              <div className="grid grid-cols-5 gap-2 text-slate-500 font-bold pb-1 border-b border-white/8">
+              <div className="grid grid-cols-5 gap-2 text-slate-400 font-bold pb-1 border-b border-white/8">
                 <span></span><span className="text-right">Hourly</span><span className="text-right">Daily</span><span className="text-right">Weekly</span><span className="text-right">Monthly</span>
               </div>
               <Row label="Revenue" h={result.revH} d={result.revD} w={result.revW} m={result.revM} />
@@ -266,7 +266,7 @@ export default function crypto_profitability() {
             {/* ROI */}
             {result.roiDays != null && (
               <div className="p-3 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-center">
-                <div className="text-xs text-slate-500 mb-1">Hardware ROI</div>
+                <div className="text-xs text-slate-400 mb-1">Hardware ROI</div>
                 <div className="text-lg font-extrabold text-indigo-400">
                   {result.roiDays.toFixed(1)} days ({result.roiMonths.toFixed(1)} months)
                 </div>

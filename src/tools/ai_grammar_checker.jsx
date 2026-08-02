@@ -68,7 +68,7 @@ export default function ai_grammar_checker() {
         <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4 space-y-3">
           <div className="flex items-center justify-between">
             <label className="block text-sm font-semibold text-slate-300">Your Text *</label>
-            <div className="flex gap-3 text-xs text-slate-500">
+            <div className="flex gap-3 text-xs text-slate-400">
               <span>Words: {wordCount}</span>
               <span>Chars: {charCount}</span>
             </div>
@@ -78,7 +78,7 @@ export default function ai_grammar_checker() {
             rows={8} className={inputClass} />
           <div className="flex gap-2">
             <button onClick={clear}
-              className="px-4 py-2 rounded-xl text-xs font-bold bg-white/[0.04] border border-white/[0.08] text-slate-500 hover:text-white transition-all">
+              className="px-4 py-2 rounded-xl text-xs font-bold bg-white/[0.04] border border-white/[0.08] text-slate-400 hover:text-white transition-all">
               Clear
             </button>
           </div>

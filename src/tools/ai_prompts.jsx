@@ -90,7 +90,7 @@ export default function ai_prompts() {
     window.open(svc.url(prompt), '_blank', 'noopener')
   }, [service])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-purple-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-purple-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 
   const counts = useMemo(() => {
     const c = { all: PROMPTS.length }
@@ -136,18 +136,18 @@ export default function ai_prompts() {
         {/* Category Filter */}
         <div className="flex flex-wrap gap-2">
           <button onClick={() => setCategory('all')}
-            className={`px-4 py-2 rounded-xl text-xs font-bold border-2 transition-all ${category === 'all' ? 'bg-white/10 border-white/20 text-white' : 'bg-white/[0.03] border-white/6 text-slate-500 hover:text-white'}`}>
+            className={`px-4 py-2 rounded-xl text-xs font-bold border-2 transition-all ${category === 'all' ? 'bg-white/10 border-white/20 text-white' : 'bg-white/[0.03] border-white/6 text-slate-400 hover:text-white'}`}>
             All ({counts.all})
           </button>
           {Object.entries(CAT_META).map(([key, meta]) => (
             <button key={key} onClick={() => setCategory(key)}
-              className={`px-4 py-2 rounded-xl text-xs font-bold border-2 transition-all ${category === key ? meta.color + ' border-current/20' : 'bg-white/[0.03] border-white/6 text-slate-500 hover:text-white'}`}>
+              className={`px-4 py-2 rounded-xl text-xs font-bold border-2 transition-all ${category === key ? meta.color + ' border-current/20' : 'bg-white/[0.03] border-white/6 text-slate-400 hover:text-white'}`}>
               {meta.label} ({counts[key] || 0})
             </button>
           ))}
         </div>
 
-        <div className="text-xs text-slate-500">{filtered.length} detailed prompts</div>
+        <div className="text-xs text-slate-400">{filtered.length} detailed prompts</div>
 
         {/* Prompt Cards */}
         <div className="space-y-3">
@@ -163,7 +163,7 @@ export default function ai_prompts() {
                     <span className={`text-[10px] font-bold px-2 py-0.5 rounded-md border shrink-0 ${meta.color}`}>{meta.label}</span>
                     <span className="text-sm font-bold text-white truncate">{p.title}</span>
                   </div>
-                  <svg className={`w-4 h-4 text-slate-500 shrink-0 transition-transform ${isExpanded ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                  <svg className={`w-4 h-4 text-slate-400 shrink-0 transition-transform ${isExpanded ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
                 </button>
 
                 {isExpanded && (

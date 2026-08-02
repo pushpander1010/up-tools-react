@@ -103,7 +103,7 @@ export default function qr_reader() {
     else { navigator.clipboard?.writeText(text) }
   }, [])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-3 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-3 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -177,7 +177,7 @@ export default function qr_reader() {
               <div key={i} className="p-4 rounded-2xl bg-white/[0.05] border border-white/8 space-y-2">
                 <div className="flex items-center gap-2">
                   <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400">{r.type}</span>
-                  {r.meta.from && <span className="text-[10px] text-slate-500">via {r.meta.from}</span>}
+                  {r.meta.from && <span className="text-[10px] text-slate-400">via {r.meta.from}</span>}
                   <span className="text-[10px] text-slate-600 ml-auto">{r.time}</span>
                 </div>
                 <div className="text-sm text-white font-mono break-all bg-black/20 rounded-lg px-3 py-2">{r.text}</div>

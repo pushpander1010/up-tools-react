@@ -73,13 +73,13 @@ export default function text_diff_checker() {
         {/* Input */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4">
-            <label className="text-xs font-semibold text-slate-500 mb-2 block">Original</label>
+            <label className="text-xs font-semibold text-slate-400 mb-2 block">Original</label>
             <textarea value={text1} onChange={e => setText1(e.target.value)}
               rows={10} placeholder="Paste original text here..."
               className="w-full bg-black/20 border-2 border-white/[0.08] rounded-xl px-4 py-3 text-sm font-mono outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-600 resize-none" />
           </div>
           <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4">
-            <label className="text-xs font-semibold text-slate-500 mb-2 block">Modified</label>
+            <label className="text-xs font-semibold text-slate-400 mb-2 block">Modified</label>
             <textarea value={text2} onChange={e => setText2(e.target.value)}
               rows={10} placeholder="Paste modified text here..."
               className="w-full bg-black/20 border-2 border-white/[0.08] rounded-xl px-4 py-3 text-sm font-mono outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-600 resize-none" />

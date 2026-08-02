@@ -89,7 +89,7 @@ export default function pdf_splitter() {
     }
   }, [file, mode, range, parseRange, jumpTo])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -142,7 +142,7 @@ export default function pdf_splitter() {
                   : 'bg-white/[0.04] border-white/8 hover:border-white/12'
               }`}>
               <div className={`text-xs font-bold ${mode === m ? 'text-cyan-400' : 'text-white'}`}>{title}</div>
-              <div className="text-[10px] text-slate-500 mt-0.5">{desc}</div>
+              <div className="text-[10px] text-slate-400 mt-0.5">{desc}</div>
             </button>
           ))}
         </div>

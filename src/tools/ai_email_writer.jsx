@@ -87,7 +87,7 @@ Make it natural, ${tone}, and ready to send. Do not use placeholder brackets —
             <div className="flex gap-2 flex-wrap">
               {EMAIL_TYPES.map(t => (
                 <button key={t} onClick={() => setEmailType(t)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-bold border transition-all ${emailType === t ? 'bg-indigo-500/20 text-indigo-400 border-indigo-500/30' : 'bg-white/[0.06] text-slate-500 border-white/[0.08]'}`}>
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold border transition-all ${emailType === t ? 'bg-indigo-500/20 text-indigo-400 border-indigo-500/30' : 'bg-white/[0.06] text-slate-400 border-white/[0.08]'}`}>
                   {t}
                 </button>
               ))}

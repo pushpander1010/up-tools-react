@@ -66,7 +66,7 @@ export default function hash_generator() {
       <div className="max-w-3xl mx-auto space-y-4">
         {/* Input */}
         <div>
-          <label className="block text-xs font-semibold text-slate-500 mb-1">Enter text to hash</label>
+          <label className="block text-xs font-semibold text-slate-400 mb-1">Enter text to hash</label>
           <textarea value={input} onChange={e => setInput(e.target.value)}
             placeholder="Type or paste your text here..."
             rows={3}

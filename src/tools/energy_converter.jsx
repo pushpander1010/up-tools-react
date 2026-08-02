@@ -70,7 +70,7 @@ export default function energy_converter() {
                   className={`flex-1 min-w-[80px] py-2.5 rounded-xl text-xs font-bold transition-all ${
                     unit === u.key
                       ? 'bg-amber-500/20 text-amber-400 border border-amber-500/40'
-                      : 'bg-white/[0.06] text-slate-500 border border-white/[0.08] hover:text-white'
+                      : 'bg-white/[0.06] text-slate-400 border border-white/[0.08] hover:text-white'
                   }`}>
                   {u.label.split(' ')[0]}
                 </button>

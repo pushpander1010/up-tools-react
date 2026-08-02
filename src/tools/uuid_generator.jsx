@@ -61,11 +61,11 @@ export default function uuid_generator() {
       <div className="max-w-2xl mx-auto space-y-6">
         {/* Format */}
         <div>
-          <label className="text-xs font-semibold text-slate-500 mb-2 block">Format</label>
+          <label className="text-xs font-semibold text-slate-400 mb-2 block">Format</label>
           <div className="flex gap-2">
             {[['standard', 'Standard'], ['uppercase', 'UPPERCASE'], ['no-dash', 'No Dashes']].map(([val, label]) => (
               <button key={val} onClick={() => setFormat(val)}
-                className={`flex-1 py-2.5 rounded-xl text-xs font-bold transition-all ${format === val ? 'bg-brand/15 text-brand-light border border-brand/30' : 'bg-white/[0.06] text-slate-500 border border-white/8'}`}>
+                className={`flex-1 py-2.5 rounded-xl text-xs font-bold transition-all ${format === val ? 'bg-brand/15 text-brand-light border border-brand/30' : 'bg-white/[0.06] text-slate-400 border border-white/8'}`}>
                 {label}
               </button>
             ))}
@@ -74,11 +74,11 @@ export default function uuid_generator() {
 
         {/* Count */}
         <div>
-          <label className="text-xs font-semibold text-slate-500 mb-2 block">How many?</label>
+          <label className="text-xs font-semibold text-slate-400 mb-2 block">How many?</label>
           <div className="flex gap-2">
             {[1, 5, 10, 25].map(n => (
               <button key={n} onClick={() => setCount(n)}
-                className={`flex-1 py-2.5 rounded-xl text-xs font-bold transition-all ${count === n ? 'bg-brand/15 text-brand-light border border-brand/30' : 'bg-white/[0.06] text-slate-500 border border-white/8'}`}>
+                className={`flex-1 py-2.5 rounded-xl text-xs font-bold transition-all ${count === n ? 'bg-brand/15 text-brand-light border border-brand/30' : 'bg-white/[0.06] text-slate-400 border border-white/8'}`}>
                 {n}
               </button>
             ))}

@@ -32,7 +32,7 @@ export default function facebook_video_downloader_hd() {
     }, 1500)
   }, [url, quality, jumpTo])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -81,7 +81,7 @@ export default function facebook_video_downloader_hd() {
                 className={`p-3 rounded-xl border-2 text-center transition-all duration-200 ${
                   quality === q.id
                     ? 'bg-indigo-500/15 border-indigo-500/40 text-indigo-400'
-                    : 'bg-white/[0.04] border-white/8 text-slate-500 hover:border-white/12'
+                    : 'bg-white/[0.04] border-white/8 text-slate-400 hover:border-white/12'
                 }`}>
                 <div className="text-xl mb-1">{q.icon}</div>
                 <div className="text-xs font-semibold">{q.label}</div>

@@ -119,7 +119,7 @@ export default function ListSorter() {
           ].map(opt => (
             <button key={opt.key} onClick={() => opt.set(!opt.value)}
               className={`px-3 py-1.5 rounded-lg text-xs font-bold border-2 transition-all ${
-                opt.value ? 'bg-indigo-500/20 border-indigo-500/40 text-indigo-400' : 'bg-white/[0.04] border-white/[0.08] text-slate-500'
+                opt.value ? 'bg-indigo-500/20 border-indigo-500/40 text-indigo-400' : 'bg-white/[0.04] border-white/[0.08] text-slate-400'
               }`}>
               {opt.label}
             </button>
@@ -132,7 +132,7 @@ export default function ListSorter() {
           <textarea value={input} onChange={e => setInput(e.target.value)}
             placeholder={"apple\nbanana\ncherry\napple\nbanana\navocado"}
             rows={8}
-            className="w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3.5 text-white font-mono text-sm outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark] resize-none" />
+            className="w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3.5 text-white font-mono text-sm outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark] resize-none" />
         </div>
 
         {/* Action buttons */}

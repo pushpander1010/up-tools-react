@@ -21,7 +21,7 @@ export default function cagr_calculator() {
     return { cagr: (cagr * 100).toFixed(d), totalGrowth: totalGrowth.toFixed(d), multiplier: (e / s).toFixed(4) }
   }, [s, e, y, d])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-4 py-3 text-white text-sm font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-4 py-3 text-white text-sm font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -91,11 +91,11 @@ export default function cagr_calculator() {
             <div className="grid grid-cols-2 gap-3">
               <div className="p-3 rounded-xl bg-white/[0.05] border border-white/[0.08] text-center">
                 <div className="text-lg font-extrabold text-white">{result.totalGrowth}%</div>
-                <div className="text-[10px] text-slate-500 uppercase font-bold">Total Growth</div>
+                <div className="text-[10px] text-slate-400 uppercase font-bold">Total Growth</div>
               </div>
               <div className="p-3 rounded-xl bg-white/[0.05] border border-white/[0.08] text-center">
                 <div className="text-lg font-extrabold text-white">{result.multiplier}x</div>
-                <div className="text-[10px] text-slate-500 uppercase font-bold">Multiplier</div>
+                <div className="text-[10px] text-slate-400 uppercase font-bold">Multiplier</div>
               </div>
             </div>
           </div>

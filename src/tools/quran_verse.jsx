@@ -100,7 +100,7 @@ export default function quran_verse() {
           <div className="text-xs font-bold text-emerald-400 uppercase tracking-wider mb-2">✨ Daily Verse</div>
           <div className="text-lg text-white text-right mb-2" dir="rtl" style={{ fontFamily: 'serif' }}>{daily.ar}</div>
           <p className="text-sm text-slate-300">{daily.en}</p>
-          <p className="text-xs text-slate-500 mt-1">{daily.ref}</p>
+          <p className="text-xs text-slate-400 mt-1">{daily.ref}</p>
         </div>
 
         {/* Search */}
@@ -126,7 +126,7 @@ export default function quran_verse() {
               <button key={i} onClick={() => { loadSurah(i + 1); jumpTo() }}
                 className="flex items-center justify-between p-3 rounded-xl bg-white/[0.06] border border-white/[0.08] hover:bg-white/[0.1] transition-all text-left">
                 <span className="text-xs text-white truncate">{name}</span>
-                <span className="text-xs text-slate-500 ml-2">{i + 1}</span>
+                <span className="text-xs text-slate-400 ml-2">{i + 1}</span>
               </button>
             ))}
           </div>
@@ -150,9 +150,9 @@ export default function quran_verse() {
                   </div>
                   <div className="text-sm text-slate-300 mb-2">{v.translation}</div>
                   <div className="flex items-center justify-between">
-                    <span className="text-xs text-slate-500">{v.ref}</span>
+                    <span className="text-xs text-slate-400">{v.ref}</span>
                     <button onClick={() => copyVerse(v)}
-                      className={`text-xs px-2 py-1 rounded-lg transition-all ${copied === v.ref ? 'bg-emerald-500/20 text-emerald-400' : 'text-slate-500 hover:text-white'}`}>
+                      className={`text-xs px-2 py-1 rounded-lg transition-all ${copied === v.ref ? 'bg-emerald-500/20 text-emerald-400' : 'text-slate-400 hover:text-white'}`}>
                       {copied === v.ref ? '✅' : '📋'}
                     </button>
                   </div>

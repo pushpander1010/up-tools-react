@@ -142,7 +142,7 @@ export default function games_dice_roller() {
     saveStats(s)
   }, [])
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 
   // Keyboard: Space to roll
   useEffect(() => {
@@ -256,7 +256,7 @@ export default function games_dice_roller() {
                 <div className="text-center">
                   <div className="text-3xl font-extrabold text-white">{total}</div>
                   {results.length > 1 && (
-                    <div className="text-xs text-slate-500 mt-1">[{results.join(', ')}]</div>
+                    <div className="text-xs text-slate-400 mt-1">[{results.join(', ')}]</div>
                   )}
                 </div>
               )}
@@ -285,15 +285,15 @@ export default function games_dice_roller() {
         <div className="grid grid-cols-3 gap-3">
           <div className="glass rounded-2xl p-4 text-center">
             <div className="text-2xl font-extrabold text-white">{stats.totalRolls}</div>
-            <div className="text-[11px] text-slate-500 mt-1">Total Rolls</div>
+            <div className="text-[11px] text-slate-400 mt-1">Total Rolls</div>
           </div>
           <div className="glass rounded-2xl p-4 text-center">
             <div className="text-2xl font-extrabold text-white">{stats.totalDiceRolled}</div>
-            <div className="text-[11px] text-slate-500 mt-1">Dice Rolled</div>
+            <div className="text-[11px] text-slate-400 mt-1">Dice Rolled</div>
           </div>
           <div className="glass rounded-2xl p-4 text-center">
             <div className="text-2xl font-extrabold text-white">{stats.largestTotal || '—'}</div>
-            <div className="text-[11px] text-slate-500 mt-1">Largest Total</div>
+            <div className="text-[11px] text-slate-400 mt-1">Largest Total</div>
           </div>
         </div>
         <button onClick={resetStats}

@@ -418,12 +418,12 @@ export default function meme_generator() {
               <input className="w-full bg-white/[0.04] border border-white/[0.1] rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500/50"
                 value={topText} onChange={e => setTopText(e.target.value)} placeholder="Top text..." />
               <div className="flex items-center gap-2 mt-2">
-                <label className="text-[11px] text-slate-500 shrink-0">Size</label>
+                <label className="text-[11px] text-slate-400 shrink-0">Size</label>
                 <input type="range" min="12" max="72" value={topSize} onChange={e => setTopSize(+e.target.value)} className="flex-1 accent-purple-500" />
                 <span className="text-[11px] text-slate-400 w-6 text-center">{topSize}</span>
               </div>
               <div className="flex items-center gap-2 mt-1.5">
-                <label className="text-[11px] text-slate-500 shrink-0">Fill</label>
+                <label className="text-[11px] text-slate-400 shrink-0">Fill</label>
                 <input type="color" value={topFill} onChange={e => setTopFill(e.target.value)} className="w-7 h-6 rounded border border-white/10 cursor-pointer bg-transparent" />
                 <div className="flex gap-1">
                   {COLOR_PRESETS.map(col => (
@@ -433,9 +433,9 @@ export default function meme_generator() {
                 </div>
               </div>
               <div className="flex items-center gap-2 mt-1.5">
-                <label className="text-[11px] text-slate-500 shrink-0">Stroke</label>
+                <label className="text-[11px] text-slate-400 shrink-0">Stroke</label>
                 <input type="color" value={topStroke} onChange={e => setTopStroke(e.target.value)} className="w-7 h-6 rounded border border-white/10 cursor-pointer bg-transparent" />
-                <label className="text-[11px] text-slate-500">Width</label>
+                <label className="text-[11px] text-slate-400">Width</label>
                 <input type="range" min="0" max="8" step="0.5" value={topStrokeW} onChange={e => setTopStrokeW(+e.target.value)} className="flex-1 accent-purple-500" />
                 <span className="text-[11px] text-slate-400 w-5 text-center">{topStrokeW}</span>
               </div>
@@ -446,12 +446,12 @@ export default function meme_generator() {
               <input className="w-full bg-white/[0.04] border border-white/[0.1] rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500/50"
                 value={bottomText} onChange={e => setBottomText(e.target.value)} placeholder="Bottom text..." />
               <div className="flex items-center gap-2 mt-2">
-                <label className="text-[11px] text-slate-500 shrink-0">Size</label>
+                <label className="text-[11px] text-slate-400 shrink-0">Size</label>
                 <input type="range" min="12" max="72" value={bottomSize} onChange={e => setBottomSize(+e.target.value)} className="flex-1 accent-purple-500" />
                 <span className="text-[11px] text-slate-400 w-6 text-center">{bottomSize}</span>
               </div>
               <div className="flex items-center gap-2 mt-1.5">
-                <label className="text-[11px] text-slate-500 shrink-0">Fill</label>
+                <label className="text-[11px] text-slate-400 shrink-0">Fill</label>
                 <input type="color" value={bottomFill} onChange={e => setBottomFill(e.target.value)} className="w-7 h-6 rounded border border-white/10 cursor-pointer bg-transparent" />
                 <div className="flex gap-1">
                   {COLOR_PRESETS.map(col => (
@@ -461,9 +461,9 @@ export default function meme_generator() {
                 </div>
               </div>
               <div className="flex items-center gap-2 mt-1.5">
-                <label className="text-[11px] text-slate-500 shrink-0">Stroke</label>
+                <label className="text-[11px] text-slate-400 shrink-0">Stroke</label>
                 <input type="color" value={bottomStroke} onChange={e => setBottomStroke(e.target.value)} className="w-7 h-6 rounded border border-white/10 cursor-pointer bg-transparent" />
-                <label className="text-[11px] text-slate-500">Width</label>
+                <label className="text-[11px] text-slate-400">Width</label>
                 <input type="range" min="0" max="8" step="0.5" value={bottomStrokeW} onChange={e => setBottomStrokeW(+e.target.value)} className="flex-1 accent-purple-500" />
                 <span className="text-[11px] text-slate-400 w-5 text-center">{bottomStrokeW}</span>
               </div>

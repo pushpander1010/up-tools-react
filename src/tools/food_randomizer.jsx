@@ -93,7 +93,7 @@ export default function food_randomizer() {
         <div className="flex flex-wrap gap-2">
           {CATS.map(c => (
             <button key={c.key} onClick={() => { setActiveCat(c.key); getFood(c.key) }}
-              className={`px-3 py-2 rounded-xl text-xs font-bold transition-all border-2 ${activeCat === c.key ? 'border-indigo-500/40 bg-indigo-500/15 text-indigo-400' : 'border-white/[0.08] bg-white/[0.04] text-slate-500 hover:border-white/12'}`}>
+              className={`px-3 py-2 rounded-xl text-xs font-bold transition-all border-2 ${activeCat === c.key ? 'border-indigo-500/40 bg-indigo-500/15 text-indigo-400' : 'border-white/[0.08] bg-white/[0.04] text-slate-400 hover:border-white/12'}`}>
               {c.label}
             </button>
           ))}
@@ -104,7 +104,7 @@ export default function food_randomizer() {
           {loading && (
             <div className="flex flex-col items-center justify-center py-16">
               <div className="w-8 h-8 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin mb-3" />
-              <p className="text-sm text-slate-500">Finding a dish...</p>
+              <p className="text-sm text-slate-400">Finding a dish...</p>
             </div>
           )}
           {error && (
@@ -121,7 +121,7 @@ export default function food_randomizer() {
                 onError={e => { e.target.src = 'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22><rect fill=%22%230b0f1a%22 width=%22400%22 height=%22300%22/><text fill=%22%23a6adbb%22 x=%22200%22 y=%22150%22 text-anchor=%22middle%22 font-size=%2220%22>Image unavailable</text></svg>' }} />
               <div className="p-4">
                 <div className="text-lg font-bold text-white capitalize">{current.name}</div>
-                <div className="text-xs text-slate-500 capitalize mt-1">{(current.category || '').replace(/_/g, ' ')}</div>
+                <div className="text-xs text-slate-400 capitalize mt-1">{(current.category || '').replace(/_/g, ' ')}</div>
               </div>
             </div>
           )}

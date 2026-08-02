@@ -95,7 +95,7 @@ export default function color_palette_generator() {
         </div>
         <div className="p-2 bg-white/[0.04]">
           <div className="text-xs font-bold text-white font-mono">{color.toUpperCase()}</div>
-          <div className="text-[10px] text-slate-500 mt-0.5">{rgb.r},{rgb.g},{rgb.b}</div>
+          <div className="text-[10px] text-slate-400 mt-0.5">{rgb.r},{rgb.g},{rgb.b}</div>
           <div className="flex gap-1 mt-1 flex-wrap">
             <span className={`text-[9px] px-1 rounded ${crBlack >= 4.5 ? 'bg-emerald-500/20 text-emerald-400' : 'bg-white/[0.06] text-slate-600'}`}>AA ⚫</span>
             <span className={`text-[9px] px-1 rounded ${crWhite >= 4.5 ? 'bg-emerald-500/20 text-emerald-400' : 'bg-white/[0.06] text-slate-600'}`}>AA ⚪</span>
@@ -105,7 +105,7 @@ export default function color_palette_generator() {
     )
   }
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-3 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-500 [color-scheme:dark]"
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-3 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
@@ -136,7 +136,7 @@ export default function color_palette_generator() {
           <input type="color" value={hex} onChange={e => setHex(e.target.value)}
             className="w-16 h-16 rounded-xl cursor-pointer border-2 border-white/10" />
           <div className="flex-1">
-            <label className="text-xs font-semibold text-slate-500 mb-1 block">HEX</label>
+            <label className="text-xs font-semibold text-slate-400 mb-1 block">HEX</label>
             <input type="text" value={hex} onChange={e => handleInput(e.target.value)}
               className={inputClass} />
           </div>
@@ -156,7 +156,7 @@ export default function color_palette_generator() {
           {Object.entries(formats).map(([label, value]) => (
             <div key={label} className="p-3 rounded-xl bg-white/[0.04] border border-white/8 cursor-pointer hover:border-white/15 transition-all"
               onClick={() => copyToClipboard(value)}>
-              <div className="text-[10px] text-slate-500 uppercase tracking-wider mb-1">{label}</div>
+              <div className="text-[10px] text-slate-400 uppercase tracking-wider mb-1">{label}</div>
               <div className="text-sm font-mono font-bold text-white">{value}</div>
               <div className="text-[10px] text-slate-600 mt-0.5">{copied === value ? '✓ Copied' : 'Click to copy'}</div>
             </div>
@@ -171,7 +171,7 @@ export default function color_palette_generator() {
                 <span className="text-lg mr-2">{h.icon}</span>
                 <span className="text-sm font-bold text-white">{h.name}</span>
               </div>
-              <span className="text-[10px] text-slate-500">{h.desc}</span>
+              <span className="text-[10px] text-slate-400">{h.desc}</span>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
               {h.colors.map((c, i) => <SwatchCard key={i} color={c} />)}

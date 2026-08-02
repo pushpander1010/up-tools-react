@@ -138,7 +138,7 @@ export default function image_compressor() {
           <div className="p-5 rounded-2xl bg-white/[0.05] border border-white/8 space-y-4">
             {/* Quality */}
             <div>
-              <label className="block text-xs font-semibold text-slate-500 mb-1">Quality: {quality}%</label>
+              <label className="block text-xs font-semibold text-slate-400 mb-1">Quality: {quality}%</label>
               <input type="range" min={10} max={100} value={quality} onChange={e => setQuality(parseInt(e.target.value))}
                 className="w-full accent-indigo-500" />
               <div className="flex gap-2 mt-1.5">
@@ -154,7 +154,7 @@ export default function image_compressor() {
             {/* Resize & Format */}
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="block text-xs font-semibold text-slate-500 mb-1">Resize</label>
+                <label className="block text-xs font-semibold text-slate-400 mb-1">Resize</label>
                 <select value={resizePercent} onChange={e => setResizePercent(parseFloat(e.target.value))}
                   className="w-full bg-black/20 border-2 border-white/8 rounded-xl px-3 py-2.5 text-sm text-white outline-none">
                   <option className="bg-gray-900" value={1}>Original (100%)</option>
@@ -164,7 +164,7 @@ export default function image_compressor() {
                 </select>
               </div>
               <div>
-                <label className="block text-xs font-semibold text-slate-500 mb-1">Output Format</label>
+                <label className="block text-xs font-semibold text-slate-400 mb-1">Output Format</label>
                 <select value={outputFormat} onChange={e => setOutputFormat(e.target.value)}
                   className="w-full bg-black/20 border-2 border-white/8 rounded-xl px-3 py-2.5 text-sm text-white outline-none">
                   <option className="bg-gray-900" value="image/jpeg">JPEG</option>
@@ -195,15 +195,15 @@ export default function image_compressor() {
           <div ref={resultRef} className="p-5 rounded-2xl bg-white/[0.05] border border-white/8 space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <div className="text-center">
-                <div className="text-xs font-semibold text-slate-500 mb-2">📄 Original</div>
+                <div className="text-xs font-semibold text-slate-400 mb-2">📄 Original</div>
                 <img src={originalUrl} alt="Original" className="max-h-48 mx-auto rounded-lg" />
-                <div className="text-xs text-slate-500 mt-1">{originalImg?.naturalWidth} × {originalImg?.naturalHeight} px</div>
+                <div className="text-xs text-slate-400 mt-1">{originalImg?.naturalWidth} × {originalImg?.naturalHeight} px</div>
               </div>
               {compressedUrl && (
                 <div className="text-center">
-                  <div className="text-xs font-semibold text-slate-500 mb-2">🗜️ Compressed</div>
+                  <div className="text-xs font-semibold text-slate-400 mb-2">🗜️ Compressed</div>
                   <img src={compressedUrl} alt="Compressed" className="max-h-48 mx-auto rounded-lg" />
-                  <div className="text-xs text-slate-500 mt-1">{stats?.width} × {stats?.height} px</div>
+                  <div className="text-xs text-slate-400 mt-1">{stats?.width} × {stats?.height} px</div>
                 </div>
               )}
             </div>
@@ -211,19 +211,19 @@ export default function image_compressor() {
             {stats && (
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
                 <div className="p-3 rounded-xl bg-black/20">
-                  <div className="text-[10px] text-slate-500 uppercase">Original</div>
+                  <div className="text-[10px] text-slate-400 uppercase">Original</div>
                   <div className="text-sm font-bold text-white">{formatBytes(stats.originalSize)}</div>
                 </div>
                 <div className="p-3 rounded-xl bg-black/20">
-                  <div className="text-[10px] text-slate-500 uppercase">Compressed</div>
+                  <div className="text-[10px] text-slate-400 uppercase">Compressed</div>
                   <div className="text-sm font-bold text-emerald-400">{formatBytes(stats.compressedSize)}</div>
                 </div>
                 <div className="p-3 rounded-xl bg-black/20">
-                  <div className="text-[10px] text-slate-500 uppercase">Saved</div>
+                  <div className="text-[10px] text-slate-400 uppercase">Saved</div>
                   <div className="text-sm font-bold text-emerald-400">{formatBytes(stats.saved)}</div>
                 </div>
                 <div className="p-3 rounded-xl bg-black/20">
-                  <div className="text-[10px] text-slate-500 uppercase">Reduction</div>
+                  <div className="text-[10px] text-slate-400 uppercase">Reduction</div>
                   <div className="text-sm font-bold text-emerald-400">{stats.pct}%</div>
                 </div>
               </div>

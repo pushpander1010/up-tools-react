@@ -185,7 +185,7 @@ export default function speed_test() {
             </svg>
             <div className="absolute inset-0 flex flex-col items-center justify-center">
               <div className="text-3xl font-extrabold text-white">{testing || dl ? (dl || gaugeVal > 0 ? gaugeVal : '—') : '—'}</div>
-              <div className="text-xs font-bold text-slate-500 mt-1">{gaugeLabel}</div>
+              <div className="text-xs font-bold text-slate-400 mt-1">{gaugeLabel}</div>
             </div>
           </div>
         </div>
@@ -196,16 +196,16 @@ export default function speed_test() {
         {/* Stats */}
         <div className="grid grid-cols-3 gap-3">
           <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4 text-center">
-            <div className="text-xs text-slate-500 mb-1">Ping</div>
+            <div className="text-xs text-slate-400 mb-1">Ping</div>
             <div className="text-lg font-bold text-white">{ping !== null ? `${ping} ms` : '—'}</div>
           </div>
           <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4 text-center">
-            <div className="text-xs text-slate-500 mb-1">Download</div>
+            <div className="text-xs text-slate-400 mb-1">Download</div>
             <div className="text-lg font-bold text-cyan-400">{dl !== null ? `${dl}` : '—'}</div>
             {dl !== null && <div className="text-[10px] text-slate-600">Mbps</div>}
           </div>
           <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4 text-center">
-            <div className="text-xs text-slate-500 mb-1">Upload</div>
+            <div className="text-xs text-slate-400 mb-1">Upload</div>
             <div className="text-lg font-bold text-purple-400">{ul !== null ? `${ul}` : '—'}</div>
             {ul !== null && <div className="text-[10px] text-slate-600">Mbps</div>}
           </div>

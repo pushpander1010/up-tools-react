@@ -99,7 +99,7 @@ export default function stamp_duty_calculator() {
               </div>
               <div>
                 <span className="text-sm font-bold text-white">First-time buyer</span>
-                <span className="text-[11px] text-slate-500 ml-2">Relief: 0% up to £425K</span>
+                <span className="text-[11px] text-slate-400 ml-2">Relief: 0% up to £425K</span>
               </div>
             </div>
           </button>
@@ -114,7 +114,7 @@ export default function stamp_duty_calculator() {
               </div>
               <div>
                 <span className="text-sm font-bold text-white">Additional property</span>
-                <span className="text-[11px] text-slate-500 ml-2">+3% surcharge on all bands</span>
+                <span className="text-[11px] text-slate-400 ml-2">+3% surcharge on all bands</span>
               </div>
             </div>
           </button>
@@ -158,7 +158,7 @@ export default function stamp_duty_calculator() {
 
             {/* Effective Rate */}
             {result.stampDuty > 0 && (
-              <div className="mt-4 pt-4 border-t border-white/8 flex justify-between text-xs text-slate-500">
+              <div className="mt-4 pt-4 border-t border-white/8 flex justify-between text-xs text-slate-400">
                 <span>Effective rate</span>
                 <span className="font-bold text-white">{((result.stampDuty / result.price) * 100).toFixed(2)}%</span>
               </div>
