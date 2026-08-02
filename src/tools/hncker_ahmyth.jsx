@@ -53,7 +53,7 @@ function InfoBox({ title, icon = '💡', children }) {
 function Step({ n, title, children }) {
   return (
     <div className="flex gap-3">
-      <div className="w-6 h-6 rounded-full bg-brand/20 border border-brand/40 flex items-center justify-center text-xs font-bold text-brand shrink-0 mt-0.5">{n}</div>
+      <div className="w-6 h-6 rounded-full bg-brand/20 border border-brand/40 flex items-center justify-center text-xs font-bold text-indigo-300 shrink-0 mt-0.5">{n}</div>
       <div className="min-w-0">
         <div className="text-sm font-semibold text-white">{title}</div>
         <div className="text-xs text-slate-400 leading-relaxed">{children}</div>
@@ -343,7 +343,7 @@ Port      : 3333 (default listener — keep it open)  `} />
               className="flex items-center gap-2 rounded-lg px-3 py-2 border border-white/8 hover:border-brand/40 hover:bg-white/5 transition-all text-slate-300 hover:text-white no-underline">
               <span>{i}</span>
               <span className="text-sm font-medium">{label}</span>
-              <span className="ml-auto text-brand text-xs font-mono break-all">{href}</span>
+              <span className="ml-auto text-indigo-300 text-xs font-mono break-all">{href}</span>
             </a>
           ))}
         </div>

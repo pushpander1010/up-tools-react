@@ -7,7 +7,7 @@ export default function FAQ({ questions }) {
         {questions.map((faq, i) => (
           <details key={i} className="group">
             <summary className="cursor-pointer text-sm font-semibold text-white py-2 list-none flex items-center gap-2">
-              <span className="text-brand text-xs group-open:rotate-90 transition-transform">▶</span>
+              <span className="text-indigo-300 text-xs group-open:rotate-90 transition-transform">▶</span>
               {faq.q}
             </summary>
             <p className="text-xs text-slate-400 pl-5 pb-2 leading-relaxed">{faq.a}</p>

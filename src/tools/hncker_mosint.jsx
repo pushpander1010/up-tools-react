@@ -262,7 +262,7 @@ export default function hncker_mosint() {
               className="flex items-center gap-2 rounded-lg px-3 py-2 border border-white/8 hover:border-brand/40 hover:bg-white/5 transition-all text-slate-300 hover:text-white no-underline">
               <span>{i}</span>
               <span className="text-sm font-medium">{label}</span>
-              <span className="ml-auto text-brand text-xs font-mono break-all">{href}</span>
+              <span className="ml-auto text-indigo-300 text-xs font-mono break-all">{href}</span>
             </a>
           ))}
         </div>
