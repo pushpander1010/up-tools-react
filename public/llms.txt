@@ -1,0 +1,30 @@
+# UpTools
+
+> UpTools is a free collection of 3000+ online tools, calculators, converters, AI writing tools, developer utilities, security tools, health calculators, and browser games. No sign-up or download required.
+
+## Popular Calculators
+
+- [GST Calculator](https://www.uptools.in/gst-calculator/)
+- [Percentage Calculator](https://www.uptools.in/percentage-calculator/)
+- [BMI Calculator](https://www.uptools.in/bmi-calculator/)
+- [EMI Calculator](https://www.uptools.in/emi-calculator/)
+- [Income Tax Calculator](https://www.uptools.in/income-tax-calculator/)
+
+## Converters
+
+- [Currency Converter](https://www.uptools.in/currency-converter/)
+- [Age Calculator](https://www.uptools.in/age-calculator/)
+
+## Security & Developer Tools
+
+- [Password Generator](https://www.uptools.in/password-generator/)
+- [WhatsApp DP Downloader](https://www.uptools.in/whatsapp-dp-downloader/)
+- [HNCKER Cyber Tools](https://www.uptools.in/hncker/)
+
+## Games
+
+- [All Games](https://www.uptools.in/games/)
+
+## About
+
+UpTools runs fully in your browser — free, fast, and privacy-friendly.

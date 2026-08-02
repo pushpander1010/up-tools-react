@@ -25,7 +25,7 @@ export default function ToolLayout({ title, desc, icon, iconBg, category, slug, 
       {!hideHeader && (
         <>
           {/* Breadcrumb */}
-          <nav className="flex items-center gap-2 text-xs text-slate-500 mb-5" aria-label="Breadcrumb">
+          <nav className="flex items-center gap-2 text-xs text-slate-400 mb-5" aria-label="Breadcrumb">
             <Link to="/" className="hover:text-white transition-colors">Home</Link>
             <span className="text-slate-700">›</span>
             <span className="text-slate-300 font-medium">{title}</span>
