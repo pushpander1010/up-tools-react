@@ -1122,13 +1122,6 @@ export default {
     }
 
     // Serve static assets for all other routes
-    const res = await env.ASSETS.fetch(req);
-    const ct = res.headers.get('content-type') || '';
-    if (ct.includes('text/html') && !res.headers.has('Cross-Origin-Opener-Policy')) {
-      const headers = new Headers(res.headers);
-      headers.set('Cross-Origin-Opener-Policy', 'same-origin');
-      return new Response(res.body, { status: res.status, statusText: res.statusText, headers });
-    }
-    return res;
+    return env.ASSETS.fetch(req);
   }
 };
