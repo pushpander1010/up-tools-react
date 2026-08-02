@@ -1,3 +1,18 @@
+# Hashed build assets are immutable — cache forever
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Fonts — cache long
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# These can change — short revalidation
+/sitemap.xml
+/robots.txt
+/llms.txt
+/ads.txt
+  Cache-Control: public, max-age=3600
+
+# HTML + everything else — revalidate
 /*
-  Cross-Origin-Opener-Policy: same-origin
-  X-Content-Type-Options: nosniff
+  Cache-Control: public, max-age=0, must-revalidate
