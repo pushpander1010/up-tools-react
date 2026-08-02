@@ -16,6 +16,10 @@ export default function MeshBackground() {
         @keyframes drift2 { 0%{transform:translate(0,0) scale(1)} 50%{transform:translate(-30px,20px) scale(1.08)} 100%{transform:translate(20px,-30px) scale(0.96)} }
         @keyframes drift3 { 0%{transform:translate(0,0) rotate(0deg)} 100%{transform:translate(30px,-20px) rotate(5deg)} }
         @media(prefers-reduced-motion:reduce){ .mesh-orb{animation:none!important} }
+        @media(max-width:768px){
+          .mesh-orb { animation: none !important; filter: blur(60px); }
+          .mesh-orb:nth-child(n+4) { display: none; }
+        }
       `}</style>
     </>
   )
