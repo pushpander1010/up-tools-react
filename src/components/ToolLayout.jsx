@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 import RelatedTools from './RelatedTools'
@@ -5,6 +6,10 @@ import FAQ from './FAQ'
 import HowItWorks from './HowItWorks'
 
 export default function ToolLayout({ title, desc, icon, iconBg, category, slug, children, faq = [], howItWorks = [], schema, hideHeader = false }) {
+  // Guard against react-helmet-async leaving document.title empty (stray empty <title> tag).
+  useEffect(() => {
+    if (title) document.title = `${title} | UpTools`
+  }, [title])
   return (
     <>
       <Helmet>

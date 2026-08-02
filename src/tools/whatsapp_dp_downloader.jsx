@@ -120,7 +120,7 @@ export default function whatsapp_dp_downloader() {
                   ['Status', '✓ Ready'],
                 ].map(([k, v]) => (
                   <div key={k} className="text-center p-2 rounded-xl bg-white/[0.06]">
-                    <div className="text-[10px] text-slate-500 font-semibold">{k}</div>
+                    <div className="text-[10px] text-slate-400 font-semibold">{k}</div>
                     <div className="text-xs text-white font-bold">{v}</div>
                   </div>
                 ))}
@@ -147,7 +147,7 @@ export default function whatsapp_dp_downloader() {
           ].map(([icon, label]) => (
             <div key={label} className="text-center p-3 rounded-xl bg-white/[0.06] border border-white/8">
               <div className="text-xl mb-1">{icon}</div>
-              <div className="text-[10px] text-slate-500 font-semibold">{label}</div>
+              <div className="text-[10px] text-slate-400 font-semibold">{label}</div>
             </div>
           ))}
         </div>
@@ -159,7 +159,7 @@ export default function whatsapp_dp_downloader() {
                 className={`flex-1 py-2 rounded-xl text-xs font-bold transition-all ${
                   activeTab === tab
                     ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30'
-                    : 'bg-white/[0.06] text-slate-500 border border-white/8'
+                    : 'bg-white/[0.06] text-slate-400 border border-white/8'
                 }`}>
                 {label}
               </button>

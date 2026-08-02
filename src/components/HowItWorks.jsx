@@ -6,7 +6,7 @@ export default function HowItWorks({ steps }) {
       <div className="space-y-3">
         {steps.map((step, i) => (
           <div key={i} className="flex items-start gap-3">
-            <div className="w-6 h-6 rounded-full bg-brand/20 border border-brand/40 flex items-center justify-center text-xs font-bold text-brand shrink-0 mt-0.5">
+            <div className="w-6 h-6 rounded-full bg-brand/20 border border-brand/40 flex items-center justify-center text-xs font-bold text-indigo-300 shrink-0 mt-0.5">
               {i + 1}
             </div>
             <p className="text-sm text-slate-400">{step}</p>
