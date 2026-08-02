@@ -229,7 +229,7 @@ export default function hncker_nuclei() {
       <Section id="screenshots" icon="🖼️" title="Screenshots" subtitle="Nuclei in action">
         <figure className="rounded-xl overflow-hidden border border-white/10" style={{ background: 'rgba(0,0,0,0.3)' }}>
           <img src="/assets/tools/nuclei/nuclei_scan.png" alt="Nuclei scanning a target URL in the terminal"
-            className="w-full h-auto object-contain" loading="lazy" />
+            className="w-full h-auto object-contain" loading="lazy" width="1408" height="768" />
           <figcaption className="px-4 py-2 text-xs text-slate-400">Running Nuclei against a target</figcaption>
         </figure>
       </Section>

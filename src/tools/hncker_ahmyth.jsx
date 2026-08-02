@@ -287,12 +287,12 @@ Port      : 3333 (default listener — keep it open)  `} />
       <Section id="screenshots" icon="🖼️" title="Screenshots" subtitle="The AhMyth dashboard in action">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <figure className="rounded-xl overflow-hidden border border-white/10" style={{ background: 'rgba(0,0,0,0.3)' }}>
-            <img src="/assets/tools/ahmyth/ahmyth_logo.png" alt="AhMyth Android RAT logo"
+            <img src="/assets/tools/ahmyth/ahmyth_logo.png" alt="AhMyth Android RAT logo" width="1280" height="860"
               className="w-full h-auto object-contain" loading="lazy" />
             <figcaption className="px-4 py-2 text-xs text-slate-400">AhMyth — open-source Android RAT</figcaption>
           </figure>
           <figure className="rounded-xl overflow-hidden border border-white/10" style={{ background: 'rgba(0,0,0,0.3)' }}>
-            <img src="/assets/tools/ahmyth/ahmyth_location_track_screen.png" alt="AhMyth live GPS location tracking screen"
+            <img src="/assets/tools/ahmyth/ahmyth_location_track_screen.png" alt="AhMyth live GPS location tracking screen" width="592" height="634"
               className="w-full h-auto object-contain" loading="lazy" />
             <figcaption className="px-4 py-2 text-xs text-slate-400">Live location tracking in the Victim's Lab</figcaption>
           </figure>

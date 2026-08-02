@@ -264,12 +264,12 @@ docker run -it --rm -v /tmp:/tmp dwisiswant0/apkleaks:latest -f /tmp/file.apk`} 
       <Section id="screenshots" icon="🖼️" title="Screenshots" subtitle="APKLeaks in action">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <figure className="rounded-xl overflow-hidden border border-white/10" style={{ background: 'rgba(0,0,0,0.3)' }}>
-            <img src="/assets/tools/apkleaks/apkleaks_scan.png" alt="APKLeaks scanning an APK file in the terminal"
+            <img src="/assets/tools/apkleaks/apkleaks_scan.png" alt="APKLeaks scanning an APK file in the terminal" width="640" height="502"
               className="w-full h-auto object-contain" loading="lazy" />
             <figcaption className="px-4 py-2 text-xs text-slate-400">Scanning an APK with APKLeaks</figcaption>
           </figure>
           <figure className="rounded-xl overflow-hidden border border-white/10" style={{ background: 'rgba(0,0,0,0.3)' }}>
-            <img src="/assets/tools/apkleaks/apkleaks_output.png" alt="APKLeaks terminal output showing URLs and secrets"
+            <img src="/assets/tools/apkleaks/apkleaks_output.png" alt="APKLeaks terminal output showing URLs and secrets" width="639" height="506"
               className="w-full h-auto object-contain" loading="lazy" />
             <figcaption className="px-4 py-2 text-xs text-slate-400">APKLeaks output — URLs, endpoints & secrets</figcaption>
           </figure>

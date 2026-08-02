@@ -224,7 +224,7 @@ pip3 install -r requirements.txt`} />
 
       <Section id="screenshots" icon="🖼️" title="Screenshots" subtitle="Phunter in action">
         <figure className="rounded-xl overflow-hidden border border-white/10" style={{ background: 'rgba(0,0,0,0.3)' }}>
-          <img src="/assets/tools/phunter/phunter_scan.png" alt="Phunter OSINT lookup output for a phone number"
+          <img src="/assets/tools/phunter/phunter_scan.png" alt="Phunter OSINT lookup output for a phone number" width="1641" height="655"
             className="w-full h-auto object-contain" loading="lazy" />
           <figcaption className="px-4 py-2 text-xs text-slate-400">Phunter lookup output in the terminal</figcaption>
         </figure>

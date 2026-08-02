@@ -207,7 +207,7 @@ export default function hncker_hping3() {
 
       <Section id="screenshots" icon="🖼️" title="Screenshots" subtitle="hping3 in action">
         <figure className="rounded-xl overflow-hidden border border-white/10" style={{ background: 'rgba(0,0,0,0.3)' }}>
-          <img src="/assets/tools/hping3/hping3_scan.png" alt="hping3 crafting packets against a target in the terminal"
+          <img src="/assets/tools/hping3/hping3_scan.png" alt="hping3 crafting packets against a target in the terminal" width="1080" height="1920"
             className="w-full h-auto object-contain" loading="lazy" />
           <figcaption className="px-4 py-2 text-xs text-slate-400">Running hping3 against a target</figcaption>
         </figure>

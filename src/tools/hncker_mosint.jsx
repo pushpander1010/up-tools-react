@@ -224,7 +224,7 @@ export default function hncker_mosint() {
 
       <Section id="screenshots" icon="🖼️" title="Screenshots" subtitle="Mosint in action">
         <figure className="rounded-xl overflow-hidden border border-white/10" style={{ background: 'rgba(0,0,0,0.3)' }}>
-          <img src="/assets/tools/mosint/mosint_scan.png" alt="Mosint scanning an email address in the terminal"
+          <img src="/assets/tools/mosint/mosint_scan.png" alt="Mosint scanning an email address in the terminal" width="1076" height="1296"
             className="w-full h-auto object-contain" loading="lazy" />
           <figcaption className="px-4 py-2 text-xs text-slate-400">Running Mosint against an email address</figcaption>
         </figure>

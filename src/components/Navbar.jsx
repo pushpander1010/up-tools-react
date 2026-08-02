@@ -46,7 +46,7 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-5 h-14 flex items-center justify-between">
         {/* Brand */}
         <Link to="/" className="flex items-center gap-3 group">
-          <img src="/assets/logo/uptools-logo.svg" alt="" className="w-9 h-9 rounded-xl shadow-lg shadow-brand/20 group-hover:shadow-brand/40 transition-shadow" />
+          <img src="/assets/logo/uptools-logo.svg" alt="" className="w-9 h-9 rounded-xl shadow-lg shadow-brand/20 group-hover:shadow-brand/40 transition-shadow" width="36" height="36" />
           <span className="text-white font-bold text-base tracking-tight hidden sm:block opacity-100 max-w-[120px] whitespace-nowrap">
             UpTools
           </span>
