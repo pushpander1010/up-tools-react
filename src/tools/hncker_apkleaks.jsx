@@ -152,14 +152,28 @@ export default function hncker_apkleaks() {
 
       {/* Video Tutorial */}
       <Section id="video" icon="🎬" title="Video Tutorial" subtitle="Watch the full walkthrough of APKLeaks">
-        <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
-          <iframe
-            className="absolute inset-0 w-full h-full rounded-xl border border-white/10"
-            src="https://www.youtube.com/embed/7e9CTa9sVmE"
-            title="APKLeaks — Scan APK for Secrets & Endpoints | HNCKER"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          />
+        <div className="max-w-3xl mx-auto">
+          <a href="https://www.youtube.com/watch?v=7e9CTa9sVmE" target="_blank" rel="noopener noreferrer"
+            className="block group rounded-xl overflow-hidden border border-white/10 no-underline relative"
+            style={{ background: '#000' }}>
+            <div className="aspect-video w-full overflow-hidden relative">
+              <img
+                src="https://i.ytimg.com/vi/7e9CTa9sVmE/hqdefault.jpg"
+                alt="APKLeaks — Scan APK for Secrets & Endpoints"
+                loading="lazy"
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+              />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-16 h-16 rounded-full bg-red-600/90 flex items-center justify-center transition-transform duration-300 group-hover:scale-110 shadow-lg">
+                  <svg viewBox="0 0 24 24" className="w-7 h-7 ml-1 fill-white"><path d="M8 5v14l11-7z" /></svg>
+                </div>
+              </div>
+              <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
+                <p className="text-sm font-semibold text-white">APKLeaks — Scan APK for Secrets & Endpoints</p>
+                <p className="text-xs text-slate-300 mt-0.5">Watch on YouTube →</p>
+              </div>
+            </div>
+          </a>
         </div>
       </Section>
 
