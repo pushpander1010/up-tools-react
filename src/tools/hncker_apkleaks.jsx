@@ -150,6 +150,19 @@ export default function hncker_apkleaks() {
         <meta property="og:image" content="https://www.uptools.in/assets/tools/apkleaks/apkleaks_scan.png" />
       </Helmet>
 
+      {/* Video Tutorial */}
+      <Section id="video" icon="🎬" title="Video Tutorial" subtitle="Watch the full walkthrough of APKLeaks">
+        <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+          <iframe
+            className="absolute inset-0 w-full h-full rounded-xl border border-white/10"
+            src="https://www.youtube.com/embed/7e9CTa9sVmE"
+            title="APKLeaks — Scan APK for Secrets & Endpoints | HNCKER"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        </div>
+      </Section>
+
       <WarningBox>
         APKLeaks extracts sensitive data from Android apps. Use it <b>only on apps you own or have explicit permission to test</b>.
         Scanning third-party apps without authorization can violate their terms of service and the law. This page is for
