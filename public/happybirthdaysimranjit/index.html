@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Happy Birthday Simran 🎂</title>
-<meta name="description" content="A birthday surprise for Simran — countdown, then a wall of floating wishes." />
+<title>Happy Birthday Simranjit 🎂</title>
+<meta name="description" content="A birthday surprise for Simranjit — countdown, then a wall of floating wishes." />
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
   :root{
@@ -72,18 +72,32 @@
   .hero p{ color:rgba(255,255,255,.92); font-size:19px; font-weight:600; text-shadow:0 2px 10px rgba(0,0,0,.3); }
   .hero .hint{ margin-top:18px; font-size:15px; color:rgba(255,255,255,.8); }
 
-  /* floating wishes */
+  /* floating wishes — message-birds with flapping wings, wander randomly, click to read */
   #wishField{ position:fixed; inset:0; z-index:6; pointer-events:none; overflow:hidden; }
-  .wish{
-    position:absolute; max-width:300px; padding:14px 18px; border-radius:18px;
-    background:rgba(255,255,255,.92); color:var(--ink); font-weight:600; font-size:16px;
-    box-shadow:0 10px 30px rgba(0,0,0,.25); border:3px solid #fff;
-    animation:driftUp linear forwards; }
-  .wish::after{ content:''; position:absolute; bottom:-10px; left:28px; border-left:12px solid transparent;
-    border-right:12px solid transparent; border-top:12px solid #fff; }
-  @keyframes driftUp{0%{transform:translateY(0) rotate(-2deg); opacity:0}
-    8%{opacity:1} 85%{opacity:1} 100%{transform:translateY(-115vh) rotate(3deg); opacity:0}}
-  .wish .sender{ display:block; margin-top:6px; font-size:12px; color:var(--purple); font-weight:700; }
+  .bird{
+    position:absolute; cursor:pointer; pointer-events:auto; user-select:none;
+    will-change:transform; display:flex; align-items:center; gap:8px; }
+  .bird .wing{ position:absolute; font-size:16px; top:-2px; transform-origin:center; }
+  .bird .wing-l{ left:-16px; animation:flapL .5s ease-in-out infinite; }
+  .bird .wing-r{ right:-16px; animation:flapR .5s ease-in-out infinite; }
+  @keyframes flapL{ 0%,100%{transform:rotate(-14deg)} 50%{transform:rotate(16deg)} }
+  @keyframes flapR{ 0%,100%{transform:rotate(14deg)} 50%{transform:rotate(-16deg)} }
+  .bird .env{
+    min-width:150px; max-width:240px; padding:9px 14px; border-radius:16px;
+    background:rgba(255,255,255,.95); color:var(--ink); font-weight:600; font-size:14px;
+    box-shadow:0 8px 24px rgba(0,0,0,.28); border:3px solid #fff; text-align:center;
+    line-height:1.3; transition:transform .2s ease, box-shadow .2s ease; }
+  .bird:hover .env{ transform:scale(1.1); box-shadow:0 14px 34px rgba(0,0,0,.4); }
+  .bird .env .emoji{ font-size:18px; margin-right:6px; }
+  .bird .env .sender{ display:block; margin-top:3px; font-size:10px; color:var(--purple);
+    font-weight:700; opacity:.8; letter-spacing:.3px; }
+
+  /* wish reader modal */
+  .read-modal{ text-align:center; }
+  .read-modal .big-emoji{ font-size:54px; display:block; margin-bottom:8px; animation:bounce 1.6s ease-in-out infinite; }
+  .read-modal h2{ font-size:22px; color:var(--magenta); margin-bottom:10px; }
+  .read-modal p{ font-size:18px; color:var(--ink); line-height:1.55; margin-bottom:14px; }
+  .read-modal .from{ font-size:14px; color:var(--purple); font-weight:700; }
 
   /* message FAB + modal */
   .fab{ position:fixed; right:22px; bottom:26px; z-index:40; width:64px; height:64px; border-radius:50%;
@@ -139,7 +153,7 @@
 <div id="countdownLayer">
   <div class="count-card">
     <div class="kick">🎉 It's almost time</div>
-    <h1>Happy Birthday<br/>Simran</h1>
+    <h1>Happy Birthday<br/>Simranjit Kaur</h1>
     <div class="sub">The surprise unlocks at 12 AM</div>
     <div class="timer" id="timer">
       <div class="tbox"><div class="num" id="th">0</div><div class="lbl">Hours</div></div>
@@ -154,7 +168,7 @@
 <div id="partyLayer">
   <div class="hero">
     <span class="bday-emoji">🎂</span>
-    <h1>Happy Birthday <span>Simran</span>!</h1>
+    <h1>Happy Birthday <span>Simranjit Kaur</span>!</h1>
     <p>It's officially your day. All these wishes are for you 💖</p>
     <div class="hint">✨ Scroll the floating wishes, or tap the 💌 button below to add your own</div>
   </div>
@@ -168,14 +182,27 @@
 <div class="overlay" id="overlay">
   <div class="modal">
     <h2>Leave a wish 💖</h2>
-    <p>Write something sweet for Simran — it'll float up on the screen.</p>
-    <textarea id="wishText" maxlength="200" placeholder="Happy Birthday Simran! You're amazing..."></textarea>
+    <p>Write something sweet for Simranjit — it'll float up on the screen.</p>
+    <textarea id="wishText" maxlength="200" placeholder="Happy Birthday Simranjit! You're amazing..."></textarea>
     <div class="name-row">
       <input id="wishName" maxlength="30" placeholder="Your name (optional)" />
     </div>
     <div class="actions">
       <button class="btn-cancel" id="cancelBtn">Cancel</button>
       <button class="btn-send" id="sendBtn">Send 💌</button>
+    </div>
+  </div>
+</div>
+
+<!-- wish reader -->
+<div class="overlay" id="readOverlay">
+  <div class="modal read-modal">
+    <span class="big-emoji" id="readEmoji">🕊️</span>
+    <h2>A wish for you</h2>
+    <p id="readMsg"></p>
+    <div class="from" id="readFrom"></div>
+    <div class="actions" style="justify-content:center">
+      <button class="btn-cancel" id="readClose">Close 💖</button>
     </div>
   </div>
 </div>
@@ -217,7 +244,7 @@
     countLayer.classList.add('hidden');
     partyLayer.classList.add('on');
     startConfetti();
-    spawnWelcomeWishes();
+    spawnWelcomeBirds();
   }
   requestAnimationFrame(tick);
 
@@ -285,43 +312,98 @@
   }
   confettiLoop();
 
-  // ── wishes ──
+  // ── wishes — message-birds that wander randomly; click to read ──
   var field=document.getElementById('wishField');
   var SEED=[
-    {t:'Happy Birthday Simran! 🎂 May your year be as bright as your smile.',n:'💖'},
+    {t:'Happy Birthday Simranjit! 🎂 May your year be as bright as your smile.',n:'💖'},
     {t:'Wishing you endless joy, laughter and cake today! 🎉',n:'✨'},
     {t:'You deserve the whole world and more. Enjoy your special day! 🌟',n:'💫'},
     {t:'Happy Birthday! Here\'s to a year of dreams coming true 💕',n:'🎈'},
     {t:'Sending you the biggest birthday hug! 🤗🎊',n:'🎀'},
     {t:'May every candle be a wish that comes true. Happy Birthday! 🕯️',n:'🎁'},
   ];
-  var palette=['#ff4d8d','#9b5cff','#ffc93c','#ff6fa5','#7b2ff7','#ff9a5a','#ff2d78','#f28fd0'];
-  function spawnWish(text,sender,hold){
-    var w=document.createElement('div'); w.className='wish';
-    w.innerHTML = escapeHtml(text) + (sender? '<span class="sender">— '+escapeHtml(sender)+'</span>':'');
-    w.style.left=(8+Math.random()*60)+'%';
-    w.style.borderColor=palette[(Math.random()*palette.length)|0];
-    var dur=(16+Math.random()*14);
-    w.style.animationDuration=dur+'s';
-    w.style.animationDelay='0s';
-    field.appendChild(w);
-    setTimeout(function(){ if(w.parentNode) w.parentNode.removeChild(w); }, dur*1000+200);
+  var BIRDS=[];            // active bird objects {el,x,y,vx,vy,t,emoji}
+  var birdPalette=['#ff4d8d','#9b5cff','#ffc93c','#ff6fa5','#7b2ff7','#ff9a5a','#ff2d78','#f28fd0'];
+  var birdEmoji=['🕊️','🐦','🦋','💌','🪶'];
+
+  function makeBird(text,sender){
+    var el=document.createElement('div'); el.className='bird';
+    var emoji=birdEmoji[(Math.random()*birdEmoji.length)|0];
+    el.innerHTML =
+      '<span class="wing wing-l">🪽</span>'+
+      '<span class="env"><span class="emoji">'+emoji+'</span><span class="body">'+escapeHtml(text)+'</span>'+
+      (sender?'<span class="sender">— '+escapeHtml(sender)+'</span>':'')+'</span>'+
+      '<span class="wing wing-r">🪽</span>';
+    el.style.borderColor=birdPalette[(Math.random()*birdPalette.length)|0];
+    field.appendChild(el);
+    var bird={ el:el, x:Math.random()*innerWidth, y:Math.random()*innerHeight,
+      vx:(Math.random()*1.6-0.8)*0.6, vy:(Math.random()*1.6-0.8)*0.6,
+      wob:Math.random()*Math.PI*2, wobSpd:0.5+Math.random()*1.2, emoji:emoji };
+    BIRDS.push(bird);
+    el.addEventListener('click',function(ev){
+      ev.stopPropagation();
+      openReader(bird, text, sender);
+    });
+    return bird;
+  }
+
+  // wander loop — every bird drifts in all directions, gently wobbling, bouncing off edges
+  var fieldRect=field.getBoundingClientRect();
+  function wanderLoop(){
+    for(var i=0;i<BIRDS.length;i++){
+      var b=BIRDS[i];
+      b.wob+=b.wobSpd*0.016;
+      b.vx+=Math.sin(b.wob)*0.02;
+      b.vy+=Math.cos(b.wob*1.3)*0.02;
+      // keep speed in a gentle band
+      var sp=Math.hypot(b.vx,b.vy);
+      if(sp>1.1){ b.vx*=1.1/sp; b.vy*=1.1/sp; }
+      if(sp<0.15){ b.vx*=1.05; b.vy*=1.05; }
+      b.x+=b.vx; b.y+=b.vy;
+      // bounce off viewport edges (leave room for the bird width)
+      var bw=250, bh=70;
+      if(b.x<bw) { b.x=bw; b.vx=Math.abs(b.vx); }
+      if(b.x>innerWidth-bw) { b.x=innerWidth-bw; b.vx=-Math.abs(b.vx); }
+      if(b.y<70) { b.y=70; b.vy=Math.abs(b.vy); }
+      if(b.y>innerHeight-70) { b.y=innerHeight-70; b.vy=-Math.abs(b.vy); }
+      // face travel direction (flip)
+      var scaleX = b.vx<0 ? -1 : 1;
+      b.el.style.transform='translate('+b.x+'px,'+b.y+'px) scaleX('+scaleX+')';
+    }
+    requestAnimationFrame(wanderLoop);
   }
   function escapeHtml(s){ return String(s).replace(/[&<>"']/g,function(c){
     return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
-  function spawnWelcomeWishes(){
-    SEED.forEach(function(seed,i){ setTimeout(function(){ spawnWish(seed.t,seed.n,6); }, 900+i*1400); });
-    // keep a gentle ongoing trickle
+  function spawnWelcomeBirds(){
+    SEED.forEach(function(seed,i){ setTimeout(function(){ makeBird(seed.t,seed.n); }, 600+i*900); });
+    // gentle ongoing trickle of fresh birds
     setInterval(function(){
-      if(seedStack.length){
-        var w=seedStack.shift(); spawnWish(w.t,w.n,5);
-      }
-    }, 6000);
+      if(seedStack.length){ var w=seedStack.shift(); makeBird(w.t,w.n); }
+      else { seedStack=SEED.slice(); }
+      // cap the population so it doesn't get crowded
+      if(BIRDS.length>14) BIRDS.splice(0, BIRDS.length-14).forEach(function(b){ if(b.el.parentNode) b.el.parentNode.removeChild(b.el); });
+    }, 6500);
   }
   var seedStack=SEED.slice();
 
-  // ── modal ──
+  // ── reader modal ──
+  var readOverlay=document.getElementById('readOverlay');
+  var readMsg=document.getElementById('readMsg');
+  var readFrom=document.getElementById('readFrom');
+  var readEmoji=document.getElementById('readEmoji');
+  function openReader(bird,text,sender){
+    readEmoji.textContent=bird.emoji;
+    readMsg.textContent=text;
+    readFrom.textContent=sender? 'From '+sender : 'An anonymous wish';
+    readOverlay.classList.add('show');
+  }
+  document.getElementById('readClose').addEventListener('click',closeReader);
+  readOverlay.addEventListener('click',function(e){ if(e.target===readOverlay) closeReader(); });
+  function closeReader(){ readOverlay.classList.remove('show'); }
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ closeReader(); closeModal(); } });
+
+  // ── add-wish modal ──
   var overlay=document.getElementById('overlay');
   var wishText=document.getElementById('wishText');
   var wishName=document.getElementById('wishName');
@@ -332,12 +414,16 @@
   document.getElementById('sendBtn').addEventListener('click',function(){
     var t=wishText.value.trim(); if(!t) return;
     var n=wishName.value.trim();
-    spawnWish(t,n,0);
+    makeBird(t,n);
     closeModal();
     var toast=document.getElementById('toast'); toast.classList.add('show');
     setTimeout(function(){ toast.classList.remove('show'); },2600);
   });
   wishText.addEventListener('keydown',function(e){ if(e.key==='Enter'&&(e.metaKey||e.ctrlKey)) document.getElementById('sendBtn').click(); });
+
+  // start the wander loop when party mode is on
+  window.__startWander=function(){ wanderLoop(); };
+  wanderLoop();
 })();
 </script>
 </body>
