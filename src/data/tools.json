@@ -5894,6 +5894,27 @@
         "security"
       ]
     }
+    ,
+    {
+      "slug": "hncker/strix",
+      "title": "STRIX — AI Pentest Tool",
+      "icon": "🤖",
+      "desc": "Open-source AI penetration testing with autonomous agents and zero false positives.",
+      "href": "/hncker/strix/",
+      "tags": [
+        "strix",
+        "ai",
+        "pentest",
+        "hacking",
+        "vulnerability",
+        "security",
+        "pentesting"
+      ],
+      "cats": [
+        "all",
+        "security"
+      ]
+    }
   ],
   "categories": {
     "all": {
