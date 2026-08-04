@@ -301,21 +301,12 @@
   }
   confettiLoop();
 
-  // ── wishes — message-birds that wander randomly; click to read ──
+  // ── wishes — shared, persistent message bubbles; click to read ──
   var field=document.getElementById('wishField');
-  var SEED=[
-    {t:'Happy Birthday Simranjit! 🎂 May your year be as bright as your smile.',n:'💖'},
-    {t:'Wishing you endless joy, laughter and cake today! 🎉',n:'✨'},
-    {t:'You deserve the whole world and more. Enjoy your special day! 🌟',n:'💫'},
-    {t:'Happy Birthday! Here\'s to a year of dreams coming true 💕',n:'🎈'},
-    {t:'Sending you the biggest birthday hug! 🤗🎊',n:'🎀'},
-    {t:'May every candle be a wish that comes true. Happy Birthday! 🕯️',n:'🎁'},
-  ];
   var BIRDS=[];            // active bird objects {el,x,y,vx,vy,t,emoji}
-  var birdPalette=['#ff4d8d','#9b5cff','#ffc93c','#ff6fa5','#7b2ff7','#ff9a5a','#ff2d78','#f28fd0'];
   var birdEmoji=['🕊️','🐦','🦋','💌','🪶'];
 
-  function makeBird(text,sender){
+  function makeBird(text,sender,instant){
     var el=document.createElement('div'); el.className='bird';
     var emoji=birdEmoji[(Math.random()*birdEmoji.length)|0];
     el.innerHTML =
@@ -334,6 +325,16 @@
       toggleBird(bird);
     });
     return bird;
+  }
+
+  // ── load persisted wishes from the shared API ──
+  function loadWishes(){
+    fetch('/api/wishes', { method:'GET' })
+      .then(function(r){ return r.ok ? r.json() : []; })
+      .then(function(list){
+        (Array.isArray(list)?list:[]).forEach(function(w){ makeBird(w.t, w.n); });
+      })
+      .catch(function(){ /* offline fallback: start empty */ });
   }
 
   function toggleBird(bird){
@@ -375,17 +376,10 @@
   function escapeHtml(s){ return String(s).replace(/[&<>"']/g,function(c){
     return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
+  // load shared persisted wishes once the party unlocks
   function spawnWelcomeBirds(){
-    SEED.forEach(function(seed,i){ setTimeout(function(){ makeBird(seed.t,seed.n); }, 600+i*900); });
-    // gentle ongoing trickle of fresh birds
-    setInterval(function(){
-      if(seedStack.length){ var w=seedStack.shift(); makeBird(w.t,w.n); }
-      else { seedStack=SEED.slice(); }
-      // cap the population so it doesn't get crowded
-      if(BIRDS.length>14) BIRDS.splice(0, BIRDS.length-14).forEach(function(b){ if(b.el.parentNode) b.el.parentNode.removeChild(b.el); });
-    }, 6500);
+    loadWishes();
   }
-  var seedStack=SEED.slice();
 
   // ── add-wish modal ──
   var overlay=document.getElementById('overlay');
@@ -398,7 +392,17 @@
   document.getElementById('sendBtn').addEventListener('click',function(){
     var t=wishText.value.trim(); if(!t) return;
     var n=wishName.value.trim();
-    makeBird(t,n);
+    // save to shared KV so everyone sees it
+    fetch('/api/wishes', {
+      method:'POST',
+      headers:{ 'Content-Type':'application/json' },
+      body: JSON.stringify({ text:t, name:n })
+    }).then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(list){
+        if(Array.isArray(list) && list.length) makeBird(list[list.length-1].t, list[list.length-1].n);
+        else makeBird(t,n);
+      })
+      .catch(function(){ makeBird(t,n); });
     closeModal();
     var toast=document.getElementById('toast'); toast.classList.add('show');
     setTimeout(function(){ toast.classList.remove('show'); },2600);
