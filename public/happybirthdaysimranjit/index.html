@@ -216,6 +216,9 @@
   }
   requestAnimationFrame(tick);
 
+  // ── TEST HOOK: force the party state early with ?party (removed for production) ──
+  if(/[?&]party/.test(location.search)){ unlock(); }
+
   // ── party background: balloons, hearts, sparks ──
   var bg=document.getElementById('partyBg');
   var balloons=['🎈','🎈','🎉','🎊','🪅','🎀','⭐'];
