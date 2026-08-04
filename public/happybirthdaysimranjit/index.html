@@ -72,28 +72,23 @@
   .hero p{ color:rgba(255,255,255,.92); font-size:19px; font-weight:600; text-shadow:0 2px 10px rgba(0,0,0,.3); }
   .hero .hint{ margin-top:18px; font-size:15px; color:rgba(255,255,255,.8); }
 
-  /* floating wishes — message-birds with flapping wings, wander randomly.
+  /* floating wishes — message bubbles that wander across the whole viewport.
      Default = small icon only; click reveals message; click elsewhere collapses back. */
   #wishField{ position:fixed; inset:0; z-index:6; pointer-events:none; overflow:hidden; }
   .bird{
     position:absolute; cursor:pointer; pointer-events:auto; user-select:none;
     will-change:transform; }
-  .bird .wing{ position:absolute; font-size:17px; top:6px; transform-origin:center; z-index:2; }
-  .bird .wing-l{ left:-17px; animation:flapL .5s ease-in-out infinite; }
-  .bird .wing-r{ right:-17px; animation:flapR .5s ease-in-out infinite; }
-  @keyframes flapL{ 0%,100%{transform:rotate(-16deg)} 50%{transform:rotate(18deg)} }
-  @keyframes flapR{ 0%,100%{transform:rotate(16deg)} 50%{transform:rotate(-18deg)} }
   .bird .env{
     position:relative; display:flex; align-items:center; gap:8px;
     padding:8px 12px; border-radius:16px; background:rgba(255,255,255,.95);
     color:var(--ink); box-shadow:0 8px 24px rgba(0,0,0,.3); border:3px solid #fff;
     transition:all .3s cubic-bezier(.2,1.2,.4,1); max-width:120px; }
-  .bird .env .emoji{ font-size:24px; line-height:1; }
-  .bird .env .body{ display:none; max-width:200px; font-size:14px; font-weight:600; line-height:1.3; }
+  .bird .env .emoji{ font-size:26px; line-height:1; }
+  .bird .env .body{ display:none; max-width:210px; font-size:14px; font-weight:600; line-height:1.3; }
   .bird .env .sender{ display:none; margin-top:4px; font-size:11px; color:var(--purple);
     font-weight:700; opacity:.85; }
   .bird .env .tap{ font-size:10px; color:#c98f9f; font-weight:700; white-space:nowrap; }
-  .bird.open .env{ max-width:300px; background:#fff; border-color:#ffd1e0; }
+  .bird.open .env{ max-width:320px; background:#fff; border-color:#ffd1e0; }
   .bird.open .env .emoji{ font-size:30px; }
   .bird.open .env .body{ display:block; }
   .bird.open .env .sender{ display:block; }
@@ -324,19 +319,17 @@
     var el=document.createElement('div'); el.className='bird';
     var emoji=birdEmoji[(Math.random()*birdEmoji.length)|0];
     el.innerHTML =
-      '<span class="wing wing-l">🪽</span>'+
       '<span class="env"><span class="emoji">'+emoji+'</span>'+
       '<span class="body">'+escapeHtml(text)+'</span>'+
       (sender?'<span class="sender">— '+escapeHtml(sender)+'</span>':'')+
-      '<span class="tap">open 💬</span></span>'+
-      '<span class="wing wing-r">🪽</span>';
+      '<span class="tap">open 💬</span></span>';
     field.appendChild(el);
     var bird={ el:el, x:Math.random()*innerWidth, y:Math.random()*innerHeight,
-      vx:(Math.random()*1.6-0.8)*0.6, vy:(Math.random()*1.6-0.8)*0.6,
-      wob:Math.random()*Math.PI*2, wobSpd:0.5+Math.random()*1.2, emoji:emoji,
+      vx:(Math.random()*2.4-1.2), vy:(Math.random()*2.4-1.2),
+      wob:Math.random()*Math.PI*2, wobSpd:0.6+Math.random()*1.4, emoji:emoji,
       text:text, sender:sender, open:false };
     BIRDS.push(bird);
-    el.addEventListener('click',function(ev){
+    el.addEventListener('pointerdown',function(ev){
       ev.stopPropagation();
       toggleBird(bird);
     });
@@ -345,44 +338,37 @@
 
   function toggleBird(bird){
     var wasOpen=bird.open;
-    // close every other open bird first
     BIRDS.forEach(function(b){ if(b!==bird) closeBird(b); });
     if(wasOpen){ closeBird(bird); } else { openBird(bird); }
   }
   function openBird(bird){ bird.open=true; bird.el.classList.add('open'); }
   function closeBird(bird){ bird.open=false; bird.el.classList.remove('open'); }
-  // clicking anywhere else collapses any open bird back to its icon
-  document.addEventListener('click',function(e){
-    if(e.target.closest && !e.target.closest('.bird')){
-      BIRDS.forEach(function(b){ closeBird(b); });
-    }
+  // clicking/tapping anywhere else collapses any open bird back to its icon
+  document.addEventListener('pointerdown',function(e){
+    if(e.target.closest && !e.target.closest('.bird')) BIRDS.forEach(function(b){ closeBird(b); });
   });
   document.addEventListener('keydown',function(e){
     if(e.key==='Escape') BIRDS.forEach(function(b){ closeBird(b); });
   });
 
-  // wander loop — every bird drifts in all directions, gently wobbling, bouncing off edges
-  var fieldRect=field.getBoundingClientRect();
+  // wander loop — every bird drifts across the FULL viewport, wobbling, bouncing off true edges
   function wanderLoop(){
     for(var i=0;i<BIRDS.length;i++){
       var b=BIRDS[i];
       b.wob+=b.wobSpd*0.016;
-      b.vx+=Math.sin(b.wob)*0.02;
-      b.vy+=Math.cos(b.wob*1.3)*0.02;
-      // keep speed in a gentle band
+      b.vx+=Math.sin(b.wob)*0.04;
+      b.vy+=Math.cos(b.wob*1.3)*0.04;
       var sp=Math.hypot(b.vx,b.vy);
-      if(sp>1.1){ b.vx*=1.1/sp; b.vy*=1.1/sp; }
-      if(sp<0.15){ b.vx*=1.05; b.vy*=1.05; }
+      if(sp>2.2){ b.vx*=2.2/sp; b.vy*=2.2/sp; }
+      if(sp<0.4){ b.vx*=1.05; b.vy*=1.05; }
       b.x+=b.vx; b.y+=b.vy;
-      // bounce off viewport edges (leave room for the bird width)
-      var bw=250, bh=70;
-      if(b.x<bw) { b.x=bw; b.vx=Math.abs(b.vx); }
-      if(b.x>innerWidth-bw) { b.x=innerWidth-bw; b.vx=-Math.abs(b.vx); }
-      if(b.y<70) { b.y=70; b.vy=Math.abs(b.vy); }
-      if(b.y>innerHeight-70) { b.y=innerHeight-70; b.vy=-Math.abs(b.vy); }
-      // face travel direction (flip)
-      var scaleX = b.vx<0 ? -1 : 1;
-      b.el.style.transform='translate('+b.x+'px,'+b.y+'px) scaleX('+scaleX+')';
+      // bounce at the actual screen edges (small margin so the bubble stays fully visible)
+      var mw=170, mh=60;
+      if(b.x<mw){ b.x=mw; b.vx=Math.abs(b.vx); }
+      if(b.x>innerWidth-mw){ b.x=innerWidth-mw; b.vx=-Math.abs(b.vx); }
+      if(b.y<mh){ b.y=mh; b.vy=Math.abs(b.vy); }
+      if(b.y>innerHeight-mh){ b.y=innerHeight-mh; b.vy=-Math.abs(b.vy); }
+      b.el.style.left=b.x+'px'; b.el.style.top=b.y+'px';
     }
     requestAnimationFrame(wanderLoop);
   }
