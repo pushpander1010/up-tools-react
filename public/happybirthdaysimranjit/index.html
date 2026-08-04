@@ -248,9 +248,8 @@
   }
   requestAnimationFrame(tick);
 
-  // ── TEST HOOK: force the party state early with ?party or the preview button ──
+  // ── TEST HOOK: force the party state early with the preview button ──
   document.getElementById('testBtn').addEventListener('click', unlock);
-  if(/[?&]party/.test(location.search)){ unlock(); }
 
   // ── party background: balloons, hearts, sparks ──
   var bg=document.getElementById('partyBg');
@@ -424,6 +423,9 @@
   // start the wander loop when party mode is on
   window.__startWander=function(){ wanderLoop(); };
   wanderLoop();
+
+  // ── TEST HOOK: force party state early with ?party (runs after all defs) ──
+  if(/[?&]party/.test(location.search)){ unlock(); }
 })();
 </script>
 </body>
