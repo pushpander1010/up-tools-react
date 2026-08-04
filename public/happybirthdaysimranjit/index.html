@@ -137,10 +137,6 @@
     background:linear-gradient(135deg,var(--magenta),var(--violet)); color:#fff; font-weight:700;
     padding:12px 22px; border-radius:30px; box-shadow:0 10px 30px rgba(0,0,0,.3); display:none; }
   .toast.show{ display:block; animation:popIn .3s ease; }
-  #testBtn{ position:fixed; left:22px; bottom:26px; z-index:70; border:none; cursor:pointer;
-    font-size:14px; font-weight:700; color:#3a0a2e; background:rgba(255,246,236,.95);
-    padding:10px 16px; border-radius:20px; box-shadow:0 6px 18px rgba(0,0,0,.25); }
-  #testBtn:hover{ background:#fff; }
   @media(max-width:520px){ .hero h1{ font-size:44px } .tbox{ min-width:70px } .tbox .num{ font-size:34px } }
 </style>
 </head>
@@ -197,7 +193,6 @@
   </div>
 </div>
 <div class="toast" id="toast">Wish sent! It's floating now 🎈</div>
-<button id="testBtn" title="Remove after testing">Preview party 🎉</button>
 
 <script>
 (function(){
@@ -237,9 +232,6 @@
     spawnWelcomeBirds();
   }
   requestAnimationFrame(tick);
-
-  // ── TEST HOOK: force the party state early with the preview button ──
-  document.getElementById('testBtn').addEventListener('click', unlock);
 
   // ── party background: balloons, hearts, sparks ──
   var bg=document.getElementById('partyBg');
@@ -413,9 +405,6 @@
   // start the wander loop when party mode is on
   window.__startWander=function(){ wanderLoop(); };
   wanderLoop();
-
-  // ── TEST HOOK: force party state early with ?party (runs after all defs) ──
-  if(/[?&]party/.test(location.search)){ unlock(); }
 })();
 </script>
 </body>
