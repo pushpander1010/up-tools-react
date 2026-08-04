@@ -309,16 +309,17 @@
   function makeBird(text,sender,instant){
     var el=document.createElement('div'); el.className='bird';
     var emoji=birdEmoji[(Math.random()*birdEmoji.length)|0];
+    var who = (sender && sender.trim()) ? sender : 'Anonymous';
     el.innerHTML =
       '<span class="env"><span class="emoji">'+emoji+'</span>'+
       '<span class="body">'+escapeHtml(text)+'</span>'+
-      (sender?'<span class="sender">— '+escapeHtml(sender)+'</span>':'')+
+      '<span class="sender">— '+escapeHtml(who)+'</span>'+
       '<span class="tap">open 💬</span></span>';
     field.appendChild(el);
     var bird={ el:el, x:Math.random()*innerWidth, y:Math.random()*innerHeight,
       vx:(Math.random()*2.4-1.2), vy:(Math.random()*2.4-1.2),
       wob:Math.random()*Math.PI*2, wobSpd:0.6+Math.random()*1.4, emoji:emoji,
-      text:text, sender:sender, open:false };
+      text:text, sender:who, open:false };
     BIRDS.push(bird);
     el.addEventListener('pointerdown',function(ev){
       ev.stopPropagation();
