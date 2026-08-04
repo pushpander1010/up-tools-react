@@ -85,19 +85,20 @@ const faq = [
   { q: 'How does it differ from static scanners?', a: 'Unlike static analysis tools that just look at code patterns, STRIX actually runs your application, explores the attack surface, tries exploits, and validates each finding with a real proof-of-concept. This means near-zero false positives.' },
   { q: 'What languages/frameworks does it support?', a: 'STRIX works with web applications, APIs, and cloud infrastructure. It supports testing against HTTP/HTTPS endpoints regardless of the backend framework.' },
   { q: 'Does it integrate with CI/CD?', a: 'Yes. STRIX integrates with GitHub Actions and other CI/CD pipelines. You can scan on every pull request and automatically block insecure code before it reaches production.' },
-  { q: 'What are the system requirements?', a: 'Python 3.8+ and pip. Install with pip install strix-ai. It runs on Linux, macOS, and Windows.' },
+  { q: 'What are the system requirements?', a: 'A running Docker, an LLM API key from a supported provider (OpenAI, Anthropic, Google, etc.), and a terminal. Install with the official one-liner: curl -sSL https://strix.ai/install | bash. Runs on Linux, macOS, and Windows.' },
   { q: 'How accurate are the findings?', a: 'STRIX validates every finding with a working exploit proof-of-concept. This makes false positives virtually nonexistent — you only see bugs that are actually exploitable.' },
   { q: 'Can it generate fix patches?', a: 'Yes. STRIX can automatically generate fix patches for the vulnerabilities it finds, saving you time on remediation.' },
 ]
 
 const howItWorks = [
-  'Install STRIX with pip: pip install strix-ai.',
-  'Point it at your target application or API.',
+  'Install STRIX with the official one-liner: curl -sSL https://strix.ai/install | bash.',
+  'Configure an LLM API key (STRIX_LLM + LLM_API_KEY, or strix auth login chatgpt).',
+  'Point it at your target application or API with strix --target.',
   'STRIX launches autonomous agents for recon, exploitation, and validation.',
   'Each finding is validated with a real proof-of-concept exploit.',
   'Review results and apply auto-generated fix patches.',
   'Integrate with CI/CD to scan every pull request automatically.',
-]
+];
 
 const schema = {
   '@context': 'https://schema.org',
@@ -168,8 +169,8 @@ export default function hncker_strix() {
       <Section id="requirements" icon="⚙️" title="Requirements" subtitle="What you need before installing">
         <ul className="list-none p-0 m-0 space-y-2">
           {[
-            ['☑️', 'Python 3.8 or newer'],
-            ['☑️', 'pip (Python package manager)'],
+            ['☑️', 'Docker (running)'],
+            ['☑️', 'An LLM API key from a supported provider (OpenAI, Anthropic, Google, etc.)'],
             ['☑️', 'A target application you own or are authorized to test'],
             ['☑️', 'Network access to the target'],
           ].map(([c, t]) => (
@@ -181,22 +182,25 @@ export default function hncker_strix() {
       </Section>
 
       <Section id="installation" icon="📦" title="Installation" subtitle="One command to install">
-        <CodeBlock title="terminal" lines={`pip install strix-ai`} />
-        <InfoBox title="Verify installation">
-          Run <span className="font-mono">strix --version</span> to confirm it installed correctly.
+        <CodeBlock title="terminal" lines={`curl -sSL https://strix.ai/install | bash`} />
+        <InfoBox title="Configure your AI provider">
+          Strix needs an LLM API key to run. Set <span className="font-mono">STRIX_LLM</span> and{' '}
+          <span className="font-mono">LLM_API_KEY</span> (or use <span className="font-mono">strix auth login chatgpt</span> to run on a ChatGPT subscription):
+          <br /><span className="font-mono">export STRIX_LLM="openai/gpt-5.4"</span>
+          <br /><span className="font-mono">export LLM_API_KEY="your-api-key"</span>
         </InfoBox>
       </Section>
 
       <Section id="usage" icon="🎯" title="Usage Guide" subtitle="Run an AI pentest in one line">
-        <p className="text-xs text-slate-400">Basic scan — point STRIX at your target:</p>
-        <CodeBlock title="terminal" lines={`strix scan --target https://yourapp.com`} />
-        <p className="text-xs text-slate-400 mt-3">Validate a specific finding with a proof-of-concept:</p>
-        <CodeBlock title="terminal" lines={`strix validate --finding sqli-001`} />
-        <p className="text-xs text-slate-400 mt-3">Auto-generate fix patches for all findings:</p>
-        <CodeBlock title="terminal" lines={`strix fix --auto`} />
+        <p className="text-xs text-slate-400">Black-box scan — point STRIX at your target (app, repo, or URL):</p>
+        <CodeBlock title="terminal" lines={`strix --target https://yourapp.com`} />
+        <p className="text-xs text-slate-400 mt-3">Scan a local codebase or GitHub repo:</p>
+        <CodeBlock title="terminal" lines={`strix --target ./app-directory`} />
+        <p className="text-xs text-slate-400 mt-3">Headless / automated run — prints findings + report, exits non-zero on vulnerabilities:</p>
+        <CodeBlock title="terminal" lines={`strix -n --target https://yourapp.com`} />
         <InfoBox title="CI/CD Integration">
           Add STRIX to your GitHub Actions workflow to scan every pull request:
-          <span className="font-mono">strix scan --ci --pr {'<PR_NUMBER>'}</span>
+          <span className="font-mono">strix -n -t ./ --scan-mode quick</span>
         </InfoBox>
       </Section>
 
@@ -222,12 +226,12 @@ export default function hncker_strix() {
       <Section id="issues" icon="🐞" title="Common Issues & Fixes" subtitle="Real problems people hit, with working solutions">
         <div className="space-y-3">
           <IssueRow
-            issue="'strix: command not found' after pip install"
-            fix="Your Python bin directory isn't on PATH. Try running with python -m strix, or add your pip bin directory to PATH."
+            issue="'strix: command not found' after install"
+            fix="The installer adds strix to your PATH, but your current shell may not have reloaded. Open a new terminal (or run 'source ~/.bashrc'), then confirm Docker is running before you start."
           />
           <IssueRow
-            issue="Scan times out on large applications"
-            fix="Use --scope flag to limit the scan to specific endpoints. Large apps can have hundreds of routes — narrowing the scope speeds things up."
+            issue="Scan fails or hangs on first run"
+            fix="Strix pulls its sandbox Docker image on first run, which can take a moment. Make sure Docker is running. If it still fails, set your LLM API key again (STRIX_LLM and LLM_API_KEY) — results are cached in ~/.strix/cli-config.json."
           />
           <IssueRow
             issue="CI/CD integration shows no findings"
