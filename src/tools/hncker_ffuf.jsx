@@ -272,7 +272,7 @@ export default function hncker_ffuf() {
           />
           <IssueRow
             issue="ffuf: command not found"
-            fix="Add your Go bin to PATH (export PATH=\"$PATH:$(go env GOPATH)/bin\") or run it directly from the downloaded binary path."
+            fix={'Add your Go bin to PATH (export PATH="$PATH:$(go env GOPATH)/bin") or run it directly from the downloaded binary path.'}
           />
           <IssueRow
             issue="Slow / blocked by the target"
@@ -280,7 +280,7 @@ export default function hncker_ffuf() {
           />
           <IssueRow
             issue="No results for subdomain/vhost fuzzing"
-            fix="Use -H \"Host: FUZZ.example.com\" and point -u at the base IP or CDN. Confirm the wordlist actually contains the subdomains you expect."
+            fix={'Use -H "Host: FUZZ.example.com" and point -u at the base IP or CDN. Confirm the wordlist actually contains the subdomains you expect.'}
           />
         </div>
       </Section>
