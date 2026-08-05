@@ -39,11 +39,18 @@ const ytVideos = [
 ]
 
 const igReels = [
-  { img: '/assets/reels/hashcat.jpg', caption: 'This tool can crack any password. 🔑', tag: 'Hashcat' },
-  { img: '/assets/reels/ffuf.jpg', caption: 'A website hides thousands of pages. This finds them in seconds. 🔎', tag: 'ffuf' },
-  { img: '/assets/reels/subfinder.jpg', caption: 'Imagine you\'re hacking a website. Where do you start? 🌐', tag: 'Subfinder' },
-  { img: '/assets/reels/strix.jpg', caption: 'Want to hack like a pro? This AI does it for you. 🤖', tag: 'STRIX' },
-  { img: '/assets/reels/ai_agent_escape.jpg', caption: 'An AI agent just escaped its own sandbox 🧊💥', tag: 'AI Escape' },
+  { sc: 'DblUXaCAd7z', views: '1,920' },
+  { sc: 'Dbqs9zZTHHk', views: '172' },
+  { sc: 'DbqszVITyTG', views: '144' },
+  { sc: 'DbgbhUFonOb', views: '3,437' },
+  { sc: 'Dbd5mBHT9nq', views: '18.9k' },
+  { sc: 'Dbd6FCmTjuH', views: '2,071' },
+  { sc: 'DbTmt10TOXG', views: '9,513' },
+  { sc: 'DbTlrTqTAAd', views: '4,251' },
+  { sc: 'DbTl8AgT2qi', views: '2,386' },
+  { sc: 'DbTmLNTzhk_', views: '15.3k' },
+  { sc: 'DbL7lNNzF66', views: '3,535' },
+  { sc: 'DbL8AA7Trql', views: '3,202' },
 ]
 
 export default function HnckerPage() {
@@ -248,20 +255,20 @@ export default function HnckerPage() {
         </div>
         <div className="px-6 pb-6">
           <InfiniteCarousel gap={16}>
-            {igReels.map((r, i) => (
-              <a key={i} href="https://www.instagram.com/hncker" target="_blank" rel="noopener"
+            {igReels.map((r) => (
+              <a key={r.sc} href={`https://www.instagram.com/reel/${r.sc}/`} target="_blank" rel="noopener"
                 className="flex-none w-[220px] rounded-2xl overflow-hidden border border-white/8 hover:border-[#d62976]/40 transition-all hover:-translate-y-1 hover:shadow-xl no-underline group"
                 style={{ background: 'rgba(17,24,39,0.6)' }}>
                 <div className="relative aspect-[9/16] bg-black overflow-hidden">
-                  <img src={r.img} alt={r.caption} loading="lazy"
+                  <img src={`/assets/reels/ig_${r.sc}.jpg`} alt={`Instagram reel with ${r.views} views`} loading="lazy"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   <span className="absolute inset-0 flex items-center justify-center text-4xl text-white bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">▶</span>
-                  <span className="absolute top-2 left-2 text-[10px] font-bold px-2 py-0.5 rounded-full"
-                    style={{ background: 'linear-gradient(92deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5)', color: '#fff' }}>{r.tag}</span>
+                  <span className="absolute bottom-2 left-2 text-[10px] font-bold px-2 py-0.5 rounded-full text-white"
+                    style={{ background: 'rgba(0,0,0,0.65)', backdropFilter: 'blur(2px)' }}>▶ {r.views} views</span>
                 </div>
                 <div className="p-3">
-                  <div className="text-xs font-medium text-white line-clamp-2">{r.caption}</div>
-                  <div className="text-[10px] text-slate-500 uppercase tracking-wider mt-1">@hncker · reel</div>
+                  <div className="text-xs font-medium text-white line-clamp-1">Instagram Reel</div>
+                  <div className="text-[10px] text-slate-500 uppercase tracking-wider mt-1">@hncker · {r.views} views</div>
                 </div>
               </a>
             ))}
