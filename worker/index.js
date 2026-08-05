@@ -1056,48 +1056,6 @@ async function handleNewsProxy(req, env) {
 
 /* ---------------- main ---------------- */
 
-// Birthday wishes — shared, persistent via KV. GET returns all; POST appends one.
-const WISH_KEY = 'birthday_wishes_v1';
-async function handleWishes(req, env) {
-  const headers = {
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-    'Access-Control-Allow-Headers': '*',
-    'Cache-Control': 'no-store',
-  };
-  try {
-    const ns = env.BIRTHDAY_WISHES;
-    if (!ns) return new Response(JSON.stringify({ error: 'storage unavailable' }), { status: 500, headers });
-
-    if (req.method === 'GET') {
-      const raw = await ns.get(WISH_KEY);
-      const list = raw ? JSON.parse(raw) : [];
-      return new Response(JSON.stringify(list), { status: 200, headers });
-    }
-
-    if (req.method === 'POST') {
-      let body;
-      try { body = await req.json(); } catch { return new Response(JSON.stringify({ error: 'invalid json' }), { status: 400, headers }); }
-      const text = String(body.text || '').trim().slice(0, 200);
-      const name = String(body.name || '').trim().slice(0, 30);
-      if (!text) return new Response(JSON.stringify({ error: 'empty wish' }), { status: 400, headers });
-
-      const raw = await ns.get(WISH_KEY);
-      const list = raw ? JSON.parse(raw) : [];
-      list.push({ t: text, n: name, ts: Date.now() });
-      // keep newest 200 wishes
-      const trimmed = list.slice(-200);
-      await ns.put(WISH_KEY, JSON.stringify(trimmed));
-      return new Response(JSON.stringify(trimmed), { status: 200, headers });
-    }
-
-    return new Response('Method Not Allowed', { status: 405, headers });
-  } catch (e) {
-    return new Response(JSON.stringify({ error: 'internal' }), { status: 500, headers });
-  }
-}
-
 export default {
   async fetch(req, env) {
     const url = new URL(req.url);
@@ -1149,11 +1107,6 @@ export default {
     // News RSS proxy
     if (url.pathname === '/news') {
       return handleNewsProxy(req, env);
-    }
-
-    // Birthday wishes API — persistent + shared via KV
-    if (url.pathname === '/api/wishes') {
-      return handleWishes(req, env);
     }
 
     // Legacy redirects: old tool slugs -> renamed React tool pages

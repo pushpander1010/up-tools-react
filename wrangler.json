@@ -4,13 +4,6 @@
 
   "main": "./worker/index.js",
 
-  "kv_namespaces": [
-    {
-      "binding": "BIRTHDAY_WISHES",
-      "id": "5a8fd3fe84d74b1e915c1b8910205c88"
-    }
-  ],
-
   "assets": {
     "directory": "./dist",
     "not_found_handling": "single-page-application"
