@@ -5935,6 +5935,26 @@
       ]
     },
     {
+      "slug": "hncker/subfinder",
+      "title": "Subfinder Subdomain Finder",
+      "icon": "🌐",
+      "desc": "Passive subdomain discovery from dozens of public sources (educational).",
+      "href": "/hncker/subfinder/",
+      "tags": [
+        "subfinder",
+        "subdomain",
+        "recon",
+        "discovery",
+        "osint",
+        "security",
+        "pentesting"
+      ],
+      "cats": [
+        "all",
+        "security"
+      ]
+    },
+    {
       "slug": "hncker/hping3",
       "title": "hping3 Packet Crafting & Stress-Testing",
       "icon": "📡",
