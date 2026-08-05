@@ -5915,6 +5915,26 @@
       ]
     },
     {
+      "slug": "hncker/ffuf",
+      "title": "ffuf Web Fuzzer",
+      "icon": "🔎",
+      "desc": "Fast web content discovery & parameter fuzzing — find hidden pages (educational).",
+      "href": "/hncker/ffuf/",
+      "tags": [
+        "ffuf",
+        "fuzzing",
+        "discovery",
+        "web",
+        "recon",
+        "security",
+        "pentesting"
+      ],
+      "cats": [
+        "all",
+        "security"
+      ]
+    },
+    {
       "slug": "hncker/hping3",
       "title": "hping3 Packet Crafting & Stress-Testing",
       "icon": "📡",
