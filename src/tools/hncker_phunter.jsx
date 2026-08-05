@@ -230,7 +230,32 @@ pip3 install -r requirements.txt`} />
         </figure>
       </Section>
 
-      <Section id="issues" icon="🐞" title="Known Issues & How to Fix Them" subtitle="Real problems people hit, with working fixes">
+            <Section id="flags" icon="🏷️" title="Flags &amp; Options" subtitle="Every option explained">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div key="k0" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">&lt;phone_number&gt;</div>
+            <div className="text-xs text-slate-400">Positional argument: the phone number to look up.</div>
+          </div>
+          <div key="k1" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-a, --all</div>
+            <div className="text-xs text-slate-400">Run every enabled lookup source.</div>
+          </div>
+          <div key="k2" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-o, --output</div>
+            <div className="text-xs text-slate-400">Write the results to an output file.</div>
+          </div>
+          <div key="k3" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-v, --verbose</div>
+            <div className="text-xs text-slate-400">Show extra detail while each source runs.</div>
+          </div>
+          <div key="k4" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">--json</div>
+            <div className="text-xs text-slate-400">Print the result as JSON.</div>
+          </div>
+        </div>
+      </Section>
+
+<Section id="issues" icon="🐞" title="Known Issues & How to Fix Them" subtitle="Real problems people hit, with working fixes">
         <div className="space-y-3">
           <IssueRow
             issue="Module not found / pip install errors"

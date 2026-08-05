@@ -234,7 +234,52 @@ export default function hncker_nuclei() {
         </figure>
       </Section>
 
-      <Section id="issues" icon="🐞" title="Known Issues & How to Fix Them" subtitle="Real problems people hit, with working fixes">
+            <Section id="flags" icon="🏷️" title="Flags &amp; Options" subtitle="Every option explained">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div key="k0" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-u, --target</div>
+            <div className="text-xs text-slate-400">Target URL or host to scan.</div>
+          </div>
+          <div key="k1" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-l, --list</div>
+            <div className="text-xs text-slate-400">File containing multiple targets, one per line.</div>
+          </div>
+          <div key="k2" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-t, --templates</div>
+            <div className="text-xs text-slate-400">Template or template directory to run.</div>
+          </div>
+          <div key="k3" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-w, --workflows</div>
+            <div className="text-xs text-slate-400">Workflow file to execute.</div>
+          </div>
+          <div key="k4" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-severity</div>
+            <div className="text-xs text-slate-400">Only report findings at or above a severity (low, medium, high, critical).</div>
+          </div>
+          <div key="k5" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-o, --output</div>
+            <div className="text-xs text-slate-400">Write findings to an output file.</div>
+          </div>
+          <div key="k6" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-c, --concurrency</div>
+            <div className="text-xs text-slate-400">Number of templates to run in parallel.</div>
+          </div>
+          <div key="k7" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-rate</div>
+            <div className="text-xs text-slate-400">Maximum HTTP requests per second.</div>
+          </div>
+          <div key="k8" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-stats</div>
+            <div className="text-xs text-slate-400">Show live scanning statistics.</div>
+          </div>
+          <div key="k9" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-silent</div>
+            <div className="text-xs text-slate-400">Print only the findings, nothing else.</div>
+          </div>
+        </div>
+      </Section>
+
+<Section id="issues" icon="🐞" title="Known Issues & How to Fix Them" subtitle="Real problems people hit, with working fixes">
         <div className="space-y-3">
           <IssueRow
             issue="'command not found: nuclei' right after go install"

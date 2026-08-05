@@ -265,7 +265,44 @@ export default function hncker_hashcat() {
         </figure>
       </Section>
 
-      <Section id="issues" icon="🐞" title="Common Issues & Fixes" subtitle="Real problems people hit">
+            <Section id="flags" icon="🏷️" title="Flags &amp; Options" subtitle="Every option explained">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div key="k0" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-m, --hash-type</div>
+            <div className="text-xs text-slate-400">The hash algorithm to attack: 0=MD5, 1000=NTLM, 3200=bcrypt, 1800=sha512crypt.</div>
+          </div>
+          <div key="k1" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-a, --attack-mode</div>
+            <div className="text-xs text-slate-400">How to attack: 0 dictionary, 1 combinator, 3 brute-force, 6/7 hybrid.</div>
+          </div>
+          <div key="k2" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-w, --workload-profile</div>
+            <div className="text-xs text-slate-400">How hard the GPU works, 1 (lowest) to 4 (exhaustive).</div>
+          </div>
+          <div key="k3" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-r, --rules-file</div>
+            <div className="text-xs text-slate-400">Apply transformation rules to turn one word into many guesses.</div>
+          </div>
+          <div key="k4" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-o, --output-file</div>
+            <div className="text-xs text-slate-400">Write recovered passwords to a file instead of the terminal.</div>
+          </div>
+          <div key="k5" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-D, --device-type</div>
+            <div className="text-xs text-slate-400">Choose the compute device: 1 CPU, 2 GPU, 3 FPGA.</div>
+          </div>
+          <div key="k6" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">--show</div>
+            <div className="text-xs text-slate-400">Display passwords that were already cracked in earlier runs.</div>
+          </div>
+          <div key="k7" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">--force</div>
+            <div className="text-xs text-slate-400">Ignore warnings and run anyway (older GPUs, driver quirks).</div>
+          </div>
+        </div>
+      </Section>
+
+<Section id="issues" icon="🐞" title="Common Issues & Fixes" subtitle="Real problems people hit">
         <div className="space-y-3">
           <IssueRow
             issue="No devices found / OpenCL error"

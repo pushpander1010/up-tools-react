@@ -223,7 +223,32 @@ export default function hncker_strix() {
         </ol>
       </Section>
 
-      <Section id="issues" icon="🐞" title="Common Issues & Fixes" subtitle="Real problems people hit, with working solutions">
+            <Section id="flags" icon="🏷️" title="Flags &amp; Options" subtitle="Every option explained">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div key="k0" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">--target / -t</div>
+            <div className="text-xs text-slate-400">Target to scan, e.g. a URL or local path.</div>
+          </div>
+          <div key="k1" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-n, --non-interactive</div>
+            <div className="text-xs text-slate-400">Run without interactive prompts for automation and CI.</div>
+          </div>
+          <div key="k2" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">--scan-mode</div>
+            <div className="text-xs text-slate-400">Scan depth: quick or full.</div>
+          </div>
+          <div key="k3" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">--install</div>
+            <div className="text-xs text-slate-400">Install or update STRIX and its agents.</div>
+          </div>
+          <div key="k4" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">--version</div>
+            <div className="text-xs text-slate-400">Print the installed STRIX version.</div>
+          </div>
+        </div>
+      </Section>
+
+<Section id="issues" icon="🐞" title="Common Issues & Fixes" subtitle="Real problems people hit, with working solutions">
         <div className="space-y-3">
           <IssueRow
             issue="'strix: command not found' after install"

@@ -276,7 +276,40 @@ docker run -it --rm -v /tmp:/tmp dwisiswant0/apkleaks:latest -f /tmp/file.apk`} 
         </div>
       </Section>
 
-      <Section id="issues" icon="🐞" title="Known Issues & How to Fix Them" subtitle="Real problems people hit, with working fixes">
+            <Section id="flags" icon="🏷️" title="Flags &amp; Options" subtitle="Every option explained">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div key="k0" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-f, --file</div>
+            <div className="text-xs text-slate-400">Path to the APK file to scan.</div>
+          </div>
+          <div key="k1" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-p, --pattern</div>
+            <div className="text-xs text-slate-400">Custom regex pattern to search for.</div>
+          </div>
+          <div key="k2" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-r, --rules</div>
+            <div className="text-xs text-slate-400">Use a custom rules file instead of the default.</div>
+          </div>
+          <div key="k3" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-o, --output</div>
+            <div className="text-xs text-slate-400">Write the extracted secrets to an output file.</div>
+          </div>
+          <div key="k4" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-t, --threads</div>
+            <div className="text-xs text-slate-400">Number of threads for faster scanning.</div>
+          </div>
+          <div key="k5" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">--json</div>
+            <div className="text-xs text-slate-400">Output results in JSON format.</div>
+          </div>
+          <div key="k6" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">--timeout</div>
+            <div className="text-xs text-slate-400">Timeout in seconds for network checks.</div>
+          </div>
+        </div>
+      </Section>
+
+<Section id="issues" icon="🐞" title="Known Issues & How to Fix Them" subtitle="Real problems people hit, with working fixes">
         <div className="space-y-3">
           <IssueRow
             issue="'command not found: apkleaks' right after pip install"

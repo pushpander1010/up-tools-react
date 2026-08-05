@@ -264,7 +264,56 @@ export default function hncker_ffuf() {
         </figure>
       </Section>
 
-      <Section id="issues" icon="🐞" title="Common Issues & Fixes" subtitle="Real problems people hit">
+            <Section id="flags" icon="🏷️" title="Flags &amp; Options" subtitle="Every option explained">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div key="k0" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-u, --url</div>
+            <div className="text-xs text-slate-400">Target URL. Put the keyword FUZZ where words get substituted.</div>
+          </div>
+          <div key="k1" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-w, --wordlist</div>
+            <div className="text-xs text-slate-400">Wordlist file to use. Repeat for multiple FUZZ keywords.</div>
+          </div>
+          <div key="k2" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-mc, --match-codes</div>
+            <div className="text-xs text-slate-400">HTTP status codes to show, e.g. -mc 200,301.</div>
+          </div>
+          <div key="k3" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-fc, --filter-codes</div>
+            <div className="text-xs text-slate-400">HTTP status codes to hide, e.g. -fc 404.</div>
+          </div>
+          <div key="k4" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-ms / -fs</div>
+            <div className="text-xs text-slate-400">Match or filter responses by exact size (bytes).</div>
+          </div>
+          <div key="k5" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-X, --method</div>
+            <div className="text-xs text-slate-400">HTTP method to send, e.g. GET or POST.</div>
+          </div>
+          <div key="k6" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-d, --data</div>
+            <div className="text-xs text-slate-400">POST body to send.</div>
+          </div>
+          <div key="k7" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-H, --header</div>
+            <div className="text-xs text-slate-400">Add a custom header, e.g. -H "Host: FUZZ.example.com".</div>
+          </div>
+          <div key="k8" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-t, --threads</div>
+            <div className="text-xs text-slate-400">Number of concurrent threads to run.</div>
+          </div>
+          <div key="k9" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-ac, --autocalibrate</div>
+            <div className="text-xs text-slate-400">Auto-calibrate filtering from a baseline request.</div>
+          </div>
+          <div key="k10" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-recursion</div>
+            <div className="text-xs text-slate-400">Follow discovered directories and fuzz them too.</div>
+          </div>
+        </div>
+      </Section>
+
+<Section id="issues" icon="🐞" title="Common Issues & Fixes" subtitle="Real problems people hit">
         <div className="space-y-3">
           <IssueRow
             issue="Too many false positives"

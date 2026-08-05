@@ -262,7 +262,40 @@ export default function hncker_subfinder() {
         </figure>
       </Section>
 
-      <Section id="issues" icon="🐞" title="Common Issues & Fixes" subtitle="Real problems people hit">
+            <Section id="flags" icon="🏷️" title="Flags &amp; Options" subtitle="Every option explained">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div key="k0" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-d, --domain</div>
+            <div className="text-xs text-slate-400">Target domain to enumerate.</div>
+          </div>
+          <div key="k1" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-dL, --list</div>
+            <div className="text-xs text-slate-400">File with multiple domains, one per line.</div>
+          </div>
+          <div key="k2" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-all</div>
+            <div className="text-xs text-slate-400">Use every supported passive source for deepest coverage.</div>
+          </div>
+          <div key="k3" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-recursive</div>
+            <div className="text-xs text-slate-400">Enumerate subdomains of discovered subdomains too.</div>
+          </div>
+          <div key="k4" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-silent</div>
+            <div className="text-xs text-slate-400">Print only the subdomains, no banner or logs.</div>
+          </div>
+          <div key="k5" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-o, --output</div>
+            <div className="text-xs text-slate-400">Write results to a file.</div>
+          </div>
+          <div key="k6" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-v, --verbose</div>
+            <div className="text-xs text-slate-400">Show extra logging while enumerating.</div>
+          </div>
+        </div>
+      </Section>
+
+<Section id="issues" icon="🐞" title="Common Issues & Fixes" subtitle="Real problems people hit">
         <div className="space-y-3">
           <IssueRow
             issue="No subdomains returned"

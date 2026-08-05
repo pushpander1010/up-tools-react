@@ -213,7 +213,56 @@ export default function hncker_hping3() {
         </figure>
       </Section>
 
-      <Section id="issues" icon="🐞" title="Known Issues & How to Fix Them" subtitle="Real problems people hit, with working fixes">
+            <Section id="flags" icon="🏷️" title="Flags &amp; Options" subtitle="Every option explained">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div key="k0" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-S</div>
+            <div className="text-xs text-slate-400">Send SYN packets (port scan style).</div>
+          </div>
+          <div key="k1" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-A</div>
+            <div className="text-xs text-slate-400">Send ACK packets.</div>
+          </div>
+          <div key="k2" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-F / -R / -P / -U</div>
+            <div className="text-xs text-slate-400">Send FIN, RST, PSH or URG packets.</div>
+          </div>
+          <div key="k3" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-p, --destport</div>
+            <div className="text-xs text-slate-400">Destination port to target.</div>
+          </div>
+          <div key="k4" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-c, --count</div>
+            <div className="text-xs text-slate-400">Number of packets to send.</div>
+          </div>
+          <div key="k5" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-i, --interval</div>
+            <div className="text-xs text-slate-400">Seconds between packets.</div>
+          </div>
+          <div key="k6" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-d, --data</div>
+            <div className="text-xs text-slate-400">Size of the data payload in bytes.</div>
+          </div>
+          <div key="k7" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-w, --win</div>
+            <div className="text-xs text-slate-400">TCP window size.</div>
+          </div>
+          <div key="k8" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-t, --ttl</div>
+            <div className="text-xs text-slate-400">Set the time-to-live field.</div>
+          </div>
+          <div key="k9" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-a, --spoof</div>
+            <div className="text-xs text-slate-400">Spoof the source IP address.</div>
+          </div>
+          <div key="k10" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">-I, --interface</div>
+            <div className="text-xs text-slate-400">Network interface to send on.</div>
+          </div>
+        </div>
+      </Section>
+
+<Section id="issues" icon="🐞" title="Known Issues & How to Fix Them" subtitle="Real problems people hit, with working fixes">
         <div className="space-y-3">
           <IssueRow
             issue="'Operation not permitted' or raw-socket error on Linux/macOS"

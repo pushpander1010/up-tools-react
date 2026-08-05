@@ -300,7 +300,40 @@ Port      : 3333 (default listener — keep it open)  `} />
       </Section>
 
       {/* Known issues */}
-      <Section id="issues" icon="🐞" title="Known Issues & How to Fix Them" subtitle="Real problems people hit, with working fixes">
+            <Section id="flags" icon="🏷️" title="Flags &amp; Options" subtitle="Every option explained">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div key="k0" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">Server builder</div>
+            <div className="text-xs text-slate-400">Compiles a custom APK with your listener IP and port baked in.</div>
+          </div>
+          <div key="k1" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">Listener</div>
+            <div className="text-xs text-slate-400">Opens the connection handler that receives victim sessions.</div>
+          </div>
+          <div key="k2" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">Persistent connection</div>
+            <div className="text-xs text-slate-400">The app keeps the connection alive to the server.</div>
+          </div>
+          <div key="k3" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">File manager</div>
+            <div className="text-xs text-slate-400">Browse and pull files from the target device.</div>
+          </div>
+          <div key="k4" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">Camera / mic</div>
+            <div className="text-xs text-slate-400">Stream the device camera and microphone (test setups only).</div>
+          </div>
+          <div key="k5" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">SMS / call logs</div>
+            <div className="text-xs text-slate-400">Read the messages and call history on the device.</div>
+          </div>
+          <div key="k6" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">Geolocation</div>
+            <div className="text-xs text-slate-400">Fetch the device GPS location.</div>
+          </div>
+        </div>
+      </Section>
+
+<Section id="issues" icon="🐞" title="Known Issues & How to Fix Them" subtitle="Real problems people hit, with working fixes">
         <div className="space-y-3">
           <IssueRow
             issue="Electron sandbox error on Linux — app won't start"

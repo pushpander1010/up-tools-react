@@ -249,7 +249,40 @@ id`} />
         </figure>
       </Section>
 
-      <Section id="issues" icon="🐞" title="Common Issues & Fixes" subtitle="Real problems people hit in the lab">
+            <Section id="flags" icon="🏷️" title="Flags &amp; Options" subtitle="Every option explained">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div key="k0" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">--network none</div>
+            <div className="text-xs text-slate-400">Docker flag to launch a container with no network access.</div>
+          </div>
+          <div key="k1" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">cat /proc/1/cgroup</div>
+            <div className="text-xs text-slate-400">Check whether you are inside a container from the host mount.</div>
+          </div>
+          <div key="k2" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">capsh --print</div>
+            <div className="text-xs text-slate-400">List the capabilities available in the current namespace.</div>
+          </div>
+          <div key="k3" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">nsenter --target 1</div>
+            <div className="text-xs text-slate-400">Enter PID 1 namespaces to break out onto the host.</div>
+          </div>
+          <div key="k4" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">--runtime=runsc</div>
+            <div className="text-xs text-slate-400">Run a container under the gVisor sandbox runtime.</div>
+          </div>
+          <div key="k5" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">seccomp</div>
+            <div className="text-xs text-slate-400">Restrict the system calls a process is allowed to make.</div>
+          </div>
+          <div key="k6" className="rounded-xl p-4 border border-white/8" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-sm font-semibold text-green-300 font-mono mb-1">cap_sys_admin</div>
+            <div className="text-xs text-slate-400">A dangerous capability that can enable a container escape.</div>
+          </div>
+        </div>
+      </Section>
+
+<Section id="issues" icon="🐞" title="Common Issues & Fixes" subtitle="Real problems people hit in the lab">
         <div className="space-y-3">
           <IssueRow
             issue="nsenter: permission denied joining host namespaces"
