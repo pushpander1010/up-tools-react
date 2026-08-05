@@ -39,12 +39,11 @@ const ytVideos = [
 ]
 
 const igReels = [
-  { img: '/assets/tools/hashcat/hashcat_scan.png', caption: 'This tool can crack any password. 🔑', tag: 'Hashcat' },
-  { img: '/assets/tools/ffuf/ffuf_scan.png', caption: 'A website hides thousands of pages. This finds them in seconds. 🔎', tag: 'ffuf' },
-  { img: '/assets/tools/subfinder/subfinder_scan.png', caption: 'Imagine you\'re hacking a website. Where do you start? 🌐', tag: 'Subfinder' },
-  { img: '/assets/tools/strix/strix_logo.png', caption: 'Want to hack like a pro? This AI does it for you. 🤖', tag: 'STRIX' },
-  { img: '/assets/tools/ai_agent_escape/ai_agent_escape_logo.png', caption: 'An AI agent just escaped its own sandbox 🧊💥', tag: 'AI Escape' },
-  { img: '/assets/tools/ai_agent_escape/ai_agent_escape_scan.png', caption: 'Claude escaped its sandbox and hacked 3 real companies 🧊', tag: 'Claude Story' },
+  { img: '/assets/reels/hashcat.jpg', caption: 'This tool can crack any password. 🔑', tag: 'Hashcat' },
+  { img: '/assets/reels/ffuf.jpg', caption: 'A website hides thousands of pages. This finds them in seconds. 🔎', tag: 'ffuf' },
+  { img: '/assets/reels/subfinder.jpg', caption: 'Imagine you\'re hacking a website. Where do you start? 🌐', tag: 'Subfinder' },
+  { img: '/assets/reels/strix.jpg', caption: 'Want to hack like a pro? This AI does it for you. 🤖', tag: 'STRIX' },
+  { img: '/assets/reels/ai_agent_escape.jpg', caption: 'An AI agent just escaped its own sandbox 🧊💥', tag: 'AI Escape' },
 ]
 
 export default function HnckerPage() {
@@ -119,7 +118,7 @@ export default function HnckerPage() {
           <div className="text-xl font-extrabold my-1"
             style={{ background: 'linear-gradient(135deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>@hncker</div>
           <div className="flex gap-6 mt-2">
-            <div className="text-center"><b className="block text-white text-lg">16.2K</b><span className="text-[11px] text-slate-400 uppercase tracking-wider">followers</span></div>
+            <div className="text-center"><b className="block text-white text-lg">18K</b><span className="text-[11px] text-slate-400 uppercase tracking-wider">followers</span></div>
             <div className="text-center"><b className="block text-white text-lg">Cyber/AI</b><span className="text-[11px] text-slate-400 uppercase tracking-wider">niche</span></div>
           </div>
         </div>
