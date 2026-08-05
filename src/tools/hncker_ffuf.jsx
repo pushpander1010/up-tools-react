@@ -139,12 +139,12 @@ export default function hncker_ffuf() {
 
       <Section id="video" icon="🎬" title="Video Tutorial" subtitle="Watch the HNCKER walkthrough">
         <div className="max-w-3xl mx-auto">
-          <a href="https://www.youtube.com/@hncker" target="_blank" rel="noopener noreferrer"
+          <a href="https://www.youtube.com/watch?v=H8dwJpti6jg" target="_blank" rel="noopener noreferrer"
             className="block rounded-xl overflow-hidden border border-white/10 no-underline"
             style={{ background: '#000' }}>
             <div className="aspect-video w-full overflow-hidden relative">
-              <img src="https://www.uptools.in/assets/tools/ffuf/ffuf_scan.png"
-                alt="ffuf discovering hidden web pages in the terminal" loading="lazy"
+              <img src="https://i.ytimg.com/vi/H8dwJpti6jg/hqdefault.jpg"
+                alt="ffuf Tutorial - Find Hidden Pages and Directories" loading="lazy"
                 className="w-full h-full object-cover" />
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-16 h-16 rounded-full bg-red-600/90 flex items-center justify-center shadow-lg">
