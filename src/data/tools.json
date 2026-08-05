@@ -5895,6 +5895,26 @@
       ]
     },
     {
+      "slug": "hncker/hashcat",
+      "title": "Hashcat Password Cracker",
+      "icon": "🔑",
+      "desc": "GPU-accelerated password recovery — dictionary, brute-force and rules (educational).",
+      "href": "/hncker/hashcat/",
+      "tags": [
+        "hashcat",
+        "password",
+        "crack",
+        "hash",
+        "gpu",
+        "security",
+        "pentesting"
+      ],
+      "cats": [
+        "all",
+        "security"
+      ]
+    },
+    {
       "slug": "hncker/hping3",
       "title": "hping3 Packet Crafting & Stress-Testing",
       "icon": "📡",
