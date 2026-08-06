@@ -8,7 +8,7 @@
 - [Percentage Calculator](https://www.uptools.in/percentage-calculator/)
 - [BMI Calculator](https://www.uptools.in/bmi-calculator/)
 - [EMI Calculator](https://www.uptools.in/emi-calculator/)
-- [Income Tax Calculator](https://www.uptools.in/income-tax-calculator/)
+- [Income Tax Calculator](https://www.uptools.in/income-tax-tool/)
 
 ## Converters
 

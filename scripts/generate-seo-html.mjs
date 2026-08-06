@@ -25,6 +25,11 @@ for (const file of toolFiles) {
     slug = 'hncker/' + slug.slice('hncker-'.length)
   }
 
+  // Nested game pages: games_snake.jsx → /games/snake/
+  if (slug.startsWith('games-')) {
+    slug = 'games/' + slug.slice('games-'.length)
+  }
+
   // Skip slugs with dedicated static pages
   if (SKIP_SLUGS.has(slug)) continue
   
@@ -103,5 +108,10 @@ function buildHtml(slug, title, desc) {
 // index.html. Give it one so the nested route resolves.
 buildHtml('hncker', 'HNCKER - Apps, Tools, Instagram & Videos',
   'Follow HNCKER on Instagram, browse the free security tools, watch our tech videos, and download free Android apps.')
+
+// Games landing page: same failure class. Once dist/games/ exists as a directory
+// (from the game sub-pages), /games/ 1101s without its own static index.html.
+buildHtml('games', 'UpTools - Free Online Games',
+  'Play free online arcade, puzzle, card and word games on UpTools - Snake, Tetris, 2048, Pac-Man, Wordle and many more. No downloads, play in your browser.')
 
 console.log(`✅ Generated SEO HTML for ${count} tools`)

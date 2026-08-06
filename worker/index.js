@@ -1113,6 +1113,11 @@ export default {
     const LEGACY_REDIRECTS = {
       '/whatsapp-private-dp-viewer': '/whatsapp-profile-picture-downloader',
       '/whatsapp-private-dp-viewer/': '/whatsapp-profile-picture-downloader/',
+      // Broken slugs -> real pages (safety net for external links/bookmarks)
+      '/income-tax-calculator': '/income-tax-tool',
+      '/income-tax-calculator/': '/income-tax-tool/',
+      '/privacy': '/privacy-policy',
+      '/privacy/': '/privacy-policy/',
     };
     if (LEGACY_REDIRECTS[url.pathname]) {
       return new Response(null, {
