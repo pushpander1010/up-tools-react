@@ -5915,6 +5915,26 @@
       ]
     },
     {
+      "slug": "hncker/exif",
+      "title": "ExifTool Image Metadata",
+      "icon": "🖼️",
+      "desc": "Read and strip EXIF metadata — camera, software, GPS — from images to protect your privacy (educational).",
+      "href": "/hncker/exif/",
+      "tags": [
+        "exiftool",
+        "exif",
+        "metadata",
+        "gps",
+        "osint",
+        "privacy",
+        "security"
+      ],
+      "cats": [
+        "all",
+        "security"
+      ]
+    },
+    {
       "slug": "hncker/ffuf",
       "title": "ffuf Web Fuzzer",
       "icon": "🔎",
