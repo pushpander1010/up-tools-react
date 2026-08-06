@@ -137,6 +137,28 @@ export default function hncker_exif() {
         <meta property="og:image" content="https://www.uptools.in/assets/tools/exif/exif_scan.png" />
       </Helmet>
 
+      <Section id="video" icon="🎬" title="Video Tutorial" subtitle="Watch the HNCKER walkthrough">
+        <div className="max-w-3xl mx-auto">
+          <a href="https://www.youtube.com/watch?v=AR7f6Ln-MHY" target="_blank" rel="noopener noreferrer"
+            className="block rounded-xl overflow-hidden border border-white/10 no-underline"
+            style={{ background: '#000' }}>
+            <div className="aspect-video w-full overflow-hidden relative">
+              <img src="https://i.ytimg.com/vi/AR7f6Ln-MHY/hqdefault.jpg"
+                alt="ExifTool Tutorial - Extract Hidden Photo Data & GPS" loading="lazy"
+                className="w-full h-full object-cover" />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-16 h-16 rounded-full bg-red-600/90 flex items-center justify-center shadow-lg">
+                  <svg viewBox="0 0 24 24" className="w-7 h-7 ml-1 fill-white"><path d="M8 5v14l11-7z" /></svg>
+                </div>
+              </div>
+              <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
+                <p className="text-sm font-semibold text-white">ExifTool — extract hidden photo data &amp; GPS</p>
+              </div>
+            </div>
+          </a>
+        </div>
+      </Section>
+
       <WarningBox>
         ExifTool is a legitimate metadata utility. Reading and stripping metadata on your <b>own photos</b> is fine,
         but using location data to <b>track or dox someone without consent is illegal</b>. This page is for
