@@ -6,7 +6,10 @@ const WA_HOST_RE = /^(https?:\/\/)?([a-z0-9-]+\.)?(pps|mmg)\.whatsapp\.net/i
 
 export default function whatsapp_dp_downloader() {
   const { ref: resultRef, jumpTo } = useJumpToResult()
+  const [mode, setMode] = useState('link')
   const [input, setInput] = useState('')
+  const [phone, setPhone] = useState('')
+  const [waLink, setWaLink] = useState('')
   const [imageUrl, setImageUrl] = useState('')
   const [fileName, setFileName] = useState('whatsapp-dp')
   const [status, setStatus] = useState({ msg: '', type: '' })
@@ -23,7 +26,6 @@ export default function whatsapp_dp_downloader() {
     if (!WA_HOST_RE.test(raw)) {
       return showStatus('That does not look like a WhatsApp profile-picture link (must be pps.whatsapp.net)', 'error')
     }
-
     setLoading(true)
     showStatus('Fetching profile picture...', 'info')
     try {
@@ -46,6 +48,15 @@ export default function whatsapp_dp_downloader() {
     }
   }, [input])
 
+  const makeWaLink = useCallback(() => {
+    const clean = phone.replace(/[^0-9+]/g, '')
+    if (!clean) return showStatus('Enter a WhatsApp phone number', 'error')
+    const link = (clean.startsWith('+') ? `https://wa.me/${clean.slice(1)}` : `https://wa.me/${clean}`)
+    setWaLink(link)
+    showStatus('✓ Chat link created! Open it to view and save the DP.', 'success')
+    setTimeout(() => resultRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100)
+  }, [phone])
+
   const downloadImage = () => {
     if (!imageUrl) return
     const a = document.createElement('a')
@@ -57,26 +68,30 @@ export default function whatsapp_dp_downloader() {
     showStatus('✓ Download started!', 'success')
   }
 
+  const tabBtn = (val, label, active) =>
+    `flex-1 py-3 rounded-xl text-sm font-bold transition-all border-2 ${
+      active ? 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30'
+      : 'bg-white/[0.04] border-white/8 text-slate-400 hover:border-white/12'}`
   const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
       title="WhatsApp DP Downloader"
-      desc="WhatsApp DP downloader — download WhatsApp profile pictures online free. Paste your WhatsApp DP image link (pps.whatsapp.net) and save any visible profile picture in full resolution. Works as a WhatsApp DP saver for WhatsApp Web, no app or sign-up needed."
+      desc="WhatsApp DP downloader — download WhatsApp profile pictures online free, by image link or by phone number. Save any visible profile picture in full resolution. Works as a WhatsApp DP saver, no app or sign-up needed."
       icon="📸" iconBg="rgba(37,211,102,0.08)"
       category="whatsapp" slug="whatsapp-dp-downloader"
       faq={[
-        { q: "How do I download a WhatsApp DP online free?", a: "Get the real profile-picture link from WhatsApp Web (open the chat, right-click the contact's photo, copy image address — it starts with pps.whatsapp.net), paste it here, and click Fetch Picture to download the full-resolution image." },
+        { q: "How do I download a WhatsApp DP online free?", a: "Two ways: (1) By image link — paste the pps.whatsapp.net profile-picture URL from WhatsApp Web and click Fetch Picture to download it. (2) By number — enter the phone number and we generate a wa.me chat link; open it to view and save the DP in the chat." },
+        { q: "How do I download a WhatsApp DP by number?", a: "Select the 'Number / Chat' tab, enter the phone number, and click Open WhatsApp. We generate a wa.me link that opens the chat — tap the contact's name then the profile photo to save it. WhatsApp doesn't allow direct by-number downloads without a session." },
         { q: "How do I get the WhatsApp profile-picture link?", a: "Open WhatsApp Web, open a chat, right-click the contact's profile photo and copy the image address — it starts with pps.whatsapp.net. Paste that link here to download the DP." },
-        { q: "Can I download a WhatsApp DP from WhatsApp Web?", a: "Yes. WhatsApp Web is the easiest place to grab the image link: open the chat, right-click the profile photo, copy image address, then paste it into this WhatsApp DP downloader to save the full-size photo." },
-        { q: "Why can't I just enter a phone number?", a: "WhatsApp does not expose profile pictures by phone number without a logged-in session. The image link (pps.whatsapp.net) is the only way a server can fetch a DP anonymously. See our WhatsApp DP by Number guide for what actually works." },
-        { q: "What resolution do I get?", a: "WhatsApp stores profile pictures at up to 640x640 pixels. This tool pulls the highest-quality version available from the image link." },
+        { q: "Why can't I just enter a phone number to get the DP?", a: "WhatsApp does not expose profile pictures by phone number without a logged-in session. That's why we offer both lanes: the image link downloads it directly, and the number lane opens the chat so you can save it manually." },
+        { q: "What resolution do I get?", a: "WhatsApp stores profile pictures at up to 640x640 pixels. The image-link lane pulls the highest-quality version available." },
         { q: "Is it legal to download someone's WhatsApp profile picture?", a: "Downloading for personal viewing is generally acceptable, but using or sharing someone's photo without permission may violate their privacy rights." },
       ]}
       howItWorks={[
-        "Copy the real profile-picture link from WhatsApp Web (right-click the photo → copy image address).",
-        "Paste the pps.whatsapp.net link into the box below.",
-        "Click Fetch Picture to download the full-resolution WhatsApp DP.",
+        "Choose a lane: by image link (real download) or by phone number (opens the chat).",
+        "Paste the pps.whatsapp.net link, or enter the number and open WhatsApp.",
+        "Download the full-resolution WhatsApp DP.",
       ]}
       schema={{
         "@context": "https://schema.org", "@type": "SoftwareApplication",
@@ -88,21 +103,70 @@ export default function whatsapp_dp_downloader() {
       <div className="max-w-2xl mx-auto space-y-6">
         <div className="rounded-2xl border border-amber-500/30 bg-amber-500/10 p-4">
           <p className="text-sm text-amber-300 font-semibold">
-            ⚠️ <b>Note:</b> WhatsApp doesn't expose a DP by phone number alone. This tool fetches the picture from its <b>real image link</b> (a pps.whatsapp.net URL). Respect others' privacy — only download pictures you're allowed to.
+            ⚠️ <b>Note:</b> WhatsApp doesn't expose a DP by phone number alone. Use the <b>image-link</b> lane to download directly, or the <b>number</b> lane to open the chat and save it. Respect others' privacy — only download pictures you're allowed to.
           </p>
         </div>
 
-        <div>
-          <label className="block text-sm font-semibold text-slate-400 mb-2">WhatsApp Profile Picture URL</label>
-          <input type="text" value={input} onChange={e => setInput(e.target.value)}
-            placeholder="https://pps.whatsapp.net/v/t61.24694-24/..."
-            className={inputClass} />
+        <div className="flex gap-2">
+          <button className={tabBtn('link', '🔗 By Image Link', mode === 'link')} onClick={() => { setMode('link'); setImageUrl(''); setWaLink('') }}>
+            🔗 By Image Link
+          </button>
+          <button className={tabBtn('number', '📞 By Number', mode === 'number')} onClick={() => { setMode('number'); setImageUrl(''); setWaLink('') }}>
+            📞 By Number
+          </button>
         </div>
 
-        <button onClick={fetchDP} disabled={loading}
-          className="w-full py-4 rounded-2xl bg-indigo-500 text-white font-bold text-sm hover:bg-indigo-400 transition-all active:scale-[0.98] disabled:opacity-50">
-          {loading ? '⏳ Fetching...' : '📸 Fetch Picture'}
-        </button>
+        {mode === 'link' && (
+          <>
+            <div>
+              <label className="block text-sm font-semibold text-slate-400 mb-2">WhatsApp Profile Picture URL</label>
+              <input type="text" value={input} onChange={e => setInput(e.target.value)}
+                placeholder="https://pps.whatsapp.net/v/t61.24694-24/..."
+                className={inputClass} />
+            </div>
+            <button onClick={fetchDP} disabled={loading}
+              className="w-full py-4 rounded-2xl bg-indigo-500 text-white font-bold text-sm hover:bg-indigo-400 transition-all active:scale-[0.98] disabled:opacity-50">
+              {loading ? '⏳ Fetching...' : '📸 Fetch Picture'}
+            </button>
+          </>
+        )}
+
+        {mode === 'number' && (
+          <>
+            <div>
+              <label className="block text-sm font-semibold text-slate-400 mb-2">WhatsApp Phone Number</label>
+              <input type="tel" value={phone} onChange={e => setPhone(e.target.value)}
+                placeholder="+91 98765 43210"
+                className={inputClass} />
+            </div>
+            <button onClick={makeWaLink}
+              className="w-full py-4 rounded-2xl bg-emerald-500 text-white font-bold text-sm hover:bg-emerald-400 transition-all active:scale-[0.98]">
+              💬 Open WhatsApp Chat
+            </button>
+            {waLink && (
+              <div ref={resultRef} className="rounded-3xl border-2 border-emerald-500/15 bg-gradient-to-br from-emerald-500/[0.06] via-white/[0.01] to-transparent p-6 text-center"
+                style={{ animation: 'slideUp 0.35s cubic-bezier(0.4,0,0.2,1)' }}>
+                <p className="text-sm text-slate-400 mb-3">
+                  Open this link, then tap the contact's <b className="text-slate-300">name → profile photo</b> to view and save the DP.
+                </p>
+                <a href={waLink} target="_blank" rel="noopener noreferrer"
+                  className="block text-sm font-mono text-emerald-300 bg-white/[0.06] rounded-xl p-3 break-all border border-emerald-500/20 hover:bg-emerald-500/10 transition-all">
+                  {waLink}
+                </a>
+                <div className="flex gap-2 mt-3">
+                  <button onClick={() => navigator.clipboard.writeText(waLink)}
+                    className="flex-1 py-2.5 rounded-xl bg-white/5 border border-white/8 text-sm font-bold text-slate-400 hover:text-white transition-all">
+                    📋 Copy
+                  </button>
+                  <a href={waLink} target="_blank" rel="noopener noreferrer"
+                    className="flex-1 py-2.5 rounded-xl bg-emerald-500 text-white text-sm font-bold text-center hover:bg-emerald-400 transition-all">
+                    ↗ Open WhatsApp
+                  </a>
+                </div>
+              </div>
+            )}
+          </>
+        )}
 
         {status.msg && (
           <div className={`rounded-xl px-4 py-2.5 text-sm font-semibold text-center ${
@@ -114,7 +178,7 @@ export default function whatsapp_dp_downloader() {
           </div>
         )}
 
-        {imageUrl && (
+        {mode === 'link' && imageUrl && (
           <div ref={resultRef} className="rounded-3xl border-2 border-indigo-500/15 bg-gradient-to-br from-indigo-500/[0.06] via-white/[0.01] to-transparent p-6 sm:p-8 overflow-hidden"
             style={{ animation: 'slideUp 0.35s cubic-bezier(0.4,0,0.2,1)' }}>
             <div className="flex justify-center mb-4">
@@ -140,7 +204,7 @@ export default function whatsapp_dp_downloader() {
           </div>
         )}
 
-        {!imageUrl && !loading && (
+        {mode === 'link' && !imageUrl && !loading && (
           <div ref={resultRef} className="text-center py-12 rounded-3xl border-2 border-dashed border-white/8 bg-white/[0.01]">
             <div className="text-4xl mb-3 opacity-20">📸</div>
             <p className="text-sm text-slate-600 font-medium">Paste a WhatsApp profile-picture link and click Fetch Picture</p>
@@ -150,15 +214,15 @@ export default function whatsapp_dp_downloader() {
         <div className="rounded-2xl border-2 border-white/8 bg-white/[0.06] p-6 space-y-5">
           <h2 className="text-base font-bold text-white">How to Download WhatsApp DP Online Free</h2>
           <p className="text-sm text-slate-400">
-            This free WhatsApp DP downloader saves a profile picture from its real image link
-            (<span className="font-mono text-emerald-300">pps.whatsapp.net</span>). It works as a
-            WhatsApp DP saver for WhatsApp Web — no app, no registration, and no watermark.
+            This free WhatsApp DP downloader offers <b className="text-slate-300">two lanes</b>: paste the real
+            image link (<span className="font-mono text-emerald-300">pps.whatsapp.net</span>) to download directly,
+            or enter a phone number to get a <b className="text-slate-300">WhatsApp chat link</b> and save the DP from
+            the chat. It works as a WhatsApp DP saver — no app, no registration, and no watermark.
           </p>
           <ol className="space-y-2 text-sm text-slate-400 list-decimal list-inside">
-            <li>Open <b className="text-slate-300">WhatsApp Web</b> and open the contact's chat.</li>
-            <li>Right-click their <b className="text-slate-300">profile photo</b> → <b className="text-slate-300">Copy image address</b>.</li>
-            <li>Paste the <span className="font-mono text-emerald-300">pps.whatsapp.net</span> link above and click <b className="text-slate-300">Fetch Picture</b>.</li>
-            <li>Preview the full-resolution photo, then download it as JPG or PNG.</li>
+            <li><b className="text-slate-300">By link:</b> WhatsApp Web → right-click profile photo → copy image address → paste here.</li>
+            <li><b className="text-slate-300">By number:</b> enter the number → open the wa.me chat → tap name → tap profile photo → save.</li>
+            <li>Download the full-resolution photo as JPG or PNG.</li>
           </ol>
           <div className="border-t border-white/8 pt-4">
             <h3 className="text-sm font-bold text-slate-300 mb-2">WhatsApp DP Saver tips</h3>
