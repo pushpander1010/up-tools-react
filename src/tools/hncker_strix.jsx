@@ -139,22 +139,27 @@ export default function hncker_strix() {
         <meta property="og:image" content="https://www.uptools.in/assets/tools/strix/strix_logo.png" />
       </Helmet>
 
-      <Section id="video" icon="🎬" title="Video Tutorial" subtitle="Watch the HNCKER walkthrough">
+      {/* Video Tutorial */}
+      <Section id="video" icon="🎬" title="Video Tutorial" subtitle="Watch the full walkthrough of STRIX">
         <div className="max-w-3xl mx-auto">
           <a href="https://www.youtube.com/watch?v=51LOrmRV8Uk" target="_blank" rel="noopener noreferrer"
-            className="block rounded-xl overflow-hidden border border-white/10 no-underline"
+            className="block group rounded-xl overflow-hidden border border-white/10 no-underline relative"
             style={{ background: '#000' }}>
             <div className="aspect-video w-full overflow-hidden relative">
-              <img src="https://i.ytimg.com/vi/51LOrmRV8Uk/hqdefault.jpg"
-                alt="STRIX - AI Penetration Testing Framework" loading="lazy"
-                className="w-full h-full object-cover" />
+              <img
+                src="https://i.ytimg.com/vi/51LOrmRV8Uk/hqdefault.jpg"
+                alt="STRIX — AI Penetration Testing Framework"
+                loading="lazy"
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+              />
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-16 h-16 rounded-full bg-red-600/90 flex items-center justify-center shadow-lg">
+                <div className="w-16 h-16 rounded-full bg-red-600/90 flex items-center justify-center transition-transform duration-300 group-hover:scale-110 shadow-lg">
                   <svg viewBox="0 0 24 24" className="w-7 h-7 ml-1 fill-white"><path d="M8 5v14l11-7z" /></svg>
                 </div>
               </div>
               <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
-                <p className="text-sm font-semibold text-white">STRIX — autonomous AI agents that hack like real pentesters</p>
+                <p className="text-sm font-semibold text-white">STRIX — AI Penetration Testing Framework</p>
+                <p className="text-xs text-slate-300 mt-0.5">Watch on YouTube →</p>
               </div>
             </div>
           </a>
