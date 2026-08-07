@@ -20,12 +20,13 @@ export default function whatsapp_profile_picture_downloader() {
   return (
     <ToolLayout
       title="WhatsApp Profile Picture Downloader"
-      desc="Download any visible WhatsApp profile picture (DP) in full size for free. Save profile photos from contacts or shared WhatsApp links."
+      desc="Download WhatsApp profile pictures free — save any visible WhatsApp DP in full size online. Enter a number or paste a WhatsApp link to get the profile photo, no app or sign-up needed."
       icon="🖼️" iconBg="rgba(37,211,102,0.08)"
       category="whatsapp" slug="whatsapp-profile-picture-downloader"
       faq={[
-        { q: "How do I download a WhatsApp profile picture?", a: "Open the contact's chat, tap their name, tap the profile photo to view it full-screen, then save. Or paste their WhatsApp link into our DP Downloader." },
-        { q: "What resolution are WhatsApp DPs?", a: "WhatsApp stores profile pictures at up to 640x640 pixels. Our tool pulls the highest quality version available." },
+        { q: "How do I download a WhatsApp profile picture?", a: "Open the contact's chat, tap their name, tap the profile photo to view it full-screen, then save. Or use the pps.whatsapp.net image link from WhatsApp Web in our DP downloader to get the full resolution." },
+        { q: "How do I download a WhatsApp profile picture by number?", a: "Enter the number in the field above to generate a wa.me link, open it, and tap the contact's profile photo to save it. There is no way to fetch a profile picture by number alone without a logged-in session." },
+        { q: "What resolution are WhatsApp DPs?", a: "WhatsApp stores profile pictures at up to 640x640 pixels. Our tool pulls the highest quality version available from the image link." },
         { q: "Can I download a profile picture I can't see?", a: "No. If the person's privacy is set to 'My Contacts' or 'Nobody', WhatsApp won't deliver their photo to you." },
       ]}
       howItWorks={[
@@ -108,6 +109,32 @@ export default function whatsapp_profile_picture_downloader() {
               <p className="font-semibold text-slate-300">Is it legal to save someone's DP?</p>
               <p>Saving for personal use is generally fine, but reusing or sharing without permission may violate privacy.</p>
             </div>
+          </div>
+        </div>
+
+        <div className="rounded-2xl border-2 border-white/8 bg-white/[0.06] p-6 space-y-4">
+          <h2 className="text-base font-bold text-white">How to Download a WhatsApp Profile Picture Online</h2>
+          <p className="text-sm text-slate-400">
+            Use this free <b className="text-slate-300">WhatsApp profile picture downloader</b> to save a
+            <b className="text-slate-300"> WhatsApp profile photo</b> in full size. The quickest route is to
+            generate a <b className="text-slate-300">wa.me</b> link from the number above, open it, and tap the
+            contact's profile picture to save it to your phone. For the highest resolution, copy the
+            <span className="font-mono text-emerald-300"> pps.whatsapp.net</span> image link from WhatsApp Web and
+            use our <a className="text-emerald-300 underline" href="/whatsapp-dp-downloader/">WhatsApp DP downloader</a>.
+          </p>
+          <ol className="space-y-2 text-sm text-slate-400 list-decimal list-inside">
+            <li>Enter the phone number and tap <b className="text-slate-300">Open WhatsApp Link</b>.</li>
+            <li>Open the chat and tap the contact's name at the top.</li>
+            <li>Tap the <b className="text-slate-300">profile photo</b> to view it full-screen.</li>
+            <li>Use the save or share icon to <b className="text-slate-300">download the profile picture</b>.</li>
+          </ol>
+          <div className="border-t border-white/8 pt-4">
+            <h3 className="text-sm font-bold text-slate-300 mb-2">WhatsApp Profile Picture Tips</h3>
+            <ul className="space-y-1.5 text-sm text-slate-400 list-disc list-inside">
+              <li>You can only download a profile picture you can actually see in WhatsApp.</li>
+              <li>Full-resolution downloads need the real image link from WhatsApp Web.</li>
+              <li>Want to download by number? See <a className="text-emerald-300 underline" href="/whatsapp-dp-by-number/">WhatsApp DP by Number</a>.</li>
+            </ul>
           </div>
         </div>
       </div>

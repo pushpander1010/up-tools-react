@@ -54,12 +54,14 @@ export default function whatsapp_dp_by_number() {
   return (
     <ToolLayout
       title="WhatsApp DP Download by Number"
-      desc="Learn what's possible with WhatsApp DP by number, why direct download is blocked, and the real ways to save any profile picture in full size."
+      desc="WhatsApp DP download by number explained. Learn how to download a WhatsApp DP with a phone number, why direct by-number download is blocked, and the real methods that work to save any profile picture in full size."
       icon="💬" iconBg="rgba(37,211,102,0.08)"
       category="social" slug="whatsapp-dp-by-number"
       faq={[
-        { q: "Can I download a WhatsApp DP using only a phone number?", a: "No — WhatsApp does not expose profile pictures through a phone number via any public API. You need the contact saved or their WhatsApp link." },
-        { q: "How do I save a WhatsApp profile picture in full size?", a: "Open the contact's chat, tap their name, then tap the profile photo to view it full-screen and use the save/share option." },
+        { q: "Can I download a WhatsApp DP using only a phone number?", a: "No — WhatsApp does not expose profile pictures through a phone number via any public API. You need the contact saved, their WhatsApp link, or the real profile-picture image link (pps.whatsapp.net) to download a DP." },
+        { q: "How do I download a WhatsApp DP with a number?", a: "Create a wa.me link from the number and open it, save the number as a contact and open the chat, or grab the pps.whatsapp.net image link from WhatsApp Web and paste it into our WhatsApp DP Downloader." },
+        { q: "Why can't any site download WhatsApp DP by number?", a: "WhatsApp protects profile pictures behind login. Without your logged-in WhatsApp session, no server can pull a DP from a number alone — sites that claim otherwise are misleading." },
+        { q: "How do I save a WhatsApp profile picture in full size?", a: "Open the contact's chat, tap their name, then tap the profile photo to view it full-screen and use the save/share option. Or use the pps.whatsapp.net link in our downloader for the highest resolution." },
         { q: "Why can't I see someone's DP?", a: "The contact likely set their privacy to 'My Contacts' or 'Nobody', or they removed you. Private accounts intentionally hide their DP from non-contacts." },
       ]}
       howItWorks={[
@@ -131,6 +133,41 @@ export default function whatsapp_dp_by_number() {
               <div className="text-sm font-bold text-white">📸 WhatsApp Status Saver</div>
               <div className="text-xs text-slate-400 mt-1">Save statuses without reposting</div>
             </a>
+          </div>
+        </div>
+
+        <div className="rounded-2xl border-2 border-white/8 bg-white/[0.06] p-6 space-y-4">
+          <h2 className="text-base font-bold text-white">WhatsApp DP Download by Number — What Actually Works</h2>
+          <p className="text-sm text-slate-400">
+            If you searched for <b className="text-slate-300">WhatsApp DP download by number</b> or
+            <b className="text-slate-300"> download WhatsApp DP with number</b>, here is the truth:
+            WhatsApp does not let anyone — or any website — pull a profile picture from a phone number
+            alone. The DP is protected behind your logged-in WhatsApp session. Any tool that claims to
+            <i> "download WhatsApp DP by number"</i> without a session is misleading.
+          </p>
+          <p className="text-sm text-slate-400">
+            The methods that genuinely work are the ones listed above: open a <b className="text-slate-300">wa.me</b> link,
+            save the number as a contact, or copy the real profile-picture image link
+            (<span className="font-mono text-emerald-300">pps.whatsapp.net</span>) from WhatsApp Web and use our
+            <a className="text-emerald-300 underline" href="/whatsapp-dp-downloader/"> WhatsApp DP downloader</a> to save it
+            in full resolution.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-slate-400">
+            <div className="bg-black/20 rounded-xl p-4 border border-white/8">
+              <div className="text-xl mb-1">🔗</div>
+              <div className="font-bold text-slate-300">wa.me link</div>
+              <div className="mt-1">Open a chat without saving the number, then tap the profile photo.</div>
+            </div>
+            <div className="bg-black/20 rounded-xl p-4 border border-white/8">
+              <div className="text-xl mb-1">📇</div>
+              <div className="font-bold text-slate-300">Saved contact</div>
+              <div className="mt-1">Add the number, open the chat, tap the name, save the photo.</div>
+            </div>
+            <div className="bg-black/20 rounded-xl p-4 border border-white/8">
+              <div className="text-xl mb-1">🖼️</div>
+              <div className="font-bold text-slate-300">Image link</div>
+              <div className="mt-1">Copy the pps.whatsapp.net link from WhatsApp Web and download it here.</div>
+            </div>
           </div>
         </div>
       </div>

@@ -62,18 +62,21 @@ export default function whatsapp_dp_downloader() {
   return (
     <ToolLayout
       title="WhatsApp DP Downloader"
-      desc="Download a WhatsApp profile picture (DP) from its real profile-picture link. Paste the pps.whatsapp.net image URL and get the full-resolution photo."
+      desc="WhatsApp DP downloader — download WhatsApp profile pictures online free. Paste your WhatsApp DP image link (pps.whatsapp.net) and save any visible profile picture in full resolution. Works as a WhatsApp DP saver for WhatsApp Web, no app or sign-up needed."
       icon="📸" iconBg="rgba(37,211,102,0.08)"
       category="whatsapp" slug="whatsapp-dp-downloader"
       faq={[
-        { q: "How do I get the WhatsApp profile-picture link?", a: "Open WhatsApp Web, open a chat, right-click the contact's profile photo and copy the image address — it starts with pps.whatsapp.net. Paste that link here." },
-        { q: "Why can't I just enter a phone number?", a: "WhatsApp does not expose profile pictures by phone number without a logged-in session. The image URL is the only way a server can fetch it anonymously." },
+        { q: "How do I download a WhatsApp DP online free?", a: "Get the real profile-picture link from WhatsApp Web (open the chat, right-click the contact's photo, copy image address — it starts with pps.whatsapp.net), paste it here, and click Fetch Picture to download the full-resolution image." },
+        { q: "How do I get the WhatsApp profile-picture link?", a: "Open WhatsApp Web, open a chat, right-click the contact's profile photo and copy the image address — it starts with pps.whatsapp.net. Paste that link here to download the DP." },
+        { q: "Can I download a WhatsApp DP from WhatsApp Web?", a: "Yes. WhatsApp Web is the easiest place to grab the image link: open the chat, right-click the profile photo, copy image address, then paste it into this WhatsApp DP downloader to save the full-size photo." },
+        { q: "Why can't I just enter a phone number?", a: "WhatsApp does not expose profile pictures by phone number without a logged-in session. The image link (pps.whatsapp.net) is the only way a server can fetch a DP anonymously. See our WhatsApp DP by Number guide for what actually works." },
+        { q: "What resolution do I get?", a: "WhatsApp stores profile pictures at up to 640x640 pixels. This tool pulls the highest-quality version available from the image link." },
         { q: "Is it legal to download someone's WhatsApp profile picture?", a: "Downloading for personal viewing is generally acceptable, but using or sharing someone's photo without permission may violate their privacy rights." },
       ]}
       howItWorks={[
         "Copy the real profile-picture link from WhatsApp Web (right-click the photo → copy image address).",
-        "Paste the link into the box below.",
-        "Click Fetch Picture to download the full-resolution image.",
+        "Paste the pps.whatsapp.net link into the box below.",
+        "Click Fetch Picture to download the full-resolution WhatsApp DP.",
       ]}
       schema={{
         "@context": "https://schema.org", "@type": "SoftwareApplication",
@@ -143,6 +146,29 @@ export default function whatsapp_dp_downloader() {
             <p className="text-sm text-slate-600 font-medium">Paste a WhatsApp profile-picture link and click Fetch Picture</p>
           </div>
         )}
+
+        <div className="rounded-2xl border-2 border-white/8 bg-white/[0.06] p-6 space-y-5">
+          <h2 className="text-base font-bold text-white">How to Download WhatsApp DP Online Free</h2>
+          <p className="text-sm text-slate-400">
+            This free WhatsApp DP downloader saves a profile picture from its real image link
+            (<span className="font-mono text-emerald-300">pps.whatsapp.net</span>). It works as a
+            WhatsApp DP saver for WhatsApp Web — no app, no registration, and no watermark.
+          </p>
+          <ol className="space-y-2 text-sm text-slate-400 list-decimal list-inside">
+            <li>Open <b className="text-slate-300">WhatsApp Web</b> and open the contact's chat.</li>
+            <li>Right-click their <b className="text-slate-300">profile photo</b> → <b className="text-slate-300">Copy image address</b>.</li>
+            <li>Paste the <span className="font-mono text-emerald-300">pps.whatsapp.net</span> link above and click <b className="text-slate-300">Fetch Picture</b>.</li>
+            <li>Preview the full-resolution photo, then download it as JPG or PNG.</li>
+          </ol>
+          <div className="border-t border-white/8 pt-4">
+            <h3 className="text-sm font-bold text-slate-300 mb-2">WhatsApp DP Saver tips</h3>
+            <ul className="space-y-1.5 text-sm text-slate-400 list-disc list-inside">
+              <li>The image link expires after a while — download soon after copying it.</li>
+              <li>You can only download a DP you can actually see in WhatsApp.</li>
+              <li>For <b className="text-slate-300">WhatsApp DP download by number</b>, see our <a className="text-emerald-300 underline" href="/whatsapp-dp-by-number/">WhatsApp DP by Number</a> guide.</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </ToolLayout>
   )

@@ -22,13 +22,15 @@ export default function whatsapp_private_dp_viewer() {
   return (
     <ToolLayout
       title="WhatsApp Private DP Viewer"
-      desc="View and download any visible WhatsApp profile picture (DP) in full size for free. Check private profile photos from contacts or shared WhatsApp links without installing any app."
+      desc="WhatsApp private DP viewer — view and download WhatsApp profile pictures online free. See how to check hidden, blocked, or private DPs, and save any visible profile picture in full size without installing an app."
       icon="🖼️" iconBg="rgba(37,211,102,0.08)"
       category="whatsapp" slug="whatsapp-private-dp-viewer"
       faq={[
-        { q: "How do I view a WhatsApp profile picture?", a: "Open the contact's chat, tap their name, tap the profile photo to view it full-screen, then save. Or paste their WhatsApp link into our Private DP Viewer." },
-        { q: "What resolution are WhatsApp DPs?", a: "WhatsApp stores profile pictures at up to 640x640 pixels. Our tool pulls the highest quality version available." },
-        { q: "Can I view a private profile picture I can't see?", a: "No. If the person's privacy is set to 'My Contacts' or 'Nobody', WhatsApp won't deliver their photo to you." },
+        { q: "How do I view a WhatsApp DP online?", a: "Open the contact's chat and tap their name, then tap the profile photo to view it full-screen and save it. Or use our WhatsApp DP downloader with the pps.whatsapp.net image link from WhatsApp Web." },
+        { q: "Can I view a hidden or blocked WhatsApp DP?", a: "No. If a contact's privacy is set to 'My Contacts' or 'Nobody', or they have blocked you, WhatsApp will not deliver their profile photo to your device — no online viewer can bypass that." },
+        { q: "How do I see someone's private WhatsApp DP by number?", a: "There is no way to view a private WhatsApp profile picture by phone number online without a logged-in session. Open a wa.me link or save the contact, then view their photo in the chat." },
+        { q: "What resolution are WhatsApp profile pictures?", a: "WhatsApp stores profile pictures at up to 640x640 pixels. Our downloader pulls the highest-quality version available from the image link." },
+        { q: "Is a WhatsApp private DP viewer app needed?", a: "No. You can view and save visible profile pictures from the WhatsApp app or WhatsApp Web without installing any third-party viewer app." },
       ]}
       howItWorks={[
         "Enter the phone number or paste a WhatsApp link below.",
@@ -109,6 +111,35 @@ export default function whatsapp_private_dp_viewer() {
             <div className="border-t border-white/8 pt-3">
               <p className="font-semibold text-slate-300">Is it legal to save someone's DP?</p>
               <p>Saving for personal use is generally fine, but reusing or sharing without permission may violate privacy.</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="rounded-2xl border-2 border-white/8 bg-white/[0.06] p-6 space-y-4">
+          <h2 className="text-base font-bold text-white">WhatsApp DP Viewer — What You Can and Can't See</h2>
+          <p className="text-sm text-slate-400">
+            People search for a <b className="text-slate-300">WhatsApp private DP viewer</b> to see a
+            <b className="text-slate-300"> hidden</b>, <b className="text-slate-300">blocked</b>, or
+            <b className="text-slate-300"> private</b> profile picture — often
+            <b className="text-slate-300"> by number</b> or <b className="text-slate-300">online free</b>.
+            Here is the honest answer: WhatsApp protects profile pictures behind your login and each
+            contact's privacy setting. If someone's DP is private, hidden, or you are blocked, no online
+            viewer or app can show it to you.
+          </p>
+          <p className="text-sm text-slate-400">
+            What you <b className="text-emerald-300">can</b> do: view and save any profile picture you can
+            actually see in WhatsApp. Open the contact's chat, tap their name, tap the photo to view it
+            full-screen and save it — or grab the <span className="font-mono text-emerald-300">pps.whatsapp.net</span>
+            image link from WhatsApp Web and use our <a className="text-emerald-300 underline" href="/whatsapp-dp-downloader/">WhatsApp DP downloader</a>.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-slate-400">
+            <div className="bg-black/20 rounded-xl p-4 border border-white/8">
+              <div className="font-bold text-slate-300 mb-1">✓ You can view</div>
+              <div>DPs of contacts you can see in your chats — via the app, WhatsApp Web, or the image link.</div>
+            </div>
+            <div className="bg-black/20 rounded-xl p-4 border border-white/8">
+              <div className="font-bold text-slate-300 mb-1">✗ You cannot view</div>
+              <div>Hidden or blocked DPs, or a private profile picture by number, without a logged-in session.</div>
             </div>
           </div>
         </div>
