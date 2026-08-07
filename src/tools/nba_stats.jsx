@@ -1,8 +1,13 @@
 import { useState, useCallback, useRef } from 'react'
 import ToolLayout from '../components/ToolLayout'
 
-const API = 'https://api.balldontlie.io/v1'
-const API_KEY = 'demo'
+const API = 'https://backend.uptools.in/api/nba'
+
+const NBA_HEIGHT = (p) => {
+  if (p?.height) return p.height // e.g. "6-9"
+  if (p?.height_feet) return `${p.height_feet}'${p.height_inches || 0}"`
+  return null
+}
 
 export default function nba_stats() {
   const [tab, setTab] = useState('players')
@@ -22,7 +27,7 @@ export default function nba_stats() {
     setLoading(true)
     setError('')
     try {
-      const r = await fetch(`${API}/players?search=${encodeURIComponent(q)}`, { headers: { 'Authorization': API_KEY } })
+      const r = await fetch(`${API}/search?q=${encodeURIComponent(q)}`)
       const d = await r.json()
       setPlayers(d.data || [])
       if (!d.data || d.data.length === 0) setError('No players found.')
@@ -43,8 +48,8 @@ export default function nba_stats() {
     setError('')
     try {
       const [avgR, gameR] = await Promise.all([
-        fetch(`${API}/season_averages?player_ids[]=${id}`, { headers: { 'Authorization': API_KEY } }),
-        fetch(`${API}/stats?player_ids[]=${id}&per_page=10&sort=date&order=desc`, { headers: { 'Authorization': API_KEY } })
+        fetch(`${API}/averages?id=${id}`),
+        fetch(`${API}/recent?id=${id}&limit=6`)
       ])
       const avgD = await avgR.json()
       const gameD = await gameR.json()
@@ -57,7 +62,7 @@ export default function nba_stats() {
     setGamesLoading(true)
     setError('')
     try {
-      const r = await fetch(`${API}/games?dates[]=${date}&per_page=25`, { headers: { 'Authorization': API_KEY } })
+      const r = await fetch(`${API}/games?date=${date}`)
       const d = await r.json()
       setGames(d.data || [])
       if (!d.data || d.data.length === 0) setError('No games found for this date.')
@@ -75,7 +80,7 @@ export default function nba_stats() {
       icon="🏀" iconBg="rgba(234,88,12,0.08)"
       category="sports" slug="nba-stats"
       faq={[
-        { q: 'Where does NBA data come from?', a: 'From the balldontlie API, a free open-source NBA statistics API with no authentication required.' },
+        { q: 'Where does NBA data come from?', a: 'From the balldontlie API, a free NBA statistics API. Data is fetched through our backend proxy so your requests stay reliable.' },
         { q: 'Can I search for any NBA player?', a: 'Yes, search by player name to find career stats, averages, and recent games.' },
         { q: 'Are stats up to date?', a: 'Data is updated regularly by the balldontlie API. Current season stats may lag by a day or two.' },
       ]}
@@ -191,7 +196,7 @@ export default function nba_stats() {
                     className="w-full text-left p-4 rounded-2xl bg-white/[0.04] border border-white/8 hover:bg-white/[0.08] transition-all">
                     <div className="text-sm font-bold text-white">{p.first_name} {p.last_name}</div>
                     <div className="text-xs text-slate-400 mt-1">
-                      {p.position || ''} · {p.team?.full_name || 'Free Agent'} · {p.height_feet || '?'}'{p.height_inches || 0}"
+                      {p.position || ''} · {p.team?.full_name || 'Free Agent'} · {NBA_HEIGHT(p) || '?'}
                     </div>
                   </button>
                 ))}

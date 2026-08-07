@@ -15,24 +15,21 @@ export default function ip_address() {
     jumpTo()
 
     try {
-      const ipRes = await fetch('https://api.ipify.org?format=json')
-      const ipData = await ipRes.json()
-      const ip = ipData.ip
-
-      const locRes = await fetch(`https://ipapi.co/${ip}/json/`)
-      const locData = await locRes.json()
+      const res = await fetch('https://backend.uptools.in/api/ipinfo')
+      if (!res.ok) throw new Error('bad status')
+      const d = await res.json()
 
       setData({
-        ip,
-        city: locData.city || '—',
-        region: locData.region || '—',
-        country: locData.country_name || '—',
-        countryCode: locData.country_code || '',
-        timezone: locData.timezone || '—',
-        isp: locData.org || '—',
-        lat: locData.latitude || 0,
-        lon: locData.longitude || 0,
-        postal: locData.postal || '—',
+        ip: d.ip,
+        city: d.city || '—',
+        region: d.region || '—',
+        country: d.country || '—',
+        countryCode: d.country_code || '',
+        timezone: d.timezone || '—',
+        isp: d.isp || '—',
+        lat: d.lat || 0,
+        lon: d.lon || 0,
+        postal: d.postal || '—',
       })
     } catch (err) {
       setError('Failed to fetch IP information. Please try again.')
@@ -71,7 +68,7 @@ export default function ip_address() {
       ]}
       howItWorks={[
         'Click "Detect My IP" to fetch your public IP address.',
-        'The tool queries your IP via ipify and geolocation via ipapi.co.',
+        'The tool queries your IP and geolocation via our backend proxy (ipwho.is).',
         'View your IP, city, region, country, ISP, timezone, and coordinates.',
         'Click the copy button to copy your IP to the clipboard.',
       ]}
