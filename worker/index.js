@@ -1054,6 +1054,12 @@ async function handleNewsProxy(req, env) {
   });
 }
 
+/* ---------------- WhatsApp DP: handled by Oracle backend (backend.uptools.in) ----------------
+ * The worker cannot reach the Oracle backend (raw IPs and Cloudflare-zone hostnames are
+ * blocked for Worker subrequests) and Meta blocks Cloudflare IPs from WhatsApp's CDN,
+ * so the browser calls the Oracle backend directly over HTTPS (Caddy injects auth + CORS).
+ */
+
 /* ---------------- main ---------------- */
 
 export default {
