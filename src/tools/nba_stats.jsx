@@ -17,7 +17,7 @@ export default function nba_stats() {
   const [playerStats, setPlayerStats] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
-  const [gameDate, setGameDate] = useState(new Date().toISOString().split('T')[0])
+  const [gameMonth, setGameMonth] = useState(new Date().toISOString().slice(0, 7))
   const [games, setGames] = useState([])
   const [gamesLoading, setGamesLoading] = useState(false)
   const searchTimeout = useRef(null)
@@ -58,14 +58,14 @@ export default function nba_stats() {
     setLoading(false)
   }, [])
 
-  const fetchGames = useCallback(async (date) => {
+  const fetchGames = useCallback(async (month) => {
     setGamesLoading(true)
     setError('')
     try {
-      const r = await fetch(`${API}/games?date=${date}`)
+      const r = await fetch(`${API}/games?month=${month}`)
       const d = await r.json()
       setGames(d.data || [])
-      if (!d.data || d.data.length === 0) setError('No games found for this date.')
+      if (!d.data || d.data.length === 0) setError('No games found for this month.')
     } catch { setError('Could not load games.') }
     setGamesLoading(false)
   }, [])
@@ -227,9 +227,9 @@ export default function nba_stats() {
         {tab === 'games' && (
           <div className="space-y-4">
             <div className="flex gap-2">
-              <input type="date" value={gameDate} onChange={e => setGameDate(e.target.value)}
+              <input type="month" value={gameMonth} onChange={e => setGameMonth(e.target.value)}
                 className={inputClass} />
-              <button onClick={() => fetchGames(gameDate)} className={btnClass}>Look Up</button>
+              <button onClick={() => fetchGames(gameMonth)} className={btnClass}>Look Up</button>
             </div>
             <button onClick={fetchRecentGames}
               className="w-full py-3 rounded-xl bg-white/[0.04] border border-white/8 text-sm font-bold text-indigo-300 hover:text-white hover:bg-white/[0.08] transition-all">
@@ -242,7 +242,7 @@ export default function nba_stats() {
 
             {games.length > 0 && (
               <div className="space-y-2">
-                <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">{games.length} game{games.length !== 1 ? 's' : ''} on {games[0]?.date?.slice(0,10) || gameDate}</div>
+                <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">{games.length} game{games.length !== 1 ? 's' : ''} in {gameMonth}</div>
                 {games.map((g, i) => {
                   const homeWon = (g.home_team_score || 0) > (g.visitor_team_score || 0)
                   return (
