@@ -35,9 +35,10 @@ export default function multi_currency_converter() {
       try {
         const r = await fetch(RATES_API)
         const d = await r.json()
-        if (!d.conversion_rates) throw new Error('No rates available')
-        setRates(d.conversion_rates)
-        compute(a, fromCurrency, toCurrency, d.conversion_rates)
+        const ratesMap = d.conversion_rates || d.rates
+        if (!ratesMap) throw new Error('No rates available')
+        setRates(ratesMap)
+        compute(a, fromCurrency, toCurrency, ratesMap)
       } catch (e) {
         setError('Could not load live rates. Please try again.')
       } finally {
