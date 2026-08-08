@@ -150,7 +150,7 @@ export default function nba_stats() {
                           { l: 'FG%', v: `${((playerStats.averages.fg_pct || 0) * 100).toFixed(1)}%` },
                           { l: '3P%', v: `${((playerStats.averages.three_pt_pct || 0) * 100).toFixed(1)}%` },
                           { l: 'FT%', v: `${((playerStats.averages.ft_pct || 0) * 100).toFixed(1)}%` },
-                          { l: 'MPG', v: playerStats.averages.min || '0' },
+                          { l: 'MPG', v: (playerStats.averages.min || 0).toFixed(1) },
                           { l: 'GP', v: playerStats.averages.games_played || 0 },
                         ].map(s => (
                           <div key={s.l} className="p-2 rounded-xl bg-white/[0.04] border border-white/5 text-center">
