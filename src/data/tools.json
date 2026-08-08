@@ -1215,22 +1215,6 @@
    ]
   },
   {
-   "slug": "instagram-unfollower-tracker",
-   "title": "Instagram Unfollower Tracker",
-   "icon": "👋",
-   "desc": "Find who unfollowed you on Instagram.",
-   "href": "/instagram-unfollower-tracker/",
-   "tags": [
-    "social",
-    "analytics"
-   ],
-   "cats": [
-    "all",
-    "social",
-    "marketing"
-   ]
-  },
-  {
    "slug": "instagram-fake-follower-checker",
    "title": "Instagram Fake Follower Checker",
    "icon": "🤖",
@@ -2619,38 +2603,6 @@
    "tags": [
     "social",
     "marketing"
-   ],
-   "cats": [
-    "all",
-    "social",
-    "marketing"
-   ]
-  },
-  {
-   "slug": "instagram-follower-tracker",
-   "title": "Instagram Follower Tracker",
-   "icon": "📈",
-   "desc": "Track follower growth and analyze trends.",
-   "href": "/instagram-follower-tracker/",
-   "tags": [
-    "social",
-    "analytics"
-   ],
-   "cats": [
-    "all",
-    "social",
-    "marketing"
-   ]
-  },
-  {
-   "slug": "instagram-profile-analyzer",
-   "title": "Instagram Profile Analyzer",
-   "icon": "📊",
-   "desc": "Analyze profile performance and get insights.",
-   "href": "/instagram-profile-analyzer/",
-   "tags": [
-    "social",
-    "analytics"
    ],
    "cats": [
     "all",
