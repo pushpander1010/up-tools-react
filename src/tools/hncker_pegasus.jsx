@@ -135,6 +135,19 @@ export default function hncker_pegasus() {
         <meta property="og:image" content="https://www.uptools.in/assets/tools/pegasus/pegasus_scan.png" />
       </Helmet>
 
+      {/* Video Tutorial */}
+      <Section id="video" icon="🎬" title="Video Tutorial" subtitle="Watch the full Pegasus Pro walkthrough">
+        <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+          <iframe
+            className="absolute inset-0 w-full h-full rounded-xl border border-white/10"
+            src="https://www.youtube.com/embed/GKoWjCmPZEM"
+            title="Pegasus Pro Android Pentesting Toolkit — Full Tutorial | HNCKER"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        </div>
+      </Section>
+
       <WarningBox>
         Pegasus Pro is a security testing toolkit. Use it <b>only on devices you own or are explicitly authorized to
         test</b>. Attacking someone else's phone or network without permission is a crime in most jurisdictions and
