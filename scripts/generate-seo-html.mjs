@@ -6,11 +6,45 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const dist = join(__dirname, '..', 'dist')
 const toolsDir = join(__dirname, '..', 'src', 'tools')
 
-// Read built index.html as template
-const template = readFileSync(join(dist, 'index.html'), 'utf-8')
+// Extract { q, a } FAQ pairs from a tool's JSX source. Supports both:
+//   const faq = [ { q: '..', a: '..' }, ... ]
+//   faq={[ { q: "..", a: ".." }, ... ]}
+function extractFaq(content) {
+  let m = content.match(/const faq = \[(.*?)\n\]/s)
+  if (!m) m = content.match(/faq=\{\[(.*?)\]\s*\}/s)
+  if (!m) return []
+  const block = m[1]
+  const pairs = []
+  const re = /\{\s*q\s*:\s*(['"])((?:(?!\1).|\\.)*)\1\s*,\s*a\s*:\s*(['"])((?:(?!\3).|\\.)*)\3\s*\}/g
+  let om
+  while ((om = re.exec(block)) !== null) {
+    const unq = (s) => s.replace(/\\'/g, "'").replace(/\\"/g, '"').replace(/\\\\/g, '\\')
+    pairs.push({ q: unq(om[2]), a: unq(om[4]) })
+  }
+  return pairs
+}
+
+// Page already ships FAQPage schema client-side via Helmet -> skip static injection to avoid dupes.
+function hasFaqPageSchema(content) {
+  return /["']@type["']\s*:\s*["']FAQPage["']/.test(content)
+}
+
+// Build a FAQPage JSON-LD script tag.
+function faqJsonLd(pairs) {
+  const mainEntity = pairs.map((p) => ({
+    '@type': 'Question',
+    name: p.q,
+    acceptedAnswer: { '@type': 'Answer', text: p.a },
+  }))
+  const schema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity }
+  return `<script type="application/ld+json">${JSON.stringify(schema)}</script>`
+}
 
 // Get all tool JSX/TSX files
 const toolFiles = readdirSync(toolsDir).filter(f => f.endsWith('.jsx') || f.endsWith('.tsx'))
+
+// Read built index.html as template (once, outside the loop)
+const template = readFileSync(join(dist, 'index.html'), 'utf-8')
 
 // Slugs that have dedicated static HTML in public/ — don't overwrite
 const SKIP_SLUGS = new Set(['games', 'about', 'contact', 'hncker', 'privacy-policy'])
@@ -69,7 +103,13 @@ for (const file of toolFiles) {
     <meta name="twitter:description" content="${desc}" />
   `
   html = html.replace('</head>', og + '\n  </head>')
-  
+
+  // Inject static FAQPage JSON-LD for pages with FAQ data (skip pages already shipping it via Helmet)
+  const pairs = extractFaq(content)
+  if (pairs.length > 0 && !hasFaqPageSchema(content)) {
+    html = html.replace('</head>', '    ' + faqJsonLd(pairs) + '\n  </head>')
+  }
+
   const outDir = join(dist, slug)
   mkdirSync(outDir, { recursive: true })
   writeFileSync(join(outDir, 'index.html'), html)
