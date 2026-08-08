@@ -4796,6 +4796,24 @@
    "new": true
   },
   {
+   "slug": "email-osint-lookup",
+   "title": "Email OSINT Lookup",
+   "icon": "🔍",
+   "desc": "Look up an email's domain, disposable status, DNS & MX records.",
+   "href": "/email-osint-lookup/",
+   "tags": [
+    "security",
+    "osint",
+    "email"
+   ],
+   "cats": [
+    "all",
+    "security",
+    "tools"
+   ],
+   "new": true
+  },
+  {
    "slug": "weather-forecast",
    "title": "Weather Forecast",
    "icon": "🌤️",
