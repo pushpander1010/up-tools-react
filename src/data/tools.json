@@ -5843,6 +5843,27 @@
     "security"
    ]
   },
+{
+   "slug": "hncker/pegasus",
+   "title": "Pegasus Pro Android Pentesting Toolkit",
+   "icon": "🐎",
+   "desc": "Python menu toolkit for Android penetration testing: WiFi tools, network scanner, payload generation (educational).",
+   "href": "/hncker/pegasus/",
+   "tags": [
+    "pegasus",
+    "android",
+    "pentesting",
+    "wifi",
+    "payload",
+    "security",
+    "termux",
+    "kali"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
+  },
   {
    "slug": "hncker/ai-agent-escape",
    "title": "AI Agent Sandbox Escape",
