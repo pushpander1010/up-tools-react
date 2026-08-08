@@ -70,6 +70,24 @@ export default function nba_stats() {
     setGamesLoading(false)
   }, [])
 
+  const fetchRecentGames = useCallback(async () => {
+    setGamesLoading(true)
+    setError('')
+    try {
+      const r = await fetch(`${API}/games/recent?limit=5`)
+      const d = await r.json()
+      setGames(d.data || [])
+      if (!d.data || d.data.length === 0) setError('No recent games found.')
+    } catch { setError('Could not load recent games.') }
+    setGamesLoading(false)
+  }, [])
+
+  const switchToGames = useCallback(() => {
+    setTab('games')
+    setGames([])
+    fetchRecentGames()
+  }, [fetchRecentGames])
+
   const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
   const btnClass = "px-6 py-3.5 rounded-xl bg-indigo-500 text-white font-bold text-sm hover:bg-indigo-400 transition-all active:scale-[0.98]"
 
@@ -103,7 +121,7 @@ export default function nba_stats() {
             className={`flex-1 py-3 rounded-xl text-sm font-bold transition-all ${tab === 'players' ? 'bg-indigo-500/20 text-indigo-300 border border-indigo-500/30' : 'bg-white/[0.04] text-slate-400 border border-white/5 hover:text-white'}`}>
             🔍 Player Search
           </button>
-          <button onClick={() => { setTab('games'); fetchGames(gameDate) }}
+          <button onClick={switchToGames}
             className={`flex-1 py-3 rounded-xl text-sm font-bold transition-all ${tab === 'games' ? 'bg-indigo-500/20 text-indigo-300 border border-indigo-500/30' : 'bg-white/[0.04] text-slate-400 border border-white/5 hover:text-white'}`}>
             🎮 Recent Games
           </button>
@@ -213,6 +231,10 @@ export default function nba_stats() {
                 className={inputClass} />
               <button onClick={() => fetchGames(gameDate)} className={btnClass}>Look Up</button>
             </div>
+            <button onClick={fetchRecentGames}
+              className="w-full py-3 rounded-xl bg-white/[0.04] border border-white/8 text-sm font-bold text-indigo-300 hover:text-white hover:bg-white/[0.08] transition-all">
+              📅 Show 5 Most Recent Games
+            </button>
 
             {gamesLoading && <div className="text-center py-8"><div className="w-8 h-8 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin mx-auto" /></div>}
 
@@ -220,7 +242,7 @@ export default function nba_stats() {
 
             {games.length > 0 && (
               <div className="space-y-2">
-                <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">{games.length} game{games.length !== 1 ? 's' : ''} on {gameDate}</div>
+                <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">{games.length} game{games.length !== 1 ? 's' : ''} on {games[0]?.date?.slice(0,10) || gameDate}</div>
                 {games.map((g, i) => {
                   const homeWon = (g.home_team_score || 0) > (g.visitor_team_score || 0)
                   return (
