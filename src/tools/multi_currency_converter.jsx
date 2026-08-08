@@ -15,10 +15,7 @@ const CURRENCIES = [
   { code: 'SEK', name: 'Swedish Krona' },
 ]
 
-const RATES = {
-  USD: 1, EUR: 0.92, GBP: 0.79, JPY: 149.50, INR: 83.12,
-  AUD: 1.52, CAD: 1.36, CHF: 0.88, CNY: 7.24, SEK: 10.50,
-}
+const RATES_API = 'https://www.uptools.in/api/rates'
 
 export default function multi_currency_converter() {
   const { ref: resultRef, jumpTo } = useJumpToResult()
@@ -26,15 +23,38 @@ export default function multi_currency_converter() {
   const [fromCurrency, setFromCurrency] = useState('USD')
   const [toCurrency, setToCurrency] = useState('EUR')
   const [result, setResult] = useState(null)
+  const [rates, setRates] = useState(null)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
 
-  const convert = useCallback(() => {
+  const convert = useCallback(async () => {
     const a = parseFloat(amount) || 0
-    const from = RATES[fromCurrency] || 1
-    const to = RATES[toCurrency] || 1
-    const converted = (a * to) / from
-    const rate = to / from
-    setResult({ converted, rate, fromCurrency, toCurrency })
-  }, [amount, fromCurrency, toCurrency])
+    if (!rates) {
+      setLoading(true)
+      setError('')
+      try {
+        const r = await fetch(RATES_API)
+        const d = await r.json()
+        if (!d.conversion_rates) throw new Error('No rates available')
+        setRates(d.conversion_rates)
+        compute(a, fromCurrency, toCurrency, d.conversion_rates)
+      } catch (e) {
+        setError('Could not load live rates. Please try again.')
+      } finally {
+        setLoading(false)
+      }
+      return
+    }
+    compute(a, fromCurrency, toCurrency, rates)
+  }, [amount, fromCurrency, toCurrency, rates])
+
+  const compute = (a, from, to, ratesMap) => {
+    const fromRate = ratesMap[from] || 1
+    const toRate = ratesMap[to] || 1
+    const converted = (a * toRate) / fromRate
+    const rate = toRate / fromRate
+    setResult({ converted, rate, fromCurrency: from, toCurrency: to, updated: ratesMap.__updated })
+  }
 
   const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
   const selectClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all [color-scheme:dark]"
@@ -46,8 +66,8 @@ export default function multi_currency_converter() {
       icon="💱" iconBg="rgba(234,179,8,0.08)"
       category="finance" slug="multi-currency-converter"
       faq={[
-        { q: "How many currencies are supported?", a: "10 major currencies: USD, EUR, GBP, JPY, INR, AUD, CAD, CHF, CNY, SEK. More coming soon." },
-        { q: "Are rates real-time?", a: "Rates are mock/exchange rates for demonstration. In production, these would be fetched from a live API." },
+        { q: "How many currencies are supported?", a: "The converter uses live exchange rates covering 10 major currencies: USD, EUR, GBP, JPY, INR, AUD, CAD, CHF, CNY, SEK." },
+        { q: "Are rates real-time?", a: "Yes. Rates are fetched live from the ExchangeRate-API through our backend and updated automatically throughout the day." },
       ]}
       howItWorks={[
         "Enter an amount and select the source currency.",
@@ -83,10 +103,19 @@ export default function multi_currency_converter() {
           </div>
         </div>
 
-        <button onClick={() => { convert(); jumpTo() }}
-          className="w-full py-4 rounded-2xl bg-indigo-500 text-white font-bold text-sm hover:bg-indigo-400 transition-all duration-200 active:scale-[0.98]">
-          💱 Convert
+        <button onClick={() => { convert(); jumpTo() }} disabled={loading}
+          className="w-full py-4 rounded-2xl bg-indigo-500 text-white font-bold text-sm hover:bg-indigo-400 transition-all duration-200 active:scale-[0.98] disabled:opacity-50">
+          {loading ? '⏳ Loading rates...' : '💱 Convert'}
         </button>
+
+        {error && <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-sm text-red-400">❌ {error}</div>}
+
+        {rates && !error && (
+          <div className="flex items-center justify-center gap-1.5 text-xs text-emerald-400/80">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            Live exchange rates
+          </div>
+        )}
 
         {result && (
           <div ref={resultRef} className="rounded-3xl border-2 border-indigo-500/15 bg-gradient-to-br from-indigo-500/[0.06] via-white/[0.01] to-transparent p-6 sm:p-8 overflow-hidden"
