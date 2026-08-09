@@ -6071,6 +6071,32 @@
         "all",
         "finance"
       ]
+    },
+    {
+      "slug": "aimakerich/golden-cross",
+      "title": "Golden Cross",
+      "icon": "📈",
+      "desc": "The MA50 x MA200 crossover strategy to spot the start of an uptrend — with Python, Java and C++ starter code.",
+      "href": "/aimakerich/golden-cross/",
+      "tags": [
+        "algo",
+        "trading",
+        "golden-cross",
+        "death-cross",
+        "moving-average",
+        "ma50",
+        "ma200",
+        "trend",
+        "python",
+        "java",
+        "cpp",
+        "backtest",
+        "finance"
+      ],
+      "cats": [
+        "all",
+        "finance"
+      ]
     }
   ],
   "categories": {

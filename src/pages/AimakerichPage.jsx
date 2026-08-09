@@ -7,6 +7,7 @@ import InfiniteCarousel from '../components/InfiniteCarousel'
 const guides = [
   { slug: 'algo-trading-strategies', name: 'Algo Trading Strategies', icon: '🤖', desc: 'Momentum, mean reversion, trend following & arbitrage — with copy-paste Python, Java and C++ starters.', tag: 'Trading bots', accent: 'linear-gradient(135deg, rgba(251,191,36,0.16), rgba(52,211,153,0.07))' },
   { slug: 'rsi-macd-divergence', name: 'RSI + MACD Divergence', icon: '📉', desc: 'Spot bullish & bearish divergences between price and RSI/MACD to catch reversals early — with Python, Java and C++ code.', tag: 'Reversal signals', accent: 'linear-gradient(135deg, rgba(0,200,180,0.16), rgba(251,191,36,0.07))' },
+  { slug: 'golden-cross', name: 'Golden Cross', icon: '📈', desc: 'The MA50 × MA200 crossover strategy — spot the start of an uptrend and code the detector in Python, Java and C++.', tag: 'Trend following', accent: 'linear-gradient(135deg, rgba(255,183,77,0.16), rgba(100,181,246,0.07))' },
 ]
 
 export default function AimakerichPage() {
