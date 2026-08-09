@@ -6022,6 +6022,30 @@
         "all",
         "security"
       ]
+    },
+    {
+      "slug": "aimakerich/algo-trading-strategies",
+      "title": "Algo Trading Strategies",
+      "icon": "\ud83e\udd16",
+      "desc": "Momentum, mean reversion, trend following & arbitrage with copy-paste Python, Java and C++ starter code plus the full build process.",
+      "href": "/aimakerich/algo-trading-strategies/",
+      "tags": [
+        "algo",
+        "algorithmic",
+        "trading",
+        "bot",
+        "momentum",
+        "mean-reversion",
+        "python",
+        "java",
+        "cpp",
+        "backtest",
+        "finance"
+      ],
+      "cats": [
+        "all",
+        "finance"
+      ]
     }
   ],
   "categories": {

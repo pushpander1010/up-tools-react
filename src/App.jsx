@@ -24,6 +24,7 @@ class ErrorBoundary extends ReactComponent {
 const HomePage = lazy(() => import('./pages/HomePage'))
 const GamesPage = lazy(() => import('./pages/GamesPage'))
 const HnckerPage = lazy(() => import('./pages/HnckerPage'))
+const AimakerichPage = lazy(() => import('./pages/AimakerichPage'))
 
 // Dynamic tool component loader
 function ToolRoute() {
@@ -107,6 +108,7 @@ export default function App() {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/games" element={<GamesPage />} />
                 <Route path="/hncker" element={<HnckerPage />} />
+                <Route path="/aimakerich" element={<AimakerichPage />} />
                 <Route path="*" element={<ToolRoute />} />
               </Routes>
             </SidebarLayout>

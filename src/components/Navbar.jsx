@@ -5,6 +5,7 @@ const tabs = [
   { href: '/', label: 'Home', key: 'home' },
   { href: '/games', label: '🎮 Games', key: 'games' },
   { href: '/hncker', label: 'HNCKER', key: 'hncker' },
+  { href: '/aimakerich', label: 'AIMakeRich', key: 'aimakerich' },
 ]
 
 export default function Navbar() {

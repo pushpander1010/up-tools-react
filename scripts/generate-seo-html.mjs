@@ -47,7 +47,7 @@ const toolFiles = readdirSync(toolsDir).filter(f => f.endsWith('.jsx') || f.ends
 const template = readFileSync(join(dist, 'index.html'), 'utf-8')
 
 // Slugs that have dedicated static HTML in public/ — don't overwrite
-const SKIP_SLUGS = new Set(['games', 'about', 'contact', 'hncker', 'privacy-policy'])
+const SKIP_SLUGS = new Set(['games', 'about', 'contact', 'hncker', 'aimakerich', 'privacy-policy'])
 
 let count = 0
 for (const file of toolFiles) {
@@ -57,6 +57,11 @@ for (const file of toolFiles) {
   // Nested hncker pages: hncker_ahmyth.jsx → /hncker/ahmyth/
   if (slug.startsWith('hncker-')) {
     slug = 'hncker/' + slug.slice('hncker-'.length)
+  }
+
+  // Nested aimakerich pages: aimakerich_x.jsx → /aimakerich/x/
+  if (slug.startsWith('aimakerich-')) {
+    slug = 'aimakerich/' + slug.slice('aimakerich-'.length)
   }
 
   // Nested game pages: games_snake.jsx → /games/snake/
@@ -153,5 +158,11 @@ buildHtml('hncker', 'HNCKER - Apps, Tools, Instagram & Videos',
 // (from the game sub-pages), /games/ 1101s without its own static index.html.
 buildHtml('games', 'UpTools - Free Online Games',
   'Play free online arcade, puzzle, card and word games on UpTools - Snake, Tetris, 2048, Pac-Man, Wordle and many more. No downloads, play in your browser.')
+
+// AIMakeRich landing page: same failure class as hncker/games. Once dist/aimakerich/
+// exists as a directory (from the reel sub-pages), /aimakerich/ 1101s without its own
+// static index.html. Give it one so the nested route resolves.
+buildHtml('aimakerich', 'AIMakeRich - Finance, Investing & Trading Guides',
+  'AIMakeRich: practical money guides that match our Instagram reels. Learn investing, trading strategies and finance with real code, step-by-step processes, FAQs and how-tos.')
 
 console.log(`✅ Generated SEO HTML for ${count} tools`)
