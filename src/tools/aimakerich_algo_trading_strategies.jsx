@@ -17,6 +17,14 @@ function Section({ id, icon, title, subtitle, children }) {
 }
 
 function CodeBlock({ title, lang, lines }) {
+  const [copied, setCopied] = useState(false)
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(typeof lines === 'string' ? lines : lines.join('\n'))
+      setCopied(true)
+      setTimeout(() => setCopied(false), 1800)
+    } catch { /* clipboard unavailable */ }
+  }
   return (
     <div className="rounded-xl overflow-hidden border border-white/10" style={{ background: '#0a0f1e' }}>
       <div className="flex items-center gap-2 px-4 py-2 border-b border-white/10" style={{ background: '#111827' }}>
@@ -24,7 +32,12 @@ function CodeBlock({ title, lang, lines }) {
         <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
         <span className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
         {title && <span className="ml-2 text-[11px] font-mono text-slate-400">{title}</span>}
-        {lang && <span className="ml-auto text-[10px] font-mono text-emerald-400/80 uppercase tracking-wider">{lang}</span>}
+        <button type="button" onClick={copy}
+          className="ml-auto inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-[11px] font-bold transition-all border border-white/10 bg-white/5 text-slate-300 hover:text-black"
+          style={copied ? { background: 'linear-gradient(135deg, #34d399, #22d3ee)', borderColor: 'transparent', color: '#000' } : undefined}>
+          {copied ? '✓ Copied' : '⧉ Copy'}
+        </button>
+        {lang && <span className="text-[10px] font-mono text-emerald-400/80 uppercase tracking-wider">{lang}</span>}
       </div>
       <pre className="p-4 overflow-x-auto text-[13px] leading-relaxed font-mono text-emerald-200/90 whitespace-pre-wrap">{lines}</pre>
     </div>
