@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async'
+import { useState } from 'react'
 import ToolLayout from '../components/ToolLayout'
 
 function Section({ id, icon, title, subtitle, children }) {
@@ -26,6 +27,31 @@ function CodeBlock({ title, lang, lines }) {
         {lang && <span className="ml-auto text-[10px] font-mono text-emerald-400/80 uppercase tracking-wider">{lang}</span>}
       </div>
       <pre className="p-4 overflow-x-auto text-[13px] leading-relaxed font-mono text-emerald-200/90 whitespace-pre-wrap">{lines}</pre>
+    </div>
+  )
+}
+
+// One terminal, switchable between languages via tabs.
+function CodeTabs({ tabs, intro }) {
+  const [active, setActive] = useState(0)
+  const t = tabs[active]
+  return (
+    <div className="space-y-3">
+      <div className="flex flex-wrap gap-2">
+        {tabs.map((tab, i) => (
+          <button key={tab.lang} type="button" onClick={() => setActive(i)}
+            className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-bold transition-all ${
+              i === active
+                ? 'text-black'
+                : 'bg-white/5 border border-white/10 text-slate-300 hover:text-white hover:border-amber-400/40'
+            }`}
+            style={i === active ? { background: 'linear-gradient(135deg, #fbbf24, #34d399)' } : undefined}>
+            {tab.icon} {tab.lang}
+          </button>
+        ))}
+      </div>
+      <p className="text-xs text-slate-400 leading-relaxed m-0">{t.desc}</p>
+      <CodeBlock title={t.title} lang={t.lang} lines={t.lines} />
     </div>
   )
 }
@@ -212,10 +238,15 @@ export default function aimakerich_algo_trading_strategies() {
         <StepRow num={6} title="Deploy small, then scale" body="Connect a broker API with a certified key (required in India), start with a small real amount, and scale only after consistent live results." />
       </Section>
 
-      <Section id="python" icon="🐍" title="Starter Code — Python" subtitle="The easiest language for algo trading">
-        <p>A simple <b>moving-average crossover momentum</b> strategy using pandas. It computes a fast and slow moving average,
-        and goes long when the fast one crosses above the slow one. Runs on daily bars — a solid first bot.</p>
-        <CodeBlock title="momentum_ma_crossover.py" lang="Python" lines={`import pandas as pd
+      <Section id="code" icon="💻" title="Starter Code" subtitle="One terminal — switch between Python, Java and C++">
+        <p>Three ready-to-run starters for the ideas above. Use the buttons to <b>switch languages</b> inside the same
+        terminal. <b>Python</b> is the easiest entry point, <b>Java</b> suits a production pipeline, and <b>C++</b> is for
+        low-latency execution and fast backtesting.</p>
+        <CodeTabs tabs={[
+          {
+            lang: 'Python', icon: '🐍', title: 'momentum_ma_crossover.py',
+            desc: 'A simple moving-average crossover momentum strategy using pandas — goes long when the fast MA crosses above the slow MA. Runs on daily bars, a solid first bot. Run it: pip install pandas yfinance && python momentum_ma_crossover.py. Expect real results to be lower after fees and slippage.',
+            lines: `import pandas as pd
 import yfinance as yf
 
 # 1) Download daily data for an Indian or global ticker
@@ -249,17 +280,12 @@ df["daily_ret"] = close.pct_change().fillna(0) * df["position"]
 
 print("Strategy return:", round((1 + df["daily_ret"]).prod() - 1, 4))
 print("Buy-and-hold  :", round((1 + close.pct_change().fillna(0)).prod() - 1, 4))
-# Compare the two — and remember to subtract fees + slippage!`} />
-        <InfoBox title="Run it">
-          Install once: pip install pandas yfinance. Then: python momentum_ma_crossover.py. It prints the strategy return vs a
-          buy-and-hold return. Expect real-world results to be lower once you add brokerage and slippage.
-        </InfoBox>
-      </Section>
-
-      <Section id="java" icon="☕" title="Starter Code — Java" subtitle="For when you want speed and a production pipeline">
-        <p>A Java version of the same <b>moving-average crossover</b> idea. It reads OHLC data from CSV, computes the averages,
-        and prints buy/sell decisions. This shape fits a scheduled job or a Spring boot service that talks to a broker API.</p>
-        <CodeBlock title="MACrossover.java" lang="Java" lines={`import java.io.*;
+# Compare the two - and remember to subtract fees + slippage!`,
+          },
+          {
+            lang: 'Java', icon: '☕', title: 'MACrossover.java',
+            desc: 'The same moving-average crossover idea in Java — reads OHLC data, computes the averages, prints buy/sell decisions. Fits a scheduled job or a Spring boot service that talks to a broker API. Run it: javac MACrossover.java && java MACrossover.',
+            lines: `import java.io.*;
 import java.util.*;
 
 public class MACrossover {
@@ -285,18 +311,12 @@ public class MACrossover {
         }
         System.out.println("Final position: " + (pos == 1 ? "LONG" : "FLAT"));
     }
-}`} />
-        <InfoBox title="Run it">
-          Save as MACrossover.java, then: javac MACrossover.java && java MACrossover. In production, swap the hardcoded array
-          for a live data feed and route orders through your broker's Java SDK.
-        </InfoBox>
-      </Section>
-
-      <Section id="cpp" icon="⚙️" title="Starter Code — C++" subtitle="For low-latency execution and backtesting">
-        <p>A <b>mean reversion</b> example in C++: buy when the price drops more than one standard deviation below its moving
-        average (a cheap dip), and sell when it returns to the average. This is the classic "buy the dip" idea, written in a
-        language used for fast backtesting engines.</p>
-        <CodeBlock title="mean_reversion.cpp" lang="C++" lines={`#include <bits/stdc++.h>
+}`,
+          },
+          {
+            lang: 'C++', icon: '⚙️', title: 'mean_reversion.cpp',
+            desc: 'A mean-reversion example: buy when the price drops more than one standard deviation below its moving average, sell when it returns to the average. The classic "buy the dip" idea in a language used for fast backtesting engines. Run it: g++ -O2 mean_reversion.cpp -o mr && ./mr.',
+            lines: `#include <bits/stdc++.h>
 using namespace std;
 
 double mean(const vector<double>& v, int n) {
@@ -324,11 +344,9 @@ int main() {
         else if (p > m && pos == 1) { pos = 0; cout << "SELL at " << p << "\\n"; }
     }
     return 0;
-}`} />
-        <InfoBox title="Run it">
-          Compile: g++ -O2 mean_reversion.cpp -o mr && ./mr. The threshold (one standard deviation) is a knob you tune during
-          backtesting — raising it means buying deeper dips less often.
-        </InfoBox>
+}`,
+          },
+        ]} />
       </Section>
 
       <Section id="dodonts" icon="✅" title="Dos and Don'ts" subtitle="The difference between a hobby and a losing habit">
