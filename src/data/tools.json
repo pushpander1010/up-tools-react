@@ -5928,6 +5928,27 @@
       ]
     },
     {
+      "slug": "hncker/seeker",
+      "title": "Locate Smartphones with Seeker",
+      "icon": "📍",
+      "desc": "Understand how Seeker locates a smartphone — a page that asks for location permission and grabs exact GPS coordinates — and how to protect yourself (educational).",
+      "href": "/hncker/seeker/",
+      "tags": [
+        "seeker",
+        "gps",
+        "location",
+        "osint",
+        "social-engineering",
+        "privacy",
+        "how-to",
+        "tutorial"
+      ],
+      "cats": [
+        "all",
+        "security"
+      ]
+    },
+    {
       "slug": "hncker/ai-agent-escape",
       "title": "AI Agent Sandbox Escape",
       "icon": "🧊",
