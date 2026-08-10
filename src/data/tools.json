@@ -820,7 +820,7 @@
       "slug": "image-converter",
       "title": "Image Converter",
       "icon": "🖼️",
-      "desc": "Resize, crop and change image formats.",
+      "desc": "Convert images between JPG, PNG, WebP, GIF, BMP and TIFF — free.",
       "href": "/image-converter/",
       "tags": [
         "images"
@@ -834,7 +834,7 @@
       "slug": "image-tool",
       "title": "Image Tool",
       "icon": "🪄",
-      "desc": "Remove backgrounds and apply filters.",
+      "desc": "Edit photos: filters, grayscale, sepia, color adjust. Export PNG/WebP/JPG.",
       "href": "/image-tool/",
       "tags": [
         "images"
@@ -4519,7 +4519,7 @@
       "slug": "image-compressor",
       "title": "Image Compressor",
       "icon": "📦",
-      "desc": "Reduce image size in browser.",
+      "desc": "Compress JPG, PNG and WebP to a target size like 100 KB or 1 MB — free.",
       "href": "/image-compressor/",
       "tags": [
         "images"
@@ -4533,7 +4533,7 @@
       "slug": "image-resizer",
       "title": "Image Resizer",
       "icon": "🖼️",
-      "desc": "Resize photos online.",
+      "desc": "Resize images online to exact pixels. JPG, PNG, WebP — free.",
       "href": "/image-resizer/",
       "tags": [
         "images"

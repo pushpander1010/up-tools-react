@@ -1,86 +1,81 @@
 import { useState, useRef, useCallback } from 'react'
 import ToolLayout from '../components/ToolLayout'
 import useJumpToResult from '../hooks/useJumpToResult'
+import { formatBytes, postImage } from '../lib/imageBackend'
 
-function formatBytes(bytes) {
-  if (bytes === 0) return '0 B'
-  const k = 1024
-  const sizes = ['B', 'KB', 'MB', 'GB']
-  const i = Math.floor(Math.log(bytes) / Math.log(k))
-  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i]
-}
+const SIZE_PRESETS = [
+  { label: '100 KB', kb: 100 },
+  { label: '200 KB', kb: 200 },
+  { label: '500 KB', kb: 500 },
+  { label: '1 MB', kb: 1000 },
+  { label: '2 MB', kb: 2000 },
+]
 
 export default function image_compressor() {
   const { ref: resultRef, jumpTo } = useJumpToResult()
   const fileInputRef = useRef(null)
   const [file, setFile] = useState(null)
-  const [originalImg, setOriginalImg] = useState(null)
   const [originalUrl, setOriginalUrl] = useState('')
   const [compressedUrl, setCompressedUrl] = useState('')
+  const [mode, setMode] = useState('target') // 'target' | 'quality'
+  const [targetKb, setTargetKb] = useState(100)
   const [quality, setQuality] = useState(80)
-  const [resizePercent, setResizePercent] = useState(1)
-  const [outputFormat, setOutputFormat] = useState('image/jpeg')
+  const [outputFormat, setOutputFormat] = useState('auto')
   const [stats, setStats] = useState(null)
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
   const [dragOver, setDragOver] = useState(false)
   const compressedBlobRef = useRef(null)
 
   const handleFile = useCallback((f) => {
-    if (!f || !f.type.match(/image\/(jpeg|png|webp)/)) {
-      alert('Please select a JPEG, PNG, or WebP image.')
+    if (!f || !f.type.startsWith('image/')) {
+      setError('Please select a valid image file.')
       return
     }
+    setError('')
     setFile(f)
-    const reader = new FileReader()
-    reader.onload = (e) => {
-      const img = new Image()
-      img.onload = () => {
-        setOriginalImg(img)
-        setOriginalUrl(e.target.result)
-        setCompressedUrl('')
-        setStats(null)
-        compressedBlobRef.current = null
-        if (f.type === 'image/png') setOutputFormat('image/png')
-        else if (f.type === 'image/webp') setOutputFormat('image/webp')
-        else setOutputFormat('image/jpeg')
-      }
-      img.src = e.target.result
-    }
-    reader.readAsDataURL(f)
+    setOriginalUrl(URL.createObjectURL(f))
+    setCompressedUrl('')
+    setStats(null)
+    compressedBlobRef.current = null
   }, [])
 
-  const compress = useCallback(() => {
-    if (!originalImg || !file) return
+  const compress = useCallback(async () => {
+    if (!file) return
     setLoading(true)
-    setTimeout(() => {
-      try {
-        const scale = resizePercent
-        const newW = Math.round(originalImg.naturalWidth * scale)
-        const newH = Math.round(originalImg.naturalHeight * scale)
-        const canvas = document.createElement('canvas')
-        canvas.width = newW; canvas.height = newH
-        const ctx = canvas.getContext('2d')
-        ctx.drawImage(originalImg, 0, 0, newW, newH)
-        const q = quality / 100
-        canvas.toBlob((blob) => {
-          if (!blob) { setLoading(false); return }
-          compressedBlobRef.current = blob
-          const url = URL.createObjectURL(blob)
-          setCompressedUrl(url)
-          const saved = file.size - blob.size
-          const pct = ((saved / file.size) * 100).toFixed(1)
-          setStats({ originalSize: file.size, compressedSize: blob.size, saved, pct, width: newW, height: newH })
-          setLoading(false)
-        }, outputFormat, q)
-      } catch { setLoading(false) }
-    }, 50)
-  }, [originalImg, file, quality, resizePercent, outputFormat])
+    setError('')
+    try {
+      const fields = { target_format: outputFormat }
+      if (mode === 'target') fields.max_size_kb = targetKb
+      else fields.quality = quality
+      const out = await postImage('compress', file, fields)
+      compressedBlobRef.current = out.blob
+      setCompressedUrl(out.url)
+      const saved = file.size - out.size
+      const pct = file.size > 0 ? ((saved / file.size) * 100).toFixed(1) : '0'
+      setStats({
+        originalSize: file.size,
+        compressedSize: out.size,
+        saved,
+        pct,
+        width: out.width,
+        height: out.height,
+        qualityUsed: out.quality,
+        targetKb: mode === 'target' ? targetKb : null,
+        format: out.blob.type,
+      })
+    } catch (e) {
+      setError(e.message || 'Compression failed. Please try again.')
+    } finally {
+      setLoading(false)
+    }
+  }, [file, mode, targetKb, quality, outputFormat])
 
   const download = () => {
     const blob = compressedBlobRef.current
     if (!blob) return
-    const ext = outputFormat === 'image/jpeg' ? '.jpg' : outputFormat === 'image/png' ? '.png' : '.webp'
-    const name = file ? file.name.replace(/\.[^.]+$/, '') + '_compressed' + ext : 'compressed' + ext
+    const ext = blob.type.includes('png') ? 'png' : blob.type.includes('webp') ? 'webp' : 'jpg'
+    const name = file ? file.name.replace(/\.[^.]+$/, '') + '_compressed.' + ext : 'compressed.' + ext
     const url = URL.createObjectURL(blob)
     const a = document.createElement('a')
     a.href = url; a.download = name
@@ -89,32 +84,39 @@ export default function image_compressor() {
   }
 
   const reset = () => {
-    setFile(null); setOriginalImg(null); setOriginalUrl(''); setCompressedUrl('')
-    setStats(null); compressedBlobRef.current = null
+    setFile(null); setOriginalUrl(''); setCompressedUrl('')
+    setStats(null); compressedBlobRef.current = null; setError('')
     if (fileInputRef.current) fileInputRef.current.value = ''
   }
 
+  const selectClass = "w-full bg-black/20 border-2 border-white/8 rounded-xl px-3 py-2.5 text-sm text-white outline-none [color-scheme:dark]"
+
   return (
     <ToolLayout
-      title="Image Compressor"
-      desc="Compress images instantly in your browser. Reduce JPEG, PNG, WebP file sizes without losing quality."
-      icon="🖼️" iconBg="rgba(99,102,241,0.08)"
+      title="Image Compressor — Reduce File Size Online"
+      desc="Compress JPG, PNG and WebP images online for free. Target an exact file size (100 KB, 500 KB, 1 MB) with automatic quality tuning, or set quality manually. No sign-up, files deleted after processing."
+      icon="🗜️" iconBg="rgba(99,102,241,0.08)"
       category="image" slug="image-compressor"
       faq={[
-        { q: 'What image formats are supported?', a: 'JPEG, PNG, and WebP images can be compressed.' },
-        { q: 'Are my images uploaded to a server?', a: 'No. All compression happens in your browser using the Canvas API.' },
-        { q: 'What quality setting should I use?', a: 'For photos, 70-80% quality usually provides a good balance. For graphics, 80-90% works well.' },
+        { q: 'How do I compress an image to 100 KB?', a: 'Choose the "Target size" mode and pick 100 KB. The tool automatically tunes the compression quality until your image is under that size.' },
+        { q: 'Are my images uploaded to a server?', a: 'Your image is uploaded to our secure processing server, converted with Pillow, and the original is deleted immediately after. Nothing is stored or shared.' },
+        { q: 'What image formats can I compress?', a: 'JPG, PNG, WebP, GIF, BMP and TIFF are supported. Output can be WebP (smallest), JPG, or PNG.' },
+        { q: 'What is the best quality setting for photos?', a: 'For photos, 70-80% quality is a good balance. For graphics and logos, 80-90% keeps edges crisp.' },
+        { q: 'Is it really free?', a: 'Yes. All image tools on UpTools are 100% free with no watermarks and no sign-up required.' },
       ]}
       howItWorks={[
-        'Click or drag & drop an image (JPEG, PNG, WebP).',
-        'Adjust quality (10-100%) and resize options.',
-        'Choose output format (JPEG, PNG, WebP).',
-        'Click Compress and download the result.',
+        'Upload an image (JPG, PNG, WebP, GIF, BMP, TIFF).',
+        'Pick target size (e.g. 100 KB) or set quality manually.',
+        'Choose output format (WebP, JPG, PNG).',
+        'Compress and download your optimized image.',
       ]}
       schema={{
         "@context": "https://schema.org", "@type": "SoftwareApplication",
-        "name": "Image Compressor", "applicationCategory": "MultimediaApplication",
+        "name": "Image Compressor",
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "Web",
         "url": "https://www.uptools.in/image-compressor/",
+        "description": "Free online image compressor that reduces JPG, PNG and WebP file sizes to a target size such as 100 KB.",
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
@@ -127,51 +129,70 @@ export default function image_compressor() {
           onDrop={e => { e.preventDefault(); setDragOver(false); if (e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]) }}
           className={`p-8 rounded-2xl border-2 border-dashed text-center cursor-pointer transition-all ${dragOver ? 'border-indigo-500 bg-indigo-500/10' : 'border-white/15 bg-white/[0.03] hover:border-white/25'}`}>
           <div className="text-3xl mb-2">📁</div>
-          <div className="text-sm text-slate-300 font-medium">Click to select or drag & drop an image</div>
-          <div className="text-xs text-slate-600 mt-1">Supports JPEG, PNG, WebP — up to ~50MB</div>
-          <input ref={fileInputRef} type="file" accept="image/jpeg,image/png,image/webp" className="hidden"
+          <div className="text-sm text-slate-300 font-medium">Click to select or drag &amp; drop an image</div>
+          <div className="text-xs text-slate-600 mt-1">JPG, PNG, WebP, GIF, BMP, TIFF — up to 25MB</div>
+          <input ref={fileInputRef} type="file" accept="image/*" className="hidden"
             onChange={e => { if (e.target.files[0]) handleFile(e.target.files[0]) }} />
         </div>
 
         {/* Settings */}
-        {originalImg && (
+        {file && (
           <div className="p-5 rounded-2xl bg-white/[0.05] border border-white/8 space-y-4">
-            {/* Quality */}
-            <div>
-              <label className="block text-xs font-semibold text-slate-400 mb-1">Quality: {quality}%</label>
-              <input type="range" min={10} max={100} value={quality} onChange={e => setQuality(parseInt(e.target.value))}
-                className="w-full accent-indigo-500" />
-              <div className="flex gap-2 mt-1.5">
-                {[50, 65, 80, 90].map(q => (
-                  <button key={q} onClick={() => setQuality(q)}
-                    className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all ${quality === q ? 'bg-indigo-500/20 text-indigo-400 border border-indigo-500/30' : 'bg-white/5 border border-white/8 text-slate-400 hover:text-white'}`}>
-                    {q}%
-                  </button>
-                ))}
-              </div>
+            {/* Mode toggle */}
+            <div className="grid grid-cols-2 gap-2">
+              <button onClick={() => setMode('target')}
+                className={`px-3 py-2 rounded-xl text-sm font-semibold transition-all border ${mode === 'target' ? 'bg-indigo-500/20 text-indigo-400 border-indigo-500/30' : 'bg-white/5 border-white/8 text-slate-400 hover:text-white'}`}>
+                🎯 Target size
+              </button>
+              <button onClick={() => setMode('quality')}
+                className={`px-3 py-2 rounded-xl text-sm font-semibold transition-all border ${mode === 'quality' ? 'bg-indigo-500/20 text-indigo-400 border-indigo-500/30' : 'bg-white/5 border-white/8 text-slate-400 hover:text-white'}`}>
+                🎚️ Manual quality
+              </button>
             </div>
 
-            {/* Resize & Format */}
-            <div className="grid grid-cols-2 gap-3">
+            {mode === 'target' ? (
               <div>
-                <label className="block text-xs font-semibold text-slate-400 mb-1">Resize</label>
-                <select value={resizePercent} onChange={e => setResizePercent(parseFloat(e.target.value))}
-                  className="w-full bg-black/20 border-2 border-white/8 rounded-xl px-3 py-2.5 text-sm text-white outline-none">
-                  <option className="bg-gray-900" value={1}>Original (100%)</option>
-                  <option className="bg-gray-900" value={0.75}>75%</option>
-                  <option className="bg-gray-900" value={0.5}>50%</option>
-                  <option className="bg-gray-900" value={0.25}>25%</option>
-                </select>
+                <label className="block text-xs font-semibold text-slate-400 mb-2">Compress to under</label>
+                <div className="flex flex-wrap gap-2">
+                  {SIZE_PRESETS.map(p => (
+                    <button key={p.kb} onClick={() => setTargetKb(p.kb)}
+                      className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all ${targetKb === p.kb ? 'bg-indigo-500 text-white' : 'bg-white/5 border border-white/8 text-slate-300 hover:bg-white/10'}`}>
+                      {p.label}
+                    </button>
+                  ))}
+                </div>
+                <div className="mt-2 flex items-center gap-2">
+                  <span className="text-xs text-slate-500">Custom:</span>
+                  <input type="number" min={10} value={targetKb} onChange={e => setTargetKb(parseInt(e.target.value) || 100)}
+                    className="w-28 bg-black/20 border-2 border-white/8 rounded-xl px-3 py-1.5 text-sm text-white outline-none [color-scheme:dark]" />
+                  <span className="text-xs text-slate-500">KB</span>
+                </div>
               </div>
+            ) : (
               <div>
-                <label className="block text-xs font-semibold text-slate-400 mb-1">Output Format</label>
-                <select value={outputFormat} onChange={e => setOutputFormat(e.target.value)}
-                  className="w-full bg-black/20 border-2 border-white/8 rounded-xl px-3 py-2.5 text-sm text-white outline-none">
-                  <option className="bg-gray-900" value="image/jpeg">JPEG</option>
-                  <option className="bg-gray-900" value="image/png">PNG</option>
-                  <option className="bg-gray-900" value="image/webp">WebP</option>
-                </select>
+                <label className="block text-xs font-semibold text-slate-400 mb-1">Quality: {quality}%</label>
+                <input type="range" min={10} max={100} value={quality} onChange={e => setQuality(parseInt(e.target.value))}
+                  className="w-full accent-indigo-500" />
+                <div className="flex gap-2 mt-1.5">
+                  {[50, 65, 80, 90].map(q => (
+                    <button key={q} onClick={() => setQuality(q)}
+                      className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all ${quality === q ? 'bg-indigo-500/20 text-indigo-400 border border-indigo-500/30' : 'bg-white/5 border border-white/8 text-slate-400 hover:text-white'}`}>
+                      {q}%
+                    </button>
+                  ))}
+                </div>
               </div>
+            )}
+
+            {/* Format */}
+            <div>
+              <label className="block text-xs font-semibold text-slate-400 mb-1">Output Format</label>
+              <select value={outputFormat} onChange={e => setOutputFormat(e.target.value)} className={selectClass}>
+                <option className="bg-gray-900" value="auto">Auto (smallest)</option>
+                <option className="bg-gray-900" value="webp">WebP</option>
+                <option className="bg-gray-900" value="jpeg">JPEG</option>
+                <option className="bg-gray-900" value="png">PNG</option>
+              </select>
             </div>
 
             {/* Actions */}
@@ -180,13 +201,15 @@ export default function image_compressor() {
                 disabled={loading}
                 className="glow-btn px-5 py-2.5 rounded-xl text-sm flex-1 disabled:opacity-50"
                 style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}>
-                {loading ? '⏳ Compressing...' : '🗜️ Compress'}
+                {loading ? '⏳ Compressing...' : '🗜️ Compress Image'}
               </button>
               <button onClick={reset}
                 className="px-4 py-2.5 rounded-xl text-sm font-semibold bg-white/5 border border-white/8 text-slate-400 hover:text-white transition-all">
                 🗑️ Reset
               </button>
             </div>
+
+            {error && <div className="text-sm text-red-400 font-semibold">{error}</div>}
           </div>
         )}
 
@@ -197,13 +220,13 @@ export default function image_compressor() {
               <div className="text-center">
                 <div className="text-xs font-semibold text-slate-400 mb-2">📄 Original</div>
                 <img src={originalUrl} alt="Original" className="max-h-48 mx-auto rounded-lg" />
-                <div className="text-xs text-slate-400 mt-1">{originalImg?.naturalWidth} × {originalImg?.naturalHeight} px</div>
+                <div className="text-xs text-slate-400 mt-1">{formatBytes(file.size)}</div>
               </div>
               {compressedUrl && (
                 <div className="text-center">
                   <div className="text-xs font-semibold text-slate-400 mb-2">🗜️ Compressed</div>
                   <img src={compressedUrl} alt="Compressed" className="max-h-48 mx-auto rounded-lg" />
-                  <div className="text-xs text-slate-400 mt-1">{stats?.width} × {stats?.height} px</div>
+                  <div className="text-xs text-slate-400 mt-1">{formatBytes(stats?.compressedSize)}</div>
                 </div>
               )}
             </div>
@@ -226,6 +249,13 @@ export default function image_compressor() {
                   <div className="text-[10px] text-slate-400 uppercase">Reduction</div>
                   <div className="text-sm font-bold text-emerald-400">{stats.pct}%</div>
                 </div>
+              </div>
+            )}
+
+            {stats?.targetKb && (
+              <div className="text-center text-xs text-emerald-400 font-semibold">
+                ✓ Compressed to under {stats.targetKb} KB — {stats.format.split('/')[1].toUpperCase()}
+                {stats.qualityUsed ? ` at quality ${stats.qualityUsed}%` : ''}
               </div>
             )}
 
