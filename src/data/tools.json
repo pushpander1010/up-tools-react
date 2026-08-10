@@ -5907,6 +5907,27 @@
       ]
     },
     {
+      "slug": "hncker/ddos",
+      "title": "How Hackers DDoS, Professionally",
+      "icon": "🌊",
+      "desc": "Understand how DDoS attacks work: volumetric floods, protocol SYN floods, and application-layer slowloris — plus how to defend with rate limits, load balancers, and a CDN (educational).",
+      "href": "/hncker/ddos/",
+      "tags": [
+        "ddos",
+        "dos",
+        "syn-flood",
+        "slowloris",
+        "botnet",
+        "network",
+        "how-to",
+        "tutorial"
+      ],
+      "cats": [
+        "all",
+        "security"
+      ]
+    },
+    {
       "slug": "hncker/ai-agent-escape",
       "title": "AI Agent Sandbox Escape",
       "icon": "🧊",
