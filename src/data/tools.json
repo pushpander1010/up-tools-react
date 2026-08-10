@@ -1,6 +1,29 @@
 {
   "tools": [
     {
+      "slug": "aimakerich/markets-today",
+      "title": "Markets Today",
+      "icon": "📰",
+      "desc": "Daily market bulletin: global cues, top news with sentiment, Nifty/Bank Nifty/Sensex key levels, and stocks to watch with buy-target-stop.",
+      "href": "/aimakerich/markets-today/",
+      "tags": [
+        "markets",
+        "today",
+        "daily",
+        "nifty",
+        "sensex",
+        "banknifty",
+        "news",
+        "stocks",
+        "india",
+        "finance"
+      ],
+      "cats": [
+        "all",
+        "finance"
+      ]
+    },
+    {
       "slug": "income-tax-tool",
       "title": "Income Tax Calculator",
       "icon": "🧾",
