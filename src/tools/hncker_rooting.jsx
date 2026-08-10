@@ -134,6 +134,19 @@ export default function hncker_rooting() {
         <meta property="og:image" content="https://www.uptools.in/assets/tools/rooting/rooting_scan.png" />
       </Helmet>
 
+      {/* Video Tutorial */}
+      <Section id="video" icon="🎬" title="Video Tutorial" subtitle="Watch the full rooting walkthrough">
+        <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+          <iframe
+            className="absolute inset-0 w-full h-full rounded-xl border border-white/10"
+            src="https://www.youtube.com/embed/mprTO_jh0QA"
+            title="Root Android the Right Way — Full Guide | HNCKER"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        </div>
+      </Section>
+
       <WarningBox>
         Rooting is a powerful procedure. Only do it on <b>a device you own</b>, and back up all your data first — unlocking
         the bootloader wipes the phone. Rooting voids your warranty and can permanently trip Samsung's Knox security fuse.
