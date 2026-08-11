@@ -6089,6 +6089,26 @@
       ]
     },
     {
+      "slug": "hncker/whatsosint",
+      "title": "WhatsOSINT — WhatsApp Number Lookup",
+      "icon": "💬",
+      "desc": "Check if a phone number is on WhatsApp and pull its public data with WhatsOSINT (educational).",
+      "href": "/hncker/whatsosint/",
+      "tags": [
+        "whatsosint",
+        "whatsapp",
+        "osint",
+        "number",
+        "lookup",
+        "phone",
+        "security"
+      ],
+      "cats": [
+        "all",
+        "security"
+      ]
+    },
+    {
       "slug": "aimakerich/algo-trading-strategies",
       "title": "Algo Trading Strategies",
       "icon": "🤖",
