@@ -6109,6 +6109,25 @@
       ]
     },
     {
+      "slug": "hncker/netc2",
+      "title": "Net-C2 — Botnet C2 (Educational)",
+      "icon": "🧠",
+      "desc": "How a Python botnet command-and-control framework works — server, encrypted bots, web dashboard (educational).",
+      "href": "/hncker/netc2/",
+      "tags": [
+        "netc2",
+        "botnet",
+        "c2",
+        "command-and-control",
+        "security",
+        "defense"
+      ],
+      "cats": [
+        "all",
+        "security"
+      ]
+    },
+    {
       "slug": "aimakerich/algo-trading-strategies",
       "title": "Algo Trading Strategies",
       "icon": "🤖",
