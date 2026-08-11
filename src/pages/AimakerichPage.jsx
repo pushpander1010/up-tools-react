@@ -10,9 +10,12 @@ const guides = [
   { slug: 'golden-cross', name: 'Golden Cross', icon: '📈', desc: 'The MA50 × MA200 crossover strategy — spot the start of an uptrend and code the detector in Python, Java and C++.', tag: 'Trend following', accent: 'linear-gradient(135deg, rgba(255,183,77,0.16), rgba(100,181,246,0.07))' },
 ]
 
-// Daily market bulletins — one entry per day under /aimakerich/markets-today/. Keep slug/date in sync with tools.json.
+// Daily market bulletins — one entry per day. The current/latest day uses slug 'markets-today';
+// every older day is PRESERVED as a dated archive page (slug 'markets-today-YYYY-MM-DD') — never deleted.
+// Keep slug/date in sync with tools.json.
 const bulletins = [
-  { slug: 'markets-today', date: '11 August 2026', icon: '📰', mood: 'Cautious · crude spike', desc: 'Crude +4% past $85 on Hormuz worry · Nifty 24,575 · Bank Nifty 57,687 · 5 stocks to watch with buy-target-stop.', accent: 'linear-gradient(135deg, rgba(0,200,180,0.16), rgba(251,191,36,0.07))' },
+  { slug: 'markets-today', date: '12 August 2026', icon: '📰', mood: 'Crude-capped · FIIs buying', desc: 'Nifty 24,472 · Bank Nifty 57,446 · crude past $85 on Hormuz worry · FIIs net buyers 3rd day · 5 stocks to watch.', accent: 'linear-gradient(135deg, rgba(0,200,180,0.16), rgba(251,191,36,0.07))' },
+  { slug: 'markets-today-2026-08-11', date: '11 August 2026', icon: '📰', mood: 'Cautious · crude spike', desc: 'Crude +4% past $85 on Hormuz worry · Nifty 24,575 · Bank Nifty 57,687 · 5 stocks to watch with buy-target-stop.', accent: 'linear-gradient(135deg, rgba(0,200,180,0.16), rgba(251,191,36,0.07))' },
 ]
 
 export default function AimakerichPage() {
