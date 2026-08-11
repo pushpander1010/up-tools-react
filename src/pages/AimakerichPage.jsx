@@ -16,6 +16,7 @@ const guides = [
 const bulletins = [
   { slug: 'markets-today', date: '12 August 2026', icon: '📰', mood: 'Crude-capped · FIIs buying', desc: 'Nifty 24,472 · Bank Nifty 57,446 · crude past $85 on Hormuz worry · FIIs net buyers 3rd day · 5 stocks to watch.', accent: 'linear-gradient(135deg, rgba(0,200,180,0.16), rgba(251,191,36,0.07))' },
   { slug: 'markets-today-2026-08-11', date: '11 August 2026', icon: '📰', mood: 'Cautious · crude spike', desc: 'Crude +4% past $85 on Hormuz worry · Nifty 24,575 · Bank Nifty 57,687 · 5 stocks to watch with buy-target-stop.', accent: 'linear-gradient(135deg, rgba(0,200,180,0.16), rgba(251,191,36,0.07))' },
+  { slug: 'markets-today-2026-08-10', date: '10 August 2026', icon: '📰', mood: 'Mixed · stock-specific', desc: 'Flat-to-mixed session · Nifty 24,584 · stock-specific moves · earnings + IPO names in focus.', accent: 'linear-gradient(135deg, rgba(0,200,180,0.16), rgba(251,191,36,0.07))' },
 ]
 
 export default function AimakerichPage() {
