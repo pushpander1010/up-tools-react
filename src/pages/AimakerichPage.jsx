@@ -12,7 +12,7 @@ const guides = [
 
 // Daily market bulletins — one entry per day under /aimakerich/markets-today/. Keep slug/date in sync with tools.json.
 const bulletins = [
-  { slug: 'markets-today', date: '10 August 2026', icon: '📰', mood: 'Mixed · constructive', desc: 'Global cues supportive · Nifty 24,570 · Bank Nifty 57,746 · 5 stocks to watch with buy-target-stop.', accent: 'linear-gradient(135deg, rgba(0,200,180,0.16), rgba(251,191,36,0.07))' },
+  { slug: 'markets-today', date: '11 August 2026', icon: '📰', mood: 'Cautious · crude spike', desc: 'Crude +4% past $85 on Hormuz worry · Nifty 24,575 · Bank Nifty 57,687 · 5 stocks to watch with buy-target-stop.', accent: 'linear-gradient(135deg, rgba(0,200,180,0.16), rgba(251,191,36,0.07))' },
 ]
 
 export default function AimakerichPage() {
