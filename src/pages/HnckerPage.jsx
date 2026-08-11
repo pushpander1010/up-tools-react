@@ -44,18 +44,25 @@ const ytVideos = [
 ]
 
 const igReels = [
-  { sc: 'DblUXaCAd7z', views: '1,920' },
-  { sc: 'Dbqs9zZTHHk', views: '172' },
-  { sc: 'DbqszVITyTG', views: '144' },
-  { sc: 'DbgbhUFonOb', views: '3,437' },
-  { sc: 'Dbd5mBHT9nq', views: '18.9k' },
-  { sc: 'Dbd6FCmTjuH', views: '2,071' },
-  { sc: 'DbTmt10TOXG', views: '9,513' },
-  { sc: 'DbTlrTqTAAd', views: '4,251' },
-  { sc: 'DbTl8AgT2qi', views: '2,386' },
-  { sc: 'DbTmLNTzhk_', views: '15.3k' },
-  { sc: 'DbL7lNNzF66', views: '3,535' },
-  { sc: 'DbL8AA7Trql', views: '3,202' },
+  { sc: 'Db6E6iso-Ws', views: '92' },
+  { sc: 'Db6Eu8HIyRY', views: '106' },
+  { sc: 'Db6EgdJKTmI', views: '105' },
+  { sc: 'Db3ktz0Icon', views: '471' },
+  { sc: 'Db00VP-AXld', views: '687' },
+  { sc: 'Dbv3wp7TGag', views: '6,714' },
+  { sc: 'DbtScGvqJKs', views: '1,500' },
+  { sc: 'DbtSXMBoBaW', views: '4,098' },
+  { sc: 'DbtSO6VIfr2', views: '1,086' },
+  { sc: 'Dbqs9zZTHHk', views: '2,618' },
+  { sc: 'DbqszVITyTG', views: '3,505' },
+  { sc: 'DblUXaCAd7z', views: '3,209' },
+  { sc: 'DbgbhUFonOb', views: '4,305' },
+  { sc: 'Dbd6FCmTjuH', views: '2,830' },
+  { sc: 'Dbd5mBHT9nq', views: '36.1k' },
+  { sc: 'DbTmt10TOXG', views: '13.2k' },
+  { sc: 'DbTmLNTzhk_', views: '18.9k' },
+  { sc: 'DbTl8AgT2qi', views: '3,206' },
+  { sc: 'DbTlrTqTAAd', views: '4,834' },
 ]
 
 export default function HnckerPage() {
