@@ -1066,14 +1066,6 @@ export default {
   async fetch(req, env) {
     const url = new URL(req.url);
 
-    // Site-wide canonical redirect: uptools.in -> www.uptools.in (code-level, no CF rule needed)
-    if (url.hostname === 'uptools.in') {
-      return new Response(null, {
-        status: 301,
-        headers: { Location: `https://www.uptools.in${url.pathname}${url.search}` },
-      });
-    }
-
     // CORS preflight
     if (req.method === 'OPTIONS') {
       return new Response(null, {
