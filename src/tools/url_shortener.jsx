@@ -61,14 +61,17 @@ export default function url_shortener() {
 
   return (
     <ToolLayout
-      title="URL Shortener"
-      desc="Shorten long URLs instantly. History saved locally on your device."
+      title="URL Shortener – Shorten Links Free, No Signup"
+      desc="Shorten long URLs free, no signup. Create short UpTools links for your Instagram bio, WhatsApp, and social posts — no account, no tracking, no expiry."
       icon="🔗" iconBg="rgba(6,182,212,0.08)"
       category="dev" slug="url-shortener"
       faq={[
-        { q: 'How does URL shortening work?', a: 'We run our own free URL shortener on the UpTools backend. Paste a link, we store it and give you a short backend.uptools.in link that redirects to your original.' },
+        { q: 'How does URL shortening work?', a: 'We run our own free URL shortener on the UpTools backend. Paste a link, we store it and give you a short UpTools link that redirects to your original.' },
+        { q: 'Do I need an account or signup?', a: 'No. Shortening is completely free and requires no signup, no login, and no personal information.' },
         { q: 'Is my history saved?', a: 'Yes, locally in your browser. Nothing about your history is sent to any server.' },
-        { q: 'Are my short links permanent?', a: 'Short links stay live on our backend unless the database is rebuilt. No expiry or tracking is applied.' },
+        { q: 'Are my short links permanent?', a: 'Short links stay live on our backend with no expiry. They do not expire after a set number of days or clicks.' },
+        { q: 'Can I shorten a link for my Instagram bio?', a: 'Yes. Paste any long URL — an Instagram, YouTube, Amazon, or any other link — and you will get a clean short URL you can drop in your bio, captions, or comments.' },
+        { q: 'Is there any tracking on my short links?', a: 'No. We do not add tracking cookies or personal identifiers. Short links simply redirect to your destination.' },
       ]}
       howItWorks={[
         'Paste a long URL into the input field.',
@@ -159,6 +162,45 @@ export default function url_shortener() {
             </div>
           </div>
         )}
+      </div>
+
+      {/* SEO content section */}
+      <div className="max-w-2xl mx-auto pt-2">
+        <div className="rounded-3xl border border-white/[0.06] bg-white/[0.02] p-6 sm:p-8 space-y-5">
+          <div>
+            <h2 className="text-xl font-bold text-white mb-2">Free URL Shortener – No Signup, No Tracking</h2>
+            <p className="text-sm text-slate-400 leading-relaxed">
+              UpTools is a free URL shortener with no signup and no account. Paste any long link and
+              get a short, shareable link in seconds — perfect for shortening a URL for your
+              Instagram bio, WhatsApp messages, TikTok captions, emails, or social posts. There is
+              no login wall, no link expiry, and no tracking cookies.
+            </p>
+          </div>
+          <div>
+            <h3 className="text-base font-semibold text-white mb-2">Shorten links for Instagram bio, WhatsApp &amp; more</h3>
+            <p className="text-sm text-slate-400 leading-relaxed">
+              Long URLs break character limits and look messy. Use this short link maker to condense
+              an affiliate link, a product page, a YouTube video, or any web address into a clean
+              short URL you can drop anywhere. Our short links are hosted on the UpTools domain, so
+              they work reliably on every device and messenger.
+            </p>
+          </div>
+          <div>
+            <h3 className="text-base font-semibold text-white mb-2">A URL shortener with your own domain</h3>
+            <p className="text-sm text-slate-400 leading-relaxed">
+              Unlike free link shorteners that use random third-party domains, short links here point
+              to the UpTools domain — a real, fast website. That means your shortened links look more
+              trustworthy and redirect instantly, so you can shorten links for Instagram, WhatsApp,
+              and anywhere else with confidence.
+            </p>
+          </div>
+          <p className="text-xs text-slate-600 pt-1">
+            Try our other link tools:{' '}
+            <a className="text-cyan-400 hover:text-cyan-300" href="/qr-generator/">QR Code Generator</a>,{' '}
+            <a className="text-cyan-400 hover:text-cyan-300" href="/whatsapp-link-generator/">WhatsApp Link Generator</a>,{' '}
+            and <a className="text-cyan-400 hover:text-cyan-300" href="/whatsapp-chat/">WhatsApp Click-to-Chat</a>.
+          </p>
+        </div>
       </div>
     </ToolLayout>
   )
