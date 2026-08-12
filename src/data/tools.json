@@ -1678,6 +1678,28 @@
       ]
     },
     {
+      "slug": "kundli-matching",
+      "title": "Kundli Matching (Gun Milan)",
+      "icon": "💍",
+      "desc": "Free 36 Guna kundli matching & Gun Milan by date of birth — 8 kootas + Mangal Dosha.",
+      "href": "/kundli-matching/",
+      "tags": [
+        "kundli matching",
+        "gun milan",
+        "guna milan",
+        "ashtakoot",
+        "36 guna",
+        "marriage matching",
+        "horoscope matching",
+        "kundli milan"
+      ],
+      "cats": [
+        "all",
+        "india",
+        "astrology"
+      ]
+    },
+    {
       "slug": "gst-number-search",
       "title": "GST Number Search & Validator",
       "icon": "🧾",
