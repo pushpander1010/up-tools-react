@@ -5,15 +5,54 @@ import useJumpToResult from '../hooks/useJumpToResult'
 const RASHI = ['Aries','Taurus','Gemini','Cancer','Leo','Virgo','Libra','Scorpio','Sagittarius','Capricorn','Aquarius','Pisces']
 const RASHI_SYM = ['♈','♉','♊','♋','♌','♍','♎','♏','♐','♑','♒','♓']
 const PLANET_SYM = { Sun:'☉', Moon:'☽', Mars:'♂', Mercury:'☿', Jupiter:'♃', Venus:'♀', Saturn:'♄', Rahu:'☊', Ketu:'☋' }
+const HOUSE_MEANING = {
+  1:'Self, personality & health', 2:'Wealth, family & speech', 3:'Courage, siblings & communication',
+  4:'Home, mother & happiness', 5:'Intelligence, children & creativity', 6:'Health, enemies & service',
+  7:'Marriage & partnerships', 8:'Longevity, transformation & in-laws', 9:'Fortune & higher learning',
+  10:'Career, status & karma', 11:'Gains, income & friendships', 12:'Losses, expenditure & foreign',
+}
+const RASHI_TRAIT = { Aries:'energetic and pioneering', Taurus:'steady and practical', Gemini:'adaptable and communicative',
+  Cancer:'nurturing and emotional', Leo:'confident and expressive', Virgo:'analytical and detail-oriented',
+  Libra:'balanced and diplomatic', Scorpio:'intense and transformative', Sagittarius:'optimistic and adventurous',
+  Capricorn:'ambitious and disciplined', Aquarius:'independent and innovative', Pisces:'intuitive and compassionate' }
+const RASHI_LORD = ['Mars','Venus','Mercury','Moon','Sun','Mercury','Venus','Mars','Jupiter','Saturn','Saturn','Jupiter']
 
-// North Indian chart geometry (400x400 diamond)
+function analyze(d) {
+  const lagnaIdx = d.lagna.rashi.index, lagnaName = d.lagna.rashi.name
+  const lord = RASHI_LORD[lagnaIdx]
+  const lordP = d.planets.find(p => p.name === lord)
+  const lordHouse = lordP ? lordP.house : null
+  const h2 = d.houses_detail[1], h6 = d.houses_detail[5], h7 = d.houses_detail[6], h10 = d.houses_detail[9], h11 = d.houses_detail[10]
+  const inHouse = (h) => h.planets.length ? `with ${h.planets.join(', ')} placed here` : 'with no planets placed here'
+  return [
+    { t: 'Personality & Mind', body: `Your Lagna (ascendant) is ${lagnaName}, making you ${RASHI_TRAIT[lagnaName]}. The lord of your ascendant, ${lord}, is placed in the ${lordHouse}th house, which shapes how you express yourself and pursue your goals. Your Moon sign is ${d.moon_sign}, governing your emotional nature.` },
+    { t: 'Career & Profession', body: `Your 10th house (career) falls in ${h10.rashi} ${inHouse(h10)}. The 10th house rules your profession, status, and public reputation.` },
+    { t: 'Wealth & Finances', body: `Your 2nd house (wealth) is in ${h2.rashi} and your 11th house (gains) is in ${h11.rashi} ${inHouse(h11)} — together these influence your income and financial gains.` },
+    { t: 'Marriage & Relationships', body: `Your 7th house (marriage) falls in ${h7.rashi} ${inHouse(h7)}. This house reflects your approach to partnerships and marriage.${d.mangal_dosha ? ' Note: Mangal Dosha is present, which is traditionally considered in marriage matching.' : ''}` },
+    { t: 'Health', body: `Your 6th house (health) is in ${h6.rashi} ${inHouse(h6)}. Along with your Lagna in ${lagnaName}, this indicates your general constitution and health tendencies.` },
+  ]
+}
+
+// North Indian chart — authentic SQUARE layout (house 1 top triangle, houses 1-12 clockwise)
+// Square 0-400. Center O(200,200). T/R/B/L = edge centers (apexes of houses 1/4/7/10).
+// innerTL/innerTR/innerBR/innerBL = junctions where the 4 central triangles meet.
 const O=[200,200]
-const N=[200,30], E=[370,200], S=[200,370], W=[30,200]
-const mNW=[115,115], mNE=[285,115], mSE=[285,285], mSW=[115,285]
+const T=[200,30], R=[370,200], B=[200,370], L=[30,200]
+const iTL=[140,130], iTR=[260,130], iBR=[260,270], iBL=[140,270]
+const TRc=[370,30], BRc=[370,370], BLc=[30,370], TLc=[30,30]
 const HOUSE_POLY = {
-  1:[N,mNW,mNE], 2:[E,mNE,O], 3:[N,mNE,O], 4:[E,mNE,mSE],
-  5:[S,mSE,O], 6:[E,mSE,O], 7:[S,mSE,mSW], 8:[W,mSW,O],
-  9:[S,mSW,O], 10:[W,mSW,mNW], 11:[N,mNW,O], 12:[W,mNW,O],
+  1:[T,iTR,iTL],
+  2:[TRc,T,iTR],
+  3:[TRc,iTR,R],
+  4:[R,iTR,iBR],
+  5:[BRc,R,iBR],
+  6:[BRc,iBR,B],
+  7:[B,iBR,iBL],
+  8:[BLc,B,iBL],
+  9:[BLc,iBL,L],
+  10:[L,iBL,iTL],
+  11:[TLc,L,iTL],
+  12:[TLc,iTL,T],
 }
 function centroid(pts){ const x=pts.reduce((a,p)=>a+p[0],0)/pts.length; const y=pts.reduce((a,p)=>a+p[1],0)/pts.length; return [x,y] }
 const HOUSE_CENTER = {}
@@ -90,7 +129,7 @@ export default function kundli() {
   return (
     <ToolLayout
       title="Kundli – Create Free Online Kundli by Date of Birth and Time"
-      desc="Make a free online kundli (janam kundli) by date of birth, time, and place. Accurate Vedic birth chart with Lagna, all 9 planet positions, houses, and Mangal Dosha — computed with Swiss Ephemeris."
+      desc="Make a free online kundli (janam kundli) by date of birth, time, and place. Get your Lagna, all 9 planet positions, houses, Vimshottari Dasha, Mangal Dosha & Kaal Sarp Dosha, and a full kundli analysis — computed with Swiss Ephemeris."
       icon="🪔" iconBg="rgba(99,102,241,0.08)"
       category="india" slug="kundli"
       faq={[
@@ -98,9 +137,10 @@ export default function kundli() {
         { q: "How is a kundli made?", a: "Enter your date of birth, time of birth, and birth place. We compute the sidereal (Lahiri) position of all 9 planets using the Swiss Ephemeris, find your Lagna (ascendant), and place the planets into 12 houses." },
         { q: "What is Lagna in a kundli?", a: "Lagna (the ascendant) is the zodiac sign rising on the eastern horizon at your birth moment. It is the most important reference point in a kundli and sets the first house." },
         { q: "What is Mangal Dosha?", a: "Mangal Dosha occurs when Mars is placed in the 1st, 4th, 7th, 8th, or 12th house from the Lagna. Our kundli automatically checks and reports whether Mangal Dosha is present." },
+        { q: "What is Kaal Sarp Dosha?", a: "Kaal Sarp Dosha is present when all seven planets fall on one side of the Rahu–Ketu axis. Our kundli automatically detects and reports it along with Mangal Dosha." },
+        { q: "What is Vimshottari Dasha?", a: "Vimshottari Dasha is a 120-year planetary period system used in Vedic astrology. Based on the Moon's nakshatra at birth, it divides life into Maha Dasha periods of each planet. Your kundli shows your current and upcoming periods." },
         { q: "Is the kundli accurate?", a: "Yes. Positions are computed with the Swiss Ephemeris in the Lahiri sidereal system — the same engine used by professional astrology software. Accuracy depends on entering your exact birth time and place." },
-        { q: "Do I need an exact birth time?", a: "An exact birth time is needed for a precise Lagna and house positions. If you are unsure of the time, the chart will be approximate." },
-        { q: "What are the 9 planets (Grahas) in a kundli?", a: "Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, and Ketu. Rahu and Ketu are the lunar nodes — Rahu is the north node and Ketu is always exactly opposite it." },
+        { q: "What analysis does the kundli include?", a: "Besides the chart, you get a house-wise analysis (what each of the 12 houses represents and which planets sit there), a personality/career/wealth/marriage/health reading, Mangal Dosha and Kaal Sarp Dosha checks, and your Vimshottari Dasha periods." },
         { q: "Is the kundli maker free?", a: "Yes, it is completely free with no sign-up. Generate unlimited kundli charts for yourself, family, or friends." },
       ]}
       howItWorks={[
@@ -181,12 +221,15 @@ export default function kundli() {
                     </text>
                   </g>
                 ))}
-                <line x1={N[0]} y1={N[1]} x2={S[0]} y2={S[1]} stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
-                <line x1={E[0]} y1={E[1]} x2={W[0]} y2={W[1]} stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
-                <line x1={N[0]} y1={N[1]} x2={E[0]} y2={E[1]} stroke="rgba(255,255,255,0.2)" strokeWidth="1" />
-                <line x1={E[0]} y1={E[1]} x2={S[0]} y2={S[1]} stroke="rgba(255,255,255,0.2)" strokeWidth="1" />
-                <line x1={S[0]} y1={S[1]} x2={W[0]} y2={W[1]} stroke="rgba(255,255,255,0.2)" strokeWidth="1" />
-                <line x1={W[0]} y1={W[1]} x2={N[0]} y2={N[1]} stroke="rgba(255,255,255,0.2)" strokeWidth="1" />
+                <line x1={TLc[0]} y1={TLc[1]} x2={TRc[0]} y2={TRc[1]} stroke="rgba(255,255,255,0.35)" strokeWidth="1.5" />
+                <line x1={TRc[0]} y1={TRc[1]} x2={BRc[0]} y2={BRc[1]} stroke="rgba(255,255,255,0.35)" strokeWidth="1.5" />
+                <line x1={BRc[0]} y1={BRc[1]} x2={BLc[0]} y2={BLc[1]} stroke="rgba(255,255,255,0.35)" strokeWidth="1.5" />
+                <line x1={BLc[0]} y1={BLc[1]} x2={TLc[0]} y2={TLc[1]} stroke="rgba(255,255,255,0.35)" strokeWidth="1.5" />
+                {/* spokes from edge centers to center */}
+                <line x1={T[0]} y1={T[1]} x2={O[0]} y2={O[1]} stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
+                <line x1={R[0]} y1={R[1]} x2={O[0]} y2={O[1]} stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
+                <line x1={B[0]} y1={B[1]} x2={O[0]} y2={O[1]} stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
+                <line x1={L[0]} y1={L[1]} x2={O[0]} y2={O[1]} stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
               </svg>
             </div>
 
@@ -205,6 +248,74 @@ export default function kundli() {
                       <td className="py-2 px-4 text-slate-300">{p.rashi.symbol} {p.rashi.name}</td>
                       <td className="py-2 px-4 text-slate-300">{p.rashi.degree}°</td>
                       <td className="py-2 px-4 text-slate-300">{p.house}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Kundli Analysis */}
+            <div className="space-y-2">
+              <div className="text-sm font-bold text-slate-300 pt-1">Kundli Analysis</div>
+              {analyze(data).map(a => (
+                <div key={a.t} className="bg-white/[0.03] rounded-2xl p-4">
+                  <div className="text-xs font-bold text-indigo-300 mb-1">{a.t}</div>
+                  <p className="text-xs text-slate-400 leading-relaxed">{a.body}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Doshas */}
+            <div className="bg-white/[0.03] rounded-2xl p-4">
+              <div className="text-sm font-bold text-slate-300 mb-2">Dosha Analysis</div>
+              <div className="space-y-2 text-xs">
+                <div className="flex justify-between items-center border-b border-white/[0.04] pb-2">
+                  <span className="text-slate-400">Mangal Dosha (Manglik)</span>
+                  <span className={data.mangal_dosha ? 'text-red-400 font-bold' : 'text-emerald-400 font-bold'}>{data.mangal_dosha ? 'Present' : 'Not Present'}</span>
+                </div>
+                <div className="flex justify-between items-center border-b border-white/[0.04] pb-2">
+                  <span className="text-slate-400">Kaal Sarp Dosha</span>
+                  <span className={data.kaal_sarp_dosha ? 'text-red-400 font-bold' : 'text-emerald-400 font-bold'}>{data.kaal_sarp_dosha ? 'Present' : 'Not Present'}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* House-wise analysis */}
+            <div className="bg-white/[0.03] rounded-2xl overflow-hidden">
+              <div className="px-4 py-3 text-sm font-bold text-slate-300 border-b border-white/[0.06]">House-wise Analysis</div>
+              <table className="w-full text-sm">
+                <thead><tr className="text-slate-500 text-xs border-b border-white/[0.06]">
+                  <th className="text-left py-2 px-4">House</th><th className="text-left py-2 px-4">Sign</th>
+                  <th className="text-left py-2 px-4">Planets</th><th className="text-left py-2 px-4 hidden sm:table-cell">Represents</th>
+                </tr></thead>
+                <tbody>
+                  {data.houses_detail.map(h => (
+                    <tr key={h.house} className="border-b border-white/[0.04]">
+                      <td className="py-2 px-4 text-white font-semibold">{h.house}</td>
+                      <td className="py-2 px-4 text-slate-300">{RASHI_SYM[h.rashi_index]} {h.rashi}</td>
+                      <td className="py-2 px-4 text-slate-300">{h.planets.length ? h.planets.map(p=>PLANET_SYM[p]+' '+p).join(', ') : '—'}</td>
+                      <td className="py-2 px-4 text-slate-500 hidden sm:table-cell">{HOUSE_MEANING[h.house]}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Vimshottari Dasha */}
+            <div className="bg-white/[0.03] rounded-2xl overflow-hidden">
+              <div className="px-4 py-3 text-sm font-bold text-slate-300 border-b border-white/[0.06]">Vimshottari Maha Dasha</div>
+              <table className="w-full text-sm">
+                <thead><tr className="text-slate-500 text-xs border-b border-white/[0.06]">
+                  <th className="text-left py-2 px-4">Period</th><th className="text-left py-2 px-4">From</th>
+                  <th className="text-left py-2 px-4">To</th><th className="text-left py-2 px-4">Years</th>
+                </tr></thead>
+                <tbody>
+                  {data.dasha.map((dp, i) => (
+                    <tr key={i} className={i===0 ? 'border-b border-indigo-500/20 bg-indigo-500/[0.06]' : 'border-b border-white/[0.04]'}>
+                      <td className="py-2 px-4 text-white font-semibold">{PLANET_SYM[dp.planet]} {dp.planet}{i===0 ? ' (current)' : ''}</td>
+                      <td className="py-2 px-4 text-slate-300">{dp.start}</td>
+                      <td className="py-2 px-4 text-slate-300">{dp.end}</td>
+                      <td className="py-2 px-4 text-slate-300">{dp.years}</td>
                     </tr>
                   ))}
                 </tbody>
