@@ -40,6 +40,22 @@ function faqJsonLd(pairs) {
   return `<script type="application/ld+json">${JSON.stringify(schema)}</script>`
 }
 
+// Build a BreadcrumbList JSON-LD script tag. Supports nested slugs (hncker/x, games/x, aimakerich/x).
+function breadcrumbJsonLd(slug, title) {
+  const parts = slug.split('/')
+  const section = parts.length > 1 ? parts[0] : null
+  const sectionName = section === 'hncker' ? 'HNCKER'
+    : section === 'games' ? 'Games'
+    : section ? section.charAt(0).toUpperCase() + section.slice(1) : null
+  const items = [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.uptools.in/' },
+    ...(section ? [{ '@type': 'ListItem', position: 2, name: sectionName, item: `https://www.uptools.in/${section}/` }] : []),
+    { '@type': 'ListItem', position: section ? 3 : 2, name: title, item: `https://www.uptools.in/${slug}/` },
+  ]
+  const schema = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: items }
+  return `<script type="application/ld+json">${JSON.stringify(schema)}</script>`
+}
+
 // Get all tool JSX/TSX files
 const toolFiles = readdirSync(toolsDir).filter(f => f.endsWith('.jsx') || f.endsWith('.tsx'))
 
@@ -114,6 +130,9 @@ for (const file of toolFiles) {
   if (pairs.length > 0 && !hasFaqPageSchema(content)) {
     html = html.replace('</head>', '    ' + faqJsonLd(pairs) + '\n  </head>')
   }
+
+  // Inject static BreadcrumbList JSON-LD (client-side Helmet is not enough for crawler reliability)
+  html = html.replace('</head>', '    ' + breadcrumbJsonLd(slug, title) + '\n  </head>')
 
   const outDir = join(dist, slug)
   mkdirSync(outDir, { recursive: true })

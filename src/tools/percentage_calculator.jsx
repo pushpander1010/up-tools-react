@@ -3,94 +3,135 @@ import ToolLayout from '../components/ToolLayout'
 import useJumpToResult from '../hooks/useJumpToResult'
 
 const MODES = [
-  { id: 'of', label: 'X% of Y', desc: 'What is X% of Y?' },
-  { id: 'is', label: 'X is what % of Y', desc: 'X is what percentage of Y?' },
-  { id: 'change', label: '% Change', desc: 'Percentage change from X to Y' },
-  { id: 'increase', label: 'Increase by %', desc: 'Increase X by Y%' },
-  { id: 'decrease', label: 'Decrease by %', desc: 'Decrease X by Y%' },
+  { id: 'pct', label: '% of Number', icon: '%' },
+  { id: 'what', label: 'What %', icon: '?' },
+  { id: 'change', label: '% Change', icon: '↕' },
 ]
 
-export default function percentage_calculator() {
-
+export default function percentage_calculator_pro() {
   const { ref: resultRef, jumpTo } = useJumpToResult()
-  const [mode, setMode] = useState('of')
-  const [x, setX] = useState('')
-  const [y, setY] = useState('')
+  const [mode, setMode] = useState('pct')
+  const [a1, setA1] = useState('')
+  const [b1, setB1] = useState('')
+  const [a2, setA2] = useState('')
+  const [b2, setB2] = useState('')
+  const [a3, setA3] = useState('')
+  const [b3, setB3] = useState('')
 
-  const result = useMemo(() => {
-    const a = parseFloat(x) || 0
-    const b = parseFloat(y) || 0
-    if (mode === 'of') return (a / 100) * b
-    if (mode === 'is') return b !== 0 ? (a / b) * 100 : 0
-    if (mode === 'change') return b !== 0 ? ((b - a) / a) * 100 : 0
-    if (mode === 'increase') return a * (1 + b / 100)
-    if (mode === 'decrease') return a * (1 - b / 100)
-    return 0
-  }, [x, y, mode])
+  const results = useMemo(() => {
+    const pctOf = (a1 && b1) ? (parseFloat(a1) / 100 * parseFloat(b1)).toFixed(2) : '0'
+    const whatPct = (a2 && b2 && parseFloat(b2) !== 0) ? (parseFloat(a2) / parseFloat(b2) * 100).toFixed(2) + '%' : '0%'
+    let changeVal = 0
+    let changeText = '0%'
+    let changeColor = '#6366f1'
+    if (a3 && b3 && parseFloat(a3) !== 0) {
+      changeVal = ((parseFloat(b3) - parseFloat(a3)) / parseFloat(a3)) * 100
+      changeText = (changeVal >= 0 ? '+' : '') + changeVal.toFixed(2) + '%'
+      changeColor = changeVal >= 0 ? '#22c55e' : '#ef4444'
+    }
+    return { pctOf, whatPct, changeText, changeColor }
+  }, [a1, b1, a2, b2, a3, b3])
 
-  const fmt = (n) => {
-    if (Number.isInteger(n)) return n.toLocaleString()
-    return n.toLocaleString(undefined, { maximumFractionDigits: 4 })
-  }
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-4 py-3 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
     <ToolLayout
       title="Percentage Calculator"
-      desc="Calculate percentages, percentage change, increase/decrease, and find what percent X is of Y."
-      icon="📈" iconBg="rgba(34,197,94,0.08)"
-      category="finance" slug="percentage-calculator"
+      desc="Calculate percentages, percentage change, and increase/decrease with 4 modes."
+      icon="%" iconBg="rgba(99,102,241,0.08)"
+      category="math" slug="percentage-calculator"
       faq={[
-        { q: 'How do I calculate X% of Y?', a: 'Multiply X by Y and divide by 100. Example: 15% of 200 = 15 × 200 / 100 = 30.' },
-        { q: 'How do I find percentage increase?', a: '(New - Old) / Old × 100. Example: from 80 to 100 = (100-80)/80 × 100 = 25% increase.' },
+        { q: 'What are the 4 modes?', a: 'Calculate what percentage X is of Y, find what percent X is of Y, compute percentage increase/decrease, and calculate a percentage of a number.' },
+        { q: 'How do I calculate a tip?', a: 'Use "% of Number" mode: enter the tip percentage and the bill amount.' },
+        { q: 'How do I calculate profit margin?', a: 'Use "What %" mode: enter profit as the first number and revenue as the second.' },
       ]}
       howItWorks={[
-        'Select the calculation mode.',
+        'Select a mode: % of Number, What %, or % Change.',
         'Enter the values in the input fields.',
-        'View the result instantly.',
+        'Results update instantly as you type.',
+        'Switch modes to perform different calculations.',
       ]}
       schema={{
         "@context": "https://schema.org", "@type": "SoftwareApplication",
-        "name": "Percentage Calculator", "applicationCategory": "CalculatorApplication",
-        "url": "https://www.uptools.in/percentage-calculator/",
+        "name": "Percentage Calculator", "applicationCategory": "UtilitiesApplication",
+        "url": "https://www.uptools.in/percentage-calculator-pro/",
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
       <div className="max-w-2xl mx-auto space-y-6">
-        {/* Mode Selector */}
-        <div className="flex flex-wrap gap-2">
+        {/* Mode Tabs */}
+        <div className="flex gap-2">
           {MODES.map(m => (
             <button key={m.id} onClick={() => setMode(m.id)}
-              className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all border-2 ${mode === m.id ? 'bg-emerald-500/15 border-emerald-500/30 text-emerald-400 shadow-lg shadow-emerald-500/10' : 'bg-white/[0.06] border-white/8 text-slate-400 hover:border-white/12'}`}>
-              {m.label}
+              className={`flex-1 py-3 rounded-xl text-sm font-bold transition-all ${mode === m.id ? 'bg-indigo-500/15 text-indigo-400 border border-indigo-500/30' : 'bg-white/[0.06] text-slate-400 border border-white/8 hover:text-slate-300'}`}>
+              {m.icon} {m.label}
             </button>
           ))}
         </div>
 
-        {/* Inputs */}
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <label className="block text-sm font-semibold text-slate-300 mb-2">
-              {mode === 'of' ? 'Percentage (%)' : mode === 'is' ? 'Value (X)' : mode === 'change' ? 'From Value' : 'Value'}
-            </label>
-            <input type="number" value={x} onChange={e => setX(e.target.value)} placeholder="0"
-              className="w-full bg-white/[0.06] border-2 border-white/8 rounded-2xl px-5 py-4 text-2xl font-extrabold text-white outline-none focus:border-emerald-500/40 transition-all placeholder:text-white/8" />
+        {/* Mode 1: % of Number */}
+        {mode === 'pct' && (
+          <div className="p-5 rounded-2xl bg-white/[0.06] border border-white/[0.08]">
+            <div className="grid grid-cols-2 gap-4 mb-4">
+              <div>
+                <label className="block text-xs text-slate-400 mb-1.5">What %</label>
+                <input type="number" value={a1} onChange={e => setA1(e.target.value)}
+                  placeholder="e.g. 15" className={inputClass} />
+              </div>
+              <div>
+                <label className="block text-xs text-slate-400 mb-1.5">of</label>
+                <input type="number" value={b1} onChange={e => setB1(e.target.value)}
+                  placeholder="e.g. 200" className={inputClass} />
+              </div>
+            </div>
+            <div ref={resultRef} className="text-center">
+              <div className="text-3xl font-extrabold text-indigo-400">{results.pctOf}</div>
+              <div className="text-xs text-slate-400 mt-1">Result</div>
+            </div>
           </div>
-          <div>
-            <label className="block text-sm font-semibold text-slate-300 mb-2">
-              {mode === 'of' ? 'Of Value' : mode === 'is' ? 'Total (Y)' : mode === 'change' ? 'To Value' : 'Percentage (%)'}
-            </label>
-            <input type="number" value={y} onChange={e => setY(e.target.value)} placeholder="0"
-              className="w-full bg-white/[0.06] border-2 border-white/8 rounded-2xl px-5 py-4 text-2xl font-extrabold text-white outline-none focus:border-emerald-500/40 transition-all placeholder:text-white/8" />
-          </div>
-        </div>
+        )}
 
-        {/* Result */}
-        {(x || y) && (
-          <div ref={resultRef} className="p-6 rounded-3xl bg-gradient-to-br from-emerald-500/8 via-white/[0.02] to-transparent border border-emerald-500/15 text-center" style={{ animation: 'slideUp 0.3s ease-out' }}>
-            <div className="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-2">Result</div>
-            <div className="text-4xl font-extrabold text-emerald-400 truncate">{fmt(result)}</div>
-            {mode === 'is' && <div className="text-sm text-slate-400 mt-2">{x} is {fmt(result)}% of {y}</div>}
-            {mode === 'change' && <div className="text-sm text-slate-400 mt-2">{result >= 0 ? '↑' : '↓'} {Math.abs(fmt(result))}% {result >= 0 ? 'increase' : 'decrease'}</div>}
+        {/* Mode 2: What % */}
+        {mode === 'what' && (
+          <div className="p-5 rounded-2xl bg-white/[0.06] border border-white/[0.08]">
+            <div className="grid grid-cols-2 gap-4 mb-4">
+              <div>
+                <label className="block text-xs text-slate-400 mb-1.5">is</label>
+                <input type="number" value={a2} onChange={e => setA2(e.target.value)}
+                  placeholder="e.g. 30" className={inputClass} />
+              </div>
+              <div>
+                <label className="block text-xs text-slate-400 mb-1.5">of</label>
+                <input type="number" value={b2} onChange={e => setB2(e.target.value)}
+                  placeholder="e.g. 200" className={inputClass} />
+              </div>
+            </div>
+            <div ref={resultRef} className="text-center">
+              <div className="text-3xl font-extrabold text-indigo-400">{results.whatPct}</div>
+              <div className="text-xs text-slate-400 mt-1">Result</div>
+            </div>
+          </div>
+        )}
+
+        {/* Mode 3: % Change */}
+        {mode === 'change' && (
+          <div className="p-5 rounded-2xl bg-white/[0.06] border border-white/[0.08]">
+            <div className="grid grid-cols-2 gap-4 mb-4">
+              <div>
+                <label className="block text-xs text-slate-400 mb-1.5">From</label>
+                <input type="number" value={a3} onChange={e => setA3(e.target.value)}
+                  placeholder="e.g. 50" className={inputClass} />
+              </div>
+              <div>
+                <label className="block text-xs text-slate-400 mb-1.5">To</label>
+                <input type="number" value={b3} onChange={e => setB3(e.target.value)}
+                  placeholder="e.g. 75" className={inputClass} />
+              </div>
+            </div>
+            <div ref={resultRef} className="text-center">
+              <div className="text-3xl font-extrabold" style={{ color: results.changeColor }}>{results.changeText}</div>
+              <div className="text-xs text-slate-400 mt-1">Change</div>
+            </div>
           </div>
         )}
       </div>

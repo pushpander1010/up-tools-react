@@ -1,165 +1,268 @@
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import ToolLayout from '../components/ToolLayout'
 import useJumpToResult from '../hooks/useJumpToResult'
 
-export default function json_formatter() {
+function countKeys(obj) {
+  if (obj === null || typeof obj !== 'object') return 0
+  let count = 0
+  const items = Array.isArray(obj) ? obj : Object.keys(obj)
+  items.forEach(item => {
+    if (!Array.isArray(obj)) count++
+    const val = Array.isArray(obj) ? item : obj[item]
+    count += countKeys(val)
+  })
+  return count
+}
 
+function getDepth(obj) {
+  if (obj === null || typeof obj !== 'object') return 0
+  let maxDepth = 0
+  const items = Array.isArray(obj) ? obj : Object.values(obj)
+  items.forEach(val => {
+    const d = getDepth(val)
+    if (d > maxDepth) maxDepth = d
+  })
+  return maxDepth + 1
+}
+
+function renderTree(obj, indent = '', isLast = true, key) {
+  let html = ''
+  const connector = isLast ? '└─ ' : '├─ '
+  const childIndent = indent + (isLast ? '   ' : '│  ')
+
+  if (obj === null) {
+    html += indent + connector + (key !== undefined ? `<span style="color:#94a3b8">${key}</span>: ` : '') + `<span style="color:#64748b">null</span>\n`
+  } else if (typeof obj === 'boolean') {
+    html += indent + connector + (key !== undefined ? `<span style="color:#94a3b8">${key}</span>: ` : '') + `<span style="color:#f59e0b">${obj}</span>\n`
+  } else if (typeof obj === 'number') {
+    html += indent + connector + (key !== undefined ? `<span style="color:#94a3b8">${key}</span>: ` : '') + `<span style="color:#6366f1">${obj}</span>\n`
+  } else if (typeof obj === 'string') {
+    const display = obj.length > 80 ? obj.substring(0, 80) + '...' : obj
+    html += indent + connector + (key !== undefined ? `<span style="color:#94a3b8">${key}</span>: ` : '') + `<span style="color:#22c55e">"${display.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}"</span>\n`
+  } else if (Array.isArray(obj)) {
+    if (obj.length === 0) {
+      html += indent + connector + (key !== undefined ? `<span style="color:#94a3b8">${key}</span>: ` : '') + '[]\n'
+    } else {
+      const label = key !== undefined ? `<span style="color:#94a3b8">${key}</span>: ` : ''
+      const id = 'n' + Math.random().toString(36).substr(2, 9)
+      html += indent + connector + label + `<span class="cursor-pointer text-indigo-400 hover:text-indigo-300" onclick="this.parentElement.nextElementSibling?.classList.toggle('hidden');this.textContent=this.textContent.startsWith('▼')?'▶ Array [${obj.length}] (collapsed)':'▼ Array [${obj.length}]'">▼ Array [${obj.length}]</span>\n`
+      html += indent + '<div>\n'
+      obj.forEach((item, i) => { html += renderTree(item, childIndent, i === obj.length - 1) })
+      html += indent + '</div>\n'
+    }
+  } else if (typeof obj === 'object') {
+    const keys = Object.keys(obj)
+    if (keys.length === 0) {
+      html += indent + connector + (key !== undefined ? `<span style="color:#94a3b8">${key}</span>: ` : '') + '{}\n'
+    } else {
+      const label = key !== undefined ? `<span style="color:#94a3b8">${key}</span>: ` : ''
+      const id = 'n' + Math.random().toString(36).substr(2, 9)
+      html += indent + connector + label + `<span class="cursor-pointer text-indigo-400 hover:text-indigo-300" onclick="this.parentElement.nextElementSibling?.classList.toggle('hidden');this.textContent=this.textContent.startsWith('▼')?'▶ Object {${keys.length} keys} (collapsed)':'▼ Object {${keys.length} keys}'">▼ Object {${keys.length} keys}</span>\n`
+      html += indent + '<div>\n'
+      keys.forEach((k, i) => { html += renderTree(obj[k], childIndent, i === keys.length - 1, k) })
+      html += indent + '</div>\n'
+    }
+  }
+  return html
+}
+
+export default function json_formatter_online() {
   const { ref: resultRef, jumpTo } = useJumpToResult()
   const [input, setInput] = useState('')
   const [output, setOutput] = useState('')
-  const [error, setError] = useState('')
-  const [indent, setIndent] = useState(2)
+  const [treeView, setTreeView] = useState(false)
+  const [treeHtml, setTreeHtml] = useState('')
+  const [status, setStatus] = useState(null) // { ok, msg }
+  const [stats, setStats] = useState({ chars: 0, bytes: 0, depth: 0, keys: 0 })
   const [copied, setCopied] = useState(false)
-  const [view, setView] = useState('input')
 
-  const process = (action) => {
-    let text = input.trim()
-    if (!text) { setError('Please enter some JSON data'); return }
+  const updateStats = useCallback((text, obj) => {
+    setStats({
+      chars: text.length.toLocaleString(),
+      bytes: new Blob([text]).size.toLocaleString(),
+      depth: obj !== null && obj !== undefined ? getDepth(obj) : '-',
+      keys: obj !== null && obj !== undefined ? countKeys(obj).toLocaleString() : '-'
+    })
+  }, [])
 
-    // Auto-fix common issues
-    // 1. If it looks like a JS object (unquoted keys), try to fix
-    if (text.startsWith('{') && !text.startsWith('{"')) {
-      text = text.replace(/([{,]\s*)(\w+)\s*:/g, '$1"$2":')
-    }
-    // 2. Single quotes to double quotes
-    if (text.includes("'") && !text.includes('"')) {
-      text = text.replace(/'/g, '"')
-    }
-    // 3. Trailing commas
-    text = text.replace(/,\s*([}\]])/g, '$1')
-    // 4. Remove JS comments
-    text = text.replace(/\/\/.*$/gm, '').replace(/\/\*[\s\S]*?\*\//g, '')
-
+  const formatJSON = () => {
+    const raw = input.trim()
+    if (!raw) return
     try {
-      const parsed = JSON.parse(text)
-      if (action === 'minify') {
-        setOutput(JSON.stringify(parsed))
-      } else {
-        setOutput(JSON.stringify(parsed, null, indent))
-      }
-      setError('')
-      setView('output')
-      // Update input if we fixed it
-      if (text !== input.trim()) setInput(text)
+      const parsed = JSON.parse(raw)
+      const formatted = JSON.stringify(parsed, null, 2)
+      setOutput(formatted)
+      setTreeView(false)
+      updateStats(formatted, parsed)
+      setStatus({ ok: true, msg: `JSON formatted successfully (${formatted.length.toLocaleString()} chars)` })
     } catch (e) {
-      // Show helpful error with line info
-      const lineMatch = e.message.match(/position (\d+)/)
-      if (lineMatch) {
-        const pos = parseInt(lineMatch[1])
-        const lines = text.substring(0, pos).split('\n')
-        setError(`Error at line ${lines.length}, column ${lines[lines.length-1].length}: ${e.message}`)
-      } else {
-        setError(`Invalid JSON: ${e.message}`)
-      }
+      setStatus({ ok: false, msg: 'Parse Error: ' + e.message })
+      setOutput('')
     }
   }
 
-  const formatInput = () => {
-    let text = input.trim()
-    if (!text) return
-    // Auto-fix
-    text = text.replace(/([{,]\s*)(\w+)\s*:/g, '$1"$2":')
-    text = text.replace(/'/g, '"')
-    text = text.replace(/,\s*([}\]])/g, '$1')
-    text = text.replace(/\/\/.*$/gm, '').replace(/\/\*[\s\S]*?\*\//g, '')
+  const minifyJSON = () => {
+    const raw = input.trim()
+    if (!raw) return
     try {
-      const parsed = JSON.parse(text)
-      setInput(JSON.stringify(parsed, null, 2))
-      setError('')
-    } catch (e) { setError(`Cannot fix: ${e.message}`) }
+      const parsed = JSON.parse(raw)
+      const minified = JSON.stringify(parsed)
+      setOutput(minified)
+      setTreeView(false)
+      updateStats(minified, parsed)
+      setStatus({ ok: true, msg: `JSON minified successfully (${minified.length.toLocaleString()} chars)` })
+    } catch (e) {
+      setStatus({ ok: false, msg: 'Parse Error: ' + e.message })
+      setOutput('')
+    }
+  }
+
+  const validateJSON = () => {
+    const raw = input.trim()
+    if (!raw) return
+    try {
+      const parsed = JSON.parse(raw)
+      updateStats(raw, parsed)
+      setStatus({ ok: true, msg: `Valid JSON! (${countKeys(parsed)} keys, depth ${getDepth(parsed)})` })
+    } catch (e) {
+      setStatus({ ok: false, msg: 'Invalid JSON: ' + e.message })
+    }
+  }
+
+  const toggleTree = () => {
+    const raw = input.trim()
+    if (!raw) return
+    try {
+      const parsed = JSON.parse(raw)
+      updateStats(raw, parsed)
+      if (treeView) {
+        setTreeView(false)
+      } else {
+        setTreeView(true)
+        setTreeHtml(renderTree(parsed))
+      }
+    } catch (e) {
+      setStatus({ ok: false, msg: 'Parse Error: ' + e.message })
+    }
+  }
+
+  const clearAll = () => {
+    setInput('')
+    setOutput('')
+    setTreeHtml('')
+    setTreeView(false)
+    setStatus(null)
+    setStats({ chars: 0, bytes: 0, depth: 0, keys: 0 })
   }
 
   const copyOutput = () => {
-    navigator.clipboard.writeText(output)
+    const text = output || treeHtml.replace(/<[^>]+>/g, '')
+    if (!text) return
+    navigator.clipboard.writeText(text)
     setCopied(true)
     setTimeout(() => setCopied(false), 1500)
+  }
+
+  const downloadJSON = () => {
+    if (!output) return
+    const blob = new Blob([output], { type: 'application/json;charset=utf-8' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url; a.download = 'formatted.json'
+    document.body.appendChild(a); a.click(); a.remove()
+    URL.revokeObjectURL(url)
   }
 
   return (
     <ToolLayout
       title="JSON Formatter"
-      desc="Prettify, validate, and minify JSON data. Auto-fixes common issues like unquoted keys."
-      icon="🛠️" iconBg="rgba(6,182,212,0.08)"
+      desc="Format, beautify, minify, and validate JSON instantly. Copy to clipboard, tree view."
+      icon="📦" iconBg="rgba(99,102,241,0.08)"
       category="dev" slug="json-formatter"
       faq={[
-        { q: 'What is JSON?', a: 'JSON (JavaScript Object Notation) is a lightweight data format used for APIs, config files, and data exchange.' },
-        { q: 'Can I fix broken JSON?', a: 'Yes — the formatter auto-fixes common issues: unquoted keys, single quotes, trailing commas, and JS comments.' },
+        { q: 'What is JSON formatting?', a: 'JSON formatting (beautifying/pretty-printing) adds proper indentation and line breaks, making JSON human-readable and easier to debug.' },
+        { q: 'Why minify JSON?', a: 'Minification reduces file size by removing whitespace. This is useful for production APIs and reducing bandwidth usage.' },
+        { q: 'Is my data private?', a: 'Yes. All processing runs locally in your browser. Nothing is uploaded to any server.' },
+        { q: 'Can I validate JSON?', a: 'Yes. Click Validate to check for syntax errors. The tool will highlight any issues.' },
       ]}
       howItWorks={[
-        'Paste your JSON data in the input area.',
-        'Click "Prettify" to format with indentation, or "Minify" to compress.',
-        'Auto-fixes common issues like unquoted keys and trailing commas.',
-        'Copy the formatted output to clipboard.',
+        'Paste your JSON into the input area.',
+        'Click Format, Minify, or Validate.',
+        'View formatted output or switch to Tree View.',
+        'Copy to clipboard or download as .json file.',
       ]}
       schema={{
         "@context": "https://schema.org", "@type": "SoftwareApplication",
-        "name": "JSON Formatter", "applicationCategory": "DeveloperApplication",
-        "url": "https://www.uptools.in/json-formatter/",
+        "name": "JSON Formatter Online", "applicationCategory": "DeveloperApplication",
+        "url": "https://www.uptools.in/json-formatter-online/",
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <div className="max-w-3xl mx-auto space-y-4">
-        {/* Tabs */}
-        <div className="flex gap-2">
-          <button onClick={() => setView('input')}
-            className={`px-4 py-2 rounded-xl text-sm font-bold transition-all ${view === 'input' ? 'bg-cyan-500/15 text-cyan-400 border border-cyan-500/30' : 'bg-white/[0.06] text-slate-400 border border-white/8'}`}>
-            Input
-          </button>
-          <button onClick={() => setView('output')} disabled={!output}
-            className={`px-4 py-2 rounded-xl text-sm font-bold transition-all ${view === 'output' ? 'bg-cyan-500/15 text-cyan-400 border border-cyan-500/30' : 'bg-white/[0.06] text-slate-400 border border-white/8 disabled:opacity-30'}`}>
-            Output
-          </button>
-          <div className="flex-1" />
-          <div className="flex items-center gap-2">
-            <label className="text-xs text-slate-400">Indent:</label>
-            <select value={indent} onChange={e => setIndent(Number(e.target.value))}
-              className="bg-white/[0.06] border border-white/8 rounded-lg px-2 py-1 text-xs text-white outline-none">
-              <option value={2}>2</option>
-              <option value={4}>4</option>
-              <option value={8}>8</option>
-            </select>
+      <div className="max-w-4xl mx-auto space-y-4">
+        {/* Input */}
+        <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4">
+          <label className="text-xs font-semibold text-slate-400 mb-2 block">Paste your JSON below</label>
+          <textarea value={input} onChange={e => setInput(e.target.value)}
+            placeholder='{"key": "value", "nested": {"a": 1, "b": true}}'
+            rows={8} spellCheck={false}
+            className="w-full bg-black/20 border-2 border-white/[0.08] rounded-xl px-4 py-3 text-sm font-mono outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-600 resize-none" />
+          <div className="flex flex-wrap gap-2 mt-3">
+            <button onClick={() => { formatJSON(); jumpTo() }}
+              className="glow-btn px-4 py-2 rounded-xl text-sm font-bold"
+              style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}>✨ Format</button>
+            <button onClick={() => { minifyJSON(); jumpTo() }}
+              className="px-4 py-2 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white transition-all">🗜️ Minify</button>
+            <button onClick={() => { validateJSON(); jumpTo() }}
+              className="px-4 py-2 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white transition-all">✅ Validate</button>
+            <button onClick={toggleTree}
+              className="px-4 py-2 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white transition-all">{treeView ? '📝 Text View' : '🌳 Tree View'}</button>
+            <button onClick={clearAll}
+              className="px-4 py-2 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white transition-all">🗑️ Clear</button>
           </div>
         </div>
 
-        {/* Editor */}
-        <textarea
-          value={view === 'input' ? input : output}
-          onChange={e => { if (view === 'input') { setInput(e.target.value); setError('') } }}
-          readOnly={view === 'output'}
-          placeholder={view === 'input' ? 'Paste JSON here...\n\nAuto-fixes: unquoted keys, single quotes, trailing commas, JS comments' : 'Formatted output...'}
-          rows={16}
-          className={`w-full bg-black/20 border-2 rounded-2xl px-5 py-4 text-sm font-mono outline-none transition-all resize-none ${
-            error ? 'border-red-500/40 text-red-400' : view === 'output' ? 'border-emerald-500/20 text-emerald-400' : 'border-white/8 text-white focus:border-cyan-500/40'
-          }`} />
-
-        {/* Error */}
-        {error && (
-          <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-sm text-red-400 font-mono">
-            ❌ {error}
+        {/* Status */}
+        {status && (
+          <div className={`p-3 rounded-xl text-sm ${status.ok ? 'bg-emerald-500/10 border border-emerald-500/20 text-emerald-400' : 'bg-red-500/10 border border-red-500/20 text-red-400'}`}>
+            {status.ok ? '✅' : '❌'} {status.msg}
           </div>
         )}
 
-        {/* Actions */}
-        <div className="flex flex-wrap gap-2">
-          <button onClick={() => process('prettify')}
-            className="glow-btn px-5 py-2.5 rounded-xl text-sm"
-            style={{ background: 'linear-gradient(135deg, #06b6d4, #0891b2)' }}>
-            ✨ Prettify
-          </button>
-          <button onClick={() => process('minify')}
-            className="px-4 py-2.5 rounded-xl text-sm font-semibold bg-white/5 border border-white/8 text-slate-400 hover:text-white transition-all">
-            📦 Minify
-          </button>
-          <button onClick={() => {formatInput(); jumpTo()}}
-            className="px-4 py-2.5 rounded-xl text-sm font-semibold bg-white/5 border border-white/8 text-slate-400 hover:text-white transition-all">
-            🔧 Auto-Fix
-          </button>
-          {output && (
+        {/* Output */}
+        <div ref={resultRef} className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4">
+          {!treeView ? (
+            <>
+              <label className="text-xs font-semibold text-slate-400 mb-2 block">Formatted Output</label>
+              <textarea value={output} readOnly rows={8} spellCheck={false}
+                className="w-full bg-black/20 border-2 border-indigo-500/20 rounded-xl px-4 py-3 text-sm font-mono text-indigo-300 resize-none" />
+            </>
+          ) : (
+            <>
+              <label className="text-xs font-semibold text-slate-400 mb-2 block">Tree View</label>
+              <div className="bg-black/20 border-2 border-indigo-500/20 rounded-xl p-4 max-h-[520px] overflow-auto font-mono text-xs whitespace-pre"
+                dangerouslySetInnerHTML={{ __html: treeHtml }} />
+            </>
+          )}
+
+          {/* Stats */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4">
+            {[['Characters', stats.chars], ['Size (bytes)', stats.bytes], ['Depth', stats.depth], ['Keys', stats.keys]].map(([l, v]) => (
+              <div key={l} className="text-center p-3 bg-black/20 rounded-xl">
+                <div className="text-lg font-bold text-indigo-400">{v}</div>
+                <div className="text-[11px] text-slate-400">{l}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* Actions */}
+          <div className="flex flex-wrap gap-2 mt-4">
             <button onClick={copyOutput}
-              className={`px-4 py-2.5 rounded-xl text-sm font-semibold transition-all ${copied ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-white/5 border border-white/8 text-slate-400 hover:text-white'}`}>
+              className={`px-4 py-2 rounded-xl text-sm font-bold transition-all ${copied ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-white/5 border border-white/[0.08] text-slate-400 hover:text-white'}`}>
               {copied ? '✓ Copied' : '📋 Copy'}
             </button>
-          )}
+            <button onClick={downloadJSON}
+              className="px-4 py-2 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white transition-all">💾 Download</button>
+          </div>
         </div>
       </div>
     </ToolLayout>

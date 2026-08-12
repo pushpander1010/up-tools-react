@@ -25,6 +25,21 @@ export default function ToolLayout({ title, desc, icon, iconBg, category, slug, 
         <meta name="twitter:title" content={`${title} | UpTools`} />
         <meta name="twitter:description" content={desc} />
         {schema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />}
+        <script type="application/ld+json" dangerouslySetInnerHTML={{
+          __html: JSON.stringify((() => {
+            const parts = slug.split('/')
+            const section = parts.length > 1 ? parts[0] : null
+            const sectionName = section === 'hncker' ? 'HNCKER'
+              : section === 'games' ? 'Games'
+              : section ? section.charAt(0).toUpperCase() + section.slice(1) : null
+            const items = [
+              { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.uptools.in/" },
+              ...(section ? [{ "@type": "ListItem", "position": 2, "name": sectionName, "item": `https://www.uptools.in/${section}/` }] : []),
+              { "@type": "ListItem", "position": section ? 3 : 2, "name": title, "item": `https://www.uptools.in/${slug}/` },
+            ]
+            return { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": items }
+          })())
+        }} />
       </Helmet>
 
       {!hideHeader && (

@@ -2,110 +2,101 @@ import { useState, useCallback } from 'react'
 import ToolLayout from '../components/ToolLayout'
 import useJumpToResult from '../hooks/useJumpToResult'
 
-function generateUUID() {
-  return crypto.randomUUID()
+function uuid() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+    const r = crypto.getRandomValues(new Uint8Array(1))[0] % 16
+    return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16)
+  })
 }
 
-export default function uuid_generator() {
-
+export default function uuid_generator_pro() {
   const { ref: resultRef, jumpTo } = useJumpToResult()
-  const [uuids, setUuids] = useState(() => [generateUUID()])
-  const [count, setCount] = useState(1)
-  const [copied, setCopied] = useState(null)
-  const [format, setFormat] = useState('standard') // standard, uppercase, no-dash
+  const [count, setCount] = useState(10)
+  const [format, setFormat] = useState('hyphen')
+  const [uuids, setUuids] = useState('')
+  const [copied, setCopied] = useState(false)
 
-  const gen = useCallback(() => {
-    setUuids(Array.from({ length: count }, () => {
-      const u = generateUUID()
-      if (format === 'uppercase') return u.toUpperCase()
-      if (format === 'no-dash') return u.replace(/-/g, '')
-      return u
-    }))
-    setCopied(null)
+  const generate = useCallback(() => {
+    const n = Math.min(100, Math.max(1, count || 10))
+    const result = []
+    for (let i = 0; i < n; i++) {
+      let u = uuid()
+      if (format === 'none') u = u.replace(/-/g, '')
+      else if (format === 'upper') u = u.toUpperCase()
+      result.push(u)
+    }
+    setUuids(result.join('\n'))
   }, [count, format])
 
-  const copy = (text, i) => {
-    navigator.clipboard.writeText(text)
-    setCopied(i)
-    setTimeout(() => setCopied(null), 1500)
-  }
+  useState(() => generate())
 
   const copyAll = () => {
-    navigator.clipboard.writeText(uuids.join('\n'))
-    setCopied('all')
-    setTimeout(() => setCopied(null), 1500)
+    navigator.clipboard.writeText(uuids)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 1500)
   }
 
   return (
     <ToolLayout
-      title="UUID / GUID Generator"
-      desc="Generate random UUID v4 identifiers. Copy single or batch generate multiple UUIDs."
+      title="UUID Generator"
+      desc="Generate UUID v4 with customizable format and count."
       icon="🆔" iconBg="rgba(99,102,241,0.08)"
       category="dev" slug="uuid-generator"
       faq={[
-        { q: 'What is a UUID?', a: 'A Universally Unique Identifier — a 128-bit number used to uniquely identify records, sessions, and resources.' },
-        { q: 'What is UUID v4?', a: 'Version 4 uses cryptographically random numbers. It\'s the most commonly used UUID version.' },
+        { q: 'What is a UUID?', a: 'A Universally Unique Identifier (UUID) is a 128-bit number used to uniquely identify information in computer systems.' },
+        { q: 'What is UUID v4?', a: 'UUID v4 is randomly generated. It uses cryptographic randomness to ensure uniqueness.' },
+        { q: 'Is this secure?', a: 'Yes. The generator uses the browser crypto API for cryptographically secure random values.' },
       ]}
       howItWorks={[
-        'Choose the output format (standard, uppercase, or no dashes).',
-        'Select how many UUIDs to generate.',
-        'Click Generate and copy the ones you need.',
+        'Set the number of UUIDs to generate.',
+        'Choose your preferred format.',
+        'Click Generate.',
+        'Copy all UUIDs to clipboard.',
       ]}
       schema={{
         "@context": "https://schema.org", "@type": "SoftwareApplication",
-        "name": "UUID Generator", "applicationCategory": "DeveloperApplication",
-        "url": "https://www.uptools.in/uuid-generator/",
+        "name": "UUID Generator Pro", "applicationCategory": "DeveloperApplication",
+        "url": "https://www.uptools.in/uuid-generator-pro/",
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <div className="max-w-2xl mx-auto space-y-6">
-        {/* Format */}
-        <div>
-          <label className="text-xs font-semibold text-slate-400 mb-2 block">Format</label>
-          <div className="flex gap-2">
-            {[['standard', 'Standard'], ['uppercase', 'UPPERCASE'], ['no-dash', 'No Dashes']].map(([val, label]) => (
-              <button key={val} onClick={() => setFormat(val)}
-                className={`flex-1 py-2.5 rounded-xl text-xs font-bold transition-all ${format === val ? 'bg-brand/15 text-brand-light border border-brand/30' : 'bg-white/[0.06] text-slate-400 border border-white/8'}`}>
-                {label}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Count */}
-        <div>
-          <label className="text-xs font-semibold text-slate-400 mb-2 block">How many?</label>
-          <div className="flex gap-2">
-            {[1, 5, 10, 25].map(n => (
-              <button key={n} onClick={() => setCount(n)}
-                className={`flex-1 py-2.5 rounded-xl text-xs font-bold transition-all ${count === n ? 'bg-brand/15 text-brand-light border border-brand/30' : 'bg-white/[0.06] text-slate-400 border border-white/8'}`}>
-                {n}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Generate */}
-        <button onClick={() => {gen(); jumpTo()}}
-          className="glow-btn w-full py-3 rounded-xl text-sm">🔄 Generate</button>
-
-        {/* UUIDs */}
-        <div className="space-y-2">
-          {uuids.length > 1 && (
-            <button onClick={copyAll}
-              className={`w-full py-2 rounded-xl text-xs font-semibold transition-all ${copied === 'all' ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-white/5 border border-white/8 text-slate-400 hover:text-white'}`}>
-              {copied === 'all' ? '✓ All Copied' : `📋 Copy All (${uuids.length})`}
-            </button>
-          )}
-          {uuids.map((u, i) => (
-            <div key={i} className="flex items-center gap-3 p-3 rounded-xl bg-white/[0.05] border border-white/8 hover:border-white/12 transition-all group">
-              <code className="flex-1 text-sm text-white font-mono break-all">{u}</code>
-              <button onClick={() => copy(u, i)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-semibold shrink-0 transition-all ${copied === i ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-white/5 border border-white/8 text-slate-400 hover:text-white'}`}>
-                {copied === i ? '✓' : '📋'}
-              </button>
+      <div className="max-w-3xl mx-auto space-y-4">
+        {/* Config */}
+        <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4">
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label className="text-xs font-semibold text-slate-400 mb-2 block">Count</label>
+              <input type="number" value={count} onChange={e => setCount(parseInt(e.target.value) || 10)}
+                min={1} max={100}
+                className="w-full bg-black/20 border-2 border-white/[0.08] rounded-xl px-4 py-3 text-sm outline-none focus:border-indigo-500/40 transition-all" />
             </div>
-          ))}
+            <div>
+              <label className="text-xs font-semibold text-slate-400 mb-2 block">Format</label>
+              <select value={format} onChange={e => setFormat(e.target.value)}
+                className="w-full bg-black/20 border-2 border-white/[0.08] rounded-xl px-4 py-3 text-sm outline-none focus:border-indigo-500/40 transition-all">
+                <option value="hyphen">With hyphens</option>
+                <option value="none">No hyphens</option>
+                <option value="upper">Uppercase</option>
+              </select>
+            </div>
+          </div>
+          <button onClick={() => { generate(); jumpTo() }}
+            className="glow-btn px-6 py-3 rounded-xl text-sm w-full mt-4"
+            style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}>✨ Generate</button>
+        </div>
+
+        {/* Results */}
+        <div ref={resultRef} className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4">
+          <div className="flex items-center justify-between mb-3">
+            <h2 className="text-sm font-bold text-white">UUIDs</h2>
+            <button onClick={copyAll}
+              className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all ${copied ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-white/5 border border-white/[0.08] text-slate-400 hover:text-white'}`}>
+              {copied ? '✓ Copied' : '📋 Copy All'}
+            </button>
+          </div>
+          <div className="bg-black/20 border-2 border-emerald-500/20 rounded-xl p-4 font-mono text-xs text-emerald-400 whitespace-pre-wrap max-h-[400px] overflow-auto">
+            {uuids || 'Click Generate to create UUIDs'}
+          </div>
         </div>
       </div>
     </ToolLayout>

@@ -1,198 +1,216 @@
-import { useState, useMemo, useCallback } from 'react'
-import { Helmet } from 'react-helmet-async'
-import { Link } from 'react-router-dom'
-import FAQ from '../components/FAQ'
+import { useState, useMemo, useRef, useCallback } from 'react'
+import ToolLayout from '../components/ToolLayout'
+import useJumpToResult from '../hooks/useJumpToResult'
 
-const PRESETS = [
-  { fg: '#1e293b', bg: '#ffffff', label: 'Classic' },
-  { fg: '#e2e8f0', bg: '#0f172a', label: 'Dark Mode' },
-  { fg: '#22c55e', bg: '#ffffff', label: 'Green' },
-  { fg: '#6366f1', bg: '#ffffff', label: 'Indigo' },
-  { fg: '#ef4444', bg: '#ffffff', label: 'Red' },
-  { fg: '#f59e0b', bg: '#ffffff', label: 'Amber' },
+const QR_TYPES = [
+  { value: 'text', label: 'Text' },
+  { value: 'url', label: 'URL' },
+  { value: 'wifi', label: 'WiFi' },
+  { value: 'email', label: 'Email' },
+  { value: 'phone', label: 'Phone' },
+  { value: 'sms', label: 'SMS' },
+  { value: 'vcard', label: 'vCard' },
 ]
 
-function hexToHSL(hex) {
-  let r = parseInt(hex.slice(1, 3), 16) / 255
-  let g = parseInt(hex.slice(3, 5), 16) / 255
-  let b = parseInt(hex.slice(5, 7), 16) / 255
-  const max = Math.max(r, g, b), min = Math.min(r, g, b)
-  let h = 0, s = 0, l = (max + min) / 2
-  if (max !== min) {
-    const d = max - min
-    s = l > 0.5 ? d / (2 - max - min) : d / (max + min)
-    if (max === r) h = ((g - b) / d + (g < b ? 6 : 0)) / 6
-    else if (max === g) h = ((b - r) / d + 2) / 6
-    else h = ((r - g) / d + 4) / 6
+function getContent(type, fields) {
+  switch (type) {
+    case 'url': return fields.content
+    case 'wifi': return `WIFI:T:WPA;S:${fields.wifiSsid};P:${fields.wifiPass};;`
+    case 'email': return `mailto:${fields.emailTo}?subject=${encodeURIComponent(fields.emailSubject)}`
+    case 'phone': return `tel:${fields.content}`
+    case 'sms': return `sms:${fields.content}`
+    case 'vcard': return `BEGIN:VCARD\nVERSION:3.0\nFN:${fields.vcardName}\nTEL:${fields.content}\nEND:VCARD`
+    default: return fields.content
   }
-  return { h: Math.round(h * 360), s: Math.round(s * 100), l: Math.round(l * 100) }
 }
 
-function hslToHex(h, s, l) {
-  s /= 100; l /= 100
-  const a = s * Math.min(l, 1 - l)
-  const f = n => { const k = (n + h / 30) % 12; return l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1) }
-  return '#' + [f(0), f(8), f(4)].map(x => Math.round(x * 255).toString(16).padStart(2, '0')).join('')
+function getQrUrl(text, size) {
+  if (!text) return null
+  return `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encodeURIComponent(text)}&margin=10`
 }
 
-const RAINBOW = ['#ff0000','#ff4400','#ff8800','#ffcc00','#ffff00','#aaff00','#55ff00','#00ff00','#00ff55','#00ffaa','#00ffff','#00aaff','#0055ff','#0000ff','#4400ff','#8800ff','#cc00ff','#ff00ff','#ff00aa','#ff0055','#ff0000']
-
-function HueSlider({ label, color, onChange }) {
-  const hsl = hexToHSL(color)
-  const pct = (hsl.h / 360) * 100
-  return (
-    <div className="mb-3">
-      <div className="flex items-center justify-between mb-1.5">
-        <span className="text-[11px] font-semibold text-slate-400">{label}</span>
-        <div className="flex items-center gap-1.5">
-          <div className="w-4 h-4 rounded-md border-2 border-white/20 shadow-sm" style={{ background: color }} />
-          <span className="text-[10px] font-mono font-bold text-slate-400">{color}</span>
-        </div>
-      </div>
-      <div className="relative h-7 rounded-lg overflow-hidden border border-white/10"
-        style={{ background: 'linear-gradient(to right, #ff0000, #ff8800, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000)' }}>
-        <input type="range" min="0" max="360" step="1" value={hsl.h}
-          onChange={e => {
-            const h = parseInt(e.target.value)
-            const s = Math.max(hsl.s, 70)
-            const l = Math.max(Math.min(hsl.l, 65), 35)
-            onChange(hslToHex(h, s, l))
-          }}
-          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" />
-        <div className="absolute top-1/2 -translate-y-1/2 w-4 h-4 rounded-full border-2 border-white shadow-lg pointer-events-none z-20 transition-[left] duration-75"
-          style={{ left: `calc(${pct}% - 8px)`, background: color }} />
-      </div>
-    </div>
-  )
-}
-
-export default function qr_generator() {
-  const [text, setText] = useState('')
-  const [size, setSize] = useState(256)
-  const [fg, setFg] = useState('#e2e8f0')
-  const [bg, setBg] = useState('#0f172a')
-  const [copied, setCopied] = useState(false)
+export default function qr_code_generator_pro() {
+  const { ref: resultRef, jumpTo } = useJumpToResult()
+  const [qrType, setQrType] = useState('text')
+  const [size, setSize] = useState(300)
+  const [fields, setFields] = useState({
+    content: '',
+    wifiSsid: '',
+    wifiPass: '',
+    emailTo: '',
+    emailSubject: '',
+    vcardName: '',
+  })
+  const [generated, setGenerated] = useState(false)
   const [downloading, setDownloading] = useState(false)
 
-  const qrUrl = useMemo(() =>
-    text ? `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encodeURIComponent(text)}&bgcolor=${bg.replace('#', '')}&color=${fg.replace('#', '')}&margin=10` : null
-  , [text, size, fg, bg])
+  const qrText = useMemo(() => {
+    if (!generated) return ''
+    return getContent(qrType, fields)
+  }, [qrType, fields, generated])
 
-  const download = async () => {
+  const qrUrl = useMemo(() => getQrUrl(qrText, size), [qrText, size])
+
+  const generate = () => {
+    setGenerated(true)
+    jumpTo()
+  }
+
+  const updateField = (key, val) => setFields(prev => ({ ...prev, [key]: val }))
+
+  const downloadPng = async () => {
     if (!qrUrl) return
     setDownloading(true)
     try {
       const res = await fetch(qrUrl)
       const blob = await res.blob()
       const url = URL.createObjectURL(blob)
-      const a = document.createElement('a'); a.href = url; a.download = 'qr-code.png'; a.click()
+      const a = document.createElement('a'); a.href = url; a.download = 'qrcode.png'; a.click()
       URL.revokeObjectURL(url)
     } catch (e) { console.error(e) }
     setDownloading(false)
   }
 
-  const copyImage = async () => {
-    if (!qrUrl) return
+  const downloadSvg = async () => {
+    if (!qrText) return
     try {
-      const res = await fetch(qrUrl)
+      const res = await fetch(`https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encodeURIComponent(qrText)}&margin=10&format=svg`)
       const blob = await res.blob()
-      await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })])
-      setCopied(true); setTimeout(() => setCopied(false), 2000)
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a'); a.href = url; a.download = 'qrcode.svg'; a.click()
+      URL.revokeObjectURL(url)
     } catch (e) { console.error(e) }
   }
 
+  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
+  const selectClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 [color-scheme:dark]"
+
+  const showWifi = qrType === 'wifi'
+  const showEmail = qrType === 'email'
+  const showVcard = qrType === 'vcard'
+  const showMainContent = !showWifi && !showEmail
+
   return (
-    <>
-      <Helmet>
-        <title>QR Code Generator — Customize Colors, Download PNG | UpTools</title>
-        <meta name="description" content="Generate QR codes for URLs, text, WiFi, contacts. Live preview with customizable foreground and background colors." />
-      </Helmet>
+    <ToolLayout
+      title="QR Code Generator"
+      desc="Generate QR codes for text, URLs, WiFi, email, phone, and vCard. Download as PNG or SVG."
+      icon="📱" iconBg="rgba(99,102,241,0.08)"
+      category="tools" slug="qr-generator"
+      faq={[
+        { q: "What can I encode?", a: "Text, URLs, WiFi credentials, email addresses, phone numbers, SMS, and vCards." },
+        { q: "How do I scan a QR code?", a: "Open your phone camera and point it at the QR code. Most phones detect QR codes automatically." },
+      ]}
+      howItWorks={[
+        "Choose the QR code type (Text, URL, WiFi, etc.).",
+        "Enter the content and set the size.",
+        "Click Generate to create your QR code.",
+        "Download as PNG or SVG.",
+      ]}
+      schema={{
+        "@context": "https://schema.org", "@type": "SoftwareApplication",
+        "name": "QR Code Generator", "applicationCategory": "UtilitiesApplication",
+        "url": "https://www.uptools.in/qr-code-generator-pro/",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      }}
+    >
+      <div className="max-w-2xl mx-auto space-y-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm font-semibold text-slate-300 mb-2">Type</label>
+            <select value={qrType} onChange={e => { setQrType(e.target.value); setGenerated(false) }}
+              className={selectClass}>
+              {QR_TYPES.map(t => <option key={t.value} value={t.value}>{t.label}</option>)}
+            </select>
+          </div>
+          <div>
+            <label className="block text-sm font-semibold text-slate-300 mb-2">Size (px)</label>
+            <input type="number" value={size} min={100} max={1000} step={50}
+              onChange={e => setSize(parseInt(e.target.value) || 300)}
+              className={inputClass} />
+          </div>
+        </div>
 
-      <nav className="text-xs text-slate-400 mb-6 flex items-center gap-2">
-        <Link to="/" className="hover:text-white transition-colors no-underline text-slate-400">Home</Link>
-        <span>›</span>
-        <span className="text-white">QR Code Generator</span>
-      </nav>
-
-
-      {/* ─── SIDE-BY-SIDE ─── */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-
-        {/* LEFT — Controls */}
-        <div className="space-y-5">
+        {showMainContent && (
           <div>
             <label className="block text-sm font-semibold text-slate-300 mb-2">Content</label>
-            <textarea value={text} onChange={e => setText(e.target.value)}
-              placeholder="Enter URL, text, or WiFi: WIFI:T:WPA;S:MyNetwork;P:password;;"
+            <textarea value={fields.content} onChange={e => updateField('content', e.target.value)}
+              placeholder={qrType === 'url' ? 'https://example.com' : 'Enter text...'}
               rows={3}
-              className="w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-2xl px-5 py-4 text-white text-sm font-mono outline-none focus:border-purple-500/40 transition-all duration-300 placeholder:text-slate-600 resize-none" />
+              className={inputClass + ' resize-none'} />
           </div>
+        )}
 
-          <div className="p-5 rounded-2xl bg-white/[0.06] border border-white/[0.08]">
-            <h3 className="text-sm font-semibold text-slate-300 mb-4">🎨 Colors</h3>
-            <HueSlider label="Foreground (QR dots)" color={fg} onChange={setFg} />
-            <HueSlider label="Background" color={bg} onChange={setBg} />
-            <div className="flex flex-wrap gap-2 mt-2">
-              {PRESETS.map((p, i) => (
-                <button key={i} onClick={() => { setFg(p.fg); setBg(p.bg) }}
-                  className="flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold border-2 border-white/[0.08] hover:border-white/[0.15] transition-all"
-                  style={{ background: p.bg }}>
-                  <div className="w-4 h-4 rounded-md border border-white/20" style={{ background: p.fg }} />
-                  <span style={{ color: p.fg }}>{p.label}</span>
-                </button>
-              ))}
+        {showWifi && (
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-semibold text-slate-300 mb-2">SSID</label>
+              <input type="text" value={fields.wifiSsid} onChange={e => updateField('wifiSsid', e.target.value)}
+                placeholder="Network name" className={inputClass} />
+            </div>
+            <div>
+              <label className="block text-sm font-semibold text-slate-300 mb-2">Password</label>
+              <input type="text" value={fields.wifiPass} onChange={e => updateField('wifiPass', e.target.value)}
+                placeholder="Password" className={inputClass} />
             </div>
           </div>
+        )}
 
-          <div>
-            <label className="text-xs font-semibold text-slate-400 mb-2 block">Size</label>
-            <div className="flex gap-2">
-              {[128, 256, 512].map(s => (
-                <button key={s} onClick={() => setSize(s)}
-                  className={`flex-1 py-2.5 rounded-xl text-xs font-bold transition-all ${size === s ? 'bg-purple-500/20 text-purple-400 border border-purple-500/40 shadow-lg shadow-purple-500/10' : 'bg-white/[0.06] text-slate-400 border border-white/[0.08]'}`}>
-                  {s}px
-                </button>
-              ))}
+        {showEmail && (
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-semibold text-slate-300 mb-2">To</label>
+              <input type="email" value={fields.emailTo} onChange={e => updateField('emailTo', e.target.value)}
+                placeholder="email@example.com" className={inputClass} />
+            </div>
+            <div>
+              <label className="block text-sm font-semibold text-slate-300 mb-2">Subject</label>
+              <input type="text" value={fields.emailSubject} onChange={e => updateField('emailSubject', e.target.value)}
+                placeholder="Subject" className={inputClass} />
             </div>
           </div>
+        )}
+
+        {showVcard && (
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-semibold text-slate-300 mb-2">Name</label>
+              <input type="text" value={fields.vcardName} onChange={e => updateField('vcardName', e.target.value)}
+                placeholder="John Doe" className={inputClass} />
+            </div>
+            <div>
+              <label className="block text-sm font-semibold text-slate-300 mb-2">Phone</label>
+              <input type="tel" value={fields.content} onChange={e => updateField('content', e.target.value)}
+                placeholder="+1 234 567 890" className={inputClass} />
+            </div>
+          </div>
+        )}
+
+        <div className="flex gap-3">
+          <button onClick={generate}
+            className="flex-1 py-4 rounded-2xl bg-indigo-500 text-white font-bold text-sm hover:bg-indigo-400 transition-all duration-200 active:scale-[0.98]">
+            ✨ Generate QR Code
+          </button>
         </div>
 
-        {/* RIGHT — Live Preview */}
-        <div className="flex items-center justify-center">
-          {qrUrl ? (
-            <div className="flex flex-col items-center gap-4 p-8 rounded-3xl border-2 border-white/[0.08] w-full transition-all duration-300"
-              style={{ background: bg }}>
-              <img src={qrUrl} alt="QR Code" className="block rounded-xl shadow-2xl"
-                style={{ width: Math.min(size, 300), height: Math.min(size, 300) }} />
-              <div className="text-xs text-center max-w-xs truncate px-4 py-1.5 rounded-lg font-mono"
-                style={{ color: fg, opacity: 0.5, background: `${fg}10` }}>{text}</div>
-              <div className="flex gap-3">
-                <button onClick={download} disabled={downloading}
-                  className="glow-btn px-6 py-2.5 rounded-xl text-sm flex items-center gap-2"
-                  style={{ background: 'linear-gradient(135deg, #8b5cf6, #6366f1)' }}>
-                  {downloading ? '⏳' : '⬇'} Download
-                </button>
-                <button onClick={copyImage}
-                  className={`px-4 py-2.5 rounded-xl text-sm font-semibold transition-all ${copied ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white'}`}>
-                  {copied ? '✓ Copied' : '📋 Copy'}
-                </button>
-              </div>
+        {generated && qrUrl && (
+          <div ref={resultRef} className="rounded-3xl border-2 border-indigo-500/15 bg-gradient-to-br from-indigo-500/[0.06] via-white/[0.01] to-transparent p-6 sm:p-8 overflow-hidden text-center"
+            style={{ animation: 'slideUp 0.35s cubic-bezier(0.4,0,0.2,1)' }}>
+            <h3 className="text-sm font-bold text-indigo-400 mb-4">QR Code</h3>
+            <img src={qrUrl} alt="Generated QR Code" className="block mx-auto rounded-xl shadow-2xl mb-4"
+              style={{ width: Math.min(size, 300), height: Math.min(size, 300) }} />
+            <div className="flex gap-3 justify-center">
+              <button onClick={downloadPng} disabled={downloading}
+                className="px-6 py-2.5 rounded-xl bg-indigo-500 text-white font-bold text-sm hover:bg-indigo-400 transition-all">
+                {downloading ? '⏳' : '⬇️'} PNG
+              </button>
+              <button onClick={downloadSvg}
+                className="px-6 py-2.5 rounded-xl bg-white/[0.06] border border-white/8 text-slate-400 font-bold text-sm hover:text-white transition-all">
+                ⬇️ SVG
+              </button>
             </div>
-          ) : (
-            <div className="text-center py-16 rounded-3xl border-2 border-dashed border-white/[0.08] bg-white/[0.02] w-full">
-              <div className="text-5xl mb-4 opacity-20">🔳</div>
-              <p className="text-sm text-slate-600 font-medium">Enter content to see QR preview</p>
-            </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
-
-
-      <FAQ questions={[
-        { q: 'What can I encode?', a: 'URLs, plain text, WiFi credentials (WIFI:T:WPA;S:Network;P:pass;;), email, phone numbers, vCards, and more.' },
-        { q: 'How do I scan a QR code?', a: 'Open your phone camera and point it at the QR code. Most phones detect QR codes automatically.' },
-        { q: 'What size should I use?', a: '256px for screens, 512px for print. 128px is fine for small labels.' },
-      ]} />
-    </>
+    </ToolLayout>
   )
 }
