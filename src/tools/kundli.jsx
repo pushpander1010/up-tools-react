@@ -4,12 +4,21 @@ import useJumpToResult from '../hooks/useJumpToResult'
 
 const RASHI = ['Aries','Taurus','Gemini','Cancer','Leo','Virgo','Libra','Scorpio','Sagittarius','Capricorn','Aquarius','Pisces']
 const RASHI_SYM = ['♈','♉','♊','♋','♌','♍','♎','♏','♐','♑','♒','♓']
+const RASHI_HI = ['मेष','वृषभ','मिथुन','कर्क','सिंह','कन्या','तुला','वृश्चिक','धनु','मकर','कुंभ','मीन']
+const PLANET_HI = { Sun:'सूर्य', Moon:'चंद्र', Mars:'मंगल', Mercury:'बुध', Jupiter:'गुरु', Venus:'शुक्र', Saturn:'शनि', Rahu:'राहु', Ketu:'केतु' }
+const NAK_HI = ['अश्विनी','भरणी','कृत्तिका','रोहिणी','मृगशिरा','आर्द्रा','पुनर्वसु','पुष्य','आश्लेषा','मघा','पूर्व फाल्गुनी','उत्तर फाल्गुनी','हस्त','चित्रा','स्वाति','विशाखा','अनुराधा','ज्येष्ठा','मूल','पूर्वाषाढ़ा','उत्तराषाढ़ा','श्रवण','धनिष्ठा','शतभिषा','पूर्व भाद्रपद','उत्तर भाद्रपद','रेवती']
 const PLANET_SYM = { Sun:'☉', Moon:'☽', Mars:'♂', Mercury:'☿', Jupiter:'♃', Venus:'♀', Saturn:'♄', Rahu:'☊', Ketu:'☋' }
 const HOUSE_MEANING = {
   1:'Self, personality & health', 2:'Wealth, family & speech', 3:'Courage, siblings & communication',
   4:'Home, mother & happiness', 5:'Intelligence, children & creativity', 6:'Health, enemies & service',
   7:'Marriage & partnerships', 8:'Longevity, transformation & in-laws', 9:'Fortune & higher learning',
   10:'Career, status & karma', 11:'Gains, income & friendships', 12:'Losses, expenditure & foreign',
+}
+const HOUSE_HI = {
+  1:'स्वयं, व्यक्तित्व व स्वास्थ्य', 2:'धन, परिवार व वाणी', 3:'साहस, भाई-बहन व संवाद',
+  4:'घर, माता व सुख', 5:'बुद्धि, संतान व सृजन', 6:'स्वास्थ्य, शत्रु व सेवा',
+  7:'विवाह व साझेदारी', 8:'आयु, परिवर्तन व ससुराल', 9:'भाग्य व उच्च शिक्षा',
+  10:'करियर, प्रतिष्ठा व कर्म', 11:'लाभ, आय व मित्र', 12:'हानि, व्यय व विदेश',
 }
 const RASHI_TRAIT = { Aries:'energetic and pioneering', Taurus:'steady and practical', Gemini:'adaptable and communicative',
   Cancer:'nurturing and emotional', Leo:'confident and expressive', Virgo:'analytical and detail-oriented',
@@ -71,6 +80,13 @@ export default function kundli() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [geoMsg, setGeoMsg] = useState('')
+  const [lang, setLang] = useState('hi')
+
+  const rr = (i) => lang === 'hi' ? RASHI_HI[i] : RASHI[i]            // rashi by index
+  const rrN = (name) => lang === 'hi' ? (RASHI_HI[RASHI.indexOf(name)] || name) : name  // rashi by english name
+  const pn = (name) => lang === 'hi' ? (PLANET_HI[name] || name) : name               // planet name
+  const hh = (n) => lang === 'hi' ? HOUSE_HI[n] : HOUSE_MEANING[n]                     // house meaning
+  const L = { hi: { lagna:'लग्न', moon:'चंद्र राशि', sun:'सूर्य राशि', chart:'उत्तर भारतीय कुंडली', planet:'ग्रह', sign:'राशि', house:'भाव', analysis:'कुंडली विश्लेषण', dasha:'विम्शोत्तरी महादशा', dosha:'दोष विश्लेषण', present:'विद्यमान', absent:'अनुपस्थित', houseWise:'भाव विश्लेषण', represents:'प्रतिनिधित्व', from:'से', to:'तक', years:'वर्ष', current:'वर्तमान' }, en: {} }[lang]
 
   const geocodePlace = useCallback(async () => {
     if (!place.trim()) { setError('Enter a birth place (city) or use your location.'); return null }
@@ -159,6 +175,13 @@ export default function kundli() {
       <div className="max-w-3xl mx-auto space-y-5">
         {/* Inputs */}
         <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4 space-y-4">
+          <div className="flex items-center justify-end">
+            <button onClick={() => setLang(lang === 'hi' ? 'en' : 'hi')}
+              className="px-3 py-1.5 rounded-xl text-xs font-bold bg-white/[0.06] border border-white/[0.08] text-slate-300 hover:text-white transition-all">
+              {lang === 'hi' ? '🌐 English' : '🌐 हिंदी'}
+            </button>
+          </div>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
               <label className="block text-sm font-semibold text-slate-300 mb-2">Date of Birth</label>
@@ -200,11 +223,11 @@ export default function kundli() {
             {/* Summary */}
             <div className="bg-gradient-to-br from-indigo-500/[0.08] via-white/[0.01] to-transparent rounded-3xl border-2 border-indigo-500/15 p-5">
               <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
-                <div><span className="text-slate-500 font-semibold">Lagna: </span><span className="text-white font-bold">{data.lagna.rashi.symbol} {data.lagna.rashi.name}</span></div>
-                <div><span className="text-slate-500 font-semibold">Moon Sign: </span><span className="text-white font-bold">{data.moon_sign}</span></div>
-                <div><span className="text-slate-500 font-semibold">Sun Sign: </span><span className="text-white font-bold">{data.sun_sign}</span></div>
-                <div><span className="text-slate-500 font-semibold">Mangal Dosha: </span>
-                  <span className={data.mangal_dosha ? 'text-red-400 font-bold' : 'text-emerald-400 font-bold'}>{data.mangal_dosha ? 'Present' : 'Not Present'}</span></div>
+                <div><span className="text-slate-500 font-semibold">{L.lagna}: </span><span className="text-white font-bold">{data.lagna.rashi.symbol} {rrN(data.lagna.rashi.name)}</span></div>
+                <div><span className="text-slate-500 font-semibold">{L.moon}: </span><span className="text-white font-bold">{rrN(data.moon_sign)}</span></div>
+                <div><span className="text-slate-500 font-semibold">{L.sun}: </span><span className="text-white font-bold">{rrN(data.sun_sign)}</span></div>
+                <div><span className="text-slate-500 font-semibold">मांगलिक दोष: </span>
+                  <span className={data.mangal_dosha ? 'text-red-400 font-bold' : 'text-emerald-400 font-bold'}>{data.mangal_dosha ? (lang==='hi'?'विद्यमान':'Present') : (lang==='hi'?'अनुपस्थित':'Not Present')}</span></div>
               </div>
             </div>
 
@@ -219,7 +242,7 @@ export default function kundli() {
                       fill={house%2 ? '#fff3c4' : '#fffdf5'}
                       stroke="#b91c1c" strokeWidth="1.2" />
                     <text x={HOUSE_CENTER[house][0]} y={HOUSE_CENTER[house][1]-7} textAnchor="middle" fontSize="9.5" fill="#b91c1c" fontWeight="600">
-                      {house}. {RASHI[rashi]}
+                      {house}. {rr(rashi)}
                     </text>
                     <text x={HOUSE_CENTER[house][0]} y={HOUSE_CENTER[house][1]+9} textAnchor="middle" fontSize="12" fill="#1a1a1a" fontWeight="bold">
                       {planets.map(p=>PLANET_SYM[p]).join(' ')}
@@ -240,17 +263,17 @@ export default function kundli() {
 
             {/* Planet positions table */}
             <div className="bg-white/[0.03] rounded-2xl overflow-hidden">
-              <div className="px-4 py-3 text-sm font-bold text-slate-300 border-b border-white/[0.06]">Planet Positions (Lahiri Sidereal)</div>
+              <div className="px-4 py-3 text-sm font-bold text-slate-300 border-b border-white/[0.06]">{lang==='hi'?'ग्रह स्थिति (लाहिरी निरयण)':'Planet Positions (Lahiri Sidereal)'}</div>
               <table className="w-full text-sm">
                 <thead><tr className="text-slate-500 text-xs border-b border-white/[0.06]">
-                  <th className="text-left py-2 px-4">Planet</th><th className="text-left py-2 px-4">Sign</th>
-                  <th className="text-left py-2 px-4">Degree</th><th className="text-left py-2 px-4">House</th>
+                  <th className="text-left py-2 px-4">{lang==='hi'?'ग्रह':'Planet'}</th><th className="text-left py-2 px-4">{lang==='hi'?'राशि':'Sign'}</th>
+                  <th className="text-left py-2 px-4">{lang==='hi'?'अंश':'Degree'}</th><th className="text-left py-2 px-4">{lang==='hi'?'भाव':'House'}</th>
                 </tr></thead>
                 <tbody>
                   {data.planets.map(p => (
                     <tr key={p.name} className="border-b border-white/[0.04]">
-                      <td className="py-2 px-4 text-white font-semibold">{PLANET_SYM[p.name]} {p.name}</td>
-                      <td className="py-2 px-4 text-slate-300">{p.rashi.symbol} {p.rashi.name}</td>
+                      <td className="py-2 px-4 text-white font-semibold">{PLANET_SYM[p.name]} {pn(p.name)}</td>
+                      <td className="py-2 px-4 text-slate-300">{p.rashi.symbol} {rrN(p.rashi.name)}</td>
                       <td className="py-2 px-4 text-slate-300">{p.rashi.degree}°</td>
                       <td className="py-2 px-4 text-slate-300">{p.house}</td>
                     </tr>
@@ -272,34 +295,34 @@ export default function kundli() {
 
             {/* Doshas */}
             <div className="bg-white/[0.03] rounded-2xl p-4">
-              <div className="text-sm font-bold text-slate-300 mb-2">Dosha Analysis</div>
+              <div className="text-sm font-bold text-slate-300 mb-2">{lang==='hi'?'दोष विश्लेषण':'Dosha Analysis'}</div>
               <div className="space-y-2 text-xs">
                 <div className="flex justify-between items-center border-b border-white/[0.04] pb-2">
-                  <span className="text-slate-400">Mangal Dosha (Manglik)</span>
-                  <span className={data.mangal_dosha ? 'text-red-400 font-bold' : 'text-emerald-400 font-bold'}>{data.mangal_dosha ? 'Present' : 'Not Present'}</span>
+                  <span className="text-slate-400">{lang==='hi'?'मांगलिक दोष':'Mangal Dosha (Manglik)'}</span>
+                  <span className={data.mangal_dosha ? 'text-red-400 font-bold' : 'text-emerald-400 font-bold'}>{data.mangal_dosha ? (lang==='hi'?'विद्यमान':'Present') : (lang==='hi'?'अनुपस्थित':'Not Present')}</span>
                 </div>
                 <div className="flex justify-between items-center border-b border-white/[0.04] pb-2">
-                  <span className="text-slate-400">Kaal Sarp Dosha</span>
-                  <span className={data.kaal_sarp_dosha ? 'text-red-400 font-bold' : 'text-emerald-400 font-bold'}>{data.kaal_sarp_dosha ? 'Present' : 'Not Present'}</span>
+                  <span className="text-slate-400">{lang==='hi'?'काल सर्प दोष':'Kaal Sarp Dosha'}</span>
+                  <span className={data.kaal_sarp_dosha ? 'text-red-400 font-bold' : 'text-emerald-400 font-bold'}>{data.kaal_sarp_dosha ? (lang==='hi'?'विद्यमान':'Present') : (lang==='hi'?'अनुपस्थित':'Not Present')}</span>
                 </div>
               </div>
             </div>
 
             {/* House-wise analysis */}
             <div className="bg-white/[0.03] rounded-2xl overflow-hidden">
-              <div className="px-4 py-3 text-sm font-bold text-slate-300 border-b border-white/[0.06]">House-wise Analysis</div>
+              <div className="px-4 py-3 text-sm font-bold text-slate-300 border-b border-white/[0.06]">{lang==='hi'?'भाव विश्लेषण':'House-wise Analysis'}</div>
               <table className="w-full text-sm">
                 <thead><tr className="text-slate-500 text-xs border-b border-white/[0.06]">
-                  <th className="text-left py-2 px-4">House</th><th className="text-left py-2 px-4">Sign</th>
-                  <th className="text-left py-2 px-4">Planets</th><th className="text-left py-2 px-4 hidden sm:table-cell">Represents</th>
+                  <th className="text-left py-2 px-4">{lang==='hi'?'भाव':'House'}</th><th className="text-left py-2 px-4">{lang==='hi'?'राशि':'Sign'}</th>
+                  <th className="text-left py-2 px-4">{lang==='hi'?'ग्रह':'Planets'}</th><th className="text-left py-2 px-4 hidden sm:table-cell">{lang==='hi'?'प्रतिनिधित्व':'Represents'}</th>
                 </tr></thead>
                 <tbody>
                   {data.houses_detail.map(h => (
                     <tr key={h.house} className="border-b border-white/[0.04]">
                       <td className="py-2 px-4 text-white font-semibold">{h.house}</td>
-                      <td className="py-2 px-4 text-slate-300">{RASHI_SYM[h.rashi_index]} {h.rashi}</td>
-                      <td className="py-2 px-4 text-slate-300">{h.planets.length ? h.planets.map(p=>PLANET_SYM[p]+' '+p).join(', ') : '—'}</td>
-                      <td className="py-2 px-4 text-slate-500 hidden sm:table-cell">{HOUSE_MEANING[h.house]}</td>
+                      <td className="py-2 px-4 text-slate-300">{RASHI_SYM[h.rashi_index]} {rrN(h.rashi)}</td>
+                      <td className="py-2 px-4 text-slate-300">{h.planets.length ? h.planets.map(p=>PLANET_SYM[p]+' '+pn(p)).join(', ') : '—'}</td>
+                      <td className="py-2 px-4 text-slate-500 hidden sm:table-cell">{hh(h.house)}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -308,16 +331,16 @@ export default function kundli() {
 
             {/* Vimshottari Dasha */}
             <div className="bg-white/[0.03] rounded-2xl overflow-hidden">
-              <div className="px-4 py-3 text-sm font-bold text-slate-300 border-b border-white/[0.06]">Vimshottari Maha Dasha</div>
+              <div className="px-4 py-3 text-sm font-bold text-slate-300 border-b border-white/[0.06]">{lang==='hi'?'विम्शोत्तरी महादशा':'Vimshottari Maha Dasha'}</div>
               <table className="w-full text-sm">
                 <thead><tr className="text-slate-500 text-xs border-b border-white/[0.06]">
-                  <th className="text-left py-2 px-4">Period</th><th className="text-left py-2 px-4">From</th>
-                  <th className="text-left py-2 px-4">To</th><th className="text-left py-2 px-4">Years</th>
+                  <th className="text-left py-2 px-4">{lang==='hi'?'काल':'Period'}</th><th className="text-left py-2 px-4">{lang==='hi'?'से':'From'}</th>
+                  <th className="text-left py-2 px-4">{lang==='hi'?'तक':'To'}</th><th className="text-left py-2 px-4">{lang==='hi'?'वर्ष':'Years'}</th>
                 </tr></thead>
                 <tbody>
                   {data.dasha.map((dp, i) => (
                     <tr key={i} className={i===0 ? 'border-b border-indigo-500/20 bg-indigo-500/[0.06]' : 'border-b border-white/[0.04]'}>
-                      <td className="py-2 px-4 text-white font-semibold">{PLANET_SYM[dp.planet]} {dp.planet}{i===0 ? ' (current)' : ''}</td>
+                      <td className="py-2 px-4 text-white font-semibold">{PLANET_SYM[dp.planet]} {pn(dp.planet)}{i===0 ? (lang==='hi'?' (वर्तमान)':' (current)') : ''}</td>
                       <td className="py-2 px-4 text-slate-300">{dp.start}</td>
                       <td className="py-2 px-4 text-slate-300">{dp.end}</td>
                       <td className="py-2 px-4 text-slate-300">{dp.years}</td>
