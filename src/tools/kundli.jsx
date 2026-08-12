@@ -42,7 +42,31 @@ function analyze(d) {
   ]
 }
 
-// North Indian chart — authentic layout. Houses 1,4,7,10 are RHOMBI (diamonds)
+// ---- Layman helpers: what each planet rules, in plain words ----
+const PLANET_MEANING = {
+  Sun:'ego, confidence, father, authority & self-image',
+  Moon:'mind, emotions, mother, instincts & inner peace',
+  Mars:'energy, courage, ambition, siblings & action',
+  Mercury:'communication, intellect, business & analysis',
+  Jupiter:'wisdom, fortune, education, wealth & growth',
+  Venus:'love, marriage, comfort, beauty & luxury',
+  Saturn:'discipline, hard work, karma, delay & longevity',
+  Rahu:'ambition, obsession, foreign, technology & sudden change',
+  Ketu:'spirituality, detachment, intuition & past karma',
+}
+
+// ---- Nakshatra (Moon constellation) data ----
+const NAK_NAMES = ['Ashwini','Bharani','Krittika','Rohini','Mrigashira','Ardra','Punarvasu','Pushya','Ashlesha','Magha','Purva Phalguni','Uttara Phalguni','Hasta','Chitra','Swati','Vishakha','Anuradha','Jyeshtha','Mula','Purva Ashadha','Uttara Ashadha','Shravana','Dhanishta','Shatabhisha','Purva Bhadrapada','Uttara Bhadrapada','Revati']
+const NAK_LORD = ['Ketu','Venus','Sun','Moon','Mars','Rahu','Jupiter','Saturn','Mercury','Ketu','Venus','Sun','Moon','Mars','Rahu','Jupiter','Saturn','Mercury','Ketu','Venus','Sun','Moon','Mars','Rahu','Jupiter','Saturn','Mercury']
+function moonNakshatra(d) {
+  const moon = d.planets.find(p => p.name === 'Moon')
+  if (!moon) return null
+  const idx = Math.floor(moon.longitude / (360/27))
+  const frac = (moon.longitude % (360/27)) / (360/27)
+  return { idx, name: NAK_NAMES[idx], lord: NAK_LORD[idx], pada: Math.min(4, Math.floor(frac*4)+1) }
+}
+
+// ---- North Indian chart — authentic layout. Houses 1,4,7,10 are RHOMBI (diamonds)
 // at top/right/bottom/left meeting at the center; houses 2,3 / 5,6 / 8,9 / 11,12
 // are the triangles filling the 4 corners. House 1 is the top diamond. Clockwise 1→12.
 // Square boundary [20,380]x[20,380], center O(200,200).
@@ -66,6 +90,58 @@ const HOUSE_CENTER = {}
 for (const k in HOUSE_POLY) HOUSE_CENTER[k] = centroid(HOUSE_POLY[k])
 function poly(pts){ return pts.map(p=>p.join(',')).join(' ') }
 const FRAME = { TLc:[20,20], TRc:[380,20], BRc:[380,380], BLc:[20,380] }
+
+const HOUSE_AREA = {
+  1:'your personal identity and health', 2:'wealth, family and speech', 3:'courage, siblings and communication',
+  4:'home, mother and emotional peace', 5:'creativity, children and romance', 6:'daily work, routine and health',
+  7:'marriage and partnerships', 8:'transformation, shared resources and longevity', 9:'fortune, higher learning and long travel',
+  10:'career and public status', 11:'gains, income and networks', 12:'expenses, foreign lands and spirituality',
+}
+
+const DASHA_TONE = {
+  Sun:'A period of visibility, authority and recognition — a good time to lead, build reputation and step into a bigger role. Health and father-figure matters deserve attention.',
+  Moon:'An emotional and mental period focused on home, family and inner peace. Relationships and mood matter more than aggressive action. Good for settling, buying a home, and caring for mother.',
+  Mars:'A high-energy period of action, courage and competition. Strong for starting new ventures, sports and bold deals — but watch for arguments, aggression and impulsive moves.',
+  Mercury:'A sharp, clever period favouring communication, business, writing, analysis and trade. Great for learning, deals, short travels and networking.',
+  Jupiter:'One of the most fortunate periods — growth in wealth, education, wisdom and status. Favourable for marriage, children, teaching, and expanding finances or property.',
+  Venus:'A comfortable, loving period favouring marriage, relationships, luxury, vehicles and the arts. Strong for romance, family happiness and material comforts.',
+  Saturn:'A demanding but rewarding period of hard work, discipline and patience. Progress is steady and slow — effort pays off later. Good for long-term career and property, but delay, stress and health need care.',
+  Rahu:'An intense, ambitious period of sudden change, foreign connections and unconventional paths. Big gains are possible in technology, media or foreign fields, but there can be ups and downs, confusion and obsession.',
+  Ketu:'A spiritual, introspective period of detachment and letting go. Material ambitions slow down; you may feel drawn to solitude, spirituality or research. Good for inner growth rather than flashy gains.',
+}
+
+function currentDashaIdx(d) {
+  const dashas = d.dasha || []
+  const today = new Date()
+  for (let i=0;i<dashas.length;i++){
+    const s = new Date(dashas[i].start), e = new Date(dashas[i].end)
+    if (today >= s && today <= e) return i
+  }
+  return 0
+}
+
+function futurePredictions(d) {
+  const dashas = d.dasha || []
+  if (!dashas.length) return []
+  const cur = currentDashaIdx(d)
+  const curP = dashas[cur] || dashas[0]
+  const next = dashas[cur+1]
+  const nextP = next ? next.planet : null
+  const curHouse = (d.planets.find(p => p.name === curP.planet) || {}).house
+  const houseArea = curHouse ? HOUSE_AREA[curHouse] : 'your overall life'
+  const out = [{
+    t:'Right now — ' + curP.planet + ' Maha Dasha',
+    body:'You are currently in the ' + curP.planet + ' Maha Dasha (from ' + curP.start + ' to ' + curP.end + '). ' + (DASHA_TONE[curP.planet] || '') + ' In your chart, ' + curP.planet + ' sits in the ' + (curHouse ? curHouse + 'th house' : 'house of your birth') + ', which points to ' + houseArea + '. This phase shapes those parts of your life the most.',
+  }]
+  if (nextP) {
+    const nHouse = (d.planets.find(p => p.name === nextP) || {}).house
+    out.push({
+      t:'Coming up — ' + nextP + ' Maha Dasha',
+      body:'From ' + next.start + ', the ' + nextP + ' Maha Dasha begins. ' + (DASHA_TONE[nextP] || '') + (nHouse ? ' In your chart ' + nextP + ' sits in the ' + nHouse + 'th house, so this phase will most affect ' + HOUSE_AREA[nHouse] + '.' : '') + ' Plan for it while it is still ahead of you.',
+    })
+  }
+  return out
+}
 
 function inputClass(){ return "w-full bg-black/20 border-2 border-white/[0.08] rounded-xl px-4 py-3 text-sm outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-600 [color-scheme:dark]" }
 
@@ -140,6 +216,60 @@ export default function kundli() {
   }, [data])
 
   const houses = chartHouses()
+  const nak = data ? moonNakshatra(data) : null
+
+  // Download the chart as a PNG (render the SVG to canvas)
+  const dlChart = () => {
+    const svg = document.getElementById('kundli-chart-svg')
+    if (!svg) return
+    const xml = new XMLSerializer().serializeToString(svg)
+    const url = URL.createObjectURL(new Blob([xml], { type: 'image/svg+xml;charset=utf-8' }))
+    const img = new Image()
+    img.onload = () => {
+      const s = 2, cv = document.createElement('canvas')
+      cv.width = 400*s; cv.height = 400*s
+      const ctx = cv.getContext('2d')
+      ctx.fillStyle = '#fffbe6'; ctx.fillRect(0,0,cv.width,cv.height)
+      ctx.drawImage(img,0,0,cv.width,cv.height)
+      URL.revokeObjectURL(url)
+      const a = document.createElement('a')
+      a.download = 'kundli-' + (data.birth.date || '') + '.png'
+      a.href = cv.toDataURL('image/png'); a.click()
+    }
+    img.src = url
+  }
+
+  // Build + download the full text report
+  const dlReport = () => {
+    const nak = moonNakshatra(data)
+    const L = []
+    const P = (k,v) => L.push(k + ': ' + v)
+    const SEC = (t) => L.push('', '======== ' + t + ' ========')
+    const B = (s) => L.push(s)
+    SEC('KUNDLI REPORT')
+    P('Date of birth', data.birth.date); P('Time of birth', data.birth.time)
+    P('Latitude / Longitude', data.birth.lat + ', ' + data.birth.lon)
+    P('Lagna (ascendant)', data.lagna.rashi.symbol + ' ' + data.lagna.rashi.name + ' ' + data.lagna.rashi.degree + '\u00b0')
+    P('Moon sign', data.moon_sign); P('Sun sign', data.sun_sign)
+    if (nak) P('Moon nakshatra', nak.name + ' pada ' + nak.pada + ' (lord ' + nak.lord + ')')
+    P('Mangal Dosha', data.mangal_dosha ? 'Present' : 'Not present')
+    P('Kaal Sarp Dosha', data.kaal_sarp_dosha ? 'Present' : 'Not present')
+    SEC('PLANETS (Lahiri sidereal)')
+    for (const p of data.planets) B(p.name + ' - ' + p.rashi.symbol + ' ' + p.rashi.name + ', ' + p.rashi.degree + '\u00b0, ' + p.house + 'th house. It rules ' + PLANET_MEANING[p.name] + '.')
+    SEC('HOUSE-WISE')
+    for (const h of data.houses_detail) B(h.house + '. ' + h.rashi + ' - ' + HOUSE_MEANING[h.house] + (h.planets.length ? ' | planets: ' + h.planets.join(', ') : ''))
+    SEC('KUNDLI ANALYSIS')
+    for (const a of analyze(data)) { B(a.t + ':'); B(a.body); B('') }
+    SEC('DASHA PREDICTIONS')
+    for (const f of futurePredictions(data)) { B(f.t + ':'); B(f.body); B('') }
+    SEC('VIMSHOTTARI MAHA DASHA')
+    for (const dp of data.dasha) B(dp.planet + ': ' + dp.start + ' to ' + dp.end + ' (' + dp.years + ' yrs)')
+    L.push('', 'Computed with Swiss Ephemeris (Lahiri sidereal). Astrological interpretation is for guidance and reflection, not a certainty of future events.')
+    const blob = new Blob([L.join('\n')], { type: 'text/plain;charset=utf-8' })
+    const a = document.createElement('a')
+    a.download = 'kundli-report-' + (data.birth.date || '') + '.txt'
+    a.href = URL.createObjectURL(blob); a.click()
+  }
 
   return (
     <ToolLayout
@@ -220,19 +350,30 @@ export default function kundli() {
         {data && (
           <div ref={resultRef} className="space-y-5">
             {/* Summary */}
-            <div className="bg-gradient-to-br from-indigo-500/[0.08] via-white/[0.01] to-transparent rounded-3xl border-2 border-indigo-500/15 p-5">
+            <div className="bg-gradient-to-br from-indigo-500/[0.08] via-white/[0.01] to-transparent rounded-3xl border-2 border-indigo-500/15 p-5 space-y-3">
               <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
                 <div><span className="text-slate-500 font-semibold">{L.lagna}: </span><span className="text-white font-bold">{data.lagna.rashi.symbol} {rrN(data.lagna.rashi.name)}</span></div>
                 <div><span className="text-slate-500 font-semibold">{L.moon}: </span><span className="text-white font-bold">{rrN(data.moon_sign)}</span></div>
                 <div><span className="text-slate-500 font-semibold">{L.sun}: </span><span className="text-white font-bold">{rrN(data.sun_sign)}</span></div>
+                {nak && <div><span className="text-slate-500 font-semibold">नक्षत्र / Nakshatra: </span><span className="text-white font-bold">{nak.name} pada {nak.pada} ({nak.lord})</span></div>}
                 <div><span className="text-slate-500 font-semibold">मांगलिक दोष: </span>
                   <span className={data.mangal_dosha ? 'text-red-400 font-bold' : 'text-emerald-400 font-bold'}>{data.mangal_dosha ? (lang==='hi'?'विद्यमान':'Present') : (lang==='hi'?'अनुपस्थित':'Not Present')}</span></div>
+              </div>
+              <div className="flex flex-wrap gap-3 pt-1">
+                <button onClick={dlChart} className="px-4 py-2.5 rounded-xl text-xs font-bold text-white transition-all active:scale-[0.98]"
+                  style={{ background:'linear-gradient(135deg,#6366f1,#8b5cf6)' }}>⬇️ Download Kundli Chart</button>
+                <button onClick={dlReport} className="px-4 py-2.5 rounded-xl text-xs font-bold text-white transition-all active:scale-[0.98]"
+                  style={{ background:'linear-gradient(135deg,#0ea5e9,#6366f1)' }}>📄 Download Report</button>
               </div>
             </div>
 
             {/* North Indian chart — traditional Indian style (yellow-white + red) */}
-            <div className="rounded-2xl p-3" style={{ background:'#fdf6e3' }}>
-              <svg viewBox="0 0 400 400" className="w-full max-w-[420px] h-auto block">
+            <div className="rounded-2xl p-4 flex flex-col items-center gap-3" style={{ background:'#fdf6e3' }}>
+              <div className="text-center">
+                <div className="text-base font-bold text-[#b91c1c]">उत्तर भारतीय कुंडली</div>
+                <div className="text-xs text-[#b91c1c]/70 font-medium">North Indian Chart · {data.lagna.rashi.name} Lagna</div>
+              </div>
+              <svg id="kundli-chart-svg" viewBox="0 0 400 400" className="w-full max-w-[440px] h-auto block mx-auto">
                 <rect x="6" y="6" width="388" height="388" fill="#fffbe6" stroke="#b91c1c" strokeWidth="2" />
                 {/* house polygons */}
                 {houses.map(({house, rashi, planets}) => (
@@ -277,6 +418,31 @@ export default function kundli() {
               </table>
             </div>
 
+            {/* Layman explainer */}
+            <div className="bg-white/[0.03] rounded-2xl p-4 space-y-3">
+              <div className="text-sm font-bold text-slate-300">How to read this kundli — plain words</div>
+              <div className="space-y-3 text-xs text-slate-400 leading-relaxed">
+                <div><span className="text-indigo-300 font-semibold">Lagna / Ascendant ({data.lagna.rashi.name}) — </span>Your Lagna is the zodiac sign rising on the eastern horizon at your birth moment. It is the starting point of your chart and represents your personality, body and life direction. It sets your 1st house.</div>
+                <div><span className="text-indigo-300 font-semibold">Moon sign ({data.moon_sign}) — </span>Your Moon sign reflects your mind, emotions and instincts. It shows how you feel and react, and is used for emotional compatibility and Dasha timing.</div>
+                <div><span className="text-indigo-300 font-semibold">Sun sign ({data.sun_sign}) — </span>Your Sun sign reflects your ego, confidence and core identity — the part of you that wants to be recognised.</div>
+                {nak && <div><span className="text-indigo-300 font-semibold">Nakshatra ({nak.name}, pada {nak.pada}, lord {nak.lord}) — </span>Your nakshatra is the exact Moon constellation at birth, like a finer star-sign. Its lord, {nak.lord}, rules the Maha Dasha period you were born in.</div>}
+                <div><span className="text-indigo-300 font-semibold">Mangal Dosha — </span>{data.mangal_dosha ? 'Mars is placed in one of the dosha houses (1st, 4th, 7th, 8th or 12th). Traditionally it is considered in marriage matching — it is not a curse, and matching and remedies balance it.' : 'Mars is not in a dosha house, so Mangal Dosha is not present — considered favourable for marriage compatibility.'}</div>
+              </div>
+            </div>
+
+            {/* Planet significators */}
+            <div className="bg-white/[0.03] rounded-2xl overflow-hidden">
+              <div className="px-4 py-3 text-sm font-bold text-slate-300 border-b border-white/[0.06]">What each planet means in your chart</div>
+              <div className="divide-y divide-white/[0.04]">
+                {data.planets.map(p => (
+                  <div key={p.name} className="px-4 py-3">
+                    <div className="text-sm font-semibold text-white">{PLANET_SYM[p.name]} {pn(p.name)} <span className="text-slate-500 font-normal">· {p.rashi.symbol} {rrN(p.rashi.name)} · {p.house}th house</span></div>
+                    <p className="text-xs text-slate-400 mt-1 leading-relaxed">{p.name} rules {PLANET_MEANING[p.name]}. Sitting in your {p.house}th house, it brings that energy to {HOUSE_AREA[p.house]}.</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
             {/* Kundli Analysis */}
             <div className="space-y-2">
               <div className="text-sm font-bold text-slate-300 pt-1">Kundli Analysis</div>
@@ -300,6 +466,20 @@ export default function kundli() {
                   <span className="text-slate-400">{lang==='hi'?'काल सर्प दोष':'Kaal Sarp Dosha'}</span>
                   <span className={data.kaal_sarp_dosha ? 'text-red-400 font-bold' : 'text-emerald-400 font-bold'}>{data.kaal_sarp_dosha ? (lang==='hi'?'विद्यमान':'Present') : (lang==='hi'?'अनुपस्थित':'Not Present')}</span>
                 </div>
+              </div>
+            </div>
+
+            {/* Future predictions */}
+            <div className="bg-white/[0.03] rounded-2xl p-4 space-y-3">
+              <div className="text-sm font-bold text-slate-300">Future Predictions (Vimshottari Dasha)</div>
+              <div className="text-[11px] text-slate-500">Based on the Maha Dasha planetary period you are in now and the one coming next.</div>
+              <div className="space-y-3">
+                {futurePredictions(data).map(f => (
+                  <div key={f.t} className="rounded-xl border border-indigo-500/15 bg-indigo-500/[0.04] p-3">
+                    <div className="text-xs font-bold text-indigo-300 mb-1">{f.t}</div>
+                    <p className="text-xs text-slate-400 leading-relaxed">{f.body}</p>
+                  </div>
+                ))}
               </div>
             </div>
 
@@ -334,8 +514,8 @@ export default function kundli() {
                 </tr></thead>
                 <tbody>
                   {data.dasha.map((dp, i) => (
-                    <tr key={i} className={i===0 ? 'border-b border-indigo-500/20 bg-indigo-500/[0.06]' : 'border-b border-white/[0.04]'}>
-                      <td className="py-2 px-4 text-white font-semibold">{PLANET_SYM[dp.planet]} {pn(dp.planet)}{i===0 ? (lang==='hi'?' (वर्तमान)':' (current)') : ''}</td>
+                    <tr key={i} className={i===currentDashaIdx(data) ? 'border-b border-indigo-500/20 bg-indigo-500/[0.06]' : 'border-b border-white/[0.04]'}>
+                      <td className="py-2 px-4 text-white font-semibold">{PLANET_SYM[dp.planet]} {pn(dp.planet)}{i===currentDashaIdx(data) ? (lang==='hi'?' (वर्तमान)':' (current)') : ''}</td>
                       <td className="py-2 px-4 text-slate-300">{dp.start}</td>
                       <td className="py-2 px-4 text-slate-300">{dp.end}</td>
                       <td className="py-2 px-4 text-slate-300">{dp.years}</td>
