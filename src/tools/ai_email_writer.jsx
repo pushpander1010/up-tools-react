@@ -60,13 +60,19 @@ Make it natural, ${tone}, and ready to send. Do not use placeholder brackets —
 
   return (
     <ToolLayout
-      title="AI Email Writer"
-      desc="Write professional emails instantly — cold outreach, follow-ups, job applications. AI-powered, free, no sign-up."
+      title="AI Email Writer – Write Professional Emails with AI (Free)"
+      desc="Free AI email writer: write professional emails in seconds — cold outreach, follow-ups, job applications, thank-you notes, and proposals. No sign-up, no credit card. Set tone, length, and language."
       icon="✉️" iconBg="rgba(99,102,241,0.08)"
       category="ai" slug="ai-email-writer"
       faq={[
-        { q: "What types of emails can it write?", a: "Cold outreach, follow-ups, job applications, thank-you notes, networking, and proposals." },
-        { q: "Is the output ready to send?", a: "Yes — the AI writes complete emails with subject lines, body, and sign-off. Always review before sending." },
+        { q: "How does the AI email writer work?", a: "You pick an email type (cold outreach, follow-up, job application, etc.), add your tone and length, and describe what the email is about. The AI drafts a complete email with a subject line, body, and sign-off you can review and send." },
+        { q: "What kinds of emails can I write with it?", a: "Cold outreach, follow-ups, job applications, thank-you notes, networking emails, and proposals. You can also describe any other situation and it will write a tailored email for it." },
+        { q: "Can I set the tone, length, or language?", a: "Yes. Choose from professional, friendly, formal, casual, or persuasive tones, and short, medium, or long length. The AI writes to match the tone and length you select." },
+        { q: "Is the AI email writer free?", a: "Yes, it is completely free with no sign-up and no credit card. There is no limit on how many emails you can generate." },
+        { q: "Does it write a subject line too?", a: "Yes. Every generated email includes a compelling subject line, the email body, and a professional sign-off — ready to review and send." },
+        { q: "How is this different from using a general AI chatbot?", a: "This tool is purpose-built for emails: it structures output as a subject line + body + sign-off, and you can pick a tone and length. A general chatbot needs you to prompt all that formatting yourself." },
+        { q: "Is my data private?", a: "You write the email context directly in your browser and it is sent to generate your email. Do not paste sensitive personal data such as passwords or account numbers into the tool." },
+        { q: "Should I use it for sensitive emails?", a: "Use your judgement. The AI is a helpful drafting tool, but always review and edit sensitive or high-stakes emails yourself before sending." },
       ]}
       howItWorks={[
         "Select the email type and fill in sender/recipient details.",
@@ -157,6 +163,54 @@ Make it natural, ${tone}, and ready to send. Do not use placeholder brackets —
               <p className="text-sm text-slate-600 font-medium">Describe the email and click Generate</p>
             </div>
           )}
+        </div>
+      </div>
+
+      {/* SEO content section */}
+      <div className="max-w-2xl mx-auto pt-2">
+        <div className="rounded-3xl border border-white/[0.06] bg-white/[0.02] p-6 sm:p-8 space-y-6">
+          <div>
+            <h2 className="text-xl font-bold text-white mb-2">Write Professional Emails in Seconds – Free, No Sign-Up</h2>
+            <p className="text-sm text-slate-400 leading-relaxed">
+              Writer's block with an important email? This free AI email writer drafts clear,
+              professional, ready-to-send emails in seconds. It handles cold outreach, follow-ups,
+              job applications, thank-you notes, networking, and proposals — with no sign-up, no
+              credit card, and no limits.
+            </p>
+          </div>
+          <div>
+            <h3 className="text-base font-semibold text-white mb-2">How it works</h3>
+            <ol className="list-decimal list-inside text-sm text-slate-400 space-y-1.5 leading-relaxed">
+              <li>Pick the email type: cold outreach, follow-up, job application, thank you, networking, or proposal.</li>
+              <li>Choose a tone (professional, friendly, formal, casual, or persuasive) and a length.</li>
+              <li>Describe what the email is about and your desired outcome.</li>
+              <li>Click <strong className="text-slate-200">Generate Email</strong> to get a complete email with a subject line, body, and sign-off.</li>
+            </ol>
+          </div>
+          <div>
+            <h3 className="text-base font-semibold text-white mb-2">What kinds of emails you can write</h3>
+            <ul className="list-disc list-inside text-sm text-slate-400 space-y-1.5 leading-relaxed">
+              <li>Cold outreach and sales emails that get replies</li>
+              <li>Follow-up emails that are polite but effective</li>
+              <li>Job application and cover-letter-style emails</li>
+              <li>Thank-you notes, networking messages, and proposals</li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-base font-semibold text-white mb-2">Why use our free AI email writer?</h3>
+            <p className="text-sm text-slate-400 leading-relaxed">
+              It is genuinely free with no sign-up and no daily limits. You control the tone, length,
+              and type, and every email comes with a subject line and sign-off so it is ready to
+              review and send. Perfect for anyone who writes emails regularly but wants to save time
+              and sound professional.
+            </p>
+          </div>
+          <p className="text-xs text-slate-600 pt-1">
+            More free AI writing tools:{' '}
+            <a className="text-indigo-400 hover:text-indigo-300" href="/ai-cover-letter/">AI Cover Letter</a>,{' '}
+            <a className="text-indigo-400 hover:text-indigo-300" href="/ai-writer/">AI Writer</a>,{' '}
+            and <a className="text-indigo-400 hover:text-indigo-300" href="/ai-caption-generator/">AI Caption Generator</a>.
+          </p>
         </div>
       </div>
     </ToolLayout>
