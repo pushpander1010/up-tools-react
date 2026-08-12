@@ -42,31 +42,30 @@ function analyze(d) {
   ]
 }
 
-// North Indian chart — authentic SQUARE layout (house 1 top triangle, houses 1-12 clockwise)
-// Square 0-400. Center O(200,200). T/R/B/L = edge centers (apexes of houses 1/4/7/10).
-// innerTL/innerTR/innerBR/innerBL = junctions where the 4 central triangles meet.
+// North Indian chart — authentic layout. Houses 1,4,7,10 are RHOMBI (diamonds)
+// at top/right/bottom/left meeting at the center; houses 2,3 / 5,6 / 8,9 / 11,12
+// are the triangles filling the 4 corners. House 1 is the top diamond. Clockwise 1→12.
+// Square boundary [20,380]x[20,380], center O(200,200).
 const O=[200,200]
-const T=[200,30], R=[370,200], B=[200,370], L=[30,200]
-const iTL=[140,130], iTR=[260,130], iBR=[260,270], iBL=[140,270]
-const TRc=[370,30], BRc=[370,370], BLc=[30,370], TLc=[30,30]
 const HOUSE_POLY = {
-  1:[T,iTR,iTL],
-  2:[TRc,T,iTR],
-  3:[TRc,iTR,R],
-  4:[R,iTR,iBR],
-  5:[BRc,R,iBR],
-  6:[BRc,iBR,B],
-  7:[B,iBR,iBL],
-  8:[BLc,B,iBL],
-  9:[BLc,iBL,L],
-  10:[L,iBL,iTL],
-  11:[TLc,L,iTL],
-  12:[TLc,iTL,T],
+  1:[[200,20],[280,110],[200,200],[120,110]],   // top rhombus
+  2:[[200,20],[280,110],[380,20]],              // top-right upper
+  3:[[280,110],[380,200],[380,20]],             // top-right lower
+  4:[[380,200],[280,110],[200,200],[280,290]],  // right rhombus
+  5:[[380,200],[280,290],[380,380]],            // bottom-right upper
+  6:[[280,290],[200,380],[380,380]],            // bottom-right lower
+  7:[[200,380],[280,290],[200,200],[120,290]],  // bottom rhombus
+  8:[[200,380],[120,290],[20,380]],             // bottom-left upper
+  9:[[120,290],[20,200],[20,380]],              // bottom-left lower
+  10:[[20,200],[120,110],[200,200],[120,290]],  // left rhombus
+  11:[[20,200],[120,110],[20,20]],              // top-left upper
+  12:[[120,110],[200,20],[20,20]],              // top-left lower
 }
 function centroid(pts){ const x=pts.reduce((a,p)=>a+p[0],0)/pts.length; const y=pts.reduce((a,p)=>a+p[1],0)/pts.length; return [x,y] }
 const HOUSE_CENTER = {}
 for (const k in HOUSE_POLY) HOUSE_CENTER[k] = centroid(HOUSE_POLY[k])
 function poly(pts){ return pts.map(p=>p.join(',')).join(' ') }
+const FRAME = { TLc:[20,20], TRc:[380,20], BRc:[380,380], BLc:[20,380] }
 
 function inputClass(){ return "w-full bg-black/20 border-2 border-white/[0.08] rounded-xl px-4 py-3 text-sm outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-600 [color-scheme:dark]" }
 
@@ -249,15 +248,11 @@ export default function kundli() {
                     </text>
                   </g>
                 ))}
-                {/* red chart frame + spokes */}
-                <line x1={TLc[0]} y1={TLc[1]} x2={TRc[0]} y2={TRc[1]} stroke="#b91c1c" strokeWidth="1.6" />
-                <line x1={TRc[0]} y1={TRc[1]} x2={BRc[0]} y2={BRc[1]} stroke="#b91c1c" strokeWidth="1.6" />
-                <line x1={BRc[0]} y1={BRc[1]} x2={BLc[0]} y2={BLc[1]} stroke="#b91c1c" strokeWidth="1.6" />
-                <line x1={BLc[0]} y1={BLc[1]} x2={TLc[0]} y2={TLc[1]} stroke="#b91c1c" strokeWidth="1.6" />
-                <line x1={T[0]} y1={T[1]} x2={O[0]} y2={O[1]} stroke="#b91c1c" strokeWidth="1" />
-                <line x1={R[0]} y1={R[1]} x2={O[0]} y2={O[1]} stroke="#b91c1c" strokeWidth="1" />
-                <line x1={B[0]} y1={B[1]} x2={O[0]} y2={O[1]} stroke="#b91c1c" strokeWidth="1" />
-                <line x1={L[0]} y1={L[1]} x2={O[0]} y2={O[1]} stroke="#b91c1c" strokeWidth="1" />
+                {/* red outer frame */}
+                <line x1={FRAME.TLc[0]} y1={FRAME.TLc[1]} x2={FRAME.TRc[0]} y2={FRAME.TRc[1]} stroke="#b91c1c" strokeWidth="2" />
+                <line x1={FRAME.TRc[0]} y1={FRAME.TRc[1]} x2={FRAME.BRc[0]} y2={FRAME.BRc[1]} stroke="#b91c1c" strokeWidth="2" />
+                <line x1={FRAME.BRc[0]} y1={FRAME.BRc[1]} x2={FRAME.BLc[0]} y2={FRAME.BLc[1]} stroke="#b91c1c" strokeWidth="2" />
+                <line x1={FRAME.BLc[0]} y1={FRAME.BLc[1]} x2={FRAME.TLc[0]} y2={FRAME.TLc[1]} stroke="#b91c1c" strokeWidth="2" />
               </svg>
             </div>
 
