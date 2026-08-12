@@ -208,28 +208,33 @@ export default function kundli() {
               </div>
             </div>
 
-            {/* North Indian chart */}
-            <div className="bg-white/[0.03] rounded-2xl p-4 flex justify-center">
-              <svg viewBox="0 0 400 400" className="w-full max-w-[400px] h-auto">
+            {/* North Indian chart — traditional Indian style (yellow-white + red) */}
+            <div className="rounded-2xl p-3" style={{ background:'#fdf6e3' }}>
+              <svg viewBox="0 0 400 400" className="w-full max-w-[420px] h-auto block">
+                <rect x="6" y="6" width="388" height="388" fill="#fffbe6" stroke="#b91c1c" strokeWidth="2" />
                 {/* house polygons */}
                 {houses.map(({house, rashi, planets}) => (
                   <g key={house}>
-                    <polygon points={poly(HOUSE_POLY[house])} fill={house%2? 'rgba(99,102,241,0.06)':'rgba(255,255,255,0.02)'} stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
-                    <text x={HOUSE_CENTER[house][0]} y={HOUSE_CENTER[house][1]-6} textAnchor="middle" fontSize="10" fill="#94a3b8">{house}. {RASHI[rashi]}</text>
-                    <text x={HOUSE_CENTER[house][0]} y={HOUSE_CENTER[house][1]+10} textAnchor="middle" fontSize="11" fill="#e2e8f0">
+                    <polygon points={poly(HOUSE_POLY[house])}
+                      fill={house%2 ? '#fff3c4' : '#fffdf5'}
+                      stroke="#b91c1c" strokeWidth="1.2" />
+                    <text x={HOUSE_CENTER[house][0]} y={HOUSE_CENTER[house][1]-7} textAnchor="middle" fontSize="9.5" fill="#b91c1c" fontWeight="600">
+                      {house}. {RASHI[rashi]}
+                    </text>
+                    <text x={HOUSE_CENTER[house][0]} y={HOUSE_CENTER[house][1]+9} textAnchor="middle" fontSize="12" fill="#1a1a1a" fontWeight="bold">
                       {planets.map(p=>PLANET_SYM[p]).join(' ')}
                     </text>
                   </g>
                 ))}
-                <line x1={TLc[0]} y1={TLc[1]} x2={TRc[0]} y2={TRc[1]} stroke="rgba(255,255,255,0.35)" strokeWidth="1.5" />
-                <line x1={TRc[0]} y1={TRc[1]} x2={BRc[0]} y2={BRc[1]} stroke="rgba(255,255,255,0.35)" strokeWidth="1.5" />
-                <line x1={BRc[0]} y1={BRc[1]} x2={BLc[0]} y2={BLc[1]} stroke="rgba(255,255,255,0.35)" strokeWidth="1.5" />
-                <line x1={BLc[0]} y1={BLc[1]} x2={TLc[0]} y2={TLc[1]} stroke="rgba(255,255,255,0.35)" strokeWidth="1.5" />
-                {/* spokes from edge centers to center */}
-                <line x1={T[0]} y1={T[1]} x2={O[0]} y2={O[1]} stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
-                <line x1={R[0]} y1={R[1]} x2={O[0]} y2={O[1]} stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
-                <line x1={B[0]} y1={B[1]} x2={O[0]} y2={O[1]} stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
-                <line x1={L[0]} y1={L[1]} x2={O[0]} y2={O[1]} stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
+                {/* red chart frame + spokes */}
+                <line x1={TLc[0]} y1={TLc[1]} x2={TRc[0]} y2={TRc[1]} stroke="#b91c1c" strokeWidth="1.6" />
+                <line x1={TRc[0]} y1={TRc[1]} x2={BRc[0]} y2={BRc[1]} stroke="#b91c1c" strokeWidth="1.6" />
+                <line x1={BRc[0]} y1={BRc[1]} x2={BLc[0]} y2={BLc[1]} stroke="#b91c1c" strokeWidth="1.6" />
+                <line x1={BLc[0]} y1={BLc[1]} x2={TLc[0]} y2={TLc[1]} stroke="#b91c1c" strokeWidth="1.6" />
+                <line x1={T[0]} y1={T[1]} x2={O[0]} y2={O[1]} stroke="#b91c1c" strokeWidth="1" />
+                <line x1={R[0]} y1={R[1]} x2={O[0]} y2={O[1]} stroke="#b91c1c" strokeWidth="1" />
+                <line x1={B[0]} y1={B[1]} x2={O[0]} y2={O[1]} stroke="#b91c1c" strokeWidth="1" />
+                <line x1={L[0]} y1={L[1]} x2={O[0]} y2={O[1]} stroke="#b91c1c" strokeWidth="1" />
               </svg>
             </div>
 
