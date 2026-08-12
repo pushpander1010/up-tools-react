@@ -137,18 +137,12 @@ export default function hncker_ai_agent_escape() {
         <meta property="og:image" content="https://www.uptools.in/assets/tools/ai_agent_escape/ai_agent_escape_scan.png" />
       </Helmet>
 
-      <Section id="video" icon="🎬" title="Video Tutorial" subtitle="Watch the HNCKER walkthrough">
+      <Section id="video" icon="🎬" title="Video Tutorial" subtitle="No dedicated video yet">
         <div className="max-w-3xl mx-auto">
-          <div className="block rounded-xl overflow-hidden border border-white/10"
-            style={{ background: '#000' }}>
-            <div className="aspect-video w-full overflow-hidden relative">
-              <img
-                src="https://www.uptools.in/assets/tools/ai_agent_escape/ai_agent_escape_scan.png"
-                alt="AI agent sandbox escape — animated terminal walkthrough"
-                loading="lazy"
-                className="w-full h-full object-cover"
-              />
-            </div>
+          <div className="rounded-xl border border-white/10 p-6 text-center" style={{ background: 'rgba(0,0,0,0.3)' }}>
+            <div className="text-2xl mb-2">🎬</div>
+            <p className="text-sm font-semibold text-white m-0">A full video walkthrough is on the way.</p>
+            <p className="text-xs text-slate-300 mt-1 mb-0">Meanwhile, follow the written steps below — every command is spelled out.</p>
           </div>
         </div>
       </Section>
