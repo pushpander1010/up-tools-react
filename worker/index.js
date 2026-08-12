@@ -1151,6 +1151,9 @@ export default {
       '/password-generator-pro/': '/password-generator/',
       '/dice-roller': '/random-number-generator',
       '/dice-roller/': '/random-number-generator/',
+      // rebranded url-shortener -> safe-share-link 2026-08
+      '/url-shortener': '/safe-share-link',
+      '/url-shortener/': '/safe-share-link/',
     };
     if (LEGACY_REDIRECTS[url.pathname]) {
       return new Response(null, {

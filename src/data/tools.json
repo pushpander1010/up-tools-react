@@ -4884,11 +4884,11 @@
       "new": true
     },
     {
-      "slug": "url-shortener",
-      "title": "URL Shortener",
-      "icon": "🔗",
-      "desc": "Shorten links & generate QR codes free.",
-      "href": "/url-shortener/",
+      "slug": "safe-share-link",
+      "title": "Safe Share Link",
+      "icon": "🔒",
+      "desc": "Make a safe share link from any URL — free, no signup, no tracking.",
+      "href": "/safe-share-link/",
       "tags": [
         "tools",
         "links",

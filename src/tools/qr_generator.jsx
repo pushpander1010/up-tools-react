@@ -99,7 +99,7 @@ export default function qr_code_generator_pro() {
       faq={[
         { q: "What can I encode?", a: "Text, URLs, WiFi credentials, email addresses, phone numbers, SMS, and vCards." },
         { q: "How do I scan a QR code?", a: "Open your phone camera and point it at the QR code. Most phones detect QR codes automatically." },
-        { q: "How do I make a QR code for a long link?", a: "Encode any URL directly here, or use our free URL shortener first to shrink a long link into a clean short one, then encode that for a tidier QR code." },
+        { q: "How do I make a QR code for a long link?", a: "Encode any URL directly here, or use our free Safe Share Link tool first to turn a long link into a clean share link, then encode that for a tidier QR code." },
       ]}
       howItWorks={[
         "Choose the QR code type (Text, URL, WiFi, etc.).",
