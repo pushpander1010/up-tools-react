@@ -22,18 +22,18 @@ export default function url_shortener() {
     if (!url.trim()) return
     setLoading(true); setError(''); setShortUrl('')
     try {
-      const res = await fetch('https://cleanuri.com/api/v1/shorten', {
+      const res = await fetch('https://backend.uptools.in/api/shorten', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: 'url=' + encodeURIComponent(url.trim())
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url: url.trim() })
       })
       const data = await res.json()
-      if (data.result_url) {
-        setShortUrl(data.result_url)
-        setHistory(prev => [{ orig: url.trim(), short: data.result_url, time: Date.now() }, ...prev].slice(0, 20))
+      if (data.short) {
+        setShortUrl(data.short)
+        setHistory(prev => [{ orig: url.trim(), short: data.short, time: Date.now() }, ...prev].slice(0, 20))
         jumpTo()
       } else {
-        setError('Error shortening URL')
+        setError(data.detail || 'Error shortening URL')
       }
     } catch {
       setError('API error — try again')
@@ -66,8 +66,9 @@ export default function url_shortener() {
       icon="🔗" iconBg="rgba(6,182,212,0.08)"
       category="dev" slug="url-shortener"
       faq={[
-        { q: 'How does URL shortening work?', a: 'We use the cleanuri.com API to create a short redirect URL for your long link.' },
-        { q: 'Is my history saved?', a: 'Yes, locally in your browser. Nothing is sent to any server.' },
+        { q: 'How does URL shortening work?', a: 'We run our own free URL shortener on the UpTools backend. Paste a link, we store it and give you a short backend.uptools.in link that redirects to your original.' },
+        { q: 'Is my history saved?', a: 'Yes, locally in your browser. Nothing about your history is sent to any server.' },
+        { q: 'Are my short links permanent?', a: 'Short links stay live on our backend unless the database is rebuilt. No expiry or tracking is applied.' },
       ]}
       howItWorks={[
         'Paste a long URL into the input field.',
