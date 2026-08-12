@@ -92,17 +92,17 @@ export default function qr_code_generator() {
 
   return (
     <ToolLayout
-      title="WIFI QR Code Generator – Free WiFi QR Code Maker"
-      desc="WIFI QR code generator: make a free WiFi QR code in seconds. Enter your network name and password, generate, and scan to connect instantly — no signup, no watermark."
+      title="QR Code Generator – Make Free QR Codes Online"
+      desc="Free QR code generator: make QR codes for URLs, WiFi, text, email, phone, SMS, and vCard. Download as PNG or SVG — no signup, no watermark."
       icon="📱" iconBg="rgba(99,102,241,0.08)"
       category="tools" slug="qr-generator"
       faq={[
-        { q: "What is a WiFi QR code?", a: "A WiFi QR code is a scannable code that holds your network name (SSID), password, and security type. When someone scans it with their phone camera, they can join your WiFi instantly without typing the password." },
-        { q: "How do I make a WiFi QR code?", a: "Choose the WiFi type, enter your network name (SSID) and password, then click Generate. You get a QR code you can download as PNG or SVG and print or share." },
-        { q: "Does scanning a WiFi QR code connect me automatically?", a: "For safety, scanning shows the connection details (network name, password, encryption) on your phone, and you tap to connect — it does not join the network without your permission." },
+        { q: "What can I make a QR code for?", a: "URLs, WiFi credentials, plain text, email addresses, phone numbers, SMS, and vCards. Pick the type, enter the details, and generate." },
+        { q: "How do I make a WiFi QR code?", a: "Choose the WiFi type, enter your network name (SSID) and password, then click Generate. Your phone can scan the code to join the WiFi instantly without typing the password." },
         { q: "Can I make a QR code for a URL or link?", a: "Yes. Choose the URL type, paste your link, and generate. Anyone can scan it to open the link — perfect for business cards, posters, menus, or sharing a link in print." },
         { q: "Is the QR code generator free?", a: "Yes, it is completely free with no signup and no watermarks. Generate as many QR codes as you need and download them as PNG or SVG." },
-        { q: "What can I encode?", a: "WiFi credentials, URLs, text, email addresses, phone numbers, SMS, and vCards." },
+        { q: "How do I scan a QR code?", a: "Open your phone camera and point it at the QR code. Most phones detect QR codes automatically." },
+        { q: "What file formats can I download?", a: "You can download your QR code as a high-quality PNG or SVG, so it prints cleanly at any size." },
       ]}
       howItWorks={[
         "Choose the QR code type (Text, URL, WiFi, etc.).",
@@ -220,39 +220,39 @@ export default function qr_code_generator() {
       <div className="max-w-2xl mx-auto pt-2">
         <div className="rounded-3xl border border-white/[0.06] bg-white/[0.02] p-6 sm:p-8 space-y-6">
           <div>
-            <h2 className="text-xl font-bold text-white mb-2">Free WIFI QR Code Generator – No Signup, No Watermark</h2>
+            <h2 className="text-xl font-bold text-white mb-2">Free QR Code Generator – No Signup, No Watermark</h2>
             <p className="text-sm text-slate-400 leading-relaxed">
-              Tired of sharing your WiFi password with every guest? Make a WiFi QR code in seconds
-              and let anyone join your network by scanning with their phone camera — no typing the
-              password, no mistakes. This free WiFi QR code maker is completely free, with no signup
-              and no watermark, and it works on iPhones and Android phones.
+              Make a QR code in seconds — completely free, with no signup and no watermark. This QR
+              code generator supports URLs, WiFi, text, email, phone, SMS, and vCard, so you can
+              create exactly the QR code you need and download it as a clean, high-quality PNG or
+              SVG. It works right in your browser on any device.
             </p>
           </div>
           <div>
-            <h3 className="text-base font-semibold text-white mb-2">How to create a WiFi QR code</h3>
+            <h3 className="text-base font-semibold text-white mb-2">How to make a QR code</h3>
             <ol className="list-decimal list-inside text-sm text-slate-400 space-y-1.5 leading-relaxed">
-              <li>Select the <strong className="text-slate-200">WiFi</strong> type from the dropdown above.</li>
-              <li>Enter your network name (SSID) and your WiFi password.</li>
+              <li>Choose the QR code type: URL, WiFi, text, email, phone, SMS, or vCard.</li>
+              <li>Enter the details — a link, WiFi password, text, or contact info.</li>
               <li>Click <strong className="text-slate-200">Generate QR Code</strong>.</li>
               <li>Download your QR code as PNG or SVG, then print it or share it.</li>
             </ol>
           </div>
           <div>
-            <h3 className="text-base font-semibold text-white mb-2">Examples of use of WiFi QR codes</h3>
+            <h3 className="text-base font-semibold text-white mb-2">Examples of use of QR codes</h3>
             <ul className="list-disc list-inside text-sm text-slate-400 space-y-1.5 leading-relaxed">
-              <li>Home: put a printed QR code near your router so guests join in seconds.</li>
-              <li>Restaurants &amp; cafes: display it on menus or table tents for customers.</li>
-              <li>Hotels &amp; Airbnb: place codes in guest rooms or common areas.</li>
-              <li>Offices &amp; conference centers: let attendees connect without asking for the password.</li>
+              <li>URL QR codes: share a website or social link on business cards, posters, menus, or product packaging.</li>
+              <li>WiFi QR codes: let guests join your network by scanning — no password typing.</li>
+              <li>vCard QR codes: share contact details by scanning.</li>
+              <li>Email &amp; phone QR codes: start an email or call with one scan.</li>
             </ul>
           </div>
           <div>
-            <h3 className="text-base font-semibold text-white mb-2">Why use our free WiFi QR code generator?</h3>
+            <h3 className="text-base font-semibold text-white mb-2">Why use our free QR code generator?</h3>
             <p className="text-sm text-slate-400 leading-relaxed">
               It is genuinely free — no signup, no account, no watermark, and no limit on how many
-              codes you make. Your WiFi credentials are never stored anywhere; everything is
-              generated right in your browser. And unlike tools that lock features behind a paywall,
-              you can download a clean, high-quality PNG or SVG and print it at any size.
+              codes you make. Everything is generated right in your browser, so your data never
+              leaves your device. You can download a clean, high-quality PNG or SVG and print it at
+              any size without any feature locked behind a paywall.
             </p>
           </div>
           <p className="text-xs text-slate-600 pt-1">
