@@ -101,13 +101,17 @@ export default function pin_code_finder() {
 
   return (
     <ToolLayout
-      title="PIN Code Finder"
-      desc="Find Indian PIN code details — district, state, post offices. Bulk lookup and CSV export supported."
+      title="PIN Code Finder – Find PIN Code Details, Post Office & District"
+      desc="Free PIN code finder: enter a 6-digit Indian PIN to see the district, state, taluk, and all post offices. Bulk lookup for multiple PIN codes, CSV/JSON export — no signup."
       icon="📮" iconBg="rgba(99,102,241,0.08)"
       category="india" slug="pin-code-finder"
       faq={[
+        { q: 'What is a PIN code?', a: 'A PIN code (Postal Index Number) is the 6-digit postal code used by India Post to sort and deliver mail. The first digit indicates the postal region, and the first two digits indicate the state or circle.' },
+        { q: 'How do I find PIN code details?', a: 'Enter any 6-digit Indian PIN code above and press Search. You will instantly see the district, state, taluk/tehsil, division, and every post office served by that PIN.' },
+        { q: 'How many post offices can a PIN code have?', a: 'A single PIN code can serve anywhere from one to several post offices. Our finder lists all of them for the PIN you enter, straight from India Post data.' },
+        { q: 'Can I look up multiple PIN codes at once?', a: 'Yes. Use the Bulk Lookup tab to enter several PIN codes (one per line) and get district, state, and post-office count for all of them in one table.' },
+        { q: 'Is the PIN code finder free?', a: 'Yes, it is completely free with no signup and no limits. You can also export your results as JSON or CSV.' },
         { q: 'How many PIN codes are in the database?', a: 'All Indian PIN codes (19,000+) from India Post.' },
-        { q: 'Can I look up multiple PIN codes?', a: 'Yes, use the Bulk Lookup tab to enter multiple PIN codes and get results as a table.' },
       ]}
       howItWorks={[
         'Enter a 6-digit Indian PIN code.',
@@ -251,6 +255,54 @@ export default function pin_code_finder() {
             <p className="text-sm text-slate-600 font-medium">Enter a PIN code to look up details</p>
           </div>
         )}
+      </div>
+
+      {/* SEO content section */}
+      <div className="max-w-2xl mx-auto pt-2">
+        <div className="rounded-3xl border border-white/[0.06] bg-white/[0.02] p-6 sm:p-8 space-y-6">
+          <div>
+            <h2 className="text-xl font-bold text-white mb-2">Free PIN Code Finder – Check PIN Code Details Instantly</h2>
+            <p className="text-sm text-slate-400 leading-relaxed">
+              Need to check a PIN code, verify a postal address, or find every post office in a PIN
+              area? Enter any 6-digit Indian PIN code and this free PIN code finder returns the
+              district, state, taluk, division, and all post offices in seconds — straight from
+              India Post data. No signup, no limits, and free forever.
+            </p>
+          </div>
+          <div>
+            <h3 className="text-base font-semibold text-white mb-2">How to find PIN code details</h3>
+            <ol className="list-decimal list-inside text-sm text-slate-400 space-y-1.5 leading-relaxed">
+              <li>Type a 6-digit PIN code (for example, <strong className="text-slate-200">110001</strong> for New Delhi) into the box above.</li>
+              <li>Click <strong className="text-slate-200">Search</strong>.</li>
+              <li>View the district, state, taluk, division, and the full list of post offices for that PIN.</li>
+              <li>Copy the details or export them as JSON for your records.</li>
+            </ol>
+          </div>
+          <div>
+            <h3 className="text-base font-semibold text-white mb-2">What you get for every PIN code</h3>
+            <ul className="list-disc list-inside text-sm text-slate-400 space-y-1.5 leading-relaxed">
+              <li>District and State</li>
+              <li>Taluk / Tehsil and Postal Division</li>
+              <li>Every post office served by the PIN, with branch type and delivery status</li>
+              <li>Bulk lookup for many PIN codes at once, plus JSON / CSV export</li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-base font-semibold text-white mb-2">Why use our PIN code finder?</h3>
+            <p className="text-sm text-slate-400 leading-relaxed">
+              It is completely free with no signup and no daily limits, and it pulls live data from
+              India Post, so you always see accurate, up-to-date post office and address details.
+              Everything runs in your browser, and your recent searches are saved locally so you can
+              quickly re-check a PIN code you looked up before.
+            </p>
+          </div>
+          <p className="text-xs text-slate-600 pt-1">
+            Pair with other India tools:{' '}
+            <a className="text-indigo-400 hover:text-indigo-300" href="/ifsc-finder/">IFSC Code Finder</a>,{' '}
+            <a className="text-indigo-400 hover:text-indigo-300" href="/gst-number-search/">GST Number Search</a>,{' '}
+            and <a className="text-indigo-400 hover:text-indigo-300" href="/upi-validator/">UPI ID Validator</a>.
+          </p>
+        </div>
       </div>
     </ToolLayout>
   )

@@ -152,6 +152,10 @@ export default function whatsapp_chat() {
                 alt="WhatsApp link QR code" width={160} height={160}
                 className="rounded-xl border border-white/10" />
             </div>
+            <p className="text-center text-xs text-slate-500 mt-3">
+              Want a larger or styled QR code? Use the{' '}
+              <a className="text-indigo-400 hover:text-indigo-300" href="/qr-generator/">free QR Code Generator</a>.
+            </p>
           </div>
         )}
       </div>
