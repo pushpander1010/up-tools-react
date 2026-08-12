@@ -76,8 +76,10 @@ function Loading() {
 
 function SidebarLayout({ children }) {
   const location = useLocation()
-  // Games have their own aside ads inside the component
-  const isGame = location.pathname.startsWith('/games/')
+  // Only individual games (/games/<name>[/]) are full-page (they carry their own aside ads).
+  // The /games landing is a catalog and must keep the outer sidebar + aside ads like other pages.
+  // (Fix: startsWith('/games/') wrongly stripped the sidebar for /games/ with a trailing slash.)
+  const isGame = /^\/games\/[^/]+\/?$/.test(location.pathname)
   if (isGame) return children
 
   return (
