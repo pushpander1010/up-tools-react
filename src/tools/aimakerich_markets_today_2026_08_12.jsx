@@ -76,21 +76,21 @@ function InfoChip({ tag, tone, title, impact, value }) {
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'NewsArticle',
-  headline: 'Markets Today — 13 August 2026: Global Cues, News, Levels & Stock Picks',
-  datePublished: '2026-08-13',
-  description: 'Daily market bulletin for 13 August 2026: global markets, top news with sentiment, Nifty/Bank Nifty/Sensex support-resistance levels, and stocks to watch with buy-target-stop.',
-  about: 'Indian stock market daily update 13 August 2026',
+  headline: 'Markets Today — 12 August 2026: Global Cues, News, Levels & Stock Picks',
+  datePublished: '2026-08-12',
+  description: 'Daily market bulletin for 12 August 2026: global markets, top news with sentiment, Nifty/Bank Nifty/Sensex support-resistance levels, and stocks to watch with buy-target-stop.',
+  about: 'Indian stock market daily update 12 August 2026',
 }
 
 export default function aimakerich_markets_today() {
   return (
     <ToolLayout
-      title="Markets Today — 13 August 2026"
-      desc="Daily market bulletin: global cues, top news with market sentiment, Nifty/Bank Nifty/Sensex key levels, and stocks to watch with buy price, target and stop loss for 13 August 2026."
+      title="Markets Today — 12 August 2026"
+      desc="Daily market bulletin: global cues, top news with market sentiment, Nifty/Bank Nifty/Sensex key levels, and stocks to watch with buy price, target and stop loss for 12 August 2026."
       icon="📰"
       iconBg="linear-gradient(135deg, rgba(0,200,180,0.18), rgba(251,191,36,0.08))"
       category="finance"
-      slug="aimakerich/markets-today"
+      slug="aimakerich/markets-today-2026-08-12"
       schema={schema}
     >
       <Helmet>
@@ -101,7 +101,7 @@ export default function aimakerich_markets_today() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
             <div className="text-xs uppercase tracking-wider text-emerald-300 font-bold mb-1">Daily Market Bulletin</div>
-            <h1 className="text-2xl sm:text-3xl font-black text-white m-0">Markets Today · 13 August 2026</h1>
+            <h1 className="text-2xl sm:text-3xl font-black text-white m-0">Markets Today · 12 August 2026</h1>
           </div>
           <Link to="/aimakerich/"
             className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-bold no-underline bg-white/5 border border-white/10 text-slate-200 hover:text-white hover:border-amber-400/40 transition-all">
@@ -112,7 +112,7 @@ export default function aimakerich_markets_today() {
 
       <Section id="video" icon="🎬" title="Video Bulletin" subtitle="Watch the Markets Today bulletin">
         <div className="max-w-3xl mx-auto">
-          <a href="https://www.youtube.com/watch?v=cUiP-4xmyp4" target="_blank" rel="noopener noreferrer"
+          <a href="https://www.youtube.com/@aimakerich" target="_blank" rel="noopener noreferrer"
             className="flex items-center justify-between gap-3 rounded-xl p-4 border border-white/10 no-underline group"
             style={{ background: 'rgba(0,0,0,0.3)' }}>
             <div className="flex items-center gap-3">
@@ -120,8 +120,8 @@ export default function aimakerich_markets_today() {
                 <svg viewBox="0 0 24 24" className="w-5 h-5 ml-0.5 fill-white"><path d="M8 5v14l11-7z" /></svg>
               </div>
               <div>
-                <p className="text-sm font-semibold text-white m-0">Markets Today — 13 August 2026 daily bulletin</p>
-                <p className="text-xs text-slate-400 mt-0.5">Watch on YouTube →</p>
+                <p className="text-sm font-semibold text-white m-0">Markets Today — 12 August 2026 daily bulletin</p>
+                <p className="text-xs text-slate-400 mt-0.5">Watch the full channel →</p>
               </div>
             </div>
             <span className="text-indigo-300 text-xs font-semibold whitespace-nowrap">YouTube ↗</span>
@@ -131,40 +131,40 @@ export default function aimakerich_markets_today() {
 
       <WarningBox />
 
-      <Section id="overview" icon="🌏" title="Market Overview" subtitle="Banks firm while crude caps the upside">
+      <Section id="overview" icon="🌏" title="Market Overview" subtitle="Crude and Hormuz keep a lid on the upside">
         <p>
-          Indian indices drifted <b>marginally lower</b> on 12 August as elevated crude — Brent past <b>$88</b> on Strait
-          of Hormuz worries — kept a lid on risk appetite. Nifty closed near <b>24,436</b>, Sensex at <b>77,966</b>, but
-          <b> Bank Nifty stayed firm</b> near <b>57,885</b> with PSU banks leading. India VIX stayed low around <b>12.2</b>,
-          a calm tape. Sector rotation was the theme: banks and metals held up while IT and FMCG slipped.
+          Indian indices closed <b>lower</b> on 11 August as a <b>crude spike past $85</b> on Strait of Hormuz worries —
+          and a softer rupee — outweighed another day of foreign buying. Nifty closed near <b>24,472</b>, Sensex at
+          <b> 78,154</b>, and Bank Nifty near <b>57,446</b>. Institutions stayed net buyers, but elevated crude and Middle
+          East uncertainty are capping upside while near-term support holds.
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-          <LevelCard index="Nifty 50" spot="24,436" support="24,310–184" resistance="24,500–599" keyLevel="24,500" tone="down" />
-          <LevelCard index="Bank Nifty" spot="57,885" support="57,465–043" resistance="58,097–307" keyLevel="58,000" tone="up" />
-          <LevelCard index="Sensex" spot="77,966" support="77,800–965" resistance="78,300–500" keyLevel="78,000" tone="down" />
+          <LevelCard index="Nifty 50" spot="24,472" support="24,408–345" resistance="24,556–640" keyLevel="24,650" tone="down" />
+          <LevelCard index="Bank Nifty" spot="57,446" support="57,200–56,955" resistance="57,650–58,099" keyLevel="58,000" tone="down" />
+          <LevelCard index="Sensex" spot="78,154" support="77,965–776" resistance="78,427–699" keyLevel="78,500" tone="down" />
         </div>
       </Section>
 
-      <Section id="global" icon="🌍" title="Global Markets" subtitle="Mixed Asia, crude the key overhang">
+      <Section id="global" icon="🌍" title="Global Markets" subtitle="Asia mixed, crude the key overhang">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <InfoChip tag="Wall Street" tone="neut" title="US pulled back on weak chips" impact="Chipmakers slipped on Hormuz uncertainty" value="−0.2%" />
-          <InfoChip tag="Nikkei 225" tone="bull" title="Asia firm" impact="Tokyo held gains amid mixed regional cues" value="+0.6%" />
-          <InfoChip tag="Hang Seng" tone="bear" title="Hong Kong soft" impact="Dropped ~1.2% on weak cues" value="−1.2%" />
-          <InfoChip tag="Crude Brent" tone="bear" title="Elevated on Hormuz" impact="Brent near $88, highest since late July" value="$88" />
+          <InfoChip tag="Wall Street" tone="neut" title="US pulled back from highs" impact="Slipped off record levels as crude surged" value="−0.2%" />
+          <InfoChip tag="Nikkei 225" tone="bear" title="Japan down on crude" impact="Fell ~2% as oil and yen pressures hit" value="−2.0%" />
+          <InfoChip tag="Hang Seng" tone="bear" title="Hong Kong soft" impact="Dropped ~0.6% on mixed cues" value="−0.6%" />
+          <InfoChip tag="Gift Nifty" tone="neut" title="Flat early cue for Nifty" impact="Trading flat to slightly lower ahead of open" value="24,4xx" />
         </div>
       </Section>
 
       <Section id="news" icon="📰" title="News Bulletin" subtitle="Top stories with market sentiment">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <InfoChip tag="Crude" tone="bear" title="Crude +4% past $88" impact="Strait of Hormuz worry caps risk appetite" value="+4%" />
-          <InfoChip tag="Grasim" tone="bull" title="Q1 net profit +51%" impact="Cement leader beat estimates, stock-specific strength" value="+51%" />
-          <InfoChip tag="India VIX" tone="bull" title="Low volatility ~12.2" impact="Calm tape, range-bound market" value="12.2" />
-          <InfoChip tag="Bank Nifty" tone="bull" title="Firm, PSU banks lead" impact="Banking resilient near the 58,000 mark" value="+0.8%" />
-          <InfoChip tag="Nifty IT" tone="bear" title="Tech under pressure" impact="Sector slipped ~1.5% as IT lagged" value="−1.5%" />
-          <InfoChip tag="FMCG" tone="bear" title="Consumer soft" impact="FMCG fell ~0.7% on weak demand cues" value="−0.7%" />
+          <InfoChip tag="Crude" tone="bear" title="Crude elevated past $85" impact="Strait of Hormuz / Middle East worries cap risk appetite" value="+4%" />
+          <InfoChip tag="RBI" tone="neut" title="RBI: rates likely to stay" impact="Governor Malhotra flags checked inflation, steady stance" value="5.25%" />
+          <InfoChip tag="FIIs" tone="bull" title="Foreign institutions net buyers" impact="3rd straight day · bought net ₹259 Cr on Aug 11" value="+₹259Cr" />
+          <InfoChip tag="DIIs" tone="bull" title="Domestic institutions turn buyers" impact="Bought net ₹25 Cr after selling a day earlier" value="+₹25Cr" />
+          <InfoChip tag="Gold" tone="neut" title="Gold edges lower" impact="Awaiting key US inflation data later this week" value="₹152k" />
+          <InfoChip tag="Rupee" tone="bear" title="Rupee under pressure" impact="Near 95.4 vs USD on firm crude" value="95.40" />
         </div>
         <div className="mt-4">
-          <InfoChip tag="Movers" tone="bull" title="Sector rotation in focus" impact="Hindalco among top gainers · metals firm · watch stock-specific moves until crude cools" value="ROTATION" />
+          <InfoChip tag="Earnings" tone="neut" title="Q1 earnings + index moves in focus" impact="Wipro slips on a looming Nifty 50 exit · stock-specific moves to dominate until crude cools" value="Q1" />
         </div>
       </Section>
 
@@ -173,11 +173,11 @@ export default function aimakerich_markets_today() {
           <div className="text-xs text-amber-200/90 leading-relaxed">⚠️ These are <b>personal picks, not stock recommendations</b>. Do your own research before investing. Views are for education only — consult a SEBI-registered advisor.</div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <StockPick name="Indian Overseas Bank" buy="895" target="905" stop="889" ltp="895" reason="Bullish F&O setup, buy 895 · target 905 · stop 889. Banking strength supportive." />
-          <StockPick name="Aurobindo Pharma" buy="1666" target="1695" stop="1637" ltp="1666" reason="Positive bias in pharma, buy 1666 · target 1695 · stop 1637." />
-          <StockPick name="Trent 3000 PE" buy="69" target="92" stop="57" ltp="69" reason="Options pick — buy Trent 3000 Put at 69, target 92, stop 57 (bearish view)." />
-          <StockPick name="Hindalco" buy="1078" target="1170" stop="1040" ltp="1078" reason="Top gainer, metals firm. Buy above 1,078 breakout zone with momentum." />
-          <StockPick name="LIC Housing Finance" buy="569" target="615" stop="550" ltp="569" reason="Open=low bullish breakout at 568.68. Buy above 569, ride the breakout." />
+          <StockPick name="Suven Life Sciences" buy="333" target="365" stop="315" ltp="333" reason="Bullish rounding-bottom breakout holding 20/50-day EMA support; RSI turning up, HH-HL intact. Target 365." />
+          <StockPick name="Poly Medicure" buy="1772" target="1920" stop="1655" ltp="1772" reason="Breakout from consolidation above 200-day EMA on a volume spike; RSI 62.8, above all key EMAs. Target 1920." />
+          <StockPick name="Raghav Productivity" buy="1314" target="1400" stop="1250" ltp="1314" reason="Rebound off prior breakout zone with a volume surge; RSI up from midpoint. Target 1400." />
+          <StockPick name="Steel Strips Wheels" buy="322" target="350" stop="305" ltp="322" reason="Uptrend resuming above 200-day EMA after shallow pullback; shallow retrace + sharp rebound. Target 350." />
+          <StockPick name="Brigade Enterprises" buy="608" target="650" stop="588" ltp="608" reason="Breakout above 200-day EMA with volume expansion; sustaining above key averages. Target 650." />
         </div>
       </Section>
 
@@ -201,7 +201,7 @@ export default function aimakerich_markets_today() {
       <Section id="disclaimer" icon="📜" title="Disclaimer" subtitle="Read before acting">
         <p>
           This page is <b>educational and informational only</b>, and is <b>not investment, financial or trading advice</b>.
-          Market data and levels reflect the morning of 13 August 2026 and can change rapidly. The "stocks to watch" are
+          Market data and levels reflect the morning of 12 August 2026 and can change rapidly. The "stocks to watch" are
           <b> personal picks and not recommendations</b>. Trading and investing involve substantial risk of loss — past
           performance does not predict future results. Always do your own research and consult a SEBI-registered advisor
           before investing. You are solely responsible for your decisions.
@@ -215,7 +215,7 @@ function WarningBox() {
   return (
     <div className="rounded-xl p-4 mb-6 border border-amber-500/30" style={{ background: 'rgba(251,191,36,0.06)' }}>
       <div className="flex items-center gap-2 text-amber-300 font-bold text-sm mb-1.5">⚠️ Not Financial Advice</div>
-      <div className="text-xs text-amber-200/80 leading-relaxed">This is a daily market bulletin for education. The stock picks are <b>personal views, not recommendations</b>. Data is as of the morning of 13 August 2026 and may change intraday. Do your own research and consult a SEBI-registered advisor before investing.</div>
+      <div className="text-xs text-amber-200/80 leading-relaxed">This is a daily market bulletin for education. The stock picks are <b>personal views, not recommendations</b>. Data is as of the morning of 12 August 2026 and may change intraday. Do your own research and consult a SEBI-registered advisor before investing.</div>
     </div>
   )
 }
