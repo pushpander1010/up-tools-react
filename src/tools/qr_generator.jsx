@@ -29,7 +29,7 @@ function getQrUrl(text, size) {
   return `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encodeURIComponent(text)}&margin=10`
 }
 
-export default function qr_code_generator_pro() {
+export default function qr_code_generator() {
   const { ref: resultRef, jumpTo } = useJumpToResult()
   const [qrType, setQrType] = useState('text')
   const [size, setSize] = useState(300)
@@ -92,12 +92,15 @@ export default function qr_code_generator_pro() {
 
   return (
     <ToolLayout
-      title="QR Code Generator"
-      desc="Generate QR codes for text, URLs, WiFi, email, phone, and vCard. Download as PNG or SVG."
+      title="QR Code Generator – Make WiFi & URL QR Codes Free"
+      desc="Free QR code generator for WiFi, URLs, text, email, phone, and vCard. Make a wifi QR code or a QR code for any link, then download as PNG or SVG — no signup."
       icon="📱" iconBg="rgba(99,102,241,0.08)"
       category="tools" slug="qr-generator"
       faq={[
+        { q: "How do I make a WiFi QR code?", a: "Choose the WiFi type, enter your network name (SSID) and password, then click Generate. Your phone can scan the QR code to join the WiFi instantly without typing the password." },
+        { q: "Can I make a QR code for a URL or link?", a: "Yes. Choose the URL type, paste your link, and generate. You get a QR code anyone can scan to open the link — perfect for business cards, posters, menus, or sharing a link in print." },
         { q: "What can I encode?", a: "Text, URLs, WiFi credentials, email addresses, phone numbers, SMS, and vCards." },
+        { q: "Is the QR code generator free?", a: "Yes, it is completely free with no signup and no watermarks. Generate as many QR codes as you need and download them as PNG or SVG." },
         { q: "How do I scan a QR code?", a: "Open your phone camera and point it at the QR code. Most phones detect QR codes automatically." },
         { q: "How do I make a QR code for a long link?", a: "Encode any URL directly here, or use our free Safe Share Link tool first to turn a long link into a clean share link, then encode that for a tidier QR code." },
       ]}
@@ -110,7 +113,7 @@ export default function qr_code_generator_pro() {
       schema={{
         "@context": "https://schema.org", "@type": "SoftwareApplication",
         "name": "QR Code Generator", "applicationCategory": "UtilitiesApplication",
-        "url": "https://www.uptools.in/qr-code-generator-pro/",
+        "url": "https://www.uptools.in/qr-generator/",
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
@@ -211,6 +214,44 @@ export default function qr_code_generator_pro() {
             </div>
           </div>
         )}
+      </div>
+
+      {/* SEO content section */}
+      <div className="max-w-2xl mx-auto pt-2">
+        <div className="rounded-3xl border border-white/[0.06] bg-white/[0.02] p-6 sm:p-8 space-y-5">
+          <div>
+            <h2 className="text-xl font-bold text-white mb-2">Free QR Code Generator for WiFi, URLs &amp; Links</h2>
+            <p className="text-sm text-slate-400 leading-relaxed">
+              Make a QR code in seconds — free, with no signup and no watermark. This QR code
+              generator supports WiFi, URLs, plain text, email, phone, SMS, and vCard, so you can
+              create exactly the QR code you need and download it as a high-quality PNG or SVG.
+            </p>
+          </div>
+          <div>
+            <h3 className="text-base font-semibold text-white mb-2">How to make a WiFi QR code</h3>
+            <p className="text-sm text-slate-400 leading-relaxed">
+              Select the WiFi type, enter your network name (SSID) and password, then generate.
+              Print the QR code and stick it near your router or on your shop counter — guests scan
+              it with their phone camera and join your WiFi instantly, no password typing required.
+              This works with WPA and WPA2 networks on iPhones and Android phones.
+            </p>
+          </div>
+          <div>
+            <h3 className="text-base font-semibold text-white mb-2">Make a QR code for a URL or link</h3>
+            <p className="text-sm text-slate-400 leading-relaxed">
+              Choose the URL type and paste any link to turn it into a QR code. Scan it to open the
+              page on any phone — ideal for business cards, restaurant menus, posters, product
+              packaging, and sharing a website or social link in print. For very long links, shrink
+              them first with our free Safe Share Link tool so the QR code stays clean and scannable.
+            </p>
+          </div>
+          <p className="text-xs text-slate-600 pt-1">
+            Pair with other free tools:{' '}
+            <a className="text-indigo-400 hover:text-indigo-300" href="/safe-share-link/">Safe Share Link</a>,{' '}
+            <a className="text-indigo-400 hover:text-indigo-300" href="/qr-reader/">QR Code Reader</a>,{' '}
+            and <a className="text-indigo-400 hover:text-indigo-300" href="/barcode-generator/">Barcode Generator</a>.
+          </p>
+        </div>
       </div>
     </ToolLayout>
   )
