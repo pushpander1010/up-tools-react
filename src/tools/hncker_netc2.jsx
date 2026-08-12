@@ -139,19 +139,26 @@ export default function hncker_netc2() {
 
       <Section id="video" icon="🎬" title="Video Tutorial" subtitle="Watch the HNCKER walkthrough">
         <div className="max-w-3xl mx-auto">
-          <a href="https://www.youtube.com/@hncker" target="_blank" rel="noopener noreferrer"
-            className="flex items-center justify-between gap-3 rounded-xl p-4 border border-white/10 no-underline group"
-            style={{ background: 'rgba(0,0,0,0.3)' }}>
-            <div className="flex items-center gap-3">
-              <div className="w-11 h-11 rounded-full bg-red-600 flex items-center justify-center shrink-0">
-                <svg viewBox="0 0 24 24" className="w-5 h-5 ml-0.5 fill-white"><path d="M8 5v14l11-7z" /></svg>
-              </div>
-              <div>
-                <p className="text-sm font-semibold text-white m-0">Net-C2 tutorial coming soon on HNCKER</p>
-                <p className="text-xs text-slate-400 mt-0.5">Watch the full channel →</p>
+          <a href="https://www.youtube.com/watch?v=iS_wySR3soo" target="_blank" rel="noopener noreferrer"
+            className="block group rounded-xl overflow-hidden border border-white/10 no-underline relative"
+            style={{ background: '#000' }}>
+            <div className="aspect-video w-full overflow-hidden relative">
+              <img
+                src="https://i.ytimg.com/vi/iS_wySR3soo/hqdefault.jpg"
+                alt="Net-C2 Tutorial - Command and Control Framework Explained"
+                loading="lazy"
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+              />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-16 h-16 rounded-full bg-red-600 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+                  <svg viewBox="0 0 24 24" className="w-8 h-8 ml-1 fill-white"><path d="M8 5v14l11-7z" /></svg>
+                </div>
               </div>
             </div>
-            <span className="text-indigo-300 text-xs font-semibold whitespace-nowrap">YouTube ↗</span>
+            <div className="p-4">
+              <p className="text-sm font-semibold text-white m-0">Net-C2 Tutorial — Command and Control Framework Explained</p>
+              <p className="text-xs text-slate-300 mt-0.5">Watch on YouTube →</p>
+            </div>
           </a>
         </div>
       </Section>
