@@ -137,27 +137,16 @@ export default function hncker_ddos() {
 
       <Section id="video" icon="🎬" title="Video Tutorial" subtitle="Watch the HNCKER walkthrough">
         <div className="max-w-3xl mx-auto">
-          <a href="https://www.youtube.com/watch?v=ai2Xct0ZFHs" target="_blank" rel="noopener noreferrer"
-            className="block group rounded-xl overflow-hidden border border-white/10 no-underline relative"
-            style={{ background: '#000' }}>
-            <div className="aspect-video w-full overflow-hidden relative">
-              <img
-                src="https://i.ytimg.com/vi/ai2Xct0ZFHs/hqdefault.jpg"
-                alt="What is a DDoS Attack? How Websites Crash Explained"
-                loading="lazy"
-                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
-              />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-16 h-16 rounded-full bg-red-600 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
-                  <svg viewBox="0 0 24 24" className="w-8 h-8 ml-1 fill-white"><path d="M8 5v14l11-7z" /></svg>
-                </div>
-              </div>
-            </div>
-            <div className="p-4">
-              <p className="text-sm font-semibold text-white m-0">What is a DDoS Attack? How Websites Crash Explained</p>
-              <p className="text-xs text-slate-300 mt-0.5">Watch on YouTube →</p>
-            </div>
-          </a>
+          <video
+            src="/assets/tools/ddos/ddos-demo.mp4"
+            controls
+            preload="none"
+            playsInline
+            poster="/assets/tools/ddos/ddos_scan.png"
+            className="w-full aspect-video rounded-xl border border-white/10 bg-black"
+          >
+            Your browser does not support HTML5 video.
+          </video>
         </div>
       </Section>
 
