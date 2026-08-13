@@ -6018,6 +6018,29 @@
       ]
     },
     {
+      "slug": "hncker/vulns",
+      "title": "How Hackers Find Vulnerabilities",
+      "icon": "🎯",
+      "desc": "The 6-step method hackers use to break into a website: recon, scan, enumerate, map the attack surface, find the bug, and exploit (educational).",
+      "href": "/hncker/vulns/",
+      "tags": [
+        "vulnerability",
+        "vuln",
+        "recon",
+        "scanning",
+        "nmap",
+        "enumeration",
+        "exploit",
+        "ethical-hacking",
+        "how-to",
+        "tutorial"
+      ],
+      "cats": [
+        "all",
+        "security"
+      ]
+    },
+    {
       "slug": "hncker/seeker",
       "title": "Locate Smartphones with Seeker",
       "icon": "📍",
