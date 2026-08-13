@@ -159,6 +159,21 @@ export default function hncker_hashcat() {
         </div>
       </Section>
 
+      {/* Live Demo */}
+      <Section id="demo" icon="▶️" title="Demo" subtitle="See Hashcat cracking hashes in real time">
+        <div className="max-w-3xl mx-auto">
+          <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+            <iframe
+              className="absolute inset-0 w-full h-full rounded-xl border border-white/10"
+              src="https://www.youtube.com/embed/ED-9sAasOHA"
+              title="Hashcat Password Cracking - Demo | HNCKER"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+        </div>
+      </Section>
+
       <WarningBox>
         Hashcat is a legitimate password-recovery tool. Use it <b>only on hashes you own or have written permission
         to recover</b>. Cracking passwords that are not yours is illegal. This page is for <b>educational and
