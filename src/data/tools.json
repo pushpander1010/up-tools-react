@@ -6337,6 +6337,88 @@
         "all",
         "finance"
       ]
+    },
+    {
+      "slug": "indian-flag-generator",
+      "title": "Indian Flag Generator",
+      "icon": "🇮🇳",
+      "desc": "Create and download a clean Indian flag (Tiranga) PNG in seconds.",
+      "href": "/indian-flag-generator/",
+      "tags": [
+        "flag",
+        "india",
+        "tiranga",
+        "independence-day",
+        "png",
+        "generator"
+      ],
+      "cats": [
+        "all",
+        "text",
+        "india"
+      ]
+    },
+    {
+      "slug": "independence-day-status-generator",
+      "title": "Independence Day Status Generator",
+      "icon": "🧡",
+      "desc": "Ready-made patriotic statuses & captions, plus a tricolor frame for your own photo.",
+      "href": "/independence-day-status-generator/",
+      "tags": [
+        "independence-day",
+        "status",
+        "caption",
+        "whatsapp",
+        "patriotic",
+        "india",
+        "tricolor"
+      ],
+      "cats": [
+        "all",
+        "text",
+        "whatsapp",
+        "social"
+      ]
+    },
+    {
+      "slug": "independence-day-quiz",
+      "title": "Independence Day Quiz",
+      "icon": "🇮🇳",
+      "desc": "15 questions on freedom fighters, national symbols and Indian history.",
+      "href": "/independence-day-quiz/",
+      "tags": [
+        "independence-day",
+        "quiz",
+        "india",
+        "freedom-fighters",
+        "national-symbols",
+        "history"
+      ],
+      "cats": [
+        "all",
+        "fun",
+        "india"
+      ]
+    },
+    {
+      "slug": "indian-flag-ascii-art",
+      "title": "Indian Flag ASCII Art",
+      "icon": "🎨",
+      "desc": "Generate Indian flag ASCII art and patriotic text art for WhatsApp & Discord.",
+      "href": "/indian-flag-ascii-art/",
+      "tags": [
+        "ascii-art",
+        "flag",
+        "india",
+        "independence-day",
+        "tiranga",
+        "text-art"
+      ],
+      "cats": [
+        "all",
+        "text",
+        "india"
+      ]
     }
   ],
   "categories": {
