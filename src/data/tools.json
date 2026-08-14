@@ -6401,18 +6401,19 @@
       ]
     },
     {
-      "slug": "indian-flag-ascii-art",
-      "title": "Indian Flag ASCII Art",
-      "icon": "🎨",
-      "desc": "Generate Indian flag ASCII art and patriotic text art for WhatsApp & Discord.",
-      "href": "/indian-flag-ascii-art/",
+      "slug": "independence-day-countdown",
+      "title": "Independence Day Countdown",
+      "icon": "⏳",
+      "desc": "How old is independent India today? Live countdown to the next 15 August, plus a bank-holiday check.",
+      "href": "/independence-day-countdown/",
       "tags": [
-        "ascii-art",
-        "flag",
-        "india",
         "independence-day",
-        "tiranga",
-        "text-art"
+        "countdown",
+        "india",
+        "15-august",
+        "age-of-india",
+        "bank-holiday",
+        "1947"
       ],
       "cats": [
         "all",

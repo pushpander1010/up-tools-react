@@ -1154,6 +1154,8 @@ export default {
       // rebranded url-shortener -> safe-share-link 2026-08
       '/url-shortener': '/safe-share-link',
       '/url-shortener/': '/safe-share-link/',
+      '/indian-flag-ascii-art': '/indian-flag-generator',
+      '/indian-flag-ascii-art/': '/indian-flag-generator/',
     };
     if (LEGACY_REDIRECTS[url.pathname]) {
       return new Response(null, {
