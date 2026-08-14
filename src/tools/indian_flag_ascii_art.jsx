@@ -2,125 +2,144 @@ import { useState } from 'react'
 import ToolLayout from '../components/ToolLayout'
 import useJumpToResult from '../hooks/useJumpToResult'
 
-// Each row of the ASCII flag. Characters represent the tricolor:
-// 'S' = saffron, 'W' = white, 'G' = green, '.' = empty, '#' = chakra/outline
-const PATTERNS = {
-  'flag-simple': {
-    label: 'Tricolor Flag',
+// ASCII flags — each character paints a shade:
+// '@' = saffron, '#' = green, '.' = white, 'o' = navy chakra
+const FLAGS = {
+  'flag-wave': {
+    label: 'Waving Flag',
     rows: [
-      'SSSSSSSSSSSSSSSSSSSSSSSSSSSS',
-      'SSSSSSSSSSSSSSSSSSSSSSSSSSSS',
-      'SSSSSSSSSSSSSSSSSSSSSSSSSSSS',
-      'WWWWWWWWWWWWWWWWWWWWWWWWWWWW',
-      'WWWWWWWWWWWWWWWWWWWWWWWWWWWW',
-      'WWWWWWWWWWWWWWWWWWWWWWWWWWWW',
-      'GGGGGGGGGGGGGGGGGGGGGGGGGGGG',
-      'GGGGGGGGGGGGGGGGGGGGGGGGGGGG',
-      'GGGGGGGGGGGGGGGGGGGGGGGGGGGG',
+      '@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@.',
+      '.@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@..',
+      '@.@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@....',
+      '..@.@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@....',
+      '....@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@....o',
+      '..ooooooooooooooooooooooooooooooooooooo....',
+      '....o...o...o...o...o...o...o...o...o.....',
+      '......o...o...o...o...o...o...o...o.......',
+      '..ooooooooooooooooooooooooooooooooooooo....',
+      '##########################################',
+      '##########################################',
+      '.#########################################',
+      '..########################################',
     ],
   },
-  'flag-chakra': {
-    label: 'Flag with Chakra',
+  'flag-stripes': {
+    label: 'Bold Stripes',
     rows: [
-      'SSSSSSSSSSSSSSSSSSSSSSSSSSSS',
-      'SSSSSSSSSSSSSSSSSSSSSSSSSSSS',
-      'SSSSSSSSSSSSSSSSSSSSSSSSSSSS',
-      'WWWWWWWWW###########WWWWWWWWW',
-      'WWWWWWWW##WWWWWWWWW##WWWWWWWW',
-      'WWWWWWWWWWWWWWWWWWWWWWWWWWWW',
-      'WWWWWWWWW###########WWWWWWWWW',
-      'WWWWWWWWWWWWWWWWWWWWWWWWWWWW',
-      'GGGGGGGGGGGGGGGGGGGGGGGGGGGG',
-      'GGGGGGGGGGGGGGGGGGGGGGGGGGGG',
-      'GGGGGGGGGGGGGGGGGGGGGGGGGGGG',
+      '@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@',
+      '@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@',
+      '@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@',
+      '@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@',
+      '.........................................',
+      '..............ooooooooooooooo..............',
+      '..............o..............o............',
+      '..............o..............o............',
+      '..............ooooooooooooooo..............',
+      '.........................................',
+      '###########################################',
+      '###########################################',
+      '###########################################',
+      '###########################################',
     ],
   },
-  'flag-wide': {
-    label: 'Wide Flag',
+  'flag-emoji': {
+    label: 'Emoji Flag',
     rows: [
-      'SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS',
-      'SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS',
-      'SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS',
-      'SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS',
-      'WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW',
-      'WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW',
-      'WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW',
-      'WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW',
-      'GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG',
-      'GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG',
-      'GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG',
-      'GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG',
+      '██████████████████████████████████████████',
+      '██████████████████████████████████████████',
+      '██████████████████████████████████████████',
+      '██████████████████████████████████████████',
+      '░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░',
+      '░░░░░░░░░████████░░░░░░████████░░░░░░░░░░',
+      '░░░░░░░░░████████░░░░░░████████░░░░░░░░░░',
+      '░░░░░░░░░████████░░░░░░████████░░░░░░░░░░',
+      '░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░',
+      '▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓',
+      '▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓',
+      '▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓',
+      '▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓',
+    ],
+  },
+  'flag-small': {
+    label: 'Compact',
+    rows: [
+      '@@@@@@@@@@@@@@@@@@@@',
+      '@@@@@@@@@@@@@@@@@@@@',
+      '........o......o...',
+      '........o......o...',
+      '........ooooooo....',
+      '####################',
+      '####################',
     ],
   },
 }
 
-const COLORS = {
-  S: '#FF9933',
-  W: '#FFFFFF',
-  G: '#138808',
-  '#': '#000080',
+const SHADE_MAP = {
+  '@': '#FF9933',
+  '#': '#138808',
+  '.': '#FFFFFF',
+  'o': '#000080',
+  '█': '#FF9933',
+  '░': '#FFFFFF',
+  '▓': '#138808',
 }
 
-function renderPattern(rows, char) {
-  const map = { S: char || '█', W: char || '█', G: char || '█', '#': char || '█' }
-  return rows.map(row => row.split('').map(c => map[c] || ' ').join('')).join('\n')
+const LETTERS = {
+  A: [' ██ ', '█ ██', '████', '█  █'],
+  B: ['███ ', '█  █', '███ ', '█  █'],
+  C: [' ███', '█   ', '█   ', ' ███'],
+  D: ['███ ', '█  █', '█  █', '███ '],
+  E: ['████', '███ ', '█   ', '████'],
+  F: ['████', '███ ', '█   ', '█   '],
+  G: [' ███', '█   ', '█ ██', ' ███'],
+  H: ['█  █', '████', '█  █', '█  █'],
+  I: ['███', ' █ ', ' █ ', '███'],
+  J: ['  ██', '  █ ', '  █ ', '██  '],
+  K: ['█  █', '██ ', '█ █', '█  █'],
+  L: ['█   ', '█   ', '█   ', '████'],
+  M: ['█   █', '██ ██', '█ █ █', '█   █'],
+  N: ['█   █', '██  █', '█ █ █', '█  ██'],
+  O: [' ██ ', '█  █', '█  █', ' ██ '],
+  P: ['███ ', '█  █', '███ ', '█   '],
+  Q: [' ██ ', '█  █', '█ █ ', ' ██ '],
+  R: ['███ ', '█  █', '███ ', '█  █'],
+  S: [' ███', '██  ', '  ██', '███ '],
+  T: ['████', ' ██ ', ' █  ', ' █  '],
+  U: ['█  █', '█  █', '█  █', ' ██ '],
+  V: ['█  █', '█  █', ' ██ ', ' █  '],
+  W: ['█   █', '█ █ █', '██ ██', '█   █'],
+  X: ['█  █', ' ██ ', ' ██ ', '█  █'],
+  Y: ['█  █', ' ██ ', ' █  ', ' █  '],
+  Z: ['████', '  █ ', ' █  ', '████'],
+  ' ': ['  ', '  ', '  ', '  '],
 }
 
-const PRESETS = [
-  { name: 'JAI HIND', text: 'JAI HIND', font: 'standard' },
-  { name: 'INDIA', text: 'INDIA', font: 'standard' },
-  { name: '🇮🇳', text: 'BHARAT', font: 'standard' },
-]
-
-function asciiWord(word, font) {
-  // compact block font
-  const letters = {
-    A: [' ██ ', '█ ██', '████', '█  █'],
-    B: ['███', '█ ██', '███', '█ ██'],
-    C: [' ███', '█', '█', ' ███'],
-    D: ['███ ', '█  █', '█  █', '███ '],
-    E: ['████', '███', '█', '████'],
-    F: ['████', '███', '█', '█'],
-    G: [' ████', '█', '█ ███', ' ████'],
-    H: ['█  █', '████', '█  █', '█  █'],
-    I: ['███', ' █ ', ' █ ', '███'],
-    J: ['  ███', '   █', '█  █', ' ██ '],
-    K: ['█  █', '██ ', '█ █', '█  █'],
-    L: ['█', '█', '█', '████'],
-    M: ['█   █', '██ ██', '█ █ █', '█   █'],
-    N: ['█   █', '██  █', '█ █ █', '█  ██'],
-    O: [' ███ ', '█   █', '█   █', ' ███ '],
-    P: ['███ ', '█  █', '███ ', '█   '],
-    Q: [' ███ ', '█   █', '█  █ ', ' ██ █'],
-    R: ['███ ', '█  █', '███ ', '█  █'],
-    S: [' ████', '██', '  ██', '████ '],
-    T: ['█████', '  █  ', '  █  ', '  █  '],
-    U: ['█   █', '█   █', '█   █', ' ███ '],
-    V: ['█   █', '█   █', ' █ █ ', '  █  '],
-    W: ['█   █', '█ █ █', '██ ██', '█   █'],
-    X: ['█   █', ' █ █ ', '  █  ', ' █ █ '],
-    Y: ['█   █', ' █ █ ', '  █  ', '  █  '],
-    Z: ['█████', '  █  ', ' █   ', '█████'],
-    ' ': ['  ', '  ', '  ', '  '],
-  }
-  const h = 4
-  const lines = Array(h).fill('')
-  for (const ch of word) {
-    const l = letters[ch] || letters[' ']
-    for (let r = 0; r < h; r++) lines[r] += (l[r] || '').padEnd(6, ' ')
+function asciiWord(word) {
+  const up = (word || 'JAI HIND').toUpperCase()
+  const lines = ['', '', '', '']
+  for (const ch of up) {
+    const l = LETTERS[ch] || LETTERS[' ']
+    for (let r = 0; r < 4; r++) lines[r] += (l[r] || '    ').padEnd(5, ' ') + ' '
   }
   return lines.join('\n')
 }
 
+const WORDS = [
+  { name: 'JAI HIND', text: 'JAI HIND' },
+  { name: 'INDIA', text: 'INDIA' },
+  { name: 'BHARAT', text: 'BHARAT' },
+  { name: 'VANDE MATARAM', text: 'VANDE MATARAM' },
+]
+
 export default function indian_flag_ascii_art() {
   const { ref: resultRef, jumpTo } = useJumpToResult()
-  const [pattern, setPattern] = useState('flag-chakra')
-  const [char, setChar] = useState('█')
+  const [flag, setFlag] = useState('flag-wave')
   const [copied, setCopied] = useState(false)
   const [customText, setCustomText] = useState('JAI HIND')
 
-  const flagArt = renderPattern(PATTERNS[pattern].rows, char)
-  const wordArt = asciiWord((customText || 'JAI HIND').toUpperCase(), 'standard')
+  const rows = FLAGS[flag].rows
+  const flagLines = rows.map(r => r.split('').map(c => SHADE_MAP[c] !== undefined ? c : ' ').join('')).join('\n')
+  const wordArt = asciiWord(customText)
 
   const copy = async (text) => {
     try {
@@ -157,11 +176,11 @@ export default function indian_flag_ascii_art() {
       faq={[
         { q: 'What is Indian Flag ASCII Art?', a: 'A free generator that turns the Indian tricolor flag and patriotic words into ASCII art you can paste anywhere.' },
         { q: 'Where can I use it?', a: 'Anywhere text works — WhatsApp status, Discord, Instagram bios, comments, or a terminal.' },
-        { q: 'Can I change the fill character?', a: 'Yes — swap the block character (█) for any symbol like #, *, or @.' },
+        { q: 'What do the characters mean?', a: '@ = saffron, # = green, . = white, o = the Ashoka Chakra.' },
       ]}
       howItWorks={[
-        'Pick a flag pattern or type your own patriotic word.',
-        'Choose a fill character if you want something other than blocks.',
+        'Pick a flag design.',
+        'Type your own patriotic word for big text art.',
         'Copy the result or download it as a .txt file.',
       ]}
       schema={{
@@ -173,44 +192,40 @@ export default function indian_flag_ascii_art() {
     >
       <div className="max-w-2xl mx-auto space-y-6">
 
-        {/* Controls */}
+        {/* Flag design selector */}
         <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-5 space-y-4">
           <div>
-            <label className="block text-sm font-semibold text-slate-300 mb-2">Flag Pattern</label>
+            <label className="block text-sm font-semibold text-slate-300 mb-2">Flag Design</label>
             <div className="flex flex-wrap gap-2">
-              {Object.entries(PATTERNS).map(([key, p]) => (
-                <button key={key} onClick={() => setPattern(key)}
-                  className={`px-4 py-2 rounded-xl text-sm font-bold transition-all ${pattern === key ? 'bg-indigo-600 text-white' : 'bg-white/[0.06] text-slate-300 hover:bg-white/[0.12] border border-white/[0.08]'}`}>
-                  {p.label}
+              {Object.entries(FLAGS).map(([key, f]) => (
+                <button key={key} onClick={() => setFlag(key)}
+                  className={`px-4 py-2 rounded-xl text-sm font-bold transition-all ${flag === key ? 'bg-indigo-600 text-white' : 'bg-white/[0.06] text-slate-300 hover:bg-white/[0.12] border border-white/[0.08]'}`}>
+                  {f.label}
                 </button>
               ))}
             </div>
           </div>
 
-          <div>
-            <label className="block text-sm font-semibold text-slate-300 mb-2">Fill Character</label>
-            <div className="flex flex-wrap gap-2">
-              {['█', '#', '*', '@', '■'].map(c => (
-                <button key={c} onClick={() => setChar(c)}
-                  className={`w-11 h-11 rounded-xl text-xl font-bold flex items-center justify-center transition-all ${char === c ? 'bg-indigo-600 text-white' : 'bg-white/[0.06] text-slate-300 hover:bg-white/[0.12] border border-white/[0.08]'}`}>
-                  {c}
-                </button>
-              ))}
-            </div>
+          <div className="flex flex-wrap gap-3 text-xs font-bold">
+            <span className="px-2.5 py-1 rounded-full bg-orange-500/15 text-orange-400 border border-orange-500/20">@ = Saffron</span>
+            <span className="px-2.5 py-1 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/20"># = Green</span>
+            <span className="px-2.5 py-1 rounded-full bg-white/10 text-white border border-white/20">. = White</span>
+            <span className="px-2.5 py-1 rounded-full bg-blue-900/30 text-blue-300 border border-blue-700/30">o = Chakra</span>
           </div>
         </div>
 
         {/* Flag art */}
         <div ref={resultRef} className="rounded-3xl border-2 border-white/[0.08] bg-black/30 p-5 space-y-3">
           <div className="flex items-center justify-between">
-            <h3 className="text-sm font-bold text-indigo-400 uppercase tracking-wider">{PATTERNS[pattern].label}</h3>
+            <h3 className="text-sm font-bold text-indigo-400 uppercase tracking-wider">{FLAGS[flag].label}</h3>
           </div>
-          <pre className="font-mono text-xs sm:text-sm leading-tight overflow-x-auto whitespace-pre" style={{ color: '#e2e8f0' }}>{flagArt}</pre>
+          <pre className="font-mono text-xs sm:text-sm leading-tight overflow-x-auto whitespace-pre"
+            style={{ color: '#e2e8f0' }}>{flagLines}</pre>
           <div className="flex flex-wrap gap-3 pt-1">
-            <button onClick={() => { jumpTo(); copy(flagArt) }} className="px-4 py-2.5 rounded-xl font-bold text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 transition-all shadow-lg text-sm">
+            <button onClick={() => { jumpTo(); copy(flagLines) }} className="px-4 py-2.5 rounded-xl font-bold text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 transition-all shadow-lg text-sm">
               {copied ? '✓ Copied!' : '📋 Copy'}
             </button>
-            <button onClick={() => download(flagArt, 'indian-flag-ascii.txt')} className="px-4 py-2.5 rounded-xl font-bold text-white bg-white/[0.08] border border-white/[0.1] hover:bg-white/[0.14] transition-all text-sm">
+            <button onClick={() => download(flagLines, 'indian-flag-ascii.txt')} className="px-4 py-2.5 rounded-xl font-bold text-white bg-white/[0.08] border border-white/[0.1] hover:bg-white/[0.14] transition-all text-sm">
               ⬇ Download .txt
             </button>
           </div>
@@ -219,14 +234,14 @@ export default function indian_flag_ascii_art() {
         {/* Word art */}
         <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-5 space-y-4">
           <h3 className="text-sm font-bold text-emerald-400 uppercase tracking-wider">Patriotic Text Art</h3>
-          <input value={customText} onChange={e => setCustomText(e.target.value)} maxLength={12}
+          <input value={customText} onChange={e => setCustomText(e.target.value)} maxLength={16}
             placeholder="JAI HIND"
             className="w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-4 py-3 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all placeholder:text-slate-400" />
           <div className="flex flex-wrap gap-2">
-            {PRESETS.map(p => (
-              <button key={p.name} onClick={() => setCustomText(p.text)}
+            {WORDS.map(w => (
+              <button key={w.name} onClick={() => setCustomText(w.text)}
                 className="px-3 py-1.5 rounded-lg text-xs font-bold bg-white/[0.06] text-slate-300 hover:bg-white/[0.12] border border-white/[0.08]">
-                {p.name}
+                {w.name}
               </button>
             ))}
           </div>

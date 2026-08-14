@@ -77,38 +77,33 @@ export default function indian_flag_generator() {
     }
 
 
-    // Ashoka Chakra
+    // Ashoka Chakra — must fit inside the white band
     if (withChakra) {
       const cx = w / 2
       const cy = h / 2
-      const r = bandH * 0.68
+      const r = bandH * 0.40 // fits fully inside white band
       ctx.save()
       ctx.strokeStyle = NAVY
       ctx.fillStyle = NAVY
-      ctx.lineWidth = r * 0.09
+      ctx.lineWidth = r * 0.14
 
       // outer ring
       ctx.beginPath()
       ctx.arc(cx, cy, r, 0, Math.PI * 2)
       ctx.stroke()
 
-      // inner ring
-      ctx.beginPath()
-      ctx.arc(cx, cy, r * 0.62, 0, Math.PI * 2)
-      ctx.stroke()
-
       // center dot
       ctx.beginPath()
-      ctx.arc(cx, cy, r * 0.09, 0, Math.PI * 2)
+      ctx.arc(cx, cy, r * 0.12, 0, Math.PI * 2)
       ctx.fill()
 
       // 24 spokes
       for (let i = 0; i < 24; i++) {
         const angle = (i * Math.PI * 2) / 24
-        const x1 = cx + Math.cos(angle) * r * 0.14
-        const y1 = cy + Math.sin(angle) * r * 0.14
-        const x2 = cx + Math.cos(angle) * r * 0.62
-        const y2 = cy + Math.sin(angle) * r * 0.62
+        const x1 = cx + Math.cos(angle) * r * 0.16
+        const y1 = cy + Math.sin(angle) * r * 0.16
+        const x2 = cx + Math.cos(angle) * r
+        const y2 = cy + Math.sin(angle) * r
         ctx.beginPath()
         ctx.moveTo(x1, y1)
         ctx.lineTo(x2, y2)
