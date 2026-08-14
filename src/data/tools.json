@@ -6402,15 +6402,18 @@
     },
     {
       "slug": "independence-day-countdown",
-      "title": "Independence Day Countdown",
+      "title": "Indian National Days Countdown",
       "icon": "⏳",
-      "desc": "How old is independent India today? Live countdown to the next 15 August, plus a bank-holiday check.",
+      "desc": "Live countdown to Independence Day, Republic Day, Gandhi Jayanti and more — plus how old independent India is.",
       "href": "/independence-day-countdown/",
       "tags": [
         "independence-day",
         "countdown",
         "india",
         "15-august",
+        "republic-day",
+        "gandhi-jayanti",
+        "national-days",
         "age-of-india",
         "bank-holiday",
         "1947"
