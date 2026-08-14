@@ -153,6 +153,15 @@ export default function hncker_seeker() {
 
       <Section id="video" icon="🎬" title="Video Tutorial" subtitle="Watch the HNCKER walkthrough">
         <div className="max-w-3xl mx-auto">
+          <div className="relative w-full mb-4" style={{ paddingBottom: '56.25%' }}>
+            <iframe
+              className="absolute inset-0 w-full h-full rounded-xl border border-white/10"
+              src="https://www.youtube.com/embed/cpQo8hKoql0"
+              title="Seeker GPS Tracking - How Hackers Track a Phone With One Link | HNCKER"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
           <video
             src="/assets/tools/seeker/seeker-demo.mp4"
             controls
@@ -397,7 +406,7 @@ chmod +x install.sh
         <div className="space-y-2">
           {[
             ['📍', 'Seeker (official)', 'https://github.com/thewhiteh4t/seeker'],
-            ['🎬', 'Seeker tutorial (HNCKER)', 'https://www.youtube.com/watch?v=0f_2WO3S22M'],
+            ['🎬', 'Seeker tutorial (HNCKER)', 'https://www.youtube.com/watch?v=cpQo8hKoql0'],
             ['🛡️', 'Mozilla — location permission control', 'https://support.mozilla.org/en-US/kb/site-permissions-panel'],
             ['🔐', 'Privacy Guides — browser hardening', 'https://www.privacyguides.org/'],
             ['🎬', 'HNCKER tutorials', 'https://www.youtube.com/@hncker'],
