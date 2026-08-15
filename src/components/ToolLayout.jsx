@@ -6,6 +6,10 @@ import FAQ from './FAQ'
 import HowItWorks from './HowItWorks'
 
 export default function ToolLayout({ title, desc, icon, iconBg, category, slug, children, faq = [], howItWorks = [], schema, hideHeader = false }) {
+  // Real site path: games use nested /games/<name>/ URLs, not flat games-<name> slugs.
+  const path = slug.startsWith('games-') && slug !== 'games'
+    ? `games/${slug.slice('games-'.length)}`
+    : slug
   // Guard against react-helmet-async leaving document.title empty (stray empty <title> tag).
   useEffect(() => {
     if (title) document.title = `${title} | UpTools`
@@ -15,10 +19,10 @@ export default function ToolLayout({ title, desc, icon, iconBg, category, slug, 
       <Helmet>
         <title>{title} | UpTools</title>
         <meta name="description" content={desc} />
-        <link rel="canonical" href={`https://www.uptools.in/${slug}/`} />
+        <link rel="canonical" href={`https://www.uptools.in/${path}/`} />
         <meta property="og:title" content={`${title} | UpTools`} />
         <meta property="og:description" content={desc} />
-        <meta property="og:url" content={`https://www.uptools.in/${slug}/`} />
+        <meta property="og:url" content={`https://www.uptools.in/${path}/`} />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="UpTools" />
         <meta name="twitter:card" content="summary" />
@@ -27,7 +31,7 @@ export default function ToolLayout({ title, desc, icon, iconBg, category, slug, 
         {schema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />}
         <script type="application/ld+json" dangerouslySetInnerHTML={{
           __html: JSON.stringify((() => {
-            const parts = slug.split('/')
+            const parts = path.split('/')
             const section = parts.length > 1 ? parts[0] : null
             const sectionName = section === 'hncker' ? 'HNCKER'
               : section === 'games' ? 'Games'
