@@ -184,4 +184,9 @@ buildHtml('games', 'UpTools - Free Online Games',
 buildHtml('aimakerich', 'AIMakeRich - Finance, Investing & Trading Guides',
   'AIMakeRich: practical money guides that match our Instagram reels. Learn investing, trading strategies and finance with real code, step-by-step processes, FAQs and how-tos.')
 
+// About page: now a React page (matching the site theme). Give it a static index.html
+// so the worker serves the SPA shell and the client-side React About page renders.
+buildHtml('about', 'About UpTools - Privacy-First Free Web Tools',
+  'UpTools is a fast, privacy-first collection of 300+ free web tools and 40+ games. Calculate tax, GST, EMI and SIP; convert currency; validate PAN; format JSON; and more — no logins, instant results.')
+
 console.log(`✅ Generated SEO HTML for ${count} tools`)
