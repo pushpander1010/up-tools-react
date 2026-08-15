@@ -40,11 +40,17 @@ export default function email_validator() {
 
     const formatOk = checkFormat(trimmed)
     const domain = getDomain(trimmed)
-    const disposable = isDisposable(domain)
 
     let mxRecords = []
     let domainExists = false
     let mxError = null
+
+    // Real-time disposable + deliverability check via Disify API
+    let disify = null
+    try {
+      const dr = await fetch(`https://disify.com/api/email/${encodeURIComponent(trimmed)}`)
+      if (dr.ok) disify = await dr.json()
+    } catch {}
 
     try {
       const res = await fetch(`https://dns.google/resolve?name=${encodeURIComponent(domain)}&type=MX`)
@@ -64,12 +70,19 @@ export default function email_validator() {
       mxError = 'Could not check MX records'
     }
 
+    // Use Disify result if available (more reliable than the static list)
+    const disposable = disify ? !!disify.disposable : isDisposable(domain)
+    const whitelisted = disify ? !!disify.whitelist : null
+    const dnsOk = disify ? disify.dns !== false : null
+    const disifyScore = disify ? (disify.disposable ? 0 : disify.whitelist ? 20 : 10) : 0
+
     // Score calculation
     let score = 0
     if (formatOk) score += 30
     if (domainExists) score += 25
     if (mxRecords.length > 0) score += 25
     if (!disposable) score += 20
+    score = Math.min(100, score + (disifyScore || 0) - (disposable ? 15 : 0))
 
     setResult({
       email: trimmed,
@@ -79,7 +92,10 @@ export default function email_validator() {
       mxRecords,
       mxError,
       disposable,
+      whitelisted,
+      dnsOk,
       score,
+      disifyChecked: !!disify,
     })
 
     setLoading(false)
@@ -100,12 +116,13 @@ export default function email_validator() {
   return (
     <ToolLayout
       title="Email Validator"
-      desc="Validate email format, verify MX records, check disposable domains, and get a trust score."
+      desc="Validate email format, verify MX records, check disposable domains, and test live deliverability with a trust score."
       icon="✉️" iconBg="rgba(34,197,94,0.08)"
       category="security" slug="email-validator"
       faq={[
         { q: 'What makes an email address valid?', a: 'A valid email has a proper format (user@domain.tld), the domain must exist and have MX (Mail Exchange) records configured to receive email. The format regex checks for the basic structure.' },
         { q: 'What are disposable email addresses?', a: 'Disposable emails are temporary addresses that forward to spam or expire quickly. Services like Mailinator, Guerrilla Mail, and 10 Minute Mail provide throwaway inboxes often used for spam or signups you do not want to keep.' },
+        { q: 'What does "deliverability" mean?', a: 'This tool does a live check (via the Disify API) on whether the email domain resolves and can actually receive mail. A whitelisted or resolving domain is very likely deliverable; a non-resolving one will bounce.' },
         { q: 'What are MX records?', a: 'MX (Mail Exchange) records are DNS entries that specify which mail servers accept email for a domain. Without MX records, an email address cannot receive mail even if the format is correct.' },
       ]}
       howItWorks={[
@@ -203,6 +220,17 @@ export default function email_validator() {
                 value={result.disposable ? `${result.domain} is a known disposable email provider` : 'Not a disposable email domain'}
                 ok={!result.disposable}
               />
+
+              {/* Deliverability (Disify live) */}
+              {result.disifyChecked && (
+                <CheckItem
+                  label="Deliverability (live)"
+                  value={result.dnsOk
+                    ? (result.whitelisted ? 'Domain is whitelisted — very likely deliverable' : 'Domain resolves — email is deliverable')
+                    : 'Domain does not resolve — email likely bounces'}
+                  ok={result.dnsOk !== false}
+                />
+              )}
             </div>
           </div>
         )}

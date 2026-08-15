@@ -2,8 +2,8 @@
   "tools": [
     {
       "slug": "aimakerich/markets-today",
-      "title": "Markets Today — 14 August 2026",
-      "icon": "📰",
+      "title": "Markets Today \u2014 14 August 2026",
+      "icon": "\ud83d\udcf0",
       "desc": "Daily market bulletin for 14 August 2026: global cues, top news with sentiment, Nifty/Bank Nifty/Sensex key levels, and stocks to watch with buy-target-stop.",
       "href": "/aimakerich/markets-today/",
       "tags": [
@@ -25,8 +25,8 @@
     },
     {
       "slug": "aimakerich/markets-today-2026-08-13",
-      "title": "Markets Today — 13 August 2026",
-      "icon": "📰",
+      "title": "Markets Today \u2014 13 August 2026",
+      "icon": "\ud83d\udcf0",
       "desc": "Archived daily market bulletin for 13 August 2026: global cues, news, Nifty/Bank Nifty/Sensex levels, and stocks to watch.",
       "href": "/aimakerich/markets-today-2026-08-13/",
       "tags": [
@@ -48,8 +48,8 @@
     },
     {
       "slug": "aimakerich/markets-today-2026-08-12",
-      "title": "Markets Today — 12 August 2026",
-      "icon": "📰",
+      "title": "Markets Today \u2014 12 August 2026",
+      "icon": "\ud83d\udcf0",
       "desc": "Archived daily market bulletin for 12 August 2026: global cues, news, Nifty/Bank Nifty/Sensex levels, and stocks to watch.",
       "href": "/aimakerich/markets-today-2026-08-12/",
       "tags": [
@@ -68,8 +68,8 @@
     },
     {
       "slug": "aimakerich/markets-today-2026-08-11",
-      "title": "Markets Today — 11 August 2026",
-      "icon": "📰",
+      "title": "Markets Today \u2014 11 August 2026",
+      "icon": "\ud83d\udcf0",
       "desc": "Archived daily market bulletin for 11 August 2026: global cues, news, Nifty/Bank Nifty/Sensex levels, and stocks to watch.",
       "href": "/aimakerich/markets-today-2026-08-11/",
       "tags": [
@@ -88,8 +88,8 @@
     },
     {
       "slug": "aimakerich/markets-today-2026-08-10",
-      "title": "Markets Today — 10 August 2026",
-      "icon": "📰",
+      "title": "Markets Today \u2014 10 August 2026",
+      "icon": "\ud83d\udcf0",
       "desc": "Archived daily market bulletin for 10 August 2026: global cues, news, Nifty/Bank Nifty/Sensex levels, and stocks to watch.",
       "href": "/aimakerich/markets-today-2026-08-10/",
       "tags": [
@@ -109,7 +109,7 @@
     {
       "slug": "income-tax-tool",
       "title": "Income Tax Calculator",
-      "icon": "🧾",
+      "icon": "\ud83e\uddfe",
       "desc": "Estimate income tax quickly.",
       "href": "/income-tax-tool/",
       "tags": [
@@ -125,7 +125,7 @@
     {
       "slug": "gst-calculator",
       "title": "GST Calculator",
-      "icon": "🧮",
+      "icon": "\ud83e\uddee",
       "desc": "Add or remove GST in a click.",
       "href": "/gst-calculator/",
       "tags": [
@@ -141,7 +141,7 @@
     {
       "slug": "emi-calculator",
       "title": "EMI Calculator",
-      "icon": "📊",
+      "icon": "\ud83d\udcca",
       "desc": "Plan monthly loan repayments.",
       "href": "/emi-calculator/",
       "tags": [
@@ -155,7 +155,7 @@
     {
       "slug": "fd-calculator",
       "title": "FD Calculator",
-      "icon": "🏦",
+      "icon": "\ud83c\udfe6",
       "desc": "Check fixed deposit maturity values.",
       "href": "/fd-calculator/",
       "tags": [
@@ -170,7 +170,7 @@
     {
       "slug": "sip-calculator",
       "title": "SIP Calculator",
-      "icon": "📈",
+      "icon": "\ud83d\udcc8",
       "desc": "Project SIP returns and wealth.",
       "href": "/sip-calculator/",
       "tags": [
@@ -184,7 +184,7 @@
     {
       "slug": "pnl-calculator",
       "title": "Profit & Loss Calculator",
-      "icon": "💹",
+      "icon": "\ud83d\udcb9",
       "desc": "Track realised and unrealised gains.",
       "href": "/pnl-calculator/",
       "tags": [
@@ -198,7 +198,7 @@
     {
       "slug": "currency-converter",
       "title": "Currency Converter",
-      "icon": "💱",
+      "icon": "\ud83d\udcb1",
       "desc": "Convert FX with live interbank rates.",
       "href": "/currency-converter/",
       "tags": [
@@ -214,7 +214,7 @@
     {
       "slug": "ai-stock-analyzer",
       "title": "AI Stock Analyzer",
-      "icon": "🤖",
+      "icon": "\ud83e\udd16",
       "desc": "AI verdicts with charts and sentiment.",
       "href": "/ai-stock-analyzer/",
       "tags": [
@@ -229,7 +229,7 @@
     {
       "slug": "ai-top10-stocks",
       "title": "AI Top 10 Stocks",
-      "icon": "🏆",
+      "icon": "\ud83c\udfc6",
       "desc": "Tomorrow's AI-picked trading ideas.",
       "href": "/ai-top10-stocks/",
       "tags": [
@@ -244,7 +244,7 @@
     {
       "slug": "crypto-prices",
       "title": "Cryptocurrency Prices",
-      "icon": "🪙",
+      "icon": "\ud83e\ude99",
       "desc": "Track live cryptocurrency markets.",
       "href": "/crypto-prices/",
       "tags": [
@@ -260,7 +260,7 @@
     {
       "slug": "crypto-portfolio",
       "title": "Crypto Portfolio Tracker",
-      "icon": "📊",
+      "icon": "\ud83d\udcca",
       "desc": "Monitor holdings and net worth.",
       "href": "/crypto-portfolio/",
       "tags": [
@@ -276,7 +276,7 @@
     {
       "slug": "crypto-profitability",
       "title": "Crypto Profitability",
-      "icon": "🚀",
+      "icon": "\ud83d\ude80",
       "desc": "Gauge mining and trading profits.",
       "href": "/crypto-profitability/",
       "tags": [
@@ -292,7 +292,7 @@
     {
       "slug": "age-calculator",
       "title": "Age Calculator",
-      "icon": "🎂",
+      "icon": "\ud83c\udf82",
       "desc": "Compute age by date of birth.",
       "href": "/age-calculator/",
       "tags": [
@@ -306,7 +306,7 @@
     {
       "slug": "bmi-calculator",
       "title": "BMI Calculator",
-      "icon": "⚖️",
+      "icon": "\u2696\ufe0f",
       "desc": "Check BMI, body fat and wellness ranges.",
       "href": "/bmi-calculator/",
       "tags": [
@@ -320,7 +320,7 @@
     {
       "slug": "unit-converter",
       "title": "Unit Converter",
-      "icon": "📏",
+      "icon": "\ud83d\udccf",
       "desc": "Convert length, weight and temperature.",
       "href": "/unit-converter/",
       "tags": [
@@ -334,7 +334,7 @@
     {
       "slug": "pan-validator",
       "title": "PAN Format Validator",
-      "icon": "🪪",
+      "icon": "\ud83e\udeaa",
       "desc": "Verify Indian PAN structure instantly.",
       "href": "/pan-validator/",
       "tags": [
@@ -348,8 +348,8 @@
     },
     {
       "slug": "pan-aadhaar-link-status",
-      "title": "PAN–Aadhaar Link Status Guide",
-      "icon": "🔗",
+      "title": "PAN\u2013Aadhaar Link Status Guide",
+      "icon": "\ud83d\udd17",
       "desc": "Validate format and open the official status page.",
       "href": "/pan-aadhaar-link-status/",
       "tags": [
@@ -364,7 +364,7 @@
     {
       "slug": "vehicle-registration-details",
       "title": "Vehicle Registration Details",
-      "icon": "🚗",
+      "icon": "\ud83d\ude97",
       "desc": "Select country and open the official registration portal.",
       "href": "/vehicle-registration-details/",
       "tags": [
@@ -379,7 +379,7 @@
     {
       "slug": "ifsc-finder",
       "title": "IFSC Finder",
-      "icon": "🏧",
+      "icon": "\ud83c\udfe7",
       "desc": "Search bank IFSC codes with branch data.",
       "href": "/ifsc-finder/",
       "tags": [
@@ -394,7 +394,7 @@
     {
       "slug": "canada-crs-tool",
       "title": "Canada CRS Calculator",
-      "icon": "🍁",
+      "icon": "\ud83c\udf41",
       "desc": "Estimate Express Entry CRS score.",
       "href": "/canada-crs-tool/",
       "tags": [
@@ -409,7 +409,7 @@
     {
       "slug": "canada-hst-tool",
       "title": "Canada GST/HST Calculator",
-      "icon": "💸",
+      "icon": "\ud83d\udcb8",
       "desc": "Compute provincial GST/HST totals.",
       "href": "/canada-hst-tool/",
       "tags": [
@@ -425,7 +425,7 @@
     {
       "slug": "rrsp-optimizer",
       "title": "RRSP Contribution Optimizer",
-      "icon": "🍁",
+      "icon": "\ud83c\udf41",
       "desc": "Estimate RRSP refund impact.",
       "href": "/rrsp-optimizer/",
       "tags": [
@@ -441,7 +441,7 @@
     {
       "slug": "tfsa-room-tracker",
       "title": "TFSA Room Tracker",
-      "icon": "🍁",
+      "icon": "\ud83c\udf41",
       "desc": "Estimate TFSA contribution room.",
       "href": "/tfsa-room-tracker/",
       "tags": [
@@ -457,7 +457,7 @@
     {
       "slug": "cpp-ei-calculator",
       "title": "CPP & EI Calculator",
-      "icon": "🍁",
+      "icon": "\ud83c\udf41",
       "desc": "Estimate payroll deductions.",
       "href": "/cpp-ei-calculator/",
       "tags": [
@@ -473,7 +473,7 @@
     {
       "slug": "canada-tax-bracket-calculator",
       "title": "Canada Tax Brackets",
-      "icon": "🍁",
+      "icon": "\ud83c\udf41",
       "desc": "Federal tax estimate.",
       "href": "/canada-tax-bracket-calculator/",
       "tags": [
@@ -489,7 +489,7 @@
     {
       "slug": "canada-mortgage-affordability",
       "title": "Canada Mortgage Affordability",
-      "icon": "🍁",
+      "icon": "\ud83c\udf41",
       "desc": "Estimate max mortgage.",
       "href": "/canada-mortgage-affordability/",
       "tags": [
@@ -505,7 +505,7 @@
     {
       "slug": "cra-refund-estimator",
       "title": "CRA Refund Estimator",
-      "icon": "🍁",
+      "icon": "\ud83c\udf41",
       "desc": "Refund vs balance estimate.",
       "href": "/cra-refund-estimator/",
       "tags": [
@@ -521,7 +521,7 @@
     {
       "slug": "sin-validator",
       "title": "SIN Validator",
-      "icon": "🍁",
+      "icon": "\ud83c\udf41",
       "desc": "Validate SIN checksum.",
       "href": "/sin-validator/",
       "tags": [
@@ -537,7 +537,7 @@
     {
       "slug": "cra-noa-checklist",
       "title": "CRA NOA Checklist",
-      "icon": "🍁",
+      "icon": "\ud83c\udf41",
       "desc": "Document checklist.",
       "href": "/cra-noa-checklist/",
       "tags": [
@@ -553,7 +553,7 @@
     {
       "slug": "vehicle-import-duty-estimator",
       "title": "Vehicle Import Duty Estimator",
-      "icon": "🍁",
+      "icon": "\ud83c\udf41",
       "desc": "Estimate import costs.",
       "href": "/vehicle-import-duty-estimator/",
       "tags": [
@@ -569,7 +569,7 @@
     {
       "slug": "password-generator",
       "title": "Password Generator",
-      "icon": "🔐",
+      "icon": "\ud83d\udd10",
       "desc": "Create strong, random passwords.",
       "href": "/password-generator/",
       "tags": [
@@ -584,7 +584,7 @@
     {
       "slug": "base64-encoder",
       "title": "Base64 Encoder & Decoder",
-      "icon": "🧬",
+      "icon": "\ud83e\uddec",
       "desc": "Encode or decode Base64 text & files.",
       "href": "/base64-encoder/",
       "tags": [
@@ -600,7 +600,7 @@
     {
       "slug": "uuid-generator",
       "title": "UUID / GUID Generator",
-      "icon": "🆔",
+      "icon": "\ud83c\udd94",
       "desc": "Generate and validate UUID v1/v4/v5.",
       "href": "/uuid-generator/",
       "tags": [
@@ -614,7 +614,7 @@
     {
       "slug": "json-formatter",
       "title": "JSON Formatter",
-      "icon": "🛠️",
+      "icon": "\ud83d\udee0\ufe0f",
       "desc": "Prettify and validate JSON payloads.",
       "href": "/json-formatter/",
       "tags": [
@@ -628,7 +628,7 @@
     {
       "slug": "ai-prompts",
       "title": "AI Prompts Library",
-      "icon": "🧠",
+      "icon": "\ud83e\udde0",
       "desc": "Curated prompts for design, SEO and resumes.",
       "href": "/ai-prompts/",
       "tags": [
@@ -645,7 +645,7 @@
     {
       "slug": "ai-writer",
       "title": "AI Writing Assistant",
-      "icon": "✍️",
+      "icon": "\u270d\ufe0f",
       "desc": "Draft posts with Perplexity, Gemini & Groq.",
       "href": "/ai-writer/",
       "tags": [
@@ -661,7 +661,7 @@
     {
       "slug": "ai-blog-generator",
       "title": "AI Blog Post Generator",
-      "icon": "📝",
+      "icon": "\ud83d\udcdd",
       "desc": "Generate full SEO-optimized blog posts instantly.",
       "href": "/ai-blog-generator/",
       "tags": [
@@ -677,7 +677,7 @@
     {
       "slug": "ai-youtube-script",
       "title": "AI YouTube Script Writer",
-      "icon": "🎬",
+      "icon": "\ud83c\udfac",
       "desc": "Write retention-optimized YouTube scripts with AI.",
       "href": "/ai-youtube-script/",
       "tags": [
@@ -695,8 +695,8 @@
     {
       "slug": "ai-email-writer",
       "title": "AI Email Writer",
-      "icon": "📧",
-      "desc": "Write professional emails instantly — cold outreach, follow-ups, job applications.",
+      "icon": "\ud83d\udce7",
+      "desc": "Write professional emails instantly \u2014 cold outreach, follow-ups, job applications.",
       "href": "/ai-email-writer/",
       "tags": [
         "ai",
@@ -711,7 +711,7 @@
     {
       "slug": "ai-caption-generator",
       "title": "AI Caption Generator",
-      "icon": "📸",
+      "icon": "\ud83d\udcf8",
       "desc": "Generate 5 captions for Instagram, Facebook, LinkedIn & TikTok.",
       "href": "/ai-caption-generator/",
       "tags": [
@@ -729,7 +729,7 @@
     {
       "slug": "ai-budget-planner",
       "title": "AI Budget Planner",
-      "icon": "💰",
+      "icon": "\ud83d\udcb0",
       "desc": "Get a personalized budget plan and savings strategy with AI.",
       "href": "/ai-budget-planner/",
       "tags": [
@@ -745,7 +745,7 @@
     {
       "slug": "ai-business-name-generator",
       "title": "AI Business Name Generator",
-      "icon": "💡",
+      "icon": "\ud83d\udca1",
       "desc": "Generate 20 unique brandable business names with taglines.",
       "href": "/ai-business-name-generator/",
       "tags": [
@@ -762,7 +762,7 @@
     {
       "slug": "ai-product-description",
       "title": "AI Product Description Generator",
-      "icon": "🛒",
+      "icon": "\ud83d\uded2",
       "desc": "Write SEO-optimized product descriptions for Amazon, Shopify & more.",
       "href": "/ai-product-description/",
       "tags": [
@@ -779,7 +779,7 @@
     {
       "slug": "ai-plagiarism",
       "title": "AI Plagiarism Checker",
-      "icon": "🛡️",
+      "icon": "\ud83d\udee1\ufe0f",
       "desc": "Check originality and paraphrase safely.",
       "href": "/ai-plagiarism/",
       "tags": [
@@ -795,7 +795,7 @@
     {
       "slug": "resume-analyzer",
       "title": "AI Resume Analyzer",
-      "icon": "💼",
+      "icon": "\ud83d\udcbc",
       "desc": "ATS score your resume against any JD.",
       "href": "/resume-analyzer/",
       "tags": [
@@ -811,7 +811,7 @@
     {
       "slug": "rawcv-resume-builder",
       "title": "AI Resume Builder (rawcv)",
-      "icon": "📄",
+      "icon": "\ud83d\udcc4",
       "desc": "Build an ATS-friendly resume with AI. Free, no login, no watermark.",
       "href": "https://www.rawcv.com/build",
       "tags": [
@@ -827,7 +827,7 @@
     {
       "slug": "pokemon-stats",
       "title": "Pokemon Stats Directory",
-      "icon": "🧬",
+      "icon": "\ud83e\uddec",
       "desc": "Search all Pokemon base stats and export CSV.",
       "href": "/pokemon-stats/",
       "tags": [
@@ -842,7 +842,7 @@
     {
       "slug": "text-case-converter",
       "title": "Text Case Converter",
-      "icon": "🔡",
+      "icon": "\ud83d\udd21",
       "desc": "Switch between upper, lower and title case.",
       "href": "/text-case-converter/",
       "tags": [
@@ -856,7 +856,7 @@
     {
       "slug": "word-counter",
       "title": "Word Counter",
-      "icon": "📝",
+      "icon": "\ud83d\udcdd",
       "desc": "Count words, characters and reading time.",
       "href": "/word-counter/",
       "tags": [
@@ -870,7 +870,7 @@
     {
       "slug": "qr-generator",
       "title": "QR Code Generator",
-      "icon": "🔳",
+      "icon": "\ud83d\udd33",
       "desc": "Create QR codes for links and text.",
       "href": "/qr-generator/",
       "tags": [
@@ -886,7 +886,7 @@
     {
       "slug": "qr-reader",
       "title": "QR Reader",
-      "icon": "📷",
+      "icon": "\ud83d\udcf7",
       "desc": "Scan QR codes from camera or images.",
       "href": "/qr-reader/",
       "tags": [
@@ -902,8 +902,8 @@
     {
       "slug": "image-converter",
       "title": "Image Converter",
-      "icon": "🖼️",
-      "desc": "Convert images between JPG, PNG, WebP, GIF, BMP and TIFF — free.",
+      "icon": "\ud83d\uddbc\ufe0f",
+      "desc": "Convert images between JPG, PNG, WebP, GIF, BMP and TIFF \u2014 free.",
       "href": "/image-converter/",
       "tags": [
         "images"
@@ -916,7 +916,7 @@
     {
       "slug": "image-tool",
       "title": "Image Tool",
-      "icon": "🪄",
+      "icon": "\ud83e\ude84",
       "desc": "Edit photos: filters, grayscale, sepia, color adjust. Export PNG/WebP/JPG.",
       "href": "/image-tool/",
       "tags": [
@@ -930,7 +930,7 @@
     {
       "slug": "color-picker",
       "title": "Color Picker",
-      "icon": "🎨",
+      "icon": "\ud83c\udfa8",
       "desc": "Pick HEX/RGB, contrast check and save swatches.",
       "href": "/color-picker/",
       "tags": [
@@ -946,7 +946,7 @@
     {
       "slug": "exif-tool",
       "title": "EXIF Tool",
-      "icon": "🕵️",
+      "icon": "\ud83d\udd75\ufe0f",
       "desc": "Inspect, clean or embed photo metadata.",
       "href": "/exif-tool/",
       "tags": [
@@ -962,7 +962,7 @@
     {
       "slug": "ip-address",
       "title": "IP Address & ISP Lookup",
-      "icon": "🌐",
+      "icon": "\ud83c\udf10",
       "desc": "See your public IP, ISP and DNS speed tests.",
       "href": "/ip-address/",
       "tags": [
@@ -978,7 +978,7 @@
     {
       "slug": "wifi-router",
       "title": "WiFi Router Tools",
-      "icon": "📡",
+      "icon": "\ud83d\udce1",
       "desc": "Find default passwords, Wi-Fi QR & vendors.",
       "href": "/wifi-router/",
       "tags": [
@@ -994,7 +994,7 @@
     {
       "slug": "speed-test",
       "title": "Internet Speed Test",
-      "icon": "⚡",
+      "icon": "\u26a1",
       "desc": "Measure download, upload speed & ping.",
       "href": "/speed-test/",
       "tags": [
@@ -1010,7 +1010,7 @@
     {
       "slug": "domain-finder",
       "title": "Domain Name Finder",
-      "icon": "🔍",
+      "icon": "\ud83d\udd0d",
       "desc": "Discover available domains instantly.",
       "href": "/domain-finder/",
       "tags": [
@@ -1026,7 +1026,7 @@
     {
       "slug": "whatsapp-chat",
       "title": "WhatsApp Click-to-Chat",
-      "icon": "💬",
+      "icon": "\ud83d\udcac",
       "desc": "Open chats without saving numbers.",
       "href": "/whatsapp-chat/",
       "tags": [
@@ -1042,7 +1042,7 @@
     {
       "slug": "whatsapp-stickers",
       "title": "WhatsApp Sticker Maker",
-      "icon": "🧩",
+      "icon": "\ud83e\udde9",
       "desc": "Design and export sticker packs.",
       "href": "/whatsapp-stickers/",
       "tags": [
@@ -1058,7 +1058,7 @@
     {
       "slug": "instagram-auditor",
       "title": "Instagram Auditor",
-      "icon": "📊",
+      "icon": "\ud83d\udcca",
       "desc": "Find non-followers, fans & mutuals. Privacy-first analysis.",
       "href": "/instagram-auditor/",
       "tags": [
@@ -1075,7 +1075,7 @@
     {
       "slug": "instagram-bio-generator",
       "title": "Instagram Bio Generator",
-      "icon": "✨",
+      "icon": "\u2728",
       "desc": "Create engaging and creative Instagram bios with AI.",
       "href": "/instagram-bio-generator/",
       "tags": [
@@ -1092,7 +1092,7 @@
     {
       "slug": "instagram-caption-generator",
       "title": "Instagram Caption Generator",
-      "icon": "💬",
+      "icon": "\ud83d\udcac",
       "desc": "Generate engaging captions for your Instagram posts.",
       "href": "/instagram-caption-generator/",
       "tags": [
@@ -1109,7 +1109,7 @@
     {
       "slug": "instagram-hashtag-generator",
       "title": "Instagram Hashtag Generator",
-      "icon": "#️⃣",
+      "icon": "#\ufe0f\u20e3",
       "desc": "Find trending hashtags to boost your reach.",
       "href": "/instagram-hashtag-generator/",
       "tags": [
@@ -1125,7 +1125,7 @@
     {
       "slug": "instagram-username-generator",
       "title": "Instagram Username Generator",
-      "icon": "👤",
+      "icon": "\ud83d\udc64",
       "desc": "Generate unique and catchy Instagram usernames.",
       "href": "/instagram-username-generator/",
       "tags": [
@@ -1141,7 +1141,7 @@
     {
       "slug": "instagram-story-templates",
       "title": "Instagram Story Templates",
-      "icon": "📱",
+      "icon": "\ud83d\udcf1",
       "desc": "Beautiful templates for Instagram Stories.",
       "href": "/instagram-story-templates/",
       "tags": [
@@ -1158,7 +1158,7 @@
     {
       "slug": "instagram-story-downloader",
       "title": "Instagram Story Downloader",
-      "icon": "📥",
+      "icon": "\ud83d\udce5",
       "desc": "Download Instagram stories, reels and posts without watermark.",
       "href": "/instagram-story-downloader/",
       "tags": [
@@ -1174,7 +1174,7 @@
     {
       "slug": "instagram-dp-downloader",
       "title": "Instagram DP Downloader",
-      "icon": "👤",
+      "icon": "\ud83d\udc64",
       "desc": "Download Instagram profile pictures in full HD quality.",
       "href": "/instagram-dp-downloader/",
       "tags": [
@@ -1190,7 +1190,7 @@
     {
       "slug": "instagram-reels-downloader",
       "title": "Instagram Reels Downloader",
-      "icon": "🎬",
+      "icon": "\ud83c\udfac",
       "desc": "Download Instagram Reels videos without watermark.",
       "href": "/instagram-reels-downloader/",
       "tags": [
@@ -1207,7 +1207,7 @@
     {
       "slug": "instagram-post-downloader",
       "title": "Instagram Post Downloader",
-      "icon": "📸",
+      "icon": "\ud83d\udcf8",
       "desc": "Download Instagram photos and carousel posts easily.",
       "href": "/instagram-post-downloader/",
       "tags": [
@@ -1223,7 +1223,7 @@
     {
       "slug": "instagram-video-downloader",
       "title": "Instagram Video Downloader",
-      "icon": "🎥",
+      "icon": "\ud83c\udfa5",
       "desc": "Download Instagram videos in HD quality.",
       "href": "/instagram-video-downloader/",
       "tags": [
@@ -1240,7 +1240,7 @@
     {
       "slug": "instagram-igtv-downloader",
       "title": "Instagram IGTV Downloader",
-      "icon": "📺",
+      "icon": "\ud83d\udcfa",
       "desc": "Download IGTV videos from Instagram.",
       "href": "/instagram-igtv-downloader/",
       "tags": [
@@ -1257,7 +1257,7 @@
     {
       "slug": "instagram-carousel-downloader",
       "title": "Instagram Carousel Downloader",
-      "icon": "🖼️",
+      "icon": "\ud83d\uddbc\ufe0f",
       "desc": "Download all photos from Instagram carousel posts.",
       "href": "/instagram-carousel-downloader/",
       "tags": [
@@ -1273,7 +1273,7 @@
     {
       "slug": "instagram-highlight-downloader",
       "title": "Instagram Highlight Downloader",
-      "icon": "⭐",
+      "icon": "\u2b50",
       "desc": "Download Instagram story highlights from any profile.",
       "href": "/instagram-highlight-downloader/",
       "tags": [
@@ -1289,7 +1289,7 @@
     {
       "slug": "instagram-follower-list-exporter",
       "title": "Instagram Follower List Exporter",
-      "icon": "📋",
+      "icon": "\ud83d\udccb",
       "desc": "Export your Instagram followers list to CSV.",
       "href": "/instagram-follower-list-exporter/",
       "tags": [
@@ -1306,7 +1306,7 @@
     {
       "slug": "instagram-following-list-exporter",
       "title": "Instagram Following List Exporter",
-      "icon": "📋",
+      "icon": "\ud83d\udccb",
       "desc": "Export your Instagram following list to CSV.",
       "href": "/instagram-following-list-exporter/",
       "tags": [
@@ -1323,7 +1323,7 @@
     {
       "slug": "instagram-fake-follower-checker",
       "title": "Instagram Fake Follower Checker",
-      "icon": "🤖",
+      "icon": "\ud83e\udd16",
       "desc": "Detect fake followers and bot accounts on Instagram.",
       "href": "/instagram-fake-follower-checker/",
       "tags": [
@@ -1340,7 +1340,7 @@
     {
       "slug": "instagram-bio-link-generator",
       "title": "Instagram Bio Link Generator",
-      "icon": "🔗",
+      "icon": "\ud83d\udd17",
       "desc": "Create clickable link trees for your Instagram bio.",
       "href": "/instagram-bio-link-generator/",
       "tags": [
@@ -1357,7 +1357,7 @@
     {
       "slug": "instagram-story-viewer",
       "title": "Instagram Story Viewer",
-      "icon": "👁️",
+      "icon": "\ud83d\udc41\ufe0f",
       "desc": "View Instagram stories anonymously without being seen.",
       "href": "/instagram-story-viewer/",
       "tags": [
@@ -1373,7 +1373,7 @@
     {
       "slug": "instagram-post-scheduler",
       "title": "Instagram Post Scheduler",
-      "icon": "⏰",
+      "icon": "\u23f0",
       "desc": "Schedule Instagram posts for optimal posting times.",
       "href": "/instagram-post-scheduler/",
       "tags": [
@@ -1390,7 +1390,7 @@
     {
       "slug": "instagram-content-calendar",
       "title": "Instagram Content Calendar",
-      "icon": "📅",
+      "icon": "\ud83d\udcc5",
       "desc": "Plan and organize your Instagram content strategy.",
       "href": "/instagram-content-calendar/",
       "tags": [
@@ -1407,7 +1407,7 @@
     {
       "slug": "instagram-growth-calculator",
       "title": "Instagram Growth Calculator",
-      "icon": "📈",
+      "icon": "\ud83d\udcc8",
       "desc": "Project your Instagram growth based on engagement rate.",
       "href": "/instagram-growth-calculator/",
       "tags": [
@@ -1423,7 +1423,7 @@
     {
       "slug": "instagram-reach-calculator",
       "title": "Instagram Reach Calculator",
-      "icon": "🎯",
+      "icon": "\ud83c\udfaf",
       "desc": "Calculate potential reach for your Instagram posts.",
       "href": "/instagram-reach-calculator/",
       "tags": [
@@ -1439,7 +1439,7 @@
     {
       "slug": "instagram-story-ideas-generator",
       "title": "Instagram Story Ideas Generator",
-      "icon": "💡",
+      "icon": "\ud83d\udca1",
       "desc": "Generate creative Instagram story ideas with AI.",
       "href": "/instagram-story-ideas-generator/",
       "tags": [
@@ -1456,7 +1456,7 @@
     {
       "slug": "tiktok-hashtag-generator",
       "title": "TikTok Hashtag Generator",
-      "icon": "🎵",
+      "icon": "\ud83c\udfb5",
       "desc": "Find viral hashtags for your TikTok videos.",
       "href": "/tiktok-hashtag-generator/",
       "tags": [
@@ -1473,7 +1473,7 @@
     {
       "slug": "games",
       "title": "Free Mini Games",
-      "icon": "🎮",
+      "icon": "\ud83c\udfae",
       "desc": "Play fast, sign-up free browser games.",
       "href": "/games/",
       "tags": [
@@ -1487,7 +1487,7 @@
     {
       "slug": "games-love-test",
       "title": "Love Compatibility Test",
-      "icon": "💘",
+      "icon": "\ud83d\udc98",
       "desc": "Fun love quiz for couples.",
       "href": "/games/love-test/",
       "tags": [
@@ -1503,7 +1503,7 @@
     {
       "slug": "games-typing-speed",
       "title": "Typing Speed Test",
-      "icon": "⌨️",
+      "icon": "\u2328\ufe0f",
       "desc": "Test your WPM and accuracy online.",
       "href": "/games/typing-speed/",
       "tags": [
@@ -1519,7 +1519,7 @@
     {
       "slug": "games-hangman",
       "title": "Hangman",
-      "icon": "🪢",
+      "icon": "\ud83e\udea2",
       "desc": "Classic word guessing game.",
       "href": "/games/hangman/",
       "tags": [
@@ -1534,7 +1534,7 @@
     {
       "slug": "games-word-scramble",
       "title": "Word Scramble",
-      "icon": "🔀",
+      "icon": "\ud83d\udd00",
       "desc": "Unscramble jumbled letters to find the word.",
       "href": "/games/word-scramble/",
       "tags": [
@@ -1549,7 +1549,7 @@
     {
       "slug": "games-quiz-trivia",
       "title": "Quiz Trivia",
-      "icon": "🧠",
+      "icon": "\ud83e\udde0",
       "desc": "100+ general knowledge trivia questions.",
       "href": "/games/quiz-trivia/",
       "tags": [
@@ -1564,7 +1564,7 @@
     {
       "slug": "games-dice-roller",
       "title": "Dice Roller",
-      "icon": "🎲",
+      "icon": "\ud83c\udfb2",
       "desc": "Roll D4 to D20 virtual dice.",
       "href": "/games/dice-roller/",
       "tags": [
@@ -1578,7 +1578,7 @@
     {
       "slug": "games-coin-flip",
       "title": "Coin Flip",
-      "icon": "🪙",
+      "icon": "\ud83e\ude99",
       "desc": "Virtual coin toss with stats.",
       "href": "/games/coin-flip/",
       "tags": [
@@ -1592,7 +1592,7 @@
     {
       "slug": "games-ping-pong",
       "title": "Ping Pong",
-      "icon": "🏓",
+      "icon": "\ud83c\udfd3",
       "desc": "Classic Pong against AI.",
       "href": "/games/ping-pong/",
       "tags": [
@@ -1606,7 +1606,7 @@
     {
       "slug": "games-wheel-of-names",
       "title": "Wheel of Names",
-      "icon": "🎡",
+      "icon": "\ud83c\udfa1",
       "desc": "Spin a custom wheel of names to pick a random winner.",
       "href": "/games/wheel-of-names/",
       "tags": [
@@ -1621,7 +1621,7 @@
     {
       "slug": "ai-name-generator",
       "title": "AI Name Generator",
-      "icon": "🤖",
+      "icon": "\ud83e\udd16",
       "desc": "Generate baby, business, brand & character names.",
       "href": "/ai-name-generator/",
       "tags": [
@@ -1637,7 +1637,7 @@
     {
       "slug": "ai-joke-generator",
       "title": "AI Joke Generator",
-      "icon": "😂",
+      "icon": "\ud83d\ude02",
       "desc": "Get hilarious jokes, puns & one-liners instantly.",
       "href": "/ai-joke-generator/",
       "tags": [
@@ -1653,7 +1653,7 @@
     {
       "slug": "ai-grammar-checker",
       "title": "AI Grammar Checker",
-      "icon": "✅",
+      "icon": "\u2705",
       "desc": "Fix grammar, spelling & punctuation instantly.",
       "href": "/ai-grammar-checker/",
       "tags": [
@@ -1669,7 +1669,7 @@
     {
       "slug": "ai-cover-letter",
       "title": "AI Cover Letter Generator",
-      "icon": "📄",
+      "icon": "\ud83d\udcc4",
       "desc": "Generate professional cover letters in seconds.",
       "href": "/ai-cover-letter/",
       "tags": [
@@ -1685,7 +1685,7 @@
     {
       "slug": "pin-code-finder",
       "title": "PIN Code Finder India",
-      "icon": "📮",
+      "icon": "\ud83d\udcee",
       "desc": "Find post office, district & state by PIN code. Bulk lookup + CSV.",
       "href": "/pin-code-finder/",
       "tags": [
@@ -1701,8 +1701,8 @@
     {
       "slug": "kundli",
       "title": "Kundli Maker",
-      "icon": "🪔",
-      "desc": "Make a free Vedic kundli by date of birth, time & place — Lagna, 9 planets, houses, Mangal Dosha.",
+      "icon": "\ud83e\ude94",
+      "desc": "Make a free Vedic kundli by date of birth, time & place \u2014 Lagna, 9 planets, houses, Mangal Dosha.",
       "href": "/kundli/",
       "tags": [
         "kundli",
@@ -1723,8 +1723,8 @@
     {
       "slug": "kundli-matching",
       "title": "Kundli Matching (Gun Milan)",
-      "icon": "💍",
-      "desc": "Free 36 Guna kundli matching & Gun Milan by date of birth — 8 kootas + Mangal Dosha.",
+      "icon": "\ud83d\udc8d",
+      "desc": "Free 36 Guna kundli matching & Gun Milan by date of birth \u2014 8 kootas + Mangal Dosha.",
       "href": "/kundli-matching/",
       "tags": [
         "kundli matching",
@@ -1745,7 +1745,7 @@
     {
       "slug": "gst-number-search",
       "title": "GST Number Search & Validator",
-      "icon": "🧾",
+      "icon": "\ud83e\uddfe",
       "desc": "Verify GSTIN format, decode state, PAN & entity type.",
       "href": "/gst-number-search/",
       "tags": [
@@ -1762,7 +1762,7 @@
     {
       "slug": "whatsapp-link-generator",
       "title": "WhatsApp Link Generator",
-      "icon": "💬",
+      "icon": "\ud83d\udcac",
       "desc": "Create wa.me links with pre-filled messages & QR codes.",
       "href": "/whatsapp-link-generator/",
       "tags": [
@@ -1779,7 +1779,7 @@
     {
       "slug": "games-friendship-test",
       "title": "Best Friend Compatibility Test",
-      "icon": "👫",
+      "icon": "\ud83d\udc6b",
       "desc": "2-player BFF quiz with challenge link & score.",
       "href": "/games/friendship-test/",
       "tags": [
@@ -1795,7 +1795,7 @@
     {
       "slug": "timezone-converter",
       "title": "Time Zone Converter",
-      "icon": "🌍",
+      "icon": "\ud83c\udf0d",
       "desc": "Convert time zones, compare world clocks and find meeting overlaps.",
       "href": "/timezone-converter/",
       "tags": [
@@ -1812,7 +1812,7 @@
     {
       "slug": "percentage-calculator",
       "title": "Percentage Calculator",
-      "icon": "📈",
+      "icon": "\ud83d\udcc8",
       "desc": "Calculate discounts, markups, percent change and percentage of a number.",
       "href": "/percentage-calculator/",
       "tags": [
@@ -1829,7 +1829,7 @@
     {
       "slug": "cagr-calculator",
       "title": "CAGR Calculator",
-      "icon": "📉",
+      "icon": "\ud83d\udcc9",
       "desc": "Calculate compound annual growth rate for investments, revenue and traffic.",
       "href": "/cagr-calculator/",
       "tags": [
@@ -1845,7 +1845,7 @@
     {
       "slug": "markup-margin-calculator",
       "title": "Markup vs Margin Calculator",
-      "icon": "🏷️",
+      "icon": "\ud83c\udff7\ufe0f",
       "desc": "Convert cost, sale price, markup, margin and gross profit.",
       "href": "/markup-margin-calculator/",
       "tags": [
@@ -1862,7 +1862,7 @@
     {
       "slug": "salary-converter",
       "title": "Salary Converter",
-      "icon": "💼",
+      "icon": "\ud83d\udcbc",
       "desc": "Convert hourly, daily, weekly, monthly and annual pay fast.",
       "href": "/salary-converter/",
       "tags": [
@@ -1879,7 +1879,7 @@
     {
       "slug": "break-even-calculator",
       "title": "Break-Even Calculator",
-      "icon": "⚖️",
+      "icon": "\u2696\ufe0f",
       "desc": "Calculate break-even units, revenue and sales needed for profit.",
       "href": "/break-even-calculator/",
       "tags": [
@@ -1896,7 +1896,7 @@
     {
       "slug": "overtime-calculator",
       "title": "Overtime Calculator",
-      "icon": "⏱️",
+      "icon": "\u23f1\ufe0f",
       "desc": "Estimate overtime pay with custom hourly rates and multipliers.",
       "href": "/overtime-calculator/",
       "tags": [
@@ -1913,7 +1913,7 @@
     {
       "slug": "invoice-calculator",
       "title": "Invoice Calculator",
-      "icon": "🧾",
+      "icon": "\ud83e\uddfe",
       "desc": "Calculate invoice subtotal, discount, tax and total due.",
       "href": "/invoice-calculator/",
       "tags": [
@@ -1931,7 +1931,7 @@
     {
       "slug": "met-gala-2026",
       "title": "Met Gala 2026 Fashion Looks",
-      "icon": "✨",
+      "icon": "\u2728",
       "desc": "Searchable red carpet guide with celebrity looks, designer credits & styling details.",
       "href": "/met-gala-2026/",
       "tags": [
@@ -1949,7 +1949,7 @@
     {
       "slug": "cricket-run-rate",
       "title": "Cricket Run Rate Calculator",
-      "icon": "🏏",
+      "icon": "\ud83c\udfcf",
       "desc": "Calculate required run rate, target and projected score for T20, ODI & Test matches.",
       "href": "/cricket-run-rate/",
       "tags": [
@@ -1964,7 +1964,7 @@
     {
       "slug": "cricket-score-predictor",
       "title": "Cricket Score Predictor",
-      "icon": "📊",
+      "icon": "\ud83d\udcca",
       "desc": "Predict match outcome and winning probability based on current score and overs.",
       "href": "/cricket-score-predictor/",
       "tags": [
@@ -1979,7 +1979,7 @@
     {
       "slug": "cricket-nrr",
       "title": "Cricket Net Run Rate (NRR)",
-      "icon": "🧮",
+      "icon": "\ud83e\uddee",
       "desc": "Calculate net run rate for tournament standings and league matches.",
       "href": "/cricket-nrr/",
       "tags": [
@@ -1994,7 +1994,7 @@
     {
       "slug": "ipl-points-table",
       "title": "IPL 2025 Points Table",
-      "icon": "🏆",
+      "icon": "\ud83c\udfc6",
       "desc": "Live IPL standings with NRR, wins, losses and playoff tracker.",
       "href": "/ipl-points-table/",
       "tags": [
@@ -2010,7 +2010,7 @@
     {
       "slug": "ipl-fantasy-calculator",
       "title": "IPL Fantasy Points Calculator",
-      "icon": "⭐",
+      "icon": "\u2b50",
       "desc": "Calculate Dream11 fantasy points for batting, bowling and fielding.",
       "href": "/ipl-fantasy-calculator/",
       "tags": [
@@ -2026,7 +2026,7 @@
     {
       "slug": "ipl-team-stats",
       "title": "IPL Team Statistics",
-      "icon": "📈",
+      "icon": "\ud83d\udcc8",
       "desc": "All-time IPL records, wins, titles and performance stats.",
       "href": "/ipl-team-stats/",
       "tags": [
@@ -2042,7 +2042,7 @@
     {
       "slug": "ai-linkedin-headline-generator",
       "title": "AI LinkedIn Headline Generator",
-      "icon": "💼",
+      "icon": "\ud83d\udcbc",
       "desc": "Create keyword-rich LinkedIn headlines for jobs, freelancing and founders.",
       "href": "/ai-linkedin-headline-generator/",
       "tags": [
@@ -2060,7 +2060,7 @@
     {
       "slug": "ai-travel-planner",
       "title": "AI Travel Planner",
-      "icon": "🧳",
+      "icon": "\ud83e\uddf3",
       "desc": "Generate day-by-day trip itineraries by destination, budget and pace.",
       "href": "/ai-travel-planner/",
       "tags": [
@@ -2077,7 +2077,7 @@
     {
       "slug": "tip-calculator",
       "title": "Tip Calculator",
-      "icon": "💵",
+      "icon": "\ud83d\udcb5",
       "desc": "Calculate tips and split bills for restaurants and services.",
       "href": "/tip-calculator/",
       "tags": [
@@ -2092,7 +2092,7 @@
     {
       "slug": "sales-tax-calculator",
       "title": "US Sales Tax Calculator",
-      "icon": "🧾",
+      "icon": "\ud83e\uddfe",
       "desc": "Calculate sales tax for all 50 US states with accurate rates.",
       "href": "/sales-tax-calculator/",
       "tags": [
@@ -2109,7 +2109,7 @@
     {
       "slug": "vat-calculator",
       "title": "VAT Calculator",
-      "icon": "🇪🇺",
+      "icon": "\ud83c\uddea\ud83c\uddfa",
       "desc": "Calculate European VAT for all EU countries and rates.",
       "href": "/vat-calculator/",
       "tags": [
@@ -2126,7 +2126,7 @@
     {
       "slug": "mortgage-calculator",
       "title": "Mortgage Calculator",
-      "icon": "🏠",
+      "icon": "\ud83c\udfe0",
       "desc": "Calculate monthly mortgage payments and total interest.",
       "href": "/mortgage-calculator/",
       "tags": [
@@ -2142,7 +2142,7 @@
     {
       "slug": "calorie-calculator",
       "title": "Calorie Calculator",
-      "icon": "🍎",
+      "icon": "\ud83c\udf4e",
       "desc": "Calculate daily calorie needs (TDEE) for weight goals.",
       "href": "/calorie-calculator/",
       "tags": [
@@ -2158,7 +2158,7 @@
     {
       "slug": "401k-calculator",
       "title": "401k Calculator",
-      "icon": "💰",
+      "icon": "\ud83d\udcb0",
       "desc": "Calculate 401k retirement savings with employer match.",
       "href": "/401k-calculator/",
       "tags": [
@@ -2174,7 +2174,7 @@
     {
       "slug": "house-affordability-calculator",
       "title": "House Affordability Calculator",
-      "icon": "🏠",
+      "icon": "\ud83c\udfe0",
       "desc": "Calculate how much house you can afford based on income.",
       "href": "/house-affordability-calculator/",
       "tags": [
@@ -2190,7 +2190,7 @@
     {
       "slug": "car-loan-calculator",
       "title": "Car Loan Calculator",
-      "icon": "🚗",
+      "icon": "\ud83d\ude97",
       "desc": "Calculate car loan payments and total interest costs.",
       "href": "/car-loan-calculator/",
       "tags": [
@@ -2206,7 +2206,7 @@
     {
       "slug": "retirement-calculator",
       "title": "Retirement Calculator",
-      "icon": "🏖️",
+      "icon": "\ud83c\udfd6\ufe0f",
       "desc": "Calculate when you can retire based on savings and income.",
       "href": "/retirement-calculator/",
       "tags": [
@@ -2222,7 +2222,7 @@
     {
       "slug": "life-insurance-calculator",
       "title": "Life Insurance Calculator",
-      "icon": "🛡️",
+      "icon": "\ud83d\udee1\ufe0f",
       "desc": "Calculate how much life insurance coverage you need.",
       "href": "/life-insurance-calculator/",
       "tags": [
@@ -2238,7 +2238,7 @@
     {
       "slug": "investment-return-calculator",
       "title": "Investment Return Calculator",
-      "icon": "📊",
+      "icon": "\ud83d\udcca",
       "desc": "Calculate ROI and compound interest on investments.",
       "href": "/investment-return-calculator/",
       "tags": [
@@ -2254,7 +2254,7 @@
     {
       "slug": "roth-ira-calculator",
       "title": "Roth IRA Calculator",
-      "icon": "💎",
+      "icon": "\ud83d\udc8e",
       "desc": "Calculate tax-free retirement savings with Roth IRA.",
       "href": "/roth-ira-calculator/",
       "tags": [
@@ -2270,7 +2270,7 @@
     {
       "slug": "debt-payoff-calculator",
       "title": "Debt Payoff Calculator",
-      "icon": "💳",
+      "icon": "\ud83d\udcb3",
       "desc": "Calculate debt-free timeline with snowball or avalanche.",
       "href": "/debt-payoff-calculator/",
       "tags": [
@@ -2286,7 +2286,7 @@
     {
       "slug": "net-worth-calculator",
       "title": "Net Worth Calculator",
-      "icon": "💰",
+      "icon": "\ud83d\udcb0",
       "desc": "Calculate your total net worth: assets minus liabilities.",
       "href": "/net-worth-calculator/",
       "tags": [
@@ -2302,7 +2302,7 @@
     {
       "slug": "savings-goal-calculator",
       "title": "Savings Goal Calculator",
-      "icon": "🎯",
+      "icon": "\ud83c\udfaf",
       "desc": "Calculate how long to reach your savings goal.",
       "href": "/savings-goal-calculator/",
       "tags": [
@@ -2318,7 +2318,7 @@
     {
       "slug": "rent-vs-buy-calculator",
       "title": "Rent vs Buy Calculator",
-      "icon": "🏘️",
+      "icon": "\ud83c\udfd8\ufe0f",
       "desc": "Compare renting vs buying a home over time.",
       "href": "/rent-vs-buy-calculator/",
       "tags": [
@@ -2334,7 +2334,7 @@
     {
       "slug": "refinance-calculator",
       "title": "Refinance Calculator",
-      "icon": "🔄",
+      "icon": "\ud83d\udd04",
       "desc": "Calculate if refinancing your mortgage saves money.",
       "href": "/refinance-calculator/",
       "tags": [
@@ -2350,7 +2350,7 @@
     {
       "slug": "property-tax-calculator",
       "title": "Property Tax Calculator",
-      "icon": "🏛️",
+      "icon": "\ud83c\udfdb\ufe0f",
       "desc": "Estimate annual property taxes on your home.",
       "href": "/property-tax-calculator/",
       "tags": [
@@ -2367,7 +2367,7 @@
     {
       "slug": "stamp-duty-calculator",
       "title": "UK Stamp Duty Calculator",
-      "icon": "🇬🇧",
+      "icon": "\ud83c\uddec\ud83c\udde7",
       "desc": "Calculate UK Stamp Duty Land Tax on property.",
       "href": "/stamp-duty-calculator/",
       "tags": [
@@ -2385,7 +2385,7 @@
     {
       "slug": "home-equity-calculator",
       "title": "Home Equity Calculator",
-      "icon": "📊",
+      "icon": "\ud83d\udcca",
       "desc": "Calculate equity in your home and track growth.",
       "href": "/home-equity-calculator/",
       "tags": [
@@ -2401,7 +2401,7 @@
     {
       "slug": "whatsapp-status-saver",
       "title": "WhatsApp Status Saver",
-      "icon": "💾",
+      "icon": "\ud83d\udcbe",
       "desc": "Learn how to save WhatsApp status videos and photos.",
       "href": "/whatsapp-status-saver/",
       "tags": [
@@ -2418,7 +2418,7 @@
     {
       "slug": "whatsapp-dp-downloader",
       "title": "WhatsApp DP Downloader",
-      "icon": "📥",
+      "icon": "\ud83d\udce5",
       "desc": "Download WhatsApp profile pictures in full size.",
       "href": "/whatsapp-dp-downloader/",
       "tags": [
@@ -2435,7 +2435,7 @@
     {
       "slug": "whatsapp-profile-picture-downloader",
       "title": "WhatsApp Profile Pic Downloader",
-      "icon": "🖼️",
+      "icon": "\ud83d\uddbc\ufe0f",
       "desc": "Save any visible WhatsApp profile picture in full size.",
       "href": "/whatsapp-profile-picture-downloader/",
       "tags": [
@@ -2452,7 +2452,7 @@
     {
       "slug": "whatsapp-dp-by-number",
       "title": "WhatsApp DP by Number Guide",
-      "icon": "🔢",
+      "icon": "\ud83d\udd22",
       "desc": "Honest guide: saving WhatsApp DP from a number.",
       "href": "/whatsapp-dp-by-number/",
       "tags": [
@@ -2469,7 +2469,7 @@
     {
       "slug": "instagram-profile-picture-downloader",
       "title": "IG Profile Pic Downloader",
-      "icon": "📸",
+      "icon": "\ud83d\udcf8",
       "desc": "Save any public Instagram profile picture in full size.",
       "href": "/instagram-profile-picture-downloader/",
       "tags": [
@@ -2486,7 +2486,7 @@
     {
       "slug": "marvel-doomsday",
       "title": "Marvel Doomsday 2026",
-      "icon": "🦸",
+      "icon": "\ud83e\uddb8",
       "desc": "Release date, cast & Multiverse Saga guide.",
       "href": "/marvel-doomsday/",
       "tags": [
@@ -2502,7 +2502,7 @@
     {
       "slug": "marvel-movie-timeline",
       "title": "MCU Movie Timeline",
-      "icon": "🎬",
+      "icon": "\ud83c\udfac",
       "desc": "Complete Marvel watch order & phase guide.",
       "href": "/marvel-movie-timeline/",
       "tags": [
@@ -2518,7 +2518,7 @@
     {
       "slug": "avengers-doomsday-cast",
       "title": "Doomsday Cast",
-      "icon": "🦹",
+      "icon": "\ud83e\uddb9",
       "desc": "Confirmed & rumored Avengers Doomsday cast.",
       "href": "/avengers-doomsday-cast/",
       "tags": [
@@ -2534,7 +2534,7 @@
     {
       "slug": "whatsapp-group-name-generator",
       "title": "WhatsApp Group Name Generator",
-      "icon": "💬",
+      "icon": "\ud83d\udcac",
       "desc": "Generate creative group names for any occasion.",
       "href": "/whatsapp-group-name-generator/",
       "tags": [
@@ -2551,7 +2551,7 @@
     {
       "slug": "snapchat-username-generator",
       "title": "Snapchat Username Generator",
-      "icon": "👻",
+      "icon": "\ud83d\udc7b",
       "desc": "Create unique and cool Snapchat usernames.",
       "href": "/snapchat-username-generator/",
       "tags": [
@@ -2567,7 +2567,7 @@
     {
       "slug": "snapchat-score-calculator",
       "title": "Snapchat Score Calculator",
-      "icon": "📊",
+      "icon": "\ud83d\udcca",
       "desc": "Calculate and understand your Snapchat score.",
       "href": "/snapchat-score-calculator/",
       "tags": [
@@ -2583,7 +2583,7 @@
     {
       "slug": "whatsapp-message-scheduler",
       "title": "WhatsApp Message Scheduler",
-      "icon": "⏰",
+      "icon": "\u23f0",
       "desc": "Learn how to schedule WhatsApp messages for free.",
       "href": "/whatsapp-message-scheduler/",
       "tags": [
@@ -2600,7 +2600,7 @@
     {
       "slug": "whatsapp-business-name-generator",
       "title": "WhatsApp Business Name Generator",
-      "icon": "💼",
+      "icon": "\ud83d\udcbc",
       "desc": "Generate professional business names for WhatsApp.",
       "href": "/whatsapp-business-name-generator/",
       "tags": [
@@ -2617,7 +2617,7 @@
     {
       "slug": "whatsapp-font-generator",
       "title": "WhatsApp Font Generator",
-      "icon": "✍️",
+      "icon": "\u270d\ufe0f",
       "desc": "Generate bold, italic, strikethrough text for WhatsApp.",
       "href": "/whatsapp-font-generator/",
       "tags": [
@@ -2634,7 +2634,7 @@
     {
       "slug": "whatsapp-emoji-translator",
       "title": "WhatsApp Emoji Translator",
-      "icon": "😊",
+      "icon": "\ud83d\ude0a",
       "desc": "Convert text to emojis for WhatsApp messages.",
       "href": "/whatsapp-emoji-translator/",
       "tags": [
@@ -2651,7 +2651,7 @@
     {
       "slug": "whatsapp-group-invite-link",
       "title": "WhatsApp Group Invite Link",
-      "icon": "🔗",
+      "icon": "\ud83d\udd17",
       "desc": "Learn how to create and share group invite links.",
       "href": "/whatsapp-group-invite-link/",
       "tags": [
@@ -2668,7 +2668,7 @@
     {
       "slug": "snapchat-story-ideas",
       "title": "Snapchat Story Ideas Generator",
-      "icon": "💡",
+      "icon": "\ud83d\udca1",
       "desc": "Generate creative story ideas for Snapchat.",
       "href": "/snapchat-story-ideas/",
       "tags": [
@@ -2684,7 +2684,7 @@
     {
       "slug": "snapchat-streak-calculator",
       "title": "Snapchat Streak Calculator",
-      "icon": "🔥",
+      "icon": "\ud83d\udd25",
       "desc": "Calculate and track your Snapchat streaks.",
       "href": "/snapchat-streak-calculator/",
       "tags": [
@@ -2700,7 +2700,7 @@
     {
       "slug": "contact",
       "title": "Contact UpTools",
-      "icon": "✉️",
+      "icon": "\u2709\ufe0f",
       "desc": "Share feedback, bugs or feature requests.",
       "href": "/contact/",
       "tags": [
@@ -2714,7 +2714,7 @@
     {
       "slug": "instagram-reels-ideas",
       "title": "Instagram Reels Ideas Generator",
-      "icon": "🎬",
+      "icon": "\ud83c\udfac",
       "desc": "Generate viral Instagram Reels ideas with AI.",
       "href": "/instagram-reels-ideas/",
       "tags": [
@@ -2731,7 +2731,7 @@
     {
       "slug": "instagram-engagement-calculator",
       "title": "Instagram Engagement Calculator",
-      "icon": "📊",
+      "icon": "\ud83d\udcca",
       "desc": "Calculate engagement rate and analyze performance.",
       "href": "/instagram-engagement-calculator/",
       "tags": [
@@ -2747,7 +2747,7 @@
     {
       "slug": "instagram-best-time-to-post",
       "title": "Instagram Best Time to Post",
-      "icon": "⏰",
+      "icon": "\u23f0",
       "desc": "Find optimal posting times for maximum reach.",
       "href": "/instagram-best-time-to-post/",
       "tags": [
@@ -2763,7 +2763,7 @@
     {
       "slug": "tiktok-video-downloader",
       "title": "TikTok Video Downloader",
-      "icon": "🎵",
+      "icon": "\ud83c\udfb5",
       "desc": "Download TikTok videos without watermark.",
       "href": "/tiktok-video-downloader/",
       "tags": [
@@ -2778,7 +2778,7 @@
     {
       "slug": "facebook-video-downloader",
       "title": "Facebook Video Downloader",
-      "icon": "📹",
+      "icon": "\ud83d\udcf9",
       "desc": "Download Facebook videos in HD quality.",
       "href": "/facebook-video-downloader/",
       "tags": [
@@ -2793,7 +2793,7 @@
     {
       "slug": "youtube-video-downloader",
       "title": "YouTube Video Downloader",
-      "icon": "🎥",
+      "icon": "\ud83c\udfa5",
       "desc": "Download YouTube videos and audio in HD.",
       "href": "/youtube-video-downloader/",
       "tags": [
@@ -2808,7 +2808,7 @@
     {
       "slug": "twitter-video-downloader",
       "title": "Twitter/X Video Downloader",
-      "icon": "🐦",
+      "icon": "\ud83d\udc26",
       "desc": "Download Twitter/X videos instantly.",
       "href": "/twitter-video-downloader/",
       "tags": [
@@ -2823,7 +2823,7 @@
     {
       "slug": "linkedin-profile-analyzer",
       "title": "LinkedIn Profile Analyzer",
-      "icon": "💼",
+      "icon": "\ud83d\udcbc",
       "desc": "Analyze and optimize your LinkedIn profile.",
       "href": "/linkedin-profile-analyzer/",
       "tags": [
@@ -2839,7 +2839,7 @@
     {
       "slug": "meeting-scheduler",
       "title": "Meeting Scheduler",
-      "icon": "🌍",
+      "icon": "\ud83c\udf0d",
       "desc": "Find best meeting times across timezones.",
       "href": "/meeting-scheduler/",
       "tags": [
@@ -2855,7 +2855,7 @@
     {
       "slug": "todo-list-maker",
       "title": "Todo List Maker",
-      "icon": "✅",
+      "icon": "\u2705",
       "desc": "Simple online todo list with local storage.",
       "href": "/todo-list-maker/",
       "tags": [
@@ -2870,7 +2870,7 @@
     {
       "slug": "note-taking-app",
       "title": "Note Taking App",
-      "icon": "📝",
+      "icon": "\ud83d\udcdd",
       "desc": "Quick notes online with local storage.",
       "href": "/note-taking-app/",
       "tags": [
@@ -2885,7 +2885,7 @@
     {
       "slug": "habit-tracker",
       "title": "Habit Tracker",
-      "icon": "📊",
+      "icon": "\ud83d\udcca",
       "desc": "Track daily habits and build streaks.",
       "href": "/habit-tracker/",
       "tags": [
@@ -2900,7 +2900,7 @@
     {
       "slug": "multi-currency-converter",
       "title": "Multi-Currency Converter",
-      "icon": "💱",
+      "icon": "\ud83d\udcb1",
       "desc": "Convert 150+ currencies with real-time rates.",
       "href": "/multi-currency-converter/",
       "tags": [
@@ -2915,7 +2915,7 @@
     {
       "slug": "world-clock",
       "title": "World Clock",
-      "icon": "🌍",
+      "icon": "\ud83c\udf0d",
       "desc": "Check time in 200+ cities worldwide.",
       "href": "/world-clock/",
       "tags": [
@@ -2930,7 +2930,7 @@
     {
       "slug": "roi-calculator",
       "title": "ROI Calculator",
-      "icon": "📈",
+      "icon": "\ud83d\udcc8",
       "desc": "Calculate return on investment instantly.",
       "href": "/roi-calculator/",
       "tags": [
@@ -2946,7 +2946,7 @@
     {
       "slug": "calorie-intake-calculator",
       "title": "Calorie Intake Calculator",
-      "icon": "🔥",
+      "icon": "\ud83d\udd25",
       "desc": "Calculate daily calorie needs for your goals.",
       "href": "/calorie-intake-calculator/",
       "tags": [
@@ -2961,7 +2961,7 @@
     {
       "slug": "language-detector",
       "title": "Language Detector",
-      "icon": "🌐",
+      "icon": "\ud83c\udf10",
       "desc": "Automatically detect language from text. Supports 50+ languages.",
       "href": "/language-detector/",
       "tags": [
@@ -2976,8 +2976,8 @@
     {
       "slug": "english-to-devanagari",
       "title": "English to Devanagari",
-      "icon": "अ",
-      "desc": "Convert English (Roman) text to Devanagari (Hindi) script instantly. Phonetic transliterator — no signup.",
+      "icon": "\u0905",
+      "desc": "Convert English (Roman) text to Devanagari (Hindi) script instantly. Phonetic transliterator \u2014 no signup.",
       "href": "/english-to-devanagari/",
       "tags": [
         "language",
@@ -2993,8 +2993,8 @@
     {
       "slug": "fancy-text-generator",
       "title": "Fancy Text Generator",
-      "icon": "𝓕",
-      "desc": "Convert text to 15+ Unicode fancy styles — Bold, Italic, Script, Cursive, Upside Down. Perfect for Instagram bio & WhatsApp.",
+      "icon": "\ud835\udcd5",
+      "desc": "Convert text to 15+ Unicode fancy styles \u2014 Bold, Italic, Script, Cursive, Upside Down. Perfect for Instagram bio & WhatsApp.",
       "href": "/fancy-text-generator/",
       "tags": [
         "text",
@@ -3011,8 +3011,8 @@
     {
       "slug": "text-repeater",
       "title": "Text Repeater",
-      "icon": "🔁",
-      "desc": "Repeat text online 1–1000 times with custom separators (newline, comma, pipe). Copy or download instantly.",
+      "icon": "\ud83d\udd01",
+      "desc": "Repeat text online 1\u20131000 times with custom separators (newline, comma, pipe). Copy or download instantly.",
       "href": "/text-repeater/",
       "tags": [
         "text",
@@ -3026,7 +3026,7 @@
     {
       "slug": "morse-code-translator",
       "title": "Morse Code Translator",
-      "icon": "📡",
+      "icon": "\ud83d\udce1",
       "desc": "Convert text to Morse code with audio playback.",
       "href": "/morse-code-translator/",
       "tags": [
@@ -3041,7 +3041,7 @@
     {
       "slug": "binary-code-translator",
       "title": "Binary Code Translator",
-      "icon": "🔢",
+      "icon": "\ud83d\udd22",
       "desc": "Convert text to binary, hex, and decimal codes.",
       "href": "/binary-code-translator/",
       "tags": [
@@ -3057,7 +3057,7 @@
     {
       "slug": "phonetic-alphabet-converter",
       "title": "Phonetic Alphabet Converter",
-      "icon": "🔤",
+      "icon": "\ud83d\udd24",
       "desc": "Convert text to NATO phonetic alphabet.",
       "href": "/phonetic-alphabet-converter/",
       "tags": [
@@ -3072,7 +3072,7 @@
     {
       "slug": "accent-mark-generator",
       "title": "Accent Mark Generator",
-      "icon": "🎨",
+      "icon": "\ud83c\udfa8",
       "desc": "Add accent marks and diacritics to text.",
       "href": "/accent-mark-generator/",
       "tags": [
@@ -3087,7 +3087,7 @@
     {
       "slug": "unix-timestamp-converter",
       "title": "Unix Timestamp Converter",
-      "icon": "⏱️",
+      "icon": "\u23f1\ufe0f",
       "desc": "Convert Unix timestamps to dates and vice versa.",
       "href": "/unix-timestamp-converter/",
       "tags": [
@@ -3102,7 +3102,7 @@
     {
       "slug": "countdown-timer",
       "title": "Countdown Timer",
-      "icon": "⏲️",
+      "icon": "\u23f2\ufe0f",
       "desc": "Customizable countdown timer with notifications.",
       "href": "/countdown-timer/",
       "tags": [
@@ -3117,7 +3117,7 @@
     {
       "slug": "days-between-dates",
       "title": "Days Between Dates",
-      "icon": "📅",
+      "icon": "\ud83d\udcc5",
       "desc": "Calculate days, weeks, months between two dates.",
       "href": "/days-between-dates/",
       "tags": [
@@ -3132,7 +3132,7 @@
     {
       "slug": "age-calculator-by-date",
       "title": "Age Calculator by Date",
-      "icon": "🎂",
+      "icon": "\ud83c\udf82",
       "desc": "Calculate exact age with zodiac sign and birthday countdown.",
       "href": "/age-calculator-by-date/",
       "tags": [
@@ -3147,7 +3147,7 @@
     {
       "slug": "lunar-calendar",
       "title": "Lunar Calendar",
-      "icon": "🌙",
+      "icon": "\ud83c\udf19",
       "desc": "View lunar calendar with moon phases and zodiac.",
       "href": "/lunar-calendar/",
       "tags": [
@@ -3162,7 +3162,7 @@
     {
       "slug": "temperature-converter",
       "title": "Temperature Converter",
-      "icon": "🌡️",
+      "icon": "\ud83c\udf21\ufe0f",
       "desc": "Convert temperature between Celsius, Fahrenheit, Kelvin.",
       "href": "/temperature-converter/",
       "tags": [
@@ -3177,7 +3177,7 @@
     {
       "slug": "speed-converter",
       "title": "Speed Converter",
-      "icon": "🚀",
+      "icon": "\ud83d\ude80",
       "desc": "Convert speed units: km/h, mph, knots, m/s.",
       "href": "/speed-converter/",
       "tags": [
@@ -3192,7 +3192,7 @@
     {
       "slug": "pressure-converter",
       "title": "Pressure Converter",
-      "icon": "🔧",
+      "icon": "\ud83d\udd27",
       "desc": "Convert pressure units: PSI, bar, pascal, atm.",
       "href": "/pressure-converter/",
       "tags": [
@@ -3207,7 +3207,7 @@
     {
       "slug": "energy-converter",
       "title": "Energy Converter",
-      "icon": "⚡",
+      "icon": "\u26a1",
       "desc": "Convert energy units: Joules, calories, BTU, kWh.",
       "href": "/energy-converter/",
       "tags": [
@@ -3222,7 +3222,7 @@
     {
       "slug": "power-converter",
       "title": "Power Converter",
-      "icon": "💪",
+      "icon": "\ud83d\udcaa",
       "desc": "Convert power units: Watts, horsepower, kilowatts.",
       "href": "/power-converter/",
       "tags": [
@@ -3237,8 +3237,8 @@
     {
       "slug": "density-converter",
       "title": "Density Converter",
-      "icon": "📦",
-      "desc": "Convert density units: kg/m³, g/cm³, lb/ft³.",
+      "icon": "\ud83d\udce6",
+      "desc": "Convert density units: kg/m\u00b3, g/cm\u00b3, lb/ft\u00b3.",
       "href": "/density-converter/",
       "tags": [
         "conversion",
@@ -3252,8 +3252,8 @@
     {
       "slug": "viscosity-converter",
       "title": "Viscosity Converter",
-      "icon": "🧴",
-      "desc": "Convert viscosity units: Centipoise, Stokes, Pa·s.",
+      "icon": "\ud83e\uddf4",
+      "desc": "Convert viscosity units: Centipoise, Stokes, Pa\u00b7s.",
       "href": "/viscosity-converter/",
       "tags": [
         "conversion",
@@ -3267,7 +3267,7 @@
     {
       "slug": "frequency-converter",
       "title": "Frequency Converter",
-      "icon": "📻",
+      "icon": "\ud83d\udcfb",
       "desc": "Convert frequency units: Hz, kHz, MHz, GHz, rpm.",
       "href": "/frequency-converter/",
       "tags": [
@@ -3282,7 +3282,7 @@
     {
       "slug": "macro-calculator",
       "title": "Macro Calculator",
-      "icon": "🥗",
+      "icon": "\ud83e\udd57",
       "desc": "Calculate macronutrient ratios for fitness goals.",
       "href": "/macro-calculator/",
       "tags": [
@@ -3297,7 +3297,7 @@
     {
       "slug": "water-intake-calculator",
       "title": "Water Intake Calculator",
-      "icon": "💧",
+      "icon": "\ud83d\udca7",
       "desc": "Calculate daily water intake needs.",
       "href": "/water-intake-calculator/",
       "tags": [
@@ -3312,7 +3312,7 @@
     {
       "slug": "sleep-calculator",
       "title": "Sleep Calculator",
-      "icon": "😴",
+      "icon": "\ud83d\ude34",
       "desc": "Calculate optimal sleep cycles and wake times.",
       "href": "/sleep-calculator/",
       "tags": [
@@ -3327,7 +3327,7 @@
     {
       "slug": "ideal-weight-calculator",
       "title": "Ideal Weight Calculator",
-      "icon": "⚖️",
+      "icon": "\u2696\ufe0f",
       "desc": "Calculate ideal weight based on height and frame.",
       "href": "/ideal-weight-calculator/",
       "tags": [
@@ -3342,7 +3342,7 @@
     {
       "slug": "body-fat-percentage-calculator",
       "title": "Body Fat Percentage Calculator",
-      "icon": "📊",
+      "icon": "\ud83d\udcca",
       "desc": "Calculate body fat percentage with multiple methods.",
       "href": "/body-fat-percentage-calculator/",
       "tags": [
@@ -3357,7 +3357,7 @@
     {
       "slug": "ovulation-calculator",
       "title": "Ovulation Calculator",
-      "icon": "🔄",
+      "icon": "\ud83d\udd04",
       "desc": "Calculate ovulation date and fertility window.",
       "href": "/ovulation-calculator/",
       "tags": [
@@ -3372,7 +3372,7 @@
     {
       "slug": "ifsc-bulk-lookup",
       "title": "IFSC Bulk Lookup",
-      "icon": "🏦",
+      "icon": "\ud83c\udfe6",
       "desc": "Search multiple IFSC codes at once. Download as CSV.",
       "href": "/ifsc-bulk-lookup/",
       "tags": [
@@ -3387,7 +3387,7 @@
     {
       "slug": "youtube-audio-downloader",
       "title": "YouTube Audio Downloader",
-      "icon": "🎵",
+      "icon": "\ud83c\udfb5",
       "desc": "Download YouTube audio as MP3 in high quality.",
       "href": "/youtube-audio-downloader/",
       "tags": [
@@ -3402,7 +3402,7 @@
     {
       "slug": "facebook-video-downloader-hd",
       "title": "Facebook Video Downloader HD",
-      "icon": "👍",
+      "icon": "\ud83d\udc4d",
       "desc": "Download Facebook videos in HD from feed, pages, and groups.",
       "href": "/facebook-video-downloader-hd/",
       "tags": [
@@ -3417,7 +3417,7 @@
     {
       "slug": "snapchat-video-downloader",
       "title": "Snapchat Video Downloader",
-      "icon": "👻",
+      "icon": "\ud83d\udc7b",
       "desc": "Download Snapchat snaps, stories, and memories before expiry.",
       "href": "/snapchat-video-downloader/",
       "tags": [
@@ -3432,7 +3432,7 @@
     {
       "slug": "pinterest-video-downloader",
       "title": "Pinterest Video Downloader",
-      "icon": "📌",
+      "icon": "\ud83d\udccc",
       "desc": "Download Pinterest pins and videos in original quality.",
       "href": "/pinterest-video-downloader/",
       "tags": [
@@ -3447,7 +3447,7 @@
     {
       "slug": "linkedin-video-downloader",
       "title": "LinkedIn Video Downloader",
-      "icon": "💼",
+      "icon": "\ud83d\udcbc",
       "desc": "Download LinkedIn videos from posts, articles, and courses.",
       "href": "/linkedin-video-downloader/",
       "tags": [
@@ -3462,7 +3462,7 @@
     {
       "slug": "telegram-video-downloader",
       "title": "Telegram Video Downloader",
-      "icon": "✈️",
+      "icon": "\u2708\ufe0f",
       "desc": "Download videos and media from Telegram channels and groups.",
       "href": "/telegram-video-downloader/",
       "tags": [
@@ -3477,7 +3477,7 @@
     {
       "slug": "tiktok-audio-downloader",
       "title": "TikTok Audio Downloader",
-      "icon": "🎵",
+      "icon": "\ud83c\udfb5",
       "desc": "Download TikTok music and sounds as MP3 in high quality.",
       "href": "/tiktok-audio-downloader/",
       "tags": [
@@ -3492,7 +3492,7 @@
     {
       "slug": "bank-branch-finder",
       "title": "Bank Branch Finder",
-      "icon": "🏦",
+      "icon": "\ud83c\udfe6",
       "desc": "Find bank branches, ATMs, and contact details in your city.",
       "href": "/bank-branch-finder/",
       "tags": [
@@ -3507,7 +3507,7 @@
     {
       "slug": "cbse-class-12-result",
       "title": "CBSE Class 12 Result Checker",
-      "icon": "📋",
+      "icon": "\ud83d\udccb",
       "desc": "Use official result links and analyze Class 12 marks locally.",
       "href": "/cbse-class-12-result/",
       "tags": [
@@ -3522,7 +3522,7 @@
     {
       "slug": "cbse-percentage-calculator",
       "title": "CBSE Percentage Calculator",
-      "icon": "📊",
+      "icon": "\ud83d\udcca",
       "desc": "Calculate Class 12 percentage from subject-wise marks instantly.",
       "href": "/cbse-percentage-calculator/",
       "tags": [
@@ -3537,7 +3537,7 @@
     {
       "slug": "best-of-five-calculator",
       "title": "Best of Five Calculator",
-      "icon": "🧮",
+      "icon": "\ud83e\uddee",
       "desc": "Find your best-of-five percentage and included subjects.",
       "href": "/best-of-five-calculator/",
       "tags": [
@@ -3552,7 +3552,7 @@
     {
       "slug": "india-college-rankings",
       "title": "India College Rankings",
-      "icon": "📚",
+      "icon": "\ud83d\udcda",
       "desc": "Explore top colleges and universities across India with rankings.",
       "href": "/india-college-rankings/",
       "tags": [
@@ -3567,7 +3567,7 @@
     {
       "slug": "college-course-finder",
       "title": "College Course Finder",
-      "icon": "🎓",
+      "icon": "\ud83c\udf93",
       "desc": "Find suitable college courses after 12th based on stream and interests.",
       "href": "/college-course-finder/",
       "tags": [
@@ -3582,7 +3582,7 @@
     {
       "slug": "sports-score-converter",
       "title": "Sports Score Converter",
-      "icon": "⚽",
+      "icon": "\u26bd",
       "desc": "Convert scores between different sports formats and scoring systems.",
       "href": "/sports-score-converter/",
       "tags": [
@@ -3596,7 +3596,7 @@
     {
       "slug": "football-stats-calculator",
       "title": "Football Stats Calculator",
-      "icon": "🏈",
+      "icon": "\ud83c\udfc8",
       "desc": "Calculate player performance metrics, completion percentage, and passer rating.",
       "href": "/football-stats-calculator/",
       "tags": [
@@ -3611,7 +3611,7 @@
     {
       "slug": "fifa-world-cup-countdown",
       "title": "FIFA World Cup 2026 Countdown",
-      "icon": "⏱️",
+      "icon": "\u23f1\ufe0f",
       "desc": "Live countdown timer to the FIFA World Cup 2026 Final at MetLife Stadium.",
       "href": "/fifa-world-cup-countdown/",
       "tags": [
@@ -3629,7 +3629,7 @@
     {
       "slug": "fifa-world-cup-groups",
       "title": "FIFA World Cup 2026 Groups & Standings",
-      "icon": "📊",
+      "icon": "\ud83d\udcca",
       "desc": "All 12 groups, live standings, match results and fixtures for FIFA World Cup 2026.",
       "href": "/fifa-world-cup-groups/",
       "tags": [
@@ -3648,7 +3648,7 @@
     {
       "slug": "fifa-world-cup-schedule",
       "title": "FIFA World Cup 2026 Full Schedule",
-      "icon": "📅",
+      "icon": "\ud83d\udcc5",
       "desc": "Complete FIFA World Cup 2026 schedule with all 104 matches, dates, venues and times.",
       "href": "/fifa-world-cup-schedule/",
       "tags": [
@@ -3667,7 +3667,7 @@
     {
       "slug": "fifa-world-cup-golden-boot",
       "title": "FIFA World Cup 2026 Golden Boot Tracker",
-      "icon": "🏆",
+      "icon": "\ud83c\udfc6",
       "desc": "Top goal scorers leaderboard for FIFA World Cup 2026 with goals, assists and stats.",
       "href": "/fifa-world-cup-golden-boot/",
       "tags": [
@@ -3686,7 +3686,7 @@
     {
       "slug": "fifa-world-cup-bracket",
       "title": "FIFA World Cup 2026 Knockout Bracket",
-      "icon": "🗺️",
+      "icon": "\ud83d\uddfa\ufe0f",
       "desc": "Interactive tournament bracket from Round of 32 to the Final. Make your predictions!",
       "href": "/fifa-world-cup-bracket/",
       "tags": [
@@ -3705,7 +3705,7 @@
     {
       "slug": "fifa-world-cup-venues",
       "title": "FIFA World Cup 2026 Venues & Stadiums",
-      "icon": "🏟️",
+      "icon": "\ud83c\udfdf\ufe0f",
       "desc": "All 16 FIFA World Cup 2026 venues across USA, Mexico and Canada with capacities.",
       "href": "/fifa-world-cup-venues/",
       "tags": [
@@ -3724,7 +3724,7 @@
     {
       "slug": "fifa-world-cup-predictions",
       "title": "FIFA World Cup 2026 Predictions",
-      "icon": "🔮",
+      "icon": "\ud83d\udd2e",
       "desc": "Make your FIFA World Cup 2026 predictions. Pick group winners and predict the champion.",
       "href": "/fifa-world-cup-predictions/",
       "tags": [
@@ -3743,7 +3743,7 @@
     {
       "slug": "fifa-world-cup-timezone",
       "title": "FIFA World Cup 2026 Time Zone Converter",
-      "icon": "🌍",
+      "icon": "\ud83c\udf0d",
       "desc": "Convert World Cup 2026 match times to your local timezone. Never miss a game.",
       "href": "/fifa-world-cup-timezone/",
       "tags": [
@@ -3762,7 +3762,7 @@
     {
       "slug": "fifa-world-cup-discipline",
       "title": "FIFA World Cup 2026 Discipline Tracker",
-      "icon": "🟨",
+      "icon": "\ud83d\udfe8",
       "desc": "Yellow card and red card tracker for FIFA World Cup 2026. Live discipline stats.",
       "href": "/fifa-world-cup-discipline/",
       "tags": [
@@ -3781,7 +3781,7 @@
     {
       "slug": "world-cup-2026-results",
       "title": "World Cup 2026 Results",
-      "icon": "🏆",
+      "icon": "\ud83c\udfc6",
       "desc": "Champion, final & full standings for the 2026 World Cup.",
       "href": "/world-cup-2026-results/",
       "tags": [
@@ -3800,7 +3800,7 @@
     {
       "slug": "fifa-world-cup-red-cards",
       "title": "World Cup 2026 Red Cards",
-      "icon": "🟥",
+      "icon": "\ud83d\udfe5",
       "desc": "Players sent off and suspensions at the 2026 World Cup.",
       "href": "/fifa-world-cup-red-cards/",
       "tags": [
@@ -3818,7 +3818,7 @@
     {
       "slug": "fifa-world-cup-fair-play",
       "title": "World Cup 2026 Fair Play",
-      "icon": "⚖️",
+      "icon": "\u2696\ufe0f",
       "desc": "Fair play rankings & discipline for the 2026 World Cup.",
       "href": "/fifa-world-cup-fair-play/",
       "tags": [
@@ -3836,7 +3836,7 @@
     {
       "slug": "fifa-world-cup-trophy-counter",
       "title": "FIFA World Cup Trophy History",
-      "icon": "🏆",
+      "icon": "\ud83c\udfc6",
       "desc": "Every FIFA World Cup winner since 1930. Interactive timeline with stats and records.",
       "href": "/fifa-world-cup-trophy-counter/",
       "tags": [
@@ -3856,7 +3856,7 @@
     {
       "slug": "fifa-world-cup-fantasy-team",
       "title": "FIFA World Cup 2026 Fantasy Team Builder",
-      "icon": "⚽",
+      "icon": "\u26bd",
       "desc": "Build your dream World Cup XI. Pick formations, place players, and share your team.",
       "href": "/fifa-world-cup-fantasy-team/",
       "tags": [
@@ -3876,7 +3876,7 @@
     {
       "slug": "fifa-world-cup-match-simulator",
       "title": "FIFA World Cup 2026 Match Simulator",
-      "icon": "🎮",
+      "icon": "\ud83c\udfae",
       "desc": "Simulate any World Cup 2026 match. Pick teams, get scores, stats and goalscorers.",
       "href": "/fifa-world-cup-match-simulator/",
       "tags": [
@@ -3896,7 +3896,7 @@
     {
       "slug": "fifa-world-cup-team-compare",
       "title": "FIFA World Cup 2026 Team Comparison",
-      "icon": "📊",
+      "icon": "\ud83d\udcca",
       "desc": "Compare any two national teams side-by-side with rankings, stats and radar chart.",
       "href": "/fifa-world-cup-team-compare/",
       "tags": [
@@ -3916,8 +3916,8 @@
     {
       "slug": "fifa-world-cup-travel-planner",
       "title": "FIFA World Cup 2026 Travel Planner",
-      "icon": "✈️",
-      "desc": "Plan your World Cup trip — venues, budget, visa info, weather and multi-city routing.",
+      "icon": "\u2708\ufe0f",
+      "desc": "Plan your World Cup trip \u2014 venues, budget, visa info, weather and multi-city routing.",
       "href": "/fifa-world-cup-travel-planner/",
       "tags": [
         "fifa",
@@ -3937,7 +3937,7 @@
     {
       "slug": "basketball-stats-calculator",
       "title": "Basketball Stats Calculator",
-      "icon": "🏀",
+      "icon": "\ud83c\udfc0",
       "desc": "Calculate shooting percentages, true shooting %, and player efficiency metrics.",
       "href": "/basketball-stats-calculator/",
       "tags": [
@@ -3952,7 +3952,7 @@
     {
       "slug": "tennis-score-tracker",
       "title": "Tennis Score Tracker",
-      "icon": "🎾",
+      "icon": "\ud83c\udfbe",
       "desc": "Track live tennis match scores, sets, games, and points in real-time.",
       "href": "/tennis-score-tracker/",
       "tags": [
@@ -3967,7 +3967,7 @@
     {
       "slug": "golf-handicap-calculator",
       "title": "Golf Handicap Calculator",
-      "icon": "⛳",
+      "icon": "\u26f3",
       "desc": "Calculate your golf handicap index, course handicap, and net score.",
       "href": "/golf-handicap-calculator/",
       "tags": [
@@ -3982,7 +3982,7 @@
     {
       "slug": "fantasy-sports-calculator",
       "title": "Fantasy Sports Calculator",
-      "icon": "⭐",
+      "icon": "\u2b50",
       "desc": "Calculate fantasy points for cricket, football, basketball and more. Dream11 points.",
       "href": "/fantasy-sports-calculator/",
       "tags": [
@@ -3997,7 +3997,7 @@
     {
       "slug": "amortization-calculator",
       "title": "Amortization Calculator",
-      "icon": "📋",
+      "icon": "\ud83d\udccb",
       "desc": "Loan payment schedule & amortization table.",
       "href": "/amortization-calculator/",
       "tags": [
@@ -4011,7 +4011,7 @@
     {
       "slug": "compound-interest-calculator",
       "title": "Compound Interest Calculator",
-      "icon": "📈",
+      "icon": "\ud83d\udcc8",
       "desc": "See how your investments grow over time.",
       "href": "/compound-interest-calculator/",
       "tags": [
@@ -4025,7 +4025,7 @@
     {
       "slug": "ctc-salary-calculator",
       "title": "CTC to In-Hand Salary",
-      "icon": "💰",
+      "icon": "\ud83d\udcb0",
       "desc": "Calculate take-home salary from CTC.",
       "href": "/ctc-salary-calculator/",
       "tags": [
@@ -4041,7 +4041,7 @@
     {
       "slug": "epf-calculator",
       "title": "EPF Calculator",
-      "icon": "🏦",
+      "icon": "\ud83c\udfe6",
       "desc": "Employee Provident Fund maturity estimate.",
       "href": "/epf-calculator/",
       "tags": [
@@ -4057,7 +4057,7 @@
     {
       "slug": "gratuity-calculator",
       "title": "Gratuity Calculator",
-      "icon": "🎁",
+      "icon": "\ud83c\udf81",
       "desc": "Calculate gratuity amount for employees.",
       "href": "/gratuity-calculator/",
       "tags": [
@@ -4073,7 +4073,7 @@
     {
       "slug": "hra-calculator",
       "title": "HRA Exemption Calculator",
-      "icon": "🏠",
+      "icon": "\ud83c\udfe0",
       "desc": "Calculate House Rent Allowance exemption.",
       "href": "/hra-calculator/",
       "tags": [
@@ -4089,7 +4089,7 @@
     {
       "slug": "ltv-calculator",
       "title": "LTV Calculator",
-      "icon": "🏠",
+      "icon": "\ud83c\udfe0",
       "desc": "Loan to Value ratio for home loans.",
       "href": "/ltv-calculator/",
       "tags": [
@@ -4103,7 +4103,7 @@
     {
       "slug": "nps-calculator",
       "title": "NPS Calculator",
-      "icon": "🧓",
+      "icon": "\ud83e\uddd3",
       "desc": "National Pension Scheme retirement corpus.",
       "href": "/nps-calculator/",
       "tags": [
@@ -4119,7 +4119,7 @@
     {
       "slug": "post-office-rd-calculator",
       "title": "Post Office RD Calculator",
-      "icon": "📮",
+      "icon": "\ud83d\udcee",
       "desc": "Recurring deposit maturity calculator.",
       "href": "/post-office-rd-calculator/",
       "tags": [
@@ -4135,7 +4135,7 @@
     {
       "slug": "ppf-calculator",
       "title": "PPF Calculator",
-      "icon": "🏦",
+      "icon": "\ud83c\udfe6",
       "desc": "Public Provident Fund maturity & returns.",
       "href": "/ppf-calculator/",
       "tags": [
@@ -4151,7 +4151,7 @@
     {
       "slug": "salary-hike-calculator",
       "title": "Salary Hike Calculator",
-      "icon": "💸",
+      "icon": "\ud83d\udcb8",
       "desc": "New salary after raise or increment.",
       "href": "/salary-hike-calculator/",
       "tags": [
@@ -4165,7 +4165,7 @@
     {
       "slug": "sip-step-up-calculator",
       "title": "SIP Step-Up Calculator",
-      "icon": "📊",
+      "icon": "\ud83d\udcca",
       "desc": "SIP with annual increment projection.",
       "href": "/sip-step-up-calculator/",
       "tags": [
@@ -4181,7 +4181,7 @@
     {
       "slug": "tds-calculator",
       "title": "TDS Calculator",
-      "icon": "📑",
+      "icon": "\ud83d\udcd1",
       "desc": "TDS on salary, rent & interest.",
       "href": "/tds-calculator/",
       "tags": [
@@ -4197,7 +4197,7 @@
     {
       "slug": "upi-qr-generator",
       "title": "UPI QR Code Generator",
-      "icon": "📲",
+      "icon": "\ud83d\udcf2",
       "desc": "Generate UPI QR codes for payments.",
       "href": "/upi-qr-generator/",
       "tags": [
@@ -4213,7 +4213,7 @@
     {
       "slug": "upi-validator",
       "title": "UPI ID Validator",
-      "icon": "✅",
+      "icon": "\u2705",
       "desc": "Validate UPI ID format & VPA.",
       "href": "/upi-validator/",
       "tags": [
@@ -4229,7 +4229,7 @@
     {
       "slug": "aadhaar-validator",
       "title": "Aadhaar Number Validator",
-      "icon": "🇮🇳",
+      "icon": "\ud83c\uddee\ud83c\uddf3",
       "desc": "Validate Aadhaar number format.",
       "href": "/aadhaar-validator/",
       "tags": [
@@ -4244,7 +4244,7 @@
     {
       "slug": "electricity-bill-calculator",
       "title": "Electricity Bill Calculator",
-      "icon": "⚡",
+      "icon": "\u26a1",
       "desc": "Estimate monthly power bill from units.",
       "href": "/electricity-bill-calculator/",
       "tags": [
@@ -4261,7 +4261,7 @@
     {
       "slug": "bmr-calculator",
       "title": "BMR Calculator",
-      "icon": "🔥",
+      "icon": "\ud83d\udd25",
       "desc": "Basal metabolic rate with 3 formulas.",
       "href": "/bmr-calculator/",
       "tags": [
@@ -4275,7 +4275,7 @@
     {
       "slug": "body-frame-size",
       "title": "Body Frame Size Calculator",
-      "icon": "🦴",
+      "icon": "\ud83e\uddb4",
       "desc": "Determine small, medium or large frame.",
       "href": "/body-frame-size/",
       "tags": [
@@ -4289,7 +4289,7 @@
     {
       "slug": "tdee-calculator",
       "title": "TDEE Calculator",
-      "icon": "🏋️",
+      "icon": "\ud83c\udfcb\ufe0f",
       "desc": "Total daily energy expenditure & macros.",
       "href": "/tdee-calculator/",
       "tags": [
@@ -4303,7 +4303,7 @@
     {
       "slug": "cron-expression-generator",
       "title": "Cron Expression Generator",
-      "icon": "⏰",
+      "icon": "\u23f0",
       "desc": "Build cron job schedules visually.",
       "href": "/cron-expression-generator/",
       "tags": [
@@ -4317,7 +4317,7 @@
     {
       "slug": "css-gradient-generator",
       "title": "CSS Gradient Generator",
-      "icon": "🎨",
+      "icon": "\ud83c\udfa8",
       "desc": "Linear, radial & conic CSS gradients.",
       "href": "/css-gradient-generator/",
       "tags": [
@@ -4331,7 +4331,7 @@
     {
       "slug": "diff-checker",
       "title": "Text Diff Checker",
-      "icon": "🔍",
+      "icon": "\ud83d\udd0d",
       "desc": "Compare two texts side by side.",
       "href": "/diff-checker/",
       "tags": [
@@ -4347,7 +4347,7 @@
     {
       "slug": "hash-generator",
       "title": "Hash Generator",
-      "icon": "#️⃣",
+      "icon": "#\ufe0f\u20e3",
       "desc": "SHA256, SHA512, MD5 hash online.",
       "href": "/hash-generator/",
       "tags": [
@@ -4363,7 +4363,7 @@
     {
       "slug": "html-preview",
       "title": "HTML Preview",
-      "icon": "🌐",
+      "icon": "\ud83c\udf10",
       "desc": "Live HTML editor & preview.",
       "href": "/html-preview/",
       "tags": [
@@ -4377,7 +4377,7 @@
     {
       "slug": "markdown-preview",
       "title": "Markdown Preview",
-      "icon": "📝",
+      "icon": "\ud83d\udcdd",
       "desc": "Live markdown editor & renderer.",
       "href": "/markdown-preview/",
       "tags": [
@@ -4393,7 +4393,7 @@
     {
       "slug": "regex-tester",
       "title": "Regex Tester",
-      "icon": "🧪",
+      "icon": "\ud83e\uddea",
       "desc": "Test regular expressions online.",
       "href": "/regex-tester/",
       "tags": [
@@ -4407,7 +4407,7 @@
     {
       "slug": "string-builder",
       "title": "String Builder",
-      "icon": "🔧",
+      "icon": "\ud83d\udd27",
       "desc": "Transform & manipulate text strings.",
       "href": "/string-builder/",
       "tags": [
@@ -4423,7 +4423,7 @@
     {
       "slug": "subnet-calculator",
       "title": "Subnet Calculator",
-      "icon": "🌐",
+      "icon": "\ud83c\udf10",
       "desc": "IP CIDR subnet mask calculator.",
       "href": "/subnet-calculator/",
       "tags": [
@@ -4439,7 +4439,7 @@
     {
       "slug": "url-encoder",
       "title": "URL Encoder/Decoder",
-      "icon": "🔗",
+      "icon": "\ud83d\udd17",
       "desc": "Encode & decode URLs instantly.",
       "href": "/url-encoder/",
       "tags": [
@@ -4453,7 +4453,7 @@
     {
       "slug": "favicon-generator",
       "title": "Favicon Generator",
-      "icon": "🎨",
+      "icon": "\ud83c\udfa8",
       "desc": "Create favicons from text or emoji.",
       "href": "/favicon-generator/",
       "tags": [
@@ -4469,7 +4469,7 @@
     {
       "slug": "json-to-csv-converter",
       "title": "JSON to CSV Converter",
-      "icon": "📊",
+      "icon": "\ud83d\udcca",
       "desc": "Convert a JSON array to CSV instantly.",
       "href": "/json-to-csv-converter/",
       "tags": [
@@ -4484,7 +4484,7 @@
     {
       "slug": "ascii-art-generator",
       "title": "ASCII Art Generator",
-      "icon": "🎨",
+      "icon": "\ud83c\udfa8",
       "desc": "Convert text to ASCII art.",
       "href": "/ascii-art-generator/",
       "tags": [
@@ -4500,7 +4500,7 @@
     {
       "slug": "lorem-ipsum-generator",
       "title": "Lorem Ipsum Generator",
-      "icon": "📄",
+      "icon": "\ud83d\udcc4",
       "desc": "Generate placeholder text for designs.",
       "href": "/lorem-ipsum-generator/",
       "tags": [
@@ -4514,7 +4514,7 @@
     {
       "slug": "random-number-generator",
       "title": "Random Number Generator",
-      "icon": "🎲",
+      "icon": "\ud83c\udfb2",
       "desc": "Cryptographically secure random numbers.",
       "href": "/random-number-generator/",
       "tags": [
@@ -4530,7 +4530,7 @@
     {
       "slug": "random-password-generator",
       "title": "Random Password Generator",
-      "icon": "🔑",
+      "icon": "\ud83d\udd11",
       "desc": "Instant random passwords.",
       "href": "/random-password-generator/",
       "tags": [
@@ -4544,7 +4544,7 @@
     {
       "slug": "passphrase-generator",
       "title": "Passphrase Generator",
-      "icon": "🔐",
+      "icon": "\ud83d\udd10",
       "desc": "Diceware-style strong memorable passphrases.",
       "href": "/passphrase-generator/",
       "tags": [
@@ -4559,7 +4559,7 @@
     {
       "slug": "word-counter-plus",
       "title": "Advanced Word Counter",
-      "icon": "📝",
+      "icon": "\ud83d\udcdd",
       "desc": "Detailed word & character analysis.",
       "href": "/word-counter-plus/",
       "tags": [
@@ -4573,7 +4573,7 @@
     {
       "slug": "character-counter",
       "title": "Character & Word Counter",
-      "icon": "🔡",
+      "icon": "\ud83d\udd21",
       "desc": "Count chars, words, lines & sentences.",
       "href": "/character-counter/",
       "tags": [
@@ -4588,7 +4588,7 @@
     {
       "slug": "word-frequency-counter",
       "title": "Word Frequency Counter",
-      "icon": "📈",
+      "icon": "\ud83d\udcc8",
       "desc": "Count repeated words & keyword density.",
       "href": "/word-frequency-counter/",
       "tags": [
@@ -4603,7 +4603,7 @@
     {
       "slug": "color-palette-generator",
       "title": "Color Palette Generator",
-      "icon": "🎨",
+      "icon": "\ud83c\udfa8",
       "desc": "Generate HEX, RGB, HSL color palettes.",
       "href": "/color-palette-generator/",
       "tags": [
@@ -4617,7 +4617,7 @@
     {
       "slug": "color-palette-generator-pro",
       "title": "Color Palette Pro",
-      "icon": "🌈",
+      "icon": "\ud83c\udf08",
       "desc": "Create beautiful color schemes.",
       "href": "/color-palette-generator-pro/",
       "tags": [
@@ -4631,8 +4631,8 @@
     {
       "slug": "image-compressor",
       "title": "Image Compressor",
-      "icon": "📦",
-      "desc": "Compress JPG, PNG and WebP to a target size like 100 KB or 1 MB — free.",
+      "icon": "\ud83d\udce6",
+      "desc": "Compress JPG, PNG and WebP to a target size like 100 KB or 1 MB \u2014 free.",
       "href": "/image-compressor/",
       "tags": [
         "images"
@@ -4645,8 +4645,8 @@
     {
       "slug": "image-resizer",
       "title": "Image Resizer",
-      "icon": "🖼️",
-      "desc": "Resize images online to exact pixels. JPG, PNG, WebP — free.",
+      "icon": "\ud83d\uddbc\ufe0f",
+      "desc": "Resize images online to exact pixels. JPG, PNG, WebP \u2014 free.",
       "href": "/image-resizer/",
       "tags": [
         "images"
@@ -4659,7 +4659,7 @@
     {
       "slug": "date-calculator",
       "title": "Date Calculator",
-      "icon": "📅",
+      "icon": "\ud83d\udcc5",
       "desc": "Add/subtract days & find date difference.",
       "href": "/date-calculator/",
       "tags": [
@@ -4674,7 +4674,7 @@
     {
       "slug": "loan-comparison-calculator",
       "title": "Loan Comparison Calculator",
-      "icon": "⚖️",
+      "icon": "\u2696\ufe0f",
       "desc": "Compare two loans: EMI, interest & total.",
       "href": "/loan-comparison-calculator/",
       "tags": [
@@ -4689,7 +4689,7 @@
     {
       "slug": "fuel-cost-calculator",
       "title": "Fuel Cost Calculator",
-      "icon": "⛽",
+      "icon": "\u26fd",
       "desc": "Trip fuel cost & litres needed.",
       "href": "/fuel-cost-calculator/",
       "tags": [
@@ -4704,7 +4704,7 @@
     {
       "slug": "gst-invoice-generator",
       "title": "GST Invoice Generator",
-      "icon": "🧾",
+      "icon": "\ud83e\uddfe",
       "desc": "GST-compliant invoice totals (CGST/SGST/IGST).",
       "href": "/gst-invoice-generator/",
       "tags": [
@@ -4721,7 +4721,7 @@
     {
       "slug": "age-calculator-pro",
       "title": "Age Calculator Pro",
-      "icon": "🎂",
+      "icon": "\ud83c\udf82",
       "desc": "Exact age in years, months, days.",
       "href": "/age-calculator-pro/",
       "tags": [
@@ -4735,7 +4735,7 @@
     {
       "slug": "pomodoro-timer",
       "title": "Pomodoro Timer",
-      "icon": "🍅",
+      "icon": "\ud83c\udf45",
       "desc": "Focus timer with work & break cycles.",
       "href": "/pomodoro-timer/",
       "tags": [
@@ -4751,7 +4751,7 @@
     {
       "slug": "stopwatch-timer",
       "title": "Stopwatch & Timer",
-      "icon": "⏱️",
+      "icon": "\u23f1\ufe0f",
       "desc": "Online stopwatch and countdown timer.",
       "href": "/stopwatch-timer/",
       "tags": [
@@ -4765,8 +4765,8 @@
     {
       "slug": "random-choice-generator",
       "title": "Random Choice Generator",
-      "icon": "🎰",
-      "desc": "Decision maker — pick randomly.",
+      "icon": "\ud83c\udfb0",
+      "desc": "Decision maker \u2014 pick randomly.",
       "href": "/random-choice-generator/",
       "tags": [
         "tools",
@@ -4781,7 +4781,7 @@
     {
       "slug": "scientific-calculator",
       "title": "Scientific Calculator",
-      "icon": "🧮",
+      "icon": "\ud83e\uddee",
       "desc": "Full-featured scientific calculator.",
       "href": "/scientific-calculator/",
       "tags": [
@@ -4795,7 +4795,7 @@
     {
       "slug": "pdf-merger",
       "title": "PDF Merger",
-      "icon": "📑",
+      "icon": "\ud83d\udcd1",
       "desc": "Merge multiple PDF files online.",
       "href": "/pdf-merger/",
       "tags": [
@@ -4809,7 +4809,7 @@
     {
       "slug": "pdf-splitter",
       "title": "PDF Splitter",
-      "icon": "✂️",
+      "icon": "\u2702\ufe0f",
       "desc": "Split PDF files into pages.",
       "href": "/pdf-splitter/",
       "tags": [
@@ -4823,7 +4823,7 @@
     {
       "slug": "gpa-calculator",
       "title": "GPA Calculator",
-      "icon": "🎓",
+      "icon": "\ud83c\udf93",
       "desc": "Weighted & unweighted GPA on 4.0/5.0.",
       "href": "/gpa-calculator/",
       "tags": [
@@ -4837,7 +4837,7 @@
     {
       "slug": "cgpa-calculator",
       "title": "CGPA Calculator",
-      "icon": "🎓",
+      "icon": "\ud83c\udf93",
       "desc": "CGPA from grade points & credits.",
       "href": "/cgpa-calculator/",
       "tags": [
@@ -4852,7 +4852,7 @@
     {
       "slug": "youtube-shorts-downloader",
       "title": "YouTube Shorts Downloader",
-      "icon": "📱",
+      "icon": "\ud83d\udcf1",
       "desc": "Download YouTube Shorts free.",
       "href": "/youtube-shorts-downloader/",
       "tags": [
@@ -4868,7 +4868,7 @@
     {
       "slug": "email-validator",
       "title": "Email Validator",
-      "icon": "✉️",
+      "icon": "\u2709\ufe0f",
       "desc": "Validate emails, check disposable & verify MX records.",
       "href": "/email-validator/",
       "tags": [
@@ -4886,7 +4886,7 @@
     {
       "slug": "weather-forecast",
       "title": "Weather Forecast",
-      "icon": "🌤️",
+      "icon": "\ud83c\udf24\ufe0f",
       "desc": "7-day forecast & hourly weather for any city.",
       "href": "/weather-forecast/",
       "tags": [
@@ -4903,7 +4903,7 @@
     {
       "slug": "quote-generator",
       "title": "Quote Generator",
-      "icon": "💬",
+      "icon": "\ud83d\udcac",
       "desc": "200+ inspiring quotes from famous people.",
       "href": "/quote-generator/",
       "tags": [
@@ -4921,7 +4921,7 @@
     {
       "slug": "phone-specs",
       "title": "Phone Specifications",
-      "icon": "📱",
+      "icon": "\ud83d\udcf1",
       "desc": "Search & compare phone specs side by side.",
       "href": "/phone-specs/",
       "tags": [
@@ -4938,7 +4938,7 @@
     {
       "slug": "food-randomizer",
       "title": "Food Randomizer",
-      "icon": "🍽️",
+      "icon": "\ud83c\udf7d\ufe0f",
       "desc": "Discover random dishes from around the world.",
       "href": "/food-randomizer/",
       "tags": [
@@ -4956,7 +4956,7 @@
     {
       "slug": "random-fact-generator",
       "title": "Random Fact Generator",
-      "icon": "🧠",
+      "icon": "\ud83e\udde0",
       "desc": "300+ fun facts from science, history, nature & more.",
       "href": "/random-fact-generator/",
       "tags": [
@@ -4973,8 +4973,8 @@
     {
       "slug": "safe-share-link",
       "title": "Safe Share Link",
-      "icon": "🔒",
-      "desc": "Make a safe share link from any URL — free, no signup, no tracking.",
+      "icon": "\ud83d\udd12",
+      "desc": "Make a safe share link from any URL \u2014 free, no signup, no tracking.",
       "href": "/safe-share-link/",
       "tags": [
         "tools",
@@ -4990,7 +4990,7 @@
     {
       "slug": "color-tool",
       "title": "Color Picker & Converter",
-      "icon": "🎨",
+      "icon": "\ud83c\udfa8",
       "desc": "Pick colors, convert HEX/RGB/HSL, generate palettes.",
       "href": "/color-tool/",
       "tags": [
@@ -5008,7 +5008,7 @@
     {
       "slug": "poetry-search",
       "title": "Poetry Search",
-      "icon": "📖",
+      "icon": "\ud83d\udcd6",
       "desc": "Search thousands of poems by title, author, or line.",
       "href": "/poetry-search/",
       "tags": [
@@ -5026,7 +5026,7 @@
     {
       "slug": "bible-verse",
       "title": "Bible Verse Lookup",
-      "icon": "✝️",
+      "icon": "\u271d\ufe0f",
       "desc": "Look up scripture in KJV, ASV, WEB translations.",
       "href": "/bible-verse/",
       "tags": [
@@ -5043,7 +5043,7 @@
     {
       "slug": "quran-verse",
       "title": "Quran Verse Lookup",
-      "icon": "☪️",
+      "icon": "\u262a\ufe0f",
       "desc": "Read Quran in Arabic & English by Surah.",
       "href": "/quran-verse/",
       "tags": [
@@ -5060,7 +5060,7 @@
     {
       "slug": "nba-stats",
       "title": "NBA Stats",
-      "icon": "🏀",
+      "icon": "\ud83c\udfc0",
       "desc": "Player stats, game scores & team data live.",
       "href": "/nba-stats/",
       "tags": [
@@ -5079,7 +5079,7 @@
       "slug": "drug-information-tool",
       "title": "Medicine Lookup",
       "desc": "Search any drug name to get uses, dosage, warnings, side effects & interactions.",
-      "icon": "💊",
+      "icon": "\ud83d\udc8a",
       "cats": [
         "health"
       ]
@@ -5087,7 +5087,7 @@
     {
       "slug": "games-pac-man",
       "title": "Pac-Man Online",
-      "icon": "👾",
+      "icon": "\ud83d\udc7e",
       "desc": "Play the classic Pac-Man arcade game in your browser! Eat dots, dodge ghosts, grab power pellets.",
       "href": "/games/pac-man/",
       "tags": [
@@ -5105,7 +5105,7 @@
     {
       "slug": "medicine-info",
       "title": "Medicine Information",
-      "icon": "💊",
+      "icon": "\ud83d\udc8a",
       "desc": "Search FDA drug labels for uses, dosage, warnings, side effects and interactions.",
       "href": "/medicine-info/",
       "tags": [
@@ -5123,7 +5123,7 @@
     {
       "slug": "games-super-sudoku",
       "title": "Super Sudoku Online",
-      "icon": "🔢",
+      "icon": "\ud83d\udd22",
       "desc": "Play Sudoku with multiple difficulty levels, notes mode, and timer.",
       "href": "/games/super-sudoku/",
       "tags": [
@@ -5142,7 +5142,7 @@
     {
       "slug": "games-bubble-shooter",
       "title": "Bubble Shooter Online",
-      "icon": "🫧",
+      "icon": "\ud83e\udee7",
       "desc": "Match and pop colored bubbles in this classic arcade shooter game.",
       "href": "/games/bubble-shooter/",
       "tags": [
@@ -5161,7 +5161,7 @@
     {
       "slug": "games-battleship",
       "title": "Battleship Online",
-      "icon": "🚢",
+      "icon": "\ud83d\udea2",
       "desc": "Place your fleet and sink enemy ships in this classic strategy game.",
       "href": "/games/battleship/",
       "tags": [
@@ -5180,7 +5180,7 @@
     {
       "slug": "slug-generator",
       "title": "URL Slug Generator",
-      "icon": "🔗",
+      "icon": "\ud83d\udd17",
       "desc": "Convert text to SEO-friendly URL slugs.",
       "href": "/slug-generator/",
       "tags": [
@@ -5197,7 +5197,7 @@
     {
       "slug": "css-minifier",
       "title": "CSS Minifier & Beautifier",
-      "icon": "🎨",
+      "icon": "\ud83c\udfa8",
       "desc": "Minify, beautify & validate CSS code.",
       "href": "/css-minifier/",
       "tags": [
@@ -5213,7 +5213,7 @@
     {
       "slug": "html-entity-encoder",
       "title": "HTML Entity Encoder/Decoder",
-      "icon": "🔤",
+      "icon": "\ud83d\udd24",
       "desc": "Encode/decode HTML entities instantly.",
       "href": "/html-entity-encoder/",
       "tags": [
@@ -5229,7 +5229,7 @@
     {
       "slug": "xml-formatter",
       "title": "XML Formatter & Validator",
-      "icon": "📄",
+      "icon": "\ud83d\udcc4",
       "desc": "Format, minify & validate XML online.",
       "href": "/xml-formatter/",
       "tags": [
@@ -5244,8 +5244,8 @@
     },
     {
       "slug": "yaml-to-json-converter",
-      "title": "YAML ⇄ JSON Converter",
-      "icon": "🔄",
+      "title": "YAML \u21c4 JSON Converter",
+      "icon": "\ud83d\udd04",
       "desc": "Convert between YAML and JSON formats.",
       "href": "/yaml-to-json-converter/",
       "tags": [
@@ -5261,7 +5261,7 @@
     {
       "slug": "password-strength-checker",
       "title": "Password Strength Checker",
-      "icon": "🔒",
+      "icon": "\ud83d\udd12",
       "desc": "Test password security & entropy.",
       "href": "/password-strength-checker/",
       "tags": [
@@ -5277,7 +5277,7 @@
     {
       "slug": "emoji-picker",
       "title": "Emoji Picker",
-      "icon": "😄",
+      "icon": "\ud83d\ude04",
       "desc": "Browse, search & copy 1500+ emojis.",
       "href": "/emoji-picker/",
       "tags": [
@@ -5293,7 +5293,7 @@
     {
       "slug": "jwt-debugger",
       "title": "JWT Debugger",
-      "icon": "🛡️",
+      "icon": "\ud83d\udee1\ufe0f",
       "desc": "Decode & inspect JWT tokens client-side.",
       "href": "/jwt-debugger/",
       "tags": [
@@ -5308,8 +5308,8 @@
     },
     {
       "slug": "hex-to-rgb-converter",
-      "title": "HEX ↔ RGB Converter",
-      "icon": "🌈",
+      "title": "HEX \u2194 RGB Converter",
+      "icon": "\ud83c\udf08",
       "desc": "Convert between HEX, RGB & HSL with preview.",
       "href": "/hex-to-rgb-converter/",
       "tags": [
@@ -5325,7 +5325,7 @@
     {
       "slug": "image-placeholder-generator",
       "title": "Image Placeholder Generator",
-      "icon": "🖼️",
+      "icon": "\ud83d\uddbc\ufe0f",
       "desc": "Generate custom placeholder images for mockups.",
       "href": "/image-placeholder-generator/",
       "tags": [
@@ -5342,7 +5342,7 @@
     {
       "slug": "roman-numeral-converter",
       "title": "Roman Numeral Converter",
-      "icon": "🏛️",
+      "icon": "\ud83c\udfdb\ufe0f",
       "desc": "Convert numbers to Roman numerals & back.",
       "href": "/roman-numeral-converter/",
       "tags": [
@@ -5357,7 +5357,7 @@
     {
       "slug": "numbers-to-words",
       "title": "Numbers to Words",
-      "icon": "🔢",
+      "icon": "\ud83d\udd22",
       "desc": "Convert numbers to English & Indian words.",
       "href": "/numbers-to-words/",
       "tags": [
@@ -5373,7 +5373,7 @@
     {
       "slug": "list-sorter",
       "title": "List Sorter",
-      "icon": "📋",
+      "icon": "\ud83d\udccb",
       "desc": "Sort, shuffle, reverse & deduplicate lists.",
       "href": "/list-sorter/",
       "tags": [
@@ -5389,7 +5389,7 @@
     {
       "slug": "reverse-text",
       "title": "Reverse Text",
-      "icon": "🔄",
+      "icon": "\ud83d\udd04",
       "desc": "Reverse characters, words or lines.",
       "href": "/reverse-text/",
       "tags": [
@@ -5405,7 +5405,7 @@
     {
       "slug": "duplicate-line-remover",
       "title": "Duplicate Line Remover",
-      "icon": "🗑️",
+      "icon": "\ud83d\uddd1\ufe0f",
       "desc": "Remove duplicate lines from text.",
       "href": "/duplicate-line-remover/",
       "tags": [
@@ -5421,7 +5421,7 @@
     {
       "slug": "text-to-image",
       "title": "Text to Image",
-      "icon": "📝",
+      "icon": "\ud83d\udcdd",
       "desc": "Convert text to a downloadable PNG image.",
       "href": "/text-to-image/",
       "tags": [
@@ -5437,7 +5437,7 @@
     {
       "slug": "image-to-base64",
       "title": "Image to Base64",
-      "icon": "🖼️",
+      "icon": "\ud83d\uddbc\ufe0f",
       "desc": "Convert any image to a Base64 data URL.",
       "href": "/image-to-base64/",
       "tags": [
@@ -5453,7 +5453,7 @@
     {
       "slug": "prefix-suffix-adder",
       "title": "Prefix & Suffix Adder",
-      "icon": "📎",
+      "icon": "\ud83d\udcce",
       "desc": "Add prefix/suffix to each line in bulk.",
       "href": "/prefix-suffix-adder/",
       "tags": [
@@ -5469,7 +5469,7 @@
     {
       "slug": "find-and-replace",
       "title": "Find & Replace",
-      "icon": "🔍",
+      "icon": "\ud83d\udd0d",
       "desc": "Find and replace text with regex support.",
       "href": "/find-and-replace/",
       "tags": [
@@ -5485,7 +5485,7 @@
     {
       "slug": "text-statistics",
       "title": "Text Statistics",
-      "icon": "📊",
+      "icon": "\ud83d\udcca",
       "desc": "Analyze text with advanced word stats.",
       "href": "/text-statistics/",
       "tags": [
@@ -5501,7 +5501,7 @@
     {
       "slug": "http-status-codes",
       "title": "HTTP Status Codes Reference",
-      "icon": "🌐",
+      "icon": "\ud83c\udf10",
       "desc": "Full list of HTTP status codes with meanings.",
       "href": "/http-status-codes/",
       "tags": [
@@ -5517,7 +5517,7 @@
     {
       "slug": "color-palette-from-image",
       "title": "Color Palette from Image",
-      "icon": "🎨",
+      "icon": "\ud83c\udfa8",
       "desc": "Extract dominant colors from any image.",
       "href": "/color-palette-from-image/",
       "tags": [
@@ -5533,7 +5533,7 @@
     {
       "slug": "svg-to-jsx",
       "title": "SVG to JSX Converter",
-      "icon": "⚛️",
+      "icon": "\u269b\ufe0f",
       "desc": "Convert SVG to React JSX components.",
       "href": "/svg-to-jsx/",
       "tags": [
@@ -5548,7 +5548,7 @@
     {
       "slug": "json-to-typescript",
       "title": "JSON to TypeScript",
-      "icon": "📐",
+      "icon": "\ud83d\udcd0",
       "desc": "Generate TypeScript interfaces from JSON.",
       "href": "/json-to-typescript/",
       "tags": [
@@ -5563,7 +5563,7 @@
     {
       "slug": "sql-formatter",
       "title": "SQL Formatter",
-      "icon": "🗄️",
+      "icon": "\ud83d\uddc4\ufe0f",
       "desc": "Format, beautify & minify SQL queries.",
       "href": "/sql-formatter/",
       "tags": [
@@ -5578,7 +5578,7 @@
     {
       "slug": "css-animation-generator",
       "title": "CSS Animation Generator",
-      "icon": "🎬",
+      "icon": "\ud83c\udfac",
       "desc": "Visual CSS keyframe animation builder.",
       "href": "/css-animation-generator/",
       "tags": [
@@ -5593,7 +5593,7 @@
     {
       "slug": "code-to-image",
       "title": "Code to Image",
-      "icon": "📸",
+      "icon": "\ud83d\udcf8",
       "desc": "Convert code to beautiful shareable images.",
       "href": "/code-to-image/",
       "tags": [
@@ -5609,7 +5609,7 @@
     {
       "slug": "mermaid-diagram-editor",
       "title": "Mermaid Diagram Editor",
-      "icon": "📊",
+      "icon": "\ud83d\udcca",
       "desc": "Create flowcharts & diagrams with Mermaid.js.",
       "href": "/mermaid-diagram-editor/",
       "tags": [
@@ -5624,7 +5624,7 @@
     {
       "slug": "github-profile-readme-generator",
       "title": "GitHub Profile README Generator",
-      "icon": "🐙",
+      "icon": "\ud83d\udc19",
       "desc": "Generate a beautiful GitHub profile README.",
       "href": "/github-profile-readme-generator/",
       "tags": [
@@ -5639,7 +5639,7 @@
     {
       "slug": "regex-visualizer",
       "title": "Regex Visualizer & Tester",
-      "icon": "🔍",
+      "icon": "\ud83d\udd0d",
       "desc": "Test, explain & visualize regular expressions.",
       "href": "/regex-visualizer/",
       "tags": [
@@ -5654,7 +5654,7 @@
     {
       "slug": "color-contrast-checker",
       "title": "Color Contrast Checker",
-      "icon": "👁️",
+      "icon": "\ud83d\udc41\ufe0f",
       "desc": "WCAG contrast checker for accessible colors.",
       "href": "/color-contrast-checker/",
       "tags": [
@@ -5669,8 +5669,8 @@
     },
     {
       "slug": "html-to-markdown",
-      "title": "HTML ⇄ Markdown Converter",
-      "icon": "📝",
+      "title": "HTML \u21c4 Markdown Converter",
+      "icon": "\ud83d\udcdd",
       "desc": "Convert between HTML and Markdown formats.",
       "href": "/html-to-markdown/",
       "tags": [
@@ -5685,7 +5685,7 @@
     {
       "slug": "aes-encryption",
       "title": "AES Encryption Tool",
-      "icon": "🔐",
+      "icon": "\ud83d\udd10",
       "desc": "Encrypt & decrypt text with AES-256-GCM.",
       "href": "/aes-encryption/",
       "tags": [
@@ -5701,7 +5701,7 @@
     {
       "slug": "css-filter-generator",
       "title": "CSS Filter Generator",
-      "icon": "🎬",
+      "icon": "\ud83c\udfac",
       "desc": "Visual CSS filter builder with live preview.",
       "href": "/css-filter-generator/",
       "tags": [
@@ -5716,7 +5716,7 @@
     {
       "slug": "calendar-generator",
       "title": "Calendar Generator",
-      "icon": "📅",
+      "icon": "\ud83d\udcc5",
       "desc": "Generate printable monthly & yearly calendars.",
       "href": "/calendar-generator/",
       "tags": [
@@ -5731,7 +5731,7 @@
     {
       "slug": "graphing-calculator",
       "title": "Graphing Calculator",
-      "icon": "📈",
+      "icon": "\ud83d\udcc8",
       "desc": "Plot math functions interactively with zoom.",
       "href": "/graphing-calculator/",
       "tags": [
@@ -5746,7 +5746,7 @@
     {
       "slug": "periodic-table",
       "title": "Periodic Table",
-      "icon": "🧪",
+      "icon": "\ud83e\uddea",
       "desc": "Interactive periodic table of elements.",
       "href": "/periodic-table/",
       "tags": [
@@ -5762,7 +5762,7 @@
     {
       "slug": "barcode-generator",
       "title": "Barcode Generator",
-      "icon": "📊",
+      "icon": "\ud83d\udcca",
       "desc": "Generate CODE128, EAN-13, UPC-A & Code39.",
       "href": "/barcode-generator/",
       "tags": [
@@ -5777,7 +5777,7 @@
     {
       "slug": "meme-generator",
       "title": "Meme Generator",
-      "icon": "😂",
+      "icon": "\ud83d\ude02",
       "desc": "Create memes with text on classic templates.",
       "href": "/meme-generator/",
       "tags": [
@@ -5793,7 +5793,7 @@
     {
       "slug": "pixel-art-editor",
       "title": "Pixel Art Editor",
-      "icon": "🎨",
+      "icon": "\ud83c\udfa8",
       "desc": "Draw pixel art with fill, eyedropper & export.",
       "href": "/pixel-art-editor/",
       "tags": [
@@ -5809,7 +5809,7 @@
     {
       "slug": "whatsapp-chat-analyzer",
       "title": "WhatsApp Chat Analyzer",
-      "icon": "💬",
+      "icon": "\ud83d\udcac",
       "desc": "Analyze exported WhatsApp chats: stats, senders, words, emojis & activity.",
       "href": "/whatsapp-chat-analyzer/",
       "tags": [
@@ -5826,7 +5826,7 @@
     {
       "slug": "whatsapp-chat-generator",
       "title": "WhatsApp Chat Generator",
-      "icon": "💬",
+      "icon": "\ud83d\udcac",
       "desc": "Create realistic fake WhatsApp chat screenshots with images & download as PNG.",
       "href": "/whatsapp-chat-generator/",
       "tags": [
@@ -5843,7 +5843,7 @@
     {
       "slug": "whatsapp-font-formatter",
       "title": "WhatsApp Font Formatter",
-      "icon": "𝐖",
+      "icon": "\ud835\udc16",
       "desc": "Type text & preview bold, italic, strikethrough & Unicode fonts for WhatsApp.",
       "href": "/whatsapp-font-formatter/",
       "tags": [
@@ -5861,7 +5861,7 @@
     {
       "slug": "chat-export-analyzer",
       "title": "WhatsApp Chat Export Analyzer",
-      "icon": "📊",
+      "icon": "\ud83d\udcca",
       "desc": "Upload exported WhatsApp chats (.txt) to see stats, senders, emojis & activity.",
       "href": "/chat-export-analyzer/",
       "tags": [
@@ -5878,7 +5878,7 @@
     {
       "slug": "story-template-generator",
       "title": "Story Template Generator",
-      "icon": "🎨",
+      "icon": "\ud83c\udfa8",
       "desc": "Create story templates for Instagram, WhatsApp, Snapchat & TikTok. Download PNG.",
       "href": "/story-template-generator/",
       "tags": [
@@ -5894,7 +5894,7 @@
     {
       "slug": "cbse-marks-calculator",
       "title": "CBSE Marks to Percentage Calculator",
-      "icon": "📝",
+      "icon": "\ud83d\udcdd",
       "desc": "Convert CBSE board marks to percentage, grade & division instantly.",
       "href": "/cbse-marks-calculator/",
       "tags": [
@@ -5910,7 +5910,7 @@
     {
       "slug": "career-aptitude-quiz",
       "title": "Career Aptitude Quiz After 12th",
-      "icon": "🎯",
+      "icon": "\ud83c\udfaf",
       "desc": "Answer 8 questions to discover the best career path, exams & courses after 12th.",
       "href": "/career-aptitude-quiz/",
       "tags": [
@@ -5926,8 +5926,8 @@
     {
       "slug": "hncker/ahmyth",
       "title": "AhMyth Android RAT",
-      "icon": "📱",
-      "desc": "Install & use AhMyth on Kali — Android RAT tutorial (educational).",
+      "icon": "\ud83d\udcf1",
+      "desc": "Install & use AhMyth on Kali \u2014 Android RAT tutorial (educational).",
       "href": "/hncker/ahmyth/",
       "tags": [
         "ahmyth",
@@ -5944,7 +5944,7 @@
     {
       "slug": "hncker/apkleaks",
       "title": "APKLeaks Android Scanner",
-      "icon": "📱",
+      "icon": "\ud83d\udcf1",
       "desc": "Extract URLs, API endpoints & secrets from Android APKs (educational).",
       "href": "/hncker/apkleaks/",
       "tags": [
@@ -5963,7 +5963,7 @@
     {
       "slug": "hncker/nuclei",
       "title": "Nuclei Vulnerability Scanner",
-      "icon": "🎯",
+      "icon": "\ud83c\udfaf",
       "desc": "Fast template-driven vulnerability scanner for web targets (educational).",
       "href": "/hncker/nuclei/",
       "tags": [
@@ -5982,7 +5982,7 @@
     {
       "slug": "hncker/pegasus",
       "title": "Pegasus Pro Android Pentesting Toolkit",
-      "icon": "🐎",
+      "icon": "\ud83d\udc0e",
       "desc": "Python menu toolkit for Android penetration testing: WiFi tools, network scanner, payload generation (educational).",
       "href": "/hncker/pegasus/",
       "tags": [
@@ -6003,7 +6003,7 @@
     {
       "slug": "hncker/rooting",
       "title": "Root Android the Right Way",
-      "icon": "🔑",
+      "icon": "\ud83d\udd11",
       "desc": "Step-by-step guide to root your own Android device: unlock bootloader, patch with Magisk, flash. Covers Pixel, Samsung, Xiaomi, OnePlus, Motorola (educational).",
       "href": "/hncker/rooting/",
       "tags": [
@@ -6022,8 +6022,8 @@
     {
       "slug": "hncker/ddos",
       "title": "How Hackers DDoS, Professionally",
-      "icon": "🌊",
-      "desc": "Understand how DDoS attacks work: volumetric floods, protocol SYN floods, and application-layer slowloris — plus how to defend with rate limits, load balancers, and a CDN (educational).",
+      "icon": "\ud83c\udf0a",
+      "desc": "Understand how DDoS attacks work: volumetric floods, protocol SYN floods, and application-layer slowloris \u2014 plus how to defend with rate limits, load balancers, and a CDN (educational).",
       "href": "/hncker/ddos/",
       "tags": [
         "ddos",
@@ -6043,7 +6043,7 @@
     {
       "slug": "hncker/vulns",
       "title": "How Hackers Find Vulnerabilities",
-      "icon": "🎯",
+      "icon": "\ud83c\udfaf",
       "desc": "The 6-step method hackers use to break into a website: recon, scan, enumerate, map the attack surface, find the bug, and exploit (educational).",
       "href": "/hncker/vulns/",
       "tags": [
@@ -6066,8 +6066,8 @@
     {
       "slug": "hncker/seeker",
       "title": "Locate Smartphones with Seeker",
-      "icon": "📍",
-      "desc": "Understand how Seeker locates a smartphone — a page that asks for location permission and grabs exact GPS coordinates — and how to protect yourself (educational).",
+      "icon": "\ud83d\udccd",
+      "desc": "Understand how Seeker locates a smartphone \u2014 a page that asks for location permission and grabs exact GPS coordinates \u2014 and how to protect yourself (educational).",
       "href": "/hncker/seeker/",
       "tags": [
         "seeker",
@@ -6087,7 +6087,7 @@
     {
       "slug": "hncker/ai-agent-escape",
       "title": "AI Agent Sandbox Escape",
-      "icon": "🧊",
+      "icon": "\ud83e\uddca",
       "desc": "How container sandbox escapes work and how to contain AI agents with gVisor (educational).",
       "href": "/hncker/ai-agent-escape/",
       "tags": [
@@ -6107,8 +6107,8 @@
     {
       "slug": "hncker/hashcat",
       "title": "Hashcat Password Cracker",
-      "icon": "🔑",
-      "desc": "GPU-accelerated password recovery — dictionary, brute-force and rules (educational).",
+      "icon": "\ud83d\udd11",
+      "desc": "GPU-accelerated password recovery \u2014 dictionary, brute-force and rules (educational).",
       "href": "/hncker/hashcat/",
       "tags": [
         "hashcat",
@@ -6127,8 +6127,8 @@
     {
       "slug": "hncker/exif",
       "title": "ExifTool Image Metadata",
-      "icon": "🖼️",
-      "desc": "Read and strip EXIF metadata — camera, software, GPS — from images to protect your privacy (educational).",
+      "icon": "\ud83d\uddbc\ufe0f",
+      "desc": "Read and strip EXIF metadata \u2014 camera, software, GPS \u2014 from images to protect your privacy (educational).",
       "href": "/hncker/exif/",
       "tags": [
         "exiftool",
@@ -6147,8 +6147,8 @@
     {
       "slug": "hncker/ffuf",
       "title": "ffuf Web Fuzzer",
-      "icon": "🔎",
-      "desc": "Fast web content discovery & parameter fuzzing — find hidden pages (educational).",
+      "icon": "\ud83d\udd0e",
+      "desc": "Fast web content discovery & parameter fuzzing \u2014 find hidden pages (educational).",
       "href": "/hncker/ffuf/",
       "tags": [
         "ffuf",
@@ -6167,7 +6167,7 @@
     {
       "slug": "hncker/subfinder",
       "title": "Subfinder Subdomain Finder",
-      "icon": "🌐",
+      "icon": "\ud83c\udf10",
       "desc": "Passive subdomain discovery from dozens of public sources (educational).",
       "href": "/hncker/subfinder/",
       "tags": [
@@ -6187,7 +6187,7 @@
     {
       "slug": "hncker/hping3",
       "title": "hping3 Packet Crafting & Stress-Testing",
-      "icon": "📡",
+      "icon": "\ud83d\udce1",
       "desc": "Craft raw TCP/UDP/ICMP packets, scan ports and stress-test firewalls (educational).",
       "href": "/hncker/hping3/",
       "tags": [
@@ -6206,8 +6206,8 @@
     },
     {
       "slug": "hncker/strix",
-      "title": "STRIX — AI Pentest Tool",
-      "icon": "🤖",
+      "title": "STRIX \u2014 AI Pentest Tool",
+      "icon": "\ud83e\udd16",
       "desc": "Open-source AI penetration testing with autonomous agents and zero false positives.",
       "href": "/hncker/strix/",
       "tags": [
@@ -6226,8 +6226,8 @@
     },
     {
       "slug": "hncker/whatsosint",
-      "title": "WhatsOSINT — WhatsApp Number Lookup",
-      "icon": "💬",
+      "title": "WhatsOSINT \u2014 WhatsApp Number Lookup",
+      "icon": "\ud83d\udcac",
       "desc": "Check if a phone number is on WhatsApp and pull its public data with WhatsOSINT (educational).",
       "href": "/hncker/whatsosint/",
       "tags": [
@@ -6246,9 +6246,9 @@
     },
     {
       "slug": "hncker/netc2",
-      "title": "Net-C2 — Botnet C2 (Educational)",
-      "icon": "🧠",
-      "desc": "How a Python botnet command-and-control framework works — server, encrypted bots, web dashboard (educational).",
+      "title": "Net-C2 \u2014 Botnet C2 (Educational)",
+      "icon": "\ud83e\udde0",
+      "desc": "How a Python botnet command-and-control framework works \u2014 server, encrypted bots, web dashboard (educational).",
       "href": "/hncker/netc2/",
       "tags": [
         "netc2",
@@ -6266,7 +6266,7 @@
     {
       "slug": "aimakerich/algo-trading-strategies",
       "title": "Algo Trading Strategies",
-      "icon": "🤖",
+      "icon": "\ud83e\udd16",
       "desc": "Momentum, mean reversion, trend following & arbitrage with copy-paste Python, Java and C++ starter code plus the full build process.",
       "href": "/aimakerich/algo-trading-strategies/",
       "tags": [
@@ -6290,8 +6290,8 @@
     {
       "slug": "aimakerich/rsi-macd-divergence",
       "title": "RSI + MACD Divergence",
-      "icon": "📉",
-      "desc": "Spot bullish and bearish divergences between price and RSI/MACD to catch reversals early — with Python, Java and C++ starter code.",
+      "icon": "\ud83d\udcc9",
+      "desc": "Spot bullish and bearish divergences between price and RSI/MACD to catch reversals early \u2014 with Python, Java and C++ starter code.",
       "href": "/aimakerich/rsi-macd-divergence/",
       "tags": [
         "algo",
@@ -6315,8 +6315,8 @@
     {
       "slug": "aimakerich/golden-cross",
       "title": "Golden Cross",
-      "icon": "📈",
-      "desc": "The MA50 x MA200 crossover strategy to spot the start of an uptrend — with Python, Java and C++ starter code.",
+      "icon": "\ud83d\udcc8",
+      "desc": "The MA50 x MA200 crossover strategy to spot the start of an uptrend \u2014 with Python, Java and C++ starter code.",
       "href": "/aimakerich/golden-cross/",
       "tags": [
         "algo",
@@ -6341,7 +6341,7 @@
     {
       "slug": "indian-flag-generator",
       "title": "Indian Flag Generator",
-      "icon": "🇮🇳",
+      "icon": "\ud83c\uddee\ud83c\uddf3",
       "desc": "Create and download a clean Indian flag (Tiranga) PNG in seconds.",
       "href": "/indian-flag-generator/",
       "tags": [
@@ -6361,7 +6361,7 @@
     {
       "slug": "independence-day-status-generator",
       "title": "Independence Day Status Generator",
-      "icon": "🧡",
+      "icon": "\ud83e\udde1",
       "desc": "Ready-made patriotic statuses & captions, plus a tricolor frame for your own photo.",
       "href": "/independence-day-status-generator/",
       "tags": [
@@ -6383,7 +6383,7 @@
     {
       "slug": "independence-day-quiz",
       "title": "Independence Day Quiz",
-      "icon": "🇮🇳",
+      "icon": "\ud83c\uddee\ud83c\uddf3",
       "desc": "15 questions on freedom fighters, national symbols and Indian history.",
       "href": "/independence-day-quiz/",
       "tags": [
@@ -6403,8 +6403,8 @@
     {
       "slug": "independence-day-countdown",
       "title": "Indian National Days Countdown",
-      "icon": "⏳",
-      "desc": "Live countdown to Independence Day, Republic Day, Gandhi Jayanti and more — plus how old independent India is.",
+      "icon": "\u23f3",
+      "desc": "Live countdown to Independence Day, Republic Day, Gandhi Jayanti and more \u2014 plus how old independent India is.",
       "href": "/independence-day-countdown/",
       "tags": [
         "independence-day",
@@ -6423,6 +6423,151 @@
         "text",
         "india"
       ]
+    },
+    {
+      "slug": "name-age-guesser",
+      "title": "Name Age & Gender Guesser",
+      "icon": "\ud83d\udd2e",
+      "desc": "Predict age, gender, and nationality from any first name.",
+      "href": "/name-age-guesser/",
+      "tags": [
+        "name",
+        "age",
+        "gender",
+        "nationality",
+        "predict",
+        "fun"
+      ],
+      "cats": [
+        "all",
+        "fun"
+      ],
+      "new": true
+    },
+    {
+      "slug": "public-holidays",
+      "title": "Public Holidays",
+      "icon": "\ud83c\udf89",
+      "desc": "Public holidays for 206 countries, grouped by month for any year.",
+      "href": "/public-holidays/",
+      "tags": [
+        "holidays",
+        "calendar",
+        "public",
+        "national",
+        "bank holidays"
+      ],
+      "cats": [
+        "all",
+        "tools"
+      ],
+      "new": true
+    },
+    {
+      "slug": "link-preview",
+      "title": "Link Preview",
+      "icon": "\ud83d\udd17",
+      "desc": "Extract title, description, image, and favicon from any URL.",
+      "href": "/link-preview/",
+      "tags": [
+        "link",
+        "preview",
+        "open graph",
+        "og",
+        "metadata",
+        "seo",
+        "url"
+      ],
+      "cats": [
+        "all",
+        "marketing",
+        "dev"
+      ],
+      "new": true
+    },
+    {
+      "slug": "formula-1-live",
+      "title": "Formula 1 Live",
+      "icon": "\ud83c\udfce\ufe0f",
+      "desc": "Live F1 session data: driver positions, gaps, and race info.",
+      "href": "/formula-1-live/",
+      "tags": [
+        "f1",
+        "formula 1",
+        "live",
+        "racing",
+        "positions",
+        "sports"
+      ],
+      "cats": [
+        "all",
+        "sports"
+      ],
+      "new": true
+    },
+    {
+      "slug": "country-facts",
+      "title": "Country Facts",
+      "icon": "\ud83c\udf0d",
+      "desc": "Get facts about any country: capital, population, currency, languages, flag.",
+      "href": "/country-facts/",
+      "tags": [
+        "country",
+        "facts",
+        "capital",
+        "population",
+        "flag",
+        "currency",
+        "languages"
+      ],
+      "cats": [
+        "all",
+        "education"
+      ],
+      "new": true
+    },
+    {
+      "slug": "mandi-prices",
+      "title": "Mandi Prices India",
+      "icon": "\ud83c\udf3e",
+      "desc": "Today's wholesale mandi (APMC) prices for Indian states per quintal.",
+      "href": "/mandi-prices/",
+      "tags": [
+        "mandi",
+        "apmc",
+        "agriculture",
+        "commodity",
+        "onion",
+        "wheat",
+        "india",
+        "prices"
+      ],
+      "cats": [
+        "all",
+        "india"
+      ],
+      "new": true
+    },
+    {
+      "slug": "rss-feed-reader",
+      "title": "RSS Feed Reader",
+      "icon": "\ud83d\udcf0",
+      "desc": "Read any RSS or Atom feed as clean, readable articles.",
+      "href": "/rss-feed-reader/",
+      "tags": [
+        "rss",
+        "feed",
+        "atom",
+        "reader",
+        "news",
+        "blog"
+      ],
+      "cats": [
+        "all",
+        "dev",
+        "tools"
+      ],
+      "new": true
     }
   ],
   "categories": {

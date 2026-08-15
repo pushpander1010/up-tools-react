@@ -106,7 +106,40 @@ export default function crypto_prices() {
       } catch {}
 
       setCoins(data)
-    } catch (e) { setError(e.message) }
+    } catch (e) {
+      // Fallback: Coinpaprika (free, CORS-open, keyless) when CoinGecko is rate-limited/down
+      try {
+        const cURL = `https://api.coinpaprika.com/v1/tickers?quotes=${currency.toUpperCase()},USD&limit=100`
+        const cpRes = await fetch(cURL)
+        if (cpRes.ok) {
+          const cpData = await cpRes.json()
+          const fallback = cpData.map((c, idx) => {
+            const q = c.quotes?.[currency.toUpperCase()] || c.quotes?.USD || {}
+            return {
+              id: c.id,
+              name: c.name,
+              symbol: c.symbol,
+              image: `https://static.coinpaprika.com/coin/${c.id}/logo.png`,
+              current_price: q.price || 0,
+              market_cap: q.market_cap || 0,
+              total_volume: q.volume_24h || 0,
+              market_cap_rank: c.rank || idx + 1,
+              price_change_percentage_1h_in_currency: q.percent_change_1h || 0,
+              price_change_percentage_24h: q.percent_change_24h || 0,
+              price_change_percentage_7d_in_currency: q.percent_change_7d || 0,
+              sparkline_in_7d: null,
+              fallback: true,
+            }
+          })
+          setCoins(fallback)
+          setError('CoinGecko is rate-limited — showing Coinpaprika fallback data.')
+        } else {
+          setError(e.message)
+        }
+      } catch {
+        setError(e.message)
+      }
+    }
     setLoading(false)
   }, [currency])
 

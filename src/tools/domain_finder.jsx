@@ -56,12 +56,14 @@ export default function domain_finder() {
   const [allowDigit, setAllowDigit] = useState(false)
   const [results, setResults] = useState([])
   const [copied, setCopied] = useState(null)
+  const [checkAvail, setCheckAvail] = useState(true)
+  const [checking, setChecking] = useState(false)
 
   const toggleTld = (tld) => {
     setSelectedTlds(prev => { const next = new Set(prev); if (next.has(tld)) next.delete(tld); else next.add(tld); return next })
   }
 
-  const search = useCallback(() => {
+  const search = useCallback(async () => {
     const seeds = keywords.split(/[, ]+/).map(s => s.trim().toLowerCase()).filter(Boolean)
     if (!seeds.length && !keywords.trim()) {
       // Random generation
@@ -71,10 +73,30 @@ export default function domain_finder() {
       })
       seeds.push(...randomSeeds)
     }
-    const domains = generateDomains(seeds, [...selectedTlds], maxLen, allowHyphen, allowDigit)
-    setResults(domains)
+    let domains = generateDomains(seeds, [...selectedTlds], maxLen, allowHyphen, allowDigit)
+    // Cap for live checking (RDAP one request per domain)
+    domains = domains.slice(0, 30)
+    setResults(domains.map(d => ({ ...d, avail: null })))
     jumpTo()
-  }, [keywords, selectedTlds, maxLen, allowHyphen, allowDigit, jumpTo])
+
+    if (checkAvail) {
+      setChecking(true)
+      const checked = await Promise.all(domains.map(async d => {
+        try {
+          const ctrl = new AbortController()
+          const t = setTimeout(() => ctrl.abort(), 8000)
+          const res = await fetch(`https://rdap.org/domain/${encodeURIComponent(d.domain)}`, { signal: ctrl.signal })
+          clearTimeout(t)
+          // 404 = not registered (available), 200 = registered
+          return { ...d, avail: res.status === 404 }
+        } catch {
+          return { ...d, avail: null }
+        }
+      }))
+      setResults(checked)
+      setChecking(false)
+    }
+  }, [keywords, selectedTlds, maxLen, allowHyphen, allowDigit, checkAvail, jumpTo])
 
   const copy = useCallback((text, label) => {
     navigator.clipboard?.writeText(text)
@@ -92,18 +114,19 @@ export default function domain_finder() {
   return (
     <ToolLayout
       title="Domain Finder"
-      desc="Find brandable domain name ideas from keywords. Generate available-looking domains with brand scores."
+      desc="Find brandable domain names and check live availability. Generate domain ideas from keywords and see which are actually free to register."
       icon="🌐" iconBg="rgba(99,102,241,0.08)"
       category="business" slug="domain-finder"
       faq={[
-        { q: 'Does this check if domains are available?', a: 'No — this generates domain name ideas with brand scores. You\'ll need to verify availability on a registrar like GoDaddy or Namecheap.' },
+        { q: 'Does this check if domains are available?', a: 'Yes. When "Check live availability" is on, the tool queries the RDAP registry for the top 30 generated domains and labels each as Available or Taken. Unchecked domains that time out show no label — verify those on a registrar.' },
         { q: 'How is brand score calculated?', a: 'Based on name length (4-14 chars optimal), no hyphens, no digits, and TLD quality (.com > .in > .co).' },
+        { q: 'How reliable is the availability check?', a: 'Availability is checked against the official RDAP registry (via rdap.org), the same source registrars use. A 404 means the domain is not registered. Note that some TLDs route slowly and may time out.' },
       ]}
       howItWorks={[
         'Enter comma-separated seed keywords (e.g., "ai, health, travel").',
         'Select your preferred TLDs (.com, .in, .ai, etc.).',
         'Adjust max name length and character options.',
-        'Click Generate to see brandable domain ideas.',
+        'Click Generate to see brandable domain ideas with live availability.',
       ]}
       schema={{
         "@context": "https://schema.org", "@type": "SoftwareApplication",
@@ -151,10 +174,16 @@ export default function domain_finder() {
           </div>
         </div>
 
-        <button onClick={search}
+        <button onClick={search} disabled={checking}
           className="w-full py-4 rounded-2xl bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-bold text-sm shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40 hover:scale-[1.02] active:scale-95 transition-all duration-200">
-          🔍 Generate Domains
+          {checking ? '⏳ Checking availability...' : '🔍 Generate Domains'}
         </button>
+
+        <label className="flex items-center gap-2 justify-center text-xs text-slate-400">
+          <input type="checkbox" checked={checkAvail} onChange={e => setCheckAvail(e.target.checked)}
+            className="w-4 h-4 accent-indigo-500" />
+          Check live availability (top 30 domains via RDAP)
+        </label>
 
         {/* Results */}
         {results.length > 0 ? (
@@ -172,6 +201,11 @@ export default function domain_finder() {
                   onClick={() => copy(r.domain, `d-${i}`)}>
                   <div className="flex-1 min-w-0">
                     <div className="text-sm font-bold text-white font-mono truncate">{r.domain}</div>
+                    {r.avail !== null && (
+                      <div className={`text-[10px] font-bold mt-0.5 ${r.avail ? 'text-emerald-400' : 'text-rose-400'}`}>
+                        {r.avail ? '✓ Available' : '✗ Taken'}
+                      </div>
+                    )}
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="w-12 h-1.5 rounded-full bg-white/5 overflow-hidden">
