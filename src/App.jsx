@@ -25,6 +25,7 @@ const HomePage = lazy(() => import('./pages/HomePage'))
 const GamesPage = lazy(() => import('./pages/GamesPage'))
 const HnckerPage = lazy(() => import('./pages/HnckerPage'))
 const AimakerichPage = lazy(() => import('./pages/AimakerichPage'))
+const AboutPage = lazy(() => import('./pages/AboutPage'))
 
 // Dynamic tool component loader
 function ToolRoute() {
@@ -111,6 +112,7 @@ export default function App() {
                 <Route path="/games" element={<GamesPage />} />
                 <Route path="/hncker" element={<HnckerPage />} />
                 <Route path="/aimakerich" element={<AimakerichPage />} />
+                <Route path="/about" element={<AboutPage />} />
                 <Route path="*" element={<ToolRoute />} />
               </Routes>
             </SidebarLayout>

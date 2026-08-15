@@ -63,7 +63,7 @@ const toolFiles = readdirSync(toolsDir).filter(f => f.endsWith('.jsx') || f.ends
 const template = readFileSync(join(dist, 'index.html'), 'utf-8')
 
 // Slugs that have dedicated static HTML in public/ — don't overwrite
-const SKIP_SLUGS = new Set(['games', 'about', 'contact', 'hncker', 'aimakerich', 'privacy-policy'])
+const SKIP_SLUGS = new Set(['games', 'contact', 'hncker', 'aimakerich', 'privacy-policy'])
 
 let count = 0
 for (const file of toolFiles) {
