@@ -2388,16 +2388,20 @@
     },
     {
       "slug": "life-insurance-calculator",
-      "title": "Life Insurance Calculator",
+      "title": "Life Insurance & Term Insurance Calculator India",
       "icon": "🛡️",
-      "desc": "Life insurance calculator: human life value and coverage needed based on income, expenses, debts and dependents.",
+      "desc": "Calculate how much life insurance you need in India with needs-based and Human Life Value (HLV) methods, term insurance premium estimate, 80C tax saving and cover matrix. Free.",
       "href": "/life-insurance-calculator/",
       "tags": [
-        "insurance",
-        "life",
+        "life-insurance",
+        "term-insurance",
+        "hlv",
         "coverage",
-        "term",
-        "planning",
+        "sum-assured",
+        "premium",
+        "80c",
+        "dependents",
+        "india",
         "finance"
       ],
       "cats": [
@@ -6952,6 +6956,71 @@
         "india",
         "finance",
         "real-estate"
+      ],
+      "cats": [
+        "all",
+        "finance"
+      ]
+    },
+    {
+      "slug": "health-insurance-calculator",
+      "title": "Health Insurance Premium Calculator India",
+      "icon": "🏥",
+      "desc": "Estimate health insurance premium in India for individual or family floater plans by age, sum insured and city, with 80D tax saving. Compare ₹3L to ₹1Cr covers.",
+      "href": "/health-insurance-calculator/",
+      "tags": [
+        "health-insurance",
+        "premium",
+        "family-floater",
+        "80d",
+        "sum-insured",
+        "senior-citizen",
+        "india",
+        "finance"
+      ],
+      "cats": [
+        "all",
+        "finance",
+        "health"
+      ]
+    },
+    {
+      "slug": "car-insurance-calculator",
+      "title": "Car Insurance Premium & IDV Calculator India",
+      "icon": "🚗",
+      "desc": "Calculate car insurance premium in India: IDV from ex-showroom price and age, third-party vs comprehensive, NCB discount, add-ons and 18% GST.",
+      "href": "/car-insurance-calculator/",
+      "tags": [
+        "car-insurance",
+        "idv",
+        "ncb",
+        "third-party",
+        "comprehensive",
+        "zero-dep",
+        "india",
+        "finance"
+      ],
+      "cats": [
+        "all",
+        "finance"
+      ]
+    },
+    {
+      "slug": "bike-insurance-calculator",
+      "title": "Bike / Two-Wheeler Insurance Premium Calculator India",
+      "icon": "🛵",
+      "desc": "Calculate bike and two-wheeler insurance premium in India: IDV, third-party vs comprehensive, NCB up to 50%, add-ons and GST. Instant estimate for scooters and motorcycles.",
+      "href": "/bike-insurance-calculator/",
+      "tags": [
+        "bike-insurance",
+        "two-wheeler",
+        "idv",
+        "ncb",
+        "third-party",
+        "scooter",
+        "motorcycle",
+        "india",
+        "finance"
       ],
       "cats": [
         "all",

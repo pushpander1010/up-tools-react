@@ -27,6 +27,7 @@ const PRIORITY_BOOST = new Set([
   'fd-calculator', 'ppf-calculator', 'epf-calculator', 'tds-calculator',
   'ctc-salary-calculator', 'currency-converter', 'indian-stock-market-live',
   'gold-rate-india', 'mutual-fund-nav', 'home-loan-eligibility-calculator',
+  'life-insurance-calculator', 'health-insurance-calculator', 'car-insurance-calculator', 'bike-insurance-calculator',
 ])
 
 for (const t of tools) {

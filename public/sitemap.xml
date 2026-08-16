@@ -138,7 +138,7 @@
   <url><loc>https://www.uptools.in/house-affordability-calculator/</loc><lastmod>2026-08-16</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.uptools.in/car-loan-calculator/</loc><lastmod>2026-08-16</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.uptools.in/retirement-calculator/</loc><lastmod>2026-08-16</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.uptools.in/life-insurance-calculator/</loc><lastmod>2026-08-16</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.uptools.in/life-insurance-calculator/</loc><lastmod>2026-08-16</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.uptools.in/investment-return-calculator/</loc><lastmod>2026-08-16</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.uptools.in/roth-ira-calculator/</loc><lastmod>2026-08-16</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.uptools.in/debt-payoff-calculator/</loc><lastmod>2026-08-16</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
@@ -406,6 +406,9 @@
   <url><loc>https://www.uptools.in/gold-rate-india/</loc><lastmod>2026-08-16</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.uptools.in/mutual-fund-nav/</loc><lastmod>2026-08-16</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.uptools.in/home-loan-eligibility-calculator/</loc><lastmod>2026-08-16</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.uptools.in/health-insurance-calculator/</loc><lastmod>2026-08-16</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.uptools.in/car-insurance-calculator/</loc><lastmod>2026-08-16</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.uptools.in/bike-insurance-calculator/</loc><lastmod>2026-08-16</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.uptools.in/hncker/</loc><lastmod>2026-08-16</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.uptools.in/games/</loc><lastmod>2026-08-16</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.uptools.in/aimakerich/</loc><lastmod>2026-08-16</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
