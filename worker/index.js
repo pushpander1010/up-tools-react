@@ -1336,6 +1336,8 @@ async function handleMf(req, env) {
 export default {
   async fetch(req, env) {
     const url = new URL(req.url);
+    // Normalize trailing slash for API routes (www host adds it via a CF redirect rule)
+    const path = url.pathname.endsWith('/') && url.pathname !== '/' ? url.pathname.slice(0, -1) : url.pathname;
 
     // CORS preflight
     if (req.method === 'OPTIONS') {
@@ -1350,7 +1352,7 @@ export default {
     }
 
     // /ai: Together AI LLM proxy (OpenAI-style SSE streaming)
-    if (url.pathname === '/ai') {
+    if (path === '/ai') {
       try {
         if (req.method === 'OPTIONS') return new Response(null, { status: 204, headers: corsHeaders(req, env) });
         // Origin lockdown: only allow requests from our own sites
@@ -1367,37 +1369,37 @@ export default {
     }
 
     // Currency rates endpoint
-    if (url.pathname === '/api/rates') {
+    if (path === '/api/rates') {
       return handleRates();
     }
 
     // Finance CORS proxy
-    if (url.pathname === '/proxy') {
+    if (path === '/proxy') {
       return handleFinanceProxy(req, env);
     }
 
     // AI top10 daily picks
-    if (url.pathname === '/top10/daily.json') {
+    if (path === '/top10/daily.json') {
       return handleTop10Daily(req, env);
     }
 
     // News RSS proxy
-    if (url.pathname === '/news') {
+    if (path === '/news') {
       return handleNewsProxy(req, env);
     }
 
     // India market live (indices + Nifty 50 stocks)
-    if (url.pathname === '/api/india-market') {
+    if (path === '/api/india-market') {
       return handleIndiaMarket(req, env);
     }
 
     // Gold rate India (indicative 24K/22K per 10g)
-    if (url.pathname === '/api/gold-rate') {
+    if (path === '/api/gold-rate') {
       return handleGoldRate(req, env);
     }
 
     // Mutual fund search + NAV history (mfapi.in)
-    if (url.pathname === '/api/mf') {
+    if (path === '/api/mf') {
       return handleMf(req, env);
     }
 
