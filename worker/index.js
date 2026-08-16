@@ -1290,15 +1290,16 @@ async function mutualFundNav(code) {
   try {
     const data = await fetchMfJson(`https://api.mfapi.in/mf/${encodeURIComponent(code)}`);
     if (!data?.meta) return { error: "Fund not found" };
+    // mfapi.in returns rows NEWEST-FIRST (descending date). Index accordingly.
     const rows = (data.data || []).filter((r) => r?.date && r?.nav != null);
-    const latest = rows.at(-1);
-    const prev = rows.at(-2);
-    const yearAgo = rows[Math.max(0, rows.length - 366)];
+    const latest = rows[0];
+    const prev = rows[1];
+    const yearAgo = rows[365] || rows[rows.length - 1];
     const dayChange = latest && prev ? Number((latest.nav - prev.nav).toFixed(4)) : null;
     const dayChangePct = dayChange != null && prev?.nav ? Number(((dayChange / prev.nav) * 100).toFixed(2)) : null;
-    const returns1y = latest && yearAgo && yearAgo.nav ? Number((((latest.nav - yearAgo.nav) / yearAgo.nav) * 100).toFixed(2)) : null;
-    // last 12 months of NAV for chart
-    const chart = rows.slice(-260).map((r) => ({ d: r.date, v: Number(r.nav) }));
+    const returns1y = latest && yearAgo && yearAgo !== latest ? Number((((latest.nav - yearAgo.nav) / yearAgo.nav) * 100).toFixed(2)) : null;
+    // chart: last 12 months in chronological order (oldest → newest) for the client
+    const chart = rows.slice(0, 260).reverse().map((r) => ({ d: r.date, v: Number(r.nav) }));
     const payload = {
       code,
       schemeName: data.meta.scheme_name || "",
