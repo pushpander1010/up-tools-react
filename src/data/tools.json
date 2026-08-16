@@ -1485,6 +1485,24 @@
       ]
     },
     {
+      "slug": "minecraft-server",
+      "title": "Minecraft Server (Free)",
+      "icon": "\u26f3\ufe0f",
+      "desc": "Join our free public Minecraft Java survival server. Copy the address and play with friends — no signup.",
+      "href": "/minecraft-server/",
+      "tags": [
+        "minecraft",
+        "server",
+        "multiplayer",
+        "survival",
+        "fun"
+      ],
+      "cats": [
+        "all",
+        "fun"
+      ]
+    },
+    {
       "slug": "games-love-test",
       "title": "Love Compatibility Test",
       "icon": "\ud83d\udc98",
