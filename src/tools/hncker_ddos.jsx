@@ -137,6 +137,15 @@ export default function hncker_ddos() {
 
       <Section id="video" icon="🎬" title="Video Tutorial" subtitle="Watch the HNCKER walkthrough">
         <div className="max-w-3xl mx-auto">
+          <div className="relative w-full mb-4" style={{ paddingBottom: '56.25%' }}>
+            <iframe
+              className="absolute inset-0 w-full h-full rounded-xl border border-white/10"
+              src="https://www.youtube.com/embed/4G1FpK9HWz8"
+              title="What is a DDoS Attack? Full Breakdown | HNCKER"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
           <video
             src="/assets/tools/ddos/ddos-demo.mp4"
             controls
