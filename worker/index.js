@@ -1060,6 +1060,276 @@ async function handleNewsProxy(req, env) {
  * so the browser calls the Oracle backend directly over HTTPS (Caddy injects auth + CORS).
  */
 
+/* ---------------- India market live (indices + Nifty 50) ---------------- */
+
+const INDIA_INDICES = ["^NSEI", "^BSESN", "^NIFTYBANK", "^FINNIFTY", "^MIDCAPNIFTY", "^CNXIT"];
+const INDIA_STOCKS = [
+  "RELIANCE.NS","TCS.NS","HDFCBANK.NS","INFY.NS","ICICIBANK.NS","HINDUNILVR.NS","ITC.NS","SBIN.NS",
+  "BHARTIARTL.NS","KOTAKBANK.NS","LT.NS","AXISBANK.NS","ASIANPAINT.NS","MARUTI.NS","TITAN.NS","SUNPHARMA.NS",
+  "WIPRO.NS","ULTRACEMCO.NS","NESTLEIND.NS","BAJFINANCE.NS","HCLTECH.NS","POWERGRID.NS","NTPC.NS","ONGC.NS",
+  "COALINDIA.NS","JSWSTEEL.NS","TATAMOTORS.NS","TATASTEEL.NS","ADANIENT.NS","ADANIPORTS.NS","BAJAJFINSV.NS",
+  "DIVISLAB.NS","DRREDDY.NS","EICHERMOT.NS","GRASIM.NS","HEROMOTOCO.NS","HINDALCO.NS","INDUSINDBK.NS","M&M.NS","TECHM.NS",
+];
+const INDIA_MARKET_CHART_POINTS = 90; // last N closes per symbol for client sparkline
+const INDIA_MARKET_CACHE_MS = 90 * 1000;
+const INDIA_MARKET_CACHE_KEY = "__uptools_india_market__";
+
+let indiaMarketCache = null;
+let indiaMarketPromise = null;
+
+const INDIA_INDEX_NAMES = {
+  "^NSEI": "Nifty 50", "^BSESN": "Sensex", "^NIFTYBANK": "Bank Nifty",
+  "^FINNIFTY": "Fin Nifty", "^MIDCAPNIFTY": "Nifty Midcap", "^CNXIT": "Nifty IT",
+};
+
+function buildMarketEntry(key, name, quote, chart, chartPoints) {
+  const closes = (chart?.closes || []).filter((v) => v != null);
+  const price = quote?.regularMarketPrice ?? closes.at(-1) ?? null;
+  const prevClose = quote?.regularMarketChange != null && price != null
+    ? price - quote.regularMarketChange
+    : (chart?.meta?.chartPreviousClose ?? null);
+  const change = price != null && prevClose != null ? price - prevClose : null;
+  const changePct = change != null && prevClose ? (change / prevClose) * 100 : null;
+  return {
+    symbol: key,
+    name,
+    price,
+    change,
+    changePct,
+    currency: quote?.currency || chart?.meta?.currency || null,
+    lastVolume: quote?.regularMarketVolume ?? null,
+    high52: quote?.fiftyTwoWeekHigh ?? null,
+    low52: quote?.fiftyTwoWeekLow ?? null,
+    sparkline: chartPoints > 0 ? closes.slice(-chartPoints) : closes,
+  };
+}
+
+async function computeIndiaMarket(env) {
+  const symbols = [...INDIA_INDICES, ...INDIA_STOCKS];
+  const { quotes, charts } = await fetchSymbolData(symbols);
+  const indices = INDIA_INDICES.map((s) => {
+    const key = s.toUpperCase();
+    return buildMarketEntry(key, INDIA_INDEX_NAMES[s] || key, quotes.get(key), charts.get(key), INDIA_MARKET_CHART_POINTS);
+  }).filter((e) => e.price != null);
+  const stocks = INDIA_STOCKS.map((s) => {
+    const key = s.toUpperCase();
+    const q = quotes.get(key);
+    const name = q?.shortName || q?.longName || key;
+    return buildMarketEntry(key, name.replace(/\.NS$/, ""), q, charts.get(key), INDIA_MARKET_CHART_POINTS);
+  }).filter((e) => e.price != null);
+  return {
+    generatedAt: new Date().toISOString(),
+    marketNote: "Data via Yahoo Finance (delayed ~15 min). NSE trading hours 9:15–15:30 IST, Mon–Fri.",
+    indices,
+    stocks,
+    totalStocks: INDIA_STOCKS.length,
+  };
+}
+
+async function getIndiaMarketPayload(env, force = false) {
+  const now = Date.now();
+  if (!force && indiaMarketCache && now < indiaMarketCache.expires) return indiaMarketCache.payload;
+  if (!indiaMarketPromise) {
+    indiaMarketPromise = computeIndiaMarket(env)
+      .then((payload) => {
+        indiaMarketCache = { payload, expires: Date.now() + INDIA_MARKET_CACHE_MS };
+        indiaMarketPromise = null;
+        return payload;
+      })
+      .catch((err) => {
+        indiaMarketPromise = null;
+        throw err;
+      });
+  }
+  return indiaMarketPromise;
+}
+
+async function handleIndiaMarket(req, env) {
+  if (req.method !== "GET" && req.method !== "HEAD") {
+    return json({ error: "Use GET or HEAD" }, 405);
+  }
+  try {
+    const url = new URL(req.url);
+    const force = url.searchParams.get("nocache") === "1";
+    const payload = await getIndiaMarketPayload(env, force);
+    const headers = {
+      "Content-Type": "application/json; charset=utf-8",
+      "Cache-Control": "public, max-age=60, s-maxage=90",
+      "X-Generated-At": payload.generatedAt,
+    };
+    if (req.method === "HEAD") return new Response(null, { status: 200, headers });
+    return new Response(JSON.stringify(payload), { status: 200, headers });
+  } catch (err) {
+    console.error("india market error", err);
+    return json({ error: err instanceof Error ? err.message : "Failed to load India market data" }, 500);
+  }
+}
+
+/* ---------------- Gold rate India (GC=F spot × USD/INR, indicative 24K/22K) ---------------- */
+
+const GOLD_SYMBOLS = ["GC=F", "INR=X"];
+const GOLD_CACHE_MS = 90 * 1000;
+
+let goldCache = null;
+let goldPromise = null;
+
+async function computeGoldRates(env) {
+  const { quotes, charts } = await fetchSymbolData(GOLD_SYMBOLS);
+  const gold = quotes.get("GC=F");
+  const usdinr = quotes.get("INR=X");
+  const goldPrice = gold?.regularMarketPrice;
+  const inrRate = usdinr?.regularMarketPrice;
+  const goldPrev = charts.get("GC=F")?.meta?.chartPreviousClose ?? null;
+  const goldChangePct = goldPrice != null && goldPrev ? ((goldPrice - goldPrev) / goldPrev) * 100 : null;
+  const inrPrev = charts.get("INR=X")?.meta?.chartPreviousClose ?? null;
+  const inrChangePct = inrRate != null && inrPrev ? ((inrRate - inrPrev) / inrPrev) * 100 : null;
+
+  const perGramUsd = goldPrice != null ? goldPrice / 31.1035 : null;
+  const per10gInr = perGramUsd != null && inrRate != null ? perGramUsd * 10 * inrRate : null;
+
+  const from24k = (purity) => per10gInr != null ? per10gInr * (purity / 24) : null;
+
+  return {
+    generatedAt: new Date().toISOString(),
+    source: "International COMEX spot (GC=F) × USD/INR — indicative Indian retail rate, before making charges/GST. Actual jeweller rates vary by city.",
+    usdPerOunce: goldPrice != null ? Number(goldPrice.toFixed(2)) : null,
+    usdPerOunceChangePct: goldChangePct != null ? Number(goldChangePct.toFixed(2)) : null,
+    usdInr: inrRate != null ? Number(inrRate.toFixed(2)) : null,
+    usdInrChangePct: inrChangePct != null ? Number(inrChangePct.toFixed(2)) : null,
+    rates: {
+      perGram: {
+        "24K": perGramUsd != null ? Math.round(perGramUsd * (inrRate || 0)) : null,
+        "22K": perGramUsd != null ? Math.round(perGramUsd * (inrRate || 0) * 22 / 24) : null,
+        "18K": perGramUsd != null ? Math.round(perGramUsd * (inrRate || 0) * 18 / 24) : null,
+      },
+      per10g: {
+        "24K": from24k(24) != null ? Math.round(from24k(24)) : null,
+        "22K": from24k(22) != null ? Math.round(from24k(22)) : null,
+        "18K": from24k(18) != null ? Math.round(from24k(18)) : null,
+      },
+    },
+  };
+}
+
+async function getGoldRates(env, force = false) {
+  const now = Date.now();
+  if (!force && goldCache && now < goldCache.expires) return goldCache.payload;
+  if (!goldPromise) {
+    goldPromise = computeGoldRates(env)
+      .then((payload) => {
+        goldCache = { payload, expires: Date.now() + GOLD_CACHE_MS };
+        goldPromise = null;
+        return payload;
+      })
+      .catch((err) => {
+        goldPromise = null;
+        throw err;
+      });
+  }
+  return goldPromise;
+}
+
+async function handleGoldRate(req, env) {
+  if (req.method !== "GET" && req.method !== "HEAD") return json({ error: "Use GET or HEAD" }, 405);
+  try {
+    const url = new URL(req.url);
+    const force = url.searchParams.get("nocache") === "1";
+    const payload = await getGoldRates(env, force);
+    const headers = {
+      "Content-Type": "application/json; charset=utf-8",
+      "Cache-Control": "public, max-age=60, s-maxage=90",
+      "X-Generated-At": payload.generatedAt,
+    };
+    if (req.method === "HEAD") return new Response(null, { status: 200, headers });
+    return new Response(JSON.stringify(payload), { status: 200, headers });
+  } catch (err) {
+    console.error("gold rate error", err);
+    return json({ error: err instanceof Error ? err.message : "Failed to load gold rates" }, 500);
+  }
+}
+
+/* ---------------- Mutual fund search + NAV (mfapi.in) ---------------- */
+
+const MF_CACHE_MS = 15 * 60 * 1000;
+
+let mfCache = new Map(); // query -> payload
+let mfNavCache = new Map(); // code -> payload
+let mfPromise = null;
+
+async function fetchMfJson(targetUrl) {
+  const res = await fetch(targetUrl, {
+    headers: { "User-Agent": PROXY_USER_AGENT, "Accept": "application/json" },
+  });
+  if (!res.ok) throw new Error(`mfapi HTTP ${res.status}`);
+  return res.json();
+}
+
+async function searchMutualFunds(query) {
+  const q = (query || "").trim().toLowerCase();
+  if (!q) return { results: [] };
+  const cached = mfCache.get(q);
+  if (cached && Date.now() < cached.expires) return cached.payload;
+  try {
+    const data = await fetchMfJson(`https://api.mfapi.in/mf/search?q=${encodeURIComponent(q)}`);
+    const results = Array.isArray(data) ? data.slice(0, 30).map((s) => ({
+      code: s.schemeCode,
+      name: s.schemeName,
+    })) : [];
+    const payload = { results, count: results.length };
+    mfCache.set(q, { payload, expires: Date.now() + MF_CACHE_MS });
+    return payload;
+  } catch (err) {
+    return { results: [], error: err instanceof Error ? err.message : "Search failed" };
+  }
+}
+
+async function mutualFundNav(code) {
+  if (!code) return { error: "Missing fund code" };
+  const cached = mfNavCache.get(code);
+  if (cached && Date.now() < cached.expires) return cached.payload;
+  try {
+    const data = await fetchMfJson(`https://api.mfapi.in/mf/${encodeURIComponent(code)}`);
+    if (!data?.meta) return { error: "Fund not found" };
+    const rows = (data.data || []).filter((r) => r?.date && r?.nav != null);
+    const latest = rows.at(-1);
+    const prev = rows.at(-2);
+    const yearAgo = rows[Math.max(0, rows.length - 366)];
+    const dayChange = latest && prev ? Number((latest.nav - prev.nav).toFixed(4)) : null;
+    const dayChangePct = dayChange != null && prev?.nav ? Number(((dayChange / prev.nav) * 100).toFixed(2)) : null;
+    const returns1y = latest && yearAgo && yearAgo.nav ? Number((((latest.nav - yearAgo.nav) / yearAgo.nav) * 100).toFixed(2)) : null;
+    // last 12 months of NAV for chart
+    const chart = rows.slice(-260).map((r) => ({ d: r.date, v: Number(r.nav) }));
+    const payload = {
+      code,
+      schemeName: data.meta.scheme_name || "",
+      category: data.meta.scheme_category || "",
+      latestNav: latest ? Number(latest.nav) : null,
+      navDate: latest?.date || null,
+      dayChange,
+      dayChangePct,
+      returns1y,
+      chart,
+    };
+    mfNavCache.set(code, { payload, expires: Date.now() + MF_CACHE_MS });
+    return payload;
+  } catch (err) {
+    return { error: err instanceof Error ? err.message : "NAV fetch failed" };
+  }
+}
+
+async function handleMf(req, env) {
+  if (req.method !== "GET" && req.method !== "HEAD") return json({ error: "Use GET or HEAD" }, 405);
+  const url = new URL(req.url);
+  const code = url.searchParams.get("code");
+  const q = url.searchParams.get("q");
+  let payload;
+  if (code) payload = await mutualFundNav(code);
+  else payload = await searchMutualFunds(q);
+  const headers = { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "public, max-age=600, s-maxage=900" };
+  if (req.method === "HEAD") return new Response(null, { status: 200, headers });
+  return new Response(JSON.stringify(payload), { status: 200, headers });
+}
+
 /* ---------------- main ---------------- */
 
 export default {
@@ -1113,6 +1383,21 @@ export default {
     // News RSS proxy
     if (url.pathname === '/news') {
       return handleNewsProxy(req, env);
+    }
+
+    // India market live (indices + Nifty 50 stocks)
+    if (url.pathname === '/api/india-market') {
+      return handleIndiaMarket(req, env);
+    }
+
+    // Gold rate India (indicative 24K/22K per 10g)
+    if (url.pathname === '/api/gold-rate') {
+      return handleGoldRate(req, env);
+    }
+
+    // Mutual fund search + NAV history (mfapi.in)
+    if (url.pathname === '/api/mf') {
+      return handleMf(req, env);
     }
 
     // Legacy redirects: old tool slugs -> renamed React tool pages

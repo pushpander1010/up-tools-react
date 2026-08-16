@@ -41,8 +41,8 @@ export default function ppf_calculator() {
 
   return (
     <ToolLayout
-      title="PPF Calculator"
-      desc="Calculate PPF (Public Provident Fund) maturity amount, interest earned, and year-wise growth. Free online PPF calculator for Indian investors."
+      title="PPF Calculator India"
+      desc="Calculate PPF (Public Provident Fund) maturity amount, interest earned, and year-wise growth at 7.1% tax-free interest. Free online PPF calculator for Indian investors."
       icon="🏛️" iconBg="rgba(34,197,94,0.08)"
       category="finance" slug="ppf-calculator"
       faq={[

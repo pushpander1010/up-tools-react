@@ -39,8 +39,8 @@ export default function hra_calculator() {
 
   return (
     <ToolLayout
-      title="HRA Calculator"
-      desc="Calculate House Rent Allowance (HRA) exemption for Indian salaried employees. Free online tool by UpTools."
+      title="HRA Exemption Calculator India"
+      desc="Calculate House Rent Allowance (HRA) exemption under Rule 2A for Indian salaried employees — metro and non-metro limits, rent and basic salary."
       icon="🏠" iconBg="rgba(99,102,241,0.08)"
       category="finance" slug="hra-calculator"
       faq={[
