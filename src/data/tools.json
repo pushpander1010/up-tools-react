@@ -6559,27 +6559,7 @@
         "security"
       ]
     },
-    {
-      "slug": "hncker/wireshark",
-      "title": "Wireshark — Network Packet Analysis",
-      "icon": "🦈",
-      "desc": "Capture, filter, and analyze network traffic for security testing. Find credentials, detect DNS tunneling, and inspect protocols.",
-      "href": "/hncker/wireshark/",
-      "tags": [
-        "wireshark",
-        "network",
-        "packet",
-        "capture",
-        "security",
-        "forensics",
-        "dns",
-        "http"
-      ],
-      "cats": [
-        "all",
-        "security"
-      ]
-    },
+
     {
       "slug": "aimakerich/algo-trading-strategies",
       "title": "Algo Trading Strategies",
