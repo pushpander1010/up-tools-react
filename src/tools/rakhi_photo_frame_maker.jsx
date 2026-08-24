@@ -77,11 +77,11 @@ export default function rakhi_photo_frame_maker(){
     } else {
       ctx.fillStyle='#fef3c7'
       ctx.fillRect(pad,photoTop,W-pad*2,photoH)
-      ctx.fillStyle='#92400e'
-      ctx.font='bold 36px sans-serif'
+      ctx.fillStyle='#7f1d1d'
+      ctx.font='bold 32px sans-serif'
       ctx.textAlign='center'; ctx.textBaseline='middle'
       ctx.fillText('📸  Upload your photo',W/2,photoTop+photoH/2-20)
-      ctx.font='16px sans-serif'; ctx.fillStyle='#b45309'
+      ctx.font='600 15px sans-serif'; ctx.fillStyle='#92400e'
       ctx.fillText('Your photo will appear here',W/2,photoTop+photoH/2+20)
     }
     // frame border

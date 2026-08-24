@@ -218,47 +218,51 @@ export default function raksha_bandhan_wishes_generator(){
     const g=ctx.createLinearGradient(0,0,0,H)
     g.addColorStop(0,bg.c1); g.addColorStop(0.5,bg.c2); g.addColorStop(1,bg.c3)
     ctx.fillStyle=g; ctx.fillRect(0,0,W,H)
-    // decorative circles
-    ctx.fillStyle='rgba(255,255,255,0.18)'
+    // decorative circles — subtle
+    ctx.fillStyle='rgba(255,255,255,0.22)'
     ctx.beginPath(); ctx.arc(W*0.15,H*0.18,90,0,Math.PI*2); ctx.fill()
     ctx.beginPath(); ctx.arc(W*0.88,H*0.82,120,0,Math.PI*2); ctx.fill()
     ctx.beginPath(); ctx.arc(W*0.82,H*0.12,60,0,Math.PI*2); ctx.fill()
-    // top badge
-    ctx.fillStyle='rgba(0,0,0,0.08)'; 
-    ctx.beginPath(); 
-    const rx=30; ctx.roundRect(W*0.5-180,40,360,48,rx); ctx.fill()
-    ctx.fillStyle='#7f1d1d'; ctx.font='bold 22px sans-serif'; ctx.textAlign='center'; ctx.textBaseline='middle'
-    ctx.fillText('🪢  HAPPY RAKSHA BANDHAN 2026  🪢',W/2,64)
-    // emoji large
-    ctx.font='72px serif'; ctx.textAlign='center'; ctx.fillText(bg.emoji,W/2,180)
-    // wish text wrapped
-    ctx.fillStyle='#1f2937'
+    // top badge — high contrast white on dark
+    ctx.fillStyle='rgba(0,0,0,0.35)'
+    ctx.beginPath()
+    const rx=30; ctx.roundRect(W*0.5-260,32,520,56,rx); ctx.fill()
+    ctx.fillStyle='#FFFFFF'; ctx.font='bold 22px sans-serif'; ctx.textAlign='center'; ctx.textBaseline='middle'
+    ctx.fillText('🪢  HAPPY RAKSHA BANDHAN 2026  🪢',W/2,60)
+    // emoji large with shadow
+    ctx.shadowColor='rgba(0,0,0,0.25)'; ctx.shadowBlur=12
+    ctx.font='72px serif'; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText(bg.emoji,W/2,180)
+    ctx.shadowBlur=0
+    // wish text wrapped — high contrast dark on solid white card
     const words=selectedWish.split(' ')
-    const maxW=W-120
+    const maxW=W-160
     let lines=[],cur=''
-    ctx.font='bold 38px sans-serif'
+    ctx.font='bold 36px sans-serif'
     for(const w of words){
       const test=cur?cur+' '+w:w
       if(ctx.measureText(test).width>maxW){lines.push(cur);cur=w}else cur=test
     }
     if(cur) lines.push(cur)
-    const lineH=52
+    const lineH=50
     const startY=H/2 - (lines.length*lineH)/2 + 40
     ctx.textAlign='center'; ctx.textBaseline='middle'
-    // shadow
-    ctx.fillStyle='rgba(0,0,0,0.06)'; 
-    ctx.beginPath(); ctx.roundRect(60,startY-50,W-120,lines.length*lineH+100,24); ctx.fill()
-    ctx.fillStyle='#7f1d1d'
+    // solid white card for max contrast
+    ctx.fillStyle='#FFFFFF'
+    ctx.beginPath(); ctx.roundRect(50,startY-60,W-100,lines.length*lineH+120,20); ctx.fill()
+    ctx.strokeStyle='rgba(0,0,0,0.08)'; ctx.lineWidth=2; ctx.stroke()
+    // dark text 900 contrast
+    ctx.fillStyle='#111827'
     lines.forEach((ln,i)=>{
-      // stroke for readability
-      ctx.strokeStyle='rgba(255,255,255,0.9)'; ctx.lineWidth=6; ctx.lineJoin='round'; ctx.strokeText(ln,W/2,startY+i*lineH)
       ctx.fillText(ln,W/2,startY+i*lineH)
     })
-    // bottom
-    ctx.fillStyle='#7f1d1d'; ctx.font='600 20px sans-serif'; ctx.fillText('Made with ❤️  •  uptools.in',W/2,H-50)
+    // bottom — white pill for contrast
+    ctx.fillStyle='rgba(0,0,0,0.30)'
+    ctx.beginPath(); ctx.roundRect(W/2-180,H-72,360,36,18); ctx.fill()
+    ctx.fillStyle='#FFFFFF'; ctx.font='600 16px sans-serif'; ctx.fillText('Made with ❤️  •  uptools.in',W/2,H-54)
   }
 
-  useEffect(()=>{ if(showImageMaker) setTimeout(drawImage,50)},[selectedWish,bgIdx,showImageMaker])
+  useEffect(()=>{ if(showImageMaker) { const id=setTimeout(drawImage,80); return ()=>clearTimeout(id)}},[selectedWish,bgIdx,showImageMaker])
+  useEffect(()=>{ if(showImageMaker) drawImage()},[bgIdx])
 
   const downloadImage=()=>{
     const cvs=canvasRef.current
@@ -357,7 +361,7 @@ export default function raksha_bandhan_wishes_generator(){
                 <div className="flex gap-1.5">
                   <button onClick={()=>copy(w.text,i)} className="px-3 py-1.5 rounded-full bg-gray-900 text-white text-xs font-bold">{copied===i?'Copied!':'Copy'}</button>
                   <button onClick={()=>shareWish(w.text)} className="px-3 py-1.5 rounded-full border border-gray-200 text-xs font-bold hover:bg-gray-50">Share</button>
-                  <button onClick={()=>{setSelectedWish(w.text);setShowImageMaker(true)}} className="px-3 py-1.5 rounded-full bg-orange-500 text-white text-xs font-bold">Image</button>
+                  <button onClick={()=>{setSelectedWish(w.text);setShowImageMaker(true); setTimeout(()=>{drawImage(); document.getElementById('rakhi-image-maker')?.scrollIntoView({behavior:'smooth',block:'center'})},120)}} className="px-3 py-1.5 rounded-full bg-orange-500 text-white text-xs font-bold">Image</button>
                 </div>
               </div>
             </div>
@@ -365,7 +369,7 @@ export default function raksha_bandhan_wishes_generator(){
         </div>
 
         {showImageMaker && (
-          <div className="bg-white border-2 border-orange-200 rounded-3xl p-5 space-y-4">
+          <div id="rakhi-image-maker" className="bg-white border-2 border-orange-200 rounded-3xl p-5 space-y-4">
             <div className="flex items-center justify-between">
               <h3 className="font-bold text-gray-900">🎨 Festive Wish Image Maker</h3>
               <button onClick={()=>setShowImageMaker(false)} className="text-xs px-3 py-1 rounded-full border">Close</button>

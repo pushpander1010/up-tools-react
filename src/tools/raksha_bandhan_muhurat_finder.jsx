@@ -154,19 +154,19 @@ export default function raksha_bandhan_muhurat_finder(){
             <div className="text-center text-xs opacity-80 mt-2">Countdown to Shubh Muhurat 05:57 AM IST</div>
           </div>
           <div className="grid sm:grid-cols-3 gap-3 mt-6">
-            <div className="bg-white/15 backdrop-blur rounded-2xl p-4">
-              <div className="text-xs opacity-80 font-bold uppercase tracking-widest">Purnima Tithi</div>
-              <div className="font-bold text-sm mt-1">27 Aug 09:08 AM<br/>→ 28 Aug 09:48 AM</div>
+            <div className="bg-black/30 backdrop-blur rounded-2xl p-4 border border-white/20">
+              <div className="text-xs font-bold uppercase tracking-widest text-white">Purnima Tithi</div>
+              <div className="font-bold text-sm mt-1 text-white">27 Aug 09:08 AM<br/>→ 28 Aug 09:48 AM</div>
             </div>
-            <div className="bg-white rounded-2xl p-4 text-gray-900">
+            <div className="bg-white rounded-2xl p-4 text-gray-900 border-2 border-amber-300 shadow-lg">
               <div className="text-xs font-bold uppercase tracking-widest text-orange-600">Shubh Muhurat ⭐</div>
               <div className="font-black text-sm mt-1">05:57 AM — 09:48 AM</div>
               <div className="text-xs text-gray-600">Best time to tie Rakhi</div>
             </div>
-            <div className="bg-white/15 backdrop-blur rounded-2xl p-4">
-              <div className="text-xs opacity-80 font-bold uppercase tracking-widest">Bhadra</div>
-              <div className="font-bold text-sm mt-1">Ends before sunrise</div>
-              <div className="text-xs opacity-80">No restriction ✔</div>
+            <div className="bg-black/30 backdrop-blur rounded-2xl p-4 border border-white/20">
+              <div className="text-xs font-bold uppercase tracking-widest text-white">Bhadra</div>
+              <div className="font-bold text-sm mt-1 text-white">Ends before sunrise</div>
+              <div className="text-xs text-white/90">No restriction ✔</div>
             </div>
           </div>
         </div>
