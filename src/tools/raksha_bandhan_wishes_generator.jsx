@@ -215,56 +215,73 @@ export default function raksha_bandhan_wishes_generator(){
     const bg=BG_PRESETS[bgIdx]
     const W=1080, H=1080
     cvs.width=W; cvs.height=H
+    // richer gradient — keep bottom darker for white card contrast
     const g=ctx.createLinearGradient(0,0,0,H)
-    g.addColorStop(0,bg.c1); g.addColorStop(0.5,bg.c2); g.addColorStop(1,bg.c3)
+    g.addColorStop(0,bg.c1)
+    g.addColorStop(0.45,bg.c2)
+    // darken bottom third so white card pops
+    const darkBottom = bg.c1 === '#FF9933' ? '#cc7000' : bg.c1 === '#7f1d1d' ? '#581111' : bg.c1 === '#be185d' ? '#7a1040' : '#78350f'
+    g.addColorStop(1,darkBottom)
     ctx.fillStyle=g; ctx.fillRect(0,0,W,H)
-    // decorative circles — subtle
-    ctx.fillStyle='rgba(255,255,255,0.22)'
-    ctx.beginPath(); ctx.arc(W*0.15,H*0.18,90,0,Math.PI*2); ctx.fill()
-    ctx.beginPath(); ctx.arc(W*0.88,H*0.82,120,0,Math.PI*2); ctx.fill()
-    ctx.beginPath(); ctx.arc(W*0.82,H*0.12,60,0,Math.PI*2); ctx.fill()
-    // top badge — high contrast white on dark
-    ctx.fillStyle='rgba(0,0,0,0.35)'
+    // subtle pattern — low opacity so not competing
+    ctx.fillStyle='rgba(255,255,255,0.12)'
+    ctx.beginPath(); ctx.arc(W*0.14,H*0.16,80,0,Math.PI*2); ctx.fill()
+    ctx.beginPath(); ctx.arc(W*0.88,H*0.84,110,0,Math.PI*2); ctx.fill()
+    // top badge — solid dark for max contrast
+    ctx.fillStyle='rgba(0,0,0,0.55)'
     ctx.beginPath()
-    const rx=30; ctx.roundRect(W*0.5-260,32,520,56,rx); ctx.fill()
-    ctx.fillStyle='#FFFFFF'; ctx.font='bold 22px sans-serif'; ctx.textAlign='center'; ctx.textBaseline='middle'
-    ctx.fillText('🪢  HAPPY RAKSHA BANDHAN 2026  🪢',W/2,60)
-    // emoji large with shadow
-    ctx.shadowColor='rgba(0,0,0,0.25)'; ctx.shadowBlur=12
-    ctx.font='72px serif'; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText(bg.emoji,W/2,180)
-    ctx.shadowBlur=0
-    // wish text wrapped — high contrast pure black on white card with strong shadow/border
+    const rx=28; ctx.roundRect(W*0.5-270,28,540,52,rx); ctx.fill()
+    ctx.fillStyle='#FFFFFF'; ctx.font='bold 20px sans-serif'; ctx.textAlign='center'; ctx.textBaseline='middle'
+    ctx.fillText('🪢  HAPPY RAKSHA BANDHAN 2026  🪢',W/2,54)
+    // emoji — centered with stronger shadow, gives anchor
+    ctx.shadowColor='rgba(0,0,0,0.30)'; ctx.shadowBlur=16; ctx.shadowOffsetY=4
+    ctx.font='64px serif'; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText(bg.emoji,W/2,150)
+    ctx.shadowBlur=0; ctx.shadowOffsetY=0
+    // === FIX: fixed position card, not centered with +40 offset ===
+    // card sits at consistent y=220 to avoid huge gap for short wishes and overlap for long
     const words=selectedWish.split(' ')
-    const maxW=W-140
+    const maxW=W-160
     let lines=[],cur=''
-    ctx.font='bold 40px sans-serif'
+    ctx.font='bold 38px sans-serif'
     for(const w of words){
       const test=cur?cur+' '+w:w
       if(ctx.measureText(test).width>maxW){lines.push(cur);cur=w}else cur=test
     }
     if(cur) lines.push(cur)
-    const lineH=54
-    const startY=H/2 - (lines.length*lineH)/2 + 40
-    ctx.textAlign='center'; ctx.textBaseline='middle'
-    // strong white card with drop shadow + dark border for separation from light gradient
+    // if too many lines, shrink font to fit
+    if(lines.length>4){
+      ctx.font='bold 32px sans-serif'
+      lines=[]; cur=''
+      for(const w of words){
+        const test=cur?cur+' '+w:w
+        if(ctx.measureText(test).width>maxW){lines.push(cur);cur=w}else cur=test
+      }
+      if(cur) lines.push(cur)
+    }
+    const lineH = lines.length>4 ? 46 : 52
+    const cardPadTop = 48, cardPadBottom = 48
+    const cardH = lines.length*lineH + cardPadTop + cardPadBottom
+    const cardTop = 220  // fixed anchor below emoji
+    const cardRound = 24
+    // white card with strong elevation
     ctx.save()
-    ctx.shadowColor='rgba(0,0,0,0.18)'; ctx.shadowBlur=28; ctx.shadowOffsetY=8
+    ctx.shadowColor='rgba(0,0,0,0.28)'; ctx.shadowBlur=32; ctx.shadowOffsetY=12
     ctx.fillStyle='#FFFFFF'
-    ctx.beginPath(); ctx.roundRect(44,startY-68,W-88,lines.length*lineH+136,22); ctx.fill()
+    ctx.beginPath(); ctx.roundRect(56,cardTop,W-112,cardH,cardRound); ctx.fill()
     ctx.restore()
-    ctx.strokeStyle='rgba(0,0,0,0.14)'; ctx.lineWidth=3; ctx.stroke()
-    // extra inner hairline for crisp edge
-    ctx.strokeStyle='rgba(0,0,0,0.06)'; ctx.lineWidth=1
-    ctx.beginPath(); ctx.roundRect(45,startY-67,W-90,lines.length*lineH+134,21); ctx.stroke()
-    // pure black bold text for max contrast 21:1
-    ctx.fillStyle='#000000'
+    ctx.strokeStyle='rgba(0,0,0,0.16)'; ctx.lineWidth=3; ctx.stroke()
+    ctx.strokeStyle='rgba(0,0,0,0.07)'; ctx.lineWidth=1; ctx.beginPath(); ctx.roundRect(57,cardTop+1,W-114,cardH-2,cardRound-1); ctx.stroke()
+    // text inside — pure black 900
+    ctx.fillStyle='#0a0a0a'
+    ctx.textAlign='center'; ctx.textBaseline='middle'
+    const textStartY = cardTop + cardPadTop + lineH/2 - 2
     lines.forEach((ln,i)=>{
-      ctx.fillText(ln,W/2,startY+i*lineH)
+      ctx.fillText(ln,W/2,textStartY+i*lineH)
     })
-    // bottom — white pill for contrast
-    ctx.fillStyle='rgba(0,0,0,0.30)'
-    ctx.beginPath(); ctx.roundRect(W/2-180,H-72,360,36,18); ctx.fill()
-    ctx.fillStyle='#FFFFFF'; ctx.font='600 16px sans-serif'; ctx.fillText('Made with ❤️  •  uptools.in',W/2,H-54)
+    // bottom credit — solid dark pill
+    ctx.fillStyle='rgba(0,0,0,0.45)'
+    ctx.beginPath(); ctx.roundRect(W/2-190,H-74,380,34,17); ctx.fill()
+    ctx.fillStyle='#FFFFFF'; ctx.font='600 15px sans-serif'; ctx.textAlign='center'; ctx.fillText('Made with ❤️  •  uptools.in',W/2,H-57)
   }
 
   useEffect(()=>{ if(showImageMaker) { const id=setTimeout(drawImage,80); return ()=>clearTimeout(id)}},[selectedWish,bgIdx,showImageMaker])
