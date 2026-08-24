@@ -258,27 +258,79 @@ export default function raksha_bandhan_wishes_generator(){
     ctx.font='64px serif'; ctx.fillText(bg.emoji,W/2,152)
     ctx.shadowBlur=0; ctx.shadowOffsetY=0
     const words=selectedWish.split(' ')
-    const maxW=W-180
+    const maxW=W-220
     let lines=[],cur=''
+    // helper to measure
+    const measure = (t)=> ctx.measureText(t).width
+    // handle long single word exceeding maxW by char-wrapping
+    const pushWord = (word)=>{
+      if(measure(word) <= maxW){ return word }
+      // break long word into chunks
+      let chunk='', out=[]
+      for(const ch of word){
+        if(measure(chunk+ch) > maxW){ out.push(chunk); chunk=ch } else chunk+=ch
+      }
+      if(chunk) out.push(chunk)
+      return out
+    }
     ctx.font='bold 36px sans-serif'
     for(const w of words){
-      const test=cur?cur+' '+w:w
-      if(ctx.measureText(test).width>maxW){lines.push(cur);cur=w}else cur=test
+      const broken = pushWord(w)
+      const parts = Array.isArray(broken) ? broken : [broken]
+      for(let idx=0; idx<parts.length; idx++){
+        const pw = parts[idx]
+        if(idx===0 && parts.length>1){
+          // first chunk of broken word — treat as new line
+          if(cur && measure(cur+' '+pw) > maxW){ lines.push(cur); cur=pw } else cur = cur ? cur+' '+pw : pw
+          // remaining chunks go as separate lines
+          for(let j=1;j<parts.length;j++){
+            lines.push(cur); cur=parts[j]
+          }
+          break
+        } else {
+          const test = cur ? cur+' '+pw : pw
+          if(measure(test) > maxW){ lines.push(cur); cur=pw } else cur=test
+        }
+      }
     }
     if(cur) lines.push(cur)
-    if(lines.length>4){
-      ctx.font='bold 30px sans-serif'
-      lines=[]; cur=''
+    // shrink if too many lines to prevent exceeding box/height
+    let fontSize = 36
+    if(lines.length>4){ fontSize=32; ctx.font='bold 32px sans-serif'
+      // re-wrap with smaller font
+      const newLines=[]; let c=''
       for(const w of words){
-        const test=cur?cur+' '+w:w
-        if(ctx.measureText(test).width>maxW){lines.push(cur);cur=w}else cur=test
+        const bw = pushWord(w)
+        const parts = Array.isArray(bw)?bw:[bw]
+        for(const pw of parts){
+          const test=c?c+' '+pw:pw
+          if(measure(test)>maxW){ newLines.push(c); c=pw } else c=test
+        }
       }
-      if(cur) lines.push(cur)
+      if(c) newLines.push(c)
+      lines=newLines
     }
-    const lineH = lines.length>4 ? 44 : 50
+    if(lines.length>6){ fontSize=28; ctx.font='bold 28px sans-serif'
+      const newLines=[]; let c=''
+      for(const w of words){
+        const bw = pushWord(w)
+        const parts = Array.isArray(bw)?bw:[bw]
+        for(const pw of parts){
+          const test=c?c+' '+pw:pw
+          if(measure(test)>maxW){ newLines.push(c); c=pw } else c=test
+        }
+      }
+      if(c) newLines.push(c)
+      lines=newLines
+    }
+    ctx.font=`bold ${fontSize}px sans-serif`
+    const lineH = lines.length>6 ? 40 : lines.length>4 ? 44 : 50
     const cardPadTop = 44, cardPadBottom = 44
     const cardH = lines.length*lineH + cardPadTop + cardPadBottom
-    const cardTop = 224
+    // centered in zone between emoji and pill to avoid top-heavy or bottom overflow
+    const zoneTop = 190, zoneBottom = H-80
+    const zoneH = zoneBottom - zoneTop
+    const cardTop = Math.max(200, zoneTop + Math.floor((zoneH - cardH)/2))
     const cardRound = 22
     // White card with strong elevation — high contrast on both gradient and Gemini dark overlay
     ctx.save()
@@ -356,17 +408,17 @@ export default function raksha_bandhan_wishes_generator(){
           </div>
         </div>
 
-        <div className="bg-white border border-gray-200 rounded-2xl p-5">
+        <div className="bg-white border-2 border-gray-200 rounded-2xl p-5 shadow-sm">
           <h3 className="font-bold text-gray-900 mb-3">✨ AI Personalized Wish Generator</h3>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
-            <input value={aiName} onChange={e=>setAiName(e.target.value)} placeholder="Name (e.g. Aman)" className="px-4 py-2.5 rounded-xl border border-gray-200 text-sm outline-none focus:border-orange-400"/>
-            <select value={aiRel} onChange={e=>setAiRel(e.target.value)} className="px-4 py-2.5 rounded-xl border border-gray-200 text-sm bg-white">
+            <input value={aiName} onChange={e=>setAiName(e.target.value)} placeholder="Name (e.g. Aman)" className="px-4 py-2.5 rounded-xl border-2 border-gray-300 bg-white text-gray-900 placeholder:text-gray-400 text-sm outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-100"/>
+            <select value={aiRel} onChange={e=>setAiRel(e.target.value)} className="px-4 py-2.5 rounded-xl border-2 border-gray-300 bg-white text-gray-900 text-sm font-medium">
               {RELATIONS.map(r=><option key={r}>{r}</option>)}
             </select>
-            <select value={aiTone} onChange={e=>setAiTone(e.target.value)} className="px-4 py-2.5 rounded-xl border border-gray-200 text-sm bg-white">
+            <select value={aiTone} onChange={e=>setAiTone(e.target.value)} className="px-4 py-2.5 rounded-xl border-2 border-gray-300 bg-white text-gray-900 text-sm font-medium">
               {TONES.map(t=><option key={t}>{t}</option>)}
             </select>
-            <select value={aiLang} onChange={e=>setAiLang(e.target.value)} className="px-4 py-2.5 rounded-xl border border-gray-200 text-sm bg-white">
+            <select value={aiLang} onChange={e=>setAiLang(e.target.value)} className="px-4 py-2.5 rounded-xl border-2 border-gray-300 bg-white text-gray-900 text-sm font-medium">
               {LANGS.map(l=><option key={l}>{l}</option>)}
             </select>
           </div>
@@ -385,12 +437,12 @@ export default function raksha_bandhan_wishes_generator(){
 
         <div className="flex gap-2 flex-wrap">
           {CATEGORIES.map(c=>(
-            <button key={c} onClick={()=>setCat(c)} className={`px-4 py-2 rounded-full text-xs font-bold border transition ${cat===c?'bg-orange-500 text-white border-orange-500':'bg-white text-gray-700 border-gray-200 hover:border-orange-300'}`}>{c}</button>
+            <button key={c} onClick={()=>setCat(c)} className={`px-4 py-2 rounded-full text-xs font-bold border-2 transition ${cat===c?'bg-orange-500 text-white border-orange-500 shadow-md':'bg-white text-gray-900 border-gray-300 hover:border-orange-400 hover:bg-orange-50'}`}>{c}</button>
           ))}
         </div>
 
         <div className="flex gap-2">
-          <input value={q} onChange={e=>setQ(e.target.value)} placeholder="Search wishes (e.g. funny, love, hindi)..." className="flex-1 px-4 py-3 rounded-xl border border-gray-200 text-sm outline-none focus:border-orange-400"/>
+          <input value={q} onChange={e=>setQ(e.target.value)} placeholder="Search wishes (e.g. funny, love, hindi)..." className="flex-1 px-4 py-3 rounded-xl border-2 border-gray-300 bg-white text-gray-900 placeholder:text-gray-400 text-sm outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-100"/>
           <div className="hidden sm:flex items-center text-xs text-gray-500 px-3">{filtered.length} wishes</div>
         </div>
 
@@ -416,7 +468,7 @@ export default function raksha_bandhan_wishes_generator(){
               <h3 className="font-bold text-gray-900">🎨 Festive Wish Image Maker</h3>
               <button onClick={()=>setShowImageMaker(false)} className="text-xs px-3 py-1 rounded-full border">Close</button>
             </div>
-            <textarea value={selectedWish} onChange={e=>setSelectedWish(e.target.value)} rows={3} className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm"/>
+            <textarea value={selectedWish} onChange={e=>setSelectedWish(e.target.value)} rows={3} className="w-full px-4 py-3 rounded-xl border-2 border-gray-300 bg-white text-gray-900 placeholder:text-gray-500 text-sm focus:border-orange-500 focus:ring-2 focus:ring-orange-100 outline-none"/>
             <div className="flex gap-2 flex-wrap">
               {BG_PRESETS.map((b,i)=>(
                 <button key={b.name} onClick={()=>setBgIdx(i)} className={`relative overflow-hidden px-0 py-0 rounded-xl text-xs font-bold border w-[120px] h-[72px] ${bgIdx===i?'border-gray-900 ring-2 ring-gray-900':'border-gray-200'}`}>
