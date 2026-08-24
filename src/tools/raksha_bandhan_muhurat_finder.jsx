@@ -171,10 +171,10 @@ export default function raksha_bandhan_muhurat_finder(){
           </div>
         </div>
 
-        <div className="bg-white border border-gray-200 rounded-2xl p-5">
+        <div className="bg-white border-2 border-gray-200 rounded-2xl p-5 shadow-sm">
           <div className="flex items-center justify-between flex-wrap gap-2">
             <h3 className="font-bold text-gray-900">📅 Muhurat Details & Time Zones</h3>
-            <button onClick={copyMuhurat} className="px-4 py-1.5 rounded-full bg-gray-900 text-white text-xs font-bold">{copied?'Copied!':'Copy Muhurat'}</button>
+            <button onClick={copyMuhurat} className="px-4 py-1.5 rounded-full bg-gray-900 text-white text-xs font-bold shadow-sm">{copied?'Copied!':'Copy Muhurat'}</button>
           </div>
           <div className="overflow-x-auto mt-4">
             <table className="w-full text-sm">
@@ -226,24 +226,24 @@ export default function raksha_bandhan_muhurat_finder(){
           <p className="text-xs text-gray-500 mb-4">40+ curated gifts — filter by for whom, budget and interest. Perfect for brother, sister, Bhaiya-Bhabhi & kids.</p>
 
           <div className="flex gap-2 flex-wrap">
-            <select value={forWhom} onChange={e=>setForWhom(e.target.value)} className="px-4 py-2.5 rounded-xl border border-gray-200 text-sm bg-white">
+            <select value={forWhom} onChange={e=>setForWhom(e.target.value)} className="px-4 py-2.5 rounded-xl border-2 border-gray-300 bg-white text-gray-900 text-sm font-medium focus:border-orange-500 focus:ring-2 focus:ring-orange-100 outline-none">
               <option value="All">All Relations</option>
               <option>Brother</option>
               <option>Sister</option>
               <option>Bhaiya-Bhabhi</option>
               <option>Kids</option>
             </select>
-            <select value={budget} onChange={e=>setBudget(e.target.value)} className="px-4 py-2.5 rounded-xl border border-gray-200 text-sm bg-white">
+            <select value={budget} onChange={e=>setBudget(e.target.value)} className="px-4 py-2.5 rounded-xl border-2 border-gray-300 bg-white text-gray-900 text-sm font-medium focus:border-orange-500 focus:ring-2 focus:ring-orange-100 outline-none">
               {BUDGETS.map(b=><option key={b}>{b}</option>)}
             </select>
-            <select value={interest} onChange={e=>setInterest(e.target.value)} className="px-4 py-2.5 rounded-xl border border-gray-200 text-sm bg-white">
+            <select value={interest} onChange={e=>setInterest(e.target.value)} className="px-4 py-2.5 rounded-xl border-2 border-gray-300 bg-white text-gray-900 text-sm font-medium focus:border-orange-500 focus:ring-2 focus:ring-orange-100 outline-none">
               <option value="All">All Interests</option>
               <option>Personalized</option>
               <option>Fashion</option>
               <option>Tech</option>
               <option>Traditional</option>
             </select>
-            <input value={search} onChange={e=>setSearch(e.target.value)} placeholder="Search gift..." className="flex-1 min-w-[140px] px-4 py-2.5 rounded-xl border border-gray-200 text-sm outline-none focus:border-orange-400"/>
+            <input value={search} onChange={e=>setSearch(e.target.value)} placeholder="Search gift..." className="flex-1 min-w-[140px] px-4 py-2.5 rounded-xl border-2 border-gray-300 bg-white text-gray-900 placeholder:text-gray-400 text-sm outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-100"/>
           </div>
 
           <div className="text-xs text-gray-500 mt-3">{filtered.length} gifts found {forWhom!=='All'?`• for ${forWhom}`:''} {budget!=='All'?`• ${budget}`:''}</div>
@@ -270,19 +270,19 @@ export default function raksha_bandhan_muhurat_finder(){
             <div className="text-xs font-bold text-amber-900 mb-3">💰 Budget Planner</div>
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
-                <label className="text-xs text-gray-600">Total Budget ₹</label>
+                <label className="text-xs text-gray-900 font-bold">Total Budget ₹</label>
                 <input type="range" min={500} max={10000} step={100} value={totalBudget} onChange={e=>setTotalBudget(Number(e.target.value))} className="w-full accent-orange-500 mt-1"/>
-                <div className="flex justify-between text-xs font-bold"><span>₹500</span><span className="text-orange-600">₹{totalBudget}</span><span>₹10000</span></div>
+                <div className="flex justify-between text-xs font-bold text-gray-800"><span>₹500</span><span className="text-orange-600">₹{totalBudget}</span><span>₹10000</span></div>
               </div>
               <div>
-                <label className="text-xs text-gray-600">Recipients</label>
+                <label className="text-xs text-gray-900 font-bold">Recipients</label>
                 <div className="flex items-center gap-2 mt-1">
-                  <button onClick={()=>setRecipients(Math.max(1,recipients-1))} className="w-8 h-8 rounded-full border bg-white font-bold">−</button>
-                  <span className="font-black text-lg w-8 text-center">{recipients}</span>
-                  <button onClick={()=>setRecipients(recipients+1)} className="w-8 h-8 rounded-full border bg-white font-bold">+</button>
+                  <button onClick={()=>setRecipients(Math.max(1,recipients-1))} className="w-8 h-8 rounded-full border-2 border-gray-300 bg-white text-gray-900 font-bold hover:bg-gray-50">−</button>
+                  <span className="font-black text-lg w-8 text-center text-gray-900">{recipients}</span>
+                  <button onClick={()=>setRecipients(recipients+1)} className="w-8 h-8 rounded-full border-2 border-gray-300 bg-white text-gray-900 font-bold hover:bg-gray-50">+</button>
                   <span className="ml-3 text-sm font-bold text-orange-600">₹{perPerson} per person</span>
                 </div>
-                <p className="text-[11px] text-gray-500 mt-1">Tip: Under ₹500 → small rakhi combos; ₹1000+ → watches, gadgets, jewellery sets</p>
+                <p className="text-[11px] text-gray-600 mt-1">Tip: Under ₹500 → small rakhi combos; ₹1000+ → watches, gadgets, jewellery sets</p>
               </div>
             </div>
           </div>
