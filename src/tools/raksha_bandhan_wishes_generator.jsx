@@ -106,10 +106,10 @@ const WISHES = [
 ]
 
 const BG_PRESETS = [
-  {name:'Saffron Gold',c1:'#FF9933',c2:'#FFD700',c3:'#FFF7E6',emoji:'🪢'},
-  {name:'Royal Maroon',c1:'#7f1d1d',c2:'#dc2626',c3:'#fef2f2',emoji:'🎁'},
-  {name:'Festive Pink',c1:'#be185d',c2:'#f472b6',c3:'#fdf2f8',emoji:'🌸'},
-  {name:'Elegant Gold',c1:'#92400e',c2:'#f59e0b',c3:'#fffbeb',emoji:'✨'},
+  {name:'Thali & Diya',c1:'#FF9933',c2:'#FFD700',c3:'#FFF7E6',emoji:'🪢',img:'/rakhi-bg/rakhi-bg-1.jpg'},
+  {name:'Silk & Marigold',c1:'#7f1d1d',c2:'#dc2626',c3:'#fef2f2',emoji:'🎁',img:'/rakhi-bg/rakhi-bg-2.jpg'},
+  {name:'Royal Mandala',c1:'#be185d',c2:'#f472b6',c3:'#fdf2f8',emoji:'🌸',img:'/rakhi-bg/rakhi-bg-3.jpg'},
+  {name:'Hands & Rakhi',c1:'#92400e',c2:'#f59e0b',c3:'#fffbeb',emoji:'✨',img:'/rakhi-bg/rakhi-bg-4.jpg'},
 ]
 
 const TONES = ['Emotional','Funny','Short','Heartfelt','Formal','Hinglish']
@@ -148,6 +148,18 @@ export default function raksha_bandhan_wishes_generator(){
   const [selectedWish,setSelectedWish]=useState(WISHES[0].text)
   const [bgIdx,setBgIdx]=useState(0)
   const [showImageMaker,setShowImageMaker]=useState(false)
+  const bgImgsRef=useRef([])
+  // preload Gemini backgrounds
+  useEffect(()=>{
+    BG_PRESETS.forEach((p,i)=>{
+      if(p.img){
+        const im=new Image()
+        im.src=p.img
+        im.onload=()=>{bgImgsRef.current[i]=im; if(showImageMaker) drawImage()}
+        bgImgsRef.current[i]=im
+      }
+    })
+  },[])
 
   // ai generator
   const [aiName,setAiName]=useState('')
@@ -215,42 +227,47 @@ export default function raksha_bandhan_wishes_generator(){
     const bg=BG_PRESETS[bgIdx]
     const W=1080, H=1080
     cvs.width=W; cvs.height=H
-    // richer gradient — keep bottom darker for white card contrast
-    const g=ctx.createLinearGradient(0,0,0,H)
-    g.addColorStop(0,bg.c1)
-    g.addColorStop(0.45,bg.c2)
-    // darken bottom third so white card pops
-    const darkBottom = bg.c1 === '#FF9933' ? '#cc7000' : bg.c1 === '#7f1d1d' ? '#581111' : bg.c1 === '#be185d' ? '#7a1040' : '#78350f'
-    g.addColorStop(1,darkBottom)
-    ctx.fillStyle=g; ctx.fillRect(0,0,W,H)
-    // subtle pattern — low opacity so not competing
-    ctx.fillStyle='rgba(255,255,255,0.12)'
-    ctx.beginPath(); ctx.arc(W*0.14,H*0.16,80,0,Math.PI*2); ctx.fill()
-    ctx.beginPath(); ctx.arc(W*0.88,H*0.84,110,0,Math.PI*2); ctx.fill()
-    // top badge — solid dark for max contrast
-    ctx.fillStyle='rgba(0,0,0,0.55)'
-    ctx.beginPath()
-    const rx=28; ctx.roundRect(W*0.5-270,28,540,52,rx); ctx.fill()
+    // Gemini bg image if loaded, else gradient
+    const bgIm = bgImgsRef.current[bgIdx]
+    if(bgIm && bgIm.complete && bgIm.naturalWidth){
+      const scale=Math.max(W/bgIm.width, H/bgIm.height)
+      const iw=bgIm.width*scale, ih=bgIm.height*scale
+      ctx.drawImage(bgIm,(W-iw)/2,(H-ih)/2,iw,ih)
+      ctx.fillStyle='rgba(0,0,0,0.36)'
+      ctx.fillRect(0,0,W,H)
+    } else {
+      const g=ctx.createLinearGradient(0,0,0,H)
+      g.addColorStop(0,bg.c1)
+      g.addColorStop(0.5,bg.c2)
+      const darkBottom = bg.c1 === '#FF9933' ? '#8b4513' : bg.c1 === '#7f1d1d' ? '#3a0a0a' : bg.c1 === '#be185d' ? '#4a0d2a' : '#4a2a0a'
+      g.addColorStop(1,darkBottom)
+      ctx.fillStyle=g; ctx.fillRect(0,0,W,H)
+    }
+    // subtle decorative circles
+    ctx.fillStyle='rgba(255,255,255,0.10)'
+    ctx.beginPath(); ctx.arc(W*0.14,H*0.16,70,0,Math.PI*2); ctx.fill()
+    ctx.beginPath(); ctx.arc(W*0.88,H*0.84,100,0,Math.PI*2); ctx.fill()
+    // top badge — solid dark pill, perfectly centered
+    ctx.shadowColor='transparent'; ctx.shadowBlur=0
+    ctx.fillStyle='rgba(0,0,0,0.62)'
+    ctx.beginPath(); ctx.roundRect(W/2-270,30,540,52,26); ctx.fill()
     ctx.fillStyle='#FFFFFF'; ctx.font='bold 20px sans-serif'; ctx.textAlign='center'; ctx.textBaseline='middle'
-    ctx.fillText('🪢  HAPPY RAKSHA BANDHAN 2026  🪢',W/2,54)
-    // emoji — centered with stronger shadow, gives anchor
-    ctx.shadowColor='rgba(0,0,0,0.30)'; ctx.shadowBlur=16; ctx.shadowOffsetY=4
-    ctx.font='64px serif'; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText(bg.emoji,W/2,150)
+    ctx.fillText('🪢  HAPPY RAKSHA BANDHAN 2026  🪢',W/2,56)
+    // emoji with shadow
+    ctx.shadowColor='rgba(0,0,0,0.35)'; ctx.shadowBlur=18; ctx.shadowOffsetY=4
+    ctx.font='64px serif'; ctx.fillText(bg.emoji,W/2,152)
     ctx.shadowBlur=0; ctx.shadowOffsetY=0
-    // === FIX: fixed position card, not centered with +40 offset ===
-    // card sits at consistent y=220 to avoid huge gap for short wishes and overlap for long
     const words=selectedWish.split(' ')
-    const maxW=W-160
+    const maxW=W-180
     let lines=[],cur=''
-    ctx.font='bold 38px sans-serif'
+    ctx.font='bold 36px sans-serif'
     for(const w of words){
       const test=cur?cur+' '+w:w
       if(ctx.measureText(test).width>maxW){lines.push(cur);cur=w}else cur=test
     }
     if(cur) lines.push(cur)
-    // if too many lines, shrink font to fit
     if(lines.length>4){
-      ctx.font='bold 32px sans-serif'
+      ctx.font='bold 30px sans-serif'
       lines=[]; cur=''
       for(const w of words){
         const test=cur?cur+' '+w:w
@@ -258,30 +275,32 @@ export default function raksha_bandhan_wishes_generator(){
       }
       if(cur) lines.push(cur)
     }
-    const lineH = lines.length>4 ? 46 : 52
-    const cardPadTop = 48, cardPadBottom = 48
+    const lineH = lines.length>4 ? 44 : 50
+    const cardPadTop = 44, cardPadBottom = 44
     const cardH = lines.length*lineH + cardPadTop + cardPadBottom
-    const cardTop = 220  // fixed anchor below emoji
-    const cardRound = 24
-    // white card with strong elevation
+    const cardTop = 224
+    const cardRound = 22
+    // White card with strong elevation — high contrast on both gradient and Gemini dark overlay
     ctx.save()
-    ctx.shadowColor='rgba(0,0,0,0.28)'; ctx.shadowBlur=32; ctx.shadowOffsetY=12
+    ctx.shadowColor='rgba(0,0,0,0.42)'; ctx.shadowBlur=36; ctx.shadowOffsetY=14
     ctx.fillStyle='#FFFFFF'
-    ctx.beginPath(); ctx.roundRect(56,cardTop,W-112,cardH,cardRound); ctx.fill()
+    ctx.beginPath(); ctx.roundRect(52,cardTop,W-104,cardH,cardRound); ctx.fill()
     ctx.restore()
-    ctx.strokeStyle='rgba(0,0,0,0.16)'; ctx.lineWidth=3; ctx.stroke()
-    ctx.strokeStyle='rgba(0,0,0,0.07)'; ctx.lineWidth=1; ctx.beginPath(); ctx.roundRect(57,cardTop+1,W-114,cardH-2,cardRound-1); ctx.stroke()
-    // text inside — pure black 900
+    ctx.strokeStyle='rgba(0,0,0,0.22)'; ctx.lineWidth=4; ctx.beginPath(); ctx.roundRect(52,cardTop,W-104,cardH,cardRound); ctx.stroke()
+    ctx.strokeStyle='#f59e0b'; ctx.lineWidth=1.5; ctx.beginPath(); ctx.roundRect(56,cardTop+4,W-112,cardH-8,cardRound-4); ctx.stroke()
+    // pure black text — max contrast on white 21:1
     ctx.fillStyle='#0a0a0a'
     ctx.textAlign='center'; ctx.textBaseline='middle'
-    const textStartY = cardTop + cardPadTop + lineH/2 - 2
+    ctx.shadowColor='transparent'; ctx.shadowBlur=0
+    const textStartY = cardTop + cardPadTop + lineH/2 - 1
     lines.forEach((ln,i)=>{
       ctx.fillText(ln,W/2,textStartY+i*lineH)
     })
-    // bottom credit — solid dark pill
-    ctx.fillStyle='rgba(0,0,0,0.45)'
-    ctx.beginPath(); ctx.roundRect(W/2-190,H-74,380,34,17); ctx.fill()
-    ctx.fillStyle='#FFFFFF'; ctx.font='600 15px sans-serif'; ctx.textAlign='center'; ctx.fillText('Made with ❤️  •  uptools.in',W/2,H-57)
+    // bottom capsule — centered pill, fixed outer clipping (full visible, 40px margin bottom)
+    ctx.fillStyle='rgba(0,0,0,0.58)'
+    const pillW=380, pillH=36, pillX=W/2-pillW/2, pillY=H-62
+    ctx.beginPath(); ctx.roundRect(pillX,pillY,pillW,pillH,pillH/2); ctx.fill()
+    ctx.fillStyle='#FFFFFF'; ctx.font='600 15px sans-serif'; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText('Made with ❤️  •  uptools.in',W/2,pillY+pillH/2+1)
   }
 
   useEffect(()=>{ if(showImageMaker) { const id=setTimeout(drawImage,80); return ()=>clearTimeout(id)}},[selectedWish,bgIdx,showImageMaker])
@@ -400,7 +419,12 @@ export default function raksha_bandhan_wishes_generator(){
             <textarea value={selectedWish} onChange={e=>setSelectedWish(e.target.value)} rows={3} className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm"/>
             <div className="flex gap-2 flex-wrap">
               {BG_PRESETS.map((b,i)=>(
-                <button key={b.name} onClick={()=>setBgIdx(i)} className={`px-4 py-2 rounded-full text-xs font-bold border ${bgIdx===i?'bg-gray-900 text-white border-gray-900':'bg-white border-gray-200'}`} style={bgIdx!==i?{background:`linear-gradient(135deg,${b.c1},${b.c2})`,color:'white',borderColor:'transparent'}:{}}>{b.name}</button>
+                <button key={b.name} onClick={()=>setBgIdx(i)} className={`relative overflow-hidden px-0 py-0 rounded-xl text-xs font-bold border w-[120px] h-[72px] ${bgIdx===i?'border-gray-900 ring-2 ring-gray-900':'border-gray-200'}`}>
+                  <img src={b.img} alt={b.name} className="absolute inset-0 w-full h-full object-cover"/>
+                  <div className="absolute inset-0 bg-black/30"/>
+                  <span className="relative z-10 text-white drop-shadow-md px-2 text-[11px] leading-tight block text-center">{b.name}</span>
+                  {bgIdx===i && <span className="absolute top-1 right-1 bg-white text-gray-900 text-[9px] font-black px-1.5 py-0.5 rounded-full">✓</span>}
+                </button>
               ))}
             </div>
             <div className="bg-gray-50 rounded-2xl p-4 flex justify-center">
