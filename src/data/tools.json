@@ -6559,7 +6559,6 @@
         "security"
       ]
     },
-
     {
       "slug": "aimakerich/algo-trading-strategies",
       "title": "Algo Trading Strategies",
@@ -7026,6 +7025,69 @@
       "cats": [
         "all",
         "finance"
+      ]
+    },
+    {
+      "slug": "raksha-bandhan-wishes-generator",
+      "title": "Raksha Bandhan Wishes Generator 2026 - 200+ Rakhi Wishes, Quotes & Messages",
+      "icon": "🪢",
+      "desc": "200+ Raksha Bandhan wishes, Rakhi quotes & messages for brother & sister, Hindi wishes & Instagram captions. Copy, share on WhatsApp or make HD festive images.",
+      "href": "/raksha-bandhan-wishes-generator/",
+      "tags": [
+        "raksha bandhan",
+        "rakhi wishes",
+        "rakhi quotes",
+        "rakhi messages",
+        "happy raksha bandhan",
+        "rakhi wishes for brother",
+        "rakhi captions",
+        "hindi wishes"
+      ],
+      "cats": [
+        "all",
+        "festival",
+        "india"
+      ]
+    },
+    {
+      "slug": "rakhi-photo-frame-maker",
+      "title": "Rakhi Photo Frame & Greeting Card Maker with Name & Photo",
+      "icon": "🖼️",
+      "desc": "Add your photo to beautiful Rakhi frames — 6 festive designs, name on image, stickers & HD download. Make Happy Raksha Bandhan greeting cards for WhatsApp & Instagram.",
+      "href": "/rakhi-photo-frame-maker/",
+      "tags": [
+        "rakhi photo frame",
+        "rakhi greeting card",
+        "rakhi photo with name",
+        "raksha bandhan photo frame",
+        "rakhi dp maker",
+        "rakhi images with name"
+      ],
+      "cats": [
+        "all",
+        "images",
+        "festival"
+      ]
+    },
+    {
+      "slug": "raksha-bandhan-muhurat-finder",
+      "title": "Raksha Bandhan 2026 Date, Shubh Muhurat & Gift Finder",
+      "icon": "🎁",
+      "desc": "Raksha Bandhan 2026 is 28 Aug — Shubh Muhurat 05:57-09:48 AM, Bhadra, Puja Vidhi, live countdown & 40+ Rakhi gift ideas for brother, sister, Bhaiya-Bhabhi by budget.",
+      "href": "/raksha-bandhan-muhurat-finder/",
+      "tags": [
+        "raksha bandhan 2026",
+        "rakhi muhurat",
+        "bhadra time",
+        "raksha bandhan date",
+        "rakhi gift for brother",
+        "rakhi gift for sister",
+        "rakhi gift ideas"
+      ],
+      "cats": [
+        "all",
+        "festival",
+        "india"
       ]
     }
   ],
