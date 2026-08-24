@@ -233,25 +233,31 @@ export default function raksha_bandhan_wishes_generator(){
     ctx.shadowColor='rgba(0,0,0,0.25)'; ctx.shadowBlur=12
     ctx.font='72px serif'; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText(bg.emoji,W/2,180)
     ctx.shadowBlur=0
-    // wish text wrapped — high contrast dark on solid white card
+    // wish text wrapped — high contrast pure black on white card with strong shadow/border
     const words=selectedWish.split(' ')
-    const maxW=W-160
+    const maxW=W-140
     let lines=[],cur=''
-    ctx.font='bold 36px sans-serif'
+    ctx.font='bold 40px sans-serif'
     for(const w of words){
       const test=cur?cur+' '+w:w
       if(ctx.measureText(test).width>maxW){lines.push(cur);cur=w}else cur=test
     }
     if(cur) lines.push(cur)
-    const lineH=50
+    const lineH=54
     const startY=H/2 - (lines.length*lineH)/2 + 40
     ctx.textAlign='center'; ctx.textBaseline='middle'
-    // solid white card for max contrast
+    // strong white card with drop shadow + dark border for separation from light gradient
+    ctx.save()
+    ctx.shadowColor='rgba(0,0,0,0.18)'; ctx.shadowBlur=28; ctx.shadowOffsetY=8
     ctx.fillStyle='#FFFFFF'
-    ctx.beginPath(); ctx.roundRect(50,startY-60,W-100,lines.length*lineH+120,20); ctx.fill()
-    ctx.strokeStyle='rgba(0,0,0,0.08)'; ctx.lineWidth=2; ctx.stroke()
-    // dark text 900 contrast
-    ctx.fillStyle='#111827'
+    ctx.beginPath(); ctx.roundRect(44,startY-68,W-88,lines.length*lineH+136,22); ctx.fill()
+    ctx.restore()
+    ctx.strokeStyle='rgba(0,0,0,0.14)'; ctx.lineWidth=3; ctx.stroke()
+    // extra inner hairline for crisp edge
+    ctx.strokeStyle='rgba(0,0,0,0.06)'; ctx.lineWidth=1
+    ctx.beginPath(); ctx.roundRect(45,startY-67,W-90,lines.length*lineH+134,21); ctx.stroke()
+    // pure black bold text for max contrast 21:1
+    ctx.fillStyle='#000000'
     lines.forEach((ln,i)=>{
       ctx.fillText(ln,W/2,startY+i*lineH)
     })
