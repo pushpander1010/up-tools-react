@@ -231,58 +231,58 @@ export default function rakhi_photo_frame_maker(){
       <div className="space-y-5">
         <div className="grid lg:grid-cols-[360px,1fr] gap-5">
           <div className="space-y-4">
-            <div className="bg-white border border-gray-200 rounded-2xl p-4 space-y-4">
+            <div className="bg-white border-2 border-gray-200 rounded-2xl p-4 space-y-4 shadow-sm">
               <button onClick={()=>fileRef.current?.click()} className="w-full py-3 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold text-sm">📸 Upload Photo</button>
               <input ref={fileRef} type="file" accept="image/*" className="hidden" onChange={onUpload}/>
-              {!img && <p className="text-xs text-gray-500 text-center">JPG, PNG — auto-fitted & cropped</p>}
+              {!img && <p className="text-xs text-gray-600 text-center">JPG, PNG — auto-fitted & cropped</p>}
 
               <div>
-                <div className="text-xs font-bold text-gray-700 mb-2">Frame Style</div>
+                <div className="text-xs font-bold text-gray-900 mb-2">Frame Style</div>
                 <div className="grid grid-cols-2 gap-2">
                   {FRAMES.map(f=>(
-                    <button key={f.id} onClick={()=>setFrame(f.id)} className={`p-3 rounded-xl border text-left ${frame===f.id?'border-orange-500 bg-orange-50':'border-gray-200 bg-white hover:border-orange-200'}`}>
+                    <button key={f.id} onClick={()=>setFrame(f.id)} className={`p-3 rounded-xl border-2 text-left ${frame===f.id?'border-orange-500 bg-orange-50 shadow-sm':'border-gray-300 bg-white hover:border-orange-400 hover:bg-orange-50'}`}>
                       <div className="text-xs font-bold text-gray-900">{f.name}</div>
-                      <div className="text-[11px] text-gray-500">{f.desc}</div>
+                      <div className="text-[11px] text-gray-600">{f.desc}</div>
                     </button>
                   ))}
                 </div>
               </div>
 
               <div>
-                <div className="text-xs font-bold text-gray-700 mb-2">Size</div>
+                <div className="text-xs font-bold text-gray-900 mb-2">Size</div>
                 <div className="flex gap-2">
                   {SIZES.map((s,i)=>(
-                    <button key={s.id} onClick={()=>setSizeIdx(i)} className={`flex-1 py-2 rounded-xl text-xs font-bold border ${sizeIdx===i?'bg-gray-900 text-white border-gray-900':'bg-white border-gray-200'}`}>{s.label}</button>
+                    <button key={s.id} onClick={()=>setSizeIdx(i)} className={`flex-1 py-2 rounded-xl text-xs font-bold border-2 ${sizeIdx===i?'bg-gray-900 text-white border-gray-900 shadow-md':'bg-white text-gray-900 border-gray-300 hover:border-gray-400'}`}>{s.label}</button>
                   ))}
                 </div>
               </div>
 
               <div className="space-y-2">
-                <label className="text-xs font-bold text-gray-700">Name / Message on Card</label>
-                <input value={name} onChange={e=>setName(e.target.value)} placeholder="e.g. Aman & Priya" className="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm outline-none focus:border-orange-400"/>
-                <input value={msg} onChange={e=>setMsg(e.target.value)} placeholder="Greeting (if no name)" className="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm outline-none focus:border-orange-400"/>
+                <label className="text-xs font-bold text-gray-900">Name / Message on Card</label>
+                <input value={name} onChange={e=>setName(e.target.value)} placeholder="e.g. Aman & Priya" className="w-full px-4 py-2.5 rounded-xl border-2 border-gray-300 bg-white text-gray-900 placeholder:text-gray-400 text-sm outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-100"/>
+                <input value={msg} onChange={e=>setMsg(e.target.value)} placeholder="Greeting (if no name)" className="w-full px-4 py-2.5 rounded-xl border-2 border-gray-300 bg-white text-gray-900 placeholder:text-gray-400 text-sm outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-100"/>
                 <div className="flex gap-2">
-                  <select value={fontIdx} onChange={e=>setFontIdx(Number(e.target.value))} className="flex-1 px-3 py-2 rounded-xl border border-gray-200 text-xs bg-white">
+                  <select value={fontIdx} onChange={e=>setFontIdx(Number(e.target.value))} className="flex-1 px-3 py-2 rounded-xl border-2 border-gray-300 bg-white text-gray-900 text-xs font-medium">
                     {FONTS.map((f,i)=><option key={f} value={i}>{f}</option>)}
                   </select>
-                  <input type="color" value={textColor} onChange={e=>setTextColor(e.target.value)} className="w-10 h-9 rounded-xl border border-gray-200 p-1"/>
+                  <input type="color" value={textColor} onChange={e=>setTextColor(e.target.value)} className="w-10 h-9 rounded-xl border-2 border-gray-300 p-1 bg-white"/>
                 </div>
               </div>
 
               <div>
-                <div className="text-xs font-bold text-gray-700 mb-2">Stickers — tap to add, drag on canvas</div>
+                <div className="text-xs font-bold text-gray-900 mb-2">Stickers — tap to add, drag on canvas</div>
                 <div className="flex flex-wrap gap-1.5">
                   {STICKERS.map(s=>(
-                    <button key={s} onClick={()=>addSticker(s)} className="w-9 h-9 rounded-xl bg-amber-50 border border-amber-200 text-lg hover:bg-amber-100">{s}</button>
+                    <button key={s} onClick={()=>addSticker(s)} className="w-9 h-9 rounded-xl bg-amber-50 border-2 border-amber-300 text-lg hover:bg-amber-100 shadow-sm">{s}</button>
                   ))}
                 </div>
-                {stickers.length>0 && <button onClick={()=>setStickers([])} className="text-xs text-gray-500 mt-2 underline">Clear stickers</button>}
+                {stickers.length>0 && <button onClick={()=>setStickers([])} className="text-xs text-gray-700 font-semibold mt-2 underline">Clear stickers</button>}
               </div>
             </div>
 
             <div className="flex gap-2">
-              <button onClick={download} className="flex-1 py-3 rounded-xl bg-gray-900 text-white font-bold text-sm">⬇ Download HD</button>
-              <button onClick={share} className="px-5 py-3 rounded-xl border border-gray-200 font-bold text-sm">Share</button>
+              <button onClick={download} className="flex-1 py-3 rounded-xl bg-gray-900 text-white font-bold text-sm shadow-md">⬇ Download HD</button>
+              <button onClick={share} className="px-5 py-3 rounded-xl border-2 border-gray-300 bg-white text-gray-900 font-bold text-sm hover:bg-gray-50">Share</button>
             </div>
           </div>
 
