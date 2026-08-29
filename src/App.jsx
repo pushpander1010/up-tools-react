@@ -79,6 +79,12 @@ function Loading() {
   )
 }
 
+function ScrollToTop() {
+  const { pathname } = useLocation()
+  useEffect(() => { window.scrollTo(0, 0) }, [pathname])
+  return null
+}
+
 function SidebarLayout({ children }) {
   const location = useLocation()
   // Only individual games (/games/<name>[/]) are full-page (they carry their own aside ads).
@@ -108,6 +114,7 @@ export default function App() {
       <MeshBackground />
       <div className="relative z-10">
         <Navbar />
+        <ScrollToTop />
         <main className="max-w-6xl xl:max-w-7xl 2xl:max-w-screen-2xl mx-auto px-5 py-8">
           <Suspense fallback={<Loading />}>
             <SidebarLayout>
