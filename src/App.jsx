@@ -5,6 +5,7 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import MeshBackground from './components/MeshBackground'
 import GameAdSlot from './components/GameAdSlot'
+import { AD_SLOTS } from './config/ads'
 
 class ErrorBoundary extends ReactComponent {
   state = { error: null }
@@ -39,10 +40,13 @@ function ToolRoute() {
       setNotFound(true)
       return
     }
+    // Filenames map 1:1 from the slug. Do NOT prefix digit-leading names: the only
+    // such file is 401k_calculator.jsx, and a `tool_` prefix made /401k-calculator/
+    // import a file that has never existed, so the route always fell through to 404
+    // while still being prerendered and listed in the sitemap.
     const compName = slug.replace(/\//g, '_').replace(/-/g, '_')
-    const safeName = /^\d/.test(compName) ? 'tool_' + compName : compName
 
-    import(`./tools/${safeName}.jsx`)
+    import(`./tools/${compName}.jsx`)
       .then(mod => setComponent(() => mod.default))
       .catch(() => setNotFound(true))
   }, [slug])
@@ -86,13 +90,13 @@ function SidebarLayout({ children }) {
   return (
     <div className="flex gap-4">
       <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-        <GameAdSlot key={'l-' + location.pathname} slot="3494503358" format="vertical" width={160} height={600} className="mt-2" />
+        <GameAdSlot key={'l-' + location.pathname} slot={AD_SLOTS.railLeft} format="vertical" width={160} height={600} className="mt-2" />
       </div>
       <div className="flex-1 min-w-0">
         {children}
       </div>
       <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-        <GameAdSlot key={'r-' + location.pathname} slot="3414612309" format="vertical" width={160} height={600} className="mt-2" />
+        <GameAdSlot key={'r-' + location.pathname} slot={AD_SLOTS.railRight} format="vertical" width={160} height={600} className="mt-2" />
       </div>
     </div>
   )

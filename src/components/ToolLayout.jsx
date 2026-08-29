@@ -4,12 +4,19 @@ import { Link } from 'react-router-dom'
 import RelatedTools from './RelatedTools'
 import FAQ from './FAQ'
 import HowItWorks from './HowItWorks'
+import GameAdSlot from './GameAdSlot'
+import { AD_SLOTS } from '../config/ads'
 
 export default function ToolLayout({ title, desc, icon, iconBg, category, slug, children, faq = [], howItWorks = [], schema, hideHeader = false }) {
   // Real site path: games use nested /games/<name>/ URLs, not flat games-<name> slugs.
   const path = slug.startsWith('games-') && slug !== 'games'
     ? `games/${slug.slice('games-'.length)}`
     : slug
+  // Game pages already render their own two rails + a banner, so ToolLayout must not
+  // add more on top of them. Every other tool page had zero ad units below 1024px,
+  // because the only non-game placements were the `hidden lg:block` rails in App.jsx.
+  const isGame = path.startsWith('games/')
+  const showAds = !hideHeader && !isGame
   // Guard against react-helmet-async leaving document.title empty (stray empty <title> tag).
   useEffect(() => {
     if (title) document.title = `${title} | UpTools`
@@ -25,7 +32,11 @@ export default function ToolLayout({ title, desc, icon, iconBg, category, slug, 
         <meta property="og:url" content={`https://www.uptools.in/${path}/`} />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="UpTools" />
-        <meta name="twitter:card" content="summary" />
+        <meta property="og:image" content="https://www.uptools.in/assets/og/default.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://www.uptools.in/assets/og/default.png" />
         <meta name="twitter:title" content={`${title} | UpTools`} />
         <meta name="twitter:description" content={desc} />
         {schema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />}
@@ -39,7 +50,7 @@ export default function ToolLayout({ title, desc, icon, iconBg, category, slug, 
             const items = [
               { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.uptools.in/" },
               ...(section ? [{ "@type": "ListItem", "position": 2, "name": sectionName, "item": `https://www.uptools.in/${section}/` }] : []),
-              { "@type": "ListItem", "position": section ? 3 : 2, "name": title, "item": `https://www.uptools.in/${slug}/` },
+              { "@type": "ListItem", "position": section ? 3 : 2, "name": title, "item": `https://www.uptools.in/${path}/` },
             ]
             return { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": items }
           })())
@@ -79,9 +90,19 @@ export default function ToolLayout({ title, desc, icon, iconBg, category, slug, 
 
       <div className="mb-8">{children}</div>
 
+      {/* Highest-value placement: the user has just read their result and is deciding
+          what to do next. Height is reserved by GameAdSlot so this costs no CLS. */}
+      {showAds && (
+        <GameAdSlot key={'ic-' + path} slot={AD_SLOTS.toolInContent} format="auto" className="my-6" />
+      )}
 
       {!hideHeader && howItWorks.length > 0 && <HowItWorks steps={howItWorks} />}
       {!hideHeader && faq.length > 0 && <FAQ questions={faq} />}
+
+      {showAds && (
+        <GameAdSlot key={'bc-' + path} slot={AD_SLOTS.toolBelowContent} format="horizontal" className="my-6" />
+      )}
+
       {!hideHeader && <RelatedTools currentSlug={slug} category={category} />}
 
     </>
