@@ -45,6 +45,8 @@ export default function ToolLayout({ title, desc, icon, iconBg, category, slug, 
             const parts = path.split('/')
             const section = parts.length > 1 ? parts[0] : null
             const sectionName = section === 'hncker' ? 'HNCKER'
+              : section === 'aiforrich' ? 'AIFORRICH'
+              : section === 'aimakerich' ? 'AIMakeRich'
               : section === 'games' ? 'Games'
               : section ? section.charAt(0).toUpperCase() + section.slice(1) : null
             const items = [
@@ -62,6 +64,22 @@ export default function ToolLayout({ title, desc, icon, iconBg, category, slug, 
           {/* Breadcrumb */}
           <nav className="flex items-center gap-2 text-xs text-slate-400 mb-5" aria-label="Breadcrumb">
             <Link to="/" className="hover:text-white transition-colors">Home</Link>
+            {(() => {
+              const parts = path.split('/')
+              const section = parts.length > 1 ? parts[0] : null
+              const sectionName = section === 'hncker' ? 'HNCKER'
+                : section === 'aiforrich' ? 'AIFORRICH'
+                : section === 'aimakerich' ? 'AIMakeRich'
+                : section === 'games' ? 'Games'
+                : null
+              if (!section) return null
+              return (
+                <>
+                  <span className="text-slate-700">›</span>
+                  <Link to={`/${section}`} className="hover:text-white transition-colors">{sectionName}</Link>
+                </>
+              )
+            })()}
             <span className="text-slate-700">›</span>
             <span className="text-slate-300 font-medium">{title}</span>
           </nav>

@@ -7089,6 +7089,80 @@
         "festival",
         "india"
       ]
+    },
+    {
+      "slug": "aiforrich/algos-beat-buy-hold",
+      "title": "3 Algos That Beat Buy and Hold — Mean Reversion, Breakout and Momentum",
+      "icon": "⚡",
+      "desc": "Three quantitative trading algos that beat buy-and-hold: mean reversion (-2 sigma), breakout with volume explosion, and momentum trend following. Backtested on 3 years of stocks and crypto with Python and Pine Script code.",
+      "href": "/aiforrich/algos-beat-buy-hold/",
+      "tags": [
+        "algo",
+        "trading",
+        "buy-and-hold",
+        "mean-reversion",
+        "breakout",
+        "momentum",
+        "quantitative",
+        "crypto",
+        "stocks",
+        "pinescript",
+        "python",
+        "backtest",
+        "finance"
+      ],
+      "cats": [
+        "all",
+        "finance"
+      ]
+    },
+    {
+      "slug": "aiforrich/automate-trades-while-you-sleep",
+      "title": "How to Automate Trades While You Sleep — 3-Step Workflow",
+      "icon": "🌙",
+      "desc": "3-step automated trading bot workflow: signal generation in TradingView, Python webhook bridge validation, and broker API order placement with risk management 24/7.",
+      "href": "/aiforrich/automate-trades-while-you-sleep/",
+      "tags": [
+        "algo",
+        "automation",
+        "trading",
+        "bot",
+        "webhook",
+        "tradingview",
+        "pinescript",
+        "python",
+        "flask",
+        "crypto",
+        "stocks",
+        "finance"
+      ],
+      "cats": [
+        "all",
+        "finance"
+      ]
+    },
+    {
+      "slug": "aiforrich/pine-script-in-30-seconds",
+      "title": "Pine Script in 30 Seconds — Build and Backtest Algo Bots",
+      "icon": "🌲",
+      "desc": "Build and backtest quantitative trading bots in 30 seconds with 5 lines of Pine Script v5. Instant 3-year backtesting across stocks and crypto with win rate, profit factor and webhook alerts.",
+      "href": "/aiforrich/pine-script-in-30-seconds/",
+      "tags": [
+        "pinescript",
+        "tradingview",
+        "algo",
+        "trading",
+        "backtesting",
+        "bot",
+        "crypto",
+        "stocks",
+        "indicators",
+        "finance"
+      ],
+      "cats": [
+        "all",
+        "finance"
+      ]
     }
   ],
   "categories": {

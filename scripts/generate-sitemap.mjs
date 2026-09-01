@@ -11,9 +11,10 @@ const today = new Date().toISOString().slice(0, 10)
 const SITE = 'https://www.uptools.in'
 
 function mapSlug(slug) {
-  // Nested sections: hncker_x.jsx → /hncker/x/, games handled by dir, aimakerich_x → /aimakerich/x/
+  // Nested sections: hncker_x.jsx → /hncker/x/, games handled by dir, aimakerich_x → /aimakerich/x/, aiforrich_x → /aiforrich/x/
   if (slug.startsWith('hncker-')) return `hncker/${slug.slice('hncker-'.length)}`
   if (slug.startsWith('aimakerich-')) return `aimakerich/${slug.slice('aimakerich-'.length)}`
+  if (slug.startsWith('aiforrich-')) return `aiforrich/${slug.slice('aiforrich-'.length)}`
   if (slug.startsWith('games-')) return `games/${slug.slice('games-'.length)}`
   return slug
 }
@@ -40,7 +41,7 @@ for (const t of tools) {
 }
 
 // Section landing pages
-for (const [path, priority] of [['hncker', '0.6'], ['games', '0.6'], ['aimakerich', '0.6'], ['about', '0.5'], ['privacy-policy', '0.3']]) {
+for (const [path, priority] of [['hncker', '0.6'], ['games', '0.6'], ['aimakerich', '0.6'], ['aiforrich', '0.6'], ['about', '0.5'], ['privacy-policy', '0.3']]) {
   urls.push({ loc: `${SITE}/${path}/`, priority, freq: 'weekly' })
 }
 

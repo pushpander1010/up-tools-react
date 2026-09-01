@@ -34,7 +34,7 @@ function faqJsonLd(pairs) {
 function breadcrumbJsonLd(slug, title) {
   const parts = slug.split('/')
   const section = parts.length>1 ? parts[0] : null
-  const sectionName = section==='hncker'?'HNCKER':section==='games'?'Games':section?section.charAt(0).toUpperCase()+section.slice(1):null
+  const sectionName = section==='hncker'?'HNCKER':section==='aiforrich'?'AIFORRICH':section==='aimakerich'?'AIMakeRich':section==='games'?'Games':section?section.charAt(0).toUpperCase()+section.slice(1):null
   const items = [
     { '@type':'ListItem', position:1, name:'Home', item: SITE+'/' },
     ...(section?[{ '@type':'ListItem', position:2, name:sectionName, item: SITE+'/'+section+'/' }]:[]),
@@ -92,13 +92,14 @@ function ogImageForSlug(slug){
 
 const toolFiles = readdirSync(toolsDir).filter(f=>f.endsWith('.jsx')||f.endsWith('.tsx'))
 const template = readFileSync(join(dist,'index.html'),'utf-8')
-const SKIP_SLUGS = new Set(['games','contact','hncker','aimakerich','privacy-policy'])
+const SKIP_SLUGS = new Set(['games','contact','hncker','aimakerich','aiforrich','privacy-policy'])
 
 let count=0
 for(const file of toolFiles){
   let slug = file.replace(/\.(jsx|tsx)$/,'').replace(/_/g,'-').replace(/^tool-/,'')
   if(slug.startsWith('hncker-')) slug='hncker/'+slug.slice('hncker-'.length)
   if(slug.startsWith('aimakerich-')) slug='aimakerich/'+slug.slice('aimakerich-'.length)
+  if(slug.startsWith('aiforrich-')) slug='aiforrich/'+slug.slice('aiforrich-'.length)
   if(slug.startsWith('games-')) slug='games/'+slug.slice('games-'.length)
   if(SKIP_SLUGS.has(slug)) continue
 
@@ -214,6 +215,7 @@ function buildHtml(slug, title, desc){
 buildHtml('hncker','HNCKER - Apps, Tools, Instagram & Videos','Follow HNCKER on Instagram, browse the free security tools, watch our tech videos, and download free Android apps.')
 buildHtml('games','UpTools - Free Online Games','Play free online arcade, puzzle, card and word games on UpTools - Snake, Tetris, 2048, Pac-Man, Wordle and many more. No downloads, play in your browser.')
 buildHtml('aimakerich','AIMakeRich - Finance, Investing & Trading Guides','AIMakeRich: practical money guides that match our Instagram reels. Learn investing, trading strategies and finance with real code, step-by-step processes, FAQs and how-tos.')
+buildHtml('aiforrich','AIFORRICH - Algo Trading, Pine Script & Crypto Trading Guides','AIFORRICH: Algo trading for international markets and crypto — reels + code guides. Practical quantitative trading strategies, Pine Script indicators, and automated execution bots with copy-paste code.')
 buildHtml('about','About UpTools - Privacy-First Free Web Tools','UpTools is a fast, privacy-first collection of 300+ free web tools and 40+ games. Calculate tax, GST, EMI and SIP; convert currency; validate PAN; format JSON; and more — no logins, instant results.')
 
 console.log(`✅ Generated SEO HTML for ${count} tools`)
