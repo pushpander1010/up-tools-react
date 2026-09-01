@@ -7163,6 +7163,29 @@
         "all",
         "finance"
       ]
+    },
+    {
+      "slug": "aiforrich/crypto-algo-vs-stock-algo",
+      "title": "Crypto Algo vs Stock Algo — What's More Profitable? Backtested 3 Years",
+      "icon": "⚔️",
+      "desc": "Head-to-head 3-year backtest: crypto algos +412% vs stock algos +184%. Compare raw profit, Sharpe consistency (2.45) and max drawdown (-12.4% vs -38.6%) with Python and Pine Script code.",
+      "href": "/aiforrich/crypto-algo-vs-stock-algo/",
+      "tags": [
+        "algo",
+        "crypto",
+        "stocks",
+        "trading",
+        "backtest",
+        "sharpe",
+        "drawdown",
+        "pinescript",
+        "python",
+        "finance"
+      ],
+      "cats": [
+        "all",
+        "finance"
+      ]
     }
   ],
   "categories": {

@@ -29,6 +29,14 @@ const guides = [
     tag: 'Pine Script v5',
     accent: 'linear-gradient(135deg, rgba(245,158,11,0.16), rgba(16,185,129,0.07))',
   },
+  {
+    slug: 'crypto-algo-vs-stock-algo',
+    name: 'Crypto Algo vs Stock Algo',
+    icon: '⚔️',
+    desc: 'Backtested 3 years: crypto +412% vs stocks +184% — head-to-head on raw profit vs Sharpe consistency and max drawdown with runnable code.',
+    tag: 'Crypto vs Stocks',
+    accent: 'linear-gradient(135deg, rgba(99,102,241,0.16), rgba(251,191,36,0.12))',
+  },
 ]
 
 const features = [
