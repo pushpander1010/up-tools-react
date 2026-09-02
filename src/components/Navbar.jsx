@@ -7,6 +7,7 @@ const tabs = [
   { href: '/hncker', label: 'HNCKER', key: 'hncker' },
   { href: '/aimakerich', label: 'AIMakeRich', key: 'aimakerich' },
   { href: '/aiforrich', label: 'AIFORRICH', key: 'aiforrich' },
+  { href: '/blogs', label: 'Blogs', key: 'blogs' },
 ]
 
 export default function Navbar() {

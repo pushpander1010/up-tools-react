@@ -1,0 +1,32 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#080d1a"/>
+  <circle cx="200" cy="150" r="350" fill="url(#paint0_radial)" opacity="0.25"/>
+  <circle cx="1000" cy="480" r="350" fill="url(#paint1_radial)" opacity="0.2"/>
+  <rect x="80" y="80" width="1040" height="470" rx="24" fill="#111827" fill-opacity="0.6" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
+  
+  <rect x="120" y="130" width="120" height="36" rx="18" fill="#6366f1" fill-opacity="0.2" stroke="#818cf8" stroke-opacity="0.4"/>
+  <text x="180" y="154" fill="#818cf8" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" text-anchor="middle" letter-spacing="1">AI</text>
+  
+  <text x="120" y="250" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="44" font-weight="800">
+    Best AI Tools in 2026 for Students and Creato...
+  </text>
+  
+  <text x="120" y="330" fill="#94a3b8" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="400">
+    Discover the top AI tools in 2026 for students and digital creators. Compare ChatGPT-5, Cl...
+  </text>
+  
+  <line x1="120" y1="440" x2="1080" y2="440" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+  <text x="120" y="490" fill="#64748b" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="500">UpTools Editorial • Sep 2, 2026 • 8 min read</text>
+  <text x="1080" y="490" fill="#818cf8" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="700" text-anchor="end">uptools.in/blogs</text>
+
+  <defs>
+    <radialGradient id="paint0_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(200 150) rotate(90) scale(350)">
+      <stop stop-color="#6366f1"/>
+      <stop offset="1" stop-color="#6366f1" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="paint1_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1000 480) rotate(90) scale(350)">
+      <stop stop-color="#8b5cf6"/>
+      <stop offset="1" stop-color="#8b5cf6" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>

@@ -218,4 +218,102 @@ buildHtml('aimakerich','AIMakeRich - Finance, Investing & Trading Guides','AIMak
 buildHtml('aiforrich','AIFORRICH - Algo Trading, Pine Script & Crypto Trading Guides','AIFORRICH: Algo trading for international markets and crypto — reels + code guides. Practical quantitative trading strategies, Pine Script indicators, and automated execution bots with copy-paste code.')
 buildHtml('about','About UpTools - Privacy-First Free Web Tools','UpTools is a fast, privacy-first collection of 300+ free web tools and 40+ games. Calculate tax, GST, EMI and SIP; convert currency; validate PAN; format JSON; and more — no logins, instant results.')
 
+// ---- Blogs: prerender /blogs and /blogs/<slug> ----
+let blogCount = 0
+try {
+  const rawBlogs = JSON.parse(readFileSync(join(__dirname, '..', 'src/data/blogs.json'), 'utf8'))
+  const blogs = Array.isArray(rawBlogs) ? rawBlogs : (rawBlogs.blogs || [])
+  for (const b of blogs) {
+    const slug = `blogs/${b.slug}`
+    const rawTitle = b.title
+    const rawDesc = b.desc
+    const blogOg = b.coverImage || '/assets/og/default.png'
+    const ogImage = blogOg.startsWith('/') ? blogOg : '/' + blogOg
+    let html = template
+    html = html.replace(/<title>.*?<\/title>/, `<title>${esc(rawTitle)} | UpTools</title>`)
+    const descTag = `<meta name="description" content="${escAttr(rawDesc)}" />`
+    if (/<meta name="description"/.test(html)) html = html.replace(/<meta name="description"[^>]*\/>/, descTag)
+    else html = html.replace(/<\/title>/, `</title>\n    ${descTag}`)
+    html = html.replace(/<link rel="canonical"[^>]*\/>/, `<link rel="canonical" href="${SITE}/${slug}/" />`)
+    const upsertBlog = (property, value) => {
+      const tag = `<meta property="${property}" content="${escAttr(value)}" />`
+      const re = new RegExp(`<meta property="${property}"[^>]*\\/?>`)
+      if (re.test(html)) html = html.replace(re, tag)
+      else html = html.replace('</head>', `    ${tag}\n  </head>`)
+    }
+    const upsertNameBlog = (name, value) => {
+      const tag = `<meta name="${name}" content="${escAttr(value)}" />`
+      const re = new RegExp(`<meta name="${name}"[^>]*\\/?>`)
+      if (re.test(html)) html = html.replace(re, tag)
+      else html = html.replace('</head>', `    ${tag}\n  </head>`)
+    }
+    upsertBlog('og:title', `${rawTitle} | UpTools`)
+    upsertBlog('og:description', rawDesc)
+    upsertBlog('og:url', `${SITE}/${slug}/`)
+    upsertBlog('og:type', 'article')
+    upsertBlog('og:site_name', 'UpTools')
+    upsertBlog('og:image', `${SITE}${ogImage}`)
+    if (!/og:image:width/.test(html)) html = html.replace('</head>', `    <meta property="og:image:width" content="1200" />\n  </head>`)
+    if (!/og:image:height/.test(html)) html = html.replace('</head>', `    <meta property="og:image:height" content="630" />\n  </head>`)
+    upsertNameBlog('twitter:card', 'summary_large_image')
+    upsertNameBlog('twitter:title', `${rawTitle} | UpTools`)
+    upsertNameBlog('twitter:description', rawDesc)
+    const twBlog = `<meta name="twitter:image" content="${SITE}${ogImage}" />`
+    if (/twitter:image/.test(html)) html = html.replace(/<meta name="twitter:image"[^>]*\/?>/, twBlog)
+    else html = html.replace('</head>', `    ${twBlog}\n  </head>`)
+    const articleLd = { '@context':'https://schema.org','@type':'BlogPosting', headline: rawTitle, description: rawDesc, image: `${SITE}${ogImage}`, datePublished: b.date, dateModified: b.date, author: { '@type':'Organization', name: 'UpTools', url: SITE+'/' }, publisher: { '@type':'Organization', name:'UpTools', logo:{'@type':'ImageObject', url: SITE+'/assets/logo/uptools-logo.svg'}}, mainEntityOfPage:{'@type':'WebPage','@id': `${SITE}/${slug}/`}, keywords: (b.keywords||b.tags||[]).join(', '), articleSection: b.category }
+    html = html.replace('</head>', `    <script type="application/ld+json">${JSON.stringify(articleLd)}</script>\n  </head>`)
+    const bcLd = { '@context':'https://schema.org','@type':'BreadcrumbList', itemListElement: [ { '@type':'ListItem', position:1, name:'Home', item: SITE+'/' }, { '@type':'ListItem', position:2, name:'Blogs', item: SITE+'/blogs/' }, { '@type':'ListItem', position:3, name: rawTitle, item: SITE+'/'+slug+'/' } ] }
+    html = html.replace('</head>', `    <script type="application/ld+json">${JSON.stringify(bcLd)}</script>\n  </head>`)
+    if (b.faq && b.faq.length) {
+      const faqLd = { '@context':'https://schema.org','@type':'FAQPage', mainEntity: b.faq.map(f=>({ '@type':'Question', name:f.q, acceptedAnswer:{'@type':'Answer', text:f.a}})) }
+      html = html.replace('</head>', `    <script type="application/ld+json">${JSON.stringify(faqLd)}</script>\n  </head>`)
+    }
+    const stripHtml = (s) => s.replace(/<[^>]+>/g, ' ').replace(/\s+/g,' ').trim()
+    let noscript = `    <noscript>\n      <h1>${esc(rawTitle)}</h1>\n      <p>${esc(rawDesc)}</p>`
+    if (b.content) noscript += `\n      <p>${esc(stripHtml(b.content).slice(0, 2000))}</p>`
+    if (b.faq && b.faq.length) {
+      noscript += `\n      <h2>FAQ</h2>\n      <dl>`
+      for (const f of b.faq) noscript += `\n        <dt>${esc(f.q)}</dt><dd>${esc(f.a)}</dd>`
+      noscript += `\n      </dl>`
+    }
+    noscript += `\n      <p><a href="/blogs/">All blogs</a> · <a href="/">All tools</a> · <a href="/sitemap.xml">Sitemap</a></p>\n    </noscript>`
+    if (/<noscript>[\s\S]*?<\/noscript>/.test(html)) html = html.replace(/<noscript>[\s\S]*?<\/noscript>/, noscript)
+    else html = html.replace('</body>', noscript+'\n  </body>')
+    const outDir = join(dist, slug)
+    mkdirSync(outDir, { recursive:true })
+    writeFileSync(join(outDir,'index.html'), html)
+    blogCount++
+  }
+  {
+    const rawTitle = 'Blogs - Trending Tech, Cricket, Sports & AI News'
+    const rawDesc = 'Explore trending stories from India, USA & UK on iPhone 17, Asia Cup 2026, US Open tennis, Premier League, and the best AI tools — curated by UpTools.'
+    const slug = 'blogs'
+    let html = template
+    html = html.replace(/<title>.*?<\/title>/, `<title>${esc(rawTitle)} | UpTools</title>`)
+    const descTag = `<meta name="description" content="${escAttr(rawDesc)}" />`
+    if (/<meta name="description"/.test(html)) html = html.replace(/<meta name="description"[^>]*\/>/, descTag)
+    else html = html.replace(/<\/title>/, `</title>\n    ${descTag}`)
+    html = html.replace(/<link rel="canonical"[^>]*\/>/, `<link rel="canonical" href="${SITE}/${slug}/" />`)
+    const upsert2 = (property, value) => {
+      const tag=`<meta property="${property}" content="${escAttr(value)}" />`
+      const re=new RegExp(`<meta property="${property}"[^>]*\\/?>`)
+      if(re.test(html)) html=html.replace(re,tag); else html=html.replace('</head>',`    ${tag}\n  </head>`)
+    }
+    upsert2('og:title', `${rawTitle} | UpTools`); upsert2('og:description', rawDesc); upsert2('og:url', SITE+'/'+slug+'/'); upsert2('og:type','website'); upsert2('og:site_name','UpTools')
+    upsert2('og:image', SITE+'/assets/og/default.png')
+    if(!/og:image:width/.test(html)) html=html.replace('</head>',`    <meta property="og:image:width" content="1200" />\n  </head>`)
+    if(!/og:image:height/.test(html)) html=html.replace('</head>',`    <meta property="og:image:height" content="630" />\n  </head>`)
+    const bc = { '@context':'https://schema.org','@type':'BreadcrumbList', itemListElement: [ { '@type':'ListItem', position:1, name:'Home', item: SITE+'/' }, { '@type':'ListItem', position:2, name:'Blogs', item: SITE+'/blogs/' } ] }
+    html = html.replace('</head>', `    <script type="application/ld+json">${JSON.stringify(bc)}</script>\n  </head>`)
+    const rawBlogs2 = JSON.parse(readFileSync(join(__dirname, '..', 'src/data/blogs.json'), 'utf8'))
+    const blogs2 = Array.isArray(rawBlogs2) ? rawBlogs2 : (rawBlogs2.blogs || [])
+    const il = { '@context':'https://schema.org','@type':'ItemList', name:'UpTools Trending Blogs', itemListElement: blogs2.map((b,i)=>({ '@type':'ListItem', position:i+1, name:b.title, url: `${SITE}/blogs/${b.slug}/` })) }
+    html = html.replace('</head>', `    <script type="application/ld+json">${JSON.stringify(il)}</script>\n  </head>`)
+    const outDir=join(dist,slug); mkdirSync(outDir,{recursive:true}); writeFileSync(join(outDir,'index.html'),html)
+    blogCount++
+  }
+  console.log(`✅ Generated SEO HTML for ${blogCount} blog pages (/blogs + posts)`)
+} catch (e) { console.warn('⚠️  Blogs SEO generation skipped:', e.message) }
+
 console.log(`✅ Generated SEO HTML for ${count} tools`)

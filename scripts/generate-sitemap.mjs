@@ -40,6 +40,16 @@ for (const t of tools) {
   })
 }
 
+// Blogs landing + individual posts (from src/data/blogs.json)
+try {
+  const blogs = JSON.parse(readFileSync(join(root, 'src/data/blogs.json'), 'utf8'))
+  const blogList = Array.isArray(blogs) ? blogs : (blogs.blogs || [])
+  urls.push({ loc: `${SITE}/blogs/`, priority: '0.7', freq: 'daily' })
+  for (const b of blogList) {
+    if (b.slug) urls.push({ loc: `${SITE}/blogs/${b.slug}/`, priority: '0.7', freq: 'weekly' })
+  }
+} catch (e) { console.warn('blogs.json not found for sitemap', e.message) }
+
 // Section landing pages
 for (const [path, priority] of [['hncker', '0.6'], ['games', '0.6'], ['aimakerich', '0.6'], ['aiforrich', '0.6'], ['about', '0.5'], ['privacy-policy', '0.3']]) {
   urls.push({ loc: `${SITE}/${path}/`, priority, freq: 'weekly' })

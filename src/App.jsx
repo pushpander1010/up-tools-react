@@ -28,6 +28,8 @@ const HnckerPage = lazy(() => import('./pages/HnckerPage'))
 const AimakerichPage = lazy(() => import('./pages/AimakerichPage'))
 const AiforrichPage = lazy(() => import('./pages/AiforrichPage'))
 const AboutPage = lazy(() => import('./pages/AboutPage'))
+const BlogsPage = lazy(() => import('./pages/BlogsPage'))
+const BlogPostPage = lazy(() => import('./pages/BlogPostPage'))
 
 // Dynamic tool component loader
 function ToolRoute() {
@@ -126,6 +128,8 @@ export default function App() {
                 <Route path="/aimakerich" element={<AimakerichPage />} />
                 <Route path="/aiforrich" element={<AiforrichPage />} />
                 <Route path="/about" element={<AboutPage />} />
+                <Route path="/blogs" element={<BlogsPage />} />
+                <Route path="/blogs/:slug" element={<BlogPostPage />} />
                 <Route path="*" element={<ToolRoute />} />
               </Routes>
             </SidebarLayout>
