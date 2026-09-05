@@ -1,9 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
-import ToolLayout from '../components/ToolLayout'
-import useJumpToResult from '../hooks/useJumpToResult'
-import useFullscreen from '../hooks/useFullscreen'
-import GameAdSlot from '../components/GameAdSlot'
-import InterstitialAd from '../components/InterstitialAd'
+import GameShell from '../components/GameShell'
 
 const BANK = [
   { id:1, t:"I prefer texting over calling.", a:["Always","Usually","Rarely","Never"] },
@@ -106,7 +102,6 @@ function readLS(k, d) { try { return JSON.parse(localStorage.getItem(k)) ?? d } 
 function writeLS(k, v) { try { localStorage.setItem(k, JSON.stringify(v)) } catch {} }
 
 export default function games_friendship_test() {
-  const { ref: resultRef, jumpTo } = useJumpToResult()
   const [step, setStep] = useState('home') // home, names, a, handoff, b, result
   const [quizLength, setQuizLength] = useState(10)
   const [seed, setSeed] = useState('')
@@ -121,11 +116,6 @@ export default function games_friendship_test() {
   const [copied, setCopied] = useState(false)
   const [shareUrl, setShareUrl] = useState('')
   const [shared, setShared] = useState(null) // { seed, len, nameA, ansA } when opened via link
-  const { isFs, toggle: toggleFs, onChange: onFsChange } = useFullscreen()
-  const [showAd, setShowAd] = useState(false)
-  const pendingAction = useRef(null)
-  const triggerAd = useCallback((action) => { pendingAction.current = action; setShowAd(true) }, [])
-  const onAdDismiss = useCallback(() => { setShowAd(false); if (pendingAction.current) { pendingAction.current(); pendingAction.current = null } }, [])
 
   const best = readLS(F_BEST, null)
   const plays = readLS(F_PLAYS, 0)
@@ -240,12 +230,6 @@ export default function games_friendship_test() {
   const q = qIdx[cur] !== undefined ? getQ(qIdx[cur]) : null
   const inputClass = "w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 
-  useEffect(() => {
-    const handler = () => onFsChange()
-    document.addEventListener('fullscreenchange', handler)
-    document.addEventListener('webkitfullscreenchange', handler)
-    return () => { document.removeEventListener('fullscreenchange', handler); document.removeEventListener('webkitfullscreenchange', handler) }
-  }, [onFsChange])
 
   // If opened via a shared link, reconstruct the quiz + player A's answers and start Player B's turn
   useEffect(() => {
@@ -265,9 +249,11 @@ export default function games_friendship_test() {
   }, [])
 
   return (
-    <ToolLayout
+    <GameShell
+      name="FRIENDSHIP TEST"
+      startAction={startQuiz} startLabel="▶ Start Quiz"
       title="Best Friend Compatibility Test 👫 How Well Do You Know Each Other"
-      hideHeader={isFs}
+ 
       desc="Two-player friendship quiz. Answer questions about each other and see your BFF score!"
       icon="👫" iconBg="rgba(99,102,241,0.08)"
       category="fun" slug="games-friendship-test"
@@ -288,11 +274,7 @@ export default function games_friendship_test() {
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
       <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
-        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="3494503358" format="vertical" className="mt-2" width={160} height={600} />
-        </div>
         <div className="flex-1 min-w-0 max-w-2xl mx-auto space-y-5 overflow-hidden">
         {/* Home screen */}
         {step === 'home' && (
@@ -329,14 +311,9 @@ export default function games_friendship_test() {
 
             {/* Start button */}
             <div className="text-center">
-              <button onClick={() => triggerAd(startQuiz)}
+              <button onClick={() => startQuiz}
                 className="glow-btn px-8 py-4 rounded-2xl text-sm font-bold text-white transition-all">
                 Start Quiz
-              </button>
-            </div>
-            <div className="flex gap-3 justify-center">
-              <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
-                {isFs ? '⊡' : '⛶'}
               </button>
             </div>
             <p className="text-center text-xs text-slate-600">Scores saved on this device only.</p>
@@ -380,7 +357,7 @@ export default function games_friendship_test() {
 
         {/* Quiz questions */}
         {(step === 'a' || step === 'b') && q && (
-          <div ref={resultRef} className="glass rounded-2xl p-6">
+          <div className="glass rounded-2xl p-6">
             <p className="text-sm text-indigo-400 mb-1">{player === 'a' ? nameA : nameB}'s turn · Question {cur + 1} of {quizLength}</p>
             <h2 className="text-lg font-bold text-white mb-4">{q.t}</h2>
             <div className="space-y-3">
@@ -455,13 +432,7 @@ export default function games_friendship_test() {
           </div>
         )}
         </div>
-        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="3414612309" format="vertical" className="mt-2" width={160} height={600} />
-        </div>
       </div>
-      <div className="w-full max-w-6xl mx-auto px-5">
-  <GameAdSlot slot="8865234201" format="horizontal" className="mt-2" />
-</div>
-    </ToolLayout>
+    </GameShell>
   )
 }

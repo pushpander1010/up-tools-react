@@ -1,9 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
-import ToolLayout from '../components/ToolLayout'
-import useJumpToResult from '../hooks/useJumpToResult'
-import useFullscreen from '../hooks/useFullscreen'
-import GameAdSlot from '../components/GameAdSlot'
-import InterstitialAd from '../components/InterstitialAd'
+import GameShell from '../components/GameShell'
 
 const WORDS = {
   animals: [
@@ -104,7 +100,6 @@ function getPool(cat) {
 }
 
 export default function games_word_scramble() {
-  const { ref: resultRef, jumpTo } = useJumpToResult()
   const [category, setCategory] = useState('all')
   const [score, setScore] = useState(0)
   const [streak, setStreak] = useState(0)
@@ -119,11 +114,6 @@ export default function games_word_scramble() {
   const [overlayText, setOverlayText] = useState({ title: '', message: '' })
   const inputRef = useRef(null)
 
-  const { isFs, toggle: toggleFs, onChange: onFsChange } = useFullscreen()
-  const [showAd, setShowAd] = useState(false)
-  const pendingAction = useRef(null)
-  const triggerAd = useCallback((action) => { pendingAction.current = action; setShowAd(true) }, [])
-  const onAdDismiss = useCallback(() => { setShowAd(false); if (pendingAction.current) { pendingAction.current(); pendingAction.current = null } }, [])
 
   const nextWord = useCallback((cat) => {
     const pool = getPool(cat || category)
@@ -183,16 +173,12 @@ export default function games_word_scramble() {
   }
 
 
-  useEffect(() => {
-    const handler = () => onFsChange()
-    document.addEventListener('fullscreenchange', handler)
-    document.addEventListener('webkitfullscreenchange', handler)
-    return () => { document.removeEventListener('fullscreenchange', handler); document.removeEventListener('webkitfullscreenchange', handler) }
-  }, [onFsChange])
 
   return (
-    <ToolLayout
-      hideHeader={isFs}
+    <GameShell
+      name="WORD SCRAMBLE"
+      startAction={handleNewGame} startLabel="⟲ New Word"
+ 
       title="Word Scramble Game Online - Unscramble Words Free"
       desc="Unscramble jumbled letters to find the hidden word. Multiple categories, hints, and scoring."
       icon="🔀" iconBg="rgba(168,85,247,0.08)"
@@ -215,11 +201,7 @@ export default function games_word_scramble() {
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
       <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
-        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="3494503358" format="vertical" className="mt-2" width={160} height={600} />
-        </div>
         <div className="flex-1 min-w-0 max-w-2xl mx-auto space-y-5 overflow-hidden">
         {/* Category selector */}
         <div className="flex gap-2 items-center flex-wrap">
@@ -234,9 +216,6 @@ export default function games_word_scramble() {
             className="px-4 py-2.5 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">Skip</button>
           <button onClick={handleNewGame}
             className="px-4 py-2.5 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">New Game</button>
-          <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
-            {isFs ? '⊡' : '⛶'}
-          </button>
         </div>
 
         {/* Score row */}
@@ -276,7 +255,7 @@ export default function games_word_scramble() {
 
         {/* Buttons */}
         <div className="flex gap-3 justify-center">
-          <button onClick={() => { ensureAudio(); triggerAd(handleSubmit); jumpTo() }}
+          <button onClick={() => { ensureAudio(); handleSubmit() }}
             className="glow-btn px-8 py-3 text-sm">
            ✅ Submit
          </button>
@@ -304,13 +283,8 @@ export default function games_word_scramble() {
             </div>
           </div>
         )}
-      
-        <GameAdSlot slot="8865234201" format="horizontal" className="mt-2" />
-      </div>
-      <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-        <GameAdSlot slot="3414612309" format="vertical" className="mt-2" width={160} height={600} />
       </div>
       </div>
-    </ToolLayout>
+    </GameShell>
   )
 }

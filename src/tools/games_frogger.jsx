@@ -1,9 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
-import ToolLayout from '../components/ToolLayout'
-import useJumpToResult from '../hooks/useJumpToResult'
-import useFullscreen from '../hooks/useFullscreen'
-import GameAdSlot from '../components/GameAdSlot'
-import InterstitialAd from '../components/InterstitialAd'
+import GameShell from '../components/GameShell'
 
 const LS = { BEST: 'ut_frogger_best_v1', LAST: 'ut_frogger_last_v1' }
 
@@ -22,7 +18,6 @@ const ROWS = 13
 const SAFE_LANES = [0, 6] // safe rows (top goal + median)
 
 export default function games_frogger() {
-  const { ref: resultRef, jumpTo } = useJumpToResult()
   const canvasRef = useRef(null)
   const [playing, setPlaying] = useState(false)
   const [score, setScore] = useState(0)
@@ -32,11 +27,6 @@ export default function games_frogger() {
   const [lives, setLives] = useState(3)
   const [level, setLevel] = useState(1)
 
-  const { isFs, toggle: toggleFs, onChange: onFsChange } = useFullscreen()
-  const [showAd, setShowAd] = useState(false)
-  const pendingAction = useRef(null)
-  const triggerAd = useCallback((action) => { pendingAction.current = action; setShowAd(true) }, [])
-  const onAdDismiss = useCallback(() => { setShowAd(false); if (pendingAction.current) { pendingAction.current(); pendingAction.current = null } }, [])
 
   const gRef = useRef({
     frog: { x: 6, y: 12 },
@@ -524,21 +514,12 @@ export default function games_frogger() {
 
   // Resize
   useEffect(() => { fitCanvas(); draw() }, [fitCanvas, draw])
-  useEffect(() => {
-    const h = () => { fitCanvas(); draw() }
-    window.addEventListener('resize', h)
-    return () => { window.removeEventListener('resize', h); if (gRef.current.animId) cancelAnimationFrame(gRef.current.animId) }
-  }, [fitCanvas, draw])
 
-  useEffect(() => {
-    const handler = () => onFsChange()
-    document.addEventListener('fullscreenchange', handler)
-    document.addEventListener('webkitfullscreenchange', handler)
-    return () => { document.removeEventListener('fullscreenchange', handler); document.removeEventListener('webkitfullscreenchange', handler) }
-  }, [onFsChange])
 
   return (
-    <ToolLayout hideHeader={isFs}
+    <GameShell
+      name="FROGGER"
+      startAction={startGame} startLabel="▶ Start" 
       title="Frogger Game Online - Classic Arcade"
       desc="Play the classic Frogger game online. Guide your frog across roads and rivers to reach safety. Dodge cars, ride logs. Keyboard and touch controls!"
       icon="🐸" iconBg="rgba(34,197,94,0.08)"
@@ -562,11 +543,7 @@ export default function games_frogger() {
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
       <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
-        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="3494503358" format="vertical" className="mt-2" width={160} height={600} />
-        </div>
         <div className="flex-1 min-w-0 max-w-xl mx-auto space-y-5 overflow-hidden">
         {/* Stats */}
         <div className="glass p-4">
@@ -592,13 +569,10 @@ export default function games_frogger() {
 
         {/* Controls */}
         <div className="flex gap-3 justify-center">
-          <button onClick={() => triggerAd(startGame)} className="glow-btn px-6 py-3 text-sm">
-            {playing && !gameOver ? '⟲ Restart' : '▶ Start Game'}
-          </button>
         </div>
 
         {/* Canvas */}
-        <div ref={resultRef} className="glass p-3 flex justify-center overflow-hidden">
+        <div className="glass p-3 flex justify-center overflow-hidden">
           <canvas ref={canvasRef}
             onPointerDown={handlePointerDown}
             onPointerUp={handlePointerUp}
@@ -611,19 +585,8 @@ export default function games_frogger() {
         <p className="text-center text-xs text-slate-400">
           Desktop: ← → ↑ ↓ or WASD | Mobile: Swipe to move
         </p>
-          <div className="flex gap-2 justify-center mt-4">
-            <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
-              {isFs ? '⊡' : '⛶'}
-            </button>
-          </div>
-        </div>
-        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="3414612309" format="vertical" className="mt-2" width={160} height={600} />
         </div>
       </div>
-      <div className="w-full max-w-6xl mx-auto px-5 mt-2">
-        <GameAdSlot slot="8865234201" format="horizontal" />
-      </div>
-    </ToolLayout>
+    </GameShell>
   )
 }

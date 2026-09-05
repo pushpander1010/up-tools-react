@@ -1,9 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
-import ToolLayout from '../components/ToolLayout'
-import useJumpToResult from '../hooks/useJumpToResult'
-import useFullscreen from '../hooks/useFullscreen'
-import GameAdSlot from '../components/GameAdSlot'
-import InterstitialAd from '../components/InterstitialAd'
+import GameShell from '../components/GameShell'
 
 /* ── audio ── */
 let audioCtx = null
@@ -62,7 +58,6 @@ function safeGet(k, fb) { try { return localStorage.getItem(k) ?? fb } catch { r
 function safeSet(k, v) { try { localStorage.setItem(k, v) } catch {} }
 
 export default function games_pac_man() {
-  const { ref: resultRef, jumpTo } = useJumpToResult()
   const cvs = useRef(null)
   const g = useRef(null)     // mutable game state
   const touchRef = useRef({ on: false, sx: 0, sy: 0, pid: null })
@@ -72,11 +67,6 @@ export default function games_pac_man() {
   const [lives, setLives] = useState(3)
   const [phase, setPhase] = useState('idle') // idle | playing | over | won
 
-  const { isFs, toggle: toggleFs, onChange: onFsChange } = useFullscreen()
-  const [showAd, setShowAd] = useState(false)
-  const pendingAction = useRef(null)
-  const triggerAd = useCallback((action) => { pendingAction.current = action; setShowAd(true) }, [])
-  const onAdDismiss = useCallback(() => { setShowAd(false); if (pendingAction.current) { pendingAction.current(); pendingAction.current = null } }, [])
 
   const syncState = (s) => { setScore(s.score); setLives(s.lives) }
 
@@ -374,7 +364,7 @@ export default function games_pac_man() {
       if (!s) return
       if (!s.running) {
         if ((s.phase === 'idle' || s.phase === 'over' || s.phase === 'won') && (e.key === ' ' || e.key === 'Enter')) {
-          e.preventDefault(); triggerAd(startGame)
+          e.preventDefault(); startGame()
         }
         return
       }
@@ -388,16 +378,16 @@ export default function games_pac_man() {
     }
     window.addEventListener('keydown', h)
     return () => window.removeEventListener('keydown', h)
-  }, [startGame, triggerAd])
+  }, [startGame])
 
   /* ── touch / pointer ── */
   const onPointerDown = useCallback((e) => {
     const s = g.current
-    if (!s || s.phase === 'idle' || s.phase === 'over' || s.phase === 'won') { triggerAd(startGame); return }
+    if (!s || s.phase === 'idle' || s.phase === 'over' || s.phase === 'won') { startGame(); return }
     if (!s.running) return
     touchRef.current = { on: true, sx: e.clientX, sy: e.clientY, pid: e.pointerId }
     try { cvs.current?.setPointerCapture(e.pointerId) } catch {}
-  }, [startGame, triggerAd])
+  }, [startGame])
 
   const onPointerMove = useCallback((e) => {
     if (!touchRef.current.on || touchRef.current.pid !== e.pointerId) return
@@ -431,21 +421,12 @@ export default function games_pac_man() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  useEffect(() => {
-    const h = () => { resize(); draw() }
-    window.addEventListener('resize', h)
-    return () => window.removeEventListener('resize', h)
-  }, [draw, resize])
 
-  useEffect(() => {
-    const h = () => onFsChange()
-    document.addEventListener('fullscreenchange', h)
-    document.addEventListener('webkitfullscreenchange', h)
-    return () => { document.removeEventListener('fullscreenchange', h); document.removeEventListener('webkitfullscreenchange', h) }
-  }, [onFsChange])
 
   return (
-    <ToolLayout hideHeader={isFs}
+    <GameShell
+      name="PAC-MAN"
+      startAction={startGame} startLabel="▶ Start" 
       title="Pac-Man Online - Classic Arcade Game"
       desc="Play the classic Pac-Man arcade game in your browser! Eat dots, avoid ghosts, grab power pellets. Arrow keys or swipe to move."
       icon="👾" iconBg="rgba(250,204,21,0.08)"
@@ -469,17 +450,13 @@ export default function games_pac_man() {
         "genre": "Arcade", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
       <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
         {/* Left aside ad - hide in fullscreen */}
-        {!isFs && <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="3494503358" format="vertical" className="mt-2" width={160} height={600} />
-        </div>}
 
         {/* Game center */}
         <div className="flex-1 min-w-0 max-w-xl mx-auto space-y-5">
           {/* Score bar - hide in fullscreen */}
-          {!isFs && <div className="glass p-4">
+          <div className="glass p-4">
             <div className="grid grid-cols-3 gap-4">
               <div className="text-center">
                 <div className="text-2xl font-extrabold text-white">{score}</div>
@@ -494,10 +471,10 @@ export default function games_pac_man() {
                 <div className="text-xs text-slate-400 font-medium mt-0.5">Lives</div>
               </div>
             </div>
-          </div>}
+          </div>
 
           {/* Canvas */}
-          <div ref={resultRef} className={`flex justify-center overflow-hidden ${!isFs ? 'glass' : ''}`} style={{padding:0}}>
+          <div className="flex justify-center overflow-hidden glass" style={{padding:0}}>
             <div className="relative overflow-hidden" style={{background:'#000', lineHeight:0}}>
               <canvas ref={cvs} className="block" style={{imageRendering:'pixelated', touchAction:'none'}}
                 onPointerDown={onPointerDown}
@@ -508,13 +485,13 @@ export default function games_pac_man() {
               {/* Start overlay */}
               {(phase === 'idle' || (phase === 'over' && lives <= 0)) && phase !== 'won' && (
                 <div className="absolute inset-0 bg-black/90 flex flex-col items-center justify-center p-6"
-                  onClick={() => triggerAd(startGame)}>
+                  onClick={() => startGame()}>
                   <div className="text-5xl mb-4">👾</div>
                   <h2 className="text-xl font-bold text-white mb-2">PAC-MAN</h2>
                   <p className="text-sm text-slate-400 text-center mb-4">
                     {phase === 'idle' ? 'Eat dots. Dodge ghosts. Grab power pellets!' : `Final Score: ${score}`}
                   </p>
-                  <button onClick={(e) => { e.stopPropagation(); triggerAd(startGame) }}
+                  <button onClick={(e) => { e.stopPropagation(); startGame() }}
                     className="glow-btn px-8 py-3 text-sm">
                     {phase === 'idle' ? 'Start Game' : 'Play Again'}
                   </button>
@@ -524,51 +501,33 @@ export default function games_pac_man() {
               {/* Win overlay */}
               {phase === 'won' && (
                 <div className="absolute inset-0 bg-black/90 flex flex-col items-center justify-center p-6"
-                  onClick={() => triggerAd(startGame)}>
+                  onClick={() => startGame()}>
                   <div className="text-5xl mb-3">🎉</div>
                   <h2 className="text-xl font-bold text-white mb-2">You Win!</h2>
                   <p className="text-sm text-slate-400 mb-4">Score: {score}</p>
-                  <button onClick={(e) => { e.stopPropagation(); triggerAd(startGame) }}
+                  <button onClick={(e) => { e.stopPropagation(); startGame() }}
                     className="glow-btn px-8 py-3 text-sm">Play Again</button>
                 </div>
               )}
               {/* Exit fullscreen button */}
-              {isFs && (
-                <button onClick={toggleFs}
-                  className="absolute top-2 right-2 w-8 h-8 rounded-full bg-white/10 border border-white/20 text-white text-sm flex items-center justify-center hover:bg-white/20 transition-all z-10">
-                  ⊡
-                </button>
-              )}
             </div>
           </div>
 
           {/* Game Over text */}
-          {!isFs && phase === 'over' && lives <= 0 && (
+           {phase === 'over' && lives <= 0 && (
             <div className="text-center text-sm text-slate-400 font-medium">
               Game Over! Score: {score} · Best: {best}
             </div>
           )}
 
           {/* Helper text + toolbar - hide in fullscreen */}
-          {!isFs && <p className="text-center text-xs text-slate-400">Swipe or use arrow keys / WASD</p>}
-
-          {!isFs && <div className="flex gap-2 justify-center mt-4">
-            <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
-              ⛶
-            </button>
-          </div>}
+          <p className="text-center text-xs text-slate-400">Swipe or use arrow keys / WASD</p>
         </div>
 
         {/* Right aside ad - hide in fullscreen */}
-        {!isFs && <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="3414612309" format="vertical" className="mt-2" width={160} height={600} />
-        </div>}
       </div>
 
       {/* Bottom banner ad - hide in fullscreen */}
-      {!isFs && <div className="max-w-3xl mx-auto mt-6">
-        <GameAdSlot slot="8865234201" format="horizontal" />
-      </div>}
-    </ToolLayout>
+    </GameShell>
   )
 }

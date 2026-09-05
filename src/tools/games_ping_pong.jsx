@@ -1,9 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
-import ToolLayout from '../components/ToolLayout'
-import useJumpToResult from '../hooks/useJumpToResult'
-import useFullscreen from '../hooks/useFullscreen'
-import GameAdSlot from '../components/GameAdSlot'
-import InterstitialAd from '../components/InterstitialAd'
+import GameShell from '../components/GameShell'
 
 let audioCtx = null
 function ensureAudio() {
@@ -32,7 +28,6 @@ const WIN_SCORE = 7
 const AI_SPEED = { easy: 2.5, medium: 4, hard: 6 }
 
 export default function games_ping_pong() {
-  const { ref: resultRef, jumpTo } = useJumpToResult()
   const canvasRef = useRef(null)
   const [gameMode, setGameMode] = useState('ai')
   const [difficulty, setDifficulty] = useState('medium')
@@ -52,11 +47,6 @@ export default function games_ping_pong() {
   const runningRef = useRef(false)
   const pausedRef = useRef(false)
 
-  const { isFs, toggle: toggleFs, onChange: onFsChange } = useFullscreen()
-  const [showAd, setShowAd] = useState(false)
-  const pendingAction = useRef(null)
-  const triggerAd = useCallback((action) => { pendingAction.current = action; setShowAd(true) }, [])
-  const onAdDismiss = useCallback(() => { setShowAd(false); if (pendingAction.current) { pendingAction.current(); pendingAction.current = null } }, [])
 
   useEffect(() => { modeRef.current = gameMode }, [gameMode])
   useEffect(() => { diffRef.current = difficulty }, [difficulty])
@@ -270,18 +260,7 @@ export default function games_ping_pong() {
   }, [])
 
   useEffect(() => { fitCanvas(); draw() }, [fitCanvas, draw])
-  useEffect(() => {
-    const h = () => { fitCanvas(); draw() }
-    window.addEventListener('resize', h)
-    return () => { window.removeEventListener('resize', h); if (animRef.current) cancelAnimationFrame(animRef.current) }
-  }, [fitCanvas, draw])
 
-  useEffect(() => {
-    const handler = () => onFsChange()
-    document.addEventListener('fullscreenchange', handler)
-    document.addEventListener('webkitfullscreenchange', handler)
-    return () => { document.removeEventListener('fullscreenchange', handler); document.removeEventListener('webkitfullscreenchange', handler) }
-  }, [onFsChange])
 
   // Pointer tracking for mobile
   const handlePointerDown = useCallback((e) => {
@@ -310,7 +289,9 @@ export default function games_ping_pong() {
   }, [])
 
   return (
-    <ToolLayout hideHeader={isFs}
+    <GameShell
+      name="PING PONG"
+      startAction={startGame} startLabel="▶ Start" 
       title="Ping Pong Game Online - Play Pong Free"
       desc="Classic Pong against AI or a friend. First to 7 wins! Retro arcade game."
       icon="🏓" iconBg="rgba(0,229,255,0.08)"
@@ -333,11 +314,7 @@ export default function games_ping_pong() {
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
       <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
-        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="3494503358" format="vertical" className="mt-2" width={160} height={600} />
-        </div>
         <div className="flex-1 min-w-0 max-w-2xl mx-auto space-y-5 overflow-hidden">
         {/* Controls */}
         <div className="flex gap-2 items-center flex-wrap">
@@ -365,7 +342,7 @@ export default function games_ping_pong() {
 
           <div className="ml-auto flex gap-2">
             {!gameRunning ? (
-              <button onClick={() => triggerAd(startGame)}
+              <button onClick={() => startGame}
                 className="glow-btn px-5 py-2 text-sm">
                 ▶ Start
               </button>
@@ -379,7 +356,7 @@ export default function games_ping_pong() {
         </div>
 
         {/* Canvas */}
-        <div ref={resultRef} className="glass p-3 overflow-hidden">
+        <div className="glass p-3 overflow-hidden">
           <canvas ref={canvasRef}
             onPointerDown={handlePointerDown} onPointerMove={handlePointerMove}
             className="w-full rounded-xl" style={{ touchAction: 'none' }}
@@ -402,15 +379,8 @@ export default function games_ping_pong() {
             </>
           )}
         </div>
-          <div className="flex gap-2 justify-center mt-4">
-            <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
-              {isFs ? '⊡' : '⛶'}
-            </button>
-          </div>
-        </div>
-        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start"><GameAdSlot slot="3414612309" format="horizontal" className="mt-2" /><GameAdSlot slot="3414612309" format="vertical" className="mt-2" width={160} height={600} />
         </div>
       </div>
-    </ToolLayout>
+    </GameShell>
   )
 }

@@ -1,9 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
-import ToolLayout from '../components/ToolLayout'
-import useJumpToResult from '../hooks/useJumpToResult'
-import useFullscreen from '../hooks/useFullscreen'
-import GameAdSlot from '../components/GameAdSlot'
-import InterstitialAd from '../components/InterstitialAd'
+import GameShell from '../components/GameShell'
 
 const LS = { BEST: 'ut_tetris_best_v1', LAST: 'ut_tetris_last_v1', LINES: 'ut_tetris_lines_v1' }
 const COLS = 10
@@ -36,7 +32,6 @@ function rotate(blocks) {
 }
 
 export default function games_tetris() {
-  const { ref: resultRef, jumpTo } = useJumpToResult()
   const canvasRef = useRef(null)
   const [playing, setPlaying] = useState(false)
   const [score, setScore] = useState(0)
@@ -317,11 +312,6 @@ export default function games_tetris() {
   // Touch
   const touchStart = useRef({x:0,y:0,time:0})
 
-  const { isFs, toggle: toggleFs, onChange: onFsChange } = useFullscreen()
-  const [showAd, setShowAd] = useState(false)
-  const pendingAction = useRef(null)
-  const triggerAd = useCallback((action) => { pendingAction.current = action; setShowAd(true) }, [])
-  const onAdDismiss = useCallback(() => { setShowAd(false); if (pendingAction.current) { pendingAction.current(); pendingAction.current = null } }, [])
   const handlePointerDown = (e) => { touchStart.current = {x:e.clientX,y:e.clientY,time:Date.now()} }
   const handlePointerUp = (e) => {
     const s = gRef.current
@@ -366,16 +356,11 @@ export default function games_tetris() {
   }, [fitCanvas, draw])
 
 
-  useEffect(() => {
-    const handler = () => onFsChange()
-    document.addEventListener('fullscreenchange', handler)
-    document.addEventListener('webkitfullscreenchange', handler)
-    return () => { document.removeEventListener('fullscreenchange', handler); document.removeEventListener('webkitfullscreenchange', handler) }
-  }, [onFsChange])
 
   return (
-    <ToolLayout
-      hideHeader={isFs}
+    <GameShell
+      name="TETRIS"
+      startAction={startGame} startLabel="▶ Start"
       title="Tetris Online - Free Classic Puzzle Game"
       desc="Play Tetris online. Classic falling block puzzle with ghost piece, next preview, levels, and high score tracking."
       icon="🧩" iconBg="rgba(168,85,247,0.08)"
@@ -399,11 +384,7 @@ export default function games_tetris() {
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
       <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
-        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="3494503358" format="vertical" className="mt-2" width={160} height={600} />
-        </div>
         <div className="flex-1 min-w-0 max-w-xl mx-auto space-y-5 overflow-hidden">
         {/* Stats */}
         <div className="glass p-4">
@@ -428,12 +409,6 @@ export default function games_tetris() {
         </div>
 
         <div className="flex gap-3 justify-center items-center">
-            <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
-              {isFs ? '⊡' : '⛶'}
-            </button>
-          <button onClick={() => triggerAd(startGame)} className="glow-btn px-6 py-3 text-sm">
-            {playing&&!gameOver?'⟲ Restart':'▶ Start'}
-          </button>
           {/* Next piece preview */}
           {nextPiece && (
             <div className="glass px-4 py-2">
@@ -446,7 +421,7 @@ export default function games_tetris() {
         </div>
 
         {/* Canvas */}
-        <div ref={resultRef} className="glass p-3 flex justify-center overflow-hidden">
+        <div className="glass p-3 flex justify-center overflow-hidden">
           <canvas ref={canvasRef}
             onPointerDown={handlePointerDown}
             onPointerUp={handlePointerUp}
@@ -458,13 +433,8 @@ export default function games_tetris() {
         <p className="text-center text-xs text-slate-400">
           Desktop: ←→ move, ↑ rotate, ↓ soft drop, Space hard drop | Mobile: swipe + tap
         </p>
-      
-        <GameAdSlot slot="8865234201" format="horizontal" className="mt-2" />
-      </div>
-      <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-        <GameAdSlot slot="3414612309" format="vertical" className="mt-2" width={160} height={600} />
       </div>
       </div>
-    </ToolLayout>
+    </GameShell>
   )
 }

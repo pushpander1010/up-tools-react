@@ -1,9 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
-import ToolLayout from '../components/ToolLayout'
-import useJumpToResult from '../hooks/useJumpToResult'
-import useFullscreen from '../hooks/useFullscreen'
-import GameAdSlot from '../components/GameAdSlot'
-import InterstitialAd from '../components/InterstitialAd'
+import GameShell from '../components/GameShell'
 
 const TEXTS = [
   "The quick brown fox jumps over the lazy dog. Pack my box with five dozen liquor jugs. How vexingly quick daft zebras jump.",
@@ -54,7 +50,6 @@ function calcAccuracy(charsTyped, errCount) {
 }
 
 export default function games_typing_speed() {
-  const { ref: resultRef, jumpTo } = useJumpToResult()
   const [duration, setDuration] = useState(60)
   const [timeLeft, setTimeLeft] = useState(60)
   const [testStarted, setTestStarted] = useState(false)
@@ -70,11 +65,6 @@ export default function games_typing_speed() {
   const inputRef = useRef(null)
   const timerRef = useRef(null)
 
-  const { isFs, toggle: toggleFs, onChange: onFsChange } = useFullscreen()
-  const [showAd, setShowAd] = useState(false)
-  const pendingAction = useRef(null)
-  const triggerAd = useCallback((action) => { pendingAction.current = action; setShowAd(true) }, [])
-  const onAdDismiss = useCallback(() => { setShowAd(false); if (pendingAction.current) { pendingAction.current(); pendingAction.current = null } }, [])
 
   const resetTest = useCallback((dur) => {
     clearInterval(timerRef.current)
@@ -178,16 +168,12 @@ export default function games_typing_speed() {
   const progressPct = duration ? ((duration - timeLeft) / duration) * 100 : 0
 
 
-  useEffect(() => {
-    const handler = () => onFsChange()
-    document.addEventListener('fullscreenchange', handler)
-    document.addEventListener('webkitfullscreenchange', handler)
-    return () => { document.removeEventListener('fullscreenchange', handler); document.removeEventListener('webkitfullscreenchange', handler) }
-  }, [onFsChange])
 
   return (
-    <ToolLayout
-      hideHeader={isFs}
+    <GameShell
+      name="TYPING SPEED"
+      startAction={() => resetTest()} startLabel="⟲ Restart"
+ 
       title="Typing Speed Test - WPM Test Online Free"
       desc="Test your typing speed and accuracy. Free WPM (words per minute) typing test with real-time tracking."
       icon="⌨️" iconBg="rgba(6,182,212,0.08)"
@@ -210,11 +196,7 @@ export default function games_typing_speed() {
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
       <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
-        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="3494503358" format="vertical" className="mt-2" width={160} height={600} />
-        </div>
         <div className="flex-1 min-w-0 max-w-2xl mx-auto space-y-5 overflow-hidden">
         {/* Duration selector */}
         <div className="flex gap-2 items-center">
@@ -231,7 +213,7 @@ export default function games_typing_speed() {
         </div>
 
         {/* Text display */}
-        <div ref={resultRef} className="glass p-4 text-sm sm:text-base leading-relaxed font-mono min-h-[80px] select-none">
+        <div className="glass p-4 text-sm sm:text-base leading-relaxed font-mono min-h-[80px] select-none">
           {currentText.split('').map((c, i) => {
             let cls = 'text-slate-600'
             if (i < typed.length) cls = typed[i] === c ? 'text-emerald-400' : 'text-red-400 bg-red-500/20'
@@ -285,7 +267,7 @@ export default function games_typing_speed() {
               <div><div className="text-lg font-bold text-white">{typedCharsTotal + typed.length}</div><div className="text-xs text-slate-400">Characters</div></div>
             </div>
             <div className="flex gap-3 justify-center">
-              <button onClick={() => triggerAd(resetTest)}
+              <button onClick={() => resetTest}
                  className="glow-btn px-6 py-3 text-sm">
                 Try Again
               </button>
@@ -302,20 +284,12 @@ export default function games_typing_speed() {
           <div className="text-center">
             <button onClick={() => resetTest()}
                className="px-6 py-3 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">
-            <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
-              {isFs ? '⊡' : '⛶'}
-            </button>
               ↺ Restart
             </button>
           </div>
         )}
-      
-        <GameAdSlot slot="8865234201" format="horizontal" className="mt-2" />
-      </div>
-      <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-        <GameAdSlot slot="3414612309" format="vertical" className="mt-2" width={160} height={600} />
       </div>
       </div>
-    </ToolLayout>
+    </GameShell>
   )
 }

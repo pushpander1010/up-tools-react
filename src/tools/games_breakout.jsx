@@ -1,9 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
-import ToolLayout from '../components/ToolLayout'
-import useJumpToResult from '../hooks/useJumpToResult'
-import useFullscreen from '../hooks/useFullscreen'
-import GameAdSlot from '../components/GameAdSlot'
-import InterstitialAd from '../components/InterstitialAd'
+import GameShell from '../components/GameShell'
 
 /* ── audio ── */
 let audioCtx = null
@@ -40,15 +36,9 @@ function bestLevel() {
 }
 
 export default function BreakoutGame() {
-  const { ref: resultRef, jumpTo } = useJumpToResult()
   const cvs = useRef(null)
   const g = useRef(null)
   const touch = useRef({ on: false, x: 0 })
-  const { isFs, toggle: toggleFs, onChange: onFsChange } = useFullscreen()
-  const [showAd, setShowAd] = useState(false)
-  const pendingAction = useRef(null)
-  const triggerAd = useCallback((action) => { pendingAction.current = action; setShowAd(true) }, [])
-  const onAdDismiss = useCallback(() => { setShowAd(false); if (pendingAction.current) { pendingAction.current(); pendingAction.current = null } }, [])
 
   const [score, setScore] = useState(0)
   const [best, setBest] = useState(() => { try { return +(localStorage.getItem(LS.BEST) || 0) } catch { return 0 } })
@@ -290,7 +280,7 @@ export default function BreakoutGame() {
   /* ── launch / tap ── */
   const handleTap = useCallback(() => {
     const s = g.current
-    if (s.phase === 'over') { triggerAd(startGame); return }
+    if (s.phase === 'over') { startGame; return }
     if (s.phase === 'idle') { startGame(); return }
     if (!s.ball.launched) {
       s.ball.launched = true
@@ -325,15 +315,6 @@ export default function BreakoutGame() {
   }, [resize, draw])
 
   /* ── fullscreen change ── */
-  useEffect(() => {
-    const handler = () => onFsChange()
-    document.addEventListener('fullscreenchange', handler)
-    document.addEventListener('webkitfullscreenchange', handler)
-    return () => {
-      document.removeEventListener('fullscreenchange', handler)
-      document.removeEventListener('webkitfullscreenchange', handler)
-    }
-  }, [onFsChange])
 
   /* ── keyboard ── */
   useEffect(() => {
@@ -382,8 +363,10 @@ export default function BreakoutGame() {
   }, [])
 
   return (
-    <ToolLayout
-      title="Breakout — Classic Brick Breaker Game Online Free" hideHeader={isFs}
+    <GameShell
+      name="BREAKOUT"
+      startAction={startGame} startLabel="▶ Start"
+      title="Breakout — Classic Brick Breaker Game Online Free" 
       desc="Play Breakout online free. Break all bricks with the ball! Arrow keys or touch to move paddle. Levels get harder!"
       icon="🧱" iconBg="rgba(0,229,255,0.08)"
       category="fun" slug="games-breakout"
@@ -399,12 +382,8 @@ export default function BreakoutGame() {
         "genre": "Arcade", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
       <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
         {/* Left aside ad */}
-        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="3494503358" format="vertical" className="mt-2" width={160} height={600} />
-        </div>
         {/* Game center */}
         <div className="flex-1 min-w-0 max-w-lg mx-auto space-y-4 overflow-hidden">
         {phase === 'idle' && (
@@ -414,7 +393,6 @@ export default function BreakoutGame() {
               <div><div className="text-2xl font-extrabold text-cyan-400">{bestLevel()}</div><div className="text-xs text-slate-400">Best Level</div></div>
             </div>
             <div className="flex justify-center mt-4">
-              <button onClick={() => triggerAd(startGame)} className="glow-btn px-8 py-3 text-sm font-bold">▶ Start Game</button>
             </div>
           </div>
         )}
@@ -427,25 +405,18 @@ export default function BreakoutGame() {
             </div>
             <button onClick={() => { g.current.playing = false; if (g.current.animId) cancelAnimationFrame(g.current.animId); setPhase('idle') }}
               className="px-3 py-1.5 rounded-lg text-xs bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white transition">Menu</button>
-            <button onClick={toggleFs} className="px-3 py-1.5 rounded-lg text-xs bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white transition" title="Fullscreen">
-              {isFs ? '⊡' : '⛶'}
-            </button>
           </div>
         )}
-        <div ref={resultRef} className="glass !p-0 overflow-hidden rounded-xl">
+        <div className="glass !p-0 overflow-hidden rounded-xl">
           <canvas ref={cvs} className="block rounded-xl cursor-pointer" style={{ touchAction: 'none' }}
             onPointerDown={onDown} onPointerMove={onMove} onPointerUp={onUp} />
         </div>
-        <GameAdSlot slot="8865234201" format="horizontal" className="mt-2" />
         <p className="text-center text-xs text-slate-400">
           {'ontouchstart' in window ? 'Drag to move paddle · Tap to launch' : '← → Move · Space Launch'}
         </p>
         </div>
         {/* Right aside ad */}
-        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="3414612309" format="vertical" className="mt-2" width={160} height={600} />
-        </div>
       </div>
-    </ToolLayout>
+    </GameShell>
   )
 }

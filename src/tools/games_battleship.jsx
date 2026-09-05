@@ -1,9 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
-import ToolLayout from '../components/ToolLayout'
-import useJumpToResult from '../hooks/useJumpToResult'
-import useFullscreen from '../hooks/useFullscreen'
-import GameAdSlot from '../components/GameAdSlot'
-import InterstitialAd from '../components/InterstitialAd'
+import GameShell from '../components/GameShell'
 
 /* ─── Battleship Engine (ported from battleship-game) ─── */
 const BOARD_SIZE = 7
@@ -86,7 +82,6 @@ function aiFire(board, lastHits) {
 }
 
 export default function games_battleship() {
-  const { ref: resultRef, jumpTo } = useJumpToResult()
   const [phase, setPhase] = useState('setup') // setup, play, win, lose
   const [playerBoard, setPlayerBoard] = useState({})
   const [enemyBoard, setEnemyBoard] = useState({})
@@ -105,11 +100,6 @@ export default function games_battleship() {
   const [sunkPlayer, setSunkPlayer] = useState(0)
   const [sunkEnemy, setSunkEnemy] = useState(0)
 
-  const { isFs, toggle: toggleFs, onChange: onFsChange } = useFullscreen()
-  const [showAd, setShowAd] = useState(false)
-  const pendingAction = useRef(null)
-  const triggerAd = useCallback((action) => { pendingAction.current = action; setShowAd(true) }, [])
-  const onAdDismiss = useCallback(() => { setShowAd(false); if(pendingAction.current){pendingAction.current();pendingAction.current=null} }, [])
 
   const timerRef = useRef(null)
   const gRef = useRef({ playerBoard:{}, enemyBoard:{}, playerShips:[], enemyShips:[], enemyGuesses:{}, playerGuesses:{}, lastEnemyHits:[] })
@@ -413,15 +403,11 @@ export default function games_battleship() {
   const enemyShipsSunk = enemyShips.filter(s=>s.sunk).length
   const playerShipsSunk = playerShips.filter(s=>s.sunk).length
 
-  useEffect(() => {
-    const h = () => onFsChange()
-    document.addEventListener('fullscreenchange', h)
-    document.addEventListener('webkitfullscreenchange', h)
-    return () => { document.removeEventListener('fullscreenchange', h); document.removeEventListener('webkitfullscreenchange', h) }
-  }, [onFsChange])
 
   return (
-    <ToolLayout hideHeader={isFs}
+    <GameShell
+      name="BATTLESHIP"
+      startAction={startGame} startLabel="▶ Start" 
       title="Battleship Online - Free Strategy Game"
       desc="Play the classic Battleship game against the AI. Place your fleet, find and sink all enemy ships before time runs out!"
       icon="🚢" iconBg="rgba(245,158,11,0.08)"
@@ -445,11 +431,7 @@ export default function games_battleship() {
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
       <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
-        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="3494503358" format="vertical" className="mt-2" width={160} height={600} />
-        </div>
         <div className="flex-1 min-w-0 max-w-2xl mx-auto space-y-4 overflow-hidden">
           {/* Stats */}
           <div className="glass p-4">
@@ -480,13 +462,13 @@ export default function games_battleship() {
 
           {/* Controls */}
           <div className="flex gap-3 justify-center">
-            <button onClick={()=>triggerAd(startGame)} className="glow-btn px-6 py-3 text-sm">
+            <button onClick={()=>startGame} className="glow-btn px-6 py-3 text-sm">
               {(phase==='win'||phase==='lose') ? '⟲ New Game' : phase==='setup' && playerShips.length===0 ? '▶ Start' : '⟲ Restart'}
             </button>
           </div>
 
           {/* Boards */}
-          <div ref={resultRef} className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {/* Player Board */}
             <div>
               <div className="text-xs font-bold text-slate-400 mb-2 text-center">
@@ -545,20 +527,8 @@ export default function games_battleship() {
           <p className="text-center text-xs text-slate-400">
             Desktop: Click to fire | Mobile: Tap to place/fire | R = rotate ship
           </p>
-
-          <div className="flex gap-2 justify-center mt-2">
-            <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
-              {isFs ? '⊡' : '⛶'}
-            </button>
-          </div>
-        </div>
-        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="3414612309" format="vertical" className="mt-2" width={160} height={600} />
         </div>
       </div>
-      <div className="w-full max-w-6xl mx-auto px-5 mt-2">
-        <GameAdSlot slot="8865234201" format="horizontal" />
-      </div>
-    </ToolLayout>
+    </GameShell>
   )
 }

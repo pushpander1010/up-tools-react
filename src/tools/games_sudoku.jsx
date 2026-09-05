@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
-import ToolLayout from '../components/ToolLayout'
+import GameShell from '../components/GameShell'
 
 /* ═══════════════════════════════════════════════════════════════════════════════
    SUDOKU ENGINE — backtracking generator + solver
@@ -283,7 +283,9 @@ export default function GamesSudoku() {
   }
 
   return (
-    <ToolLayout
+    <GameShell
+      name="SUDOKU"
+      startAction={startGame} startLabel="⟲ New Game"
       title="Sudoku Puzzle Game Online Free – 3 Difficulty Levels"
       desc="Play Sudoku online for free! Choose easy, medium, or hard. Features pencil marks, hints, timer, and mistake tracking. Pure client-side – no data leaves your browser."
       icon="🔢" iconBg="rgba(99,102,241,0.08)"
@@ -430,6 +432,6 @@ export default function GamesSudoku() {
           <p>Place numbers 1-9 so each row, column, and 3×3 box contains all digits exactly once. Use pencil marks to track candidates!</p>
         </div>
       </div>
-    </ToolLayout>
+    </GameShell>
   )
 }

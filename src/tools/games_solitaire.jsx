@@ -1,9 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
-import ToolLayout from '../components/ToolLayout'
-import useJumpToResult from '../hooks/useJumpToResult'
-import useFullscreen from '../hooks/useFullscreen'
-import GameAdSlot from '../components/GameAdSlot'
-import InterstitialAd from '../components/InterstitialAd'
+import GameShell from '../components/GameShell'
 
 const LS = { WINS: 'ut_sol_wins', BEST: 'ut_sol_best', GAMES: 'ut_sol_games' }
 
@@ -75,7 +71,6 @@ function canPlaceOnTableau(card, tableauPile) {
 }
 
 export default function games_solitaire() {
-  const { ref: resultRef, jumpTo } = useJumpToResult()
   const [gameState, setGameState] = useState(null)
   const [moves, setMoves] = useState(0)
   const [timer, setTimer] = useState(0)
@@ -94,11 +89,6 @@ export default function games_solitaire() {
   const winsRef = useRef(0)
   const bestMovesRef = useRef(Infinity)
 
-  const { isFs, toggle: toggleFs, onChange: onFsChange } = useFullscreen()
-  const [showAd, setShowAd] = useState(false)
-  const pendingAction = useRef(null)
-  const triggerAd = useCallback((action) => { pendingAction.current = action; setShowAd(true) }, [])
-  const onAdDismiss = useCallback(() => { setShowAd(false); if (pendingAction.current) { pendingAction.current(); pendingAction.current = null } }, [])
 
   useEffect(() => { winsRef.current = wins }, [wins])
   useEffect(() => { bestMovesRef.current = bestMoves }, [bestMoves])
@@ -416,17 +406,13 @@ export default function games_solitaire() {
     }
   }, [dragging, handleDragMove, handleDragEnd])
 
-  useEffect(() => {
-    const handler = () => onFsChange()
-    document.addEventListener('fullscreenchange', handler)
-    document.addEventListener('webkitfullscreenchange', handler)
-    return () => { document.removeEventListener('fullscreenchange', handler); document.removeEventListener('webkitfullscreenchange', handler) }
-  }, [onFsChange])
 
   if (!gameState) {
     return (
-      <ToolLayout
-        title="Solitaire — Classic Klondike Card Game Online Free" hideHeader={isFs}
+      <GameShell
+      name="SOLITAIRE"
+      startAction={startNewGame} startLabel="🂡 Deal Cards"
+        title="Solitaire — Classic Klondike Card Game Online Free" 
         desc="Play classic Klondike Solitaire in your browser. Drag and drop cards, undo moves, auto-complete, and track your stats."
         icon="🃏" iconBg="rgba(34,197,94,0.08)"
         category="fun" slug="games-solitaire"
@@ -449,11 +435,7 @@ export default function games_solitaire() {
           "genre": "Card", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
         }}
       >
-        <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
         <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
-          <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-            <GameAdSlot slot="3494503358" format="vertical" className="mt-2" width={160} height={600} />
-          </div>
           <div className="flex-1 min-w-0 max-w-xl mx-auto space-y-5 overflow-hidden">
           <div className="text-center p-8 glass rounded-2xl">
             <div className="text-5xl mb-4">🃏</div>
@@ -485,11 +467,8 @@ export default function games_solitaire() {
             </div>
           </div>
           </div>
-          <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-            <GameAdSlot slot="3414612309" format="vertical" className="mt-2" width={160} height={600} />
-          </div>
         </div>
-      </ToolLayout>
+      </GameShell>
     )
   }
 
@@ -556,8 +535,10 @@ export default function games_solitaire() {
   }
 
   return (
-    <ToolLayout
-      title="Solitaire — Classic Klondike Card Game Online Free" hideHeader={isFs}
+    <GameShell
+      name="SOLITAIRE"
+      startAction={startNewGame} startLabel="🂡 Deal Cards"
+      title="Solitaire — Classic Klondike Card Game Online Free"
       desc="Play classic Klondike Solitaire in your browser. Drag and drop cards, undo moves, auto-complete, and track your stats."
       icon="🃏" iconBg="rgba(34,197,94,0.08)"
       category="fun" slug="games-solitaire"
@@ -580,11 +561,7 @@ export default function games_solitaire() {
         "genre": "Card", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
       <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
-        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="3494503358" format="vertical" className="mt-2" width={160} height={600} />
-        </div>
         <div className="flex-1 min-w-0 max-w-xl mx-auto space-y-5 overflow-hidden">
         {/* Controls */}
         <div className="flex items-center justify-between gap-2 flex-wrap">
@@ -605,14 +582,11 @@ export default function games_solitaire() {
           <div className="flex gap-3 text-xs text-slate-400">
             <span>⏱ {formatTime(timer)}</span>
             <span>👆 {moves} moves</span>
-            <button onClick={toggleFs} className="px-2 py-1 rounded-lg text-xs bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white transition-all" title="Fullscreen">
-              {isFs ? '⊡' : '⛶'}
-            </button>
           </div>
         </div>
 
         {/* Game Board */}
-        <div ref={resultRef} className="relative overflow-x-auto" style={{minHeight: 500}}>
+        <div className="relative overflow-x-auto" style={{minHeight: 500}}>
           <div ref={boardRef} className="relative" style={{width: 'min(420px, 100%)', minHeight: 500, margin: '0 auto'}}>
             {/* Top row: Stock, Waste, Foundation */}
             <div className="absolute" style={{top: 0, left: 0}}>
@@ -723,12 +697,8 @@ export default function games_solitaire() {
             ))}
           </div>
         )}
-        <GameAdSlot slot="8865234201" format="horizontal" className="mt-2" />
-        </div>
-        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="3414612309" format="vertical" className="mt-2" width={160} height={600} />
         </div>
       </div>
-    </ToolLayout>
+    </GameShell>
   )
 }

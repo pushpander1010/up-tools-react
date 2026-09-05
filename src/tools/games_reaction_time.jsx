@@ -1,9 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
-import ToolLayout from '../components/ToolLayout'
-import useJumpToResult from '../hooks/useJumpToResult'
-import useFullscreen from '../hooks/useFullscreen'
-import GameAdSlot from '../components/GameAdSlot'
-import InterstitialAd from '../components/InterstitialAd'
+import GameShell from '../components/GameShell'
 
 const LS = { BEST: 'ut_rt_best', HISTORY: 'ut_rt_history', ATTEMPTS: 'ut_rt_attempts' }
 
@@ -21,7 +17,6 @@ function playComplete() { playTone(523,0.1,'sine',0.08); setTimeout(()=>playTone
 const ROUNDS = 3
 
 export default function games_reaction_time() {
-  const { ref: resultRef, jumpTo } = useJumpToResult()
   const [phase, setPhase] = useState('idle') // idle, waiting, ready, tooEarly, result, done
   const [results, setResults] = useState([])
   const [currentRound, setCurrentRound] = useState(0)
@@ -34,11 +29,6 @@ export default function games_reaction_time() {
   const startTimeRef = useRef(0)
   const timeoutRef = useRef(null)
 
-  const { isFs, toggle: toggleFs, onChange: onFsChange } = useFullscreen()
-  const [showAd, setShowAd] = useState(false)
-  const pendingAction = useRef(null)
-  const triggerAd = useCallback((action) => { pendingAction.current = action; setShowAd(true) }, [])
-  const onAdDismiss = useCallback(() => { setShowAd(false); if (pendingAction.current) { pendingAction.current(); pendingAction.current = null } }, [])
 
   const startRound = useCallback(() => {
     playSelect()
@@ -123,19 +113,15 @@ export default function games_reaction_time() {
     }).catch(() => {})
   }, [results, avg, bestRound])
 
-  useEffect(() => {
-    const handler = () => onFsChange()
-    document.addEventListener('fullscreenchange', handler)
-    document.addEventListener('webkitfullscreenchange', handler)
-    return () => { document.removeEventListener('fullscreenchange', handler); document.removeEventListener('webkitfullscreenchange', handler) }
-  }, [onFsChange])
 
   const bg = phase === 'ready' ? '#22c55e' :
              phase === 'tooEarly' ? '#f59e0b' :
              phase === 'result' ? '#3b82f6' : '#1e293b'
 
   return (
-    <ToolLayout hideHeader={isFs}
+    <GameShell
+      name="REACTION TIME"
+      startAction={resetGame} startLabel="⟲ Restart" 
       title="Reaction Time Test - How Fast Are You?"
       desc="Test your reaction speed! See how fast you can respond to visual cues. Track your best times and compete with yourself."
       icon="⚡" iconBg="rgba(245,158,11,0.08)"
@@ -159,11 +145,7 @@ export default function games_reaction_time() {
         "genre": "Puzzle", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
       <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
-        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="3494503358" format="vertical" className="mt-2" width={160} height={600} />
-        </div>
         <div className="flex-1 min-w-0 max-w-xl mx-auto space-y-5 overflow-hidden">
         {/* Stats */}
         <div className="glass p-4">
@@ -184,7 +166,7 @@ export default function games_reaction_time() {
         </div>
 
         {/* Game area */}
-        <div ref={resultRef}
+        <div
           className="relative rounded-2xl overflow-hidden border border-white/[0.08] cursor-pointer select-none transition-colors duration-200"
           style={{ background: bg, minHeight: '280px' }}
           onClick={phase === 'idle' ? startRound :
@@ -304,15 +286,8 @@ export default function games_reaction_time() {
         )}
 
         <p className="text-center text-xs text-slate-400">Best times and history saved on this device.</p>
-          <div className="flex gap-2 justify-center mt-4">
-            <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
-              {isFs ? '⊡' : '⛶'}
-            </button>
-          </div>
-        </div>
-        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start"><GameAdSlot slot="3414612309" format="horizontal" className="mt-2" /><GameAdSlot slot="3414612309" format="vertical" className="mt-2" width={160} height={600} />
         </div>
       </div>
-    </ToolLayout>
+    </GameShell>
   )
 }

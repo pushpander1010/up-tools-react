@@ -1,9 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
-import ToolLayout from '../components/ToolLayout'
-import useJumpToResult from '../hooks/useJumpToResult'
-import useFullscreen from '../hooks/useFullscreen'
-import GameAdSlot from '../components/GameAdSlot'
-import InterstitialAd from '../components/InterstitialAd'
+import GameShell from '../components/GameShell'
 
 const LS = { BEST: 'ut_flappy_best_v1', LAST: 'ut_flappy_last_v1', MEDALS: 'ut_flappy_medals_v1' }
 
@@ -40,7 +36,6 @@ const PIPE_GAP = 140
 const PIPE_SPEED = 2.2
 
 export default function games_flappy_bird() {
-  const { ref: resultRef, jumpTo } = useJumpToResult()
   const canvasRef = useRef(null)
   const [playing, setPlaying] = useState(false)
   const [score, setScore] = useState(0)
@@ -48,11 +43,6 @@ export default function games_flappy_bird() {
   const [lastScore, setLastScore] = useState(() => Number(localStorage.getItem(LS.LAST)||0))
   const [gameState, setGameState] = useState('idle') // idle, running, dead
   const [medal, setMedal] = useState(null)
-  const { isFs, toggle: toggleFs, onChange: onFsChange } = useFullscreen()
-  const [showAd, setShowAd] = useState(false)
-  const pendingAction = useRef(null)
-  const triggerAd = useCallback((action) => { pendingAction.current = action; setShowAd(true) }, [])
-  const onAdDismiss = useCallback(() => { setShowAd(false); if (pendingAction.current) { pendingAction.current(); pendingAction.current = null } }, [])
 
   const gRef = useRef({
     bird: { x: 80, y: 200, vy: 0, rot: 0 },
@@ -386,23 +376,13 @@ export default function games_flappy_bird() {
   }, [startGame, flap])
 
   useEffect(() => { fitCanvas(); draw() }, [fitCanvas, draw])
-  useEffect(() => {
-    const h = () => { fitCanvas(); draw() }
-    window.addEventListener('resize', h)
-    return () => { window.removeEventListener('resize', h); if (gRef.current.animId) cancelAnimationFrame(gRef.current.animId) }
-  }, [fitCanvas, draw])
 
-  useEffect(() => {
-    const handler = () => onFsChange()
-    document.addEventListener('fullscreenchange', handler)
-    document.addEventListener('webkitfullscreenchange', handler)
-    return () => { document.removeEventListener('fullscreenchange', handler); document.removeEventListener('webkitfullscreenchange', handler) }
-  }, [onFsChange])
 
   return (
-    <ToolLayout
+    <GameShell
+      name="FLAPPY BIRD"
+      startAction={startGame} startLabel="▶ Start"
       title="Flappy Bird Online - Free Arcade Game"
-      hideHeader={isFs}
       desc="Play Flappy Bird online. Tap to flap, avoid pipes, and try to beat your high score. Day/night cycle and medal system!"
       icon="🐦" iconBg="rgba(251,191,36,0.08)"
       category="fun" slug="games-flappy-bird"
@@ -425,11 +405,7 @@ export default function games_flappy_bird() {
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
       <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
-        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="3494503358" format="vertical" className="mt-2" width={160} height={600} />
-        </div>
         <div className="flex-1 min-w-0 max-w-lg mx-auto space-y-5 overflow-hidden">
         <div className="glass p-4">
           <div className="grid grid-cols-3 gap-4">
@@ -449,15 +425,12 @@ export default function games_flappy_bird() {
         </div>
 
         <div className="flex gap-3 justify-center">
-          <button onClick={gameState === 'dead' ? () => triggerAd(startGame) : flap} className="glow-btn px-6 py-3 text-sm">
+          <button onClick={gameState === 'dead' ? () => startGame : flap} className="glow-btn px-6 py-3 text-sm">
             {gameState === 'dead' ? '⟲ Play Again' : gameState === 'running' ? '🐦 Flap!' : '▶ Start'}
-          </button>
-          <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
-            {isFs ? '⊡' : '⛶'}
           </button>
         </div>
 
-        <div ref={resultRef} className="glass p-3 flex justify-center overflow-hidden">
+        <div className="glass p-3 flex justify-center overflow-hidden">
           <canvas ref={canvasRef}
             onPointerDown={handlePointerDown}
             className="rounded-xl cursor-pointer"
@@ -469,13 +442,7 @@ export default function games_flappy_bird() {
           Space / Tap / Click to flap | Avoid pipes | Earn medals!
         </p>
         </div>
-        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="3414612309" format="vertical" className="mt-2" width={160} height={600} />
-        </div>
       </div>
-      <div className="w-full max-w-6xl mx-auto px-5">
-  <GameAdSlot slot="8865234201" format="horizontal" className="mt-2" />
-</div>
-    </ToolLayout>
+    </GameShell>
   )
 }

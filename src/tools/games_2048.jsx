@@ -1,9 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
-import ToolLayout from '../components/ToolLayout'
-import useJumpToResult from '../hooks/useJumpToResult'
-import useFullscreen from '../hooks/useFullscreen'
-import GameAdSlot from '../components/GameAdSlot'
-import InterstitialAd from '../components/InterstitialAd'
+import GameShell from '../components/GameShell'
 
 const TILE_COLORS = {
   2: '#eee4da', 4: '#ede0c8', 8: '#f2b179', 16: '#f59563',
@@ -83,7 +79,6 @@ function saveLocal(state) { try { localStorage.setItem(LS.STATE, JSON.stringify(
 function loadLocal() { try { return JSON.parse(localStorage.getItem(LS.STATE)||'null') } catch { return null } }
 
 export default function games_2048() {
-  const { ref: resultRef, jumpTo } = useJumpToResult()
   const [grid, setGrid] = useState(emptyGrid)
   const [score, setScore] = useState(0)
   const [moves, setMoves] = useState(0)
@@ -97,33 +92,19 @@ export default function games_2048() {
   const stateRef = useRef({ grid: emptyGrid, score: 0, moves: 0, history: [] })
 
   // Fullscreen
-  const { isFs, toggle: toggleFs, onChange: onFsChange } = useFullscreen()
-  useEffect(() => {
-    const handler = () => onFsChange()
-    document.addEventListener('fullscreenchange', handler)
-    document.addEventListener('webkitfullscreenchange', handler)
-    return () => {
-      document.removeEventListener('fullscreenchange', handler)
-      document.removeEventListener('webkitfullscreenchange', handler)
-    }
-  }, [onFsChange])
 
   // Interstitial ad state
-  const [showAd, setShowAd] = useState(false)
-  const pendingAction = useRef(null)
 
-  const triggerAd = useCallback((action) => {
-    pendingAction.current = action
-    setShowAd(true)
-  }, [])
 
-  const onAdDismiss = useCallback(() => {
-    setShowAd(false)
-    if (pendingAction.current) {
-      pendingAction.current()
-      pendingAction.current = null
-    }
-  }, [])
+
+
+
+
+
+
+
+
+
 
   const syncState = useCallback((g, s, m) => {
     stateRef.current = { ...stateRef.current, grid: g, score: s, moves: m }
@@ -239,8 +220,10 @@ export default function games_2048() {
   const cellSize = (boardSize - gap * 5) / 4
 
   return (
-    <ToolLayout
-      title="2048 : A Fun Numbers Puzzle Game Online — Play Free" hideHeader={isFs}
+    <GameShell
+      name="2048"
+      startAction={startNew} startLabel="🎮 New Game"
+      title="2048 : A Fun Numbers Puzzle Game Online — Play Free" 
       desc="Play 2048 online for free. Swipe or use arrow keys to merge tiles, beat your high score, and challenge yourself with this addictive number puzzle game."
       icon="🎲" iconBg="rgba(245,158,11,0.08)"
       category="fun" slug="games-2048"
@@ -263,13 +246,9 @@ export default function games_2048() {
       }}
     >
       {/* Interstitial ad on retry/start */}
-      <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
 
       <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
         {/* Left aside ad */}
-        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="3494503358" format="vertical" className="mt-2" width={160} height={600} />
-        </div>
 
         {/* Game center */}
         <div className="flex-1 min-w-0 max-w-xl mx-auto space-y-5 overflow-hidden">
@@ -284,8 +263,8 @@ export default function games_2048() {
               </div>
             </div>
             <div className="flex gap-3 justify-center mt-4">
-              <button onClick={(e) => { e.stopPropagation(); triggerAd(startNew) }} className="glow-btn px-6 py-3 text-sm">🎮 New Game</button>
-              <button onClick={(e) => { e.stopPropagation(); triggerAd(continueSaved) }} className="px-6 py-3 rounded-xl text-sm font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">↩️ Continue</button>
+              <button onClick={(e) => { e.stopPropagation(); startNew }} className="glow-btn px-6 py-3 text-sm">🎮 New Game</button>
+              <button onClick={(e) => { e.stopPropagation(); continueSaved }} className="px-6 py-3 rounded-xl text-sm font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">↩️ Continue</button>
             </div>
             <p className="text-center text-xs text-slate-400 mt-4">👆 Tap anywhere or use buttons to start</p>
           </div>
@@ -301,17 +280,14 @@ export default function games_2048() {
               </div>
               <div className="flex gap-2">
                 <button onClick={undo} disabled={!stateRef.current.history.length} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all disabled:opacity-30">↶</button>
-                <button onClick={() => triggerAd(startNew)} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">⟲</button>
-                <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
-                  {isFs ? '⊡' : '⛶'}
-                </button>
+                <button onClick={() => startNew} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">⟲</button>
 
                 <button onClick={()=>{setPlaying(false)}} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">⟵</button>
               </div>
             </div>
 
             {/* Board */}
-            <div ref={(el) => { resultRef.current = el; boardRef.current = el; }} className="glass p-3">
+            <div ref={boardRef} className="glass p-3">
               <div className="relative mx-auto" style={{ width: boardSize, height: boardSize, background: '#0b1628', borderRadius: 12, padding: gap, touchAction: 'none' }}
                 onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
                 {[0,1,2,3].map(r => [0,1,2,3].map(c => (
@@ -338,14 +314,12 @@ export default function games_2048() {
                     <div className="text-3xl mb-2">{won ? '🎉' : '💀'}</div>
                     <h2 className="text-xl font-bold text-white mb-2">{won ? 'You Won!' : 'Game Over!'}</h2>
                     <p className="text-sm text-slate-400 mb-4">Score: {score}</p>
-                    <button onClick={() => triggerAd(startNew)} className="glow-btn px-6 py-3 text-sm">↻ Try Again</button>
                   </div>
                 )}
               </div>
             </div>
 
             {/* Bottom ad banner */}
-            <GameAdSlot slot="8865234201" format="horizontal" className="mt-2" />
 
             <p className="text-center text-xs text-slate-400">Tip: use WASD too. Press Back to stop — progress is saved.</p>
           </>
@@ -353,10 +327,7 @@ export default function games_2048() {
         </div>
 
         {/* Right aside ad */}
-        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="3414612309" format="vertical" className="mt-2" width={160} height={600} />
-        </div>
       </div>
-    </ToolLayout>
+    </GameShell>
   )
 }

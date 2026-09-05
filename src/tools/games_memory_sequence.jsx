@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
-import ToolLayout from '../components/ToolLayout'
+import GameShell from '../components/GameShell'
 
 /* ── Audio helpers ────────────────────────────────────────────────────────── */
 let audioCtx = null
@@ -142,7 +142,9 @@ export default function GamesMemorySequence() {
 
   /* ── Render ── */
   return (
-    <ToolLayout
+    <GameShell
+      name="MEMORY SEQUENCE"
+      startAction={startGame} startLabel="▶ Start"
       title="Memory Sequence Game – Simon Says Online Free"
       desc="Test your memory! Watch the sequence of colors, then repeat it. Each round gets faster and longer. How far can you go?"
       icon="🧠" iconBg="rgba(239,68,68,0.08)"
@@ -236,6 +238,6 @@ export default function GamesMemorySequence() {
           <p>Each correct round adds one step and increases the flash speed. Try to beat your best score!</p>
         </div>
       </div>
-    </ToolLayout>
+    </GameShell>
   )
 }

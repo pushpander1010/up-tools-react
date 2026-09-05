@@ -1,9 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
-import ToolLayout from '../components/ToolLayout'
-import useJumpToResult from '../hooks/useJumpToResult'
-import useFullscreen from '../hooks/useFullscreen'
-import GameAdSlot from '../components/GameAdSlot'
-import InterstitialAd from '../components/InterstitialAd'
+import GameShell from '../components/GameShell'
 
 const LS = { BEST: 'ut_td_best_v1', LAST: 'ut_td_last_v1' }
 
@@ -62,7 +58,6 @@ function generateWave(waveNum) {
 }
 
 export default function games_tower_defense() {
-  const { ref: resultRef, jumpTo } = useJumpToResult()
   const canvasRef = useRef(null)
   const [gold, setGold] = useState(200)
   const [lives, setLives] = useState(20)
@@ -76,11 +71,6 @@ export default function games_tower_defense() {
   const [waveActive, setWaveActive] = useState(false)
   const [showTutorial, setShowTutorial] = useState(true)
 
-  const { isFs, toggle: toggleFs, onChange: onFsChange } = useFullscreen()
-  const [showAd, setShowAd] = useState(false)
-  const pendingAction = useRef(null)
-  const triggerAd = useCallback((action) => { pendingAction.current = action; setShowAd(true) }, [])
-  const onAdDismiss = useCallback(() => { setShowAd(false); if (pendingAction.current) { pendingAction.current(); pendingAction.current = null } }, [])
 
   const gRef = useRef({
     towers: [],
@@ -574,21 +564,12 @@ export default function games_tower_defense() {
   }, [startGame, startWave])
 
   useEffect(() => { fitCanvas(); draw() }, [fitCanvas, draw])
-  useEffect(() => {
-    const h = () => { fitCanvas(); draw() }
-    window.addEventListener('resize', h)
-    return () => { window.removeEventListener('resize', h); if (gRef.current.animId) cancelAnimationFrame(gRef.current.animId) }
-  }, [fitCanvas, draw])
 
-  useEffect(() => {
-    const handler = () => onFsChange()
-    document.addEventListener('fullscreenchange', handler)
-    document.addEventListener('webkitfullscreenchange', handler)
-    return () => { document.removeEventListener('fullscreenchange', handler); document.removeEventListener('webkitfullscreenchange', handler) }
-  }, [onFsChange])
 
   return (
-    <ToolLayout hideHeader={isFs}
+    <GameShell
+      name="TOWER DEFENSE"
+      startAction={startGame} startLabel="▶ Start" 
       title="Tower Defense Game Online - Free Strategy Game"
       desc="Play Tower Defense online! Build towers to defend against waves of enemies. Choose from Arrow, Cannon, Ice, and Lightning towers. Strategy and planning required!"
       icon="🏰" iconBg="rgba(239,68,68,0.08)"
@@ -612,11 +593,7 @@ export default function games_tower_defense() {
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
       <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
-        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="3494503358" format="vertical" className="mt-2" width={160} height={600} />
-        </div>
         <div className="flex-1 min-w-0 max-w-xl mx-auto space-y-5 overflow-hidden">
         {/* Stats */}
         <div className="glass p-4">
@@ -679,9 +656,6 @@ export default function games_tower_defense() {
 
         {/* Controls */}
         <div className="flex gap-3 justify-center">
-          <button onClick={() => triggerAd(startGame)} className="glow-btn px-6 py-3 text-sm">
-            {gameOver ? '🔄 New Game' : '▶ Start Game'}
-          </button>
           {!gameOver && (
             <button onClick={startWave} disabled={waveActive}
               className={`px-6 py-3 text-sm rounded-xl font-semibold border transition-all ${
@@ -695,7 +669,7 @@ export default function games_tower_defense() {
         </div>
 
         {/* Canvas */}
-        <div ref={resultRef} className="glass p-3 flex justify-center overflow-hidden">
+        <div className="glass p-3 flex justify-center overflow-hidden">
           <canvas ref={canvasRef}
             onPointerDown={handlePointerDown}
             onPointerMove={handlePointerMove}
@@ -707,19 +681,8 @@ export default function games_tower_defense() {
         <p className="text-center text-xs text-slate-400">
           Keys: 1-4 select tower | Space = send wave | Esc = cancel
         </p>
-          <div className="flex gap-2 justify-center mt-4">
-            <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
-              {isFs ? '⊡' : '⛶'}
-            </button>
-          </div>
-        </div>
-        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="3414612309" format="vertical" className="mt-2" width={160} height={600} />
         </div>
       </div>
-      <div className="w-full max-w-6xl mx-auto px-5 mt-2">
-        <GameAdSlot slot="8865234201" format="horizontal" />
-      </div>
-    </ToolLayout>
+    </GameShell>
   )
 }

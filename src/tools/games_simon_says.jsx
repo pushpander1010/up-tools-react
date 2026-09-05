@@ -1,9 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
-import ToolLayout from '../components/ToolLayout'
-import useJumpToResult from '../hooks/useJumpToResult'
-import useFullscreen from '../hooks/useFullscreen'
-import GameAdSlot from '../components/GameAdSlot'
-import InterstitialAd from '../components/InterstitialAd'
+import GameShell from '../components/GameShell'
 
 const LS = { HIGH: 'ut_simon_high' }
 
@@ -51,7 +47,6 @@ function getGap(level) {
 }
 
 export default function games_simon_says() {
-  const { ref: resultRef, jumpTo } = useJumpToResult()
   const [sequence, setSequence] = useState([])
   const [playerIndex, setPlayerIndex] = useState(0)
   const [gameState, setGameState] = useState('idle') // idle, showing, input, gameover
@@ -66,11 +61,6 @@ export default function games_simon_says() {
   const sequenceRef = useRef([])
   const playerIndexRef = useRef(0)
 
-  const { isFs, toggle: toggleFs, onChange: onFsChange } = useFullscreen()
-  const [showAd, setShowAd] = useState(false)
-  const pendingAction = useRef(null)
-  const triggerAd = useCallback((action) => { pendingAction.current = action; setShowAd(true) }, [])
-  const onAdDismiss = useCallback(() => { setShowAd(false); if (pendingAction.current) { pendingAction.current(); pendingAction.current = null } }, [])
 
   useEffect(() => {
     sequenceRef.current = sequence
@@ -201,15 +191,11 @@ export default function games_simon_says() {
     return () => window.removeEventListener('keydown', handleKey)
   }, [gameState, handleColorClick, startGame])
 
-  useEffect(() => {
-    const handler = () => onFsChange()
-    document.addEventListener('fullscreenchange', handler)
-    document.addEventListener('webkitfullscreenchange', handler)
-    return () => { document.removeEventListener('fullscreenchange', handler); document.removeEventListener('webkitfullscreenchange', handler) }
-  }, [onFsChange])
 
   return (
-    <ToolLayout hideHeader={isFs}
+    <GameShell
+      name="SIMON SAYS"
+      startAction={startGame} startLabel="▶ Start" 
       title="Simon Says Game - Memory Challenge"
       desc="Play Simon Says online! Repeat the color sequence as it grows longer. Test your memory and reflexes in this classic arcade game."
       icon="🎮"
@@ -235,14 +221,10 @@ export default function games_simon_says() {
         "genre": "Memory", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
       <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
-        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="3494503358" format="vertical" className="mt-2" width={160} height={600} />
-        </div>
         <div className="flex-1 min-w-0 max-w-sm mx-auto space-y-5 overflow-hidden">
         {/* Stats */}
-        <div ref={resultRef} className="glass p-4">
+        <div className="glass p-4">
           <div className="grid grid-cols-2 gap-4 text-center">
             <div className="text-center">
               <div className="text-2xl font-extrabold text-white">{score}</div>
@@ -329,26 +311,15 @@ export default function games_simon_says() {
                 <p className="text-sm text-slate-400">Watch the sequence and repeat it. Each round gets longer and faster!</p>
               </>
             )}
-            <button onClick={() => triggerAd(startGame)} className="glow-btn px-8 py-3 text-sm">
-             {gameState === 'gameover' ? 'Play Again' : 'Start Game'}
-           </button>
           </div>
         )}
 
         <div className="text-center space-y-1">
           <p className="text-xs text-slate-400">Keyboard: 1-4 or Arrow Keys to select colors</p>
           <p className="text-xs text-slate-400">Each color has a unique sound to help you remember</p>
-          <div className="flex gap-2 justify-center mt-4">
-            <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
-              {isFs ? '⊡' : '⛶'}
-            </button>
-          </div>
         </div>
-        </div>
-                <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="3414612309" format="vertical" className="mt-2" width={160} height={600} />
         </div>
       </div>
-    </ToolLayout>
+    </GameShell>
   )
 }

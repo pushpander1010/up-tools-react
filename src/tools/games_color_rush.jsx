@@ -1,9 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
-import ToolLayout from '../components/ToolLayout'
-import useJumpToResult from '../hooks/useJumpToResult'
-import useFullscreen from '../hooks/useFullscreen'
-import GameAdSlot from '../components/GameAdSlot'
-import InterstitialAd from '../components/InterstitialAd'
+import GameShell from '../components/GameShell'
 
 const LS = { HIGH: 'ut_cr_high', LEVEL: 'ut_cr_level' }
 
@@ -59,7 +55,6 @@ function generateGrid(size, level) {
 }
 
 export default function games_color_rush() {
-  const { ref: resultRef, jumpTo } = useJumpToResult()
   const [playing, setPlaying] = useState(false)
   const [gridSize, setGridSize] = useState(3)
   const [grid, setGrid] = useState([])
@@ -72,11 +67,6 @@ export default function games_color_rush() {
   const [shakeWrong, setShakeWrong] = useState(null)
   const [flashCorrect, setFlashCorrect] = useState(null)
   const timerRef = useRef(null)
-  const { isFs, toggle: toggleFs, onChange: onFsChange } = useFullscreen()
-  const [showAd, setShowAd] = useState(false)
-  const pendingAction = useRef(null)
-  const triggerAd = useCallback((action) => { pendingAction.current = action; setShowAd(true) }, [])
-  const onAdDismiss = useCallback(() => { setShowAd(false); if (pendingAction.current) { pendingAction.current(); pendingAction.current = null } }, [])
 
   const startGame = useCallback((size) => {
     playSelect()
@@ -143,12 +133,6 @@ export default function games_color_rush() {
     return () => clearInterval(timerRef.current)
   }, [playing, gameOver, level])
 
-  useEffect(() => {
-    const handler = () => onFsChange()
-    document.addEventListener('fullscreenchange', handler)
-    document.addEventListener('webkitfullscreenchange', handler)
-    return () => { document.removeEventListener('fullscreenchange', handler); document.removeEventListener('webkitfullscreenchange', handler) }
-  }, [onFsChange])
 
   const timerPct = maxTimer > 0 ? (timer / maxTimer) * 100 : 0
   const timerColor = timerPct > 50 ? '#22c55e' : timerPct > 25 ? '#f59e0b' : '#ef4444'
@@ -158,9 +142,11 @@ export default function games_color_rush() {
                    'calc((min(100vw - 4rem, 400px) - 2.5rem) / 5)'
 
   return (
-    <ToolLayout
+    <GameShell
+      name="COLOR RUSH"
+      startAction={() => startGame(gridSize)} startLabel="▶ Start"
       title="Color Rush Game - Test Your Eyesight"
-      hideHeader={isFs}
+ 
       desc="Can you spot the odd color out? Challenge your visual perception with Color Rush. Increasingly subtle color differences test your eyes!"
       icon="🎨" iconBg="rgba(168,85,247,0.08)"
       category="fun" slug="games-color-rush"
@@ -183,11 +169,7 @@ export default function games_color_rush() {
         "genre": "Puzzle", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
       <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
-        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="3494503358" format="vertical" className="mt-2" width={160} height={600} />
-        </div>
         <div className="flex-1 min-w-0 max-w-xl mx-auto space-y-5 overflow-hidden">
         {!playing && !gameOver ? (
           <div className="space-y-4">
@@ -209,7 +191,7 @@ export default function games_color_rush() {
             </div>
           </div>
         ) : (
-          <div ref={resultRef} className="space-y-4">
+          <div className="space-y-4">
             {/* Score + Level + Timer */}
             <div className="glass p-4">
               <div className="grid grid-cols-3 gap-4">
@@ -262,7 +244,7 @@ export default function games_color_rush() {
                   <div className="text-xs text-slate-400 mt-1">Level reached: {level}</div>
                 </div>
                 <div className="flex gap-2 justify-center">
-                  <button onClick={() => triggerAd(() => { setPlaying(false); setGameOver(false) })}
+                  <button onClick={() => { setPlaying(false); setGameOver(false) }}
                     className="glow-btn px-6 py-3 text-sm">
                     Play Again
                   </button>
@@ -273,14 +255,6 @@ export default function games_color_rush() {
         )}
 
         <p className="text-center text-xs text-slate-400">High scores saved on this device.</p>
-        <div className="flex gap-3 justify-center">
-          <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
-            {isFs ? '⊡' : '⛶'}
-          </button>
-        </div>
-        </div>
-        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="3414612309" format="vertical" className="mt-2" width={160} height={600} />
         </div>
       </div>
 
@@ -288,6 +262,6 @@ export default function games_color_rush() {
         @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-6px)} 75%{transform:translateX(6px)} }
         @keyframes flash { 0%{filter:brightness(1.5)} 100%{filter:brightness(1)} }
       `}</style>
-      </ToolLayout>
+      </GameShell>
   )
 }

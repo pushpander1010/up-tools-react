@@ -1,9 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
-import ToolLayout from '../components/ToolLayout'
-import useJumpToResult from '../hooks/useJumpToResult'
-import useFullscreen from '../hooks/useFullscreen'
-import GameAdSlot from '../components/GameAdSlot'
-import InterstitialAd from '../components/InterstitialAd'
+import GameShell from '../components/GameShell'
 
 const THEMES = {
   neon: ["#06b6d4", "#ec4899", "#3b82f6", "#a855f7", "#14b8a6"],
@@ -55,7 +51,6 @@ function playWinSound() {
 }
 
 export default function games_wheel_of_names() {
-  const { ref: resultRef, jumpTo } = useJumpToResult()
   const canvasRef = useRef(null)
   const confettiRef = useRef(null)
   const [namesText, setNamesText] = useState(DEFAULT_NAMES.join('\n'))
@@ -75,11 +70,6 @@ export default function games_wheel_of_names() {
   const confettiActiveRef = useRef(false)
   const confettiParticles = useRef([])
 
-  const { isFs, toggle: toggleFs, onChange: onFsChange } = useFullscreen()
-  const [showAd, setShowAd] = useState(false)
-  const pendingAction = useRef(null)
-  const triggerAd = useCallback((action) => { pendingAction.current = action; setShowAd(true) }, [])
-  const onAdDismiss = useCallback(() => { setShowAd(false); if (pendingAction.current) { pendingAction.current(); pendingAction.current = null } }, [])
 
   const names = namesText.split('\n').map(n => n.trim()).filter(n => n.length > 0)
   namesRef.current = names
@@ -278,16 +268,12 @@ export default function games_wheel_of_names() {
   }
 
 
-  useEffect(() => {
-    const handler = () => onFsChange()
-    document.addEventListener('fullscreenchange', handler)
-    document.addEventListener('webkitfullscreenchange', handler)
-    return () => { document.removeEventListener('fullscreenchange', handler); document.removeEventListener('webkitfullscreenchange', handler) }
-  }, [onFsChange])
 
   return (
-    <ToolLayout
-      hideHeader={isFs}
+    <GameShell
+      name="WHEEL OF NAMES"
+      startAction={startSpin} startLabel="▶ Spin"
+ 
       title="Wheel of Names - Free Random Name Picker & Spinner"
       desc="Spin a custom wheel of names to pick a random winner! Perfect for classroom raffles, giveaways, or decision-making."
       icon="🎡" iconBg="rgba(99,102,241,0.08)"
@@ -309,26 +295,19 @@ export default function games_wheel_of_names() {
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
       <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
-        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="3494503358" format="vertical" className="mt-2" width={160} height={600} />
-        </div>
         <div className="flex-1 min-w-0 max-w-4xl mx-auto space-y-5 overflow-hidden">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Wheel */}
           <div className="space-y-5">
-            <div ref={resultRef} className="relative mx-auto" style={{ maxWidth: 400 }}>
+            <div className="relative mx-auto" style={{ maxWidth: 400 }}>
               <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1 w-0 h-0 border-l-[12px] border-r-[12px] border-t-[20px] border-l-transparent border-r-transparent border-t-white z-10"/>
               <canvas ref={canvasRef} className="w-full rounded-full" style={{ aspectRatio: '1' }} aria-label="Name spinner wheel"/>
             </div>
             <div className="text-center">
-              <button onClick={() => triggerAd(startSpin)} disabled={isSpinning || names.length === 0}
+              <button onClick={() => startSpin} disabled={isSpinning || names.length === 0}
                   className="glow-btn px-8 py-3 rounded-xl text-sm font-bold text-white transition-all disabled:opacity-50">
                   🎡 Spin Wheel
-                </button>
-                <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
-                  {isFs ? '⊡' : '⛶'}
                 </button>
               </div>
           </div>
@@ -409,13 +388,8 @@ export default function games_wheel_of_names() {
 
         {/* Confetti canvas */}
         <canvas ref={confettiRef} className="fixed inset-0 pointer-events-none z-[9999]" style={{ position: 'fixed' }}/>
-      
-        <GameAdSlot slot="8865234201" format="horizontal" className="mt-2" />
-      </div>
-      <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-        <GameAdSlot slot="3414612309" format="vertical" className="mt-2" width={160} height={600} />
       </div>
       </div>
-    </ToolLayout>
+    </GameShell>
   )
 }

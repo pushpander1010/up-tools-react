@@ -1,9 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
-import ToolLayout from '../components/ToolLayout'
-import useJumpToResult from '../hooks/useJumpToResult'
-import useFullscreen from '../hooks/useFullscreen'
-import GameAdSlot from '../components/GameAdSlot'
-import InterstitialAd from '../components/InterstitialAd'
+import GameShell from '../components/GameShell'
 
 /* ─── Sudoku Engine (ported from super-sudoku) ─── */
 const NUMBERS = [1,2,3,4,5,6,7,8,9]
@@ -105,7 +101,6 @@ function playWin() { playTone(523,0.15,'sine',0.08); setTimeout(()=>playTone(659
 const LS = { BEST: 'ut_sudoku_best_v1' }
 
 export default function games_super_sudoku() {
-  const { ref: resultRef, jumpTo } = useJumpToResult()
   const canvasRef = useRef(null)
   const [difficulty, setDifficulty] = useState('medium')
   const [puzzle, setPuzzle] = useState(null)
@@ -121,11 +116,6 @@ export default function games_super_sudoku() {
   const [bestTime, setBestTime] = useState(()=>{try{return JSON.parse(localStorage.getItem(LS.BEST)||'{}')}catch{return {}}})
   const [gameStarted, setGameStarted] = useState(false)
 
-  const { isFs, toggle: toggleFs, onChange: onFsChange } = useFullscreen()
-  const [showAd, setShowAd] = useState(false)
-  const pendingAction = useRef(null)
-  const triggerAd = useCallback((action) => { pendingAction.current = action; setShowAd(true) }, [])
-  const onAdDismiss = useCallback(() => { setShowAd(false); if(pendingAction.current){pendingAction.current();pendingAction.current=null} }, [])
 
   const timerRef = useRef(null)
   const gRef = useRef({ selected: null, board: null, notes: null, initial: null, solution: null })
@@ -322,15 +312,11 @@ export default function games_super_sudoku() {
 
   const formatTime = (s) => `${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`
 
-  useEffect(() => {
-    const h = () => onFsChange()
-    document.addEventListener('fullscreenchange', h)
-    document.addEventListener('webkitfullscreenchange', h)
-    return () => { document.removeEventListener('fullscreenchange', h); document.removeEventListener('webkitfullscreenchange', h) }
-  }, [onFsChange])
 
   return (
-    <ToolLayout hideHeader={isFs}
+    <GameShell
+      name="SUPER SUDOKU"
+      startAction={startGame} startLabel="▶ Start" 
       title="Super Sudoku Online - Free Puzzle Game"
       desc="Play Sudoku online with multiple difficulty levels. Generate unique puzzles with guaranteed single solutions. Notes mode, timer, and error tracking."
       icon="🔢" iconBg="rgba(99,102,241,0.08)"
@@ -354,11 +340,7 @@ export default function games_super_sudoku() {
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
       <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
-        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="3494503358" format="vertical" className="mt-2" width={160} height={600} />
-        </div>
         <div className="flex-1 min-w-0 max-w-xl mx-auto space-y-4 overflow-hidden">
           {/* Difficulty + Controls */}
           <div className="glass p-4">
@@ -392,7 +374,7 @@ export default function games_super_sudoku() {
 
           {/* Action Buttons */}
           <div className="flex gap-2 justify-center flex-wrap">
-            <button onClick={()=>triggerAd(startGame)} className="glow-btn px-5 py-2.5 text-sm">
+            <button onClick={()=>startGame} className="glow-btn px-5 py-2.5 text-sm">
               {completed ? '⟲ New Game' : gameStarted ? '⟲ Restart' : '▶ Start Game'}
             </button>
             <button onClick={()=>setNotesMode(m=>!m)}
@@ -415,7 +397,7 @@ export default function games_super_sudoku() {
           )}
 
           {/* Canvas */}
-          <div ref={resultRef} className="glass p-3 flex justify-center overflow-hidden">
+          <div className="glass p-3 flex justify-center overflow-hidden">
             <canvas ref={canvasRef} onClick={handleCanvasClick}
               className="rounded-xl cursor-pointer" style={{background:'#0a0f1a',touchAction:'none'}} />
           </div>
@@ -433,20 +415,8 @@ export default function games_super_sudoku() {
           <p className="text-center text-xs text-slate-400">
             Desktop: Click cell + 1-9 keys | N = notes toggle | ← → ↑ ↓ navigate
           </p>
-
-          <div className="flex gap-2 justify-center mt-2">
-            <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
-              {isFs ? '⊡' : '⛶'}
-            </button>
-          </div>
-        </div>
-        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="3414612309" format="vertical" className="mt-2" width={160} height={600} />
         </div>
       </div>
-      <div className="w-full max-w-6xl mx-auto px-5 mt-2">
-        <GameAdSlot slot="8865234201" format="horizontal" />
-      </div>
-    </ToolLayout>
+    </GameShell>
   )
 }

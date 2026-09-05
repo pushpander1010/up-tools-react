@@ -1,9 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
-import ToolLayout from '../components/ToolLayout'
-import useJumpToResult from '../hooks/useJumpToResult'
-import useFullscreen from '../hooks/useFullscreen'
-import GameAdSlot from '../components/GameAdSlot'
-import InterstitialAd from '../components/InterstitialAd'
+import GameShell from '../components/GameShell'
 
 const LS = { RW: 'ut_c4_rw_v1', YW: 'ut_c4_yw_v1', DR: 'ut_c4_dr_v1' }
 const ROWS = 6, COLS = 7
@@ -115,7 +111,6 @@ function minimax(board, depth, alpha, beta, maximizing, aiPlayer) {
 }
 
 export default function games_connect_4() {
-  const { ref: resultRef, jumpTo } = useJumpToResult()
   const [board, setBoard] = useState(() => Array.from({length:ROWS}, ()=>Array(COLS).fill(null)))
   const [isRed, setIsRed] = useState(true)
   const [mode, setMode] = useState('ai')
@@ -129,11 +124,6 @@ export default function games_connect_4() {
   const [animating, setAnimating] = useState(false)
   const [hoverCol, setHoverCol] = useState(-1)
   const boardRef = useRef(null)
-  const { isFs, toggle: toggleFs, onChange: onFsChange } = useFullscreen()
-  const [showAd, setShowAd] = useState(false)
-  const pendingAction = useRef(null)
-  const triggerAd = useCallback((action) => { pendingAction.current = action; setShowAd(true) }, [])
-  const onAdDismiss = useCallback(() => { setShowAd(false); if (pendingAction.current) { pendingAction.current(); pendingAction.current = null } }, [])
 
   const updateScores = useCallback((r,d,y) => {
     setRWins(r); setYWins(y); setDraws(d)
@@ -187,19 +177,14 @@ export default function games_connect_4() {
     }
   }, [board, isRed, winner, draw, animating, mode, rWins, yWins, draws, updateScores])
 
-  useEffect(() => {
-    const handler = () => onFsChange()
-    document.addEventListener('fullscreenchange', handler)
-    document.addEventListener('webkitfullscreenchange', handler)
-    return () => { document.removeEventListener('fullscreenchange', handler); document.removeEventListener('webkitfullscreenchange', handler) }
-  }, [onFsChange])
 
   const cellSz = 'w-11 h-11 sm:w-12 sm:h-12'
 
   return (
-    <ToolLayout
+    <GameShell
+      name="CONNECT 4"
+      startAction={resetGame} startLabel="⟲ New Game"
       title="Connect 4 Online - Play vs AI or Friend"
-      hideHeader={isFs}
       desc="Play Connect 4 online against AI or a friend. Drop discs, connect four in a row to win. Animated disc drops!"
       icon="🔴" iconBg="rgba(239,68,68,0.08)"
       category="fun" slug="games-connect-4"
@@ -222,11 +207,7 @@ export default function games_connect_4() {
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
       <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
-        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="3494503358" format="vertical" className="mt-2" width={160} height={600} />
-        </div>
         <div className="flex-1 min-w-0 max-w-lg mx-auto space-y-5 overflow-hidden">
         {/* Mode */}
         <div className="flex gap-2 justify-center">
@@ -264,7 +245,7 @@ export default function games_connect_4() {
         </div>
 
         {/* Board */}
-        <div ref={resultRef} className="flex justify-center">
+        <div className="flex justify-center">
           <div className="bg-blue-600 p-2 sm:p-3 rounded-2xl border-2 border-blue-500 shadow-lg shadow-blue-900/30">
             {/* Column hover indicators */}
             <div className="grid grid-cols-7 gap-1 sm:gap-1.5 mb-1">
@@ -304,14 +285,8 @@ export default function games_connect_4() {
 
         {/* Controls */}
         <div className="flex gap-3 justify-center">
-          <button onClick={() => triggerAd(resetGame)} className="glow-btn px-6 py-3 text-sm">
-           ⟲ New Game
-         </button>
           <button onClick={()=>updateScores(0,0,0)} className="px-4 py-3 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">
            Reset Scores
-          </button>
-          <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
-            {isFs ? '⊡' : '⛶'}
           </button>
         </div>
 
@@ -319,13 +294,7 @@ export default function games_connect_4() {
           Click a column to drop your disc | AI uses minimax for smart play
         </p>
         </div>
-        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="3414612309" format="vertical" className="mt-2" width={160} height={600} />
-        </div>
       </div>
-      <div className="w-full max-w-6xl mx-auto px-5">
-  <GameAdSlot slot="8865234201" format="horizontal" className="mt-2" />
-</div>
-    </ToolLayout>
+    </GameShell>
   )
 }

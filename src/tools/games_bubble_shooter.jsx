@@ -1,9 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
-import ToolLayout from '../components/ToolLayout'
-import useJumpToResult from '../hooks/useJumpToResult'
-import useFullscreen from '../hooks/useFullscreen'
-import GameAdSlot from '../components/GameAdSlot'
-import InterstitialAd from '../components/InterstitialAd'
+import GameShell from '../components/GameShell'
 
 /* ─── Bubble Shooter Engine (ported from Bubble-Shooter-HTML5) ─── */
 const COLORS = ['#ef4444','#22c55e','#3b82f6','#f59e0b','#8b5cf6','#ec4899','#06b6d4']
@@ -21,18 +17,12 @@ function playDrop() { playTone(200,0.15,'sine',0.05) }
 function playGameOver() { playTone(150,0.4,'sawtooth',0.05); setTimeout(()=>playTone(100,0.5,'sawtooth',0.04),200) }
 
 export default function games_bubble_shooter() {
-  const { ref: resultRef, jumpTo } = useJumpToResult()
   const canvasRef = useRef(null)
   const [score, setScore] = useState(0)
   const [best, setBest] = useState(()=>{try{return Number(localStorage.getItem(LS.BEST)||0)}catch{return 0}})
   const [playing, setPlaying] = useState(false)
   const [gameOver, setGameOver] = useState(false)
 
-  const { isFs, toggle: toggleFs, onChange: onFsChange } = useFullscreen()
-  const [showAd, setShowAd] = useState(false)
-  const pendingAction = useRef(null)
-  const triggerAd = useCallback((action) => { pendingAction.current = action; setShowAd(true) }, [])
-  const onAdDismiss = useCallback(() => { setShowAd(false); if(pendingAction.current){pendingAction.current();pendingAction.current=null} }, [])
 
   const gRef = useRef({
     level: null,
@@ -539,15 +529,11 @@ export default function games_bubble_shooter() {
     return () => window.removeEventListener('keydown', handler)
   }, [shootBubble, startGame])
 
-  useEffect(() => {
-    const h = () => onFsChange()
-    document.addEventListener('fullscreenchange', h)
-    document.addEventListener('webkitfullscreenchange', h)
-    return () => { document.removeEventListener('fullscreenchange', h); document.removeEventListener('webkitfullscreenchange', h) }
-  }, [onFsChange])
 
   return (
-    <ToolLayout hideHeader={isFs}
+    <GameShell
+      name="BUBBLE SHOOTER"
+      startAction={startGame} startLabel="▶ Start" 
       title="Bubble Shooter Online - Free Arcade Game"
       desc="Play the classic Bubble Shooter game. Match 3 or more colored bubbles to pop them. Aim and shoot to clear the board!"
       icon="🫧" iconBg="rgba(6,182,212,0.08)"
@@ -571,11 +557,7 @@ export default function games_bubble_shooter() {
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
       <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
-        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="3494503358" format="vertical" className="mt-2" width={160} height={600} />
-        </div>
         <div className="flex-1 min-w-0 max-w-xl mx-auto space-y-4 overflow-hidden">
           <div className="glass p-4">
             <div className="grid grid-cols-2 gap-4">
@@ -591,12 +573,12 @@ export default function games_bubble_shooter() {
           </div>
 
           <div className="flex gap-3 justify-center">
-            <button onClick={()=>triggerAd(startGame)} className="glow-btn px-6 py-3 text-sm">
+            <button onClick={()=>startGame} className="glow-btn px-6 py-3 text-sm">
               {playing && !gameOver ? '⟲ Restart' : '▶ Start Game'}
             </button>
           </div>
 
-          <div ref={resultRef} className="glass p-3 flex justify-center overflow-hidden">
+          <div className="glass p-3 flex justify-center overflow-hidden">
             <canvas ref={canvasRef}
               onMouseMove={handleMouseMove} onClick={handleClick}
               onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}
@@ -607,20 +589,8 @@ export default function games_bubble_shooter() {
           <p className="text-center text-xs text-slate-400">
             Desktop: Move mouse to aim, click to shoot | Mobile: Touch to aim & shoot
           </p>
-
-          <div className="flex gap-2 justify-center mt-2">
-            <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
-              {isFs ? '⊡' : '⛶'}
-            </button>
-          </div>
-        </div>
-        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="3414612309" format="vertical" className="mt-2" width={160} height={600} />
         </div>
       </div>
-      <div className="w-full max-w-6xl mx-auto px-5 mt-2">
-        <GameAdSlot slot="8865234201" format="horizontal" />
-      </div>
-    </ToolLayout>
+    </GameShell>
   )
 }

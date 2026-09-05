@@ -1,9 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
-import ToolLayout from '../components/ToolLayout'
-import useJumpToResult from '../hooks/useJumpToResult'
-import useFullscreen from '../hooks/useFullscreen'
-import GameAdSlot from '../components/GameAdSlot'
-import InterstitialAd from '../components/InterstitialAd'
+import GameShell from '../components/GameShell'
 
 const WORDS = {
   animals: [
@@ -142,7 +138,6 @@ function pickWord(cat) {
 }
 
 export default function games_hangman() {
-  const { ref: resultRef, jumpTo } = useJumpToResult()
   const [category, setCategory] = useState('all')
   const [word, setWord] = useState('')
   const [hint, setHint] = useState('')
@@ -154,11 +149,6 @@ export default function games_hangman() {
   const [started, setStarted] = useState(false)
   const inputRef = useRef(null)
   const wrongCountRef = useRef(0)
-  const { isFs, toggle: toggleFs, onChange: onFsChange } = useFullscreen()
-  const [showAd, setShowAd] = useState(false)
-  const pendingAction = useRef(null)
-  const triggerAd = useCallback((action) => { pendingAction.current = action; setShowAd(true) }, [])
-  const onAdDismiss = useCallback(() => { setShowAd(false); if (pendingAction.current) { pendingAction.current(); pendingAction.current = null } }, [])
 
   const initGame = useCallback((cat) => {
     const entry = pickWord(cat || category)
@@ -239,17 +229,13 @@ export default function games_hangman() {
 
   const inputClass = "w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 
-  useEffect(() => {
-    const handler = () => onFsChange()
-    document.addEventListener('fullscreenchange', handler)
-    document.addEventListener('webkitfullscreenchange', handler)
-    return () => { document.removeEventListener('fullscreenchange', handler); document.removeEventListener('webkitfullscreenchange', handler) }
-  }, [onFsChange])
 
   return (
-    <ToolLayout
+    <GameShell
+      name="HANGMAN"
+      startAction={handleNewGame} startLabel="⟲ New Game"
       title="Hangman Game Online - Free Word Guessing Game"
-      hideHeader={isFs}
+ 
       desc="Classic word guessing game with multiple categories. Guess the word letter by letter before the man is hanged."
       icon="🪢" iconBg="rgba(244,63,94,0.08)"
       category="fun" slug="games-hangman"
@@ -271,11 +257,7 @@ export default function games_hangman() {
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
       <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
-        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="3494503358" format="vertical" className="mt-2" width={160} height={600} />
-        </div>
         <div className="flex-1 min-w-0 max-w-2xl mx-auto space-y-5 overflow-hidden">
         {/* Category selector */}
         <div className="flex gap-2 items-center flex-wrap">
@@ -287,17 +269,14 @@ export default function games_hangman() {
               <option key={cat} value={cat} className="bg-gray-900">{cat.charAt(0).toUpperCase() + cat.slice(1)}</option>
             ))}
           </select>
-          <button onClick={() => triggerAd(handleNewGame)}
+          <button onClick={() => handleNewGame}
             className="ml-auto px-5 py-2.5 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-300 hover:text-white hover:bg-white/[0.1] transition-all">
            New Game
-         </button>
-         <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
-           {isFs ? '⊡' : '⛶'}
          </button>
         </div>
 
         {/* Game area */}
-        <div ref={resultRef} className="glass p-6 relative">
+        <div className="glass p-6 relative">
           {/* SVG Hangman */}
           <div className="flex gap-4 items-start flex-wrap">
             <svg width="140" height="160" viewBox="0 0 160 180" className="flex-shrink-0">
@@ -357,7 +336,7 @@ export default function games_hangman() {
               <div className="text-4xl mb-3">{won ? '🎉' : '💀'}</div>
               <h2 className="text-xl font-bold text-white mb-2">{won ? 'You Won!' : 'Game Over!'}</h2>
               <p className="text-sm text-slate-400 mb-4">The word was: {word.toUpperCase()}</p>
-              <button onClick={() => triggerAd(() => initGame(category))}
+              <button onClick={() => initGame(category)}
                  className="glow-btn px-8 py-3 text-sm">
                 Play Again
               </button>
@@ -365,13 +344,7 @@ export default function games_hangman() {
           )}
         </div>
         </div>
-        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="3414612309" format="vertical" className="mt-2" width={160} height={600} />
-        </div>
       </div>
-      <div className="w-full max-w-6xl mx-auto px-5">
-  <GameAdSlot slot="8865234201" format="horizontal" className="mt-2" />
-</div>
-    </ToolLayout>
+    </GameShell>
   )
 }

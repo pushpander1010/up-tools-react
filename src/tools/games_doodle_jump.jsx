@@ -1,9 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
-import ToolLayout from '../components/ToolLayout'
-import useJumpToResult from '../hooks/useJumpToResult'
-import useFullscreen from '../hooks/useFullscreen'
-import GameAdSlot from '../components/GameAdSlot'
-import InterstitialAd from '../components/InterstitialAd'
+import GameShell from '../components/GameShell'
 
 const LS = { BEST: 'ut_doodle_best_v1', LAST: 'ut_doodle_last_v1' }
 
@@ -17,7 +13,6 @@ function playBreak() { playTone(200,0.15,'sawtooth',0.06) }
 function playFall() { playTone(300,0.2,'sawtooth',0.05); setTimeout(()=>playTone(200,0.3,'sawtooth',0.04),100) }
 
 export default function games_doodle_jump() {
-  const { ref: resultRef, jumpTo } = useJumpToResult()
   const canvasRef = useRef(null)
   const [playing, setPlaying] = useState(false)
   const [score, setScore] = useState(0)
@@ -25,11 +20,6 @@ export default function games_doodle_jump() {
   const [lastScore, setLastScore] = useState(()=>{try{return Number(localStorage.getItem(LS.LAST)||0)}catch{return 0}})
   const [gameOver, setGameOver] = useState(false)
 
-  const { isFs, toggle: toggleFs, onChange: onFsChange } = useFullscreen()
-  const [showAd, setShowAd] = useState(false)
-  const pendingAction = useRef(null)
-  const triggerAd = useCallback((action) => { pendingAction.current = action; setShowAd(true) }, [])
-  const onAdDismiss = useCallback(() => { setShowAd(false); if (pendingAction.current) { pendingAction.current(); pendingAction.current = null } }, [])
 
   const gRef = useRef({
     doodler: { x: 0, y: 0, w: 40, h: 40, facingRight: true },
@@ -448,21 +438,12 @@ export default function games_doodle_jump() {
 
   // Resize
   useEffect(() => { fitCanvas(); draw() }, [fitCanvas, draw])
-  useEffect(() => {
-    const h = () => { fitCanvas(); draw() }
-    window.addEventListener('resize', h)
-    return () => { window.removeEventListener('resize', h); if (gRef.current.animId) cancelAnimationFrame(gRef.current.animId) }
-  }, [fitCanvas, draw])
 
-  useEffect(() => {
-    const handler = () => onFsChange()
-    document.addEventListener('fullscreenchange', handler)
-    document.addEventListener('webkitfullscreenchange', handler)
-    return () => { document.removeEventListener('fullscreenchange', handler); document.removeEventListener('webkitfullscreenchange', handler) }
-  }, [onFsChange])
 
   return (
-    <ToolLayout hideHeader={isFs}
+    <GameShell
+      name="DOODLE JUMP"
+      startAction={startGame} startLabel="▶ Start" 
       title="Doodle Jump Online - Jump & Bounce"
       desc="Play Doodle Jump online! Guide your doodler upward by bouncing on platforms. Dodge obstacles and reach new heights. Keyboard and touch controls."
       icon="📔" iconBg="rgba(168,85,247,0.08)"
@@ -486,11 +467,7 @@ export default function games_doodle_jump() {
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
       <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
-        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="3494503358" format="vertical" className="mt-2" width={160} height={600} />
-        </div>
         <div className="flex-1 min-w-0 max-w-xl mx-auto space-y-5 overflow-hidden">
         {/* Stats */}
         <div className="glass p-4">
@@ -512,13 +489,10 @@ export default function games_doodle_jump() {
 
         {/* Controls */}
         <div className="flex gap-3 justify-center">
-          <button onClick={() => triggerAd(startGame)} className="glow-btn px-6 py-3 text-sm">
-            {playing && !gameOver ? '⟲ Restart' : '▶ Start Game'}
-          </button>
         </div>
 
         {/* Canvas */}
-        <div ref={resultRef} className="glass p-3 flex justify-center overflow-hidden">
+        <div className="glass p-3 flex justify-center overflow-hidden">
           <canvas ref={canvasRef}
             onPointerDown={handlePointerDown}
             onPointerMove={handlePointerMove}
@@ -539,19 +513,8 @@ export default function games_doodle_jump() {
         <p className="text-center text-xs text-slate-400">
           Desktop: ← → to move | Mobile: Drag left/right to steer
         </p>
-          <div className="flex gap-2 justify-center mt-4">
-            <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
-              {isFs ? '⊡' : '⛶'}
-            </button>
-          </div>
-        </div>
-        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="3414612309" format="vertical" className="mt-2" width={160} height={600} />
         </div>
       </div>
-      <div className="w-full max-w-6xl mx-auto px-5 mt-2">
-        <GameAdSlot slot="8865234201" format="horizontal" />
-      </div>
-    </ToolLayout>
+    </GameShell>
   )
 }

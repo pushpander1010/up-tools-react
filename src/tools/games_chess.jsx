@@ -1,9 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
-import ToolLayout from '../components/ToolLayout'
-import useJumpToResult from '../hooks/useJumpToResult'
-import useFullscreen from '../hooks/useFullscreen'
-import GameAdSlot from '../components/GameAdSlot'
-import InterstitialAd from '../components/InterstitialAd'
+import GameShell from '../components/GameShell'
 
 const LS = { BEST: 'ut_chess_best_v1', LAST: 'ut_chess_last_v1' }
 
@@ -374,7 +370,6 @@ function getAIMove(board, castling, depth) {
 }
 
 export default function games_chess() {
-  const { ref: resultRef, jumpTo } = useJumpToResult()
   const canvasRef = useRef(null)
   const [board, setBoard] = useState(() => initBoard())
   const [selected, setSelected] = useState(null)
@@ -391,11 +386,6 @@ export default function games_chess() {
   const [lastScore, setLastScore] = useState(()=>{try{return Number(localStorage.getItem(LS.LAST)||0)}catch{return 0}})
   const [thinking, setThinking] = useState(false)
 
-  const { isFs, toggle: toggleFs, onChange: onFsChange } = useFullscreen()
-  const [showAd, setShowAd] = useState(false)
-  const pendingAction = useRef(null)
-  const triggerAd = useCallback((action) => { pendingAction.current = action; setShowAd(true) }, [])
-  const onAdDismiss = useCallback(() => { setShowAd(false); if (pendingAction.current) { pendingAction.current(); pendingAction.current = null } }, [])
 
   const gRef = useRef({
     W: 400, H: 400, dpr: 1,
@@ -675,21 +665,12 @@ export default function games_chess() {
   }, [handleSquareClick])
 
   useEffect(() => { fitCanvas(); draw() }, [fitCanvas, draw, board, selected, legalMoves, thinking])
-  useEffect(() => {
-    const h = () => { fitCanvas(); draw() }
-    window.addEventListener('resize', h)
-    return () => { window.removeEventListener('resize', h) }
-  }, [fitCanvas, draw])
 
-  useEffect(() => {
-    const handler = () => onFsChange()
-    document.addEventListener('fullscreenchange', handler)
-    document.addEventListener('webkitfullscreenchange', handler)
-    return () => { document.removeEventListener('fullscreenchange', handler); document.removeEventListener('webkitfullscreenchange', handler) }
-  }, [onFsChange])
 
   return (
-    <ToolLayout hideHeader={isFs}
+    <GameShell
+      name="CHESS"
+      startAction={startNewGame} startLabel="▶ Start" 
       title="Play Chess Online - Free Chess Game with AI"
       desc="Play chess online against the computer! Full chess rules with check, checkmate, castling, en passant, and promotion. AI opponent included."
       icon="♟️" iconBg="rgba(251,191,36,0.08)"
@@ -713,11 +694,7 @@ export default function games_chess() {
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
       <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
-        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="3494503358" format="vertical" className="mt-2" width={160} height={600} />
-        </div>
         <div className="flex-1 min-w-0 max-w-xl mx-auto space-y-5 overflow-hidden">
         {/* Status */}
         <div className="glass p-4">
@@ -752,13 +729,10 @@ export default function games_chess() {
 
         {/* Controls */}
         <div className="flex gap-3 justify-center">
-          <button onClick={() => triggerAd(startNewGame)} className="glow-btn px-6 py-3 text-sm">
-            {gameOver ? '🔄 New Game' : '▶ Start Game'}
-          </button>
         </div>
 
         {/* Canvas */}
-        <div ref={resultRef} className="glass p-3 flex justify-center overflow-hidden">
+        <div className="glass p-3 flex justify-center overflow-hidden">
           <canvas ref={canvasRef}
             onPointerDown={handlePointerDown}
             className="rounded-xl cursor-pointer"
@@ -769,19 +743,8 @@ export default function games_chess() {
         <p className="text-center text-xs text-slate-400">
           Click a piece to select, click a square to move | You play White
         </p>
-          <div className="flex gap-2 justify-center mt-4">
-            <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
-              {isFs ? '⊡' : '⛶'}
-            </button>
-          </div>
-        </div>
-        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="3414612309" format="vertical" className="mt-2" width={160} height={600} />
         </div>
       </div>
-      <div className="w-full max-w-6xl mx-auto px-5 mt-2">
-        <GameAdSlot slot="8865234201" format="horizontal" />
-      </div>
-    </ToolLayout>
+    </GameShell>
   )
 }

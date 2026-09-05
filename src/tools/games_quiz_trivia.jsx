@@ -1,9 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
-import ToolLayout from '../components/ToolLayout'
-import useJumpToResult from '../hooks/useJumpToResult'
-import useFullscreen from '../hooks/useFullscreen'
-import GameAdSlot from '../components/GameAdSlot'
-import InterstitialAd from '../components/InterstitialAd'
+import GameShell from '../components/GameShell'
 
 const QUESTIONS = {
   science: [
@@ -137,7 +133,6 @@ function getQuestions(cat) {
 }
 
 export default function games_quiz_trivia() {
-  const { ref: resultRef, jumpTo } = useJumpToResult()
   const [category, setCategory] = useState('all')
   const [questions, setQuestions] = useState([])
   const [currentQ, setCurrentQ] = useState(0)
@@ -148,11 +143,6 @@ export default function games_quiz_trivia() {
   const [showResult, setShowResult] = useState(false)
   const [started, setStarted] = useState(false)
 
-  const { isFs, toggle: toggleFs, onChange: onFsChange } = useFullscreen()
-  const [showAd, setShowAd] = useState(false)
-  const pendingAction = useRef(null)
-  const triggerAd = useCallback((action) => { pendingAction.current = action; setShowAd(true) }, [])
-  const onAdDismiss = useCallback(() => { setShowAd(false); if (pendingAction.current) { pendingAction.current(); pendingAction.current = null } }, [])
 
   const startQuiz = useCallback((cat) => {
     const qs = getQuestions(cat || category)
@@ -219,15 +209,11 @@ export default function games_quiz_trivia() {
     return () => window.removeEventListener('keydown', handler)
   }, [answered, currentQ, questions, selectAnswer, handleNext, q, started, showResult])
 
-  useEffect(() => {
-    const handler = () => onFsChange()
-    document.addEventListener('fullscreenchange', handler)
-    document.addEventListener('webkitfullscreenchange', handler)
-    return () => { document.removeEventListener('fullscreenchange', handler); document.removeEventListener('webkitfullscreenchange', handler) }
-  }, [onFsChange])
 
   return (
-    <ToolLayout hideHeader={isFs}
+    <GameShell
+      name="QUIZ TRIVIA"
+      startAction={() => startQuiz(category)} startLabel="▶ Start Quiz" 
       title="Quiz Trivia Game Online - General Knowledge Quiz Free"
       desc="Test your general knowledge with 10 questions per round across science, history, sports, tech, and more."
       icon="🧠" iconBg="rgba(168,85,247,0.08)"
@@ -250,11 +236,7 @@ export default function games_quiz_trivia() {
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
       <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
-        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="3494503358" format="vertical" className="mt-2" width={160} height={600} />
-        </div>
         <div className="flex-1 min-w-0 max-w-2xl mx-auto space-y-5 overflow-hidden">
         {!showResult && started && q && (
           <>
@@ -267,7 +249,7 @@ export default function games_quiz_trivia() {
                   <option key={cat} value={cat} className="bg-gray-900">{cat.charAt(0).toUpperCase() + cat.slice(1)}</option>
                 ))}
               </select>
-              <button onClick={() => triggerAd(() => startQuiz(category))}
+              <button onClick={() => startQuiz(category)}
                  className="ml-auto px-5 py-2.5 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-300 hover:text-white hover:bg-white/[0.1] transition-all">
                 New Quiz
               </button>
@@ -307,7 +289,7 @@ export default function games_quiz_trivia() {
             </div>
 
             {/* Question */}
-            <div ref={resultRef} className="glass p-5 text-lg font-semibold text-white">{q.q}</div>
+            <div className="glass p-5 text-lg font-semibold text-white">{q.q}</div>
 
             {/* Options */}
             <div className="grid grid-cols-1 gap-3">
@@ -357,22 +339,10 @@ export default function games_quiz_trivia() {
             <div className="text-5xl font-extrabold text-white mb-2">{score}/10</div>
             <p className="text-slate-400 mb-2">Questions Correct</p>
             <p className="text-lg font-bold text-white mb-6">{msgs[Math.floor(score / 2.5)] || msgs[4]}</p>
-            <button onClick={() => triggerAd(() => startQuiz(category))}
-               className="glow-btn px-8 py-3 text-sm">
-              Play Again
-            </button>
           </div>
         )}
-          <div className="flex gap-2 justify-center mt-4">
-            <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
-              {isFs ? '⊡' : '⛶'}
-            </button>
-          </div>
-        </div>
-                <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="3414612309" format="vertical" className="mt-2" width={160} height={600} />
         </div>
       </div>
-    </ToolLayout>
+    </GameShell>
   )
 }

@@ -1,9 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
-import ToolLayout from '../components/ToolLayout'
-import useJumpToResult from '../hooks/useJumpToResult'
-import useFullscreen from '../hooks/useFullscreen'
-import GameAdSlot from '../components/GameAdSlot'
-import InterstitialAd from '../components/InterstitialAd'
+import GameShell from '../components/GameShell'
 
 const LS = { XW: 'ut_ttt_xw_v1', OW: 'ut_ttt_ow_v1', DR: 'ut_ttt_dr_v1', BEST: 'ut_ttt_best_v1' }
 
@@ -77,7 +73,6 @@ function aiMove(board, ai='O', human='X') {
 }
 
 export default function games_tic_tac_toe() {
-  const { ref: resultRef, jumpTo } = useJumpToResult()
   const [board, setBoard] = useState(Array(9).fill(null))
   const [isX, setIsX] = useState(true)
   const [mode, setMode] = useState('ai') // 'ai' or '2p'
@@ -91,11 +86,6 @@ export default function games_tic_tac_toe() {
   const [animating, setAnimating] = useState(false)
   const boardRef = useRef(null)
 
-  const { isFs, toggle: toggleFs, onChange: onFsChange } = useFullscreen()
-  const [showAd, setShowAd] = useState(false)
-  const pendingAction = useRef(null)
-  const triggerAd = useCallback((action) => { pendingAction.current = action; setShowAd(true) }, [])
-  const onAdDismiss = useCallback(() => { setShowAd(false); if (pendingAction.current) { pendingAction.current(); pendingAction.current = null } }, [])
 
   const updateScores = useCallback((x,d,o) => {
     setXWins(x); setOWins(o); setDraws(d)
@@ -167,20 +157,19 @@ export default function games_tic_tac_toe() {
   const cellSize = 'w-20 h-20 sm:w-24 sm:h-24'
 
 
-  useEffect(() => {
-    const handler = () => onFsChange()
-    document.addEventListener('fullscreenchange', handler)
-    document.addEventListener('webkitfullscreenchange', handler)
-    return () => { document.removeEventListener('fullscreenchange', handler); document.removeEventListener('webkitfullscreenchange', handler) }
-  }, [onFsChange])
-
   return (
-    <ToolLayout
-      hideHeader={isFs}
+    <GameShell
+      name="TIC TAC TOE"
       title="Tic Tac Toe Online - Play vs AI or Friend"
       desc="Play Tic Tac Toe online against AI or a friend. Animated X and O marks, win detection, and score tracking."
       icon="❌" iconBg="rgba(239,68,68,0.08)"
       category="fun" slug="games-tic-tac-toe"
+      startAction={resetGame} startLabel="⟲ New Game"
+      extraButtons={
+        <button onClick={()=>updateScores(0,0,0)} className="px-4 py-2.5 rounded-full text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">
+         Reset Scores
+       </button>
+      }
       faq={[
         { q: "How does the AI work?", a: "The AI uses the minimax algorithm — it plays optimally and can never lose. Try to force a draw!" },
         { q: "Can I play with a friend?", a: "Yes! Switch to '2 Player' mode to play locally with a friend taking turns." },
@@ -200,12 +189,7 @@ export default function games_tic_tac_toe() {
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
-      <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
-        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="3494503358" format="vertical" className="mt-2" width={160} height={600} />
-        </div>
-        <div className="flex-1 min-w-0 max-w-md mx-auto space-y-5 overflow-hidden">
+      <div className="space-y-5">
         {/* Mode selector */}
         <div className="flex gap-2 justify-center">
           <button onClick={()=>{setMode('ai');resetGame()}} className={`glow-btn px-4 py-2 text-sm transition-all ${mode==='ai'?'':'bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:bg-white/[0.1]'}`}>
@@ -242,7 +226,7 @@ export default function games_tic_tac_toe() {
         </div>
 
         {/* Board */}
-        <div ref={resultRef} className="flex justify-center">
+        <div className="flex justify-center">
           <div ref={boardRef} className="grid grid-cols-3 gap-2 p-3 glass">
             {board.map((cell, i) => (
               <button key={i} onClick={() => handleMove(i)}
@@ -269,18 +253,7 @@ export default function games_tic_tac_toe() {
           </div>
         </div>
 
-        {/* Reset */}
-        <div className="flex gap-3 justify-center">
-          <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
-            {isFs ? '⊡' : '⛶'}
-          </button>
-          <button onClick={() => triggerAd(resetGame)} className="glow-btn px-6 py-3 text-sm">
-           ⟲ New Game
-         </button>
-          <button onClick={()=>updateScores(0,0,0)} className="px-4 py-3 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">
-           Reset Scores
-         </button>
-        </div>
+
 
         <p className="text-center text-xs text-slate-400">
           {mode === 'ai' ? 'AI uses minimax — it never loses!' : 'Take turns with a friend on the same device.'}
@@ -290,13 +263,7 @@ export default function games_tic_tac_toe() {
           @keyframes drawLine { from { stroke-dashoffset: 85 } to { stroke-dashoffset: 0 } }
           @keyframes drawCircle { from { stroke-dashoffset: 188 } to { stroke-dashoffset: 0 } }
         `}</style>
-      
-        <GameAdSlot slot="8865234201" format="horizontal" className="mt-2" />
       </div>
-      <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-        <GameAdSlot slot="3414612309" format="vertical" className="mt-2" width={160} height={600} />
-      </div>
-      </div>
-    </ToolLayout>
+    </GameShell>
   )
 }

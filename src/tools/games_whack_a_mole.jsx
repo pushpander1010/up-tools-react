@@ -1,9 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
-import ToolLayout from '../components/ToolLayout'
-import useJumpToResult from '../hooks/useJumpToResult'
-import useFullscreen from '../hooks/useFullscreen'
-import GameAdSlot from '../components/GameAdSlot'
-import InterstitialAd from '../components/InterstitialAd'
+import GameShell from '../components/GameShell'
 
 const LS = { HIGH: 'ut_wam_highscore' }
 
@@ -19,7 +15,6 @@ function playNewHigh() { [0,100,200,300].forEach((d,i)=>setTimeout(()=>playTone(
 const GAME_DURATION = 30
 
 export default function games_whack_a_mole() {
-  const { ref: resultRef, jumpTo } = useJumpToResult()
   const [score, setScore] = useState(0)
   const [timeLeft, setTimeLeft] = useState(GAME_DURATION)
   const [moles, setMoles] = useState(Array(9).fill(false))
@@ -36,11 +31,6 @@ export default function games_whack_a_mole() {
   const scoreRef = useRef(0)
   const spawnMoleRef = useRef(null)
 
-  const { isFs, toggle: toggleFs, onChange: onFsChange } = useFullscreen()
-  const [showAd, setShowAd] = useState(false)
-  const pendingAction = useRef(null)
-  const triggerAd = useCallback((action) => { pendingAction.current = action; setShowAd(true) }, [])
-  const onAdDismiss = useCallback(() => { setShowAd(false); if (pendingAction.current) { pendingAction.current(); pendingAction.current = null } }, [])
 
   const getMoleSpeed = useCallback(() => {
     // Speed decreases (faster moles) as level increases
@@ -166,16 +156,11 @@ export default function games_whack_a_mole() {
   }, [gameState, moles, moleIndex])
 
 
-  useEffect(() => {
-    const handler = () => onFsChange()
-    document.addEventListener('fullscreenchange', handler)
-    document.addEventListener('webkitfullscreenchange', handler)
-    return () => { document.removeEventListener('fullscreenchange', handler); document.removeEventListener('webkitfullscreenchange', handler) }
-  }, [onFsChange])
 
   return (
-    <ToolLayout
-      hideHeader={isFs}
+    <GameShell
+      name="WHACK-A-MOLE"
+      startAction={startGame} startLabel="▶ Start"
       title="Whack-a-Mole Online - Free Arcade Game"
       desc="Play Whack-a-Mole online! Tap the moles as they pop up and score points before time runs out. Difficulty increases as your score grows."
       icon="🔨"
@@ -201,14 +186,10 @@ export default function games_whack_a_mole() {
         "genre": "Arcade", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
       <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
-        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-          <GameAdSlot slot="3494503358" format="vertical" className="mt-2" width={160} height={600} />
-        </div>
         <div className="flex-1 min-w-0 max-w-sm mx-auto space-y-5 overflow-hidden">
         {/* Stats */}
-        <div ref={resultRef} className="glass p-4">
+        <div className="glass p-4">
           <div className="grid grid-cols-3 gap-4 text-center">
             <div className="text-center">
               <div className="text-2xl font-extrabold text-white">{score}</div>
@@ -271,12 +252,6 @@ export default function games_whack_a_mole() {
             <div className="text-5xl">🔨</div>
             <h2 className="text-xl font-bold text-white">Whack-a-Mole!</h2>
             <p className="text-sm text-slate-400">Click or tap moles as they pop up. You have {GAME_DURATION} seconds!</p>
-            <button onClick={() => triggerAd(startGame)} className="glow-btn px-8 py-3 text-sm">
-              Start Game
-            </button>
-            <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
-              {isFs ? '⊡' : '⛶'}
-            </button>
             </div>
         )}
 
@@ -286,20 +261,12 @@ export default function games_whack_a_mole() {
             <h2 className="text-xl font-bold text-white">Time's Up!</h2>
             <p className="text-sm text-slate-400">You scored <span className="text-white font-bold">{score}</span> points{score > highScore ? ' — New High Score!' : ''}</p>
             <p className="text-xs text-slate-400">Level reached: {level}</p>
-            <button onClick={() => triggerAd(startGame)} className="glow-btn px-6 py-3 text-sm">
-             Play Again
-           </button>
           </div>
         )}
 
         <p className="text-center text-xs text-slate-400">Tap moles quickly! • Difficulty increases every 5 points • 30 seconds per round</p>
-      
-        <GameAdSlot slot="8865234201" format="horizontal" className="mt-2" />
-      </div>
-      <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-        <GameAdSlot slot="3414612309" format="vertical" className="mt-2" width={160} height={600} />
       </div>
       </div>
-    </ToolLayout>
+    </GameShell>
   )
 }
