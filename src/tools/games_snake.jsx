@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
-const GRID = 20, CELL = 20, LS = { BEST: 'ut_snake_best_v1', LAST: 'ut_snake_last_v1' }
+const GRID = 20, LS = { BEST: 'ut_snake_best_v1', LAST: 'ut_snake_last_v1' }
 const DIR = { UP:{x:0,y:-1}, DOWN:{x:0,y:1}, LEFT:{x:-1,y:0}, RIGHT:{x:1,y:0} }
 
 function playTone(freq,dur,type='sine',vol=0.08){
@@ -11,6 +11,8 @@ function playMove(){playTone(180,0.04,'triangle',0.03)}
 
 export default function SnakeGame() {
   const canvasRef = useRef(null)
+  const rootRef = useRef(null)
+  const boardRef = useRef(null)
   const [playing, setPlaying] = useState(false)
   const [gameOver, setGameOver] = useState(false)
   const [score, setScore] = useState(0)
@@ -18,15 +20,18 @@ export default function SnakeGame() {
   const [lastScore, setLastScore] = useState(()=>{try{return Number(localStorage.getItem(LS.LAST)||0)}catch{return 0}})
   const [fs, setFs] = useState(false)
 
-  const g = useRef({ snake:[{x:10,y:10}], dir:DIR.RIGHT, nextDir:DIR.RIGHT, food:null, score:0, W:400, H:400, dpr:1, tick:0, speed:140, playing:false, over:false })
+  const g = useRef({ snake:[{x:10,y:10}], dir:DIR.RIGHT, nextDir:DIR.RIGHT, food:null, score:0, W:400, H:400, cell:20, dpr:1, tick:0, speed:140, playing:false, over:false })
 
   const fit = useCallback(() => {
-    const c = canvasRef.current; if(!c) return
-    const wrap = c.parentElement; const sz = Math.min(wrap.clientWidth, wrap.clientHeight) - 16
+    const c = canvasRef.current, board = boardRef.current; if(!c || !board) return
+    // Round side DOWN to a multiple of GRID so cell is an integer px:
+    // fractional cells desync collision vs render and make grid lines uneven.
+    const rect = board.getBoundingClientRect()
+    const side = Math.max(GRID*10, Math.floor(rect.width / GRID) * GRID)
     const dpr = Math.max(1, Math.min(2, window.devicePixelRatio||1))
-    g.current.W = sz; g.current.H = sz; g.current.dpr = dpr
-    c.width = Math.floor(sz*dpr); c.height = Math.floor(sz*dpr)
-    c.style.width = sz+'px'; c.style.height = sz+'px'
+    g.current.W = side; g.current.H = side; g.current.cell = side / GRID; g.current.dpr = dpr
+    c.width = Math.floor(side*dpr); c.height = Math.floor(side*dpr)
+    c.style.width = side+'px'; c.style.height = side+'px'
     const ctx = c.getContext('2d'); ctx.setTransform(dpr,0,0,dpr,0,0)
   }, [])
 
@@ -37,12 +42,19 @@ export default function SnakeGame() {
   }, [])
 
   const draw = useCallback(() => {
-    const c = canvasRef.current; if(!c) return; const ctx = c.getContext('2d'); const s = g.current; const sz = s.W
+    const c = canvasRef.current; if(!c) return; const ctx = c.getContext('2d'); const s = g.current
+    const sz = s.W, cell = s.cell || sz / GRID
+    ctx.setTransform(s.dpr||1,0,0,s.dpr||1,0,0)
+    // Crisp uniform grid: integer cell + 0.5-offset lines, edges inset by 0.5
+    // so the border never clips into the rounded canvas edge.
     ctx.clearRect(0,0,sz,sz)
     ctx.strokeStyle = 'rgba(34,211,238,0.08)'; ctx.lineWidth = 1
-    for(let i=0;i<=GRID;i++){ ctx.beginPath(); ctx.moveTo(i*CELL,0); ctx.lineTo(i*CELL,sz); ctx.stroke(); ctx.beginPath(); ctx.moveTo(0,i*CELL); ctx.lineTo(sz,i*CELL); ctx.stroke() }
-    if(s.food){ ctx.save(); ctx.shadowColor='#f472b6'; ctx.shadowBlur=18; ctx.fillStyle='#f472b6'; ctx.fillRect(s.food.x*CELL+2,s.food.y*CELL+2,CELL-4,CELL-4); ctx.restore() }
-    for(let i=0;i<s.snake.length;i++){ const p=s.snake[i]; ctx.save(); ctx.fillStyle=i===0?'#22d3ee':'#e879f9'; ctx.shadowColor=i===0?'#22d3ee':'#e879f9'; ctx.shadowBlur=12; ctx.fillRect(p.x*CELL+1,p.y*CELL+1,CELL-2,CELL-2); ctx.restore() }
+    ctx.beginPath()
+    for(let i=0;i<=GRID;i++){ const p=Math.min(i*cell+0.5, sz-0.5); ctx.moveTo(p,0.5); ctx.lineTo(p,sz-0.5); ctx.moveTo(0.5,p); ctx.lineTo(sz-0.5,p) }
+    ctx.stroke()
+    const pad = cell > 14 ? 2 : 1
+    if(s.food){ ctx.save(); ctx.shadowColor='#f472b6'; ctx.shadowBlur=18; ctx.fillStyle='#f472b6'; ctx.fillRect(s.food.x*cell+pad,s.food.y*cell+pad,cell-pad*2,cell-pad*2); ctx.restore() }
+    for(let i=0;i<s.snake.length;i++){ const p=s.snake[i]; ctx.save(); ctx.fillStyle=i===0?'#22d3ee':'#e879f9'; ctx.shadowColor=i===0?'#22d3ee':'#e879f9'; ctx.shadowBlur=12; ctx.fillRect(p.x*cell+1,p.y*cell+1,cell-2,cell-2); ctx.restore() }
   }, [])
 
   const tick = useCallback(() => {
@@ -59,23 +71,51 @@ export default function SnakeGame() {
 
   useEffect(() => { const i = setInterval(tick, g.current.speed); return () => clearInterval(i) }, [tick])
 
-  useEffect(() => { fit(); window.addEventListener('resize', fit); return () => window.removeEventListener('resize', fit) }, [fit])
+  useEffect(() => {
+    const onR = () => { fit(); draw() }
+    fit(); draw()
+    window.addEventListener('resize', onR)
+    return () => window.removeEventListener('resize', onR)
+  }, [fit, draw])
+
+  const goFullscreen = useCallback(() => {
+    // Fullscreen the whole game root so header + Exit stay on screen.
+    // Falls back to a CSS overlay (fs=true) where the native API is
+    // missing or blocked (e.g. iPhone Safari) so Exit is never lost.
+    const el = rootRef.current
+    if(!el){ setFs(true); return }
+    try{
+      if(document.fullscreenElement || document.webkitFullscreenElement) return
+      const req = (el.requestFullscreen && el.requestFullscreen.bind(el)) || (el.webkitRequestFullscreen && el.webkitRequestFullscreen.bind(el))
+      if(req){
+        const p = req()
+        if(p && p.catch) p.catch(() => setFs(true))
+      } else setFs(true)
+    }catch{ setFs(true) }
+  }, [])
 
   const start = useCallback(() => {
     const s = g.current
     s.snake = [{x:10,y:10},{x:9,y:10},{x:8,y:10}]; s.dir=DIR.RIGHT; s.nextDir=DIR.RIGHT; s.score=0; s.playing=true; s.over=false; s.speed=140
-    setScore(0); setGameOver(false); setPlaying(true); food(); fit(); draw(); playMove()
-    const el = canvasRef.current?.parentElement
-    if(el && el.requestFullscreen) el.requestFullscreen().catch(()=>{})
-  }, [fit, food, draw])
+    setScore(0); setGameOver(false); setPlaying(true); food()
+    // Fit after layout settles, then draw and go fullscreen on the root.
+    requestAnimationFrame(() => { fit(); draw() })
+    playMove()
+    goFullscreen()
+  }, [fit, food, draw, goFullscreen])
 
   const exit = useCallback(() => {
-    setFs(false); setPlaying(false); setGameOver(false)
-    try { if(document.exitFullscreen) document.exitFullscreen() } catch{}
-  }, [])
+    g.current.playing = false; g.current.over = false
+    setPlaying(false); setGameOver(false)
+    try { if(document.fullscreenElement && document.exitFullscreen) document.exitFullscreen().catch(()=>{}) } catch{}
+    try { if(document.webkitFullscreenElement && document.webkitExitFullscreen) document.webkitExitFullscreen() } catch{}
+    setFs(false)
+    requestAnimationFrame(() => { fit(); draw() })
+  }, [fit, draw])
 
   useEffect(() => {
     const k = e => {
+      if(e.key==='Escape'){ exit(); return }
       if(!playing||gameOver) return
       if(e.key==='ArrowUp'||e.key==='w'||e.key==='W') { e.preventDefault(); if(g.current.dir.y===0) g.current.nextDir=DIR.UP }
       if(e.key==='ArrowDown'||e.key==='s'||e.key==='S') { e.preventDefault(); if(g.current.dir.y===0) g.current.nextDir=DIR.DOWN }
@@ -83,7 +123,7 @@ export default function SnakeGame() {
       if(e.key==='ArrowRight'||e.key==='d'||e.key==='D') { e.preventDefault(); if(g.current.dir.x===0) g.current.nextDir=DIR.RIGHT }
     }
     window.addEventListener('keydown', k); return () => window.removeEventListener('keydown', k)
-  }, [playing, gameOver])
+  }, [playing, gameOver, exit])
 
   const touch = useRef({ sx:0, sy:0 })
   const onDown = e => { touch.current.sx=e.touches?e.touches[0].clientX:e.clientX; touch.current.sy=e.touches?e.touches[0].clientY:e.clientY; e.preventDefault() }
@@ -95,13 +135,25 @@ export default function SnakeGame() {
     else { if(dy>0&&g.current.dir.y===0) g.current.nextDir=DIR.DOWN; else if(dy<0&&g.current.dir.y===0) g.current.nextDir=DIR.UP }
   }
 
-  useEffect(() => { const h = () => setFs(!!document.fullscreenElement); document.addEventListener('fullscreenchange', h); document.addEventListener('webkitfullscreenchange', h); return () => { document.removeEventListener('fullscreenchange', h); document.removeEventListener('webkitfullscreenchange', h) } }, [])
+  useEffect(() => {
+    const h = () => {
+      const on = !!(document.fullscreenElement || document.webkitFullscreenElement)
+      setFs(on)
+      // Re-measure after fullscreen transition, then redraw.
+      setTimeout(() => { fit(); draw() }, 60)
+      setTimeout(() => { fit(); draw() }, 300)
+    }
+    document.addEventListener('fullscreenchange', h); document.addEventListener('webkitfullscreenchange', h);
+    return () => { document.removeEventListener('fullscreenchange', h); document.removeEventListener('webkitfullscreenchange', h) }
+  }, [fit, draw])
 
-  useEffect(() => { if(playing&&!gameOver){ const i=setInterval(()=>{fit();draw()},120); return()=>clearInterval(i) } }, [playing, gameOver, fit, draw])
+  // NOTE: removed the old 120ms fit()+draw() loop — it reset canvas size every
+  // tick (flicker) and fought the game loop. Canvas is now fitted on
+  // resize / fullscreen change only.
 
   return (
-    <div className={`relative w-full min-h-[100dvh] overflow-hidden bg-[#030b14] text-white flex flex-col ${fs ? 'fixed inset-0 z-[70]' : ''}`}>
-      <header className={`flex items-center justify-between px-4 md:px-6 py-3 gap-4 ${fs ? 'border-b border-cyan-500/20 bg-black/60 backdrop-blur-md sticky top-0 z-10' : ''}`}>
+    <div ref={rootRef} className={`relative w-full min-h-[100dvh] bg-[#030b14] text-white flex flex-col overflow-x-hidden overflow-y-auto ${fs ? 'fixed inset-0 z-[100]' : ''}`}>
+      <header className={`flex items-center justify-between px-4 md:px-6 py-3 gap-4 ${fs ? 'border-b border-cyan-500/20 bg-black/60 sticky top-0 z-20' : ''}`}>
         <h1 className="text-base md:text-xl font-black tracking-tighter bg-gradient-to-r from-cyan-300 via-fuchsia-300 to-cyan-200 bg-clip-text text-transparent">SNAKE</h1>
         <div className="flex gap-3 md:gap-5 font-mono text-xs md:text-sm text-cyan-200 whitespace-nowrap">
           <span>Score <b className="text-white">{score}</b></span>
@@ -111,12 +163,12 @@ export default function SnakeGame() {
         <button onClick={exit} className="text-xs md:text-sm px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 font-bold">✕ Exit</button>
       </header>
 
-      <main className={`flex-1 flex flex-col items-center justify-center ${fs ? 'h-[calc(100vh-56px)]' : 'min-h-[72vh] py-6 px-4'}`}>
-        <div className="relative w-[min(92vw,520px)] h-[min(92vw,520px)] flex items-center justify-center shadow-[0_0_60px_rgba(34,211,238,0.15)]">
+      <main className={`flex-1 flex flex-col items-center justify-start ${fs ? 'py-3 px-4 pb-[max(1rem,env(safe-area-inset-bottom))] overflow-y-auto' : 'py-5 px-4'}`}>
+        <div ref={boardRef} className={`relative aspect-square flex items-center justify-center shadow-[0_0_60px_rgba(34,211,238,0.15)] ${fs ? 'w-[min(94vw,calc(100dvh-220px),640px)]' : 'w-[min(92vw,520px,calc(100dvh-300px))] min-w-[260px]'}`}>
           <div className="absolute inset-[-24px] rounded-[2rem] bg-gradient-to-br from-cyan-500/20 via-fuchsia-500/10 to-cyan-500/20 blur-2xl -z-10" />
-          <canvas ref={canvasRef} onPointerDown={onDown} onPointerUp={onUp} className="w-full h-full rounded-2xl border border-cyan-400/30 shadow-[0_0_60px_rgba(34,211,238,0.25)] bg-[#050d1a] touch-none cursor-pointer" style={{width:'100%',height:'100%',touchAction:'none'}} />
+          <canvas ref={canvasRef} onPointerDown={onDown} onPointerUp={onUp} className="rounded-2xl border border-cyan-400/30 shadow-[0_0_60px_rgba(34,211,238,0.25)] bg-[#050d1a] touch-none cursor-pointer" style={{touchAction:'none'}} />
           {!playing && (
-            <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#030b14]/80 backdrop-blur-sm rounded-2xl z-10">
+            <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#030b14]/80 rounded-2xl z-10 px-4 text-center">
               <h2 className="text-6xl md:text-7xl font-black bg-gradient-to-b from-cyan-300 via-fuchsia-300 to-cyan-200 bg-clip-text text-transparent mb-3 tracking-tighter">SNAKE</h2>
               {gameOver && <p className="text-xl md:text-2xl text-rose-400 font-bold mb-4">Game Over</p>}
               <p className="text-xs md:text-sm text-slate-400 mb-6">Desktop: Arrows / WASD · Mobile: Swipe</p>
@@ -124,9 +176,10 @@ export default function SnakeGame() {
             </div>
           )}
         </div>
-        <div className="mt-5 flex items-center gap-4">
+        <div className="mt-5 flex flex-wrap justify-center items-center gap-3 md:gap-4">
           <button onClick={start} className="px-6 py-2.5 rounded-full bg-white/[0.08] border border-white/10 text-cyan-100 font-bold text-sm hover:bg-white/15">⟲ Restart</button>
-          <button onClick={() => { const c=canvasRef.current?.parentElement; if(c&&c.requestFullscreen) c.requestFullscreen().catch(()=>{}) }} className="px-6 py-2.5 rounded-full bg-white/[0.08] border border-white/10 text-cyan-100 font-bold text-sm hover:bg-white/15">⛶ Fullscreen</button>
+          <button onClick={goFullscreen} className="px-6 py-2.5 rounded-full bg-white/[0.08] border border-white/10 text-cyan-100 font-bold text-sm hover:bg-white/15">⛶ Fullscreen</button>
+          {fs && <button onClick={exit} className="px-6 py-2.5 rounded-full bg-rose-500/20 border border-rose-400/40 text-rose-100 font-bold text-sm hover:bg-rose-500/30">✕ Exit game</button>}
         </div>
       </main>
       <footer className="text-center text-[11px] text-slate-600 py-2 font-mono">Neon Arcade · Snake</footer>
