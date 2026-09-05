@@ -37,6 +37,38 @@ const guides = [
     tag: 'Crypto vs Stocks',
     accent: 'linear-gradient(135deg, rgba(99,102,241,0.16), rgba(251,191,36,0.12))',
   },
+  {
+    slug: 'call-options',
+    name: 'Call Options Explained',
+    icon: '📈',
+    desc: 'Profit from rising stocks without owning them: strike, premium, expiry, breakeven math plus a Python call scanner.',
+    tag: 'Options Basics',
+    accent: 'linear-gradient(135deg, rgba(52,211,153,0.16), rgba(6,182,212,0.07))',
+  },
+  {
+    slug: 'put-options',
+    name: 'Put Options Explained',
+    icon: '🛡️',
+    desc: 'Profit from crashes and hedge your holdings: protective-put math plus a Python put scanner with fear filters.',
+    tag: 'Options Basics',
+    accent: 'linear-gradient(135deg, rgba(239,68,68,0.16), rgba(99,102,241,0.07))',
+  },
+  {
+    slug: 'options-chain',
+    name: 'Read Options Chain Like a Pro',
+    icon: '⛓️',
+    desc: 'Calls left, puts right, strikes middle: the 5 numbers, OI support walls and PCR fear gauge in 60 seconds.',
+    tag: 'Options Chain',
+    accent: 'linear-gradient(135deg, rgba(99,102,241,0.16), rgba(6,182,212,0.07))',
+  },
+  {
+    slug: 'python-libs-traders',
+    name: '3 Python Libraries for Traders',
+    icon: '🐍',
+    desc: 'yfinance free data, TA-Lib 150+ indicators, vectorbt + Backtrader backtests — the exact pro stack with starter code.',
+    tag: 'Python Stack',
+    accent: 'linear-gradient(135deg, rgba(52,211,153,0.16), rgba(251,191,36,0.07))',
+  },
 ]
 
 const features = [

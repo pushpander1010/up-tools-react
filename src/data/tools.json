@@ -7186,6 +7186,89 @@
         "all",
         "finance"
       ]
+    },
+    {
+      "slug": "aiforrich/call-options",
+      "title": "Call Options Explained — Profit From Rising Stocks With Limited Risk",
+      "icon": "📈",
+      "desc": "What is a call option? Strike, premium, expiry, breakeven math and a Python call scanner with unusual-volume and IV-rank filters.",
+      "href": "/aiforrich/call-options/",
+      "tags": [
+        "options",
+        "call",
+        "trading",
+        "strike",
+        "premium",
+        "python",
+        "scanner",
+        "finance"
+      ],
+      "cats": [
+        "all",
+        "finance"
+      ]
+    },
+    {
+      "slug": "aiforrich/put-options",
+      "title": "Put Options Explained — Profit From Crashes and Protect Your Stocks",
+      "icon": "🛡️",
+      "desc": "What is a put option? Strike, premium, expiry, protective-put hedging math and a Python put scanner with unusual-volume and put-call-ratio filters.",
+      "href": "/aiforrich/put-options/",
+      "tags": [
+        "options",
+        "put",
+        "trading",
+        "hedge",
+        "strike",
+        "premium",
+        "python",
+        "scanner",
+        "finance"
+      ],
+      "cats": [
+        "all",
+        "finance"
+      ]
+    },
+    {
+      "slug": "aiforrich/options-chain",
+      "title": "How to Read an Options Chain Like a Pro — OI, Volume, PCR in 60 Seconds",
+      "icon": "⛓️",
+      "desc": "Options chain decoded: calls left, puts right, strikes middle. The 5 numbers (bid, ask, volume, OI, IV), OI support walls and PCR fear gauge, plus a Python chain scanner.",
+      "href": "/aiforrich/options-chain/",
+      "tags": [
+        "options",
+        "chain",
+        "open-interest",
+        "trading",
+        "python",
+        "scanner",
+        "finance"
+      ],
+      "cats": [
+        "all",
+        "finance"
+      ]
+    },
+    {
+      "slug": "aiforrich/python-libs-traders",
+      "title": "3 Python Libraries Every Algo Trader Needs — Data, Indicators, Backtests",
+      "icon": "🐍",
+      "desc": "Stop building trading tools from scratch: yfinance free market data, TA-Lib 150+ indicators, vectorbt and Backtrader backtests, with starter code.",
+      "href": "/aiforrich/python-libs-traders/",
+      "tags": [
+        "python",
+        "algo",
+        "trading",
+        "backtest",
+        "yfinance",
+        "indicators",
+        "finance"
+      ],
+      "cats": [
+        "all",
+        "finance"
+      ]
     }
   ],
   "categories": {
