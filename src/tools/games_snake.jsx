@@ -29,6 +29,13 @@ export default function games_snake() {
   const [lastScore, setLastScore] = useState(()=>{try{return Number(localStorage.getItem(LS.LAST)||0)}catch{return 0}})
   const [gameOver, setGameOver] = useState(false)
   const [speed, setSpeed] = useState(140)
+  const [fsOverlay, setFsOverlay] = useState(false)
+
+  useEffect(() => {
+    if (fsOverlay) { document.body.style.overflow = 'hidden'; document.body.style.height = '100vh' }
+    else { document.body.style.overflow = ''; document.body.style.height = '' }
+    return () => { document.body.style.overflow = ''; document.body.style.height = '' }
+  }, [fsOverlay])
 
   const { isFs, toggle: toggleFs, onChange: onFsChange } = useFullscreen()
   const [showAd, setShowAd] = useState(false)
@@ -81,7 +88,7 @@ export default function games_snake() {
     s.score = 0; s.lastTick = 0
     s.playing = true; s.gameOver = false; s.speed = 140
     placeFood()
-    setScore(0); setGameOver(false); setPlaying(true); setSpeed(140)
+    setScore(0); setGameOver(false); setPlaying(true); setFsOverlay(true); setSpeed(140); toggleFs()
     fitCanvas()
     setTimeout(() => { startLoop() }, 30)
   }, [fitCanvas, placeFood])
@@ -270,7 +277,8 @@ export default function games_snake() {
   }, [onFsChange])
 
   return (
-    <ToolLayout hideHeader={isFs}
+    <ToolLayout hideHeader={isFs || fsOverlay}
+      className={fsOverlay ? "w-screen h-screen fixed top-0 left-0 z-[60] bg-[#020a14]" : ""}
       title="Snake Game Online - Classic Arcade"
       desc="Play the classic Snake game online. Guide the snake to eat food and grow longer. Keyboard and touch controls. High score saved!"
       icon="🐍" iconBg="rgba(34,197,94,0.08)"
@@ -295,8 +303,8 @@ export default function games_snake() {
       }}
     >
       <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
-      <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
-        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
+      <div className={fsOverlay ? "flex gap-4 w-full h-full overflow-hidden" : "flex gap-4 max-w-6xl mx-auto overflow-hidden"} style={fsOverlay ? {width:"100vw",height:"100vh",maxWidth:"100vw",margin:0,padding:0} : {}}>
+        <div className={"hidden lg:block w-[160px] shrink-0 sticky top-24 self-start" + (fsOverlay ? " hidden" : "")}>
           <GameAdSlot slot="3494503358" format="vertical" className="mt-2" width={160} height={600} />
         </div>
         <div className="flex-1 min-w-0 max-w-xl mx-auto space-y-5 overflow-hidden">
@@ -326,16 +334,18 @@ export default function games_snake() {
         </div>
 
         {/* Canvas */}
-        <div ref={resultRef} className="glass p-3 flex justify-center overflow-hidden">
+        <div ref={resultRef} className={fsOverlay ? "glass p-0 flex justify-center items-center h-full w-full" : "glass p-3 flex justify-center overflow-hidden"}>
+          <button onClick={()=>{setFsOverlay(false);setPlaying(false);toggleFs()}} className="absolute top-2 right-2 z-[70] text-white w-10 h-10 rounded-full bg-black/70 border border-cyan-400/60 text-lg hover:bg-black shadow-[0_0_15px_rgba(34,211,238,0.4)]">✕</button>
           <canvas ref={canvasRef}
             onPointerDown={handlePointerDown}
             onPointerUp={handlePointerUp}
-            className="rounded-xl cursor-pointer"
-            style={{ background: '#050d1a', touchAction: 'none' }}
+            className="rounded-xl cursor-pointer w-full h-full"
+            style={{ background: '#020a14', touchAction: 'none', boxShadow: '0 0 60px rgba(34,211,238,0.25)', border: '1px solid rgba(34,211,238,0.3)', width: '100vw', height: '100vh', maxHeight: '100vh' }}
           />
         </div>
 
         {/* Mobile D-pad hint */}
+        <div className={fsOverlay ? "fixed bottom-6 left-1/2 -translate-x-1/2 z-[70]" : ""}><button onClick={()=>{setFsOverlay(false);toggleFs();startGame()}} className="glow-btn px-8 py-3 text-base font-bold tracking-widest uppercase bg-gradient-to-r from-cyan-500 to-fuchsia-500 text-white rounded-full shadow-[0_0_30px_rgba(34,211,238,0.5)] hover:shadow-[0_0_40px_rgba(236,72,153,0.6)] transition">⟲ Restart</button></div>
         <p className="text-center text-xs text-slate-400">
           Desktop: ← → ↑ ↓ or WASD | Mobile: Swipe to steer
         </p>
@@ -345,7 +355,7 @@ export default function games_snake() {
             </button>
           </div>
         </div>
-        <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
+        <div className={"hidden lg:block w-[160px] shrink-0 sticky top-24 self-start" + (fsOverlay ? " hidden" : "")}>
           <GameAdSlot slot="3414612309" format="vertical" className="mt-2" width={160} height={600} />
         </div>
       </div>
