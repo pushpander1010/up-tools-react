@@ -166,13 +166,11 @@ export default function SnakeGame() {
 
       <main className={`flex-1 flex flex-col items-center justify-start ${fs ? 'py-3 px-4 pb-[max(1rem,env(safe-area-inset-bottom))] overflow-y-auto' : 'py-5 px-4'}`}>
         <div className="w-full max-w-6xl mx-auto flex gap-4 justify-center">
-        {!fs && (
-          <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
+          <div className="hidden xl:block w-[160px] shrink-0 sticky top-24 self-start">
             <GameAdSlot slot="3494503358" format="vertical" className="mt-2" width={160} height={600} />
           </div>
-        )}
         <div className="flex-1 min-w-0 max-w-xl mx-auto flex flex-col items-center">
-        <div ref={boardRef} className={`relative aspect-square flex items-center justify-center shadow-[0_0_60px_rgba(34,211,238,0.15)] ${fs ? 'w-[min(94vw,calc(100dvh-220px),640px)]' : 'w-[min(92vw,520px,calc(100dvh-300px))] min-w-[260px]'}`}>
+        <div ref={boardRef} className={`relative aspect-square flex items-center justify-center shadow-[0_0_60px_rgba(34,211,238,0.15)] ${fs ? 'w-[min(94vw,calc(100dvh-220px),560px)]' : 'w-[min(92vw,520px,calc(100dvh-300px))] min-w-[260px]'}`}>
           <div className="absolute inset-[-24px] rounded-[2rem] bg-gradient-to-br from-cyan-500/20 via-fuchsia-500/10 to-cyan-500/20 blur-2xl -z-10" />
           <canvas ref={canvasRef} onPointerDown={onDown} onPointerUp={onUp} className="rounded-2xl border border-cyan-400/30 shadow-[0_0_60px_rgba(34,211,238,0.25)] bg-[#050d1a] touch-none cursor-pointer" style={{touchAction:'none'}} />
           {!playing && (
@@ -190,17 +188,13 @@ export default function SnakeGame() {
           {fs && <button onClick={exit} className="px-6 py-2.5 rounded-full bg-rose-500/20 border border-rose-400/40 text-rose-100 font-bold text-sm hover:bg-rose-500/30">✕ Exit game</button>}
         </div>
         </div>
-        {!fs && (
-          <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
+          <div className="hidden xl:block w-[160px] shrink-0 sticky top-24 self-start">
             <GameAdSlot slot="3414612309" format="vertical" className="mt-2" width={160} height={600} />
           </div>
-        )}
         </div>
-        {!fs && (
-          <div className="w-full max-w-6xl mx-auto px-5 mt-4">
-            <GameAdSlot slot="8865234201" format="horizontal" />
-          </div>
-        )}
+        <div className="w-full max-w-6xl mx-auto px-5 mt-4">
+          <GameAdSlot slot="8865234201" format="horizontal" />
+        </div>
       </main>
       <footer className="text-center text-[11px] text-slate-600 py-2 font-mono">Neon Arcade · Snake</footer>
     </div>
