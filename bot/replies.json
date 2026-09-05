@@ -1,0 +1,7 @@
+{
+  "hello": "Hi! Thanks for contacting [Business]. We reply 9AM-9PM. Type HOURS / PRICE / BOOK.",
+  "hours": "Hours: Mon-Sat 9am-9pm. Sun closed.",
+  "price": "Pricing starts at ₹499/mo. 7-day free trial. Visit [site].",
+  "book": "Book here: [link] or reply TIME and I will confirm.",
+  "default": "Thanks! Type HOURS, PRICE, BOOK or wait for human (10 min)."
+}
