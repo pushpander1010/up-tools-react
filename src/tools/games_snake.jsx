@@ -1,367 +1,135 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
-import ToolLayout from '../components/ToolLayout'
-import useJumpToResult from '../hooks/useJumpToResult'
-import useFullscreen from '../hooks/useFullscreen'
-import GameAdSlot from '../components/GameAdSlot'
-import InterstitialAd from '../components/InterstitialAd'
-
-const LS = { BEST: 'ut_snake_best_v1', LAST: 'ut_snake_last_v1' }
-const GRID = 20
-const CELL = 20
-
-let audioCtx = null
-function ensureAudio() { if (!audioCtx) audioCtx = new (window.AudioContext||window.webkitAudioContext)(); if (audioCtx.state==='suspended') audioCtx.resume(); return audioCtx }
-function playTone(freq,dur,type='sine',vol=0.08) {
-  try { const ctx=ensureAudio(); const o=ctx.createOscillator(); const g=ctx.createGain(); o.type=type; o.frequency.value=freq; g.gain.setValueAtTime(vol,ctx.currentTime); g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+dur); o.connect(g); g.connect(ctx.destination); o.start(); o.stop(ctx.currentTime+dur) } catch {}
-}
-function playEat() { playTone(523,0.1,'sine',0.09); setTimeout(()=>playTone(784,0.12,'sine',0.06),60) }
-function playDie() { playTone(220,0.3,'sawtooth',0.07); setTimeout(()=>playTone(150,0.4,'sawtooth',0.05),150) }
-function playMove() { playTone(180,0.04,'triangle',0.03) }
-
+const GRID = 20, CELL = 20, LS = { BEST: 'ut_snake_best_v1', LAST: 'ut_snake_last_v1' }
 const DIR = { UP:{x:0,y:-1}, DOWN:{x:0,y:1}, LEFT:{x:-1,y:0}, RIGHT:{x:1,y:0} }
 
-export default function games_snake() {
-  const { ref: resultRef, jumpTo } = useJumpToResult()
+function playTone(freq,dur,type='sine',vol=0.08){
+  try{const a=new (window.AudioContext||window.webkitAudioContext)();if(a.state==='suspended')a.resume();const o=a.createOscillator(),g=a.createGain();o.type=type;o.frequency.value=freq;g.gain.setValueAtTime(vol,a.currentTime);g.gain.exponentialRampToValueAtTime(0.001,a.currentTime+dur);o.connect(g);g.connect(a.destination);o.start();o.stop(a.currentTime+dur)}catch{}
+}
+function playEat(){playTone(523,0.1,'sine',0.09);setTimeout(()=>playTone(784,0.12,'sine',0.06),60)}
+function playDie(){playTone(220,0.3,'sawtooth',0.07);setTimeout(()=>playTone(150,0.4,'sawtooth',0.05),150)}
+function playMove(){playTone(180,0.04,'triangle',0.03)}
+
+export default function SnakeGame() {
   const canvasRef = useRef(null)
   const [playing, setPlaying] = useState(false)
+  const [gameOver, setGameOver] = useState(false)
   const [score, setScore] = useState(0)
   const [best, setBest] = useState(()=>{try{return Number(localStorage.getItem(LS.BEST)||0)}catch{return 0}})
   const [lastScore, setLastScore] = useState(()=>{try{return Number(localStorage.getItem(LS.LAST)||0)}catch{return 0}})
-  const [gameOver, setGameOver] = useState(false)
-  const [speed, setSpeed] = useState(140)
-  const [fsOverlay, setFsOverlay] = useState(false)
+  const [fs, setFs] = useState(false)
 
-  useEffect(() => {
-    if (fsOverlay) { document.body.style.overflow = 'hidden'; document.body.style.height = '100vh' }
-    else { document.body.style.overflow = ''; document.body.style.height = '' }
-    return () => { document.body.style.overflow = ''; document.body.style.height = '' }
-  }, [fsOverlay])
+  const g = useRef({ snake:[{x:10,y:10}], dir:DIR.RIGHT, nextDir:DIR.RIGHT, food:null, score:0, W:400, H:400, dpr:1, tick:0, speed:140, playing:false, over:false })
 
-  const { isFs, toggle: toggleFs, onChange: onFsChange } = useFullscreen()
-  const [showAd, setShowAd] = useState(false)
-  const pendingAction = useRef(null)
-  const triggerAd = useCallback((action) => { pendingAction.current = action; setShowAd(true) }, [])
-  const onAdDismiss = useCallback(() => { setShowAd(false); if (pendingAction.current) { pendingAction.current(); pendingAction.current = null } }, [])
+  const fit = useCallback(() => {
+    const c = canvasRef.current; if(!c) return
+    const wrap = c.parentElement; const sz = Math.min(wrap.clientWidth, wrap.clientHeight) - 16
+    const dpr = Math.max(1, Math.min(2, window.devicePixelRatio||1))
+    g.current.W = sz; g.current.H = sz; g.current.dpr = dpr
+    c.width = Math.floor(sz*dpr); c.height = Math.floor(sz*dpr)
+    c.style.width = sz+'px'; c.style.height = sz+'px'
+    const ctx = c.getContext('2d'); ctx.setTransform(dpr,0,0,dpr,0,0)
+  }, [])
 
-  const gRef = useRef({
-    snake: [{x:10,y:10}],
-    dir: DIR.RIGHT,
-    nextDir: DIR.RIGHT,
-    food: null,
-    score: 0,
-    W: 400, H: 400,
-    lastTick: 0,
-    animId: null,
-    dpr: 1,
-    touchStart: null,
-    playing: false,
-    gameOver: false,
-    speed: 140,
-  })
-
-  const placeFood = useCallback(() => {
-    const s = gRef.current
-    const occupied = new Set(s.snake.map(p=>`${p.x},${p.y}`))
-    let pos
-    do { pos = { x: Math.floor(Math.random()*GRID), y: Math.floor(Math.random()*GRID) } } while (occupied.has(`${pos.x},${pos.y}`))
+  const food = useCallback(() => {
+    let s=g.current, occ=new Set(s.snake.map(p=>p.x+","+p.y)); let pos={}
+    do{pos={x:Math.floor(Math.random()*GRID),y:Math.floor(Math.random()*GRID)}}while(occ.has(pos.x+","+pos.y))
     s.food = pos
   }, [])
 
-  const fitCanvas = useCallback(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-    const wrap = canvas.parentElement
-    if (!wrap) return
-    const sz = Math.min(400, wrap.clientWidth - 16)
-    const dpr = Math.max(1, Math.min(2, window.devicePixelRatio||1))
-    gRef.current.W = sz; gRef.current.H = sz; gRef.current.dpr = dpr
-    canvas.width = Math.floor(sz*dpr); canvas.height = Math.floor(sz*dpr)
-    canvas.style.width = sz+'px'; canvas.style.height = sz+'px'
-    const ctx = canvas.getContext('2d')
-    ctx.setTransform(dpr,0,0,dpr,0,0)
+  const draw = useCallback(() => {
+    const c = canvasRef.current; if(!c) return; const ctx = c.getContext('2d'); const s = g.current; const sz = s.W
+    ctx.clearRect(0,0,sz,sz)
+    ctx.strokeStyle = 'rgba(34,211,238,0.08)'; ctx.lineWidth = 1
+    for(let i=0;i<=GRID;i++){ ctx.beginPath(); ctx.moveTo(i*CELL,0); ctx.lineTo(i*CELL,sz); ctx.stroke(); ctx.beginPath(); ctx.moveTo(0,i*CELL); ctx.lineTo(sz,i*CELL); ctx.stroke() }
+    if(s.food){ ctx.save(); ctx.shadowColor='#f472b6'; ctx.shadowBlur=18; ctx.fillStyle='#f472b6'; ctx.fillRect(s.food.x*CELL+2,s.food.y*CELL+2,CELL-4,CELL-4); ctx.restore() }
+    for(let i=0;i<s.snake.length;i++){ const p=s.snake[i]; ctx.save(); ctx.fillStyle=i===0?'#22d3ee':'#e879f9'; ctx.shadowColor=i===0?'#22d3ee':'#e879f9'; ctx.shadowBlur=12; ctx.fillRect(p.x*CELL+1,p.y*CELL+1,CELL-2,CELL-2); ctx.restore() }
   }, [])
 
-  const startGame = useCallback(() => {
-    const s = gRef.current
-    s.snake = [{x:10,y:10},{x:9,y:10},{x:8,y:10}]
-    s.dir = DIR.RIGHT; s.nextDir = DIR.RIGHT
-    s.score = 0; s.lastTick = 0
-    s.playing = true; s.gameOver = false; s.speed = 140
-    placeFood()
-    setScore(0); setGameOver(false); setPlaying(true); setFsOverlay(true); setSpeed(140); toggleFs()
-    fitCanvas()
-    setTimeout(() => { startLoop() }, 30)
-  }, [fitCanvas, placeFood])
+  const tick = useCallback(() => {
+    const s = g.current; if(!s.playing||s.over) return
+    s.dir = s.nextDir; s.tick++
+    const head = {x:s.snake[0].x+s.dir.x, y:s.snake[0].y+s.dir.y}
+    if(head.x<0||head.x>=GRID||head.y<0||head.y>=GRID){ s.over=true; s.playing=false; setGameOver(true); setPlaying(false); playDie(); try{localStorage.setItem(LS.LAST,String(s.score))}catch{}; return }
+    for(let p of s.snake) if(p.x===head.x&&p.y===head.y){ s.over=true; s.playing=false; setGameOver(true); setPlaying(false); playDie(); try{localStorage.setItem(LS.LAST,String(s.score))}catch{}; return }
+    s.snake.unshift(head)
+    if(s.food&&head.x===s.food.x&&head.y===s.food.y){ s.score++; playEat(); food(); if(s.score>best){setBest(s.score); try{localStorage.setItem(LS.BEST,String(s.score))}catch{}} setScore(s.score) }
+    else s.snake.pop()
+    draw();
+  }, [draw, food, best])
 
-  const startLoop = useCallback(() => {
-    const s = gRef.current
-    if (s.animId) cancelAnimationFrame(s.animId)
+  useEffect(() => { const i = setInterval(tick, g.current.speed); return () => clearInterval(i) }, [tick])
 
-    const loop = (ts) => {
-      if (!s.playing && s.score === 0) { s.animId = requestAnimationFrame(loop); return }
-      const dt = ts - s.lastTick
-      if (dt < s.speed) {
-        draw()
-        s.animId = requestAnimationFrame(loop)
-        return
-      }
-      s.lastTick = ts
+  useEffect(() => { fit(); window.addEventListener('resize', fit); return () => window.removeEventListener('resize', fit) }, [fit])
 
-      if (!s.gameOver) {
-        s.dir = s.nextDir
-        const head = { x: s.snake[0].x + s.dir.x, y: s.snake[0].y + s.dir.y }
+  const start = useCallback(() => {
+    const s = g.current
+    s.snake = [{x:10,y:10},{x:9,y:10},{x:8,y:10}]; s.dir=DIR.RIGHT; s.nextDir=DIR.RIGHT; s.score=0; s.playing=true; s.over=false; s.speed=140
+    setScore(0); setGameOver(false); setPlaying(true); food(); fit(); draw(); playMove()
+    const el = canvasRef.current?.parentElement
+    if(el && el.requestFullscreen) el.requestFullscreen().catch(()=>{})
+  }, [fit, food, draw])
 
-        // Wall collision
-        if (head.x < 0 || head.x >= GRID || head.y < 0 || head.y >= GRID) {
-          die(); draw(); s.animId = requestAnimationFrame(loop); return
-        }
-        // Self collision
-        for (const p of s.snake) {
-          if (p.x === head.x && p.y === head.y) { die(); draw(); s.animId = requestAnimationFrame(loop); return }
-        }
+  const exit = useCallback(() => {
+    setFs(false); setPlaying(false); setGameOver(false)
+    try { if(document.exitFullscreen) document.exitFullscreen() } catch{}
+  }, [])
 
-        s.snake.unshift(head)
-        if (s.food && head.x === s.food.x && head.y === s.food.y) {
-          s.score++
-          setScore(s.score)
-          playEat()
-          // Speed up
-          const newSpd = Math.max(50, 140 - s.score * 3)
-          s.speed = newSpd
-          setSpeed(newSpd)
-          placeFood()
-        } else {
-          s.snake.pop()
-        }
-      }
-
-      draw()
-      s.animId = requestAnimationFrame(loop)
-    }
-    s.animId = requestAnimationFrame(loop)
-  }, [placeFood])
-
-  const die = useCallback(() => {
-    const s = gRef.current
-    s.gameOver = true
-    setGameOver(true)
-    playDie()
-    const newBest = Math.max(best, s.score)
-    setBest(newBest)
-    setLastScore(s.score)
-    try { localStorage.setItem(LS.BEST, String(newBest)); localStorage.setItem(LS.LAST, String(s.score)) } catch {}
-  }, [best])
-
-  const draw = useCallback(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-    const s = gRef.current
-    const ctx = canvas.getContext('2d')
-    const W = s.W, H = s.H
-    const cellSz = W / GRID
-
-    // Background
-    ctx.fillStyle = '#050d1a'
-    ctx.fillRect(0, 0, W, H)
-
-    // Grid lines
-    ctx.strokeStyle = 'rgba(255,255,255,0.03)'
-    ctx.lineWidth = 0.5
-    for (let i = 0; i <= GRID; i++) {
-      ctx.beginPath(); ctx.moveTo(i*cellSz, 0); ctx.lineTo(i*cellSz, H); ctx.stroke()
-      ctx.beginPath(); ctx.moveTo(0, i*cellSz); ctx.lineTo(W, i*cellSz); ctx.stroke()
-    }
-
-    // Food with glow
-    if (s.food) {
-      ctx.shadowColor = '#ff6b6b'
-      ctx.shadowBlur = 15
-      ctx.fillStyle = '#ff6b6b'
-      ctx.beginPath()
-      ctx.arc(s.food.x*cellSz+cellSz/2, s.food.y*cellSz+cellSz/2, cellSz/2.5, 0, Math.PI*2)
-      ctx.fill()
-      ctx.shadowBlur = 0
-    }
-
-    // Snake body with gradient
-    for (let i = s.snake.length - 1; i >= 0; i--) {
-      const p = s.snake[i]
-      const t = i / Math.max(1, s.snake.length - 1)
-      const r = Math.round(0 + t * 34)
-      const g = Math.round(200 - t * 50)
-      const b = Math.round(100 + t * 100)
-      ctx.fillStyle = `rgb(${r},${g},${b})`
-      ctx.shadowColor = i === 0 ? '#00ff88' : 'transparent'
-      ctx.shadowBlur = i === 0 ? 12 : 0
-      const pad = cellSz * 0.08
-      ctx.beginPath()
-      ctx.roundRect(p.x*cellSz+pad, p.y*cellSz+pad, cellSz-pad*2, cellSz-pad*2, 3)
-      ctx.fill()
-    }
-    ctx.shadowBlur = 0
-
-    // Game over overlay
-    if (s.gameOver) {
-      ctx.fillStyle = 'rgba(5,13,26,0.85)'
-      ctx.fillRect(0, 0, W, H)
-      ctx.fillStyle = '#fff'
-      ctx.font = 'bold 28px system-ui'
-      ctx.textAlign = 'center'
-      ctx.fillText('Game Over!', W/2, H/2 - 20)
-      ctx.font = '16px system-ui'
-      ctx.fillStyle = '#94a3b8'
-      ctx.fillText(`Score: ${s.score}  |  Best: ${Math.max(best, s.score)}`, W/2, H/2 + 10)
-      ctx.font = '14px system-ui'
-      ctx.fillStyle = '#64748b'
-      ctx.fillText('Tap to restart', W/2, H/2 + 40)
-    }
-  }, [best])
-
-  // Keyboard
   useEffect(() => {
-    const handler = (e) => {
-      const s = gRef.current
-      if (s.gameOver) {
-        if (e.key === ' ' || e.key === 'Enter') startGame()
-        return
-      }
-      if (!s.playing) return
-      const map = { ArrowUp:DIR.UP, ArrowDown:DIR.DOWN, ArrowLeft:DIR.LEFT, ArrowRight:DIR.RIGHT,
-                     w:DIR.UP, s:DIR.DOWN, a:DIR.LEFT, d:DIR.RIGHT,
-                     W:DIR.UP, S:DIR.DOWN, A:DIR.LEFT, D:DIR.RIGHT }
-      const nd = map[e.key]
-      if (nd) {
-        e.preventDefault()
-        // Prevent 180 turn
-        if (nd.x + s.dir.x !== 0 || nd.y + s.dir.y !== 0) {
-          s.nextDir = nd
-          playMove()
-        }
-      }
+    const k = e => {
+      if(!playing||gameOver) return
+      if(e.key==='ArrowUp'||e.key==='w'||e.key==='W') { e.preventDefault(); if(g.current.dir.y===0) g.current.nextDir=DIR.UP }
+      if(e.key==='ArrowDown'||e.key==='s'||e.key==='S') { e.preventDefault(); if(g.current.dir.y===0) g.current.nextDir=DIR.DOWN }
+      if(e.key==='ArrowLeft'||e.key==='a'||e.key==='A') { e.preventDefault(); if(g.current.dir.x===0) g.current.nextDir=DIR.LEFT }
+      if(e.key==='ArrowRight'||e.key==='d'||e.key==='D') { e.preventDefault(); if(g.current.dir.x===0) g.current.nextDir=DIR.RIGHT }
     }
-    window.addEventListener('keydown', handler)
-    return () => window.removeEventListener('keydown', handler)
-  }, [startGame])
+    window.addEventListener('keydown', k); return () => window.removeEventListener('keydown', k)
+  }, [playing, gameOver])
 
-  // Touch / pointer
-  const handlePointerDown = (e) => {
-    gRef.current.touchStart = { x: e.clientX, y: e.clientY }
-  }
-  const handlePointerUp = (e) => {
-    const s = gRef.current
-    if (s.gameOver) { startGame(); return }
-    if (!s.touchStart) return
-    const dx = e.clientX - s.touchStart.x
-    const dy = e.clientY - s.touchStart.y
-    s.touchStart = null
-    if (Math.abs(dx) < 10 && Math.abs(dy) < 10) return
-    let nd
-    if (Math.abs(dx) > Math.abs(dy)) nd = dx > 0 ? DIR.RIGHT : DIR.LEFT
-    else nd = dy > 0 ? DIR.DOWN : DIR.UP
-    if (nd.x + s.dir.x !== 0 || nd.y + s.dir.y !== 0) { s.nextDir = nd; playMove() }
+  const touch = useRef({ sx:0, sy:0 })
+  const onDown = e => { touch.current.sx=e.touches?e.touches[0].clientX:e.clientX; touch.current.sy=e.touches?e.touches[0].clientY:e.clientY; e.preventDefault() }
+  const onUp = e => {
+    const cx = e.changedTouches?e.changedTouches[0].clientX:e.clientX, cy = e.changedTouches?e.changedTouches[0].clientY:e.clientY
+    const dx = cx - touch.current.sx, dy = cy - touch.current.sy
+    if(Math.abs(dx)<10&&Math.abs(dy)<10) return
+    if(Math.abs(dx)>Math.abs(dy)){ if(dx>0&&g.current.dir.x===0) g.current.nextDir=DIR.RIGHT; else if(dx<0&&g.current.dir.x===0) g.current.nextDir=DIR.LEFT }
+    else { if(dy>0&&g.current.dir.y===0) g.current.nextDir=DIR.DOWN; else if(dy<0&&g.current.dir.y===0) g.current.nextDir=DIR.UP }
   }
 
-  // Resize
-  useEffect(() => { fitCanvas(); draw() }, [fitCanvas, draw])
-  useEffect(() => {
-    const h = () => { fitCanvas(); draw() }
-    window.addEventListener('resize', h)
-    return () => { window.removeEventListener('resize', h); if (gRef.current.animId) cancelAnimationFrame(gRef.current.animId) }
-  }, [fitCanvas, draw])
+  useEffect(() => { const h = () => setFs(!!document.fullscreenElement); document.addEventListener('fullscreenchange', h); document.addEventListener('webkitfullscreenchange', h); return () => { document.removeEventListener('fullscreenchange', h); document.removeEventListener('webkitfullscreenchange', h) } }, [])
 
-  useEffect(() => {
-    const handler = () => onFsChange()
-    document.addEventListener('fullscreenchange', handler)
-    document.addEventListener('webkitfullscreenchange', handler)
-    return () => { document.removeEventListener('fullscreenchange', handler); document.removeEventListener('webkitfullscreenchange', handler) }
-  }, [onFsChange])
+  useEffect(() => { if(playing&&!gameOver){ const i=setInterval(()=>{fit();draw()},120); return()=>clearInterval(i) } }, [playing, gameOver, fit, draw])
 
   return (
-    <ToolLayout hideHeader={isFs || fsOverlay}
-      className={fsOverlay ? "w-screen h-screen fixed top-0 left-0 z-[60] bg-[#020a14]" : ""}
-      title="Snake Game Online - Classic Arcade"
-      desc="Play the classic Snake game online. Guide the snake to eat food and grow longer. Keyboard and touch controls. High score saved!"
-      icon="🐍" iconBg="rgba(34,197,94,0.08)"
-      category="fun" slug="games-snake"
-      faq={[
-        { q: "How do I play Snake?", a: "Use arrow keys or WASD to change direction. On mobile, swipe to steer the snake. Eat the red food to grow and score points." },
-        { q: "What happens when the snake hits the wall?", a: "The game ends. Your score is compared to your best score, which is saved locally." },
-        { q: "Does the game get faster?", a: "Yes! As your snake grows longer and your score increases, the speed ramps up for more challenge." },
-      ]}
-      howItWorks={[
-        "Press Start or tap the canvas to begin.",
-        "Use arrow keys (or WASD) on desktop, swipe on mobile to steer.",
-        "Eat the red food to grow your snake and earn points.",
-        "Avoid hitting walls or yourself. Speed increases as you score!",
-      ]}
-      schema={{
-        "@context": "https://schema.org", "@type": "VideoGame",
-        "name": "Snake Game", "applicationCategory": "Game",
-        "url": "https://www.uptools.in/games/snake/",
-        "genre": "Arcade",
-        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-      }}
-    >
-      <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
-      <div className={fsOverlay ? "flex gap-4 w-full h-full overflow-hidden" : "flex gap-4 max-w-6xl mx-auto overflow-hidden"} style={fsOverlay ? {width:"100vw",height:"100vh",maxWidth:"100vw",margin:0,padding:0} : {}}>
-        <div className={"hidden lg:block w-[160px] shrink-0 sticky top-24 self-start" + (fsOverlay ? " hidden" : "")}>
-          <GameAdSlot slot="3494503358" format="vertical" className="mt-2" width={160} height={600} />
+    <div className={`relative w-full min-h-[100dvh] overflow-hidden bg-[#030b14] text-white flex flex-col ${fs ? 'fixed inset-0 z-[70]' : ''}`}>
+      <header className={`flex items-center justify-between px-4 md:px-6 py-3 gap-4 ${fs ? 'border-b border-cyan-500/20 bg-black/60 backdrop-blur-md sticky top-0 z-10' : ''}`}>
+        <h1 className="text-base md:text-xl font-black tracking-tighter bg-gradient-to-r from-cyan-300 via-fuchsia-300 to-cyan-200 bg-clip-text text-transparent">SNAKE</h1>
+        <div className="flex gap-3 md:gap-5 font-mono text-xs md:text-sm text-cyan-200 whitespace-nowrap">
+          <span>Score <b className="text-white">{score}</b></span>
+          <span>Best <b className="text-fuchsia-300">{best}</b></span>
+          <span>Last <b className="text-slate-400">{lastScore}</b></span>
         </div>
-        <div className="flex-1 min-w-0 max-w-xl mx-auto space-y-5 overflow-hidden">
-        {/* Stats */}
-        <div className="glass p-4">
-          <div className="grid grid-cols-3 gap-4">
-            <div className="text-center">
-              <div className="text-2xl font-extrabold text-white">{score}</div>
-              <div className="text-xs text-slate-400 font-medium mt-0.5">Score</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-extrabold text-green-400">{best}</div>
-              <div className="text-xs text-slate-400 font-medium mt-0.5">Best</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-extrabold text-slate-300">{lastScore}</div>
-              <div className="text-xs text-slate-400 font-medium mt-0.5">Last</div>
-            </div>
-          </div>
-        </div>
+        <button onClick={exit} className="text-xs md:text-sm px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 font-bold">✕ Exit</button>
+      </header>
 
-        {/* Controls */}
-        <div className="flex gap-3 justify-center">
-          <button onClick={() => triggerAd(startGame)} className="glow-btn px-6 py-3 text-sm">
-            {playing && !gameOver ? '⟲ Restart' : '▶ Start Game'}
-          </button>
+      <main className={`flex-1 flex flex-col items-center justify-center ${fs ? 'h-[calc(100vh-56px)]' : 'min-h-[72vh] py-6 px-4'}`}>
+        <div className="relative w-[min(92vw,520px)] h-[min(92vw,520px)] flex items-center justify-center shadow-[0_0_60px_rgba(34,211,238,0.15)]">
+          <div className="absolute inset-[-24px] rounded-[2rem] bg-gradient-to-br from-cyan-500/20 via-fuchsia-500/10 to-cyan-500/20 blur-2xl -z-10" />
+          <canvas ref={canvasRef} onPointerDown={onDown} onPointerUp={onUp} className="w-full h-full rounded-2xl border border-cyan-400/30 shadow-[0_0_60px_rgba(34,211,238,0.25)] bg-[#050d1a] touch-none cursor-pointer" style={{width:'100%',height:'100%',touchAction:'none'}} />
+          {!playing && (
+            <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#030b14]/80 backdrop-blur-sm rounded-2xl z-10">
+              <h2 className="text-6xl md:text-7xl font-black bg-gradient-to-b from-cyan-300 via-fuchsia-300 to-cyan-200 bg-clip-text text-transparent mb-3 tracking-tighter">SNAKE</h2>
+              {gameOver && <p className="text-xl md:text-2xl text-rose-400 font-bold mb-4">Game Over</p>}
+              <p className="text-xs md:text-sm text-slate-400 mb-6">Desktop: Arrows / WASD · Mobile: Swipe</p>
+              <button onClick={start} className="px-8 py-3 rounded-full bg-gradient-to-r from-cyan-500 to-fuchsia-500 text-white font-extrabold text-lg shadow-[0_0_30px_rgba(34,211,238,0.5)] hover:scale-105 transition">▶ Start Game</button>
+            </div>
+          )}
         </div>
-
-        {/* Canvas */}
-        <div ref={resultRef} className={fsOverlay ? "glass p-0 flex justify-center items-center h-full w-full" : "glass p-3 flex justify-center overflow-hidden"}>
-          <button onClick={()=>{setFsOverlay(false);setPlaying(false);toggleFs()}} className="absolute top-2 right-2 z-[70] text-white w-10 h-10 rounded-full bg-black/70 border border-cyan-400/60 text-lg hover:bg-black shadow-[0_0_15px_rgba(34,211,238,0.4)]">✕</button>
-          <canvas ref={canvasRef}
-            onPointerDown={handlePointerDown}
-            onPointerUp={handlePointerUp}
-            className="rounded-xl cursor-pointer w-full h-full"
-            style={{ background: '#020a14', touchAction: 'none', boxShadow: '0 0 60px rgba(34,211,238,0.25)', border: '1px solid rgba(34,211,238,0.3)', width: '100vw', height: '100vh', maxHeight: '100vh' }}
-          />
+        <div className="mt-5 flex items-center gap-4">
+          <button onClick={start} className="px-6 py-2.5 rounded-full bg-white/[0.08] border border-white/10 text-cyan-100 font-bold text-sm hover:bg-white/15">⟲ Restart</button>
+          <button onClick={() => { const c=canvasRef.current?.parentElement; if(c&&c.requestFullscreen) c.requestFullscreen().catch(()=>{}) }} className="px-6 py-2.5 rounded-full bg-white/[0.08] border border-white/10 text-cyan-100 font-bold text-sm hover:bg-white/15">⛶ Fullscreen</button>
         </div>
-
-        {/* Mobile D-pad hint */}
-        <div className={fsOverlay ? "fixed bottom-6 left-1/2 -translate-x-1/2 z-[70]" : ""}><button onClick={()=>{setFsOverlay(false);toggleFs();startGame()}} className="glow-btn px-8 py-3 text-base font-bold tracking-widest uppercase bg-gradient-to-r from-cyan-500 to-fuchsia-500 text-white rounded-full shadow-[0_0_30px_rgba(34,211,238,0.5)] hover:shadow-[0_0_40px_rgba(236,72,153,0.6)] transition">⟲ Restart</button></div>
-        <p className="text-center text-xs text-slate-400">
-          Desktop: ← → ↑ ↓ or WASD | Mobile: Swipe to steer
-        </p>
-          <div className="flex gap-2 justify-center mt-4">
-            <button onClick={toggleFs} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all" title="Fullscreen">
-              {isFs ? '⊡' : '⛶'}
-            </button>
-          </div>
-        </div>
-        <div className={"hidden lg:block w-[160px] shrink-0 sticky top-24 self-start" + (fsOverlay ? " hidden" : "")}>
-          <GameAdSlot slot="3414612309" format="vertical" className="mt-2" width={160} height={600} />
-        </div>
-      </div>
-      <div className="w-full max-w-6xl mx-auto px-5 mt-2">
-        <GameAdSlot slot="8865234201" format="horizontal" />
-      </div>
-    </ToolLayout>
+      </main>
+      <footer className="text-center text-[11px] text-slate-600 py-2 font-mono">Neon Arcade · Snake</footer>
+    </div>
   )
 }
