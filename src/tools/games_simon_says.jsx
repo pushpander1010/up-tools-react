@@ -180,7 +180,7 @@ export default function games_simon_says() {
     const handleKey = (e) => {
       if (gameState !== 'input') {
         if (gameState === 'idle' || gameState === 'gameover') {
-          if (e.key === ' ' || e.key === 'Enter') startGame()
+          if (e.key === ' ' || e.key === 'Enter') window.dispatchEvent(new Event('ut:game-start'))
         }
         return
       }

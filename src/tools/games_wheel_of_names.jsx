@@ -305,7 +305,7 @@ export default function games_wheel_of_names() {
               <canvas ref={canvasRef} className="w-full rounded-full" style={{ aspectRatio: '1' }} aria-label="Name spinner wheel"/>
             </div>
             <div className="text-center">
-              <button onClick={() => startSpin} disabled={isSpinning || names.length === 0}
+              <button onClick={() => startSpin()} disabled={isSpinning || names.length === 0}
                   className="glow-btn px-8 py-3 rounded-xl text-sm font-bold text-white transition-all disabled:opacity-50">
                   🎡 Spin Wheel
                 </button>

@@ -339,14 +339,8 @@ export default function games_ping_pong() {
               ))}
             </div>
           )}
-
           <div className="ml-auto flex gap-2">
-            {!gameRunning ? (
-              <button onClick={() => startGame}
-                className="glow-btn px-5 py-2 text-sm">
-                ▶ Start
-              </button>
-            ) : (
+            {gameRunning && (
               <button onClick={() => setGamePaused(p => !p)}
                 className="px-5 py-2 rounded-xl text-sm font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-300 hover:text-white hover:bg-white/[0.1] transition-all">
                 {gamePaused ? '▶ Resume' : '⏸ Pause'}

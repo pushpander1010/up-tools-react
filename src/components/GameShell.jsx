@@ -114,6 +114,18 @@ export default function GameShell({
     })
   }, [triggerAd, startAction, goFullscreen])
 
+  // Canvas-tap-to-start: games fire `window.dispatchEvent(new Event('ut:game-start'))`
+  // from board taps / overlay clicks / Space-Enter-when-idle instead of calling
+  // their raw start fn directly — so taps behave EXACTLY like the shell Start
+  // button (interstitial + fullscreen + start). Listener registered once.
+  const handleStartRef = useRef(handleStart)
+  handleStartRef.current = handleStart
+  useEffect(() => {
+    const h = () => { try { handleStartRef.current() } catch {} }
+    window.addEventListener('ut:game-start', h)
+    return () => window.removeEventListener('ut:game-start', h)
+  }, [])
+
   return (
     <div ref={rootRef} className={`relative w-full min-h-[100dvh] bg-[#030b14] text-white flex flex-col overflow-x-hidden overflow-y-auto ${fs ? 'fixed inset-0 z-[100]' : ''}`}>
       <header className={`flex items-center justify-between px-4 md:px-6 py-3 gap-4 ${fs ? 'border-b border-cyan-500/20 bg-black/60 sticky top-0 z-20' : ''}`}>

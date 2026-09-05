@@ -273,8 +273,8 @@ export default function games_tetris() {
   useEffect(() => {
     const handler = (e) => {
       const s = gRef.current
-      if (s.gameOver) { if (e.key===' '||e.key==='Enter') startGame(); return }
-      if (!s.playing) { startGame(); return }
+      if (s.gameOver) { if (e.key===' '||e.key==='Enter') window.dispatchEvent(new Event('ut:game-start')); return }
+      if (!s.playing) { window.dispatchEvent(new Event('ut:game-start')); return }
       if (!s.piece) return
 
       if (e.key==='ArrowLeft'||e.key==='a') {
@@ -315,8 +315,8 @@ export default function games_tetris() {
   const handlePointerDown = (e) => { touchStart.current = {x:e.clientX,y:e.clientY,time:Date.now()} }
   const handlePointerUp = (e) => {
     const s = gRef.current
-    if (s.gameOver) { startGame(); return }
-    if (!s.playing) { startGame(); return }
+    if (s.gameOver) { window.dispatchEvent(new Event('ut:game-start')); return }
+    if (!s.playing) { window.dispatchEvent(new Event('ut:game-start')); return }
     if (!s.piece) return
     const dx = e.clientX - touchStart.current.x
     const dy = e.clientY - touchStart.current.y

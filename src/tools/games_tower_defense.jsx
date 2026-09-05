@@ -513,7 +513,7 @@ export default function games_tower_defense() {
     const col = Math.floor(x / cellW)
     const row = Math.floor(y / cellW)
 
-    if (s.gameOver) { startGame(); return }
+    if (s.gameOver) { window.dispatchEvent(new Event('ut:game-start')); return }
 
     if (placing) {
       placeTower(row, col)
@@ -549,7 +549,7 @@ export default function games_tower_defense() {
     const handler = (e) => {
       const s = gRef.current
       if (s.gameOver) {
-        if (e.key === ' ' || e.key === 'Enter') startGame()
+        if (e.key === ' ' || e.key === 'Enter') window.dispatchEvent(new Event('ut:game-start'))
         return
       }
       if (e.key === '1') { setPlacing('arrow'); setSelectedTower(null) }

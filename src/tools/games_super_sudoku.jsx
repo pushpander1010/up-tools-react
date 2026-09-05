@@ -185,7 +185,7 @@ export default function games_super_sudoku() {
   // Keyboard
   useEffect(() => {
     const handler = (e) => {
-      if (completed) { if(e.key==='Enter'||e.key===' ') startGame(); return }
+      if (completed) { if(e.key==='Enter'||e.key===' ') window.dispatchEvent(new Event('ut:game-start')); return }
       if (!gameStarted) return
       if (e.key>='1'&&e.key<='9') placeNumber(parseInt(e.key))
       else if (e.key==='0'||e.key==='Backspace'||e.key==='Delete') placeNumber(0)
@@ -374,9 +374,6 @@ export default function games_super_sudoku() {
 
           {/* Action Buttons */}
           <div className="flex gap-2 justify-center flex-wrap">
-            <button onClick={()=>startGame} className="glow-btn px-5 py-2.5 text-sm">
-              {completed ? '⟲ New Game' : gameStarted ? '⟲ Restart' : '▶ Start Game'}
-            </button>
             <button onClick={()=>setNotesMode(m=>!m)}
               className={`px-4 py-2.5 rounded-xl text-xs font-semibold border transition-all ${notesMode?'bg-yellow-500/15 border-yellow-500/30 text-yellow-400':'bg-white/[0.06] border-white/[0.08] text-slate-400 hover:text-white'}`}>
               📝 Notes {notesMode?'ON':'OFF'}

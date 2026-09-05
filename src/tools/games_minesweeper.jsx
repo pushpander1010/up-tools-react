@@ -260,9 +260,6 @@ export default function games_minesweeper() {
             <div className="text-5xl mb-4">💣</div>
             <h2 className="text-xl font-bold text-white mb-2">Minesweeper</h2>
             <p className="text-sm text-slate-400 mb-6">Select a difficulty and click a cell to start!</p>
-            <button onClick={() => startGame(difficulty)} className="glow-btn px-8 py-3 text-sm">
-              Start Game
-            </button>
           </div>
         )}
 

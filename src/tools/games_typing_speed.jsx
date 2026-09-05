@@ -267,10 +267,6 @@ export default function games_typing_speed() {
               <div><div className="text-lg font-bold text-white">{typedCharsTotal + typed.length}</div><div className="text-xs text-slate-400">Characters</div></div>
             </div>
             <div className="flex gap-3 justify-center">
-              <button onClick={() => resetTest}
-                 className="glow-btn px-6 py-3 text-sm">
-                Try Again
-              </button>
               <button onClick={() => { setTestFinished(false); resetTest() }}
                  className="px-6 py-3 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">
                 Change Duration
@@ -282,7 +278,7 @@ export default function games_typing_speed() {
         {/* Controls */}
         {!testFinished && (
           <div className="text-center">
-            <button onClick={() => resetTest()}
+            <button onClick={() => {window.dispatchEvent(new Event('ut:game-start'))}}
                className="px-6 py-3 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">
               ↺ Restart
             </button>

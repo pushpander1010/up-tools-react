@@ -220,7 +220,7 @@ export default function games_love_test() {
               ))}
             </div>
             <div className="text-center">
-              <button onClick={() => startQuiz}
+              <button onClick={() => {window.dispatchEvent(new Event('ut:game-start'))}}
                 className="glow-btn px-8 py-4 rounded-2xl text-sm font-bold text-white transition-all">
                 💖 Start Quiz
               </button>

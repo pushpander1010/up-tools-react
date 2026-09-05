@@ -340,7 +340,7 @@ export default function games_flappy_bird() {
 
   const flap = useCallback(() => {
     const s = gRef.current
-    if (s.gameState === 'idle') { startGame(); return }
+    if (s.gameState === 'idle') { window.dispatchEvent(new Event('ut:game-start')); return }
     if (s.gameState === 'dead') return
     s.bird.vy = FLAP
     playFlap()
@@ -360,7 +360,7 @@ export default function games_flappy_bird() {
       if (e.key === ' ' || e.key === 'ArrowUp' || e.key === 'w') {
         e.preventDefault()
         const gs = gRef.current.gameState
-        if (gs === 'dead') { startGame(); return }
+        if (gs === 'dead') { window.dispatchEvent(new Event('ut:game-start')); return }
         flap()
       }
     }
@@ -371,7 +371,7 @@ export default function games_flappy_bird() {
   // Touch
   const handlePointerDown = useCallback(() => {
     const gs = gRef.current.gameState
-    if (gs === 'dead') { startGame(); return }
+    if (gs === 'dead') { window.dispatchEvent(new Event('ut:game-start')); return }
     flap()
   }, [startGame, flap])
 

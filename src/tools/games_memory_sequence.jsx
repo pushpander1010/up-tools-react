@@ -215,14 +215,7 @@ export default function GamesMemorySequence() {
 
         {/* ── Controls ── */}
         <div className="flex justify-center gap-3">
-          {!started || gameOver ? (
-            <button
-              onClick={startGame}
-              className="px-8 py-3 rounded-xl font-bold text-sm bg-gradient-to-r from-red-500 to-amber-500 text-white hover:brightness-110 transition-all shadow-lg"
-            >
-              {gameOver ? 'Play Again' : 'Start Game'}
-            </button>
-          ) : (
+          {(started && !gameOver) && (
             <button
               onClick={() => { clearTimeout(timerRef.current); setGameOver(true); setWaiting(false); setPlaying(false) }}
               className="px-6 py-3 rounded-xl text-sm font-medium bg-white/[0.06] border border-white/[0.08] text-slate-300 hover:text-white hover:bg-white/[0.1] transition-all"

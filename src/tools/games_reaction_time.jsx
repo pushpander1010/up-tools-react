@@ -169,11 +169,11 @@ export default function games_reaction_time() {
         <div
           className="relative rounded-2xl overflow-hidden border border-white/[0.08] cursor-pointer select-none transition-colors duration-200"
           style={{ background: bg, minHeight: '280px' }}
-          onClick={phase === 'idle' ? startRound :
+          onClick={phase === 'idle' ? () => {window.dispatchEvent(new Event('ut:game-start'))} :
                   phase === 'waiting' || phase === 'ready' ? handleClick :
                   phase === 'tooEarly' ? startRound :
                   phase === 'result' && currentRound + 1 < ROUNDS ? continueRounds :
-                  phase === 'done' ? resetGame : undefined}
+                  phase === 'done' ? () => {window.dispatchEvent(new Event('ut:game-start'))} : undefined}
         >
           <div className="flex flex-col items-center justify-center min-h-[280px] sm:min-h-[380px] p-6">
             {phase === 'idle' && (
@@ -252,7 +252,7 @@ export default function games_reaction_time() {
                     className="px-4 py-2.5 min-h-[44px] rounded-xl text-xs font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">
                     📋 Copy Results
                   </button>
-                  <button onClick={(e) => { e.stopPropagation(); resetGame() }}
+                  <button onClick={(e) => { e.stopPropagation(); window.dispatchEvent(new Event('ut:game-start')) }}
                     className="glow-btn px-4 py-2 text-xs">
                     Play Again
                   </button>

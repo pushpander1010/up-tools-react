@@ -460,13 +460,6 @@ export default function games_battleship() {
             <p className="text-sm font-medium text-slate-300">{message}</p>
           </div>
 
-          {/* Controls */}
-          <div className="flex gap-3 justify-center">
-            <button onClick={()=>startGame} className="glow-btn px-6 py-3 text-sm">
-              {(phase==='win'||phase==='lose') ? '⟲ New Game' : phase==='setup' && playerShips.length===0 ? '▶ Start' : '⟲ Restart'}
-            </button>
-          </div>
-
           {/* Boards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {/* Player Board */}

@@ -364,7 +364,7 @@ export default function games_pac_man() {
       if (!s) return
       if (!s.running) {
         if ((s.phase === 'idle' || s.phase === 'over' || s.phase === 'won') && (e.key === ' ' || e.key === 'Enter')) {
-          e.preventDefault(); startGame()
+          e.preventDefault(); window.dispatchEvent(new Event('ut:game-start'))
         }
         return
       }
@@ -383,7 +383,7 @@ export default function games_pac_man() {
   /* ── touch / pointer ── */
   const onPointerDown = useCallback((e) => {
     const s = g.current
-    if (!s || s.phase === 'idle' || s.phase === 'over' || s.phase === 'won') { startGame(); return }
+    if (!s || s.phase === 'idle' || s.phase === 'over' || s.phase === 'won') { window.dispatchEvent(new Event('ut:game-start')); return }
     if (!s.running) return
     touchRef.current = { on: true, sx: e.clientX, sy: e.clientY, pid: e.pointerId }
     try { cvs.current?.setPointerCapture(e.pointerId) } catch {}
@@ -485,13 +485,13 @@ export default function games_pac_man() {
               {/* Start overlay */}
               {(phase === 'idle' || (phase === 'over' && lives <= 0)) && phase !== 'won' && (
                 <div className="absolute inset-0 bg-black/90 flex flex-col items-center justify-center p-6"
-                  onClick={() => startGame()}>
+                  onClick={() => {window.dispatchEvent(new Event('ut:game-start'))}}>
                   <div className="text-5xl mb-4">👾</div>
                   <h2 className="text-xl font-bold text-white mb-2">PAC-MAN</h2>
                   <p className="text-sm text-slate-400 text-center mb-4">
                     {phase === 'idle' ? 'Eat dots. Dodge ghosts. Grab power pellets!' : `Final Score: ${score}`}
                   </p>
-                  <button onClick={(e) => { e.stopPropagation(); startGame() }}
+                  <button onClick={(e) => { e.stopPropagation(); window.dispatchEvent(new Event('ut:game-start')) }}
                     className="glow-btn px-8 py-3 text-sm">
                     {phase === 'idle' ? 'Start Game' : 'Play Again'}
                   </button>
@@ -501,11 +501,11 @@ export default function games_pac_man() {
               {/* Win overlay */}
               {phase === 'won' && (
                 <div className="absolute inset-0 bg-black/90 flex flex-col items-center justify-center p-6"
-                  onClick={() => startGame()}>
+                  onClick={() => {window.dispatchEvent(new Event('ut:game-start'))}}>
                   <div className="text-5xl mb-3">🎉</div>
                   <h2 className="text-xl font-bold text-white mb-2">You Win!</h2>
                   <p className="text-sm text-slate-400 mb-4">Score: {score}</p>
-                  <button onClick={(e) => { e.stopPropagation(); startGame() }}
+                  <button onClick={(e) => { e.stopPropagation(); window.dispatchEvent(new Event('ut:game-start')) }}
                     className="glow-btn px-8 py-3 text-sm">Play Again</button>
                 </div>
               )}
