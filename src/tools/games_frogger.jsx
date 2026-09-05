@@ -512,8 +512,12 @@ export default function games_frogger() {
     if (moved) { playHop(); if (dy < 0) { s.score += 1; setScore(s.score) } }
   }
 
-  // Resize
-  useEffect(() => { fitCanvas(); draw() }, [fitCanvas, draw])
+  useEffect(() => {
+    const h = () => { fitCanvas(); draw() };
+    window.addEventListener('resize', h);
+    window.addEventListener('ut:board-h', h);
+    return () => { window.removeEventListener('resize', h); window.removeEventListener('ut:board-h', h) };
+  }, [fitCanvas, draw]);
 
 
   return (

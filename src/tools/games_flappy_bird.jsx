@@ -67,7 +67,7 @@ export default function games_flappy_bird() {
     if (!canvas) return
     const wrap = canvas.parentElement
     if (!wrap) return
-    const maxW = Math.min(400, wrap.clientWidth - 16)
+    const maxW = Math.min(400, wrap.clientWidth - 16, Math.floor((window.__utBoardH || 1e9) / 1.5))
     const H = Math.floor(maxW * 1.5)
     const dpr = Math.max(1, Math.min(2, window.devicePixelRatio||1))
     gRef.current.W = maxW; gRef.current.H = H; gRef.current.dpr = dpr
@@ -375,7 +375,13 @@ export default function games_flappy_bird() {
     flap()
   }, [startGame, flap])
 
-  useEffect(() => { fitCanvas(); draw() }, [fitCanvas, draw])
+  // Re-fit when the shell publishes board height (fullscreen) or viewport resizes.
+  useEffect(() => {
+    const h = () => { fitCanvas(); draw(); };
+    window.addEventListener('resize', h);
+    window.addEventListener('ut:board-h', h);
+    return () => { window.removeEventListener('resize', h); window.removeEventListener('ut:board-h', h) };
+  }, [fitCanvas, draw]);
 
 
   return (

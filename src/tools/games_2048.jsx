@@ -137,7 +137,8 @@ export default function games_2048() {
   useEffect(() => {
     const h = () => resizeBoard()
     window.addEventListener('resize', h)
-    return () => window.removeEventListener('resize', h)
+    window.addEventListener('ut:board-h', h)
+    return () => { window.removeEventListener('resize', h); window.removeEventListener('ut:board-h', h) }
   }, [])
 
   const resizeBoard = () => {

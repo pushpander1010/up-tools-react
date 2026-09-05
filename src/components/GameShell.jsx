@@ -126,9 +126,54 @@ export default function GameShell({
     return () => window.removeEventListener('ut:game-start', h)
   }, [])
 
+  // Publish the board's available height for canvas games.
+  // In fs mode the root is fixed inset-0, so we can measure real chrome
+  // (header + control bar + banner + footer + paddings) and tell games the
+  // exact px their board may use — no more magic `innerHeight - 200` that
+  // leaves board bottoms hidden. Page mode: games keep their own logic.
+  const headerRef = useRef(null)
+  const controlsRef = useRef(null)
+  const bannerRef = useRef(null)
+  const footerRef = useRef(null)
+  const publishBoardH = useCallback(() => {
+    try {
+      if (!fs) { delete window.__utBoardH; return }
+      const el = rootRef.current
+      if (!el) return
+      const chrome =
+        (headerRef.current?.offsetHeight || 0) +
+        (controlsRef.current?.offsetHeight || 0) +
+        (bannerRef.current?.offsetHeight || 0) +
+        (footerRef.current?.offsetHeight || 0) + 56
+      window.__utBoardH = Math.max(220, el.clientHeight - chrome)
+    } catch {}
+    // Board height changed → games must re-fit AFTER reading the new value.
+    try { window.dispatchEvent(new Event('ut:board-h')) } catch {}
+  }, [fs])
+  useEffect(() => {
+    publishBoardH()
+    const t1 = setTimeout(publishBoardH, 120)
+    const t2 = setTimeout(publishBoardH, 400)
+    window.addEventListener('resize', publishBoardH)
+    // In fs mode the board refits smaller after chrome is measured — bring it
+    // into view so no part stays hidden below the fold.
+    let t3 = null
+    if (fs) {
+      t3 = setTimeout(() => {
+        try {
+          const col = resultRef.current
+          const cv = col ? col.querySelector('canvas') : null
+          const target = cv || col
+          if (target && target.scrollIntoView) target.scrollIntoView({ block: 'center' })
+        } catch {}
+      }, 450)
+    }
+    return () => { window.removeEventListener('resize', publishBoardH); clearTimeout(t1); clearTimeout(t2); if (t3) clearTimeout(t3) }
+  }, [publishBoardH, children, fs])
+
   return (
-    <div ref={rootRef} className={`relative w-full min-h-[100dvh] bg-[#030b14] text-white flex flex-col overflow-x-hidden overflow-y-auto ${fs ? 'fixed inset-0 z-[100]' : ''}`}>
-      <header className={`flex items-center justify-between px-4 md:px-6 py-3 gap-4 ${fs ? 'border-b border-cyan-500/20 bg-black/60 sticky top-0 z-20' : ''}`}>
+    <div ref={rootRef} className={`relative w-full bg-[#030b14] text-white flex flex-col overflow-x-hidden overflow-y-auto ${fs ? 'fixed inset-0 z-[100] h-[100dvh] min-h-0' : 'min-h-[100dvh]'}`}>
+      <header ref={headerRef} className={`flex items-center justify-between px-4 md:px-6 py-3 gap-4 ${fs ? 'border-b border-cyan-500/20 bg-black/60 sticky top-0 z-20' : ''}`}>
         <h1 className="text-base md:text-xl font-black tracking-tighter bg-gradient-to-r from-cyan-300 via-fuchsia-300 to-cyan-200 bg-clip-text text-transparent">{name || title}</h1>
         {headerStats && (
           <div className="flex gap-3 md:gap-5 font-mono text-xs md:text-sm text-cyan-200 whitespace-nowrap">
@@ -150,21 +195,28 @@ export default function GameShell({
             <GameAdSlot slot="3494503358" format="vertical" className="mt-2" width={160} height={600} />
           </div>
           <div className="flex-1 min-w-0 max-w-xl mx-auto space-y-5 overflow-hidden">
-            {children}
-            <div className="flex flex-wrap justify-center items-center gap-3 md:gap-4">
-              <button onClick={handleStart} className="px-6 py-2.5 rounded-full bg-white/[0.08] border border-white/10 text-cyan-100 font-bold text-sm hover:bg-white/15">{startLabel}</button>
-              <button onClick={goFullscreen} className="px-6 py-2.5 rounded-full bg-white/[0.08] border border-white/10 text-cyan-100 font-bold text-sm hover:bg-white/15">⛶ Fullscreen</button>
-              {fs && <button onClick={exit} className="px-6 py-2.5 rounded-full bg-rose-500/20 border border-rose-400/40 text-rose-100 font-bold text-sm hover:bg-rose-500/30">✕ Exit game</button>}
-              {extraButtons}
+            {/* Control bar FIRST + sticky: Start/Fullscreen/Exit are always one
+                glance away — no scrolling to the bottom, on page or fullscreen. */}
+            <div ref={controlsRef} className={`sticky ${fs ? 'top-[57px]' : 'top-[68px]'} z-30 -mx-1 px-1 py-2 bg-[#030b14]/95 backdrop-blur-sm`}>
+              <div className="flex flex-wrap justify-center items-center gap-2 md:gap-3">
+                <button onClick={handleStart} className="px-6 py-2.5 rounded-full bg-white/[0.08] border border-white/10 text-cyan-100 font-bold text-sm hover:bg-white/15">{startLabel}</button>
+                <button onClick={goFullscreen} className="px-6 py-2.5 rounded-full bg-white/[0.08] border border-white/10 text-cyan-100 font-bold text-sm hover:bg-white/15">⛶ Fullscreen</button>
+                {fs && <button onClick={exit} className="px-6 py-2.5 rounded-full bg-rose-500/20 border border-rose-400/40 text-rose-100 font-bold text-sm hover:bg-rose-500/30">✕ Exit game</button>}
+                {extraButtons}
+              </div>
             </div>
-            <GameAdSlot slot="8865234201" format="horizontal" className="mt-2" />
+            {children}
+            <div ref={bannerRef}>
+              <GameAdSlot slot="8865234201" format="horizontal" className="mt-2" />
+            </div>
           </div>
           <div className="hidden xl:block w-[160px] shrink-0 sticky top-24 self-start">
             <GameAdSlot slot="3414612309" format="vertical" className="mt-2" width={160} height={600} />
           </div>
         </div>
       </ToolLayout>
-      <footer className="text-center text-[11px] text-slate-600 py-2 font-mono">Neon Arcade · {name || title}</footer>
+      {!fs && <footer ref={footerRef} className="text-center text-[11px] text-slate-600 py-2 font-mono">Neon Arcade · {name || title}</footer>}
+      {fs && <footer ref={footerRef} className="text-center text-[11px] text-slate-600 py-1 font-mono">Neon Arcade · {name || title}</footer>}
     </div>
   )
 }

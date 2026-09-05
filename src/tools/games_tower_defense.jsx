@@ -563,7 +563,12 @@ export default function games_tower_defense() {
     return () => window.removeEventListener('keydown', handler)
   }, [startGame, startWave])
 
-  useEffect(() => { fitCanvas(); draw() }, [fitCanvas, draw])
+  useEffect(() => {
+    const h = () => { fitCanvas(); draw() };
+    window.addEventListener('resize', h);
+    window.addEventListener('ut:board-h', h);
+    return () => { window.removeEventListener('resize', h); window.removeEventListener('ut:board-h', h) };
+  }, [fitCanvas, draw]);
 
 
   return (

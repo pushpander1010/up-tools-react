@@ -76,7 +76,8 @@ export default function SnakeGame() {
     const onR = () => { fit(); draw() }
     fit(); draw()
     window.addEventListener('resize', onR)
-    return () => window.removeEventListener('resize', onR)
+    window.addEventListener('ut:board-h', onR)
+    return () => { window.removeEventListener('resize', onR); window.removeEventListener('ut:board-h', onR) }
   }, [fit, draw])
 
   const goFullscreen = useCallback(() => {

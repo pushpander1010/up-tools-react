@@ -334,7 +334,7 @@ export default function games_bubble_shooter() {
     const totalW = lo.width + 8
     const totalH = lo.height + 3*lo.tileheight + 80
     const maxW = Math.min(totalW, wrap.clientWidth - 16)
-    const scale = maxW / totalW
+    const scale = Math.min(maxW / totalW, (window.__utBoardH || 1e9) / totalH)
     const w = Math.floor(totalW * scale)
     const h = Math.floor(totalH * scale)
     const dpr = Math.max(1, Math.min(2, window.devicePixelRatio||1))
@@ -476,7 +476,8 @@ export default function games_bubble_shooter() {
   useEffect(() => {
     const h = () => { fitCanvas(); draw() }
     window.addEventListener('resize', h)
-    return () => { window.removeEventListener('resize', h); if(gRef.current.animId) cancelAnimationFrame(gRef.current.animId) }
+    window.addEventListener('ut:board-h', h)
+    return () => { window.removeEventListener('resize', h); window.removeEventListener('ut:board-h', h); if(gRef.current.animId) cancelAnimationFrame(gRef.current.animId) }
   }, [fitCanvas, draw])
 
   // Mouse/touch

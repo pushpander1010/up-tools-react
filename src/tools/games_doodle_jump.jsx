@@ -46,7 +46,7 @@ export default function games_doodle_jump() {
     const wrap = canvas.parentElement
     if (!wrap) return
     const maxW = Math.min(360, wrap.clientWidth - 16)
-    const maxH = Math.min(576, window.innerHeight * 0.6)
+    const maxH = Math.min(576, window.innerHeight * 0.6, (window.__utBoardH || 1e9))
     const ratio = 360 / 576
     let w = maxW
     let h = w / ratio
@@ -436,8 +436,13 @@ export default function games_doodle_jump() {
     s.velocityX = 0
   }
 
-  // Resize
-  useEffect(() => { fitCanvas(); draw() }, [fitCanvas, draw])
+  // Re-fit when the shell publishes board height (fullscreen) or viewport resizes.
+  useEffect(() => {
+    const h = () => { fitCanvas(); draw(); };
+    window.addEventListener('resize', h);
+    window.addEventListener('ut:board-h', h);
+    return () => { window.removeEventListener('resize', h); window.removeEventListener('ut:board-h', h) };
+  }, [fitCanvas, draw]);
 
 
   return (

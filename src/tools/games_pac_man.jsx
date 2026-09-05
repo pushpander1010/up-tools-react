@@ -75,7 +75,7 @@ export default function games_pac_man() {
     const c = cvs.current, wrap = c?.parentElement
     if (!c || !wrap) return
     const maxW = Math.min(wrap.clientWidth, window.innerWidth - 48, 800)
-    const cell = Math.floor(maxW / COLS)
+    const cell = Math.min(Math.floor(maxW / COLS), Math.floor((window.__utBoardH || 1e9) / ROWS))
     const W = cell * COLS
     const H = cell * ROWS
     const dpr = Math.min(2, devicePixelRatio || 1)
@@ -417,7 +417,10 @@ export default function games_pac_man() {
       moveTimer: 0, ghostCombo: 0, level: 1, animId: null,
     }
     resize(); draw()
-    return () => { if (g.current?.animId) cancelAnimationFrame(g.current.animId); g.current = null }
+    const h = () => { resize(); draw() };
+    window.addEventListener('resize', h);
+    window.addEventListener('ut:board-h', h);
+    return () => { window.removeEventListener('resize', h); window.removeEventListener('ut:board-h', h); if (g.current?.animId) cancelAnimationFrame(g.current.animId); g.current = null }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 

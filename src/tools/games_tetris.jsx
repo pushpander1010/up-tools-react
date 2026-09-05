@@ -104,7 +104,7 @@ export default function games_tetris() {
     const wrap = canvas.parentElement
     if (!wrap) return
     const maxW = Math.min(wrap.clientWidth - 16, window.innerWidth - 32)
-    const maxH = window.innerHeight - 200
+    const maxH = Math.min(window.innerHeight - 200, (window.__utBoardH || 1e9))
     const cellSz = Math.min(Math.floor(maxW / COLS), Math.floor(maxH / ROWS))
     const W = cellSz * COLS
     const H = cellSz * ROWS
@@ -352,7 +352,8 @@ export default function games_tetris() {
   useEffect(() => {
     const h = () => { fitCanvas(); draw() }
     window.addEventListener('resize', h)
-    return () => { window.removeEventListener('resize', h); if (gRef.current.animId) cancelAnimationFrame(gRef.current.animId) }
+    window.addEventListener('ut:board-h', h)
+    return () => { window.removeEventListener('resize', h); window.removeEventListener('ut:board-h', h); if (gRef.current.animId) cancelAnimationFrame(gRef.current.animId) }
   }, [fitCanvas, draw])
 
 

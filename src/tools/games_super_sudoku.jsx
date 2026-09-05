@@ -293,6 +293,12 @@ export default function games_super_sudoku() {
   }, [])
 
   useEffect(()=>{ fitCanvas() }, [fitCanvas, board, selected, notes])
+  useEffect(() => {
+    const h = () => { fitCanvas() };
+    window.addEventListener('resize', h);
+    window.addEventListener('ut:board-h', h);
+    return () => { window.removeEventListener('resize', h); window.removeEventListener('ut:board-h', h) };
+  }, [fitCanvas]);
 
   const handleCanvasClick = useCallback((e) => {
     if (!board || completed) return

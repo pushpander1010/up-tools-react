@@ -665,6 +665,12 @@ export default function games_chess() {
   }, [handleSquareClick])
 
   useEffect(() => { fitCanvas(); draw() }, [fitCanvas, draw, board, selected, legalMoves, thinking])
+  useEffect(() => {
+    const h = () => { fitCanvas(); draw() };
+    window.addEventListener('resize', h);
+    window.addEventListener('ut:board-h', h);
+    return () => { window.removeEventListener('resize', h); window.removeEventListener('ut:board-h', h) };
+  }, [fitCanvas, draw]);
 
 
   return (

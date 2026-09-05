@@ -259,7 +259,13 @@ export default function games_ping_pong() {
     return () => { window.removeEventListener('keydown', handler); window.removeEventListener('keyup', upHandler) }
   }, [])
 
-  useEffect(() => { fitCanvas(); draw() }, [fitCanvas, draw])
+  // Re-fit when the shell publishes board height (fullscreen) or viewport resizes.
+  useEffect(() => {
+    const h = () => { fitCanvas(); draw(); };
+    window.addEventListener('resize', h);
+    window.addEventListener('ut:board-h', h);
+    return () => { window.removeEventListener('resize', h); window.removeEventListener('ut:board-h', h) };
+  }, [fitCanvas, draw]);
 
 
   // Pointer tracking for mobile

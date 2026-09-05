@@ -47,7 +47,7 @@ export default function SpaceInvadersGame() {
   const resize = useCallback(() => {
     const c = cvs.current, wrap = c?.parentElement
     if (!c || !wrap) return
-    const W = wrap.clientWidth
+    const W = Math.min(wrap.clientWidth, Math.floor((window.__utBoardH || 1e9) / 1.5))
     const H = Math.floor(W * 1.5)
     const dpr = Math.min(2, devicePixelRatio || 1)
     c.width = W * dpr; c.height = H * dpr
@@ -376,7 +376,8 @@ export default function SpaceInvadersGame() {
     draw()
     const h = () => { resize(); draw() }
     window.addEventListener('resize', h)
-    return () => { window.removeEventListener('resize', h); if (g.current?.animId) cancelAnimationFrame(g.current.animId) }
+    window.addEventListener('ut:board-h', h)
+    return () => { window.removeEventListener('resize', h); window.removeEventListener('ut:board-h', h); if (g.current?.animId) cancelAnimationFrame(g.current.animId) }
   }, [resize, draw])
 
   /* ── keyboard ── */
