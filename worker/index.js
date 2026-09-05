@@ -1412,6 +1412,17 @@ export default {
       '/income-tax-calculator/': '/income-tax-tool/',
       '/privacy': '/privacy-policy',
       '/privacy/': '/privacy-policy/',
+      // Dead URLs Google keeps recrawling (never existed / long-removed) -> closest live page.
+      // Fixes 'Crawled - currently not indexed' + 500s on: /terms/, /plagiarism-checker/,
+      // /crypto-mining-calculator/, /fr/invoice-calculator/ (2026-09 GSC report).
+      '/terms': '/privacy-policy',
+      '/terms/': '/privacy-policy/',
+      '/plagiarism-checker': '/ai-plagiarism',
+      '/plagiarism-checker/': '/ai-plagiarism/',
+      '/crypto-mining-calculator': '/crypto-profitability',
+      '/crypto-mining-calculator/': '/crypto-profitability/',
+      '/fr/invoice-calculator': '/invoice-calculator',
+      '/fr/invoice-calculator/': '/invoice-calculator/',
       // Consolidated / promoted tools (removed pro + dup slugs -> survivor) 2026-08
       '/percentage-calculator-pro': '/percentage-calculator',
       '/percentage-calculator-pro/': '/percentage-calculator/',

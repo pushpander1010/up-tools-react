@@ -104,7 +104,11 @@ for(const file of toolFiles){
   if(SKIP_SLUGS.has(slug)) continue
 
   const content = readFileSync(join(toolsDir,file),'utf-8')
-  const titleMatch = content.match(/\btitle\s*=\s*['"`]([^'"`]+)['"`]/)
+  // Prefer the page title on the layout wrapper (ToolLayout/GameShell title="...").
+  // A naive first-match would grab canvas/game-state strings like `Level ${nl}`
+  // or share-sheet titles ('Friendship Test Result') appearing earlier in file.
+  const shellTitle = content.match(/<(?:ToolLayout|GameShell)[\s\S]*?\btitle\s*=\s*"([^"]+)"/)
+  const titleMatch = shellTitle || content.match(/\btitle\s*=\s*['"`]([^'"`]+)['"`]/)
   const descMatch = content.match(/\bdesc\s*=\s*['"`]([^'"`]+)['"`]/)
   const rawTitle = titleMatch?titleMatch[1]:slug.replace(/-/g,' ').replace(/\b\w/g,c=>c.toUpperCase())
   const rawDesc = descMatch?descMatch[1]:`${rawTitle}. Free online tool by UpTools.`
@@ -217,6 +221,9 @@ buildHtml('games','UpTools - Free Online Games','Play free online arcade, puzzle
 buildHtml('aimakerich','AIMakeRich - Finance, Investing & Trading Guides','AIMakeRich: practical money guides that match our Instagram reels. Learn investing, trading strategies and finance with real code, step-by-step processes, FAQs and how-tos.')
 buildHtml('aiforrich','AIFORRICH - Algo Trading, Pine Script & Crypto Trading Guides','AIFORRICH: Algo trading for international markets and crypto — reels + code guides. Practical quantitative trading strategies, Pine Script indicators, and automated execution bots with copy-paste code.')
 buildHtml('about','About UpTools - Privacy-First Free Web Tools','UpTools is a fast, privacy-first collection of 300+ free web tools and 40+ games. Calculate tax, GST, EMI and SIP; convert currency; validate PAN; format JSON; and more — no logins, instant results.')
+// Snake is a custom page (no ToolLayout/GameShell title prop) — pin its SEO title
+// so it never falls back to the slug-derived 'Games/Snake'.
+buildHtml('games/snake','Snake Game Online - Classic Neon Arcade','Play Snake online free. Eat food, grow your snake, chase the high score. Arrow keys/WASD on desktop, swipe on mobile. No downloads, play in your browser.')
 
 // ---- Blogs: prerender /blogs and /blogs/<slug> ----
 let blogCount = 0
