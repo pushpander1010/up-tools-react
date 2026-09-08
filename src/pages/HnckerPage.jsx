@@ -22,6 +22,7 @@ const tools = [
   { slug: 'strix', name: 'STRIX', img: '/assets/tools/strix/strix_logo.png', alt: 'STRIX AI penetration testing tool logo', desc: 'Open-source AI pentest with autonomous agents and zero false positives.', tag: 'AI Pentest', accent: 'linear-gradient(135deg, rgba(0,255,65,0.2), rgba(0,200,180,0.08))' },
   { slug: 'whatsosint', name: 'WhatsOSINT', img: '/assets/tools/whatsosint/whatsosint_logo.png', alt: 'WhatsOSINT WhatsApp number lookup tool logo', desc: 'Check if a phone number is on WhatsApp and pull its public profile data.', tag: 'WhatsApp OSINT', accent: 'linear-gradient(135deg, rgba(6,182,212,0.2), rgba(0,255,65,0.08))' },
   { slug: 'netc2', name: 'Net-C2', img: '/assets/tools/netc2/netc2_logo.png', alt: 'Net-C2 botnet command and control framework logo', desc: 'How a Python botnet C2 framework works — server, encrypted bots, web dashboard.', tag: 'Botnet C2', accent: 'linear-gradient(135deg, rgba(168,85,247,0.2), rgba(0,255,65,0.08))' },
+  { slug: 'netcat', name: 'Netcat', img: '/assets/tools/netcat/netcat_logo.png', alt: 'Netcat Swiss army knife networking tool logo', desc: 'The hacker Swiss army knife — port checks, banners, chat, file transfer, shells.', tag: 'Swiss army knife', accent: 'linear-gradient(135deg, rgba(0,255,65,0.2), rgba(0,200,180,0.08))' },
 
 ]
 
