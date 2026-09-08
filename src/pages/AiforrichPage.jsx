@@ -69,6 +69,38 @@ const guides = [
     tag: 'Python Stack',
     accent: 'linear-gradient(135deg, rgba(52,211,153,0.16), rgba(251,191,36,0.07))',
   },
+  {
+    slug: 'quality-stocks',
+    name: '3 Traits Every Winning Stock Has',
+    icon: '💎',
+    desc: 'Growing profits, low debt, fair price — the 2-minute quality checklist plus a Python screener.',
+    tag: 'Quality Checklist',
+    accent: 'linear-gradient(135deg, rgba(52,211,153,0.16), rgba(6,182,212,0.07))',
+  },
+  {
+    slug: 'buffett-strategy',
+    name: 'Buffett’s 3 Boring Rules',
+    icon: '🎩',
+    desc: 'Wonderful businesses, margin of safety, hold forever — works on small accounts, plus screener.',
+    tag: 'Value Investing',
+    accent: 'linear-gradient(135deg, rgba(251,191,36,0.16), rgba(52,211,153,0.07))',
+  },
+  {
+    slug: 'big-bull-strategy',
+    name: 'Big Bull’s 3 Bold Rules',
+    icon: '🐂',
+    desc: 'Buy the fear, bet big when sure, hold for years — the Jhunjhunwala playbook, plus screener.',
+    tag: 'Big Bull Playbook',
+    accent: 'linear-gradient(135deg, rgba(239,68,68,0.16), rgba(251,191,36,0.07))',
+  },
+  {
+    slug: 'hft-explained',
+    name: 'HFT Explained in 60 Seconds',
+    icon: '⚡',
+    desc: 'How machines trade in microseconds — and the 3 lessons retail algos can copy, plus code.',
+    tag: 'HFT Logic',
+    accent: 'linear-gradient(135deg, rgba(99,102,241,0.16), rgba(52,211,153,0.07))',
+  },
 ]
 
 const features = [

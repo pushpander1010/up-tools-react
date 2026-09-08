@@ -7286,6 +7286,70 @@
     "all",
     "security"
    ]
+  },
+  {
+   "slug": "aiforrich/quality-stocks",
+   "title": "Quality Stocks Checklist",
+   "icon": "💎",
+   "desc": "3 traits every winning stock has — 2-min checklist + screener.",
+   "href": "/aiforrich/quality-stocks/",
+   "tags": [
+    "aiforrich",
+    "algo-trading",
+    "investing"
+   ],
+   "cats": [
+    "all",
+    "finance"
+   ]
+  },
+  {
+   "slug": "aiforrich/buffett-strategy",
+   "title": "Buffett 3 Boring Rules",
+   "icon": "🎩",
+   "desc": "Wonderful businesses, margin of safety, hold forever + screener.",
+   "href": "/aiforrich/buffett-strategy/",
+   "tags": [
+    "aiforrich",
+    "algo-trading",
+    "investing"
+   ],
+   "cats": [
+    "all",
+    "finance"
+   ]
+  },
+  {
+   "slug": "aiforrich/big-bull-strategy",
+   "title": "Big Bull 3 Bold Rules",
+   "icon": "🐂",
+   "desc": "Buy fear, bet big, hold years — Jhunjhunwala playbook + screener.",
+   "href": "/aiforrich/big-bull-strategy/",
+   "tags": [
+    "aiforrich",
+    "algo-trading",
+    "investing"
+   ],
+   "cats": [
+    "all",
+    "finance"
+   ]
+  },
+  {
+   "slug": "aiforrich/hft-explained",
+   "title": "HFT Explained",
+   "icon": "⚡",
+   "desc": "How machines trade in microseconds + copyable logic and code.",
+   "href": "/aiforrich/hft-explained/",
+   "tags": [
+    "aiforrich",
+    "algo-trading",
+    "investing"
+   ],
+   "cats": [
+    "all",
+    "finance"
+   ]
   }
  ],
  "categories": {
