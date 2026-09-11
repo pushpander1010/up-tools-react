@@ -215,13 +215,16 @@ export default function mermaid_diagram_editor() {
   return (
     <ToolLayout
       title="Mermaid Diagram Editor"
-      desc="Create flowcharts, sequence diagrams, class diagrams, and more using Mermaid.js syntax with live preview."
+      desc="Mermaid Diagram Editor - create flowcharts, sequence diagrams, class diagrams, and more using, online free. Free online, no sign-up. Works on any device."
       icon="📊" iconBg="rgba(6,182,212,0.08)"
       category="dev" slug="mermaid-diagram-editor"
       faq={[
         { q: "What is Mermaid.js?", a: "Mermaid is a JavaScript library that renders Markdown-like text into diagrams (flowcharts, sequence diagrams, Gantt charts, etc.) in the browser." },
         { q: "What diagram types are supported?", a: "Flowcharts, sequence diagrams, class diagrams, state diagrams, ER diagrams, pie charts, Gantt charts, and more." },
         { q: "Can I export my diagrams?", a: "Yes! Export as SVG for vector quality or PNG for raster image. Both are high-resolution." },
+        { q: "How do I use this Mermaid Diagram Editor online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         "Choose a diagram type from the example buttons or write your own.",

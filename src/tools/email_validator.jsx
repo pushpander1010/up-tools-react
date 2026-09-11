@@ -116,7 +116,7 @@ export default function email_validator() {
   return (
     <ToolLayout
       title="Email Validator"
-      desc="Validate email format, verify MX records, check disposable domains, and test live deliverability with a trust score."
+      desc="Email Validator - validate email format, verify MX records, check disposable domains, and test, online free. Free online, instant results. No login needed."
       icon="✉️" iconBg="rgba(34,197,94,0.08)"
       category="security" slug="email-validator"
       faq={[
@@ -124,6 +124,8 @@ export default function email_validator() {
         { q: 'What are disposable email addresses?', a: 'Disposable emails are temporary addresses that forward to spam or expire quickly. Services like Mailinator, Guerrilla Mail, and 10 Minute Mail provide throwaway inboxes often used for spam or signups you do not want to keep.' },
         { q: 'What does "deliverability" mean?', a: 'This tool does a live check (via the Disify API) on whether the email domain resolves and can actually receive mail. A whitelisted or resolving domain is very likely deliverable; a non-resolving one will bounce.' },
         { q: 'What are MX records?', a: 'MX (Mail Exchange) records are DNS entries that specify which mail servers accept email for a domain. Without MX records, an email address cannot receive mail even if the format is correct.' },
+        { q: "How do I check online free?", a: "Enter your input above and get an instant result. Free with no sign-up, works on mobile and desktop." },
+        { q: "What does it check?", a: "It validates your input against standard rules instantly. Enter the value above to see the result." },
       ]}
       howItWorks={[
         'Enter the email address you want to validate.',

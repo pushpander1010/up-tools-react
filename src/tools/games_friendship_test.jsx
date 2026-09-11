@@ -254,12 +254,16 @@ export default function games_friendship_test() {
       startAction={startQuiz} startLabel="▶ Start Quiz"
       title="Best Friend Compatibility Test 👫 How Well Do You Know Each Other"
  
-      desc="Two-player friendship quiz. Answer questions about each other and see your BFF score!"
+      desc="Best Friend Compatibility Test 👫 How Well Do You Know Each Other, online free. Play online free, no download. Works on mobile and desktop."
       icon="👫" iconBg="rgba(99,102,241,0.08)"
       category="fun" slug="games-friendship-test"
       faq={[
         { q: "How does the friendship test work?", a: "Player 1 answers all questions first, then Player 2 answers the same questions. Your compatibility score is based on how many answers match. You can play on one device, or Player 1 can share a link so Player 2 answers on their own phone." },
         { q: "Is the test free?", a: "Yes, completely free with no sign-up required. Scores are saved locally on your device only." },
+        { q: "How do I play Best Friend Compatibility Test 👫 How Well Do You Know Each Other online free?", a: "Click Start and follow the on-screen steps. Use mouse, touch, or keyboard controls. No download needed." },
+        { q: "Can I play Best Friend Compatibility Test 👫 How Well Do You Know Each Other without downloading?", a: "Yes. This Best Friend Compatibility Test 👫 How Well Do You Know Each Other runs in your browser with no install. Free on mobile and desktop." },
+        { q: "How do I use this Best Friend Compatibility Test 👫 How Well Do You Know Each Other online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
+        { q: "Is this Best Friend Compatibility Test 👫 How Well Do You Know Each Other free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Enter both players' names and select quiz length.",

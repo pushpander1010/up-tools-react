@@ -27,12 +27,16 @@ export default function random_number_generator() {
   return (
     <ToolLayout
       title="Random Number Generator"
-      desc="Generate cryptographically secure random numbers. Choose range and count."
+      desc="Random Number Generator - generate cryptographically secure random numbers. Choose range and count, online free. Free online, no sign-up. Works on any device."
       icon="🔢" iconBg="rgba(99,102,241,0.08)"
       category="dev" slug="random-number-generator"
       faq={[
         { q: 'Is this truly random?', a: 'Yes. It uses the Web Crypto API (crypto.getRandomValues) which is cryptographically secure.' },
         { q: 'What is the range?', a: 'You set the minimum and maximum. The generator produces integers within that inclusive range.' },
+        { q: "How do I use this Random Number Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this Random Number Generator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Set the minimum and maximum values.',

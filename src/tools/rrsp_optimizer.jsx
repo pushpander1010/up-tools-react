@@ -31,12 +31,16 @@ export default function rrsp_optimizer() {
   return (
     <ToolLayout
       title="RRSP Contribution Optimizer"
-      desc="Estimate RRSP contribution impact, refund estimate, and remaining room. Quick Canada-focused calculator."
+      desc="RRSP Contribution Optimizer - estimate RRSP contribution impact, refund estimate, and remaining, online free. Free online, no sign-up. Works on any device."
       icon="🍁" iconBg="rgba(220,38,38,0.08)"
       category="canada" slug="rrsp-optimizer"
       faq={[
         { q: 'What is RRSP Contribution Optimizer?', a: 'Estimate RRSP contribution impact, refund estimate, and remaining room. Quick Canada-focused calculator.' },
         { q: 'Is it free to use?', a: 'Yes, RRSP Contribution Optimizer is completely free. No sign-up or credit card required.' },
+        { q: "How do I use this RRSP Contribution Optimizer online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this RRSP Contribution Optimizer free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Enter your annual income, planned contribution, marginal tax rate, and optional RRSP room.',

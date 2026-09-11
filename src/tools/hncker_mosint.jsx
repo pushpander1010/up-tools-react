@@ -123,7 +123,7 @@ export default function hncker_mosint() {
   return (
     <ToolLayout
       title="Mosint — Email OSINT Tool"
-      desc="Step-by-step reference: install & use Mosint, a fast Go-based automated email OSINT tool. Educational purposes only."
+      desc="Mosint Guide - step-by-step reference to install and use Mosint, a fast Go-based automated email OSINT tool. Educational purposes only, online free."
       icon="📧"
       iconBg="linear-gradient(135deg, rgba(6,182,212,0.18), rgba(34,211,238,0.08))"
       category="security"

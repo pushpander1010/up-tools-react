@@ -137,6 +137,9 @@ export default function independence_day_quiz() {
         { q: 'How many questions are in the Independence Day quiz?', a: 'There are 15 questions covering freedom fighters, national symbols, and Indian history.' },
         { q: 'Is the quiz free?', a: 'Yes, it is completely free and requires no sign-up. You can retake it as many times as you like.' },
         { q: 'Can I share my score?', a: 'Yes — your final score is shown with a verdict you can share on WhatsApp, Instagram, or Facebook.' },
+        { q: "How do I use this Independence Day Quiz online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         'Tap Start Quiz to begin.',

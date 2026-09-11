@@ -53,12 +53,16 @@ export default function morse_code_translator() {
   return (
     <ToolLayout
       title="Morse Code Translator"
-      desc="Convert text to Morse code and back. Copy or share results instantly."
+      desc="Morse Code Translator - convert text to Morse code and back. Copy or share results instantly, online free. Free online, no sign-up. Works on any device."
       icon="📡" iconBg="rgba(6,182,212,0.08)"
       category="dev" slug="morse-code-translator"
       faq={[
         { q: 'What is Morse Code?', a: 'Morse Code is a method of encoding text characters as standardized sequences of dots and dashes, widely used in early telecommunication.' },
         { q: 'Can I decode Morse back to text?', a: 'Yes! Paste Morse code in the output area and click the Decode button to convert back to text.' },
+        { q: "How do I use this Morse Code Translator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this Morse Code Translator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Type or paste text into the input field.',

@@ -26,12 +26,16 @@ export default function cagr_calculator() {
   return (
     <ToolLayout
       title="CAGR Calculator"
-      desc="Calculate Compound Annual Growth Rate (CAGR) for any investment. See total growth and equivalent multiplier."
+      desc="CAGR Calculator - calculate Compound Annual Growth Rate (CAGR) for any investment. See, online free. Free online, instant results. No sign-up, works on mobile."
       icon="📈" iconBg="rgba(34,197,94,0.08)"
       category="finance" slug="cagr-calculator"
       faq={[
         { q: 'What is CAGR?', a: 'CAGR (Compound Annual Growth Rate) is the mean annual growth rate of an investment over a period longer than one year. It smooths out volatility to show a steady rate of return.' },
         { q: 'How is CAGR calculated?', a: 'CAGR = (Ending Value / Starting Value)^(1/Number of Years) - 1' },
+        { q: "How do I use this CAGR Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this CAGR Calculator accurate?", a: "Yes. The CAGR Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
+        { q: "Is this CAGR Calculator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Enter the starting value of your investment.',

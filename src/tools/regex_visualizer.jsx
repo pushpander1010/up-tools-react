@@ -277,13 +277,16 @@ export default function regex_visualizer() {
   return (
     <ToolLayout
       title="Regex Visualizer & Tester"
-      desc="Test, debug, and understand regular expressions with live match highlighting and pattern explanation breakdown."
+      desc="Regex Visualizer & Tester - test, debug, and understand regular expressions with live match, online free. Free online, instant results. No login needed."
       icon="🔬" iconBg="rgba(244,63,94,0.08)"
       category="dev" slug="regex-visualizer"
       faq={[
         { q: "What are regex flags?", a: "Flags modify how the pattern matches: 'g' (global, all matches), 'i' (case-insensitive), 'm' (multiline), 's' (dot matches newline)." },
         { q: "What is the pattern breakdown?", a: "Each token in your regex is explained — character classes, quantifiers, anchors, groups, and special sequences are all identified." },
         { q: "Are there common presets?", a: "Yes! Click any preset button (email, phone, URL, etc.) to load a working pattern you can study and modify." },
+        { q: "How do I check online free?", a: "Enter your input above and get an instant result. Free with no sign-up, works on mobile and desktop." },
+        { q: "What does it check?", a: "It validates your input against standard rules instantly. Enter the value above to see the result." },
+        { q: "Is my data kept private?", a: "Yes. Everything runs in your browser. Nothing you enter is uploaded or stored." },
       ]}
       howItWorks={[
         "Enter a regex pattern or choose from common presets.",

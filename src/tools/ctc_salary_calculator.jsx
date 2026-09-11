@@ -76,12 +76,16 @@ export default function ctc_salary_calculator() {
   return (
     <ToolLayout
       title="CTC to In-Hand Salary Calculator"
-      desc="Convert CTC to in-hand salary with PF, tax deductions, and old/new regime comparison."
+      desc="CTC to In-Hand Salary Calculator - convert CTC to in-hand salary with PF, tax, online free. Free online, instant results. No sign-up, works on mobile."
       icon="💰" iconBg="rgba(245,158,11,0.08)"
       category="finance" slug="ctc-salary-calculator"
       faq={[
         { q: "What is CTC?", a: "CTC (Cost to Company) is the total salary package offered by an employer, including all benefits and deductions." },
         { q: "What is the difference between old and new tax regime?", a: "New regime has lower tax rates but no deductions. Old regime allows deductions like 80C, HRA, etc." },
+        { q: "How do I use this CTC to In-Hand Salary Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this CTC to In-Hand Salary Calculator accurate?", a: "Yes. The CTC to In-Hand Salary Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
+        { q: "Is this CTC to In-Hand Salary Calculator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Enter your annual CTC and basic salary percentage.",

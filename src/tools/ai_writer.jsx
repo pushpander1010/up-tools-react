@@ -104,12 +104,16 @@ export default function ai_writer() {
   return (
     <ToolLayout
       title="AI Writing Assistant"
-      desc="Summarize, rewrite, translate, extract keywords, generate outlines, and create SEO meta — all in one tool."
+      desc="AI Writing Assistant - summarize, rewrite, translate, extract keywords, generate outlines, and, online free. Free online, no sign-up. Works on any device."
       icon="✍️" iconBg="rgba(99,102,241,0.08)"
       category="ai" slug="ai-writer"
       faq={[
         { q: "What tasks are available?", a: "Summarize, Rewrite, Translate, Extract Keywords, Create Outline, Generate SEO Meta, and Improve text." },
         { q: "Is there a text limit?", a: "Up to 30,000 characters per request." },
+        { q: "How do I use this AI Writing Assistant online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this AI Writing Assistant free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Paste or type your text, or import a file.",

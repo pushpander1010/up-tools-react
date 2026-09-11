@@ -128,12 +128,16 @@ export default function tennis_score_tracker() {
   return (
     <ToolLayout
       title="Tennis Score Tracker"
-      desc="Track live tennis match scores, sets, games, and points in real time. Perfect for coaches, fans, and tournament organizers."
+      desc="Tennis Score Tracker - track live tennis match scores, sets, games, and points in real time., online free. Free online, no sign-up. Works on any device."
       icon="🎾" iconBg="rgba(34,197,94,0.08)"
       category="sports" slug="tennis-score-tracker"
       faq={[
         { q: 'How does tennis scoring work?', a: 'Points go 0 → 15 → 30 → 40 → Game. A player must win by 2 clear points at deuce. A set requires 6 games with a 2-game lead.' },
         { q: 'Can I undo a point?', a: 'Yes — tap the Undo button to revert the last point scored.' },
+        { q: "How do I use this Tennis Score Tracker online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this Tennis Score Tracker free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Tap +1 Point on the player's side to score.",

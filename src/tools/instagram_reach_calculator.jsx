@@ -35,13 +35,16 @@ export default function instagram_reach_calculator() {
   return (
     <ToolLayout
       title="Instagram Reach Calculator"
-      desc="Calculate your Instagram reach rate, impressions ratio, and profile conversion. Understand how far your content travels."
+      desc="Instagram Reach Calculator - calculate your Instagram reach rate, impressions ratio,, online free. Free online, instant results. No sign-up, works on mobile."
       icon="📡" iconBg="rgba(6,182,212,0.08)"
       category="social" slug="instagram-reach-calculator"
       faq={[
         { q: "What is Instagram reach?", a: "Reach is the number of unique accounts that have seen your content. It's different from impressions, which count every time your content was shown." },
         { q: "What's a good reach rate?", a: "A reach rate of 20-30%+ of your followers is considered good. Below 10% may indicate content or timing issues." },
         { q: "How is reach rate calculated?", a: "Reach Rate = (Reach ÷ Followers) × 100. This shows what percentage of your audience saw your content." },
+        { q: "How do I use this Instagram Reach Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this Instagram Reach Calculator accurate?", a: "Yes. The Instagram Reach Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
       ]}
       howItWorks={[
         'Enter your follower count and reach (unique accounts reached).',

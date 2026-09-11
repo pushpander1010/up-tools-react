@@ -190,12 +190,16 @@ export default function BarcodeGenerator() {
   return (
     <ToolLayout
       title="Barcode Generator"
-      desc="Generate CODE128, EAN-13, UPC-A and Code 39 barcodes. Download as PNG."
+      desc="Barcode Generator - generate CODE128, EAN-13, UPC-A and Code 39 barcodes. Download as PNG, online free. Free online, no sign-up. Works on any device."
       icon="📊" iconBg="rgba(99,102,241,0.08)"
       category="dev" slug="barcode-generator"
       faq={[
         { q: 'What barcode formats are supported?', a: 'CODE128 (text & numbers), EAN-13 (12-13 digits), UPC-A (11-12 digits), and Code 39 (uppercase letters, digits, and some symbols).' },
         { q: 'Can I download the barcode?', a: 'Yes! Click the Download button to save the barcode as a PNG image.' },
+        { q: "How do I use this Barcode Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this Barcode Generator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Select your barcode format.',

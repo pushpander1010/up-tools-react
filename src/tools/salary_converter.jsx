@@ -47,12 +47,16 @@ export default function salary_converter() {
   return (
     <ToolLayout
       title="Salary Converter"
-      desc="Convert salary between hourly, daily, weekly, monthly and annual pay. Useful for comparing job offers."
+      desc="Salary Converter - convert salary between hourly, daily, weekly, monthly and annual pay. Useful, online free. Free online, instant results. No sign-up needed."
       icon="💼" iconBg="rgba(99,102,241,0.08)"
       category="finance" slug="salary-converter"
       faq={[
         { q: 'How do I convert hourly to annual?', a: 'Multiply hourly rate × hours/day × days/week × weeks/year. This calculator does it automatically.' },
         { q: 'Can I use this for freelance work?', a: 'Yes. Adjust hours per day and days per week to match your contract or workload.' },
+        { q: "How do I convert online free?", a: "Pick the from and to units above and the result appears instantly. Free, no sign-up, works on mobile." },
+        { q: "Which units are supported?", a: "All common units are supported. Choose from the dropdowns above for an instant free conversion." },
+        { q: "Is the conversion instant?", a: "Yes. Results appear live as you type, with no sign-up and no page reload." },
+        { q: "Is this Salary Converter free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Enter your pay amount and select the pay period.',

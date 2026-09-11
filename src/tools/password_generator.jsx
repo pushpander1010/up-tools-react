@@ -110,13 +110,16 @@ export default function password_generator() {
   return (
     <ToolLayout
       title="Password Generator"
-      desc="Generate cryptographically secure passwords with real-time strength analysis and crack time estimates."
+      desc="Password Generator - generate cryptographically secure passwords with real-time strength analysis, online free. Free online, no sign-up. Works on any device."
       icon="🔐" iconBg="rgba(239,68,68,0.08)"
       category="security" slug="password-generator"
       faq={[
         { q: 'Are these passwords truly secure?', a: 'Yes — they use crypto.getRandomValues(), the same cryptographic API banks and password managers use. No Math.random().' },
         { q: 'How long should my password be?', a: 'Minimum 12 characters for everyday accounts. 16+ for banking. 20+ for maximum security.' },
         { q: 'What makes a password strong?', a: 'Length + character variety. A 20-character lowercase passphrase beats an 8-character mixed password.' },
+        { q: "How do I use this Password Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         'Set the desired password length with the slider (6 to 64 characters).',

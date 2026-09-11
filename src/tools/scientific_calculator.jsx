@@ -136,12 +136,16 @@ export default function scientific_calculator() {
   return (
     <ToolLayout
       title="Scientific Calculator"
-      desc="Full-featured scientific calculator with trig functions, logarithms, factorial, history, and keyboard support."
+      desc="Scientific Calculator - full-featured scientific calculator with trig functions,, online free. Free online, instant results. No sign-up, works on mobile."
       icon="🧮" iconBg="rgba(245,158,11,0.08)"
       category="tools" slug="scientific-calculator"
       faq={[
         { q: 'Does it support degrees and radians?', a: 'Yes, toggle between DEG and RAD mode using the buttons at the top.' },
         { q: 'Can I use keyboard input?', a: 'Yes! Numbers, operators, Enter for equals, Backspace for delete, Escape for clear.' },
+        { q: "How do I use this Scientific Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this Scientific Calculator accurate?", a: "Yes. The Scientific Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
+        { q: "Is this Scientific Calculator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Use the on-screen buttons or your keyboard to input expressions.',

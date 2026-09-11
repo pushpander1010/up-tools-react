@@ -23,12 +23,16 @@ export default function SlugGenerator() {
   return (
     <ToolLayout
       title="URL Slug Generator"
-      desc="Convert any text to a clean, SEO-optimized URL slug instantly. Supports multiple languages."
+      desc="URL Slug Generator - convert any text to a clean, SEO-optimized URL slug instantly. Supports, online free. Free online, no sign-up. Works on any device."
       icon="🔗" iconBg="rgba(99,102,241,0.08)"
       category="dev" slug="slug-generator"
       faq={[
         { q: 'What is a URL slug?', a: 'A URL slug is the part of a URL that identifies a specific page in a human-readable format, e.g. "my-blog-post" from "/blog/my-blog-post/".' },
         { q: 'Why use lowercase slugs?', a: 'Lowercase slugs are standard because URLs are case-sensitive on many servers. Consistency avoids duplicate content and 404 errors.' },
+        { q: "How do I use this URL Slug Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this URL Slug Generator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       schema={{
         "@context": "https://schema.org", "@type": "SoftwareApplication",

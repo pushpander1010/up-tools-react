@@ -84,13 +84,16 @@ export default function whatsapp_link_generator() {
   return (
     <ToolLayout
       title="WhatsApp Link Generator"
-      desc="Generate WhatsApp click-to-chat links instantly. Create wa.me links with pre-filled messages & QR codes."
+      desc="WhatsApp Link Generator - generate WhatsApp click-to-chat links instantly. Create wa.me links with, online free. Free online, no sign-up. Works on any device."
       icon="💬" iconBg="rgba(37,211,102,0.08)"
       category="whatsapp" slug="whatsapp-link-generator"
       faq={[
         { q: "What is a WhatsApp link?", a: "A WhatsApp link (wa.me link) lets anyone open a WhatsApp chat with a specific number directly, without saving the contact. You can also pre-fill a message." },
         { q: "How do I create a WhatsApp link?", a: "Enter the phone number with country code and an optional pre-filled message. The tool generates a wa.me link and QR code instantly." },
         { q: "Does it work without saving the number?", a: "Yes, wa.me links open a WhatsApp chat directly without requiring the recipient to be in your contacts." },
+        { q: "How do I use this WhatsApp Link Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         "Choose country code and enter digits-only phone number.",

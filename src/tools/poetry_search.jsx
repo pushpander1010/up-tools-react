@@ -73,12 +73,16 @@ export default function poetry_search() {
   return (
     <ToolLayout
       title="Poetry Search"
-      desc="Search thousands of poems by title, author, or first line."
+      desc="Poetry Search - search thousands of poems by title, author, or first line, online free. Free online, no sign-up. Works on any device."
       icon="📖" iconBg="rgba(99,102,241,0.08)"
       category="text" slug="poetry-search"
       faq={[
         { q: "What poetry database does this use?", a: "This tool uses PoetryDB, a free API containing thousands of classic poems." },
         { q: "Can I search by first line?", a: "Yes! Enter any line from a poem and the tool will try to find matching poems." },
+        { q: "How do I use this Poetry Search online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this Poetry Search free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Type a poem title, author name, or first line in the search box.",

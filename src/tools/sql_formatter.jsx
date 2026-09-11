@@ -256,12 +256,16 @@ export default function sql_formatter() {
   return (
     <ToolLayout
       title="SQL Formatter"
-      desc="Format, minify, and beautify SQL queries with customizable keyword case and indentation."
+      desc="SQL Formatter - format, minify, and beautify SQL queries with customizable keyword case and, online free. Free online, no sign-up. Works on any device."
       icon="🗄️" iconBg="rgba(245,158,11,0.08)"
       category="developer" slug="sql-formatter"
       faq={[
         { q: 'What does the SQL Formatter do?', a: 'It formats and beautifies SQL queries with proper indentation, keyword capitalization, and clean line breaks. It also supports minification to compress queries into a single line.' },
         { q: 'Which SQL dialects are supported?', a: 'The formatter works with standard SQL, MySQL, PostgreSQL, SQLite, and SQL Server syntax. It recognizes common keywords across all major databases.' },
+        { q: "How do I use this SQL Formatter online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this SQL Formatter free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Paste your SQL query into the input area or click "Load Sample".',

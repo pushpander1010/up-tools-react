@@ -63,12 +63,16 @@ export default function fifa_world_cup_bracket() {
   return (
     <ToolLayout
       title="FIFA World Cup 2026 Knockout Bracket"
-      desc="Predict knockout stage winners from Round of 32 to the Final. Interactive bracket with all fixtures."
+      desc="FIFA World Cup 2026 Knockout Bracket - predict knockout stage winners from Round of 32 to the, online free. Free online, no sign-up. Works on any device."
       icon="🏆" iconBg="rgba(234,179,8,0.08)"
       category="fifa" slug="fifa-world-cup-bracket"
       faq={[
         { q: "How does the 2026 knockout format work?", a: "48 teams → 12 group winners, 12 runners-up, 8 best thirds advance to a Round of 32. Single elimination bracket to the Final." },
         { q: "Can I save my bracket predictions?", a: "Click Share to generate a URL with all your picks encoded. Bookmark or send to friends." },
+        { q: "How do I use this FIFA World Cup 2026 Knockout Bracket online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this FIFA World Cup 2026 Knockout Bracket free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Click a team name in any R32 matchup to select them as winner.",

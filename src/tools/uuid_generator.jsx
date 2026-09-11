@@ -39,13 +39,16 @@ export default function uuid_generator_pro() {
   return (
     <ToolLayout
       title="UUID Generator"
-      desc="Generate UUID v4 with customizable format and count."
+      desc="UUID Generator - generate UUID v4 with customizable format and count, online free. Instant results, no sign-up, works on any device."
       icon="🆔" iconBg="rgba(99,102,241,0.08)"
       category="dev" slug="uuid-generator"
       faq={[
         { q: 'What is a UUID?', a: 'A Universally Unique Identifier (UUID) is a 128-bit number used to uniquely identify information in computer systems.' },
         { q: 'What is UUID v4?', a: 'UUID v4 is randomly generated. It uses cryptographic randomness to ensure uniqueness.' },
         { q: 'Is this secure?', a: 'Yes. The generator uses the browser crypto API for cryptographically secure random values.' },
+        { q: "How do I use this UUID Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         'Set the number of UUIDs to generate.',

@@ -153,12 +153,16 @@ export default function games_dice_roller() {
       startAction={() => rollDice()} startLabel="🎲 Roll"
       title="Dice Roller"
  
-      desc="Roll D4–D20 virtual dice with sound effects, history, and statistics."
+      desc="Dice Roller - roll D4–D20 virtual dice with sound effects, history, and statistics, online free. Play online free, no download. Works on mobile and desktop."
       icon="🎲" iconBg="rgba(99,102,241,0.08)"
       category="fun" slug="games-dice-roller"
       faq={[
         { q: "What dice types are supported?", a: "D4, D6, D8, D10, D12, D20, and any custom number of sides from 2 to 100." },
         { q: "How to roll multiple dice?", a: "Enter a number in the Count field (1–20) and click Roll. All dice roll simultaneously." },
+        { q: "How do I play Dice Roller online free?", a: "Click Start and follow the on-screen steps. Use mouse, touch, or keyboard controls. No download needed." },
+        { q: "Can I play Dice Roller without downloading?", a: "Yes. This Dice Roller runs in your browser with no install. Free on mobile and desktop." },
+        { q: "How do I use this Dice Roller online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
+        { q: "Is this Dice Roller free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Choose a dice type (D4–D20) or enter custom sides.",

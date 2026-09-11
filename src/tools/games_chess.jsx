@@ -685,6 +685,9 @@ export default function games_chess() {
         { q: "How do I play chess against the AI?", a: "Click/tap a white piece to select it, then click a highlighted square to move. The AI will respond automatically." },
         { q: "What chess rules are supported?", a: "All standard rules: castling, en passant, pawn promotion (auto-promotes to queen), check, and checkmate detection." },
         { q: "How strong is the AI?", a: "The AI uses minimax with alpha-beta pruning at depth 2. It's a good challenge for beginners and intermediate players." },
+        { q: "How do I play Play Chess Online - Free Chess Game with AI online free?", a: "Click Start and follow the on-screen steps. Use mouse, touch, or keyboard controls. No download needed." },
+        { q: "Can I play Play Chess Online - Free Chess Game with AI without downloading?", a: "Yes. This Play Chess Online - Free Chess Game with AI runs in your browser with no install. Free on mobile and desktop." },
+        { q: "How do I use this Play Chess Online - Free Chess Game with AI online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
       ]}
       howItWorks={[
         "Click Start to begin a new game. You play as White.",

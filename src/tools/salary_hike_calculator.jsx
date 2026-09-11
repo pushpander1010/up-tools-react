@@ -27,12 +27,16 @@ export default function salary_hike_calculator() {
   return (
     <ToolLayout
       title="Salary Hike Calculator"
-      desc="Calculate your new salary after a percentage hike. See annual, monthly, weekly, and daily breakdowns."
+      desc="Salary Hike Calculator - calculate your new salary after a percentage hike. See, online free. Free online, instant results. No sign-up, works on mobile."
       icon="💸" iconBg="rgba(34,197,94,0.08)"
       category="finance" slug="salary-hike-calculator"
       faq={[
         { q: 'How is salary hike calculated?', a: 'New Salary = Current Salary × (1 + Hike%). Increase = Current Salary × Hike%.' },
         { q: 'What is a good salary hike?', a: 'In India, 8-15% is average, 15-25% is good, and 25%+ is excellent. Job switches typically command 20-50% hikes.' },
+        { q: "How do I use this Salary Hike Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this Salary Hike Calculator accurate?", a: "Yes. The Salary Hike Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
+        { q: "Is this Salary Hike Calculator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Enter your current annual CTC (Cost to Company).',

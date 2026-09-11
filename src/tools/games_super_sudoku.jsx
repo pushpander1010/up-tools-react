@@ -331,6 +331,9 @@ export default function games_super_sudoku() {
         { q:"How do I play Sudoku?", a:"Fill every row, column, and 3×3 box with numbers 1-9 without repeats. Click a cell and press a number key." },
         { q:"What is Notes mode?", a:"Press N to toggle notes mode. In notes mode, numbers you enter appear as small pencil marks to help you plan." },
         { q:"How is difficulty determined?", a:"Easy puzzles have ~36 blanks, medium ~45, hard ~52, expert ~58. More blanks = harder." },
+        { q: "How do I play Super Sudoku Online - Free Puzzle Game online free?", a: "Click Start and follow the on-screen steps. Use mouse, touch, or keyboard controls. No download needed." },
+        { q: "Can I play Super Sudoku Online - Free Puzzle Game without downloading?", a: "Yes. This Super Sudoku Online - Free Puzzle Game runs in your browser with no install. Free on mobile and desktop." },
+        { q: "How do I use this Super Sudoku Online - Free Puzzle Game online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
       ]}
       howItWorks={[
         "Select a difficulty and press Start to generate a new puzzle.",

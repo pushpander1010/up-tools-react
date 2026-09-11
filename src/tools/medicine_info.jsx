@@ -51,13 +51,15 @@ export default function medicine_info() {
   const inputClass = "w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
-    <ToolLayout title="Medicine Information" desc="Search FDA-approved drug information — uses, dosage, warnings, side effects, and more."
+    <ToolLayout title="Medicine Information" desc="Medicine Information - search FDA-approved drug information — uses, dosage, warnings, side effects,, online free. Free online, no sign-up. Works on any device."
       icon="💊" iconBg="rgba(99,102,241,0.08)" category="health" slug="medicine-info"
       faq={[
         { q: 'Where does this data come from?', a: 'All information is sourced from the openFDA API, the official database of FDA-approved drug labels in the United States.' },
         { q: 'Is this medical advice?', a: 'No. This tool provides reference information from FDA drug labels. Always consult a healthcare professional before taking any medication.' },
         { q: 'Can I search by brand or generic name?', a: 'Yes. You can search by brand name (e.g., Tylenol) or generic name (e.g., Acetaminophen).' },
         { q: 'What drugs are covered?', a: 'All FDA-approved drugs with published labeling information. This covers most prescription and OTC drugs available in the US.' },
+        { q: "How do I use this Medicine Information online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
       ]}
       howItWorks={[
         'Enter a drug name (brand or generic) in the search box.',

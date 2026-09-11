@@ -93,12 +93,16 @@ export default function exif_tool() {
   return (
     <ToolLayout
       title="EXIF Data Viewer"
-      desc="View and analyze image metadata (EXIF, GPS, camera info). Remove metadata for privacy. Detect hidden data and trailing bytes."
+      desc="EXIF Data Viewer - view and analyze image metadata (EXIF, GPS, camera info). Remove metadata for, online free. Free online, no sign-up. Works on any device."
       icon="🔍" iconBg="rgba(6,182,212,0.08)"
       category="utility" slug="exif-tool"
       faq={[
         { q: 'Does this upload my images?', a: 'No. Everything runs locally in your browser. No data is sent to any server.' },
         { q: 'What EXIF data is shown?', a: 'Camera make/model, lens, date/time, GPS coordinates, exposure settings, ICC profile, and PNG text chunks.' },
+        { q: "How do I use this EXIF Data Viewer online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this EXIF Data Viewer free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Drop an image or click to upload (PNG, JPEG, WebP).',

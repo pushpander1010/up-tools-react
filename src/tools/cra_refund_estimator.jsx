@@ -25,12 +25,16 @@ export default function cra_refund_estimator() {
   return (
     <ToolLayout
       title="CRA Refund Estimator"
-      desc="Estimate CRA refund or balance owing using tax paid vs tax owed."
+      desc="CRA Refund Estimator - estimate CRA refund or balance owing using tax paid vs tax owed, online free. Free online, no sign-up. Works on any device."
       icon="🍁" iconBg="rgba(220,38,38,0.08)"
       category="canada" slug="cra-refund-estimator"
       faq={[
         { q: 'What is this tool?', a: 'Estimate CRA refund or balance owing using tax paid vs tax owed.' },
         { q: 'Is it free to use?', a: 'Yes. All UpTools calculators are completely free, with no sign-ups required.' },
+        { q: "How do I use this CRA Refund Estimator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this CRA Refund Estimator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Enter the total tax you\'ve already paid (T4 deductions, instalments).',

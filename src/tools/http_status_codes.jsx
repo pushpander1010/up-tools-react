@@ -102,12 +102,16 @@ export default function http_status_codes() {
   return (
     <ToolLayout
       title="HTTP Status Codes Reference"
-      desc="Complete reference for all HTTP status codes with descriptions. Search and filter by category."
+      desc="HTTP Status Codes Reference - complete reference for all HTTP status codes with descriptions., online free. Free online, no sign-up. Works on any device."
       icon="🌐" iconBg="rgba(14,165,233,0.08)"
       category="developer" slug="http-status-codes"
       faq={[
         { q: 'What are HTTP status codes?', a: 'HTTP status codes are three-digit numbers returned by a server in response to a client\'s request. They indicate whether the request was successful, redirected, or encountered an error.' },
         { q: 'What do the different categories mean?', a: '1xx = Informational, 2xx = Success, 3xx = Redirection, 4xx = Client Error, 5xx = Server Error.' },
+        { q: "How do I use this HTTP Status Codes Reference online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this HTTP Status Codes Reference free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Browse all HTTP status codes in the grid below.',

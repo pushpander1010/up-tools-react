@@ -82,13 +82,16 @@ export default function english_to_devanagari() {
   return (
     <ToolLayout
       title="English → Devanagari Converter"
-      desc="Convert English (Roman) text to Devanagari (Hindi) script instantly. Free online phonetic transliterator."
+      desc="English → Devanagari Converter - convert English (Roman) text to Devanagari (Hindi) script, online free. Free online, instant results. No sign-up needed."
       icon="🔤" iconBg="rgba(234,179,8,0.08)"
       category="converter" slug="english-to-devanagari"
       faq={[
         { q: 'Is English To Devanagari free?', a: "Yes, it's completely free with no sign-ups required." },
         { q: 'Is English To Devanagari private?', a: 'Yes. All calculations run in your browser. No data is uploaded.' },
         { q: 'Does English To Devanagari work on mobile?', a: 'Yes. All tools are mobile-responsive and work on any device.' },
+        { q: "How do I convert online free?", a: "Pick the from and to units above and the result appears instantly. Free, no sign-up, works on mobile." },
+        { q: "Which units are supported?", a: "All common units are supported. Choose from the dropdowns above for an instant free conversion." },
+        { q: "Is the conversion instant?", a: "Yes. Results appear live as you type, with no sign-up and no page reload." },
       ]}
       howItWorks={[
         'Type phonetic English (Roman script) in the input panel.',

@@ -169,12 +169,16 @@ export default function games_love_test() {
       startAction={startQuiz} startLabel="▶ Start Quiz"
       title="Couple Compatibility Quiz ❤️ Romantic Love Test"
  
-      desc="Two-player romantic quiz. Answer sweet prompts, compare with your partner, and get a love score."
+      desc="Couple Compatibility Quiz ❤️ Romantic Love Test - two-player romantic quiz. Answer, online free. Play online free, no download. Works on mobile and desktop."
       icon="❤️" iconBg="rgba(255,95,162,0.08)"
       category="fun" slug="games-love-test"
       faq={[
         { q: "How does the love test work?", a: "Both partners answer the same romantic questions. Your compatibility score is based on how many answers match." },
         { q: "Can I share the test?", a: "Yes! Use the WhatsApp or Copy buttons to share your result with your partner." },
+        { q: "How do I play Couple Compatibility Quiz ❤️ Romantic Love Test online free?", a: "Click Start and follow the on-screen steps. Use mouse, touch, or keyboard controls. No download needed." },
+        { q: "Can I play Couple Compatibility Quiz ❤️ Romantic Love Test without downloading?", a: "Yes. This Couple Compatibility Quiz ❤️ Romantic Love Test runs in your browser with no install. Free on mobile and desktop." },
+        { q: "How do I use this Couple Compatibility Quiz ❤️ Romantic Love Test online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
+        { q: "Is this Couple Compatibility Quiz ❤️ Romantic Love Test free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Enter both partners' names and select quiz length.",

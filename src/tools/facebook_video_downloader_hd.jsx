@@ -37,13 +37,16 @@ export default function facebook_video_downloader_hd() {
   return (
     <ToolLayout
       title="Facebook Video Downloader HD"
-      desc="Download videos from Facebook in HD quality. Works with feed videos, page videos, group videos, and live streams."
+      desc="Facebook Video Downloader HD - download videos from Facebook in HD quality. Works with feed videos,, online free. Free online in HD. No app or login needed."
       icon="📘" iconBg="rgba(24,119,242,0.08)"
       category="social" slug="facebook-video-downloader-hd"
       faq={[
         { q: "How do I download a Facebook video?", a: "Copy the video URL from Facebook, paste it into our downloader, select quality, and click download." },
         { q: "Can I download Facebook videos in HD?", a: "Yes! Our downloader supports multiple quality options including 720p and 1080p HD." },
         { q: "Is it legal to download Facebook videos?", a: "Downloading videos for personal use is generally acceptable. Respect copyright and don't redistribute content." },
+        { q: "How do I download online free?", a: "Paste the link above, pick your option, and save the file. Free with no sign-up or app needed." },
+        { q: "What quality do I get?", a: "You get the highest quality available, free. Paste the link above and save it to your device." },
+        { q: "Can I download on mobile?", a: "Yes. Open this page in your phone browser, paste the link, and save directly. No app needed." },
       ]}
       howItWorks={[
         "Find the Facebook video you want to download.",

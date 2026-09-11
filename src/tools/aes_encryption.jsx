@@ -109,12 +109,16 @@ export default function AesEncryption() {
   return (
     <ToolLayout
       title="AES Encryption Tool"
-      desc="Encrypt & decrypt text with AES-256-GCM using the Web Crypto API. Client-side only — your data never leaves your browser."
+      desc="AES Encryption Tool - encrypt & decrypt text with AES-256-GCM using the Web Crypto API. Client-side, online free. Free online, no sign-up. Works on any device."
       icon="🔐" iconBg="rgba(99,102,241,0.08)"
       category="security" slug="aes-encryption"
       faq={[
         { q: 'What is AES-256-GCM?', a: 'AES-256-GCM is an authenticated encryption algorithm that provides both confidentiality and integrity. It uses a 256-bit key and is considered highly secure.' },
         { q: 'Is my data sent to a server?', a: 'No. All encryption and decryption happens locally in your browser using the Web Crypto API. Nothing is transmitted.' },
+        { q: "How do I use this AES Encryption Tool online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this AES Encryption Tool free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Enter your text and a password.',

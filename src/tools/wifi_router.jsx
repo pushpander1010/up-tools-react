@@ -81,12 +81,16 @@ export default function wifi_router() {
   return (
     <ToolLayout
       title="WiFi Router Tools"
-      desc="Default passwords (educational), Wi-Fi QR generator, MAC Vendor lookup."
+      desc="WiFi Router Tools - default passwords (educational), Wi-Fi QR generator, MAC Vendor lookup, online free. Free online, no sign-up. Works on any device."
       icon="📡" iconBg="rgba(34,197,94,0.08)"
       category="networking" slug="wifi-router"
       faq={[
         { q: 'Is this a Wi-Fi password cracker?', a: 'No. These are legal, educational tools: default credential catalog, Wi-Fi QR generator, and MAC vendor lookup.' },
         { q: 'Is the Wi-Fi QR code generated locally?', a: 'The QR string is built locally; rendering uses a public QR API.' },
+        { q: "How do I use this WiFi Router Tools online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this WiFi Router Tools free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Browse default passwords for common router models.',

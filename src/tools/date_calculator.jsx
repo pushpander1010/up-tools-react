@@ -158,6 +158,9 @@ export default function date_calculator() {
         { q: 'How do I add days to a date?', a: 'Select "Add/Subtract" mode, pick a start date, enter the number of days, and choose Add. The result date appears instantly.' },
         { q: 'How to calculate date difference?', a: 'Switch to "Difference" mode, set two dates, and see the gap in days, weeks, months, and years.' },
         { q: 'What are business days vs calendar days?', a: 'Business days exclude Saturdays and Sundays. Toggle the "Business Days" option to see the count of working days between two dates.' },
+        { q: "How do I use this Date Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this Date Calculator accurate?", a: "Yes. The Date Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
       ]}
       howItWorks={[
         'Choose a mode: Add/Subtract days or Find Difference between dates.',

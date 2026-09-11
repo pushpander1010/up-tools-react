@@ -372,7 +372,7 @@
    "slug": "age-calculator",
    "title": "Age Calculator",
    "icon": "🎂",
-   "desc": "Compute age by date of birth.",
+   "desc": "Age Calculator - calculate your exact age in years, months, and days. Find your zodiac, online free. Free online, instant.",
    "href": "/age-calculator/",
    "tags": [
     "identity"
@@ -386,7 +386,7 @@
    "slug": "bmi-calculator",
    "title": "BMI Calculator",
    "icon": "⚖️",
-   "desc": "Check BMI, body fat and wellness ranges.",
+   "desc": "BMI Calculator - calculate your Body Mass Index instantly. Supports metric (kg/cm) and, online free. Free online, instant.",
    "href": "/bmi-calculator/",
    "tags": [
     "health"
@@ -400,7 +400,7 @@
    "slug": "unit-converter",
    "title": "Unit Converter",
    "icon": "📏",
-   "desc": "Convert length, weight and temperature.",
+   "desc": "Unit Converter - convert between units of length, weight, temperature, volume, area, speed,, online free. Free online, instant.",
    "href": "/unit-converter/",
    "tags": [
     "dev"
@@ -414,7 +414,7 @@
    "slug": "pan-validator",
    "title": "PAN Format Validator",
    "icon": "🪪",
-   "desc": "Verify Indian PAN structure instantly.",
+   "desc": "PAN Format Validator - validate Indian PAN card numbers instantly. Check format, identify entity, online free. Free online,.",
    "href": "/pan-validator/",
    "tags": [
     "identity",
@@ -429,7 +429,7 @@
    "slug": "pan-aadhaar-link-status",
    "title": "PAN–Aadhaar Link Status Guide",
    "icon": "🔗",
-   "desc": "Validate format and open the official status page.",
+   "desc": "PAN–Aadhaar Link Status Checker (Guide) - validate PAN/Aadhaar format and jump to the official, online free. Free online,.",
    "href": "/pan-aadhaar-link-status/",
    "tags": [
     "identity",
@@ -444,7 +444,7 @@
    "slug": "vehicle-registration-details",
    "title": "Vehicle Registration Details",
    "icon": "🚗",
-   "desc": "Select country and open the official registration portal.",
+   "desc": "Vehicle Registration Details - check vehicle registration format for India, UK, US, and more, online free. Free online, no.",
    "href": "/vehicle-registration-details/",
    "tags": [
     "identity",
@@ -459,7 +459,7 @@
    "slug": "ifsc-finder",
    "title": "IFSC Finder",
    "icon": "🏧",
-   "desc": "Search bank IFSC codes with branch data.",
+   "desc": "IFSC Code Finder - find Indian bank branch details using IFSC code. Get bank name, branch,, online free. Free online, instant.",
    "href": "/ifsc-finder/",
    "tags": [
     "banking",
@@ -474,7 +474,7 @@
    "slug": "canada-crs-tool",
    "title": "Canada CRS Calculator",
    "icon": "🍁",
-   "desc": "Estimate Express Entry CRS score.",
+   "desc": "Accurate 2025 Canada CRS calculator. Uses official IRCC age grid, CLB tables, IELTS→CLB conversion, second official language,.",
    "href": "/canada-crs-tool/",
    "tags": [
     "canada",
@@ -489,7 +489,7 @@
    "slug": "canada-hst-tool",
    "title": "Canada GST/HST Calculator",
    "icon": "💸",
-   "desc": "Compute provincial GST/HST totals.",
+   "desc": "GST/HST Calculator (Canada) - add or remove tax by province - supports HST provinces, online free. Free online, instant.",
    "href": "/canada-hst-tool/",
    "tags": [
     "canada",
@@ -567,7 +567,7 @@
    "slug": "canada-tax-bracket-calculator",
    "title": "Canada Tax Brackets",
    "icon": "🍁",
-   "desc": "Federal tax estimate.",
+   "desc": "Canada Federal Tax Calculator - estimate federal income tax in Canada using current, online free. Free online, instant.",
    "href": "/canada-tax-bracket-calculator/",
    "tags": [
     "canada",
@@ -604,7 +604,7 @@
    "slug": "cra-refund-estimator",
    "title": "CRA Refund Estimator",
    "icon": "🍁",
-   "desc": "Refund vs balance estimate.",
+   "desc": "CRA Refund Estimator - estimate CRA refund or balance owing using tax paid vs tax owed, online free. Free online, no sign-up..",
    "href": "/cra-refund-estimator/",
    "tags": [
     "canada",
@@ -620,7 +620,7 @@
    "slug": "sin-validator",
    "title": "SIN Validator",
    "icon": "🍁",
-   "desc": "Validate SIN checksum.",
+   "desc": "SIN Validator - validate Canadian SIN numbers with checksum (Luhn). Privacy-first, online free. Free online, instant results..",
    "href": "/sin-validator/",
    "tags": [
     "canada",
@@ -636,7 +636,7 @@
    "slug": "cra-noa-checklist",
    "title": "CRA NOA Checklist",
    "icon": "🍁",
-   "desc": "Document checklist.",
+   "desc": "CRA Notice of Assessment Checklist - checklist for preparing your CRA Notice of Assessment review., online free. Free online,.",
    "href": "/cra-noa-checklist/",
    "tags": [
     "canada",
@@ -674,7 +674,7 @@
    "slug": "password-generator",
    "title": "Password Generator",
    "icon": "🔐",
-   "desc": "Create strong, random passwords.",
+   "desc": "Password Generator - generate cryptographically secure passwords with real-time strength analysis, online free. Free online,.",
    "href": "/password-generator/",
    "tags": [
     "security"
@@ -689,7 +689,7 @@
    "slug": "base64-encoder",
    "title": "Base64 Encoder & Decoder",
    "icon": "🧬",
-   "desc": "Encode or decode Base64 text & files.",
+   "desc": "Base64 Encoder & Decoder - encode text to Base64 or decode Base64 strings back to text. Works with, online free. Free online,.",
    "href": "/base64-encoder/",
    "tags": [
     "dev",
@@ -705,7 +705,7 @@
    "slug": "uuid-generator",
    "title": "UUID / GUID Generator",
    "icon": "🆔",
-   "desc": "Generate and validate UUID v1/v4/v5.",
+   "desc": "UUID Generator - generate UUID v4 with customizable format and count, online free. Instant results, no sign-up, works on any.",
    "href": "/uuid-generator/",
    "tags": [
     "dev"
@@ -719,7 +719,7 @@
    "slug": "json-formatter",
    "title": "JSON Formatter",
    "icon": "🛠️",
-   "desc": "Prettify and validate JSON payloads.",
+   "desc": "JSON Formatter - format, beautify, minify, and validate JSON instantly. Copy to clipboard, tree view, online free. Free.",
    "href": "/json-formatter/",
    "tags": [
     "dev"
@@ -733,7 +733,7 @@
    "slug": "ai-prompts",
    "title": "AI Prompts Library",
    "icon": "🧠",
-   "desc": "Curated prompts for design, SEO and resumes.",
+   "desc": "AI Prompts Library - copy-paste prompts for image editing, web dev, SEO, resumes, data science, free online.",
    "href": "/ai-prompts/",
    "tags": [
     "ai",
@@ -750,7 +750,7 @@
    "slug": "ai-writer",
    "title": "AI Writing Assistant",
    "icon": "✍️",
-   "desc": "Draft posts with Perplexity, Gemini & Groq.",
+   "desc": "AI Writing Assistant - summarize, rewrite, translate, extract keywords, generate outlines, and, online free. Free online, no.",
    "href": "/ai-writer/",
    "tags": [
     "ai",
@@ -766,7 +766,7 @@
    "slug": "ai-blog-generator",
    "title": "AI Blog Post Generator",
    "icon": "📝",
-   "desc": "Generate full SEO-optimized blog posts instantly.",
+   "desc": "AI Blog Post Generator - generate full SEO-optimized blog posts instantly with AI. Enter a topic,, online free. Free online,.",
    "href": "/ai-blog-generator/",
    "tags": [
     "ai",
@@ -782,7 +782,7 @@
    "slug": "ai-youtube-script",
    "title": "AI YouTube Script Writer",
    "icon": "🎬",
-   "desc": "Write retention-optimized YouTube scripts with AI.",
+   "desc": "AI YouTube Script Writer - write complete, retention-optimized YouTube video scripts with hooks,, online free. Free online, no.",
    "href": "/ai-youtube-script/",
    "tags": [
     "ai",
@@ -854,7 +854,7 @@
    "slug": "ai-business-name-generator",
    "title": "AI Business Name Generator",
    "icon": "💡",
-   "desc": "Generate 20 unique brandable business names with taglines.",
+   "desc": "AI Business Name Generator - generate unique, catchy business names with AI. Get 20 name ideas with, online free. Free online,.",
    "href": "/ai-business-name-generator/",
    "tags": [
     "ai",
@@ -888,7 +888,7 @@
    "slug": "ai-plagiarism",
    "title": "AI Plagiarism Checker",
    "icon": "🛡️",
-   "desc": "Check originality and paraphrase safely.",
+   "desc": "AI Plagiarism Checker & Paraphraser - check originality, paraphrase for higher uniqueness, or, online free. Free online,.",
    "href": "/ai-plagiarism/",
    "tags": [
     "ai",
@@ -904,7 +904,7 @@
    "slug": "resume-analyzer",
    "title": "AI Resume Analyzer",
    "icon": "💼",
-   "desc": "ATS score your resume against any JD.",
+   "desc": "Resume Analyzer - analyze your resume for ATS readability, keyword density, and JD match. Supports, online free. Free online,.",
    "href": "/resume-analyzer/",
    "tags": [
     "ai",
@@ -936,7 +936,7 @@
    "slug": "pokemon-stats",
    "title": "Pokemon Stats Directory",
    "icon": "🧬",
-   "desc": "Search all Pokemon base stats and export CSV.",
+   "desc": "Pokemon Stats - browse all Pokemon with stats, types, and CSV export, online free. Fast search, no sign-up, works on mobile.",
    "href": "/pokemon-stats/",
    "tags": [
     "fun",
@@ -951,7 +951,7 @@
    "slug": "text-case-converter",
    "title": "Text Case Converter",
    "icon": "🔡",
-   "desc": "Switch between upper, lower and title case.",
+   "desc": "Text Case Converter - convert text to UPPERCASE, lowercase, Title Case, camelCase, snake_case,, online free. Free online,.",
    "href": "/text-case-converter/",
    "tags": [
     "text"
@@ -965,7 +965,7 @@
    "slug": "word-counter",
    "title": "Word Counter",
    "icon": "📝",
-   "desc": "Count words, characters and reading time.",
+   "desc": "Word Counter - count words, characters, sentences, paragraphs, and lines in your text. Instant,, online free. Free online, no.",
    "href": "/word-counter/",
    "tags": [
     "text"
@@ -979,7 +979,7 @@
    "slug": "qr-generator",
    "title": "QR Code Generator",
    "icon": "🔳",
-   "desc": "Create QR codes for links and text.",
+   "desc": "Free QR code generator: make QR codes for URLs, WiFi, text, email, phone, SMS, and vCard. Download as PNG or SVG — no signup,.",
    "href": "/qr-generator/",
    "tags": [
     "images",
@@ -995,7 +995,7 @@
    "slug": "qr-reader",
    "title": "QR Reader",
    "icon": "📷",
-   "desc": "Scan QR codes from camera or images.",
+   "desc": "QR Code Scanner - scan QR codes from camera, uploaded images, or screen capture. Instantly decode, online free. Free online,.",
    "href": "/qr-reader/",
    "tags": [
     "images",
@@ -1039,7 +1039,7 @@
    "slug": "color-picker",
    "title": "Color Picker",
    "icon": "🎨",
-   "desc": "Pick HEX/RGB, contrast check and save swatches.",
+   "desc": "Color Picker & Converter - pick colors, convert between HEX, RGB, and HSL, check WCAG contrast,, online free. Free online,.",
    "href": "/color-picker/",
    "tags": [
     "images",
@@ -1055,7 +1055,7 @@
    "slug": "exif-tool",
    "title": "EXIF Tool",
    "icon": "🕵️",
-   "desc": "Inspect, clean or embed photo metadata.",
+   "desc": "EXIF Data Viewer - view and analyze image metadata (EXIF, GPS, camera info). Remove metadata for, online free. Free online, no.",
    "href": "/exif-tool/",
    "tags": [
     "images",
@@ -1071,7 +1071,7 @@
    "slug": "ip-address",
    "title": "IP Address & ISP Lookup",
    "icon": "🌐",
-   "desc": "See your public IP, ISP and DNS speed tests.",
+   "desc": "IP Address & ISP Lookup - detect your public IP address, location, ISP, timezone, and coordinates, online free. Free online,.",
    "href": "/ip-address/",
    "tags": [
     "networking",
@@ -1087,7 +1087,7 @@
    "slug": "wifi-router",
    "title": "WiFi Router Tools",
    "icon": "📡",
-   "desc": "Find default passwords, Wi-Fi QR & vendors.",
+   "desc": "WiFi Router Tools - default passwords (educational), Wi-Fi QR generator, MAC Vendor lookup, online free. Free online, no.",
    "href": "/wifi-router/",
    "tags": [
     "wifi",
@@ -1103,7 +1103,7 @@
    "slug": "speed-test",
    "title": "Internet Speed Test",
    "icon": "⚡",
-   "desc": "Measure download, upload speed & ping.",
+   "desc": "Internet Speed Test - measure your download, upload speed and ping. Cloudflare-powered, accurate, online free. Free online,.",
    "href": "/speed-test/",
    "tags": [
     "networking",
@@ -1119,7 +1119,7 @@
    "slug": "domain-finder",
    "title": "Domain Name Finder",
    "icon": "🔍",
-   "desc": "Discover available domains instantly.",
+   "desc": "Find brandable domain names and check live availability. Generate domain ideas from keywords and see which are actually free.",
    "href": "/domain-finder/",
    "tags": [
     "networking",
@@ -1135,7 +1135,7 @@
    "slug": "whatsapp-chat",
    "title": "WhatsApp Click-to-Chat",
    "icon": "💬",
-   "desc": "Open chats without saving numbers.",
+   "desc": "WhatsApp Click-to-Chat - send a WhatsApp message by just entering the phone number and text. Copy, online free. Free online,.",
    "href": "/whatsapp-chat/",
    "tags": [
     "whatsapp",
@@ -1151,7 +1151,7 @@
    "slug": "whatsapp-stickers",
    "title": "WhatsApp Sticker Maker",
    "icon": "🧩",
-   "desc": "Design and export sticker packs.",
+   "desc": "WhatsApp Sticker Maker - make WhatsApp stickers in your browser: upload, zoom, rotate, add text,, online free. Free online, no.",
    "href": "/whatsapp-stickers/",
    "tags": [
     "whatsapp",
@@ -1167,7 +1167,7 @@
    "slug": "instagram-auditor",
    "title": "Instagram Auditor",
    "icon": "📊",
-   "desc": "Find non-followers, fans & mutuals. Privacy-first analysis.",
+   "desc": "Instagram Auditor - find non-followers, fans & mutuals. Upload your Instagram data export for, online free. Free online, no.",
    "href": "/instagram-auditor/",
    "tags": [
     "social",
@@ -1184,7 +1184,7 @@
    "slug": "instagram-bio-generator",
    "title": "Instagram Bio Generator",
    "icon": "✨",
-   "desc": "Create engaging and creative Instagram bios with AI.",
+   "desc": "Instagram Bio Generator - create engaging and creative Instagram bios with AI. Get multiple, online free. Free online, no.",
    "href": "/instagram-bio-generator/",
    "tags": [
     "social",
@@ -1201,7 +1201,7 @@
    "slug": "instagram-caption-generator",
    "title": "Instagram Caption Generator",
    "icon": "💬",
-   "desc": "Generate engaging captions for your Instagram posts.",
+   "desc": "Instagram Caption Generator - generate engaging captions for your Instagram posts. Multiple styles, online free. Free online,.",
    "href": "/instagram-caption-generator/",
    "tags": [
     "social",
@@ -1218,7 +1218,7 @@
    "slug": "instagram-hashtag-generator",
    "title": "Instagram Hashtag Generator",
    "icon": "#️⃣",
-   "desc": "Find trending hashtags to boost your reach.",
+   "desc": "Instagram Hashtag Generator - generate trending Instagram hashtags instantly. Get the best hashtags, online free. Free online,.",
    "href": "/instagram-hashtag-generator/",
    "tags": [
     "social",
@@ -1234,7 +1234,7 @@
    "slug": "instagram-username-generator",
    "title": "Instagram Username Generator",
    "icon": "👤",
-   "desc": "Generate unique and catchy Instagram usernames.",
+   "desc": "Instagram Username Generator - generate unique, creative Instagram username ideas. Choose from, online free. Free online, no.",
    "href": "/instagram-username-generator/",
    "tags": [
     "social",
@@ -1250,7 +1250,7 @@
    "slug": "instagram-story-templates",
    "title": "Instagram Story Templates",
    "icon": "📱",
-   "desc": "Beautiful templates for Instagram Stories.",
+   "desc": "Instagram Story Templates - browse ready-made story templates for any occasion. Business, personal,, online free. Free online,.",
    "href": "/instagram-story-templates/",
    "tags": [
     "social",
@@ -1316,7 +1316,7 @@
    "slug": "instagram-post-downloader",
    "title": "Instagram Post Downloader",
    "icon": "📸",
-   "desc": "Download Instagram photos and carousel posts easily.",
+   "desc": "Instagram Post Downloader - download Instagram photos, videos, and carousel posts in full quality., online free. Free online.",
    "href": "/instagram-post-downloader/",
    "tags": [
     "social",
@@ -1332,7 +1332,7 @@
    "slug": "instagram-video-downloader",
    "title": "Instagram Video Downloader",
    "icon": "🎥",
-   "desc": "Download Instagram videos in HD quality.",
+   "desc": "Instagram Video Downloader - download Instagram videos, reels, and IGTV in high quality. Save MP4, online free. Free online in.",
    "href": "/instagram-video-downloader/",
    "tags": [
     "social",
@@ -1349,7 +1349,7 @@
    "slug": "instagram-igtv-downloader",
    "title": "Instagram IGTV Downloader",
    "icon": "📺",
-   "desc": "Download IGTV videos from Instagram.",
+   "desc": "Instagram IGTV Downloader - download Instagram IGTV long-form videos in HD quality. Save any public, online free. Free online.",
    "href": "/instagram-igtv-downloader/",
    "tags": [
     "social",
@@ -1366,7 +1366,7 @@
    "slug": "instagram-carousel-downloader",
    "title": "Instagram Carousel Downloader",
    "icon": "🖼️",
-   "desc": "Download all photos from Instagram carousel posts.",
+   "desc": "Instagram Carousel Downloader - download all images from Instagram carousel posts. Save every slide in, online free. Free.",
    "href": "/instagram-carousel-downloader/",
    "tags": [
     "social",
@@ -1382,7 +1382,7 @@
    "slug": "instagram-highlight-downloader",
    "title": "Instagram Highlight Downloader",
    "icon": "⭐",
-   "desc": "Download Instagram story highlights from any profile.",
+   "desc": "Instagram Highlight Downloader - download Instagram story highlights from any public profile. Save, online free. Free online.",
    "href": "/instagram-highlight-downloader/",
    "tags": [
     "social",
@@ -1398,7 +1398,7 @@
    "slug": "instagram-follower-list-exporter",
    "title": "Instagram Follower List Exporter",
    "icon": "📋",
-   "desc": "Export your Instagram followers list to CSV.",
+   "desc": "Instagram Follower List Exporter - upload your Instagram data export and convert your followers, online free. Free online, no.",
    "href": "/instagram-follower-list-exporter/",
    "tags": [
     "social",
@@ -1415,7 +1415,7 @@
    "slug": "instagram-following-list-exporter",
    "title": "Instagram Following List Exporter",
    "icon": "📋",
-   "desc": "Export your Instagram following list to CSV.",
+   "desc": "Instagram Following List Exporter - upload your Instagram data export and convert your following, online free. Free online, no.",
    "href": "/instagram-following-list-exporter/",
    "tags": [
     "social",
@@ -1432,7 +1432,7 @@
    "slug": "instagram-fake-follower-checker",
    "title": "Instagram Fake Follower Checker",
    "icon": "🤖",
-   "desc": "Detect fake followers and bot accounts on Instagram.",
+   "desc": "Instagram Fake Follower Checker - analyze your follower list for suspicious accounts using, online free. Free online, instant.",
    "href": "/instagram-fake-follower-checker/",
    "tags": [
     "social",
@@ -1449,7 +1449,7 @@
    "slug": "instagram-bio-link-generator",
    "title": "Instagram Bio Link Generator",
    "icon": "🔗",
-   "desc": "Create clickable link trees for your Instagram bio.",
+   "desc": "Instagram Bio Link Generator - create a beautiful link-in-bio page. Generate HTML you can host, online free. Free online, no.",
    "href": "/instagram-bio-link-generator/",
    "tags": [
     "social",
@@ -1466,7 +1466,7 @@
    "slug": "instagram-story-viewer",
    "title": "Instagram Story Viewer",
    "icon": "👁️",
-   "desc": "View Instagram stories anonymously without being seen.",
+   "desc": "Instagram Story Viewer - view Instagram stories anonymously. Watch stories without the poster, online free. Free online, no.",
    "href": "/instagram-story-viewer/",
    "tags": [
     "social",
@@ -1482,7 +1482,7 @@
    "slug": "instagram-post-scheduler",
    "title": "Instagram Post Scheduler",
    "icon": "⏰",
-   "desc": "Schedule Instagram posts for optimal posting times.",
+   "desc": "Instagram Post Scheduler - plan your weekly Instagram posts with optimal timing. Generate a content, online free. Free online,.",
    "href": "/instagram-post-scheduler/",
    "tags": [
     "social",
@@ -1499,7 +1499,7 @@
    "slug": "instagram-content-calendar",
    "title": "Instagram Content Calendar",
    "icon": "📅",
-   "desc": "Plan and organize your Instagram content strategy.",
+   "desc": "Instagram Content Calendar - generate a weekly content calendar with post ideas, types, and, online free. Free online, no.",
    "href": "/instagram-content-calendar/",
    "tags": [
     "social",
@@ -1516,7 +1516,7 @@
    "slug": "instagram-growth-calculator",
    "title": "Instagram Growth Calculator",
    "icon": "📈",
-   "desc": "Project your Instagram growth based on engagement rate.",
+   "desc": "Instagram Growth Calculator - project your Instagram follower growth based on, online free. Free online, instant results. No.",
    "href": "/instagram-growth-calculator/",
    "tags": [
     "social",
@@ -1532,7 +1532,7 @@
    "slug": "instagram-reach-calculator",
    "title": "Instagram Reach Calculator",
    "icon": "🎯",
-   "desc": "Calculate potential reach for your Instagram posts.",
+   "desc": "Instagram Reach Calculator - calculate your Instagram reach rate, impressions ratio,, online free. Free online, instant.",
    "href": "/instagram-reach-calculator/",
    "tags": [
     "social",
@@ -1548,7 +1548,7 @@
    "slug": "instagram-story-ideas-generator",
    "title": "Instagram Story Ideas Generator",
    "icon": "💡",
-   "desc": "Generate creative Instagram story ideas with AI.",
+   "desc": "Instagram Story Ideas Generator - get 10 fresh story ideas for any niche. Never run out of content, online free. Free online,.",
    "href": "/instagram-story-ideas-generator/",
    "tags": [
     "social",
@@ -1565,7 +1565,7 @@
    "slug": "tiktok-hashtag-generator",
    "title": "TikTok Hashtag Generator",
    "icon": "🎵",
-   "desc": "Find viral hashtags for your TikTok videos.",
+   "desc": "TikTok Hashtag Generator - generate trending TikTok hashtags to boost your reach and views. 15+, online free. Free online, no.",
    "href": "/tiktok-hashtag-generator/",
    "tags": [
     "social",
@@ -1582,7 +1582,7 @@
    "slug": "games",
    "title": "Free Mini Games",
    "icon": "🎮",
-   "desc": "Play fast, sign-up free browser games.",
+   "desc": "Free Mini Games - play Snake, Tetris, 2048, Pac-Man, Wordle and more online free. No download, no sign-up.",
    "href": "/games/",
    "tags": [
     "fun"
@@ -1596,7 +1596,7 @@
    "slug": "games-love-test",
    "title": "Love Compatibility Test",
    "icon": "💘",
-   "desc": "Fun love quiz for couples.",
+   "desc": "Couple Compatibility Quiz ❤️ Romantic Love Test - two-player romantic quiz. Answer, online free. Play online free, no.",
    "href": "/games/love-test/",
    "tags": [
     "fun",
@@ -1612,7 +1612,7 @@
    "slug": "games-typing-speed",
    "title": "Typing Speed Test",
    "icon": "⌨️",
-   "desc": "Test your WPM and accuracy online.",
+   "desc": "Typing Speed Test - WPM Test Online Free - test your typing speed and accuracy. Free, online free. Play online free, no.",
    "href": "/games/typing-speed/",
    "tags": [
     "fun",
@@ -1628,7 +1628,7 @@
    "slug": "games-hangman",
    "title": "Hangman",
    "icon": "🪢",
-   "desc": "Classic word guessing game.",
+   "desc": "Hangman Game Online - Free Word Guessing Game - classic word guessing game with, online free. Play online free, no download..",
    "href": "/games/hangman/",
    "tags": [
     "fun",
@@ -1643,7 +1643,7 @@
    "slug": "games-word-scramble",
    "title": "Word Scramble",
    "icon": "🔀",
-   "desc": "Unscramble jumbled letters to find the word.",
+   "desc": "Word Scramble Game Online - Unscramble Words Free - unscramble jumbled letters to, online free. Play online free, no download..",
    "href": "/games/word-scramble/",
    "tags": [
     "fun",
@@ -1658,7 +1658,7 @@
    "slug": "games-quiz-trivia",
    "title": "Quiz Trivia",
    "icon": "🧠",
-   "desc": "100+ general knowledge trivia questions.",
+   "desc": "Quiz Trivia Game Online - test general knowledge free with 10 questions per round across science, history, sports, tech, and.",
    "href": "/games/quiz-trivia/",
    "tags": [
     "fun",
@@ -1673,7 +1673,7 @@
    "slug": "games-dice-roller",
    "title": "Dice Roller",
    "icon": "🎲",
-   "desc": "Roll D4 to D20 virtual dice.",
+   "desc": "Dice Roller - roll D4–D20 virtual dice with sound effects, history, and statistics, online free. Play online free, no.",
    "href": "/games/dice-roller/",
    "tags": [
     "fun"
@@ -1687,7 +1687,7 @@
    "slug": "games-coin-flip",
    "title": "Coin Flip",
    "icon": "🪙",
-   "desc": "Virtual coin toss with stats.",
+   "desc": "Coin Flip — Virtual Toss with Stats & Streaks - virtual coin toss with heads/tails, online free. Play online free, no.",
    "href": "/games/coin-flip/",
    "tags": [
     "fun"
@@ -1701,7 +1701,7 @@
    "slug": "games-ping-pong",
    "title": "Ping Pong",
    "icon": "🏓",
-   "desc": "Classic Pong against AI.",
+   "desc": "Ping Pong Game Online - Play Pong Free - classic Pong against AI or a friend. First, online free. Play online free, no.",
    "href": "/games/ping-pong/",
    "tags": [
     "fun"
@@ -1715,7 +1715,7 @@
    "slug": "games-wheel-of-names",
    "title": "Wheel of Names",
    "icon": "🎡",
-   "desc": "Spin a custom wheel of names to pick a random winner.",
+   "desc": "Wheel of Names - Free Random Name Picker & Spinner - spin a custom wheel of names to, online free. Play online free, no.",
    "href": "/games/wheel-of-names/",
    "tags": [
     "fun",
@@ -1730,7 +1730,7 @@
    "slug": "ai-name-generator",
    "title": "AI Name Generator",
    "icon": "🤖",
-   "desc": "Generate baby, business, brand & character names.",
+   "desc": "AI Name Generator - generate baby names, business names, brand names, startup names, character, online free. Free online, no.",
    "href": "/ai-name-generator/",
    "tags": [
     "ai",
@@ -1746,7 +1746,7 @@
    "slug": "ai-joke-generator",
    "title": "AI Joke Generator",
    "icon": "😂",
-   "desc": "Get hilarious jokes, puns & one-liners instantly.",
+   "desc": "Get original, funny jokes on demand. Choose a category — puns, dad jokes, tech humor, one-liners — and let AI deliver instant.",
    "href": "/ai-joke-generator/",
    "tags": [
     "ai",
@@ -1762,7 +1762,7 @@
    "slug": "ai-grammar-checker",
    "title": "AI Grammar Checker",
    "icon": "✅",
-   "desc": "Fix grammar, spelling & punctuation instantly.",
+   "desc": "Fix grammar, spelling, punctuation and style issues instantly. Paste or type your text and get a corrected version with.",
    "href": "/ai-grammar-checker/",
    "tags": [
     "ai",
@@ -1778,7 +1778,7 @@
    "slug": "ai-cover-letter",
    "title": "AI Cover Letter Generator",
    "icon": "📄",
-   "desc": "Generate professional cover letters in seconds.",
+   "desc": "AI Cover Letter Generator - generate professional cover letters instantly with AI. Fill in your, online free. Free online, no.",
    "href": "/ai-cover-letter/",
    "tags": [
     "ai",
@@ -1875,7 +1875,7 @@
    "slug": "whatsapp-link-generator",
    "title": "WhatsApp Link Generator",
    "icon": "💬",
-   "desc": "Create wa.me links with pre-filled messages & QR codes.",
+   "desc": "WhatsApp Link Generator - generate WhatsApp click-to-chat links instantly. Create wa.me links with, online free. Free online,.",
    "href": "/whatsapp-link-generator/",
    "tags": [
     "whatsapp",
@@ -1892,7 +1892,7 @@
    "slug": "games-friendship-test",
    "title": "Best Friend Compatibility Test",
    "icon": "👫",
-   "desc": "2-player BFF quiz with challenge link & score.",
+   "desc": "Best Friend Compatibility Test 👫 How Well Do You Know Each Other, online free. Play online free, no download. Works on mobile.",
    "href": "/games/friendship-test/",
    "tags": [
     "fun",
@@ -2165,7 +2165,7 @@
    "slug": "ipl-team-stats",
    "title": "IPL Team Statistics",
    "icon": "📈",
-   "desc": "All-time IPL records, wins, titles and performance stats.",
+   "desc": "IPL Team Statistics - all-time records, wins, titles, and performance stats for all IPL franchises, online free. Free online,.",
    "href": "/ipl-team-stats/",
    "tags": [
     "cricket",
@@ -2296,7 +2296,7 @@
    "slug": "calorie-calculator",
    "title": "Calorie Calculator",
    "icon": "🍎",
-   "desc": "Calculate daily calorie needs (TDEE) for weight goals.",
+   "desc": "Calorie Calculator - calculate your daily calorie needs using the Mifflin-St Jeor, online free. Free online, instant results..",
    "href": "/calorie-calculator/",
    "tags": [
     "health",
@@ -2624,7 +2624,7 @@
    "slug": "whatsapp-dp-downloader",
    "title": "WhatsApp DP Downloader",
    "icon": "📥",
-   "desc": "Download WhatsApp profile pictures in full size.",
+   "desc": "WhatsApp DP downloader — download WhatsApp profile pictures online free, by image link or by phone number. Save any visible.",
    "href": "/whatsapp-dp-downloader/",
    "tags": [
     "whatsapp",
@@ -2641,7 +2641,7 @@
    "slug": "whatsapp-profile-picture-downloader",
    "title": "WhatsApp Profile Pic Downloader",
    "icon": "🖼️",
-   "desc": "Save any visible WhatsApp profile picture in full size.",
+   "desc": "Download WhatsApp profile pictures free — save any visible WhatsApp DP in full size online. Enter a number or paste a WhatsApp.",
    "href": "/whatsapp-profile-picture-downloader/",
    "tags": [
     "whatsapp",
@@ -2658,7 +2658,7 @@
    "slug": "whatsapp-dp-by-number",
    "title": "WhatsApp DP by Number Guide",
    "icon": "🔢",
-   "desc": "Honest guide: saving WhatsApp DP from a number.",
+   "desc": "WhatsApp DP download by number explained. Learn how to download a WhatsApp DP with a phone number, why direct by-number.",
    "href": "/whatsapp-dp-by-number/",
    "tags": [
     "whatsapp",
@@ -2692,7 +2692,7 @@
    "slug": "marvel-doomsday",
    "title": "Marvel Doomsday 2026",
    "icon": "🦸",
-   "desc": "Release date, cast & Multiverse Saga guide.",
+   "desc": "Everything about Marvel's Doomsday (2026): release date, confirmed cast, how it connects to the Multiverse Saga, and what to.",
    "href": "/marvel-doomsday/",
    "tags": [
     "marvel",
@@ -2708,7 +2708,7 @@
    "slug": "marvel-movie-timeline",
    "title": "MCU Movie Timeline",
    "icon": "🎬",
-   "desc": "Complete Marvel watch order & phase guide.",
+   "desc": "Marvel Movie Timeline - the complete Marvel Cinematic Universe timeline and watch order, every phase from Iron Man to the.",
    "href": "/marvel-movie-timeline/",
    "tags": [
     "marvel",
@@ -2724,7 +2724,7 @@
    "slug": "avengers-doomsday-cast",
    "title": "Doomsday Cast",
    "icon": "🦹",
-   "desc": "Confirmed & rumored Avengers Doomsday cast.",
+   "desc": "Avengers Doomsday Cast - the biggest ensemble in MCU history. Here is the rundown of who is confirmed and what to expect from.",
    "href": "/avengers-doomsday-cast/",
    "tags": [
     "marvel",
@@ -2740,7 +2740,7 @@
    "slug": "whatsapp-group-name-generator",
    "title": "WhatsApp Group Name Generator",
    "icon": "💬",
-   "desc": "Generate creative group names for any occasion.",
+   "desc": "WhatsApp Group Name Generator - generate creative and funny WhatsApp group names for any occasion!, online free. Free online,.",
    "href": "/whatsapp-group-name-generator/",
    "tags": [
     "whatsapp",
@@ -2757,7 +2757,7 @@
    "slug": "snapchat-username-generator",
    "title": "Snapchat Username Generator",
    "icon": "👻",
-   "desc": "Create unique and cool Snapchat usernames.",
+   "desc": "Snapchat Username Generator - generate unique and cool Snapchat usernames instantly. Perfect for, online free. Free online, no.",
    "href": "/snapchat-username-generator/",
    "tags": [
     "snapchat",
@@ -2773,7 +2773,7 @@
    "slug": "snapchat-score-calculator",
    "title": "Snapchat Score Calculator",
    "icon": "📊",
-   "desc": "Calculate and understand your Snapchat score.",
+   "desc": "Snapchat Score Calculator - calculate your estimated Snapchat score and learn how it, online free. Free online, instant.",
    "href": "/snapchat-score-calculator/",
    "tags": [
     "snapchat",
@@ -2789,7 +2789,7 @@
    "slug": "whatsapp-message-scheduler",
    "title": "WhatsApp Message Scheduler",
    "icon": "⏰",
-   "desc": "Learn how to schedule WhatsApp messages for free.",
+   "desc": "Learn how to schedule WhatsApp messages for free. Step-by-step guide for Android, iOS, and WhatsApp Business. No third-party.",
    "href": "/whatsapp-message-scheduler/",
    "tags": [
     "whatsapp",
@@ -2806,7 +2806,7 @@
    "slug": "whatsapp-business-name-generator",
    "title": "WhatsApp Business Name Generator",
    "icon": "💼",
-   "desc": "Generate professional business names for WhatsApp.",
+   "desc": "WhatsApp Business Name Generator - generate professional, catchy business names for your WhatsApp, online free. Free online,.",
    "href": "/whatsapp-business-name-generator/",
    "tags": [
     "whatsapp",
@@ -2823,7 +2823,7 @@
    "slug": "whatsapp-font-generator",
    "title": "WhatsApp Font Generator",
    "icon": "✍️",
-   "desc": "Generate bold, italic, strikethrough text for WhatsApp.",
+   "desc": "WhatsApp Font Generator - generate styled text for WhatsApp: bold, italic, strikethrough,, online free. Free online, no.",
    "href": "/whatsapp-font-generator/",
    "tags": [
     "whatsapp",
@@ -2840,7 +2840,7 @@
    "slug": "whatsapp-emoji-translator",
    "title": "WhatsApp Emoji Translator",
    "icon": "😊",
-   "desc": "Convert text to emojis for WhatsApp messages.",
+   "desc": "WhatsApp Emoji Translator - convert your text to emojis! Make your WhatsApp messages more fun and, online free. Free online,.",
    "href": "/whatsapp-emoji-translator/",
    "tags": [
     "whatsapp",
@@ -2857,7 +2857,7 @@
    "slug": "whatsapp-group-invite-link",
    "title": "WhatsApp Group Invite Link",
    "icon": "🔗",
-   "desc": "Learn how to create and share group invite links.",
+   "desc": "WhatsApp Group Invite Link - learn how to create, share, and manage WhatsApp group invite links., online free. Free online, no.",
    "href": "/whatsapp-group-invite-link/",
    "tags": [
     "whatsapp",
@@ -2874,7 +2874,7 @@
    "slug": "snapchat-story-ideas",
    "title": "Snapchat Story Ideas Generator",
    "icon": "💡",
-   "desc": "Generate creative story ideas for Snapchat.",
+   "desc": "Snapchat Story Ideas Generator - generate creative Snapchat story ideas. Never run out of content, online free. Free online,.",
    "href": "/snapchat-story-ideas/",
    "tags": [
     "snapchat",
@@ -2890,7 +2890,7 @@
    "slug": "snapchat-streak-calculator",
    "title": "Snapchat Streak Calculator",
    "icon": "🔥",
-   "desc": "Calculate and track your Snapchat streaks.",
+   "desc": "Snapchat Streak Calculator - calculate your Snapchat streak duration and track, online free. Free online, instant results. No.",
    "href": "/snapchat-streak-calculator/",
    "tags": [
     "snapchat",
@@ -2906,7 +2906,7 @@
    "slug": "contact",
    "title": "Contact UpTools",
    "icon": "✉️",
-   "desc": "Share feedback, bugs or feature requests.",
+   "desc": "Contact Us - get in touch with the UpTools team. Report bugs, suggest features, or ask questions, online free. Free online, no.",
    "href": "/contact/",
    "tags": [
     "text"
@@ -2920,7 +2920,7 @@
    "slug": "instagram-reels-ideas",
    "title": "Instagram Reels Ideas Generator",
    "icon": "🎬",
-   "desc": "Generate viral Instagram Reels ideas with AI.",
+   "desc": "Instagram Reels Ideas - get creative ideas for your next Instagram Reels. Never run out of content, online free. Free online,.",
    "href": "/instagram-reels-ideas/",
    "tags": [
     "social",
@@ -2937,7 +2937,7 @@
    "slug": "instagram-engagement-calculator",
    "title": "Instagram Engagement Calculator",
    "icon": "📊",
-   "desc": "Calculate engagement rate and analyze performance.",
+   "desc": "Instagram Engagement Calculator - calculate your Instagram engagement rate instantly., online free. Free online, instant.",
    "href": "/instagram-engagement-calculator/",
    "tags": [
     "social",
@@ -2953,7 +2953,7 @@
    "slug": "instagram-best-time-to-post",
    "title": "Instagram Best Time to Post",
    "icon": "⏰",
-   "desc": "Find optimal posting times for maximum reach.",
+   "desc": "Instagram Best Time to Post - find the optimal times to post on Instagram for maximum reach and, online free. Free online, no.",
    "href": "/instagram-best-time-to-post/",
    "tags": [
     "social",
@@ -2969,7 +2969,7 @@
    "slug": "tiktok-video-downloader",
    "title": "TikTok Video Downloader",
    "icon": "🎵",
-   "desc": "Download TikTok videos without watermark.",
+   "desc": "TikTok Video Downloader - download TikTok videos without watermark in HD quality. Works on all devices, online free. Free.",
    "href": "/tiktok-video-downloader/",
    "tags": [
     "social",
@@ -2984,7 +2984,7 @@
    "slug": "facebook-video-downloader",
    "title": "Facebook Video Downloader",
    "icon": "📹",
-   "desc": "Download Facebook videos in HD quality.",
+   "desc": "Facebook Video Downloader - download Facebook videos, Reels, and Stories in HD quality instantly, online free. Free online in.",
    "href": "/facebook-video-downloader/",
    "tags": [
     "social",
@@ -2999,7 +2999,7 @@
    "slug": "youtube-video-downloader",
    "title": "YouTube Video Downloader",
    "icon": "🎥",
-   "desc": "Download YouTube videos and audio in HD.",
+   "desc": "YouTube Video Downloader - download YouTube videos and audio in HD quality. Save videos as MP4 or, online free. Free online in.",
    "href": "/youtube-video-downloader/",
    "tags": [
     "social",
@@ -3014,7 +3014,7 @@
    "slug": "twitter-video-downloader",
    "title": "Twitter/X Video Downloader",
    "icon": "🐦",
-   "desc": "Download Twitter/X videos instantly.",
+   "desc": "Twitter/X Video Downloader - download videos, GIFs, and media from X (formerly Twitter) in HD quality., online free. Free.",
    "href": "/twitter-video-downloader/",
    "tags": [
     "social",
@@ -3029,7 +3029,7 @@
    "slug": "linkedin-profile-analyzer",
    "title": "LinkedIn Profile Analyzer",
    "icon": "💼",
-   "desc": "Analyze and optimize your LinkedIn profile.",
+   "desc": "LinkedIn Profile Strength Analyzer - analyze your LinkedIn profile strength and get actionable tips, online free. Free online,.",
    "href": "/linkedin-profile-analyzer/",
    "tags": [
     "social",
@@ -3045,7 +3045,7 @@
    "slug": "meeting-scheduler",
    "title": "Meeting Scheduler",
    "icon": "🌍",
-   "desc": "Find best meeting times across timezones.",
+   "desc": "Meeting Scheduler - find the best meeting time across multiple timezones. Schedule meetings with, online free. Free online, no.",
    "href": "/meeting-scheduler/",
    "tags": [
     "productivity",
@@ -3061,7 +3061,7 @@
    "slug": "todo-list-maker",
    "title": "Todo List Maker",
    "icon": "✅",
-   "desc": "Simple online todo list with local storage.",
+   "desc": "To-Do List Maker - simple, fast to-do list that saves to your browser. Track tasks with categories, online free. Free online,.",
    "href": "/todo-list-maker/",
    "tags": [
     "productivity",
@@ -3076,7 +3076,7 @@
    "slug": "note-taking-app",
    "title": "Note Taking App",
    "icon": "📝",
-   "desc": "Quick notes online with local storage.",
+   "desc": "Note Taking App - quick note-taking tool with auto-save to your browser. Save, clear, and export, online free. Free online, no.",
    "href": "/note-taking-app/",
    "tags": [
     "productivity",
@@ -3091,7 +3091,7 @@
    "slug": "habit-tracker",
    "title": "Habit Tracker",
    "icon": "📊",
-   "desc": "Track daily habits and build streaks.",
+   "desc": "Habit Tracker - track daily habits and build streaks. Monitor your progress and stay motivated, online free. Free online, no.",
    "href": "/habit-tracker/",
    "tags": [
     "productivity",
@@ -3125,7 +3125,7 @@
    "slug": "world-clock",
    "title": "World Clock",
    "icon": "🌍",
-   "desc": "Check time in 200+ cities worldwide.",
+   "desc": "World Clock - check current time in 200+ cities worldwide. Real-time updates with timezone, online free. Free online, no.",
    "href": "/world-clock/",
    "tags": [
     "time",
@@ -3160,7 +3160,7 @@
    "slug": "calorie-intake-calculator",
    "title": "Calorie Intake Calculator",
    "icon": "🔥",
-   "desc": "Calculate daily calorie needs for your goals.",
+   "desc": "Calorie Intake Calculator - calculate your daily calorie needs based on age, weight,, online free. Free online, instant.",
    "href": "/calorie-intake-calculator/",
    "tags": [
     "health",
@@ -3240,7 +3240,7 @@
    "slug": "morse-code-translator",
    "title": "Morse Code Translator",
    "icon": "📡",
-   "desc": "Convert text to Morse code with audio playback.",
+   "desc": "Morse Code Translator - convert text to Morse code and back. Copy or share results instantly, online free. Free online, no.",
    "href": "/morse-code-translator/",
    "tags": [
     "language",
@@ -3255,7 +3255,7 @@
    "slug": "binary-code-translator",
    "title": "Binary Code Translator",
    "icon": "🔢",
-   "desc": "Convert text to binary, hex, and decimal codes.",
+   "desc": "Binary Code Translator - convert text to binary, hexadecimal, and decimal codes. Also reverse, online free. Free online, no.",
    "href": "/binary-code-translator/",
    "tags": [
     "dev",
@@ -3271,7 +3271,7 @@
    "slug": "phonetic-alphabet-converter",
    "title": "Phonetic Alphabet Converter",
    "icon": "🔤",
-   "desc": "Convert text to NATO phonetic alphabet.",
+   "desc": "Phonetic Alphabet Converter - convert text to NATO phonetic alphabet. Perfect for clear, online free. Free online, instant.",
    "href": "/phonetic-alphabet-converter/",
    "tags": [
     "language",
@@ -3286,7 +3286,7 @@
    "slug": "accent-mark-generator",
    "title": "Accent Mark Generator",
    "icon": "🎨",
-   "desc": "Add accent marks and diacritics to text.",
+   "desc": "Accent Mark Generator - add accent marks and diacritics to text. Quick buttons for common, online free. Free online, no.",
    "href": "/accent-mark-generator/",
    "tags": [
     "language",
@@ -3301,7 +3301,7 @@
    "slug": "unix-timestamp-converter",
    "title": "Unix Timestamp Converter",
    "icon": "⏱️",
-   "desc": "Convert Unix timestamps to dates and vice versa.",
+   "desc": "Unix Timestamp Converter - convert Unix timestamps to dates and vice versa. Auto-detects seconds, online free. Free online,.",
    "href": "/unix-timestamp-converter/",
    "tags": [
     "dev",
@@ -3316,7 +3316,7 @@
    "slug": "countdown-timer",
    "title": "Countdown Timer",
    "icon": "⏲️",
-   "desc": "Customizable countdown timer with notifications.",
+   "desc": "Countdown Timer - set a countdown timer with custom or preset durations. Start, pause, and reset, online free. Free online, no.",
    "href": "/countdown-timer/",
    "tags": [
     "productivity",
@@ -3331,7 +3331,7 @@
    "slug": "days-between-dates",
    "title": "Days Between Dates",
    "icon": "📅",
-   "desc": "Calculate days, weeks, months between two dates.",
+   "desc": "Days Between Dates Calculator - calculate days, weeks, months, and years between two, online free. Free online, instant.",
    "href": "/days-between-dates/",
    "tags": [
     "time",
@@ -3361,7 +3361,7 @@
    "slug": "lunar-calendar",
    "title": "Lunar Calendar",
    "icon": "🌙",
-   "desc": "View lunar calendar with moon phases and zodiac.",
+   "desc": "Lunar Calendar - view lunar calendar with moon phases, lunar dates, and zodiac information, online free. Free online, no.",
    "href": "/lunar-calendar/",
    "tags": [
     "time",
@@ -3376,7 +3376,7 @@
    "slug": "temperature-converter",
    "title": "Temperature Converter",
    "icon": "🌡️",
-   "desc": "Convert temperature between Celsius, Fahrenheit, Kelvin.",
+   "desc": "Temperature Converter - convert between Celsius, Fahrenheit, Kelvin, and Rankine. See all 4, online free. Free online, instant.",
    "href": "/temperature-converter/",
    "tags": [
     "conversion",
@@ -3391,7 +3391,7 @@
    "slug": "speed-converter",
    "title": "Speed Converter",
    "icon": "🚀",
-   "desc": "Convert speed units: km/h, mph, knots, m/s.",
+   "desc": "Speed Converter - convert between km/h, mph, knots, m/s, and ft/s. Visual speed gauge with, online free. Free online, instant.",
    "href": "/speed-converter/",
    "tags": [
     "conversion",
@@ -3406,7 +3406,7 @@
    "slug": "pressure-converter",
    "title": "Pressure Converter",
    "icon": "🔧",
-   "desc": "Convert pressure units: PSI, bar, pascal, atm.",
+   "desc": "Pressure Converter - convert between PSI, bar, Pascal, ATM, and mmHg instantly, online free. Free online, instant results. No.",
    "href": "/pressure-converter/",
    "tags": [
     "conversion",
@@ -3421,7 +3421,7 @@
    "slug": "energy-converter",
    "title": "Energy Converter",
    "icon": "⚡",
-   "desc": "Convert energy units: Joules, calories, BTU, kWh.",
+   "desc": "Energy Converter - convert between Joules, Calories, BTU, kWh, and Erg instantly, online free. Free online, instant results..",
    "href": "/energy-converter/",
    "tags": [
     "conversion",
@@ -3436,7 +3436,7 @@
    "slug": "power-converter",
    "title": "Power Converter",
    "icon": "💪",
-   "desc": "Convert power units: Watts, horsepower, kilowatts.",
+   "desc": "Power Converter - convert between Watts, Horsepower, Kilowatts, and BTU/h instantly, online free. Free online, instant.",
    "href": "/power-converter/",
    "tags": [
     "conversion",
@@ -3451,7 +3451,7 @@
    "slug": "density-converter",
    "title": "Density Converter",
    "icon": "📦",
-   "desc": "Convert density units: kg/m³, g/cm³, lb/ft³.",
+   "desc": "Density Converter - convert between kg/m³, g/cm³, lb/ft³, and lb/in³ instantly, online free. Free online, instant results. No.",
    "href": "/density-converter/",
    "tags": [
     "conversion",
@@ -3466,7 +3466,7 @@
    "slug": "viscosity-converter",
    "title": "Viscosity Converter",
    "icon": "🧴",
-   "desc": "Convert viscosity units: Centipoise, Stokes, Pa·s.",
+   "desc": "Viscosity Converter - convert viscosity units: Centipoise, Stokes, poise, Pa·s. Instant, online free. Free online, instant.",
    "href": "/viscosity-converter/",
    "tags": [
     "conversion",
@@ -3481,7 +3481,7 @@
    "slug": "frequency-converter",
    "title": "Frequency Converter",
    "icon": "📻",
-   "desc": "Convert frequency units: Hz, kHz, MHz, GHz, rpm.",
+   "desc": "Frequency Converter - convert between Hz, kHz, MHz, GHz, and RPM instantly. Essential tool for, online free. Free online,.",
    "href": "/frequency-converter/",
    "tags": [
     "conversion",
@@ -3496,7 +3496,7 @@
    "slug": "macro-calculator",
    "title": "Macro Calculator",
    "icon": "🥗",
-   "desc": "Calculate macronutrient ratios for fitness goals.",
+   "desc": "Macro Calculator - calculate macronutrient ratios: protein, carbs, and fats for your, online free. Free online, instant.",
    "href": "/macro-calculator/",
    "tags": [
     "health",
@@ -3511,7 +3511,7 @@
    "slug": "water-intake-calculator",
    "title": "Water Intake Calculator",
    "icon": "💧",
-   "desc": "Calculate daily water intake needs.",
+   "desc": "Water Intake Calculator - calculate your ideal daily water intake based on body weight, online free. Free online, instant.",
    "href": "/water-intake-calculator/",
    "tags": [
     "health",
@@ -3526,7 +3526,7 @@
    "slug": "sleep-calculator",
    "title": "Sleep Calculator",
    "icon": "😴",
-   "desc": "Calculate optimal sleep cycles and wake times.",
+   "desc": "Sleep Calculator - find the perfect bedtime or wake-up time based on sleep cycles of, online free. Free online, instant.",
    "href": "/sleep-calculator/",
    "tags": [
     "health",
@@ -3541,7 +3541,7 @@
    "slug": "ideal-weight-calculator",
    "title": "Ideal Weight Calculator",
    "icon": "⚖️",
-   "desc": "Calculate ideal weight based on height and frame.",
+   "desc": "Ideal Weight Calculator - calculate your ideal body weight using the Devine formula., online free. Free online, instant.",
    "href": "/ideal-weight-calculator/",
    "tags": [
     "health",
@@ -3556,7 +3556,7 @@
    "slug": "body-fat-percentage-calculator",
    "title": "Body Fat Percentage Calculator",
    "icon": "📊",
-   "desc": "Calculate body fat percentage with multiple methods.",
+   "desc": "Body Fat Percentage Calculator - calculate body fat percentage using the Navy method., online free. Free online, instant.",
    "href": "/body-fat-percentage-calculator/",
    "tags": [
     "health",
@@ -3571,7 +3571,7 @@
    "slug": "ovulation-calculator",
    "title": "Ovulation Calculator",
    "icon": "🔄",
-   "desc": "Calculate ovulation date and fertility window.",
+   "desc": "Ovulation Calculator - calculate ovulation date and fertility window for family, online free. Free online, instant results. No.",
    "href": "/ovulation-calculator/",
    "tags": [
     "health",
@@ -3586,7 +3586,7 @@
    "slug": "ifsc-bulk-lookup",
    "title": "IFSC Bulk Lookup",
    "icon": "🏦",
-   "desc": "Search multiple IFSC codes at once. Download as CSV.",
+   "desc": "IFSC Bulk Lookup - search multiple IFSC codes at once. Get bank branch details instantly. Download, online free. Free online,.",
    "href": "/ifsc-bulk-lookup/",
    "tags": [
     "banking",
@@ -3601,7 +3601,7 @@
    "slug": "youtube-audio-downloader",
    "title": "YouTube Audio Downloader",
    "icon": "🎵",
-   "desc": "Download YouTube audio as MP3 in high quality.",
+   "desc": "YouTube Audio Downloader - learn how to download audio from YouTube videos as MP3 — step-by-step guide, online free. Free.",
    "href": "/youtube-audio-downloader/",
    "tags": [
     "downloader",
@@ -3646,7 +3646,7 @@
    "slug": "pinterest-video-downloader",
    "title": "Pinterest Video Downloader",
    "icon": "📌",
-   "desc": "Download Pinterest pins and videos in original quality.",
+   "desc": "Pinterest Video Downloader - free Pinterest video downloader. Download Pinterest pins, videos, and, online free. Free online.",
    "href": "/pinterest-video-downloader/",
    "tags": [
     "social",
@@ -3661,7 +3661,7 @@
    "slug": "linkedin-video-downloader",
    "title": "LinkedIn Video Downloader",
    "icon": "💼",
-   "desc": "Download LinkedIn videos from posts, articles, and courses.",
+   "desc": "LinkedIn Video Downloader - download videos from LinkedIn posts, articles, and courses in HD quality., online free. Free.",
    "href": "/linkedin-video-downloader/",
    "tags": [
     "social",
@@ -3691,7 +3691,7 @@
    "slug": "tiktok-audio-downloader",
    "title": "TikTok Audio Downloader",
    "icon": "🎵",
-   "desc": "Download TikTok music and sounds as MP3 in high quality.",
+   "desc": "TikTok Audio Downloader - download TikTok music, sounds, and background audio as MP3. Extract audio, online free. Free online.",
    "href": "/tiktok-audio-downloader/",
    "tags": [
     "downloader",
@@ -3706,7 +3706,7 @@
    "slug": "bank-branch-finder",
    "title": "Bank Branch Finder",
    "icon": "🏦",
-   "desc": "Find bank branches, ATMs, and contact details in your city.",
+   "desc": "Bank Branch Finder - find bank branches, ATMs, and contact details. Search for nearest bank, online free. Free online, instant.",
    "href": "/bank-branch-finder/",
    "tags": [
     "banking",
@@ -3751,7 +3751,7 @@
    "slug": "best-of-five-calculator",
    "title": "Best of Five Calculator",
    "icon": "🧮",
-   "desc": "Find your best-of-five percentage and included subjects.",
+   "desc": "Best of Five Calculator - automatically pick the five strongest subjects from board, online free. Free online, instant.",
    "href": "/best-of-five-calculator/",
    "tags": [
     "education",
@@ -3995,7 +3995,7 @@
    "slug": "world-cup-2026-results",
    "title": "World Cup 2026 Results",
    "icon": "🏆",
-   "desc": "Champion, final & full standings for the 2026 World Cup.",
+   "desc": "World Cup 2026 final results: champion, runner-up, Golden Boot winner, and full standings. Spain lifted the trophy — complete.",
    "href": "/world-cup-2026-results/",
    "tags": [
     "fifa",
@@ -4014,7 +4014,7 @@
    "slug": "fifa-world-cup-red-cards",
    "title": "World Cup 2026 Red Cards",
    "icon": "🟥",
-   "desc": "Players sent off and suspensions at the 2026 World Cup.",
+   "desc": "FIFA World Cup 2026 Red Cards - track every red card shown at the 2026 FIFA World Cup. Full list of, online free. Free online,.",
    "href": "/fifa-world-cup-red-cards/",
    "tags": [
     "fifa",
@@ -4032,7 +4032,7 @@
    "slug": "fifa-world-cup-fair-play",
    "title": "World Cup 2026 Fair Play",
    "icon": "⚖️",
-   "desc": "Fair play rankings & discipline for the 2026 World Cup.",
+   "desc": "FIFA World Cup 2026 Fair Play - which teams played the cleanest — and who's in the, online free. Play online free, no.",
    "href": "/fifa-world-cup-fair-play/",
    "tags": [
     "fifa",
@@ -4516,7 +4516,7 @@
    "slug": "aadhaar-validator",
    "title": "Aadhaar Number Validator",
    "icon": "🇮🇳",
-   "desc": "Validate Aadhaar number format.",
+   "desc": "Aadhaar Number Validator - validate your 12-digit Aadhaar number instantly using the Verhoeff, online free. Free online,.",
    "href": "/aadhaar-validator/",
    "tags": [
     "india",
@@ -4553,7 +4553,7 @@
    "slug": "bmr-calculator",
    "title": "BMR Calculator",
    "icon": "🔥",
-   "desc": "Basal metabolic rate with 3 formulas.",
+   "desc": "BMR Calculator - basal metabolic rate with Mifflin-St Jeor, Harris-Benedict &, online free. Free online, instant results. No.",
    "href": "/bmr-calculator/",
    "tags": [
     "health"
@@ -4567,7 +4567,7 @@
    "slug": "body-frame-size",
    "title": "Body Frame Size Calculator",
    "icon": "🦴",
-   "desc": "Determine small, medium or large frame.",
+   "desc": "Body Frame Size Calculator - determine your body frame size (small, medium, or large), online free. Free online, instant.",
    "href": "/body-frame-size/",
    "tags": [
     "health"
@@ -4581,7 +4581,7 @@
    "slug": "tdee-calculator",
    "title": "TDEE Calculator",
    "icon": "🏋️",
-   "desc": "Total daily energy expenditure & macros.",
+   "desc": "TDEE Calculator - find your Total Daily Energy Expenditure, BMR, and macro targets for, online free. Free online, instant.",
    "href": "/tdee-calculator/",
    "tags": [
     "health"
@@ -4595,7 +4595,7 @@
    "slug": "cron-expression-generator",
    "title": "Cron Expression Generator",
    "icon": "⏰",
-   "desc": "Build cron job schedules visually.",
+   "desc": "Cron Expression Generator - build cron expressions with a visual interface. Set minute, hour, day,, online free. Free online,.",
    "href": "/cron-expression-generator/",
    "tags": [
     "dev"
@@ -4609,7 +4609,7 @@
    "slug": "css-gradient-generator",
    "title": "CSS Gradient Generator",
    "icon": "🎨",
-   "desc": "Linear, radial & conic CSS gradients.",
+   "desc": "CSS Gradient Generator - create beautiful CSS gradients with live preview. Build linear, radial,, online free. Free online, no.",
    "href": "/css-gradient-generator/",
    "tags": [
     "dev"
@@ -4623,7 +4623,7 @@
    "slug": "diff-checker",
    "title": "Text Diff Checker",
    "icon": "🔍",
-   "desc": "Compare two texts side by side.",
+   "desc": "Text Diff Checker - compare two texts side-by-side with line-by-line and character-level diff, online free. Free online,.",
    "href": "/diff-checker/",
    "tags": [
     "dev",
@@ -4639,7 +4639,7 @@
    "slug": "hash-generator",
    "title": "Hash Generator",
    "icon": "#️⃣",
-   "desc": "SHA256, SHA512, MD5 hash online.",
+   "desc": "Hash Generator - generate SHA-1, SHA-256, SHA-384, SHA-512 hashes from any text, online free. Free online, no sign-up. Works.",
    "href": "/hash-generator/",
    "tags": [
     "dev",
@@ -4655,7 +4655,7 @@
    "slug": "html-preview",
    "title": "HTML Preview",
    "icon": "🌐",
-   "desc": "Live HTML editor & preview.",
+   "desc": "HTML Preview - write HTML and see a live preview instantly. Edit markup and CSS, render in real time, online free. Free.",
    "href": "/html-preview/",
    "tags": [
     "dev"
@@ -4669,7 +4669,7 @@
    "slug": "markdown-preview",
    "title": "Markdown Preview",
    "icon": "📝",
-   "desc": "Live markdown editor & renderer.",
+   "desc": "Markdown Preview - write Markdown and see rendered output in real-time. Live preview editor, online free. Free online, no.",
    "href": "/markdown-preview/",
    "tags": [
     "dev",
@@ -4685,7 +4685,7 @@
    "slug": "regex-tester",
    "title": "Regex Tester",
    "icon": "🧪",
-   "desc": "Test regular expressions online.",
+   "desc": "Regex Tester - test regular expressions online with live matching and group capture. Instant,, online free. Free online,.",
    "href": "/regex-tester/",
    "tags": [
     "dev"
@@ -4699,7 +4699,7 @@
    "slug": "string-builder",
    "title": "String Builder",
    "icon": "🔧",
-   "desc": "Transform & manipulate text strings.",
+   "desc": "String Builder - transform text with 8 built-in modes: uppercase, lowercase, title case, slug,, online free. Free online, no.",
    "href": "/string-builder/",
    "tags": [
     "dev",
@@ -4715,7 +4715,7 @@
    "slug": "subnet-calculator",
    "title": "Subnet Calculator",
    "icon": "🌐",
-   "desc": "IP CIDR subnet mask calculator.",
+   "desc": "Subnet Calculator - calculate network address, broadcast, host range, wildcard mask, online free. Free online, instant.",
    "href": "/subnet-calculator/",
    "tags": [
     "dev",
@@ -4731,7 +4731,7 @@
    "slug": "url-encoder",
    "title": "URL Encoder/Decoder",
    "icon": "🔗",
-   "desc": "Encode & decode URLs instantly.",
+   "desc": "URL Encoder / Decoder - encode special characters for URLs or decode encoded URLs back to readable, online free. Free online,.",
    "href": "/url-encoder/",
    "tags": [
     "dev"
@@ -4745,7 +4745,7 @@
    "slug": "favicon-generator",
    "title": "Favicon Generator",
    "icon": "🎨",
-   "desc": "Create favicons from text or emoji.",
+   "desc": "Favicon Generator - generate favicons from text with customizable colors. Download in multiple sizes, online free. Free.",
    "href": "/favicon-generator/",
    "tags": [
     "dev",
@@ -4761,7 +4761,7 @@
    "slug": "json-to-csv-converter",
    "title": "JSON to CSV Converter",
    "icon": "📊",
-   "desc": "Convert a JSON array to CSV instantly.",
+   "desc": "JSON to CSV Converter - convert a JSON array of objects into CSV instantly. Handles nested, online free. Free online, instant.",
    "href": "/json-to-csv-converter/",
    "tags": [
     "dev"
@@ -4776,7 +4776,7 @@
    "slug": "ascii-art-generator",
    "title": "ASCII Art Generator",
    "icon": "🎨",
-   "desc": "Convert text to ASCII art.",
+   "desc": "ASCII Art Generator - convert text to ASCII art with multiple fonts. Create styled text for social, online free. Free online,.",
    "href": "/ascii-art-generator/",
    "tags": [
     "text",
@@ -4792,7 +4792,7 @@
    "slug": "lorem-ipsum-generator",
    "title": "Lorem Ipsum Generator",
    "icon": "📄",
-   "desc": "Generate placeholder text for designs.",
+   "desc": "Lorem Ipsum Generator - generate Lorem Ipsum placeholder text with customizable paragraphs,, online free. Free online, no.",
    "href": "/lorem-ipsum-generator/",
    "tags": [
     "text"
@@ -4806,7 +4806,7 @@
    "slug": "random-number-generator",
    "title": "Random Number Generator",
    "icon": "🎲",
-   "desc": "Cryptographically secure random numbers.",
+   "desc": "Random Number Generator - generate cryptographically secure random numbers. Choose range and count, online free. Free online,.",
    "href": "/random-number-generator/",
    "tags": [
     "text",
@@ -4822,7 +4822,7 @@
    "slug": "random-password-generator",
    "title": "Random Password Generator",
    "icon": "🔑",
-   "desc": "Instant random passwords.",
+   "desc": "Random Password Generator - generate strong, cryptographically secure passwords. Customize length, online free. Free online,.",
    "href": "/random-password-generator/",
    "tags": [
     "security"
@@ -4836,7 +4836,7 @@
    "slug": "passphrase-generator",
    "title": "Passphrase Generator",
    "icon": "🔐",
-   "desc": "Diceware-style strong memorable passphrases.",
+   "desc": "Passphrase Generator - generate strong, memorable passphrases (diceware-style) with customizable, online free. Free online, no.",
    "href": "/passphrase-generator/",
    "tags": [
     "security"
@@ -4851,7 +4851,7 @@
    "slug": "word-counter-plus",
    "title": "Advanced Word Counter",
    "icon": "📝",
-   "desc": "Detailed word & character analysis.",
+   "desc": "Advanced Word Counter - count words, characters, sentences, paragraphs, and estimate reading time., online free. Free online,.",
    "href": "/word-counter-plus/",
    "tags": [
     "text"
@@ -4865,7 +4865,7 @@
    "slug": "character-counter",
    "title": "Character & Word Counter",
    "icon": "🔡",
-   "desc": "Count chars, words, lines & sentences.",
+   "desc": "Character & Word Counter - count characters, words, sentences, lines and paragraphs in your text., online free. Free online,.",
    "href": "/character-counter/",
    "tags": [
     "text"
@@ -4880,7 +4880,7 @@
    "slug": "word-frequency-counter",
    "title": "Word Frequency Counter",
    "icon": "📈",
-   "desc": "Count repeated words & keyword density.",
+   "desc": "Word Frequency Counter - analyze text and count word frequency. See the most common words with, online free. Free online, no.",
    "href": "/word-frequency-counter/",
    "tags": [
     "text"
@@ -4895,7 +4895,7 @@
    "slug": "color-palette-generator",
    "title": "Color Palette Generator",
    "icon": "🎨",
-   "desc": "Generate HEX, RGB, HSL color palettes.",
+   "desc": "Generate beautiful color palettes with complementary, analogous, triadic harmonies. Get HEX, RGB, HSL values with WCAG.",
    "href": "/color-palette-generator/",
    "tags": [
     "images"
@@ -4909,7 +4909,7 @@
    "slug": "color-palette-generator-pro",
    "title": "Color Palette Pro",
    "icon": "🌈",
-   "desc": "Create beautiful color schemes.",
+   "desc": "Color Palette Generator - generate color palettes from a base color. Analogous, complementary,, online free. Free online, no.",
    "href": "/color-palette-generator-pro/",
    "tags": [
     "images"
@@ -4951,7 +4951,7 @@
    "slug": "date-calculator",
    "title": "Date Calculator",
    "icon": "📅",
-   "desc": "Add/subtract days & find date difference.",
+   "desc": "Add or subtract days from any date, or find the exact difference between two dates. Includes business days, weeks, months.",
    "href": "/date-calculator/",
    "tags": [
     "tools"
@@ -4986,7 +4986,7 @@
    "slug": "fuel-cost-calculator",
    "title": "Fuel Cost Calculator",
    "icon": "⛽",
-   "desc": "Trip fuel cost & litres needed.",
+   "desc": "Fuel Cost Calculator - calculate exact fuel cost for your trip. Compare efficiency, online free. Free online, instant results..",
    "href": "/fuel-cost-calculator/",
    "tags": [
     "tools"
@@ -5001,7 +5001,7 @@
    "slug": "gst-invoice-generator",
    "title": "GST Invoice Generator",
    "icon": "🧾",
-   "desc": "GST-compliant invoice totals (CGST/SGST/IGST).",
+   "desc": "GST Invoice Generator - generate a GST-compliant invoice total: item amount, CGST, SGST/IGST and, online free. Free online, no.",
    "href": "/gst-invoice-generator/",
    "tags": [
     "tax",
@@ -5018,7 +5018,7 @@
    "slug": "age-calculator-pro",
    "title": "Age Calculator Pro",
    "icon": "🎂",
-   "desc": "Exact age in years, months, days.",
+   "desc": "Age Calculator Pro - calculate your age at any date. See total days, hours, minutes,, online free. Free online, instant.",
    "href": "/age-calculator-pro/",
    "tags": [
     "tools"
@@ -5032,7 +5032,7 @@
    "slug": "pomodoro-timer",
    "title": "Pomodoro Timer",
    "icon": "🍅",
-   "desc": "Focus timer with work & break cycles.",
+   "desc": "Pomodoro Timer - stay focused with the Pomodoro Technique. 25-minute focus sessions with short and, online free. Free online,.",
    "href": "/pomodoro-timer/",
    "tags": [
     "tools",
@@ -5048,7 +5048,7 @@
    "slug": "stopwatch-timer",
    "title": "Stopwatch & Timer",
    "icon": "⏱️",
-   "desc": "Online stopwatch and countdown timer.",
+   "desc": "Stopwatch & Timer - precision stopwatch with lap tracking and countdown timer with notifications, online free. Free online, no.",
    "href": "/stopwatch-timer/",
    "tags": [
     "tools"
@@ -5062,7 +5062,7 @@
    "slug": "random-choice-generator",
    "title": "Random Choice Generator",
    "icon": "🎰",
-   "desc": "Decision maker — pick randomly.",
+   "desc": "Random Choice Generator - decision maker with dramatic drum roll animation. Enter choices and pick, online free. Free online,.",
    "href": "/random-choice-generator/",
    "tags": [
     "tools",
@@ -5078,7 +5078,7 @@
    "slug": "scientific-calculator",
    "title": "Scientific Calculator",
    "icon": "🧮",
-   "desc": "Full-featured scientific calculator.",
+   "desc": "Scientific Calculator - full-featured scientific calculator with trig functions,, online free. Free online, instant results..",
    "href": "/scientific-calculator/",
    "tags": [
     "tools"
@@ -5092,7 +5092,7 @@
    "slug": "pdf-merger",
    "title": "PDF Merger",
    "icon": "📑",
-   "desc": "Merge multiple PDF files online.",
+   "desc": "PDF Merger - merge multiple PDF files into one document. Free, fast, and private - no upload needed, online free. Free online,.",
    "href": "/pdf-merger/",
    "tags": [
     "tools"
@@ -5106,7 +5106,7 @@
    "slug": "pdf-splitter",
    "title": "PDF Splitter",
    "icon": "✂️",
-   "desc": "Split PDF files into pages.",
+   "desc": "PDF Splitter - split PDF files by page range, extract pages, or create separate documents. Free and, online free. Free online,.",
    "href": "/pdf-splitter/",
    "tags": [
     "tools"
@@ -5120,7 +5120,7 @@
    "slug": "gpa-calculator",
    "title": "GPA Calculator",
    "icon": "🎓",
-   "desc": "Weighted & unweighted GPA on 4.0/5.0.",
+   "desc": "GPA Calculator - calculate semester and cumulative GPA with unweighted (4.0) or, online free. Free online, instant results. No.",
    "href": "/gpa-calculator/",
    "tags": [
     "education"
@@ -5134,7 +5134,7 @@
    "slug": "cgpa-calculator",
    "title": "CGPA Calculator",
    "icon": "🎓",
-   "desc": "CGPA from grade points & credits.",
+   "desc": "CGPA Calculator - calculate CGPA on a 10-point Indian grading scale. Converts to, online free. Free online, instant results..",
    "href": "/cgpa-calculator/",
    "tags": [
     "education"
@@ -5165,7 +5165,7 @@
    "slug": "email-validator",
    "title": "Email Validator",
    "icon": "✉️",
-   "desc": "Validate emails, check disposable & verify MX records.",
+   "desc": "Email Validator - validate email format, verify MX records, check disposable domains, and test, online free. Free online,.",
    "href": "/email-validator/",
    "tags": [
     "security",
@@ -5183,7 +5183,7 @@
    "slug": "weather-forecast",
    "title": "Weather Forecast",
    "icon": "🌤️",
-   "desc": "7-day forecast & hourly weather for any city.",
+   "desc": "Weather Forecast - check current weather and 7-day forecast for any city worldwide, online free. Free online, no sign-up..",
    "href": "/weather-forecast/",
    "tags": [
     "weather",
@@ -5200,7 +5200,7 @@
    "slug": "quote-generator",
    "title": "Quote Generator",
    "icon": "💬",
-   "desc": "200+ inspiring quotes from famous people.",
+   "desc": "Quote Generator - generate inspiring quotes by category. Save favorites and share, online free. Free online, no sign-up. Works.",
    "href": "/quote-generator/",
    "tags": [
     "quotes",
@@ -5218,7 +5218,7 @@
    "slug": "phone-specs",
    "title": "Phone Specifications",
    "icon": "📱",
-   "desc": "Search & compare phone specs side by side.",
+   "desc": "Phone Specifications - search, view and compare smartphone specs online free. 100+ phones with full details, no sign-up, works.",
    "href": "/phone-specs/",
    "tags": [
     "phone",
@@ -5235,7 +5235,7 @@
    "slug": "food-randomizer",
    "title": "Food Randomizer",
    "icon": "🍽️",
-   "desc": "Discover random dishes from around the world.",
+   "desc": "Random Food Generator - discover delicious dishes from around the world by category, online free. Free online, no sign-up..",
    "href": "/food-randomizer/",
    "tags": [
     "food",
@@ -5253,7 +5253,7 @@
    "slug": "random-fact-generator",
    "title": "Random Fact Generator",
    "icon": "🧠",
-   "desc": "300+ fun facts from science, history, nature & more.",
+   "desc": "Random Fact Generator - discover amazing facts from science, history, nature & more, online free. Free online, no sign-up..",
    "href": "/random-fact-generator/",
    "tags": [
     "facts",
@@ -5287,7 +5287,7 @@
    "slug": "color-tool",
    "title": "Color Picker & Converter",
    "icon": "🎨",
-   "desc": "Pick colors, convert HEX/RGB/HSL, generate palettes.",
+   "desc": "Color Tool - pick colors, convert between HEX, RGB, HSL, and CMYK formats. Generate complementary,, online free. Free online,.",
    "href": "/color-tool/",
    "tags": [
     "design",
@@ -5305,7 +5305,7 @@
    "slug": "poetry-search",
    "title": "Poetry Search",
    "icon": "📖",
-   "desc": "Search thousands of poems by title, author, or line.",
+   "desc": "Poetry Search - search thousands of poems by title, author, or first line, online free. Free online, no sign-up. Works on any.",
    "href": "/poetry-search/",
    "tags": [
     "poetry",
@@ -5323,7 +5323,7 @@
    "slug": "bible-verse",
    "title": "Bible Verse Lookup",
    "icon": "✝️",
-   "desc": "Look up scripture in KJV, ASV, WEB translations.",
+   "desc": "Bible Verse - look up Bible verses with multiple translations, online free. Free online, no sign-up. Works on any device, anytime.",
    "href": "/bible-verse/",
    "tags": [
     "bible",
@@ -5340,7 +5340,7 @@
    "slug": "quran-verse",
    "title": "Quran Verse Lookup",
    "icon": "☪️",
-   "desc": "Read Quran in Arabic & English by Surah.",
+   "desc": "Quran Verse - browse the Holy Quran with Arabic text and English translations, online free. Free online, no sign-up. Works on.",
    "href": "/quran-verse/",
    "tags": [
     "quran",
@@ -5357,7 +5357,7 @@
    "slug": "nba-stats",
    "title": "NBA Stats",
    "icon": "🏀",
-   "desc": "Player stats, game scores & team data live.",
+   "desc": "NBA Stats - look up NBA player stats, team standings, and game scores. Free live NBA statistics, online free. Free online, no.",
    "href": "/nba-stats/",
    "tags": [
     "nba",
@@ -5477,7 +5477,7 @@
    "slug": "slug-generator",
    "title": "URL Slug Generator",
    "icon": "🔗",
-   "desc": "Convert text to SEO-friendly URL slugs.",
+   "desc": "URL Slug Generator - convert any text to a clean, SEO-optimized URL slug instantly. Supports, online free. Free online, no.",
    "href": "/slug-generator/",
    "tags": [
     "dev",
@@ -5494,7 +5494,7 @@
    "slug": "css-minifier",
    "title": "CSS Minifier & Beautifier",
    "icon": "🎨",
-   "desc": "Minify, beautify & validate CSS code.",
+   "desc": "CSS Minifier & Beautifier - minify CSS to reduce file size, or beautify it for readability with, online free. Free online, no.",
    "href": "/css-minifier/",
    "tags": [
     "dev",
@@ -5510,7 +5510,7 @@
    "slug": "html-entity-encoder",
    "title": "HTML Entity Encoder/Decoder",
    "icon": "🔤",
-   "desc": "Encode/decode HTML entities instantly.",
+   "desc": "HTML Entity Encoder / Decoder - encode special characters to HTML entities for safe embedding, or, online free. Free online,.",
    "href": "/html-entity-encoder/",
    "tags": [
     "dev",
@@ -5526,7 +5526,7 @@
    "slug": "xml-formatter",
    "title": "XML Formatter & Validator",
    "icon": "📄",
-   "desc": "Format, minify & validate XML online.",
+   "desc": "XML Formatter & Validator - format (pretty-print), minify, or validate XML documents instantly in, online free. Free online,.",
    "href": "/xml-formatter/",
    "tags": [
     "dev",
@@ -5542,7 +5542,7 @@
    "slug": "yaml-to-json-converter",
    "title": "YAML ⇄ JSON Converter",
    "icon": "🔄",
-   "desc": "Convert between YAML and JSON formats.",
+   "desc": "YAML ⇄ JSON Converter - convert between YAML and JSON formats instantly. Parse, format, and, online free. Free online, instant.",
    "href": "/yaml-to-json-converter/",
    "tags": [
     "dev",
@@ -5558,7 +5558,7 @@
    "slug": "password-strength-checker",
    "title": "Password Strength Checker",
    "icon": "🔒",
-   "desc": "Test password security & entropy.",
+   "desc": "Password Strength Checker - analyze password security with entropy calculation, criteria checks,, online free. Free online,.",
    "href": "/password-strength-checker/",
    "tags": [
     "security",
@@ -5574,7 +5574,7 @@
    "slug": "emoji-picker",
    "title": "Emoji Picker",
    "icon": "😄",
-   "desc": "Browse, search & copy 1500+ emojis.",
+   "desc": "Emoji Picker - browse, search & copy 1500+ emojis organized by category, online free. Free online, no sign-up. Works on any.",
    "href": "/emoji-picker/",
    "tags": [
     "fun",
@@ -5590,7 +5590,7 @@
    "slug": "jwt-debugger",
    "title": "JWT Debugger",
    "icon": "🛡️",
-   "desc": "Decode & inspect JWT tokens client-side.",
+   "desc": "JWT Debugger - decode & inspect JWT tokens client-side. View header, payload, and signature info, online free. Free online, no.",
    "href": "/jwt-debugger/",
    "tags": [
     "dev",
@@ -5606,7 +5606,7 @@
    "slug": "hex-to-rgb-converter",
    "title": "HEX ↔ RGB Converter",
    "icon": "🌈",
-   "desc": "Convert between HEX, RGB & HSL with preview.",
+   "desc": "HEX ↔ RGB Converter - convert between HEX, RGB & HSL color formats with live preview, online free. Free online, instant.",
    "href": "/hex-to-rgb-converter/",
    "tags": [
     "design",
@@ -5622,7 +5622,7 @@
    "slug": "image-placeholder-generator",
    "title": "Image Placeholder Generator",
    "icon": "🖼️",
-   "desc": "Generate custom placeholder images for mockups.",
+   "desc": "Image Placeholder Generator - generate custom placeholder images for mockups. All processing done, online free. Free online,.",
    "href": "/image-placeholder-generator/",
    "tags": [
     "design",
@@ -5639,7 +5639,7 @@
    "slug": "roman-numeral-converter",
    "title": "Roman Numeral Converter",
    "icon": "🏛️",
-   "desc": "Convert numbers to Roman numerals & back.",
+   "desc": "Roman Numeral Converter - convert numbers (1–3999) to Roman numerals and Roman numerals back to, online free. Free online,.",
    "href": "/roman-numeral-converter/",
    "tags": [
     "math",
@@ -5654,7 +5654,7 @@
    "slug": "numbers-to-words",
    "title": "Numbers to Words",
    "icon": "🔢",
-   "desc": "Convert numbers to English & Indian words.",
+   "desc": "Numbers to Words - convert numbers to English words with Indian or international numbering system, online free. Free online,.",
    "href": "/numbers-to-words/",
    "tags": [
     "text",
@@ -5670,7 +5670,7 @@
    "slug": "list-sorter",
    "title": "List Sorter",
    "icon": "📋",
-   "desc": "Sort, shuffle, reverse & deduplicate lists.",
+   "desc": "List Sorter - sort, shuffle, reverse, and deduplicate lists with advanced options, online free. Free online, no sign-up. Works.",
    "href": "/list-sorter/",
    "tags": [
     "text",
@@ -5686,7 +5686,7 @@
    "slug": "reverse-text",
    "title": "Reverse Text",
    "icon": "🔄",
-   "desc": "Reverse characters, words or lines.",
+   "desc": "Reverse Text - reverse text characters, words, or lines instantly. All processing is done in your, online free. Free online,.",
    "href": "/reverse-text/",
    "tags": [
     "text",
@@ -5702,7 +5702,7 @@
    "slug": "duplicate-line-remover",
    "title": "Duplicate Line Remover",
    "icon": "🗑️",
-   "desc": "Remove duplicate lines from text.",
+   "desc": "Duplicate Line Remover - remove duplicate lines, count unique entries, and clean up your text. All, online free. Free online,.",
    "href": "/duplicate-line-remover/",
    "tags": [
     "text",
@@ -5718,7 +5718,7 @@
    "slug": "text-to-image",
    "title": "Text to Image",
    "icon": "📝",
-   "desc": "Convert text to a downloadable PNG image.",
+   "desc": "Text to Image - convert text to a downloadable PNG image. Customize font, colors, and layout, online free. Free online, no.",
    "href": "/text-to-image/",
    "tags": [
     "images",
@@ -5734,7 +5734,7 @@
    "slug": "image-to-base64",
    "title": "Image to Base64",
    "icon": "🖼️",
-   "desc": "Convert any image to a Base64 data URL.",
+   "desc": "Image to Base64 - convert any image to a Base64 data URL. All processing done in your browser —, online free. Free online, no.",
    "href": "/image-to-base64/",
    "tags": [
     "dev",
@@ -5750,7 +5750,7 @@
    "slug": "prefix-suffix-adder",
    "title": "Prefix & Suffix Adder",
    "icon": "📎",
-   "desc": "Add prefix/suffix to each line in bulk.",
+   "desc": "Prefix & Suffix Adder - add prefix, suffix, or both to each line of text. Perfect for batch editing, online free. Free online,.",
    "href": "/prefix-suffix-adder/",
    "tags": [
     "text",
@@ -5766,7 +5766,7 @@
    "slug": "find-and-replace",
    "title": "Find & Replace",
    "icon": "🔍",
-   "desc": "Find and replace text with regex support.",
+   "desc": "Find & Replace - find and replace text across your content. Supports regex, case-sensitive, online free. Free online, instant.",
    "href": "/find-and-replace/",
    "tags": [
     "text",
@@ -5782,7 +5782,7 @@
    "slug": "text-statistics",
    "title": "Text Statistics",
    "icon": "📊",
-   "desc": "Analyze text with advanced word stats.",
+   "desc": "Text Statistics - advanced text statistics: characters, words, sentences, syllables, reading time,, online free. Free online,.",
    "href": "/text-statistics/",
    "tags": [
     "text",
@@ -5798,7 +5798,7 @@
    "slug": "http-status-codes",
    "title": "HTTP Status Codes Reference",
    "icon": "🌐",
-   "desc": "Full list of HTTP status codes with meanings.",
+   "desc": "HTTP Status Codes Reference - complete reference for all HTTP status codes with descriptions., online free. Free online, no.",
    "href": "/http-status-codes/",
    "tags": [
     "dev",
@@ -5814,7 +5814,7 @@
    "slug": "color-palette-from-image",
    "title": "Color Palette from Image",
    "icon": "🎨",
-   "desc": "Extract dominant colors from any image.",
+   "desc": "Color Palette from Image - extract a beautiful color palette from any image. Upload and get HEX,, online free. Free online, no.",
    "href": "/color-palette-from-image/",
    "tags": [
     "images",
@@ -5830,7 +5830,7 @@
    "slug": "svg-to-jsx",
    "title": "SVG to JSX Converter",
    "icon": "⚛️",
-   "desc": "Convert SVG to React JSX components.",
+   "desc": "SVG to JSX Converter - convert SVG markup to React-compatible JSX. Automatically transforms, online free. Free online, instant.",
    "href": "/svg-to-jsx/",
    "tags": [
     "dev",
@@ -5845,7 +5845,7 @@
    "slug": "json-to-typescript",
    "title": "JSON to TypeScript",
    "icon": "📐",
-   "desc": "Generate TypeScript interfaces from JSON.",
+   "desc": "JSON to TypeScript Generator - convert JSON data to TypeScript interfaces with proper type, online free. Free online, no.",
    "href": "/json-to-typescript/",
    "tags": [
     "dev",
@@ -5860,7 +5860,7 @@
    "slug": "sql-formatter",
    "title": "SQL Formatter",
    "icon": "🗄️",
-   "desc": "Format, beautify & minify SQL queries.",
+   "desc": "SQL Formatter - format, minify, and beautify SQL queries with customizable keyword case and, online free. Free online, no.",
    "href": "/sql-formatter/",
    "tags": [
     "dev",
@@ -5875,7 +5875,7 @@
    "slug": "css-animation-generator",
    "title": "CSS Animation Generator",
    "icon": "🎬",
-   "desc": "Visual CSS keyframe animation builder.",
+   "desc": "CSS Animation Generator - build CSS @keyframes visually with live preview. Adjust timing, duration,, online free. Free online,.",
    "href": "/css-animation-generator/",
    "tags": [
     "dev",
@@ -5890,7 +5890,7 @@
    "slug": "code-to-image",
    "title": "Code to Image",
    "icon": "📸",
-   "desc": "Convert code to beautiful shareable images.",
+   "desc": "Code to Image Converter - convert code snippets to beautiful shareable images. Choose themes,, online free. Free online,.",
    "href": "/code-to-image/",
    "tags": [
     "dev",
@@ -5906,7 +5906,7 @@
    "slug": "mermaid-diagram-editor",
    "title": "Mermaid Diagram Editor",
    "icon": "📊",
-   "desc": "Create flowcharts & diagrams with Mermaid.js.",
+   "desc": "Mermaid Diagram Editor - create flowcharts, sequence diagrams, class diagrams, and more using, online free. Free online, no.",
    "href": "/mermaid-diagram-editor/",
    "tags": [
     "dev",
@@ -5921,7 +5921,7 @@
    "slug": "github-profile-readme-generator",
    "title": "GitHub Profile README Generator",
    "icon": "🐙",
-   "desc": "Generate a beautiful GitHub profile README.",
+   "desc": "Generate a beautiful GitHub profile README.md with stats, trophies, skills badges, and social links. Copy and paste into your.",
    "href": "/github-profile-readme-generator/",
    "tags": [
     "dev",
@@ -5936,7 +5936,7 @@
    "slug": "regex-visualizer",
    "title": "Regex Visualizer & Tester",
    "icon": "🔍",
-   "desc": "Test, explain & visualize regular expressions.",
+   "desc": "Regex Visualizer & Tester - test, debug, and understand regular expressions with live match, online free. Free online, instant.",
    "href": "/regex-visualizer/",
    "tags": [
     "dev",
@@ -5951,7 +5951,7 @@
    "slug": "color-contrast-checker",
    "title": "Color Contrast Checker",
    "icon": "👁️",
-   "desc": "WCAG contrast checker for accessible colors.",
+   "desc": "Color Contrast Checker - wCAG contrast checker for accessible colors. Test foreground/background, online free. Free online,.",
    "href": "/color-contrast-checker/",
    "tags": [
     "design",
@@ -5967,7 +5967,7 @@
    "slug": "html-to-markdown",
    "title": "HTML ⇄ Markdown Converter",
    "icon": "📝",
-   "desc": "Convert between HTML and Markdown formats.",
+   "desc": "HTML ⇄ Markdown Converter - convert between HTML and Markdown formats instantly. Supports, online free. Free online, instant.",
    "href": "/html-to-markdown/",
    "tags": [
     "dev",
@@ -5982,7 +5982,7 @@
    "slug": "aes-encryption",
    "title": "AES Encryption Tool",
    "icon": "🔐",
-   "desc": "Encrypt & decrypt text with AES-256-GCM.",
+   "desc": "AES Encryption Tool - encrypt & decrypt text with AES-256-GCM using the Web Crypto API. Client-side, online free. Free online,.",
    "href": "/aes-encryption/",
    "tags": [
     "security",
@@ -5998,7 +5998,7 @@
    "slug": "css-filter-generator",
    "title": "CSS Filter Generator",
    "icon": "🎬",
-   "desc": "Visual CSS filter builder with live preview.",
+   "desc": "CSS Filter Generator - visual CSS filter builder with live preview. Adjust blur, brightness,, online free. Free online, no.",
    "href": "/css-filter-generator/",
    "tags": [
     "dev",
@@ -6013,7 +6013,7 @@
    "slug": "calendar-generator",
    "title": "Calendar Generator",
    "icon": "📅",
-   "desc": "Generate printable monthly & yearly calendars.",
+   "desc": "Calendar Generator - generate printable monthly or yearly calendars. Customize year, month, start, online free. Free online,.",
    "href": "/calendar-generator/",
    "tags": [
     "productivity",
@@ -6028,7 +6028,7 @@
    "slug": "graphing-calculator",
    "title": "Graphing Calculator",
    "icon": "📈",
-   "desc": "Plot math functions interactively with zoom.",
+   "desc": "Graphing Calculator - plot up to 3 functions. Supports sin, cos, tan, log, sqrt, abs,, online free. Free online, instant.",
    "href": "/graphing-calculator/",
    "tags": [
     "math",
@@ -6043,7 +6043,7 @@
    "slug": "periodic-table",
    "title": "Periodic Table",
    "icon": "🧪",
-   "desc": "Interactive periodic table of elements.",
+   "desc": "Interactive Periodic Table of Elements - all 118 elements. Click any element for full details., online free. Free online, no.",
    "href": "/periodic-table/",
    "tags": [
     "education",
@@ -6059,7 +6059,7 @@
    "slug": "barcode-generator",
    "title": "Barcode Generator",
    "icon": "📊",
-   "desc": "Generate CODE128, EAN-13, UPC-A & Code39.",
+   "desc": "Barcode Generator - generate CODE128, EAN-13, UPC-A and Code 39 barcodes. Download as PNG, online free. Free online, no.",
    "href": "/barcode-generator/",
    "tags": [
     "dev",
@@ -6074,7 +6074,7 @@
    "slug": "meme-generator",
    "title": "Meme Generator",
    "icon": "😂",
-   "desc": "Create memes with text on classic templates.",
+   "desc": "Meme Generator - choose a classic meme template, add your text, and download. 100% client-side, online free. Free online, no.",
    "href": "/meme-generator/",
    "tags": [
     "fun",
@@ -6090,7 +6090,7 @@
    "slug": "pixel-art-editor",
    "title": "Pixel Art Editor",
    "icon": "🎨",
-   "desc": "Draw pixel art with fill, eyedropper & export.",
+   "desc": "Pixel Art Editor - create pixel art in your browser. Click to paint, right-click to erase, online free. Free online, no.",
    "href": "/pixel-art-editor/",
    "tags": [
     "fun",
@@ -6724,7 +6724,7 @@
    "slug": "name-age-guesser",
    "title": "Name Age & Gender Guesser",
    "icon": "🔮",
-   "desc": "Predict age, gender, and nationality from any first name.",
+   "desc": "Name Age & Gender Guesser - predict age, gender, and nationality from any first name. Free, online free. Free online, no.",
    "href": "/name-age-guesser/",
    "tags": [
     "name",
@@ -6848,7 +6848,7 @@
    "slug": "rss-feed-reader",
    "title": "RSS Feed Reader",
    "icon": "📰",
-   "desc": "Read any RSS or Atom feed as clean, readable articles.",
+   "desc": "RSS Feed Reader - read any RSS or Atom feed as clean, readable articles. Browse news, blogs, and, online free. Free online, no.",
    "href": "/rss-feed-reader/",
    "tags": [
     "rss",

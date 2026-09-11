@@ -123,7 +123,7 @@ export default function hncker_nuclei() {
   return (
     <ToolLayout
       title="Nuclei — Vulnerability Scanner"
-      desc="Step-by-step reference: install & use Nuclei, the fast ProjectDiscovery vulnerability scanner. Educational purposes only."
+      desc="Nuclei Guide - step-by-step reference to install and use Nuclei, the fast ProjectDiscovery vulnerability scanner. Educational purposes only, online free."
       icon="🎯"
       iconBg="linear-gradient(135deg, rgba(0,255,65,0.18), rgba(6,182,212,0.08))"
       category="security"

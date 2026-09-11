@@ -80,13 +80,16 @@ export default function instagram_bio_link_generator() {
   return (
     <ToolLayout
       title="Instagram Bio Link Generator"
-      desc="Create a beautiful link-in-bio page. Generate HTML you can host anywhere — no sign-up required."
+      desc="Instagram Bio Link Generator - create a beautiful link-in-bio page. Generate HTML you can host, online free. Free online, no sign-up. Works on any device."
       icon="🔗" iconBg="rgba(236,72,153,0.08)"
       category="social" slug="instagram-bio-link-generator"
       faq={[
         { q: "What is a bio link page?", a: "A bio link page is a single URL that houses multiple links — perfect for Instagram where you can only put one link in your bio." },
         { q: "How do I use the generated HTML?", a: "Download the HTML file and host it on any free hosting service (GitHub Pages, Netlify, Vercel). Then put that URL in your Instagram bio." },
         { q: "Can I customize the design?", a: "Yes! Edit the downloaded HTML file to change colors, fonts, layout, and add your own styling." },
+        { q: "How do I use this Instagram Bio Link Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         'Choose a template style that fits your brand.',

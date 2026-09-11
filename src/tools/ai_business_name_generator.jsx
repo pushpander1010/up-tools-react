@@ -64,12 +64,16 @@ Format as a numbered list. Make names memorable, unique, and brandable.`
   return (
     <ToolLayout
       title="AI Business Name Generator"
-      desc="Generate unique, catchy business names with AI. Get 20 name ideas with taglines for startups, shops, and agencies."
+      desc="AI Business Name Generator - generate unique, catchy business names with AI. Get 20 name ideas with, online free. Free online, no sign-up. Works on any device."
       icon="💡" iconBg="rgba(245,158,11,0.08)"
       category="ai" slug="ai-business-name-generator"
       faq={[
         { q: "How many names are generated?", a: "20 unique, brandable name ideas with taglines and explanations." },
         { q: "Can I use these commercially?", a: "Yes. Always verify trademark availability before committing to a name." },
+        { q: "How do I use this AI Business Name Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this AI Business Name Generator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Describe your business and select an industry.",

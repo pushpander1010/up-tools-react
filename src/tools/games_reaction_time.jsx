@@ -123,13 +123,16 @@ export default function games_reaction_time() {
       name="REACTION TIME"
       startAction={resetGame} startLabel="⟲ Restart" 
       title="Reaction Time Test - How Fast Are You?"
-      desc="Test your reaction speed! See how fast you can respond to visual cues. Track your best times and compete with yourself."
+      desc="Reaction Time Test - How Fast Are You? - test your reaction speed! See how fast you, online free. Play online free, no download. Works on mobile and desktop."
       icon="⚡" iconBg="rgba(245,158,11,0.08)"
       category="fun" slug="games-reaction-time"
       faq={[
         { q: "How does the Reaction Time Test work?", a: "Click the screen when it turns green! Wait for the red screen to change, then click as fast as you can. Click too early and you'll need to restart the round." },
         { q: "What's a good reaction time?", a: "Under 200ms is lightning fast, 200-300ms is great, 300-400ms is average. Most people average around 250-350ms." },
         { q: "Does my history save?", a: "Yes! Your best time, number of attempts, and recent results are saved to your device." },
+        { q: "How do I play Reaction Time Test - How Fast Are You? online free?", a: "Click Start and follow the on-screen steps. Use mouse, touch, or keyboard controls. No download needed." },
+        { q: "Can I play Reaction Time Test - How Fast Are You? without downloading?", a: "Yes. This Reaction Time Test - How Fast Are You? runs in your browser with no install. Free on mobile and desktop." },
+        { q: "How do I use this Reaction Time Test - How Fast Are You? online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
       ]}
       howItWorks={[
         "Click Start to begin. The screen turns red — wait!",

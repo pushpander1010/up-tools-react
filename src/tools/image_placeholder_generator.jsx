@@ -113,9 +113,22 @@ export default function ImagePlaceholderGenerator() {
   return (
     <ToolLayout
       title="Image Placeholder Generator"
-      desc="Generate custom placeholder images for mockups. All processing done in your browser."
+      desc="Image Placeholder Generator - generate custom placeholder images for mockups. All processing done, online free. Free online, no sign-up. Works on any device."
       icon="🖼️" iconBg="rgba(99,102,241,0.08)"
       category="images" slug="image-placeholder-generator"
+      faq={[
+        { q: "How do I make a placeholder image online free?", a: "Set width, height, and text above, preview instantly, then copy the URL or download. Free, no sign-up." },
+        { q: "What sizes are supported?", a: "Any size from 10 to 4000 pixels. All processing happens in your browser, free." },
+        { q: "Is it free?", a: "Yes, completely free with no sign-up. Generate unlimited placeholders on any device." },
+        { q: "Do I need to sign up?", a: "No sign-up needed. Generate unlimited placeholders free on any device." },
+        { q: "Does it work on mobile?", a: "Yes. Make placeholders free in your phone browser, no app needed." },
+        { q: "Is my data private?", a: "Yes. All processing happens in your browser. Nothing is uploaded." },
+      ]}
+      howItWorks={[
+        "Set the width, height, and text above.",
+        "Preview the placeholder instantly.",
+        "Copy the URL or download the image.",
+      ]}
     >
       <div className="max-w-2xl mx-auto space-y-4">
         {/* Controls */}

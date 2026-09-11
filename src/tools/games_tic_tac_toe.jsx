@@ -161,7 +161,7 @@ export default function games_tic_tac_toe() {
     <GameShell
       name="TIC TAC TOE"
       title="Tic Tac Toe Online - Play vs AI or Friend"
-      desc="Play Tic Tac Toe online against AI or a friend. Animated X and O marks, win detection, and score tracking."
+      desc="Tic Tac Toe Online - Play vs AI or Friend - play Tic Tac Toe online against AI or a, online free. Play online free, no download. Works on mobile and desktop."
       icon="❌" iconBg="rgba(239,68,68,0.08)"
       category="fun" slug="games-tic-tac-toe"
       startAction={resetGame} startLabel="⟲ New Game"
@@ -174,6 +174,9 @@ export default function games_tic_tac_toe() {
         { q: "How does the AI work?", a: "The AI uses the minimax algorithm — it plays optimally and can never lose. Try to force a draw!" },
         { q: "Can I play with a friend?", a: "Yes! Switch to '2 Player' mode to play locally with a friend taking turns." },
         { q: "Are scores saved?", a: "Yes! X wins, O wins, and draws are all tracked and saved in your browser." },
+        { q: "How do I play Tic Tac Toe Online - Play vs AI or Friend online free?", a: "Click Start and follow the on-screen steps. Use mouse, touch, or keyboard controls. No download needed." },
+        { q: "Can I play Tic Tac Toe Online - Play vs AI or Friend without downloading?", a: "Yes. This Tic Tac Toe Online - Play vs AI or Friend runs in your browser with no install. Free on mobile and desktop." },
+        { q: "How do I use this Tic Tac Toe Online - Play vs AI or Friend online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
       ]}
       howItWorks={[
         "Choose AI or 2 Player mode.",

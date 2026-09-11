@@ -34,12 +34,16 @@ export default function power_converter() {
   return (
     <ToolLayout
       title="Power Converter"
-      desc="Convert between Watts, Horsepower, Kilowatts, and BTU/h instantly."
+      desc="Power Converter - convert between Watts, Horsepower, Kilowatts, and BTU/h instantly, online free. Free online, instant results. No sign-up needed."
       icon="🔌" iconBg="rgba(236,72,153,0.08)"
       category="dev" slug="power-converter"
       faq={[
         { q: 'What is a Watt?', a: 'A Watt is the SI unit of power, equal to 1 Joule per second.' },
         { q: 'What is horsepower?', a: 'Horsepower is a unit of power. 1 hp ≈ 745.7 Watts.' },
+        { q: "How do I convert online free?", a: "Pick the from and to units above and the result appears instantly. Free, no sign-up, works on mobile." },
+        { q: "Which units are supported?", a: "All common units are supported. Choose from the dropdowns above for an instant free conversion." },
+        { q: "Is the conversion instant?", a: "Yes. Results appear live as you type, with no sign-up and no page reload." },
+        { q: "Is this Power Converter free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Enter a power value.',

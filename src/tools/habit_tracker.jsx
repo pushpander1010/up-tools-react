@@ -47,12 +47,16 @@ export default function habit_tracker() {
   return (
     <ToolLayout
       title="Habit Tracker"
-      desc="Track daily habits and build streaks. Monitor your progress and stay motivated."
+      desc="Habit Tracker - track daily habits and build streaks. Monitor your progress and stay motivated, online free. Free online, no sign-up. Works on any device."
       icon="📊" iconBg="rgba(34,197,94,0.08)"
       category="health" slug="habit-tracker"
       faq={[
         { q: "Is my data saved?", a: "Yes, habits are saved in your browser's localStorage. Nothing is uploaded." },
         { q: "Can I track multiple habits?", a: "Yes, add unlimited habits and track them all." },
+        { q: "How do I use this Habit Tracker online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this Habit Tracker free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={["Add habits you want to track", "Mark them complete each day", "Watch your streaks grow"]}
       schema={{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Habit Tracker","applicationCategory":"HealthApplication","url":"https://www.uptools.in/habit-tracker/","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}}

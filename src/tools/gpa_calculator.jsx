@@ -126,7 +126,7 @@ export default function gpa_calculator() {
   return (
     <ToolLayout
       title="GPA Calculator"
-      desc="Calculate semester and cumulative GPA with unweighted (4.0) or weighted (5.0) scales. Add multiple semesters with courses."
+      desc="GPA Calculator - calculate semester and cumulative GPA with unweighted (4.0) or, online free. Free online, instant results. No sign-up, works on mobile."
       icon="🎓" iconBg="rgba(59,130,246,0.08)"
       category="education" slug="gpa-calculator"
       faq={[
@@ -134,6 +134,8 @@ export default function gpa_calculator() {
         { q: 'How is GPA calculated?', a: 'Multiply each course grade point by its credit hours, sum all products, then divide by total credit hours.' },
         { q: 'What is weighted vs unweighted GPA?', a: 'Unweighted GPA uses a 4.0 scale. Weighted GPA adds extra points for harder courses (typically up to 5.0).' },
         { q: 'What is a good GPA?', a: 'A GPA of 3.5+ is considered excellent, 3.0-3.5 is good, 2.5-3.0 is average, and below 2.5 needs improvement.' },
+        { q: "How do I use this GPA Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this GPA Calculator accurate?", a: "Yes. The GPA Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
       ]}
       howItWorks={[
         'Choose your grading scale: Unweighted (4.0) or Weighted (5.0).',

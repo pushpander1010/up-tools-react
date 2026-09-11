@@ -58,13 +58,16 @@ export default function ip_address() {
   return (
     <ToolLayout
       title="IP Address & ISP Lookup"
-      desc="Detect your public IP address, location, ISP, timezone, and coordinates instantly."
+      desc="IP Address & ISP Lookup - detect your public IP address, location, ISP, timezone, and coordinates, online free. Free online, no sign-up. Works on any device."
       icon="🌐" iconBg="rgba(14,165,233,0.08)"
       category="networking" slug="ip-address"
       faq={[
         { q: 'What is my IP address?', a: 'Your IP (Internet Protocol) address is a unique identifier assigned to your device when connected to the internet. It is like a postal address for data packets — it tells servers where to send responses back.' },
         { q: 'What is the difference between IPv4 and IPv6?', a: 'IPv4 uses 32-bit addresses (e.g., 192.168.1.1) and supports about 4.3 billion addresses. IPv6 uses 128-bit addresses (e.g., 2001:db8::1) and provides a vastly larger address space to accommodate the growing number of internet-connected devices.' },
         { q: 'What is a public vs private IP?', a: 'A public IP is visible to the outside internet and is assigned by your ISP. A private IP (like 192.168.x.x or 10.x.x.x) is used within your local network and is not directly accessible from the internet.' },
+        { q: "How do I use this IP Address & ISP Lookup online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         'Click "Detect My IP" to fetch your public IP address.',

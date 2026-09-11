@@ -157,6 +157,8 @@ export default function games_rock_paper_scissors() {
         { q: "What does 'Best of' mean?", a: "Best of 3 means the first to 2 wins. Best of 5 means first to 3 wins. Best of 1 is a single round." },
         { q: "Is my game history saved?", a: "Your last 20 games and overall statistics (wins, losses, streak) are saved locally on your device." },
         { q: "How do I start a new game?", a: "Click the 'New Game' button to start a fresh match, or select a different 'Best of' mode." },
+        { q: "How do I play Rock Paper Scissors Online - Play vs Computer online free?", a: "Click Start and follow the on-screen steps. Use mouse, touch, or keyboard controls. No download needed." },
+        { q: "Can I play Rock Paper Scissors Online - Play vs Computer without downloading?", a: "Yes. This Rock Paper Scissors Online - Play vs Computer runs in your browser with no install. Free on mobile and desktop." },
       ]}
       howItWorks={[
         "Select your match mode: Best of 1, 3, or 5 rounds.",

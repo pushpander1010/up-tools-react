@@ -75,12 +75,16 @@ Make it persuasive, benefit-focused (not just feature-focused), and ready to pub
   return (
     <ToolLayout
       title="AI Product Description Generator"
-      desc="Write conversion-optimized product descriptions for Amazon, Shopify, Flipkart, Etsy, Instagram Shop, and more."
+      desc="AI Product Description Generator - write conversion-optimized product descriptions for Amazon,, online free. Free online, no sign-up. Works on any device."
       icon="📦" iconBg="rgba(168,85,247,0.08)"
       category="ai" slug="ai-product-description"
       faq={[
         { q: "Which platforms are supported?", a: "Amazon, Shopify, Flipkart, Etsy, Instagram Shop, and a General format." },
         { q: "Is the generated description SEO-friendly?", a: "Yes — it naturally incorporates your keywords and follows platform-specific best practices." },
+        { q: "How do I use this AI Product Description Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this AI Product Description Generator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Enter your product name, features, and select the target platform.",

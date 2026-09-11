@@ -161,13 +161,16 @@ export default function random_fact_generator() {
   return (
     <ToolLayout
       title="Random Fact Generator"
-      desc="Discover amazing facts from science, history, nature & more."
+      desc="Random Fact Generator - discover amazing facts from science, history, nature & more, online free. Free online, no sign-up. Works on any device."
       icon="🧠" iconBg="rgba(99,102,241,0.08)"
       category="fun" slug="random-fact-generator"
       faq={[
         { q: 'Where do facts come from?', a: 'Over 300 curated facts from scientific journals, history records, and more. Built in, no API needed.' },
         { q: 'Can I filter by category?', a: 'Yes, pick Science, History, Nature, Tech, Space, Animals, Food, or Human Body.' },
         { q: 'Can I save facts I like?', a: 'Yes, click the heart to save favorites. Stored in your browser.' },
+        { q: "How do I use this Random Fact Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         'Pick a category or leave it random.',

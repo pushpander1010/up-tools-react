@@ -86,12 +86,16 @@ export default function canada_hst_tool() {
   return (
     <ToolLayout
       title="GST/HST Calculator (Canada)"
-      desc="Add or remove tax by province - supports HST provinces and GST with optional PST/QST."
+      desc="GST/HST Calculator (Canada) - add or remove tax by province - supports HST provinces, online free. Free online, instant results. No sign-up, works on mobile."
       icon="💵" iconBg="rgba(220,38,38,0.08)"
       category="canada" slug="canada-hst-tool"
       faq={[
         { q: 'Which provinces use HST?', a: 'Ontario (13%), New Brunswick (15%), Nova Scotia (15%), PEI (15%), and Newfoundland & Labrador (15%). Others use GST (5%) with or without PST/QST.' },
         { q: 'Is my data stored?', a: 'No. This calculator runs locally in your browser.' },
+        { q: "How do I use this GST/HST Calculator (Canada) online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this GST/HST Calculator (Canada) accurate?", a: "Yes. The GST/HST Calculator (Canada) uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
+        { q: "Is this GST/HST Calculator (Canada) free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Choose Add tax (price before tax) or Remove tax (tax already included).',

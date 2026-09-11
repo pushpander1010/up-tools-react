@@ -68,13 +68,16 @@ export default function food_randomizer() {
   return (
     <ToolLayout
       title="Random Food Generator"
-      desc="Discover delicious dishes from around the world by category."
+      desc="Random Food Generator - discover delicious dishes from around the world by category, online free. Free online, no sign-up. Works on any device."
       icon="🍽️" iconBg="rgba(245,158,11,0.08)"
       category="fun" slug="food-randomizer"
       faq={[
         { q: 'Where do food images come from?', a: 'From the free Foodish API providing random food photographs.' },
         { q: 'Can I filter by food type?', a: 'Yes, use the category chips for pasta, rice, curry, desserts, etc.' },
         { q: 'Can I save favorite foods?', a: 'Yes, click the heart icon to save favorites. Stored locally.' },
+        { q: "How do I use this Random Food Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         'Pick a category or leave it random.',

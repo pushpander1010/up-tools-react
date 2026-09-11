@@ -43,13 +43,16 @@ export default function roth_ira_calculator() {
   return (
     <ToolLayout
       title="Roth IRA Calculator"
-      desc="Calculate your tax-free retirement savings with a Roth IRA. See how your contributions grow over time."
+      desc="Roth IRA Calculator - calculate your tax-free retirement savings with a Roth IRA. See, online free. Free online, instant results. No sign-up, works on mobile."
       icon="🏦" iconBg="rgba(34,197,94,0.08)"
       category="finance" slug="roth-ira-calculator"
       faq={[
         { q: 'What is a Roth IRA?', a: 'A Roth IRA is a retirement account where you contribute after-tax dollars, but all withdrawals in retirement are tax-free.' },
         { q: 'What is the 2025 contribution limit?', a: '$7,000 per year ($8,000 if you\'re 50 or older). Income limits apply.' },
         { q: 'Can I withdraw early?', a: 'You can withdraw contributions (not earnings) anytime tax-free. Earnings require age 59½ and 5-year holding period.' },
+        { q: "How do I use this Roth IRA Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this Roth IRA Calculator accurate?", a: "Yes. The Roth IRA Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
       ]}
       howItWorks={[
         'Enter your current age, retirement age, and current Roth IRA balance.',

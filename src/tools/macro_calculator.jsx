@@ -31,12 +31,16 @@ export default function macro_calculator() {
   return (
     <ToolLayout
       title="Macro Calculator"
-      desc="Calculate macronutrient ratios: protein, carbs, and fats for your fitness goals."
+      desc="Macro Calculator - calculate macronutrient ratios: protein, carbs, and fats for your, online free. Free online, instant results. No sign-up, works on mobile."
       icon="🥗" iconBg="rgba(34,197,94,0.08)"
       category="health" slug="macro-calculator"
       faq={[
         { q: "What are macronutrients?", a: "Macronutrients are protein, carbohydrates, and fats — the three main nutrients your body needs in large amounts for energy and function." },
         { q: "How do I choose a macro ratio?", a: "Balanced works for most people. High protein suits muscle building, low carb for fat loss. Adjust based on your goals and how your body responds." },
+        { q: "How do I use this Macro Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this Macro Calculator accurate?", a: "Yes. The Macro Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
+        { q: "Is this Macro Calculator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Enter your daily calorie target (use TDEE Calculator to find this).",

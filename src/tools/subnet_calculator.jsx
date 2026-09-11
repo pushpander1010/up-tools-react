@@ -154,12 +154,16 @@ export default function subnet_calculator() {
   return (
     <ToolLayout
       title="Subnet Calculator"
-      desc="Calculate network address, broadcast, host range, wildcard mask from IP/CIDR."
+      desc="Subnet Calculator - calculate network address, broadcast, host range, wildcard mask, online free. Free online, instant results. No sign-up, works on mobile."
       icon="🌐" iconBg="rgba(6,182,212,0.08)"
       category="dev" slug="subnet-calculator"
       faq={[
         { q: 'What is CIDR?', a: 'CIDR (Classless Inter-Domain Routing) notation uses /prefix to indicate network bits, e.g. /24 = 255.255.255.0.' },
         { q: 'What are usable hosts?', a: 'Total IPs minus 2 (network + broadcast addresses). A /30 gives 2 usable hosts.' },
+        { q: "How do I use this Subnet Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this Subnet Calculator accurate?", a: "Yes. The Subnet Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
+        { q: "Is this Subnet Calculator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Enter an IP address with CIDR notation (e.g. 192.168.1.0/24).',

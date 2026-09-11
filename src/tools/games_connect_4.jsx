@@ -185,13 +185,16 @@ export default function games_connect_4() {
       name="CONNECT 4"
       startAction={resetGame} startLabel="⟲ New Game"
       title="Connect 4 Online - Play vs AI or Friend"
-      desc="Play Connect 4 online against AI or a friend. Drop discs, connect four in a row to win. Animated disc drops!"
+      desc="Connect 4 Online - Play vs AI or Friend - play Connect 4 online against AI or a, online free. Play online free, no download. Works on mobile and desktop."
       icon="🔴" iconBg="rgba(239,68,68,0.08)"
       category="fun" slug="games-connect-4"
       faq={[
         { q: "How does the Connect 4 AI work?", a: "The AI uses the minimax algorithm with alpha-beta pruning at depth 5. It evaluates board positions to find the optimal move." },
         { q: "How do you win?", a: "Connect 4 discs of your color in a row — horizontally, vertically, or diagonally." },
         { q: "Can I play with a friend?", a: "Yes! Switch to '2 Player' mode to play locally with turns." },
+        { q: "How do I play Connect 4 Online - Play vs AI or Friend online free?", a: "Click Start and follow the on-screen steps. Use mouse, touch, or keyboard controls. No download needed." },
+        { q: "Can I play Connect 4 Online - Play vs AI or Friend without downloading?", a: "Yes. This Connect 4 Online - Play vs AI or Friend runs in your browser with no install. Free on mobile and desktop." },
+        { q: "How do I use this Connect 4 Online - Play vs AI or Friend online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
       ]}
       howItWorks={[
         "Choose AI or 2 Player mode.",

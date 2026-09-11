@@ -180,12 +180,16 @@ export default function games_word_scramble() {
       startAction={handleNewGame} startLabel="⟲ New Word"
  
       title="Word Scramble Game Online - Unscramble Words Free"
-      desc="Unscramble jumbled letters to find the hidden word. Multiple categories, hints, and scoring."
+      desc="Word Scramble Game Online - Unscramble Words Free - unscramble jumbled letters to, online free. Play online free, no download. Works on mobile and desktop."
       icon="🔀" iconBg="rgba(168,85,247,0.08)"
       category="fun" slug="games-word-scramble"
       faq={[
         { q: "How does scoring work?", a: "You get 10 points for a correct answer without a hint, and 5 points if you used the hint. Streaks are tracked too!" },
         { q: "What if I can't guess the word?", a: "You can skip to the next word (streak resets) or reveal the answer." },
+        { q: "How do I play Word Scramble Game Online - Unscramble Words Free online free?", a: "Click Start and follow the on-screen steps. Use mouse, touch, or keyboard controls. No download needed." },
+        { q: "Can I play Word Scramble Game Online - Unscramble Words Free without downloading?", a: "Yes. This Word Scramble Game Online - Unscramble Words Free runs in your browser with no install. Free on mobile and desktop." },
+        { q: "How do I use this Word Scramble Game Online - Unscramble Words Free online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
+        { q: "Is this Word Scramble Game Online - Unscramble Words Free free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Select a category or play with all words.",

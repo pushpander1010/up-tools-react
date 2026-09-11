@@ -72,12 +72,16 @@ export default function InstagramReelsIdeas() {
   return (
     <ToolLayout
       title="Instagram Reels Ideas"
-      desc="Get creative ideas for your next Instagram Reels. Never run out of content ideas again."
+      desc="Instagram Reels Ideas - get creative ideas for your next Instagram Reels. Never run out of content, online free. Free online, no sign-up. Works on any device."
       icon="🎬" iconBg="rgba(236,72,153,0.08)"
       category="social" slug="instagram-reels-ideas"
       faq={[
         { q: "How long should Instagram Reels be?", a: "Reels can be 15, 30, 60, or 90 seconds. Shorter Reels (15-30s) tend to get more replays." },
         { q: "How often should I post Reels?", a: "Aim for 4-7 Reels per week for optimal growth. Quality matters more than quantity." },
+        { q: "How do I use this Instagram Reels Ideas online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this Instagram Reels Ideas free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Select your content niche or category.",

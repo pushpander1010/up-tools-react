@@ -94,13 +94,16 @@ export default function cgpa_calculator() {
   return (
     <ToolLayout
       title="CGPA Calculator"
-      desc="Calculate CGPA on a 10-point Indian grading scale. Converts to percentage (CGPA × 9.5) and shows grade classification."
+      desc="CGPA Calculator - calculate CGPA on a 10-point Indian grading scale. Converts to, online free. Free online, instant results. No sign-up, works on mobile."
       icon="📊" iconBg="rgba(16,185,129,0.08)"
       category="education" slug="cgpa-calculator"
       faq={[
         { q: 'What is CGPA?', a: 'CGPA (Cumulative Grade Point Average) is the average of grade points obtained in all subjects on a 10-point scale, commonly used in Indian universities.' },
         { q: 'How to convert CGPA to percentage?', a: 'Multiply your CGPA by 9.5 to get the approximate percentage. This is the standard conversion formula used by CBSE and many Indian universities.' },
         { q: 'What is the Indian grading system?', a: 'The 10-point scale: O (10, Outstanding), A+ (9+, Excellent), A (8+, Very Good), B+ (7+, Good), B (6+, Above Average), C (5+, Average).' },
+        { q: "How do I use this CGPA Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this CGPA Calculator accurate?", a: "Yes. The CGPA Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
       ]}
       howItWorks={[
         'Enter each subject with its Grade Point (0-10) and Credit hours.',

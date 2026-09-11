@@ -72,12 +72,16 @@ export default function currency_converter() {
   return (
     <ToolLayout
       title="Currency Converter"
-      desc="Convert between 20+ currencies with live interbank rates. Falls back to approximate rates when offline."
+      desc="Currency Converter - convert between 20+ currencies with live interbank rates. Falls back to, online free. Free online, instant results. No sign-up needed."
       icon="💱" iconBg="rgba(34,197,94,0.08)"
       category="finance" slug="currency-converter"
       faq={[
         { q: 'Where do exchange rates come from?', a: 'Live rates from ExchangeRate API proxied through our server, updated daily. These are mid-market interbank rates.' },
         { q: 'Are these rates accurate for transactions?', a: 'These are mid-market interbank rates. Actual exchange rates include fees and spreads.' },
+        { q: "How do I convert online free?", a: "Pick the from and to units above and the result appears instantly. Free, no sign-up, works on mobile." },
+        { q: "Which units are supported?", a: "All common units are supported. Choose from the dropdowns above for an instant free conversion." },
+        { q: "Is the conversion instant?", a: "Yes. Results appear live as you type, with no sign-up and no page reload." },
+        { q: "Is this Currency Converter free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       schema={{
         "@context": "https://schema.org", "@type": "SoftwareApplication",

@@ -190,6 +190,10 @@ export default function ai_stock_analyzer() {
       faq={[
         { q: 'Which markets are supported?', a: 'NSE (India), BSE (India), NASDAQ, NYSE, LSE (London), TSX (Toronto), TSE (Tokyo), SSE (Shanghai), HKEX (Hong Kong) and more via Yahoo Finance suffix mapping.' },
         { q: 'Do I need an API key?', a: 'No. Data is fetched through Yahoo Finance public endpoints.' },
+        { q: "How do I use this AI Stock Analyzer - Multi-Market online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this AI Stock Analyzer - Multi-Market free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Select your market (NSE, BSE, NASDAQ, etc.) and enter a ticker symbol.',

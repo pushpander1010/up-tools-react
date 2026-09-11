@@ -239,9 +239,12 @@ export default function drug_information_tool() {
         )}
 
         <FAQ questions={[
-          { q: 'Where does the drug data come from?', a: 'All data is sourced from OpenFDA, the US FDA\'s open data initiative. It includes official drug labeling information from the National Library of Medicine.' },
+          { q: 'Where does the drug data come from?', a: 'All data is sourced from OpenFDA, the US FDA\u2019s open data initiative. It includes official drug labeling information from the National Library of Medicine.' },
           { q: 'Is this a substitute for medical advice?', a: 'No. This tool is for informational purposes only. Always consult a doctor or pharmacist before taking any medication.' },
-          { q: 'Why can\'t I find my medicine?', a: 'OpenFDA primarily covers US-approved drugs. If your medicine isn\'t found, try searching by its generic/ingredient name instead of brand name.' },
+          { q: 'Why can\u2019t I find my medicine?', a: 'OpenFDA primarily covers US-approved drugs. If your medicine isn\u2019t found, try searching by its generic/ingredient name instead of brand name.' },
+          { q: 'How do I look up a medicine online free?', a: 'Type the drug or brand name above and get uses, dosage, warnings, and side effects instantly. Free, no sign-up.' },
+          { q: 'Can I check drug interactions?', a: 'Yes. Search each medicine above and compare warnings and interactions. Always confirm with a doctor or pharmacist.' },
+          { q: 'Is the drug information tool free?', a: 'Yes, completely free with no sign-up. Look up unlimited medicines on any device.' },
         ]} />
 
         <p className="text-center text-xs text-slate-400">

@@ -41,13 +41,16 @@ export default function linkedin_video_downloader() {
   return (
     <ToolLayout
       title="LinkedIn Video Downloader"
-      desc="Download videos from LinkedIn posts, articles, and courses in HD quality. Fast, easy, and free."
+      desc="LinkedIn Video Downloader - download videos from LinkedIn posts, articles, and courses in HD quality., online free. Free online in HD. No app or login needed."
       icon="💼" iconBg="rgba(14,165,233,0.08)"
       category="social" slug="linkedin-video-downloader"
       faq={[
         { q: "How do I download a LinkedIn video?", a: "Copy the LinkedIn post URL, paste it into our downloader, select quality, and click download." },
         { q: "Can I download LinkedIn course videos?", a: "Yes! Our downloader supports videos from LinkedIn posts, articles, and course content." },
         { q: "Is this tool free?", a: "Yes, completely free! No registration or payment required." },
+        { q: "How do I download online free?", a: "Paste the link above, pick your option, and save the file. Free with no sign-up or app needed." },
+        { q: "What quality do I get?", a: "You get the highest quality available, free. Paste the link above and save it to your device." },
+        { q: "Can I download on mobile?", a: "Yes. Open this page in your phone browser, paste the link, and save directly. No app needed." },
       ]}
       howItWorks={[
         "Find the LinkedIn post with the video you want to download.",

@@ -344,9 +344,22 @@ export default function graphing_calculator() {
   return (
     <ToolLayout
       title="Graphing Calculator"
-      desc="Plot up to 3 functions. Supports sin, cos, tan, log, sqrt, abs, pi, e, +, -, *, /, ^. Pan and zoom with mouse."
+      desc="Graphing Calculator - plot up to 3 functions. Supports sin, cos, tan, log, sqrt, abs,, online free. Free online, instant results. No sign-up, works on mobile."
       icon="📐" iconBg="rgba(99,102,241,0.08)"
       category="math" slug="graphing-calculator"
+      faq={[
+        { q: "How do I plot a function online free?", a: "Type a function like sin(x) above and the graph draws instantly. Up to 3 functions, free, no sign-up." },
+        { q: "Which functions are supported?", a: "sin, cos, tan, log, sqrt, abs, pi, e, plus +, -, *, /, and powers. Pan and zoom with mouse or touch." },
+        { q: "Is the graphing calculator free?", a: "Yes, completely free with no sign-up. Plot unlimited functions on any device." },
+        { q: "Do I need to sign up?", a: "No sign-up needed. Plot unlimited functions free on any device." },
+        { q: "Does it work on mobile?", a: "Yes. Graph functions free in your phone browser with touch pan and zoom." },
+        { q: "Can I compare multiple functions?", a: "Yes. Plot up to 3 functions at once in different colors, free." },
+      ]}
+      howItWorks={[
+        "Type a function like sin(x) above.",
+        "Add up to 3 functions to compare.",
+        "Pan and zoom the graph with mouse or touch.",
+      ]}
     >
       <div className="max-w-2xl mx-auto space-y-4">
         <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-5">

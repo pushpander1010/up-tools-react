@@ -50,12 +50,16 @@ export default function amortization_calculator() {
   return (
     <ToolLayout
       title="Amortization Calculator"
-      desc="Calculate monthly payments, total interest, and view full amortization schedule with extra payment impact."
+      desc="Amortization Calculator - calculate monthly payments, total interest, and view full, online free. Free online, instant results. No sign-up, works on mobile."
       icon="🏦" iconBg="rgba(245,158,11,0.08)"
       category="finance" slug="amortization-calculator"
       faq={[
         { q: "What is amortization?", a: "Amortization is the process of paying off a loan through regular monthly payments over a set period of time." },
         { q: "How do extra payments help?", a: "Extra payments reduce the principal faster, which means less interest paid overall and a shorter loan term." },
+        { q: "How do I use this Amortization Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this Amortization Calculator accurate?", a: "Yes. The Amortization Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
+        { q: "Is this Amortization Calculator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Enter the loan amount, interest rate, and term.",

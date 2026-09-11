@@ -50,6 +50,9 @@ export default function ai_grammar_checker() {
         { q: "Is the grammar checker free?", a: "Yes, completely free with no sign-up required. Powered by AI via a secure server-side proxy." },
         { q: "What languages does it support?", a: "It works best with English but can handle other languages as well." },
         { q: "How much text can I check?", a: "Up to 30,000 characters per check." },
+        { q: "How do I check online free?", a: "Enter your input above and get an instant result. Free with no sign-up, works on mobile and desktop." },
+        { q: "What does it check?", a: "It validates your input against standard rules instantly. Enter the value above to see the result." },
+        { q: "Is my data kept private?", a: "Yes. Everything runs in your browser. Nothing you enter is uploaded or stored." },
       ]}
       howItWorks={[
         "Paste or type your text into the input area.",

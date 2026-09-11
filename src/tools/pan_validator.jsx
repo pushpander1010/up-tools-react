@@ -166,7 +166,7 @@ export default function pan_validator() {
   return (
     <ToolLayout
       title="PAN Format Validator"
-      desc="Validate Indian PAN card numbers instantly. Check format, identify entity type, verify GSTIN checksum, and bulk validate."
+      desc="PAN Format Validator - validate Indian PAN card numbers instantly. Check format, identify entity, online free. Free online, instant results. No login needed."
       icon="🪪" iconBg="rgba(168,85,247,0.08)"
       category="text" slug="pan-validator"
       faq={[
@@ -174,6 +174,8 @@ export default function pan_validator() {
         { q: 'What does each PAN character mean?', a: 'First 3: Issuer code (e.g., AAAA = NSDL). 4th: Entity type (P=Individual, C=Company, etc.). 5th: First letter of surname/name. Next 4: Serial number. Last: Check digit.' },
         { q: 'How to validate PAN format?', a: 'PAN follows the pattern AAAAA9999A — 5 letters, 4 digits, 1 letter. The 4th character determines entity type. This tool validates the full pattern.' },
         { q: 'What is the GSTIN-PAN link?', a: 'GSTIN contains the PAN at positions 2-12. This tool extracts and validates the embedded PAN, plus verifies the GSTIN checksum.' },
+        { q: "How do I check online free?", a: "Enter your input above and get an instant result. Free with no sign-up, works on mobile and desktop." },
+        { q: "What does it check?", a: "It validates your input against standard rules instantly. Enter the value above to see the result." },
       ]}
       howItWorks={[
         'Enter a 10-character PAN number in the input field.',

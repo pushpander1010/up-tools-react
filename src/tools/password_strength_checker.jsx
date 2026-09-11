@@ -60,12 +60,16 @@ export default function password_strength_checker() {
   return (
     <ToolLayout
       title="Password Strength Checker"
-      desc="Analyze password security with entropy calculation, criteria checks, and crack time estimation. Never leaves your browser."
+      desc="Password Strength Checker - analyze password security with entropy calculation, criteria checks,, online free. Free online, instant results. No login needed."
       icon="🔒" iconBg="rgba(99,102,241,0.08)"
       category="security" slug="password-strength-checker"
       faq={[
         { q: 'Is my password sent to a server?', a: 'No — all analysis happens locally in your browser. Nothing is transmitted.' },
         { q: 'What is entropy?', a: 'Entropy measures password randomness in bits. Higher entropy means harder to crack.' },
+        { q: "How do I check online free?", a: "Enter your input above and get an instant result. Free with no sign-up, works on mobile and desktop." },
+        { q: "What does it check?", a: "It validates your input against standard rules instantly. Enter the value above to see the result." },
+        { q: "Is my data kept private?", a: "Yes. Everything runs in your browser. Nothing you enter is uploaded or stored." },
+        { q: "Is this Password Strength Checker free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Enter a password (it never leaves your device).',

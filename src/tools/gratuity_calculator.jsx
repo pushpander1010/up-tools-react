@@ -34,12 +34,16 @@ export default function gratuity_calculator() {
   return (
     <ToolLayout
       title="Gratuity Calculator"
-      desc="Calculate gratuity amount for Indian employees. Free online tool by UpTools."
+      desc="Gratuity Calculator - calculate gratuity amount for Indian employees, online free. Free online, instant results. No sign-up, works on mobile."
       icon="💰" iconBg="rgba(234,179,8,0.08)"
       category="finance" slug="gratuity-calculator"
       faq={[
         { q: "What is Gratuity?", a: "Gratuity is a lump sum payment given by an employer to an employee who has rendered continuous service for 5 or more years. It is calculated as (15 × Last Drawn Salary × Years of Service) / 26." },
         { q: "Is Gratuity tax-exempt?", a: "Yes, up to ₹20,00,000 (₹20 lakhs) under Section 10(10) of the Income Tax Act. Any amount above this limit is taxable." },
+        { q: "How do I use this Gratuity Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this Gratuity Calculator accurate?", a: "Yes. The Gratuity Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
+        { q: "Is this Gratuity Calculator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Enter your last drawn monthly salary.",

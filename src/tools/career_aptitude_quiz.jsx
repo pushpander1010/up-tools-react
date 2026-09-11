@@ -106,13 +106,16 @@ export default function career_aptitude_quiz() {
   return (
     <ToolLayout
       title="Career Aptitude Quiz After 12th"
-      desc="Answer 8 quick questions to discover the best career path, entrance exams & courses after 12th grade."
+      desc="Career Aptitude Quiz After 12th - answer 8 quick questions to discover the best career path,, online free. Free online, no sign-up. Works on any device."
       icon="🎯" iconBg="rgba(99,102,241,0.08)"
       category="study" slug="career-aptitude-quiz"
       faq={[
         { q: "How accurate is this quiz?", a: "This is a directional guide based on your interests and strengths. For personalized advice, consult a career counselor." },
         { q: "What careers does it cover?", a: "Engineering, Medical, Law, Commerce, Civil Services, IT, Biotech, Media, Research, and MBA — the main paths after 12th in India." },
         { q: "Can I retake the quiz?", a: "Yes! Click 'Retake Quiz' at any time to start over with fresh answers." },
+        { q: "How do I use this Career Aptitude Quiz After 12th online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         "Answer 8 quick questions about your interests and strengths.",

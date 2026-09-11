@@ -536,13 +536,16 @@ export default function games_bubble_shooter() {
       name="BUBBLE SHOOTER"
       startAction={startGame} startLabel="▶ Start" 
       title="Bubble Shooter Online - Free Arcade Game"
-      desc="Play the classic Bubble Shooter game. Match 3 or more colored bubbles to pop them. Aim and shoot to clear the board!"
+      desc="Bubble Shooter Online - Free Arcade Game - play the classic Bubble Shooter game., online free. Play online free, no download. Works on mobile and desktop."
       icon="🫧" iconBg="rgba(6,182,212,0.08)"
       category="fun" slug="games-bubble-shooter"
       faq={[
         { q:"How do I play Bubble Shooter?", a:"Move your mouse to aim and click to shoot. Match 3+ same-colored bubbles to pop them. Clear all bubbles to win!" },
         { q:"What happens when bubbles reach the bottom?", a:"Game over! New rows push down every 5 shots if no clusters are found." },
         { q:"How is score calculated?", a:"Each popped bubble gives 100 points. Floating clusters that drop also give bonus points." },
+        { q: "Can I play Bubble Shooter Online - Free Arcade Game without downloading?", a: "Yes. This Bubble Shooter Online - Free Arcade Game runs in your browser with no install. Free on mobile and desktop." },
+        { q: "How do I use this Bubble Shooter Online - Free Arcade Game online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
+        { q: "Is this Bubble Shooter Online - Free Arcade Game free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Press Start to begin. Move mouse to aim the shooter.",

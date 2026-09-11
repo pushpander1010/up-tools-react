@@ -66,13 +66,16 @@ export default function fantasy_sports_calculator() {
   return (
     <ToolLayout
       title="Fantasy Sports Calculator"
-      desc="Calculate fantasy points for cricket, football, basketball and more. Dream11 points calculator."
+      desc="Fantasy Sports Calculator - calculate fantasy points for cricket, football, basketball, online free. Free online, instant results. No sign-up, works on mobile."
       icon="⭐" iconBg="rgba(234,179,8,0.08)"
       category="utility" slug="fantasy-sports-calculator"
       faq={[
         { q: 'Is this tool free to use?', a: 'Yes. All UpTools calculators are completely free, with no sign-ups required.' },
         { q: 'Is my data private?', a: 'Yes. All calculations run locally in your browser. Nothing is uploaded to any server.' },
         { q: 'Does it work on mobile?', a: 'Yes. All tools are mobile-responsive and work on any device — phone, tablet, or desktop.' },
+        { q: "How do I use this Fantasy Sports Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this Fantasy Sports Calculator accurate?", a: "Yes. The Fantasy Sports Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
       ]}
       howItWorks={[
         'Select a sport (Cricket, Football, Basketball).',

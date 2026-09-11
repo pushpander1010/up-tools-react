@@ -50,12 +50,16 @@ export default function lorem_ipsum_generator() {
   return (
     <ToolLayout
       title="Lorem Ipsum Generator"
-      desc="Generate Lorem Ipsum placeholder text with customizable paragraphs, sentences, or words."
+      desc="Lorem Ipsum Generator - generate Lorem Ipsum placeholder text with customizable paragraphs,, online free. Free online, no sign-up. Works on any device."
       icon="📝" iconBg="rgba(99,102,241,0.08)"
       category="text" slug="lorem-ipsum-generator"
       faq={[
         { q: "What is Lorem Ipsum?", a: "Lorem Ipsum is standard placeholder text used in the printing and typesetting industry since the 1500s." },
         { q: "Is my generated text stored?", a: "No. Everything runs in your browser. Nothing is uploaded." },
+        { q: "How do I use this Lorem Ipsum Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this Lorem Ipsum Generator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Choose type: paragraphs, sentences, or words.",

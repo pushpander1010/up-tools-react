@@ -35,12 +35,16 @@ export default function accent_mark_generator() {
   return (
     <ToolLayout
       title="Accent Mark Generator"
-      desc="Add accent marks and diacritics to text. Quick buttons for common characters. Copy accented text instantly."
+      desc="Accent Mark Generator - add accent marks and diacritics to text. Quick buttons for common, online free. Free online, no sign-up. Works on any device."
       icon="🎨" iconBg="rgba(99,102,241,0.08)"
       category="text" slug="accent-mark-generator"
       faq={[
         { q: 'How do I add an accent?', a: 'Click any accent button below the text area to append it, or select text first to replace it with the accented version.' },
         { q: 'Which languages does this support?', a: 'It supports any language that uses Latin characters with diacritics — French, Spanish, German, Portuguese, Turkish, Vietnamese, and many more.' },
+        { q: "How do I use this Accent Mark Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this Accent Mark Generator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Type your text in the text area.',

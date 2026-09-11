@@ -138,6 +138,9 @@ export default function fifa_world_cup_travel_planner() {
         { q: "Do I need a visa to attend?", a: "Visa requirements depend on your nationality and host country. USA requires ESTA/B1-B2, Mexico requires electronic authorization, Canada requires eTA." },
         { q: "Which cities are hosting matches?", a: "16 cities across USA (11), Mexico (3), and Canada (2) host matches." },
         { q: "How much does it cost?", a: "Costs vary. Group stage tickets from $60, accommodation $100-300/night, flights vary by origin." },
+        { q: "How do I use this FIFA World Cup 2026 Travel Planner online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         "Browse venues — explore all 16 host cities, stadiums, capacities.",

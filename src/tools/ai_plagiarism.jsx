@@ -130,12 +130,16 @@ export default function ai_plagiarism() {
   return (
     <ToolLayout
       title="AI Plagiarism Checker & Paraphraser"
-      desc="Check originality, paraphrase for higher uniqueness, or extract keywords — with local heuristics and AI-powered deep analysis."
+      desc="AI Plagiarism Checker & Paraphraser - check originality, paraphrase for higher uniqueness, or, online free. Free online, instant results. No login needed."
       icon="🔍" iconBg="rgba(168,85,247,0.08)"
       category="ai" slug="ai-plagiarism"
       faq={[
         { q: "Does this check against the web?", a: "The originality check uses heuristic analysis (not web search) to identify overused patterns, clichés, and formulaic writing." },
         { q: "What does the paraphrase do?", a: "It rewrites your text to improve originality while preserving meaning. You can choose tone and constraints." },
+        { q: "How do I check online free?", a: "Enter your input above and get an instant result. Free with no sign-up, works on mobile and desktop." },
+        { q: "What does it check?", a: "It validates your input against standard rules instantly. Enter the value above to see the result." },
+        { q: "Is my data kept private?", a: "Yes. Everything runs in your browser. Nothing you enter is uploaded or stored." },
+        { q: "Is this AI Plagiarism Checker & Paraphraser free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Paste your text or import a file.",

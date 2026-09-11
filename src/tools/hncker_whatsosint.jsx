@@ -123,7 +123,7 @@ export default function hncker_whatsosint() {
   return (
     <ToolLayout
       title="WhatsOSINT — WhatsApp Number Lookup"
-      desc="Step-by-step reference: install & use WhatsOSINT to check a WhatsApp number and pull its public data. Educational purposes only."
+      desc="WhatsOSINT Guide - step-by-step reference to install and use WhatsOSINT to check a WhatsApp number and pull its public data. Educational purposes only, free."
       icon="💬"
       iconBg="linear-gradient(135deg, rgba(6,182,212,0.18), rgba(57,255,20,0.08))"
       category="security"

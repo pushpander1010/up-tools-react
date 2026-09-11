@@ -112,12 +112,16 @@ export default function ascii_art_generator() {
   return (
     <ToolLayout
       title="ASCII Art Generator"
-      desc="Convert text to ASCII art with multiple fonts. Create styled text for social media, bios, and comments."
+      desc="ASCII Art Generator - convert text to ASCII art with multiple fonts. Create styled text for social, online free. Free online, no sign-up. Works on any device."
       icon="🎨" iconBg="rgba(245,158,11,0.08)"
       category="text" slug="ascii-art-generator"
       faq={[
         { q: 'What is ASCII art?', a: 'ASCII art is a graphic design technique that uses computers for presentation and consists of pictures pieced together from the 95 printable characters defined by the ASCII standard.' },
         { q: 'Can I use this for social media?', a: 'Yes! ASCII art works great in Instagram bios, Discord messages, GitHub READMEs, and terminal outputs.' },
+        { q: "How do I use this ASCII Art Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this ASCII Art Generator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Type your text in the input field.',

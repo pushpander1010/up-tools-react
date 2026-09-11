@@ -73,10 +73,18 @@ export default function fifa_world_cup_discipline() {
   return (
     <ToolLayout
       title="FIFA World Cup 2026 Discipline Tracker"
-      desc="Track yellow cards, red cards, and fair play points across all World Cup 2026 matches."
+      desc="FIFA World Cup 2026 Discipline Tracker - track yellow cards, red cards, and fair play points across, online free. Free online, no sign-up. Works on any device."
       icon="🟨" iconBg="rgba(234,179,8,0.08)"
       category="fifa" slug="fifa-world-cup-discipline"
       faq={FAQ_DATA.map(f => ({ q: f.q, a: f.a }))}
+            faq={[
+        { q: "How do I use this FIFA World Cup 2026 Discipline Tracker online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this FIFA World Cup 2026 Discipline Tracker free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
+        { q: "Do I need to sign up or download an app?", a: "No sign-up or download needed. This FIFA World Cup 2026 Discipline Tracker works directly in your browser on Android, iPhone, and desktop." },
+        { q: "Does it work on mobile phones?", a: "Yes. The FIFA World Cup 2026 Discipline Tracker is mobile-friendly and works in any browser on Android, iPhone, and desktop." },
+      ]}
       howItWorks={[
         "We collect official FIFA match reports after each game.",
         "Every yellow and red card is logged per player and team.",

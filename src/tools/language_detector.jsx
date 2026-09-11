@@ -48,12 +48,16 @@ export default function language_detector() {
   return (
     <ToolLayout
       title="Language Detector"
-      desc="Detect the language of any text using pattern analysis. Supports 14+ languages including Hindi, Arabic, Chinese, and more."
+      desc="Language Detector - detect the language of any text using pattern analysis. Supports 14+ languages, online free. Free online, no sign-up. Works on any device."
       icon="🌍" iconBg="rgba(99,102,241,0.08)"
       category="text" slug="language-detector"
       faq={[
         { q: "How does language detection work?", a: "It analyzes character patterns specific to each language (e.g., Devanagari for Hindi, Cyrillic for Russian) to determine the most likely language." },
         { q: "How accurate is it?", a: "It works best with longer texts. Short phrases may be harder to detect accurately." },
+        { q: "How do I use this Language Detector online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this Language Detector free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Enter or paste text in any language.",

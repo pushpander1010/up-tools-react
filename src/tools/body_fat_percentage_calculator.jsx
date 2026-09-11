@@ -29,12 +29,16 @@ export default function body_fat_percentage_calculator() {
   return (
     <ToolLayout
       title="Body Fat Percentage Calculator"
-      desc="Calculate body fat percentage using the Navy method. Gender-specific formula with fat mass and lean mass breakdown."
+      desc="Body Fat Percentage Calculator - calculate body fat percentage using the Navy method., online free. Free online, instant results. No sign-up, works on mobile."
       icon="📊" iconBg="rgba(239,68,68,0.08)"
       category="health" slug="body-fat-percentage-calculator"
       faq={[
         { q: 'How accurate is this calculator?', a: 'The Navy method provides a good estimate but is not as accurate as DEXA scans or hydrostatic weighing.' },
         { q: 'What is a healthy body fat percentage?', a: 'For men: 10-20% is athletic, 20-25% average. For women: 18-25% athletic, 25-31% average.' },
+        { q: "How do I use this Body Fat Percentage Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this Body Fat Percentage Calculator accurate?", a: "Yes. The Body Fat Percentage Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
+        { q: "Is this Body Fat Percentage Calculator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Enter your weight in kilograms and waist circumference in centimeters.',

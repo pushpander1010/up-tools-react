@@ -49,12 +49,16 @@ export default function investment_return_calculator() {
   return (
     <ToolLayout
       title="Investment Return Calculator"
-      desc="Calculate your investment returns with compound interest. See how your money grows over time."
+      desc="Investment Return Calculator - calculate your investment returns with compound, online free. Free online, instant results. No sign-up, works on mobile."
       icon="📈" iconBg="rgba(34,197,94,0.08)"
       category="finance" slug="investment-return-calculator"
       faq={[
         { q: "What is compound interest?", a: "Compound interest is interest calculated on both the initial principal and the accumulated interest from previous periods. It causes your investment to grow exponentially." },
         { q: "What is a good ROI?", a: "The S&P 500 has historically returned about 10% annually. A good ROI depends on your investment type: stocks (8-12%), bonds (4-6%), real estate (8-10%)." },
+        { q: "How do I use this Investment Return Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this Investment Return Calculator accurate?", a: "Yes. The Investment Return Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
+        { q: "Is this Investment Return Calculator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Enter initial investment, monthly contribution, and expected return rate.",

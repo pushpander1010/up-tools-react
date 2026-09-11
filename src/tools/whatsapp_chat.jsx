@@ -53,13 +53,16 @@ export default function whatsapp_chat() {
   return (
     <ToolLayout
       title="WhatsApp Click-to-Chat"
-      desc="Send a WhatsApp message by just entering the phone number and text. Copy link, generate QR, and share."
+      desc="WhatsApp Click-to-Chat - send a WhatsApp message by just entering the phone number and text. Copy, online free. Free online, no sign-up. Works on any device."
       icon="💬" iconBg="rgba(37,211,102,0.08)"
       category="whatsapp" slug="whatsapp-chat"
       faq={[
         { q: "How does WhatsApp click to chat work?", a: "You create a wa.me link that contains the phone number and optional message. Opening that link launches WhatsApp on mobile or Web WhatsApp on desktop." },
         { q: "Do I need to save the number first?", a: "No. Click-to-chat opens a conversation without saving the contact." },
         { q: "What phone number format should I use?", a: "Digits only: country code + number. Do not include +, spaces, or leading zeros." },
+        { q: "How do I use this WhatsApp Click-to-Chat online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         "Choose country code and enter digits-only phone number.",

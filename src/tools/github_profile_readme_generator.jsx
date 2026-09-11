@@ -156,6 +156,9 @@ export default function github_profile_readme_generator() {
         { q: "How do I use this?", a: "Fill in your details, toggle the sections you want, then copy the generated markdown. Create a repo named after your username and add it as README.md." },
         { q: "What stats are shown?", a: "GitHub stats cards, top languages, trophy achievements, activity graphs, contribution streaks, and the famous snake animation." },
         { q: "Are the badges live?", a: "Yes! All stats are fetched live from GitHub's API via shields.io and github-readme-stats. They update automatically." },
+        { q: "How do I use this GitHub Profile README Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         "Enter your GitHub username and personal details.",

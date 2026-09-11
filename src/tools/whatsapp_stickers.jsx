@@ -135,13 +135,16 @@ export default function whatsapp_stickers() {
   return (
     <ToolLayout
       title="WhatsApp Sticker Maker"
-      desc="Make WhatsApp stickers in your browser: upload, zoom, rotate, add text, and export as 512×512."
+      desc="WhatsApp Sticker Maker - make WhatsApp stickers in your browser: upload, zoom, rotate, add text,, online free. Free online, no sign-up. Works on any device."
       icon="🎨" iconBg="rgba(37,211,102,0.08)"
       category="whatsapp" slug="whatsapp-stickers"
       faq={[
         { q: "Is this tool free?", a: "Yes, it's completely free with no sign-ups required." },
         { q: "Is my data private?", a: "Yes. All processing runs in your browser. No data is uploaded." },
         { q: "Does it work on mobile?", a: "Yes. The tool is mobile-responsive and works on any device." },
+        { q: "How do I use this WhatsApp Sticker Maker online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         "Upload or paste an image into the editor.",

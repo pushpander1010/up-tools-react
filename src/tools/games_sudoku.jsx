@@ -294,6 +294,9 @@ export default function GamesSudoku() {
         { q: "How do pencil marks work?", a: "Toggle pencil mode (or press P) then press a number to add/remove a small candidate note in the cell." },
         { q: "What do the difficulties mean?", a: "Easy: 36 cells removed. Medium: 46. Hard: 54. All puzzles are guaranteed to have a unique solution." },
         { q: "Can I use keyboard?", a: "Yes — arrow keys to navigate, 1-9 to place, Backspace to erase, P for pencil mode." },
+        { q: "How do I play Sudoku Puzzle Game Online Free – 3 Difficulty Levels online free?", a: "Click Start and follow the on-screen steps. Use mouse, touch, or keyboard controls. No download needed." },
+        { q: "Can I play Sudoku Puzzle Game Online Free – 3 Difficulty Levels without downloading?", a: "Yes. This Sudoku Puzzle Game Online Free – 3 Difficulty Levels runs in your browser with no install. Free on mobile and desktop." },
+        { q: "How do I use this Sudoku Puzzle Game Online Free – 3 Difficulty Levels online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
       ]}
       howItWorks={[
         "Choose a difficulty and press New Game.",

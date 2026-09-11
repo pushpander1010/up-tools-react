@@ -197,9 +197,22 @@ export default function periodic_table() {
   return (
     <ToolLayout
       title="Interactive Periodic Table of Elements"
-      desc="All 118 elements. Click any element for full details. Search by name or symbol."
+      desc="Interactive Periodic Table of Elements - all 118 elements. Click any element for full details., online free. Free online, no sign-up. Works on any device."
       icon="⚛️" iconBg="rgba(99,102,241,0.08)"
       category="education" slug="periodic-table"
+      faq={[
+        { q: "How do I look up an element online free?", a: "Browse all 118 elements above or search by name, symbol, or number. Free, no sign-up." },
+        { q: "What details are shown?", a: "Atomic number, mass, group, period, and key properties for every element." },
+        { q: "Is it free?", a: "Yes, completely free with no sign-up. Study on any device." },
+        { q: "Do I need to sign up?", a: "No sign-up needed. Study all 118 elements free on any device." },
+        { q: "Does it work on mobile?", a: "Yes. Browse the table free in your phone browser, no app needed." },
+        { q: "Can I search elements?", a: "Yes. Search by name, symbol, or atomic number, free with no sign-up." },
+      ]}
+      howItWorks={[
+        "Browse all 118 elements above.",
+        "Click any element for full details.",
+        "Search by name, symbol, or number.",
+      ]}
     >
       <div className="max-w-6xl mx-auto space-y-3">
         <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4">

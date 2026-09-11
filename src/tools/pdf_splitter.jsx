@@ -94,12 +94,16 @@ export default function pdf_splitter() {
   return (
     <ToolLayout
       title="PDF Splitter"
-      desc="Split PDF files by page range, extract pages, or create separate documents. Free and private."
+      desc="PDF Splitter - split PDF files by page range, extract pages, or create separate documents. Free and, online free. Free online, no sign-up. Works on any device."
       icon="✂️" iconBg="rgba(6,182,212,0.08)"
       category="utility" slug="pdf-splitter"
       faq={[
         { q: "Is my data private?", a: "Yes. All processing happens in your browser. Files are never uploaded to our servers." },
         { q: "Can I split by page range?", a: "Yes! You can use ranges like '1-5, 8, 10-12' to extract specific pages." },
+        { q: "How do I use this PDF Splitter online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this PDF Splitter free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Drop a PDF file or click to select one.",

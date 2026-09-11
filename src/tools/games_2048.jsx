@@ -231,6 +231,10 @@ export default function games_2048() {
       faq={[
         { q: "How do I play 2048?", a: "Use arrow keys or swipe to slide tiles. When two tiles with the same number collide, they merge into one with their sum. Create a 2048 tile to win!" },
         { q: "Does progress save?", a: "Yes! Your game state is automatically saved. Click 'Continue' to resume where you left off." },
+        { q: "How do I play 2048 : A Fun Numbers Puzzle Game Online — Play Free online free?", a: "Click Start and follow the on-screen steps. Use mouse, touch, or keyboard controls. No download needed." },
+        { q: "Can I play 2048 : A Fun Numbers Puzzle Game Online — Play Free without downloading?", a: "Yes. This 2048 : A Fun Numbers Puzzle Game Online — Play Free runs in your browser with no install. Free on mobile and desktop." },
+        { q: "How do I use this 2048 : A Fun Numbers Puzzle Game Online — Play Free online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
+        { q: "Is this 2048 : A Fun Numbers Puzzle Game Online — Play Free free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Use arrow keys (or WASD) to slide tiles in four directions.",

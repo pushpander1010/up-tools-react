@@ -101,6 +101,9 @@ export default function ai_top10_stocks() {
         { q: "How are picks generated?", a: "AI combines technical analysis (RSI, SMA crossovers), fundamental data (PE, market cap, earnings), and news sentiment to score each stock." },
         { q: "How often are picks updated?", a: "Picks are generated daily. Check the 'Next Update' timestamp for the next refresh." },
         { q: "Is this financial advice?", a: "No. These are AI-generated scores for educational purposes. Always do your own research before investing." },
+        { q: "How do I use this AI Top 10 Stocks for Tomorrow online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         "Select a market (NSE, BSE, NASDAQ, NYSE).",

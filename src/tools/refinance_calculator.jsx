@@ -60,13 +60,16 @@ export default function refinance_calculator() {
   return (
     <ToolLayout
       title="Refinance Calculator"
-      desc="Calculate if refinancing your mortgage saves you money. See monthly savings and break-even point."
+      desc="Refinance Calculator - calculate if refinancing your mortgage saves you money. See, online free. Free online, instant results. No sign-up, works on mobile."
       icon="🔄" iconBg="rgba(34,197,94,0.08)"
       category="finance" slug="refinance-calculator"
       faq={[
         { q: 'When should I refinance my mortgage?', a: 'Refinance when you can lower your rate by at least 0.5-1%, plan to stay past the break-even point, or want to switch from ARM to fixed-rate.' },
         { q: 'What is the break-even point?', a: 'The break-even point is when your monthly savings equal your refinancing costs. For example, $3,000 costs / $150 savings = 20 months.' },
         { q: 'How much does refinancing cost?', a: 'Refinancing typically costs 2-5% of the loan amount, including appraisal, origination fees, title insurance, and closing costs.' },
+        { q: "How do I use this Refinance Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this Refinance Calculator accurate?", a: "Yes. The Refinance Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
       ]}
       howItWorks={[
         'Enter your current mortgage details (balance, rate, years remaining).',

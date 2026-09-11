@@ -50,12 +50,16 @@ export default function best_of_five_calculator() {
   return (
     <ToolLayout
       title="Best of Five Calculator"
-      desc="Automatically pick the five strongest subjects from board exam marks and calculate your best-of-five percentage."
+      desc="Best of Five Calculator - automatically pick the five strongest subjects from board, online free. Free online, instant results. No sign-up, works on mobile."
       icon="📝" iconBg="rgba(99,102,241,0.08)"
       category="education" slug="best-of-five-calculator"
       faq={[
         { q: 'How does best of five work?', a: 'The tool sorts all subjects by percentage (marks/max), picks the top 5, and calculates the combined percentage.' },
         { q: 'How many subjects do I need?', a: 'Enter at least 5 subjects with valid marks. The tool picks the best 5 automatically.' },
+        { q: "How do I use this Best of Five Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this Best of Five Calculator accurate?", a: "Yes. The Best of Five Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
+        { q: "Is this Best of Five Calculator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Enter subject names, marks obtained, and maximum marks for each.',

@@ -66,6 +66,9 @@ export default function mandi_prices() {
         { q: 'What is a mandi price?', a: 'A mandi (APMC) price is the wholesale rate at which agricultural commodities are traded at regulated Agricultural Produce Market Committees across India.' },
         { q: 'Which states are covered?', a: 'Maharashtra, Uttar Pradesh, Punjab, Madhya Pradesh, and Karnataka — synced daily from data.gov.in.' },
         { q: 'How is the modal price defined?', a: 'The modal price is the most commonly traded price for that commodity in a market on a given day. Min and max show the price range across the day.' },
+        { q: "How do I use this Mandi Prices India online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         'Pick a state (defaults to Maharashtra).',

@@ -70,12 +70,16 @@ export default function tds_calculator() {
   return (
     <ToolLayout
       title="TDS Calculator"
-      desc="Calculate Tax Deducted at Source (TDS) for salary, rent, interest, commission and contractor payments in India."
+      desc="TDS Calculator - calculate Tax Deducted at Source (TDS) for salary, rent, interest,, online free. Free online, instant results. No sign-up, works on mobile."
       icon="📊" iconBg="rgba(99,102,241,0.08)"
       category="finance" slug="tds-calculator"
       faq={[
         { q: "What is TDS?", a: "Tax Deducted at Source (TDS) is a system of collecting income tax at the source of income. The payer deducts tax before making the payment to the payee." },
         { q: "How is TDS on salary calculated?", a: "TDS on salary is calculated based on the applicable income tax slab rates. The employer estimates the annual income and deducts tax accordingly under Section 192." },
+        { q: "How do I use this TDS Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this TDS Calculator accurate?", a: "Yes. The TDS Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
+        { q: "Is this TDS Calculator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Select the payment type (Salary, Rent, Interest, Commission, or Contractor).",

@@ -34,13 +34,16 @@ export default function instagram_engagement_calculator() {
   return (
     <ToolLayout
       title="Instagram Engagement Calculator"
-      desc="Calculate your Instagram engagement rate instantly. Analyze likes, comments, shares and track growth."
+      desc="Instagram Engagement Calculator - calculate your Instagram engagement rate instantly., online free. Free online, instant results. No sign-up, works on mobile."
       icon="📊" iconBg="rgba(99,102,241,0.08)"
       category="social" slug="instagram-engagement-calculator"
       faq={[
         { q: 'What is a good Instagram engagement rate?', a: 'A good engagement rate is typically 3-6%. Above 6% is excellent. Below 1% is considered poor.' },
         { q: 'How is engagement rate calculated?', a: '(Likes + Comments + Shares) ÷ Followers × 100. This gives you the percentage of followers who interact with your content.' },
         { q: 'Does this tool store my data?', a: 'No. All calculations run locally in your browser. Nothing is uploaded or stored.' },
+        { q: "How do I use this Instagram Engagement Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this Instagram Engagement Calculator accurate?", a: "Yes. The Instagram Engagement Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
       ]}
       howItWorks={[
         'Enter your follower count.',

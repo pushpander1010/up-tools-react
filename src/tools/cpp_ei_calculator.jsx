@@ -30,12 +30,16 @@ export default function cpp_ei_calculator() {
   return (
     <ToolLayout
       title="CPP & EI Deduction Calculator"
-      desc="Estimate CPP and EI payroll deductions based on annual income (Canada)."
+      desc="CPP & EI Deduction Calculator - estimate CPP and EI payroll deductions based on annual, online free. Free online, instant results. No sign-up, works on mobile."
       icon="🍁" iconBg="rgba(220,38,38,0.08)"
       category="canada" slug="cpp-ei-calculator"
       faq={[
         { q: 'What is CPP & EI Calculator?', a: 'Estimate CPP and EI payroll deductions based on annual income (Canada).' },
         { q: 'Is it free to use?', a: 'Yes. All UpTools calculators are completely free, with no sign-ups required.' },
+        { q: "How do I use this CPP & EI Deduction Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this CPP & EI Deduction Calculator accurate?", a: "Yes. The CPP & EI Deduction Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
+        { q: "Is this CPP & EI Deduction Calculator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Enter your annual income in CAD.',

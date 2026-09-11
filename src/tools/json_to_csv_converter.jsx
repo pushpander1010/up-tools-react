@@ -67,12 +67,16 @@ export default function json_to_csv_converter() {
   return (
     <ToolLayout
       title="JSON to CSV Converter"
-      desc="Convert a JSON array of objects into CSV instantly. Handles nested flattening and downloads the result."
+      desc="JSON to CSV Converter - convert a JSON array of objects into CSV instantly. Handles nested, online free. Free online, instant results. No sign-up needed."
       icon="📊" iconBg="rgba(6,182,212,0.08)"
       category="dev" slug="json-to-csv-converter"
       faq={[
         { q: 'What input format is supported?', a: 'An array of flat or nested JSON objects, e.g. [{"name":"A","age":20}].' },
         { q: 'Does it flatten nested objects?', a: 'Yes — nested fields are flattened with dot notation (e.g. user.name).' },
+        { q: "How do I convert online free?", a: "Pick the from and to units above and the result appears instantly. Free, no sign-up, works on mobile." },
+        { q: "Which units are supported?", a: "All common units are supported. Choose from the dropdowns above for an instant free conversion." },
+        { q: "Is the conversion instant?", a: "Yes. Results appear live as you type, with no sign-up and no page reload." },
+        { q: "Is this JSON to CSV Converter free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Paste a JSON array of objects in the input area.',

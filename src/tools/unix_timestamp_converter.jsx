@@ -118,7 +118,7 @@ export default function unix_timestamp_converter() {
   return (
     <ToolLayout
       title="Unix Timestamp Converter"
-      desc="Convert Unix timestamps to dates and vice versa. Auto-detects seconds vs milliseconds."
+      desc="Unix Timestamp Converter - convert Unix timestamps to dates and vice versa. Auto-detects seconds, online free. Free online, instant results. No sign-up needed."
       icon="⏱️" iconBg="rgba(168,85,247,0.08)"
       category="dev" slug="unix-timestamp-converter"
       faq={[
@@ -126,6 +126,8 @@ export default function unix_timestamp_converter() {
         { q: 'What is the difference between seconds and milliseconds?', a: 'Unix timestamps can be in seconds (10 digits, e.g. 1700000000) or milliseconds (13 digits, e.g. 1700000000000). This tool auto-detects which format you\'re using.' },
         { q: 'What is the Unix epoch?', a: 'The Unix epoch is January 1, 1970 00:00:00 UTC — the starting point for Unix time. All timestamps count upward from this moment.' },
         { q: 'Why use Unix timestamps?', a: 'They\'re timezone-independent, easy to compare, and supported by virtually all programming languages and databases.' },
+        { q: "How do I convert online free?", a: "Pick the from and to units above and the result appears instantly. Free, no sign-up, works on mobile." },
+        { q: "Which units are supported?", a: "All common units are supported. Choose from the dropdowns above for an instant free conversion." },
       ]}
       howItWorks={[
         'Choose between Timestamp → Date or Date → Timestamp mode.',

@@ -40,12 +40,16 @@ export default function loan_comparison_calculator() {
   return (
     <ToolLayout
       title="Loan Comparison Calculator"
-      desc="Compare two loans side by side — EMI, total interest and total payable — to pick the cheaper option."
+      desc="Loan Comparison Calculator - compare two loans side by side — EMI, total interest and, online free. Free online, instant results. No sign-up, works on mobile."
       icon="⚖️" iconBg="rgba(99,102,241,0.08)"
       category="finance" slug="loan-comparison-calculator"
       faq={[
         { q: 'What does it compare?', a: 'Monthly EMI, total interest paid and total amount payable for each loan.' },
         { q: 'How is EMI calculated?', a: 'Using the standard amortization formula: P×r×(1+r)^n / ((1+r)^n−1).' },
+        { q: "How do I use this Loan Comparison Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this Loan Comparison Calculator accurate?", a: "Yes. The Loan Comparison Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
+        { q: "Is this Loan Comparison Calculator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Enter loan A details: amount, interest rate, and tenure.',

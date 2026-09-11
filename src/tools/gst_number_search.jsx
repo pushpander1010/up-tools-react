@@ -105,13 +105,16 @@ export default function gst_number_search() {
   return (
     <ToolLayout
       title="GST Number Search & Validator"
-      desc="Verify and validate any GSTIN (GST number) instantly. Check GST registration status, business name, state, registration date."
+      desc="GST Number Search & Validator - verify and validate any GSTIN (GST number) instantly. Check GST, online free. Free online, instant results. No login needed."
       icon="🧾" iconBg="rgba(34,197,94,0.08)"
       category="finance" slug="gst-number-search"
       faq={[
         { q: 'What is a GSTIN?', a: 'GSTIN (Goods and Services Tax Identification Number) is a 15-digit unique identifier assigned to every GST-registered business in India.' },
         { q: 'How do I verify a GST number?', a: 'Enter the 15-digit GSTIN in the search box. The tool will validate the format, decode the state code, PAN, entity type, and registration sequence.' },
         { q: 'What does a GSTIN contain?', a: 'A GSTIN has: 2-digit state code, 10-digit PAN, 1-digit entity number, 1-digit Z (default), and 1 check digit.' },
+        { q: "How do I check online free?", a: "Enter your input above and get an instant result. Free with no sign-up, works on mobile and desktop." },
+        { q: "What does it check?", a: "It validates your input against standard rules instantly. Enter the value above to see the result." },
+        { q: "Is my data kept private?", a: "Yes. Everything runs in your browser. Nothing you enter is uploaded or stored." },
       ]}
       howItWorks={[
         'Enter a 15-character GSTIN in the search box.',

@@ -97,13 +97,16 @@ export default function instagram_story_ideas_generator() {
   return (
     <ToolLayout
       title="Instagram Story Ideas Generator"
-      desc="Get 10 fresh story ideas for any niche. Never run out of content with categorized prompts."
+      desc="Instagram Story Ideas Generator - get 10 fresh story ideas for any niche. Never run out of content, online free. Free online, no sign-up. Works on any device."
       icon="💡" iconBg="rgba(168,85,247,0.08)"
       category="social" slug="instagram-story-ideas-generator"
       faq={[
         { q: "How many stories should I post daily?", a: "Aim for 3-7 stories per day. Too few won't engage; too many may cause fatigue. Consistency is key." },
         { q: "What makes a good Instagram story?", a: "Stories that spark interaction (polls, questions), provide value (tips, tutorials), or show authenticity (behind-the-scenes) tend to perform best." },
         { q: "Can I use these ideas for Reels too?", a: "Absolutely! Most story ideas translate well to Reels. Just adapt the format to be more polished and add trending audio." },
+        { q: "How do I use this Instagram Story Ideas Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         'Choose a category: Engagement, Behind the Scenes, Educational, Personal, or Trending.',

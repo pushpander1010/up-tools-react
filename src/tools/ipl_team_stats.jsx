@@ -25,12 +25,16 @@ export default function ipl_team_stats() {
   return (
     <ToolLayout
       title="IPL Team Statistics"
-      desc="All-time records, wins, titles, and performance stats for all IPL franchises."
+      desc="IPL Team Statistics - all-time records, wins, titles, and performance stats for all IPL franchises, online free. Free online, no sign-up. Works on any device."
       icon="📈" iconBg="rgba(234,179,8,0.08)"
       category="sports" slug="ipl-team-stats"
       faq={[
         { q: "Which team has won the most titles?", a: "Mumbai Indians and Chennai Super Kings are tied with 5 IPL titles each." },
         { q: "Best win percentage?", a: "Chennai Super Kings has the best win percentage at ~59.6%." },
+        { q: "How do I use this IPL Team Statistics online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this IPL Team Statistics free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={["View all-time team records sorted by titles", "See matches, wins, losses, win %", "Check finals and playoff appearances"]}
       schema={{"@context":"https://schema.org","@type":"SoftwareApplication","name":"IPL Team Statistics","applicationCategory":"UtilitiesApplication","url":"https://www.uptools.in/ipl-team-stats/","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}}

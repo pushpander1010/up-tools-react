@@ -39,13 +39,16 @@ export default function instagram_igtv_downloader() {
   return (
     <ToolLayout
       title="Instagram IGTV Downloader"
-      desc="Download Instagram IGTV long-form videos in HD quality. Save any public IGTV video to your device."
+      desc="Instagram IGTV Downloader - download Instagram IGTV long-form videos in HD quality. Save any public, online free. Free online in HD. No app or login needed."
       icon="📺" iconBg="rgba(236,72,153,0.08)"
       category="social" slug="instagram-igtv-downloader"
       faq={[
         { q: "Can I download IGTV videos from private accounts?", a: "No, only public IGTV videos can be downloaded. Private accounts restrict access." },
         { q: "What quality are IGTV downloads?", a: "IGTV videos are downloaded in the highest available quality, typically 1080p." },
         { q: "Is this tool free?", a: "Yes, completely free with no sign-ups required." },
+        { q: "How do I download online free?", a: "Paste the link above, pick your option, and save the file. Free with no sign-up or app needed." },
+        { q: "What quality do I get?", a: "You get the highest quality available, free. Paste the link above and save it to your device." },
+        { q: "Can I download on mobile?", a: "Yes. Open this page in your phone browser, paste the link, and save directly. No app needed." },
       ]}
       howItWorks={[
         "Copy the IGTV video URL from Instagram.",

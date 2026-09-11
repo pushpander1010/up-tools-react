@@ -254,6 +254,8 @@ export default function whatsapp_chat_generator() {
         { q: "Can I upload profile pictures?", a: "Yes. Upload a profile picture for the contact (and your own) and they appear in the chat header. You can also upload a custom chat wallpaper background." },
         { q: "How do I download the chat?", a: "Click 'Download PNG'. The chat is rendered on a canvas and downloaded as a high-resolution PNG (2x for sharpness) that you can share." },
         { q: "Is it free?", a: "Yes, completely free and runs in your browser. No images are uploaded to any server — everything stays on your device." },
+        { q: "How do I use this WhatsApp Chat Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
       ]}
       howItWorks={[
         "Set the contact name and upload a profile picture.",

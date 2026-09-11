@@ -64,12 +64,16 @@ export default function markdown_preview() {
   return (
     <ToolLayout
       title="Markdown Preview"
-      desc="Write Markdown and see rendered output in real-time. Live preview editor."
+      desc="Markdown Preview - write Markdown and see rendered output in real-time. Live preview editor, online free. Free online, no sign-up. Works on any device."
       icon="📝" iconBg="rgba(99,102,241,0.08)"
       category="text" slug="markdown-preview"
       faq={[
         { q: 'What Markdown is supported?', a: 'Headings, bold, italic, inline code, code blocks, lists, blockquotes, and line breaks.' },
         { q: 'Is it real-time?', a: 'Yes — the preview updates instantly as you type.' },
+        { q: "How do I use this Markdown Preview online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this Markdown Preview free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Write or paste Markdown in the left panel.',

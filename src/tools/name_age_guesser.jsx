@@ -48,13 +48,16 @@ export default function name_age_guesser() {
   return (
     <ToolLayout
       title="Name Age & Gender Guesser"
-      desc="Predict age, gender, and nationality from any first name. Free AI-powered name statistics tool."
+      desc="Name Age & Gender Guesser - predict age, gender, and nationality from any first name. Free, online free. Free online, no sign-up. Works on any device."
       icon="🔮" iconBg="rgba(168,85,247,0.08)"
       category="fun" slug="name-age-guesser"
       faq={[
         { q: 'How does this work?', a: 'The tool uses agify.io, genderize.io, and nationalize.io — free APIs built on public name datasets that estimate age, gender, and nationality from millions of real records.' },
         { q: 'How accurate is it?', a: 'Accuracy depends on how many records exist for that name. Common names with high counts give reliable estimates; rare names may return no data or a wide guess.' },
         { q: 'Can I check any name?', a: 'Yes, enter any first name. Names with non-ASCII characters work best when spelled phonetically.' },
+        { q: "How do I use this Name Age & Gender Guesser online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         'Type a first name and press Guess.',

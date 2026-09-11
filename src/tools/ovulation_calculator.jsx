@@ -34,12 +34,16 @@ export default function ovulation_calculator() {
   return (
     <ToolLayout
       title="Ovulation Calculator"
-      desc="Calculate ovulation date and fertility window for family planning."
+      desc="Ovulation Calculator - calculate ovulation date and fertility window for family, online free. Free online, instant results. No sign-up, works on mobile."
       icon="🌸" iconBg="rgba(236,72,153,0.08)"
       category="health" slug="ovulation-calculator"
       faq={[
         { q: 'How accurate is this calculator?', a: 'It provides estimates based on a 28-day average cycle. Cycles vary, so results are approximate.' },
         { q: 'What is the fertile window?', a: 'The 6-day period around ovulation when pregnancy is most likely: 5 days before ovulation and 1 day after.' },
+        { q: "How do I use this Ovulation Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this Ovulation Calculator accurate?", a: "Yes. The Ovulation Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
+        { q: "Is this Ovulation Calculator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Enter the first day of your last menstrual period.',

@@ -187,6 +187,8 @@ export default function games_minesweeper() {
         { q: "What are the difficulty levels?", a: "Easy has a 9×9 grid with 10 mines, Medium is 16×16 with 40 mines, and Expert is 30×16 with 99 mines." },
         { q: "Is the first click always safe?", a: "Yes! The board is generated after your first click, so you will never hit a mine on the first click." },
         { q: "How do I win?", a: "Reveal all safe cells without clicking on any mines. You don't need to flag all mines to win." },
+        { q: "How do I play Minesweeper Online - Classic Puzzle Game online free?", a: "Click Start and follow the on-screen steps. Use mouse, touch, or keyboard controls. No download needed." },
+        { q: "Can I play Minesweeper Online - Classic Puzzle Game without downloading?", a: "Yes. This Minesweeper Online - Classic Puzzle Game runs in your browser with no install. Free on mobile and desktop." },
       ]}
       howItWorks={[
         "Click or tap a cell to reveal it. Numbers show how many mines are adjacent.",

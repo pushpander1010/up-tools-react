@@ -186,13 +186,16 @@ export default function crypto_prices() {
   return (
     <ToolLayout
       title="Crypto Prices Live"
-      desc="Real-time cryptocurrency prices for 100 coins. Live market cap, volume, sparkline charts with 30s auto-refresh."
+      desc="Crypto Prices Live - real-time cryptocurrency prices for 100 coins. Live market cap, volume,, online free. Free online, no sign-up. Works on any device."
       icon="🪙" iconBg="rgba(245,158,11,0.08)"
       category="finance" slug="crypto-prices"
       faq={[
         { q: 'What is cryptocurrency?', a: 'Cryptocurrency is a digital or virtual currency secured by cryptography, operating on decentralized blockchain networks without central authority.' },
         { q: 'How do crypto prices work?', a: 'Crypto prices are determined by supply and demand on exchanges. They change in real-time as buyers and sellers trade.' },
         { q: 'What is market cap?', a: 'Market cap = Current Price × Total Circulating Supply. It measures the total value of a cryptocurrency.' },
+        { q: "How do I use this Crypto Prices Live online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         'Prices load automatically from CoinGecko API (100 coins by market cap).',

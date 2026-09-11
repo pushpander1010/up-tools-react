@@ -43,13 +43,16 @@ export default function phonetic_alphabet_converter() {
   return (
     <ToolLayout
       title="Phonetic Alphabet Converter"
-      desc="Convert text to NATO phonetic alphabet. Perfect for clear communication over phone or radio."
+      desc="Phonetic Alphabet Converter - convert text to NATO phonetic alphabet. Perfect for clear, online free. Free online, instant results. No sign-up needed."
       icon="🔤" iconBg="rgba(99,102,241,0.08)"
       category="utility" slug="phonetic-alphabet-converter"
       faq={[
         { q: 'What is the NATO phonetic alphabet?', a: 'It\'s a standardized set of words used to spell out letters clearly over radio or phone, e.g., "Alpha" for A, "Bravo" for B.' },
         { q: 'Does it support numbers?', a: 'Yes! Numbers 0-9 are converted too (e.g., 0 → Zero, 9 → Niner).' },
-        { q: 'Is this tool free?', a: 'Yes, completely free with no sign-up required.' }
+        { q: 'Is this tool free?', a: 'Yes, completely free with no sign-up required.' },
+        { q: "How do I convert online free?", a: "Pick the from and to units above and the result appears instantly. Free, no sign-up, works on mobile." },
+        { q: "Which units are supported?", a: "All common units are supported. Choose from the dropdowns above for an instant free conversion." },
+        { q: "Is the conversion instant?", a: "Yes. Results appear live as you type, with no sign-up and no page reload." },
       ]}
       howItWorks={[
         'Type any text into the input field.',

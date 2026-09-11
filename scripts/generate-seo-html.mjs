@@ -223,7 +223,7 @@ buildHtml('aiforrich','AIFORRICH - Algo Trading, Pine Script & Crypto Trading Gu
 buildHtml('about','About UpTools - Privacy-First Free Web Tools','UpTools is a fast, privacy-first collection of 300+ free web tools and 40+ games. Calculate tax, GST, EMI and SIP; convert currency; validate PAN; format JSON; and more — no logins, instant results.')
 // Snake is a custom page (no ToolLayout/GameShell title prop) — pin its SEO title
 // so it never falls back to the slug-derived 'Games/Snake'.
-buildHtml('games/snake','Snake Game Online - Classic Neon Arcade','Play Snake online free. Eat food, grow your snake, chase the high score. Arrow keys/WASD on desktop, swipe on mobile. No downloads, play in your browser.')
+buildHtml('games/snake','Play Snake Game Online Free - Classic Neon Arcade','Play Snake game online free - eat food, grow your snake, and chase the high score. Arrow keys and WASD on desktop, swipe on mobile. No download, free in your browser.')
 
 // ---- Blogs: prerender /blogs and /blogs/<slug> ----
 let blogCount = 0

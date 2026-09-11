@@ -33,12 +33,16 @@ export default function pan_aadhaar_link_status() {
   return (
     <ToolLayout
       title="PAN–Aadhaar Link Status Checker (Guide)"
-      desc="Validate PAN/Aadhaar format and jump to the official Income Tax portal to check link status."
+      desc="PAN–Aadhaar Link Status Checker (Guide) - validate PAN/Aadhaar format and jump to the official, online free. Free online, instant results. No login needed."
       icon="🆔" iconBg="rgba(234,179,8,0.08)"
       category="finance" slug="pan-aadhaar-link-status"
       faq={[
         { q: 'Does this tool check status directly?', a: 'No. This tool validates format and guides you to the official Income Tax portal to check status securely.' },
-        { q: 'Is my PAN or Aadhaar stored?', a: 'No. Everything runs in your browser. Nothing is sent to UpTools servers.' }
+        { q: 'Is my PAN or Aadhaar stored?', a: 'No. Everything runs in your browser. Nothing is sent to UpTools servers.' },
+        { q: "How do I check online free?", a: "Enter your input above and get an instant result. Free with no sign-up, works on mobile and desktop." },
+        { q: "What does it check?", a: "It validates your input against standard rules instantly. Enter the value above to see the result." },
+        { q: "Is my data kept private?", a: "Yes. Everything runs in your browser. Nothing you enter is uploaded or stored." },
+        { q: "Is this PAN–Aadhaar Link Status Checker (Guide) free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={['Enter your PAN and Aadhaar numbers.', 'Validate format locally.', 'Open the official portal to check link status.']}
       schema={{

@@ -15,6 +15,9 @@ export default function world_cup_2026_results() {
     { q: 'Who won the 2026 World Cup?', a: 'Spain won the 2026 World Cup, beating Argentina 1-0 in the final on July 19, 2026 at MetLife Stadium.' },
     { q: 'Who was the 2026 Golden Boot winner?', a: 'Kylian Mbappé finished as the 2026 Golden Boot winner with 10 goals.' },
     { q: 'Where was the 2026 final played?', a: 'The final was held at MetLife Stadium in East Rutherford, New Jersey on July 19, 2026.' },
+    { q: 'How do I check World Cup 2026 results online free?', a: 'Browse the results above by round or team. Free with no sign-up, works on mobile and desktop.' },
+    { q: 'Where can I see the full 2026 bracket?', a: 'Scroll the page above for the full knockout bracket, scores, and scorers, free online.' },
+    { q: 'Is this results page free?', a: 'Yes, completely free with no sign-up. Check unlimited matches on any device.' },
   ]
 
   return (

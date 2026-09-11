@@ -37,13 +37,16 @@ export default function percentage_calculator_pro() {
   return (
     <ToolLayout
       title="Percentage Calculator"
-      desc="Calculate percentages, percentage change, and increase/decrease with 4 modes."
+      desc="Percentage Calculator - calculate percentages, percentage change, and, online free. Free online, instant results. No sign-up, works on mobile."
       icon="%" iconBg="rgba(99,102,241,0.08)"
       category="math" slug="percentage-calculator"
       faq={[
         { q: 'What are the 4 modes?', a: 'Calculate what percentage X is of Y, find what percent X is of Y, compute percentage increase/decrease, and calculate a percentage of a number.' },
         { q: 'How do I calculate a tip?', a: 'Use "% of Number" mode: enter the tip percentage and the bill amount.' },
         { q: 'How do I calculate profit margin?', a: 'Use "What %" mode: enter profit as the first number and revenue as the second.' },
+        { q: "How do I use this Percentage Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this Percentage Calculator accurate?", a: "Yes. The Percentage Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
       ]}
       howItWorks={[
         'Select a mode: % of Number, What %, or % Change.',

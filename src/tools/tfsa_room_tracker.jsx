@@ -46,12 +46,16 @@ export default function tfsa_room_tracker() {
   return (
     <ToolLayout
       title="TFSA Room Tracker"
-      desc="Estimate TFSA contribution room using yearly limits, contributions, withdrawals, and carry-forward."
+      desc="TFSA Room Tracker - estimate TFSA contribution room using yearly limits, contributions,, online free. Free online, no sign-up. Works on any device."
       icon="🍁" iconBg="rgba(220,38,38,0.08)"
       category="canada" slug="tfsa-room-tracker"
       faq={[
         { q: 'What is TFSA Room Tracker?', a: 'Estimate TFSA contribution room using yearly limits, contributions, withdrawals, and carry-forward.' },
         { q: 'Is it free to use?', a: 'Yes. All UpTools calculators are completely free, with no sign-ups required.' },
+        { q: "How do I use this TFSA Room Tracker online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this TFSA Room Tracker free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Enter the year you turned 18 or became eligible for TFSA.',

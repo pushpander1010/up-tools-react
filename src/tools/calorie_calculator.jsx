@@ -87,6 +87,8 @@ const FAQs = [
   { q: 'How do I lose weight effectively?', a: 'Create a calorie deficit by consuming ~500 fewer calories than your TDEE (Total Daily Expenditure). This leads to about 0.5 kg weight loss per week. Combine with regular exercise and adequate protein intake for best results.' },
   { q: 'What is the Mifflin-St Jeor formula?', a: 'It is widely considered the most accurate BMR formula. For males: BMR = 10×weight(kg) + 6.25×height(cm) - 5×age + 5. For females: BMR = 10×weight(kg) + 6.25×height(cm) - 5×age - 161.' },
   { q: 'What is TDEE and how is it calculated?', a: 'TDEE (Total Daily Energy Expenditure) = BMR × Activity Level. It represents the total calories you burn in a day including all activities. Your activity level multiplier ranges from 1.2 (sedentary) to 1.9 (very active).' },
+  { q: "How do I calculate calories online free?", a: "Enter your age, weight, height, and activity level above for an instant calorie target. Free, no sign-up." },
+  { q: "Is the calorie calculator free?", a: "Yes, completely free with no sign-up. Calculate unlimited plans on any device." },
 ]
 
 const HOW_IT_WORKS = [
@@ -143,7 +145,7 @@ export default function calorie_calculator() {
   return (
     <ToolLayout
       title="Calorie Calculator"
-      desc="Calculate your daily calorie needs using the Mifflin-St Jeor formula. Get BMR, TDEE, BMI, ideal weight range, and macro split."
+      desc="Calorie Calculator - calculate your daily calorie needs using the Mifflin-St Jeor, online free. Free online, instant results. No sign-up, works on mobile."
       icon="🔥" iconBg="rgba(239,68,68,0.08)"
       category="health" slug="calorie-calculator"
       faq={FAQs}

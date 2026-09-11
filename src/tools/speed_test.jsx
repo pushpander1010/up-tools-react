@@ -144,13 +144,16 @@ export default function speed_test() {
   return (
     <ToolLayout
       title="Internet Speed Test"
-      desc="Measure your download, upload speed and ping. Cloudflare-powered, accurate results."
+      desc="Internet Speed Test - measure your download, upload speed and ping. Cloudflare-powered, accurate, online free. Free online, instant results. No login needed."
       icon="⚡" iconBg="rgba(34,197,94,0.08)"
       category="networking" slug="speed-test"
       faq={[
         { q: 'How accurate is this speed test?', a: 'Uses Cloudflare CDN edge servers. Each test runs 3 iterations and takes the median for consistency.' },
         { q: 'Does this store my data?', a: 'No. All measurements happen in your browser. Nothing is sent to any server.' },
         { q: 'What units are used?', a: 'Speed is shown in Mbps (megabits per second). 100 Mbps ≈ 12.5 MB/s file download.' },
+        { q: "How do I check online free?", a: "Enter your input above and get an instant result. Free with no sign-up, works on mobile and desktop." },
+        { q: "What does it check?", a: "It validates your input against standard rules instantly. Enter the value above to see the result." },
+        { q: "Is my data kept private?", a: "Yes. Everything runs in your browser. Nothing you enter is uploaded or stored." },
       ]}
       howItWorks={[
         'Click Start to begin the test.',

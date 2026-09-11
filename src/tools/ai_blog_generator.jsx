@@ -67,13 +67,16 @@ ${keywords ? '- Naturally incorporate these keywords: ' + keywords : ''}
   return (
     <ToolLayout
       title="AI Blog Post Generator"
-      desc="Generate full SEO-optimized blog posts instantly with AI. Enter a topic, pick tone and length, get a complete article in seconds."
+      desc="AI Blog Post Generator - generate full SEO-optimized blog posts instantly with AI. Enter a topic,, online free. Free online, no sign-up. Works on any device."
       icon="📝" iconBg="rgba(99,102,241,0.08)"
       category="ai" slug="ai-blog-generator"
       faq={[
         { q: "Is the AI blog generator free?", a: "Yes, completely free with no sign-up required. Powered by AI via a secure server-side proxy." },
         { q: "Can I use the generated blog posts?", a: "Yes. The generated content is yours to use, edit, and publish. Always review and personalize before publishing." },
         { q: "How long does it take?", a: "Most blog posts stream in 15–30 seconds depending on length." },
+        { q: "How do I use this AI Blog Post Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         "Enter your blog topic and select tone, length, and audience.",

@@ -119,12 +119,16 @@ export default function InstagramBioGenerator() {
   return (
     <ToolLayout
       title="Instagram Bio Generator"
-      desc="Create engaging and creative Instagram bios with AI. Get multiple variations tailored to your style."
+      desc="Instagram Bio Generator - create engaging and creative Instagram bios with AI. Get multiple, online free. Free online, no sign-up. Works on any device."
       icon="📝" iconBg="rgba(236,72,153,0.08)"
       category="social" slug="instagram-bio-generator"
       faq={[
         { q: "How many characters can an Instagram bio have?", a: "Instagram bios are limited to 150 characters." },
         { q: "Can I customize the tone?", a: "Yes! Choose from professional, casual, creative, motivational, minimalist, or funny tones." },
+        { q: "How do I use this Instagram Bio Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this Instagram Bio Generator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Enter your name, profession, and interests.",

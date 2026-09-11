@@ -77,12 +77,16 @@ export default function bible_verse() {
   return (
     <ToolLayout
       title="Bible Verse"
-      desc="Look up Bible verses with multiple translations."
+      desc="Bible Verse - look up Bible verses with multiple translations, online free. Free online, no sign-up. Works on any device, anytime."
       icon="✝️" iconBg="rgba(99,102,241,0.08)"
       category="text" slug="bible-verse"
       faq={[
         { q: "What translations are available?", a: "KJV (King James Version), ASV (American Standard Version), and WEB (World English Bible)." },
         { q: "How do I search for a verse?", a: "Type a reference like 'John 3:16' or 'Psalm 23' and press Enter or click Lookup." },
+        { q: "How do I use this Bible Verse online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this Bible Verse free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Select a translation (KJV, ASV, or WEB).",

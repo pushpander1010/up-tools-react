@@ -253,6 +253,9 @@ export default function pnl_calculator() {
         { q: 'How is share P&L calculated?', a: 'P&L = (Sell Price - Buy Price) × Quantity. Positive = profit, negative = loss.' },
         { q: 'How many stocks are available?', a: `We have ${STOCKS.india.length} Indian stocks (NSE/BSE) and ${STOCKS.us.length} US stocks (NYSE/NASDAQ) — the complete list of major listed companies.` },
         { q: 'Can I track multiple trades?', a: 'Yes — click "+ Add Trade" for unlimited rows. Total P&L across all trades is shown at the bottom.' },
+        { q: "How do I use this Share P&L Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this Share P&L Calculator accurate?", a: "Yes. The Share P&L Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
       ]}
       howItWorks={[
         'Choose your market — India or USA.',

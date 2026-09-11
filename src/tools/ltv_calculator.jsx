@@ -106,12 +106,16 @@ export default function ltv_calculator() {
   return (
     <ToolLayout
       title="LTV Calculator"
-      desc="Calculate Loan-to-Value ratio, equity, and PMI requirement."
+      desc="LTV Calculator - calculate Loan-to-Value ratio, equity, and PMI requirement, online free. Free online, instant results. No sign-up, works on mobile."
       icon="🏠" iconBg="rgba(245,158,11,0.08)"
       category="finance" slug="ltv-calculator"
       faq={[
         { q: "What is LTV?", a: "Loan-to-Value ratio is the percentage of a property's value that is financed by a loan. Lower LTV means more equity." },
         { q: "When is PMI required?", a: "PMI (Private Mortgage Insurance) is typically required when LTV exceeds 80%." },
+        { q: "How do I use this LTV Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this LTV Calculator accurate?", a: "Yes. The LTV Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
+        { q: "Is this LTV Calculator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Enter the property value and down payment or loan amount.",

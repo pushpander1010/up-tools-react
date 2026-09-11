@@ -71,12 +71,16 @@ export default function text_repeater() {
   return (
     <ToolLayout
       title="Text Repeater"
-      desc="Repeat any text 1–1000× with custom separators and case transforms. Copy or download instantly."
+      desc="Text Repeater - repeat any text 1–1000× with custom separators and case transforms. Copy or, online free. Free online, no sign-up. Works on any device."
       icon="🔁" iconBg="rgba(99,102,241,0.08)"
       category="text" slug="text-repeater"
       faq={[
         { q: 'What is Text Repeater?', a: 'Repeat any text 1–1000 times with custom separators (newline, comma, space, pipe). Generate repeated content with case options. Copy or download.' },
         { q: 'What separators are available?', a: 'Newline, Comma + Space, Space, Pipe, Tab, or a custom separator you define.' },
+        { q: "How do I use this Text Repeater online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this Text Repeater free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Enter the text you want to repeat.',

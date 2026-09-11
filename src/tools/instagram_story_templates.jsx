@@ -109,12 +109,16 @@ export default function instagram_story_templates() {
   return (
     <ToolLayout
       title="Instagram Story Templates"
-      desc="Browse ready-made story templates for any occasion. Business, personal, promotional, interactive, and more."
+      desc="Instagram Story Templates - browse ready-made story templates for any occasion. Business, personal,, online free. Free online, no sign-up. Works on any device."
       icon="📱" iconBg="rgba(236,72,153,0.08)"
       category="social" slug="instagram-story-templates"
       faq={[
         { q: 'Can I customize the templates?', a: 'Yes! Select a template to load it into the editor, then modify the text as needed before copying.' },
         { q: 'How do interactive elements work?', a: 'Toggle elements like polls, questions, and quizzes to add engagement prompts to your story text.' },
+        { q: "How do I use this Instagram Story Templates online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this Instagram Story Templates free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Choose a template category (business, personal, etc.).',

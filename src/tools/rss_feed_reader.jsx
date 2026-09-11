@@ -52,13 +52,16 @@ export default function rss_feed_reader() {
   return (
     <ToolLayout
       title="RSS Feed Reader"
-      desc="Read any RSS or Atom feed as clean, readable articles. Browse news, blogs, and sites with a simple feed URL."
+      desc="RSS Feed Reader - read any RSS or Atom feed as clean, readable articles. Browse news, blogs, and, online free. Free online, no sign-up. Works on any device."
       icon="📰" iconBg="rgba(245,158,11,0.08)"
       category="dev" slug="rss-feed-reader"
       faq={[
         { q: 'What is an RSS feed?', a: 'RSS (Really Simple Syndication) is a format that lets websites publish updates in a standardized XML feed, which readers can subscribe to and browse.' },
         { q: 'How do I find a feed URL?', a: 'Most news sites and blogs expose a feed at URLs like example.com/feed or example.com/rss. Look for the RSS icon or add /feed to a site URL.' },
         { q: 'What happens to the data?', a: 'Nothing is stored. The feed is fetched live through the rss2json API and displayed in your browser.' },
+        { q: "How do I use this RSS Feed Reader online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         'Pick a preset feed or paste any RSS/Atom URL.',

@@ -81,12 +81,16 @@ export default function weather_forecast() {
   return (
     <ToolLayout
       title="Weather Forecast"
-      desc="Check current weather and 7-day forecast for any city worldwide."
+      desc="Weather Forecast - check current weather and 7-day forecast for any city worldwide, online free. Free online, no sign-up. Works on any device."
       icon="🌤️" iconBg="rgba(6,182,212,0.08)"
       category="dev" slug="weather-forecast"
       faq={[
         { q: "Where does weather data come from?", a: "Weather data is fetched from Open-Meteo, a free open-source weather API." },
         { q: "Is this tool free?", a: "Yes, completely free with no API key required." },
+        { q: "How do I use this Weather Forecast online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this Weather Forecast free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Enter a city name or click the location button for auto-detection.",

@@ -62,6 +62,9 @@ export default function whatsapp_message_scheduler() {
         { q: "Can I schedule WhatsApp messages for free?", a: "Yes! WhatsApp Business has built-in message scheduling. For personal WhatsApp, you can use Android's built-in scheduler or iOS Shortcuts app for free." },
         { q: "Does WhatsApp have a built-in scheduler?", a: "WhatsApp Business has a built-in scheduler for quick replies and away messages. Personal WhatsApp doesn't have native scheduling." },
         { q: "How do I schedule a WhatsApp message on iPhone?", a: "Use the iOS Shortcuts app to create an automation that sends a WhatsApp message at a specific time." },
+        { q: "How do I use this WhatsApp Message Scheduler online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         "Choose your platform: WhatsApp Business, Android, or iOS.",

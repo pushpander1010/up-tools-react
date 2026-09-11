@@ -49,12 +49,16 @@ export default function basketball_stats_calculator() {
   return (
     <ToolLayout
       title="Basketball Stats Calculator"
-      desc="Calculate shooting percentages, True Shooting %, and player performance metrics. Free online basketball stats tool."
+      desc="Basketball Stats Calculator - calculate shooting percentages, True Shooting %, and, online free. Free online, instant results. No sign-up, works on mobile."
       icon="🏀" iconBg="rgba(234,88,12,0.08)"
       category="sports" slug="basketball-stats-calculator"
       faq={[
         { q: 'What stats does this calculator compute?', a: 'Field Goal %, 3-Point %, Free Throw %, True Shooting %, total points, rebounds, and assists.' },
         { q: 'What is True Shooting %?', a: 'True Shooting % is an advanced metric that accounts for field goals, 3-pointers, and free throws to measure scoring efficiency.' },
+        { q: "How do I use this Basketball Stats Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this Basketball Stats Calculator accurate?", a: "Yes. The Basketball Stats Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
+        { q: "Is this Basketball Stats Calculator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Enter your player's shooting and rebounding stats.",

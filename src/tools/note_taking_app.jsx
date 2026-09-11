@@ -39,12 +39,16 @@ export default function note_taking_app() {
   return (
     <ToolLayout
       title="Note Taking App"
-      desc="Quick note-taking tool with auto-save to your browser. Save, clear, and export notes as text files."
+      desc="Note Taking App - quick note-taking tool with auto-save to your browser. Save, clear, and export, online free. Free online, no sign-up. Works on any device."
       icon="📝" iconBg="rgba(99,102,241,0.08)"
       category="text" slug="note-taking-app"
       faq={[
         { q: "Where are my notes saved?", a: "Notes are saved in your browser's localStorage, so they persist between sessions but are only on this device." },
         { q: "Can I export my notes?", a: "Yes, click Export to download your note as a .txt file." },
+        { q: "How do I use this Note Taking App online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this Note Taking App free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Type your notes in the text area below.",

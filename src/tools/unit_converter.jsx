@@ -78,12 +78,16 @@ export default function unit_converter_pro() {
   return (
     <ToolLayout
       title="Unit Converter"
-      desc="Convert between units of length, weight, temperature, volume, area, speed, data, and time."
+      desc="Unit Converter - convert between units of length, weight, temperature, volume, area, speed,, online free. Free online, instant results. No sign-up needed."
       icon="🔄" iconBg="rgba(99,102,241,0.08)"
       category="tools" slug="unit-converter"
       faq={[
         { q: "What units are supported?", a: "8 categories: Length, Weight, Temperature, Volume, Area, Speed, Data Storage, and Time — with 5-8 units each." },
         { q: "How accurate are conversions?", a: "Conversions use standard scientific factors and are accurate to 6 decimal places." },
+        { q: "How do I convert online free?", a: "Pick the from and to units above and the result appears instantly. Free, no sign-up, works on mobile." },
+        { q: "Which units are supported?", a: "All common units are supported. Choose from the dropdowns above for an instant free conversion." },
+        { q: "Is the conversion instant?", a: "Yes. Results appear live as you type, with no sign-up and no page reload." },
+        { q: "Is this Unit Converter free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Select a category (Length, Weight, Temperature, etc.).",

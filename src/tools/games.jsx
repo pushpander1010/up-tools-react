@@ -109,6 +109,8 @@ export default function games() {
         { q: "Are these games really free?", a: "Yes! All games are 100% free with no sign-ups required." },
         { q: "Do games work on mobile?", a: "Yes, all games are mobile-responsive with touch controls." },
         { q: "How many games are there?", a: `${GAMES.length}+ games across arcade, puzzle, word, board, and casual categories.` },
+        { q: "How do I use this guide?", a: "Read the sections above step by step. Everything is explained in plain words with examples." },
+        { q: "Is this free?", a: "Yes, completely free with no sign-up. Read it online on any device." },
       ]}
       howItWorks={[
         "Browse or search games by name or category.",

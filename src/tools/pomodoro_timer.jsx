@@ -68,12 +68,16 @@ export default function pomodoro_timer() {
   return (
     <ToolLayout
       title="Pomodoro Timer"
-      desc="Stay focused with the Pomodoro Technique. 25-minute focus sessions with short and long breaks."
+      desc="Pomodoro Timer - stay focused with the Pomodoro Technique. 25-minute focus sessions with short and, online free. Free online, no sign-up. Works on any device."
       icon="🍅" iconBg="rgba(239,68,68,0.08)"
       category="productivity" slug="pomodoro-timer"
       faq={[
         { q: 'What is the Pomodoro Technique?', a: 'A time management method: work for 25 minutes, then take a 5-minute break. After 4 sessions, take a longer 15-minute break.' },
         { q: 'Can I customize durations?', a: 'Currently the durations are fixed at 25/5/15 minutes following the classic technique.' },
+        { q: "How do I use this Pomodoro Timer online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this Pomodoro Timer free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Select a mode: Focus, Short Break, or Long Break.',

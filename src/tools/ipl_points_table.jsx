@@ -46,12 +46,16 @@ export default function ipl_points_table() {
   return (
     <ToolLayout
       title="IPL 2025 Points Table"
-      desc="Live standings, NRR, form, and playoff tracker for all 10 IPL teams."
+      desc="IPL 2025 Points Table - live standings, NRR, form, and playoff tracker for all 10 IPL teams, online free. Free online, no sign-up. Works on any device."
       icon="🏆" iconBg="rgba(234,179,8,0.08)"
       category="sports" slug="ipl-points-table"
       faq={[
         { q: "How are points calculated?", a: "Win = 2 pts, Loss = 0 pts, No Result = 1 pt each. Teams ranked by points then NRR." },
         { q: "How many qualify?", a: "Top 4 teams qualify for playoffs." },
+        { q: "How do I use this IPL 2025 Points Table online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this IPL 2025 Points Table free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={["View the current IPL standings", "Sort by Points, NRR, Wins, or Matches", "Check each team's form and playoff status"]}
       schema={{"@context":"https://schema.org","@type":"SoftwareApplication","name":"IPL 2025 Points Table","applicationCategory":"UtilitiesApplication","url":"https://www.uptools.in/ipl-points-table/","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}}

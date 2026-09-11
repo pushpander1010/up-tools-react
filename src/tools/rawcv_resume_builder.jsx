@@ -175,12 +175,16 @@ ${skills.length ? `<div class="section"><div class="section-title">Skills</div><
   return (
     <ToolLayout
       title="AI Resume Builder (RawCV)"
-      desc="Build a professional ATS-friendly resume with AI. Free, no login, no watermark."
+      desc="AI Resume Builder (RawCV) - build a professional ATS-friendly resume with AI. Free,, online free. Free online, no sign-up. Works on any device."
       icon="📝" iconBg="rgba(99,102,241,0.08)"
       category="text" slug="rawcv-resume-builder"
       faq={[
         { q: "What is RawCV Resume Builder?", a: "A free, browser-based resume builder that generates clean, ATS-friendly HTML resumes you can download or copy." },
         { q: "Is it free?", a: "Yes. No login, no watermark, no limits. Your resume is built entirely in your browser." },
+        { q: "How do I use this AI Resume Builder (RawCV) online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this AI Resume Builder (RawCV) free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Choose a template style (Professional, Creative, or Executive).",

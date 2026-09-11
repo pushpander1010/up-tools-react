@@ -60,12 +60,16 @@ export default function InstagramCaptionGenerator() {
   return (
     <ToolLayout
       title="Instagram Caption Generator"
-      desc="Generate engaging captions for your Instagram posts. Multiple styles and tones available."
+      desc="Instagram Caption Generator - generate engaging captions for your Instagram posts. Multiple styles, online free. Free online, no sign-up. Works on any device."
       icon="💬" iconBg="rgba(236,72,153,0.08)"
       category="social" slug="instagram-caption-generator"
       faq={[
         { q: "How long should Instagram captions be?", a: "Captions can be up to 2,200 characters. For best engagement, 138-150 characters is ideal." },
         { q: "Should I use emojis?", a: "Yes! Posts with emojis get 30% more engagement on average." },
+        { q: "How do I use this Instagram Caption Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this Instagram Caption Generator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Enter your post topic or theme.",

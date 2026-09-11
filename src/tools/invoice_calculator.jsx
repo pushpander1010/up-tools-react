@@ -44,6 +44,10 @@ export default function invoice_calculator() {
       faq={[
         { q: "What does an invoice calculator do?", a: "An invoice calculator totals line items and applies discounts and taxes to show the amount due." },
         { q: "Can I use this for VAT, GST or sales tax?", a: "Yes. Enter the tax percentage that applies to your invoice, whether it is VAT, GST, sales tax or another local rate." },
+        { q: "How do I use this Invoice Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this Invoice Calculator accurate?", a: "Yes. The Invoice Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
+        { q: "Is this Invoice Calculator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Enter the quantity and rate per unit.",

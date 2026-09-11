@@ -25,12 +25,16 @@ export default function roi_calculator() {
   return (
     <ToolLayout
       title="ROI Calculator"
-      desc="Calculate return on investment (ROI) for your business or investments. Measure profitability."
+      desc="ROI Calculator - calculate return on investment (ROI) for your business or, online free. Free online, instant results. No sign-up, works on mobile."
       icon="📊" iconBg="rgba(34,197,94,0.08)"
       category="finance" slug="roi-calculator"
       faq={[
         { q: 'What is ROI?', a: 'ROI = ((Final Value - Initial Investment) / Initial Investment) × 100. It measures investment profitability.' },
         { q: 'What does a positive ROI mean?', a: 'A positive ROI means your investment gained value. Higher ROI indicates better performance.' },
+        { q: "How do I use this ROI Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this ROI Calculator accurate?", a: "Yes. The ROI Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
+        { q: "Is this ROI Calculator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Enter the initial investment amount.',

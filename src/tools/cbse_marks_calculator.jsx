@@ -58,13 +58,16 @@ export default function cbse_marks_calculator() {
   return (
     <ToolLayout
       title="CBSE Marks to Percentage Calculator"
-      desc="Convert CBSE board exam marks to percentage, grade & division. Supports 5-subject and custom subject lists."
+      desc="CBSE Marks to Percentage Calculator - convert CBSE board exam marks to percentage,, online free. Free online, instant results. No sign-up, works on mobile."
       icon="📝" iconBg="rgba(99,102,241,0.08)"
       category="study" slug="cbse-marks-calculator"
       faq={[
         { q: "How is CBSE percentage calculated?", a: "Add marks of all 5 subjects, divide by total maximum marks (usually 500), multiply by 100. Example: 420/500 × 100 = 84%." },
         { q: "What is CBSE grading system?", a: "A1 (91-100), A2 (81-90), B1 (71-80), B2 (61-70), C1 (51-60), C2 (41-50), D (33-40), E (below 33)." },
         { q: "Is CGPA different from percentage?", a: "Yes. CGPA = average grade points. To convert: Percentage = CGPA × 9.5. This tool calculates percentage directly from marks." },
+        { q: "How do I use this CBSE Marks to Percentage Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this CBSE Marks to Percentage Calculator accurate?", a: "Yes. The CBSE Marks to Percentage Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
       ]}
       howItWorks={[
         "Enter marks for each of the 5 CBSE subjects (out of 100).",

@@ -65,12 +65,16 @@ Use natural, conversational language. Add pattern interrupts for retention.`
   return (
     <ToolLayout
       title="AI YouTube Script Writer"
-      desc="Write complete, retention-optimized YouTube video scripts with hooks, sections, transitions, and CTAs. Just enter your topic."
+      desc="AI YouTube Script Writer - write complete, retention-optimized YouTube video scripts with hooks,, online free. Free online, no sign-up. Works on any device."
       icon="🎬" iconBg="rgba(239,68,68,0.08)"
       category="ai" slug="ai-youtube-script"
       faq={[
         { q: "What format are the scripts in?", a: "Scripts include labeled sections [HOOK], [INTRO], [SECTIONS], [OUTRO & CTA] with delivery notes in parentheses." },
         { q: "How long are the scripts?", a: "Depends on your duration setting: Short (~500–700 words), Medium (~1200–1600), or Long (~2000–2800)." },
+        { q: "How do I use this AI YouTube Script Writer online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this AI YouTube Script Writer free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Enter your video topic and optionally select a niche.",

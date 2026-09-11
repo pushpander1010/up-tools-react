@@ -160,13 +160,16 @@ export default function css_animation_generator() {
   return (
     <ToolLayout
       title="CSS Animation Generator"
-      desc="Build CSS @keyframes visually with live preview. Adjust timing, duration, direction, and export production-ready CSS."
+      desc="CSS Animation Generator - build CSS @keyframes visually with live preview. Adjust timing, duration,, online free. Free online, no sign-up. Works on any device."
       icon="✨" iconBg="rgba(139,92,246,0.08)"
       category="dev" slug="css-animation-generator"
       faq={[
         { q: "What are CSS @keyframes?", a: "@keyframes define animation sequences. You specify styles at different percentages (0% to 100%) and CSS smoothly transitions between them." },
         { q: "How do I use the generated code?", a: "Copy the CSS, add it to your stylesheet. Apply the '.animated-element' class (or rename it) to any HTML element you want to animate." },
         { q: "Are animations production-ready?", a: "The generated CSS is clean and modern. For best performance, use transform and opacity (as this tool does) to leverage GPU acceleration." },
+        { q: "How do I use this CSS Animation Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         "Choose a preset or build custom keyframes by adding percentage steps.",

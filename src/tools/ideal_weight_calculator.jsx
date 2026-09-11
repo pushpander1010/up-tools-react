@@ -54,13 +54,16 @@ export default function ideal_weight_calculator() {
   return (
     <ToolLayout
       title="Ideal Weight Calculator"
-      desc="Calculate your ideal body weight using the Devine formula. Get a healthy weight range based on your height and gender."
+      desc="Ideal Weight Calculator - calculate your ideal body weight using the Devine formula., online free. Free online, instant results. No sign-up, works on mobile."
       icon="⚖️" iconBg="rgba(34,197,94,0.08)"
       category="health" slug="ideal-weight-calculator"
       faq={[
         { q: 'How is ideal weight calculated?', a: 'This tool uses the Devine formula (1974): Male = 50 + 2.3 × (height in inches − 60), Female = 45.5 + 2.3 × (height in inches − 60).' },
         { q: 'BMI vs ideal weight — what is the difference?', a: 'BMI is a ratio of weight to height squared (kg/m²). Ideal weight formulas give a target weight directly. They complement each other but neither accounts for muscle mass or body composition.' },
         { q: 'What is the Devine formula?', a: 'Published by Dr. Benjamine Devine in 1974, it estimates ideal body weight based on height and gender. It was originally designed to determine drug dosages.' },
+        { q: "How do I use this Ideal Weight Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this Ideal Weight Calculator accurate?", a: "Yes. The Ideal Weight Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
       ]}
       howItWorks={[
         'Enter your height in centimetres.',

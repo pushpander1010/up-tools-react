@@ -263,13 +263,16 @@ export default function code_to_image() {
   return (
     <ToolLayout
       title="Code to Image Converter"
-      desc="Convert code snippets to beautiful shareable images. Choose themes, adjust styling, and download as PNG."
+      desc="Code to Image Converter - convert code snippets to beautiful shareable images. Choose themes,, online free. Free online, instant results. No sign-up needed."
       icon="📸" iconBg="rgba(251,146,60,0.08)"
       category="dev" slug="code-to-image"
       faq={[
         { q: "What image format is exported?", a: "The tool generates a high-quality PNG image at 2x resolution for crisp display on social media and blogs." },
         { q: "Can I customize the appearance?", a: "Yes! Choose from 6 themes, adjust font size, padding, and toggle line numbers. You can also set a custom background color." },
         { q: "Is my code sent to any server?", a: "No. Everything runs entirely in your browser using the Canvas API. Your code never leaves your device." },
+        { q: "How do I convert online free?", a: "Pick the from and to units above and the result appears instantly. Free, no sign-up, works on mobile." },
+        { q: "Which units are supported?", a: "All common units are supported. Choose from the dropdowns above for an instant free conversion." },
+        { q: "Is the conversion instant?", a: "Yes. Results appear live as you type, with no sign-up and no page reload." },
       ]}
       howItWorks={[
         "Paste or write your code in the editor textarea.",

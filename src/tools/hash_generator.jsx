@@ -43,12 +43,16 @@ export default function hash_generator() {
   return (
     <ToolLayout
       title="Hash Generator"
-      desc="Generate SHA-1, SHA-256, SHA-384, SHA-512 hashes from any text. Free online tool."
+      desc="Hash Generator - generate SHA-1, SHA-256, SHA-384, SHA-512 hashes from any text, online free. Free online, no sign-up. Works on any device."
       icon="🔐" iconBg="rgba(99,102,241,0.08)"
       category="dev" slug="hash-generator"
       faq={[
         { q: 'What hashing algorithms are supported?', a: 'SHA-1, SHA-256, SHA-384, and SHA-512 — all computed using the browser\'s built-in Web Crypto API.' },
         { q: 'Is my data private?', a: 'Yes. All hashing happens locally in your browser. No data is sent to any server.' },
+        { q: "How do I use this Hash Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this Hash Generator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Enter the text you want to hash.',

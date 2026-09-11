@@ -115,12 +115,16 @@ export default function quote_generator() {
   return (
     <ToolLayout
       title="Quote Generator"
-      desc="Generate inspiring quotes by category. Save favorites and share."
+      desc="Quote Generator - generate inspiring quotes by category. Save favorites and share, online free. Free online, no sign-up. Works on any device."
       icon="💬" iconBg="rgba(99,102,241,0.08)"
       category="text" slug="quote-generator"
       faq={[
         { q: "How many quotes are available?", a: "Over 40 quotes across 15+ categories including motivational, wisdom, love, and more." },
         { q: "Can I save my favorite quotes?", a: "Yes! Click the heart icon to save quotes to your favorites list (stored locally)." },
+        { q: "How do I use this Quote Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this Quote Generator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Select a category or search for keywords.",

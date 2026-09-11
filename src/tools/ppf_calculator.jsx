@@ -49,6 +49,9 @@ export default function ppf_calculator() {
         { q: 'What is the current PPF interest rate?', a: 'The PPF interest rate for Q1 FY 2024-25 is 7.1% per annum, compounded annually. Rates are set by the government quarterly.' },
         { q: 'What is the minimum and maximum PPF investment?', a: 'Minimum annual investment is ₹500 and maximum is ₹1,50,000 per financial year. You can invest in lump sum or up to 12 installments.' },
         { q: 'What is the PPF lock-in period?', a: 'PPF has a 15-year lock-in period. Partial withdrawal is allowed from the 7th year. Full maturity is at 15 years, extendable in 5-year blocks.' },
+        { q: "How do I use this PPF Calculator India online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this PPF Calculator India accurate?", a: "Yes. The PPF Calculator India uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
       ]}
       howItWorks={[
         'Enter how much you plan to invest annually in PPF (₹500 to ₹1,50,000).',

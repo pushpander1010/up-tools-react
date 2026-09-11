@@ -113,13 +113,16 @@ export default function fifa_world_cup_fantasy_team() {
   return (
     <ToolLayout
       title="FIFA World Cup 2026 Fantasy Team Builder"
-      desc="Build your dream starting XI from 40+ real World Cup stars. Pick a formation, place players, and share your team."
+      desc="FIFA World Cup 2026 Fantasy Team Builder - build your dream starting XI from 40+ real World Cup, online free. Free online, no sign-up. Works on any device."
       icon="⚽" iconBg="rgba(34,197,94,0.08)"
       category="sports" slug="fifa-world-cup-fantasy-team"
       faq={[
         { q: 'What formations are available?', a: '4-4-2, 4-3-3, 3-5-2, and 4-2-3-1 — the classic football formations.' },
         { q: 'Can I save my team?', a: 'Your team auto-saves to your browser. Generate a shareable link to challenge friends.' },
         { q: 'How is chemistry calculated?', a: 'Based on team completeness (all 11 filled) and nation diversity. More nations = higher chemistry.' },
+        { q: "How do I use this FIFA World Cup 2026 Fantasy Team Builder online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         'Select a formation from the dropdown.',

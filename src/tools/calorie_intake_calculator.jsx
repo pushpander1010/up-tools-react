@@ -40,12 +40,16 @@ export default function calorie_intake_calculator() {
   return (
     <ToolLayout
       title="Calorie Intake Calculator"
-      desc="Calculate your daily calorie needs based on age, weight, height, and activity level."
+      desc="Calorie Intake Calculator - calculate your daily calorie needs based on age, weight,, online free. Free online, instant results. No sign-up, works on mobile."
       icon="🔥" iconBg="rgba(245,158,11,0.08)"
       category="health" slug="calorie-intake-calculator"
       faq={[
         { q: 'How are calories calculated?', a: 'Using the Harris-Benedict equation for BMR, multiplied by an activity factor to get TDEE (Total Daily Energy Expenditure).' },
         { q: 'How many calories for weight loss?', a: 'A deficit of 500 calories/day typically results in about 1 lb (0.45 kg) of weight loss per week.' },
+        { q: "How do I use this Calorie Intake Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this Calorie Intake Calculator accurate?", a: "Yes. The Calorie Intake Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
+        { q: "Is this Calorie Intake Calculator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Enter your age, gender, weight (kg), and height (cm).',

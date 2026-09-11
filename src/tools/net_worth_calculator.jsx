@@ -33,12 +33,16 @@ export default function net_worth_calculator() {
   return (
     <ToolLayout
       title="Net Worth Calculator"
-      desc="Calculate your net worth by adding assets and subtracting liabilities. Track your financial progress."
+      desc="Net Worth Calculator - calculate your net worth by adding assets and subtracting, online free. Free online, instant results. No sign-up, works on mobile."
       icon="💰" iconBg="rgba(34,197,94,0.08)"
       category="finance" slug="net-worth-calculator"
       faq={[
         { q: 'What is net worth?', a: 'Net worth is total assets (what you own) minus total liabilities (what you owe). It is a snapshot of financial health.' },
         { q: 'Should I include my home?', a: 'Yes, include your home value as an asset and remaining mortgage as a liability.' },
+        { q: "How do I use this Net Worth Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this Net Worth Calculator accurate?", a: "Yes. The Net Worth Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
+        { q: "Is this Net Worth Calculator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Enter all your assets: cash, savings, investments, retirement, home, vehicles.',

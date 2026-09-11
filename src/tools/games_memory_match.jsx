@@ -166,6 +166,8 @@ export default function games_memory_match() {
         { q: "What are the difficulty levels?", a: "Easy has 6 pairs (4×3), Medium has 8 pairs (4×4), and Hard has 15 pairs (6×5)." },
         { q: "How is my score calculated?", a: "Your score is the number of moves it takes to find all pairs. Fewer moves means a better score!" },
         { q: "Are my best scores saved?", a: "Yes! Your best score for each difficulty is saved on your device and displayed when you start a new game." },
+        { q: "Can I play Memory Match Game - Test Your Memory without downloading?", a: "Yes. This Memory Match Game - Test Your Memory runs in your browser with no install. Free on mobile and desktop." },
+        { q: "How do I use this Memory Match Game - Test Your Memory online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
       ]}
       howItWorks={[
         "Click or tap a card to flip it and reveal its emoji.",

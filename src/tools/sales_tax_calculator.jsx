@@ -85,13 +85,16 @@ export default function sales_tax_calculator() {
   return (
     <ToolLayout
       title="US Sales Tax Calculator"
-      desc="Calculate sales tax for all 50 US states with accurate state and local rates."
+      desc="US Sales Tax Calculator - calculate sales tax for all 50 US states with accurate state, online free. Free online, instant results. No sign-up, works on mobile."
       icon="🧾" iconBg="rgba(34,197,94,0.08)"
       category="finance" slug="sales-tax-calculator"
       faq={[
         { q: 'Which US states have no sales tax?', a: 'Five US states have no state sales tax: Alaska, Delaware, Montana, New Hampshire, and Oregon. However, Alaska allows local sales taxes.' },
         { q: 'How do I calculate sales tax?', a: 'Multiply the price by the tax rate (as a decimal). For example, $100 × 0.0725 = $8.25 tax. Add this to the original price for the total.' },
         { q: 'Do local taxes apply on top of state sales tax?', a: 'Yes, many cities and counties add local sales taxes on top of the state rate. This calculator shows state rates only.' },
+        { q: "How do I use this US Sales Tax Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this US Sales Tax Calculator accurate?", a: "Yes. The US Sales Tax Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
       ]}
       howItWorks={[
         'Select a US state from the dropdown.',

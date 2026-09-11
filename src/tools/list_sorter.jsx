@@ -90,12 +90,16 @@ export default function ListSorter() {
   return (
     <ToolLayout
       title="List Sorter"
-      desc="Sort, shuffle, reverse, and deduplicate lists with advanced options."
+      desc="List Sorter - sort, shuffle, reverse, and deduplicate lists with advanced options, online free. Free online, no sign-up. Works on any device."
       icon="📋" iconBg="rgba(99,102,241,0.08)"
       category="text" slug="list-sorter"
       faq={[
         { q: 'What is List Sorter?', a: 'A tool to sort, shuffle, reverse, and deduplicate line-by-line lists. Supports natural numeric sorting and case-insensitive options.' },
         { q: 'How does deduplication work?', a: 'It removes duplicate lines, keeping only the first occurrence. "Dedupe+Count" shows each unique line with its frequency.' },
+        { q: "How do I use this List Sorter online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this List Sorter free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Paste your list (one item per line) in the input box.',

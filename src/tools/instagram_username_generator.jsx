@@ -116,12 +116,16 @@ export default function instagram_username_generator() {
   return (
     <ToolLayout
       title="Instagram Username Generator"
-      desc="Generate unique, creative Instagram username ideas. Choose from multiple styles and categories."
+      desc="Instagram Username Generator - generate unique, creative Instagram username ideas. Choose from, online free. Free online, no sign-up. Works on any device."
       icon="👤" iconBg="rgba(99,102,241,0.08)"
       category="social" slug="instagram-username-generator"
       faq={[
         { q: 'How do I check if a username is available?', a: 'After generating, try registering the username on Instagram. The tool provides suggestions but cannot check real-time availability.' },
         { q: 'Can I generate usernames for a business?', a: 'Yes! Select the "Business" category and "Professional" style for business-appropriate username suggestions.' },
+        { q: "How do I use this Instagram Username Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this Instagram Username Generator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Enter your name or brand keyword.',

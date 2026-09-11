@@ -26,13 +26,16 @@ export default function days_between_dates() {
   return (
     <ToolLayout
       title="Days Between Dates Calculator"
-      desc="Calculate days, weeks, months, and years between two dates. Instant date difference calculator."
+      desc="Days Between Dates Calculator - calculate days, weeks, months, and years between two, online free. Free online, instant results. No sign-up, works on mobile."
       icon="📅" iconBg="rgba(14,165,233,0.08)"
       category="utility" slug="days-between-dates"
       faq={[
         { q: 'Is Days Between Dates free?', a: "Yes, it's completely free with no sign-ups required." },
         { q: 'Is Days Between Dates private?', a: 'Yes. All calculations run in your browser. No data is uploaded.' },
         { q: 'Does Days Between Dates work on mobile?', a: 'Yes. All tools are mobile-responsive and work on any device.' },
+        { q: "How do I use this Days Between Dates Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this Days Between Dates Calculator accurate?", a: "Yes. The Days Between Dates Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
       ]}
       howItWorks={[
         'Select a start date.',

@@ -47,9 +47,22 @@ export default function EmojiPicker() {
   return (
     <ToolLayout
       title="Emoji Picker"
-      desc="Browse, search & copy 1500+ emojis organized by category."
+      desc="Emoji Picker - browse, search & copy 1500+ emojis organized by category, online free. Free online, no sign-up. Works on any device."
       icon="😄" iconBg="rgba(99,102,241,0.08)"
       category="fun" slug="emoji-picker"
+      faq={[
+        { q: "How do I copy an emoji?", a: "Click any emoji above and it copies instantly. Paste it into chats, posts, or bios." },
+        { q: "How do I find a specific emoji?", a: "Type in the search box above or browse by category. 1500+ emojis, free with no sign-up." },
+        { q: "Is this emoji picker free?", a: "Yes, completely free with no sign-up. Copy unlimited emojis on any device." },
+        { q: "Do I need to sign up to copy emojis?", a: "No sign-up needed. Click any emoji above and paste it anywhere, free on any device." },
+        { q: "Can I use emojis on any app?", a: "Yes. Copied emojis work in WhatsApp, Instagram, X, and every other app." },
+        { q: "Does it work on mobile?", a: "Yes. Search and copy emojis free in your phone browser, no app needed." },
+      ]}
+      howItWorks={[
+        "Search or browse 1500+ emojis by category above.",
+        "Click any emoji to copy it instantly.",
+        "Paste it anywhere - chats, posts, bios.",
+      ]}
     >
       <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-5">
         {/* Search + Size */}

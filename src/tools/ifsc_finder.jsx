@@ -90,12 +90,16 @@ export default function ifsc_finder() {
   return (
     <ToolLayout
       title="IFSC Code Finder"
-      desc="Find Indian bank branch details using IFSC code. Get bank name, branch, address, MICR, and more instantly."
+      desc="IFSC Code Finder - find Indian bank branch details using IFSC code. Get bank name, branch,, online free. Free online, instant results. No login needed."
       icon="🏦" iconBg="rgba(34,197,94,0.08)"
       category="finance" slug="ifsc-finder"
       faq={[
         { q: 'What is an IFSC code?', a: 'IFSC (Indian Financial System Code) is an 11-character alphanumeric code assigned to each bank branch in India for electronic fund transfers (NEFT, RTGS, IMPS).' },
         { q: 'Where do I find my IFSC code?', a: 'You can find it on your cheque book, bank statement, or your bank\'s website. It\'s also shown in UPI apps under bank account details.' },
+        { q: "How do I check online free?", a: "Enter your input above and get an instant result. Free with no sign-up, works on mobile and desktop." },
+        { q: "What does it check?", a: "It validates your input against standard rules instantly. Enter the value above to see the result." },
+        { q: "Is my data kept private?", a: "Yes. Everything runs in your browser. Nothing you enter is uploaded or stored." },
+        { q: "Is this IFSC Code Finder free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Enter an 11-character IFSC code (e.g., SBIN0000001).',

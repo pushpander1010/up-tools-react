@@ -76,7 +76,7 @@ export default function whatsapp_status_saver() {
   return (
     <ToolLayout
       title="WhatsApp Status Saver"
-      desc="WhatsApp Status Saver — save status photos and videos online free in HD by link or number. Android, iPhone and Web methods."
+      desc="WhatsApp Status Saver - whatsApp Status Saver — save status photos and videos online free in HD by, online free. Free online, no sign-up. Works on any device."
       icon="📱" iconBg="rgba(37,211,102,0.08)"
       category="whatsapp" slug="whatsapp-status-saver"
       faq={[

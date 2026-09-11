@@ -25,12 +25,16 @@ export default function tip_calculator() {
   return (
     <ToolLayout
       title="Tip Calculator"
-      desc="Calculate tip amount, total bill, and per-person split instantly."
+      desc="Tip Calculator - calculate tip amount, total bill, and per-person split instantly, online free. Free online, instant results. No sign-up, works on mobile."
       icon="💰" iconBg="rgba(245,158,11,0.08)"
       category="finance" slug="tip-calculator"
       faq={[
         { q: 'What is a standard tip?', a: 'In the US, 15-20% is standard for good service. 18-20% is common for restaurants.' },
         { q: 'Should I tip on pre-tax or post-tax?', a: 'Most people tip on the pre-tax amount, though it\'s a personal choice.' },
+        { q: "How do I use this Tip Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this Tip Calculator accurate?", a: "Yes. The Tip Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
+        { q: "Is this Tip Calculator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Enter the bill amount.',

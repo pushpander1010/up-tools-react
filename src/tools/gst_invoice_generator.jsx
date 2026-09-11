@@ -41,13 +41,16 @@ export default function gst_invoice_generator() {
   return (
     <ToolLayout
       title="GST Invoice Generator"
-      desc="Generate a GST-compliant invoice total: item amount, CGST, SGST/IGST and grand total — instantly."
+      desc="GST Invoice Generator - generate a GST-compliant invoice total: item amount, CGST, SGST/IGST and, online free. Free online, no sign-up. Works on any device."
       icon="🧾" iconBg="rgba(34,197,94,0.08)"
       category="finance" slug="gst-invoice-generator"
       faq={[
         { q: 'Does it split CGST and SGST?', a: 'Yes — for intra-state sales it shows CGST + SGST; for inter-state, IGST.' },
         { q: 'Is the output downloadable?', a: 'The totals are shown instantly; you can copy them for your invoice.' },
         { q: 'Is it free?', a: 'Yes, free and private.' },
+        { q: "How do I use this GST Invoice Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         'Enter the taxable amount and select GST rate.',

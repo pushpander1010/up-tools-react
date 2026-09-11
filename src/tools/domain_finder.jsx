@@ -121,6 +121,9 @@ export default function domain_finder() {
         { q: 'Does this check if domains are available?', a: 'Yes. When "Check live availability" is on, the tool queries the RDAP registry for the top 30 generated domains and labels each as Available or Taken. Unchecked domains that time out show no label — verify those on a registrar.' },
         { q: 'How is brand score calculated?', a: 'Based on name length (4-14 chars optimal), no hyphens, no digits, and TLD quality (.com > .in > .co).' },
         { q: 'How reliable is the availability check?', a: 'Availability is checked against the official RDAP registry (via rdap.org), the same source registrars use. A 404 means the domain is not registered. Note that some TLDs route slowly and may time out.' },
+        { q: "How do I check online free?", a: "Enter your input above and get an instant result. Free with no sign-up, works on mobile and desktop." },
+        { q: "What does it check?", a: "It validates your input against standard rules instantly. Enter the value above to see the result." },
+        { q: "Is my data kept private?", a: "Yes. Everything runs in your browser. Nothing you enter is uploaded or stored." },
       ]}
       howItWorks={[
         'Enter comma-separated seed keywords (e.g., "ai, health, travel").',

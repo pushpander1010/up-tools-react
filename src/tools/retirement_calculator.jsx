@@ -53,12 +53,16 @@ export default function retirement_calculator() {
   return (
     <ToolLayout
       title="Retirement Calculator"
-      desc="Calculate when you can retire based on your savings, income needs, and investment returns."
+      desc="Retirement Calculator - calculate when you can retire based on your savings, income, online free. Free online, instant results. No sign-up, works on mobile."
       icon="🏖️" iconBg="rgba(14,165,233,0.08)"
       category="finance" slug="retirement-calculator"
       faq={[
         { q: "How much do I need to retire?", a: "A common rule is the 4% rule: multiply your annual expenses by 25. If you need $50,000/year, you need $1.25 million saved." },
         { q: "What is the 4% rule?", a: "The 4% rule suggests you can withdraw 4% of your retirement savings annually without running out of money for 30 years." },
+        { q: "How do I use this Retirement Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this Retirement Calculator accurate?", a: "Yes. The Retirement Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
+        { q: "Is this Retirement Calculator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Enter your current age, savings, and monthly contribution.",

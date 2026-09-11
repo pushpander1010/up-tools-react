@@ -56,13 +56,16 @@ export default function sports_score_converter() {
   return (
     <ToolLayout
       title="Sports Score Converter"
-      desc="Convert scores between different sports formats and scoring systems."
+      desc="Sports Score Converter - convert scores between different sports formats and scoring systems, online free. Free online, instant results. No sign-up needed."
       icon="⚽" iconBg="rgba(34,197,94,0.08)"
       category="utility" slug="sports-score-converter"
       faq={[
         { q: 'What sports are supported?', a: 'Basketball, American Football, Soccer, Tennis, Baseball, and Ice Hockey.' },
         { q: 'How does the conversion work?', a: 'Enter a score and select a sport — it breaks down the score into scoring events (e.g., 10 basketball points = 10 free throws, or 5 field goals).' },
-        { q: 'Is this tool free?', a: 'Yes, completely free with no sign-ups required.' }
+        { q: 'Is this tool free?', a: 'Yes, completely free with no sign-ups required.' },
+        { q: "How do I convert online free?", a: "Pick the from and to units above and the result appears instantly. Free, no sign-up, works on mobile." },
+        { q: "Which units are supported?", a: "All common units are supported. Choose from the dropdowns above for an instant free conversion." },
+        { q: "Is the conversion instant?", a: "Yes. Results appear live as you type, with no sign-up and no page reload." },
       ]}
       howItWorks={[
         'Select a sport from the dropdown.',

@@ -154,6 +154,9 @@ export default function games_color_rush() {
         { q: "How do I play Color Rush?", a: "A grid of colored squares appears with one slightly different. Find and tap the odd one before the timer runs out!" },
         { q: "How does difficulty increase?", a: "Each level reduces the timer and makes the color difference subtler. Grid sizes of 3x3, 4x4, and 5x5 are available." },
         { q: "What's a good score?", a: "Anything over 10 is impressive! The color differences become extremely subtle at higher levels, testing even trained eyes." },
+        { q: "Can I play Color Rush Game - Test Your Eyesight without downloading?", a: "Yes. This Color Rush Game - Test Your Eyesight runs in your browser with no install. Free on mobile and desktop." },
+        { q: "How do I use this Color Rush Game - Test Your Eyesight online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
+        { q: "Is this Color Rush Game - Test Your Eyesight free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Choose a grid size: 3×3, 4×4, or 5×5.",

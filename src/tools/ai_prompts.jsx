@@ -108,6 +108,9 @@ export default function ai_prompts() {
         { q: 'What makes these prompts different?', a: 'Each prompt includes specific role assignment, detailed instructions, constraints, expected output format, and rules — not just a one-liner. They produce professional-quality output from any AI tool.' },
         { q: 'How do I use them?', a: 'Search or browse by category, expand a prompt to see the full text, copy it, then paste into ChatGPT, Gemini, Claude, or any AI tool.' },
         { q: 'Can I modify the prompts?', a: 'Absolutely! Replace bracketed placeholders with your specific details. The prompts are templates — customize them for your exact use case.' },
+        { q: "How do I use this AI Prompts Library online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         'Browse by category or search for specific topics.',

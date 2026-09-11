@@ -172,6 +172,8 @@ export default function games_whack_a_mole() {
         { q: "How does the difficulty increase?", a: "Every 5 points increases the level. Moles appear faster and stay visible for shorter time at higher levels." },
         { q: "What happens if I miss?", a: "Missing a mole (clicking an empty hole) plays a miss sound but doesn't reduce your score. Only whacking moles earns points." },
         { q: "How long is each round?", a: "Each round lasts 30 seconds. Try to get the highest score before time runs out!" },
+        { q: "Can I play Whack-a-Mole Online - Free Arcade Game without downloading?", a: "Yes. This Whack-a-Mole Online - Free Arcade Game runs in your browser with no install. Free on mobile and desktop." },
+        { q: "How do I use this Whack-a-Mole Online - Free Arcade Game online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
       ]}
       howItWorks={[
         "Click 'Start Game' to begin a 30-second round.",

@@ -126,13 +126,16 @@ export default function age_calculator() {
   return (
     <ToolLayout
       title="Age Calculator"
-      desc="Calculate your exact age in years, months, and days. Find your zodiac sign, personality traits, and fun life stats."
+      desc="Age Calculator - calculate your exact age in years, months, and days. Find your zodiac, online free. Free online, instant results. No sign-up, works on mobile."
       icon="🎂" iconBg="rgba(99,102,241,0.08)"
       category="text" slug="age-calculator"
       faq={[
         { q: 'How is my exact age calculated?', a: 'From your date of birth to today, accounting for varying month lengths and leap years.' },
         { q: 'What is a zodiac sign?', a: 'Based on your birth date, one of 12 astrological signs associated with constellations and personality archetypes.' },
         { q: 'Are zodiac traits accurate?', a: 'They\'re for fun and entertainment. Personality is shaped by many factors beyond birth date!' },
+        { q: "How do I use this Age Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this Age Calculator accurate?", a: "Yes. The Age Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
       ]}
       howItWorks={[
         'Select your birth day, month, and year from the dropdowns.',

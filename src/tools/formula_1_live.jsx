@@ -74,13 +74,16 @@ export default function formula_1_live() {
   return (
     <ToolLayout
       title="Formula 1 Live"
-      desc="Live Formula 1 session data: real-time driver positions, gaps, and session info powered by the free OpenF1 API."
+      desc="Formula 1 Live - live Formula 1 session data: real-time driver positions, gaps, and session info, online free. Free online, no sign-up. Works on any device."
       icon="🏎️" iconBg="rgba(239,68,68,0.08)"
       category="sports" slug="formula-1-live"
       faq={[
         { q: 'Where does the data come from?', a: 'All data comes from the free, open OpenF1 API, which mirrors the official F1 timing feeds during live sessions.' },
         { q: 'How current is the data?', a: 'Positions and gaps refresh automatically every 30 seconds while a session is running.' },
         { q: 'What if no session is live?', a: 'The tool shows the latest completed session\u2019s standings. During off-weekends it returns the most recent data.' },
+        { q: "How do I use this Formula 1 Live online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         'Open the page during a race weekend to see live timing.',

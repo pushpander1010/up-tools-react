@@ -46,13 +46,16 @@ export default function country_facts() {
   return (
     <ToolLayout
       title="Country Facts"
-      desc="Get detailed facts about any country: capital, population, area, currency, languages, flag, calling code, and timezone."
+      desc="Country Facts - get detailed facts about any country: capital, population, area, currency,, online free. Free online, no sign-up. Works on any device."
       icon="🌍" iconBg="rgba(16,185,129,0.08)"
       category="education" slug="country-facts"
       faq={[
         { q: 'What facts does this provide?', a: 'Capital, population, area, region, subregion, currency, official languages, calling code, top-level domain, flag, timezone, and coordinates.' },
         { q: 'How do I search?', a: 'Type a country name in English (e.g. "Canada", "Japan") or a 2-letter ISO code (e.g. "CA", "JP").' },
         { q: 'Is the data current?', a: 'Data comes from the countries.dev API (the free, keyless replacement for REST Countries) and reflects the latest available statistics.' },
+        { q: "How do I use this Country Facts online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         'Enter a country name or 2-letter code.',

@@ -90,12 +90,16 @@ export default function color_tool() {
   return (
     <ToolLayout
       title="Color Tool"
-      desc="Pick colors, convert between HEX, RGB, HSL, and CMYK formats. Generate complementary, analogous, and triadic palettes."
+      desc="Color Tool - pick colors, convert between HEX, RGB, HSL, and CMYK formats. Generate complementary,, online free. Free online, no sign-up. Works on any device."
       icon="🎨" iconBg="rgba(139,92,246,0.08)"
       category="design" slug="color-tool"
       faq={[
         { q: 'What color formats are supported?', a: 'HEX, RGB, HSL, and CMYK. Convert between any format instantly.' },
         { q: 'Can I generate color palettes?', a: 'Yes, see complementary, analogous, triadic, split-complementary, and monochromatic palettes from any color.' },
+        { q: "How do I use this Color Tool online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this Color Tool free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Use the sliders or enter a HEX code to pick a color.',

@@ -73,13 +73,16 @@ export default function whatsapp_font_formatter() {
   return (
     <ToolLayout
       title="WhatsApp Font Formatter"
-      desc="Type text and instantly preview bold, italic, strikethrough, monospace & Unicode font styles for WhatsApp."
+      desc="WhatsApp Font Formatter - type text and instantly preview bold, italic, strikethrough, monospace &, online free. Free online, no sign-up. Works on any device."
       icon="𝐖" iconBg="rgba(37,211,102,0.08)"
       category="whatsapp" slug="whatsapp-font-formatter"
       faq={[
         { q: "How do I make text bold in WhatsApp?", a: "Wrap your text with asterisks: *bold text*. This tool generates the formatting for you automatically." },
         { q: "What fonts work in WhatsApp?", a: "WhatsApp supports bold (*text*), italic (_text_), strikethrough (~text~), and monospace (```text```). Unicode styles like 𝐁𝐨𝐥𝐝 work too." },
         { q: "How do I copy formatted text?", a: "Click any style card to copy it to your clipboard, then paste directly into WhatsApp." },
+        { q: "How do I use this WhatsApp Font Formatter online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         "Type or paste your text in the input box.",

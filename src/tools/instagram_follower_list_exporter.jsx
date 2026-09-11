@@ -81,13 +81,16 @@ export default function instagram_follower_list_exporter() {
   return (
     <ToolLayout
       title="Instagram Follower List Exporter"
-      desc="Upload your Instagram data export and convert your followers list to CSV. Client-side, privacy-first."
+      desc="Instagram Follower List Exporter - upload your Instagram data export and convert your followers, online free. Free online, no sign-up. Works on any device."
       icon="📤" iconBg="rgba(34,197,94,0.08)"
       category="social" slug="instagram-follower-list-exporter"
       faq={[
         { q: "What format does this tool export?", a: "CSV format with S.No., Username, and Profile URL columns. Compatible with Excel, Google Sheets, and any spreadsheet app." },
         { q: "How do I get my follower list?", a: "Download your Instagram data from Settings → Privacy and Security → Download Your Information → Select 'Followers and following'." },
         { q: "Is my data secure?", a: "Yes. All processing happens in your browser. No data is uploaded to any server." },
+        { q: "How do I use this Instagram Follower List Exporter online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         'Upload your Instagram followers data file or paste the data.',

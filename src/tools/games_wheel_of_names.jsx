@@ -275,12 +275,16 @@ export default function games_wheel_of_names() {
       startAction={startSpin} startLabel="▶ Spin"
  
       title="Wheel of Names - Free Random Name Picker & Spinner"
-      desc="Spin a custom wheel of names to pick a random winner! Perfect for classroom raffles, giveaways, or decision-making."
+      desc="Wheel of Names - Free Random Name Picker & Spinner - spin a custom wheel of names to, online free. Play online free, no download. Works on mobile and desktop."
       icon="🎡" iconBg="rgba(99,102,241,0.08)"
       category="fun" slug="games-wheel-of-names"
       faq={[
         { q: "Is the spinner truly random?", a: "Yes! The spinner uses JavaScript's built-in Math.random(), providing high-quality pseudorandom numbers." },
         { q: "Can I paste hundreds of names?", a: "Yes, the wheel dynamically renders and scales text. We recommend under 100 for optimal readability." },
+        { q: "How do I play Wheel of Names - Free Random Name Picker & Spinner online free?", a: "Click Start and follow the on-screen steps. Use mouse, touch, or keyboard controls. No download needed." },
+        { q: "Can I play Wheel of Names - Free Random Name Picker & Spinner without downloading?", a: "Yes. This Wheel of Names - Free Random Name Picker & Spinner runs in your browser with no install. Free on mobile and desktop." },
+        { q: "How do I use this Wheel of Names - Free Random Name Picker & Spinner online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
+        { q: "Is this Wheel of Names - Free Random Name Picker & Spinner free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Enter one name per line in the text area.",

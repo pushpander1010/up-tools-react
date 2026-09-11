@@ -107,12 +107,16 @@ export default function stopwatch_timer() {
   return (
     <ToolLayout
       title="Stopwatch & Timer"
-      desc="Precision stopwatch with lap tracking and countdown timer with notifications."
+      desc="Stopwatch & Timer - precision stopwatch with lap tracking and countdown timer with notifications, online free. Free online, no sign-up. Works on any device."
       icon="⏱️" iconBg="rgba(99,102,241,0.08)"
       category="productivity" slug="stopwatch-timer"
       faq={[
         { q: 'Can I use both simultaneously?', a: 'The stopwatch and timer are in separate tabs, but you can switch between them freely.' },
         { q: 'Does the timer send notifications?', a: 'Yes, if you grant browser notification permission, you\'ll get an alert when the timer finishes.' },
+        { q: "How do I use this Stopwatch & Timer online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this Stopwatch & Timer free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Switch between Stopwatch and Timer tabs.',

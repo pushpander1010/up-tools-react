@@ -125,12 +125,16 @@ export default function json_to_typescript() {
   return (
     <ToolLayout
       title="JSON to TypeScript Generator"
-      desc="Convert JSON data to TypeScript interfaces with proper type inference and nesting."
+      desc="JSON to TypeScript Generator - convert JSON data to TypeScript interfaces with proper type, online free. Free online, no sign-up. Works on any device."
       icon="🔷" iconBg="rgba(59,130,246,0.08)"
       category="developer" slug="json-to-typescript"
       faq={[
         { q: 'What does this tool generate?', a: 'It generates TypeScript interface definitions from JSON data. It infers types (string, number, boolean, arrays, nested objects) and generates properly nested interfaces.' },
         { q: 'Does it handle nested objects?', a: 'Yes. Nested objects and arrays are properly typed with recursive type generation. Circular references are detected and handled gracefully.' },
+        { q: "How do I use this JSON to TypeScript Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this JSON to TypeScript Generator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Paste your JSON data into the input area or click "Load Sample".',

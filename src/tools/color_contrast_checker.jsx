@@ -60,9 +60,22 @@ export default function ColorContrastChecker() {
   return (
     <ToolLayout
       title="Color Contrast Checker"
-      desc="WCAG contrast checker for accessible colors. Test foreground/background combinations."
+      desc="Color Contrast Checker - wCAG contrast checker for accessible colors. Test foreground/background, online free. Free online, instant results. No login needed."
       icon="👁️" iconBg="rgba(99,102,241,0.08)"
       category="dev" slug="color-contrast-checker"
+      faq={[
+        { q: "How do I check color contrast online free?", a: "Enter foreground and background colors above for an instant WCAG ratio. Free, no sign-up." },
+        { q: "What is a good contrast ratio?", a: "4.5:1 or higher passes WCAG AA for normal text. 7:1 passes AAA. This tool shows it live." },
+        { q: "Is this checker free?", a: "Yes, completely free with no sign-up. Check unlimited color pairs on any device." },
+        { q: "Do I need to sign up?", a: "No sign-up needed. Check unlimited color pairs free on any device." },
+        { q: "Does it work on mobile?", a: "Yes. Check contrast free in your phone browser, no app needed." },
+        { q: "Which standards are covered?", a: "WCAG AA and AAA for normal and large text, with live pass and fail badges." },
+      ]}
+      howItWorks={[
+        "Enter the foreground and background colors above.",
+        "See the WCAG contrast ratio instantly.",
+        "Adjust until it passes AA or AAA.",
+      ]}
     >
       <div className="max-w-[600px] mx-auto space-y-4">
         <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-5">

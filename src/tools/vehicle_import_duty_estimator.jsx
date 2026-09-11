@@ -30,12 +30,16 @@ export default function vehicle_import_duty_estimator() {
   return (
     <ToolLayout
       title="Vehicle Import Duty Estimator"
-      desc="Estimate vehicle import duty and taxes for Canada. Quick guide calculator."
+      desc="Vehicle Import Duty Estimator - estimate vehicle import duty and taxes for Canada. Quick guide, online free. Free online, no sign-up. Works on any device."
       icon="🍁" iconBg="rgba(220,38,38,0.08)"
       category="canada" slug="vehicle-import-duty-estimator"
       faq={[
         { q: 'What is this tool?', a: 'Estimate vehicle import duty and taxes for Canada.' },
         { q: 'Is it free to use?', a: 'Yes. All UpTools calculators are completely free, with no sign-ups required.' },
+        { q: "How do I use this Vehicle Import Duty Estimator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this Vehicle Import Duty Estimator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Enter the vehicle value in CAD.',

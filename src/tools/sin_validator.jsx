@@ -42,12 +42,16 @@ export default function sin_validator() {
   return (
     <ToolLayout
       title="SIN Validator"
-      desc="Validate Canadian SIN numbers with checksum (Luhn). Privacy-first."
+      desc="SIN Validator - validate Canadian SIN numbers with checksum (Luhn). Privacy-first, online free. Free online, instant results. No login needed."
       icon="🍁" iconBg="rgba(220,38,38,0.08)"
       category="canada" slug="sin-validator"
       faq={[
         { q: 'What is a SIN?', a: 'A Social Insurance Number (SIN) is a 9-digit number issued by the Canadian government.' },
         { q: 'Is my SIN stored?', a: 'No. All validation happens locally in your browser. Nothing is uploaded.' },
+        { q: "How do I check online free?", a: "Enter your input above and get an instant result. Free with no sign-up, works on mobile and desktop." },
+        { q: "What does it check?", a: "It validates your input against standard rules instantly. Enter the value above to see the result." },
+        { q: "Is my data kept private?", a: "Yes. Everything runs in your browser. Nothing you enter is uploaded or stored." },
+        { q: "Is this SIN Validator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Enter a 9-digit Canadian SIN number.',

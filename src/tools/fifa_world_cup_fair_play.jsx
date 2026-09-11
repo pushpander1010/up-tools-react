@@ -4,13 +4,16 @@ export default function fifa_world_cup_fair_play() {
   return (
     <ToolLayout
       title="FIFA World Cup 2026 Fair Play"
-      desc="Which teams played the cleanest — and who's in the running for the Fair Play Award. Tied to the full discipline table."
+      desc="FIFA World Cup 2026 Fair Play - which teams played the cleanest — and who's in the, online free. Play online free, no download. Works on mobile and desktop."
       icon="🤝" iconBg="rgba(34,197,94,0.08)"
       category="fifa" slug="fifa-world-cup-fair-play"
       faq={[
         { q: "What is the FIFA Fair Play Award?", a: "It's given to the team with the best disciplinary record (fewest cards, positive play) plus advancement in the tournament." },
         { q: "How is fair play calculated?", a: "FIFA scores teams on yellow/red cards (points deducted per card), plus advancement and match results. Fewer cards = higher fair-play score." },
         { q: "Which team won fair play in 2026?", a: "Check the FIFA Discipline Tracker for the final fair-play standings once the tournament concludes." },
+        { q: "How do I play FIFA World Cup 2026 Fair Play online free?", a: "Click Start and follow the on-screen steps. Use mouse, touch, or keyboard controls. No download needed." },
+        { q: "Can I play FIFA World Cup 2026 Fair Play without downloading?", a: "Yes. This FIFA World Cup 2026 Fair Play runs in your browser with no install. Free on mobile and desktop." },
+        { q: "How do I use this FIFA World Cup 2026 Fair Play online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
       ]}
       howItWorks={[
         "Points deducted per yellow card and heavy penalty per red.",

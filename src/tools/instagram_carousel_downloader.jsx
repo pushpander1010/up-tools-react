@@ -36,13 +36,16 @@ export default function instagram_carousel_downloader() {
   return (
     <ToolLayout
       title="Instagram Carousel Downloader"
-      desc="Download all images from Instagram carousel posts. Save every slide in high quality."
+      desc="Instagram Carousel Downloader - download all images from Instagram carousel posts. Save every slide in, online free. Free online in HD. No app or login needed."
       icon="🎠" iconBg="rgba(168,85,247,0.08)"
       category="social" slug="instagram-carousel-downloader"
       faq={[
         { q: "What is a carousel post?", a: "A carousel post is an Instagram post that contains multiple images or videos that users can swipe through (up to 10 slides)." },
         { q: "Can I download all slides at once?", a: "Yes! This tool helps you access all images from a carousel post. You can save them individually or use the provided services." },
         { q: "Does this work with video carousels?", a: "Yes, the tool identifies carousel posts with both images and videos. For video slides, you'll be directed to appropriate download services." },
+        { q: "How do I download online free?", a: "Paste the link above, pick your option, and save the file. Free with no sign-up or app needed." },
+        { q: "What quality do I get?", a: "You get the highest quality available, free. Paste the link above and save it to your device." },
+        { q: "Can I download on mobile?", a: "Yes. Open this page in your phone browser, paste the link, and save directly. No app needed." },
       ]}
       howItWorks={[
         'Copy the URL of the Instagram carousel post.',

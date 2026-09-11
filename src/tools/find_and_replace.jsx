@@ -51,12 +51,16 @@ export default function FindAndReplace() {
   return (
     <ToolLayout
       title="Find & Replace"
-      desc="Find and replace text across your content. Supports regex, case-sensitive toggles, and shows replacement count."
+      desc="Find & Replace - find and replace text across your content. Supports regex, case-sensitive, online free. Free online, instant results. No login needed."
       icon="🔍" iconBg="rgba(99,102,241,0.08)"
       category="text" slug="find-and-replace"
       faq={[
         { q: 'What is Find & Replace?', a: 'A tool that lets you find all occurrences of text and replace them. Supports plain text and regular expressions, with an optional case-sensitive toggle.' },
         { q: 'How to use it?', a: 'Type the text to find and its replacement. Toggle case sensitivity or regex mode as needed. The output updates live.' },
+        { q: "How do I check online free?", a: "Enter your input above and get an instant result. Free with no sign-up, works on mobile and desktop." },
+        { q: "What does it check?", a: "It validates your input against standard rules instantly. Enter the value above to see the result." },
+        { q: "Is my data kept private?", a: "Yes. Everything runs in your browser. Nothing you enter is uploaded or stored." },
+        { q: "Is this Find & Replace free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Enter the text to find and the replacement text.',

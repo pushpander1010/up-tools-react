@@ -37,12 +37,16 @@ export default function ReverseText() {
   return (
     <ToolLayout
       title="Reverse Text"
-      desc="Reverse text characters, words, or lines instantly. All processing is done in your browser."
+      desc="Reverse Text - reverse text characters, words, or lines instantly. All processing is done in your, online free. Free online, no sign-up. Works on any device."
       icon="🔄" iconBg="rgba(99,102,241,0.08)"
       category="text" slug="reverse-text"
       faq={[
         { q: 'What is Reverse Text?', a: 'A tool that reverses your text in multiple ways: reverse characters, reverse words, reverse lines, or mirror text (reverse each line independently).' },
         { q: 'How to use it?', a: 'Paste or type text, then click one of the four reverse modes. The result appears instantly in the output area.' },
+        { q: "How do I use this Reverse Text online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this Reverse Text free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Type or paste your text in the input area.',

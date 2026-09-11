@@ -66,12 +66,16 @@ Requirements:
   return (
     <ToolLayout
       title="AI LinkedIn Headline Generator"
-      desc="Generate 12 professional LinkedIn headline options tailored to your role, tone, and keywords. Stand out in recruiter searches."
+      desc="AI LinkedIn Headline Generator - generate 12 professional LinkedIn headline options tailored to, online free. Free online, no sign-up. Works on any device."
       icon="💼" iconBg="rgba(14,165,233,0.08)"
       category="ai" slug="ai-linkedin-headline-generator"
       faq={[
         { q: "How many headlines do I get?", a: "12 unique headline options varying between recruiter-friendly, client-facing, and authority-building angles." },
         { q: "Can I customize the tone?", a: "Yes, choose from Professional, Casual, Bold, Creative, or Authoritative." },
+        { q: "How do I use this AI LinkedIn Headline Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this AI LinkedIn Headline Generator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Enter your role and optionally add keywords, target audience, and background.",

@@ -61,12 +61,16 @@ export default function tool_401k_calculator() {
   return (
     <ToolLayout
       title="401k Calculator"
-      desc="Calculate your 401k retirement savings with employer match, tax benefits, and investment growth projections."
+      desc="401k Calculator - calculate your 401k retirement savings with employer match, tax, online free. Free online, instant results. No sign-up, works on mobile."
       icon="💰" iconBg="rgba(234,179,8,0.08)"
       category="finance" slug="401k-calculator"
       faq={[
         { q: "How much should I contribute to my 401k?", a: "Financial experts recommend contributing at least enough to get your full employer match (typically 3-6% of salary). Ideally, aim for 10-15% of your gross income." },
         { q: "What is employer 401k matching?", a: "Employer matching is when your company contributes money to your 401k based on your contributions. Common matches are 50% or 100% of your contribution up to 3-6% of your salary." },
+        { q: "How do I use this 401k Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this 401k Calculator accurate?", a: "Yes. The 401k Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
+        { q: "Is this 401k Calculator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Enter your current age, retirement age, salary, and contribution details.",

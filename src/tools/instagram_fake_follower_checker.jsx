@@ -93,13 +93,16 @@ export default function instagram_fake_follower_checker() {
   return (
     <ToolLayout
       title="Instagram Fake Follower Checker"
-      desc="Analyze your follower list for suspicious accounts using pattern-based heuristics. Client-side, privacy-first."
+      desc="Instagram Fake Follower Checker - analyze your follower list for suspicious accounts using, online free. Free online, instant results. No login needed."
       icon="🕵️" iconBg="rgba(239,68,68,0.08)"
       category="social" slug="instagram-fake-follower-checker"
       faq={[
         { q: "How does this tool detect fake followers?", a: "It uses pattern-based heuristics: username patterns (long numbers, repeated chars, bot-like prefixes), statistical analysis, and common fake account naming conventions." },
         { q: "Is this 100% accurate?", a: "No. This is a heuristic analysis — it flags suspicious patterns but can produce false positives. Use it as a starting point, not a definitive judgment." },
         { q: "What should I do with fake followers?", a: "If you identify suspicious accounts, you can manually review and remove them. Focus on growing genuine, engaged followers instead." },
+        { q: "How do I check online free?", a: "Enter your input above and get an instant result. Free with no sign-up, works on mobile and desktop." },
+        { q: "What does it check?", a: "It validates your input against standard rules instantly. Enter the value above to see the result." },
+        { q: "Is my data kept private?", a: "Yes. Everything runs in your browser. Nothing you enter is uploaded or stored." },
       ]}
       howItWorks={[
         'Upload your followers file or paste your follower list.',

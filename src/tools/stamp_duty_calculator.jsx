@@ -58,13 +58,16 @@ export default function stamp_duty_calculator() {
   return (
     <ToolLayout
       title="UK Stamp Duty Calculator"
-      desc="Calculate Stamp Duty Land Tax (SDLT) on residential property purchases in England and Northern Ireland."
+      desc="UK Stamp Duty Calculator - calculate Stamp Duty Land Tax (SDLT) on residential, online free. Free online, instant results. No sign-up, works on mobile."
       icon="🏠" iconBg="rgba(99,102,241,0.08)"
       category="finance" slug="stamp-duty-calculator"
       faq={[
         { q: 'What is UK Stamp Duty?', a: 'SDLT is a tax paid when buying property in England and Northern Ireland. Rates are tiered: 0% up to £250K, 5% on £250K-£925K, 10% on £925K-£1.5M, 12% above £1.5M.' },
         { q: 'Do first-time buyers pay stamp duty?', a: 'First-time buyers get relief: no stamp duty on properties up to £425K, and 5% on £425K-£625K. Properties over £625K pay standard rates.' },
         { q: 'When do I pay stamp duty?', a: 'Stamp duty must be paid within 14 days of completion. Your solicitor typically handles this.' },
+        { q: "How do I use this UK Stamp Duty Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this UK Stamp Duty Calculator accurate?", a: "Yes. The UK Stamp Duty Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
       ]}
       howItWorks={[
         'Enter the property purchase price in pounds.',

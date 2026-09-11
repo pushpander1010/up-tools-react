@@ -66,13 +66,16 @@ export default function snapchat_story_ideas() {
   return (
     <ToolLayout
       title="Snapchat Story Ideas Generator"
-      desc="Generate creative Snapchat story ideas. Never run out of content inspiration!"
+      desc="Snapchat Story Ideas Generator - generate creative Snapchat story ideas. Never run out of content, online free. Free online, no sign-up. Works on any device."
       icon="👻" iconBg="rgba(250,204,21,0.08)"
       category="social" slug="snapchat-story-ideas"
       faq={[
         { q: 'What makes a good Snapchat story?', a: 'Good Snapchat stories are authentic, engaging, and tell a narrative. Use a mix of photos, videos, text, and stickers. Keep it under 10 snaps.' },
         { q: 'How often should I post Snapchat stories?', a: 'Post 1-3 times daily for best engagement. Consistency matters more than frequency.' },
-        { q: 'What are trending Snapchat story ideas?', a: 'Trending ideas include: day-in-the-life, behind-the-scenes, Q&A sessions, polls, challenges, tutorials, and reaction videos.' }
+        { q: 'What are trending Snapchat story ideas?', a: 'Trending ideas include: day-in-the-life, behind-the-scenes, Q&A sessions, polls, challenges, tutorials, and reaction videos.' },
+        { q: "How do I use this Snapchat Story Ideas Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         'Select a category (All, Daily Life, Fun, Creative, or Challenge).',

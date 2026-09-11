@@ -69,6 +69,8 @@ const FAQs = [
   { q: 'What is the best SIP amount to start with?', a: 'There is no universal "best" amount. Start with what you can comfortably afford — even ₹500/month works. The key is consistency. As your income grows, increase your SIP amount via a step-up SIP.' },
   { q: 'How is SIP different from Lump Sum investment?', a: 'SIP spreads your investment over time, reducing timing risk through rupee-cost averaging. Lump sum invests everything at once — potentially higher returns if markets are low, but riskier if markets fall after investing.' },
   { q: 'Is there tax on SIP returns?', a: 'Yes. Equity mutual fund gains are taxed as LTCG (>1 year, ₹1L exemption, then 12.5%) or STCG (<1 year, 20%). Debt funds are taxed as per your income tax slab. SIP itself has no separate tax — only the gains are taxed.' },
+  { q: "How do I calculate SIP returns online free?", a: "Enter the monthly amount, years, and expected return above for instant maturity value. Free, no sign-up, works on mobile." },
+  { q: "Is the SIP calculator free?", a: "Yes, completely free with no sign-up. Calculate unlimited SIPs on any device." },
 ]
 
 const HOW_IT_WORKS = [

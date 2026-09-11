@@ -50,12 +50,16 @@ export default function CssFilterGenerator() {
   return (
     <ToolLayout
       title="CSS Filter Generator"
-      desc="Visual CSS filter builder with live preview. Adjust blur, brightness, contrast, saturation and more — copy ready-to-use CSS."
+      desc="CSS Filter Generator - visual CSS filter builder with live preview. Adjust blur, brightness,, online free. Free online, no sign-up. Works on any device."
       icon="🎬" iconBg="rgba(99,102,241,0.08)"
       category="dev" slug="css-filter-generator"
       faq={[
         { q: 'What are CSS filters?', a: 'CSS filters apply visual effects like blur, brightness, contrast, and color manipulation to HTML elements, similar to Photoshop filters.' },
         { q: 'Can I use these on any element?', a: 'Yes! The generated CSS filter property works on any HTML element — images, divs, videos, etc.' },
+        { q: "How do I use this CSS Filter Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this CSS Filter Generator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Adjust the filter sliders to see live visual changes.',

@@ -41,12 +41,16 @@ export default function cricket_nrr() {
   return (
     <ToolLayout
       title="Cricket Net Run Rate (NRR) Calculator"
-      desc="Calculate net run rate for tournament standings and league matches. Add multiple matches for cumulative NRR."
+      desc="Cricket Net Run Rate (NRR) Calculator - calculate net run rate for tournament, online free. Free online, instant results. No sign-up, works on mobile."
       icon="🧮" iconBg="rgba(59,130,246,0.08)"
       category="cricket" slug="cricket-nrr"
       faq={[
         { q: "How is Net Run Rate calculated?", a: "NRR = (Team Run Rate) - (Opposition Run Rate). Run Rate = Runs Scored / Overs Faced. For full tournament, average the NRR across all matches." },
         { q: "Why is NRR important?", a: "NRR is used to break ties in tournament standings. Higher NRR means better position. Critical in IPL, World Cup group stages." },
+        { q: "How do I use this Cricket Net Run Rate (NRR) Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this Cricket Net Run Rate (NRR) Calculator accurate?", a: "Yes. The Cricket Net Run Rate (NRR) Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
+        { q: "Is this Cricket Net Run Rate (NRR) Calculator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Enter your team's runs, overs used, and opposition runs for each match.",

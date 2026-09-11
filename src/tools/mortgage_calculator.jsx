@@ -38,12 +38,16 @@ export default function mortgage_calculator() {
   return (
     <ToolLayout
       title="Mortgage Calculator"
-      desc="Calculate monthly mortgage payments, total interest, and loan amortization. Free online mortgage calculator."
+      desc="Mortgage Calculator - calculate monthly mortgage payments, total interest, and loan, online free. Free online, instant results. No sign-up, works on mobile."
       icon="🏠" iconBg="rgba(34,197,94,0.08)"
       category="finance" slug="mortgage-calculator"
       faq={[
         { q: 'How is monthly mortgage calculated?', a: 'Monthly Payment = P × [r(1+r)^n] / [(1+r)^n – 1], where P = loan principal, r = monthly interest rate, n = total number of payments.' },
         { q: 'What is a good down payment?', a: 'A 20% down payment avoids PMI (Private Mortgage Insurance). However, FHA loans allow as low as 3.5% down.' },
+        { q: "How do I use this Mortgage Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this Mortgage Calculator accurate?", a: "Yes. The Mortgage Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
+        { q: "Is this Mortgage Calculator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Enter the home price and down payment amount.',

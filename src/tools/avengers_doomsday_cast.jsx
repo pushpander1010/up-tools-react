@@ -13,13 +13,15 @@ export default function avengers_doomsday_cast() {
   return (
     <ToolLayout
       title="Avengers: Doomsday Cast"
-      desc="The biggest ensemble in MCU history. Here's the rundown of who's confirmed and what to expect from the Doomsday cast."
+      desc="Avengers Doomsday Cast - the biggest ensemble in MCU history. Here is the rundown of who is confirmed and what to expect from the Doomsday cast, online free."
       icon="🦸" iconBg="rgba(244,63,94,0.08)"
       category="fun" slug="avengers-doomsday-cast"
       faq={[
         { q: 'Who plays Doctor Doom in Doomsday?', a: 'Doctor Doom is the central villain of the Multiverse Saga finale. Casting is announced in waves by Marvel — see the full confirmed list on this page as it\'s revealed.' },
         { q: 'Which Avengers return for Doomsday?', a: 'Core Avengers from the Infinity Saga return alongside X-Men and multiversal variants. The exact ensemble is revealed progressively through official Marvel announcements.' },
         { q: 'Are the X-Men in Doomsday?', a: 'Yes — the multiverse setup brings X-Men variants into the MCU for the first time at this scale, a major draw of the film.' },
+        { q: "How do I use this guide?", a: "Read the sections above step by step. Everything is explained in plain words with examples." },
+        { q: "Is this free?", a: "Yes, completely free with no sign-up. Read it online on any device." },
       ]}
       howItWorks={[
         'The Infinity Saga survivors regroup for the multiversal threat.',

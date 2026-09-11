@@ -92,6 +92,18 @@ export default function aimakerich_markets_today() {
       category="finance"
       slug="aimakerich/markets-today-2026-08-10"
       schema={schema}
+      faq={[
+        { q: "What are today Nifty and Sensex key levels?", a: "See the levels section above for spot price, support, resistance, and the key level for Nifty, Bank Nifty, and Sensex for 10 August 2026." },
+        { q: "Which stocks are in focus today?", a: "Check the stocks to watch section above for analyst picks with buy price, target, and stop loss for 10 August 2026." },
+        { q: "How do I read this market bulletin?", a: "Start with global cues, then top news with sentiment tags, then key levels, then stocks to watch. The How to Read section above explains each part." },
+        { q: "Is this market bulletin free?", a: "Yes, completely free with no sign-up. Read it online on any device." },
+        { q: "Is this investment advice?", a: "No. This bulletin is educational only, not investment advice. Always do your own research and consult a SEBI-registered advisor." },
+      ]}
+      howItWorks={[
+        "Check global cues for overnight market direction.",
+        "Read top news with bullish and bearish sentiment tags.",
+        "Note Nifty, Bank Nifty, and Sensex support and resistance levels.",
+      ]}
     >
       <Helmet>
         <meta name="robots" content="index, follow" />

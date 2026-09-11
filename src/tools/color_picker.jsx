@@ -122,12 +122,16 @@ export default function color_picker() {
   return (
     <ToolLayout
       title="Color Picker & Converter"
-      desc="Pick colors, convert between HEX, RGB, and HSL, check WCAG contrast, generate palettes, and export CSS variables."
+      desc="Color Picker & Converter - pick colors, convert between HEX, RGB, and HSL, check WCAG contrast,, online free. Free online, instant results. No sign-up needed."
       icon="🎨" iconBg="rgba(99,102,241,0.08)"
       category="dev" slug="color-picker"
       faq={[
         { q: "What color formats are supported?", a: "HEX, RGB, and HSL — you can convert between all three instantly." },
         { q: "What is WCAG contrast?", a: "WCAG contrast ratio measures readability of text against backgrounds. AA requires 4.5:1, AAA requires 7:1." },
+        { q: "How do I convert online free?", a: "Pick the from and to units above and the result appears instantly. Free, no sign-up, works on mobile." },
+        { q: "Which units are supported?", a: "All common units are supported. Choose from the dropdowns above for an instant free conversion." },
+        { q: "Is the conversion instant?", a: "Yes. Results appear live as you type, with no sign-up and no page reload." },
+        { q: "Is this Color Picker & Converter free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Pick a color using the color input or type a HEX value.",

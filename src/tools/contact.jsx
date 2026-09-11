@@ -61,12 +61,16 @@ export default function contact() {
   return (
     <ToolLayout
       title="Contact Us"
-      desc="Get in touch with the UpTools team. Report bugs, suggest features, or ask questions."
+      desc="Contact Us - get in touch with the UpTools team. Report bugs, suggest features, or ask questions, online free. Free online, no sign-up. Works on any device."
       icon="📬" iconBg="rgba(99,102,241,0.08)"
       category="text" slug="contact"
       faq={[
         { q: "How do I contact support?", a: "Fill out the form below and click Send — it opens your email client with the message pre-filled." },
         { q: "Is there a response time?", a: "We aim to respond within 48 hours on business days." },
+        { q: "How do I use this Contact Us online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this Contact Us free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Fill in your name, email, and topic.",

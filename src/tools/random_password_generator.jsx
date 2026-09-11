@@ -91,12 +91,16 @@ export default function random_password_generator() {
   return (
     <ToolLayout
       title="Random Password Generator"
-      desc="Generate strong, cryptographically secure passwords. Customize length and character types."
+      desc="Random Password Generator - generate strong, cryptographically secure passwords. Customize length, online free. Free online, no sign-up. Works on any device."
       icon="🔐" iconBg="rgba(34,197,94,0.08)"
       category="dev" slug="random-password-generator"
       faq={[
         { q: 'How secure are generated passwords?', a: 'Uses crypto.getRandomValues() — cryptographically secure, suitable for any account.' },
         { q: 'What length should I use?', a: '12-16 characters for most accounts. 24-32 for maximum security.' },
+        { q: "How do I use this Random Password Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this Random Password Generator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Adjust the password length slider.',

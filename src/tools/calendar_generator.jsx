@@ -60,9 +60,22 @@ export default function calendar_generator() {
   return (
     <ToolLayout
       title="Calendar Generator"
-      desc="Generate printable monthly or yearly calendars. Customize year, month, start day, weekend highlighting."
+      desc="Calendar Generator - generate printable monthly or yearly calendars. Customize year, month, start, online free. Free online, no sign-up. Works on any device."
       icon="📅" iconBg="rgba(99,102,241,0.08)"
       category="tools" slug="calendar-generator"
+      faq={[
+        { q: "How do I make a printable calendar online free?", a: "Pick the year and month above, customize the start day, then print or save. Free, no sign-up." },
+        { q: "Can I customize the week start day?", a: "Yes. Choose Sunday or Monday start plus weekend highlighting, free in any browser." },
+        { q: "Is the calendar generator free?", a: "Yes, completely free with no sign-up. Make unlimited calendars on any device." },
+        { q: "Does it work on mobile?", a: "Yes. Make and print calendars free in your phone browser, no app needed." },
+        { q: "Do I need to sign up?", a: "No sign-up needed. Generate unlimited calendars free on any device." },
+        { q: "Can I print the calendar?", a: "Yes. Use your browser print or save as PDF, free with no sign-up." },
+      ]}
+      howItWorks={[
+        "Pick the year and month above.",
+        "Choose your week start day and highlights.",
+        "Print or save your custom calendar.",
+      ]}
     >
       <div className="max-w-2xl mx-auto space-y-4">
         <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-5">

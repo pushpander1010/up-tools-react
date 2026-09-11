@@ -63,12 +63,16 @@ export default function multi_currency_converter() {
   return (
     <ToolLayout
       title="Multi-Currency Converter"
-      desc="Convert between 150+ currencies with real-time exchange rates. Updated every minute for accuracy."
+      desc="Multi-Currency Converter - convert between 150+ currencies with real-time exchange rates., online free. Free online, instant results. No sign-up needed."
       icon="💱" iconBg="rgba(234,179,8,0.08)"
       category="finance" slug="multi-currency-converter"
       faq={[
         { q: "How many currencies are supported?", a: "The converter uses live exchange rates covering 10 major currencies: USD, EUR, GBP, JPY, INR, AUD, CAD, CHF, CNY, SEK." },
         { q: "Are rates real-time?", a: "Yes. Rates are fetched live from the ExchangeRate-API through our backend and updated automatically throughout the day." },
+        { q: "How do I convert online free?", a: "Pick the from and to units above and the result appears instantly. Free, no sign-up, works on mobile." },
+        { q: "Which units are supported?", a: "All common units are supported. Choose from the dropdowns above for an instant free conversion." },
+        { q: "Is the conversion instant?", a: "Yes. Results appear live as you type, with no sign-up and no page reload." },
+        { q: "Is this Multi-Currency Converter free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Enter an amount and select the source currency.",

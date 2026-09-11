@@ -48,13 +48,16 @@ export default function tiktok_hashtag_generator() {
   return (
     <ToolLayout
       title="TikTok Hashtag Generator"
-      desc="Generate trending TikTok hashtags to boost your reach and views. 15+ categories, copy to clipboard."
+      desc="TikTok Hashtag Generator - generate trending TikTok hashtags to boost your reach and views. 15+, online free. Free online, no sign-up. Works on any device."
       icon="🎵" iconBg="rgba(0,0,0,0.08)"
       category="social" slug="tiktok-hashtag-generator"
       faq={[
         { q: "How many hashtags should I use on TikTok?", a: "TikTok recommends 3-5 relevant hashtags rather than stuffing 30. Mix mega, mid-size, and niche tags." },
         { q: "Should I always use #fyp?", a: "Yes! Always include #fyp or #foryoupage to target the For You Page algorithm." },
         { q: "Are niche hashtags better?", a: "Niche hashtags have less competition and help you reach your target audience faster." },
+        { q: "How do I use this TikTok Hashtag Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         "Select a category that matches your content.",

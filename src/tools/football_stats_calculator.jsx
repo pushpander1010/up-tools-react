@@ -39,12 +39,16 @@ export default function football_stats_calculator() {
   return (
     <ToolLayout
       title="Football Stats Calculator"
-      desc="Calculate player performance metrics, completion percentage, yards per game, and NFL passer rating."
+      desc="Football Stats Calculator - calculate player performance metrics, completion, online free. Free online, instant results. No sign-up, works on mobile."
       icon="🏈" iconBg="rgba(239,68,68,0.08)"
       category="sports" slug="football-stats-calculator"
       faq={[
         { q: "What is NFL Passer Rating?", a: "Passer rating is a measure of the performance of passers, based on completion percentage, yards per attempt, touchdowns per attempt, and interceptions per attempt." },
         { q: "How is completion percentage calculated?", a: "Completion % = (Passes Completed / Passes Attempted) × 100. A higher percentage indicates better accuracy." },
+        { q: "How do I use this Football Stats Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this Football Stats Calculator accurate?", a: "Yes. The Football Stats Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
+        { q: "Is this Football Stats Calculator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Enter passes completed, attempted, passing yards, touchdowns, and interceptions.",

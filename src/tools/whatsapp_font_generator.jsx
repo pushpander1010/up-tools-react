@@ -28,13 +28,16 @@ export default function whatsapp_font_generator() {
   return (
     <ToolLayout
       title="WhatsApp Font Generator"
-      desc="Generate styled text for WhatsApp: bold, italic, strikethrough, monospace. Copy and paste into your chats!"
+      desc="WhatsApp Font Generator - generate styled text for WhatsApp: bold, italic, strikethrough,, online free. Free online, no sign-up. Works on any device."
       icon="✍️" iconBg="rgba(37,211,102,0.08)"
       category="whatsapp" slug="whatsapp-font-generator"
       faq={[
         { q: "How do I make text bold in WhatsApp?", a: "Wrap your text with asterisks: *bold text*. Or use this tool to generate it automatically." },
         { q: "Can I combine multiple text styles in WhatsApp?", a: "Yes! You can combine bold, italic, and strikethrough. For example: *_~text~_* creates bold, italic, and strikethrough." },
         { q: "Does WhatsApp font formatting work on all devices?", a: "Yes, WhatsApp text formatting works on Android, iOS, and WhatsApp Web across all devices." },
+        { q: "How do I use this WhatsApp Font Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         "Type your message in the input field.",

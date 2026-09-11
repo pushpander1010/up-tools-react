@@ -62,12 +62,16 @@ export default function epf_calculator() {
   return (
     <ToolLayout
       title="EPF Calculator"
-      desc="Calculate EPF maturity amount with employee & employer contributions. See compound interest growth."
+      desc="EPF Calculator - calculate EPF maturity amount with employee & employer contributions., online free. Free online, instant results. No sign-up, works on mobile."
       icon="🏦" iconBg="rgba(245,158,11,0.08)"
       category="finance" slug="epf-calculator"
       faq={[
         { q: "What is the current EPF interest rate?", a: "The EPF interest rate for FY 2023-24 is 8.25% per annum. Rates may change annually as declared by EPFO." },
         { q: "Is EPF contribution mandatory?", a: "Yes, for organizations with 20+ employees. Both employee and employer must contribute 12% of basic salary + DA." },
+        { q: "How do I use this EPF Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this EPF Calculator accurate?", a: "Yes. The EPF Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
+        { q: "Is this EPF Calculator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Enter your monthly basic salary.",

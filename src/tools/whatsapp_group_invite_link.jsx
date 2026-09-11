@@ -19,13 +19,16 @@ export default function whatsapp_group_invite_link() {
   return (
     <ToolLayout
       title="WhatsApp Group Invite Link"
-      desc="Learn how to create, share, and manage WhatsApp group invite links. Generate QR codes for easy group joining."
+      desc="WhatsApp Group Invite Link - learn how to create, share, and manage WhatsApp group invite links., online free. Free online, no sign-up. Works on any device."
       icon="🔗" iconBg="rgba(37,211,102,0.08)"
       category="whatsapp" slug="whatsapp-group-invite-link"
       faq={[
         { q: "How do I create a WhatsApp group invite link?", a: "Open the group, tap the group name, select 'Invite via link', then copy or share the link. Only group admins can create invite links." },
         { q: "Can I revoke a WhatsApp group invite link?", a: "Yes! Group admins can revoke links by going to Group Info → Invite via link → Revoke link. This makes the old link invalid." },
         { q: "How many people can join via a WhatsApp group link?", a: "WhatsApp groups can have up to 1024 members. Anyone with the invite link can join until the group reaches this limit." },
+        { q: "How do I use this WhatsApp Group Invite Link online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         "Open the WhatsApp group you want to share.",

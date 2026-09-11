@@ -34,13 +34,16 @@ export default function snapchat_streak_calculator() {
   return (
     <ToolLayout
       title="Snapchat Streak Calculator"
-      desc="Calculate your Snapchat streak duration and track milestones."
+      desc="Snapchat Streak Calculator - calculate your Snapchat streak duration and track, online free. Free online, instant results. No sign-up, works on mobile."
       icon="🔥" iconBg="rgba(255,252,0,0.08)"
       category="social" slug="snapchat-streak-calculator"
       faq={[
         { q: "How do Snapchat streaks work?", a: "A streak starts when you and a friend send snaps to each other for 3 consecutive days. The 🔥 emoji and number appear next to their name." },
         { q: "What happens if I lose a Snapchat streak?", a: "If you don't send a snap within 24 hours, the streak ends. You can contact Snapchat support to restore streaks lost due to technical issues." },
         { q: "What's the longest Snapchat streak ever?", a: "The longest verified Snapchat streak is over 2900+ days (8+ years). Maintaining long streaks requires daily commitment from both users." },
+        { q: "How do I use this Snapchat Streak Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this Snapchat Streak Calculator accurate?", a: "Yes. The Snapchat Streak Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
       ]}
       howItWorks={[
         "Select the date when your streak started.",

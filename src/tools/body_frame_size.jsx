@@ -96,12 +96,16 @@ export default function body_frame_size() {
   return (
     <ToolLayout
       title="Body Frame Size Calculator"
-      desc="Determine your body frame size (small, medium, or large) using wrist circumference or elbow breadth methods."
+      desc="Body Frame Size Calculator - determine your body frame size (small, medium, or large), online free. Free online, instant results. No sign-up, works on mobile."
       icon="🦴" iconBg="rgba(239,68,68,0.08)"
       category="health" slug="body-frame-size"
       faq={[
         { q: 'What is body frame size?', a: 'It refers to the size of your bone structure — not your weight or muscle mass. Classified as small, medium, or large.' },
         { q: 'Why does it matter?', a: 'Two people with the same height can have very different healthy weights based on frame size.' },
+        { q: "How do I use this Body Frame Size Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this Body Frame Size Calculator accurate?", a: "Yes. The Body Frame Size Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
+        { q: "Is this Body Frame Size Calculator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Select Imperial or Metric units and your sex.',

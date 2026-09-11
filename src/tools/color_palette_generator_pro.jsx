@@ -79,13 +79,16 @@ export default function color_palette_generator_pro() {
   return (
     <ToolLayout
       title="Color Palette Generator"
-      desc="Generate color palettes from a base color. Analogous, complementary, triadic, and more."
+      desc="Color Palette Generator - generate color palettes from a base color. Analogous, complementary,, online free. Free online, no sign-up. Works on any device."
       icon="🎨" iconBg="rgba(168,85,247,0.08)"
       category="utility" slug="color-palette-generator-pro"
       faq={[
         { q: 'Is this tool free?', a: 'Yes, completely free with no sign-up required.' },
         { q: 'Is my data private?', a: 'Yes. All processing happens in your browser. Files are never uploaded.' },
         { q: 'Does it work on mobile?', a: 'Yes. All tools are mobile-responsive.' },
+        { q: "How do I use this Color Palette Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         'Select a base color using the color picker.',

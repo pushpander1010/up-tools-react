@@ -36,12 +36,16 @@ export default function india_college_rankings() {
   return (
     <ToolLayout
       title="India College Rankings"
-      desc="Explore India's top colleges and universities with comprehensive rankings. Filter by category, location, and specialization."
+      desc="India College Rankings - explore India's top colleges and universities with comprehensive rankings., online free. Free online, no sign-up. Works on any device."
       icon="📚" iconBg="rgba(99,102,241,0.08)"
       category="education" slug="india-college-rankings"
       faq={[
         { q: "How are colleges ranked?", a: "Based on academic reputation, faculty quality, research output, placement records, and infrastructure." },
         { q: "Can I filter by category?", a: "Yes, filter by Engineering, Medical, Commerce, Arts, or Law." },
+        { q: "How do I use this India College Rankings online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this India College Rankings free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={["Select category and state filters", "Search by college name", "View ranked results"]}
       schema={{"@context":"https://schema.org","@type":"SoftwareApplication","name":"India College Rankings","applicationCategory":"EducationalApplication","url":"https://www.uptools.in/india-college-rankings/","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}}

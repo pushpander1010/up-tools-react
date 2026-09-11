@@ -40,13 +40,16 @@ export default function water_intake_calculator() {
   return (
     <ToolLayout
       title="Water Intake Calculator"
-      desc="Calculate your ideal daily water intake based on body weight and activity level."
+      desc="Water Intake Calculator - calculate your ideal daily water intake based on body weight, online free. Free online, instant results. No sign-up, works on mobile."
       icon="💧" iconBg="rgba(56,189,248,0.08)"
       category="health" slug="water-intake-calculator"
       faq={[
         { q: 'How much water should I drink daily?', a: 'A common guideline is body weight (kg) × 0.033 litres, adjusted for activity level. Most adults need 2–4 litres per day.' },
         { q: 'Does activity level affect water needs?', a: 'Yes. Physical activity increases fluid loss through sweat. Active individuals may need 30–60% more water than sedentary people.' },
         { q: 'What are signs of dehydration?', a: 'Dark urine, headache, dry mouth, fatigue, dizziness, and reduced skin elasticity. By the time you feel thirsty, you may already be mildly dehydrated.' },
+        { q: "How do I use this Water Intake Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this Water Intake Calculator accurate?", a: "Yes. The Water Intake Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
       ]}
       howItWorks={[
         'Enter your body weight in kilograms.',

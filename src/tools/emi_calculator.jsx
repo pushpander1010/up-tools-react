@@ -47,7 +47,7 @@ export default function emi_calculator() {
   return (
     <ToolLayout
       title="EMI Calculator"
-      desc="Calculate EMI for home loan, car loan, personal loan. See amortization schedule with principal vs interest breakdown."
+      desc="EMI Calculator - calculate EMI for home loan, car loan, personal loan. See, online free. Free online, instant results. No sign-up, works on mobile."
       icon="📊" iconBg="rgba(34,197,94,0.08)"
       category="finance" slug="emi-calculator"
       faq={[
@@ -55,6 +55,8 @@ export default function emi_calculator() {
         { q: 'How is EMI calculated?', a: 'EMI = P × r × (1+r)^n / ((1+r)^n - 1), where P is principal, r is monthly interest rate, and n is tenure in months.' },
         { q: 'Should I prepay my loan?', a: 'Prepaying reduces the outstanding principal, which saves you significant interest over the loan tenure.' },
         { q: 'What is a good interest rate?', a: 'Home loans: 8-9%. Car loans: 7-9%. Personal loans: 10-15%. Lower is always better.' },
+        { q: "How do I calculate EMI online free?", a: "Enter the loan amount, interest rate, and tenure above for an instant EMI. Free, no sign-up, works on mobile." },
+        { q: "Is the EMI calculator free?", a: "Yes, completely free with no sign-up. Calculate unlimited loans on any device." },
       ]}
       howItWorks={[
         'Enter the loan principal amount.',

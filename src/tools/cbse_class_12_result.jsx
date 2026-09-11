@@ -75,6 +75,9 @@ export default function cbse_class_12_result() {
         { q: 'Does this tool fetch live results?', a: 'No. This page helps you use the official result links and analyze your marks after you receive them.' },
         { q: 'How many subjects do I need to enter?', a: 'Enter at least five valid subjects to get a meaningful analysis.' },
         { q: 'Is my data private?', a: 'Yes. All calculations run locally in your browser. Nothing is uploaded.' },
+        { q: "How do I check online free?", a: "Enter your input above and get an instant result. Free with no sign-up, works on mobile and desktop." },
+        { q: "What does it check?", a: "It validates your input against standard rules instantly. Enter the value above to see the result." },
+        { q: "Is my data kept private?", a: "Yes. Everything runs in your browser. Nothing you enter is uploaded or stored." },
       ]}
       howItWorks={[
         'Keep your roll number, school number, admit card ID, and date of birth ready.',

@@ -363,13 +363,16 @@ export default function games_tetris() {
       name="TETRIS"
       startAction={startGame} startLabel="▶ Start"
       title="Tetris Online - Free Classic Puzzle Game"
-      desc="Play Tetris online. Classic falling block puzzle with ghost piece, next preview, levels, and high score tracking."
+      desc="Tetris Online - Free Classic Puzzle Game - play Tetris online. Classic falling block, online free. Play online free, no download. Works on mobile and desktop."
       icon="🧩" iconBg="rgba(168,85,247,0.08)"
       category="fun" slug="games-tetris"
       faq={[
         { q: "How do I play Tetris?", a: "Use arrow keys to move/rotate pieces. Down arrow soft drops, Space hard drops. On mobile, swipe left/right to move, tap to rotate, swipe down to drop." },
         { q: "What is the ghost piece?", a: "The translucent piece showing where your current piece will land if you hard drop." },
         { q: "How is scoring calculated?", a: "1 line=100×level, 2 lines=300×level, 3 lines=500×level, 4 lines=800×level. Speed increases every 10 lines." },
+        { q: "Can I play Tetris Online - Free Classic Puzzle Game without downloading?", a: "Yes. This Tetris Online - Free Classic Puzzle Game runs in your browser with no install. Free on mobile and desktop." },
+        { q: "How do I use this Tetris Online - Free Classic Puzzle Game online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
+        { q: "Is this Tetris Online - Free Classic Puzzle Game free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Arrow keys to move, Up to rotate, Down for soft drop, Space for hard drop.",

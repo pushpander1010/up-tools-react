@@ -39,12 +39,16 @@ export default function frequency_converter() {
   return (
     <ToolLayout
       title="Frequency Converter"
-      desc="Convert between Hz, kHz, MHz, GHz, and RPM instantly. Essential tool for electronics and engineering."
+      desc="Frequency Converter - convert between Hz, kHz, MHz, GHz, and RPM instantly. Essential tool for, online free. Free online, instant results. No sign-up needed."
       icon="Hz" iconBg="rgba(6,182,212,0.08)"
       category="dev" slug="frequency-converter"
       faq={[
         { q: "What units can I convert?", a: "Hertz (Hz), Kilohertz (kHz), Megahertz (MHz), Gigahertz (GHz), and RPM." },
         { q: "How does RPM relate to Hz?", a: "1 Hz = 60 RPM (revolutions per minute), since there are 60 seconds in a minute." },
+        { q: "How do I convert online free?", a: "Pick the from and to units above and the result appears instantly. Free, no sign-up, works on mobile." },
+        { q: "Which units are supported?", a: "All common units are supported. Choose from the dropdowns above for an instant free conversion." },
+        { q: "Is the conversion instant?", a: "Yes. Results appear live as you type, with no sign-up and no page reload." },
+        { q: "Is this Frequency Converter free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Enter a frequency value in the input field.",

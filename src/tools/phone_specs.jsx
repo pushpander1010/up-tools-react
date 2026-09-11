@@ -64,12 +64,16 @@ export default function phone_specs() {
   return (
     <ToolLayout
       title="Phone Specifications"
-      desc="Search, view & compare smartphone specs — 100+ phones offline"
+      desc="Phone Specifications - search, view and compare smartphone specs online free. 100+ phones with full details, no sign-up, works on mobile."
       icon="📱" iconBg="rgba(99,102,241,0.08)"
       category="tools" slug="phone-specs"
       faq={[
         { q: 'How do I compare phones?', a: 'Click + Compare on two phones, then click Compare.' },
         { q: 'How many phones are included?', a: '100+ phones from Samsung, Apple, Xiaomi, OnePlus, Google, and more.' },
+        { q: "How do I use this Phone Specifications online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this Phone Specifications free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Type a phone name or use brand filter chips to find phones.',

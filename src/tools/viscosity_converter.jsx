@@ -32,12 +32,16 @@ export default function viscosity_converter() {
   return (
     <ToolLayout
       title="Viscosity Converter"
-      desc="Convert viscosity units: Centipoise, Stokes, poise, Pa·s. Instant conversions."
+      desc="Viscosity Converter - convert viscosity units: Centipoise, Stokes, poise, Pa·s. Instant, online free. Free online, instant results. No sign-up needed."
       icon="🧴" iconBg="rgba(6,182,212,0.08)"
       category="converter" slug="viscosity-converter"
       faq={[
         { q: "What units can I convert?", a: "Centipoise (cP), Stokes (St), Poise (P), and Pascal-second (Pa·s)." },
         { q: "Is it accurate?", a: "Yes. All conversions use standard physics formulas and run entirely in your browser." },
+        { q: "How do I convert online free?", a: "Pick the from and to units above and the result appears instantly. Free, no sign-up, works on mobile." },
+        { q: "Which units are supported?", a: "All common units are supported. Choose from the dropdowns above for an instant free conversion." },
+        { q: "Is the conversion instant?", a: "Yes. Results appear live as you type, with no sign-up and no page reload." },
+        { q: "Is this Viscosity Converter free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Enter a viscosity value and select the source unit.",

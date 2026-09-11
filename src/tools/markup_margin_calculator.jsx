@@ -36,12 +36,16 @@ export default function markup_margin_calculator() {
   return (
     <ToolLayout
       title="Markup vs Margin Calculator"
-      desc="Calculate markup, gross margin, profit and selling price for products and services."
+      desc="Markup vs Margin Calculator - calculate markup, gross margin, profit and selling price, online free. Free online, instant results. No sign-up, works on mobile."
       icon="💲" iconBg="rgba(99,102,241,0.08)"
       category="finance" slug="markup-margin-calculator"
       faq={[
         { q: "What is the difference between markup and margin?", a: "Markup is profit as a percentage of cost. Margin is profit as a percentage of selling price. They are not the same and cannot be compared directly without conversion." },
         { q: "Who uses a markup and margin calculator?", a: "Retailers, ecommerce sellers, wholesalers, agencies, freelancers and manufacturers use it to set profitable prices and compare pricing strategies." },
+        { q: "How do I use this Markup vs Margin Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this Markup vs Margin Calculator accurate?", a: "Yes. The Markup vs Margin Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
+        { q: "Is this Markup vs Margin Calculator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Enter the cost price and selling price.",

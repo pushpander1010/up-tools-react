@@ -53,12 +53,16 @@ export default function bmr_calculator() {
   return (
     <ToolLayout
       title="BMR Calculator"
-      desc="Basal metabolic rate with Mifflin-St Jeor, Harris-Benedict & Katch-McArdle formulas. TDEE at every activity level."
+      desc="BMR Calculator - basal metabolic rate with Mifflin-St Jeor, Harris-Benedict &, online free. Free online, instant results. No sign-up, works on mobile."
       icon="🔥" iconBg="rgba(245,158,11,0.08)"
       category="health" slug="bmr-calculator"
       faq={[
         { q: 'What is BMR?', a: 'Basal Metabolic Rate is the number of calories your body needs at rest to maintain basic life functions.' },
         { q: 'Which formula is best?', a: 'Mifflin-St Jeor is recommended by the American Dietetic Association. Katch-McArdle is best if you know your body fat %.' },
+        { q: "How do I use this BMR Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this BMR Calculator accurate?", a: "Yes. The BMR Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
+        { q: "Is this BMR Calculator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Select your unit system (Imperial or Metric) and sex.',

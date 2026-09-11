@@ -45,13 +45,16 @@ export default function instagram_post_scheduler() {
   return (
     <ToolLayout
       title="Instagram Post Scheduler"
-      desc="Plan your weekly Instagram posts with optimal timing. Generate a content schedule based on your niche."
+      desc="Instagram Post Scheduler - plan your weekly Instagram posts with optimal timing. Generate a content, online free. Free online, no sign-up. Works on any device."
       icon="📋" iconBg="rgba(168,85,247,0.08)"
       category="social" slug="instagram-post-scheduler"
       faq={[
         { q: "How many times should I post per week?", a: "Aim for 3-5 posts per week for consistent growth. Quality matters more than quantity." },
         { q: "What are the best times to post?", a: "Generally 9-11 AM and 6-9 PM in your audience's timezone. Use Instagram Insights to find your specific optimal times." },
         { q: "Can I customize the schedule?", a: "Yes! Use this as a starting template and adjust times, topics, and content types based on your analytics." },
+        { q: "How do I use this Instagram Post Scheduler online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         'Set how many posts you want per week (1-7).',

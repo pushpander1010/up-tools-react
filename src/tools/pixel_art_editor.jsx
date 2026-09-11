@@ -319,9 +319,22 @@ export default function pixel_art_editor() {
   return (
     <ToolLayout
       title="Pixel Art Editor"
-      desc="Create pixel art in your browser. Click to paint, right-click to erase."
+      desc="Pixel Art Editor - create pixel art in your browser. Click to paint, right-click to erase, online free. Free online, no sign-up. Works on any device."
       icon="🎨" iconBg="rgba(99,102,241,0.08)"
       category="fun" slug="pixel-art-editor"
+      faq={[
+        { q: "How do I make pixel art online free?", a: "Draw on the canvas above, pick colors from the palette, then download as PNG. Free, no sign-up." },
+        { q: "Can I download my art?", a: "Yes. Export your pixel art as a PNG image in one click, free." },
+        { q: "Is the pixel art editor free?", a: "Yes, completely free with no sign-up. Create unlimited art on any device." },
+        { q: "Do I need to sign up?", a: "No sign-up needed. Create unlimited art free on any device." },
+        { q: "Does it work on mobile?", a: "Yes. Draw pixel art free in your phone browser with touch, no app needed." },
+        { q: "Is my art private?", a: "Yes. Everything stays in your browser until you download the PNG." },
+      ]}
+      howItWorks={[
+        "Draw pixel by pixel on the canvas above.",
+        "Pick colors from the palette.",
+        "Download your art as PNG.",
+      ]}
     >
       <div className="max-w-2xl mx-auto space-y-4">
         <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-5">

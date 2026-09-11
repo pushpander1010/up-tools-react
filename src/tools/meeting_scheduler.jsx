@@ -80,13 +80,16 @@ export default function meeting_scheduler() {
   return (
     <ToolLayout
       title="Meeting Scheduler"
-      desc="Find the best meeting time across multiple timezones. Schedule meetings with team members worldwide instantly."
+      desc="Meeting Scheduler - find the best meeting time across multiple timezones. Schedule meetings with, online free. Free online, no sign-up. Works on any device."
       icon="🌍" iconBg="rgba(99,102,241,0.08)"
       category="productivity" slug="meeting-scheduler"
       faq={[
         { q: 'How does the timezone matching work?', a: 'We score each hour based on how many participants fall within working hours (9 AM - 5 PM local time). The best overlapping hours are shown first.' },
         { q: 'How many participants can I add?', a: 'Up to 8 participants with different timezones.' },
         { q: 'Does this account for daylight saving?', a: 'The tool uses fixed UTC offsets. For DST-accurate scheduling, verify with a timezone database.' },
+        { q: "How do I use this Meeting Scheduler online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         'Enter participant names and select their timezones.',

@@ -40,13 +40,16 @@ export default function pinterest_video_downloader() {
   return (
     <ToolLayout
       title="Pinterest Video Downloader"
-      desc="Free Pinterest video downloader. Download Pinterest pins, videos, and images in HD quality. Save pins for offline viewing."
+      desc="Pinterest Video Downloader - free Pinterest video downloader. Download Pinterest pins, videos, and, online free. Free online in HD. No app or login needed."
       icon="📌" iconBg="rgba(239,68,68,0.08)"
       category="social" slug="pinterest-video-downloader"
       faq={[
         { q: 'How do I download a Pinterest video?', a: 'Copy the pin URL, paste it into our downloader, select quality, and click download.' },
         { q: 'Can I download Pinterest images?', a: 'Yes! Our downloader supports both videos and images from Pinterest pins.' },
         { q: 'Is this tool free?', a: 'Yes, completely free! No registration or payment required.' },
+        { q: "How do I download online free?", a: "Paste the link above, pick your option, and save the file. Free with no sign-up or app needed." },
+        { q: "What quality do I get?", a: "You get the highest quality available, free. Paste the link above and save it to your device." },
+        { q: "Can I download on mobile?", a: "Yes. Open this page in your phone browser, paste the link, and save directly. No app needed." },
       ]}
       howItWorks={[
         'Find the pin or video you want to download on Pinterest.',

@@ -46,6 +46,10 @@ export default function hra_calculator() {
       faq={[
         { q: "What is HRA?", a: "House Rent Allowance (HRA) is a component of salary provided by employers to cover rent expenses. A portion of HRA is exempt from tax under Section 10(13A) of the Income Tax Act." },
         { q: "How is HRA exemption calculated?", a: "HRA exemption is the minimum of: (1) Actual HRA received, (2) 50% of basic salary (metro) or 40% (non-metro), (3) Rent paid minus 10% of basic salary." },
+        { q: "How do I use this HRA Exemption Calculator India online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this HRA Exemption Calculator India accurate?", a: "Yes. The HRA Exemption Calculator India uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
+        { q: "Is this HRA Exemption Calculator India free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Enter your basic salary, HRA received, and rent paid.",

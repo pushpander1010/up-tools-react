@@ -99,13 +99,16 @@ export default function linkedin_profile_analyzer() {
   return (
     <ToolLayout
       title="LinkedIn Profile Strength Analyzer"
-      desc="Analyze your LinkedIn profile strength and get actionable tips to improve visibility, engagement, and job opportunities."
+      desc="LinkedIn Profile Strength Analyzer - analyze your LinkedIn profile strength and get actionable tips, online free. Free online, no sign-up. Works on any device."
       icon="💼" iconBg="rgba(10,102,194,0.08)"
       category="social" slug="linkedin-profile-analyzer"
       faq={[
         { q: "How is LinkedIn profile strength calculated?", a: "Profile strength is calculated based on headline quality, about section completeness, experience count, skills listed, recommendations received, and connection count." },
         { q: "What is a good LinkedIn profile score?", a: "A score of 80+ is considered strong. Aim for a complete profile with all sections filled out, 15+ skills, and 5+ recommendations." },
         { q: "Does this tool store my LinkedIn data?", a: "No. All calculations run in your browser. Nothing is uploaded or stored." },
+        { q: "How do I use this LinkedIn Profile Strength Analyzer online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         "Enter your headline, about section, experience, skills, recommendations, and connections.",

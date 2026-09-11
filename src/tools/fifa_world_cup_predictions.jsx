@@ -84,7 +84,7 @@ export default function fifa_world_cup_predictions() {
   return (
     <ToolLayout
       title="FIFA World Cup 2026 Predictions"
-      desc="Make your FIFA World Cup 2026 predictions. Pick group winners, runners-up, Golden Boot, champion, and Golden Ball."
+      desc="FIFA World Cup 2026 Predictions - make your FIFA World Cup 2026 predictions. Pick group winners,, online free. Free online, no sign-up. Works on any device."
       icon="📋" iconBg="rgba(234,179,8,0.08)"
       category="fifa" slug="fifa-world-cup-predictions"
       faq={[
@@ -92,6 +92,8 @@ export default function fifa_world_cup_predictions() {
         { q: "How many teams are in WC 2026?", a: "48 teams competed — expanded from 32. Split into 12 groups of 4 teams each." },
         { q: "Can I save my predictions?", a: "Yes! Click Save to store in your browser's local storage." },
         { q: "Can I share my predictions with friends?", a: "Click Share to generate a unique link with all your predictions encoded." },
+        { q: "How do I use this FIFA World Cup 2026 Predictions online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
       ]}
       howItWorks={[
         "Select group winners & runners-up for all 12 groups.",

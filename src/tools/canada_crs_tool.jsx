@@ -185,6 +185,9 @@ export default function canada_crs_tool() {
         { q: 'What is CRS?', a: 'Comprehensive Ranking System — IRCC\'s point system for Express Entry immigration to Canada.' },
         { q: 'Are job-offer points included?', a: 'No. IRCC removed job-offer CRS points on March 25, 2025. This tool follows the new rules.' },
         { q: 'Do CLB 4-6 get language points?', a: 'Yes. First official language gives points from CLB 4 upward (per ability).' },
+        { q: "How do I use this Canada CRS Score Calculator (Express Entry) online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this Canada CRS Score Calculator (Express Entry) accurate?", a: "Yes. The Canada CRS Score Calculator (Express Entry) uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
       ]}
       howItWorks={[
         'Pick language input type (CLB or IELTS).',

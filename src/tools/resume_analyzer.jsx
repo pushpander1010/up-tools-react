@@ -112,12 +112,16 @@ export default function resume_analyzer() {
   return (
     <ToolLayout
       title="Resume Analyzer"
-      desc="Analyze your resume for ATS readability, keyword density, and JD match. Supports PDF, DOCX, and plain text."
+      desc="Resume Analyzer - analyze your resume for ATS readability, keyword density, and JD match. Supports, online free. Free online, no sign-up. Works on any device."
       icon="📄" iconBg="rgba(34,197,94,0.08)"
       category="career" slug="resume-analyzer"
       faq={[
         { q: 'What is ATS score?', a: 'ATS (Applicant Tracking System) score measures how well your resume can be parsed by automated screening software used by recruiters.' },
         { q: 'Does this upload my resume?', a: 'No. All analysis runs locally in your browser. No data is sent to any server.' },
+        { q: "How do I use this Resume Analyzer online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this Resume Analyzer free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Paste your resume text or upload a PDF/DOCX file.',

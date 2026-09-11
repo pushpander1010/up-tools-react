@@ -147,12 +147,16 @@ export default function yaml_to_json_converter() {
   return (
     <ToolLayout
       title="YAML ⇄ JSON Converter"
-      desc="Convert between YAML and JSON formats instantly. Parse, format, and validate your data."
+      desc="YAML ⇄ JSON Converter - convert between YAML and JSON formats instantly. Parse, format, and, online free. Free online, instant results. No sign-up needed."
       icon="🔄" iconBg="rgba(99,102,241,0.08)"
       category="dev" slug="yaml-to-json-converter"
       faq={[
         { q: 'What is YAML?', a: 'YAML is a human-readable data serialization format often used for configuration files.' },
         { q: 'Does this work offline?', a: 'Yes — the conversion runs entirely in your browser with no server requests.' },
+        { q: "How do I convert online free?", a: "Pick the from and to units above and the result appears instantly. Free, no sign-up, works on mobile." },
+        { q: "Which units are supported?", a: "All common units are supported. Choose from the dropdowns above for an instant free conversion." },
+        { q: "Is the conversion instant?", a: "Yes. Results appear live as you type, with no sign-up and no page reload." },
+        { q: "Is this YAML ⇄ JSON Converter free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Paste YAML or JSON in the input area.',

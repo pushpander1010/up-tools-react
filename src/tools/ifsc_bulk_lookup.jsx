@@ -43,12 +43,16 @@ export default function ifsc_bulk_lookup() {
   return (
     <ToolLayout
       title="IFSC Bulk Lookup"
-      desc="Search multiple IFSC codes at once. Get bank branch details instantly. Download results as CSV."
+      desc="IFSC Bulk Lookup - search multiple IFSC codes at once. Get bank branch details instantly. Download, online free. Free online, no sign-up. Works on any device."
       icon="🏦" iconBg="rgba(34,197,94,0.08)"
       category="finance" slug="ifsc-bulk-lookup"
       faq={[
         { q: "What is an IFSC code?", a: "IFSC (Indian Financial System Code) is a unique 11-character code assigned to every bank branch in India." },
         { q: "Can I search unlimited codes?", a: "Yes, paste them one per line and click Search." },
+        { q: "How do I use this IFSC Bulk Lookup online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this IFSC Bulk Lookup free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={["Enter IFSC codes in the text area (one per line)", "Click Search to see results", "Download results as CSV"]}
       schema={{"@context":"https://schema.org","@type":"SoftwareApplication","name":"IFSC Bulk Lookup","applicationCategory":"UtilitiesApplication","url":"https://www.uptools.in/ifsc-bulk-lookup/","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}}

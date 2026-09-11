@@ -76,12 +76,16 @@ export default function DuplicateLineRemover() {
   return (
     <ToolLayout
       title="Duplicate Line Remover"
-      desc="Remove duplicate lines, count unique entries, and clean up your text. All client-side."
+      desc="Duplicate Line Remover - remove duplicate lines, count unique entries, and clean up your text. All, online free. Free online, no sign-up. Works on any device."
       icon="🗑️" iconBg="rgba(99,102,241,0.08)"
       category="text" slug="duplicate-line-remover"
       faq={[
         { q: 'What is Duplicate Line Remover?', a: 'A tool that removes duplicate lines from your text. Supports case-sensitive and case-insensitive deduplication, counting unique lines, and showing only duplicates.' },
         { q: 'How to use it?', a: 'Paste your text, choose a deduplication mode, and get the cleaned output instantly.' },
+        { q: "How do I use this Duplicate Line Remover online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this Duplicate Line Remover free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Paste your text with one item per line in the input area.',

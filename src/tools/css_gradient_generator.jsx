@@ -40,12 +40,16 @@ export default function css_gradient_generator() {
   return (
     <ToolLayout
       title="CSS Gradient Generator"
-      desc="Create beautiful CSS gradients with live preview. Build linear, radial, and conic gradients with multiple color stops."
+      desc="CSS Gradient Generator - create beautiful CSS gradients with live preview. Build linear, radial,, online free. Free online, no sign-up. Works on any device."
       icon="🎨" iconBg="rgba(168,85,247,0.08)"
       category="dev" slug="css-gradient-generator"
       faq={[
         { q: "What gradient types are supported?", a: "Linear, radial, and conic gradients — the three main CSS gradient types." },
         { q: "Can I add more colors?", a: "Yes, click the Add Color button to add more color stops to your gradient." },
+        { q: "How do I use this CSS Gradient Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this CSS Gradient Generator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Choose a gradient type (linear, radial, or conic).",

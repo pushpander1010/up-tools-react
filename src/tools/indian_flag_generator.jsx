@@ -177,6 +177,9 @@ export default function indian_flag_generator() {
         { q: 'What is the Indian Flag Generator?', a: 'A free tool that renders the Indian national flag as a PNG you can download — with a message, flag pole, stand, and waving effect.' },
         { q: 'Can I add my own message?', a: 'Yes — pick a preset (Jai Hind, Happy Independence Day, etc.) or type your own custom message.' },
         { q: 'Can I remove the Ashoka Chakra?', a: 'Yes — toggle the Chakra option off to generate a plain tricolor flag without the navy Ashoka Chakra.' },
+        { q: "How do I use this Indian Flag Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         'Choose size and toggle options (chakra, pole + stand, waving effect).',

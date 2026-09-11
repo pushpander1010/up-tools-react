@@ -79,12 +79,16 @@ export default function ipl_fantasy_calculator() {
   return (
     <ToolLayout
       title="IPL Fantasy Points Calculator"
-      desc="Calculate IPL fantasy cricket points for Dream11, MyTeam11, and fantasy leagues."
+      desc="IPL Fantasy Points Calculator - calculate IPL fantasy cricket points for Dream11,, online free. Free online, instant results. No sign-up, works on mobile."
       icon="⭐" iconBg="rgba(234,179,8,0.08)"
       category="sports" slug="ipl-fantasy-calculator"
       faq={[
         { q: "How are fantasy points calculated?", a: "Points are awarded for runs, boundaries, wickets, catches, run-outs, and strike rate/economy bonuses." },
         { q: "What is the 50/100 bonus?", a: "8 points for scoring 50 runs, 16 points for scoring 100 runs." },
+        { q: "How do I use this IPL Fantasy Points Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this IPL Fantasy Points Calculator accurate?", a: "Yes. The IPL Fantasy Points Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
+        { q: "Is this IPL Fantasy Points Calculator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={["Enter batting, bowling, and fielding stats", "Click Calculate Points", "See breakdown of batting, bowling, fielding, and bonus points"]}
       schema={{"@context":"https://schema.org","@type":"SoftwareApplication","name":"IPL Fantasy Points Calculator","applicationCategory":"UtilitiesApplication","url":"https://www.uptools.in/ipl-fantasy-calculator/","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}}

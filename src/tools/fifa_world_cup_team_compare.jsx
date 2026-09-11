@@ -115,12 +115,16 @@ export default function fifa_world_cup_team_compare() {
   return (
     <ToolLayout
       title="FIFA World Cup 2026 Team Comparison"
-      desc="Compare FIFA World Cup 2026 national teams side-by-side. FIFA rankings, World Cup titles, key players, radar charts."
+      desc="FIFA World Cup 2026 Team Comparison - compare FIFA World Cup 2026 national teams side-by-side. FIFA, online free. Free online, no sign-up. Works on any device."
       icon="📊" iconBg="rgba(99,102,241,0.08)"
       category="fifa" slug="fifa-world-cup-team-compare"
       faq={[
         { q: "How is the radar chart calculated?", a: "Each attribute (Attack, Defense, Midfield, Experience, Depth) is scored 0-100 based on FIFA ranking, WC history, and squad quality." },
         { q: "What does the head-to-head show?", a: "Historical match results between the two teams including wins, draws, and goals." },
+        { q: "How do I use this FIFA World Cup 2026 Team Comparison online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this FIFA World Cup 2026 Team Comparison free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Select two teams from the dropdowns.",

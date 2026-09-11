@@ -249,13 +249,16 @@ export default function instagram_auditor() {
   return (
     <ToolLayout
       title="Instagram Auditor"
-      desc="Find non-followers, fans & mutuals. Upload your Instagram data export for privacy-first client-side analysis."
+      desc="Instagram Auditor - find non-followers, fans & mutuals. Upload your Instagram data export for, online free. Free online, no sign-up. Works on any device."
       icon="🔍" iconBg="rgba(236,72,153,0.08)"
       category="social" slug="instagram-auditor"
       faq={[
         { q: "What is Instagram Auditor?", a: "A privacy-first tool that analyzes your Instagram follower data. Upload your Instagram export files to find who doesn't follow you back, discover fans, and analyze mutual connections." },
         { q: "How to get my Instagram data?", a: "Go to Instagram Settings → Privacy and Security → Download Your Information → Select 'Followers and following' → Choose JSON or HTML format → Request download." },
         { q: "Is my data safe?", a: "Yes. All processing happens entirely in your browser. No data is uploaded to any server." },
+        { q: "How do I use this Instagram Auditor online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         'Download your Instagram data export from Settings → Privacy and Security.',

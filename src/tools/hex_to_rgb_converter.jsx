@@ -115,9 +115,22 @@ export default function HexToRgbConverter() {
   return (
     <ToolLayout
       title="HEX ↔ RGB Converter"
-      desc="Convert between HEX, RGB & HSL color formats with live preview."
+      desc="HEX ↔ RGB Converter - convert between HEX, RGB & HSL color formats with live preview, online free. Free online, instant results. No sign-up needed."
       icon="🌈" iconBg="rgba(99,102,241,0.08)"
       category="dev" slug="hex-to-rgb-converter"
+      faq={[
+        { q: "How do I convert HEX to RGB online free?", a: "Enter any HEX, RGB, or HSL color above and all formats convert live with preview. Free, no sign-up." },
+        { q: "Does it show a live preview?", a: "Yes. The color swatch updates instantly as you type, free in any browser." },
+        { q: "Is this converter free?", a: "Yes, completely free with no sign-up. Convert unlimited colors on any device." },
+        { q: "Do I need to sign up?", a: "No sign-up needed. Convert unlimited colors free on any device." },
+        { q: "Does it work on mobile?", a: "Yes. Convert colors free in your phone browser, no app needed." },
+        { q: "Which formats are supported?", a: "HEX, RGB, and HSL with live preview. Paste any one and get all three free." },
+      ]}
+      howItWorks={[
+        "Enter a HEX, RGB, or HSL color above.",
+        "See all formats convert live with preview.",
+        "Copy the value you need in one click.",
+      ]}
     >
       <div className="max-w-[680px] mx-auto space-y-4">
         {/* Color Preview Swatch */}

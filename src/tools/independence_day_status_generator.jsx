@@ -394,6 +394,8 @@ export default function independence_day_status_generator() {
         { q: 'How does the editor work?', a: 'Upload a photo, then tap any element below to add it. Drag to move, use the corner handle to resize, the top handle to rotate. Use Up/Down to reorder layers.' },
         { q: 'Can I add the same sticker multiple times?', a: 'Yes — every tap adds a new copy you can position independently anywhere on the image.' },
         { q: 'Is it free?', a: 'Yes, everything is completely free with no sign-up.' },
+        { q: "How do I use this Independence Day Status Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
       ]}
       howItWorks={[
         'Click "New Status" to cycle through patriotic statuses and captions, and copy them.',

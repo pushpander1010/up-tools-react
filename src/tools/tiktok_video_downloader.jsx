@@ -37,13 +37,16 @@ export default function tiktok_video_downloader() {
   return (
     <ToolLayout
       title="TikTok Video Downloader"
-      desc="Download TikTok videos without watermark in HD quality. Works on all devices."
+      desc="TikTok Video Downloader - download TikTok videos without watermark in HD quality. Works on all devices, online free. Free online in HD. No app or login needed."
       icon="🎬" iconBg="rgba(0,0,0,0.08)"
       category="social" slug="tiktok-video-downloader"
       faq={[
         { q: "How do I get the TikTok video URL?", a: "Open the TikTok video, tap the share button, and copy the link. Or copy the URL from your browser's address bar." },
         { q: "Can I download private videos?", a: "No, only public TikTok videos can be downloaded." },
         { q: "What formats are supported?", a: "We support MP4 (most compatible) and WebM (modern browsers). MP4 is recommended." },
+        { q: "How do I download online free?", a: "Paste the link above, pick your option, and save the file. Free with no sign-up or app needed." },
+        { q: "What quality do I get?", a: "You get the highest quality available, free. Paste the link above and save it to your device." },
+        { q: "Can I download on mobile?", a: "Yes. Open this page in your phone browser, paste the link, and save directly. No app needed." },
       ]}
       howItWorks={[
         "Find the TikTok video you want to download.",

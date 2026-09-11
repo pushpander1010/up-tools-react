@@ -97,12 +97,16 @@ export default function pokemon_stats() {
   return (
     <ToolLayout
       title="Pokemon Stats"
-      desc="Browse all Pokemon with stats, types, and CSV export."
+      desc="Pokemon Stats - browse all Pokemon with stats, types, and CSV export, online free. Fast search, no sign-up, works on mobile and desktop."
       icon="⚡" iconBg="rgba(245,158,11,0.08)"
       category="fun" slug="pokemon-stats"
       faq={[
         { q: "Where does the data come from?", a: "Pokemon data is fetched from the free PokeAPI (pokeapi.co)." },
         { q: "Can I export all stats?", a: "Yes! Click 'Export CSV' to download stats for all Pokemon. This may take a few minutes." },
+        { q: "How do I use this Pokemon Stats online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this Pokemon Stats free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Browse or search Pokemon by name.",

@@ -4,13 +4,16 @@ export default function fifa_world_cup_red_cards() {
   return (
     <ToolLayout
       title="FIFA World Cup 2026 Red Cards"
-      desc="Track every red card shown at the 2026 FIFA World Cup. Full list of sendings-off with match details."
+      desc="FIFA World Cup 2026 Red Cards - track every red card shown at the 2026 FIFA World Cup. Full list of, online free. Free online, no sign-up. Works on any device."
       icon="🟥" iconBg="rgba(239,68,68,0.08)"
       category="fifa" slug="fifa-world-cup-red-cards"
       faq={[
         { q: "How many red cards were shown in the 2026 World Cup?", a: "A record number of red cards were shown across the tournament, with the opening match alone seeing 3 red cards — a World Cup record." },
         { q: "What happens after a red card?", a: "The player is sent off immediately and receives an automatic one-match suspension. Straight reds may be extended by FIFA's disciplinary committee." },
         { q: "Which match had the most red cards?", a: "Mexico vs South Africa (Opening Match) had 3 red cards — the most in any single World Cup match in history." },
+        { q: "How do I use this FIFA World Cup 2026 Red Cards online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         "Red cards are logged from official FIFA match reports.",

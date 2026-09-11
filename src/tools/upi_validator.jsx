@@ -85,12 +85,16 @@ export default function upi_validator() {
   return (
     <ToolLayout
       title="UPI Validator"
-      desc="Validate Indian UPI IDs. Check format, username, and verify bank domain against our database of 100+ UPI handles."
+      desc="UPI Validator - validate Indian UPI IDs. Check format, username, and verify bank domain against, online free. Free online, instant results. No login needed."
       icon="💳" iconBg="rgba(34,197,94,0.08)"
       category="finance" slug="upi-validator"
       faq={[
         { q: 'What UPI formats are supported?', a: 'We validate the standard format: username@bank (e.g., user@okicici, name@paytm).' },
         { q: 'How many banks are in the database?', a: '100+ UPI handles including all major banks (SBI, ICICI, HDFC) and third-party apps (PhonePe, Paytm, GooglePay).' },
+        { q: "How do I check online free?", a: "Enter your input above and get an instant result. Free with no sign-up, works on mobile and desktop." },
+        { q: "What does it check?", a: "It validates your input against standard rules instantly. Enter the value above to see the result." },
+        { q: "Is my data kept private?", a: "Yes. Everything runs in your browser. Nothing you enter is uploaded or stored." },
+        { q: "Is this UPI Validator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Enter a UPI ID in the format username@bank.',

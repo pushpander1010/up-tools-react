@@ -93,13 +93,16 @@ export default function word_counter_plus() {
   return (
     <ToolLayout
       title="Advanced Word Counter"
-      desc="Count words, characters, sentences, paragraphs, and estimate reading time. Includes readability score and detailed text analysis."
+      desc="Advanced Word Counter - count words, characters, sentences, paragraphs, and estimate reading time., online free. Free online, no sign-up. Works on any device."
       icon="📝" iconBg="rgba(99,102,241,0.08)"
       category="text" slug="word-counter-plus"
       faq={[
         { q: 'How is reading time calculated?', a: 'Reading time is estimated at 200 words per minute. Formula: words ÷ 200 = minutes.' },
         { q: 'What is the Flesch Reading Ease score?', a: 'A 0–100 scale rating text readability. 60–70 is standard difficulty, suitable for most readers.' },
         { q: 'Does this tool store my text?', a: 'No. All analysis runs locally in your browser. Nothing is uploaded.' },
+        { q: "How do I use this Advanced Word Counter online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         'Type or paste your text into the input area.',

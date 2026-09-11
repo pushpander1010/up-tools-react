@@ -29,12 +29,16 @@ export default function golf_handicap_calculator() {
   return (
     <ToolLayout
       title="Golf Handicap Calculator"
-      desc="Calculate your golf handicap index, course handicap, and net score."
+      desc="Golf Handicap Calculator - calculate your golf handicap index, course handicap, and, online free. Free online, instant results. No sign-up, works on mobile."
       icon="⛳" iconBg="rgba(34,197,94,0.08)"
       category="sports" slug="golf-handicap-calculator"
       faq={[
         { q: "What is a golf handicap?", a: "A golf handicap is a numerical measure of a golfer's potential ability. It allows players of different skill levels to compete fairly." },
         { q: "How is handicap differential calculated?", a: "Handicap Differential = (Gross Score - Course Rating) × (113 / Slope Rating). This adjusts for course difficulty." },
+        { q: "How do I use this Golf Handicap Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this Golf Handicap Calculator accurate?", a: "Yes. The Golf Handicap Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
+        { q: "Is this Golf Handicap Calculator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Enter your gross score, course par, course rating, and slope rating.",

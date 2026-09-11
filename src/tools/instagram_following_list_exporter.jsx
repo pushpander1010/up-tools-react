@@ -70,13 +70,16 @@ export default function instagram_following_list_exporter() {
   return (
     <ToolLayout
       title="Instagram Following List Exporter"
-      desc="Upload your Instagram data export and convert your following list to CSV. Client-side, privacy-first."
+      desc="Instagram Following List Exporter - upload your Instagram data export and convert your following, online free. Free online, no sign-up. Works on any device."
       icon="📤" iconBg="rgba(6,182,212,0.08)"
       category="social" slug="instagram-following-list-exporter"
       faq={[
         { q: "What's the difference between followers and following?", a: "Followers are people who follow you. Following are people you follow. This tool exports your following list." },
         { q: "How do I get my following list?", a: "Download your Instagram data from Settings → Privacy and Security → Download Your Information → Select 'Followers and following'." },
         { q: "Can I compare this with my followers?", a: "Yes! Export both lists and compare them in a spreadsheet, or use the Instagram Auditor tool to find non-followers automatically." },
+        { q: "How do I use this Instagram Following List Exporter online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         'Upload your Instagram following data file or paste the data.',

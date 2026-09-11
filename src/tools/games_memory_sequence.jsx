@@ -146,13 +146,16 @@ export default function GamesMemorySequence() {
       name="MEMORY SEQUENCE"
       startAction={startGame} startLabel="▶ Start"
       title="Memory Sequence Game – Simon Says Online Free"
-      desc="Test your memory! Watch the sequence of colors, then repeat it. Each round gets faster and longer. How far can you go?"
+      desc="Memory Sequence Game – Simon Says Online Free - test your memory! Watch the sequence, online free. Play online free, no download. Works on mobile and desktop."
       icon="🧠" iconBg="rgba(239,68,68,0.08)"
       category="fun" slug="games-memory-sequence"
       faq={[
         { q: "How do I play?", a: "Watch the colored pads light up, then click them in the same order." },
         { q: "Does it get harder?", a: "Yes — each round adds one more step and the flashes speed up." },
         { q: "Can I use keyboard?", a: "Yes! Keys 1-4 or A-D correspond to the four pads." },
+        { q: "How do I play Memory Sequence Game – Simon Says Online Free online free?", a: "Click Start and follow the on-screen steps. Use mouse, touch, or keyboard controls. No download needed." },
+        { q: "Can I play Memory Sequence Game – Simon Says Online Free without downloading?", a: "Yes. This Memory Sequence Game – Simon Says Online Free runs in your browser with no install. Free on mobile and desktop." },
+        { q: "How do I use this Memory Sequence Game – Simon Says Online Free online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
       ]}
       howItWorks={[
         "Press 'Start Game' to begin.",

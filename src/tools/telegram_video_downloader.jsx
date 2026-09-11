@@ -38,6 +38,8 @@ export default function telegram_video_downloader() {
         { q: 'Can I download from private channels?', a: 'Only public channels and groups give you a copyable link. Private channels require you to be a member, and you can save media from them directly inside the app.' },
         { q: 'Why can\u2019t you download directly here?', a: 'Telegram media is protected and served through login-gated web previews, so the reliable method is the official copy-link → browser → save flow below.' },
         { q: 'Can I save videos without downloading a link?', a: 'Yes — inside the Telegram app, open the video, tap ⋯ (or the download icon), and choose Save to gallery/downloads.' },
+        { q: "How do I download online free?", a: "Paste the link above, pick your option, and save the file. Free with no sign-up or app needed." },
+        { q: "What quality do I get?", a: "You get the highest quality available, free. Paste the link above and save it to your device." },
       ]}
       howItWorks={[
         "Copy the message link from the Telegram app.",

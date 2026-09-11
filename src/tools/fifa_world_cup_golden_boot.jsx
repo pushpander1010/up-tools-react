@@ -58,12 +58,16 @@ export default function fifa_world_cup_golden_boot() {
   return (
     <ToolLayout
       title="FIFA World Cup 2026 Golden Boot"
-      desc="Top scorers of the 2026 FIFA World Cup. Goals, assists, and player rankings."
+      desc="FIFA World Cup 2026 Golden Boot - top scorers of the 2026 FIFA World Cup. Goals, assists, and, online free. Free online, no sign-up. Works on any device."
       icon="🥇" iconBg="rgba(234,179,8,0.08)"
       category="fifa" slug="fifa-world-cup-golden-boot"
       faq={[
         { q: "Who won the 2026 Golden Boot?", a: "Kylian Mbappé (France) won with 10 goals, followed by Lionel Messi (Argentina) with 8 goals." },
         { q: "How is the ranking determined?", a: "By total goals scored. Assists are used as a tiebreaker." },
+        { q: "How do I use this FIFA World Cup 2026 Golden Boot online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this FIFA World Cup 2026 Golden Boot free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Browse the top scorers table with goals and assists.",

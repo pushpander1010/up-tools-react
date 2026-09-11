@@ -37,7 +37,7 @@ export default function bmi_calculator() {
   return (
     <ToolLayout
       title="BMI Calculator"
-      desc="Calculate your Body Mass Index instantly. Supports metric (kg/cm) and imperial (lbs/inches) units."
+      desc="BMI Calculator - calculate your Body Mass Index instantly. Supports metric (kg/cm) and, online free. Free online, instant results. No sign-up, works on mobile."
       icon="⚖️" iconBg="rgba(20,184,166,0.08)"
       category="health" slug="bmi-calculator"
       faq={[
@@ -45,6 +45,8 @@ export default function bmi_calculator() {
         { q: 'What is a healthy BMI?', a: '18.5 to 24.9 is considered normal weight for most adults.' },
         { q: 'Is BMI accurate for athletes?', a: 'BMI does not distinguish between muscle and fat. Athletes may have a high BMI due to muscle mass, not excess fat.' },
         { q: 'What should I do if my BMI is high?', a: 'Consult a healthcare professional. BMI is just one indicator — they can assess overall health more comprehensively.' },
+        { q: "How do I use this BMI Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this BMI Calculator accurate?", a: "Yes. The BMI Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
       ]}
       howItWorks={[
         'Choose metric (kg/cm) or imperial (lbs/inches) units.',

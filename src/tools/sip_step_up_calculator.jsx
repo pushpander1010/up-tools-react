@@ -40,12 +40,16 @@ export default function sip_step_up_calculator() {
   return (
     <ToolLayout
       title="SIP Step-Up Calculator"
-      desc="Compare regular SIP vs step-up SIP. See how increasing your SIP annually boosts your wealth. Free online calculator."
+      desc="SIP Step-Up Calculator - compare regular SIP vs step-up SIP. See how increasing your, online free. Free online, instant results. No sign-up, works on mobile."
       icon="🚀" iconBg="rgba(34,197,94,0.08)"
       category="finance" slug="sip-step-up-calculator"
       faq={[
         { q: 'What is a Step-Up SIP?', a: 'A Step-Up SIP increases your monthly SIP amount by a fixed percentage each year, aligning with your salary growth. Even a 10% annual step-up can dramatically boost your long-term wealth.' },
         { q: 'How much extra wealth does step-up generate?', a: 'A 10% annual step-up on a ₹5,000 SIP at 12% returns over 20 years generates nearly double the corpus compared to a regular SIP.' },
+        { q: "How do I use this SIP Step-Up Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this SIP Step-Up Calculator accurate?", a: "Yes. The SIP Step-Up Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
+        { q: "Is this SIP Step-Up Calculator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Enter your starting monthly SIP amount.',

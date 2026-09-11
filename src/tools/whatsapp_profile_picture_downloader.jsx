@@ -85,6 +85,8 @@ export default function whatsapp_profile_picture_downloader() {
         { q: "How do I download a WhatsApp profile picture by number?", a: "Enter the number in the field above to generate a wa.me link, open it, and tap the contact's profile photo to save it. There is no way to fetch a profile picture by number alone without a logged-in session." },
         { q: "What resolution are WhatsApp DPs?", a: "WhatsApp stores profile pictures at up to 640x640 pixels. Our tool pulls the highest quality version available from the image link." },
         { q: "Can I download a profile picture I can't see?", a: "No. If the person's privacy is set to 'My Contacts' or 'Nobody', WhatsApp won't deliver their photo to you." },
+        { q: "How do I download online free?", a: "Paste the link above, pick your option, and save the file. Free with no sign-up or app needed." },
+        { q: "What quality do I get?", a: "You get the highest quality available, free. Paste the link above and save it to your device." },
       ]}
       howItWorks={[
         "Choose a lane: by image link (real download) or by phone number (opens the chat).",

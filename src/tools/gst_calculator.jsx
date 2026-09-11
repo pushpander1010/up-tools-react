@@ -88,7 +88,7 @@ export default function gst_calculator() {
   return (
     <ToolLayout
       title="GST Calculator India"
-      desc="Calculate GST instantly for 5%, 12%, 18%, 28% rates. Get base amount, GST breakdown (CGST/SGST/IGST), total with rounding."
+      desc="GST Calculator India - calculate GST instantly for 5%, 12%, 18%, 28% rates. Get base, online free. Free online, instant results. No sign-up, works on mobile."
       icon="🧮" iconBg="rgba(16,185,129,0.08)"
       category="tax" slug="gst-calculator"
       faq={[
@@ -96,6 +96,8 @@ export default function gst_calculator() {
         { q: "What's the difference between CGST+SGST and IGST?", a: 'Within the same state: GST splits equally into CGST (Central) and SGST (State). Between states: IGST applies as a single charge.' },
         { q: 'Can I use a custom GST rate?', a: 'Yes — select "Custom" and type any rate like 3%, 7.5%, or 0.1%.' },
         { q: 'How accurate are the calculations?', a: 'All calculations use precise floating-point math. Results match what CA/accounting software would produce.' },
+        { q: "How do I use this GST Calculator India online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this GST Calculator India accurate?", a: "Yes. The GST Calculator India uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
       ]}
       howItWorks={[
         'Enter the amount in the input field above.',

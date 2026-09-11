@@ -399,6 +399,8 @@ export default function games_wordle() {
         { q: "What is Hard Mode?", a: "In Hard Mode, you must use revealed hints in subsequent guesses. If a letter was revealed as green or yellow, it must appear in that position or be included in your guess." },
         { q: "Can I share my results?", a: "Yes! After completing a game, tap the Share button to copy your results as an emoji grid to share with friends." },
         { q: "How are my statistics tracked?", a: "Your games played, win percentage, current streak, and guess distribution are saved locally on your device." },
+        { q: "Can I play Wordle Online - Free Word Guessing Game without downloading?", a: "Yes. This Wordle Online - Free Word Guessing Game runs in your browser with no install. Free on mobile and desktop." },
+        { q: "How do I use this Wordle Online - Free Word Guessing Game online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
       ]}
       howItWorks={[
         "Type any valid 5-letter word and press Enter to submit your guess.",

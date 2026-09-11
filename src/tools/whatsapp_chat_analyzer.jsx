@@ -100,6 +100,10 @@ export default function whatsapp_chat_analyzer() {
       faq={[
         { q: 'How to export my WhatsApp chat?', a: 'Open a chat → ⋮ (menu) → More → Export chat → Without media. Save the .txt file and upload it here.' },
         { q: 'Is my chat data private?', a: 'Yes. Everything runs in your browser. The file is never sent to any server.' },
+        { q: "How do I use this WhatsApp Chat Analyzer online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this WhatsApp Chat Analyzer free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       schema={{
         "@context": "https://schema.org", "@type": "SoftwareApplication",

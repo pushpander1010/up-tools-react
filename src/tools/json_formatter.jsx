@@ -176,7 +176,7 @@ export default function json_formatter_online() {
   return (
     <ToolLayout
       title="JSON Formatter"
-      desc="Format, beautify, minify, and validate JSON instantly. Copy to clipboard, tree view."
+      desc="JSON Formatter - format, beautify, minify, and validate JSON instantly. Copy to clipboard, tree view, online free. Free online, no sign-up. Works on any device."
       icon="📦" iconBg="rgba(99,102,241,0.08)"
       category="dev" slug="json-formatter"
       faq={[
@@ -184,6 +184,8 @@ export default function json_formatter_online() {
         { q: 'Why minify JSON?', a: 'Minification reduces file size by removing whitespace. This is useful for production APIs and reducing bandwidth usage.' },
         { q: 'Is my data private?', a: 'Yes. All processing runs locally in your browser. Nothing is uploaded to any server.' },
         { q: 'Can I validate JSON?', a: 'Yes. Click Validate to check for syntax errors. The tool will highlight any issues.' },
+        { q: "How do I use this JSON Formatter online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
       ]}
       howItWorks={[
         'Paste your JSON into the input area.',

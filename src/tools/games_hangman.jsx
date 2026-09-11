@@ -236,12 +236,16 @@ export default function games_hangman() {
       startAction={handleNewGame} startLabel="⟲ New Game"
       title="Hangman Game Online - Free Word Guessing Game"
  
-      desc="Classic word guessing game with multiple categories. Guess the word letter by letter before the man is hanged."
+      desc="Hangman Game Online - Free Word Guessing Game - classic word guessing game with, online free. Play online free, no download. Works on mobile and desktop."
       icon="🪢" iconBg="rgba(244,63,94,0.08)"
       category="fun" slug="games-hangman"
       faq={[
         { q: "What is Hangman?", a: "Hangman is a classic word guessing game where you try to guess a hidden word one letter at a time. You have 6 wrong guesses before the hangman is complete." },
         { q: "How many categories are there?", a: "There are 5 categories: Animals, Countries, Technology, Food, and Sports. You can also play with 'All' to mix them." },
+        { q: "How do I play Hangman Game Online - Free Word Guessing Game online free?", a: "Click Start and follow the on-screen steps. Use mouse, touch, or keyboard controls. No download needed." },
+        { q: "Can I play Hangman Game Online - Free Word Guessing Game without downloading?", a: "Yes. This Hangman Game Online - Free Word Guessing Game runs in your browser with no install. Free on mobile and desktop." },
+        { q: "How do I use this Hangman Game Online - Free Word Guessing Game online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
+        { q: "Is this Hangman Game Online - Free Word Guessing Game free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Select a category or play with all words mixed.",

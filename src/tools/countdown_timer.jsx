@@ -71,12 +71,16 @@ export default function countdown_timer() {
   return (
     <ToolLayout
       title="Countdown Timer"
-      desc="Set a countdown timer with custom or preset durations. Start, pause, and reset anytime."
+      desc="Countdown Timer - set a countdown timer with custom or preset durations. Start, pause, and reset, online free. Free online, no sign-up. Works on any device."
       icon="⏱️" iconBg="rgba(6,182,212,0.08)"
       category="text" slug="countdown-timer"
       faq={[
         { q: "How do I set a timer?", a: "Enter seconds in the input field or click a preset button, then click Start." },
         { q: "Can I pause and resume?", a: "Yes, click Pause to stop the timer and Start to resume from where it left off." },
+        { q: "How do I use this Countdown Timer online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this Countdown Timer free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Enter a time in seconds or click a preset duration.",

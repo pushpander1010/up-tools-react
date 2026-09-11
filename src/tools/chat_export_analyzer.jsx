@@ -114,13 +114,16 @@ export default function chat_export_analyzer() {
   return (
     <ToolLayout
       title="WhatsApp Chat Export Analyzer"
-      desc="Paste or upload your exported WhatsApp chat (.txt) to see stats: messages per person, peak hours, emoji usage & more."
+      desc="WhatsApp Chat Export Analyzer - paste or upload your exported WhatsApp chat (.txt) to see stats:, online free. Free online, no sign-up. Works on any device."
       icon="📊" iconBg="rgba(37,211,102,0.08)"
       category="whatsapp" slug="chat-export-analyzer"
       faq={[
         { q: "How do I export a WhatsApp chat?", a: "Open the chat → Tap ⋮ (three dots) → More → Export chat → Choose 'Without media'. This saves a .txt file." },
         { q: "Is my chat data uploaded?", a: "No. Everything runs entirely in your browser. Your chat data never leaves your device." },
         { q: "What format does it support?", a: "Standard WhatsApp exported .txt files (DD/MM/YYYY, HH:MM - Sender: Message format)." },
+        { q: "How do I use this WhatsApp Chat Export Analyzer online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         "Export a WhatsApp chat as .txt (without media).",

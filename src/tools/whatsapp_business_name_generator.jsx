@@ -73,13 +73,16 @@ export default function whatsapp_business_name_generator() {
   return (
     <ToolLayout
       title="WhatsApp Business Name Generator"
-      desc="Generate professional, catchy business names for your WhatsApp Business profile. Stand out in customer chats!"
+      desc="WhatsApp Business Name Generator - generate professional, catchy business names for your WhatsApp, online free. Free online, no sign-up. Works on any device."
       icon="💼" iconBg="rgba(37,211,102,0.08)"
       category="whatsapp" slug="whatsapp-business-name-generator"
       faq={[
         { q: "How do I choose a good WhatsApp Business name?", a: "Choose a name that's memorable, easy to spell, reflects your business, and is professional. Keep it under 25 characters." },
         { q: "Can I use emojis in my WhatsApp Business name?", a: "Yes! Emojis can make your business name stand out in chat lists. Use 1-2 relevant emojis." },
         { q: "Should my WhatsApp Business name match my company name?", a: "It's recommended but not required. Your name should be recognizable to customers." },
+        { q: "How do I use this WhatsApp Business Name Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         "Enter your business type (e.g., Bakery, Salon, Clothing Store).",

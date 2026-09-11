@@ -29,7 +29,7 @@ export default function youtube_audio_downloader() {
   return (
     <ToolLayout
       title="YouTube Audio Downloader"
-      desc="Learn how to download audio from YouTube videos as MP3 — step-by-step guide with quality tips and video instructions."
+      desc="YouTube Audio Downloader - learn how to download audio from YouTube videos as MP3 — step-by-step guide, online free. Free online in HD. No app or login needed."
       icon="🎵" iconBg="rgba(239,68,68,0.08)"
       category="social" slug="youtube-audio-downloader"
       faq={[
@@ -37,6 +37,8 @@ export default function youtube_audio_downloader() {
         { q: 'What audio quality should I choose?', a: '320 kbps is the best quality and largest file; 128 kbps is the smallest. Choose based on whether you want quality or a small file.' },
         { q: 'Why can\u2019t you convert directly here?', a: 'YouTube blocks data-center servers from fetching videos, so we explain the reliable method: copy the URL and use a trusted online converter.' },
         { q: 'Can I download Shorts audio too?', a: 'Yes — YouTube Shorts have the same URL format and work the same way in any converter.' },
+        { q: "How do I download online free?", a: "Paste the link above, pick your option, and save the file. Free with no sign-up or app needed." },
+        { q: "What quality do I get?", a: "You get the highest quality available, free. Paste the link above and save it to your device." },
       ]}
       howItWorks={[
         "Copy the YouTube video or Short URL.",

@@ -87,13 +87,16 @@ export default function whatsapp_group_name_generator() {
   return (
     <ToolLayout
       title="WhatsApp Group Name Generator"
-      desc="Generate creative and funny WhatsApp group names for any occasion!"
+      desc="WhatsApp Group Name Generator - generate creative and funny WhatsApp group names for any occasion!, online free. Free online, no sign-up. Works on any device."
       icon="💬" iconBg="rgba(37,211,102,0.08)"
       category="whatsapp" slug="whatsapp-group-name-generator"
       faq={[
         { q: "What makes a good WhatsApp group name?", a: "A good name is relevant, easy to remember, creative or funny, not too long, and appropriate for all members. Consider using emojis." },
         { q: "Can I use emojis in WhatsApp group names?", a: "Yes! Emojis make group names more fun and recognizable. You can add them at the beginning, end, or throughout the name." },
         { q: "How long can a WhatsApp group name be?", a: "WhatsApp group names can be up to 25 characters long. Keep it concise and memorable." },
+        { q: "How do I use this WhatsApp Group Name Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         "Select the group type from the dropdown.",

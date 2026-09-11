@@ -97,12 +97,16 @@ export default function cbse_percentage_calculator() {
   return (
     <ToolLayout
       title="CBSE Percentage Calculator"
-      desc="Calculate CBSE Class 12 percentage from subject-wise marks."
+      desc="CBSE Percentage Calculator - calculate CBSE Class 12 percentage from subject-wise marks, online free. Free online, instant results. No sign-up, works on mobile."
       icon="📊" iconBg="rgba(99,102,241,0.08)"
       category="education" slug="cbse-percentage-calculator"
       faq={[
         { q: "How is the percentage calculated?", a: "Total marks obtained divided by total maximum marks, multiplied by 100." },
         { q: "What grading system is used?", a: "CBSE grading: A1 (91+), A2 (81-90), B1 (71-80), B2 (61-70), C1 (51-60), C2 (41-50), D (33-40), E (<33)." },
+        { q: "How do I use this CBSE Percentage Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this CBSE Percentage Calculator accurate?", a: "Yes. The CBSE Percentage Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
+        { q: "Is this CBSE Percentage Calculator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Enter subject names, marks obtained, and maximum marks.",

@@ -78,13 +78,16 @@ export default function upi_qr_generator() {
   return (
     <ToolLayout
       title="UPI QR Code Generator"
-      desc="Generate UPI QR codes instantly. Enter UPI ID and amount for payments."
+      desc="UPI QR Code Generator - generate UPI QR codes instantly. Enter UPI ID and amount for payments, online free. Free online, no sign-up. Works on any device."
       icon="📱" iconBg="rgba(34,197,94,0.08)"
       category="finance" slug="upi-qr-generator"
       faq={[
         { q: 'What is a UPI QR code?', a: 'A scannable code containing your UPI ID and optional amount. When scanned, it pre-fills payment details.' },
         { q: 'Which apps can scan UPI QR codes?', a: 'All major Indian UPI apps: Google Pay, PhonePe, Paytm, BHIM, Amazon Pay, WhatsApp Pay.' },
         { q: 'Is the amount mandatory?', a: 'No. You can generate a QR with just your UPI ID. Amount is optional.' },
+        { q: "How do I use this UPI QR Code Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         'Enter your UPI ID in the format username@bank.',

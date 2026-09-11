@@ -101,13 +101,16 @@ export default function fifa_world_cup_venues() {
   return (
     <ToolLayout
       title="FIFA World Cup 2026 Venues & Stadiums Guide"
-      desc="Complete guide to all 16 FIFA World Cup 2026 venues. Stadium names, capacities, host cities across USA, Mexico, and Canada."
+      desc="FIFA World Cup 2026 Venues & Stadiums Guide - complete guide to all 16 FIFA World Cup 2026 venues., online free. Free online, no sign-up. Works on any device."
       icon="🏟️" iconBg="rgba(59,130,246,0.08)"
       category="fifa" slug="fifa-world-cup-venues"
       faq={[
         { q: 'How many venues hosted FIFA World Cup 2026 matches?', a: '16 venues across 3 countries: 11 in the United States, 3 in Mexico, and 2 in Canada.' },
         { q: 'Where is the FIFA World Cup 2026 final being held?', a: 'MetLife Stadium in East Rutherford, New Jersey on July 19, 2026. Spain won 1–0 against Argentina.' },
         { q: 'Which stadium hosted the opening match?', a: 'Estadio Azteca in Mexico City — the first stadium to host three World Cup opening matches (1970, 1986, 2026).' },
+        { q: "How do I use this FIFA World Cup 2026 Venues & Stadiums Guide online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         "Browse all 16 stadiums with detailed info on capacity, location, and match roles.",

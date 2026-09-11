@@ -67,12 +67,16 @@ export default function post_office_rd_calculator() {
   return (
     <ToolLayout
       title="Post Office RD Calculator"
-      desc="Calculate maturity amount for Recurring Deposits at Post Office."
+      desc="Post Office RD Calculator - calculate maturity amount for Recurring Deposits at Post, online free. Free online, instant results. No sign-up, works on mobile."
       icon="🏦" iconBg="rgba(245,158,11,0.08)"
       category="finance" slug="post-office-rd-calculator"
       faq={[
         { q: "What is the current RD interest rate?", a: "The default rate is 6.7% per annum compounded quarterly. Check India Post for the latest rates." },
         { q: "How is RD maturity calculated?", a: "Maturity is calculated using quarterly compounding: each installment earns compound interest based on remaining quarters." },
+        { q: "How do I use this Post Office RD Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this Post Office RD Calculator accurate?", a: "Yes. The Post Office RD Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
+        { q: "Is this Post Office RD Calculator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Enter your monthly deposit amount (min ₹100).",

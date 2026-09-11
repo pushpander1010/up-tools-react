@@ -70,12 +70,16 @@ export default function pdf_merger() {
   return (
     <ToolLayout
       title="PDF Merger"
-      desc="Merge multiple PDF files into one document. Free, fast, and private - no upload needed."
+      desc="PDF Merger - merge multiple PDF files into one document. Free, fast, and private - no upload needed, online free. Free online, no sign-up. Works on any device."
       icon="📄" iconBg="rgba(239,68,68,0.08)"
       category="utility" slug="pdf-merger"
       faq={[
         { q: "Is my data private?", a: "Yes. All processing happens in your browser. Files are never uploaded to our servers." },
         { q: "How many files can I merge?", a: "You can merge as many PDFs as you want. The only limit is your device's memory." },
+        { q: "How do I use this PDF Merger online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this PDF Merger free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Drop PDF files onto the drop zone or click to select files.",

@@ -107,6 +107,8 @@ export default function image_resizer() {
         { q: 'Can I resize to a specific size like 1920x1080?', a: 'Yes. Enter the exact width and height in pixels, or lock the aspect ratio and set one dimension.' },
         { q: 'Are my images private?', a: 'Your image is uploaded to our secure processing server, resized, and deleted immediately. Nothing is stored.' },
         { q: 'Is image resizing free?', a: 'Yes, all UpTools image tools are free with no watermarks and no sign-up.' },
+        { q: "How do I use this Image Resizer — Resize Images Online Free online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
       ]}
       howItWorks={[
         'Upload or drag & drop an image.',

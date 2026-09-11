@@ -30,12 +30,16 @@ export default function overtime_calculator() {
   return (
     <ToolLayout
       title="Overtime Calculator"
-      desc="Calculate regular pay, overtime pay and total weekly earnings from hourly wages and worked hours."
+      desc="Overtime Calculator - calculate regular pay, overtime pay and total weekly earnings, online free. Free online, instant results. No sign-up, works on mobile."
       icon="💰" iconBg="rgba(234,179,8,0.08)"
       category="finance" slug="overtime-calculator"
       faq={[
         { q: "How is overtime pay calculated?", a: "Overtime pay is usually calculated by multiplying the base hourly wage by an overtime multiplier such as 1.5x or 2x for hours worked beyond a regular threshold." },
         { q: "Can I use a custom overtime multiplier?", a: "Yes. This calculator supports custom overtime multipliers because overtime rules vary by employer and country." },
+        { q: "How do I use this Overtime Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this Overtime Calculator accurate?", a: "Yes. The Overtime Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
+        { q: "Is this Overtime Calculator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Enter your hourly rate, regular hours, and overtime hours.",

@@ -77,6 +77,10 @@ export default function vat_calculator() {
       faq={[
         { q: "What is VAT?", a: "VAT (Value Added Tax) is a consumption tax applied to goods and services in the European Union and many other countries. It's collected at each stage of production and distribution." },
         { q: "How do I calculate VAT?", a: "To add VAT, multiply the net price by the VAT rate and add to the original. To remove VAT from a gross price, divide by (1 + VAT rate). For example, €100 with 20% VAT = €100 × 1.20 = €120." },
+        { q: "How do I use this VAT Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this VAT Calculator accurate?", a: "Yes. The VAT Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
+        { q: "Is this VAT Calculator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Select the country from the dropdown to set the correct VAT rate.",

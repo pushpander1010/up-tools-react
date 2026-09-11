@@ -63,12 +63,16 @@ export default function debt_payoff_calculator() {
   return (
     <ToolLayout
       title="Debt Payoff Calculator"
-      desc="Calculate how fast you can become debt-free. Compare snowball vs avalanche methods."
+      desc="Debt Payoff Calculator - calculate how fast you can become debt-free. Compare snowball, online free. Free online, instant results. No sign-up, works on mobile."
       icon="💳" iconBg="rgba(245,158,11,0.08)"
       category="finance" slug="debt-payoff-calculator"
       faq={[
         { q: "What is the avalanche method?", a: "The avalanche method pays off debts with the highest interest rate first, saving the most money on interest." },
         { q: "What is the snowball method?", a: "The snowball method pays off the smallest balance first for quick wins and motivation." },
+        { q: "How do I use this Debt Payoff Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this Debt Payoff Calculator accurate?", a: "Yes. The Debt Payoff Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
+        { q: "Is this Debt Payoff Calculator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Enter your total monthly payment for debt repayment.",

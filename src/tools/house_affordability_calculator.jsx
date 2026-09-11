@@ -56,12 +56,16 @@ export default function house_affordability_calculator() {
   return (
     <ToolLayout
       title="House Affordability Calculator"
-      desc="Calculate how much house you can afford based on income, debts, down payment, and interest rates."
+      desc="House Affordability Calculator - calculate how much house you can afford based on, online free. Free online, instant results. No sign-up, works on mobile."
       icon="🏡" iconBg="rgba(34,197,94,0.08)"
       category="finance" slug="house-affordability-calculator"
       faq={[
         { q: 'How much house can I afford with my salary?', a: 'A general rule is that your home price should be 2.5 to 3 times your annual gross income. This also depends on debts, down payment, and interest rates.' },
         { q: 'What is the 28/36 rule?', a: 'Housing costs should not exceed 28% of gross monthly income, and total debt payments should not exceed 36%.' },
+        { q: "How do I use this House Affordability Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this House Affordability Calculator accurate?", a: "Yes. The House Affordability Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
+        { q: "Is this House Affordability Calculator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Enter your annual income, monthly debts, and down payment.',

@@ -457,6 +457,9 @@ export default function games_doodle_jump() {
         { q: "How do I play Doodle Jump?", a: "Use left/right arrow keys or A/D to move. On mobile, tilt your device or drag your finger to move. The doodler automatically bounces on platforms." },
         { q: "What are the different platform colors?", a: "Green = normal (stable), Blue = moving (slides left/right), Yellow/Orange = fragile (breaks on contact)!" },
         { q: "How does scoring work?", a: "Score increases as you jump higher. The higher you go, the more points you earn. Your best score is saved!" },
+        { q: "Can I play Doodle Jump Online - Jump & Bounce without downloading?", a: "Yes. This Doodle Jump Online - Jump & Bounce runs in your browser with no install. Free on mobile and desktop." },
+        { q: "How do I use this Doodle Jump Online - Jump & Bounce online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
+        { q: "Is this Doodle Jump Online - Jump & Bounce free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Press Start or tap the canvas to begin.",

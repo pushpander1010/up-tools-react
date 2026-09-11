@@ -25,6 +25,8 @@ export default function marvel_doomsday() {
         { q: "When is Marvel's Doomsday released?", a: "Doomsday is scheduled for 2026 as the next major Avengers film in the Multiverse Saga. The exact date is confirmed by Marvel as production wraps." },
         { q: "Is Doomsday part of the Multiverse Saga?", a: "Yes. Doomsday continues the Multiverse Saga that began with WandaVision and runs through Secret Wars, bringing together variants of beloved heroes and villains." },
         { q: "Who returns in Doomsday?", a: "The film reunites core Avengers with X-Men and multiverse variants. Confirmed casting is announced in waves — follow official Marvel channels for the full list." },
+        { q: "How do I use this guide?", a: "Read the sections above step by step. Everything is explained in plain words with examples." },
+        { q: "Is this free?", a: "Yes, completely free with no sign-up. Read it online on any device." },
       ]}
       howItWorks={[
         "Doomsday is the penultimate chapter before Secret Wars in the Multiverse Saga.",

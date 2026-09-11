@@ -215,12 +215,15 @@ export default function games_quiz_trivia() {
       name="QUIZ TRIVIA"
       startAction={() => startQuiz(category)} startLabel="▶ Start Quiz" 
       title="Quiz Trivia Game Online - General Knowledge Quiz Free"
-      desc="Test your general knowledge with 10 questions per round across science, history, sports, tech, and more."
+      desc="Quiz Trivia Game Online - test general knowledge free with 10 questions per round across science, history, sports, tech, and more. No sign-up."
       icon="🧠" iconBg="rgba(168,85,247,0.08)"
       category="fun" slug="games-quiz-trivia"
       faq={[
         { q: "How many questions per round?", a: "10 questions per round, randomly selected from the chosen category." },
         { q: "Can I play again?", a: "Yes! Click 'Play Again' at the end of each round to start a new quiz." },
+        { q: "How do I play quiz trivia online free?", a: "Pick a category above, answer 10 multiple-choice questions, and build streaks. Free, no sign-up." },
+        { q: "Can I play quiz trivia without downloading?", a: "Yes. The quiz runs in your browser with no install. Free on mobile and desktop." },
+        { q: "Is the quiz trivia game free?", a: "Yes, completely free with no sign-up. Play unlimited rounds on any device." },
       ]}
       howItWorks={[
         "Select a category or play with all topics mixed.",

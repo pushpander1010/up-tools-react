@@ -168,12 +168,16 @@ export default function svg_to_jsx() {
   return (
     <ToolLayout
       title="SVG to JSX Converter"
-      desc="Convert SVG markup to React-compatible JSX. Automatically transforms attributes and event handlers."
+      desc="SVG to JSX Converter - convert SVG markup to React-compatible JSX. Automatically transforms, online free. Free online, instant results. No sign-up needed."
       icon="🔄" iconBg="rgba(16,185,129,0.08)"
       category="developer" slug="svg-to-jsx"
       faq={[
         { q: 'What does SVG to JSX conversion do?', a: 'It transforms SVG markup into React-compatible JSX by converting attribute names (class → className, onclick → onClick, etc.), fixing self-closing tags, and removing unnecessary xmlns declarations.' },
         { q: 'Which attributes are converted?', a: 'HTML attributes like class, for, tabindex, event handlers (onclick → onClick), and SVG-specific attributes like fill-rule → fillRule, stroke-width → strokeWidth.' },
+        { q: "How do I convert online free?", a: "Pick the from and to units above and the result appears instantly. Free, no sign-up, works on mobile." },
+        { q: "Which units are supported?", a: "All common units are supported. Choose from the dropdowns above for an instant free conversion." },
+        { q: "Is the conversion instant?", a: "Yes. Results appear live as you type, with no sign-up and no page reload." },
+        { q: "Is this SVG to JSX Converter free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Paste your SVG code into the input area on the left.',

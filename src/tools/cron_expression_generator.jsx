@@ -36,12 +36,16 @@ export default function cron_expression_generator() {
   return (
     <ToolLayout
       title="Cron Expression Generator"
-      desc="Build cron expressions with a visual interface. Set minute, hour, day, month, and weekday with ease."
+      desc="Cron Expression Generator - build cron expressions with a visual interface. Set minute, hour, day,, online free. Free online, no sign-up. Works on any device."
       icon="⏰" iconBg="rgba(6,182,212,0.08)"
       category="dev" slug="cron-expression-generator"
       faq={[
         { q: "What is a cron expression?", a: "A cron expression is a string of 5 fields that represents a schedule in cron syntax (used in Unix-like systems)." },
         { q: "What does * mean?", a: "An asterisk (*) means 'every' — e.g., * in the minute field means 'every minute'." },
+        { q: "How do I use this Cron Expression Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this Cron Expression Generator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Set values for minute, hour, day, month, and weekday fields.",

@@ -32,12 +32,16 @@ export default function text_case_converter() {
   return (
     <ToolLayout
       title="Text Case Converter"
-      desc="Convert text to UPPERCASE, lowercase, Title Case, camelCase, snake_case, or kebab-case instantly."
+      desc="Text Case Converter - convert text to UPPERCASE, lowercase, Title Case, camelCase, snake_case,, online free. Free online, instant results. No sign-up needed."
       icon="🔤" iconBg="rgba(99,102,241,0.08)"
       category="text" slug="text-case-converter"
       faq={[
         { q: "What text cases are supported?", a: "UPPERCASE, lowercase, Title Case, camelCase, snake_case, and kebab-case." },
         { q: "Is my text stored?", a: "No. Everything runs in your browser. Nothing is uploaded to any server." },
+        { q: "How do I convert online free?", a: "Pick the from and to units above and the result appears instantly. Free, no sign-up, works on mobile." },
+        { q: "Which units are supported?", a: "All common units are supported. Choose from the dropdowns above for an instant free conversion." },
+        { q: "Is the conversion instant?", a: "Yes. Results appear live as you type, with no sign-up and no page reload." },
+        { q: "Is this Text Case Converter free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Type or paste your text in the input field.",

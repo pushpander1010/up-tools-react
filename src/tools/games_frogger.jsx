@@ -532,6 +532,9 @@ export default function games_frogger() {
         { q: "How do I play Frogger?", a: "Use arrow keys or WASD to move the frog. On mobile, swipe in the direction you want to go. Cross the road and river to reach the goal." },
         { q: "What happens when I hit a car?", a: "You lose a life. You have 3 lives total. When all lives are gone, the game is over." },
         { q: "How do I get high scores?", a: "Score points by moving forward, reaching goals (50 pts each), and completing levels (200 bonus). Fill all 5 goal slots to advance!" },
+        { q: "Can I play Frogger Game Online - Classic Arcade without downloading?", a: "Yes. This Frogger Game Online - Classic Arcade runs in your browser with no install. Free on mobile and desktop." },
+        { q: "How do I use this Frogger Game Online - Classic Arcade online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
+        { q: "Is this Frogger Game Online - Classic Arcade free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Press Start or tap the canvas to begin.",

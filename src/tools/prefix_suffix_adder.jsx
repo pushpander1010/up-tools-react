@@ -53,12 +53,16 @@ export default function PrefixSuffixAdder() {
   return (
     <ToolLayout
       title="Prefix & Suffix Adder"
-      desc="Add prefix, suffix, or both to each line of text. Perfect for batch editing lists, URLs, or code."
+      desc="Prefix & Suffix Adder - add prefix, suffix, or both to each line of text. Perfect for batch editing, online free. Free online, no sign-up. Works on any device."
       icon="📎" iconBg="rgba(99,102,241,0.08)"
       category="text" slug="prefix-suffix-adder"
       faq={[
         { q: 'What is Prefix & Suffix Adder?', a: 'A tool that lets you add text before (prefix) and/or after (suffix) every line in a list. Great for adding URLs, file extensions, or formatting lists in bulk.' },
         { q: 'How to use it?', a: 'Enter your prefix and suffix, paste your lines, then click the desired action button.' },
+        { q: "How do I use this Prefix & Suffix Adder online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this Prefix & Suffix Adder free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Enter a prefix and/or suffix in the respective fields.',

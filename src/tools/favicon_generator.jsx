@@ -46,12 +46,16 @@ export default function favicon_generator() {
   return (
     <ToolLayout
       title="Favicon Generator"
-      desc="Generate favicons from text with customizable colors. Download in multiple sizes."
+      desc="Favicon Generator - generate favicons from text with customizable colors. Download in multiple sizes, online free. Free online, no sign-up. Works on any device."
       icon="🎯" iconBg="rgba(245,158,11,0.08)"
       category="generator" slug="favicon-generator"
       faq={[
         { q: "What sizes are generated?", a: "16px, 32px, 48px, and 180px (Apple Touch Icon)." },
         { q: "Can I use emojis?", a: "Yes, enter a letter or emoji as the favicon text." },
+        { q: "How do I use this Favicon Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this Favicon Generator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={["Enter a letter or emoji", "Choose background and text colors", "Preview at 4 sizes and download"]}
       schema={{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Favicon Generator","applicationCategory":"UtilitiesApplication","url":"https://www.uptools.in/favicon-generator/","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}}

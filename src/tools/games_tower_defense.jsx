@@ -583,6 +583,9 @@ export default function games_tower_defense() {
         { q: "How do I play Tower Defense?", a: "Select a tower type from the bottom panel, then click an empty cell on the grid to place it. Click 'Next Wave' to send enemies. Earn gold by defeating enemies!" },
         { q: "What do the tower types do?", a: "Arrow (fast, cheap), Cannon (splash damage), Ice (slows enemies), Lightning (chain hits multiple enemies). Each has different range, damage, and fire rate." },
         { q: "How do I earn more gold?", a: "Defeat enemies to earn gold. You also get bonus gold between waves. Use gold to build and upgrade towers!" },
+        { q: "Can I play Tower Defense Game Online - Free Strategy Game without downloading?", a: "Yes. This Tower Defense Game Online - Free Strategy Game runs in your browser with no install. Free on mobile and desktop." },
+        { q: "How do I use this Tower Defense Game Online - Free Strategy Game online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
+        { q: "Is this Tower Defense Game Online - Free Strategy Game free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Press Start to begin. You start with 200 gold.",

@@ -37,13 +37,16 @@ export default function twitter_video_downloader() {
   return (
     <ToolLayout
       title="Twitter/X Video Downloader"
-      desc="Download videos, GIFs, and media from X (formerly Twitter) in HD quality. Fast, easy, and free."
+      desc="Twitter/X Video Downloader - download videos, GIFs, and media from X (formerly Twitter) in HD quality., online free. Free online in HD. No app or login needed."
       icon="🐦" iconBg="rgba(29,161,242,0.08)"
       category="social" slug="twitter-video-downloader"
       faq={[
         { q: "How do I download a Twitter/X video?", a: "Copy the tweet URL, paste it into our downloader, select quality, and click download. The video will be saved to your device." },
         { q: "Can I download GIFs from X?", a: "Yes! Our downloader supports GIFs, videos, and all media types from X posts." },
         { q: "What's the maximum video length?", a: "X allows videos up to 2 hours long. We support downloading videos of any length available on X." },
+        { q: "How do I download online free?", a: "Paste the link above, pick your option, and save the file. Free with no sign-up or app needed." },
+        { q: "What quality do I get?", a: "You get the highest quality available, free. Paste the link above and save it to your device." },
+        { q: "Can I download on mobile?", a: "Yes. Open this page in your phone browser, paste the link, and save directly. No app needed." },
       ]}
       howItWorks={[
         "Find the tweet with the video you want to download.",

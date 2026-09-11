@@ -34,7 +34,7 @@ export default function instagram_story_downloader() {
   return (
     <ToolLayout
       title="Instagram Story Downloader"
-      desc="Download Instagram stories, reels, and posts — save photos and videos from public accounts in high quality."
+      desc="Instagram Story Downloader - download Instagram stories, reels, and posts — save photos and videos, online free. Free online in HD. No app or login needed."
       icon="📥" iconBg="rgba(236,72,153,0.08)"
       category="social" slug="instagram-story-downloader"
       faq={[
@@ -42,6 +42,8 @@ export default function instagram_story_downloader() {
         { q: "Can I download both photos and videos?", a: "Yes. Stories, posts, and reels can contain images or videos, and the services below handle both formats." },
         { q: "Do I need to log in?", a: "No login is needed for public content. Paste the URL and use a download service." },
         { q: "Why can't you download directly here?", a: "Instagram blocks browser-to-server downloads from data centers, so we route you through reliable third-party download services instead." },
+        { q: "How do I download online free?", a: "Paste the link above, pick your option, and save the file. Free with no sign-up or app needed." },
+        { q: "What quality do I get?", a: "You get the highest quality available, free. Paste the link above and save it to your device." },
       ]}
       howItWorks={[
         "Copy the URL of the story, reel, or post from Instagram.",

@@ -30,7 +30,7 @@ export default function instagram_video_downloader() {
   return (
     <ToolLayout
       title="Instagram Video Downloader"
-      desc="Download Instagram videos, reels, and IGTV in high quality. Save MP4 videos and photos from public accounts."
+      desc="Instagram Video Downloader - download Instagram videos, reels, and IGTV in high quality. Save MP4, online free. Free online in HD. No app or login needed."
       icon="🎥" iconBg="rgba(99,102,241,0.08)"
       category="social" slug="instagram-video-downloader"
       faq={[
@@ -38,6 +38,8 @@ export default function instagram_video_downloader() {
         { q: 'Does this work with IGTV and reels?', a: 'Yes, this tool supports regular Instagram videos, reels, and IGTV content.' },
         { q: 'Can I download images too?', a: 'Yes — the download services also save post photos and carousel images alongside videos.' },
         { q: 'Why not download directly here?', a: 'Instagram blocks data-center servers from fetching content, so we route you through reliable third-party download services instead.' },
+        { q: "How do I download online free?", a: "Paste the link above, pick your option, and save the file. Free with no sign-up or app needed." },
+        { q: "What quality do I get?", a: "You get the highest quality available, free. Paste the link above and save it to your device." },
       ]}
       howItWorks={[
         'Copy the Instagram video, reel, or IGTV URL.',

@@ -299,12 +299,16 @@ export default function games_ping_pong() {
       name="PING PONG"
       startAction={startGame} startLabel="▶ Start" 
       title="Ping Pong Game Online - Play Pong Free"
-      desc="Classic Pong against AI or a friend. First to 7 wins! Retro arcade game."
+      desc="Ping Pong Game Online - Play Pong Free - classic Pong against AI or a friend. First, online free. Play online free, no download. Works on mobile and desktop."
       icon="🏓" iconBg="rgba(0,229,255,0.08)"
       category="fun" slug="games-ping-pong"
       faq={[
         { q: "How do I play?", a: "Use W/S or Arrow keys to move your paddle. First to 7 points wins!" },
         { q: "Can I play with a friend?", a: "Yes! Select '2 Players (Local)' mode. Player 1 uses W/S, Player 2 uses Arrow keys." },
+        { q: "How do I play Ping Pong Game Online - Play Pong Free online free?", a: "Click Start and follow the on-screen steps. Use mouse, touch, or keyboard controls. No download needed." },
+        { q: "Can I play Ping Pong Game Online - Play Pong Free without downloading?", a: "Yes. This Ping Pong Game Online - Play Pong Free runs in your browser with no install. Free on mobile and desktop." },
+        { q: "How do I use this Ping Pong Game Online - Play Pong Free online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
+        { q: "Is this Ping Pong Game Online - Play Pong Free free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Choose vs AI or 2 Players mode.",

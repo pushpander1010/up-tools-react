@@ -31,12 +31,16 @@ export default function regex_tester() {
   return (
     <ToolLayout
       title="Regex Tester"
-      desc="Test regular expressions online with live matching and group capture. Instant, private, no sign-up."
+      desc="Regex Tester - test regular expressions online with live matching and group capture. Instant,, online free. Free online, instant results. No login needed."
       icon="🔍" iconBg="rgba(99,102,241,0.08)"
       category="dev" slug="regex-tester"
       faq={[
         { q: "What is a regular expression?", a: "A regular expression (regex) is a pattern used to match character combinations in strings." },
         { q: "Are my patterns stored?", a: "No. Everything runs in your browser. Nothing is uploaded." },
+        { q: "How do I check online free?", a: "Enter your input above and get an instant result. Free with no sign-up, works on mobile and desktop." },
+        { q: "What does it check?", a: "It validates your input against standard rules instantly. Enter the value above to see the result." },
+        { q: "Is my data kept private?", a: "Yes. Everything runs in your browser. Nothing you enter is uploaded or stored." },
+        { q: "Is this Regex Tester free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Enter a regex pattern in the Pattern field.",

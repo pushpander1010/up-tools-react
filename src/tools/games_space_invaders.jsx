@@ -450,12 +450,16 @@ export default function SpaceInvadersGame() {
       name="SPACE INVADERS"
       startAction={startGame} startLabel="▶ Start"
       title="Space Invaders Online - Classic Arcade Shooter"
-      desc="Play Space Invaders online free. Defend Earth from alien invaders! Arrow keys to move, space to shoot. Waves get harder!"
+      desc="Space Invaders Online - Classic Arcade Shooter - play Space Invaders online free., online free. Play online free, no download. Works on mobile and desktop."
       icon="👾" iconBg="rgba(0,229,255,0.08)"
       category="fun" slug="games-space-invaders"
       faq={[
         { q: "How do I play?", a: "Arrow keys or A/D to move, Space to shoot. On mobile drag to move, tap to shoot. Destroy all aliens each wave!" },
         { q: "Alien types?", a: "Squids (top, 2 hits, 50pts), Crabs (middle, 1 hit, 30pts), Bugs (bottom, 1 hit, 10pts)." },
+        { q: "How do I play Space Invaders Online - Classic Arcade Shooter online free?", a: "Click Start and follow the on-screen steps. Use mouse, touch, or keyboard controls. No download needed." },
+        { q: "Can I play Space Invaders Online - Classic Arcade Shooter without downloading?", a: "Yes. This Space Invaders Online - Classic Arcade Shooter runs in your browser with no install. Free on mobile and desktop." },
+        { q: "How do I use this Space Invaders Online - Classic Arcade Shooter online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
+        { q: "Is this Space Invaders Online - Classic Arcade Shooter free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={["Move left/right to dodge alien fire", "Shoot to destroy aliens", "Clear all aliens to advance waves", "Aliens get faster each wave"]}
       schema={{

@@ -39,12 +39,16 @@ export default function world_clock() {
   return (
     <ToolLayout
       title="World Clock"
-      desc="Check current time in 200+ cities worldwide. Real-time updates with timezone information."
+      desc="World Clock - check current time in 200+ cities worldwide. Real-time updates with timezone, online free. Free online, no sign-up. Works on any device."
       icon="🌍" iconBg="rgba(14,165,233,0.08)"
       category="utility" slug="world-clock"
       faq={[
         { q: "How many cities are supported?", a: "Over 200 cities worldwide, including New York, London, Tokyo, Mumbai, Sydney, Berlin, and more." },
         { q: "Does it update in real-time?", a: "Yes. Clocks update every second using your browser's clock synchronized with timezone data." },
+        { q: "How do I use this World Clock online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this World Clock free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "View the current time across major world cities.",

@@ -40,12 +40,16 @@ export default function electricity_bill_calculator() {
   return (
     <ToolLayout
       title="Electricity Bill Calculator"
-      desc="Calculate your electricity bill based on slab rates. Free online tool by UpTools."
+      desc="Electricity Bill Calculator - calculate your electricity bill based on slab rates, online free. Free online, instant results. No sign-up, works on mobile."
       icon="⚡" iconBg="rgba(234,179,8,0.08)"
       category="finance" slug="electricity-bill-calculator"
       faq={[
         { q: "How are electricity bills calculated?", a: "Electricity bills are calculated using a slab-based system where different rates apply to different usage ranges. Higher consumption typically means higher rates per unit." },
         { q: "What is the fixed charge?", a: "A fixed charge (₹50 in this calculator) is added regardless of usage. It covers infrastructure and maintenance costs." },
+        { q: "How do I use this Electricity Bill Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this Electricity Bill Calculator accurate?", a: "Yes. The Electricity Bill Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
+        { q: "Is this Electricity Bill Calculator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Enter the number of units (kWh) consumed.",

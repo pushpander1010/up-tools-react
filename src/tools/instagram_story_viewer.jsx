@@ -37,13 +37,16 @@ export default function instagram_story_viewer() {
   return (
     <ToolLayout
       title="Instagram Story Viewer"
-      desc="View Instagram stories anonymously. Watch stories without the poster knowing you viewed them."
+      desc="Instagram Story Viewer - view Instagram stories anonymously. Watch stories without the poster, online free. Free online, no sign-up. Works on any device."
       icon="👁️" iconBg="rgba(6,182,212,0.08)"
       category="social" slug="instagram-story-viewer"
       faq={[
         { q: "Can I view stories anonymously?", a: "Yes, this tool helps you view Instagram stories without appearing in the viewer list. The story poster won't know you watched." },
         { q: "Does this work for private accounts?", a: "No, you can only view stories from public accounts. Private account stories require you to be an approved follower." },
         { q: "Are stories cached?", a: "Stories are available for 24 hours after posting. This tool shows currently active stories only." },
+        { q: "How do I use this Instagram Story Viewer online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         'Enter the Instagram username whose stories you want to view.',

@@ -108,12 +108,16 @@ export default function qr_reader() {
   return (
     <ToolLayout
       title="QR Code Scanner"
-      desc="Scan QR codes from camera, uploaded images, or screen capture. Instantly decode URLs, text, WiFi, vCards, and more."
+      desc="QR Code Scanner - scan QR codes from camera, uploaded images, or screen capture. Instantly decode, online free. Free online, no sign-up. Works on any device."
       icon="📷" iconBg="rgba(34,197,94,0.08)"
       category="utility" slug="qr-reader"
       faq={[
         { q: 'Does this upload my images?', a: 'No. Everything runs locally in your browser. Camera and image processing happen on-device.' },
         { q: 'What QR code types are supported?', a: 'URLs, text, WiFi credentials, vCards, phone numbers, email addresses, IFSC codes, and plain text.' },
+        { q: "How do I use this QR Code Scanner online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this QR Code Scanner free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Click Start Camera to use your device camera for live scanning.',

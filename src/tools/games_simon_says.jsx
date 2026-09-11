@@ -197,7 +197,7 @@ export default function games_simon_says() {
       name="SIMON SAYS"
       startAction={startGame} startLabel="▶ Start" 
       title="Simon Says Game - Memory Challenge"
-      desc="Play Simon Says online! Repeat the color sequence as it grows longer. Test your memory and reflexes in this classic arcade game."
+      desc="Simon Says Game - Memory Challenge - play Simon Says online! Repeat the color, online free. Play online free, no download. Works on mobile and desktop."
       icon="🎮"
       iconBg="rgba(16,185,129,0.08)"
       category="fun"
@@ -207,6 +207,8 @@ export default function games_simon_says() {
         { q: "How does the game get harder?", a: "Each round adds one more color to the sequence. The playback speed also increases at higher levels." },
         { q: "What are the keyboard controls?", a: "Use keys 1-4 or arrow keys to select colors during your turn. Press Space or Enter to start/restart." },
         { q: "How is my high score tracked?", a: "Your highest round number is saved on your device and displayed on the game screen." },
+        { q: "Can I play Simon Says Game - Memory Challenge without downloading?", a: "Yes. This Simon Says Game - Memory Challenge runs in your browser with no install. Free on mobile and desktop." },
+        { q: "How do I use this Simon Says Game - Memory Challenge online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
       ]}
       howItWorks={[
         "Press Start and watch the colored buttons light up in sequence.",

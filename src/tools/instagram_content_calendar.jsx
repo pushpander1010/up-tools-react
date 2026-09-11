@@ -64,13 +64,16 @@ export default function instagram_content_calendar() {
   return (
     <ToolLayout
       title="Instagram Content Calendar"
-      desc="Generate a weekly content calendar with post ideas, types, and captions for your niche."
+      desc="Instagram Content Calendar - generate a weekly content calendar with post ideas, types, and, online free. Free online, no sign-up. Works on any device."
       icon="📅" iconBg="rgba(245,158,11,0.08)"
       category="social" slug="instagram-content-calendar"
       faq={[
         { q: "How often should I post?", a: "Aim for 3-5 posts per week plus daily stories. Consistency matters more than frequency." },
         { q: "What's the best time to post?", a: "Generally 9-11 AM and 6-9 PM in your audience's timezone. Use Instagram Insights to find your specific best times." },
         { q: "How do I use this calendar?", a: "Select your niche, generate the calendar, and use the ideas as a starting point. Customize topics and captions to match your brand voice." },
+        { q: "How do I use this Instagram Content Calendar online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         'Select your content niche from the dropdown.',

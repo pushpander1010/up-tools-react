@@ -120,12 +120,16 @@ export default function color_palette_from_image() {
   return (
     <ToolLayout
       title="Color Palette from Image"
-      desc="Extract a beautiful color palette from any image. Upload and get HEX, RGB, and HSL values instantly."
+      desc="Color Palette from Image - extract a beautiful color palette from any image. Upload and get HEX,, online free. Free online, no sign-up. Works on any device."
       icon="🎨" iconBg="rgba(168,85,247,0.08)"
       category="design" slug="color-palette-from-image"
       faq={[
         { q: 'How does the color extraction work?', a: 'The tool uses K-means clustering on pixel data to find the dominant colors in an image. It samples pixels, groups them by color similarity, and returns the cluster centers as the palette.' },
         { q: 'What formats are supported?', a: 'All common image formats: PNG, JPG/JPEG, GIF, WebP, BMP, and more.' },
+        { q: "How do I use this Color Palette from Image online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this Color Palette from Image free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Upload an image by clicking the upload area or drag-and-drop.',

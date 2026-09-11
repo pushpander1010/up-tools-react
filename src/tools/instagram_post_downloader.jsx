@@ -34,13 +34,16 @@ export default function instagram_post_downloader() {
   return (
     <ToolLayout
       title="Instagram Post Downloader"
-      desc="Download Instagram photos, videos, and carousel posts in full quality. Save any public Instagram post instantly."
+      desc="Instagram Post Downloader - download Instagram photos, videos, and carousel posts in full quality., online free. Free online in HD. No app or login needed."
       icon="📷" iconBg="rgba(236,72,153,0.08)"
       category="social" slug="instagram-post-downloader"
       faq={[
         { q: "Can I download posts from private accounts?", a: "No, only public Instagram posts can be downloaded. Private accounts restrict access to their content." },
         { q: "Can I download carousel posts?", a: "Yes! Carousel posts with multiple images/videos are fully supported." },
         { q: "Is this tool free?", a: "Yes, completely free! No registration or payment required." },
+        { q: "How do I download online free?", a: "Paste the link above, pick your option, and save the file. Free with no sign-up or app needed." },
+        { q: "What quality do I get?", a: "You get the highest quality available, free. Paste the link above and save it to your device." },
+        { q: "Can I download on mobile?", a: "Yes. Open this page in your phone browser, paste the link, and save directly. No app needed." },
       ]}
       howItWorks={[
         "Copy the Instagram post URL you want to download.",

@@ -63,12 +63,16 @@ export default function cricket_score_predictor() {
   return (
     <ToolLayout
       title="Cricket Score Predictor"
-      desc="Predict match outcome, win probability, and projected score based on current score, overs, and wickets."
+      desc="Cricket Score Predictor - predict match outcome, win probability, and projected score based on, online free. Free online, no sign-up. Works on any device."
       icon="📊" iconBg="rgba(6,182,212,0.08)"
       category="cricket" slug="cricket-score-predictor"
       faq={[
         { q: "How is win probability calculated?", a: "We use a simplified model: comparing current run rate to average scores for the format, factoring in wickets in hand and overs remaining. Real predictions use Duckworth-Lewis (D/L) method." },
         { q: "What is Par Score?", a: "Par score is the total a team would be expected to make at the end of their innings given the current match situation. A score above par = winning position." },
+        { q: "How do I use this Cricket Score Predictor online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this Cricket Score Predictor free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Select match format (T20 or ODI) and enter current match details.",

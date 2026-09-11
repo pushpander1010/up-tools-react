@@ -385,9 +385,22 @@ export default function meme_generator() {
   return (
     <ToolLayout
       title="Meme Generator"
-      desc="Choose a classic meme template, add your text, and download. 100% client-side."
+      desc="Meme Generator - choose a classic meme template, add your text, and download. 100% client-side, online free. Free online, no sign-up. Works on any device."
       icon="😂" iconBg="rgba(99,102,241,0.08)"
       category="fun" slug="meme-generator"
+      faq={[
+        { q: "How do I make a meme online free?", a: "Pick a template above, add your text, then download and share. Free, no sign-up." },
+        { q: "Can I use it on mobile?", a: "Yes. Make memes in your phone browser and save directly to your device." },
+        { q: "Is the meme generator free?", a: "Yes, completely free with no sign-up. Make unlimited memes on any device." },
+        { q: "Do I need to sign up?", a: "No sign-up needed. Make unlimited memes free on any device." },
+        { q: "Does it work on mobile?", a: "Yes. Make and save memes free in your phone browser, no app needed." },
+        { q: "Can I share my meme?", a: "Yes. Download the image and share it on any app, free." },
+      ]}
+      howItWorks={[
+        "Pick a meme template above.",
+        "Add your top and bottom text.",
+        "Download and share your meme.",
+      ]}
     >
       <div className="max-w-2xl mx-auto space-y-4">
         <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-5">

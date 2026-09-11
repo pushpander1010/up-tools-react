@@ -111,13 +111,16 @@ export default function NumbersToWords() {
   return (
     <ToolLayout
       title="Numbers to Words"
-      desc="Convert numbers to English words with Indian or international numbering system."
+      desc="Numbers to Words - convert numbers to English words with Indian or international numbering system, online free. Free online, no sign-up. Works on any device."
       icon="🔢" iconBg="rgba(99,102,241,0.08)"
       category="text" slug="numbers-to-words"
       faq={[
         { q: 'What is Numbers to Words?', a: 'A tool that converts any number into its English word representation, supporting both Indian (lakh/crore) and international (million/billion) numbering systems.' },
         { q: 'Does it support decimals?', a: 'Yes. Decimal numbers like 123.45 are converted with the fractional part after "point".' },
         { q: 'What is the Indian numbering system?', a: 'It groups digits in lakhs and crores (e.g., 1,00,00,000 = one crore) instead of millions and billions.' },
+        { q: "How do I use this Numbers to Words online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         'Enter a number (supports decimals, commas, and negatives).',

@@ -75,12 +75,16 @@ export default function quran_verse() {
   return (
     <ToolLayout
       title="Quran Verse"
-      desc="Browse the Holy Quran with Arabic text and English translations."
+      desc="Quran Verse - browse the Holy Quran with Arabic text and English translations, online free. Free online, no sign-up. Works on any device."
       icon="🕌" iconBg="rgba(34,197,94,0.08)"
       category="text" slug="quran-verse"
       faq={[
         { q: "What translations are available?", a: "Arabic (Alafasy) and English (Asad) translations are provided." },
         { q: "How many Surahs are there?", a: "The Quran contains 114 Surahs (chapters)." },
+        { q: "How do I use this Quran Verse online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this Quran Verse free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Browse all 114 Surahs by clicking on any name.",

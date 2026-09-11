@@ -39,12 +39,16 @@ export default function met_gala_2026() {
   return (
     <ToolLayout
       title="Met Gala 2026"
-      desc="Browse Met Gala 2026 celebrity looks and designer outfits."
+      desc="Met Gala 2026 - browse 17+ celebrity looks and designer outfits from the red carpet. Free gallery, no sign-up, works on mobile and desktop."
       icon="👗" iconBg="rgba(236,72,153,0.08)"
       category="social" slug="met-gala-2026"
       faq={[
         { q: "What was the Met Gala 2026 theme?", a: "The 2026 Met Gala featured celebrity fashion from various designers." },
         { q: "How many looks are featured?", a: "This gallery features 17+ celebrity looks from the Met Gala 2026 red carpet." },
+        { q: "How do I use this guide?", a: "Read the sections above step by step. Everything is explained in plain words with examples." },
+        { q: "Is this free?", a: "Yes, completely free with no sign-up. Read it online on any device." },
+        { q: "Can I view Met Gala 2026 looks on mobile?", a: "Yes. Browse the full gallery free in your phone browser, no app needed." },
+        { q: "Where can I see Met Gala 2026 red carpet photos?", a: "Scroll the gallery above for 17+ celebrity looks with designer details, free online." },
       ]}
       howItWorks={[
         "Browse all celebrity looks in the gallery.",

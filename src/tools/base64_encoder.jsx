@@ -34,12 +34,16 @@ export default function base64_encoder() {
   return (
     <ToolLayout
       title="Base64 Encoder & Decoder"
-      desc="Encode text to Base64 or decode Base64 strings back to text. Works with Unicode."
+      desc="Base64 Encoder & Decoder - encode text to Base64 or decode Base64 strings back to text. Works with, online free. Free online, no sign-up. Works on any device."
       icon="🧬" iconBg="rgba(6,182,212,0.08)"
       category="dev" slug="base64-encoder"
       faq={[
         { q: 'What is Base64?', a: 'A encoding scheme that converts binary data to ASCII text, commonly used in email, URLs, and data URLs.' },
         { q: 'Why use Base64?', a: 'To safely transmit binary data over text-based protocols like HTTP, email, or JSON.' },
+        { q: "How do I use this Base64 Encoder & Decoder online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this Base64 Encoder & Decoder free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Choose Encode or Decode mode.',

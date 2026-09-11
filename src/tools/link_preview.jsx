@@ -51,13 +51,16 @@ export default function link_preview() {
   return (
     <ToolLayout
       title="Link Preview"
-      desc="Extract title, description, image, and favicon from any URL. Preview how a link will appear when shared on social media."
+      desc="Link Preview - extract title, description, image, and favicon from any URL. Preview how a link will, online free. Free online, no sign-up. Works on any device."
       icon="🔗" iconBg="rgba(14,165,233,0.08)"
       category="marketing" slug="link-preview"
       faq={[
         { q: 'What is a link preview?', a: 'A link preview shows the title, description, and thumbnail that appear when a URL is shared on WhatsApp, Telegram, Facebook, or LinkedIn. It is generated from the page\u2019s Open Graph (OG) metadata.' },
         { q: 'Why does my link have no preview?', a: 'Some sites block preview bots, return no OG tags, or require login. In those cases no preview data can be extracted.' },
         { q: 'How is this useful for SEO?', a: 'Marketers use link previews to check how their pages appear when shared, verify OG tags are set correctly, and ensure the right image and title are displayed.' },
+        { q: "How do I use this Link Preview online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         'Paste any web URL.',

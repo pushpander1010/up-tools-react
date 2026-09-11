@@ -123,13 +123,16 @@ export default function timezone_converter() {
   return (
     <ToolLayout
       title="Time Zone Converter"
-      desc="Convert times between world time zones. Find meeting overlaps and compare working hours globally."
+      desc="Time Zone Converter - convert times between world time zones. Find meeting overlaps and compare, online free. Free online, instant results. No sign-up needed."
       icon="🕐" iconBg="rgba(245,158,11,0.08)"
       category="networking" slug="timezone-converter"
       faq={[
         { q: 'How does timezone conversion work?', a: 'Timezone conversion takes a given time in one timezone and calculates what that same moment is in other timezones. Each timezone has a UTC offset that determines its offset from Coordinated Universal Time (UTC).' },
         { q: 'What is UTC offset?', a: 'UTC offset is the difference in hours and minutes between a timezone and Coordinated Universal Time. For example, UTC+5:30 means the local time is 5 hours and 30 minutes ahead of UTC. India uses IST (UTC+5:30).' },
         { q: 'What is DST (Daylight Saving Time)?', a: 'Daylight Saving Time is the practice of advancing clocks by one hour during warmer months to extend evening daylight. Not all regions observe DST — for example, Arizona (US) and most of India do not. DST causes the UTC offset of a timezone to change twice a year.' },
+        { q: "How do I convert online free?", a: "Pick the from and to units above and the result appears instantly. Free, no sign-up, works on mobile." },
+        { q: "Which units are supported?", a: "All common units are supported. Choose from the dropdowns above for an instant free conversion." },
+        { q: "Is the conversion instant?", a: "Yes. Results appear live as you type, with no sign-up and no page reload." },
       ]}
       howItWorks={[
         'Select your base timezone or use the auto-detected one.',

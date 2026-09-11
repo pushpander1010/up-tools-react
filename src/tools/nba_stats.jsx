@@ -94,13 +94,16 @@ export default function nba_stats() {
   return (
     <ToolLayout
       title="NBA Stats"
-      desc="Look up NBA player stats, team standings, and game scores. Free live NBA statistics tool with search and player comparison."
+      desc="NBA Stats - look up NBA player stats, team standings, and game scores. Free live NBA statistics, online free. Free online, no sign-up. Works on any device."
       icon="🏀" iconBg="rgba(234,88,12,0.08)"
       category="sports" slug="nba-stats"
       faq={[
         { q: 'Where does NBA data come from?', a: 'From the balldontlie API, a free NBA statistics API. Data is fetched through our backend proxy so your requests stay reliable.' },
         { q: 'Can I search for any NBA player?', a: 'Yes, search by player name to find career stats, averages, and recent games.' },
         { q: 'Are stats up to date?', a: 'Data is updated regularly by the balldontlie API. Current season stats may lag by a day or two.' },
+        { q: "How do I use this NBA Stats online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         "Type a player name to search — results appear as you type.",

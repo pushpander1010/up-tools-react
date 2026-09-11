@@ -72,12 +72,16 @@ export default function html_entity_encoder() {
   return (
     <ToolLayout
       title="HTML Entity Encoder / Decoder"
-      desc="Encode special characters to HTML entities for safe embedding, or decode entities back to readable text."
+      desc="HTML Entity Encoder / Decoder - encode special characters to HTML entities for safe embedding, or, online free. Free online, no sign-up. Works on any device."
       icon="🔤" iconBg="rgba(99,102,241,0.08)"
       category="dev" slug="html-entity-encoder"
       faq={[
         { q: 'Why encode HTML entities?', a: 'To safely display text in HTML without it being interpreted as markup. Essential for user content, comments, and dynamic data.' },
         { q: 'Which characters are encoded?', a: 'Common entities: & < > " \' plus symbols like © ® ™ € and more.' },
+        { q: "How do I use this HTML Entity Encoder / Decoder online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this HTML Entity Encoder / Decoder free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Paste text containing HTML entities or special characters.',

@@ -96,6 +96,8 @@ const FAQs = [
   { q: 'How is FD interest calculated?', a: 'Cumulative FDs use compound interest: A = P × (1 + r/n)^(n×t), where n is the compounding frequency. Non-cumulative FDs pay simple interest periodically (monthly/quarterly/half-yearly/yearly) on the principal.' },
   { q: 'What are the TDS rules on FD interest?', a: 'Banks deduct TDS if annual interest income exceeds ₹40,000 (₹50,000 for senior citizens). TDS is 10% if PAN is provided, 20% otherwise. You can claim TDS credit while filing your Income Tax Return.' },
   { q: 'What is the difference between cumulative and non-cumulative FD?', a: 'Cumulative FD compounds interest and pays everything at maturity — higher returns. Non-cumulative FD pays interest periodically (monthly/quarterly) — better for those needing regular income.' },
+  { q: "How do I calculate FD maturity online free?", a: "Enter the deposit amount, rate, and tenure above for instant maturity value. Free, no sign-up, works on mobile." },
+  { q: "Is the FD calculator free?", a: "Yes, completely free with no sign-up. Calculate unlimited deposits on any device." },
 ]
 
 const HOW_IT_WORKS = [

@@ -124,13 +124,16 @@ export default function fuel_cost_calculator() {
   return (
     <ToolLayout
       title="Fuel Cost Calculator"
-      desc="Calculate exact fuel cost for your trip. Compare efficiency ratings, monthly commute costs, and savings with better mileage."
+      desc="Fuel Cost Calculator - calculate exact fuel cost for your trip. Compare efficiency, online free. Free online, instant results. No sign-up, works on mobile."
       icon="⛽" iconBg="rgba(249,115,22,0.08)"
       category="tools" slug="fuel-cost-calculator"
       faq={[
         { q: 'How do I calculate fuel cost for a trip?', a: 'Enter the distance, your vehicle\'s fuel efficiency (km/l), and current fuel price per litre. The calculator shows exact litres needed and total cost.' },
         { q: 'What is considered good fuel efficiency?', a: 'For cars: 18-25 km/l is excellent, 12-18 km/l is average, below 10 km/l is poor. For SUVs: 12-18 km/l is good. Ratings vary by vehicle type.' },
         { q: 'How can I reduce fuel costs?', a: 'Maintain steady speeds, keep tyres inflated, avoid heavy acceleration, reduce vehicle weight, and plan routes to avoid traffic.' },
+        { q: "How do I use this Fuel Cost Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this Fuel Cost Calculator accurate?", a: "Yes. The Fuel Cost Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
       ]}
       howItWorks={[
         'Enter the trip distance in km or miles.',

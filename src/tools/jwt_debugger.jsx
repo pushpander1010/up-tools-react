@@ -149,9 +149,22 @@ export default function JwtDebugger() {
   return (
     <ToolLayout
       title="JWT Debugger"
-      desc="Decode & inspect JWT tokens client-side. View header, payload, and signature info."
+      desc="JWT Debugger - decode & inspect JWT tokens client-side. View header, payload, and signature info, online free. Free online, no sign-up. Works on any device."
       icon="🛡️" iconBg="rgba(99,102,241,0.08)"
       category="dev" slug="jwt-debugger"
+      faq={[
+        { q: "How do I decode a JWT online free?", a: "Paste your token above to see the decoded header and payload instantly. Free, runs in your browser." },
+        { q: "Is my token uploaded?", a: "No. Decoding runs entirely in your browser. Nothing leaves your device." },
+        { q: "Is the JWT debugger free?", a: "Yes, completely free with no sign-up. Decode unlimited tokens on any device." },
+        { q: "Do I need to sign up?", a: "No sign-up needed. Decode unlimited tokens free on any device." },
+        { q: "Does it work on mobile?", a: "Yes. Decode tokens free in your phone browser, no app needed." },
+        { q: "What does it show?", a: "Header, payload, expiry, and signature status, all decoded in your browser." },
+      ]}
+      howItWorks={[
+        "Paste your JWT token above.",
+        "See the decoded header and payload instantly.",
+        "Check expiry and signature validity.",
+      ]}
     >
       <div className="space-y-4">
         {/* Input */}

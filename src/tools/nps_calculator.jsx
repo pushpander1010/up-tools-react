@@ -41,12 +41,16 @@ export default function nps_calculator() {
   return (
     <ToolLayout
       title="NPS Calculator"
-      desc="Calculate NPS (National Pension Scheme) retirement corpus, monthly pension, and tax benefits under Section 80CCD."
+      desc="NPS Calculator - calculate NPS (National Pension Scheme) retirement corpus, monthly, online free. Free online, instant results. No sign-up, works on mobile."
       icon="🏗️" iconBg="rgba(34,197,94,0.08)"
       category="finance" slug="nps-calculator"
       faq={[
         { q: 'What is NPS?', a: 'NPS (National Pension Scheme) is a government-backed retirement savings scheme. Subscribers invest in equity and debt funds. At maturity, 60% can be withdrawn and 40% must be used to buy an annuity for monthly pension.' },
         { q: 'What are the tax benefits of NPS?', a: 'Under Section 80CCD(1B), you can claim additional ₹50,000 tax deduction over and above 80C limit. Employer contribution under 80CCD(2) is also tax-free up to 14% of salary.' },
+        { q: "How do I use this NPS Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this NPS Calculator accurate?", a: "Yes. The NPS Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
+        { q: "Is this NPS Calculator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Enter how much you contribute monthly to NPS.',

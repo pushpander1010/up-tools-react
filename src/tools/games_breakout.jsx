@@ -368,12 +368,16 @@ export default function BreakoutGame() {
       name="BREAKOUT"
       startAction={startGame} startLabel="▶ Start"
       title="Breakout — Classic Brick Breaker Game Online Free" 
-      desc="Play Breakout online free. Break all bricks with the ball! Arrow keys or touch to move paddle. Levels get harder!"
+      desc="Breakout — Classic Brick Breaker Game Online Free - play Breakout online free. Break, online free. Play online free, no download. Works on mobile and desktop."
       icon="🧱" iconBg="rgba(0,229,255,0.08)"
       category="fun" slug="games-breakout"
       faq={[
         { q: "How to play?", a: "Move the paddle to bounce the ball and break all bricks. Use arrow keys on desktop, drag on mobile. Space/tap to launch." },
         { q: "How do levels work?", a: "Clear all bricks to advance. Each level adds more rows and the ball gets faster!" },
+        { q: "How do I play Breakout — Classic Brick Breaker Game Online Free online free?", a: "Click Start and follow the on-screen steps. Use mouse, touch, or keyboard controls. No download needed." },
+        { q: "Can I play Breakout — Classic Brick Breaker Game Online Free without downloading?", a: "Yes. This Breakout — Classic Brick Breaker Game Online Free runs in your browser with no install. Free on mobile and desktop." },
+        { q: "How do I use this Breakout — Classic Brick Breaker Game Online Free online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
+        { q: "Is this Breakout — Classic Brick Breaker Game Online Free free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={["Move paddle left/right", "Launch the ball with tap/space", "Break all bricks to clear level", "Don't let the ball fall!"]}
       schema={{

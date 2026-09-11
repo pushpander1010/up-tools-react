@@ -41,12 +41,16 @@ export default function cra_noa_checklist() {
   return (
     <ToolLayout
       title="CRA Notice of Assessment Checklist"
-      desc="Checklist for preparing your CRA Notice of Assessment review. Track documents locally."
+      desc="CRA Notice of Assessment Checklist - checklist for preparing your CRA Notice of Assessment review., online free. Free online, instant results. No login needed."
       icon="🍁" iconBg="rgba(220,38,38,0.08)"
       category="canada" slug="cra-noa-checklist"
       faq={[
         { q: 'What is this checklist?', a: 'A document checklist for preparing your CRA Notice of Assessment review.' },
         { q: 'Is my data stored?', a: 'Yes, locally in your browser using localStorage. Nothing is uploaded.' },
+        { q: "How do I check online free?", a: "Enter your input above and get an instant result. Free with no sign-up, works on mobile and desktop." },
+        { q: "What does it check?", a: "It validates your input against standard rules instantly. Enter the value above to see the result." },
+        { q: "Is my data kept private?", a: "Yes. Everything runs in your browser. Nothing you enter is uploaded or stored." },
+        { q: "Is this CRA Notice of Assessment Checklist free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Review the checklist items below.',

@@ -39,12 +39,16 @@ export default function canada_mortgage_affordability() {
   return (
     <ToolLayout
       title="Mortgage Affordability (Canada)"
-      desc="Estimate Canadian mortgage affordability using basic GDS/TDS rules, interest rate, and amortization."
+      desc="Mortgage Affordability (Canada) - estimate Canadian mortgage affordability using basic GDS/TDS, online free. Free online, no sign-up. Works on any device."
       icon="🍁" iconBg="rgba(220,38,38,0.08)"
       category="canada" slug="canada-mortgage-affordability"
       faq={[
         { q: 'What is this tool?', a: 'Estimate Canadian mortgage affordability using basic GDS/TDS rules, interest rate, and amortization.' },
         { q: 'Is it free to use?', a: 'Yes. All UpTools calculators are completely free, with no sign-ups required.' },
+        { q: "How do I use this Mortgage Affordability (Canada) online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this Mortgage Affordability (Canada) free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Enter your annual household income and monthly debts.',

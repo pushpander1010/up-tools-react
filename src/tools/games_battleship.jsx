@@ -409,13 +409,16 @@ export default function games_battleship() {
       name="BATTLESHIP"
       startAction={startGame} startLabel="▶ Start" 
       title="Battleship Online - Free Strategy Game"
-      desc="Play the classic Battleship game against the AI. Place your fleet, find and sink all enemy ships before time runs out!"
+      desc="Battleship Online - Free Strategy Game - play the classic Battleship game against the, online free. Play online free, no download. Works on mobile and desktop."
       icon="🚢" iconBg="rgba(245,158,11,0.08)"
       category="fun" slug="games-battleship"
       faq={[
         { q:"How do I play Battleship?", a:"First place your 5 ships on your grid. Then take turns firing at the enemy grid. Hit all their ships to win!" },
         { q:"How does the AI work?", a:"The AI uses hunt-target mode: it fires randomly until it gets a hit, then targets adjacent cells to sink the ship." },
         { q:"What is the time limit?", a:"You have 2 minutes to sink all 5 enemy ships. Score is based on ships sunk and remaining time." },
+        { q: "Can I play Battleship Online - Free Strategy Game without downloading?", a: "Yes. This Battleship Online - Free Strategy Game runs in your browser with no install. Free on mobile and desktop." },
+        { q: "How do I use this Battleship Online - Free Strategy Game online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
+        { q: "Is this Battleship Online - Free Strategy Game free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Press Start to begin. Place your 5 ships by clicking on your grid.",

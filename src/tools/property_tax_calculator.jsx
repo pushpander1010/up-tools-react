@@ -30,13 +30,16 @@ export default function property_tax_calculator() {
   return (
     <ToolLayout
       title="Property Tax Calculator"
-      desc="Calculate annual property taxes based on your home value and local tax rate."
+      desc="Property Tax Calculator - calculate annual property taxes based on your home value and, online free. Free online, instant results. No sign-up, works on mobile."
       icon="🏡" iconBg="rgba(34,197,94,0.08)"
       category="finance" slug="property-tax-calculator"
       faq={[
         { q: 'How is property tax calculated?', a: 'Property tax = Assessed Value × Tax Rate. The assessed value is typically a percentage of market value (50-100%), and the tax rate varies by location (0.3-2.5% in the US).' },
         { q: 'What is the average property tax rate in the US?', a: 'The average US property tax rate is about 1.1% of home value. Rates vary widely: New Jersey (2.5%), Texas (1.8%), Hawaii (0.3%).' },
         { q: 'Are property taxes deductible?', a: 'Yes, in the US you can deduct up to $10,000 in state and local taxes (SALT), including property taxes, on your federal return.' },
+        { q: "How do I use this Property Tax Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this Property Tax Calculator accurate?", a: "Yes. The Property Tax Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
       ]}
       howItWorks={[
         'Enter your home value, property tax rate, and assessment ratio.',

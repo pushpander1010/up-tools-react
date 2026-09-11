@@ -34,12 +34,16 @@ export default function url_encoder() {
   return (
     <ToolLayout
       title="URL Encoder / Decoder"
-      desc="Encode special characters for URLs or decode encoded URLs back to readable text."
+      desc="URL Encoder / Decoder - encode special characters for URLs or decode encoded URLs back to readable, online free. Free online, no sign-up. Works on any device."
       icon="🔗" iconBg="rgba(6,182,212,0.08)"
       category="dev" slug="url-encoder"
       faq={[
         { q: 'When do I need URL encoding?', a: 'When passing special characters in URLs — spaces become %20, Chinese characters become %E4..., etc.' },
         { q: 'What characters are encoded?', a: 'Spaces, Chinese/Japanese characters, symbols like !, @, #, $, &, +, =, and more.' },
+        { q: "How do I use this URL Encoder / Decoder online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this URL Encoder / Decoder free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Choose Encode or Decode mode.',

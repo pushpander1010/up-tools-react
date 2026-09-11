@@ -91,7 +91,7 @@ export default function speed_converter() {
   return (
     <ToolLayout
       title="Speed Converter"
-      desc="Convert between km/h, mph, knots, m/s, and ft/s. Visual speed gauge with common presets."
+      desc="Speed Converter - convert between km/h, mph, knots, m/s, and ft/s. Visual speed gauge with, online free. Free online, instant results. No sign-up needed."
       icon="🚀" iconBg="rgba(6,182,212,0.08)"
       category="dev" slug="speed-converter"
       faq={[
@@ -99,6 +99,8 @@ export default function speed_converter() {
         { q: 'What are knots?', a: 'A knot equals one nautical mile per hour (1.852 km/h). Used in aviation and maritime navigation. Named after the old practice of counting knots on a rope.' },
         { q: 'How fast is the speed of light?', a: 'Light travels at approximately 299,792 km/s or about 1,079,252,849 km/h — roughly 874,030 times faster than a commercial jet.' },
         { q: 'What is m/s used for?', a: 'Meters per second (m/s) is the SI unit of speed. Used in science, engineering, and physics. 1 m/s = 3.6 km/h.' },
+        { q: "How do I convert online free?", a: "Pick the from and to units above and the result appears instantly. Free, no sign-up, works on mobile." },
+        { q: "Which units are supported?", a: "All common units are supported. Choose from the dropdowns above for an instant free conversion." },
       ]}
       howItWorks={[
         'Enter a speed value in the input field.',

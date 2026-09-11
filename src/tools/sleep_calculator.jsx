@@ -48,13 +48,16 @@ export default function sleep_calculator() {
   return (
     <ToolLayout
       title="Sleep Calculator"
-      desc="Find the perfect bedtime or wake-up time based on sleep cycles of 90 minutes."
+      desc="Sleep Calculator - find the perfect bedtime or wake-up time based on sleep cycles of, online free. Free online, instant results. No sign-up, works on mobile."
       icon="😴" iconBg="rgba(139,92,246,0.08)"
       category="health" slug="sleep-calculator"
       faq={[
         { q: 'How many sleep cycles do I need?', a: 'Most adults need 4–6 sleep cycles per night, with 4–5 (6–7.5 hours) being ideal for most people.' },
         { q: 'What is the 90-minute rule?', a: 'Each sleep cycle lasts approximately 90 minutes. Waking up at the end of a cycle (rather than mid-cycle) helps you feel more refreshed.' },
         { q: 'What is the optimal sleep time?', a: 'The optimal amount is 7–9 hours for adults. Going to bed between 10–11 PM aligns well with your circadian rhythm.' },
+        { q: "How do I use this Sleep Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this Sleep Calculator accurate?", a: "Yes. The Sleep Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
       ]}
       howItWorks={[
         'Select your desired bedtime.',

@@ -130,13 +130,16 @@ export default function story_template_generator() {
   return (
     <ToolLayout
       title="Story Template Generator"
-      desc="Create beautiful story templates for Instagram, WhatsApp, Snapchat, TikTok & more. Download as PNG."
+      desc="Story Template Generator - create beautiful story templates for Instagram, WhatsApp, Snapchat,, online free. Free online, no sign-up. Works on any device."
       icon="🎨" iconBg="rgba(168,85,247,0.08)"
       category="social" slug="story-template-generator"
       faq={[
         { q: "What platforms are supported?", a: "Instagram Story/Post, WhatsApp Status, Snapchat, Facebook Story, TikTok/Reels, YouTube Thumbnail, and LinkedIn Post." },
         { q: "What size are the templates?", a: "Each platform uses its native resolution: Stories/Status = 1080×1920, Posts = 1080×1080, YouTube = 1280×720." },
         { q: "Can I use custom colors?", a: "Choose from 8 gradient presets. For full customization, the generated PNG can be edited in any image editor." },
+        { q: "How do I use this Story Template Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         "Choose your platform (Instagram, WhatsApp, Snapchat, etc.).",

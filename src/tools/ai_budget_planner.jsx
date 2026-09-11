@@ -87,12 +87,16 @@ Use clear formatting with headings and bullet points.`
   return (
     <ToolLayout
       title="AI Budget Planner"
-      desc="Get a personalized monthly budget with AI. Enter income and expenses for a spending breakdown, savings tips and financial advice."
+      desc="AI Budget Planner - get a personalized monthly budget with AI. Enter income and expenses for a, online free. Free online, no sign-up. Works on any device."
       icon="💰" iconBg="rgba(245,158,11,0.08)"
       category="ai" slug="ai-budget-planner"
       faq={[
         { q: "Is this financial advice?", a: "No. This tool provides general financial guidance for educational purposes only. Consult a certified financial advisor." },
         { q: "What currencies are supported?", a: "INR, USD, CAD, GBP, EUR, and AUD." },
+        { q: "How do I use this AI Budget Planner online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this AI Budget Planner free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Enter your monthly income and expenses.",

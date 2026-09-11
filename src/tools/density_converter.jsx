@@ -34,12 +34,16 @@ export default function density_converter() {
   return (
     <ToolLayout
       title="Density Converter"
-      desc="Convert between kg/m³, g/cm³, lb/ft³, and lb/in³ instantly."
+      desc="Density Converter - convert between kg/m³, g/cm³, lb/ft³, and lb/in³ instantly, online free. Free online, instant results. No sign-up needed."
       icon="⚖️" iconBg="rgba(99,102,241,0.08)"
       category="dev" slug="density-converter"
       faq={[
         { q: 'What is density?', a: 'Density is mass per unit volume. It measures how compact a substance is.' },
         { q: 'Which unit should I use?', a: 'kg/m³ is SI standard, g/cm³ is common in chemistry, lb/ft³ in engineering.' },
+        { q: "How do I convert online free?", a: "Pick the from and to units above and the result appears instantly. Free, no sign-up, works on mobile." },
+        { q: "Which units are supported?", a: "All common units are supported. Choose from the dropdowns above for an instant free conversion." },
+        { q: "Is the conversion instant?", a: "Yes. Results appear live as you type, with no sign-up and no page reload." },
+        { q: "Is this Density Converter free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Enter a density value.',

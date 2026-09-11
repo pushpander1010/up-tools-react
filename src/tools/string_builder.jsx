@@ -38,12 +38,16 @@ export default function string_builder() {
   return (
     <ToolLayout
       title="String Builder"
-      desc="Transform text with 8 built-in modes: uppercase, lowercase, title case, slug, camelCase, snake_case, reverse, and trim."
+      desc="String Builder - transform text with 8 built-in modes: uppercase, lowercase, title case, slug,, online free. Free online, no sign-up. Works on any device."
       icon="🔧" iconBg="rgba(6,182,212,0.08)"
       category="dev" slug="string-builder"
       faq={[
         { q: "What transformations are available?", a: "UPPER, lower, Title Case, slug-case, camelCase, snake_case, reverse, and trim spaces." },
         { q: "Can I chain transformations?", a: "Apply one transformation, then copy the output and paste it back as input to chain multiple transformations." },
+        { q: "How do I use this String Builder online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this String Builder free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Enter your text in the input field.",

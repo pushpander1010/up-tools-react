@@ -123,7 +123,7 @@ export default function hncker_ffuf() {
   return (
     <ToolLayout
       title="ffuf — Web Fuzzer Guide"
-      desc="Step-by-step reference: use ffuf for web content discovery, parameter fuzzing and login brute force. Educational purposes only."
+      desc="ffuf Guide - step-by-step reference to use ffuf for web content discovery, parameter fuzzing and login brute force. Educational purposes only, online free."
       icon="🔎"
       iconBg="linear-gradient(135deg, rgba(0,255,65,0.18), rgba(6,182,212,0.08))"
       category="security"

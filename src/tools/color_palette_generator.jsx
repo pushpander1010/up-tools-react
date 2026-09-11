@@ -116,6 +116,10 @@ export default function color_palette_generator() {
       faq={[
         { q: 'What color harmonies are supported?', a: 'Complementary, Analogous, Triadic, Split-Complementary, and Tetradic (Square) — all generated from a single base color.' },
         { q: 'What is WCAG contrast checking?', a: 'WCAG (Web Content Accessibility Guidelines) defines minimum contrast ratios for text readability. AA requires 4.5:1, AAA requires 7:1.' },
+        { q: "How do I use this Color Palette Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this Color Palette Generator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Pick a base color using the color picker or hex input.',

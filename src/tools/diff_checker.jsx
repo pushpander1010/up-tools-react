@@ -160,12 +160,16 @@ export default function diff_checker() {
   return (
     <ToolLayout
       title="Text Diff Checker"
-      desc="Compare two texts side-by-side with line-by-line and character-level diff highlighting."
+      desc="Text Diff Checker - compare two texts side-by-side with line-by-line and character-level diff, online free. Free online, instant results. No login needed."
       icon="📝" iconBg="rgba(99,102,241,0.08)"
       category="text" slug="diff-checker"
       faq={[
         { q: 'What diff algorithm is used?', a: 'LCS (Longest Common Subsequence) based diff — same approach as professional diff tools.' },
         { q: 'Can I copy the diff?', a: 'Yes — click Copy Diff to get unified diff format output.' },
+        { q: "How do I check online free?", a: "Enter your input above and get an instant result. Free with no sign-up, works on mobile and desktop." },
+        { q: "What does it check?", a: "It validates your input against standard rules instantly. Enter the value above to see the result." },
+        { q: "Is my data kept private?", a: "Yes. Everything runs in your browser. Nothing you enter is uploaded or stored." },
+        { q: "Is this Text Diff Checker free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Paste original text in the left area.',

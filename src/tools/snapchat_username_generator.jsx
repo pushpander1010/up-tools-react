@@ -66,13 +66,16 @@ export default function snapchat_username_generator() {
   return (
     <ToolLayout
       title="Snapchat Username Generator"
-      desc="Generate unique and cool Snapchat usernames instantly. Perfect for your Snap profile!"
+      desc="Snapchat Username Generator - generate unique and cool Snapchat usernames instantly. Perfect for, online free. Free online, no sign-up. Works on any device."
       icon="👻" iconBg="rgba(255,252,0,0.08)"
       category="social" slug="snapchat-username-generator"
       faq={[
         { q: "What makes a good Snapchat username?", a: "A good Snapchat username is: unique, easy to remember, reflects your personality, not too long (15 characters or less), and doesn't contain offensive content." },
         { q: "Can I change my Snapchat username?", a: "Yes! Snapchat now allows you to change your username once per year. Go to Settings > Username > Change Username." },
         { q: "What characters are allowed?", a: "Snapchat usernames can contain letters (a-z), numbers (0-9), periods (.), underscores (_), and hyphens (-). They must be 3-15 characters long." },
+        { q: "How do I use this Snapchat Username Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         "Enter your name or a keyword for your username.",

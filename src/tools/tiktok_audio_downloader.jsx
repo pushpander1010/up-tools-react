@@ -32,13 +32,16 @@ export default function tiktok_audio_downloader() {
   return (
     <ToolLayout
       title="TikTok Audio Downloader"
-      desc="Download TikTok music, sounds, and background audio as MP3. Extract audio from any TikTok video."
+      desc="TikTok Audio Downloader - download TikTok music, sounds, and background audio as MP3. Extract audio, online free. Free online in HD. No app or login needed."
       icon="🎵" iconBg="rgba(0,0,0,0.08)"
       category="social" slug="tiktok-audio-downloader"
       faq={[
         { q: "How do I download TikTok audio?", a: "Copy the TikTok video URL, paste it into our downloader, select quality, and click download." },
         { q: "Can I download TikTok sounds?", a: "Yes! You can download any audio or sound used in TikTok videos." },
         { q: "What audio quality is available?", a: "We support 320 kbps (highest), 256 kbps, 192 kbps, and 128 kbps." },
+        { q: "How do I download online free?", a: "Paste the link above, pick your option, and save the file. Free with no sign-up or app needed." },
+        { q: "What quality do I get?", a: "You get the highest quality available, free. Paste the link above and save it to your device." },
+        { q: "Can I download on mobile?", a: "Yes. Open this page in your phone browser, paste the link, and save directly. No app needed." },
       ]}
       howItWorks={[
         "Find the TikTok video with the audio you want.",

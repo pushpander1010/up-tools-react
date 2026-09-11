@@ -93,12 +93,16 @@ export default function random_choice_generator() {
   return (
     <ToolLayout
       title="Random Choice Generator"
-      desc="Decision maker with dramatic drum roll animation. Enter choices and pick one randomly."
+      desc="Random Choice Generator - decision maker with dramatic drum roll animation. Enter choices and pick, online free. Free online, no sign-up. Works on any device."
       icon="🎲" iconBg="rgba(245,158,11,0.08)"
       category="tools" slug="random-choice-generator"
       faq={[
         { q: 'How does it work?', a: 'Enter choices (one per line or comma-separated), then click Pick One to randomly select.' },
         { q: 'What does "Remove After Pick" do?', a: 'When enabled, each picked choice is removed from the pool so it won\'t be picked again.' },
+        { q: "How do I use this Random Choice Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this Random Choice Generator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Enter your choices (one per line or comma-separated).',

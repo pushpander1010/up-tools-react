@@ -82,13 +82,16 @@ export default function fancy_text_generator() {
   return (
     <ToolLayout
       title="Fancy Text Generator"
-      desc="Convert text to 15+ Unicode font styles instantly — Bold, Italic, Script, Cursive, Fraktur, Double-Struck, Upside Down."
+      desc="Fancy Text Generator - convert text to 15+ Unicode font styles instantly — Bold, Italic, Script,, online free. Free online, no sign-up. Works on any device."
       icon="✦" iconBg="rgba(168,85,247,0.08)"
       category="text" slug="fancy-text-generator"
       faq={[
         { q: 'Is this tool free?', a: 'Yes, completely free with no sign-ups required.' },
         { q: 'Is my data private?', a: 'Yes. All conversions run locally in your browser. Nothing is uploaded.' },
         { q: 'Where can I use the fancy text?', a: 'Instagram bios, WhatsApp, Twitter/X, Discord, and any platform that supports Unicode.' },
+        { q: "How do I use this Fancy Text Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         'Type or paste your text in the input area.',

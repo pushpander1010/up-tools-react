@@ -123,12 +123,16 @@ export default function crypto_profitability() {
   return (
     <ToolLayout
       title="Crypto Mining Profitability Calculator"
-      desc="Calculate mining profitability for BTC, LTC, ETC, RVN, XMR, and KAS. Real-time price fetching and ROI analysis."
+      desc="Crypto Mining Profitability Calculator - calculate mining profitability for BTC, LTC,, online free. Free online, instant results. No sign-up, works on mobile."
       icon="⛏️" iconBg="rgba(245,158,11,0.08)"
       category="finance" slug="crypto-profitability"
       faq={[
         { q: 'How is profitability calculated?', a: 'Based on your hashrate, network difficulty, block reward, electricity cost, and pool fees. Real-time coin prices from CoinGecko.' },
         { q: 'What coins are supported?', a: 'Bitcoin (BTC), Litecoin (LTC), Ethereum Classic (ETC), Ravencoin (RVN), Monero (XMR), and Kaspa (KAS).' },
+        { q: "How do I use this Crypto Mining Profitability Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this Crypto Mining Profitability Calculator accurate?", a: "Yes. The Crypto Mining Profitability Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
+        { q: "Is this Crypto Mining Profitability Calculator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Select your coin and currency (INR/USD).',

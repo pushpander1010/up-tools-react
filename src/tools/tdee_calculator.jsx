@@ -61,12 +61,16 @@ export default function tdee_calculator() {
   return (
     <ToolLayout
       title="TDEE Calculator"
-      desc="Find your Total Daily Energy Expenditure, BMR, and macro targets for weight loss, maintenance, or muscle gain."
+      desc="TDEE Calculator - find your Total Daily Energy Expenditure, BMR, and macro targets for, online free. Free online, instant results. No sign-up, works on mobile."
       icon="🔥" iconBg="rgba(239,68,68,0.08)"
       category="health" slug="tdee-calculator"
       faq={[
         { q: "What is TDEE?", a: "Total Daily Energy Expenditure is the total number of calories your body burns each day, including all activity. It's BMR × activity multiplier." },
         { q: "How do I use TDEE for weight loss?", a: "Eat 300-500 calories below your TDEE for steady, sustainable weight loss of about 0.5-1 lb per week." },
+        { q: "How do I use this TDEE Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this TDEE Calculator accurate?", a: "Yes. The TDEE Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
+        { q: "Is this TDEE Calculator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Select your unit system and enter age, sex, height, and weight.",

@@ -18,13 +18,16 @@ export default function facebook_video_downloader() {
   return (
     <ToolLayout
       title="Facebook Video Downloader"
-      desc="Download Facebook videos, Reels, and Stories in HD quality instantly."
+      desc="Facebook Video Downloader - download Facebook videos, Reels, and Stories in HD quality instantly, online free. Free online in HD. No app or login needed."
       icon="📹" iconBg="rgba(24,119,242,0.08)"
       category="social" slug="facebook-video-downloader"
       faq={[
         { q: "How do I download a Facebook video?", a: "Copy the video URL from Facebook, paste it into our downloader, and click Download." },
         { q: "What types of Facebook videos can I download?", a: "We support Facebook Videos, Reels, Stories, Live Videos, and Shared Videos." },
         { q: "Is this tool free?", a: "Yes, completely free! No registration or payment required." },
+        { q: "How do I download online free?", a: "Paste the link above, pick your option, and save the file. Free with no sign-up or app needed." },
+        { q: "What quality do I get?", a: "You get the highest quality available, free. Paste the link above and save it to your device." },
+        { q: "Can I download on mobile?", a: "Yes. Open this page in your phone browser, paste the link, and save directly. No app needed." },
       ]}
       howItWorks={[
         "Open Facebook and find the video you want to download.",

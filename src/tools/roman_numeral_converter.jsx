@@ -111,12 +111,16 @@ export default function RomanNumeralConverter() {
   return (
     <ToolLayout
       title="Roman Numeral Converter"
-      desc="Convert numbers (1–3999) to Roman numerals and Roman numerals back to numbers. Instant live conversion."
+      desc="Roman Numeral Converter - convert numbers (1–3999) to Roman numerals and Roman numerals back to, online free. Free online, instant results. No sign-up needed."
       icon="🏛️" iconBg="rgba(99,102,241,0.08)"
       category="tools" slug="roman-numeral-converter"
       faq={[
         { q: 'What is Roman Numeral Converter?', a: 'A tool that converts numbers between 1 and 3999 to Roman numerals and vice versa. It works bidirectionally — type a number to get the Roman numeral, or type a Roman numeral to get the number.' },
         { q: 'How to use it?', a: 'Enter a number (1–3999) in the left field or a Roman numeral (e.g. XIV) in the right field. The conversion happens instantly in both directions.' },
+        { q: "How do I convert online free?", a: "Pick the from and to units above and the result appears instantly. Free, no sign-up, works on mobile." },
+        { q: "Which units are supported?", a: "All common units are supported. Choose from the dropdowns above for an instant free conversion." },
+        { q: "Is the conversion instant?", a: "Yes. Results appear live as you type, with no sign-up and no page reload." },
+        { q: "Is this Roman Numeral Converter free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Enter a number (1–3999) to convert to Roman numerals, or',

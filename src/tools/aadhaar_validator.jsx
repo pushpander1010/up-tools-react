@@ -78,12 +78,16 @@ export default function aadhaar_validator() {
   return (
     <ToolLayout
       title="Aadhaar Number Validator"
-      desc="Validate your 12-digit Aadhaar number instantly using the Verhoeff checksum algorithm. No data stored."
+      desc="Aadhaar Number Validator - validate your 12-digit Aadhaar number instantly using the Verhoeff, online free. Free online, instant results. No login needed."
       icon="🪪" iconBg="rgba(99,102,241,0.08)"
       category="dev" slug="aadhaar-validator"
       faq={[
         { q: 'What is an Aadhaar number?', a: 'Aadhaar is a 12-digit unique identity number issued by UIDAI to residents of India.' },
         { q: 'Does this tool store my Aadhaar number?', a: 'No. All validation runs locally in your browser. Your Aadhaar number is never sent to any server.' },
+        { q: "How do I check online free?", a: "Enter your input above and get an instant result. Free with no sign-up, works on mobile and desktop." },
+        { q: "What does it check?", a: "It validates your input against standard rules instantly. Enter the value above to see the result." },
+        { q: "Is my data kept private?", a: "Yes. Everything runs in your browser. Nothing you enter is uploaded or stored." },
+        { q: "Is this Aadhaar Number Validator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Enter your 12-digit Aadhaar number (spaces are handled automatically).',

@@ -46,12 +46,16 @@ export default function todo_list_maker() {
   return (
     <ToolLayout
       title="To-Do List Maker"
-      desc="Simple, fast to-do list that saves to your browser. Track tasks with categories and completion status."
+      desc="To-Do List Maker - simple, fast to-do list that saves to your browser. Track tasks with categories, online free. Free online, no sign-up. Works on any device."
       icon="✅" iconBg="rgba(34,197,94,0.08)"
       category="productivity" slug="todo-list-maker"
       faq={[
         { q: 'Where are my tasks saved?', a: 'All tasks are saved in your browser\'s local storage. They persist between sessions but are not synced across devices.' },
         { q: 'Can I export my list?', a: 'Currently tasks are stored locally. You can copy them manually.' },
+        { q: "How do I use this To-Do List Maker online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this To-Do List Maker free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Type a task and press Enter or click Add.',

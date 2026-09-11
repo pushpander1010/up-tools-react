@@ -42,12 +42,16 @@ export default function canada_tax_bracket_calculator() {
   return (
     <ToolLayout
       title="Canada Federal Tax Calculator"
-      desc="Estimate federal income tax in Canada using current brackets. Quick, no-signup tool."
+      desc="Canada Federal Tax Calculator - estimate federal income tax in Canada using current, online free. Free online, instant results. No sign-up, works on mobile."
       icon="🍁" iconBg="rgba(220,38,38,0.08)"
       category="canada" slug="canada-tax-bracket-calculator"
       faq={[
         { q: 'What is this tool?', a: 'Estimates federal income tax in Canada using current brackets.' },
         { q: 'Does it include provincial tax?', a: 'No. This calculates federal tax only. Provincial tax is not included.' },
+        { q: "How do I use this Canada Federal Tax Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this Canada Federal Tax Calculator accurate?", a: "Yes. The Canada Federal Tax Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
+        { q: "Is this Canada Federal Tax Calculator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Enter your taxable income in CAD.',

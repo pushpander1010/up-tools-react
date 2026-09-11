@@ -35,12 +35,16 @@ export default function pressure_converter() {
   return (
     <ToolLayout
       title="Pressure Converter"
-      desc="Convert between PSI, bar, Pascal, ATM, and mmHg instantly."
+      desc="Pressure Converter - convert between PSI, bar, Pascal, ATM, and mmHg instantly, online free. Free online, instant results. No sign-up needed."
       icon="🌡️" iconBg="rgba(239,68,68,0.08)"
       category="dev" slug="pressure-converter"
       faq={[
         { q: 'What is PSI?', a: 'PSI (Pounds per Square Inch) is a unit of pressure based on the avoirdupois pound-force.' },
         { q: 'What is standard atmospheric pressure?', a: '1 ATM = 101,325 Pa = 14.696 PSI = 760 mmHg = 1.01325 bar.' },
+        { q: "How do I convert online free?", a: "Pick the from and to units above and the result appears instantly. Free, no sign-up, works on mobile." },
+        { q: "Which units are supported?", a: "All common units are supported. Choose from the dropdowns above for an instant free conversion." },
+        { q: "Is the conversion instant?", a: "Yes. Results appear live as you type, with no sign-up and no page reload." },
+        { q: "Is this Pressure Converter free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Enter a pressure value.',

@@ -75,12 +75,16 @@ export default function css_minifier() {
   return (
     <ToolLayout
       title="CSS Minifier & Beautifier"
-      desc="Minify CSS to reduce file size, or beautify it for readability with custom indent settings."
+      desc="CSS Minifier & Beautifier - minify CSS to reduce file size, or beautify it for readability with, online free. Free online, no sign-up. Works on any device."
       icon="🎨" iconBg="rgba(99,102,241,0.08)"
       category="dev" slug="css-minifier"
       faq={[
         { q: 'What does CSS minification do?', a: 'It removes whitespace, comments, and unnecessary characters to reduce file size for production.' },
         { q: 'Is the minified CSS valid?', a: 'Yes — it produces functionally identical CSS with all formatting removed.' },
+        { q: "How do I use this CSS Minifier & Beautifier online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this CSS Minifier & Beautifier free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Paste your CSS in the input area.',

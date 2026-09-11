@@ -67,12 +67,16 @@ Tone: ${tone}. Do not use placeholder brackets — use the details provided.`
   return (
     <ToolLayout
       title="AI Cover Letter Generator"
-      desc="Generate professional cover letters instantly with AI. Fill in your details and get a tailored cover letter in seconds."
+      desc="AI Cover Letter Generator - generate professional cover letters instantly with AI. Fill in your, online free. Free online, no sign-up. Works on any device."
       icon="📄" iconBg="rgba(99,102,241,0.08)"
       category="ai" slug="ai-cover-letter"
       faq={[
         { q: "Is this cover letter generator free?", a: "Yes, completely free with no sign-up or download required." },
         { q: "Can I download the cover letter?", a: "Yes, you can copy it to clipboard or download as a .txt file instantly." },
+        { q: "How do I use this AI Cover Letter Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this AI Cover Letter Generator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Enter your name, the job title, and company you're applying to.",

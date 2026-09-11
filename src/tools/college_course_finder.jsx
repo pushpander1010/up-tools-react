@@ -37,12 +37,16 @@ export default function college_course_finder() {
   return (
     <ToolLayout
       title="College Course Finder After 12th"
-      desc="Find suitable college courses after Class 12 based on stream, interest area, and score band."
+      desc="College Course Finder After 12th - find suitable college courses after Class 12 based on stream,, online free. Free online, instant results. No login needed."
       icon="🎓" iconBg="rgba(99,102,241,0.08)"
       category="education" slug="college-course-finder"
       faq={[
         { q: 'What is College Course Finder After 12th?', a: 'Find suitable college courses after Class 12 based on stream, interest area, and score band.' },
         { q: 'Is College Course Finder After 12th free to use?', a: 'Yes, College Course Finder After 12th is completely free. No sign-up or credit card required.' },
+        { q: "How do I check online free?", a: "Enter your input above and get an instant result. Free with no sign-up, works on mobile and desktop." },
+        { q: "What does it check?", a: "It validates your input against standard rules instantly. Enter the value above to see the result." },
+        { q: "Is my data kept private?", a: "Yes. Everything runs in your browser. Nothing you enter is uploaded or stored." },
+        { q: "Is this College Course Finder After 12th free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Select your stream (PCM, PCB, Commerce, Arts, Any).',

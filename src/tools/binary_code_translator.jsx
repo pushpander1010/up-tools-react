@@ -71,13 +71,16 @@ export default function binary_code_translator() {
   return (
     <ToolLayout
       title="Binary Code Translator"
-      desc="Convert text to binary, hexadecimal, and decimal codes. Also reverse binary back to readable text."
+      desc="Binary Code Translator - convert text to binary, hexadecimal, and decimal codes. Also reverse, online free. Free online, no sign-up. Works on any device."
       icon="💻" iconBg="rgba(99,102,241,0.08)"
       category="dev" slug="binary-code-translator"
       faq={[
         { q: 'What is binary code?', a: 'Binary is a base-2 number system using only 0s and 1s. Computers use binary to represent all data — every character, number, and image is ultimately stored as binary digits (bits).' },
         { q: 'What is ASCII encoding?', a: 'ASCII (American Standard Code for Information Interchange) maps characters to numbers 0–127. For example, the letter "A" is decimal 65, binary 01000001, and hex 41.' },
         { q: 'What is hexadecimal?', a: 'Hexadecimal is a base-16 number system using digits 0–9 and letters A–F. It is commonly used in computing because it represents bytes more compactly than binary (2 hex digits = 1 byte).' },
+        { q: "How do I use this Binary Code Translator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         'Choose a mode: Text to Binary or Binary to Text.',

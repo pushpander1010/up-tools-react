@@ -66,9 +66,22 @@ export default function ImageToBase64() {
   return (
     <ToolLayout
       title="Image to Base64"
-      desc="Convert any image to a Base64 data URL. All processing done in your browser — nothing is uploaded."
+      desc="Image to Base64 - convert any image to a Base64 data URL. All processing done in your browser —, online free. Free online, no sign-up. Works on any device."
       icon="🖼️" iconBg="rgba(99,102,241,0.08)"
       category="images" slug="image-to-base64"
+      faq={[
+        { q: "How do I convert an image to Base64 online free?", a: "Drop an image above or browse to upload, then copy the Base64 code. Free, runs in your browser." },
+        { q: "Is my image uploaded?", a: "No. Everything runs in your browser. Nothing is uploaded or stored." },
+        { q: "Is this converter free?", a: "Yes, completely free with no sign-up. Convert unlimited images on any device." },
+        { q: "Do I need to sign up?", a: "No sign-up needed. Convert unlimited images free on any device." },
+        { q: "Does it work on mobile?", a: "Yes. Convert images free in your phone browser, no app needed." },
+        { q: "Which formats are supported?", a: "JPG, PNG, GIF, WebP, SVG, BMP, and ICO, free with no sign-up." },
+      ]}
+      howItWorks={[
+        "Drop an image above or browse to upload.",
+        "Get the Base64 code instantly.",
+        "Copy it for use in HTML or CSS.",
+      ]}
     >
       <div className="max-w-2xl mx-auto space-y-4">
         <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-5">

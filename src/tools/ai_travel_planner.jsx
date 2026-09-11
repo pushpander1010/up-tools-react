@@ -65,12 +65,16 @@ Requirements:
   return (
     <ToolLayout
       title="AI Travel Planner"
-      desc="Get a personalized day-by-day travel itinerary with AI. Enter your destination, budget, and interests."
+      desc="AI Travel Planner - get a personalized day-by-day travel itinerary with AI. Enter your destination,, online free. Free online, no sign-up. Works on any device."
       icon="✈️" iconBg="rgba(6,182,212,0.08)"
       category="ai" slug="ai-travel-planner"
       faq={[
         { q: "Are the prices accurate?", a: "No — the tool provides general guidance. Always check current prices before booking." },
         { q: "Can I customize the itinerary?", a: "Yes — add notes about preferences, dietary restrictions, accessibility needs, etc." },
+        { q: "How do I use this AI Travel Planner online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this AI Travel Planner free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Enter your destination, trip length, and budget level.",

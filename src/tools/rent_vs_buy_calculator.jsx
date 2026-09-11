@@ -78,12 +78,16 @@ export default function rent_vs_buy_calculator() {
   return (
     <ToolLayout
       title="Rent vs Buy Calculator"
-      desc="Compare the true cost of renting vs buying a home over time. See which option saves you more money."
+      desc="Rent vs Buy Calculator - compare the true cost of renting vs buying a home over time., online free. Free online, instant results. No sign-up, works on mobile."
       icon="🏠" iconBg="rgba(99,102,241,0.08)"
       category="finance" slug="rent-vs-buy-calculator"
       faq={[
         { q: 'Is it better to rent or buy?', a: 'It depends. Buying is better if you plan to stay 5+ years with stable income. Renting is better if you value flexibility.' },
         { q: 'What is the 5% rule?', a: 'If annual rent is less than 5% of the home price, renting is likely cheaper.' },
+        { q: "How do I use this Rent vs Buy Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this Rent vs Buy Calculator accurate?", a: "Yes. The Rent vs Buy Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
+        { q: "Is this Rent vs Buy Calculator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Enter home purchase details: price, down payment, interest rate, taxes.',

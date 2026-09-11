@@ -34,13 +34,16 @@ export default function instagram_highlight_downloader() {
   return (
     <ToolLayout
       title="Instagram Highlight Downloader"
-      desc="Download Instagram story highlights from any public profile. Save highlight covers and stories in full quality."
+      desc="Instagram Highlight Downloader - download Instagram story highlights from any public profile. Save, online free. Free online in HD. No app or login needed."
       icon="📱" iconBg="rgba(236,72,153,0.08)"
       category="social" slug="instagram-highlight-downloader"
       faq={[
         { q: "Can I download highlights from private accounts?", a: "No, only public Instagram profiles have downloadable highlights. Private accounts restrict access to their content." },
         { q: "Is this tool free?", a: "Yes, completely free! No registration or payment required." },
         { q: "What quality are the downloads?", a: "Highlights are downloaded in the original quality uploaded by the user." },
+        { q: "How do I download online free?", a: "Paste the link above, pick your option, and save the file. Free with no sign-up or app needed." },
+        { q: "What quality do I get?", a: "You get the highest quality available, free. Paste the link above and save it to your device." },
+        { q: "Can I download on mobile?", a: "Yes. Open this page in your phone browser, paste the link, and save directly. No app needed." },
       ]}
       howItWorks={[
         "Enter the Instagram username whose highlights you want to download.",

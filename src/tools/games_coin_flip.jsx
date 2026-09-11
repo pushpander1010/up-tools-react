@@ -159,12 +159,16 @@ export default function games_coin_flip() {
       name="COIN FLIP"
       startAction={flip} startLabel="🪙 Flip"
       title="Coin Flip — Virtual Toss with Stats & Streaks" 
-      desc="Virtual coin toss with heads/tails stats, streaks, and 10-flip mode."
+      desc="Coin Flip — Virtual Toss with Stats & Streaks - virtual coin toss with heads/tails, online free. Play online free, no download. Works on mobile and desktop."
       icon="🪙" iconBg="rgba(245,158,11,0.08)"
       category="fun" slug="games-coin-flip"
       faq={[
         { q: "How does the coin flip work?", a: "It uses a cryptographically random method to simulate a fair 50/50 coin toss." },
         { q: "Can I flip multiple coins?", a: "Yes! Use the 'Flip 10x' button for sequential 10-flip rounds with animated results." },
+        { q: "How do I play Coin Flip — Virtual Toss with Stats & Streaks online free?", a: "Click Start and follow the on-screen steps. Use mouse, touch, or keyboard controls. No download needed." },
+        { q: "Can I play Coin Flip — Virtual Toss with Stats & Streaks without downloading?", a: "Yes. This Coin Flip — Virtual Toss with Stats & Streaks runs in your browser with no install. Free on mobile and desktop." },
+        { q: "How do I use this Coin Flip — Virtual Toss with Stats & Streaks online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
+        { q: "Is this Coin Flip — Virtual Toss with Stats & Streaks free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Click the coin or press Space to flip.",

@@ -36,13 +36,16 @@ export default function passphrase_generator() {
   return (
     <ToolLayout
       title="Passphrase Generator"
-      desc="Generate strong, memorable passphrases (diceware-style) with customizable word count, separators and numbers."
+      desc="Passphrase Generator - generate strong, memorable passphrases (diceware-style) with customizable, online free. Free online, no sign-up. Works on any device."
       icon="🔑" iconBg="rgba(239,68,68,0.08)"
       category="security" slug="passphrase-generator"
       faq={[
         { q: 'What is a passphrase?', a: 'A sequence of random words that is long, strong and easier to remember than a traditional password.' },
         { q: 'How secure are passphrases?', a: 'Long random word combinations are highly resistant to brute-force and guessing attacks.' },
         { q: 'Is it generated locally?', a: 'Yes — entirely in your browser. Nothing leaves your device.' },
+        { q: "How do I use this Passphrase Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         'Choose how many words your passphrase should contain (2-10).',

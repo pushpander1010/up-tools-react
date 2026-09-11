@@ -88,12 +88,16 @@ export default function ai_name_generator() {
   return (
     <ToolLayout
       title="AI Name Generator"
-      desc="Generate baby names, business names, brand names, startup names, character names, pet names, and usernames instantly."
+      desc="AI Name Generator - generate baby names, business names, brand names, startup names, character, online free. Free online, no sign-up. Works on any device."
       icon="✨" iconBg="rgba(234,179,8,0.08)"
       category="ai" slug="ai-name-generator"
       faq={[
         { q: "How are names generated?", a: "From curated name banks covering Indian, Western, and creative names across 7 categories." },
         { q: "Can I filter by keywords?", a: "Yes — enter keywords to filter names that contain your search terms." },
+        { q: "How do I use this AI Name Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this AI Name Generator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Select a name type (baby, business, brand, etc.).",

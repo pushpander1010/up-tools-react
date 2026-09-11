@@ -92,7 +92,7 @@ export default function temperature_converter() {
   return (
     <ToolLayout
       title="Temperature Converter"
-      desc="Convert between Celsius, Fahrenheit, Kelvin, and Rankine. See all 4 scales instantly with visual gauge."
+      desc="Temperature Converter - convert between Celsius, Fahrenheit, Kelvin, and Rankine. See all 4, online free. Free online, instant results. No sign-up needed."
       icon="🌡️" iconBg="rgba(239,68,68,0.08)"
       category="dev" slug="temperature-converter"
       faq={[
@@ -100,6 +100,8 @@ export default function temperature_converter() {
         { q: 'What is absolute zero?', a: 'Absolute zero is -273.15°C / -459.67°F / 0 K / 0°R — the lowest possible temperature where all molecular motion ceases.' },
         { q: 'What are common reference temperatures?', a: 'Water freezes at 0°C (32°F), body temperature is ~37°C (98.6°F), and water boils at 100°C (212°F) at sea level.' },
         { q: 'What is Rankine?', a: 'Rankine (°R) is an absolute temperature scale using Fahrenheit degrees. It starts at absolute zero (0°R) like Kelvin but uses the Fahrenheit scale intervals.' },
+        { q: "How do I convert online free?", a: "Pick the from and to units above and the result appears instantly. Free, no sign-up, works on mobile." },
+        { q: "Which units are supported?", a: "All common units are supported. Choose from the dropdowns above for an instant free conversion." },
       ]}
       howItWorks={[
         'Enter a temperature value in the input field.',

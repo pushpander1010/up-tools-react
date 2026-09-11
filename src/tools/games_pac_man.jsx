@@ -431,13 +431,16 @@ export default function games_pac_man() {
       name="PAC-MAN"
       startAction={startGame} startLabel="▶ Start" 
       title="Pac-Man Online - Classic Arcade Game"
-      desc="Play the classic Pac-Man arcade game in your browser! Eat dots, avoid ghosts, grab power pellets. Arrow keys or swipe to move."
+      desc="Pac-Man Online - Classic Arcade Game - play the classic Pac-Man arcade game in your, online free. Play online free, no download. Works on mobile and desktop."
       icon="👾" iconBg="rgba(250,204,21,0.08)"
       category="fun" slug="games-pac-man"
       faq={[
         { q: "How do I control Pac-Man?", a: "Use arrow keys or WASD on desktop. On mobile, swipe or use the D-pad below the game." },
         { q: "What do power pellets do?", a: "The large glowing dots make ghosts turn blue and vulnerable. Eat them for bonus points: 200, 400, 800, 1600 for consecutive ghosts!" },
         { q: "How do ghosts behave?", a: "Each ghost has a different personality. Blinky chases you directly, Pinky tries to ambush ahead, Inky uses tricky positioning, and Clyde gets scared when close!" },
+        { q: "How do I play Pac-Man Online - Classic Arcade Game online free?", a: "Click Start and follow the on-screen steps. Use mouse, touch, or keyboard controls. No download needed." },
+        { q: "Can I play Pac-Man Online - Classic Arcade Game without downloading?", a: "Yes. This Pac-Man Online - Classic Arcade Game runs in your browser with no install. Free on mobile and desktop." },
+        { q: "How do I use this Pac-Man Online - Classic Arcade Game online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
       ]}
       howItWorks={[
         "Arrow keys or WASD to move Pac-Man around the maze.",

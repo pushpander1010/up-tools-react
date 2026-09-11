@@ -82,9 +82,22 @@ export default function TextToImage() {
   return (
     <ToolLayout
       title="Text to Image"
-      desc="Convert text to a downloadable PNG image. Customize font, colors, and layout."
+      desc="Text to Image - convert text to a downloadable PNG image. Customize font, colors, and layout, online free. Free online, no sign-up. Works on any device."
       icon="📝" iconBg="rgba(99,102,241,0.08)"
       category="images" slug="text-to-image"
+      faq={[
+        { q: "How do I turn text into an image online free?", a: "Type your text above, customize font and colors, then download the image. Free, no sign-up." },
+        { q: "What customization is available?", a: "Fonts, colors, backgrounds, and sizes. Preview updates live, free in any browser." },
+        { q: "Is it free?", a: "Yes, completely free with no sign-up. Create unlimited images on any device." },
+        { q: "Do I need to sign up?", a: "No sign-up needed. Create unlimited images free on any device." },
+        { q: "Does it work on mobile?", a: "Yes. Make text images free in your phone browser, no app needed." },
+        { q: "Is my text private?", a: "Yes. All rendering happens in your browser. Nothing is uploaded." },
+      ]}
+      howItWorks={[
+        "Type your text above.",
+        "Customize font, color, and background.",
+        "Download the image free.",
+      ]}
     >
       <div className="max-w-2xl mx-auto space-y-4">
         {/* Controls */}

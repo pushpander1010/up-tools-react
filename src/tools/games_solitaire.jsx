@@ -413,13 +413,16 @@ export default function games_solitaire() {
       name="SOLITAIRE"
       startAction={startNewGame} startLabel="🂡 Deal Cards"
         title="Solitaire — Classic Klondike Card Game Online Free" 
-        desc="Play classic Klondike Solitaire in your browser. Drag and drop cards, undo moves, auto-complete, and track your stats."
+        desc="Solitaire — Classic Klondike Card Game Online Free - play classic Klondike Solitaire, online free. Play online free, no download. Works on mobile and desktop."
         icon="🃏" iconBg="rgba(34,197,94,0.08)"
         category="fun" slug="games-solitaire"
         faq={[
           { q: "How do I play Solitaire?", a: "Move cards between tableau columns, alternating colors in descending order. Build up foundation piles by suit from Ace to King." },
           { q: "What is auto-complete?", a: "When all cards in the tableau are face-up and no stock remains, cards automatically move to foundations to speed up the end game." },
           { q: "Can I undo moves?", a: "Yes! You can undo the last 10 moves using the undo button." },
+          { q: "Can I play Solitaire — Classic Klondike Card Game Online Free without downloading?", a: "Yes. This Solitaire — Classic Klondike Card Game Online Free runs in your browser with no install. Free on mobile and desktop." },
+          { q: "How do I use this Solitaire — Classic Klondike Card Game Online Free online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
+          { q: "Is this Solitaire — Classic Klondike Card Game Online Free free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
         ]}
         howItWorks={[
           "Click the stock pile to draw cards (1 or 3 at a time).",

@@ -35,12 +35,16 @@ export default function energy_converter() {
   return (
     <ToolLayout
       title="Energy Converter"
-      desc="Convert between Joules, Calories, BTU, kWh, and Erg instantly."
+      desc="Energy Converter - convert between Joules, Calories, BTU, kWh, and Erg instantly, online free. Free online, instant results. No sign-up needed."
       icon="⚡" iconBg="rgba(245,158,11,0.08)"
       category="dev" slug="energy-converter"
       faq={[
         { q: 'What is a Joule?', a: 'A Joule is the SI unit of energy. 1 Joule = 1 Newton-meter.' },
         { q: 'What is BTU?', a: 'BTU (British Thermal Unit) is the energy needed to heat 1 pound of water by 1°F.' },
+        { q: "How do I convert online free?", a: "Pick the from and to units above and the result appears instantly. Free, no sign-up, works on mobile." },
+        { q: "Which units are supported?", a: "All common units are supported. Choose from the dropdowns above for an instant free conversion." },
+        { q: "Is the conversion instant?", a: "Yes. Results appear live as you type, with no sign-up and no page reload." },
+        { q: "Is this Energy Converter free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Enter an energy value.',

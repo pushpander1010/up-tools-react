@@ -38,13 +38,16 @@ export default function lunar_calendar() {
   return (
     <ToolLayout
       title="Lunar Calendar"
-      desc="View lunar calendar with moon phases, lunar dates, and zodiac information."
+      desc="Lunar Calendar - view lunar calendar with moon phases, lunar dates, and zodiac information, online free. Free online, no sign-up. Works on any device."
       icon="🌙" iconBg="rgba(99,102,241,0.08)"
       category="utility" slug="lunar-calendar"
       faq={[
         { q: 'What moon phases are tracked?', a: 'New Moon, Waxing Crescent, First Quarter, Waxing Gibbous, Full Moon, Waning Gibbous, Last Quarter, and Waning Crescent.' },
         { q: 'How accurate is the calculation?', a: 'It uses the known new moon date of January 6, 2000 and the standard lunar cycle of 29.53 days.' },
-        { q: 'Is this tool free?', a: 'Yes, completely free with no sign-ups required.' }
+        { q: 'Is this tool free?', a: 'Yes, completely free with no sign-ups required.' },
+        { q: "How do I use this Lunar Calendar online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         'Select any date using the date picker.',

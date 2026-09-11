@@ -123,7 +123,7 @@ export default function hncker_netc2() {
   return (
     <ToolLayout
       title="Net-C2 — Botnet Command & Control (Educational)"
-      desc="How a Python botnet C2 framework works — server, encrypted bots, web dashboard. Educational & defense purposes only."
+      desc="NetC2 Guide - how a Python botnet C2 framework works, server, encrypted bots, and web dashboard. Educational and defense purposes only, online free."
       icon="🧠"
       iconBg="linear-gradient(135deg, rgba(168,85,247,0.18), rgba(0,255,65,0.08))"
       category="security"

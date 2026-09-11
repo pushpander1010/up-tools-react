@@ -93,6 +93,9 @@ export default function image_tool() {
         { q: 'Is my image uploaded?', a: 'No, this editor runs entirely in your browser. Your image never leaves your device.' },
         { q: 'What formats are supported?', a: 'Export as PNG (transparent), WebP, or JPEG. Most image formats can be opened.' },
         { q: 'How do I remove the background?', a: 'Export as PNG — transparency is preserved. For automatic background removal you need an AI tool, which this free editor does not include.' },
+        { q: "How do I use this Image Editor — Filters & Color Adjust Online online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={["Upload an image", "Apply a filter preset or fine-tune brightness/contrast/saturation", "Export in your preferred format"]}
       schema={{ "@context":"https://schema.org","@type":"SoftwareApplication","name":"Image Editor","applicationCategory":"MultimediaApplication","operatingSystem":"Web","url":"https://www.uptools.in/image-tool/","description":"Free online image editor with filters and color adjustments.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}}

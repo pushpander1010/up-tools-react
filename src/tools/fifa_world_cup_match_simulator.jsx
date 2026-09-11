@@ -98,12 +98,16 @@ export default function fifa_world_cup_match_simulator() {
   return (
     <ToolLayout
       title="FIFA World Cup 2026 Match Simulator"
-      desc="Simulate FIFA World Cup 2026 matches. Pick two teams, generate realistic scores with goalscorers and stats."
+      desc="FIFA World Cup 2026 Match Simulator - simulate FIFA World Cup 2026 matches. Pick two teams,, online free. Free online, no sign-up. Works on any device."
       icon="⚽" iconBg="rgba(34,197,94,0.08)"
       category="fifa" slug="fifa-world-cup-match-simulator"
       faq={[
         { q: "How realistic are the scores?", a: "The simulator uses weighted random logic based on team strength, FIFA rankings, and realistic scoring patterns." },
         { q: "Is match history saved?", a: "Yes, stored in your browser's local storage. Persists between sessions." },
+        { q: "How do I use this FIFA World Cup 2026 Match Simulator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this FIFA World Cup 2026 Match Simulator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Pick home and away teams from all 48 nations.",

@@ -29,13 +29,16 @@ export default function home_equity_calculator() {
   return (
     <ToolLayout
       title="Home Equity Calculator"
-      desc="Calculate how much equity you have in your home and track equity growth over time."
+      desc="Home Equity Calculator - calculate how much equity you have in your home and track, online free. Free online, instant results. No sign-up, works on mobile."
       icon="🏠" iconBg="rgba(99,102,241,0.08)"
       category="finance" slug="home-equity-calculator"
       faq={[
         { q: 'What is home equity?', a: 'Home equity is your home value minus outstanding mortgage and other liens. It represents the portion you truly own.' },
         { q: 'How do I build home equity?', a: 'By making mortgage payments, home appreciation, extra principal payments, and home improvements.' },
         { q: 'What is a good amount of home equity?', a: '20% equity is the minimum to avoid PMI. 50%+ provides financial flexibility.' },
+        { q: "How do I use this Home Equity Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this Home Equity Calculator accurate?", a: "Yes. The Home Equity Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
       ]}
       howItWorks={[
         'Enter your current home value.',

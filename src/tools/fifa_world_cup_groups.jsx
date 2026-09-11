@@ -38,12 +38,16 @@ export default function fifa_world_cup_groups() {
   return (
     <ToolLayout
       title="FIFA World Cup 2026 Groups & Standings"
-      desc="Complete group stage table for all 12 groups with live points, goals, goal difference, and match results."
+      desc="FIFA World Cup 2026 Groups & Standings - complete group stage table for all 12 groups with live, online free. Free online, no sign-up. Works on any device."
       icon="📊" iconBg="rgba(59,130,246,0.08)"
       category="fifa" slug="fifa-world-cup-groups"
       faq={[
         { q: "How many groups are there?", a: "12 groups (A-L) of 4 teams each, featuring all 48 qualified nations." },
         { q: "How many teams advance from each group?", a: "The top 2 from each group plus 8 best third-placed teams advance to the Round of 32." },
+        { q: "How do I use this FIFA World Cup 2026 Groups & Standings online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this FIFA World Cup 2026 Groups & Standings free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Click a group letter to view its standings and match results.",

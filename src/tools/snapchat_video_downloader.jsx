@@ -30,7 +30,7 @@ export default function snapchat_video_downloader() {
   return (
     <ToolLayout
       title="Snapchat Video Downloader"
-      desc="Learn how to save Snapchat videos, snaps, and stories — step-by-step guide with photos and video tips for Android and iPhone."
+      desc="Snapchat Video Downloader - learn how to save Snapchat videos, snaps, and stories — step-by-step guide, online free. Free online in HD. No app or login needed."
       icon="👻" iconBg="rgba(255,252,0,0.08)"
       category="social" slug="snapchat-video-downloader"
       faq={[
@@ -38,6 +38,8 @@ export default function snapchat_video_downloader() {
         { q: "Can I download Snapchat stories?", a: "Yes, public stories and Spotlight videos give you a copyable link. Friend-only stories require that friend's permission." },
         { q: "Will the sender know I saved their snap?", a: "Using a link-based downloader avoids Snapchat's screenshot notification, but you should always respect others' privacy and ask permission." },
         { q: "Can I save my own snaps?", a: "Yes — snaps and stories in your own Memories can be saved directly in the Snapchat app without any third-party tool." },
+        { q: "How do I download online free?", a: "Paste the link above, pick your option, and save the file. Free with no sign-up or app needed." },
+        { q: "What quality do I get?", a: "You get the highest quality available, free. Paste the link above and save it to your device." },
       ]}
       howItWorks={[
         "Open the snap or story and copy its share link.",

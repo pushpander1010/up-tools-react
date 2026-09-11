@@ -108,12 +108,16 @@ export default function crypto_portfolio() {
   return (
     <ToolLayout
       title="Crypto Portfolio Tracker"
-      desc="Track your cryptocurrency portfolio with live prices. Add coins, set quantities and buy prices, and see your P&L in real-time."
+      desc="Crypto Portfolio Tracker - track your cryptocurrency portfolio with live prices. Add coins, set, online free. Free online, no sign-up. Works on any device."
       icon="🪙" iconBg="rgba(245,158,11,0.08)"
       category="finance" slug="crypto-portfolio"
       faq={[
         { q: 'Where do prices come from?', a: 'Live prices are fetched from the CoinGecko API — a free, widely-used crypto data provider.' },
         { q: 'Is my portfolio data saved?', a: 'Yes, your portfolio is saved in your browser\'s localStorage. No data is sent to any server.' },
+        { q: "How do I use this Crypto Portfolio Tracker online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this Crypto Portfolio Tracker free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Search for a cryptocurrency by name or symbol.',

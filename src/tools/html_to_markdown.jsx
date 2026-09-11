@@ -170,12 +170,16 @@ export default function HtmlToMarkdown() {
   return (
     <ToolLayout
       title="HTML ⇄ Markdown Converter"
-      desc="Convert between HTML and Markdown formats instantly. Supports headings, lists, tables, links, images, and more."
+      desc="HTML ⇄ Markdown Converter - convert between HTML and Markdown formats instantly. Supports, online free. Free online, instant results. No sign-up needed."
       icon="📝" iconBg="rgba(99,102,241,0.08)"
       category="dev" slug="html-to-markdown"
       faq={[
         { q: 'What is HTML to Markdown conversion?', a: 'It converts HTML markup into clean Markdown syntax, useful for documentation, GitHub READMEs, and static site generators.' },
         { q: 'What Markdown features are supported?', a: 'Headings, bold, italic, links, images, lists, blockquotes, code blocks, tables, horizontal rules, and strikethrough.' },
+        { q: "How do I convert online free?", a: "Pick the from and to units above and the result appears instantly. Free, no sign-up, works on mobile." },
+        { q: "Which units are supported?", a: "All common units are supported. Choose from the dropdowns above for an instant free conversion." },
+        { q: "Is the conversion instant?", a: "Yes. Results appear live as you type, with no sign-up and no page reload." },
+        { q: "Is this HTML ⇄ Markdown Converter free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Paste HTML in the input area (or switch to Markdown mode).',

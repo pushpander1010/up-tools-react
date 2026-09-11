@@ -54,13 +54,16 @@ export default function cricket_run_rate() {
   return (
     <ToolLayout
       title="Cricket Run Rate Calculator"
-      desc="Calculate required run rate, projected total, and target score for T20, ODI & Test cricket matches."
+      desc="Cricket Run Rate Calculator - calculate required run rate, projected total, and target, online free. Free online, instant results. No sign-up, works on mobile."
       icon="🏏" iconBg="rgba(34,197,94,0.08)"
       category="cricket" slug="cricket-run-rate"
       faq={[
         { q: "How is run rate calculated in cricket?", a: "Run rate (RR) = Total Runs Scored / Overs Bowled. For example, 160 runs in 20 overs = 8.00 run rate." },
         { q: "What is required run rate?", a: "RRR tells how many runs per over are needed to reach the target. Formula: (Target - Current Runs) / Remaining Overs." },
         { q: "Does this work for Test cricket?", a: "Yes! Select 'Test (90 ov)' for first innings of a Test match. Works for all formats with configurable overs." },
+        { q: "How do I use this Cricket Run Rate Calculator online free?", a: "Enter your numbers above and get instant results. Free with no login, works on mobile and desktop." },
+        { q: "Is this Cricket Run Rate Calculator accurate?", a: "Yes. The Cricket Run Rate Calculator uses standard formulas and 2026 rules. Always verify big decisions with a professional." },
+        { q: "What do I need to enter?", a: "Just fill the fields above and results update live. No sign-up, free on any device." },
       ]}
       howItWorks={[
         "Select match format (T20, ODI, or Test).",

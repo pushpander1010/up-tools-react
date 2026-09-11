@@ -69,13 +69,16 @@ export default function public_holidays() {
   return (
     <ToolLayout
       title="Public Holidays"
-      desc="Public holidays for 206 countries by year. Search national, regional, and bank holidays for any country."
+      desc="Public Holidays - public holidays for 206 countries by year. Search national, regional, and bank, online free. Free online, no sign-up. Works on any device."
       icon="🎉" iconBg="rgba(245,158,11,0.08)"
       category="tools" slug="public-holidays"
       faq={[
         { q: 'Which countries are covered?', a: 'This tool covers public holidays for 206 countries worldwide, powered by the open caldays dataset.' },
         { q: 'Can I check other years?', a: 'Yes, pick any year from the dropdown to view that year\u2019s public holidays for the selected country.' },
         { q: 'Are these official holidays?', a: 'Data comes from the caldays public-holiday dataset (CC BY 4.0), compiled from official sources and updated regularly.' },
+        { q: "How do I use this Public Holidays online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
       ]}
       howItWorks={[
         'Pick a country from the searchable dropdown (defaults to India).',

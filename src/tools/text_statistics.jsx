@@ -112,12 +112,16 @@ export default function TextStatistics() {
   return (
     <ToolLayout
       title="Text Statistics"
-      desc="Advanced text statistics: characters, words, sentences, syllables, reading time, speaking time, and word frequency analysis."
+      desc="Text Statistics - advanced text statistics: characters, words, sentences, syllables, reading time,, online free. Free online, no sign-up. Works on any device."
       icon="📊" iconBg="rgba(99,102,241,0.08)"
       category="text" slug="text-statistics"
       faq={[
         { q: 'What is Text Statistics?', a: 'An advanced text analysis tool that counts characters, words, sentences, syllables, paragraphs, and lines. It also calculates reading/speaking time, Flesch-Kincaid grade level, and shows word frequency.' },
         { q: 'How to use it?', a: 'Paste or type your text and see comprehensive statistics update in real time.' },
+        { q: "How do I use this Text Statistics online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
+        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
+        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: "Is this Text Statistics free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Paste or type your text in the input area.',

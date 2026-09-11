@@ -389,13 +389,16 @@ export default function games_flappy_bird() {
       name="FLAPPY BIRD"
       startAction={startGame} startLabel="▶ Start"
       title="Flappy Bird Online - Free Arcade Game"
-      desc="Play Flappy Bird online. Tap to flap, avoid pipes, and try to beat your high score. Day/night cycle and medal system!"
+      desc="Flappy Bird Online - Free Arcade Game - play Flappy Bird online. Tap to flap, avoid, online free. Play online free, no download. Works on mobile and desktop."
       icon="🐦" iconBg="rgba(251,191,36,0.08)"
       category="fun" slug="games-flappy-bird"
       faq={[
         { q: "How do I play Flappy Bird?", a: "Tap the screen, click, or press Space/Up arrow to make the bird flap upward. Gravity pulls it down. Avoid the pipes!" },
         { q: "What are the medals?", a: "Bronze (5+), Silver (10+), Gold (20+), Platinum (30+), Diamond (40+). Can you get Diamond?" },
         { q: "Does the background change?", a: "Yes! The game features a day/night cycle with stars appearing at night for extra atmosphere." },
+        { q: "Can I play Flappy Bird Online - Free Arcade Game without downloading?", a: "Yes. This Flappy Bird Online - Free Arcade Game runs in your browser with no install. Free on mobile and desktop." },
+        { q: "How do I use this Flappy Bird Online - Free Arcade Game online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
+        { q: "Is this Flappy Bird Online - Free Arcade Game free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Tap, click, or press Space to make the bird flap.",

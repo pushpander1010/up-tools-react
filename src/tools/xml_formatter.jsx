@@ -88,12 +88,16 @@ export default function xml_formatter() {
   return (
     <ToolLayout
       title="XML Formatter & Validator"
-      desc="Format (pretty-print), minify, or validate XML documents instantly in your browser."
+      desc="XML Formatter & Validator - format (pretty-print), minify, or validate XML documents instantly in, online free. Free online, instant results. No login needed."
       icon="📄" iconBg="rgba(99,102,241,0.08)"
       category="dev" slug="xml-formatter"
       faq={[
         { q: 'How does XML validation work?', a: 'It parses the XML using the browser\'s built-in DOMParser and checks for well-formedness.' },
         { q: 'What does minify do?', a: 'It removes all whitespace between tags to produce the smallest possible XML output.' },
+        { q: "How do I check online free?", a: "Enter your input above and get an instant result. Free with no sign-up, works on mobile and desktop." },
+        { q: "What does it check?", a: "It validates your input against standard rules instantly. Enter the value above to see the result." },
+        { q: "Is my data kept private?", a: "Yes. Everything runs in your browser. Nothing you enter is uploaded or stored." },
+        { q: "Is this XML Formatter & Validator free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         'Paste your XML in the input area.',

@@ -84,13 +84,15 @@ export default function marvel_movie_timeline() {
   return (
     <ToolLayout
       title="MCU Movie Timeline"
-      desc="The complete Marvel Cinematic Universe timeline and watch order — every phase, from Iron Man to the Multiverse Saga and Doomsday."
+      desc="Marvel Movie Timeline - the complete Marvel Cinematic Universe timeline and watch order, every phase from Iron Man to the Multiverse Saga and Doomsday, online free."
       icon="🎬" iconBg="rgba(244,63,94,0.08)"
       category="entertainment" slug="marvel-movie-timeline"
       faq={[
         { q: "What is the best Marvel watch order?", a: "For story continuity, watch in release order: Phase 1 (Iron Man → Avengers), Phase 2, Phase 3 (Infinity War / Endgame), then the Phase 4-6 Multiverse Saga leading into Doomsday and Secret Wars." },
         { q: "Do I need to watch everything before Doomsday?", a: "Not all of it. The key build-up is Loki, Doctor Strange 2, Ant-Man 3, the Spider-Man films, and Deadpool & Wolverine. Those set up the multiverse conflict." },
         { q: "What phase is Doomsday in?", a: "Doomsday is the climax of the Multiverse Saga (Phase 6), directly preceding Secret Wars." },
+        { q: "How do I use this guide?", a: "Read the sections above step by step. Everything is explained in plain words with examples." },
+        { q: "Is this free?", a: "Yes, completely free with no sign-up. Read it online on any device." },
       ]}
       howItWorks={[
         "Each phase builds on the previous one — watch in release order for the intended story beats.",
