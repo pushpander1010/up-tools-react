@@ -109,10 +109,35 @@ for(const file of toolFiles){
   // or share-sheet titles ('Friendship Test Result') appearing earlier in file.
   const shellTitle = content.match(/<(?:ToolLayout|GameShell)[\s\S]*?\btitle\s*=\s*"([^"]+)"/)
   const titleMatch = shellTitle || content.match(/\btitle\s*=\s*['"`]([^'"`]+)['"`]/)
-  const descMatch = content.match(/\bdesc\s*=\s*['"`]([^'"`]+)['"`]/)
+  let descMatch = content.match(/<(?:ToolLayout|GameShell)[\s\S]*?\bdesc\s*=\s*"([^"]+)"/)
+  if (!descMatch) descMatch = content.match(/\bdesc\s*=\s*['"`]([^'"`]+)['"`]/)
+  // Dynamic desc={`...${X}...`} — resolve known interpolations instead of
+  // falling back to "Free online tool by UpTools" (weak meta, found Sep 2026)
+  let rawDescDyn = null
+  if (!descMatch) {
+    const dynM = content.match(/<(?:ToolLayout|GameShell)[\s\S]*?\bdesc\s*=\s*\{`([\s\S]*?)`\}/)
+    if (dynM) {
+      rawDescDyn = dynM[1]
+        .replace(/\$\{GAMES\.length\}/g, '40+')
+        .replace(/\$\{PROMPTS\.length\}/g, '100+')
+        .replace(/\$\{STOCKS\.india\.length\}/g, '200+')
+        .replace(/\$\{STOCKS\.us\.length\}/g, '300+')
+        .replace(/\$\{[^}]*\}/g, '')
+        .replace(/\s+/g, ' ').trim()
+    }
+  }
   const rawTitle = titleMatch?titleMatch[1]:slug.replace(/-/g,' ').replace(/\b\w/g,c=>c.toUpperCase())
-  const rawDesc = descMatch?descMatch[1]:`${rawTitle}. Free online tool by UpTools.`
-  const title = rawTitle.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+  // Helmet-only pages (no ToolLayout title/desc): use their <title> + meta description
+  let helmetTitle = null, helmetDesc = null
+  if (!titleMatch || (!descMatch && !rawDescDyn)) {
+    const ht = content.match(/<title>([^<]{10,120})<\/title>/)
+    if (ht) helmetTitle = ht[1].replace(/\s*\|\s*UpTools\s*$/,'').trim()
+    const hd = content.match(/<meta name="description"\s*\n?\s*content="([^"]{60,300})"/)
+    if (hd) helmetDesc = hd[1].trim()
+  }
+  const finalTitle = (!titleMatch && helmetTitle) ? helmetTitle : rawTitle
+  const rawDesc = descMatch?descMatch[1]:(rawDescDyn && rawDescDyn.length>60 ? rawDescDyn : (helmetDesc || `${finalTitle}. Free online tool by UpTools.`))
+  const title = finalTitle.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
   const desc = rawDesc.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
   const ogImage = ogImageForSlug(slug)
 

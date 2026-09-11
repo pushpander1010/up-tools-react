@@ -23,7 +23,7 @@ export default function SlugGenerator() {
   return (
     <ToolLayout
       title="URL Slug Generator"
-      desc="URL Slug Generator - convert any text to a clean, SEO-optimized URL slug instantly. Supports, online free. Free online, no sign-up. Works on any device."
+      desc="URL Slug Generator - convert any text to a clean, SEO-optimized URL slug instantly. Free online, no sign-up. Works on any device."
       icon="🔗" iconBg="rgba(99,102,241,0.08)"
       category="dev" slug="slug-generator"
       faq={[

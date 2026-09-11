@@ -93,8 +93,8 @@ export default function nba_stats() {
 
   return (
     <ToolLayout
-      title="NBA Stats"
-      desc="NBA Stats - look up NBA player stats, team standings, and game scores. Free live NBA statistics, online free. Free online, no sign-up. Works on any device."
+      title="NBA Stats Lookup"
+      desc="NBA Stats - look up NBA player stats, season averages, team standings and game scores. Free live NBA statistics online, no sign-up."
       icon="🏀" iconBg="rgba(234,88,12,0.08)"
       category="sports" slug="nba-stats"
       faq={[

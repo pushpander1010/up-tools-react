@@ -72,7 +72,7 @@ export default function currency_converter() {
   return (
     <ToolLayout
       title="Currency Converter"
-      desc="Currency Converter - convert between 20+ currencies with live interbank rates. Falls back to, online free. Free online, instant results. No sign-up needed."
+      desc="Currency Converter - convert between 20+ currencies with live interbank rates, updated daily. Free online, instant results. No sign-up needed."
       icon="💱" iconBg="rgba(34,197,94,0.08)"
       category="finance" slug="currency-converter"
       faq={[

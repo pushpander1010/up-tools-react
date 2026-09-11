@@ -36,7 +36,7 @@ export default function india_college_rankings() {
   return (
     <ToolLayout
       title="India College Rankings"
-      desc="India College Rankings - explore India's top colleges and universities with comprehensive rankings., online free. Free online, no sign-up. Works on any device."
+      desc="India College Rankings - explore top colleges and universities with comprehensive NIRF-style rankings. Free online, no sign-up."
       icon="📚" iconBg="rgba(99,102,241,0.08)"
       category="education" slug="india-college-rankings"
       faq={[
