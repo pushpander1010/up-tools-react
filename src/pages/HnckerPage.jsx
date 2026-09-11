@@ -184,7 +184,7 @@ export default function HnckerPage() {
               <div key={t.slug} className="flex-none w-[340px] p-5 rounded-2xl flex flex-col"
                 style={{ background: t.accent, border: '1px solid rgba(255,255,255,0.08)' }}>
                 <div className="flex items-center gap-3 mb-3">
-                  <img src={t.img} alt={t.alt} loading="lazy"
+                  <img src={t.img} alt={t.alt} loading="lazy" width="56" height="56"
                     className="w-14 h-14 rounded-xl object-contain bg-black/30 p-1 border border-white/10"
                     style={{ background: 'rgba(0,0,0,0.35)' }} />
                   <div>

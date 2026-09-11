@@ -40,7 +40,7 @@ export default function RelatedTools({ currentSlug, category, limit = 8 }) {
   if (related.length === 0) return null
 
   return (
-    <section className="glass p-5 mt-6" style={{ contentVisibility: "auto", containIntrinsicSize: "0 200px" }}>
+    <section className="glass p-5 mt-6">
       <h3 className="text-sm font-semibold text-white mb-3">Related Tools</h3>
       <div className="flex flex-wrap gap-2">
         {related.map(t => (
