@@ -30,14 +30,16 @@ export default function instagram_reels_downloader() {
   return (
     <ToolLayout
       title="Instagram Reels Downloader"
-      desc="Download Instagram Reels in high quality — save reel videos and images from public accounts, free and no login."
+      desc="Instagram Reels downloader — download Instagram Reels videos online free in HD up to 1080p. Paste the reel link, save any public reel MP4, no login needed."
       icon="🎬" iconBg="rgba(236,72,153,0.08)"
       category="social" slug="instagram-reels-downloader"
       faq={[
-        { q: 'Can I download any Instagram Reel?', a: 'You can download Reels from public accounts. Private account content is not accessible.' },
-        { q: 'What quality are the downloads?', a: 'Reels are downloaded in the highest available quality, typically up to 1080p.' },
-        { q: 'Can I download reel photos or images?', a: 'Yes — the download services also save reel cover photos and any images on the post.' },
-        { q: 'Why not download directly here?', a: 'Instagram blocks data-center servers from fetching content, so we route you through reliable third-party download services instead.' },
+        { q: 'How do I download an Instagram Reel online free?', a: 'Copy the Reel URL from the app or browser, paste it above, click Find Reel, then use the download service to save the HD video. Free, no login.' },
+        { q: 'How do I download Instagram Reels in HD 1080p?', a: 'Paste the reel link and choose the highest quality option. Reels save up to 1080p HD when the original was uploaded in HD.' },
+        { q: 'Can I download Reels from private accounts?', a: 'No — only Reels from public accounts can be downloaded. Private account content is restricted to followers.' },
+        { q: 'Can I download reel cover photos too?', a: 'Yes — the download services also save reel cover photos and any images on the post.' },
+        { q: 'Do I need to log in to download Reels?', a: 'No login needed. Paste the public reel link and download free in any browser.' },
+        { q: 'Is the Instagram Reels downloader free?', a: 'Yes, completely free with no sign-up. Download unlimited public Reels online.' },
       ]}
       howItWorks={[
         'Copy the Instagram Reel URL from the app or browser.',

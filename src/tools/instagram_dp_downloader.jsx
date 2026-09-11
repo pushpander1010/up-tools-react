@@ -34,13 +34,16 @@ export default function instagram_dp_downloader() {
   return (
     <ToolLayout
       title="Instagram DP Downloader"
-      desc="Download Instagram profile pictures in full HD quality. View and save any public profile photo instantly."
+      desc="Instagram DP downloader — download Instagram profile pictures online free in HD. View any public profile photo by username, save full-size, no login needed."
       icon="🖼️" iconBg="rgba(99,102,241,0.08)"
       category="social" slug="instagram-dp-downloader"
       faq={[
-        { q: "Can I download private account profile pictures?", a: "No — only public Instagram profile pictures can be downloaded. Private accounts restrict access." },
-        { q: "Do I need to log in?", a: "No login needed for public profiles. Just enter the username." },
-        { q: "What quality are the downloads?", a: "Profile pictures are fetched in the highest available resolution, typically 320×320 or higher." },
+        { q: "How do I download an Instagram DP online free?", a: "Enter the username above, click Fetch Profile Picture, then use the viewer links to open the full-size photo and save it. No login or app needed." },
+        { q: "How do I download an Instagram DP by username?", a: "Type the username without @ (or paste the profile URL), click Fetch, then open the profile on Instagram or Imginn to save the full-size DP." },
+        { q: "Can I download a private account profile picture?", a: "No — only public Instagram profile pictures can be viewed and saved. Private accounts restrict access to followers only." },
+        { q: "Do I need to log in to download Instagram DP?", a: "No login needed for public profiles. Just enter the username and fetch the profile picture free." },
+        { q: "What quality do I get?", a: "Profile pictures are fetched in the highest available resolution, typically 320x320 or higher in HD." },
+        { q: "Is the Instagram DP downloader free?", a: "Yes, completely free with no sign-up. Save unlimited public profile pictures online." },
       ]}
       howItWorks={[
         'Enter the Instagram username (without @).',

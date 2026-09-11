@@ -23,12 +23,16 @@ export default function youtube_shorts_downloader() {
   return (
     <ToolLayout
       title="YouTube Shorts Downloader"
-      desc="Download YouTube Shorts videos in HD quality."
+      desc="YouTube Shorts downloader — download Shorts videos online free in HD 720p and 1080p MP4. Paste the link, pick quality, save on any device, no app needed."
       icon="📱" iconBg="rgba(239,68,68,0.08)"
       category="social" slug="youtube-shorts-downloader"
       faq={[
-        { q: "What quality can I download?", a: "You can choose from 360p, 720p, and 1080p quality options." },
-        { q: "Is this tool free?", a: "Yes, this tool is completely free to use." },
+        { q: "How do I download YouTube Shorts online free?", a: "Paste the Shorts link above, pick 360p, 720p or 1080p quality, and click Download. The video saves as MP4, free with no sign-up." },
+        { q: "How do I download YouTube Shorts in HD 1080p?", a: "Paste the shorts URL, select 1080p quality, and download. HD quality is available when the original Short was uploaded in HD." },
+        { q: "Can I download YouTube Shorts on mobile?", a: "Yes. Open this page in your phone browser, paste the Shorts link, choose quality, and save the MP4 directly to your device." },
+        { q: "Do I need an app to download Shorts?", a: "No app needed. This online downloader works in any browser on Android, iPhone, and desktop." },
+        { q: "Is the YouTube Shorts downloader free?", a: "Yes, completely free with no login. Download unlimited Shorts videos online." },
+        { q: "What format do Shorts download in?", a: "MP4 video in 360p, 720p, or 1080p HD. MP4 plays on every phone, tablet, and computer." },
       ]}
       howItWorks={[
         "Paste a YouTube Shorts URL in the input field.",

@@ -76,7 +76,7 @@ export default function whatsapp_status_saver() {
   return (
     <ToolLayout
       title="WhatsApp Status Saver"
-      desc="Save WhatsApp status photos and videos. Download status media by its real WhatsApp link (mmg.whatsapp.net), or get a chat link by number. Includes Android, iPhone, and WhatsApp Web methods."
+      desc="WhatsApp Status Saver — save status photos and videos online free in HD by link or number. Android, iPhone and Web methods."
       icon="📱" iconBg="rgba(37,211,102,0.08)"
       category="whatsapp" slug="whatsapp-status-saver"
       faq={[

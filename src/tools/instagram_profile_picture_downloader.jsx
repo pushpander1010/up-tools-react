@@ -47,13 +47,16 @@ export default function instagram_profile_picture_downloader() {
   return (
     <ToolLayout
       title="Instagram Profile Picture Downloader"
-      desc="View and download Instagram profile pictures in full resolution. Enter a username or profile URL."
+      desc="Instagram profile picture downloader — view and download any public IG profile photo online free in full resolution by username. No login or app needed."
       icon="🖼️" iconBg="rgba(236,72,153,0.08)"
       category="social" slug="instagram-profile-picture-downloader"
       faq={[
-        { q: "Can I download any profile picture?", a: "Yes, you can view profile pictures of any public Instagram account. Private accounts may have limited access." },
-        { q: "What resolution are the profile pictures?", a: "Instagram profile pictures are typically 320x320 pixels. This tool shows the highest available resolution." },
-        { q: "Is this tool free?", a: "Yes, completely free with no sign-ups required." },
+        { q: "How do I download an Instagram profile picture online free?", a: "Enter the username or paste the profile URL above, click Lookup Profile Picture, then use the viewer links to open and save the full-resolution photo. No login needed." },
+        { q: "How do I download an Instagram profile picture by username?", a: "Type the username without @, click Lookup, then open the profile or Imginn link to save the full-size DP in HD." },
+        { q: "Can I download a private account profile picture?", a: "No — only public Instagram accounts can be viewed and saved. Private accounts restrict access to followers." },
+        { q: "What resolution do I get?", a: "Instagram profile pictures are typically 320x320 pixels. This tool shows the highest available resolution in full size." },
+        { q: "Do I need to log in?", a: "No login or sign-up needed for public profiles. Just enter the username." },
+        { q: "Is this Instagram DP downloader free?", a: "Yes, completely free with no sign-ups. Save unlimited public profile pictures online." },
       ]}
       howItWorks={[
         'Enter an Instagram username or paste a profile URL.',
