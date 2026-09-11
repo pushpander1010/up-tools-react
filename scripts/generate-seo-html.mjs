@@ -196,30 +196,94 @@ for(const file of toolFiles){
   count++
 }
 
-function buildHtml(slug, title, desc){
+// Hub SEO helpers: static ItemList JSON-LD + noscript links so section hubs
+// expose their children to crawlers without JS (same gap as /blogs/ Sep 2026).
+function hubLinksFor(section) {
+  try {
+    const tools = JSON.parse(readFileSync(join(__dirname, '..', 'src/data/tools.json'), 'utf8')).tools
+    return tools
+      .filter(t => (t.slug || '').startsWith(section + '/') || (t.slug || '').startsWith(section + '-'))
+      .map(t => {
+        const p = t.slug.startsWith(section + '-')
+          ? section + '/' + t.slug.slice(section.length + 1)
+          : t.slug
+        return [`/${p}/`, t.title]
+      })
+  } catch { return [] }
+}
+function hubItemList(section, name) {
+  const links = hubLinksFor(section)
+  return { '@context': 'https://schema.org', '@type': 'ItemList', name, itemListElement: links.map(([href, title], i) => ({ '@type': 'ListItem', position: i + 1, name: title, url: SITE + href })) }
+}
+function sectionHubSeo(section, name) {
+  const links = hubLinksFor(section)
+  return { itemList: hubItemList(section, name), noscriptLinks: links.slice(0, 60), noscriptTitle: name }
+}
+function hnckerHubSeo() { return sectionHubSeo('hncker', 'HNCKER Security Tools') }
+function gamesHubSeo() {
+  let links = []
+  try {
+    const src = readFileSync(join(__dirname, '..', 'src/pages/GamesPage.jsx'), 'utf8')
+    const m = src.match(/const GAMES = \[([\s\S]*?)\n\]/)
+    if (m) {
+      const re = /\{\s*slug:\s*'([^']+)'\s*,\s*title:\s*'([^']+)'/g
+      let g
+      while ((g = re.exec(m[1])) !== null) links.push([`/games/${g[1]}/`, g[2]])
+    }
+  } catch { links = [] }
+  // Fallback to tools.json games entries if page parse fails
+  if (!links.length) {
+    try {
+      const tools = JSON.parse(readFileSync(join(__dirname, '..', 'src/data/tools.json'), 'utf8')).tools
+      links = tools
+        .filter(t => (t.slug || '').startsWith('games/') || (t.slug || '').startsWith('games-'))
+        .map(t => {
+          const p = t.slug.startsWith('games-') ? 'games/' + t.slug.slice(6) : t.slug
+          return [`/${p}/`, t.title]
+        })
+    } catch { links = [] }
+  }
+  return { itemList: { '@context': 'https://schema.org', '@type': 'ItemList', name: 'UpTools Free Online Games', itemListElement: links.map(([href, title], i) => ({ '@type': 'ListItem', position: i + 1, name: title, url: SITE + href })) }, noscriptLinks: links.slice(0, 60), noscriptTitle: 'UpTools Free Online Games' }
+}
+
+function buildHtml(slug, title, desc, opts = {}) {
   let html = template
   html = html.replace(/<title>.*?<\/title>/, `<title>${esc(title)}</title>`)
   const descTag = `<meta name="description" content="${escAttr(desc)}" />`
-  if(/<meta name="description"/.test(html)) html = html.replace(/<meta name="description"[^>]*\/>/, descTag)
+  if (/<meta name="description"/.test(html)) html = html.replace(/<meta name="description"[^>]*\/>/, descTag)
   else html = html.replace(/<\/title>/, `</title>\n    ${descTag}`)
   html = html.replace(/<link rel="canonical"[^>]*\/>/, `<link rel="canonical" href="${SITE}/${slug}/" />`)
-  function upsert(property, value){
-    const tag=`<meta property="${property}" content="${escAttr(value)}" />`
-    const re=new RegExp(`<meta property="${property}"[^>]*\\/?>`)
-    if(re.test(html)) html=html.replace(re,tag); else html=html.replace('</head>',`    ${tag}\n  </head>`)
+  function upsert(property, value) {
+    const tag = `<meta property="${property}" content="${escAttr(value)}" />`
+    const re = new RegExp(`<meta property="${property}"[^>]*\\/?>`)
+    if (re.test(html)) html = html.replace(re, tag); else html = html.replace('</head>', `    ${tag}\n  </head>`)
   }
-  upsert('og:title', title); upsert('og:description', desc); upsert('og:url', SITE+'/'+slug+'/'); upsert('og:type','website'); upsert('og:site_name','UpTools')
-  upsert('og:image', SITE+'/assets/og/default.png')
-  if(!/og:image:width/.test(html)) html=html.replace('</head>',`    <meta property="og:image:width" content="1200" />\n  </head>`)
-  if(!/og:image:height/.test(html)) html=html.replace('</head>',`    <meta property="og:image:height" content="630" />\n  </head>`)
-  const tw=`<meta name="twitter:card" content="summary_large_image" />`; if(!/twitter:card/.test(html)) html=html.replace('</head>',`    ${tw}\n  </head>`)
-  const twImg=`<meta name="twitter:image" content="${SITE}/assets/og/default.png" />`; if(/twitter:image/.test(html)) html=html.replace(/<meta name="twitter:image"[^>]*\/?>/,twImg); else html=html.replace('</head>',`    ${twImg}\n  </head>`)
-  const outDir=join(dist,slug); mkdirSync(outDir,{recursive:true}); writeFileSync(join(outDir,'index.html'),html)
+  upsert('og:title', title); upsert('og:description', desc); upsert('og:url', SITE + '/' + slug + '/'); upsert('og:type', 'website'); upsert('og:site_name', 'UpTools')
+  upsert('og:image', SITE + '/assets/og/default.png')
+  if (!/og:image:width/.test(html)) html = html.replace('</head>', `    <meta property="og:image:width" content="1200" />\n  </head>`)
+  if (!/og:image:height/.test(html)) html = html.replace('</head>', `    <meta property="og:image:height" content="630" />\n  </head>`)
+  const tw = `<meta name="twitter:card" content="summary_large_image" />`; if (!/twitter:card/.test(html)) html = html.replace('</head>', `    ${tw}\n  </head>`)
+  const twImg = `<meta name="twitter:image" content="${SITE}/assets/og/default.png" />`; if (/twitter:image/.test(html)) html = html.replace(/<meta name="twitter:image"[^>]*\/?>/, twImg); else html = html.replace('</head>', `    ${twImg}\n  </head>`)
+  // WebSite JSON-LD on hubs + WebPage JSON-LD everywhere (crawlable entity without JS)
+  const webPageLd = { '@context': 'https://schema.org', '@type': 'WebPage', name: title, description: desc, url: `${SITE}/${slug}/`, isPartOf: { '@type': 'WebSite', name: 'UpTools', url: SITE + '/' } }
+  html = html.replace('</head>', `    <script type="application/ld+json">${JSON.stringify(webPageLd)}</script>\n  </head>`)
+  if (opts.itemList) {
+    html = html.replace('</head>', `    <script type="application/ld+json">${JSON.stringify(opts.itemList)}</script>\n  </head>`)
+  }
+  if (opts.noscriptLinks && opts.noscriptLinks.length) {
+    const escH = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    let ns = `    <noscript>\n      <h1>${escH(opts.noscriptTitle || title)}</h1>\n      <p>${escH(desc)}</p>\n      <ul>`
+    for (const [href, label] of opts.noscriptLinks) ns += `\n        <li><a href="${href}">${escH(label)}</a></li>`
+    ns += `\n      </ul>\n      <p><a href="/">All tools</a> · <a href="/sitemap.xml">Sitemap</a></p>\n    </noscript>`
+    if (/<noscript>[\s\S]*?<\/noscript>/.test(html)) html = html.replace(/<noscript>[\s\S]*?<\/noscript>/, ns)
+    else html = html.replace('</body>', ns + '\n  </body>')
+  }
+  const outDir = join(dist, slug); mkdirSync(outDir, { recursive: true }); writeFileSync(join(outDir, 'index.html'), html)
 }
-buildHtml('hncker','HNCKER - Apps, Tools, Instagram & Videos','Follow HNCKER on Instagram, browse the free security tools, watch our tech videos, and download free Android apps.')
-buildHtml('games','UpTools - Free Online Games','Play free online arcade, puzzle, card and word games on UpTools - Snake, Tetris, 2048, Pac-Man, Wordle and many more. No downloads, play in your browser.')
-buildHtml('aimakerich','AIMakeRich - Finance, Investing & Trading Guides','AIMakeRich: practical money guides that match our Instagram reels. Learn investing, trading strategies and finance with real code, step-by-step processes, FAQs and how-tos.')
-buildHtml('aiforrich','AIFORRICH - Algo Trading, Pine Script & Crypto Trading Guides','AIFORRICH: Algo trading for international markets and crypto — reels + code guides. Practical quantitative trading strategies, Pine Script indicators, and automated execution bots with copy-paste code.')
+buildHtml('hncker','HNCKER - Apps, Tools, Instagram & Videos','Follow HNCKER on Instagram, browse the free security tools, watch our tech videos, and download free Android apps.', hnckerHubSeo())
+buildHtml('games','UpTools - Free Online Games','Play free online arcade, puzzle, card and word games on UpTools - Snake, Tetris, 2048, Pac-Man, Wordle and many more. No downloads, play in your browser.', gamesHubSeo())
+buildHtml('aimakerich','AIMakeRich - Finance, Investing & Trading Guides','AIMakeRich: practical money guides that match our Instagram reels. Learn investing, trading strategies and finance with real code, step-by-step processes, FAQs and how-tos.', sectionHubSeo('aimakerich', 'AIMakeRich Finance Guides'))
+buildHtml('aiforrich','AIFORRICH - Algo Trading, Pine Script & Crypto Trading Guides','AIFORRICH: Algo trading for international markets and crypto — reels + code guides. Practical quantitative trading strategies, Pine Script indicators, and automated execution bots with copy-paste code.', sectionHubSeo('aiforrich', 'AIFORRICH Trading Guides'))
 buildHtml('about','About UpTools - Privacy-First Free Web Tools','UpTools is a fast, privacy-first collection of 300+ free web tools and 40+ games. Calculate tax, GST, EMI and SIP; convert currency; validate PAN; format JSON; and more — no logins, instant results.')
 // Snake is a custom page (no ToolLayout/GameShell title prop) — pin its SEO title
 // so it never falls back to the slug-derived 'Games/Snake'.
