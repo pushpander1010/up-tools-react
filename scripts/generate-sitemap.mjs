@@ -46,7 +46,7 @@ try {
   const blogList = Array.isArray(blogs) ? blogs : (blogs.blogs || [])
   urls.push({ loc: `${SITE}/blogs/`, priority: '0.7', freq: 'daily' })
   for (const b of blogList) {
-    if (b.slug) urls.push({ loc: `${SITE}/blogs/${b.slug}/`, priority: '0.7', freq: 'weekly' })
+    if (b.slug) urls.push({ loc: `${SITE}/blogs/${b.slug}/`, priority: '0.7', freq: 'weekly', lastmod: b.date || today })
   }
 } catch (e) { console.warn('blogs.json not found for sitemap', e.message) }
 
@@ -57,7 +57,7 @@ for (const [path, priority] of [['hncker', '0.6'], ['games', '0.6'], ['aimakeric
 
 const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls.map(u => `  <url><loc>${u.loc}</loc><lastmod>${today}</lastmod><changefreq>${u.freq}</changefreq><priority>${u.priority}</priority></url>`).join('\n')}
+${urls.map(u => `  <url><loc>${u.loc}</loc><lastmod>${u.lastmod || today}</lastmod><changefreq>${u.freq}</changefreq><priority>${u.priority}</priority></url>`).join('\n')}
 </urlset>
 `
 

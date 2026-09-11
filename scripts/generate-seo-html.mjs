@@ -317,6 +317,17 @@ try {
     const blogs2 = Array.isArray(rawBlogs2) ? rawBlogs2 : (rawBlogs2.blogs || [])
     const il = { '@context':'https://schema.org','@type':'ItemList', name:'UpTools Trending Blogs', itemListElement: blogs2.map((b,i)=>({ '@type':'ListItem', position:i+1, name:b.title, url: `${SITE}/blogs/${b.slug}/` })) }
     html = html.replace('</head>', `    <script type="application/ld+json">${JSON.stringify(il)}</script>\n  </head>`)
+    // Static crawlable post links: the /blogs/ hub is client-rendered, so without
+    // this Googlebot sees no <a href> to individual posts (discovery gap Sep 2026).
+    const escHub = (s) => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    let hubNoscript = `    <noscript>\n      <h1>UpTools Trending Blogs — Tech, Cricket, Sports & AI News</h1>\n      <p>Latest trending stories from India, USA & UK.</p>\n      <ul>`
+    const sortedBlogs = [...blogs2].sort((a, b) => (b.date || '').localeCompare(a.date || ''))
+    for (const b of sortedBlogs) {
+      hubNoscript += `\n        <li><a href="/blogs/${b.slug}/">${escHub(b.title)}</a></li>`
+    }
+    hubNoscript += `\n      </ul>\n      <p><a href="/">All tools</a> · <a href="/sitemap.xml">Sitemap</a></p>\n    </noscript>`
+    if (/<noscript>[\s\S]*?<\/noscript>/.test(html)) html = html.replace(/<noscript>[\s\S]*?<\/noscript>/, hubNoscript)
+    else html = html.replace('</body>', hubNoscript + '\n  </body>')
     const outDir=join(dist,slug); mkdirSync(outDir,{recursive:true}); writeFileSync(join(outDir,'index.html'),html)
     blogCount++
   }
