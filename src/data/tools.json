@@ -7350,6 +7350,253 @@
     "all",
     "finance"
    ]
+  },
+  {
+   "slug": "hncker/nmap",
+   "title": "Nmap Network Scanner",
+   "icon": "🗺️",
+   "desc": "Scan your lab network with Nmap: host discovery, SYN scans, service detection (educational).",
+   "href": "/hncker/nmap/",
+   "tags": [
+    "nmap",
+    "scanner",
+    "ports",
+    "recon",
+    "security",
+    "pentesting"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
+  },
+  {
+   "slug": "hncker/sqlmap",
+   "title": "SQLMap Injection Tester",
+   "icon": "💉",
+   "desc": "Find and exploit SQL injection on lab apps with SQLMap: confirm, enumerate, dump (educational).",
+   "href": "/hncker/sqlmap/",
+   "tags": [
+    "sqlmap",
+    "sqli",
+    "injection",
+    "web",
+    "security",
+    "pentesting"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
+  },
+  {
+   "slug": "hncker/hydra",
+   "title": "Hydra Login Brute-Forcer",
+   "icon": "🐉",
+   "desc": "Brute-force SSH, FTP and web logins on lab VMs with Hydra and wordlists (educational).",
+   "href": "/hncker/hydra/",
+   "tags": [
+    "hydra",
+    "brute-force",
+    "login",
+    "ssh",
+    "password",
+    "security"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
+  },
+  {
+   "slug": "hncker/burp",
+   "title": "Burp Suite Web Proxy",
+   "icon": "🦡",
+   "desc": "Intercept and replay web traffic with Burp Suite: proxy, Repeater, Intruder on lab apps (educational).",
+   "href": "/hncker/burp/",
+   "tags": [
+    "burp",
+    "proxy",
+    "web",
+    "intercept",
+    "repeater",
+    "security"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
+  },
+  {
+   "slug": "hncker/wireshark",
+   "title": "Wireshark Packet Analyzer",
+   "icon": "🦈",
+   "desc": "Capture and read packets with Wireshark: filters, TCP streams, plaintext vs TLS (educational).",
+   "href": "/hncker/wireshark/",
+   "tags": [
+    "wireshark",
+    "packets",
+    "sniffer",
+    "network",
+    "tls",
+    "security"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
+  },
+  {
+   "slug": "hncker/gobuster",
+   "title": "Gobuster Directory Fuzzer",
+   "icon": "📂",
+   "desc": "Find hidden pages, files and subdomains on lab apps with Gobuster dir and dns modes (educational).",
+   "href": "/hncker/gobuster/",
+   "tags": [
+    "gobuster",
+    "fuzzing",
+    "directories",
+    "subdomain",
+    "wordlist",
+    "security"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
+  },
+  {
+   "slug": "hncker/theharvester",
+   "title": "theHarvester OSINT Collector",
+   "icon": "🌾",
+   "desc": "Harvest emails and subdomains for your domain from public sources with theHarvester (educational).",
+   "href": "/hncker/theharvester/",
+   "tags": [
+    "theharvester",
+    "osint",
+    "emails",
+    "subdomain",
+    "recon",
+    "security"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
+  },
+  {
+   "slug": "hncker/metasploit",
+   "title": "Metasploit Framework",
+   "icon": "🎯",
+   "desc": "Exploit lab VMs with Metasploit: msfconsole, exploit + payload, Meterpreter basics (educational).",
+   "href": "/hncker/metasploit/",
+   "tags": [
+    "metasploit",
+    "exploit",
+    "meterpreter",
+    "msfconsole",
+    "pentesting",
+    "security"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
+  },
+  {
+   "slug": "hncker/john",
+   "title": "John the Ripper Hash Cracker",
+   "icon": "🎩",
+   "desc": "Crack lab password hashes with John the Ripper: wordlists, rules, shadow files (educational).",
+   "href": "/hncker/john/",
+   "tags": [
+    "john",
+    "hash",
+    "crack",
+    "password",
+    "wordlist",
+    "security"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
+  },
+  {
+   "slug": "hncker/aircrack",
+   "title": "Aircrack-ng WiFi Auditor",
+   "icon": "📶",
+   "desc": "Audit your own WiFi with Aircrack-ng: monitor mode, handshake capture, passphrase test (educational).",
+   "href": "/hncker/aircrack/",
+   "tags": [
+    "aircrack",
+    "wifi",
+    "wpa",
+    "handshake",
+    "wireless",
+    "security"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
+  },
+  {
+   "slug": "hncker/sherlock",
+   "title": "Sherlock Username Hunter",
+   "icon": "🔎",
+   "desc": "Check your username across 400+ sites with Sherlock and clean your footprint (educational).",
+   "href": "/hncker/sherlock/",
+   "tags": [
+    "sherlock",
+    "username",
+    "osint",
+    "footprint",
+    "privacy",
+    "security"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
+  },
+  {
+   "slug": "hncker/holehe",
+   "title": "Holehe Email Checker",
+   "icon": "📭",
+   "desc": "Check where your email is registered across 120+ sites with Holehe (educational).",
+   "href": "/hncker/holehe/",
+   "tags": [
+    "holehe",
+    "email",
+    "osint",
+    "accounts",
+    "breach",
+    "security"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
+  },
+  {
+   "slug": "hncker/ghunt",
+   "title": "GHunt Google OSINT",
+   "icon": "🛰️",
+   "desc": "See what your Google account leaks publicly with GHunt: profile, Maps, Photos (educational).",
+   "href": "/hncker/ghunt/",
+   "tags": [
+    "ghunt",
+    "google",
+    "osint",
+    "privacy",
+    "gmail",
+    "security"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
   }
  ],
  "categories": {

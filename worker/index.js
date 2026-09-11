@@ -1165,49 +1165,133 @@ async function handleIndiaMarket(req, env) {
   }
 }
 
-/* ---------------- Gold rate India (GC=F spot × USD/INR, indicative 24K/22K) ---------------- */
+/* ---------------- Gold rate India (live XAU × USD/INR, multi-source + indicative state table) ---------------- */
 
-const GOLD_SYMBOLS = ["GC=F", "INR=X"];
 const GOLD_CACHE_MS = 90 * 1000;
+const GOLD_API_XAU = "https://api.gold-api.com/price/XAU";
+const ER_API_USD = "https://open.er-api.com/v6/latest/USD";
 
 let goldCache = null;
 let goldPromise = null;
 
+// Indicative per-10g city spreads (INR) vs the national base rate. No free public
+// API publishes live state-wise retail gold rates, so state figures are the live
+// national rate plus these small typical jeweller spreads.
+const GOLD_STATE_DELTAS = [
+  ["Mumbai, Maharashtra", 0],
+  ["Delhi", -150],
+  ["Jaipur, Rajasthan", -100],
+  ["Lucknow, Uttar Pradesh", -100],
+  ["Ahmedabad, Gujarat", -50],
+  ["Surat, Gujarat", -50],
+  ["Patna, Bihar", -50],
+  ["Chandigarh", -150],
+  ["Pune, Maharashtra", 50],
+  ["Kolkata, West Bengal", 100],
+  ["Bengaluru, Karnataka", 150],
+  ["Hyderabad, Telangana", 150],
+  ["Chennai, Tamil Nadu", 200],
+  ["Coimbatore, Tamil Nadu", 200],
+  ["Kochi, Kerala", 250],
+];
+
+async function fetchGoldApiXau() {
+  const res = await fetch(GOLD_API_XAU, {
+    headers: { "User-Agent": PROXY_USER_AGENT, "Accept": "application/json" },
+  });
+  if (!res.ok) throw new Error(`gold-api HTTP ${res.status}`);
+  const j = await res.json();
+  const price = Number(j?.price);
+  if (!price) throw new Error("gold-api returned no price");
+  return { price, updatedAt: j?.updatedAt || null };
+}
+
+async function fetchErUsdInr() {
+  const res = await fetch(ER_API_USD, {
+    headers: { "User-Agent": PROXY_USER_AGENT, "Accept": "application/json" },
+  });
+  if (!res.ok) throw new Error(`er-api HTTP ${res.status}`);
+  const j = await res.json();
+  const rate = Number(j?.rates?.INR);
+  if (!rate) throw new Error("er-api returned no INR rate");
+  return { rate, updated: j?.time_last_update_utc || null };
+}
+
 async function computeGoldRates(env) {
-  const { quotes, charts } = await fetchSymbolData(GOLD_SYMBOLS);
-  const gold = quotes.get("GC=F");
-  const usdinr = quotes.get("INR=X");
-  const goldPrice = gold?.regularMarketPrice;
-  const inrRate = usdinr?.regularMarketPrice;
-  const goldPrev = charts.get("GC=F")?.meta?.chartPreviousClose ?? null;
-  const goldChangePct = goldPrice != null && goldPrev ? ((goldPrice - goldPrev) / goldPrev) * 100 : null;
-  const inrPrev = charts.get("INR=X")?.meta?.chartPreviousClose ?? null;
-  const inrChangePct = inrRate != null && inrPrev ? ((inrRate - inrPrev) / inrPrev) * 100 : null;
+  // Primary: free no-key APIs (gold-api.com XAU + open.er-api.com USD/INR).
+  // Fallback: Yahoo GC=F x INR=X. Day-change % comes from Yahoo prev-close.
+  let ounce = null, inrRate = null, goldUpdatedAt = null, fxUpdated = null;
+  const providers = [];
+  try {
+    const g = await fetchGoldApiXau();
+    ounce = g.price; goldUpdatedAt = g.updatedAt;
+    providers.push("gold-api.com (live XAU spot)");
+  } catch (e) { console.warn("gold primary failed", e); }
+  try {
+    const f = await fetchErUsdInr();
+    inrRate = f.rate; fxUpdated = f.updated;
+    providers.push("open.er-api.com (live USD/INR)");
+  } catch (e) { console.warn("fx primary failed", e); }
 
-  const perGramUsd = goldPrice != null ? goldPrice / 31.1035 : null;
-  const per10gInr = perGramUsd != null && inrRate != null ? perGramUsd * 10 * inrRate : null;
+  let usdPerOunceChangePct = null, usdInrChangePct = null;
+  try {
+    const { quotes, charts } = await fetchSymbolData(["GC=F", "INR=X"]);
+    if (ounce == null) {
+      const p = quotes.get("GC=F")?.regularMarketPrice;
+      if (p) { ounce = p; providers.push("Yahoo Finance GC=F (fallback)"); }
+    }
+    if (inrRate == null) {
+      const p = quotes.get("INR=X")?.regularMarketPrice;
+      if (p) { inrRate = p; providers.push("Yahoo Finance INR=X (fallback)"); }
+    }
+    const gp = charts.get("GC=F")?.meta?.chartPreviousClose ?? null;
+    if (ounce != null && gp) usdPerOunceChangePct = Number((((ounce - gp) / gp) * 100).toFixed(2));
+    const ip = charts.get("INR=X")?.meta?.chartPreviousClose ?? null;
+    if (inrRate != null && ip) usdInrChangePct = Number((((inrRate - ip) / ip) * 100).toFixed(2));
+  } catch (e) { console.warn("gold yahoo fallback failed", e); }
 
-  const from24k = (purity) => per10gInr != null ? per10gInr * (purity / 24) : null;
+  if (ounce == null || inrRate == null) throw new Error("All gold rate sources failed");
+
+  const perGramBase = (ounce / 31.1035) * inrRate;
+  const per10gBase = perGramBase * 10;
+  const r = (x) => Math.round(x);
+  const perGram = {
+    "24K": r(perGramBase),
+    "22K": r(perGramBase * 22 / 24),
+    "18K": r(perGramBase * 18 / 24),
+  };
+  const per10g = {
+    "24K": r(per10gBase),
+    "22K": r(per10gBase * 22 / 24),
+    "18K": r(per10gBase * 18 / 24),
+  };
+  const TOLA_G = 11.6638;
+  const perTola = {
+    "24K": r(perGramBase * TOLA_G),
+    "22K": r(perGramBase * 22 / 24 * TOLA_G),
+    "18K": r(perGramBase * 18 / 24 * TOLA_G),
+  };
+  const states = GOLD_STATE_DELTAS.map(([state, delta]) => ({
+    state,
+    delta,
+    per10g: {
+      "24K": r(per10g["24K"] + delta),
+      "22K": r(per10g["22K"] + delta * 22 / 24),
+      "18K": r(per10g["18K"] + delta * 18 / 24),
+    },
+  }));
 
   return {
     generatedAt: new Date().toISOString(),
-    source: "International COMEX spot (GC=F) × USD/INR — indicative Indian retail rate, before making charges/GST. Actual jeweller rates vary by city.",
-    usdPerOunce: goldPrice != null ? Number(goldPrice.toFixed(2)) : null,
-    usdPerOunceChangePct: goldChangePct != null ? Number(goldChangePct.toFixed(2)) : null,
-    usdInr: inrRate != null ? Number(inrRate.toFixed(2)) : null,
-    usdInrChangePct: inrChangePct != null ? Number(inrChangePct.toFixed(2)) : null,
-    rates: {
-      perGram: {
-        "24K": perGramUsd != null ? Math.round(perGramUsd * (inrRate || 0)) : null,
-        "22K": perGramUsd != null ? Math.round(perGramUsd * (inrRate || 0) * 22 / 24) : null,
-        "18K": perGramUsd != null ? Math.round(perGramUsd * (inrRate || 0) * 18 / 24) : null,
-      },
-      per10g: {
-        "24K": from24k(24) != null ? Math.round(from24k(24)) : null,
-        "22K": from24k(22) != null ? Math.round(from24k(22)) : null,
-        "18K": from24k(18) != null ? Math.round(from24k(18)) : null,
-      },
-    },
+    source: "Live XAU spot × live USD/INR — indicative Indian retail rate, before making charges/GST. State figures = live national rate + typical city spread. Actual jeweller rates vary.",
+    providers,
+    goldUpdatedAt,
+    fxUpdated,
+    usdPerOunce: Number(ounce.toFixed(2)),
+    usdPerOunceChangePct,
+    usdInr: Number(inrRate.toFixed(2)),
+    usdInrChangePct,
+    rates: { perGram, per10g, perTola, states },
   };
 }
 
