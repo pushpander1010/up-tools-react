@@ -50,6 +50,44 @@ try {
   }
 } catch (e) { console.warn('blogs.json not found for sitemap', e.message) }
 
+// All games from GamesPage.jsx GAMES list (many are NOT in tools.json —
+// sitemap gap found Sep 2026: flappy-bird, snake, tetris etc. had no entry)
+const seenLocs = new Set(urls.map(u => u.loc))
+try {
+  const gamesSrc = readFileSync(join(root, 'src/pages/GamesPage.jsx'), 'utf8')
+  const m = gamesSrc.match(/const GAMES = \[([\s\S]*?)\n\]/)
+  if (m) {
+    const re = /\{\s*slug:\s*'([^']+)'/g
+    let g
+    while ((g = re.exec(m[1])) !== null) {
+      const loc = `${SITE}/games/${g[1]}/`
+      if (!seenLocs.has(loc)) {
+        seenLocs.add(loc)
+        urls.push({ loc, priority: '0.6', freq: 'weekly' })
+      }
+    }
+  }
+} catch (e) { console.warn('GamesPage not found for sitemap', e.message) }
+
+// Orphan hub entries: pages that exist in section-page arrays (HnckerPage etc.)
+// but were never added to tools.json (mosint, phunter found Sep 2026)
+for (const [pageFile, section] of [['HnckerPage.jsx', 'hncker'], ['AimakerichPage.jsx', 'aimakerich'], ['AiforrichPage.jsx', 'aiforrich']]) {
+  try {
+    const src = readFileSync(join(root, 'src/pages', pageFile), 'utf8')
+    const m = src.match(/const tools = \[([\s\S]*?)\n\]/)
+    if (!m) continue
+    const re = /\{\s*slug:\s*'([^']+)'/g
+    let g
+    while ((g = re.exec(m[1])) !== null) {
+      const loc = `${SITE}/${section}/${g[1]}/`
+      if (!seenLocs.has(loc)) {
+        seenLocs.add(loc)
+        urls.push({ loc, priority: '0.6', freq: 'weekly' })
+      }
+    }
+  } catch (e) { console.warn(`${pageFile} not found for sitemap`, e.message) }
+}
+
 // Section landing pages
 for (const [path, priority] of [['hncker', '0.6'], ['games', '0.6'], ['aimakerich', '0.6'], ['aiforrich', '0.6'], ['about', '0.5'], ['privacy-policy', '0.3']]) {
   urls.push({ loc: `${SITE}/${path}/`, priority, freq: 'weekly' })
