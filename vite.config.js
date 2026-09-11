@@ -6,10 +6,15 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   build: {
     outDir: 'dist',
+    cssCodeSplit: true,
     rollupOptions: {
       output: {
-        manualChunks: undefined
-      }
-    }
-  }
+        advancedChunks: {
+          groups: [
+            { name: 'vendor', test: /node_modules\/(react|react-dom|react-router-dom|react-helmet-async)/ },
+          ],
+        },
+      },
+    },
+  },
 })

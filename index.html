@@ -34,15 +34,34 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content="https://www.uptools.in/assets/og/default.png" />
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"UpTools","url":"https://www.uptools.in/","description":"300+ free online tools, calculators, converters, AI writing tools and browser games."}</script>
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6216304334889617" crossorigin="anonymous"></script>
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NN3GDL1LEJ"></script>
+    <!-- Google AdSense: deferred until idle so ads never block first paint (LCP/INP) -->
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-NN3GDL1LEJ');
+      window.__loadAds = function () {
+        if (window.__adsLoaded) return; window.__adsLoaded = true;
+        var s = document.createElement('script');
+        s.async = true; s.crossOrigin = 'anonymous';
+        s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6216304334889617';
+        document.head.appendChild(s);
+      };
+      if ('requestIdleCallback' in window) requestIdleCallback(window.__loadAds, { timeout: 4000 });
+      else setTimeout(window.__loadAds, 2500);
+    </script>
+    <!-- Google Analytics: deferred until idle (no render cost) -->
+    <script>
+      window.__loadGtag = function () {
+        if (window.__gtagLoaded) return; window.__gtagLoaded = true;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-NN3GDL1LEJ';
+        s.onload = function () {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date()); gtag('config', 'G-NN3GDL1LEJ');
+        };
+        document.head.appendChild(s);
+      };
+      if ('requestIdleCallback' in window) requestIdleCallback(window.__loadGtag, { timeout: 5000 });
+      else setTimeout(window.__loadGtag, 3000);
     </script>
     <style>
       ins.adsbygoogle { background: transparent !important; }

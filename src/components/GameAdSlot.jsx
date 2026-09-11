@@ -19,17 +19,18 @@ export default function GameAdSlot({ slot = '8865234201', format = 'auto', class
   useEffect(() => {
     const timer = setTimeout(() => {
       try {
-        const ins = adRef.current
-        if (ins && !ins.hasAttribute('data-loaded')) {
-          ins.setAttribute('data-loaded', 'true')
-          ;(window.adsbygoogle = window.adsbygoogle || []).push({})
+        if (window.__loadAds) window.__loadAds();
+        const ins = adRef.current;
+        if (ins && !ins.hasAttribute('data-loaded') && window.adsbygoogle) {
+          ins.setAttribute('data-loaded', 'true');
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
         }
       } catch (e) {
-        console.warn('AdSense push error:', e)
+        console.warn('AdSense push error:', e);
       }
-    }, 400)
-    return () => clearTimeout(timer)
-  }, [location.pathname])
+    }, 400);
+    return () => clearTimeout(timer);
+  }, [location.pathname]);
 
   // Fixed-size rail (desktop only via CSS): always reserves 160x600.
   if (width && height) {

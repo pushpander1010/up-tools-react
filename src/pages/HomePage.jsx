@@ -25,6 +25,7 @@ const featuredSlugs = [
 export default function HomePage() {
   const [search, setSearch] = useState('')
   const [activeCats, setActiveCats] = useState(new Set())
+  const [visibleCount, setVisibleCount] = useState(48)
   const resultsRef = useRef(null)
   const allToolsRef = useRef(null)
 
@@ -188,7 +189,7 @@ export default function HomePage() {
           </div>
           {filteredTools.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
-              {filteredTools.map(tool => (
+              {filteredTools.slice(0, 96).map(tool => (
                 <ToolCard key={tool.slug} tool={tool} categories={categories} />
               ))}
             </div>
@@ -202,17 +203,25 @@ export default function HomePage() {
         </div>
       )}
 
-      {/* ─── ALL TOOLS (always visible) ─── */}
+      {/* ─── ALL TOOLS (first 48 + show more — keeps initial DOM small for INP) ─── */}
       <div ref={allToolsRef}>
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-bold text-white m-0">🧰 All Tools</h2>
           <span className="text-xs text-slate-400">{tools.length} tools</span>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
-          {tools.map(tool => (
+          {tools.slice(0, visibleCount).map(tool => (
             <ToolCard key={tool.slug} tool={tool} categories={categories} />
           ))}
         </div>
+        {visibleCount < tools.length && (
+          <div className="text-center mt-6">
+            <button onClick={() => setVisibleCount(c => c + 96)}
+              className="glow-btn text-sm px-6 py-2.5 rounded-xl cursor-pointer">
+              Show more tools ({tools.length - visibleCount} remaining)
+            </button>
+          </div>
+        )}
       </div>
     </>
   )
