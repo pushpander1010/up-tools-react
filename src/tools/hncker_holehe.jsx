@@ -137,10 +137,18 @@ export default function hncker_holehe() {
         <meta property="og:image" content="https://www.uptools.in/assets/tools/holehe/holehe_scan.png" />
       </Helmet>
 
-      <Section id="video" icon="🎬" title="Video Tutorial" subtitle="Learn it on the HNCKER channel">
+      <Section id="video" icon="🎬" title="Video Tutorial" subtitle="Watch the HNCKER Short, then go deeper">
         <div className="max-w-3xl mx-auto">
+          <div className="rounded-xl overflow-hidden border border-white/10" style={{ background: '#000' }}>
+            <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
+              <iframe src="https://www.youtube.com/embed/uOrcrIAsMIo" title="Holehe tutorial — HNCKER Short"
+                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 0 }}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen loading="lazy" />
+            </div>
+          </div>
           <a href="https://www.youtube.com/@hncker" target="_blank" rel="noopener noreferrer"
-            className="flex items-center gap-4 rounded-xl overflow-hidden border border-white/10 no-underline p-5 hover:border-red-500/40 transition-all"
+            className="flex items-center gap-4 rounded-xl overflow-hidden border border-white/10 no-underline p-5 mt-3 hover:border-red-500/40 transition-all"
             style={{ background: 'rgba(0,0,0,0.4)' }}>
             <div className="w-14 h-14 rounded-full bg-red-600/90 flex items-center justify-center shrink-0">
               <svg viewBox="0 0 24 24" className="w-6 h-6 ml-0.5 fill-white"><path d="M8 5v14l11-7z" /></svg>
