@@ -1103,14 +1103,21 @@
    "slug": "speed-test",
    "title": "Internet Speed Test",
    "icon": "⚡",
-   "desc": "Internet Speed Test - measure your download, upload speed and ping. Cloudflare-powered, accurate, online free. Free online,.",
+   "desc": "Free internet speed test — check WiFi & broadband download, upload speed and ping in seconds. No login.",
    "href": "/speed-test/",
    "tags": [
+    "5g",
+    "airtel",
+    "broadband",
+    "internet",
+    "jio",
     "networking",
     "wifi"
    ],
    "cats": [
     "all",
+    "broadband",
+    "internet",
     "networking",
     "wifi"
    ]

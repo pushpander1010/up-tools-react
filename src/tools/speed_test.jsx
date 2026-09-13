@@ -16,6 +16,9 @@ const median = (arr) => {
   return s.length % 2 ? s[mid] : (s[mid - 1] + s[mid]) / 2
 }
 
+// Display-safe: max 1 decimal, never overflows its card/gauge
+const fmt1 = (v) => (v === null || v === undefined || Number.isNaN(v) ? '—' : (Math.round(v * 10) / 10).toFixed(1).replace(/\.0$/, ''))
+
 export default function speed_test() {
   const [status, setStatus] = useState('')
   const [gaugeVal, setGaugeVal] = useState(0)
@@ -143,27 +146,28 @@ export default function speed_test() {
 
   return (
     <ToolLayout
-      title="Internet Speed Test"
-      desc="Internet Speed Test - measure your download, upload speed and ping. Cloudflare-powered, accurate, online free. Free online, instant results. No login needed."
+      title="Internet Speed Test – Check WiFi & Broadband Speed"
+      desc="Free internet speed test — measure download, upload speed and ping in seconds. Cloudflare-powered accuracy for WiFi, broadband, Jio, Airtel & 5G. No login, instant results."
       icon="⚡" iconBg="rgba(34,197,94,0.08)"
       category="networking" slug="speed-test"
       faq={[
-        { q: 'How accurate is this speed test?', a: 'Uses Cloudflare CDN edge servers. Each test runs 3 iterations and takes the median for consistency.' },
-        { q: 'Does this store my data?', a: 'No. All measurements happen in your browser. Nothing is sent to any server.' },
-        { q: 'What units are used?', a: 'Speed is shown in Mbps (megabits per second). 100 Mbps ≈ 12.5 MB/s file download.' },
-        { q: "How do I check online free?", a: "Enter your input above and get an instant result. Free with no sign-up, works on mobile and desktop." },
-        { q: "What does it check?", a: "It validates your input against standard rules instantly. Enter the value above to see the result." },
-        { q: "Is my data kept private?", a: "Yes. Everything runs in your browser. Nothing you enter is uploaded or stored." },
+        { q: 'How accurate is this speed test?', a: 'Very accurate — it uses Cloudflare CDN edge servers near you. Each test runs 3 download and 3 upload passes and takes the median, so one slow spike cannot skew your result.' },
+        { q: 'What is a good internet speed?', a: 'For HD streaming and video calls, 25 Mbps download is enough. 4K streaming needs 50+ Mbps. Online gaming cares more about low ping (under 50 ms) than raw speed.' },
+        { q: 'Why is my WiFi speed lower than my plan?', a: 'Common causes: distance from the router, 2.4 GHz vs 5 GHz band, too many connected devices, or ISP throttling at peak hours. Test next to the router to isolate the issue.' },
+        { q: 'Does this store my data?', a: 'No. All measurements happen in your browser and test history stays in your own local storage. Nothing is sent to any server.' },
+        { q: 'What units are used?', a: 'Speed is shown in Mbps (megabits per second). Divide by 8 to get MB/s — so 100 Mbps ≈ 12.5 MB/s of file download speed.' },
+        { q: 'How do I check my Jio/Airtel/BSNL speed?', a: 'Just press Start Speed Test above — it works with any provider (Jio, Airtel, Vi, BSNL), WiFi, broadband, 4G or 5G. Free with no sign-up, works on mobile and desktop.' },
       ]}
       howItWorks={[
-        'Click Start to begin the test.',
-        'Ping is measured first, then download (3 passes), then upload (3 passes).',
-        'Results are shown with a gauge and stat cards.',
-        'History of recent tests is saved locally.',
+        'Click Start Speed Test to begin.',
+        'Ping is measured first (5 samples, median taken), then download (3 passes), then upload (3 passes).',
+        'Your download, upload and ping appear on the gauge and stat cards.',
+        'Recent results are saved on your device so you can compare over time.',
       ]}
       schema={{
-        '@context': 'https://schema.org', '@type': 'SoftwareApplication',
+        '@context': 'https://schema.org', '@type': 'WebApplication',
         name: 'Internet Speed Test', applicationCategory: 'UtilitiesApplication',
+        operatingSystem: 'Any (Web Browser)',
         url: 'https://www.uptools.in/speed-test/',
         offers: { '@type': 'Offer', price: '0', priceCurrency: 'INR' },
       }}
@@ -187,7 +191,7 @@ export default function speed_test() {
               </defs>
             </svg>
             <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <div className="text-3xl font-extrabold text-white">{testing || dl ? (dl || gaugeVal > 0 ? gaugeVal : '—') : '—'}</div>
+              <div className="text-3xl font-extrabold text-white tabular-nums break-all px-2">{testing || dl ? (dl || gaugeVal > 0 ? fmt1(dl !== null ? dl : gaugeVal) : '—') : '—'}</div>
               <div className="text-xs font-bold text-slate-400 mt-1">{gaugeLabel}</div>
             </div>
           </div>
@@ -204,12 +208,12 @@ export default function speed_test() {
           </div>
           <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4 text-center">
             <div className="text-xs text-slate-400 mb-1">Download</div>
-            <div className="text-lg font-bold text-cyan-400">{dl !== null ? `${dl}` : '—'}</div>
+            <div className="text-lg font-bold text-cyan-400 tabular-nums break-all">{dl !== null ? `${fmt1(dl)}` : '—'}</div>
             {dl !== null && <div className="text-[10px] text-slate-600">Mbps</div>}
           </div>
           <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4 text-center">
             <div className="text-xs text-slate-400 mb-1">Upload</div>
-            <div className="text-lg font-bold text-purple-400">{ul !== null ? `${ul}` : '—'}</div>
+            <div className="text-lg font-bold text-purple-400 tabular-nums break-all">{ul !== null ? `${fmt1(ul)}` : '—'}</div>
             {ul !== null && <div className="text-[10px] text-slate-600">Mbps</div>}
           </div>
         </div>
@@ -235,7 +239,7 @@ export default function speed_test() {
               {history.map((h, i) => (
                 <div key={i} className="flex justify-between items-center py-2 px-3 rounded-lg bg-white/[0.04]">
                   <div>
-                    <div className="text-sm font-semibold text-white">↓ {h.dl} Mbps / ↑ {h.ul} Mbps</div>
+                    <div className="text-sm font-semibold text-white tabular-nums break-all">↓ {fmt1(h.dl)} Mbps / ↑ {fmt1(h.ul)} Mbps</div>
                     <div className="text-[10px] text-slate-600">{h.date} {h.time} · Ping: {h.ping}ms</div>
                   </div>
                 </div>

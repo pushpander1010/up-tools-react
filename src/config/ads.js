@@ -17,7 +17,10 @@
 export const AD_SLOTS = {
   // Desktop-only 160x600 rails rendered by SidebarLayout in App.jsx.
   railLeft: '3494503358',
-  railRight: '3414612309',
+  // NOTE: unit 3414612309 never fills (dead in the AdSense account), so the
+  // right rail showed blank while the left served. Reuse the working left-rail
+  // unit on both sides until a dedicated right-rail unit is created.
+  railRight: '3494503358',
 
   // Responsive banner. Historically games-only.
   banner: '8865234201',
