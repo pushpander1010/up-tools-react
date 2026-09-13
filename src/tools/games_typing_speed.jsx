@@ -39,9 +39,8 @@ function pickText() { return TEXTS[Math.floor(Math.random() * TEXTS.length)] }
 
 function calcWPM(charsTyped, errCount, elapsedSeconds) {
   if (elapsedSeconds <= 0) return 0
-  const grossWords = charsTyped / 5
-  const net = grossWords - errCount
-  return Math.max(0, Math.round((net / elapsedSeconds) * 60))
+  const correctChars = Math.max(0, charsTyped - errCount)
+  return Math.round(((correctChars / 5) / elapsedSeconds) * 60)
 }
 
 function calcAccuracy(charsTyped, errCount) {
@@ -65,11 +64,26 @@ export default function games_typing_speed() {
   const inputRef = useRef(null)
   const timerRef = useRef(null)
   const displayRef = useRef(null)
-  const currentCharRef = useRef(null)
 
-  // Keep current word visible: scroll text box + input to the end as user types
+  // Keep the next 2 words in view (people read whole words, not letters)
   useEffect(() => {
-    currentCharRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+    const text = currentText
+    const pos = typed.length
+    if (!text || !displayRef.current) return
+    let j = pos
+    // If mid-word, skip to end of current word
+    if (j > 0 && j < text.length && text[j] !== ' ' && text[j - 1] !== ' ') {
+      while (j < text.length && text[j] !== ' ') j++
+    }
+    // Then include 2 full words ahead
+    for (let k = 0; k < 2; k++) {
+      while (j < text.length && text[j] === ' ') j++
+      while (j < text.length && text[j] !== ' ') j++
+    }
+    // Target last letter of the 2nd word ahead (j lands on space/end)
+    let target = (j >= text.length || text[j] === ' ') ? j - 1 : j
+    target = Math.max(pos, Math.min(target, text.length - 1))
+    displayRef.current.children?.[target]?.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
     if (inputRef.current) inputRef.current.scrollLeft = inputRef.current.scrollWidth
   }, [typed, currentText])
 
@@ -230,7 +244,7 @@ export default function games_typing_speed() {
             let cls = 'text-slate-600'
             if (i < typed.length) cls = typed[i] === c ? 'text-emerald-400' : 'text-red-400 bg-red-500/20'
             else if (i === typed.length) cls = 'text-white border-b-2 border-indigo-400'
-            return <span key={i} ref={i === typed.length ? currentCharRef : null} className={cls}>{c === ' ' ? '\u00A0' : c}</span>
+            return <span key={i} className={cls}>{c === ' ' ? '\u00A0' : c}</span>
           })}
         </div>
 
