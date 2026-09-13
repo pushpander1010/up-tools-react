@@ -205,7 +205,7 @@ export default function GameShell({
           <div className="flex-1 min-w-0 max-w-xl mx-auto space-y-5 overflow-hidden">
             {/* Control bar FIRST + sticky: Start/Fullscreen/Exit are always one
                 glance away — no scrolling to the bottom, on page or fullscreen. */}
-            <div ref={controlsRef} className={`sticky ${fs ? 'top-[57px]' : 'top-[68px]'} z-30 -mx-1 px-1 py-2 bg-[#030b14]/95 backdrop-blur-sm`}>
+            <div ref={controlsRef} className={`z-30 -mx-1 px-1 py-2 bg-[#030b14]/95 backdrop-blur-sm ${fs ? '' : 'sticky top-[68px]'}`}>
               <div className="flex flex-wrap justify-center items-center gap-2 md:gap-3">
                 <button onClick={handleStart} className="px-6 py-2.5 rounded-full bg-white/[0.08] border border-white/10 text-cyan-100 font-bold text-sm hover:bg-white/15">{startLabel}</button>
                 <button onClick={goFullscreen} className="px-6 py-2.5 rounded-full bg-white/[0.08] border border-white/10 text-cyan-100 font-bold text-sm hover:bg-white/15">⛶ Fullscreen</button>
