@@ -9,10 +9,10 @@ import InterstitialAd from './InterstitialAd'
  * What the shell owns (game files must NOT re-implement any of this):
  * - Fullscreen root (native Fullscreen API + CSS overlay fallback for iPhone Safari),
  *   with `fs` state synced from native fullscreenchange events.
- * - Always-visible ✕ Exit button in the game header (never lost, even in fullscreen).
+ * - ✕ Exit button in the game header, visible ONLY in fullscreen mode.
  * - Escape key always exits fullscreen (covers the CSS-fallback mode where the
  *   browser won't do it natively).
- * - Aside rail ads (160x600, xl screens only) + bottom banner, visible BOTH on the
+ * - Aside rail ads (160x600, lg screens and up, desktop only) + bottom banner, visible BOTH on the
  *   page AND during fullscreen play (they live inside the fullscreened root).
  * - Interstitial ad on Start/Restart, then runs startAction + enters fullscreen.
  * - ToolLayout SEO furniture (breadcrumb, header, FAQ, how-it-works, related).
@@ -180,7 +180,7 @@ export default function GameShell({
             {headerStats}
           </div>
         )}
-        <button onClick={exit} className="text-xs md:text-sm px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 font-bold">✕ Exit</button>
+        {fs && <button onClick={exit} className="text-xs md:text-sm px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 font-bold">✕ Exit</button>}
       </header>
 
       <ToolLayout

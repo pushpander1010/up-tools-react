@@ -162,7 +162,7 @@ export default function SnakeGame() {
           <span>Best <b className="text-fuchsia-300">{best}</b></span>
           <span>Last <b className="text-slate-400">{lastScore}</b></span>
         </div>
-        <button onClick={exit} className="text-xs md:text-sm px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 font-bold">✕ Exit</button>
+        {fs && <button onClick={exit} className="text-xs md:text-sm px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 font-bold">✕ Exit</button>}
       </header>
 
       <main className={`flex-1 flex flex-col items-center justify-start ${fs ? 'py-3 px-4 pb-[max(1rem,env(safe-area-inset-bottom))] overflow-y-auto' : 'py-5 px-4'}`}>
