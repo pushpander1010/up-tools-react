@@ -434,7 +434,7 @@ export default function games_flappy_bird() {
         </div>
 
         <div className="flex gap-3 justify-center">
-          <button onClick={gameState === 'dead' ? () => startGame : flap} className="glow-btn px-6 py-3 text-sm">
+          <button onClick={gameState === 'dead' ? () => window.dispatchEvent(new Event('ut:game-start')) : flap} className="glow-btn px-6 py-3 text-sm">
             {gameState === 'dead' ? '⟲ Play Again' : gameState === 'running' ? '🐦 Flap!' : '▶ Start'}
           </button>
         </div>

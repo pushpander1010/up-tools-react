@@ -465,7 +465,10 @@ export default function games_frogger() {
         if (e.key === ' ' || e.key === 'Enter') window.dispatchEvent(new Event('ut:game-start'))
         return
       }
-      if (!s.playing) return
+      if (!s.playing) {
+        if (e.key === ' ' || e.key === 'Enter') window.dispatchEvent(new Event('ut:game-start'))
+        return
+      }
       const cellW = s.W / COLS
       const cellH = s.H / ROWS
       let moved = false
@@ -493,7 +496,7 @@ export default function games_frogger() {
   }
   const handlePointerUp = (e) => {
     const s = gRef.current
-    if (s.gameOver) { window.dispatchEvent(new Event('ut:game-start')); return }
+    if (s.gameOver || !s.playing) { window.dispatchEvent(new Event('ut:game-start')); return }
     if (!s.touchStart) return
     const dx = e.clientX - s.touchStart.x
     const dy = e.clientY - s.touchStart.y

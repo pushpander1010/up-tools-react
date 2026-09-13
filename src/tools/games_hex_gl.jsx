@@ -39,7 +39,7 @@ export default function games_hex_gl() {
             <div className="text-6xl mb-4">🏎️</div>
             <h2 className="text-xl font-bold text-white mb-2">HexGL — 3D Racing</h2>
             <p className="text-sm text-slate-400 mb-6">A WebGL futuristic racing game. Requires WebGL support and a keyboard.</p>
-            <button onClick={launch}
+            <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))}
               className="glow-btn px-8 py-4 text-base">
               🏁 Launch HexGL
             </button>

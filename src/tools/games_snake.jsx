@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
 import GameAdSlot from '../components/GameAdSlot'
+import InterstitialAd from '../components/InterstitialAd'
 const GRID = 20, LS = { BEST: 'ut_snake_best_v1', LAST: 'ut_snake_last_v1' }
 const DIR = { UP:{x:0,y:-1}, DOWN:{x:0,y:1}, LEFT:{x:-1,y:0}, RIGHT:{x:1,y:0} }
 
@@ -20,6 +21,8 @@ export default function SnakeGame() {
   const [best, setBest] = useState(()=>{try{return Number(localStorage.getItem(LS.BEST)||0)}catch{return 0}})
   const [lastScore, setLastScore] = useState(()=>{try{return Number(localStorage.getItem(LS.LAST)||0)}catch{return 0}})
   const [fs, setFs] = useState(false)
+  const [showAd, setShowAd] = useState(false)
+  const pendingStart = useRef(false)
 
   const g = useRef({ snake:[{x:10,y:10}], dir:DIR.RIGHT, nextDir:DIR.RIGHT, food:null, score:0, W:400, H:400, cell:20, dpr:1, tick:0, speed:140, playing:false, over:false })
 
@@ -106,6 +109,17 @@ export default function SnakeGame() {
     goFullscreen()
   }, [fit, food, draw, goFullscreen])
 
+  // Ad-first start: show 3s interstitial, run start() on dismiss.
+  const triggerStart = useCallback(() => {
+    if (g.current.playing) return
+    pendingStart.current = true
+    setShowAd(true)
+  }, [])
+  const onAdDismiss = useCallback(() => {
+    setShowAd(false)
+    if (pendingStart.current) { pendingStart.current = false; start() }
+  }, [start])
+
   const exit = useCallback(() => {
     g.current.playing = false; g.current.over = false
     setPlaying(false); setGameOver(false)
@@ -118,6 +132,7 @@ export default function SnakeGame() {
   useEffect(() => {
     const k = e => {
       if(e.key==='Escape'){ exit(); return }
+      if(!playing && !gameOver && (e.key===' '||e.key==='Enter')) { e.preventDefault(); triggerStart(); return }
       if(!playing||gameOver) return
       if(e.key==='ArrowUp'||e.key==='w'||e.key==='W') { e.preventDefault(); if(g.current.dir.y===0) g.current.nextDir=DIR.UP }
       if(e.key==='ArrowDown'||e.key==='s'||e.key==='S') { e.preventDefault(); if(g.current.dir.y===0) g.current.nextDir=DIR.DOWN }
@@ -175,16 +190,17 @@ export default function SnakeGame() {
           <div className="absolute inset-[-24px] rounded-[2rem] bg-gradient-to-br from-cyan-500/20 via-fuchsia-500/10 to-cyan-500/20 blur-2xl -z-10" />
           <canvas ref={canvasRef} onPointerDown={onDown} onPointerUp={onUp} className="rounded-2xl border border-cyan-400/30 shadow-[0_0_60px_rgba(34,211,238,0.25)] bg-[#050d1a] touch-none cursor-pointer" style={{touchAction:'none'}} />
           {!playing && (
-            <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#030b14]/80 rounded-2xl z-10 px-4 text-center">
+            <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#030b14]/80 rounded-2xl z-10 px-4 text-center"
+              onPointerDown={(e) => { if (e.target.closest('button')) return; triggerStart() }}>
               <h2 className="text-6xl md:text-7xl font-black bg-gradient-to-b from-cyan-300 via-fuchsia-300 to-cyan-200 bg-clip-text text-transparent mb-3 tracking-tighter">SNAKE</h2>
               {gameOver && <p className="text-xl md:text-2xl text-rose-400 font-bold mb-4">Game Over</p>}
               <p className="text-xs md:text-sm text-slate-400 mb-6">Desktop: Arrows / WASD · Mobile: Swipe</p>
-              <button onClick={start} className="px-8 py-3 rounded-full bg-gradient-to-r from-cyan-500 to-fuchsia-500 text-white font-extrabold text-lg shadow-[0_0_30px_rgba(34,211,238,0.5)] hover:scale-105 transition">▶ Start Game</button>
+              <button onClick={triggerStart} className="px-8 py-3 rounded-full bg-gradient-to-r from-cyan-500 to-fuchsia-500 text-white font-extrabold text-lg shadow-[0_0_30px_rgba(34,211,238,0.5)] hover:scale-105 transition">▶ Start Game</button>
             </div>
           )}
         </div>
         <div className="mt-5 flex flex-wrap justify-center items-center gap-3 md:gap-4">
-          <button onClick={start} className="px-6 py-2.5 rounded-full bg-white/[0.08] border border-white/10 text-cyan-100 font-bold text-sm hover:bg-white/15">⟲ Restart</button>
+          <button onClick={triggerStart} className="px-6 py-2.5 rounded-full bg-white/[0.08] border border-white/10 text-cyan-100 font-bold text-sm hover:bg-white/15">⟲ Restart</button>
           <button onClick={goFullscreen} className="px-6 py-2.5 rounded-full bg-white/[0.08] border border-white/10 text-cyan-100 font-bold text-sm hover:bg-white/15">⛶ Fullscreen</button>
           {fs && <button onClick={exit} className="px-6 py-2.5 rounded-full bg-rose-500/20 border border-rose-400/40 text-rose-100 font-bold text-sm hover:bg-rose-500/30">✕ Exit game</button>}
         </div>
@@ -198,6 +214,7 @@ export default function SnakeGame() {
         </div>
       </main>
       <footer className="text-center text-[11px] text-slate-600 py-2 font-mono">Neon Arcade · Snake</footer>
+      <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
     </div>
   )
 }

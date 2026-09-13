@@ -500,7 +500,7 @@ export default function games_bubble_shooter() {
   const handleClick = useCallback(() => {
     const g = gRef.current
     if (g.gameState==='ready') shootBubble()
-    else if (g.gameState==='gameover') { window.dispatchEvent(new Event('ut:game-start')) }
+    else if (g.gameState==='gameover' || g.gameState==='init') { window.dispatchEvent(new Event('ut:game-start')) }
   }, [shootBubble, startGame])
 
   // Touch support
@@ -519,7 +519,7 @@ export default function games_bubble_shooter() {
   useEffect(() => {
     const handler = (e) => {
       const g = gRef.current
-      if (g.gameState==='gameover') { if(e.key===' '||e.key==='Enter') { window.dispatchEvent(new Event('ut:game-start')); return } }
+      if (g.gameState==='gameover'||g.gameState==='init') { if(e.key===' '||e.key==='Enter') { window.dispatchEvent(new Event('ut:game-start')); return } }
       if (g.gameState==='ready') {
         if (e.key===' '||e.key==='Enter') { e.preventDefault(); shootBubble() }
         if (e.key==='ArrowLeft'&&g.player) g.player.angle = Math.min(172, g.player.angle+5)

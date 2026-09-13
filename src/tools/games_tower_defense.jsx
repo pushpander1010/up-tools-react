@@ -513,7 +513,7 @@ export default function games_tower_defense() {
     const col = Math.floor(x / cellW)
     const row = Math.floor(y / cellW)
 
-    if (s.gameOver) { window.dispatchEvent(new Event('ut:game-start')); return }
+    if (s.gameOver || !s.playing) { window.dispatchEvent(new Event('ut:game-start')); return }
 
     if (placing) {
       placeTower(row, col)

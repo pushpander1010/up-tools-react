@@ -429,7 +429,7 @@ export default function games_wordle() {
           <button onClick={() => setShowStats(s => !s)} className="px-3 py-1.5 rounded-lg text-xs font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">
             📊 Stats
           </button>
-          <button onClick={() => newGame} className="px-3 py-1.5 rounded-lg text-xs font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">
+          <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))} className="px-3 py-1.5 rounded-lg text-xs font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">
             ⟲ New
           </button>
         </div>

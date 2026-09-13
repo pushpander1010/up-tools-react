@@ -214,10 +214,10 @@ export default function games_connect_4() {
         <div className="flex-1 min-w-0 max-w-lg mx-auto space-y-5 overflow-hidden">
         {/* Mode */}
         <div className="flex gap-2 justify-center">
-          <button onClick={()=>{setMode('ai');resetGame()}} className={`glow-btn px-4 py-2 text-sm transition-all ${mode==='ai'?'':'bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:bg-white/[0.1]'}`}>
+          <button onClick={()=>{setMode('ai');window.dispatchEvent(new Event('ut:game-start'))}} className={`glow-btn px-4 py-2 text-sm transition-all ${mode==='ai'?'':'bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:bg-white/[0.1]'}`}>
            🤖 vs AI
          </button>
-          <button onClick={()=>{setMode('2p');resetGame()}} className={`glow-btn px-4 py-2 text-sm transition-all ${mode==='2p'?'':'bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:bg-white/[0.1]'}`}>
+          <button onClick={()=>{setMode('2p');window.dispatchEvent(new Event('ut:game-start'))}} className={`glow-btn px-4 py-2 text-sm transition-all ${mode==='2p'?'':'bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:bg-white/[0.1]'}`}>
            👥 2 Player
          </button>
         </div>

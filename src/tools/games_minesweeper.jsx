@@ -208,7 +208,7 @@ export default function games_minesweeper() {
         {/* Difficulty selector */}
         <div className="flex gap-2 justify-center flex-wrap">
           {Object.entries(DIFFICULTIES).map(([key, d]) => (
-            <button key={key} onClick={() => startGame(key)}
+            <button key={key} onClick={() => { setDifficulty(key); window.dispatchEvent(new Event('ut:game-start')) }}
               className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all ${difficulty===key && (gameState!=='idle') ? 'glow-btn text-white' : 'bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1]'}`}>
               {d.label} ({d.cols}×{d.rows}, {d.mines} mines)
             </button>
@@ -221,7 +221,7 @@ export default function games_minesweeper() {
             <span className="text-lg">💣</span>
             <span className="text-xl font-mono font-bold text-white">{mines - flagCount}</span>
           </div>
-          <button onClick={() => startGame(difficulty)} className="text-3xl hover:scale-110 transition-transform cursor-pointer bg-transparent border-none">
+          <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))} className="text-3xl hover:scale-110 transition-transform cursor-pointer bg-transparent border-none">
             {gameState==='won' ? '😎' : gameState==='lost' ? '😵' : '🙂'}
           </button>
           <div className="flex items-center gap-2">

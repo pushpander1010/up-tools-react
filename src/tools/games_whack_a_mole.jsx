@@ -102,6 +102,16 @@ export default function games_whack_a_mole() {
     }, 500)
   }, [getMoleSpeed])
 
+  // Tap/keys to start from idle or game-over
+  useEffect(() => {
+    const h = (e) => {
+      if ((gameState === 'idle' || gameState === 'gameover') && (e.key === ' ' || e.key === 'Enter'))
+        window.dispatchEvent(new Event('ut:game-start'))
+    }
+    window.addEventListener('keydown', h)
+    return () => window.removeEventListener('keydown', h)
+  }, [gameState])
+
   useEffect(() => {
     return () => {
       clearInterval(timerRef.current)
@@ -250,7 +260,7 @@ export default function games_whack_a_mole() {
 
         {/* Start / Game over */}
         {gameState === 'idle' && (
-          <div className="text-center space-y-3">
+          <div className="text-center space-y-3 cursor-pointer" onClick={(e) => { if (e.target.closest('button')) return; window.dispatchEvent(new Event('ut:game-start')) }}>
             <div className="text-5xl">🔨</div>
             <h2 className="text-xl font-bold text-white">Whack-a-Mole!</h2>
             <p className="text-sm text-slate-400">Click or tap moles as they pop up. You have {GAME_DURATION} seconds!</p>

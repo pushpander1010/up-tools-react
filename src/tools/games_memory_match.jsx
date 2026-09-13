@@ -187,7 +187,7 @@ export default function games_memory_match() {
         {/* Difficulty selector */}
         <div className="flex gap-2 justify-center flex-wrap">
           {Object.entries(DIFFICULTIES).map(([key, d]) => (
-            <button key={key} onClick={() => startGame(key)}
+            <button key={key} onClick={() => { setDifficulty(key); window.dispatchEvent(new Event('ut:game-start')) }}
               className={`glow-btn px-4 py-2 text-sm transition-all ${difficulty === key ? '' : 'bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1]'}`}>
               {d.label}
             </button>

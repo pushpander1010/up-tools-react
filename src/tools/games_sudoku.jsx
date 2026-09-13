@@ -327,7 +327,7 @@ export default function GamesSudoku() {
               <option value="hard" className="bg-gray-900">Hard (54 removed)</option>
             </select>
             <button
-              onClick={startGame}
+              onClick={() => window.dispatchEvent(new Event('ut:game-start'))}
               className="px-4 py-2 rounded-lg font-bold text-sm bg-gradient-to-r from-indigo-500 to-purple-500 text-white hover:brightness-110 transition-all"
             >
               {completed ? 'New Game' : 'New Game'}

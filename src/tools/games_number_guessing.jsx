@@ -201,7 +201,7 @@ export default function games_number_guessing() {
             <p className="text-center text-slate-400 text-sm">Choose your difficulty</p>
             <div className="grid grid-cols-3 gap-3">
               {DIFFICULTIES.map((d, i) => (
-                <button key={i} onClick={() => startGame(i)}
+                <button key={i} onClick={() => { setDifficulty(i); window.dispatchEvent(new Event('ut:game-start')) }}
                   className="p-4 rounded-xl text-center transition-all hover:scale-105 active:scale-95 border border-white/[0.08]"
                   style={{ background: `linear-gradient(135deg, ${d.color}22, ${d.color}08)` }}>
                   <div className="text-2xl mb-2">{d.name === 'Easy' ? '😊' : d.name === 'Medium' ? '🤔' : '😤'}</div>

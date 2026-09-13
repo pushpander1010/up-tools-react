@@ -384,7 +384,10 @@ export default function games_doodle_jump() {
         if (e.key === ' ' || e.key === 'Enter') window.dispatchEvent(new Event('ut:game-start'))
         return
       }
-      if (!s.playing) return
+      if (!s.playing) {
+        if (e.key === ' ' || e.key === 'Enter') window.dispatchEvent(new Event('ut:game-start'))
+        return
+      }
       if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') {
         e.preventDefault()
         s.velocityX = 5
@@ -431,7 +434,7 @@ export default function games_doodle_jump() {
   }
   const handlePointerUp = (e) => {
     const s = gRef.current
-    if (s.gameOver) { window.dispatchEvent(new Event('ut:game-start')); return }
+    if (s.gameOver || !s.playing) { window.dispatchEvent(new Event('ut:game-start')); return }
     s.touchStart = null
     s.velocityX = 0
   }

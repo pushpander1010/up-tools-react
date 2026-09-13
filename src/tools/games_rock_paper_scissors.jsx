@@ -178,7 +178,7 @@ export default function games_rock_paper_scissors() {
         {/* Mode selector */}
         <div className="flex gap-2 justify-center flex-wrap">
           {[1, 3, 5].map(n => (
-            <button key={n} onClick={() => startGame(n)}
+            <button key={n} onClick={() => { setBestOf(n); window.dispatchEvent(new Event('ut:game-start')) }}
               className={`px-4 py-2 rounded-xl text-sm font-bold transition-all ${bestOf === n && gameState === 'playing' ? 'glow-btn' : 'bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white'}`}>
               Best of {n}
             </button>

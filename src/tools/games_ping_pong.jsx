@@ -251,6 +251,7 @@ export default function games_ping_pong() {
       if (e.code === 'Space') {
         e.preventDefault()
         if (runningRef.current) setGamePaused(p => !p)
+        else window.dispatchEvent(new Event('ut:game-start'))
       }
     }
     const upHandler = (e) => { gameRef.current.keys[e.key.toLowerCase()] = false }
@@ -270,6 +271,7 @@ export default function games_ping_pong() {
 
   // Pointer tracking for mobile
   const handlePointerDown = useCallback((e) => {
+    if (!runningRef.current) { window.dispatchEvent(new Event('ut:game-start')); return }
     if (e.pointerType === 'touch' || e.pointerType === 'pen') {
       const canvas = canvasRef.current
       if (!canvas) return

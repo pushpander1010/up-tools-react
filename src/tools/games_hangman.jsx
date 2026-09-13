@@ -273,7 +273,7 @@ export default function games_hangman() {
               <option key={cat} value={cat} className="bg-gray-900">{cat.charAt(0).toUpperCase() + cat.slice(1)}</option>
             ))}
           </select>
-          <button onClick={() => handleNewGame}
+          <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))}
             className="ml-auto px-5 py-2.5 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-300 hover:text-white hover:bg-white/[0.1] transition-all">
            New Game
          </button>

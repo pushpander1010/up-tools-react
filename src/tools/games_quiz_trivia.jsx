@@ -156,7 +156,7 @@ export default function games_quiz_trivia() {
 
   const handleCategoryChange = (cat) => {
     setCategory(cat)
-    startQuiz(cat)
+    window.dispatchEvent(new Event('ut:game-start'))
   }
 
   const selectAnswer = useCallback((idx) => {
@@ -252,7 +252,7 @@ export default function games_quiz_trivia() {
                   <option key={cat} value={cat} className="bg-gray-900">{cat.charAt(0).toUpperCase() + cat.slice(1)}</option>
                 ))}
               </select>
-              <button onClick={() => startQuiz(category)}
+              <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))}
                  className="ml-auto px-5 py-2.5 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-300 hover:text-white hover:bg-white/[0.1] transition-all">
                 New Quiz
               </button>

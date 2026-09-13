@@ -34,9 +34,11 @@ import InterstitialAd from './InterstitialAd'
  *                (e.g. snake stops the game). Default: just leaves fullscreen.
  *   children     game content ONLY: stats cards, board/canvas, hints. REMOVE from the
  *                game file: ToolLayout wrapper, useFullscreen, GameAdSlot rails/banners,
- *                InterstitialAd wiring, useJumpToResult, per-game Start/Fullscreen/Exit
- *                buttons. Canvas-tap-to-start must also be removed (shell bar is the
- *                single start control) — point overlay text at the Restart button.
+ *                InterstitialAd wiring, per-game Start/Fullscreen/Exit
+ *                buttons. Board/canvas taps when idle or game-over MUST dispatch
+ *                `window.dispatchEvent(new Event('ut:game-start'))` (never call the
+ *                raw start fn) — so taps behave EXACTLY like the shell Start
+ *                button (interstitial + fullscreen + start).
  */
 export default function GameShell({
   name, title, desc, icon, iconBg, category, slug,
@@ -106,13 +108,18 @@ export default function GameShell({
     if (a) a()
   }, [])
 
+  // Always run the LATEST startAction on dismiss (not the one captured at tap
+  // time) — option buttons set state (difficulty, grid size…) then dispatch,
+  // and the 3s ad delay lets that state settle before the game starts.
+  const startActionRef = useRef(startAction)
+  startActionRef.current = startAction
   const handleStart = useCallback(() => {
     triggerAd(() => {
-      if (startAction) startAction()
+      try { startActionRef.current?.() } catch {}
       goFullscreen()
       setTimeout(() => { try { resultRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' }) } catch {} }, 100)
     })
-  }, [triggerAd, startAction, goFullscreen])
+  }, [triggerAd, goFullscreen])
 
   // Canvas-tap-to-start: games fire `window.dispatchEvent(new Event('ut:game-start'))`
   // from board taps / overlay clicks / Space-Enter-when-idle instead of calling

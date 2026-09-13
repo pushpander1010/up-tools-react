@@ -205,12 +205,12 @@ export default function games_coin_flip() {
 
         {/* Buttons */}
         <div className="flex gap-3">
-          <button onClick={() => flip}
+          <button onClick={() => flip()}
             className="glow-btn flex-1 py-4 min-h-[48px] rounded-2xl font-bold text-sm transition-all duration-200 active:scale-[0.98] disabled:opacity-50"
             disabled={flipping}>
             🪙 Flip
           </button>
-          <button onClick={flip10}
+          <button onClick={() => flip10()}
             className="glow-btn flex-1 py-4 min-h-[48px] rounded-2xl font-bold text-sm transition-all duration-200 active:scale-[0.98] disabled:opacity-50"
             disabled={flipping}>
             ⚡ Flip 10x

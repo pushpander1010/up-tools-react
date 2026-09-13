@@ -388,6 +388,7 @@ export default function SpaceInvadersGame() {
       if (e.key === 'ArrowRight' || e.key === 'd') { s.keys.right = true; e.preventDefault() }
       if (e.key === ' ' || e.key === 'ArrowUp') { s.keys.shoot = true; e.preventDefault() }
       if (s.phase === 'over' && (e.key === ' ' || e.key === 'Enter')) window.dispatchEvent(new Event('ut:game-start'))
+      if (s.phase === 'idle' && (e.key === ' ' || e.key === 'Enter')) window.dispatchEvent(new Event('ut:game-start'))
     }
     const up = (e) => {
       const s = g.current
@@ -403,8 +404,7 @@ export default function SpaceInvadersGame() {
   /* ── pointer (touch / mouse) ── */
   const onDown = useCallback((e) => {
     const s = g.current
-    if (s.phase === 'over') { window.dispatchEvent(new Event('ut:game-start')); return }
-    if (!s.playing) return
+    if (s.phase !== 'playing') { window.dispatchEvent(new Event('ut:game-start')); return }
     const c = cvs.current; if (!c) return
     const rect = c.getBoundingClientRect()
     const x = e.clientX - rect.left

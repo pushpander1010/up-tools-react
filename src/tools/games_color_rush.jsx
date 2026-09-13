@@ -184,7 +184,7 @@ export default function games_color_rush() {
             <p className="text-center text-slate-400 text-sm">Choose your grid size</p>
             <div className="grid grid-cols-3 gap-3">
               {GRID_SIZES.map((gs) => (
-                <button key={gs.size} onClick={() => startGame(gs.size)}
+                <button key={gs.size} onClick={() => { setGridSize(gs.size); window.dispatchEvent(new Event('ut:game-start')) }}
                   className="p-4 rounded-xl text-center transition-all hover:scale-105 active:scale-95 border border-white/[0.08]"
                   style={{ background: 'linear-gradient(135deg, rgba(168,85,247,0.12), rgba(168,85,247,0.04))' }}>
                   <div className="text-2xl mb-2">{gs.label}</div>

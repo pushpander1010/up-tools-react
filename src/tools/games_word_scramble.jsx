@@ -218,7 +218,7 @@ export default function games_word_scramble() {
           </select>
           <button onClick={handleSkip}
             className="px-4 py-2.5 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">Skip</button>
-          <button onClick={handleNewGame}
+          <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))}
             className="px-4 py-2.5 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">New Game</button>
         </div>
 

@@ -459,7 +459,7 @@ export default function games_solitaire() {
               </div>
             </div>
             <div className="flex gap-2 justify-center">
-              <button onClick={startNewGame}
+              <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))}
                 className="glow-btn px-6 py-3 text-sm">
                 Deal Cards
               </button>
@@ -569,7 +569,7 @@ export default function games_solitaire() {
         {/* Controls */}
         <div className="flex items-center justify-between gap-2 flex-wrap">
           <div className="flex gap-2">
-            <button onClick={startNewGame}
+            <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))}
               className="glow-btn px-3 py-2 text-xs">
               New Game
             </button>
@@ -683,7 +683,7 @@ export default function games_solitaire() {
             <div className="text-4xl mb-3">🎉</div>
             <h2 className="text-xl font-bold text-white mb-2">You Win!</h2>
             <p className="text-sm text-slate-400 mb-3">Completed in {moves} moves · {formatTime(timer)}</p>
-            <button onClick={startNewGame}
+            <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))}
               className="glow-btn px-6 py-3 text-sm">
               Play Again
             </button>
