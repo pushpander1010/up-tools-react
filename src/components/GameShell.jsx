@@ -191,7 +191,7 @@ export default function GameShell({
       >
         <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
         <div ref={resultRef} className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
-          <div className="hidden xl:block w-[160px] shrink-0 sticky top-24 self-start">
+          <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
             <GameAdSlot slot="3494503358" format="vertical" className="mt-2" width={160} height={600} />
           </div>
           <div className="flex-1 min-w-0 max-w-xl mx-auto space-y-5 overflow-hidden">
@@ -210,7 +210,7 @@ export default function GameShell({
               <GameAdSlot slot="8865234201" format="horizontal" className="mt-2" />
             </div>
           </div>
-          <div className="hidden xl:block w-[160px] shrink-0 sticky top-24 self-start">
+          <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
             <GameAdSlot slot="3414612309" format="vertical" className="mt-2" width={160} height={600} />
           </div>
         </div>

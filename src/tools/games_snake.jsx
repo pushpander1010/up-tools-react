@@ -167,7 +167,7 @@ export default function SnakeGame() {
 
       <main className={`flex-1 flex flex-col items-center justify-start ${fs ? 'py-3 px-4 pb-[max(1rem,env(safe-area-inset-bottom))] overflow-y-auto' : 'py-5 px-4'}`}>
         <div className="w-full max-w-6xl mx-auto flex gap-4 justify-center">
-          <div className="hidden xl:block w-[160px] shrink-0 sticky top-24 self-start">
+          <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
             <GameAdSlot slot="3494503358" format="vertical" className="mt-2" width={160} height={600} />
           </div>
         <div className="flex-1 min-w-0 max-w-xl mx-auto flex flex-col items-center">
@@ -189,7 +189,7 @@ export default function SnakeGame() {
           {fs && <button onClick={exit} className="px-6 py-2.5 rounded-full bg-rose-500/20 border border-rose-400/40 text-rose-100 font-bold text-sm hover:bg-rose-500/30">✕ Exit game</button>}
         </div>
         </div>
-          <div className="hidden xl:block w-[160px] shrink-0 sticky top-24 self-start">
+          <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
             <GameAdSlot slot="3414612309" format="vertical" className="mt-2" width={160} height={600} />
           </div>
         </div>

@@ -3,6 +3,8 @@ import { Link, useParams } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import blogsData from '../data/blogs.json'
 import FAQ from '../components/FAQ'
+import GameAdSlot from '../components/GameAdSlot'
+import { AD_SLOTS } from '../config/ads'
 
 export default function BlogPostPage() {
   const { slug } = useParams()
@@ -155,6 +157,9 @@ export default function BlogPostPage() {
             dangerouslySetInnerHTML={{ __html: blog.content }}
           />
 
+          {/* In-content ad: right after article body (CLS-safe, reserved height) */}
+          <GameAdSlot key={'blog-ic-' + blog.slug} slot={AD_SLOTS.toolInContent} format="auto" className="my-6" />
+
           {/* YouTube embed */}
           {blog.youtubeId && (
             <div className="mt-8 rounded-2xl overflow-hidden border border-white/10 bg-black">
@@ -243,11 +248,16 @@ export default function BlogPostPage() {
               <FAQ questions={blog.faq} />
             </div>
           )}
+
+          {/* Below-content ad (CLS-safe, reserved height) */}
+          <GameAdSlot key={'blog-bc-' + blog.slug} slot={AD_SLOTS.toolBelowContent} format="horizontal" className="my-6" />
         </article>
 
         {/* Sidebar - desktop only */}
         <aside className="hidden lg:block w-[300px] shrink-0">
           <div className="sticky top-24 space-y-6">
+            {/* Sidebar rail ad */}
+            <GameAdSlot key={'blog-side-' + blog.slug} slot={AD_SLOTS.railRight} format="auto" />
             {/* TOC */}
             {blog.toc && blog.toc.length > 0 && (
               <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
