@@ -1,36 +1,49 @@
 import { useEffect, useRef } from 'react'
-import { useLocation } from 'react-router-dom'
 
 /**
- * AdSense banner slot — CLS-safe.
+ * AdSense banner slot — CLS-safe + INP-safe.
  * - The wrapper div (with reserved min-height) renders SYNCHRONOUSLY on first
  *   paint, so no content below ever shifts when the ad fills in late.
- * - Only the adsbygoogle.push() is delayed (400ms, after paint) to protect INP.
+ * - The adsbygoogle.push() fires ONCE per mount (not on every SPA route
+ *   change), via requestIdleCallback, and is skipped entirely when the slot
+ *   is hidden by CSS (e.g. desktop-only rails on mobile) — hidden slots
+ *   must never push, they only cost main-thread time for zero revenue.
  * - Vertical rails use CSS `hidden lg:block` (no JS matchMedia gate), so mobile
  *   never reserves space and desktop always reserves 160x600.
  */
 export default function GameAdSlot({ slot = '8865234201', format = 'auto', className = '', width, height }) {
   const adRef = useRef(null)
-  const location = useLocation()
   const isVertical = format === 'vertical'
 
-  // Render the ad once per mount, after React has painted, so the async ad load
-  // doesn't contend with first meaningful paint.
+  // Render the ad once per mount, when the browser is idle, so the async ad
+  // load never contends with first paint or user interaction (INP).
   useEffect(() => {
-    const timer = setTimeout(() => {
+    const fire = () => {
       try {
         if (window.__loadAds) window.__loadAds();
         const ins = adRef.current;
-        if (ins && !ins.hasAttribute('data-loaded') && window.adsbygoogle) {
-          ins.setAttribute('data-loaded', 'true');
-          (window.adsbygoogle = window.adsbygoogle || []).push({});
-        }
+        if (!ins || ins.hasAttribute('data-loaded') || !window.adsbygoogle) return;
+        // Skip hidden slots (CSS `hidden lg:block` rails on mobile etc.)
+        const rect = ins.getBoundingClientRect();
+        if (rect.width === 0 && rect.height === 0) return;
+        ins.setAttribute('data-loaded', 'true');
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
       } catch (e) {
         console.warn('AdSense push error:', e);
       }
-    }, 400);
-    return () => clearTimeout(timer);
-  }, [location.pathname]);
+    };
+    let idleId = null;
+    let timer = null;
+    if ('requestIdleCallback' in window) {
+      idleId = window.requestIdleCallback(fire, { timeout: 4000 });
+    } else {
+      timer = setTimeout(fire, 1500);
+    }
+    return () => {
+      if (idleId !== null && 'cancelIdleCallback' in window) window.cancelIdleCallback(idleId);
+      if (timer !== null) clearTimeout(timer);
+    };
+  }, []);
 
   // Fixed-size rail (desktop only via CSS): always reserves 160x600.
   if (width && height) {

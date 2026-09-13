@@ -255,7 +255,7 @@ export default function hncker_exif() {
 
       <Section id="screenshots" icon="🖼️" title="Screenshot" subtitle="ExifTool in action">
         <figure className="rounded-xl overflow-hidden border border-white/10" style={{ background: 'rgba(0,0,0,0.3)' }}>
-          <img src="/assets/tools/exif/exif_scan.png" alt="ExifTool dumping metadata from an image" width="960" height="540"
+          <img src="/assets/tools/exif/exif_scan.png" alt="ExifTool dumping metadata from an image" width="1376" height="768"
             className="w-full h-auto object-contain" loading="lazy" />
           <figcaption className="px-4 py-2 text-xs text-slate-400">ExifTool dumps every hidden tag from a photo</figcaption>
         </figure>
