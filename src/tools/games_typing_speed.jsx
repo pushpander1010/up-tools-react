@@ -64,6 +64,14 @@ export default function games_typing_speed() {
   const [errorsCompleted, setErrorsCompleted] = useState(0)
   const inputRef = useRef(null)
   const timerRef = useRef(null)
+  const displayRef = useRef(null)
+  const currentCharRef = useRef(null)
+
+  // Keep current word visible: scroll text box + input to the end as user types
+  useEffect(() => {
+    currentCharRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+    if (inputRef.current) inputRef.current.scrollLeft = inputRef.current.scrollWidth
+  }, [typed, currentText])
 
 
   const resetTest = useCallback((dur) => {
@@ -217,12 +225,12 @@ export default function games_typing_speed() {
         </div>
 
         {/* Text display */}
-        <div className="glass p-4 text-sm sm:text-base leading-relaxed font-mono min-h-[80px] select-none">
+        <div ref={displayRef} className="glass p-4 text-sm sm:text-base leading-relaxed font-mono max-h-[180px] overflow-y-auto select-none">
           {currentText.split('').map((c, i) => {
             let cls = 'text-slate-600'
             if (i < typed.length) cls = typed[i] === c ? 'text-emerald-400' : 'text-red-400 bg-red-500/20'
             else if (i === typed.length) cls = 'text-white border-b-2 border-indigo-400'
-            return <span key={i} className={cls}>{c === ' ' ? '\u00A0' : c}</span>
+            return <span key={i} ref={i === typed.length ? currentCharRef : null} className={cls}>{c === ' ' ? '\u00A0' : c}</span>
           })}
         </div>
 
