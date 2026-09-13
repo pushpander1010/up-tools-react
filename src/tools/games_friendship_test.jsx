@@ -372,17 +372,17 @@ export default function games_friendship_test() {
     <GameShell
       name="FRIENDSHIP TEST"
       startAction={startQuiz} startLabel="▶ Start Quiz"
-      title="Best Friend Quiz 👫 How Well Do Your Friends Know You"
-      desc="Best Friend Quiz 👫 How Well Do Your Friends Know You, online free. Answer about yourself, share the link, friends guess. No download. Works on mobile and desktop."
+      title="BFF Test – Best Friend Test, Friendship Quiz | How Well Do Your Friends Know You"
+      desc="Take the free BFF test and best friend quiz online. Answer 10–20 fun questions about yourself, share your friendship quiz link, and see which friend knows you best. No sign-up, no download."
       icon="👫" iconBg="rgba(99,102,241,0.08)"
       category="fun" slug="games-friendship-test"
       faq={[
-        { q: "How does the best friend quiz work?", a: "You answer 10–20 fun questions about YOURSELF first, then share your unique link with friends. They open it and try to guess your answers. Each correct guess scores — 100% means they know you best!" },
-        { q: "Is the test free?", a: "Yes, completely free with no sign-up required. Scores are saved locally on your device only." },
-        { q: "How do I challenge my friends?", a: "After answering, tap Copy Share Link or WhatsApp on the share screen. Send it to your group chat, Instagram story, or bio — friends answer on their own phones, no app needed." },
-        { q: "How do I play Best Friend Quiz 👫 How Well Do Your Friends Know You online free?", a: "Click Start and follow the on-screen steps. Use mouse, touch, or keyboard controls. No download needed." },
-        { q: "Can I play without downloading?", a: "Yes. This quiz runs in your browser with no install. Free on mobile and desktop." },
-        { q: "Is this quiz free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
+        { q: "What is the BFF test?", a: "The BFF test is a best friend quiz where you answer fun questions about yourself, then share a link. Your friends guess your answers — the highest score proves who knows you best." },
+        { q: "How does this best friend test work?", a: "Answer 10, 15, or 20 friendship quiz questions about YOURSELF, then tap Copy Quiz Link or WhatsApp. Friends open the link on their own phones and guess. Each correct guess scores toward 100%." },
+        { q: "Is the friendship quiz free?", a: "Yes, completely free with no sign-up and no app download. Play unlimited BFF tests in your browser on mobile or desktop." },
+        { q: "How do I share my BFF quiz with friends?", a: "After answering, tap Copy Quiz Link or WhatsApp. Drop it in your group chat, Instagram story, Snapchat, or bio — friends answer instantly with no login." },
+        { q: "What questions are in the best friend quiz?", a: "64 fun questions across favorites, food, habits, social life, adventure, and deep topics — from comfort food and dream jobs to biggest fears and ideal Friday nights. Every game picks a fresh random set." },
+        { q: "Can I play the friendship test without downloading?", a: "Yes. This BFF test runs entirely in your browser with no install, free on mobile and desktop." },
       ]}
       howItWorks={[
         "Answer fun questions about YOURSELF.",
@@ -392,7 +392,7 @@ export default function games_friendship_test() {
       ]}
       schema={{
         "@context": "https://schema.org", "@type": "WebApplication",
-        "name": "Best Friend Quiz", "applicationCategory": "Game",
+        "name": "BFF Test - Best Friend Test and Friendship Quiz", "applicationCategory": "Game",
         "url": "https://www.uptools.in/games/friendship-test/",
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}

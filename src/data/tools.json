@@ -1897,13 +1897,17 @@
   },
   {
    "slug": "games-friendship-test",
-   "title": "Best Friend Compatibility Test",
+   "title": "BFF Test - Best Friend Test & Friendship Quiz",
    "icon": "👫",
-   "desc": "Best Friend Compatibility Test 👫 How Well Do You Know Each Other, online free. Play online free, no download. Works on mobile.",
+   "desc": "Free BFF test and best friend quiz. Answer about yourself, share the link, friends guess. No sign-up, no download.",
    "href": "/games/friendship-test/",
    "tags": [
     "fun",
-    "social"
+    "social",
+    "bff test",
+    "best friend test",
+    "friendship quiz",
+    "how well do you know me"
    ],
    "cats": [
     "all",
