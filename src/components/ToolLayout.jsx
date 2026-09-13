@@ -109,16 +109,18 @@ export default function ToolLayout({ title, desc, icon, iconBg, category, slug, 
       <div className="mb-8">{children}</div>
 
       {/* Highest-value placement: the user has just read their result and is deciding
-          what to do next. Height is reserved by GameAdSlot so this costs no CLS. */}
+          what to do next. Height is reserved by GameAdSlot so this costs no CLS.
+          STATIC keys: slots persist across SPA navigations (no 250px/90px
+          collapse + re-expand on every route change = desktop CLS). */}
       {showAds && (
-        <GameAdSlot key={'ic-' + path} slot={AD_SLOTS.toolInContent} format="auto" className="my-6" />
+        <GameAdSlot key="tool-incontent" slot={AD_SLOTS.toolInContent} format="auto" className="my-6" />
       )}
 
       {!hideHeader && howItWorks.length > 0 && <HowItWorks steps={howItWorks} />}
       {!hideHeader && faq.length > 0 && <FAQ questions={faq} />}
 
       {showAds && (
-        <GameAdSlot key={'bc-' + path} slot={AD_SLOTS.toolBelowContent} format="horizontal" className="my-6" />
+        <GameAdSlot key="tool-belowcontent" slot={AD_SLOTS.toolBelowContent} format="horizontal" className="my-6" />
       )}
 
       {!hideHeader && <RelatedTools currentSlug={slug} category={category} />}

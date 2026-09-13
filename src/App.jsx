@@ -98,14 +98,17 @@ function SidebarLayout({ children }) {
 
   return (
     <div className="flex gap-4">
+      {/* Rail slots keep STATIC keys (no pathname): remounting 600px rails on
+          every SPA navigation collapses/re-expands the layout = desktop CLS.
+          Slots persist across navigations; the ad simply stays. */}
       <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-        <GameAdSlot key={'l-' + location.pathname} slot={AD_SLOTS.railLeft} format="vertical" width={160} height={600} className="mt-2" />
+        <GameAdSlot key="rail-left" slot={AD_SLOTS.railLeft} format="vertical" width={160} height={600} className="mt-2" />
       </div>
       <div className="flex-1 min-w-0">
         {children}
       </div>
       <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
-        <GameAdSlot key={'r-' + location.pathname} slot={AD_SLOTS.railRight} format="vertical" width={160} height={600} className="mt-2" />
+        <GameAdSlot key="rail-right" slot={AD_SLOTS.railRight} format="vertical" width={160} height={600} className="mt-2" />
       </div>
     </div>
   )

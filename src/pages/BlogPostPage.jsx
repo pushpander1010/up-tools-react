@@ -127,6 +127,9 @@ export default function BlogPostPage() {
         <img
           src={blog.coverImage}
           alt={blog.coverAlt}
+          width="1200"
+          height="669"
+          fetchPriority="high"
           className="w-full aspect-video object-cover"
           loading="eager"
           onError={e => { e.currentTarget.onerror = null; e.currentTarget.src = '/assets/og/default.png' }}
@@ -158,7 +161,7 @@ export default function BlogPostPage() {
           />
 
           {/* In-content ad: right after article body (CLS-safe, reserved height) */}
-          <GameAdSlot key={'blog-ic-' + blog.slug} slot={AD_SLOTS.toolInContent} format="auto" className="my-6" />
+          <GameAdSlot key="blog-incontent" slot={AD_SLOTS.toolInContent} format="auto" className="my-6" />
 
           {/* YouTube embed */}
           {blog.youtubeId && (
@@ -250,14 +253,14 @@ export default function BlogPostPage() {
           )}
 
           {/* Below-content ad (CLS-safe, reserved height) */}
-          <GameAdSlot key={'blog-bc-' + blog.slug} slot={AD_SLOTS.toolBelowContent} format="horizontal" className="my-6" />
+          <GameAdSlot key="blog-belowcontent" slot={AD_SLOTS.toolBelowContent} format="horizontal" className="my-6" />
         </article>
 
         {/* Sidebar - desktop only */}
         <aside className="hidden lg:block w-[300px] shrink-0">
           <div className="sticky top-24 space-y-6">
             {/* Sidebar rail ad */}
-            <GameAdSlot key={'blog-side-' + blog.slug} slot={AD_SLOTS.railRight} format="auto" />
+            <GameAdSlot key="blog-sidebar" slot={AD_SLOTS.railRight} format="auto" />
             {/* TOC */}
             {blog.toc && blog.toc.length > 0 && (
               <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
