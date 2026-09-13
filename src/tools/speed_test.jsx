@@ -157,6 +157,8 @@ export default function speed_test() {
         { q: 'Does this store my data?', a: 'No. All measurements happen in your browser and test history stays in your own local storage. Nothing is sent to any server.' },
         { q: 'What units are used?', a: 'Speed is shown in Mbps (megabits per second). Divide by 8 to get MB/s — so 100 Mbps ≈ 12.5 MB/s of file download speed.' },
         { q: 'How do I check my Jio/Airtel/BSNL speed?', a: 'Just press Start Speed Test above — it works with any provider (Jio, Airtel, Vi, BSNL), WiFi, broadband, 4G or 5G. Free with no sign-up, works on mobile and desktop.' },
+        { q: 'How does this compare to Ookla, fast.com or speed.com?', a: 'Same thing measured the same way — download, upload and ping. Ookla, fast.com (Netflix) and speed.com all test your connection to a nearby server; this one uses Cloudflare edge servers with 3 passes and median scoring. No app or account needed, works right in your browser.' },
+        { q: 'Is this as accurate as Ookla Speedtest?', a: 'Yes, for real-world speed. Accuracy depends on server closeness and test method, not brand. This runs multiple passes and takes the median to filter spikes, same principle Ookla uses. For best results, stand near your router and close background downloads before testing.' },
       ]}
       howItWorks={[
         'Click Start Speed Test to begin.',
