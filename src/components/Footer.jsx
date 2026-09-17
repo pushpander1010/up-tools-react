@@ -15,6 +15,7 @@ export default function Footer() {
         <Link to="/" className="hover:text-white transition-colors">Home</Link>
         <Link to="/games" className="hover:text-white transition-colors">Games</Link>
         <Link to="/hncker" className="hover:text-white transition-colors">HNCKER</Link>
+        <Link to="/hackolution" className="hover:text-white transition-colors">HACKOLUTION</Link>
         <Link to="/blogs" className="hover:text-white transition-colors">Blogs</Link>
         <a href="/sitemap.xml" className="hover:text-white transition-colors">Sitemap</a>
         <a href="/privacy-policy/" className="hover:text-white transition-colors">Privacy</a>

@@ -34,7 +34,7 @@ function faqJsonLd(pairs) {
 function breadcrumbJsonLd(slug, title) {
   const parts = slug.split('/')
   const section = parts.length>1 ? parts[0] : null
-  const sectionName = section==='hncker'?'HNCKER':section==='aiforrich'?'AIFORRICH':section==='aimakerich'?'AIMakeRich':section==='games'?'Games':section?section.charAt(0).toUpperCase()+section.slice(1):null
+  const sectionName = section==='hncker'?'HNCKER':section==='hackolution'?'HACKOLUTION':section==='aiforrich'?'AIFORRICH':section==='aimakerich'?'AIMakeRich':section==='games'?'Games':section?section.charAt(0).toUpperCase()+section.slice(1):null
   const items = [
     { '@type':'ListItem', position:1, name:'Home', item: SITE+'/' },
     ...(section?[{ '@type':'ListItem', position:2, name:sectionName, item: SITE+'/'+section+'/' }]:[]),
@@ -92,7 +92,7 @@ function ogImageForSlug(slug){
 
 const toolFiles = readdirSync(toolsDir).filter(f=>f.endsWith('.jsx')||f.endsWith('.tsx'))
 const template = readFileSync(join(dist,'index.html'),'utf-8')
-const SKIP_SLUGS = new Set(['games','contact','hncker','aimakerich','aiforrich','privacy-policy'])
+const SKIP_SLUGS = new Set(['games','contact','hncker','hackolution','aimakerich','aiforrich','privacy-policy'])
 
 let count=0
 for(const file of toolFiles){
@@ -306,6 +306,7 @@ function buildHtml(slug, title, desc, opts = {}) {
   const outDir = join(dist, slug); mkdirSync(outDir, { recursive: true }); writeFileSync(join(outDir, 'index.html'), html)
 }
 buildHtml('hncker','HNCKER - Apps, Tools, Instagram & Videos','Follow HNCKER on Instagram, browse the free security tools, watch our tech videos, and download free Android apps.', hnckerHubSeo())
+buildHtml('hackolution','HACKOLUTION - Hacking Tools, Apps, Instagram & Videos','Follow HACKOLUTION on Instagram, browse the free hacking & security tools, watch tech videos, and download free Android apps.', sectionHubSeo('hncker', 'HACKOLUTION Security Tools'))
 buildHtml('games','UpTools - Free Online Games','Play free online arcade, puzzle, card and word games on UpTools - Snake, Tetris, 2048, Pac-Man, Wordle and many more. No downloads, play in your browser.', gamesHubSeo())
 buildHtml('aimakerich','AIMakeRich - Finance, Investing & Trading Guides','AIMakeRich: practical money guides that match our Instagram reels. Learn investing, trading strategies and finance with real code, step-by-step processes, FAQs and how-tos.', sectionHubSeo('aimakerich', 'AIMakeRich Finance Guides'))
 buildHtml('aiforrich','AIFORRICH - Algo Trading, Pine Script & Crypto Trading Guides','AIFORRICH: Algo trading for international markets and crypto — reels + code guides. Practical quantitative trading strategies, Pine Script indicators, and automated execution bots with copy-paste code.', sectionHubSeo('aiforrich', 'AIFORRICH Trading Guides'))

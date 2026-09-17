@@ -89,7 +89,7 @@ for (const [pageFile, section] of [['HnckerPage.jsx', 'hncker'], ['AimakerichPag
 }
 
 // Section landing pages
-for (const [path, priority] of [['hncker', '0.6'], ['games', '0.6'], ['aimakerich', '0.6'], ['aiforrich', '0.6'], ['about', '0.5'], ['privacy-policy', '0.3']]) {
+for (const [path, priority] of [['hncker', '0.6'], ['hackolution', '0.6'], ['games', '0.6'], ['aimakerich', '0.6'], ['aiforrich', '0.6'], ['about', '0.5'], ['privacy-policy', '0.3']]) {
   urls.push({ loc: `${SITE}/${path}/`, priority, freq: 'weekly' })
 }
 
