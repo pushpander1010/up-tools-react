@@ -7724,6 +7724,58 @@
     "all",
     "security"
    ]
+  },
+  {
+   "slug": "hackolution/phunter",
+   "title": "Phunter — Phone Number OSINT Tool",
+   "icon": "🕵️",
+   "desc": "Look up public details of any phone number with Phunter (educational).",
+   "href": "/hackolution/phunter/",
+   "tags": [
+    "phunter",
+    "phone",
+    "osint",
+    "security"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
+  },
+  {
+   "slug": "hackolution/theharvester",
+   "title": "theHarvester — Email OSINT Tool",
+   "icon": "🌾",
+   "desc": "Harvest company emails and subdomains from public sources (educational).",
+   "href": "/hackolution/theharvester/",
+   "tags": [
+    "theharvester",
+    "email",
+    "osint",
+    "recon",
+    "security"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
+  },
+  {
+   "slug": "hackolution/seeker",
+   "title": "Seeker — Location Sharing Demo",
+   "icon": "📍",
+   "desc": "How location-sharing pages work and how to protect yourself (educational).",
+   "href": "/hackolution/seeker/",
+   "tags": [
+    "seeker",
+    "location",
+    "gps",
+    "security"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
   }
  ],
  "categories": {
