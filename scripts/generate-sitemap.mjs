@@ -13,6 +13,7 @@ const SITE = 'https://www.uptools.in'
 function mapSlug(slug) {
   // Nested sections: hncker_x.jsx → /hncker/x/, games handled by dir, aimakerich_x → /aimakerich/x/, aiforrich_x → /aiforrich/x/
   if (slug.startsWith('hncker-')) return `hncker/${slug.slice('hncker-'.length)}`
+  if (slug.startsWith('hackolution-')) return `hackolution/${slug.slice('hackolution-'.length)}`
   if (slug.startsWith('aimakerich-')) return `aimakerich/${slug.slice('aimakerich-'.length)}`
   if (slug.startsWith('aiforrich-')) return `aiforrich/${slug.slice('aiforrich-'.length)}`
   if (slug.startsWith('games-')) return `games/${slug.slice('games-'.length)}`
@@ -71,7 +72,7 @@ try {
 
 // Orphan hub entries: pages that exist in section-page arrays (HnckerPage etc.)
 // but were never added to tools.json (mosint, phunter found Sep 2026)
-for (const [pageFile, section] of [['HnckerPage.jsx', 'hncker'], ['AimakerichPage.jsx', 'aimakerich'], ['AiforrichPage.jsx', 'aiforrich']]) {
+for (const [pageFile, section] of [['HnckerPage.jsx', 'hncker'], ['HackolutionPage.jsx', 'hackolution'], ['AimakerichPage.jsx', 'aimakerich'], ['AiforrichPage.jsx', 'aiforrich']]) {
   try {
     const src = readFileSync(join(root, 'src/pages', pageFile), 'utf8')
     const m = src.match(/const tools = \[([\s\S]*?)\n\]/)

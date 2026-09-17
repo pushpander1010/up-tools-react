@@ -98,6 +98,7 @@ let count=0
 for(const file of toolFiles){
   let slug = file.replace(/\.(jsx|tsx)$/,'').replace(/_/g,'-').replace(/^tool-/,'')
   if(slug.startsWith('hncker-')) slug='hncker/'+slug.slice('hncker-'.length)
+  if(slug.startsWith('hackolution-')) slug='hackolution/'+slug.slice('hackolution-'.length)
   if(slug.startsWith('aimakerich-')) slug='aimakerich/'+slug.slice('aimakerich-'.length)
   if(slug.startsWith('aiforrich-')) slug='aiforrich/'+slug.slice('aiforrich-'.length)
   if(slug.startsWith('games-')) slug='games/'+slug.slice('games-'.length)
@@ -306,7 +307,7 @@ function buildHtml(slug, title, desc, opts = {}) {
   const outDir = join(dist, slug); mkdirSync(outDir, { recursive: true }); writeFileSync(join(outDir, 'index.html'), html)
 }
 buildHtml('hncker','HNCKER - Apps, Tools, Instagram & Videos','Follow HNCKER on Instagram, browse the free security tools, watch our tech videos, and download free Android apps.', hnckerHubSeo())
-buildHtml('hackolution','HACKOLUTION - Hacking Tools, Apps, Instagram & Videos','Follow HACKOLUTION on Instagram, browse the free hacking & security tools, watch tech videos, and download free Android apps.', sectionHubSeo('hncker', 'HACKOLUTION Security Tools'))
+buildHtml('hackolution','HACKOLUTION - Hacking Tools, Apps, Instagram & Videos','Follow HACKOLUTION on Instagram, browse the free hacking & security tools, watch tech videos, and download free Android apps.', sectionHubSeo('hackolution', 'HACKOLUTION Security Tools'))
 buildHtml('games','UpTools - Free Online Games','Play free online arcade, puzzle, card and word games on UpTools - Snake, Tetris, 2048, Pac-Man, Wordle and many more. No downloads, play in your browser.', gamesHubSeo())
 buildHtml('aimakerich','AIMakeRich - Finance, Investing & Trading Guides','AIMakeRich: practical money guides that match our Instagram reels. Learn investing, trading strategies and finance with real code, step-by-step processes, FAQs and how-tos.', sectionHubSeo('aimakerich', 'AIMakeRich Finance Guides'))
 buildHtml('aiforrich','AIFORRICH - Algo Trading, Pine Script & Crypto Trading Guides','AIFORRICH: Algo trading for international markets and crypto — reels + code guides. Practical quantitative trading strategies, Pine Script indicators, and automated execution bots with copy-paste code.', sectionHubSeo('aiforrich', 'AIFORRICH Trading Guides'))

@@ -1,5 +1,10 @@
 import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
+import InfiniteCarousel from '../components/InfiniteCarousel'
+
+const tools = [
+  { slug: 'nmap', name: 'Nmap', img: '/assets/tools/nmap/nmap_logo.png', alt: 'Nmap network scanner logo', desc: 'Map networks: host discovery, SYN scans, service and OS detection.', tag: 'Network scanner', accent: 'linear-gradient(135deg, rgba(27,255,110,0.2), rgba(0,200,180,0.08))' },
+]
 
 export default function HackolutionPage() {
   return (
@@ -42,6 +47,41 @@ export default function HackolutionPage() {
         <div className="relative flex flex-wrap gap-2 mt-5">
           <a href="https://www.instagram.com/hackolution" target="_blank" rel="noopener"
             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-neon/30 text-neon hover:bg-neon/10 hover:border-neon/50 transition-all no-underline">📸 @hackolution</a>
+          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-white/8 text-slate-300">🛠️ {tools.length} free tools</span>
+          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-white/8 text-slate-300">🎬 Weekly reels</span>
+        </div>
+      </div>
+
+      {/* Tools — Infinite Carousel */}
+      <div className="glass rounded-3xl mb-6 overflow-hidden" style={{ borderColor: 'rgba(27,255,110,0.1)' }}>
+        <div className="px-6 pt-6 pb-4 flex items-center justify-between gap-3 flex-wrap">
+          <div><h2 className="text-xl font-bold m-0">🛠️ HACKOLUTION Tools</h2><p className="text-xs text-slate-400 mt-1">Real guides with working examples — drag or swipe to browse.</p></div>
+        </div>
+        <div className="px-6 pb-6">
+          <InfiniteCarousel gap={16}>
+            {tools.map(t => (
+              <div key={t.slug} className="flex-none w-[340px] p-5 rounded-2xl flex flex-col"
+                style={{ background: t.accent, border: '1px solid rgba(255,255,255,0.08)' }}>
+                <div className="flex items-center gap-3 mb-3">
+                  <img src={t.img} alt={t.alt} loading="lazy" width="56" height="56"
+                    className="w-14 h-14 rounded-xl object-contain bg-black/30 p-1 border border-white/10"
+                    style={{ background: 'rgba(0,0,0,0.35)' }} />
+                  <div>
+                    <h3 className="text-lg font-bold m-0">{t.name}</h3>
+                    <span className="text-[11px] text-neon font-semibold uppercase tracking-wider">{t.tag}</span>
+                  </div>
+                </div>
+                <p className="text-xs text-slate-400 mb-4 flex-1">{t.desc}</p>
+                <div className="flex gap-2 flex-wrap">
+                  <Link to={`/hackolution/${t.slug}/`}
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-bold no-underline"
+                    style={{ background: 'linear-gradient(135deg, #1bff6e, #00ffa3)', color: '#080d1a' }}>📖 View Guide</Link>
+                  <a href="https://www.instagram.com/hackolution" target="_blank" rel="noopener"
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-bold no-underline bg-white/5 border border-white/10 text-slate-200 hover:text-white hover:border-neon/40 transition-all">▶ Reel</a>
+                </div>
+              </div>
+            ))}
+          </InfiniteCarousel>
         </div>
       </div>
     </>

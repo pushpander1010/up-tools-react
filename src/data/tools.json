@@ -7608,6 +7608,25 @@
     "all",
     "security"
    ]
+  },
+  {
+   "slug": "hackolution/nmap",
+   "title": "Nmap Network Scanner",
+   "icon": "🗺️",
+   "desc": "Scan your lab network with Nmap: host discovery, SYN scans, service detection (educational).",
+   "href": "/hackolution/nmap/",
+   "tags": [
+    "nmap",
+    "scanner",
+    "ports",
+    "recon",
+    "security",
+    "pentesting"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
   }
  ],
  "categories": {
