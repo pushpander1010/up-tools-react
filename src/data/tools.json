@@ -7627,6 +7627,103 @@
     "all",
     "security"
    ]
+  },
+  {
+   "slug": "hackolution/subfinder",
+   "title": "Subfinder Subdomain Finder",
+   "icon": "🌐",
+   "desc": "Passive subdomain discovery from dozens of public sources (educational).",
+   "href": "/hackolution/subfinder/",
+   "tags": [
+    "subfinder",
+    "subdomain",
+    "recon",
+    "discovery",
+    "osint",
+    "security",
+    "pentesting"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
+  },
+  {
+   "slug": "hackolution/sherlock",
+   "title": "Sherlock Username Hunter",
+   "icon": "🔎",
+   "desc": "Check your username across 400+ sites with Sherlock and clean your footprint (educational).",
+   "href": "/hackolution/sherlock/",
+   "tags": [
+    "sherlock",
+    "username",
+    "osint",
+    "footprint",
+    "privacy",
+    "security"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
+  },
+  {
+   "slug": "hackolution/hashcat",
+   "title": "Hashcat Password Cracker",
+   "icon": "🔑",
+   "desc": "GPU-accelerated password recovery — dictionary, brute-force and rules (educational).",
+   "href": "/hackolution/hashcat/",
+   "tags": [
+    "hashcat",
+    "password",
+    "crack",
+    "hash",
+    "gpu",
+    "security",
+    "pentesting"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
+  },
+  {
+   "slug": "hackolution/sqlmap",
+   "title": "SQLMap Injection Tester",
+   "icon": "💉",
+   "desc": "Find and exploit SQL injection on lab apps with SQLMap: confirm, enumerate, dump (educational).",
+   "href": "/hackolution/sqlmap/",
+   "tags": [
+    "sqlmap",
+    "sqli",
+    "injection",
+    "web",
+    "security",
+    "pentesting"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
+  },
+  {
+   "slug": "hackolution/holehe",
+   "title": "Holehe Email Checker",
+   "icon": "📭",
+   "desc": "Check where your email is registered across 120+ sites with Holehe (educational).",
+   "href": "/hackolution/holehe/",
+   "tags": [
+    "holehe",
+    "email",
+    "osint",
+    "accounts",
+    "breach",
+    "security"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
   }
  ],
  "categories": {

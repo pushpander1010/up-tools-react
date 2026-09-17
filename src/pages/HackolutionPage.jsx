@@ -4,6 +4,11 @@ import InfiniteCarousel from '../components/InfiniteCarousel'
 
 const tools = [
   { slug: 'nmap', name: 'Nmap', img: '/assets/tools/nmap/nmap_logo.png', alt: 'Nmap network scanner logo', desc: 'Map networks: host discovery, SYN scans, service and OS detection.', tag: 'Network scanner', accent: 'linear-gradient(135deg, rgba(27,255,110,0.2), rgba(0,200,180,0.08))' },
+  { slug: 'subfinder', name: 'Subfinder', img: '/assets/tools/subfinder/subfinder_logo.png', alt: 'Subfinder subdomain discovery logo', desc: 'Passive subdomain discovery from dozens of public sources.', tag: 'Subdomain recon', accent: 'linear-gradient(135deg, rgba(27,255,110,0.2), rgba(0,200,180,0.08))' },
+  { slug: 'sherlock', name: 'Sherlock', img: '/assets/tools/sherlock/sherlock_logo.png', alt: 'Sherlock username hunter logo', desc: 'Check your username across 400+ sites and clean your footprint.', tag: 'Username OSINT', accent: 'linear-gradient(135deg, rgba(179,102,255,0.2), rgba(27,255,110,0.08))' },
+  { slug: 'hashcat', name: 'Hashcat', img: '/assets/tools/hashcat/hashcat_logo.png', alt: 'Hashcat password cracker logo', desc: 'GPU-accelerated password recovery — dictionary, brute-force and rules.', tag: 'Password cracker', accent: 'linear-gradient(135deg, rgba(255,107,53,0.2), rgba(27,255,110,0.08))' },
+  { slug: 'sqlmap', name: 'SQLMap', img: '/assets/tools/sqlmap/sqlmap_logo.png', alt: 'SQLMap SQL injection tester logo', desc: 'Automate SQL injection on lab apps — confirm, enumerate, dump.', tag: 'SQL injection', accent: 'linear-gradient(135deg, rgba(255,107,53,0.2), rgba(0,200,180,0.08))' },
+  { slug: 'holehe', name: 'Holehe', img: '/assets/tools/holehe/holehe_logo.png', alt: 'Holehe email checker logo', desc: 'Check where your email is registered across 120+ sites.', tag: 'Email OSINT', accent: 'linear-gradient(135deg, rgba(255,102,204,0.2), rgba(27,255,110,0.08))' },
 ]
 
 export default function HackolutionPage() {
