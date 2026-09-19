@@ -28,25 +28,53 @@ export default function games_reaction_time() {
   })
   const startTimeRef = useRef(0)
   const timeoutRef = useRef(null)
+  const doneTimeoutRef = useRef(null)
 
+  const clearTimers = useCallback(() => {
+    if (timeoutRef.current) { clearTimeout(timeoutRef.current); timeoutRef.current = null }
+    if (doneTimeoutRef.current) { clearTimeout(doneTimeoutRef.current); doneTimeoutRef.current = null }
+  }, [])
 
-  const startRound = useCallback(() => {
-    playSelect()
+  // Never leave a pending green-flip or results timer running after unmount/restart
+  useEffect(() => () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current)
+    if (doneTimeoutRef.current) clearTimeout(doneTimeoutRef.current)
+  }, [])
+
+  const beginWaiting = useCallback(() => {
     setPhase('waiting')
     setCurrentTime(0)
     // Random delay between 1-4 seconds
     const delay = 1000 + Math.random() * 3000
     timeoutRef.current = setTimeout(() => {
+      timeoutRef.current = null
       setPhase('ready')
       startTimeRef.current = performance.now()
       playGo()
     }, delay)
   }, [])
 
+  const startRound = useCallback(() => {
+    clearTimers()
+    playSelect()
+    beginWaiting()
+  }, [clearTimers, beginWaiting])
+
+  // Shell Start / Play Again: full restart straight into round 1 (NOT idle —
+  // returning to idle re-fires the interstitial ad in a loop and never starts play)
+  const startGame = useCallback(() => {
+    clearTimers()
+    playSelect()
+    setResults([])
+    setCurrentRound(0)
+    setCurrentTime(0)
+    beginWaiting()
+  }, [clearTimers, beginWaiting])
+
   const handleClick = useCallback(() => {
     if (phase === 'waiting') {
       // Too early!
-      clearTimeout(timeoutRef.current)
+      if (timeoutRef.current) { clearTimeout(timeoutRef.current); timeoutRef.current = null }
       playTooEarly()
       setPhase('tooEarly')
       setCurrentTime(-1)
@@ -61,7 +89,9 @@ export default function games_reaction_time() {
 
       if (currentRound + 1 >= ROUNDS) {
         // Done
-        setTimeout(() => {
+        if (doneTimeoutRef.current) clearTimeout(doneTimeoutRef.current)
+        doneTimeoutRef.current = setTimeout(() => {
+          doneTimeoutRef.current = null
           const avg = Math.round(newResults.reduce((a, b) => a + b, 0) / newResults.length)
           const best = Math.min(...newResults)
           const newBest = Math.min(bestTime === Infinity ? best : bestTime, best)
@@ -82,13 +112,10 @@ export default function games_reaction_time() {
     }
   }, [phase, results, currentRound, bestTime, attempts, history])
 
-  const resetGame = useCallback(() => {
-    playSelect()
-    setPhase('idle')
-    setResults([])
-    setCurrentRound(0)
-    setCurrentTime(0)
-  }, [])
+  // Shell Exit / unmount safety: cancel any pending green-flip or results timer
+  const handleExit = useCallback(() => {
+    clearTimers()
+  }, [clearTimers])
 
   const continueRounds = useCallback(() => {
     playSelect()
@@ -121,11 +148,12 @@ export default function games_reaction_time() {
   return (
     <GameShell
       name="REACTION TIME"
-      startAction={resetGame} startLabel="⟲ Restart" 
+      startAction={startGame} startLabel="▶ Start" 
       title="Reaction Time Test - How Fast Are You?"
       desc="Reaction Time Test - How Fast Are You? - test your reaction speed! See how fast you, online free. Play online free, no download. Works on mobile and desktop."
       icon="⚡" iconBg="rgba(245,158,11,0.08)"
       category="fun" slug="games-reaction-time"
+      onExit={handleExit}
       faq={[
         { q: "How does the Reaction Time Test work?", a: "Click the screen when it turns green! Wait for the red screen to change, then click as fast as you can. Click too early and you'll need to restart the round." },
         { q: "What's a good reaction time?", a: "Under 200ms is lightning fast, 200-300ms is great, 300-400ms is average. Most people average around 250-350ms." },
@@ -162,7 +190,7 @@ export default function games_reaction_time() {
               <div className="text-xs text-slate-400 font-medium mt-0.5">Attempts</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-extrabold text-white">{currentRound + (phase === 'done' ? 0 : 1)}/{ROUNDS}</div>
+              <div className="text-2xl font-extrabold text-white">{Math.min(currentRound + 1, ROUNDS)}/{ROUNDS}</div>
               <div className="text-xs text-slate-400 font-medium mt-0.5">Round</div>
             </div>
           </div>
