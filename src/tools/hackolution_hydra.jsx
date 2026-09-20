@@ -134,21 +134,26 @@ export default function hackolution_hydra() {
     >
       <Helmet>
         <meta name="robots" content="index, follow" />
-        <meta property="og:image" content="https://www.uptools.in/assets/tools/hydra/hydra_scan.png" />
+        <meta property="og:image" content="https://i.ytimg.com/vi/Nq_5RH0LV5g/hqdefault.jpg" />
       </Helmet>
 
-      <Section id="video" icon="🎬" title="Video Tutorial" subtitle="Learn it on the HACKOLUTION channel">
+      <Section id="video" icon="🎬" title="Video Tutorial" subtitle="Watch on YouTube, then practice below in your lab">
         <div className="max-w-3xl mx-auto">
-          <a href="https://www.instagram.com/hackolution" target="_blank" rel="noopener noreferrer"
-            className="flex items-center gap-4 rounded-xl overflow-hidden border border-white/10 no-underline p-5 hover:border-neon/40 transition-all"
-            style={{ background: 'rgba(0,0,0,0.4)' }}>
-            <div className="w-14 h-14 rounded-full flex items-center justify-center shrink-0 text-2xl"
-              style={{ background: 'linear-gradient(135deg, #1bff6e, #00c8b4)' }}>📸</div>
-            <div>
-              <p className="text-sm font-semibold text-white m-0">Hydra — Password-Cracking Storm reel</p>
-              <p className="text-xs text-slate-400 m-0 mt-1">Watch the @hackolution Instagram reel, then practice below in your own lab.</p>
+          <div className="rounded-xl overflow-hidden border border-white/10" style={{ background: '#000' }}>
+            <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
+              <iframe src="https://www.youtube.com/embed/Nq_5RH0LV5g" title="Hydra Tutorial — Password Cracking Tool Explained — HNCKER"
+                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 0 }}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen loading="lazy" />
             </div>
-          </a>
+          </div>
+          <div className="flex gap-2 flex-wrap mt-3">
+            <a href="https://www.youtube.com/watch?v=Nq_5RH0LV5g" target="_blank" rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-bold no-underline"
+              style={{ background: '#ff0000', color: '#fff' }}>▶ Watch on YouTube</a>
+            <a href="https://www.instagram.com/hackolution" target="_blank" rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-bold no-underline bg-white/5 border border-white/10 text-slate-200 hover:text-white transition-all">📸 @hackolution</a>
+          </div>
         </div>
       </Section>
 
@@ -241,9 +246,9 @@ sudo apt install hydra`} />
 
       <Section id="screenshots" icon="🖼️" title="Screenshot" subtitle="Hydra in action">
         <figure className="rounded-xl overflow-hidden border border-white/10" style={{ background: 'rgba(0,0,0,0.3)' }}>
-          <img src="/assets/tools/hydra/hydra_scan.png" alt="Hydra terminal session" width="960" height="540"
+          <img src="https://i.ytimg.com/vi/Nq_5RH0LV5g/hqdefault.jpg" alt="hydra video tutorial thumbnail" width="480" height="360"
             className="w-full h-auto object-contain" loading="lazy" />
-          <figcaption className="px-4 py-2 text-xs text-slate-400">A Hydra run cracking a lab SSH login</figcaption>
+          <figcaption className="px-4 py-2 text-xs text-slate-400">Watch the full tutorial on YouTube — thumbnail from the HNCKER video</figcaption>
         </figure>
       </Section>
 
