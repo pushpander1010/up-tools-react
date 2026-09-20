@@ -21,11 +21,28 @@ const tools = [
   { slug: 'wireshark', name: 'Wireshark', img: '/assets/tools/wireshark/wireshark_logo.png', alt: 'Wireshark packet analyzer logo', desc: 'Capture and read packets: filters, TCP streams, plaintext vs TLS.', tag: 'Packet analyzer', accent: 'linear-gradient(135deg, rgba(34,197,94,0.2), rgba(27,255,110,0.08))' },
 ]
 
-// YouTube videos come from the HNCKER channel (@hncker) — shared video library
+// YouTube videos from the HNCKER channel (@hncker) — newest first, Sep 2026
 const ytVideos = [
-  { id: 'E-6uJ0j3xMo', title: 'Subfinder Tutorial — Find Every Subdomain (Full Guide) | HNCKER', sub: 'Web recon · subdomain discovery' },
-  { id: 'H8dwJpti6jg', title: 'ffuf Tutorial — Find Hidden Pages & Directories (Full Guide) | HNCKER', sub: 'Content discovery · web fuzzing' },
-  { id: 'wB-Jvz__0B4', title: 'Hashcat Tutorial — Crack Passwords with GPU (Full Guide) | HNCKER', sub: 'Password recovery · GPU cracking' },
+  { id: 'M6Ayf2vQusg', title: 'SQLMap Full Tutorial — Database Hacking Explained Step by Step | HNCKER', sub: 'SQL injection · database hacking' },
+  { id: 'TrgZxWYMLMc', title: 'Netcat Full Tutorial — Swiss Army Knife Explained Step by Step | HNCKER', sub: 'Networking · shells & transfers' },
+  { id: 'rzjEnnUSBOU', title: 'Nmap Full Tutorial — Network Scanning Explained Step by Step | HNCKER', sub: 'Network scanner · recon' },
+  { id: 'ZNo_K3bMIZo', title: 'How to Use Metasploit: Complete Beginner to Pro Guide | HNCKER', sub: 'Exploit framework · Meterpreter' },
+  { id: 'qeMPvVaS7vQ', title: 'Wireshark Full Tutorial — Capture Filter and Analyze Packets | HNCKER', sub: 'Packet analyzer · filters' },
+  { id: '9O7mMNf2NUc', title: 'GhostTrack Tutorial — Phone IP and Username OSINT Explained | HNCKER', sub: 'OSINT · phone & IP tracking' },
+  { id: '4G1FpK9HWz8', title: 'What is a DDoS Attack? Full Breakdown | HNCKER', sub: 'DDoS layers · defense' },
+  { id: 'V-VIp0P5ZTw', title: 'What is hping3 | HPing3 Tutorial — Packet Crafting & Network Testing | HNCKER', sub: 'Packet crafting · firewall testing' },
+  { id: 'cpQo8hKoql0', title: 'Seeker GPS Tracking — How Hackers Track a Phone With One Link | HNCKER', sub: 'GPS locator · defense' },
+  { id: 'twT8WPbr2sk', title: 'How Hackers Find Vulnerabilities — The 6-Step Method Explained | HNCKER', sub: 'Vuln hunting · method' },
+  { id: 'iS_wySR3soo', title: 'Net-C2 Tutorial — Command and Control Framework Explained | HNCKER', sub: 'Botnet C2 · how it works' },
+  { id: 'VZK6huQ0NvQ', title: 'WhatsOSINT Tutorial — Check if a Number Is on WhatsApp | HNCKER', sub: 'WhatsApp OSINT · number lookup' },
+  { id: 'mprTO_jh0QA', title: 'How to Root Android the Right Way | Magisk Bootloader Full Guide | HNCKER', sub: 'Rooting · Magisk guide' },
+  { id: 'GKoWjCmPZEM', title: 'Pegasus Pro Tutorial | Android Penetration Testing Toolkit Explained | HNCKER', sub: 'Android pentest · toolkit' },
+  { id: '51LOrmRV8Uk', title: 'STRIX Tutorial | AI Penetration Testing Framework Explained | HNCKER', sub: 'AI pentest · autonomous agents' },
+  { id: 'AR7f6Ln-MHY', title: 'ExifTool Tutorial | Extract Hidden Photo Data and GPS Location | HNCKER', sub: 'Image metadata · privacy' },
+  { id: 'wB-Jvz__0B4', title: 'Hashcat Tutorial | How Hackers Crack Passwords with GPU | HNCKER', sub: 'Password recovery · GPU cracking' },
+  { id: 'H8dwJpti6jg', title: 'ffuf Tutorial | Find Hidden Pages and Directories Full Guide | HNCKER', sub: 'Content discovery · web fuzzing' },
+  { id: 'E-6uJ0j3xMo', title: 'Subfinder Tutorial | Find Every Subdomain of a Website | HNCKER', sub: 'Web recon · subdomain discovery' },
+  { id: '7e9CTa9sVmE', title: 'APKLeaks Tutorial | Scan APK Files for Secrets and Endpoints | HNCKER', sub: 'APK scanner · secrets' },
 ]
 
 // Instagram reels are @hackolution only (verified link; more added as they publish)
@@ -88,8 +105,8 @@ export default function HackolutionPage() {
           <div className="text-xl font-extrabold my-1"
             style={{ background: 'linear-gradient(135deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>@hackolution</div>
           <div className="flex gap-6 mt-2">
-            <div className="text-center"><b className="block text-white text-lg">Cyber</b><span className="text-[11px] text-slate-400 uppercase tracking-wider">niche</span></div>
-            <div className="text-center"><b className="block text-white text-lg">Weekly</b><span className="text-[11px] text-slate-400 uppercase tracking-wider">reels</span></div>
+            <div className="text-center"><b className="block text-white text-lg">19.6K</b><span className="text-[11px] text-slate-400 uppercase tracking-wider">followers</span></div>
+            <div className="text-center"><b className="block text-white text-lg">Cyber/AI</b><span className="text-[11px] text-slate-400 uppercase tracking-wider">niche</span></div>
           </div>
         </div>
         <div className="flex gap-2 flex-wrap">
