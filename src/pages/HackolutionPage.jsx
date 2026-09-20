@@ -21,21 +21,33 @@ const tools = [
   { slug: 'wireshark', name: 'Wireshark', img: '/assets/tools/wireshark/wireshark_logo.png', alt: 'Wireshark packet analyzer logo', desc: 'Capture and read packets: filters, TCP streams, plaintext vs TLS.', tag: 'Packet analyzer', accent: 'linear-gradient(135deg, rgba(34,197,94,0.2), rgba(27,255,110,0.08))' },
 ]
 
+// YouTube videos come from the HNCKER channel (@hncker) — shared video library
+const ytVideos = [
+  { id: 'E-6uJ0j3xMo', title: 'Subfinder Tutorial — Find Every Subdomain (Full Guide) | HNCKER', sub: 'Web recon · subdomain discovery' },
+  { id: 'H8dwJpti6jg', title: 'ffuf Tutorial — Find Hidden Pages & Directories (Full Guide) | HNCKER', sub: 'Content discovery · web fuzzing' },
+  { id: 'wB-Jvz__0B4', title: 'Hashcat Tutorial — Crack Passwords with GPU (Full Guide) | HNCKER', sub: 'Password recovery · GPU cracking' },
+]
+
+// Instagram reels are @hackolution only (verified link; more added as they publish)
+const igReels = [
+  { sc: 'DdeDctagX3Q', title: 'Stop posting photos online until you watch this — hidden tracking data in every picture', views: 'See reel' },
+]
+
 export default function HackolutionPage() {
   return (
     <>
       <Helmet>
-        <title>HACKOLUTION - Hacking Tools, Apps, Instagram & Videos</title>
-        <meta name="description" content="Follow HACKOLUTION on Instagram for hacking, tools and tech videos. New content coming soon." />
+        <title>HACKOLUTION - Tools, Instagram & YouTube Videos</title>
+        <meta name="description" content="Follow HACKOLUTION on Instagram, browse the free security tools, and watch full tutorials on YouTube." />
         <link rel="canonical" href="https://www.uptools.in/hackolution/" />
-        <meta property="og:title" content="HACKOLUTION - Hacking Tools, Apps, Instagram & Videos | UpTools" />
-        <meta property="og:description" content="Follow HACKOLUTION on Instagram for hacking, tools and tech videos. New content coming soon." />
+        <meta property="og:title" content="HACKOLUTION - Tools, Instagram & YouTube Videos | UpTools" />
+        <meta property="og:description" content="Follow HACKOLUTION on Instagram, browse the free security tools, and watch full tutorials on YouTube." />
         <meta property="og:url" content="https://www.uptools.in/hackolution/" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="UpTools" />
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="HACKOLUTION - Hacking Tools, Apps, Instagram & Videos | UpTools" />
-        <meta name="twitter:description" content="Follow HACKOLUTION on Instagram for hacking, tools and tech videos. New content coming soon." />
+        <meta name="twitter:title" content="HACKOLUTION - Tools, Instagram & YouTube Videos | UpTools" />
+        <meta name="twitter:description" content="Follow HACKOLUTION on Instagram, browse the free security tools, and watch full tutorials on YouTube." />
       </Helmet>
 
       {/* Breadcrumb */}
@@ -56,14 +68,35 @@ export default function HackolutionPage() {
             style={{ boxShadow: '0 8px 32px rgba(27,255,110,0.35)', border: '1px solid rgba(27,255,110,0.4)' }} />
           <div>
             <h1 className="text-3xl sm:text-4xl font-black tracking-tight m-0 lowercase"><span className="text-white">hack</span><span style={{ color: '#1bff6e' }}>olution</span></h1>
-            <p className="text-slate-400 text-sm mt-1">New content coming soon.</p>
+            <p className="text-slate-400 text-sm mt-1">No-nonsense hacking, tools & videos.</p>
           </div>
         </div>
         <div className="relative flex flex-wrap gap-2 mt-5">
           <a href="https://www.instagram.com/hackolution" target="_blank" rel="noopener"
             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-neon/30 text-neon hover:bg-neon/10 hover:border-neon/50 transition-all no-underline">📸 @hackolution</a>
           <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-white/8 text-slate-300">🛠️ {tools.length} free tools</span>
-          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-white/8 text-slate-300">🎬 Weekly reels</span>
+          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-white/8 text-slate-300">🎬 Weekly videos</span>
+          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-white/8 text-slate-300">📸 Instagram</span>
+        </div>
+      </div>
+
+      {/* Instagram CTA */}
+      <div className="glass rounded-3xl p-7 mb-6 flex flex-col sm:flex-row items-center justify-between gap-5"
+        style={{ background: 'linear-gradient(135deg, rgba(253,186,116,0.04), rgba(214,41,118,0.04), rgba(150,47,191,0.04))', borderColor: 'rgba(214,41,118,0.12)' }}>
+        <div>
+          <h2 className="text-xl font-bold m-0">Follow us on Instagram</h2>
+          <div className="text-xl font-extrabold my-1"
+            style={{ background: 'linear-gradient(135deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>@hackolution</div>
+          <div className="flex gap-6 mt-2">
+            <div className="text-center"><b className="block text-white text-lg">Cyber</b><span className="text-[11px] text-slate-400 uppercase tracking-wider">niche</span></div>
+            <div className="text-center"><b className="block text-white text-lg">Weekly</b><span className="text-[11px] text-slate-400 uppercase tracking-wider">reels</span></div>
+          </div>
+        </div>
+        <div className="flex gap-2 flex-wrap">
+          <a href="https://www.instagram.com/hackolution" target="_blank" rel="noopener" className="glow-btn text-sm px-5 py-2.5 rounded-xl no-underline"
+            style={{ background: 'linear-gradient(92deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5)' }}>Instagram ↗</a>
+          <a href="https://www.youtube.com/@hncker" target="_blank" rel="noopener" className="glow-btn text-sm px-5 py-2.5 rounded-xl no-underline"
+            style={{ background: '#ff0000' }}>▶ YouTube</a>
         </div>
       </div>
 
@@ -91,10 +124,64 @@ export default function HackolutionPage() {
                   <Link to={`/hackolution/${t.slug}/`}
                     className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-bold no-underline"
                     style={{ background: 'linear-gradient(135deg, #1bff6e, #00ffa3)', color: '#080d1a' }}>📖 View Guide</Link>
-                  <a href="https://www.instagram.com/hackolution" target="_blank" rel="noopener"
-                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-bold no-underline bg-white/5 border border-white/10 text-slate-200 hover:text-white hover:border-neon/40 transition-all">▶ Reel</a>
+                  <a href={`https://www.youtube.com/@hncker`} target="_blank" rel="noopener"
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-bold no-underline bg-white/5 border border-white/10 text-slate-200 hover:text-white hover:border-neon/40 transition-all">▶ Tutorial</a>
                 </div>
               </div>
+            ))}
+          </InfiniteCarousel>
+        </div>
+      </div>
+
+      {/* Latest YouTube Videos — Infinite Carousel (HNCKER channel) */}
+      <div className="glass rounded-3xl mb-6 overflow-hidden" style={{ borderColor: 'rgba(27,255,110,0.1)' }}>
+        <div className="px-6 pt-6 pb-4 flex items-center justify-between gap-3 flex-wrap">
+          <div><h2 className="text-xl font-bold m-0">🎬 Latest YouTube Videos</h2><p className="text-xs text-slate-400 mt-1">Full tutorials — not shorts.</p></div>
+          <a href="https://www.youtube.com/@hncker" target="_blank" rel="noopener"
+            className="px-3 py-1.5 rounded-full text-xs font-semibold bg-white/4 border border-white/8 text-slate-400 hover:text-white hover:border-white/12 transition-all no-underline">All on YouTube ↗</a>
+        </div>
+        <div className="px-6 pb-6">
+          <InfiniteCarousel gap={16}>
+            {ytVideos.map(v => (
+              <a key={v.id} href={`https://www.youtube.com/watch?v=${v.id}`} target="_blank" rel="noopener"
+                className="flex-none w-[300px] rounded-2xl overflow-hidden border border-white/8 hover:border-neon/30 transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-neon/5 no-underline group"
+                style={{ background: 'rgba(17,24,39,0.6)' }}>
+                <div className="relative aspect-video bg-black overflow-hidden">
+                  <img src={`https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`} alt={v.title} loading="lazy"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <span className="absolute inset-0 flex items-center justify-center text-4xl text-white bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">▶</span>
+                </div>
+                <div className="p-4">
+                  <div className="text-sm font-semibold text-white line-clamp-2 mb-1">{v.title}</div>
+                  <div className="text-xs text-slate-400">{v.sub}</div>
+                </div>
+              </a>
+            ))}
+          </InfiniteCarousel>
+        </div>
+      </div>
+
+      {/* Latest Instagram Reels — @hackolution */}
+      <div className="glass rounded-3xl mb-6 overflow-hidden" style={{ borderColor: 'rgba(214,41,118,0.12)' }}>
+        <div className="px-6 pt-6 pb-4 flex items-center justify-between gap-3 flex-wrap">
+          <div><h2 className="text-xl font-bold m-0">📸 Latest Instagram Reels</h2><p className="text-xs text-slate-400 mt-1">Quick lessons from @hackolution.</p></div>
+          <a href="https://www.instagram.com/hackolution" target="_blank" rel="noopener"
+            className="px-3 py-1.5 rounded-full text-xs font-semibold bg-white/4 border border-white/8 text-slate-400 hover:text-white hover:border-white/12 transition-all no-underline">All reels ↗</a>
+        </div>
+        <div className="px-6 pb-6">
+          <InfiniteCarousel gap={16}>
+            {igReels.map((r) => (
+              <a key={r.sc} href={`https://www.instagram.com/reel/${r.sc}/`} target="_blank" rel="noopener"
+                className="flex-none w-[300px] rounded-2xl overflow-hidden border border-white/8 hover:border-[#d62976]/40 transition-all hover:-translate-y-1 hover:shadow-xl no-underline group"
+                style={{ background: 'linear-gradient(135deg, rgba(214,41,118,0.12), rgba(17,24,39,0.6))' }}>
+                <div className="relative aspect-video bg-black overflow-hidden flex items-center justify-center">
+                  <span className="text-4xl text-white bg-black/30 group-hover:scale-110 transition-transform duration-300">▶</span>
+                </div>
+                <div className="p-4">
+                  <div className="text-sm font-semibold text-white line-clamp-2 mb-1">{r.title}</div>
+                  <div className="text-xs text-slate-400">@hackolution · Instagram Reel</div>
+                </div>
+              </a>
             ))}
           </InfiniteCarousel>
         </div>
