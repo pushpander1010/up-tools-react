@@ -68,29 +68,37 @@ export default function ambala_land_map() {
     return () => { dead = true }
   }, [geo])
 
-  // draw clickable vectors
+  // draw clickable vectors (retry until map + data both ready)
   useEffect(() => {
-    const map = mapObj.current
-    if (!map || !window.L || !plotData) return
-    const L = window.L
-    const { plotLayer } = layersRef.current
-    plotLayer.clearLayers()
-    layersRef.current.plots = {}
-    plotData.plots.forEach(p => {
-      const poly = L.polygon(p.b, {
-        color: p.g ? '#60a5fa' : '#34d399', weight: 1.5, fillOpacity: 0.35,
-        fillColor: p.g ? '#3b82f6' : '#10b981',
-      })
-      poly.bindTooltip(`Khasra ${p.k}`)
-      poly.on('click', () => {
-        const listing = mine.find(m => m.khasra === p.k)
-        setSel({ ...p, listing })
-        jumpTo()
-      })
-      layersRef.current.plots[p.k] = poly
-      plotLayer.addLayer(poly)
-    })
-  }, [plotData, mine])
+    if (!plotData || !window.L) return
+    let tries = 0
+    const t = setInterval(() => {
+      const map = mapObj.current
+      tries++
+      if (map) {
+        clearInterval(t)
+        const L = window.L
+        const { plotLayer } = layersRef.current
+        plotLayer.clearLayers()
+        layersRef.current.plots = {}
+        plotData.plots.forEach(p => {
+          const poly = L.polygon(p.b, {
+            color: p.g ? '#60a5fa' : '#34d399', weight: 2, fillOpacity: 0.4,
+            fillColor: p.g ? '#3b82f6' : '#10b981',
+          })
+          poly.bindTooltip(`Khasra ${p.k}`)
+          poly.on('click', () => {
+            const listing = JSON.parse(localStorage.getItem('ambala-land-mine') || '[]').find(m => m.khasra === p.k)
+            setSel({ ...p, listing })
+            jumpTo()
+          })
+          layersRef.current.plots[p.k] = poly
+          plotLayer.addLayer(poly)
+        })
+      } else if (tries > 50) clearInterval(t)
+    }, 200)
+    return () => clearInterval(t)
+  }, [plotData])
 
   useEffect(() => {
     const map = mapObj.current
