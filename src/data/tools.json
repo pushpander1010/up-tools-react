@@ -7942,6 +7942,32 @@
         "education",
         "india"
       ]
+    },
+    {
+      "slug": "ambala-land-map",
+      "title": "Ambala Land Map - Tundla and Kalarheri",
+      "icon": "map",
+      "desc": "Real Haryana Bhunaksha cadastral maps of Tundla and Kalarheri villages near Defence Colony Ambala with khasra, owner, price and fraud-check links.",
+      "href": "/ambala-land-map/",
+      "tags": [
+        "ambala",
+        "land",
+        "map",
+        "khasra",
+        "jamabandi",
+        "bhunaksha",
+        "tundla",
+        "kalarheri",
+        "property",
+        "plot",
+        "haryana",
+        "india"
+      ],
+      "cats": [
+        "all",
+        "india",
+        "tools"
+      ]
     }
   ],
   "categories": {
