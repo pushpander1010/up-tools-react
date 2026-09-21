@@ -30,6 +30,8 @@ export default function ambala_land_map() {
   const [ready, setReady] = useState(false)
   const [geo, setGeo] = useState(null)
   const [plotData, setPlotData] = useState(null)
+  const [kalData, setKalData] = useState(null)
+  const activeData = village === 'kalarheri' ? kalData : village === 'both' ? null : plotData
   const [village, setVillage] = useState('tundla')
   const [sat, setSat] = useState(false)
   const [raster, setRaster] = useState(true)
@@ -44,6 +46,7 @@ export default function ambala_land_map() {
   useEffect(() => {
     fetch('/ambala-land/villages.json').then(r => r.json()).then(setGeo).catch(() => {})
     fetch('/ambala-land/tundla_plots.json').then(r => r.json()).then(setPlotData).catch(() => {})
+    fetch('/ambala-land/kalarheri_plots.json').then(r => r.json()).then(setKalData).catch(() => {})
   }, [])
 
   useEffect(() => {
@@ -69,8 +72,13 @@ export default function ambala_land_map() {
   }, [geo])
 
   // draw clickable vectors (retry until map + data both ready)
+  // 'both' view draws Tundla + Kalarheri together with village tag
   useEffect(() => {
-    if (!plotData || !window.L) return
+    if (!window.L) return
+    const datasets = village === 'both'
+      ? [{ data: plotData, v: 'tundla' }, { data: kalData, v: 'kalarheri' }].filter(d => d.data)
+      : [{ data: activeData, v: village }].filter(d => d.data)
+    if (!datasets.length) return
     let tries = 0
     const t = setInterval(() => {
       const map = mapObj.current
@@ -81,24 +89,28 @@ export default function ambala_land_map() {
         const { plotLayer } = layersRef.current
         plotLayer.clearLayers()
         layersRef.current.plots = {}
-        plotData.plots.forEach(p => {
-          const poly = L.polygon(p.b, {
-            color: p.g ? '#60a5fa' : '#34d399', weight: 2, fillOpacity: 0.4,
-            fillColor: p.g ? '#3b82f6' : '#10b981',
+        datasets.forEach(({ data, v }) => {
+          data.plots.forEach(p => {
+            const noOwner = !p.o || /FETCH_ERROR/.test(p.o)
+            const poly = L.polygon(p.b, {
+              color: noOwner ? '#9ca3af' : p.g ? '#60a5fa' : '#34d399', weight: 2, fillOpacity: 0.4,
+              fillColor: noOwner ? '#6b7280' : p.g ? '#3b82f6' : '#10b981',
+            })
+            poly.bindTooltip(`Khasra ${p.k} (${VILLAGE_META[v].name})`)
+            poly.on('click', () => {
+              const listing = JSON.parse(localStorage.getItem('ambala-land-mine') || '[]').find(m => m.khasra === `${v}:${p.k}` || m.khasra === p.k)
+              setSel({ ...p, village: v, listing })
+              jumpTo()
+            })
+            layersRef.current.plots[`${v}:${p.k}`] = poly
+            layersRef.current.plots[p.k] = layersRef.current.plots[p.k] || poly
+            plotLayer.addLayer(poly)
           })
-          poly.bindTooltip(`Khasra ${p.k}`)
-          poly.on('click', () => {
-            const listing = JSON.parse(localStorage.getItem('ambala-land-mine') || '[]').find(m => m.khasra === p.k)
-            setSel({ ...p, listing })
-            jumpTo()
-          })
-          layersRef.current.plots[p.k] = poly
-          plotLayer.addLayer(poly)
         })
       } else if (tries > 50) clearInterval(t)
     }, 200)
     return () => clearInterval(t)
-  }, [plotData])
+  }, [plotData, kalData, village])
 
   useEffect(() => {
     const map = mapObj.current
@@ -115,22 +127,27 @@ export default function ambala_land_map() {
   }, [village, sat, raster, geo])
 
   const findPlot = () => {
-    const poly = layersRef.current.plots[q.trim()]
+    const key = q.trim()
     const map = mapObj.current
+    const poly = layersRef.current.plots[`${village}:${key}`] || layersRef.current.plots[key]
     if (poly && map) {
       map.fitBounds(poly.getBounds().pad(0.6))
       poly.fire('click')
-    }
+    } else alert(`Khasra ${key} not in the loaded dataset yet - check spelling like 12//15 or try the other village.`)
   }
 
   const addListing = () => {
-    if (!form.khasra.trim() || !plotData) return
-    const match = plotData.plots.find(p => p.k === form.khasra.trim())
-    if (!match) { alert(`Khasra ${form.khasra} not in the ${plotData.count}-plot dataset yet. Full village sweep still running - check spelling like 12//15.`); return }
-    const arr = [...mine.filter(m => m.khasra !== match.k), { khasra: match.k, price: form.price, phone: form.phone }]
+    const key = form.khasra.trim()
+    if (!key || (!plotData && !kalData)) return
+    const tMatch = plotData?.plots.find(p => p.k === key)
+    const kMatch = kalData?.plots.find(p => p.k === key)
+    if (!tMatch && !kMatch) { alert(`Khasra ${key} not in the loaded datasets yet - check spelling like 12//15.`); return }
+    const v = tMatch ? 'tundla' : 'kalarheri'
+    const match = tMatch || kMatch
+    const arr = [...mine.filter(m => m.khasra !== `${v}:${match.k}` && m.khasra !== match.k), { khasra: `${v}:${match.k}`, price: form.price, phone: form.phone }]
     setMine(arr)
     try { localStorage.setItem('ambala-land-mine', JSON.stringify(arr)) } catch {}
-    setSel({ ...match, listing: arr.find(m => m.khasra === match.k) })
+    setSel({ ...match, village: v, listing: arr.find(m => m.khasra === `${v}:${match.k}`) })
     setForm({ khasra: '', price: '', phone: '' })
     jumpTo()
   }
@@ -138,12 +155,13 @@ export default function ambala_land_map() {
   const jamabandiUrl = 'https://jamabandi.nic.in/'
   const bhunakshaUrl = 'https://maps.revenueharyana.gov.in/home'
   const collectorUrl = 'https://ambala.gov.in/document-category/collector-rate/'
-  const nPriv = plotData ? plotData.plots.filter(p => !p.g).length : 0
+  const nPriv = (plotData ? plotData.plots.filter(p => !p.g && p.o).length : 0) + (kalData ? kalData.plots.filter(p => !p.g && p.o).length : 0)
+  const selVName = VILLAGE_META[sel?.village]?.name || (village !== 'both' ? VILLAGE_META[village]?.name : null) || 'Tundla'
 
   return (
     <ToolLayout
       title="Ambala Land Map - Tundla & Kalarheri"
-      desc={`Ambala land map: ${plotData ? plotData.count : ''} real Bhunaksha plots of Tundla (02871) with govt-record owners - click any plot for khasra, owner, area. Kalarheri raster overlay live, clickable plots next. Free, no sign-up.`}
+      desc={`Ambala land map: ${plotData ? plotData.count : ''} Tundla + ${kalData ? kalData.count : ''} Kalarheri real Bhunaksha plots - click any plot for khasra, owner, area. Free, no sign-up.`}
       icon="🗺️" iconBg="rgba(16,185,129,0.08)"
       category="india" slug="ambala-land-map"
       faq={[
@@ -151,7 +169,7 @@ export default function ambala_land_map() {
         { q: 'Why do plots look like boxes, not exact shapes?', a: 'This POC uses plot bounding boxes from the govt point-lookup API. Exact polygon shapes come next from the full village sweep. Position and khasra numbers are exact.' },
         { q: 'Where do phone numbers and prices come from?', a: 'Govt records never publish phone numbers or market prices. Those appear only when a seller lists them on a khasra via the form below. Collector rate (minimum registry price) is on ambala.gov.in.' },
         { q: 'How do I verify a plot before buying?', a: 'Click the plot, note khasra + owner, check the same khasra on Jamabandi (jamabandi.nic.in), match seller Aadhaar name with the owner, confirm all co-owners agree, and check pending mutations with the patwari.' },
-        { q: 'Which villages are covered?', a: `Tundla (02871, Ambala Cantt) has ${plotData ? plotData.count : ''} clickable plots live with owners on most. Kalarheri (02869) raster overlay is live; its ~1000 clickable plots resume when the govt portal is back.` },
+        { q: 'Which villages are covered?', a: `Tundla (02871, Ambala Cantt): ${plotData ? plotData.count : ''} clickable plots with owners on most. Kalarheri (02869): ${kalData ? kalData.count : ''} clickable plots live (owners pending, govt portal was down); ~900 more resume when the portal is back.` },
       ]}
       howItWorks={[
         'Zoom into Tundla - every plot is a clickable vector with its khasra number.',
@@ -167,7 +185,7 @@ export default function ambala_land_map() {
     >
       <div className="space-y-4">
         <div className="flex flex-wrap gap-2 items-center">
-          {[['tundla', `Tundla (${plotData ? plotData.count : '…'} plots)`], ['kalarheri', 'Kalarheri (raster)'], ['both', 'Both']].map(([k, label]) => (
+          {[['tundla', `Tundla (${plotData ? plotData.count : '…'} plots)`], ['kalarheri', `Kalarheri (${kalData ? kalData.count : '…'} plots)`], ['both', 'Both']].map(([k, label]) => (
             <button key={k} onClick={() => setVillage(k)}
               className={`px-4 py-2 rounded-xl text-sm font-bold transition-all ${village === k ? 'bg-emerald-500 text-white' : 'bg-white/[0.06] text-slate-300 hover:bg-white/[0.1]'}`}>{label}</button>
           ))}
@@ -181,7 +199,7 @@ export default function ambala_land_map() {
         </div>
 
         <div className="rounded-xl border border-amber-500/25 bg-amber-500/[0.06] px-4 py-2.5 text-xs text-amber-200/90 leading-relaxed">
-          Live: 453 Tundla plots, owners on 385. 68 plots show grey until the govt portal is back. Kalarheri raster live, ~1000 clickable plots next.
+          Live: 453 Tundla plots (owners on 385) + 118 Kalarheri plots (owners pending, portal was down). Grey plots fill in when the govt portal is back.
         </div>
 
         <div className="flex gap-2">
@@ -201,7 +219,7 @@ export default function ambala_land_map() {
                   {sel.g ? 'Govt / common land' : 'Private owner (govt record)'}
                 </span>
                 {sel.listing?.price && <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-amber-500/15 text-amber-300">For sale: {sel.listing.price}</span>}
-                <h3 className="text-base font-extrabold text-white m-0">Khasra {sel.k} — Tundla</h3>
+                <h3 className="text-base font-extrabold text-white m-0">Khasra {sel.k} — {selVName}</h3>
               </div>
               <p className="text-sm text-slate-300 leading-relaxed mt-1">{sel.o && !/FETCH_ERROR/.test(sel.o) ? sel.o : 'Owner record pending — govt portal was down during fetch. Verify this khasra on Jamabandi directly.'}</p>
               {sel.listing && (
