@@ -7968,6 +7968,105 @@
         "india",
         "tools"
       ]
+    },
+    {
+      "slug": "hackolution/ffuf",
+      "title": "ffuf Web Fuzzer",
+      "icon": "🔎",
+      "desc": "Fast web content discovery & parameter fuzzing — find hidden pages (educational).",
+      "href": "/hackolution/ffuf/",
+      "tags": [
+        "ffuf",
+        "fuzzing",
+        "discovery",
+        "web",
+        "recon",
+        "security",
+        "pentesting"
+      ],
+      "cats": [
+        "all",
+        "security"
+      ]
+    },
+    {
+      "slug": "hackolution/apkleaks",
+      "title": "APKLeaks Android Scanner",
+      "icon": "📱",
+      "desc": "Extract URLs, API endpoints & secrets from Android APKs (educational).",
+      "href": "/hackolution/apkleaks/",
+      "tags": [
+        "apkleaks",
+        "android",
+        "apk",
+        "secrets",
+        "security",
+        "pentesting"
+      ],
+      "cats": [
+        "all",
+        "security"
+      ]
+    },
+    {
+      "slug": "hackolution/hping3",
+      "title": "hping3 Packet Crafting & Stress-Testing",
+      "icon": "📡",
+      "desc": "Craft raw TCP/UDP/ICMP packets, scan ports and stress-test firewalls (educational).",
+      "href": "/hackolution/hping3/",
+      "tags": [
+        "hping3",
+        "packet",
+        "network",
+        "firewall",
+        "flood",
+        "security",
+        "pentesting"
+      ],
+      "cats": [
+        "all",
+        "security"
+      ]
+    },
+    {
+      "slug": "hackolution/ddos",
+      "title": "How Hackers DDoS, Professionally",
+      "icon": "🌊",
+      "desc": "Understand how DDoS attacks work: volumetric floods, protocol SYN floods, and application-layer slowloris — plus how to defend with rate limits, load balancers, and a CDN (educational).",
+      "href": "/hackolution/ddos/",
+      "tags": [
+        "ddos",
+        "dos",
+        "syn-flood",
+        "slowloris",
+        "botnet",
+        "network",
+        "how-to",
+        "tutorial"
+      ],
+      "cats": [
+        "all",
+        "security"
+      ]
+    },
+    {
+      "slug": "hackolution/mosint",
+      "title": "Mosint Email OSINT",
+      "icon": "🛡️",
+      "desc": "Map an email to breach dumps and linked accounts with Mosint (educational).",
+      "href": "/hackolution/mosint/",
+      "tags": [
+        "mosint",
+        "email",
+        "osint",
+        "breach",
+        "privacy",
+        "security"
+      ],
+      "cats": [
+        "all",
+        "security"
+      ]
     }
   ],
   "categories": {
