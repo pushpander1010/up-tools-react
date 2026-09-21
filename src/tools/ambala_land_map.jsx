@@ -143,15 +143,15 @@ export default function ambala_land_map() {
   return (
     <ToolLayout
       title="Ambala Land Map - Tundla & Kalarheri"
-      desc={`Ambala land map: ${plotData ? plotData.count : ''} real Bhunaksha plots of Tundla with govt owners - click any plot for khasra, owner, price. Kalarheri full plot data coming. Free, no sign-up.`}
+      desc={`Ambala land map: ${plotData ? plotData.count : ''} real Bhunaksha plots of Tundla (02871) with govt-record owners - click any plot for khasra, owner, area. Kalarheri raster overlay live, clickable plots next. Free, no sign-up.`}
       icon="🗺️" iconBg="rgba(16,185,129,0.08)"
       category="india" slug="ambala-land-map"
       faq={[
-        { q: 'Are plot owners real govt data?', a: 'Yes. Plot boundaries come from Bhunaksha (Haryana Revenue Dept) and owner names + areas come from the same govt record via getPlotInfo. Always re-verify on jamabandi.nic.in before any deal - records update with mutations.' },
+        { q: 'Are plot owners real govt data?', a: 'Yes. Plot boundaries come from Bhunaksha (Haryana Revenue Dept) and owner names + areas come from the same govt record. 385 of 453 Tundla plots have owner data live; the rest fill in when the portal is back. Always re-verify on jamabandi.nic.in before any deal - records update with mutations.' },
         { q: 'Why do plots look like boxes, not exact shapes?', a: 'This POC uses plot bounding boxes from the govt point-lookup API. Exact polygon shapes come next from the full village sweep. Position and khasra numbers are exact.' },
         { q: 'Where do phone numbers and prices come from?', a: 'Govt records never publish phone numbers or market prices. Those appear only when a seller lists them on a khasra via the form below. Collector rate (minimum registry price) is on ambala.gov.in.' },
         { q: 'How do I verify a plot before buying?', a: 'Click the plot, note khasra + owner, check the same khasra on Jamabandi (jamabandi.nic.in), match seller Aadhaar name with the owner, confirm all co-owners agree, and check pending mutations with the patwari.' },
-        { q: 'Which villages are covered?', a: `Tundla (02871, Ambala Cantt) has ${plotData ? plotData.count : ''} clickable plots live. Kalarheri (02869) raster overlay is live and its full clickable plot set is being collected now.` },
+        { q: 'Which villages are covered?', a: `Tundla (02871, Ambala Cantt) has ${plotData ? plotData.count : ''} clickable plots live with owners on most. Kalarheri (02869) raster overlay is live; its ~1000 clickable plots resume when the govt portal is back.` },
       ]}
       howItWorks={[
         'Zoom into Tundla - every plot is a clickable vector with its khasra number.',
@@ -176,8 +176,12 @@ export default function ambala_land_map() {
           <button onClick={() => setRaster(r => !r)}
             className="px-4 py-2 rounded-xl text-sm font-bold bg-white/[0.06] text-slate-300 hover:bg-white/[0.1]">🗺️ Raster {raster ? 'on' : 'off'}</button>
           <span className="text-xs text-slate-500 ml-auto">
-            <span className="text-emerald-300">■</span> private ({nPriv}) · <span className="text-blue-300">■</span> govt · vectors stay sharp at full zoom
+            <span className="text-emerald-300">■</span> private ({nPriv}) · <span className="text-blue-300">■</span> govt · <span className="text-slate-400">■</span> owner pending
           </span>
+        </div>
+
+        <div className="rounded-xl border border-amber-500/25 bg-amber-500/[0.06] px-4 py-2.5 text-xs text-amber-200/90 leading-relaxed">
+          Live: 453 Tundla plots, owners on 385. 68 plots show grey until the govt portal is back. Kalarheri raster live, ~1000 clickable plots next.
         </div>
 
         <div className="flex gap-2">
@@ -199,7 +203,7 @@ export default function ambala_land_map() {
                 {sel.listing?.price && <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-amber-500/15 text-amber-300">For sale: {sel.listing.price}</span>}
                 <h3 className="text-base font-extrabold text-white m-0">Khasra {sel.k} — Tundla</h3>
               </div>
-              <p className="text-sm text-slate-300 leading-relaxed mt-1">{sel.o || 'Owner not fetched.'}</p>
+              <p className="text-sm text-slate-300 leading-relaxed mt-1">{sel.o && !/FETCH_ERROR/.test(sel.o) ? sel.o : 'Owner record pending — govt portal was down during fetch. Verify this khasra on Jamabandi directly.'}</p>
               {sel.listing && (
                 <div className="grid sm:grid-cols-2 gap-1.5 text-sm mt-2">
                   <div><span className="text-slate-400">Asking price: </span><span className="font-semibold text-white">{sel.listing.price || '—'}</span></div>
