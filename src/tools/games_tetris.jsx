@@ -162,9 +162,14 @@ export default function games_tetris() {
   const spawnPiece = useCallback(() => {
     const s = gRef.current
     if (s.bag.length === 0) s.bag = makeBag()
-    s.piece = s.next || pieceFromName(s.bag.pop())
+    if (!s.next) {
+      if (s.bag.length === 0) s.bag = makeBag()
+      s.piece = pieceFromName(s.bag.pop())
+    } else {
+      s.piece = s.next
+    }
     if (s.bag.length === 0) s.bag = makeBag()
-    s.next = pieceFromName(s.bag[s.bag.length-1])
+    s.next = pieceFromName(s.bag.pop())
     s.pieceName = s.piece.name
     s.pieceX = Math.floor((COLS - (Math.max(...s.piece.blocks.map(b=>b[0]))+1)) / 2)
     s.pieceY = 0
@@ -245,7 +250,7 @@ export default function games_tetris() {
       if (s.bag.length === 0) s.bag = makeBag()
       s.piece = pieceFromName(s.bag.pop())
       if (s.bag.length === 0) s.bag = makeBag()
-      s.next = pieceFromName(s.bag[s.bag.length-1])
+      s.next = pieceFromName(s.bag.pop())
       setNextPiece({ name: s.next.name, color: s.next.color })
     }
     s.pieceX = Math.floor((COLS - (Math.max(...s.piece.blocks.map(b=>b[0]))+1)) / 2)
