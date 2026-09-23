@@ -8072,7 +8072,7 @@
       "slug": "ai-model-compare",
       "title": "AI Model Compare — Pricing, Intelligence & Context",
       "icon": "🤖",
-      "desc": "Compare GPT, Claude, Gemini, Grok, DeepSeek, Llama & Mistral side-by-side: API price per 1M tokens, intelligence, context window, speed + monthly cost calculator.",
+      "desc": "Compare 40 AI models head-to-head with A-vs-B dropdowns: API price per 1M tokens, intelligence, context window, speed + monthly cost calculator. GPT, Claude, Gemini, Grok, DeepSeek, Llama, Mistral, Qwen, Kimi & more.",
       "href": "/ai-model-compare/",
       "tags": [
         "ai",

@@ -1,53 +1,110 @@
 import { useState, useMemo } from 'react'
 import ToolLayout from '../components/ToolLayout'
 
+// Prices = public list $ per 1M tokens, Sep 2026. Indicative — verify provider pages.
 const MODELS = [
+  // OpenAI
+  { id: 'gpt56sol', name: 'GPT-5.6 Sol', provider: 'OpenAI', input: 4.0, output: 20.0, context: 400, intel: 89, speed: 78, open: false, best: 'Frontier reasoning, agents' },
   { id: 'gpt5', name: 'GPT-5', provider: 'OpenAI', input: 1.25, output: 10.0, context: 400, intel: 88, speed: 82, open: false, best: 'Coding, agents, reasoning' },
   { id: 'gpt5mini', name: 'GPT-5 mini', provider: 'OpenAI', input: 0.25, output: 2.0, context: 400, intel: 80, speed: 92, open: false, best: 'Cheap everyday tasks' },
-  { id: 'sonnet45', name: 'Claude Sonnet 4.5', provider: 'Anthropic', input: 3.0, output: 15.0, context: 1000, intel: 86, speed: 80, open: false, best: 'Coding, writing, agents' },
+  { id: 'gpt5nano', name: 'GPT-5 nano', provider: 'OpenAI', input: 0.05, output: 0.40, context: 400, intel: 72, speed: 97, open: false, best: 'Cheapest OpenAI bulk' },
+  { id: 'gpt41', name: 'GPT-4.1', provider: 'OpenAI', input: 2.0, output: 8.0, context: 1000, intel: 82, speed: 84, open: false, best: 'Long-context coding' },
+  { id: 'gpt41mini', name: 'GPT-4.1 mini', provider: 'OpenAI', input: 0.40, output: 1.60, context: 1000, intel: 78, speed: 93, open: false, best: 'Cheap long context' },
+  { id: 'gpt4o', name: 'GPT-4o', provider: 'OpenAI', input: 2.50, output: 10.0, context: 128, intel: 80, speed: 85, open: false, best: 'Multimodal chat' },
+  { id: 'gpt4omini', name: 'GPT-4o mini', provider: 'OpenAI', input: 0.15, output: 0.60, context: 128, intel: 74, speed: 95, open: false, best: 'Budget chat apps' },
+  { id: 'o3', name: 'o3', provider: 'OpenAI', input: 2.0, output: 8.0, context: 200, intel: 87, speed: 55, open: false, best: 'Deep reasoning, math' },
+  { id: 'o4mini', name: 'o4-mini', provider: 'OpenAI', input: 1.10, output: 4.40, context: 200, intel: 83, speed: 75, open: false, best: 'Fast reasoning' },
+  // Anthropic
+  { id: 'sonnet5', name: 'Claude Sonnet 5', provider: 'Anthropic', input: 3.0, output: 15.0, context: 1000, intel: 88, speed: 78, open: false, best: 'Newest Claude all-rounder' },
   { id: 'opus45', name: 'Claude Opus 4.5', provider: 'Anthropic', input: 5.0, output: 25.0, context: 200, intel: 87, speed: 65, open: false, best: 'Hardest reasoning, research' },
+  { id: 'sonnet45', name: 'Claude Sonnet 4.5', provider: 'Anthropic', input: 3.0, output: 15.0, context: 1000, intel: 86, speed: 80, open: false, best: 'Coding, writing, agents' },
+  { id: 'opus41', name: 'Claude Opus 4.1', provider: 'Anthropic', input: 15.0, output: 75.0, context: 200, intel: 86, speed: 60, open: false, best: 'Premium agentic coding' },
+  { id: 'sonnet4', name: 'Claude Sonnet 4', provider: 'Anthropic', input: 3.0, output: 15.0, context: 200, intel: 84, speed: 82, open: false, best: 'Balanced coding/writing' },
   { id: 'haiku45', name: 'Claude Haiku 4.5', provider: 'Anthropic', input: 1.0, output: 5.0, context: 200, intel: 78, speed: 95, open: false, best: 'Fast cheap chat, support bots' },
+  { id: 'haiku35', name: 'Claude Haiku 3.5', provider: 'Anthropic', input: 0.80, output: 4.0, context: 200, intel: 73, speed: 96, open: false, best: 'Legacy budget speed' },
+  // Google
+  { id: 'gemini31pro', name: 'Gemini 3.1 Pro', provider: 'Google', input: 1.50, output: 9.0, context: 1000, intel: 88, speed: 76, open: false, best: 'Newest Google reasoning' },
+  { id: 'gemini3flash', name: 'Gemini 3 Flash', provider: 'Google', input: 0.50, output: 3.0, context: 1000, intel: 80, speed: 93, open: false, best: 'Fast cheap multimodal' },
   { id: 'gemini25pro', name: 'Gemini 2.5 Pro', provider: 'Google', input: 1.25, output: 10.0, context: 1000, intel: 86, speed: 78, open: false, best: 'Long docs, multimodal, math' },
   { id: 'gemini25flash', name: 'Gemini 2.5 Flash', provider: 'Google', input: 0.30, output: 2.50, context: 1000, intel: 78, speed: 94, open: false, best: 'High-volume apps, RAG' },
   { id: 'gemini25lite', name: 'Gemini 2.5 Flash-Lite', provider: 'Google', input: 0.10, output: 0.40, context: 1000, intel: 70, speed: 98, open: false, best: 'Cheapest bulk classification' },
+  { id: 'gemini20flash', name: 'Gemini 2.0 Flash', provider: 'Google', input: 0.10, output: 0.40, context: 1000, intel: 74, speed: 96, open: false, best: 'Legacy budget speed' },
+  { id: 'gemma327b', name: 'Gemma 3 27B', provider: 'Google', input: 0.10, output: 0.20, context: 128, intel: 72, speed: 90, open: true, best: 'Open efficient chat' },
+  // xAI
   { id: 'grok4', name: 'Grok 4', provider: 'xAI', input: 3.0, output: 15.0, context: 256, intel: 85, speed: 75, open: false, best: 'Real-time X data, reasoning' },
+  { id: 'grok3', name: 'Grok 3', provider: 'xAI', input: 3.0, output: 15.0, context: 131, intel: 82, speed: 78, open: false, best: 'X-grounded answers' },
+  { id: 'grok3mini', name: 'Grok 3 mini', provider: 'xAI', input: 0.30, output: 0.50, context: 131, intel: 76, speed: 92, open: false, best: 'Cheap X-speed tasks' },
+  // DeepSeek
   { id: 'deepseekv3', name: 'DeepSeek V3', provider: 'DeepSeek', input: 0.27, output: 1.10, context: 128, intel: 80, speed: 85, open: true, best: 'Open budget coding/math' },
-  { id: 'llama33', name: 'Llama 3.3 70B', provider: 'Meta', input: 0.35, output: 0.40, context: 128, intel: 78, speed: 88, open: true, best: 'Self-host, private deploys' },
-  { id: 'mistrallarge', name: 'Mistral Large 3', provider: 'Mistral', input: 2.0, output: 6.0, context: 128, intel: 78, speed: 84, open: false, best: 'EU-hosted enterprise' },
+  { id: 'deepseekr1', name: 'DeepSeek R1', provider: 'DeepSeek', input: 0.55, output: 2.19, context: 64, intel: 82, speed: 60, open: true, best: 'Open reasoning on budget' },
+  // Meta
+  { id: 'llama4mav', name: 'Llama 4 Maverick', provider: 'Meta', input: 0.25, output: 0.85, context: 1000, intel: 80, speed: 87, open: true, best: 'Open multimodal, long ctx' },
+  { id: 'llama4scout', name: 'Llama 4 Scout', provider: 'Meta', input: 0.15, output: 0.45, context: 10000, intel: 76, speed: 90, open: true, best: 'Open ultra-long context' },
+  { id: 'llama3370b', name: 'Llama 3.3 70B', provider: 'Meta', input: 0.35, output: 0.40, context: 128, intel: 78, speed: 88, open: true, best: 'Self-host, private deploys' },
+  { id: 'llama31405b', name: 'Llama 3.1 405B', provider: 'Meta', input: 1.0, output: 1.0, context: 128, intel: 79, speed: 70, open: true, best: 'Biggest open model' },
+  // Mistral
+  { id: 'mistrallarge3', name: 'Mistral Large 3', provider: 'Mistral', input: 2.0, output: 6.0, context: 128, intel: 78, speed: 84, open: false, best: 'EU-hosted enterprise' },
+  { id: 'mistralmed3', name: 'Mistral Medium 3', provider: 'Mistral', input: 0.40, output: 2.0, context: 128, intel: 75, speed: 90, open: false, best: 'EU mid-tier value' },
+  { id: 'codestral', name: 'Codestral', provider: 'Mistral', input: 0.30, output: 0.90, context: 256, intel: 74, speed: 90, open: false, best: 'EU code specialist' },
+  { id: 'mistrasmall3', name: 'Mistral Small 3', provider: 'Mistral', input: 0.10, output: 0.30, context: 128, intel: 71, speed: 95, open: true, best: 'Open edge/Latency tasks' },
+  // Others
+  { id: 'qwen3235b', name: 'Qwen3-235B', provider: 'Alibaba', input: 0.20, output: 0.80, context: 256, intel: 79, speed: 86, open: true, best: 'Open multilingual value' },
+  { id: 'kimik2', name: 'Kimi K2', provider: 'Moonshot', input: 0.60, output: 2.50, context: 200, intel: 81, speed: 82, open: true, best: 'Open agentic coding' },
+  { id: 'commandrplus', name: 'Command R+', provider: 'Cohere', input: 2.50, output: 10.0, context: 128, intel: 74, speed: 85, open: false, best: 'Enterprise RAG, citations' },
+  { id: 'phi4', name: 'Phi-4', provider: 'Microsoft', input: 0.10, output: 0.30, context: 16, intel: 72, speed: 92, open: true, best: 'Tiny open on-device' },
 ]
 
 const PROVIDERS = ['All', ...new Set(MODELS.map(m => m.provider))]
 
 function fmtCtx(k) { return k >= 1000 ? `${(k / 1000).toString().replace(/\.0$/, '')}M` : `${k}K` }
 function costOf(m, inM, outM) { return m.input * inM + m.output * outM }
+const byId = (id) => MODELS.find(m => m.id === id)
 
 export default function ai_model_compare() {
+  const [modelA, setModelA] = useState('gpt5')
+  const [modelB, setModelB] = useState('sonnet45')
   const [provider, setProvider] = useState('All')
   const [sortKey, setSortKey] = useState('intel')
   const [sortDir, setSortDir] = useState(-1)
-  const [picked, setPicked] = useState(['gpt5', 'sonnet45', 'gemini25pro'])
   const [inM, setInM] = useState(10)
   const [outM, setOutM] = useState(5)
   const [openOnly, setOpenOnly] = useState(false)
 
+  const A = byId(modelA) || MODELS[0]
+  const B = byId(modelB) || MODELS[1]
+
   const rows = useMemo(() => {
     let r = MODELS.filter(m => (provider === 'All' || m.provider === provider) && (!openOnly || m.open))
-    r = [...r].sort((a, b) => (a[sortKey] > b[sortKey] ? 1 : -1) * sortDir)
-    return r
+    return [...r].sort((a, b) => (a[sortKey] > b[sortKey] ? 1 : -1) * sortDir)
   }, [provider, sortKey, sortDir, openOnly])
 
   const toggleSort = (k) => {
     if (k === sortKey) setSortDir(d => -d)
-    else { setSortKey(k); setSortDir(k === 'name' ? 1 : -1) }
+    else { setSortKey(k); setSortDir(k === 'name' || k === 'provider' ? 1 : -1) }
   }
 
-  const togglePick = (id) => {
-    setPicked(p => p.includes(id) ? p.filter(x => x !== id) : (p.length >= 3 ? [...p.slice(1), id] : [...p, id]))
-  }
+  const verdict = useMemo(() => {
+    if (A.id === B.id) return 'Same model selected on both sides — pick two different models to compare.'
+    const wins = []
+    if (A.intel !== B.intel) wins.push(`🧠 Smarter: ${(A.intel > B.intel ? A : B).name} (${Math.max(A.intel, B.intel)} vs ${Math.min(A.intel, B.intel)})`)
+    if (A.context !== B.context) wins.push(`📖 Bigger context: ${(A.context > B.context ? A : B).name} (${fmtCtx(Math.max(A.context, B.context))} vs ${fmtCtx(Math.min(A.context, B.context))})`)
+    const cA = costOf(A, inM, outM), cB = costOf(B, inM, outM)
+    if (cA !== cB) wins.push(`💰 Cheaper at your volume: ${(cA < cB ? A : B).name} ($${Math.min(cA, cB).toFixed(2)} vs $${Math.max(cA, cB).toFixed(2)}/mo)`)
+    if (A.speed !== B.speed) wins.push(`⚡ Faster: ${(A.speed > B.speed ? A : B).name}`)
+    return wins.join('  •  ')
+  }, [A, B, inM, outM])
 
-  const compared = picked.map(id => MODELS.find(m => m.id === id)).filter(Boolean)
-  const costs = [...MODELS].map(m => ({ ...m, monthly: costOf(m, inM, outM) })).sort((a, b) => a.monthly - b.monthly)
-  const cheapest = costs[0]
+  const metricRows = [
+    { l: 'Provider', v: m => m.provider },
+    { l: 'Input $ / 1M', v: m => `$${m.input.toFixed(2)}`, raw: m => m.input, low: true },
+    { l: 'Output $ / 1M', v: m => `$${m.output.toFixed(2)}`, raw: m => m.output, low: true },
+    { l: 'Context window', v: m => fmtCtx(m.context), raw: m => m.context },
+    { l: 'Intelligence /100', v: m => m.intel, raw: m => m.intel },
+    { l: 'Speed /100', v: m => m.speed, raw: m => m.speed },
+    { l: `Your cost: ${inM}M in + ${outM}M out`, v: m => `$${costOf(m, inM, outM).toFixed(2)}/mo`, raw: m => costOf(m, inM, outM), low: true },
+    { l: 'License', v: m => (m.open ? 'Open weights' : 'Closed') },
+    { l: 'Best for', v: m => m.best },
+  ]
 
   const th = (label, k) => (
     <th onClick={() => toggleSort(k)} className="px-3 py-2.5 text-left text-xs font-bold text-slate-400 cursor-pointer hover:text-white whitespace-nowrap select-none">
@@ -55,23 +112,28 @@ export default function ai_model_compare() {
     </th>
   )
 
+  const costs = [...MODELS].map(m => ({ ...m, monthly: costOf(m, inM, outM) })).sort((a, b) => a.monthly - b.monthly)
+
+  const dropdownCls = 'w-full bg-white/[0.06] border-2 border-white/10 rounded-xl px-4 py-3 text-white font-bold outline-none focus:border-indigo-500/50 [color-scheme:dark]'
+
   return (
     <ToolLayout
       title="AI Model Compare — Pricing, Intelligence & Context"
-      desc="Compare AI models side-by-side: API pricing per 1M tokens, intelligence score, context window, speed and best use. GPT, Claude, Gemini, Grok, DeepSeek, Llama, Mistral with monthly cost calculator."
+      desc="Compare 40 AI models side-by-side: API pricing per 1M tokens, intelligence score, context window, speed and best use. GPT, Claude, Gemini, Grok, DeepSeek, Llama, Mistral, Qwen, Kimi and more with monthly cost calculator."
       icon="🤖" iconBg="rgba(99,102,241,0.08)"
       category="ai" slug="ai-model-compare"
       faq={[
-        { q: 'Where do these prices come from?', a: 'Public provider list prices per 1M tokens as of September 2026 (OpenAI, Anthropic, Google, xAI, DeepSeek, Meta, Mistral). Prices change often — verify on the provider pricing page before budgeting.' },
+        { q: 'How many models are listed?', a: `40 models across ${PROVIDERS.length - 1} providers: OpenAI, Anthropic, Google, xAI, DeepSeek, Meta, Mistral, Alibaba, Moonshot, Cohere and Microsoft.` },
+        { q: 'Where do these prices come from?', a: 'Public provider list prices per 1M tokens as of September 2026 (OpenAI, Anthropic, Google, xAI, DeepSeek, Meta, Mistral and others). Prices change often — verify on the provider pricing page before budgeting.' },
         { q: 'What is the intelligence score?', a: 'A 0–100 composite based on public benchmarks (MMLU-Pro, SWE-bench, LMArena) around Sep 2026. Indicative only — test on your own task before choosing.' },
         { q: 'How is monthly cost calculated?', a: 'Monthly cost = (input $/1M × your input millions) + (output $/1M × your output millions). Caching, batch and tier discounts are not included.' },
-        { q: 'Which model is cheapest?', a: 'Usually Gemini 2.5 Flash-Lite, DeepSeek V3 or Llama 3.3 70B for bulk work. Use the calculator below with your own volumes.' },
-        { q: 'Which model is smartest?', a: 'GPT-5, Claude Opus 4.5, Sonnet 4.5 and Gemini 2.5 Pro lead on reasoning and coding benchmarks. Pick by your task, not the score alone.' },
+        { q: 'Which model is cheapest?', a: 'Usually GPT-5 nano, Gemini Flash-Lite, Mistral Small 3 or DeepSeek V3 for bulk work. Use the calculator below with your own volumes.' },
+        { q: 'Which model is smartest?', a: 'GPT-5.6 Sol, GPT-5, Claude Sonnet 5, Opus 4.5 and Gemini 3.1 Pro lead on reasoning and coding benchmarks. Pick by your task, not the score alone.' },
         { q: 'Is this AI Model Compare free?', a: 'Yes, completely free with no sign-up. Use it unlimited times on any device.' },
       ]}
       howItWorks={[
-        'Tick up to 3 models to compare side-by-side.',
-        'Sort the full table by price, intelligence, context or speed.',
+        'Pick Model A and Model B from the two dropdowns to compare head-to-head.',
+        'Sort the full 40-model table by price, intelligence, context or speed.',
         'Enter your monthly token volumes to see cheapest-first costs.',
       ]}
       schema={{
@@ -84,6 +146,62 @@ export default function ai_model_compare() {
       }}
     >
       <div className="max-w-5xl mx-auto space-y-6">
+        {/* A vs B dropdowns */}
+        <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+          <h3 className="text-sm font-bold text-white mb-4">⚖️ Head-to-head — pick any two models</h3>
+          <div className="flex items-stretch gap-3 flex-col sm:flex-row">
+            <div className="flex-1">
+              <label className="text-xs font-bold text-cyan-400 block mb-1.5">MODEL A</label>
+              <select value={modelA} onChange={e => setModelA(e.target.value)} className={dropdownCls} style={{ borderColor: 'rgba(0,229,255,0.3)' }}>
+                {MODELS.map(m => <option key={m.id} value={m.id}>{m.name} — {m.provider}</option>)}
+              </select>
+            </div>
+            <div className="flex items-center justify-center">
+              <span className="text-lg font-extrabold text-slate-400 sm:pt-6">VS</span>
+            </div>
+            <div className="flex-1">
+              <label className="text-xs font-bold text-indigo-400 block mb-1.5">MODEL B</label>
+              <select value={modelB} onChange={e => setModelB(e.target.value)} className={dropdownCls} style={{ borderColor: 'rgba(99,102,241,0.4)' }}>
+                {MODELS.map(m => <option key={m.id} value={m.id}>{m.name} — {m.provider}</option>)}
+              </select>
+            </div>
+          </div>
+
+          {/* Comparison table */}
+          <div className="mt-4 rounded-xl border border-white/10 overflow-x-auto">
+            <table className="w-full text-sm min-w-[480px]">
+              <thead>
+                <tr className="border-b border-white/10">
+                  <th className="px-4 py-3 text-left text-xs font-bold text-slate-400">Metric</th>
+                  <th className="px-4 py-3 text-left text-xs font-bold text-cyan-400">{A.name}</th>
+                  <th className="px-4 py-3 text-left text-xs font-bold text-indigo-400">{B.name}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {metricRows.map((row, i) => {
+                  const va = row.raw ? row.raw(A) : null
+                  const vb = row.raw ? row.raw(B) : null
+                  const aWin = va !== null && vb !== null && va !== vb && (row.low ? va < vb : va > vb)
+                  const bWin = va !== null && vb !== null && va !== vb && (row.low ? vb < va : vb > va)
+                  return (
+                    <tr key={i} className="border-b border-white/5">
+                      <td className="px-4 py-2.5 text-xs font-bold text-slate-400">{row.l}</td>
+                      <td className={`px-4 py-2.5 font-semibold ${aWin ? 'text-cyan-400' : 'text-slate-200'}`}>{row.v(A)}{aWin ? ' ★' : ''}</td>
+                      <td className={`px-4 py-2.5 font-semibold ${bWin ? 'text-indigo-400' : 'text-slate-200'}`}>{row.v(B)}{bWin ? ' ★' : ''}</td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Verdict */}
+          <div className="mt-4 rounded-xl border border-amber-500/20 bg-amber-500/5 p-4">
+            <h4 className="text-xs font-bold text-amber-400 mb-1.5">🏆 Verdict</h4>
+            <p className="text-sm text-slate-300">{verdict}</p>
+          </div>
+        </div>
+
         {/* Filters */}
         <div className="flex items-center gap-2 flex-wrap">
           {PROVIDERS.map(p => (
@@ -96,53 +214,7 @@ export default function ai_model_compare() {
             className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${openOnly ? 'bg-emerald-500 text-white' : 'bg-white/[0.05] text-slate-300 border border-white/10 hover:text-white'}`}>
             {openOnly ? '✓ Open weights' : 'Open weights'}
           </button>
-        </div>
-
-        {/* Side-by-side */}
-        <div className="rounded-2xl border border-white/10 bg-white/[0.03] overflow-hidden">
-          <div className="px-5 py-3 border-b border-white/10 flex items-center justify-between">
-            <h3 className="text-sm font-bold text-white">⚖️ Side-by-side (pick up to 3 below)</h3>
-            <span className="text-xs text-slate-400">{compared.length}/3 selected</span>
-          </div>
-          {compared.length === 0 ? (
-            <p className="px-5 py-6 text-sm text-slate-400">Tick the checkboxes in the table to compare models here.</p>
-          ) : (
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm min-w-[560px]">
-                <thead>
-                  <tr className="border-b border-white/10">
-                    <th className="px-4 py-3 text-left text-xs font-bold text-slate-400">Metric</th>
-                    {compared.map(m => (
-                      <th key={m.id} className="px-4 py-3 text-left text-xs font-bold text-white">{m.name}<br /><span className="font-medium text-slate-400">{m.provider}</span></th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    { l: 'Input $ / 1M', v: m => `$${m.input.toFixed(2)}`, best: arr => Math.min(...arr) },
-                    { l: 'Output $ / 1M', v: m => `$${m.output.toFixed(2)}`, best: arr => Math.min(...arr) },
-                    { l: 'Context', v: m => fmtCtx(m.context), raw: m => m.context, best: arr => Math.max(...arr) },
-                    { l: 'Intelligence /100', v: m => m.intel, best: arr => Math.max(...arr) },
-                    { l: 'Speed /100', v: m => m.speed, best: arr => Math.max(...arr) },
-                    { l: `Cost for ${inM}M in + ${outM}M out`, v: m => `$${costOf(m, inM, outM).toFixed(2)}`, raw: m => costOf(m, inM, outM), best: arr => Math.min(...arr) },
-                    { l: 'License', v: m => (m.open ? 'Open weights' : 'Closed') },
-                    { l: 'Best for', v: m => m.best },
-                  ].map((row, i) => {
-                    const vals = compared.map(m => row.raw ? row.raw(m) : null)
-                    return (
-                      <tr key={i} className="border-b border-white/5">
-                        <td className="px-4 py-2.5 text-xs font-bold text-slate-400">{row.l}</td>
-                        {compared.map((m, j) => {
-                          const isBest = compared.length > 1 && row.best && row.raw && vals[j] === row.best(vals)
-                          return <td key={m.id} className={`px-4 py-2.5 font-semibold ${isBest ? 'text-emerald-400' : 'text-slate-200'}`}>{row.v(m)}{isBest ? ' ★' : ''}</td>
-                        })}
-                      </tr>
-                    )
-                  })}
-                </tbody>
-              </table>
-            </div>
-          )}
+          <span className="text-xs text-slate-500 ml-auto">{rows.length} models</span>
         </div>
 
         {/* Full table */}
@@ -150,7 +222,6 @@ export default function ai_model_compare() {
           <table className="w-full text-sm min-w-[760px]">
             <thead>
               <tr className="border-b border-white/10">
-                <th className="px-3 py-2.5 text-left text-xs font-bold text-slate-400">✓</th>
                 {th('Model', 'name')}
                 {th('Provider', 'provider')}
                 {th('In $/1M', 'input')}
@@ -162,29 +233,32 @@ export default function ai_model_compare() {
               </tr>
             </thead>
             <tbody>
-              {rows.map(m => (
-                <tr key={m.id} className={`border-b border-white/5 hover:bg-white/[0.02] ${picked.includes(m.id) ? 'bg-indigo-500/[0.07]' : ''}`}>
-                  <td className="px-3 py-2.5">
-                    <input type="checkbox" checked={picked.includes(m.id)} onChange={() => togglePick(m.id)} className="w-4 h-4 accent-indigo-500" aria-label={`Compare ${m.name}`} />
-                  </td>
-                  <td className="px-3 py-2.5 font-bold text-white whitespace-nowrap">{m.name} {m.open && <span className="ml-1 text-[10px] font-bold text-emerald-400 border border-emerald-500/30 rounded px-1 py-0.5">OPEN</span>}</td>
-                  <td className="px-3 py-2.5 text-slate-300">{m.provider}</td>
-                  <td className="px-3 py-2.5 text-slate-200 font-semibold">${m.input.toFixed(2)}</td>
-                  <td className="px-3 py-2.5 text-slate-200 font-semibold">${m.output.toFixed(2)}</td>
-                  <td className="px-3 py-2.5 text-slate-200">{fmtCtx(m.context)}</td>
-                  <td className="px-3 py-2.5">
-                    <div className="flex items-center gap-1.5">
-                      <div className="w-12 h-1.5 rounded-full bg-white/10 overflow-hidden"><div className="h-full rounded-full bg-indigo-400" style={{ width: `${m.intel}%` }} /></div>
-                      <span className="text-xs font-bold text-slate-200">{m.intel}</span>
-                    </div>
-                  </td>
-                  <td className="px-3 py-2.5 text-slate-200 font-semibold">{m.speed}</td>
-                  <td className="px-3 py-2.5 text-xs text-slate-400">{m.best}</td>
-                </tr>
-              ))}
+              {rows.map(m => {
+                const hl = m.id === modelA || m.id === modelB
+                return (
+                  <tr key={m.id} onClick={() => (modelA === m.id ? setModelA(modelB) : modelB === m.id ? setModelB(modelA) : setModelB(m.id))}
+                    title="Click to load into comparison"
+                    className={`border-b border-white/5 hover:bg-white/[0.04] cursor-pointer ${hl ? 'bg-indigo-500/[0.07]' : ''}`}>
+                    <td className="px-3 py-2.5 font-bold text-white whitespace-nowrap">{m.name} {m.open && <span className="ml-1 text-[10px] font-bold text-emerald-400 border border-emerald-500/30 rounded px-1 py-0.5">OPEN</span>}</td>
+                    <td className="px-3 py-2.5 text-slate-300">{m.provider}</td>
+                    <td className="px-3 py-2.5 text-slate-200 font-semibold">${m.input.toFixed(2)}</td>
+                    <td className="px-3 py-2.5 text-slate-200 font-semibold">${m.output.toFixed(2)}</td>
+                    <td className="px-3 py-2.5 text-slate-200">{fmtCtx(m.context)}</td>
+                    <td className="px-3 py-2.5">
+                      <div className="flex items-center gap-1.5">
+                        <div className="w-12 h-1.5 rounded-full bg-white/10 overflow-hidden"><div className="h-full rounded-full bg-indigo-400" style={{ width: `${m.intel}%` }} /></div>
+                        <span className="text-xs font-bold text-slate-200">{m.intel}</span>
+                      </div>
+                    </td>
+                    <td className="px-3 py-2.5 text-slate-200 font-semibold">{m.speed}</td>
+                    <td className="px-3 py-2.5 text-xs text-slate-400">{m.best}</td>
+                  </tr>
+                )
+              })}
             </tbody>
           </table>
         </div>
+        <p className="text-xs text-slate-500">Tip: click any row to load it into the A-vs-B comparison above.</p>
 
         {/* Cost calculator */}
         <div className="rounded-2xl border border-emerald-500/20 bg-emerald-500/[0.04] p-5">
@@ -202,12 +276,12 @@ export default function ai_model_compare() {
                 className="mt-1 w-full bg-white/[0.06] border border-white/10 rounded-xl px-4 py-2.5 text-white font-bold outline-none focus:border-emerald-500/50 [color-scheme:dark]" />
             </label>
           </div>
-          <div className="space-y-2">
+          <div className="space-y-2 max-h-[420px] overflow-y-auto pr-1">
             {costs.map((m, i) => (
               <div key={m.id} className="flex items-center gap-3">
                 <span className="w-40 truncate text-xs font-bold text-slate-200">{i === 0 ? '🏆 ' : ''}{m.name}</span>
                 <div className="flex-1 h-2 rounded-full bg-white/10 overflow-hidden">
-                  <div className={`h-full rounded-full ${i === 0 ? 'bg-emerald-400' : 'bg-indigo-400/60'}`} style={{ width: `${cheapest.monthly > 0 ? Math.max(3, (m.monthly / costs[costs.length - 1].monthly) * 100) : 3}%` }} />
+                  <div className={`h-full rounded-full ${i === 0 ? 'bg-emerald-400' : 'bg-indigo-400/60'}`} style={{ width: `${costs[costs.length - 1].monthly > 0 ? Math.max(3, (m.monthly / costs[costs.length - 1].monthly) * 100) : 3}%` }} />
                 </div>
                 <span className={`w-24 text-right text-xs font-bold ${i === 0 ? 'text-emerald-400' : 'text-slate-300'}`}>${m.monthly.toFixed(2)}</span>
               </div>
