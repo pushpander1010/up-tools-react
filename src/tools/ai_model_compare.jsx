@@ -52,6 +52,34 @@ const MODELS = [
   { id: 'kimik2', name: 'Kimi K2', provider: 'Moonshot', input: 0.60, output: 2.50, context: 200, intel: 81, speed: 82, open: true, best: 'Open agentic coding' },
   { id: 'commandrplus', name: 'Command R+', provider: 'Cohere', input: 2.50, output: 10.0, context: 128, intel: 74, speed: 85, open: false, best: 'Enterprise RAG, citations' },
   { id: 'phi4', name: 'Phi-4', provider: 'Microsoft', input: 0.10, output: 0.30, context: 16, intel: 72, speed: 92, open: true, best: 'Tiny open on-device' },
+  { id: 'o1', name: 'o1', provider: 'OpenAI', input: 15.00, output: 60.00, context: 200, intel: 83, speed: 50, open: false, best: 'PhD-level reasoning' },
+  { id: 'o1mini', name: 'o1-mini', provider: 'OpenAI', input: 1.10, output: 4.40, context: 128, intel: 78, speed: 80, open: false, best: 'Cheap STEM reasoning' },
+  { id: 'gpt45', name: 'GPT-4.5 Orion', provider: 'OpenAI', input: 75.00, output: 150.00, context: 128, intel: 81, speed: 70, open: false, best: 'Most creative chat' },
+  { id: 'gpt5codex', name: 'GPT-5-Codex', provider: 'OpenAI', input: 1.25, output: 10.00, context: 400, intel: 87, speed: 80, open: false, best: 'Agentic coding specialist' },
+  { id: 'sonnet46', name: 'Claude Sonnet 4.6', provider: 'Anthropic', input: 3.00, output: 15.00, context: 1000, intel: 87, speed: 79, open: false, best: 'Latest coding all-rounder' },
+  { id: 'opus46', name: 'Claude Opus 4.6', provider: 'Anthropic', input: 5.00, output: 25.00, context: 200, intel: 88, speed: 63, open: false, best: 'Top Claude reasoning' },
+  { id: 'fable5', name: 'Claude Fable 5', provider: 'Anthropic', input: 10.00, output: 50.00, context: 200, intel: 89, speed: 60, open: false, best: 'Flagship max capability' },
+  { id: 'gemini15pro', name: 'Gemini 1.5 Pro', provider: 'Google', input: 1.25, output: 5.00, context: 2000, intel: 76, speed: 80, open: false, best: '2M-context analysis' },
+  { id: 'gemini15flash', name: 'Gemini 1.5 Flash', provider: 'Google', input: 0.07, output: 0.30, context: 1000, intel: 72, speed: 95, open: false, best: 'Legacy ultra-cheap' },
+  { id: 'gemma227b', name: 'Gemma 2 27B', provider: 'Google', input: 0.10, output: 0.15, context: 8, intel: 68, speed: 93, open: true, best: 'Tiny open efficient' },
+  { id: 'grok41', name: 'Grok 4.1', provider: 'xAI', input: 3.00, output: 15.00, context: 2000, intel: 86, speed: 74, open: false, best: 'Big-context X reasoning' },
+  { id: 'grokcodefast', name: 'Grok Code Fast 1', provider: 'xAI', input: 0.20, output: 1.50, context: 256, intel: 76, speed: 96, open: false, best: 'Cheap fast coding' },
+  { id: 'deepseekv4', name: 'DeepSeek V4', provider: 'DeepSeek', input: 0.43, output: 0.87, context: 128, intel: 84, speed: 83, open: true, best: 'Newest open flagship' },
+  { id: 'llama3170b', name: 'Llama 3.1 70B', provider: 'Meta', input: 0.30, output: 0.35, context: 128, intel: 76, speed: 89, open: true, best: 'Open workhorse' },
+  { id: 'llama318b', name: 'Llama 3.1 8B', provider: 'Meta', input: 0.06, output: 0.10, context: 128, intel: 68, speed: 95, open: true, best: 'Smallest open Llama' },
+  { id: 'mixtral8x22b', name: 'Mixtral 8x22B', provider: 'Mistral', input: 0.65, output: 0.65, context: 64, intel: 72, speed: 88, open: true, best: 'Open MoE value' },
+  { id: 'mistral7b', name: 'Mistral 7B', provider: 'Mistral', input: 0.10, output: 0.25, context: 32, intel: 65, speed: 96, open: true, best: 'Featherweight open' },
+  { id: 'devstral', name: 'Devstral Small', provider: 'Mistral', input: 0.10, output: 0.30, context: 128, intel: 73, speed: 94, open: true, best: 'Open code agent' },
+  { id: 'qwen2572b', name: 'Qwen 2.5 72B', provider: 'Alibaba', input: 0.35, output: 0.40, context: 128, intel: 77, speed: 87, open: true, best: 'Open multilingual' },
+  { id: 'qwen332b', name: 'Qwen3-32B', provider: 'Alibaba', input: 0.10, output: 0.30, context: 128, intel: 77, speed: 90, open: true, best: 'Open efficient hybrid' },
+  { id: 'glm46', name: 'GLM-4.6', provider: 'Zhipu', input: 0.60, output: 2.20, context: 200, intel: 80, speed: 84, open: true, best: 'Open agentic coding' },
+  { id: 'minimaxm2', name: 'MiniMax M2', provider: 'MiniMax', input: 0.30, output: 1.20, context: 200, intel: 79, speed: 85, open: false, best: 'Cheap agent model' },
+  { id: 'novapro', name: 'Nova Pro', provider: 'Amazon', input: 0.80, output: 3.20, context: 300, intel: 77, speed: 86, open: false, best: 'AWS multimodal' },
+  { id: 'novalite', name: 'Nova Lite', provider: 'Amazon', input: 0.06, output: 0.24, context: 300, intel: 70, speed: 95, open: false, best: 'AWS cheap fast' },
+  { id: 'novamicro', name: 'Nova Micro', provider: 'Amazon', input: 0.03, output: 0.14, context: 128, intel: 65, speed: 98, open: false, best: 'AWS cheapest text' },
+  { id: 'commandr', name: 'Command R', provider: 'Cohere', input: 0.15, output: 0.60, context: 128, intel: 70, speed: 90, open: false, best: 'Cheap RAG grounding' },
+  { id: 'sonarpro', name: 'Sonar Pro', provider: 'Perplexity', input: 3.00, output: 15.00, context: 200, intel: 78, speed: 80, open: false, best: 'Search-grounded answers' },
+  { id: 'sonar', name: 'Sonar', provider: 'Perplexity', input: 1.00, output: 1.00, context: 128, intel: 73, speed: 88, open: false, best: 'Cheap web Q&A' },
 ]
 
 const PROVIDERS = ['All', ...new Set(MODELS.map(m => m.provider))]
@@ -119,11 +147,11 @@ export default function ai_model_compare() {
   return (
     <ToolLayout
       title="AI Model Compare — Pricing, Intelligence & Context"
-      desc="Compare 40 AI models side-by-side: API pricing per 1M tokens, intelligence score, context window, speed and best use. GPT, Claude, Gemini, Grok, DeepSeek, Llama, Mistral, Qwen, Kimi and more with monthly cost calculator."
+      desc="Compare 68 AI models side-by-side: API pricing per 1M tokens, intelligence score, context window, speed and best use. GPT, Claude, Gemini, Grok, DeepSeek, Llama, Mistral, Qwen, Kimi and more with monthly cost calculator."
       icon="🤖" iconBg="rgba(99,102,241,0.08)"
       category="ai" slug="ai-model-compare"
       faq={[
-        { q: 'How many models are listed?', a: `40 models across ${PROVIDERS.length - 1} providers: OpenAI, Anthropic, Google, xAI, DeepSeek, Meta, Mistral, Alibaba, Moonshot, Cohere and Microsoft.` },
+        { q: 'How many models are listed?', a: `68 models across ${PROVIDERS.length - 1} providers: OpenAI, Anthropic, Google, xAI, DeepSeek, Meta, Mistral, Alibaba, Moonshot, Cohere, Microsoft, Amazon, Perplexity, Zhipu and MiniMax.` },
         { q: 'Where do these prices come from?', a: 'Public provider list prices per 1M tokens as of September 2026 (OpenAI, Anthropic, Google, xAI, DeepSeek, Meta, Mistral and others). Prices change often — verify on the provider pricing page before budgeting.' },
         { q: 'What is the intelligence score?', a: 'A 0–100 composite based on public benchmarks (MMLU-Pro, SWE-bench, LMArena) around Sep 2026. Indicative only — test on your own task before choosing.' },
         { q: 'How is monthly cost calculated?', a: 'Monthly cost = (input $/1M × your input millions) + (output $/1M × your output millions). Caching, batch and tier discounts are not included.' },
@@ -133,7 +161,7 @@ export default function ai_model_compare() {
       ]}
       howItWorks={[
         'Pick Model A and Model B from the two dropdowns to compare head-to-head.',
-        'Sort the full 40-model table by price, intelligence, context or speed.',
+        'Sort the full 68-model table by price, intelligence, context or speed.',
         'Enter your monthly token volumes to see cheapest-first costs.',
       ]}
       schema={{
