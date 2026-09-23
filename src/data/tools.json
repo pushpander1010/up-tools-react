@@ -8311,6 +8311,216 @@
         "finance",
         "education"
       ]
+    },
+    {
+      "slug": "noc-letter-generator",
+      "title": "NOC Letter Generator — Free Format",
+      "icon": "📄",
+      "desc": "Generate a No Objection Certificate letter online free. Enter issuer, person, purpose and property or vehicle details, preview live, copy or download. No sign-up.",
+      "href": "/noc-letter-generator/",
+      "tags": [
+        "noc",
+        "no-objection",
+        "certificate",
+        "letter",
+        "format",
+        "generator",
+        "property",
+        "vehicle"
+      ],
+      "cats": [
+        "all",
+        "tools"
+      ]
+    },
+    {
+      "slug": "rent-agreement-generator",
+      "title": "Rent Agreement Draft Generator — Free Format",
+      "icon": "🏘️",
+      "desc": "Draft a rent agreement online free. Enter landlord, tenant, property, rent, deposit and tenure, get a formatted draft with print and download. No sign-up.",
+      "href": "/rent-agreement-generator/",
+      "tags": [
+        "rent-agreement",
+        "rental",
+        "lease",
+        "deed",
+        "tenant",
+        "landlord",
+        "draft",
+        "generator"
+      ],
+      "cats": [
+        "all",
+        "tools",
+        "finance"
+      ]
+    },
+    {
+      "slug": "group-expense-splitter",
+      "title": "Group Expense Splitter — Split Bills Fairly",
+      "icon": "🧮",
+      "desc": "Split group expenses fairly: add members and expenses, get per-person balances and a settle-up plan. Perfect for roommates and trips. Free, no sign-up.",
+      "href": "/group-expense-splitter/",
+      "tags": [
+        "split",
+        "expense",
+        "bill-split",
+        "settle",
+        "roommates",
+        "trip",
+        "share",
+        "calculator"
+      ],
+      "cats": [
+        "all",
+        "finance",
+        "tools"
+      ]
+    },
+    {
+      "slug": "ssc-cgl-eligibility",
+      "title": "SSC CGL Eligibility Checker — Age & Posts",
+      "icon": "🎓",
+      "desc": "Check SSC CGL eligibility instantly: enter DOB, category and education, get age as on 1st August plus eligible posts with reasons. Free, no sign-up.",
+      "href": "/ssc-cgl-eligibility/",
+      "tags": [
+        "ssc",
+        "cgl",
+        "eligibility",
+        "age-limit",
+        "government-job",
+        "sarkari",
+        "exam",
+        "posts"
+      ],
+      "cats": [
+        "all",
+        "education"
+      ]
+    },
+    {
+      "slug": "gate-score-calculator",
+      "title": "GATE Score Calculator — Official Formula",
+      "icon": "⚙️",
+      "desc": "Calculate your GATE score with the official normalisation formula. Enter marks, topper average and paper stats, get score out of 1000 plus percentile. Free.",
+      "href": "/gate-score-calculator/",
+      "tags": [
+        "gate",
+        "score",
+        "normalisation",
+        "percentile",
+        "mtech",
+        "psu",
+        "exam",
+        "calculator"
+      ],
+      "cats": [
+        "all",
+        "education"
+      ]
+    },
+    {
+      "slug": "blood-donation-eligibility",
+      "title": "Blood Donation Eligibility Checker",
+      "icon": "🩸",
+      "desc": "Check if you can donate blood: age, weight and quick health questionnaire with clear eligible or not-eligible reasons. Informational only, not medical advice.",
+      "href": "/blood-donation-eligibility/",
+      "tags": [
+        "blood",
+        "donation",
+        "donor",
+        "eligibility",
+        "health",
+        "hemoglobin",
+        "checker"
+      ],
+      "cats": [
+        "all",
+        "health"
+      ]
+    },
+    {
+      "slug": "sukanya-calculator",
+      "title": "Sukanya Samriddhi Yojana (SSY) Calculator",
+      "icon": "👧",
+      "desc": "Project your Sukanya Samriddhi Yojana returns: yearly deposit, rate and girl child age give maturity amount plus year-wise table. Free, no sign-up.",
+      "href": "/sukanya-calculator/",
+      "tags": [
+        "sukanya",
+        "ssy",
+        "samriddhi",
+        "yojana",
+        "post-office",
+        "girl-child",
+        "savings",
+        "calculator"
+      ],
+      "cats": [
+        "all",
+        "finance"
+      ]
+    },
+    {
+      "slug": "chit-fund-calculator",
+      "title": "Chit Fund Calculator — Returns & Dividend",
+      "icon": "🏦",
+      "desc": "Understand your chit fund: enter chit value, months and commission, get monthly dues, dividends and effective returns with month table. Free.",
+      "href": "/chit-fund-calculator/",
+      "tags": [
+        "chit-fund",
+        "chit",
+        "savings",
+        "dividend",
+        "commission",
+        "kurri",
+        "finance",
+        "calculator"
+      ],
+      "cats": [
+        "all",
+        "finance"
+      ]
+    },
+    {
+      "slug": "freelance-rate-calculator",
+      "title": "Freelance Rate Calculator — Hourly & Project Rates",
+      "icon": "💻",
+      "desc": "Price your freelance work right: target income, hours and expenses give hourly, daily and per-project rates with full breakdown. Free, no sign-up.",
+      "href": "/freelance-rate-calculator/",
+      "tags": [
+        "freelance",
+        "hourly-rate",
+        "pricing",
+        "gig",
+        "income",
+        "consultant",
+        "calculator"
+      ],
+      "cats": [
+        "all",
+        "finance",
+        "tools"
+      ]
+    },
+    {
+      "slug": "youtube-thumbnail-downloader",
+      "title": "YouTube Thumbnail Downloader — HD Preview",
+      "icon": "🖼️",
+      "desc": "Download any YouTube thumbnail in HD free. Paste a video link, preview maxres and HQ sizes, open or save the image. No sign-up, no API key.",
+      "href": "/youtube-thumbnail-downloader/",
+      "tags": [
+        "youtube",
+        "thumbnail",
+        "downloader",
+        "hd",
+        "preview",
+        "video",
+        "image"
+      ],
+      "cats": [
+        "all",
+        "tools"
+      ]
     }
   ],
   "categories": {
