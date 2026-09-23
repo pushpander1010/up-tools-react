@@ -42,6 +42,16 @@ const GAMES = [
   { slug: 'tower-defense', title: 'Tower Defense', icon: '🏰', desc: 'Build towers to defend against waves of enemies.', cat: 'Strategy', color: '#ef4444' },
   { slug: 'memory-sequence', title: 'Memory Sequence', icon: '🧠', desc: 'Remember and repeat an increasingly long sequence of lights and sounds.', cat: 'Memory', color: '#8b5cf6' },
   { slug: 'sudoku', title: 'Sudoku', icon: '🔢', desc: 'Fill the 9×9 grid so each row, column and 3×3 box contains digits 1-9.', cat: 'Puzzle', color: '#6366f1' },
+  { slug: 'gully-cricket', title: 'Gully Cricket Sixes', icon: '🏏', desc: 'Time your shot and smash sixes in this gully cricket hitting game.', cat: 'Arcade', color: '#22c55e' },
+  { slug: 'tambola', title: 'Tambola Housie', icon: '🎱', desc: 'Classic Indian housie with auto number caller and win detection.', cat: 'Board', color: '#f59e0b' },
+  { slug: 'fruit-slice', title: 'Fruit Slice', icon: '🍉', desc: 'Slice flying fruits and dodge bombs in this 60-second arcade rush.', cat: 'Arcade', color: '#ef4444' },
+  { slug: 'endless-runner', title: 'Endless Runner', icon: '🏃', desc: 'Jump and double-jump over spikes. How far can you run?', cat: 'Arcade', color: '#06b6d4' },
+  { slug: 'car-dodger', title: 'Highway Car Dodger', icon: '🚗', desc: 'Weave through highway traffic and grab near-miss bonuses.', cat: 'Arcade', color: '#8b5cf6' },
+  { slug: 'math-sprint', title: 'Math Sprint', icon: '➗', desc: '60-second mental maths race with streak bonuses and 3 levels.', cat: 'Puzzle', color: '#6366f1' },
+  { slug: 'snakes-ladders', title: 'Snakes & Ladders', icon: '🪜', desc: 'Race the computer to 100 in this classic board game.', cat: 'Board', color: '#84cc16' },
+  { slug: 'balloon-pop', title: 'Balloon Pop', icon: '🎈', desc: 'Pop balloons in 45 seconds. Golden ones pay big!', cat: 'Arcade', color: '#ec4899' },
+  { slug: 'stack-tower', title: 'Stack Tower', icon: '🗼', desc: 'Stack moving blocks sky-high. Perfect drops earn bonuses.', cat: 'Arcade', color: '#f97316' },
+  { slug: 'dots-boxes', title: 'Dots & Boxes', icon: '⬛', desc: 'Outsmart the computer in this classic strategy duel.', cat: 'Board', color: '#14b8a6' },
 ]
 
 const CATEGORIES = ['All', ...new Set(GAMES.map(g => g.cat))]
