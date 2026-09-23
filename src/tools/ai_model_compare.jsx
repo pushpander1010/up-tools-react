@@ -15,7 +15,7 @@ const MODELS = [
   { id: 'o3', name: 'o3', provider: 'OpenAI', input: 2.0, output: 8.0, context: 200, intel: 87, speed: 55, open: false, best: 'Deep reasoning, math' },
   { id: 'o4mini', name: 'o4-mini', provider: 'OpenAI', input: 1.10, output: 4.40, context: 200, intel: 83, speed: 75, open: false, best: 'Fast reasoning' },
   // Anthropic
-  { id: 'sonnet5', name: 'Claude Sonnet 5', provider: 'Anthropic', input: 3.0, output: 15.0, context: 1000, intel: 88, speed: 78, open: false, best: 'Newest Claude all-rounder' },
+  { id: 'sonnet5', name: 'Claude Sonnet 5', provider: 'Anthropic', input: 2.0, output: 10.0, context: 1000, intel: 88, speed: 78, open: false, best: 'Newest Claude all-rounder' },
   { id: 'opus45', name: 'Claude Opus 4.5', provider: 'Anthropic', input: 5.0, output: 25.0, context: 200, intel: 87, speed: 65, open: false, best: 'Hardest reasoning, research' },
   { id: 'sonnet45', name: 'Claude Sonnet 4.5', provider: 'Anthropic', input: 3.0, output: 15.0, context: 1000, intel: 86, speed: 80, open: false, best: 'Coding, writing, agents' },
   { id: 'opus41', name: 'Claude Opus 4.1', provider: 'Anthropic', input: 15.0, output: 75.0, context: 200, intel: 86, speed: 60, open: false, best: 'Premium agentic coding' },
@@ -80,6 +80,16 @@ const MODELS = [
   { id: 'commandr', name: 'Command R', provider: 'Cohere', input: 0.15, output: 0.60, context: 128, intel: 70, speed: 90, open: false, best: 'Cheap RAG grounding' },
   { id: 'sonarpro', name: 'Sonar Pro', provider: 'Perplexity', input: 3.00, output: 15.00, context: 200, intel: 78, speed: 80, open: false, best: 'Search-grounded answers' },
   { id: 'sonar', name: 'Sonar', provider: 'Perplexity', input: 1.00, output: 1.00, context: 128, intel: 73, speed: 88, open: false, best: 'Cheap web Q&A' },
+  { id: 'gpt6astra', name: 'GPT-6 Astra', provider: 'OpenAI', input: 10.00, output: 50.00, context: 400, intel: 92, speed: 70, open: false, best: 'Flagship frontier reasoning' },
+  { id: 'gpt6sol', name: 'GPT-6 Sol', provider: 'OpenAI', input: 2.00, output: 10.00, context: 400, intel: 88, speed: 80, open: false, best: 'New-gen all-rounder' },
+  { id: 'gpt6luna', name: 'GPT-6 Luna', provider: 'OpenAI', input: 0.10, output: 0.50, context: 400, intel: 76, speed: 94, open: false, best: 'Cheap new-gen volume' },
+  { id: 'opus55', name: 'Claude Opus 5.5', provider: 'Anthropic', input: 4.00, output: 20.00, context: 500, intel: 89, speed: 65, open: false, best: 'Top Claude reasoning' },
+  { id: 'fable51', name: 'Claude Fable 5.1', provider: 'Anthropic', input: 10.00, output: 50.00, context: 200, intel: 91, speed: 58, open: false, best: 'Top-ranked flagship' },
+  { id: 'gemini38flash', name: 'Gemini 3.8 Flash', provider: 'Google', input: 0.75, output: 3.75, context: 1000, intel: 76, speed: 93, open: false, best: 'Cheapest production-grade' },
+  { id: 'grok47', name: 'Grok 4.7', provider: 'xAI', input: 2.00, output: 6.00, context: 500, intel: 87, speed: 72, open: false, best: 'Latest X reasoning' },
+  { id: 'deepseekv41flash', name: 'DeepSeek V4.1 Flash', provider: 'DeepSeek', input: 0.30, output: 1.20, context: 128, intel: 78, speed: 90, open: true, best: 'Cheap fast open' },
+  { id: 'qwen37flash', name: 'Qwen3.7 Flash', provider: 'Alibaba', input: 0.03, output: 0.13, context: 128, intel: 66, speed: 96, open: true, best: 'Cheapest API overall' },
+  { id: 'granite40micro', name: 'Granite 4.0 Micro', provider: 'IBM', input: 0.02, output: 0.07, context: 128, intel: 62, speed: 97, open: true, best: 'Cheapest input price' },
 ]
 
 const PROVIDERS = ['All', ...new Set(MODELS.map(m => m.provider))]
@@ -146,27 +156,27 @@ export default function ai_model_compare() {
 
   return (
     <ToolLayout
-      title="AI Model Compare — Pricing, Intelligence & Context"
-      desc="Compare 68 AI models side-by-side: API pricing per 1M tokens, intelligence score, context window, speed and best use. GPT, Claude, Gemini, Grok, DeepSeek, Llama, Mistral, Qwen, Kimi and more with monthly cost calculator."
+      title="AI Model Compare 2026: GPT vs Claude vs Gemini — Pricing, Context & Intelligence"
+      desc="Compare 78 AI models side-by-side: GPT-6, GPT-5, Claude, Gemini, Grok, DeepSeek, Llama, Mistral, Qwen, Nova & Sonar. API pricing per 1M tokens, intelligence scores, context windows + monthly cost calculator (Sep 2026)."
       icon="🤖" iconBg="rgba(99,102,241,0.08)"
       category="ai" slug="ai-model-compare"
       faq={[
-        { q: 'How many models are listed?', a: `68 models across ${PROVIDERS.length - 1} providers: OpenAI, Anthropic, Google, xAI, DeepSeek, Meta, Mistral, Alibaba, Moonshot, Cohere, Microsoft, Amazon, Perplexity, Zhipu and MiniMax.` },
-        { q: 'Where do these prices come from?', a: 'Public provider list prices per 1M tokens as of September 2026 (OpenAI, Anthropic, Google, xAI, DeepSeek, Meta, Mistral and others). Prices change often — verify on the provider pricing page before budgeting.' },
-        { q: 'What is the intelligence score?', a: 'A 0–100 composite based on public benchmarks (MMLU-Pro, SWE-bench, LMArena) around Sep 2026. Indicative only — test on your own task before choosing.' },
-        { q: 'How is monthly cost calculated?', a: 'Monthly cost = (input $/1M × your input millions) + (output $/1M × your output millions). Caching, batch and tier discounts are not included.' },
-        { q: 'Which model is cheapest?', a: 'Usually GPT-5 nano, Gemini Flash-Lite, Mistral Small 3 or DeepSeek V3 for bulk work. Use the calculator below with your own volumes.' },
-        { q: 'Which model is smartest?', a: 'GPT-5.6 Sol, GPT-5, Claude Sonnet 5, Opus 4.5 and Gemini 3.1 Pro lead on reasoning and coding benchmarks. Pick by your task, not the score alone.' },
-        { q: 'Is this AI Model Compare free?', a: 'Yes, completely free with no sign-up. Use it unlimited times on any device.' },
+        { q: 'Which AI model API is the cheapest?', a: 'Qwen3.7 Flash at $0.03 input / $0.13 output per 1M tokens, followed by Granite 4.0 Micro ($0.02 in) and Nova Micro ($0.03 in / $0.14 out). Rates are Sep 2026 list prices — always verify provider pages.' },
+        { q: 'GPT-5 vs Claude Sonnet 5 — which is better for coding?', a: 'Both lead coding benchmarks. GPT-5-Codex costs $1.25/$10 per 1M tokens while Claude Sonnet 5 costs $2/$10; Claude leads on agentic multi-step tasks, GPT-5 is cheaper per output token.' },
+        { q: 'Which AI model has the biggest context window?', a: 'Llama 4 Scout with 10M tokens, then Gemini 1.5 Pro and Grok 4.1 with 2M, then the 1M group: Gemini 2.5/3.x, Claude Sonnet 4.5/4.6/5 and GPT-4.1.' },
+        { q: 'How much does the GPT-5 API cost?', a: 'GPT-5 costs $1.25 per 1M input and $10 per 1M output tokens. GPT-5 mini is $0.25/$2, nano $0.05/$0.40. The newer GPT-6 Sol is $2/$10 and flagship GPT-6 Astra $10/$50.' },
+        { q: 'What is the smartest AI model in 2026?', a: 'Claude Fable 5.1, GPT-6 Astra and GPT-5 top public benchmarks (MMLU-Pro, SWE-bench, LMArena) as of Sep 2026. Scores here are indicative — test on your own task before choosing.' },
+        { q: 'Is DeepSeek really cheaper than GPT?', a: 'Yes. DeepSeek V3 ($0.27/$1.10 per 1M) is roughly 5–9x cheaper than GPT-5, and the newer DeepSeek V4 flagship is $0.43/$0.87 — both with open weights.' },
+        { q: 'Is this AI model comparison free?', a: 'Yes, completely free with no sign-up. Compare all 78 models on any device, unlimited times.' },
       ]}
       howItWorks={[
         'Pick Model A and Model B from the two dropdowns to compare head-to-head.',
-        'Sort the full 68-model table by price, intelligence, context or speed.',
+        'Sort the full 78-model table by price, intelligence, context or speed.',
         'Enter your monthly token volumes to see cheapest-first costs.',
       ]}
       schema={{
-        '@context': 'https://schema.org', '@type': 'SoftwareApplication',
-        name: 'AI Model Compare — Pricing, Intelligence & Context',
+        '@context': 'https://schema.org', '@type': 'WebApplication',
+        name: 'AI Model Compare 2026: GPT vs Claude vs Gemini — Pricing, Context & Intelligence',
         url: 'https://www.uptools.in/ai-model-compare/',
         applicationCategory: 'DeveloperApplication',
         operatingSystem: 'Web',

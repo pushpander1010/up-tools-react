@@ -8070,9 +8070,9 @@
     },
     {
       "slug": "ai-model-compare",
-      "title": "AI Model Compare — Pricing, Intelligence & Context",
+      "title": "AI Model Compare 2026: GPT vs Claude vs Gemini — Pricing, Context & Intelligence",
       "icon": "🤖",
-      "desc": "Compare 68 AI models head-to-head with A-vs-B dropdowns: API price per 1M tokens, intelligence, context window, speed + monthly cost calculator. GPT, Claude, Gemini, Grok, DeepSeek, Llama, Mistral, Nova, Qwen, Sonar & more.",
+      "desc": "Compare 78 AI models side-by-side: GPT-6, GPT-5, Claude, Gemini, Grok, DeepSeek, Llama, Mistral, Qwen, Nova & Sonar. API pricing per 1M tokens, intelligence scores, context windows + monthly cost calculator (Sep 2026).",
       "href": "/ai-model-compare/",
       "tags": [
         "ai",
@@ -8080,11 +8080,17 @@
         "gpt",
         "claude",
         "gemini",
+        "grok",
+        "deepseek",
         "compare",
         "pricing",
         "models",
         "api",
-        "context"
+        "context",
+        "2026",
+        "gpt-vs-claude",
+        "llm-pricing",
+        "comparison"
       ],
       "cats": [
         "all",

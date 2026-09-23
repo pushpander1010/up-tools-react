@@ -64,10 +64,10 @@ function extractCategory(content) {
   const m = content.match(/"applicationCategory"\s*:\s*"([^"]+)"/)
   return m ? m[1] : 'UtilitiesApplication'
 }
-function softwareJsonLd(title, desc, slug, category) {
+function softwareJsonLd(title, desc, slug, category, appType = 'SoftwareApplication') {
   const schema = {
     '@context':'https://schema.org',
-    '@type':'SoftwareApplication',
+    '@type': appType,
     name: title,
     description: desc,
     url: SITE+'/'+slug+'/',
@@ -191,10 +191,13 @@ for(const file of toolFiles){
     // our earlier check skips dupes; Helmet will still render client-side. Keep skip to avoid double FAQPage.
   }
   html = html.replace('</head>', '    '+breadcrumbJsonLd(slug, rawTitle)+'\n  </head>')
-  // Static SoftwareApplication — ensures dist/*.html is crawlable without JS (Helmet alone is not indexed)
-  // Always inject static one; client Helmet will hydrate same data without conflict (Google merges).
+  // Static app schema — WebApplication when the tool declares it (interactive
+  // browser tools), else SoftwareApplication. Ensures dist/*.html is crawlable
+  // without JS (Helmet alone is not indexed). Always inject static one; client
+  // Helmet will hydrate same data without conflict (Google merges).
   const cat = extractCategory(content)
-  html = html.replace('</head>', '    '+softwareJsonLd(rawTitle, rawDesc, slug, cat)+'\n  </head>')
+  const appType = /["']@type["']\s*:\s*["']WebApplication["']/.test(content) ? 'WebApplication' : 'SoftwareApplication'
+  html = html.replace('</head>', '    '+softwareJsonLd(rawTitle, rawDesc, slug, cat, appType)+'\n  </head>')
 
   // Per-page crawlable body: replace generic noscript with page-specific one
   const steps = extractHowItWorks(content)
