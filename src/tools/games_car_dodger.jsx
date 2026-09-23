@@ -84,6 +84,7 @@ export default function games_car_dodger() {
   }, [])
 
   useEffect(() => { fitCanvas() }, [fitCanvas])
+  useEffect(() => { if (playing) fitCanvas() }, [playing, fitCanvas])
 
   const moveLane = useCallback((dir) => {
     const s = stateRef.current
@@ -153,9 +154,7 @@ export default function games_car_dodger() {
         playCrash()
         setGameOver(true)
         setFinalScore(Math.floor(s.scoreVal))
-        const newBest = Math.max(best, Math.floor(s.scoreVal))
-        setBest(newBest)
-        try { localStorage.setItem(LS.BEST, String(newBest)) } catch {}
+        setBest(prev => { const nb = Math.max(prev, Math.floor(s.scoreVal)); try { localStorage.setItem(LS.BEST, String(nb)) } catch {}; return nb })
         return
       }
     }
@@ -326,7 +325,7 @@ export default function games_car_dodger() {
       schema={{
         "@context": "https://schema.org", "@type": "VideoGame",
         "name": "Highway Car Dodger", "applicationCategory": "Game",
-        "url": "https://www.uptools.in/games/games-car-dodger/",
+        "url": "https://www.uptools.in/games/car-dodger/",
         "genre": "Racing",
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}

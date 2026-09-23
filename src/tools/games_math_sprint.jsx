@@ -151,6 +151,7 @@ export default function games_math_sprint() {
 
   const handleKeyDown = useCallback((e) => {
     if (!playing || gameOver) return
+    if (e.target.tagName === 'INPUT') return
     if (e.key === 'Enter' && userInput.trim() !== '') {
       e.preventDefault()
       submitAnswer(userInput.trim())
@@ -168,7 +169,7 @@ export default function games_math_sprint() {
   }
 
   const timerColor = timeLeft <= 10 ? 'text-red-400' : timeLeft <= 20 ? 'text-yellow-400' : 'text-green-400'
-  const timerPercent = (timeLeft / 60) * 100
+  const timerPercent = (timeLeft / DIFFICULTIES[difficulty].time) * 100
 
   return (
     <GameShell
@@ -195,7 +196,7 @@ export default function games_math_sprint() {
       schema={{
         "@context": "https://schema.org", "@type": "VideoGame",
         "name": "Math Sprint", "applicationCategory": "Game",
-        "url": "https://www.uptools.in/games/games-math-sprint/",
+        "url": "https://www.uptools.in/games/math-sprint/",
         "genre": "Educational",
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}

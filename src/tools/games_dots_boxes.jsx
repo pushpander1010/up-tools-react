@@ -25,10 +25,10 @@ function initGame() {
 
 function countBoxSides(boxes, hLines, vLines, r, c) {
   let count = 0
-  if (r > 0 && vLines[r - 1][c]) count++
-  if (r < GRID_SIZE - 1 && vLines[r][c]) count++
-  if (c > 0 && hLines[r][c - 1]) count++
-  if (c < GRID_SIZE - 1 && hLines[r][c]) count++
+  if (hLines[r][c]) count++         // top side
+  if (hLines[r + 1][c]) count++     // bottom side
+  if (vLines[r][c]) count++         // left side
+  if (vLines[r][c + 1]) count++     // right side
   return count
 }
 
@@ -47,12 +47,11 @@ function findBestMove(hLines, vLines, boxes) {
   // 1. Complete a box if possible (3 sides already drawn)
   const completable = findCompletableBox(hLines, vLines, boxes)
   if (completable) {
-    // Find which line to draw
     const { r, c } = completable
-    if (r > 0 && !vLines[r - 1][c]) return { type: 'v', r: r - 1, c }
-    if (r < GRID_SIZE - 1 && !vLines[r][c]) return { type: 'v', r, c }
-    if (c > 0 && !hLines[r][c - 1]) return { type: 'h', r, c: c - 1 }
-    if (c < GRID_SIZE - 1 && !hLines[r][c]) return { type: 'h', r, c }
+    if (!hLines[r][c]) return { type: 'h', r, c }
+    if (!hLines[r + 1][c]) return { type: 'h', r: r + 1, c }
+    if (!vLines[r][c]) return { type: 'v', r, c }
+    if (!vLines[r][c + 1]) return { type: 'v', r, c: c + 1 }
   }
 
   // 2. Avoid giving opponent a box — find line that doesn't create a 3-side box
@@ -60,9 +59,9 @@ function findBestMove(hLines, vLines, boxes) {
   for (let r = 0; r < GRID_SIZE; r++) {
     for (let c = 0; c < GRID_SIZE - 1; c++) {
       if (!hLines[r][c]) {
-        const tempBoxes = boxes.map(row => [...row])
-        tempBoxes[r][c] = 'temp'
-        const isSafe = !findCompletableBox(hLines, vLines, tempBoxes)
+        hLines[r][c] = true
+        const isSafe = !findCompletableBox(hLines, vLines, boxes)
+        hLines[r][c] = false
         candidates.push({ type: 'h', r, c, safe: isSafe })
       }
     }
@@ -70,9 +69,9 @@ function findBestMove(hLines, vLines, boxes) {
   for (let r = 0; r < GRID_SIZE - 1; r++) {
     for (let c = 0; c < GRID_SIZE; c++) {
       if (!vLines[r][c]) {
-        const tempBoxes = boxes.map(row => [...row])
-        tempBoxes[r][c] = 'temp'
-        const isSafe = !findCompletableBox(hLines, vLines, tempBoxes)
+        vLines[r][c] = true
+        const isSafe = !findCompletableBox(hLines, vLines, boxes)
+        vLines[r][c] = false
         candidates.push({ type: 'v', r, c, safe: isSafe })
       }
     }
@@ -251,7 +250,7 @@ export default function games_dots_boxes() {
       schema={{
         "@context": "https://schema.org", "@type": "VideoGame",
         "name": "Dots and Boxes", "applicationCategory": "Game",
-        "url": "https://www.uptools.in/games/games-dots-boxes/",
+        "url": "https://www.uptools.in/games/dots-boxes/",
         "genre": "Strategy",
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}

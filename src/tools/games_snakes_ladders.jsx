@@ -138,7 +138,7 @@ export default function games_snakes_ladders() {
         setCompPos(pos); setLastEvent(evt)
 
         if (pos === 100) {
-          setGameOver(true); setWinner('computer'); setMessage('💀 Computer wins!'); playSnake(); return
+          setGameOver(true); setWinner('computer'); setMessage('💀 Computer wins!'); playWin(); return
         }
         setMessage(evt ? (evt.type === 'snake' ? `Computer 🐍 from ${evt.from} to ${evt.to}!` : `Computer 🪜 from ${evt.from} to ${evt.to}!`) : `Computer landed on ${pos}. Your turn!`)
       }
@@ -173,7 +173,7 @@ export default function games_snakes_ladders() {
       schema={{
         "@context": "https://schema.org", "@type": "VideoGame",
         "name": "Snakes and Ladders", "applicationCategory": "Game",
-        "url": "https://www.uptools.in/games/games-snakes-ladders/",
+        "url": "https://www.uptools.in/games/snakes-ladders/",
         "genre": "Board Game",
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
@@ -236,7 +236,7 @@ export default function games_snakes_ladders() {
                   <div className="absolute inset-0 bg-black/80 backdrop-blur-sm rounded-xl flex flex-col items-center justify-center z-10">
                     <div className="text-4xl mb-2">{winner === 'player' ? '🎉' : '💀'}</div>
                     <h2 className="text-xl font-bold text-white mb-2">{winner === 'player' ? 'You Win!' : 'Computer Wins!'}</h2>
-                    <p className="text-sm text-slate-400 mb-4">Turns taken: {turns + 1}</p>
+                    <p className="text-sm text-slate-400 mb-4">Turns taken: {turns}</p>
                     <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))} className="px-6 py-3 rounded-xl text-sm font-semibold bg-gradient-to-r from-green-500 to-emerald-600 text-white hover:opacity-90 transition-all">Play Again</button>
                   </div>
                 )}

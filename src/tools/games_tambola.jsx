@@ -122,6 +122,7 @@ export default function games_tambola() {
   const markedRef = useRef(new Set())
   const winsRef = useRef({ earlyFive: false, topLine: false, fullHouse: false })
   const gameOverRef = useRef(false)
+  const remainingRef = useRef(new Set(Array.from({ length: 90 }, (_, i) => i + 1)))
 
   const syncBest = useCallback((callsNeeded) => {
     setBest(prev => {
@@ -139,6 +140,7 @@ export default function games_tambola() {
     setCurrentNumber(null)
     setCalledSet(new Set())
     setRemaining(new Set(Array.from({ length: 90 }, (_, i) => i + 1)))
+    remainingRef.current = new Set(Array.from({ length: 90 }, (_, i) => i + 1))
     setAutoMode(false)
     setWins({ earlyFive: false, topLine: false, fullHouse: false })
     setGameOver(false)
@@ -152,7 +154,7 @@ export default function games_tambola() {
 
   const callNumber = useCallback(() => {
     if (gameOverRef.current) return
-    const remArr = Array.from(remaining)
+    const remArr = Array.from(remainingRef.current)
     if (remArr.length === 0) { setGameOver(true); gameOverRef.current = true; return }
     const idx = Math.floor(Math.random() * remArr.length)
     const num = remArr[idx]
@@ -160,8 +162,8 @@ export default function games_tambola() {
     setCurrentNumber(num)
     setCalledNumbers(prev => [...prev, num])
     setCalledSet(prev => new Set([...prev, num]))
-    setRemaining(prev => { const s = new Set(prev); s.delete(num); return s })
-  }, [remaining])
+    setRemaining(prev => { const s = new Set(prev); s.delete(num); remainingRef.current = s; return s })
+  }, [])
 
   const toggleAuto = useCallback(() => {
     if (autoRef.current) { clearInterval(autoRef.current); autoRef.current = null; setAutoMode(false); return }
@@ -269,7 +271,7 @@ export default function games_tambola() {
       schema={{
         "@context": "https://schema.org", "@type": "VideoGame",
         "name": "Tambola Housie", "applicationCategory": "Game",
-        "url": "https://www.uptools.in/games/games-tambola/",
+        "url": "https://www.uptools.in/games/tambola/",
         "genre": "Board Game",
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}

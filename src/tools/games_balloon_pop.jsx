@@ -56,12 +56,8 @@ export default function games_balloon_pop() {
   const rafRef = useRef(null)
 
   useEffect(() => { resizeBoard() }, [])
-  useEffect(() => {
-    const h = () => resizeBoard()
-    window.addEventListener('resize', h)
-    window.addEventListener('ut:board-h', h)
-    return () => { window.removeEventListener('resize', h); window.removeEventListener('ut:board-h', h) }
-  }, [])
+  useEffect(() => { const h = () => resizeBoard(); window.addEventListener('resize', h); window.addEventListener('ut:board-h', h); return () => { window.removeEventListener('resize', h); window.removeEventListener('ut:board-h', h) } }, [])
+  useEffect(() => { if (playing) resizeBoard() }, [playing])
 
   const resizeBoard = () => {
     const c = canvasRef.current
@@ -69,7 +65,10 @@ export default function games_balloon_pop() {
       const parentW = c.parentElement.clientWidth
       const vpW = window.innerWidth
       const w = Math.min(380, parentW - 16, (window.__utBoardH || 1e9) - 16, vpW - 32)
-      setCanvasSize(Math.max(260, w))
+      const size = Math.max(260, w)
+      c.width = size
+      c.height = size
+      setCanvasSize(size)
     }
   }
 
@@ -300,7 +299,7 @@ export default function games_balloon_pop() {
       schema={{
         "@context": "https://schema.org", "@type": "VideoGame",
         "name": "Balloon Pop", "applicationCategory": "Game",
-        "url": "https://www.uptools.in/games/games-balloon-pop/",
+        "url": "https://www.uptools.in/games/balloon-pop/",
         "genre": "Arcade",
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
@@ -337,9 +336,9 @@ export default function games_balloon_pop() {
               </div>
             </div>
 
-            <div className="glass p-2" ref={canvasRef}>
+            <div className="glass p-2">
               <canvas
-                ref={el => { canvasRef.current = el; if (el) { el.width = canvasSize; el.height = canvasSize; } }}
+                ref={el => { canvasRef.current = el; if (el && el.width !== canvasSize) { el.width = canvasSize; el.height = canvasSize } }}
                 style={{ width: canvasSize, height: canvasSize, borderRadius: 12, touchAction: 'none', cursor: 'pointer' }}
               />
             </div>

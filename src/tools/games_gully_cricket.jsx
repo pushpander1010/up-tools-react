@@ -36,11 +36,11 @@ const RUNS_COLORS = ['#64748b', '#60a5fa', '#34d399', '#facc15', '#f43f5e']
 
 function getRuns(position) {
   if (position < 0.08 || position > 0.92) return 0
-  if (position < 0.2) return 1
-  if (position < 0.38) return 2
-  if (position < 0.62) return 4
-  if (position < 0.8) return 2
-  return 1
+  if (position < 0.2) return 2
+  if (position < 0.38) return 4
+  if (position < 0.62) return 6
+  if (position < 0.8) return 4
+  return 2
 }
 
 export default function games_gully_cricket() {
@@ -63,6 +63,8 @@ export default function games_gully_cricket() {
   const startedRef = useRef(false)
   const scoreRef = useRef(0)
   const ballsRef = useRef(0)
+  const gameOverTimeoutRef = useRef(null)
+  const nextBallTimeoutRef = useRef(null)
 
   const syncBest = useCallback((s) => {
     const b = Math.max(best, s)
@@ -71,6 +73,8 @@ export default function games_gully_cricket() {
   }, [best])
 
   const startGame = useCallback(() => {
+    if (gameOverTimeoutRef.current) { clearTimeout(gameOverTimeoutRef.current); gameOverTimeoutRef.current = null }
+    if (nextBallTimeoutRef.current) { clearTimeout(nextBallTimeoutRef.current); nextBallTimeoutRef.current = null }
     setScore(0); setBalls(0); setLastRuns(null); setGameOver(false); setCanHit(true)
     scoreRef.current = 0; ballsRef.current = 0
     posRef.current = 0; dirRef.current = 1
@@ -128,11 +132,11 @@ export default function games_gully_cricket() {
 
     if (newBalls >= TOTAL_BALLS) {
       playOverEnd()
-      setTimeout(() => { setGameOver(true); startedRef.current = false }, 600)
+      gameOverTimeoutRef.current = setTimeout(() => { setGameOver(true); startedRef.current = false }, 600)
       return
     }
 
-    setTimeout(() => {
+    nextBallTimeoutRef.current = setTimeout(() => {
       posRef.current = 0; dirRef.current = 1
       speedRef.current = Math.min(3.5, 1.8 + (newBalls / TOTAL_BALLS) * 1.7)
       startedRef.current = true
@@ -178,7 +182,7 @@ export default function games_gully_cricket() {
       schema={{
         "@context": "https://schema.org", "@type": "VideoGame",
         "name": "Gully Cricket", "applicationCategory": "Game",
-        "url": "https://www.uptools.in/games/games-gully-cricket/",
+        "url": "https://www.uptools.in/games/gully-cricket/",
         "genre": "Sports",
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
@@ -212,7 +216,7 @@ export default function games_gully_cricket() {
                   Ball {Math.min(balls + 1, TOTAL_BALLS)}/{TOTAL_BALLS}
                 </div>
               </div>
-              <button onClick={() => { setPlaying(false); startedRef.current = false }}
+              <button onClick={() => { if (gameOverTimeoutRef.current) { clearTimeout(gameOverTimeoutRef.current); gameOverTimeoutRef.current = null } if (nextBallTimeoutRef.current) { clearTimeout(nextBallTimeoutRef.current); nextBallTimeoutRef.current = null } setPlaying(false); startedRef.current = false }}
                 className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">
                 ⟵ Back
               </button>
@@ -243,7 +247,7 @@ export default function games_gully_cricket() {
               </div>
 
               <div className="flex justify-between mt-1 text-[10px] text-slate-500 px-1">
-                <span>Dot</span><span>1</span><span>2</span><span>4</span><span>6</span><span>4</span><span>2</span><span>1</span><span>Dot</span>
+                <span>Dot</span><span>2</span><span>4</span><span>6</span><span>4</span><span>2</span><span>Dot</span>
               </div>
 
               <button onClick={doHit} disabled={!canHit || gameOver}

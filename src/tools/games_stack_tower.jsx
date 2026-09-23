@@ -196,7 +196,7 @@ export default function games_stack_tower() {
       schema={{
         "@context": "https://schema.org", "@type": "VideoGame",
         "name": "Stack Tower", "applicationCategory": "Game",
-        "url": "https://www.uptools.in/games/games-stack-tower/",
+        "url": "https://www.uptools.in/games/stack-tower/",
         "genre": "Arcade",
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}

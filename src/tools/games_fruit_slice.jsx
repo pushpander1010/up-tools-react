@@ -45,13 +45,14 @@ class Fruit {
     this.isBomb = false
     this.rotation = 0
     this.rotSpeed = (Math.random() - 0.5) * 0.15
+    this.killY = canvasH + 40
   }
   update(dt) {
     this.x += this.vx * dt
     this.vy += this.gravity * dt
     this.y += this.vy * dt
     this.rotation += this.rotSpeed * dt
-    if (this.y > 800) this.alive = false
+    if (this.y > this.killY) this.alive = false
   }
   draw(ctx) {
     if (!this.alive) return
@@ -114,6 +115,7 @@ export default function games_fruit_slice() {
   const timerRef = useRef(null)
   const gameOverRef = useRef(false)
   const lastFrameRef = useRef(0)
+  const cssSizeRef = useRef({ w: 400, h: 500 })
 
   const syncBest = useCallback((s) => {
     setBest(prev => {
@@ -136,7 +138,9 @@ export default function games_fruit_slice() {
     canvas.height = Math.max(350, h) * 2
     canvas.style.width = Math.max(280, w) + 'px'
     canvas.style.height = Math.max(350, h) + 'px'
-    setCanvasSize({ w: Math.max(280, w), h: Math.max(350, h) })
+    const cw = Math.max(280, w), ch = Math.max(350, h)
+    cssSizeRef.current = { w: cw, h: ch }
+    setCanvasSize({ w: cw, h: ch })
   }, [])
 
   const startGame = useCallback(() => {
@@ -152,8 +156,8 @@ export default function games_fruit_slice() {
     if (spawnRef.current) clearInterval(spawnRef.current)
     spawnRef.current = setInterval(() => {
       if (gameOverRef.current) return
-      const sw = canvasSize.w * 2 || 800
-      const sh = canvasSize.h * 2 || 1000
+      const sw = cssSizeRef.current.w || 400
+      const sh = cssSizeRef.current.h || 500
       fruitsRef.current.push(spawnFruit(sw, sh))
       if (Math.random() < 0.3) fruitsRef.current.push(spawnFruit(sw, sh))
     }, FRUIT_SPAWN_INTERVAL)
@@ -184,8 +188,9 @@ export default function games_fruit_slice() {
       const canvas = canvasRef.current
       if (!canvas) { animRef.current = requestAnimationFrame(drawFrame); return }
       const ctx = canvas.getContext('2d')
-      const w = canvas.width
-      const h = canvas.height
+      ctx.setTransform(2, 0, 0, 2, 0, 0)
+      const w = cssSizeRef.current.w || 400
+      const h = cssSizeRef.current.h || 500
 
       // Background
       ctx.fillStyle = '#0a0a1a'
@@ -248,8 +253,8 @@ export default function games_fruit_slice() {
             fruitsRef.current.push({
               x: fruit.x, y: fruit.y,
               vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed,
-              r: 4, gravity: 0.1, color: '#ef4444', alive: true,
-              update(dt) { this.x += this.vx * dt; this.vy += this.gravity * dt; this.y += this.vy * dt; if (this.y > 800) this.alive = false },
+              r: 4, gravity: 0.1, color: '#ef4444', alive: true, killY: fruit.killY,
+              update(dt) { this.x += this.vx * dt; this.vy += this.gravity * dt; this.y += this.vy * dt; if (this.y > this.killY) this.alive = false },
               draw(ctx) { ctx.fillStyle = this.color; ctx.beginPath(); ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2); ctx.fill() },
               contains() { return false }, isBomb: false, sliced: false, rotation: 0, rotSpeed: 0
             })
@@ -265,8 +270,8 @@ export default function games_fruit_slice() {
             fruitsRef.current.push({
               x: fruit.x, y: fruit.y,
               vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed - 3,
-              r: 3 + Math.random() * 3, gravity: 0.12, color: fruit.color, alive: true,
-              update(dt) { this.x += this.vx * dt; this.vy += this.gravity * dt; this.y += this.vy * dt; if (this.y > 800) this.alive = false },
+              r: 3 + Math.random() * 3, gravity: 0.12, color: fruit.color, alive: true, killY: fruit.killY,
+              update(dt) { this.x += this.vx * dt; this.vy += this.gravity * dt; this.y += this.vy * dt; if (this.y > this.killY) this.alive = false },
               draw(ctx) { ctx.fillStyle = this.color; ctx.globalAlpha = 0.7; ctx.beginPath(); ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2); ctx.fill(); ctx.globalAlpha = 1 },
               contains() { return false }, isBomb: false, sliced: false, rotation: 0, rotSpeed: 0
             })
@@ -306,6 +311,12 @@ export default function games_fruit_slice() {
   const handleTouchEnd = useCallback(() => { isDragging.current = false }, [])
 
   useEffect(() => { fitCanvas() }, [fitCanvas])
+  // The canvas only mounts AFTER start (playing=false hides it), so re-fit
+  // once it exists — otherwise the canvas keeps the 300x150 default and all
+  // spawn/draw coordinates miss the visible area.
+  useEffect(() => {
+    if (playing && !gameOver) requestAnimationFrame(() => fitCanvas())
+  }, [playing, gameOver, fitCanvas])
   useEffect(() => {
     const h = () => fitCanvas()
     window.addEventListener('resize', h)
@@ -359,7 +370,7 @@ export default function games_fruit_slice() {
       schema={{
         "@context": "https://schema.org", "@type": "VideoGame",
         "name": "Fruit Slice", "applicationCategory": "Game",
-        "url": "https://www.uptools.in/games/games-fruit-slice/",
+        "url": "https://www.uptools.in/games/fruit-slice/",
         "genre": "Arcade",
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
