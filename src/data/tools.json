@@ -8098,6 +8098,219 @@
         "dev",
         "tools"
       ]
+    },
+    {
+      "slug": "rent-receipt-generator",
+      "title": "Rent Receipt Generator — Monthly HRA Receipts",
+      "icon": "🧾",
+      "desc": "Generate printable monthly rent receipts for HRA claims. Enter tenant, landlord, rent and FY months, get itemised receipts with yearly HRA total. Free, no sign-up.",
+      "href": "/rent-receipt-generator/",
+      "tags": [
+        "rent",
+        "receipt",
+        "hra",
+        "house-rent",
+        "tax",
+        "landlord",
+        "tenant",
+        "generator",
+        "printable"
+      ],
+      "cats": [
+        "all",
+        "finance",
+        "tools"
+      ]
+    },
+    {
+      "slug": "salary-slip-generator",
+      "title": "Salary Slip Generator — Printable Pay Slip",
+      "icon": "💼",
+      "desc": "Create a professional salary slip online free. Enter employee details, earnings and deductions, get auto gross/net pay with printable slip. No sign-up.",
+      "href": "/salary-slip-generator/",
+      "tags": [
+        "salary",
+        "slip",
+        "payslip",
+        "pay-slip",
+        "hr",
+        "payroll",
+        "salary-slip",
+        "printable"
+      ],
+      "cats": [
+        "all",
+        "finance",
+        "tools"
+      ]
+    },
+    {
+      "slug": "offer-letter-generator",
+      "title": "Offer Letter Generator — Free HR Template",
+      "icon": "📝",
+      "desc": "Generate a professional job offer letter in seconds. Enter candidate, company, role, CTC and joining date, preview live, copy or download. Free, no sign-up.",
+      "href": "/offer-letter-generator/",
+      "tags": [
+        "offer-letter",
+        "hr",
+        "hiring",
+        "job",
+        "appointment",
+        "ctc",
+        "template",
+        "generator"
+      ],
+      "cats": [
+        "all",
+        "tools"
+      ]
+    },
+    {
+      "slug": "experience-letter-generator",
+      "title": "Experience Letter Generator — Free Format",
+      "icon": "📜",
+      "desc": "Create a formal experience letter online free. Enter employee, company, role and tenure, preview the letter, copy or download. No sign-up.",
+      "href": "/experience-letter-generator/",
+      "tags": [
+        "experience-letter",
+        "relieving",
+        "hr",
+        "job",
+        "certificate",
+        "template",
+        "generator"
+      ],
+      "cats": [
+        "all",
+        "tools"
+      ]
+    },
+    {
+      "slug": "wedding-budget-planner",
+      "title": "Wedding Budget Planner — Shaadi Expense Tracker",
+      "icon": "💍",
+      "desc": "Plan your Indian wedding budget: allocate across venue, food, decor, photo and more, track planned vs actual spend with progress bars. Free, no sign-up.",
+      "href": "/wedding-budget-planner/",
+      "tags": [
+        "wedding",
+        "shaadi",
+        "budget",
+        "planner",
+        "expenses",
+        "marriage",
+        "venue",
+        "decor"
+      ],
+      "cats": [
+        "all",
+        "finance",
+        "tools"
+      ]
+    },
+    {
+      "slug": "marriage-bio-data-maker",
+      "title": "Marriage Bio-Data Maker — Shaadi Profile",
+      "icon": "💒",
+      "desc": "Make a beautiful marriage bio-data online free. Personal, education, family and partner-preference sections with printable card. No sign-up.",
+      "href": "/marriage-bio-data-maker/",
+      "tags": [
+        "marriage",
+        "biodata",
+        "bio-data",
+        "shaadi",
+        "matrimonial",
+        "profile",
+        "maker"
+      ],
+      "cats": [
+        "all",
+        "tools"
+      ]
+    },
+    {
+      "slug": "home-loan-prepay-calculator",
+      "title": "Home Loan Prepayment Calculator — Interest Saved",
+      "icon": "🏠",
+      "desc": "See how much interest and time a home-loan prepayment saves. Enter loan, rate, tenure and monthly prepay, get interest saved, months saved and schedule. Free.",
+      "href": "/home-loan-prepay-calculator/",
+      "tags": [
+        "home-loan",
+        "prepayment",
+        "prepay",
+        "emi",
+        "interest",
+        "mortgage",
+        "loan",
+        "calculator"
+      ],
+      "cats": [
+        "all",
+        "finance"
+      ]
+    },
+    {
+      "slug": "upsc-age-eligibility",
+      "title": "UPSC Age and Attempt Eligibility Checker (CSE)",
+      "icon": "🏛️",
+      "desc": "Check UPSC CSE eligibility instantly: enter DOB and category, get age on 1st August, eligible attempts left and next steps per official rules. Free.",
+      "href": "/upsc-age-eligibility/",
+      "tags": [
+        "upsc",
+        "cse",
+        "ias",
+        "eligibility",
+        "age-limit",
+        "attempts",
+        "civil-services",
+        "exam"
+      ],
+      "cats": [
+        "all",
+        "education"
+      ]
+    },
+    {
+      "slug": "diabetes-risk-checker",
+      "title": "Diabetes Risk Checker — 2-Min Screening Quiz",
+      "icon": "🩺",
+      "desc": "2-minute diabetes risk screening quiz based on age, BMI, family history and lifestyle. Low, moderate or high score with next steps. Informational only, not medical advice.",
+      "href": "/diabetes-risk-checker/",
+      "tags": [
+        "diabetes",
+        "health",
+        "risk",
+        "sugar",
+        "bmi",
+        "screening",
+        "quiz",
+        "checker"
+      ],
+      "cats": [
+        "all",
+        "health"
+      ]
+    },
+    {
+      "slug": "school-fee-planner",
+      "title": "School Fee Planner — Future Cost Projector",
+      "icon": "🎒",
+      "desc": "Project rising school fees with annual hike compounding. Enter current fee, hike percent, years and admission fee, get year-wise table and total cost. Free.",
+      "href": "/school-fee-planner/",
+      "tags": [
+        "school",
+        "fees",
+        "education",
+        "planner",
+        "admission",
+        "hike",
+        "parenting",
+        "calculator"
+      ],
+      "cats": [
+        "all",
+        "finance",
+        "education"
+      ]
     }
   ],
   "categories": {
