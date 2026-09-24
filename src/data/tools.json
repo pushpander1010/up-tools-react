@@ -977,9 +977,9 @@
     },
     {
       "slug": "qr-generator",
-      "title": "QR Code Generator",
+      "title": "Free QR Code Generator",
       "icon": "🔳",
-      "desc": "Free QR code generator: make QR codes for URLs, WiFi, text, email, phone, SMS, and vCard. Download as PNG or SVG — no signup,.",
+      "desc": "Free QR code generator: make QR codes for URLs, WiFi, text, email, phone, SMS, and vCard. Download as PNG or SVG, no signup, no watermark.",
       "href": "/qr-generator/",
       "tags": [
         "images",
@@ -993,9 +993,9 @@
     },
     {
       "slug": "qr-reader",
-      "title": "QR Reader",
+      "title": "Free QR Code Scanner Online",
       "icon": "📷",
-      "desc": "QR Code Scanner - scan QR codes from camera, uploaded images, or screen capture. Instantly decode, online free. Free online,.",
+      "desc": "Free QR code scanner online: scan codes with your camera or upload an image. Reads URLs, UPI, WiFi, and vCards privately on-device.",
       "href": "/qr-reader/",
       "tags": [
         "images",
@@ -4485,9 +4485,9 @@
     },
     {
       "slug": "upi-qr-generator",
-      "title": "UPI QR Code Generator",
+      "title": "Free UPI QR Code Generator",
       "icon": "📲",
-      "desc": "UPI QR code generator: create a scan-and-pay UPI QR from your VPA with amount preset for instant payments.",
+      "desc": "Free UPI QR code generator for India: make a scan-and-pay QR from your UPI ID with optional amount. Works with GPay, PhonePe, Paytm, BHIM.",
       "href": "/upi-qr-generator/",
       "tags": [
         "upi",

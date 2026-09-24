@@ -3,12 +3,15 @@ import ToolLayout from '../components/ToolLayout'
 import useJumpToResult from '../hooks/useJumpToResult'
 
 function analyzePayload(raw) {
-  if (/^https?:\/\//i.test(raw)) return { type: 'URL', parsed: { href: raw } }
-  if (/^mailto:/i.test(raw)) return { type: 'Email', parsed: { href: raw } }
-  if (/^tel:/i.test(raw)) return { type: 'Phone', parsed: { href: raw } }
-  if (/^wifi:/i.test(raw)) return { type: 'WiFi', parsed: null }
-  if (/^BEGIN:VCARD/i.test(raw)) return { type: 'vCard', parsed: null }
-  if (/^[A-Z0-9]{4}\d{7}$/.test(raw)) return { type: 'IFSC', parsed: null }
+  const low = (raw || '').toLowerCase()
+  if (low.startsWith('http://') || low.startsWith('https://')) return { type: 'URL', parsed: { href: raw } }
+  if (low.startsWith('mailto:')) return { type: 'Email', parsed: { href: raw } }
+  if (low.startsWith('tel:')) return { type: 'Phone', parsed: { href: raw } }
+  if (low.startsWith('sms:') || low.startsWith('smsto:')) return { type: 'SMS', parsed: null }
+  if (low.startsWith('wifi:')) return { type: 'WiFi', parsed: null }
+  if (low.startsWith('begin:vcard')) return { type: 'vCard', parsed: null }
+  if (low.startsWith('upi:')) return { type: 'UPI', parsed: null }
+  if (low.startsWith('geo:')) return { type: 'Location', parsed: null }
   return { type: 'Text', parsed: null }
 }
 
@@ -22,22 +25,23 @@ export default function qr_reader() {
   const [copying, setCopying] = useState(null)
 
   const addResult = useCallback((text, meta = {}) => {
+    if (!text) return
     const { type, parsed } = analyzePayload(text)
-    setResults(prev => [{ text, type, parsed, meta, time: new Date().toLocaleTimeString() }, ...prev])
+    setResults(prev => prev.some(r => r.text === text) ? prev : [{ text, type, parsed, meta, time: new Date().toLocaleTimeString() }, ...prev])
   }, [])
 
   const startCamera = useCallback(async () => {
     try {
       setError('')
+      if (!('BarcodeDetector' in window)) {
+        setError('Live camera scanning is not supported in this browser. Please upload an image instead.')
+        return
+      }
       const s = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: 'environment' } } })
       setStream(s)
       setCameraActive(true)
-      if (videoRef.current) {
-        videoRef.current.srcObject = s
-        videoRef.current.play()
-      }
     } catch (err) {
-      setError('Camera access denied. Try uploading an image instead.')
+      setError('Camera access denied. Allow camera permission, or upload an image instead.')
     }
   }, [])
 
@@ -47,12 +51,48 @@ export default function qr_reader() {
     setCameraActive(false)
   }, [stream])
 
+  // Attach the stream once the <video> element has mounted
+  useEffect(() => {
+    if (cameraActive && stream && videoRef.current) {
+      videoRef.current.srcObject = stream
+      videoRef.current.play().catch(() => {})
+    }
+  }, [cameraActive, stream])
+
+  // Live scan loop: detect QR codes from the camera feed
+  useEffect(() => {
+    if (!cameraActive) return
+    let stopped = false
+    let timer = null
+    let detector = null
+    try { detector = new window.BarcodeDetector({ formats: ['qr_code'] }) } catch { return }
+    const seen = new Set()
+    const tick = async () => {
+      if (stopped) return
+      try {
+        const video = videoRef.current
+        if (video && video.readyState >= 2 && video.videoWidth > 0) {
+          const detections = await detector.detect(video)
+          if (detections && detections.length && detections[0].rawValue && !seen.has(detections[0].rawValue)) {
+            seen.add(detections[0].rawValue)
+            addResult(detections[0].rawValue, { from: 'camera' })
+            jumpTo()
+          }
+        }
+      } catch {}
+      timer = setTimeout(tick, 600)
+    }
+    tick()
+    return () => { stopped = true; if (timer) clearTimeout(timer) }
+  }, [cameraActive, addResult, jumpTo])
+
   useEffect(() => {
     return () => { if (stream) stream.getTracks().forEach(t => t.stop()) }
   }, [stream])
 
   const scanFile = useCallback(async (file) => {
     if (!file) return
+    setError('')
     try {
       const bmp = await createImageBitmap(file)
       if ('BarcodeDetector' in window) {
@@ -64,6 +104,8 @@ export default function qr_reader() {
             jumpTo()
             return
           }
+          setError('No QR code found in this image. Try a clearer, well-lit photo.')
+          return
         } catch {}
       }
       // Fallback: try to read as text
@@ -79,8 +121,13 @@ export default function qr_reader() {
             try {
               const det = new window.BarcodeDetector({ formats: ['qr_code'] })
               const detections = await det.detect(canvas)
-              detections.forEach(d => addResult(d.rawValue, { from: 'image' }))
-            } catch { setError('No QR code found in image.') }
+              if (detections.length) {
+                detections.forEach(d => addResult(d.rawValue, { from: 'image' }))
+                jumpTo()
+              } else {
+                setError('No QR code found in this image. Try a clearer, well-lit photo.')
+              }
+            } catch { setError('Could not read this image. Try another file.') }
           } else {
             setError('QR detection not supported in this browser.')
           }
@@ -107,17 +154,17 @@ export default function qr_reader() {
 
   return (
     <ToolLayout
-      title="QR Code Scanner"
-      desc="QR Code Scanner - scan QR codes from camera, uploaded images, or screen capture. Instantly decode, online free. Free online, no sign-up. Works on any device."
+      title="Free QR Code Scanner Online – Camera & Image"
+      desc="Free QR code scanner online: scan QR codes with your camera or upload an image. Reads URLs, UPI, WiFi, vCards instantly — private, on-device, no signup."
       icon="📷" iconBg="rgba(34,197,94,0.08)"
       category="utility" slug="qr-reader"
       faq={[
-        { q: 'Does this upload my images?', a: 'No. Everything runs locally in your browser. Camera and image processing happen on-device.' },
-        { q: 'What QR code types are supported?', a: 'URLs, text, WiFi credentials, vCards, phone numbers, email addresses, IFSC codes, and plain text.' },
-        { q: "How do I use this QR Code Scanner online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
-        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
-        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
-        { q: "Is this QR Code Scanner free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
+        { q: 'Does this upload my images?', a: 'No. Everything runs locally in your browser. Camera and image processing happen on-device — your scans never leave your phone or computer.' },
+        { q: 'What QR code types can it read?', a: 'URLs, plain text, UPI payment codes, WiFi credentials, vCards, phone numbers, SMS, email addresses, and locations.' },
+        { q: 'How do I scan a QR code with my camera?', a: 'Click Start Camera, allow camera permission, and point your phone or laptop camera at the QR code. The result appears automatically — no photo needed.' },
+        { q: 'Can I scan a QR code from a screenshot?', a: 'Yes. Save the screenshot as an image and upload it with the Upload Image button. Blurry or tiny codes may fail — crop close to the code for best results.' },
+        { q: 'Why is my QR code not scanning?', a: 'Common causes: blur, glare, too small, or low contrast. Hold steady, improve lighting, and fill the frame with the code. If the camera fails, try uploading a photo instead.' },
+        { q: 'Is this QR scanner free?', a: 'Yes, completely free with no sign-up and unlimited scans, on any device.' },
       ]}
       howItWorks={[
         'Click Start Camera to use your device camera for live scanning.',
@@ -126,7 +173,8 @@ export default function qr_reader() {
       ]}
       schema={{
         "@context": "https://schema.org", "@type": "SoftwareApplication",
-        "name": "QR Code Scanner", "applicationCategory": "UtilitiesApplication",
+        "name": "Free QR Code Scanner Online", "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any (Web Browser)",
         "url": "https://www.uptools.in/qr-reader/",
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
@@ -210,6 +258,13 @@ export default function qr_reader() {
             <p className="text-sm text-slate-600 font-medium">Start camera or upload an image to scan</p>
           </div>
         )}
+
+        <p className="text-xs text-slate-600 text-center pt-1">
+          Need to create a code instead? Try our free{' '}
+          <a className="text-emerald-400 hover:text-emerald-300" href="/qr-generator/">QR Code Generator</a>,{' '}
+          <a className="text-emerald-400 hover:text-emerald-300" href="/upi-qr-generator/">UPI QR Generator</a>, or{' '}
+          <a className="text-emerald-400 hover:text-emerald-300" href="/barcode-generator/">Barcode Generator</a>.
+        </p>
       </div>
     </ToolLayout>
   )

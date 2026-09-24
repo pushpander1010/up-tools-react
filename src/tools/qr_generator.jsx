@@ -12,14 +12,28 @@ const QR_TYPES = [
   { value: 'vcard', label: 'vCard' },
 ]
 
+function escapeWifi(s) { const b = String.fromCharCode(92); return (s || '').split(b).join(b + b).split(';').join(b + ';').split(',').join(b + ',').split(':').join(b + ':').split('"').join(b + '"') }
+
 function getContent(type, fields) {
   switch (type) {
-    case 'url': return fields.content
-    case 'wifi': return `WIFI:T:WPA;S:${fields.wifiSsid};P:${fields.wifiPass};;`
+    case 'url': {
+      const u = (fields.content || '').trim()
+      if (!u) return ''
+      const low = u.toLowerCase()
+      return (low.slice(0, 7) === 'http://' || low.slice(0, 8) === 'https://') ? u : `https://${u}`
+    }
+    case 'wifi': {
+      const sec = fields.wifiSec || 'WPA'
+      const t = sec === 'none' ? '' : `T:${sec};`
+      return `WIFI:${t}S:${escapeWifi(fields.wifiSsid)};P:${escapeWifi(fields.wifiPass)};;`
+    }
     case 'email': return `mailto:${fields.emailTo}?subject=${encodeURIComponent(fields.emailSubject)}`
-    case 'phone': return `tel:${fields.content}`
-    case 'sms': return `sms:${fields.content}`
-    case 'vcard': return `BEGIN:VCARD\nVERSION:3.0\nFN:${fields.vcardName}\nTEL:${fields.content}\nEND:VCARD`
+    case 'phone': return `tel:${(fields.content || '').trim()}`
+    case 'sms': {
+      const body = (fields.smsBody || '').trim()
+      return `sms:${(fields.content || '').trim()}${body ? `?body=${encodeURIComponent(body)}` : ''}`
+    }
+    case 'vcard': return `BEGIN:VCARD\nVERSION:3.0\nFN:${fields.vcardName}\nTEL:${(fields.content || '').trim()}\nEND:VCARD`
     default: return fields.content
   }
 }
@@ -37,11 +51,14 @@ export default function qr_code_generator() {
     content: '',
     wifiSsid: '',
     wifiPass: '',
+    wifiSec: 'WPA',
     emailTo: '',
     emailSubject: '',
+    smsBody: '',
     vcardName: '',
   })
   const [generated, setGenerated] = useState(false)
+  const [error, setError] = useState('')
   const [downloading, setDownloading] = useState(false)
 
   const qrText = useMemo(() => {
@@ -52,6 +69,11 @@ export default function qr_code_generator() {
   const qrUrl = useMemo(() => getQrUrl(qrText, size), [qrText, size])
 
   const generate = () => {
+    setError('')
+    if (qrType === 'wifi' && !fields.wifiSsid.trim()) { setError('Please enter your WiFi network name (SSID).'); return }
+    if (qrType === 'email' && !fields.emailTo.trim()) { setError('Please enter an email address.'); return }
+    if (qrType === 'vcard' && !fields.vcardName.trim() && !fields.content.trim()) { setError('Please enter a name or phone number for the contact.'); return }
+    if ((qrType === 'text' || qrType === 'url' || qrType === 'phone' || qrType === 'sms') && !fields.content.trim()) { setError('Please enter the content for your QR code.'); return }
     setGenerated(true)
     jumpTo()
   }
@@ -88,7 +110,8 @@ export default function qr_code_generator() {
   const showWifi = qrType === 'wifi'
   const showEmail = qrType === 'email'
   const showVcard = qrType === 'vcard'
-  const showMainContent = !showWifi && !showEmail
+  const showSms = qrType === 'sms'
+  const showMainContent = !showWifi && !showEmail && !showVcard
 
   return (
     <ToolLayout
@@ -102,6 +125,7 @@ export default function qr_code_generator() {
         { q: "Can I make a QR code for a URL or link?", a: "Yes. Choose the URL type, paste your link, and generate. Anyone can scan it to open the link — perfect for business cards, posters, menus, or sharing a link in print." },
         { q: "Is the QR code generator free?", a: "Yes, it is completely free with no signup and no watermarks. Generate as many QR codes as you need and download them as PNG or SVG." },
         { q: "How do I scan a QR code?", a: "Open your phone camera and point it at the QR code. Most phones detect QR codes automatically." },
+        { q: "Do my QR codes expire?", a: "No. These QR codes encode your content directly (link, text, WiFi details) — there is no tracking server or expiry date. They work forever, even offline." },
         { q: "What file formats can I download?", a: "You can download your QR code as a high-quality PNG or SVG, so it prints cleanly at any size." },
       ]}
       howItWorks={[
@@ -113,6 +137,7 @@ export default function qr_code_generator() {
       schema={{
         "@context": "https://schema.org", "@type": "SoftwareApplication",
         "name": "QR Code Generator", "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any (Web Browser)",
         "url": "https://www.uptools.in/qr-generator/",
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
@@ -121,7 +146,7 @@ export default function qr_code_generator() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-semibold text-slate-300 mb-2">Type</label>
-            <select value={qrType} onChange={e => { setQrType(e.target.value); setGenerated(false) }}
+            <select value={qrType} onChange={e => { setQrType(e.target.value); setGenerated(false); setError('') }}
               className={selectClass}>
               {QR_TYPES.map(t => <option key={t.value} value={t.value}>{t.label}</option>)}
             </select>
@@ -144,6 +169,14 @@ export default function qr_code_generator() {
           </div>
         )}
 
+        {showSms && (
+          <div>
+            <label className="block text-sm font-semibold text-slate-300 mb-2">Message (optional)</label>
+            <input type="text" value={fields.smsBody} onChange={e => updateField('smsBody', e.target.value)}
+              placeholder="Pre-filled text message" className={inputClass} />
+          </div>
+        )}
+
         {showWifi && (
           <div className="grid grid-cols-2 gap-4">
             <div>
@@ -152,10 +185,21 @@ export default function qr_code_generator() {
                 placeholder="Network name" className={inputClass} />
             </div>
             <div>
-              <label className="block text-sm font-semibold text-slate-300 mb-2">Password</label>
-              <input type="text" value={fields.wifiPass} onChange={e => updateField('wifiPass', e.target.value)}
-                placeholder="Password" className={inputClass} />
+              <label className="block text-sm font-semibold text-slate-300 mb-2">Security</label>
+              <select value={fields.wifiSec} onChange={e => updateField('wifiSec', e.target.value)}
+                className={selectClass}>
+                <option value="WPA">WPA / WPA2</option>
+                <option value="WEP">WEP</option>
+                <option value="none">Open (no password)</option>
+              </select>
             </div>
+            {fields.wifiSec !== 'none' && (
+              <div className="col-span-2">
+                <label className="block text-sm font-semibold text-slate-300 mb-2">Password</label>
+                <input type="text" value={fields.wifiPass} onChange={e => updateField('wifiPass', e.target.value)}
+                  placeholder="Password" className={inputClass} />
+              </div>
+            )}
           </div>
         )}
 
@@ -189,6 +233,10 @@ export default function qr_code_generator() {
           </div>
         )}
 
+        {error && (
+          <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-sm text-red-400">❌ {error}</div>
+        )}
+
         <div className="flex gap-3">
           <button onClick={generate}
             className="flex-1 py-4 rounded-2xl bg-indigo-500 text-white font-bold text-sm hover:bg-indigo-400 transition-all duration-200 active:scale-[0.98]">
@@ -200,7 +248,7 @@ export default function qr_code_generator() {
           <div ref={resultRef} className="rounded-3xl border-2 border-indigo-500/15 bg-gradient-to-br from-indigo-500/[0.06] via-white/[0.01] to-transparent p-6 sm:p-8 overflow-hidden text-center"
             style={{ animation: 'slideUp 0.35s cubic-bezier(0.4,0,0.2,1)' }}>
             <h3 className="text-sm font-bold text-indigo-400 mb-4">QR Code</h3>
-            <img src={qrUrl} alt="Generated QR Code" className="block mx-auto rounded-xl shadow-2xl mb-4"
+            <img src={qrUrl} alt="Free QR code generated online — scan to open content" className="block mx-auto rounded-xl shadow-2xl mb-4"
               style={{ width: Math.min(size, 300), height: Math.min(size, 300) }} />
             <div className="flex gap-3 justify-center">
               <button onClick={downloadPng} disabled={downloading}

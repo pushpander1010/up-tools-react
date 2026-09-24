@@ -1,14 +1,15 @@
-import { useState, useCallback, useRef, useEffect } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import ToolLayout from '../components/ToolLayout'
 import useJumpToResult from '../hooks/useJumpToResult'
 
 export default function upi_qr_generator() {
   const { ref: resultRef, jumpTo } = useJumpToResult()
-  const canvasRef = useRef(null)
   const [upiId, setUpiId] = useState('')
+  const [payeeName, setPayeeName] = useState('')
   const [amount, setAmount] = useState('')
   const [note, setNote] = useState('')
   const [generated, setGenerated] = useState(false)
+  const [qrImg, setQrImg] = useState('')
   const [upiString, setUpiString] = useState('')
   const [error, setError] = useState('')
   const [copied, setCopied] = useState(null)
@@ -17,6 +18,7 @@ export default function upi_qr_generator() {
   useEffect(() => {
     const q = new URLSearchParams(window.location.search)
     if (q.has('pa')) { setUpiId(q.get('pa')); }
+    if (q.has('pn')) { setPayeeName(q.get('pn')); }
     if (q.has('am')) { setAmount(q.get('am')); }
     if (q.has('tn')) { setNote(q.get('tn')); }
   }, [])
@@ -27,41 +29,40 @@ export default function upi_qr_generator() {
     if (!upiId.includes('@')) { setError('Invalid UPI ID format. Use username@bank.'); return }
 
     let str = 'upi://pay?pa=' + encodeURIComponent(upiId.trim()) + '&cu=INR'
+    if (payeeName.trim()) str += '&pn=' + encodeURIComponent(payeeName.trim())
     if (note.trim()) str += '&tn=' + encodeURIComponent(note.trim())
     if (amount && !isNaN(amount) && parseFloat(amount) > 0) {
       str += '&am=' + encodeURIComponent(parseFloat(amount).toFixed(2))
     }
     setUpiString(str)
 
-    // Generate QR on canvas using API
+    // Preload the QR image, then reveal (avoids drawing to an unmounted canvas)
     try {
-      const canvas = canvasRef.current
-      const url = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(str)}&bgcolor=ffffff&color=000000&margin=10`
+      const url = `https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${encodeURIComponent(str)}&bgcolor=ffffff&color=000000&margin=10`
       const img = new Image()
-      img.crossOrigin = 'anonymous'
       img.onload = () => {
-        canvas.width = 250; canvas.height = 250
-        const ctx = canvas.getContext('2d')
-        ctx.fillStyle = '#ffffff'
-        ctx.fillRect(0, 0, 250, 250)
-        ctx.drawImage(img, 0, 0, 250, 250)
+        setQrImg(url)
         setGenerated(true)
+        setTimeout(() => jumpTo(), 50)
       }
-      img.onerror = () => setError('Error generating QR code.')
+      img.onerror = () => setError('Error generating QR code. Check your connection and retry.')
       img.src = url
     } catch (e) { setError('Error: ' + e.message) }
+  }, [upiId, payeeName, amount, note, jumpTo])
 
-    jumpTo()
-  }, [upiId, amount, note, jumpTo])
-
-  const download = useCallback(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-    const a = document.createElement('a')
-    a.download = `upi_qr_${upiId.trim().replace(/[^a-zA-Z0-9]/g, '_') || 'code'}.png`
-    a.href = canvas.toDataURL('image/png')
-    a.click()
-  }, [upiId])
+  const download = useCallback(async () => {
+    if (!qrImg) return
+    try {
+      const res = await fetch(qrImg)
+      const blob = await res.blob()
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.download = `upi_qr_${upiId.trim().replace(/[^a-zA-Z0-9]/g, '_') || 'code'}.png`
+      a.href = url
+      a.click()
+      URL.revokeObjectURL(url)
+    } catch { setError('Download failed. Long-press the QR image to save it.') }
+  }, [qrImg, upiId])
 
   const copy = useCallback(async (text, label) => {
     try { await navigator.clipboard.writeText(text) } catch { /* fallback */ }
@@ -70,34 +71,35 @@ export default function upi_qr_generator() {
   }, [])
 
   const reset = useCallback(() => {
-    setUpiId(''); setAmount(''); setNote('')
-    setGenerated(false); setUpiString(''); setError('')
+    setUpiId(''); setPayeeName(''); setAmount(''); setNote('')
+    setGenerated(false); setQrImg(''); setUpiString(''); setError('')
     window.history.replaceState(null, '', window.location.pathname)
   }, [])
 
   return (
     <ToolLayout
-      title="UPI QR Code Generator"
-      desc="UPI QR Code Generator - generate UPI QR codes instantly. Enter UPI ID and amount for payments, online free. Free online, no sign-up. Works on any device."
+      title="Free UPI QR Code Generator – GPay, PhonePe, Paytm"
+      desc="Free UPI QR code generator for India: make a scan-and-pay QR from your UPI ID with optional amount and note. Works with GPay, PhonePe, Paytm, BHIM. No signup."
       icon="📱" iconBg="rgba(34,197,94,0.08)"
       category="finance" slug="upi-qr-generator"
       faq={[
-        { q: 'What is a UPI QR code?', a: 'A scannable code containing your UPI ID and optional amount. When scanned, it pre-fills payment details.' },
-        { q: 'Which apps can scan UPI QR codes?', a: 'All major Indian UPI apps: Google Pay, PhonePe, Paytm, BHIM, Amazon Pay, WhatsApp Pay.' },
-        { q: 'Is the amount mandatory?', a: 'No. You can generate a QR with just your UPI ID. Amount is optional.' },
-        { q: "How do I use this UPI QR Code Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
-        { q: "How do I save my result?", a: "Click the copy or download button on your result to save it. Free with no sign-up." },
-        { q: "Can I use it more than once?", a: "Yes, unlimited free use. Generate as many results as you need, on any device." },
+        { q: 'What is a UPI QR code?', a: 'A scannable code containing your UPI ID and optional amount and note. When a customer scans it with GPay, PhonePe, Paytm, or BHIM, the payment details are pre-filled — they just tap pay.' },
+        { q: 'Which apps can scan my UPI QR code?', a: 'All major Indian UPI apps: Google Pay, PhonePe, Paytm, BHIM, Amazon Pay, and WhatsApp Pay.' },
+        { q: 'Is the amount mandatory?', a: 'No. Generate a QR with just your UPI ID and the payer enters the amount. Set a fixed amount for fixed-price items like a ₹100 product.' },
+        { q: 'Should I add my name to the QR code?', a: 'Yes, adding your shop or personal name builds trust — payers see the name before confirming payment, which reduces failed or wrong payments.' },
+        { q: 'Is it safe to share my UPI QR code publicly?', a: 'Yes. A UPI QR only contains your payment address — it cannot be used to withdraw money. Never share UPI PINs or OTPs with anyone.' },
+        { q: 'Is this UPI QR generator free?', a: 'Yes, completely free with no sign-up and unlimited QR codes. Your details stay in your browser.' },
       ]}
       howItWorks={[
-        'Enter your UPI ID in the format username@bank.',
-        'Optionally enter a fixed amount and note.',
+        'Enter your UPI ID in the format username@bank, plus your name (optional).',
+        'Optionally set a fixed amount and a payment note.',
         'Click Generate to create the QR code.',
-        'Download or share the QR code image.',
+        'Download, print, or share the QR code image.',
       ]}
       schema={{
         '@context': 'https://schema.org', '@type': 'SoftwareApplication',
-        name: 'UPI QR Code Generator', applicationCategory: 'UtilitiesApplication',
+        name: 'Free UPI QR Code Generator', applicationCategory: 'FinanceApplication',
+        operatingSystem: 'Any (Web Browser)',
         url: 'https://www.uptools.in/upi-qr-generator/',
         offers: { '@type': 'Offer', price: '0', priceCurrency: 'INR' },
       }}
@@ -109,6 +111,12 @@ export default function upi_qr_generator() {
             <label className="block text-xs font-bold text-slate-400 mb-1.5">UPI ID</label>
             <input type="text" value={upiId} onChange={e => setUpiId(e.target.value)}
               placeholder="e.g., john@okicici"
+              className="w-full bg-black/20 border-2 border-white/[0.08] rounded-xl px-4 py-3 text-white text-sm outline-none focus:border-green-500/40 transition-all placeholder:text-slate-600" />
+          </div>
+          <div>
+            <label className="block text-xs font-bold text-slate-400 mb-1.5">Payee Name (Optional)</label>
+            <input type="text" value={payeeName} onChange={e => setPayeeName(e.target.value)}
+              placeholder="e.g., John's Store"
               className="w-full bg-black/20 border-2 border-white/[0.08] rounded-xl px-4 py-3 text-white text-sm outline-none focus:border-green-500/40 transition-all placeholder:text-slate-600" />
           </div>
           <div>
@@ -155,7 +163,7 @@ export default function upi_qr_generator() {
             style={{ animation: 'slideUp 0.35s ease-out' }}>
             <div className="flex justify-center">
               <div className="bg-white rounded-2xl p-3 shadow-2xl">
-                <canvas ref={canvasRef} width={250} height={250} className="block rounded-xl" style={{ width: 220, height: 220 }} />
+                <img src={qrImg} alt="UPI payment QR code — scan with GPay, PhonePe, or Paytm" width={250} height={250} className="block rounded-xl" style={{ width: 220, height: 220 }} />
               </div>
             </div>
             <div className="font-mono text-xs text-slate-400 break-all bg-black/20 rounded-xl p-3">{upiString}</div>
@@ -183,6 +191,13 @@ export default function upi_qr_generator() {
             <p className="text-sm text-slate-600 font-medium">Enter UPI details and click Generate</p>
           </div>
         )}
+
+        <p className="text-xs text-slate-600 text-center pt-1">
+          More free QR tools:{' '}
+          <a className="text-green-400 hover:text-green-300" href="/qr-generator/">QR Code Generator</a>,{' '}
+          <a className="text-green-400 hover:text-green-300" href="/qr-reader/">QR Code Scanner</a>, and{' '}
+          <a className="text-green-400 hover:text-green-300" href="/upi-validator/">UPI ID Validator</a>.
+        </p>
       </div>
     </ToolLayout>
   )
