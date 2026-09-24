@@ -169,7 +169,10 @@ export default function games_stack_tower() {
     return colors[idx % colors.length]
   }
 
+  const VIEW_H = 450
   const towerHeight = blocks.length * BLOCK_HEIGHT
+  const camOffset = Math.max(0, (blocks.length + 1) * BLOCK_HEIGHT + 20 - VIEW_H)
+  const boardH = camOffset > 0 ? VIEW_H : Math.min(VIEW_H, towerHeight + 120)
 
   return (
     <GameShell
@@ -235,18 +238,18 @@ export default function games_stack_tower() {
             <div ref={boardRef} className="glass p-3">
               <div
                 className="relative mx-auto overflow-hidden rounded-xl cursor-pointer"
-                style={{ width: boardSize, height: Math.min(450, towerHeight + 120), background: '#0b1628', touchAction: 'none' }}
+                style={{ width: boardSize, height: boardH, background: '#0b1628', touchAction: 'none' }}
                 onClick={() => placeBlock()}
                 onTouchStart={(e) => { e.preventDefault(); placeBlock() }}
               >
                 {/* Ground line */}
-                <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-white/10" />
+                <div className="absolute left-0 right-0 h-[2px] bg-white/10" style={{ bottom: 0 - camOffset }} />
 
                 {/* Placed blocks */}
                 {blocks.map((b, i) => (
                   <div key={i} className="absolute rounded-sm transition-all duration-75" style={{
                     left: b.x,
-                    bottom: i * BLOCK_HEIGHT + 2,
+                    bottom: i * BLOCK_HEIGHT + 2 - camOffset,
                     width: b.width,
                     height: BLOCK_HEIGHT - 2,
                     background: b.color,
@@ -258,7 +261,7 @@ export default function games_stack_tower() {
                 {movingBlock && !gameOver && (
                   <div className="absolute rounded-sm" style={{
                     left: movingBlock.x,
-                    bottom: blocks.length * BLOCK_HEIGHT + 2,
+                    bottom: blocks.length * BLOCK_HEIGHT + 2 - camOffset,
                     width: movingBlock.width,
                     height: BLOCK_HEIGHT - 2,
                     background: movingBlock.color,
