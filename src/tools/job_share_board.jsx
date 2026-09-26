@@ -66,6 +66,7 @@ export default function job_share_board() {
   const [q, setQ] = useState('')
   const [loc, setLoc] = useState('')
   const [typ, setTyp] = useState('')
+  const [sec, setSec] = useState('IT & Software')
   const [form, setForm] = useState({ title: '', company: '', location: '', type: 'Full-time', salary: '', description: '', applyLink: '' })
   const [paste, setPaste] = useState('')
   const [imgPrev, setImgPrev] = useState('')
@@ -125,6 +126,7 @@ export default function job_share_board() {
   }
   const remove = async (id) => { await deleteDoc(doc(db, 'jobs', id)) }
   const filtered = jobs.filter((j) =>
+    (!sec || sec === 'All' || (j.sector || 'IT & Software') === sec) &&
     (!q || (j.title + j.company + j.description).toLowerCase().includes(q.toLowerCase())) &&
     (!loc || (j.location || '').toLowerCase().includes(loc.toLowerCase())) &&
     (!typ || j.type === typ))
@@ -146,7 +148,10 @@ export default function job_share_board() {
         </div>
 
         {tab === 'jobs' && (<>
-          <div className="grid md:grid-cols-3 gap-2 mb-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-4">
+            <select className="bg-blue-600/10 border border-blue-500/30 rounded-xl px-3 py-2 text-sm text-blue-200 font-semibold outline-none" value={sec} onChange={(e) => setSec(e.target.value)}>
+              <option className="bg-slate-900">IT & Software</option><option className="bg-slate-900">Startups & Product</option><option className="bg-slate-900">Finance & Consulting</option><option className="bg-slate-900">Core, Retail & Others</option><option className="bg-slate-900">All</option>
+            </select>
             <input className="bg-white/[0.06] border border-white/10 rounded-xl px-3 py-2 text-sm text-white placeholder:text-slate-600 outline-none" placeholder="Search title, company" value={q} onChange={(e) => setQ(e.target.value)} />
             <input className="bg-white/[0.06] border border-white/10 rounded-xl px-3 py-2 text-sm text-white placeholder:text-slate-600 outline-none" placeholder="Location" value={loc} onChange={(e) => setLoc(e.target.value)} />
             <select className="bg-white/[0.06] border border-white/10 rounded-xl px-3 py-2 text-sm text-white outline-none" value={typ} onChange={(e) => setTyp(e.target.value)}>
