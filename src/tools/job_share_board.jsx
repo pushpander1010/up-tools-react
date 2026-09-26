@@ -21,9 +21,8 @@ const WEEK = 7 * 24 * 3600 * 1000
 const isLive = (p) => Date.now() - (p.createdAt || 0) < WEEK
 
 // Laya-style on-device job/scam decision (convaiinnovations/laya is a 2.37GB
-// System-1 decision model; full checkpoint runs server-side on Hugging Face.
-// This local check mirrors its job-vs-scam decision in ~ms, English + Hindi/Hinglish).
-const JOB_RE = [/hiring/i, /vacan/i, /apply/i, /salary/i, /\bctc\b/i, /experience/i, /fresher/i, /walk.?in/i, /interview/i, /resume/i, /cv\b/i, /recruit/i, /opening/i, /role/i, /shift/i, /stipend/i, /payroll/i, /lpa/i, /per month/i, /naukri/i, /bharti/i, /roozgar/i, /vetan/i, /aavedan/i, /sampark/i, /yogyata/i, /sarkari/i, /notification/i, /eligibility/i]
+// System-1 decision model; full checkpoint runs server-side on Hugging Face).
+const JOB_RE = [/hiring/i, /vacan/i, /apply/i, /salary/i, /\bctc\b/i, /experience/i, /fresher/i, /walk.?in/i, /interview/i, /resume/i, /cv\b/i, /recruit/i, /opening/i, /role/i, /shift/i, /stipend/i, /payroll/i, /lpa/i, /per month/i, /naukri/i, /bharti/i, /notification/i, /eligibility/i, /analyst/i, /engineer/i, /developer/i, /associate/i, /trainee/i]
 const SCAM_RE = [/earn \d+.*per day/i, /no work.*salary/i, /crypto.*doubl/i, /forex.*profit/i, /pay.*fee.*(job|joining)/i, /registration fee.*job/i, /adult/i, /betting/i, /work from home.*\$\$\$/i, /send.*money.*job/i, /advance.*payment.*job/i]
 export function layaCheck(text = '') {
   const t0 = performance.now()
@@ -43,8 +42,8 @@ function parseJD(text) {
   const lines = t.split(/\n+/).map((s) => s.trim()).filter(Boolean)
   const get = (re) => { const m = t.match(re); return m ? m[1].trim().slice(0, 120) : '' }
   out.title = get(/(?:role|position|title|hiring for|opening for|vacancy for|post)\s*[:\-]\s*(.+)/i) || lines[0]?.slice(0, 80) || ''
-  out.company = get(/(?:company|organisation|organization|firm|department|board)\s*[:\-]\s*(.+)/i)
-  out.location = get(/(?:location|place|city|venue|state)\s*[:\-]\s*(.+)/i) || (/remote|work from home|wfh/i.test(t) ? 'Remote' : '')
+  out.company = get(/(?:company|organisation|organization|firm|department)\s*[:\-]\s*(.+)/i)
+  out.location = get(/(?:location|place|city|venue)\s*[:\-]\s*(.+)/i) || (/remote|work from home|wfh/i.test(t) ? 'Remote' : '')
   out.salary = get(/(?:salary|ctc|pay scale|stipend|package|pay)\s*[:\-]\s*(.+)/i)
   const link = t.match(/https?:\/\/[^\s)]+/)?.[0] || ''
   out.applyLink = link.slice(0, 300)
@@ -54,6 +53,11 @@ function parseJD(text) {
 }
 
 const inp = "w-full bg-white/[0.06] border border-white/10 rounded-xl px-3 py-2 text-sm mb-2 text-white placeholder:text-slate-600 outline-none"
+const OPTS = [
+  { n: 'Option 1', t: 'Paste job text', d: 'Paste the JD or forwarded message below, hit Autofill — title, company, salary and link fill themselves.' },
+  { n: 'Option 2', t: 'Fill the form', d: 'Type the role, company, location, salary and the real apply link directly into the fields.' },
+  { n: 'Option 3', t: 'Attach a photo', d: 'Add the company poster or offer letter photo. It uploads with your post.' },
+]
 
 export default function job_share_board() {
   const [tab, setTab] = useState('jobs')
@@ -113,7 +117,7 @@ export default function job_share_board() {
     if (!c.job) { setMsg(`Blocked by Laya check (score ${c.score}): add real role, salary, and apply details.`); return }
     if (!/^https?:\/\//.test(form.applyLink)) { setMsg('Add a real apply link starting with https://'); return }
     const imageUrl = await uploadImg()
-    await addDoc(collection(db, 'jobs'), { ...form, imageUrl: imageUrl || '', layaScore: c.score, author: user.email, createdAt: serverTimestamp(), expiresAt: Date.now() + WEEK })
+    await addDoc(collection(db, 'jobs'), { ...form, imageUrl: imageUrl || '', layaScore: c.score, sector: 'corporate', author: user.email, createdAt: serverTimestamp(), expiresAt: Date.now() + WEEK })
     setForm({ title: '', company: '', location: '', type: 'Full-time', salary: '', description: '', applyLink: '' })
     setPaste(''); setImgPrev(''); setImgFile(null)
     setMsg('Posted after Laya check. Live for 7 days.')
@@ -126,37 +130,14 @@ export default function job_share_board() {
     (!typ || j.type === typ))
   const daysLeft = (j) => Math.max(0, Math.ceil((WEEK - (Date.now() - j.createdAt)) / 86400000))
 
-  const postForm = (
-    <form onSubmit={submit} className="border border-white/10 rounded-2xl p-4 bg-white/[0.03] h-fit">
-      <h2 className="font-semibold mb-1 text-white">Post a job</h2>
-      <p className="text-[11px] text-slate-500 mb-3">Every post passes the Laya scam-check before going live.</p>
-      <textarea className={inp} placeholder="Paste JD / forwarded text here, then Autofill" value={paste} onChange={(e) => setPaste(e.target.value)} rows={3} />
-      <button type="button" onClick={onPasteFill} className="bg-white/[0.06] border border-white/10 text-slate-200 px-3 py-1.5 rounded-xl text-sm mb-2 w-full">Autofill from pasted text</button>
-      <input required className={inp} placeholder="Job title" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} />
-      <input required className={inp} placeholder="Company / Organisation" value={form.company} onChange={(e) => setForm({ ...form, company: e.target.value })} />
-      <input required className={inp} placeholder="Location (or Remote)" value={form.location} onChange={(e) => setForm({ ...form, location: e.target.value })} />
-      <select className={inp} value={form.type} onChange={(e) => setForm({ ...form, type: e.target.value })}>
-        <option className="bg-slate-900">Full-time</option><option className="bg-slate-900">Part-time</option><option className="bg-slate-900">Remote</option><option className="bg-slate-900">Internship</option>
-      </select>
-      <input className={inp} placeholder="Salary (e.g. 6 LPA)" value={form.salary} onChange={(e) => setForm({ ...form, salary: e.target.value })} />
-      <textarea required className={inp} placeholder="Role, experience, eligibility, how to apply" value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} rows={3} />
-      <input required className={inp} placeholder="Real apply link (https://…)" value={form.applyLink} onChange={(e) => setForm({ ...form, applyLink: e.target.value })} />
-      <input ref={fileRef} type="file" accept="image/*" className="hidden" onChange={(e) => onImg(e.target.files?.[0])} />
-      <button type="button" onClick={() => fileRef.current?.click()} className="bg-white/[0.06] border border-white/10 text-slate-200 px-3 py-1.5 rounded-xl text-sm mb-2 w-full">Upload poster photo (optional)</button>
-      {imgPrev && <img src={imgPrev} alt="poster preview" className="rounded-xl mb-2 max-h-40 object-cover w-full" />}
-      <button className="bg-blue-600 text-white px-4 py-2 rounded-xl text-sm font-semibold w-full" type="submit">Share job</button>
-      {msg && <p className="text-sm text-slate-400 mt-2">{msg}</p>}
-    </form>
-  )
-
   return (
-    <ToolLayout title="Job Share Board" desc="100+ verified Indian openings with direct apply links. Every post passes the Laya scam-check. Posts expire in 7 days." icon="💼" category="career" slug="job-share-board"
-      faq={[{ q: "How long do posts stay live?", a: "7 days from posting, then auto-hidden." }, { q: "How are scams blocked?", a: "Every post passes the Laya check (convaiinnovations/laya style decision: fraud patterns blocked, low-detail posts rejected)." }, { q: "Do Apply buttons go to the real job?", a: "Yes. Each listing links directly to its official notification or application page." }]}
-      howItWorks={["Browse verified openings", "Open Post a Job tab to share one", "Laya-checks it, live for 7 days"]}>
+    <ToolLayout title="Corporate Job Share Board" desc="Verified corporate openings with direct apply links. 3 ways to post: paste JD, fill the form, or attach a photo. Laya scam-check on every post. 7-day expiry." icon="💼" category="career" slug="job-share-board"
+      faq={[{ q: "How long do posts stay live?", a: "7 days from posting, then auto-hidden." }, { q: "How are scams blocked?", a: "Every post passes the Laya check: fraud patterns blocked, low-detail posts rejected." }, { q: "Corporate only?", a: "Yes. Only private-company roles are listed here." }]}
+      howItWorks={["Browse corporate openings", "Post via paste, form, or photo", "Laya-checks it, live for 7 days"]}>
       <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
         <div className="flex gap-2 mb-4">
           {['jobs', 'post'].map((t) => (
-            <button key={t} onClick={() => setTab(t)} className={`px-4 py-2 rounded-xl text-sm font-semibold border ${tab === t ? 'bg-blue-600/20 border-blue-500/40 text-blue-300' : 'bg-white/[0.06] border-white/10 text-slate-400'}`}>{t === 'jobs' ? `Jobs (${jobs.length})` : 'Post a Job'}</button>
+            <button key={t} onClick={() => setTab(t)} className={`px-4 py-2 rounded-xl text-sm font-semibold border ${tab === t ? 'bg-blue-600/20 border-blue-500/40 text-blue-300' : 'bg-white/[0.06] border-white/10 text-slate-400'}`}>{t === 'jobs' ? `Corporate Jobs (${jobs.length})` : 'Post a Job'}</button>
           ))}
           <div className="ml-auto">
             {user ? (<span><span className="text-sm text-slate-300 mr-2">{user.email}</span><button onClick={logout} className="bg-white/[0.06] border border-white/10 text-slate-300 px-3 py-1.5 rounded-xl text-sm">Logout</button></span>)
@@ -190,10 +171,52 @@ export default function job_share_board() {
             ))}
             {filtered.length === 0 && <p className="text-sm text-slate-500">No live jobs. Post one from the Post a Job tab.</p>}
           </div>
-          {tab === 'jobs' && msg && !user && <p className="text-sm text-slate-400 mt-2">{msg}</p>}
         </>)}
 
-        {tab === 'post' && (<div className="max-w-xl">{postForm}</div>)}
+        {tab === 'post' && (
+          <div>
+            <div className="grid md:grid-cols-3 gap-2 mb-4">
+              {OPTS.map((o) => (
+                <div key={o.n} className="border border-blue-500/30 bg-blue-600/[0.07] rounded-2xl p-3">
+                  <p className="text-[11px] font-bold text-blue-300 uppercase">{o.n}</p>
+                  <p className="text-sm font-semibold text-white">{o.t}</p>
+                  <p className="text-xs text-slate-400 mt-1">{o.d}</p>
+                </div>
+              ))}
+            </div>
+            <form onSubmit={submit} className="border border-white/10 rounded-2xl p-4 bg-white/[0.03]">
+              <h2 className="font-semibold mb-1 text-white">Post a corporate job</h2>
+              <p className="text-[11px] text-slate-500 mb-3">Use any option above — or combine them. Every post passes the Laya scam-check.</p>
+              <div className="grid md:grid-cols-2 gap-x-3">
+                <div>
+                  <p className="text-xs font-semibold text-blue-300 mb-1">Option 1 — Paste job text</p>
+                  <textarea className={inp} placeholder="Paste JD / forwarded text here, then Autofill" value={paste} onChange={(e) => setPaste(e.target.value)} rows={4} />
+                  <button type="button" onClick={onPasteFill} className="bg-blue-600/20 border border-blue-500/40 text-blue-200 px-3 py-1.5 rounded-xl text-sm mb-2 w-full font-semibold">Autofill from pasted text</button>
+                </div>
+                <div>
+                  <p className="text-xs font-semibold text-blue-300 mb-1">Option 3 — Attach a photo</p>
+                  <input ref={fileRef} type="file" accept="image/*" className="hidden" onChange={(e) => onImg(e.target.files?.[0])} />
+                  <button type="button" onClick={() => fileRef.current?.click()} className="bg-white/[0.06] border border-white/10 text-slate-200 px-3 py-1.5 rounded-xl text-sm mb-2 w-full">Upload poster photo</button>
+                  {imgPrev ? <img src={imgPrev} alt="poster preview" className="rounded-xl mb-2 max-h-44 object-cover w-full" /> : <p className="text-xs text-slate-600 mb-2">Company poster or offer photo appears here.</p>}
+                </div>
+              </div>
+              <p className="text-xs font-semibold text-blue-300 mb-1 mt-2">Option 2 — Fill the form</p>
+              <div className="grid md:grid-cols-2 gap-x-3">
+                <input required className={inp} placeholder="Job title" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} />
+                <input required className={inp} placeholder="Company" value={form.company} onChange={(e) => setForm({ ...form, company: e.target.value })} />
+                <input required className={inp} placeholder="Location (or Remote)" value={form.location} onChange={(e) => setForm({ ...form, location: e.target.value })} />
+                <select className={inp} value={form.type} onChange={(e) => setForm({ ...form, type: e.target.value })}>
+                  <option className="bg-slate-900">Full-time</option><option className="bg-slate-900">Part-time</option><option className="bg-slate-900">Remote</option><option className="bg-slate-900">Internship</option>
+                </select>
+                <input className={inp} placeholder="Salary (e.g. 6 LPA)" value={form.salary} onChange={(e) => setForm({ ...form, salary: e.target.value })} />
+                <input required className={inp} placeholder="Real apply link (https://…)" value={form.applyLink} onChange={(e) => setForm({ ...form, applyLink: e.target.value })} />
+              </div>
+              <textarea required className={inp} placeholder="Role, experience, eligibility, how to apply" value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} rows={3} />
+              <button className="bg-blue-600 text-white px-4 py-2 rounded-xl text-sm font-semibold w-full" type="submit">Share job</button>
+              {msg && <p className="text-sm text-slate-400 mt-2">{msg}</p>}
+            </form>
+          </div>
+        )}
       </div>
     </ToolLayout>
   )
