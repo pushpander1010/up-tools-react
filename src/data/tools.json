@@ -7649,6 +7649,25 @@
       ]
     },
     {
+      "slug": "hackolution/amass",
+      "title": "Amass Subdomain Mapper",
+      "icon": "\ud83c\udf10",
+      "desc": "OWASP in-depth attack surface mapping and subdomain enumeration (educational).",
+      "href": "/hackolution/amass/",
+      "tags": [
+        "amass",
+        "subdomain",
+        "recon",
+        "osint",
+        "security",
+        "pentesting"
+      ],
+      "cats": [
+        "all",
+        "security"
+      ]
+    },
+    {
       "slug": "hackolution/sherlock",
       "title": "Sherlock Username Hunter",
       "icon": "\ud83d\udd0e",
