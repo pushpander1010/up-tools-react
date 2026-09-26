@@ -7668,6 +7668,43 @@
       ]
     },
     {
+      "slug": "hackolution/shodan",
+      "title": "Shodan Exposed Device Search",
+      "icon": "\ud83d\udd0d",
+      "desc": "Search engine for Internet-connected devices, open ports, and exposed IoT assets (educational).",
+      "href": "/hackolution/shodan/",
+      "tags": [
+        "shodan",
+        "iot",
+        "recon",
+        "osint",
+        "security",
+        "privacy"
+      ],
+      "cats": [
+        "all",
+        "security"
+      ]
+    },
+    {
+      "slug": "hackolution/wpscan",
+      "title": "WPScan WordPress Scanner",
+      "icon": "\ud83d\udee1\ufe0f",
+      "desc": "Black box WordPress vulnerability scanner for themes, plugins, and configs (educational).",
+      "href": "/hackolution/wpscan/",
+      "tags": [
+        "wpscan",
+        "wordpress",
+        "scanner",
+        "security",
+        "pentesting"
+      ],
+      "cats": [
+        "all",
+        "security"
+      ]
+    },
+    {
       "slug": "hackolution/sherlock",
       "title": "Sherlock Username Hunter",
       "icon": "\ud83d\udd0e",
