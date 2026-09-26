@@ -67,7 +67,7 @@ export default function job_share_board() {
   const [loc, setLoc] = useState('')
   const [typ, setTyp] = useState('')
   const [sec, setSec] = useState('IT & Software')
-  const [form, setForm] = useState({ title: '', company: '', location: '', type: 'Full-time', salary: '', description: '', applyLink: '' })
+  const [form, setForm] = useState({ title: '', company: '', location: '', type: 'Full-time', sector: 'IT & Software', salary: '', description: '', applyLink: '' })
   const [paste, setPaste] = useState('')
   const [imgPrev, setImgPrev] = useState('')
   const [imgFile, setImgFile] = useState(null)
@@ -118,8 +118,8 @@ export default function job_share_board() {
     if (!c.job) { setMsg(`Blocked by Laya check (score ${c.score}): add real role, salary, and apply details.`); return }
     if (!/^https?:\/\//.test(form.applyLink)) { setMsg('Add a real apply link starting with https://'); return }
     const imageUrl = await uploadImg()
-    await addDoc(collection(db, 'jobs'), { ...form, imageUrl: imageUrl || '', layaScore: c.score, sector: 'corporate', author: user.email, createdAt: serverTimestamp(), expiresAt: Date.now() + WEEK })
-    setForm({ title: '', company: '', location: '', type: 'Full-time', salary: '', description: '', applyLink: '' })
+    await addDoc(collection(db, 'jobs'), { ...form, imageUrl: imageUrl || '', layaScore: c.score, author: user.email, createdAt: serverTimestamp(), expiresAt: Date.now() + WEEK })
+    setForm({ title: '', company: '', location: '', type: 'Full-time', sector: 'IT & Software', salary: '', description: '', applyLink: '' })
     setPaste(''); setImgPrev(''); setImgFile(null)
     setMsg('Posted after Laya check. Live for 7 days.')
     setTab('jobs')
@@ -150,7 +150,7 @@ export default function job_share_board() {
         {tab === 'jobs' && (<>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-4">
             <select className="bg-blue-600/10 border border-blue-500/30 rounded-xl px-3 py-2 text-sm text-blue-200 font-semibold outline-none" value={sec} onChange={(e) => setSec(e.target.value)}>
-              <option className="bg-slate-900">IT & Software</option><option className="bg-slate-900">Startups & Product</option><option className="bg-slate-900">Finance & Consulting</option><option className="bg-slate-900">Core, Retail & Others</option><option className="bg-slate-900">All</option>
+              <option className="bg-slate-900">IT & Software</option><option className="bg-slate-900">Finance & Risk</option><option className="bg-slate-900">Business & Operations</option><option className="bg-slate-900">All</option>
             </select>
             <input className="bg-white/[0.06] border border-white/10 rounded-xl px-3 py-2 text-sm text-white placeholder:text-slate-600 outline-none" placeholder="Search title, company" value={q} onChange={(e) => setQ(e.target.value)} />
             <input className="bg-white/[0.06] border border-white/10 rounded-xl px-3 py-2 text-sm text-white placeholder:text-slate-600 outline-none" placeholder="Location" value={loc} onChange={(e) => setLoc(e.target.value)} />
@@ -212,6 +212,9 @@ export default function job_share_board() {
                 <input required className={inp} placeholder="Location (or Remote)" value={form.location} onChange={(e) => setForm({ ...form, location: e.target.value })} />
                 <select className={inp} value={form.type} onChange={(e) => setForm({ ...form, type: e.target.value })}>
                   <option className="bg-slate-900">Full-time</option><option className="bg-slate-900">Part-time</option><option className="bg-slate-900">Remote</option><option className="bg-slate-900">Internship</option>
+                </select>
+                <select className={inp} value={form.sector} onChange={(e) => setForm({ ...form, sector: e.target.value })}>
+                  <option className="bg-slate-900">IT & Software</option><option className="bg-slate-900">Finance & Risk</option><option className="bg-slate-900">Business & Operations</option>
                 </select>
                 <input className={inp} placeholder="Salary (e.g. 6 LPA)" value={form.salary} onChange={(e) => setForm({ ...form, salary: e.target.value })} />
                 <input required className={inp} placeholder="Real apply link (https://…)" value={form.applyLink} onChange={(e) => setForm({ ...form, applyLink: e.target.value })} />
