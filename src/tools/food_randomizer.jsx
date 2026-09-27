@@ -34,14 +34,25 @@ export default function food_randomizer() {
   const getFood = useCallback(async (cat = activeCat) => {
     setLoading(true); setError('')
     try {
-      const url = cat ? `https://foodish-api.com/api/images/${cat}` : 'https://foodish-api.com/api/'
-      const r = await fetch(url)
-      const d = await r.json()
-      if (!d.image) throw new Error('No image')
+      // TheMealDB (free, no key): search by dish keyword, fall back to random
+      let meal = null
+      if (cat) {
+        const endpoint = cat === 'dessert'
+          ? 'https://www.themealdb.com/api/json/v1/1/filter.php?c=Dessert'
+          : `https://www.themealdb.com/api/json/v1/1/search.php?s=${cat}`
+        const s = await (await fetch(endpoint)).json()
+        const list = s.meals || []
+        if (list.length) meal = list[Math.floor(Math.random() * list.length)]
+      }
+      if (!meal) {
+        const j = await (await fetch('https://www.themealdb.com/api/json/v1/1/random.php')).json()
+        meal = (j.meals || [])[0]
+      }
+      if (!meal || !meal.strMealThumb) throw new Error('No meal')
       const food = {
-        image: d.image,
-        category: d.category || cat || 'random',
-        name: d.image.split('/').pop().replace(/[-_]/g, ' ').replace(/\.\w+$/, ''),
+        image: meal.strMealThumb,
+        category: meal.strCategory || cat || 'random',
+        name: meal.strMeal,
       }
       setCurrent(food)
       setHistory(prev => {
@@ -72,7 +83,7 @@ export default function food_randomizer() {
       icon="🍽️" iconBg="rgba(245,158,11,0.08)"
       category="fun" slug="food-randomizer"
       faq={[
-        { q: 'Where do food images come from?', a: 'From the free Foodish API providing random food photographs.' },
+        { q: 'Where do food images come from?', a: 'From the free TheMealDB database of real dish photos and recipes.' },
         { q: 'Can I filter by food type?', a: 'Yes, use the category chips for pasta, rice, curry, desserts, etc.' },
         { q: 'Can I save favorite foods?', a: 'Yes, click the heart icon to save favorites. Stored locally.' },
         { q: "How do I use this Random Food Generator online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
