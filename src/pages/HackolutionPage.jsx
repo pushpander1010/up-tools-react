@@ -2,6 +2,15 @@ import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 import InfiniteCarousel from '../components/InfiniteCarousel'
 
+const apps = [
+  { name: 'Mouse Jiggler', file: 'mouse-jiggler-1.0.apk', img: '/assets/apps/mouse-jiggler.svg', ver: 'v1.0 · 5.6 MB', desc: 'Keeps screen awake, ad-free.', tag: 'Utility', accent: 'linear-gradient(135deg, rgba(21,101,192,0.2), rgba(27,255,110,0.08))' },
+  { name: 'Scan&PDF', file: 'scanpdf-1.0.apk', img: '/assets/apps/scanpdf.svg', ver: 'v1.0 · 22 MB', desc: 'Document scanner to PDF, ad-free.', tag: 'Productivity', accent: 'linear-gradient(135deg, rgba(13,71,161,0.2), rgba(27,255,110,0.08))' },
+  { name: 'NetShield Ad Blocker', file: 'netshield-1.3.apk', img: '/assets/apps/netshield.png', ver: 'v1.3 · 15 MB', desc: 'On-device ad blocking.', tag: 'Privacy & Security', accent: 'linear-gradient(135deg, rgba(27,255,110,0.2), rgba(6,182,212,0.08))' },
+  { name: 'RecoveryPRO', file: 'recoverypro-1.0.apk', img: '/assets/apps/recoverypro.png', ver: 'v1.0 · 3.6 MB', desc: 'Phone storage cleaner.', tag: 'System', accent: 'linear-gradient(135deg, rgba(0,212,255,0.2), rgba(27,255,110,0.08))' },
+  { name: 'WiFi Analyzer', file: 'wifi-analyzer-2.1.apk', img: '/assets/apps/wifi-analyzer.png', ver: 'v2.1 · 3.5 MB', desc: 'WiFi scanner + channel graph.', tag: 'Network OSINT', accent: 'linear-gradient(135deg, rgba(6,182,212,0.2), rgba(27,255,110,0.08))' },
+  { name: 'Tank Battle', file: 'tank-battle-1.2.apk', img: '/assets/apps/tank-battle.svg', ver: 'v1.2 · 11 MB', desc: 'Retro 2D arcade combat.', tag: 'Arcade Game', accent: 'linear-gradient(135deg, rgba(255,107,53,0.2), rgba(255,204,0,0.08))' },
+]
+
 const tools = [
   { slug: 'nmap', name: 'Nmap', img: '/assets/tools/nmap/nmap_logo.png', alt: 'Nmap network scanner logo', desc: 'Map networks: host discovery, SYN scans, service and OS detection.', tag: 'Network scanner', accent: 'linear-gradient(135deg, rgba(27,255,110,0.2), rgba(0,200,180,0.08))' },
   { slug: 'subfinder', name: 'Subfinder', img: '/assets/tools/subfinder/subfinder_logo.png', alt: 'Subfinder subdomain discovery logo', desc: 'Passive subdomain discovery from dozens of public sources.', tag: 'Subdomain recon', accent: 'linear-gradient(135deg, rgba(27,255,110,0.2), rgba(0,200,180,0.08))' },
@@ -125,6 +134,40 @@ export default function HackolutionPage() {
             style={{ background: 'linear-gradient(92deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5)' }}>Instagram ↗</a>
           <a href="https://www.youtube.com/@hncker" target="_blank" rel="noopener" className="glow-btn text-sm px-5 py-2.5 rounded-xl no-underline"
             style={{ background: '#ff0000' }}>▶ YouTube</a>
+        </div>
+      </div>
+
+      {/* Apps — Infinite Carousel */}
+      <div className="glass rounded-3xl mb-6 overflow-hidden" style={{ borderColor: 'rgba(27,255,110,0.1)' }}>
+        <div className="px-6 pt-6 pb-4 flex items-center justify-between gap-3 flex-wrap">
+          <div><h2 className="text-xl font-bold m-0">📱 Apps</h2><p className="text-xs text-slate-400 mt-1">Our own Android apps — free APK downloads, drag or swipe to browse.</p></div>
+          <Link to="/hackolution/apps/"
+            className="px-3 py-1.5 rounded-full text-xs font-semibold bg-white/4 border border-white/8 text-slate-400 hover:text-white hover:border-white/12 transition-all no-underline">All apps ↗</Link>
+        </div>
+        <div className="px-6 pb-6">
+          <InfiniteCarousel gap={16}>
+            {apps.map(a => (
+              <div key={a.file} className="flex-none w-[340px] p-5 rounded-2xl flex flex-col"
+                style={{ background: a.accent, border: '1px solid rgba(255,255,255,0.08)' }}>
+                <div className="flex items-center gap-3 mb-3">
+                  <img src={a.img} alt={`${a.name} icon`} loading="lazy" width="56" height="56"
+                    className="w-14 h-14 rounded-xl object-contain bg-black/30 p-1 border border-white/10"
+                    style={{ background: 'rgba(0,0,0,0.35)' }} />
+                  <div>
+                    <h3 className="text-lg font-bold m-0">{a.name}</h3>
+                    <span className="text-[11px] text-neon font-semibold uppercase tracking-wider">{a.tag}</span>
+                  </div>
+                </div>
+                <p className="text-xs text-slate-400 mb-1 flex-1">{a.desc}</p>
+                <p className="text-[11px] text-slate-500 mb-4">{a.ver}</p>
+                <div className="flex gap-2 flex-wrap">
+                  <a href={`/downloads/android/${a.file}`} download
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-bold no-underline"
+                    style={{ background: 'linear-gradient(135deg, #1bff6e, #00ffa3)', color: '#080d1a' }}>⬇ Download APK</a>
+                </div>
+              </div>
+            ))}
+          </InfiniteCarousel>
         </div>
       </div>
 
