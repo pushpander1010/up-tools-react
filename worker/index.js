@@ -1626,6 +1626,13 @@ export default {
       });
     }
 
+    // APK downloads: strip the www trailing-slash redirect so static asset resolves
+    if (url.pathname.startsWith('/downloads/') && url.pathname !== '/downloads/' && url.pathname.endsWith('/')) {
+      const fixed = new URL(req.url);
+      fixed.pathname = url.pathname.slice(0, -1);
+      return env.ASSETS.fetch(new Request(fixed.toString(), req));
+    }
+
     // Serve static assets for all other routes
     return env.ASSETS.fetch(req);
   }
