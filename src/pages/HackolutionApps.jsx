@@ -40,9 +40,9 @@ const APPS = [
   },
   {
     name: 'RecoveryPRO',
-    version: '1.7',
+    version: '1.8',
     size: '3.6 MB',
-    file: 'recoverypro-1.7.apk',
+    file: 'recoverypro-1.8.apk',
     desc: 'Phone storage cleaner — deep recovery (SD/USB), pro UI, duplicate finder, WhatsApp cleaner.',
     tag: 'System',
     icon: '/assets/apps/recoverypro.png',
