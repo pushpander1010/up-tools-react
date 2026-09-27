@@ -40,9 +40,9 @@ const APPS = [
   },
   {
     name: 'RecoveryPRO',
-    version: '1.3',
+    version: '1.4',
     size: '3.6 MB',
-    file: 'recoverypro-1.3.apk',
+    file: 'recoverypro-1.4.apk',
     desc: 'Phone storage cleaner — real deleted-file restore, duplicate finder, WhatsApp cleaner.',
     tag: 'System',
     icon: '/assets/apps/recoverypro.png',
