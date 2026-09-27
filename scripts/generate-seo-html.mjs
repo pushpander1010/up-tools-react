@@ -92,7 +92,7 @@ function ogImageForSlug(slug){
 
 const toolFiles = readdirSync(toolsDir).filter(f=>f.endsWith('.jsx')||f.endsWith('.tsx'))
 const template = readFileSync(join(dist,'index.html'),'utf-8')
-const SKIP_SLUGS = new Set(['games','contact','hncker','hackolution','aimakerich','aiforrich','privacy-policy'])
+const SKIP_SLUGS = new Set(['games','contact','hncker','hackolution','hackolution/apps','aimakerich','aiforrich','privacy-policy'])
 
 let count=0
 for(const file of toolFiles){
@@ -249,6 +249,31 @@ function sectionHubSeo(section, name) {
   return { itemList: hubItemList(section, name), noscriptLinks: links.slice(0, 60), noscriptTitle: name }
 }
 function hnckerHubSeo() { return sectionHubSeo('hncker', 'HNCKER Security Tools') }
+function hackolutionAppsSeo() {
+  const apps = [
+    ['/downloads/android/mouse-jiggler-1.0.apk', 'Mouse Jiggler 1.0 (5.6 MB) - Keeps screen awake, ad-free'],
+    ['/downloads/android/scanpdf-1.0.apk', 'Scan&PDF 1.0 (22 MB) - Document scanner to PDF, ad-free'],
+    ['/downloads/android/netshield-1.3.apk', 'NetShield Ad Blocker 1.3 (15 MB) - On-device ad blocking'],
+    ['/downloads/android/recoverypro-1.0.apk', 'RecoveryPRO 1.0 (3.6 MB) - Phone storage cleaner'],
+    ['/downloads/android/wifi-analyzer-2.1.apk', 'WiFi Analyzer 2.1 (3.5 MB) - WiFi scanner'],
+    ['/downloads/android/tank-battle-1.2.apk', 'Tank Battle 1.2 (11 MB) - Battle game'],
+  ]
+  return {
+    itemList: {
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      name: 'Hackolution Android Apps',
+      itemListElement: apps.map(([href, title], i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: title,
+        url: SITE + href
+      }))
+    },
+    noscriptLinks: apps,
+    noscriptTitle: 'Hackolution Android Apps Downloads'
+  }
+}
 function gamesHubSeo() {
   let links = []
   try {
@@ -311,6 +336,7 @@ function buildHtml(slug, title, desc, opts = {}) {
 }
 buildHtml('hncker','HNCKER - Apps, Tools, Instagram & Videos','Follow HNCKER on Instagram, browse the free security tools, watch our tech videos, and download free Android apps.', hnckerHubSeo())
 buildHtml('hackolution','HACKOLUTION - Tools, Instagram & YouTube Videos','Follow HACKOLUTION on Instagram, browse the free security tools, and watch full tutorials on YouTube.', sectionHubSeo('hackolution', 'HACKOLUTION Security Tools'))
+buildHtml('hackolution/apps','Hackolution Apps','Download free Android APK apps by HACKOLUTION. Fast, ad-free APK downloads for Mouse Jiggler, Scan&PDF, NetShield Ad Blocker, RecoveryPRO, WiFi Analyzer, and Tank Battle.', hackolutionAppsSeo())
 buildHtml('games','UpTools - Free Online Games','Play free online arcade, puzzle, card and word games on UpTools - Snake, Tetris, 2048, Pac-Man, Wordle and many more. No downloads, play in your browser.', gamesHubSeo())
 buildHtml('aimakerich','AIMakeRich - Finance, Investing & Trading Guides','AIMakeRich: practical money guides that match our Instagram reels. Learn investing, trading strategies and finance with real code, step-by-step processes, FAQs and how-tos.', sectionHubSeo('aimakerich', 'AIMakeRich Finance Guides'))
 buildHtml('aiforrich','AIFORRICH - Algo Trading, Pine Script & Crypto Trading Guides','AIFORRICH: Algo trading for international markets and crypto — reels + code guides. Practical quantitative trading strategies, Pine Script indicators, and automated execution bots with copy-paste code.', sectionHubSeo('aiforrich', 'AIFORRICH Trading Guides'))

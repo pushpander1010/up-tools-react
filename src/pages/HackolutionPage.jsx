@@ -99,11 +99,12 @@ export default function HackolutionPage() {
           </div>
         </div>
         <div className="relative flex flex-wrap gap-2 mt-5">
+          <Link to="/hackolution/apps"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-neon/10 border border-neon/40 text-neon hover:bg-neon/20 transition-all no-underline">📱 Android Apps (APK)</Link>
           <a href="https://www.instagram.com/hackolution" target="_blank" rel="noopener"
             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-neon/30 text-neon hover:bg-neon/10 hover:border-neon/50 transition-all no-underline">📸 @hackolution</a>
           <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-white/8 text-slate-300">🛠️ {tools.length} free tools</span>
           <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-white/8 text-slate-300">🎬 Weekly videos</span>
-          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-white/8 text-slate-300">📸 Instagram</span>
         </div>
       </div>
 

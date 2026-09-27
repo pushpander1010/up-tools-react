@@ -26,6 +26,7 @@ const HomePage = lazy(() => import('./pages/HomePage'))
 const GamesPage = lazy(() => import('./pages/GamesPage'))
 const HnckerPage = lazy(() => import('./pages/HnckerPage'))
 const HackolutionPage = lazy(() => import('./pages/HackolutionPage'))
+const HackolutionApps = lazy(() => import('./pages/HackolutionApps'))
 const AimakerichPage = lazy(() => import('./pages/AimakerichPage'))
 const AiforrichPage = lazy(() => import('./pages/AiforrichPage'))
 const AboutPage = lazy(() => import('./pages/AboutPage'))
@@ -40,7 +41,7 @@ function ToolRoute() {
   const [notFound, setNotFound] = useState(false)
 
   useEffect(() => {
-    if (!slug || slug === 'games' || slug === 'hncker' || slug === 'hackolution' || slug === 'aimakerich' || slug === 'aiforrich') {
+    if (!slug || slug === 'games' || slug === 'hncker' || slug === 'hackolution' || slug === 'hackolution/apps' || slug === 'aimakerich' || slug === 'aiforrich') {
       setNotFound(true)
       return
     }
@@ -130,6 +131,7 @@ export default function App() {
                 <Route path="/games" element={<GamesPage />} />
                 <Route path="/hncker" element={<HnckerPage />} />
                 <Route path="/hackolution" element={<HackolutionPage />} />
+                <Route path="/hackolution/apps" element={<HackolutionApps />} />
                 <Route path="/aimakerich" element={<AimakerichPage />} />
                 <Route path="/aiforrich" element={<AiforrichPage />} />
                 <Route path="/about" element={<AboutPage />} />
