@@ -43,7 +43,7 @@ const APPS = [
     version: '1.7',
     size: '3.6 MB',
     file: 'recoverypro-1.7.apk',
-    desc: 'Phone storage cleaner — real deleted-file restore, duplicate finder, WhatsApp cleaner.',
+    desc: 'Phone storage cleaner — deep recovery (SD/USB), pro UI, duplicate finder, WhatsApp cleaner.',
     tag: 'System',
     icon: '/assets/apps/recoverypro.png',
     accent: 'linear-gradient(135deg, rgba(0,212,255,0.2), rgba(27,255,110,0.08))',
