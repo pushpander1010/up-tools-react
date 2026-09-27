@@ -7668,6 +7668,41 @@
       ]
     },
     {
+      "slug": "hackolution/nikto",
+      "title": "Nikto Server Scanner",
+      "icon": "\ud83d\udee1\ufe0f",
+      "desc": "Open-source web server scanner for 7,000+ dangerous files, misconfigurations, and server hardening (educational).",
+      "href": "/hackolution/nikto/",
+      "tags": [
+        "nikto",
+        "websecurity",
+        "scanner",
+        "security",
+        "pentesting"
+      ],
+      "cats": [
+        "all",
+        "security"
+      ]
+    },
+    {
+      "slug": "hackolution/gophish",
+      "title": "GoPhish Phishing Awareness",
+      "icon": "\ud83d\udee1\ufe0f",
+      "desc": "Defensive phishing simulation guide for spotting deceptive URLs, credential lures, and deploying 2FA (educational).",
+      "href": "/hackolution/gophish/",
+      "tags": [
+        "gophish",
+        "phishing",
+        "awareness",
+        "security"
+      ],
+      "cats": [
+        "all",
+        "security"
+      ]
+    },
+    {
       "slug": "hackolution/shodan",
       "title": "Shodan Exposed Device Search",
       "icon": "\ud83d\udd0d",
