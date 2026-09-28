@@ -231,10 +231,18 @@ export default function SnakeGame() {
           <div className="absolute inset-[-24px] rounded-[2rem] bg-gradient-to-br from-cyan-500/20 via-fuchsia-500/10 to-cyan-500/20 blur-2xl -z-10" />
           <canvas ref={canvasRef} onPointerDown={onDown} onPointerUp={onUp} className="rounded-2xl border border-cyan-400/30 shadow-[0_0_60px_rgba(34,211,238,0.25)] bg-[#050d1a] touch-none cursor-pointer" style={{touchAction:'none'}} />
           {!playing && (
-            <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#030b14]/80 rounded-2xl z-10 px-4 text-center"
+            <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#030b14]/80 rounded-2xl z-10 px-4 py-6 text-center overflow-y-auto"
               onPointerDown={(e) => { if (e.target.closest('button')) return; fireStart() }}>
+              <img src="/games/snake/cover.jpg" alt="Neon snake arcade cover art" loading="eager"
+                className="w-full max-w-[420px] h-32 sm:h-40 object-cover rounded-2xl border border-cyan-400/30 shadow-[0_0_40px_rgba(34,211,238,0.35)] mb-4" />
               <h2 className="text-6xl md:text-7xl font-black bg-gradient-to-b from-cyan-300 via-fuchsia-300 to-cyan-200 bg-clip-text text-transparent mb-3 tracking-tighter">SNAKE</h2>
               {gameOver && <p className="text-xl md:text-2xl text-rose-400 font-bold mb-4">Game Over — Score {score}</p>}
+              <div className="flex flex-wrap justify-center gap-1.5 mb-4 text-[11px] font-bold">
+                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-cyan-200">⚡ Speed ramps</span>
+                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-emerald-200">🏆 Levels</span>
+                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-amber-200">⏸ Pause (P)</span>
+                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-fuchsia-200">📱 Swipe + D-pad</span>
+              </div>
               <p className="text-xs md:text-sm text-slate-400 mb-6">Desktop: Arrows / WASD / P pause · Mobile: Swipe or D-pad</p>
               <button onClick={fireStart} className="px-8 py-3 rounded-full bg-gradient-to-r from-cyan-500 to-fuchsia-500 text-white font-extrabold text-lg shadow-[0_0_30px_rgba(34,211,238,0.5)] hover:scale-105 transition">▶ Start Game</button>
             </div>
@@ -247,8 +255,8 @@ export default function SnakeGame() {
           )}
         </div>
 
-        {/* Mobile D-pad */}
-        <div className="grid grid-cols-3 gap-2 mt-4 md:hidden" aria-label="Direction pad">
+        {/* Mobile D-pad — sticky so it never hides under the fold */}
+        <div className="grid grid-cols-3 gap-2 mt-4 md:hidden sticky bottom-2 z-20 py-2 px-6 bg-[#030b14]/92 backdrop-blur-sm rounded-2xl border border-white/5" aria-label="Direction pad">
           <div />
           <div className="flex justify-center">{dpadBtn('▲', DIR.UP)}</div>
           <div />

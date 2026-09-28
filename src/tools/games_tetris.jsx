@@ -674,7 +674,7 @@ export default function games_tetris() {
         <button onClick={togglePause} className="px-6 py-2.5 rounded-full bg-white/[0.08] border border-white/10 text-cyan-100 font-bold text-sm hover:bg-white/15">{paused ? '▶ Resume' : '⏸ Pause'}</button>
       ) : null}
       title="Tetris Online - Free Classic Puzzle Game"
-      desc="Tetris Online - Free Classic Puzzle Game - play Tetris online. Classic falling block, online free. Play online free, no download. Works on mobile and desktop."
+      desc="Play Tetris online free — the classic falling-block puzzle. Stack pieces, clear lines, chain combos and climb levels. No download, no sign-up. Works on mobile and desktop."
       icon="🧩" iconBg="rgba(168,85,247,0.08)"
       category="fun" slug="games-tetris"
       faq={[
@@ -743,18 +743,37 @@ export default function games_tetris() {
           </div>
         </div>
 
-        {/* Canvas */}
-        <div className="glass p-3 flex justify-center overflow-hidden">
+        {/* Canvas + arcade welcome cover */}
+        <div className="glass p-3 flex justify-center overflow-hidden relative">
           <canvas ref={canvasRef}
             onPointerDown={handlePointerDown}
             onPointerUp={handlePointerUp}
             className="rounded-xl cursor-pointer"
             style={{ background: '#050d1a', touchAction: 'none' }}
           />
+          {!playing && !gameOver && (
+            <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-5 py-4 bg-[#050d1a]/92 backdrop-blur-[2px] overflow-y-auto"
+              onPointerDown={(e) => { if (e.target.closest('button')) return; window.dispatchEvent(new Event('ut:game-start')) }}>
+              <img src="/games/tetris/cover.jpg" alt="Neon falling-block puzzle cover art" loading="eager"
+                className="w-full max-w-[420px] h-36 sm:h-44 object-cover rounded-2xl border border-purple-400/30 shadow-[0_0_40px_rgba(168,85,247,0.35)] mb-4" />
+              <h2 className="text-4xl sm:text-5xl font-black tracking-tighter bg-gradient-to-b from-purple-300 via-cyan-300 to-purple-200 bg-clip-text text-transparent">TETRIS</h2>
+              <p className="text-xs sm:text-sm text-slate-400 mt-1 mb-3">Stack · Clear · Level up — classic arcade, free</p>
+              <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">
+                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-cyan-200">👻 Ghost piece</span>
+                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-purple-200">🧩 Hold (C)</span>
+                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-amber-200">🔥 Combos</span>
+                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-emerald-200">📱 Mobile ready</span>
+              </div>
+              {best > 0 && <p className="text-xs text-slate-500 mb-3 font-mono">Best {best} · Last {lastScore}</p>}
+              <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))}
+                className="px-8 py-3 rounded-full bg-gradient-to-r from-purple-500 to-cyan-500 text-white font-extrabold text-lg shadow-[0_0_30px_rgba(168,85,247,0.5)] hover:scale-105 transition">▶ Start Game</button>
+              <p className="text-[11px] text-slate-500 mt-3">Arrows/WASD · Space hard drop · P pause</p>
+            </div>
+          )}
         </div>
 
-        {/* Touch controls */}
-        <div className="flex gap-2 justify-center md:hidden">
+        {/* Touch controls — sticky so they never hide under the fold on mobile */}
+        <div className="flex gap-2 justify-center md:hidden sticky bottom-2 z-20 py-2 px-2 -mx-1 bg-[#030b14]/92 backdrop-blur-sm rounded-2xl border border-white/5">
           {btn('◀', () => { if (tryMove(-1,0)) playMove() }, '#1e293b')}
           {btn('▶', () => { if (tryMove(1,0)) playMove() }, '#1e293b')}
           {btn('▼', () => tryMove(0,1), '#1e293b')}
