@@ -387,18 +387,18 @@ export default function games_flappy_bird() {
   return (
     <GameShell
       name="FLAPPY BIRD"
-      startAction={startGame} startLabel="▶ Start"
+      startAction={startGame} startLabel={gameState === 'running' ? '⟲ Restart' : '▶ Start'}
+      headerStats={<><span>Score <b className="text-white">{score}</b></span><span>Best <b className="text-green-300">{best}</b></span>{medal ? <span>🏅 <b className="text-amber-300">{medal}</b></span> : <span>Last <b className="text-slate-400">{lastScore}</b></span>}</>}
       title="Flappy Bird Online - Free Arcade Game"
-      desc="Flappy Bird Online - Free Arcade Game - play Flappy Bird online. Tap to flap, avoid, online free. Play online free, no download. Works on mobile and desktop."
+      desc="Play Flappy Bird online free — tap to flap through the pipes and earn medals from Bronze to Diamond. Day/night arcade fun with no download, on mobile and desktop."
       icon="🐦" iconBg="rgba(251,191,36,0.08)"
       category="fun" slug="games-flappy-bird"
       faq={[
         { q: "How do I play Flappy Bird?", a: "Tap the screen, click, or press Space/Up arrow to make the bird flap upward. Gravity pulls it down. Avoid the pipes!" },
         { q: "What are the medals?", a: "Bronze (5+), Silver (10+), Gold (20+), Platinum (30+), Diamond (40+). Can you get Diamond?" },
         { q: "Does the background change?", a: "Yes! The game features a day/night cycle with stars appearing at night for extra atmosphere." },
-        { q: "Can I play Flappy Bird Online - Free Arcade Game without downloading?", a: "Yes. This Flappy Bird Online - Free Arcade Game runs in your browser with no install. Free on mobile and desktop." },
-        { q: "How do I use this Flappy Bird Online - Free Arcade Game online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
-        { q: "Is this Flappy Bird Online - Free Arcade Game free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
+        { q: "Is my best score saved?", a: "Yes. Your best score and last score are stored in your browser on this device, so they survive refreshes — no login needed." },
+        { q: "Any tips for a high score?", a: "Tap in a steady rhythm instead of mashing, aim for the center of each gap, and play on mobile fullscreen for bigger pipes." },
       ]}
       howItWorks={[
         "Tap, click, or press Space to make the bird flap.",
@@ -433,18 +433,36 @@ export default function games_flappy_bird() {
           </div>
         </div>
 
-        <div className="flex gap-3 justify-center">
+        {/* Flap control — sticky on mobile so it never hides under the fold */}
+        <div className="flex gap-3 justify-center md:static sticky bottom-2 z-20 py-2 bg-[#030b14]/92 backdrop-blur-sm rounded-2xl border border-white/5 md:bg-transparent md:border-0 md:p-0 md:backdrop-blur-none">
           <button onClick={gameState === 'dead' ? () => window.dispatchEvent(new Event('ut:game-start')) : flap} className="glow-btn px-6 py-3 text-sm">
             {gameState === 'dead' ? '⟲ Play Again' : gameState === 'running' ? '🐦 Flap!' : '▶ Start'}
           </button>
         </div>
 
-        <div className="glass p-3 flex justify-center overflow-hidden">
+        <div className="glass p-3 flex justify-center overflow-hidden relative">
           <canvas ref={canvasRef}
             onPointerDown={handlePointerDown}
             className="rounded-xl cursor-pointer"
             style={{ background: '#050d1a', touchAction: 'none' }}
           />
+          {gameState === 'idle' && (
+            <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-5 py-4 bg-[#050d1a]/92 backdrop-blur-[2px] overflow-y-auto"
+              onPointerDown={(e) => { if (e.target.closest('button')) return; flap() }}>
+              <img src="/games/flappy-bird/cover.jpg" alt="Flappy Bird night-flight cover art" loading="eager"
+                className="w-full max-w-[420px] h-36 sm:h-44 object-cover rounded-2xl border border-yellow-400/30 shadow-[0_0_40px_rgba(251,191,36,0.35)] mb-4" />
+              <h2 className="text-4xl sm:text-5xl font-black tracking-tighter bg-gradient-to-b from-yellow-300 via-amber-300 to-green-300 bg-clip-text text-transparent">FLAPPY BIRD</h2>
+              <p className="text-xs sm:text-sm text-slate-400 mt-1 mb-3">Flap the gaps · Earn medals · Free</p>
+              <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">
+                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-amber-200">🏅 5 medals</span>
+                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-indigo-200">🌙 Day / night</span>
+                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-emerald-200">📱 Tap to flap</span>
+                {best > 0 && <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-slate-300">🏆 Best {best}</span>}
+              </div>
+              <button onClick={flap} className="px-8 py-3 rounded-full bg-gradient-to-r from-yellow-500 to-green-500 text-white font-extrabold text-lg shadow-[0_0_30px_rgba(251,191,36,0.5)] hover:scale-105 transition">▶ Start Game</button>
+              <p className="text-[11px] text-slate-500 mt-3">Space / Tap / Click to flap</p>
+            </div>
+          )}
         </div>
 
         <p className="text-center text-xs text-slate-400">
