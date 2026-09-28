@@ -8856,6 +8856,228 @@
     "india"
    ],
    "href": "/iphone-17-price-emi-calculator/"
+  },
+  {
+   "slug": "daily-horoscope",
+   "title": "Daily Horoscope",
+   "icon": "🔮",
+   "desc": "Free daily horoscope: pick your zodiac sign for today's love, career, health, lucky number and lucky color. New prediction every day.",
+   "tags": [
+    "horoscope",
+    "rashifal",
+    "zodiac",
+    "astrology",
+    "daily",
+    "lucky"
+   ],
+   "cats": [
+    "all",
+    "fun"
+   ],
+   "href": "/daily-horoscope/"
+  },
+  {
+   "slug": "magic-8-ball",
+   "title": "Magic 8 Ball Online",
+   "icon": "🎱",
+   "desc": "Ask the magic 8 ball a yes-or-no question and shake for your answer. Classic fortune-telling fun, free with no sign-up.",
+   "tags": [
+    "magic-8-ball",
+    "fortune",
+    "oracle",
+    "yes-no",
+    "fun",
+    "game"
+   ],
+   "cats": [
+    "all",
+    "fun"
+   ],
+   "href": "/magic-8-ball/"
+  },
+  {
+   "slug": "truth-or-dare-generator",
+   "title": "Truth or Dare Generator",
+   "icon": "🎉",
+   "desc": "Truth or dare game online: 88 clean family-friendly truths and dares with no-repeat cards. Perfect for parties and sleepovers.",
+   "tags": [
+    "truth-or-dare",
+    "party",
+    "game",
+    "friends",
+    "sleepover"
+   ],
+   "cats": [
+    "all",
+    "fun"
+   ],
+   "href": "/truth-or-dare-generator/"
+  },
+  {
+   "slug": "passport-photo-maker",
+   "title": "Passport Photo Maker",
+   "icon": "📷",
+   "desc": "Make a passport photo online free: upload, crop and download print-ready 35x45mm, 2x2 inch US visa or EU size ID photos.",
+   "tags": [
+    "passport-photo",
+    "id-photo",
+    "visa-photo",
+    "crop",
+    "print"
+   ],
+   "cats": [
+    "all",
+    "images"
+   ],
+   "href": "/passport-photo-maker/"
+  },
+  {
+   "slug": "mileage-calculator",
+   "title": "Bike & Car Mileage Calculator",
+   "icon": "⛽",
+   "desc": "Check your bike or car mileage with the full-tank method: km per litre, cost per km and monthly fuel cost. Free calculator.",
+   "tags": [
+    "mileage",
+    "fuel",
+    "average",
+    "bike",
+    "car",
+    "petrol"
+   ],
+   "cats": [
+    "all",
+    "tools"
+   ],
+   "href": "/mileage-calculator/"
+  },
+  {
+   "slug": "dog-age-calculator",
+   "title": "Dog Age Calculator",
+   "icon": "🐕",
+   "desc": "How old is your dog in human years? Size-adjusted dog age calculator with life-stage and fun facts. Free.",
+   "tags": [
+    "dog-age",
+    "pet",
+    "human-years",
+    "puppy",
+    "senior-dog"
+   ],
+   "cats": [
+    "all",
+    "fun"
+   ],
+   "href": "/dog-age-calculator/"
+  },
+  {
+   "slug": "blood-pressure-checker",
+   "title": "Blood Pressure Checker",
+   "icon": "❤️",
+   "desc": "Check your BP reading instantly: enter systolic and diastolic to see your AHA category, what it means and when to see a doctor.",
+   "tags": [
+    "blood-pressure",
+    "bp",
+    "hypertension",
+    "health",
+    "systolic"
+   ],
+   "cats": [
+    "all",
+    "health"
+   ],
+   "href": "/blood-pressure-checker/"
+  },
+  {
+   "slug": "gold-jewellery-price-calculator",
+   "title": "Gold Jewellery Price Calculator",
+   "icon": "💍",
+   "desc": "Gold jewellery price calculator India: weight, karat, making charges, wastage and 3% GST — today's showroom price in seconds.",
+   "tags": [
+    "gold",
+    "jewellery",
+    "price",
+    "making-charges",
+    "gst",
+    "22k"
+   ],
+   "cats": [
+    "all",
+    "finance"
+   ],
+   "href": "/gold-jewellery-price-calculator/"
+  },
+  {
+   "slug": "credit-score-simulator",
+   "title": "Credit Score Simulator",
+   "icon": "💳",
+   "desc": "Simulate your CIBIL-style credit score: utilization, missed payments and enquiries with grade and tips to reach 750+. Free.",
+   "tags": [
+    "cibil",
+    "credit-score",
+    "loan",
+    "750",
+    "eligibility"
+   ],
+   "cats": [
+    "all",
+    "finance"
+   ],
+   "href": "/credit-score-simulator/"
+  },
+  {
+   "slug": "education-loan-emi-calculator",
+   "title": "Education Loan EMI Calculator",
+   "icon": "🏦",
+   "desc": "Education loan EMI calculator with moratorium: see capitalized interest during study years, monthly EMI and total payable.",
+   "tags": [
+    "education-loan",
+    "emi",
+    "moratorium",
+    "student",
+    "study-abroad"
+   ],
+   "cats": [
+    "all",
+    "finance"
+   ],
+   "href": "/education-loan-emi-calculator/"
+  },
+  {
+   "slug": "cat-percentile-predictor",
+   "title": "CAT Percentile Predictor",
+   "icon": "🎯",
+   "desc": "Predict your CAT percentile from raw score: scaled score, slot difficulty adjustment, rank range and IIM call chances. Free.",
+   "tags": [
+    "cat",
+    "percentile",
+    "iim",
+    "mba",
+    "rank",
+    "predictor"
+   ],
+   "cats": [
+    "all",
+    "education"
+   ],
+   "href": "/cat-percentile-predictor/"
+  },
+  {
+   "slug": "neet-ug-rank-predictor",
+   "title": "NEET UG Rank Predictor",
+   "icon": "🩺",
+   "desc": "Predict your NEET UG rank from marks: percentile band, rank range and Govt MBBS seat chances with AIQ vs state quota notes.",
+   "tags": [
+    "neet",
+    "rank",
+    "mbbs",
+    "medical",
+    "cutoff",
+    "predictor"
+   ],
+   "cats": [
+    "all",
+    "education"
+   ],
+   "href": "/neet-ug-rank-predictor/"
   }
  ],
  "categories": {
