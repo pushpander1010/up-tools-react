@@ -90,18 +90,7 @@ export default function games_2048() {
   const [boardSize, setBoardSize] = useState(400)
   const boardRef = useRef(null)
   const stateRef = useRef({ grid: emptyGrid, score: 0, moves: 0, history: [] })
-
-  // Fullscreen
-
-  // Interstitial ad state
-
-
-
-
-
-
-
-
+  const celebrated = useRef(false)
 
 
 
@@ -110,6 +99,7 @@ export default function games_2048() {
     stateRef.current = { ...stateRef.current, grid: g, score: s, moves: m }
     setGrid(g); setScore(s); setMoves(m)
     const biggest = Math.max(...g.flat())
+    if (biggest >= 2048 && !celebrated.current) { celebrated.current = true; setWon(true) }
     setBest(prev => Math.max(prev, s))
     setBestTile(prev => Math.max(prev, biggest))
     const curBest = Math.max(best, s)
@@ -119,6 +109,7 @@ export default function games_2048() {
 
   const startNew = useCallback(() => {
     const g = addRandom(addRandom(emptyGrid()))
+    celebrated.current = false
     syncState(g, 0, 0)
     setGameOver(false); setWon(false); setPlaying(true)
     stateRef.current.history = []
@@ -223,7 +214,8 @@ export default function games_2048() {
   return (
     <GameShell
       name="2048"
-      startAction={startNew} startLabel="🎮 New Game"
+      startAction={startNew} startLabel={playing && !gameOver ? '⟲ Restart' : '🎮 New Game'}
+      headerStats={<><span>Score <b className="text-white">{score}</b></span><span>Best <b className="text-amber-300">{best}</b></span><span>Tile <b className="text-emerald-300">{Math.max(bestTile, ...grid.flat())}</b></span></>}
       title="2048 : A Fun Numbers Puzzle Game Online — Play Free" 
       desc="Play 2048 online for free. Swipe or use arrow keys to merge tiles, beat your high score, and challenge yourself with this addictive number puzzle game."
       icon="🎲" iconBg="rgba(245,158,11,0.08)"
@@ -231,10 +223,9 @@ export default function games_2048() {
       faq={[
         { q: "How do I play 2048?", a: "Use arrow keys or swipe to slide tiles. When two tiles with the same number collide, they merge into one with their sum. Create a 2048 tile to win!" },
         { q: "Does progress save?", a: "Yes! Your game state is automatically saved. Click 'Continue' to resume where you left off." },
-        { q: "How do I play 2048 : A Fun Numbers Puzzle Game Online — Play Free online free?", a: "Click Start and follow the on-screen steps. Use mouse, touch, or keyboard controls. No download needed." },
-        { q: "Can I play 2048 : A Fun Numbers Puzzle Game Online — Play Free without downloading?", a: "Yes. This 2048 : A Fun Numbers Puzzle Game Online — Play Free runs in your browser with no install. Free on mobile and desktop." },
-        { q: "How do I use this 2048 : A Fun Numbers Puzzle Game Online — Play Free online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
-        { q: "Is this 2048 : A Fun Numbers Puzzle Game Online — Play Free free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
+        { q: "Can I undo a move?", a: "Yes. Tap the ↶ button to undo, up to your last 32 moves. Undoing restores the exact board, score and move count." },
+        { q: "What happens when I reach 2048?", a: "You win! A celebration pops up and you can keep playing to chase higher tiles like 4096 and 8192." },
+        { q: "Is 2048 free with no sign-up?", a: "Yes, completely free. Your best score, best tile and saved game live in your browser, so they survive refreshes." },
       ]}
       howItWorks={[
         "Use arrow keys (or WASD) to slide tiles in four directions.",
@@ -250,16 +241,21 @@ export default function games_2048() {
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }}
     >
-      {/* Interstitial ad on retry/start */}
-
       <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
-        {/* Left aside ad */}
-
-        {/* Game center */}
         <div className="flex-1 min-w-0 max-w-xl mx-auto space-y-5 overflow-hidden">
         {!playing && (
           <div onClick={handleStartTap} className="cursor-pointer">
-            <div className="glass p-4">
+            <div className="glass p-4 overflow-hidden">
+              <img src="/games/2048/cover.jpg" alt="2048 neon number-tiles cover art" loading="eager"
+                className="w-full h-40 sm:h-52 object-cover rounded-2xl border border-amber-400/30 shadow-[0_0_40px_rgba(245,158,11,0.3)] mb-4" />
+              <h2 className="text-center text-4xl sm:text-5xl font-black tracking-tighter bg-gradient-to-b from-amber-300 via-orange-300 to-amber-200 bg-clip-text text-transparent">2048</h2>
+              <p className="text-center text-xs sm:text-sm text-slate-400 mt-1 mb-3">Merge tiles · Chase 2048 · Free forever</p>
+              <div className="flex flex-wrap justify-center gap-1.5 mb-4 text-[11px] font-bold">
+                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-amber-200">↩️ 32 undos</span>
+                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-emerald-200">💾 Auto-save</span>
+                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-cyan-200">📱 Swipe ready</span>
+                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-purple-200">🏆 Best tile {Math.max(bestTile, 0)}</span>
+              </div>
               <div className="grid grid-cols-4 gap-4">
                 <div className="text-center"><div className="text-2xl font-extrabold text-white">{best}</div><div className="text-xs text-slate-400 font-medium mt-0.5">Best Score</div></div>
                 <div className="text-center"><div className="text-2xl font-extrabold text-white">{bestTile}</div><div className="text-xs text-slate-400 font-medium mt-0.5">Best Tile</div></div>
@@ -268,7 +264,8 @@ export default function games_2048() {
               </div>
             </div>
             <div className="flex gap-3 justify-center mt-4">
-                            <button onClick={(e) => { e.stopPropagation(); continueSaved() }} className="px-6 py-3 rounded-xl text-sm font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">↩️ Continue</button>
+              <button onClick={(e) => { e.stopPropagation(); window.dispatchEvent(new Event('ut:game-start')) }} className="px-8 py-3 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-white font-extrabold text-base shadow-[0_0_30px_rgba(245,158,11,0.5)] hover:scale-105 transition">▶ Start Game</button>
+              <button onClick={(e) => { e.stopPropagation(); continueSaved() }} className="px-6 py-3 rounded-full text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-300 hover:text-white hover:bg-white/[0.1] transition-all">↩️ Continue</button>
             </div>
             <p className="text-center text-xs text-slate-400 mt-4">👆 Tap anywhere or use buttons to start</p>
           </div>
@@ -313,24 +310,34 @@ export default function games_2048() {
                     {val}
                   </div>
                 )))}
-                {(gameOver || (won && grid.flat().includes(2048))) && (
-                  <div className="absolute inset-0 bg-black/80 backdrop-blur-sm rounded-xl flex flex-col items-center justify-center z-10">
-                    <div className="text-3xl mb-2">{won ? '🎉' : '💀'}</div>
-                    <h2 className="text-xl font-bold text-white mb-2">{won ? 'You Won!' : 'Game Over!'}</h2>
-                    <p className="text-sm text-slate-400 mb-4">Score: {score}</p>
+                {(gameOver || won) && (
+                  <div className="absolute inset-0 bg-black/80 backdrop-blur-sm rounded-xl flex flex-col items-center justify-center z-10 px-4 text-center">
+                    <div className="text-3xl mb-2">{won && !gameOver ? '🎉' : '💀'}</div>
+                    <h2 className="text-xl font-bold text-white mb-2">{won && !gameOver ? 'You made 2048!' : 'Game Over!'}</h2>
+                    <p className="text-sm text-slate-400 mb-4">Score: {score} · {moves} moves</p>
+                    <div className="flex gap-2 flex-wrap justify-center">
+                      {won && !gameOver && <button onClick={() => setWon(false)} className="px-5 py-2.5 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 text-white font-extrabold text-sm hover:scale-105 transition">Keep going 🚀</button>}
+                      <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))} className="px-5 py-2.5 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-white font-extrabold text-sm hover:scale-105 transition">{won && !gameOver ? 'New game' : 'Try again ⟲'}</button>
+                    </div>
                   </div>
                 )}
               </div>
             </div>
 
-            {/* Bottom ad banner */}
+            {/* Mobile D-pad — sticky so it never hides under the fold */}
+            <div className="grid grid-cols-3 gap-2 md:hidden sticky bottom-2 z-20 py-2 px-6 bg-[#030b14]/92 backdrop-blur-sm rounded-2xl border border-white/5" aria-label="Move pad">
+              <div />
+              <button onTouchStart={(e)=>{e.preventDefault(); if(!gameOver) doMove('up')}} onClick={()=>{if(!gameOver) doMove('up')}} className="h-14 rounded-2xl bg-white/[0.08] border border-white/10 text-amber-100 font-black text-xl active:bg-amber-500/30 touch-none select-none" aria-label="Up">▲</button>
+              <div />
+              <button onTouchStart={(e)=>{e.preventDefault(); if(!gameOver) doMove('left')}} onClick={()=>{if(!gameOver) doMove('left')}} className="h-14 rounded-2xl bg-white/[0.08] border border-white/10 text-amber-100 font-black text-xl active:bg-amber-500/30 touch-none select-none" aria-label="Left">◀</button>
+              <button onTouchStart={(e)=>{e.preventDefault(); if(!gameOver) doMove('down')}} onClick={()=>{if(!gameOver) doMove('down')}} className="h-14 rounded-2xl bg-white/[0.08] border border-white/10 text-amber-100 font-black text-xl active:bg-amber-500/30 touch-none select-none" aria-label="Down">▼</button>
+              <button onTouchStart={(e)=>{e.preventDefault(); if(!gameOver) doMove('right')}} onClick={()=>{if(!gameOver) doMove('right')}} className="h-14 rounded-2xl bg-white/[0.08] border border-white/10 text-amber-100 font-black text-xl active:bg-amber-500/30 touch-none select-none" aria-label="Right">▶</button>
+            </div>
 
-            <p className="text-center text-xs text-slate-400">Tip: use WASD too. Press Back to stop — progress is saved.</p>
+            <p className="text-center text-xs text-slate-400">Tip: swipe, D-pad, arrows or WASD. ↶ undoes. Progress auto-saves.</p>
           </>
         )}
         </div>
-
-        {/* Right aside ad */}
       </div>
     </GameShell>
   )
