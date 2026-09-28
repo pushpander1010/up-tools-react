@@ -32,11 +32,10 @@ export default function youtube_video_downloader() {
         <DlBox accent="red" filePrefix="youtube-video"
           placeholder="Paste YouTube video URL here..."
           buttonLabel="⬇️ Download" loadingLabel="⏳ Finding video..."
-          fallbackText="YouTube is blocking our server right now. Paste your link into one of these free converters instead:"
+          fallbackText="Click a button below — your video opens ready to save, no pasting needed:"
           services={[
-            { label: 'Convert via Y2Mate (MP4 + MP3)', href: 'https://www.y2mate.com/' },
-            { label: 'Download via SaveFrom', href: 'https://savefrom.net/' },
-            { label: 'Convert via YTMP3 (MP3)', href: 'https://ytmp3s.com/' },
+            { label: 'Download MP4 — opens ready to save', href: 'https://ssyoutube.com/watch?v={id}' },
+            { label: 'More options via SaveFrom', href: 'https://savefrom.net/' },
           ]} />
       </div>
     </ToolLayout>

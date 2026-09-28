@@ -106,6 +106,12 @@ export default function DlBox({
   }[accent] || 'bg-blue-400 text-blue-400'
   const [dotBg, txt] = dot.split(' ')
 
+  const ytId = (u) => {
+    const m = (u || '').match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/)
+    return m ? m[1] : ''
+  }
+  const buildHref = (h) => h.replace('{id}', ytId(url)).replace('{url}', encodeURIComponent(url))
+
   const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
@@ -151,7 +157,7 @@ export default function DlBox({
           <p className="text-sm text-slate-400 mb-4">{fallbackText}</p>
           <div className="space-y-3">
             {services.map((s, i) => (
-              <a key={i} href={s.href} target="_blank" rel="noopener noreferrer"
+              <a key={i} href={buildHref(s.href)} target="_blank" rel="noopener noreferrer"
                 className={i === 0
                   ? `block w-full py-3 rounded-xl text-white font-bold text-sm text-center transition-all no-underline ${solid}`
                   : 'block w-full py-3 rounded-xl bg-white/[0.06] border border-white/[0.08] text-slate-300 font-bold text-sm text-center hover:text-white transition-all no-underline'}>

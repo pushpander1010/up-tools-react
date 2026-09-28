@@ -32,10 +32,10 @@ export default function youtube_shorts_downloader() {
         <DlBox accent="red" filePrefix="youtube-short"
           placeholder="https://youtube.com/shorts/..."
           buttonLabel="📥 Download" loadingLabel="⏳ Finding..."
-          fallbackText="YouTube is blocking our server right now. Paste your Shorts link into one of these free converters instead:"
+          fallbackText="Click a button below — your Short opens ready to save, no pasting needed:"
           services={[
-            { label: 'Convert via Y2Mate (MP4 + MP3)', href: 'https://www.y2mate.com/' },
-            { label: 'Download via SaveFrom', href: 'https://savefrom.net/' },
+            { label: 'Download Short — opens ready to save', href: 'https://ssyoutube.com/watch?v={id}' },
+            { label: 'More options via SaveFrom', href: 'https://savefrom.net/' },
           ]} />
       </div>
     </ToolLayout>
