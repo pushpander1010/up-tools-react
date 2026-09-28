@@ -433,12 +433,12 @@ export default function games_flappy_bird() {
           </div>
         </div>
 
-        {/* Flap control — sticky on mobile so it never hides under the fold */}
+        {/* Flap control — only while playing (shell Start covers idle/dead) */}
+        {gameState === 'running' && (
         <div className="flex gap-3 justify-center md:static sticky bottom-2 z-20 py-2 bg-[#030b14]/92 backdrop-blur-sm rounded-2xl border border-white/5 md:bg-transparent md:border-0 md:p-0 md:backdrop-blur-none">
-          <button onClick={gameState === 'dead' ? () => window.dispatchEvent(new Event('ut:game-start')) : flap} className="glow-btn px-6 py-3 text-sm">
-            {gameState === 'dead' ? '⟲ Play Again' : gameState === 'running' ? '🐦 Flap!' : '▶ Start'}
-          </button>
+          <button onClick={flap} className="glow-btn px-6 py-3 text-sm">🐦 Flap!</button>
         </div>
+        )}
 
         <div className="glass p-3 flex justify-center overflow-hidden relative">
           <canvas ref={canvasRef}
