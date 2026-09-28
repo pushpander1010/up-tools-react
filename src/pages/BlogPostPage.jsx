@@ -296,7 +296,7 @@ export default function BlogPostPage() {
 
             {/* Tools CTA */}
             <div className="rounded-2xl border border-brand/20 bg-brand/5 p-5">
-              <h3 className="text-sm font-bold text-white mb-1">300+ Free Tools</h3>
+              <h3 className="text-sm font-bold text-white mb-1">490+ Free Tools</h3>
               <p className="text-xs text-slate-400 leading-relaxed mb-3">Calculators, converters, AI writers — all in your browser. No signup.</p>
               <Link to="/" className="inline-flex px-4 py-2 rounded-xl text-xs font-semibold bg-brand text-white hover:bg-brand/90 transition-colors no-underline">Explore Tools</Link>
             </div>

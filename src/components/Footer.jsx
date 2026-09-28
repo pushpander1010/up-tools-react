@@ -9,7 +9,7 @@ export default function Footer() {
         <span className="text-sm font-semibold text-white">UpTools</span>
       </div>
       <p className="text-xs text-slate-400 max-w-md mx-auto mb-4 leading-relaxed">
-        300+ free tools and 24+ browser games. No sign-ups, no data collection. Everything runs in your browser.
+        490+ free tools and 49 browser games. No sign-ups, no data collection. Everything runs in your browser.
       </p>
       <div className="flex flex-wrap justify-center gap-3 text-xs text-slate-400">
         <Link to="/" className="hover:text-white transition-colors">Home</Link>

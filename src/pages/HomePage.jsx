@@ -4,8 +4,11 @@ import { Helmet } from 'react-helmet-async'
 import ToolCard from '../components/ToolCard'
 import InfiniteCarousel from '../components/InfiniteCarousel'
 import data from '../data/tools.json'
+import { GAMES } from './GamesPage'
 
 const { tools, categories } = data
+const GAME_COUNT = GAMES.length
+const TOOL_COUNT = tools.filter(t => !t.slug.startsWith('games-')).length
 
 const gameChips = [
   { href: '/games/snake/', label: '🐍 Snake' }, { href: '/games/2048/', label: '🔢 2048' },
@@ -20,6 +23,8 @@ const featuredSlugs = [
   'ai-blog-generator', 'ai-linkedin-headline-generator', 'ai-youtube-script',
   'ai-travel-planner', 'rawcv-resume-builder', 'currency-converter',
   'password-generator', 'json-formatter', 'gst-calculator',
+  'jee-percentile-predictor', 'flames-calculator', 'daily-horoscope',
+  'gold-jewellery-price-calculator',
 ]
 
 export default function HomePage() {
@@ -71,13 +76,30 @@ export default function HomePage() {
   return (
     <>
       <Helmet>
-        <title>UpTools - Free Online Games, Calculators & AI Tools</title>
-        <meta name="description" content="Free online tools: 300+ calculators, converters, AI writers, dev tools, security tools, health calculators, and 24+ browser games. No sign-up required." />
-        <meta property="og:title" content="UpTools - Free Online Games, Calculators & AI Tools" />
-        <meta property="og:description" content="300+ free online tools: calculators, converters, AI tools, and 24+ browser games. No sign-up required." />
+        <title>UpTools - 490+ Free Online Tools, Calculators, Games & AI Tools</title>
+        <meta name="description" content="Free online tools: 490+ calculators, converters, AI writers, dev tools, finance tools, health calculators, and 49 browser games. No sign-up required." />
+        <link rel="canonical" href="https://www.uptools.in/" />
+        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+        <meta property="og:title" content="UpTools - 490+ Free Online Tools, Calculators, Games & AI Tools" />
+        <meta property="og:description" content="490+ free online tools: SIP, EMI, GST, income tax calculators, AI tools, and 49 browser games. No sign-up required." />
         <meta property="og:url" content="https://www.uptools.in/" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="UpTools" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="UpTools - 490+ Free Online Tools & 49 Games" />
+        <meta name="twitter:description" content="Calculators, converters, AI tools and browser games. Free, no sign-up." />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "UpTools",
+          "url": "https://www.uptools.in/",
+          "description": "490+ free online tools, calculators, converters, AI tools and 49 browser games.",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://www.uptools.in/?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        })}</script>
       </Helmet>
 
       {/* Hero */}
@@ -99,7 +121,7 @@ export default function HomePage() {
             <p className="text-slate-400 text-sm leading-relaxed max-w-xl mb-6">
               Your hub for <span className="text-white font-semibold">free online games</span> and
               <span className="text-white font-semibold"> everyday tools</span> — calculators, converters,
-              AI helpers and 24+ instant mini-games. No sign-ups, no bloat.
+              AI helpers and {GAME_COUNT} instant mini-games. No sign-ups, no bloat.
             </p>
             <div className="flex flex-wrap gap-3">
               <Link to="/games" className="glow-btn text-sm px-6 py-2.5 rounded-xl no-underline inline-flex items-center gap-2">🎮 Play Games</Link>
@@ -108,7 +130,7 @@ export default function HomePage() {
             </div>
           </div>
           <div className="flex gap-8 shrink-0">
-            {[{ v: '300+', l: 'Tools' }, { v: '24+', l: 'Games' }, { v: '0', l: 'Sign-ups' }].map(s => (
+            {[{ v: `${TOOL_COUNT}+`, l: 'Tools' }, { v: `${GAME_COUNT}`, l: 'Games' }, { v: '0', l: 'Sign-ups' }].map(s => (
               <div key={s.l} className="text-center"><div className="text-3xl font-extrabold gradient-text">{s.v}</div><div className="text-xs text-slate-400 mt-1 font-medium">{s.l}</div></div>
             ))}
           </div>
@@ -119,7 +141,7 @@ export default function HomePage() {
       <div className="glass rounded-3xl p-5 mb-6">
         <div className="flex items-center justify-between gap-4 flex-wrap mb-4">
           <div><h2 className="text-lg font-bold text-white m-0">🎮 Free Mini Games</h2><p className="text-xs text-slate-400 mt-0.5">Instant browser games — click and play.</p></div>
-          <Link to="/games" className="glow-btn text-xs py-1.5 px-4 rounded-xl no-underline">Play all 24+ →</Link>
+          <Link to="/games" className="glow-btn text-xs py-1.5 px-4 rounded-xl no-underline">Play all {GAME_COUNT} →</Link>
         </div>
         <InfiniteCarousel gap={8}>
           {gameChips.map(g => (
@@ -137,7 +159,7 @@ export default function HomePage() {
           style={{ background: 'rgba(17,24,39,0.8)', border: '1px solid rgba(255,255,255,0.06)' }}>
           <span className="text-slate-400 text-lg">🔎</span>
           <input type="search" value={search} onChange={e => setSearch(e.target.value)} onKeyDown={handleKeyDown}
-            placeholder="Search 300+ tools (tax, gst, currency, json)…"
+            placeholder={`Search ${TOOL_COUNT}+ tools (tax, gst, currency, json)…`}
             className="flex-1 min-w-0 bg-transparent border-none outline-none text-white text-sm placeholder:text-slate-400" />
           {isFiltering && (
             <button onClick={clearFilters}

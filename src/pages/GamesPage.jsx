@@ -2,7 +2,7 @@ import { useState, useMemo, useCallback } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 
-const GAMES = [
+export const GAMES = [
   { slug: 'snake', title: 'Snake', icon: '🐍', desc: 'Eat food, grow your snake, avoid hitting yourself.', cat: 'Arcade', color: '#22c55e' },
   { slug: 'tetris', title: 'Tetris', icon: '🧱', desc: 'Arrange falling blocks to clear lines.', cat: 'Puzzle', color: '#6366f1' },
   { slug: '2048', title: '2048', icon: '🔢', desc: 'Slide and merge number tiles to reach 2048.', cat: 'Puzzle', color: '#f59e0b' },
