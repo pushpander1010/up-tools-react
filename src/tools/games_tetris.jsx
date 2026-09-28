@@ -206,6 +206,18 @@ export default function games_tetris() {
     setTimeout(() => { startLoop() }, 30)
   }, [fitCanvas, spawnPiece])
 
+  const togglePause = useCallback(() => {
+    const s = gRef.current
+    if(!s.playing || s.gameOver || !s.piece) return
+    s.paused = !s.paused
+    setPaused(s.paused)
+  }, [])
+
+  const handleExit = useCallback(() => {
+    const s = gRef.current
+    if(s.playing && !s.gameOver){ s.paused = true; setPaused(true) }
+  }, [])
+
   const tryMove = useCallback((dx, dy) => {
     const s = gRef.current
     if (!s.piece || !s.playing || s.gameOver || s.paused || s.clearing) return false
@@ -574,7 +586,7 @@ export default function games_tetris() {
         setPaused(s.paused)
         return
       }
-      if (s.paused) return
+      if (s.paused) { if (e.key===' '||e.key==='Enter') { s.paused = false; setPaused(false) } return }
       if (e.key==='ArrowLeft'||e.key==='a') {
         if (tryMove(-1,0)) playMove()
         s.heldDir = -1; s.dasTimer = 0; s.arrTimer = 0
@@ -655,7 +667,12 @@ export default function games_tetris() {
   return (
     <GameShell
       name="TETRIS"
-      startAction={startGame} startLabel="▶ Start"
+      startAction={startGame} startLabel={playing && !gameOver ? '⟲ Restart' : '▶ Start'}
+      onExit={handleExit}
+      headerStats={<><span>Score <b className="text-white">{score}</b></span><span>Lvl <b className="text-purple-300">{level}</b></span><span>Best <b className="text-fuchsia-300">{best}</b></span></>}
+      extraButtons={playing && !gameOver ? (
+        <button onClick={togglePause} className="px-6 py-2.5 rounded-full bg-white/[0.08] border border-white/10 text-cyan-100 font-bold text-sm hover:bg-white/15">{paused ? '▶ Resume' : '⏸ Pause'}</button>
+      ) : null}
       title="Tetris Online - Free Classic Puzzle Game"
       desc="Tetris Online - Free Classic Puzzle Game - play Tetris online. Classic falling block, online free. Play online free, no download. Works on mobile and desktop."
       icon="🧩" iconBg="rgba(168,85,247,0.08)"
@@ -744,6 +761,7 @@ export default function games_tetris() {
           {btn('⟳', () => tryRotate(), '#7c3aed')}
           {btn('⤓', () => hardDrop(), '#0891b2')}
           {btn('H', () => doHold(), '#475569')}
+          {btn(paused ? '▶' : '⏸', () => togglePause(), '#b45309')}
         </div>
 
         <p className="text-center text-xs text-slate-400">
