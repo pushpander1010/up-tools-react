@@ -133,7 +133,7 @@ export default function games_word_scramble() {
   const handleSubmit = useCallback(() => {
     ensureAudio()
     const trimmed = answer.trim().toLowerCase()
-    if (!trimmed) return
+    if (!trimmed || feedback.text) return
 
     if (trimmed === currentWord) {
       const points = hintRevealed ? 5 : 10
@@ -177,19 +177,18 @@ export default function games_word_scramble() {
   return (
     <GameShell
       name="WORD SCRAMBLE"
-      startAction={handleNewGame} startLabel="⟲ New Word"
+      startAction={handleNewGame} startLabel={(score > 0 || questionNum > 1) ? '⟲ New Game' : '▶ Start'}
  
+      headerStats={<><span className="text-white">Score <b>{score}</b></span><span className="text-orange-400">Streak <b>{streak}🔥</b></span><span className="text-slate-400">Q{questionNum}</span></>}
       title="Word Scramble Game Online - Unscramble Words Free"
-      desc="Word Scramble Game Online - Unscramble Words Free - unscramble jumbled letters to, online free. Play online free, no download. Works on mobile and desktop."
+      desc="Unscramble jumbled letters to guess the hidden word. Choose from five categories, use hints if stuck, and build streaks for bonus points."
       icon="🔀" iconBg="rgba(168,85,247,0.08)"
       category="fun" slug="games-word-scramble"
       faq={[
         { q: "How does scoring work?", a: "You get 10 points for a correct answer without a hint, and 5 points if you used the hint. Streaks are tracked too!" },
         { q: "What if I can't guess the word?", a: "You can skip to the next word (streak resets) or reveal the answer." },
-        { q: "How do I play Word Scramble Game Online - Unscramble Words Free online free?", a: "Click Start and follow the on-screen steps. Use mouse, touch, or keyboard controls. No download needed." },
-        { q: "Can I play Word Scramble Game Online - Unscramble Words Free without downloading?", a: "Yes. This Word Scramble Game Online - Unscramble Words Free runs in your browser with no install. Free on mobile and desktop." },
-        { q: "How do I use this Word Scramble Game Online - Unscramble Words Free online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
-        { q: "Is this Word Scramble Game Online - Unscramble Words Free free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
+        { q: "How many words are in each category?", a: "Each category (Animals, Countries, Tech, Food, Sports) has 10 words. The 'All' mode picks randomly from all 50 words." },
+        { q: "What does the hint button do?", a: "Clicking the hint reveals a description of the word. Using a hint reduces your points from 10 to 5 for that word." },
       ]}
       howItWorks={[
         "Select a category or play with all words.",
@@ -207,6 +206,26 @@ export default function games_word_scramble() {
     >
       <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
         <div className="flex-1 min-w-0 max-w-2xl mx-auto space-y-5 overflow-hidden">
+        {/* Welcome overlay */}
+        {score === 0 && questionNum === 1 && (
+          <div className="relative overflow-y-auto cursor-pointer" onClick={(e) => { if (e.target.closest('button') || e.target.tagName === 'SELECT' || e.target.tagName === 'INPUT') return; window.dispatchEvent(new Event('ut:game-start')) }}>
+            <img src="/games/word-scramble/cover.jpg" alt="Word Scramble puzzle game" loading="eager"
+              className="w-full aspect-video object-cover rounded-2xl border border-purple-400/30 shadow-[0_0_40px_rgba(168,85,247,0.35)] mb-4" />
+            <h2 className="text-4xl sm:text-5xl font-black tracking-tighter text-center bg-gradient-to-b from-purple-300 via-violet-300 to-pink-300 bg-clip-text text-transparent mb-2">WORD SCRAMBLE</h2>
+            <p className="text-xs sm:text-sm text-slate-400 text-center mb-3">Unscramble letters · 5 categories · Free</p>
+            <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-purple-200">🔀 Shuffle words</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-amber-200">💡 Hints available</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-green-200">🔥 Streak bonus</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-blue-200">📱 50 words</span>
+            </div>
+            <div className="text-center">
+              <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))} className="px-8 py-3 rounded-full bg-gradient-to-r from-purple-500 to-violet-500 text-white font-extrabold text-lg shadow-[0_0_30px_rgba(168,85,247,0.5)] hover:scale-105 transition">▶ Start Game</button>
+            </div>
+            <p className="text-center text-[11px] text-slate-500 mt-3">Pick a category · Unscramble the word · Build streaks</p>
+          </div>
+        )}
+
         {/* Category selector */}
         <div className="flex gap-2 items-center flex-wrap">
           <select value={category} onChange={e => { setCategory(e.target.value); nextWord(e.target.value) }}
@@ -218,8 +237,7 @@ export default function games_word_scramble() {
           </select>
           <button onClick={handleSkip}
             className="px-4 py-2.5 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">Skip</button>
-          <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))}
-            className="px-4 py-2.5 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">New Game</button>
+          
         </div>
 
         {/* Score row */}

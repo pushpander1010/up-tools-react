@@ -412,17 +412,14 @@ export default function games_solitaire() {
       <GameShell
       name="SOLITAIRE"
       startAction={startNewGame} startLabel="🂡 Deal Cards"
-        title="Solitaire — Classic Klondike Card Game Online Free" 
-        desc="Solitaire — Classic Klondike Card Game Online Free - play classic Klondike Solitaire, online free. Play online free, no download. Works on mobile and desktop."
+        title="Solitaire — Classic Klondike Card Game Online Free"
+        desc="Play classic Klondike Solitaire in your browser — drag and drop cards, undo moves, auto-complete, and track your stats."
         icon="🃏" iconBg="rgba(34,197,94,0.08)"
         category="fun" slug="games-solitaire"
         faq={[
           { q: "How do I play Solitaire?", a: "Move cards between tableau columns, alternating colors in descending order. Build up foundation piles by suit from Ace to King." },
           { q: "What is auto-complete?", a: "When all cards in the tableau are face-up and no stock remains, cards automatically move to foundations to speed up the end game." },
           { q: "Can I undo moves?", a: "Yes! You can undo the last 10 moves using the undo button." },
-          { q: "Can I play Solitaire — Classic Klondike Card Game Online Free without downloading?", a: "Yes. This Solitaire — Classic Klondike Card Game Online Free runs in your browser with no install. Free on mobile and desktop." },
-          { q: "How do I use this Solitaire — Classic Klondike Card Game Online Free online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
-          { q: "Is this Solitaire — Classic Klondike Card Game Online Free free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
         ]}
         howItWorks={[
           "Click the stock pile to draw cards (1 or 3 at a time).",
@@ -440,10 +437,18 @@ export default function games_solitaire() {
       >
         <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
           <div className="flex-1 min-w-0 max-w-xl mx-auto space-y-5 overflow-hidden">
-          <div className="text-center p-8 glass rounded-2xl">
-            <div className="text-5xl mb-4">🃏</div>
-            <h2 className="text-xl font-bold text-white mb-2">Klondike Solitaire</h2>
-            <p className="text-sm text-slate-400 mb-6">The classic card game. Build foundations from Ace to King!</p>
+          <div className="relative glass p-8 text-center overflow-y-auto max-h-[70vh]"
+            onPointerDown={(e) => { if (e.target.closest('button')) return; window.dispatchEvent(new Event('ut:game-start')) }}>
+            <img src="/games/solitaire/cover.jpg" alt="Klondike Solitaire card game cover art" loading="eager"
+              className="w-full max-w-[420px] aspect-video object-cover rounded-2xl border border-green-400/30 shadow-[0_0_40px_rgba(34,197,94,0.35)] mb-4 mx-auto" />
+            <h2 className="text-4xl sm:text-5xl font-black tracking-tighter bg-gradient-to-b from-green-300 via-emerald-300 to-red-300 bg-clip-text text-transparent">SOLITAIRE</h2>
+            <p className="text-xs sm:text-sm text-slate-400 mt-1 mb-3">Classic Klondike · Drag & drop · Undo & auto-complete</p>
+            <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-green-200">🃏 52 cards</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-blue-200">↩ 10 undos</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-amber-200">⚡ Auto-complete</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-purple-200">📊 Stats tracked</span>
+            </div>
             <div className="grid grid-cols-3 gap-3 mb-4 text-center">
               <div className="p-3 rounded-xl glass">
                 <div className="text-2xl font-extrabold text-white">{wins}</div>
@@ -458,16 +463,14 @@ export default function games_solitaire() {
                 <div className="text-xs text-slate-400 font-medium mt-0.5">Played</div>
               </div>
             </div>
-            <div className="flex gap-2 justify-center">
-              <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))}
-                className="glow-btn px-6 py-3 text-sm">
-                Deal Cards
-              </button>
-              <button onClick={toggleDrawMode}
-                className="px-4 py-3 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">
+            <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))} className="px-8 py-3 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 text-white font-extrabold text-lg shadow-[0_0_30px_rgba(34,197,94,0.5)] hover:scale-105 transition">🂡 Deal Cards</button>
+            <div className="flex gap-2 justify-center mt-3">
+              <button onClick={(e) => { e.stopPropagation(); toggleDrawMode() }}
+                className="px-4 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">
                 Draw {drawThree ? 3 : 1}
               </button>
             </div>
+            <p className="text-[11px] text-slate-500 mt-3">Drag cards or double-click to move to foundations</p>
           </div>
           </div>
         </div>
@@ -541,8 +544,9 @@ export default function games_solitaire() {
     <GameShell
       name="SOLITAIRE"
       startAction={startNewGame} startLabel="🂡 Deal Cards"
+      headerStats={<><span>Moves <b className="text-cyan-300">{moves}</b></span><span>Time <b className="text-amber-300">{formatTime(timer)}</b></span></>}
       title="Solitaire — Classic Klondike Card Game Online Free"
-      desc="Play classic Klondike Solitaire in your browser. Drag and drop cards, undo moves, auto-complete, and track your stats."
+      desc="Play classic Klondike Solitaire in your browser — drag and drop cards, undo moves, auto-complete, and track your stats."
       icon="🃏" iconBg="rgba(34,197,94,0.08)"
       category="fun" slug="games-solitaire"
       faq={[

@@ -174,7 +174,7 @@ export default function games_math_sprint() {
   return (
     <GameShell
       name="Math Sprint"
-      startAction={startGame} startLabel="🧮 Start Sprint"
+      startAction={startGame} startLabel={playing ? '⟲ Restart' : '🧮 Start Sprint'} headerStats={<><span>Score <b className="text-purple-300">{score}</b></span><span>Best <b className="text-white">{best}</b></span><span>🔥 {streak}</span></>}
       title="Math Sprint — Play Free Mental Maths Game Online"
       desc="Play Math Sprint online for free. Solve as many arithmetic problems as you can in 60 seconds. Choose difficulty, build streaks, and beat your high score."
       icon="🧮" iconBg="rgba(168,85,247,0.08)"
@@ -182,10 +182,7 @@ export default function games_math_sprint() {
       faq={[
         { q: "How do I play Math Sprint?", a: "Type the answer to each arithmetic problem and press Enter. You have 60 seconds to solve as many as possible. Higher streaks earn bonus points." },
         { q: "What are the difficulty levels?", a: "Easy uses addition and subtraction (1-20). Medium adds multiplication (1-50). Hard includes division with larger numbers (1-100)." },
-        { q: "How do I play Math Sprint — Play Free Mental Maths Game Online online free?", a: "Click Start and follow the on-screen steps. Use keyboard to type answers. No download needed." },
-        { q: "Can I play Math Sprint — Play Free Mental Maths Game Online without downloading?", a: "Yes. This Math Sprint — Play Free Mental Maths Game Online runs in your browser with no install. Free on mobile and desktop." },
-        { q: "How do I use this Math Sprint — Play Free Mental Maths Game Online online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
-        { q: "Is this Math Sprint — Play Free Mental Maths Game Online free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
+
       ]}
       howItWorks={[
         "Choose your difficulty level and press Start to begin the 60-second sprint.",
@@ -204,6 +201,8 @@ export default function games_math_sprint() {
       <div className="min-w-0 space-y-5">
         {!playing && !gameOver && (
           <div onClick={handleStartTap} className="cursor-pointer">
+            <img src="/games/math-sprint/cover.jpg" alt="Math Sprint game cover" loading="eager"
+              className="w-full aspect-video object-cover rounded-2xl border border-purple-400/30 shadow-[0_0_40px_rgba(168,85,247,0.25)] mb-3" />
             <div className="glass p-4">
               <div className="grid grid-cols-3 gap-4 mb-4">
                 <div className="text-center"><div className="text-2xl font-extrabold text-white">{best}</div><div className="text-xs text-slate-400 font-medium mt-0.5">Best Score</div></div>
@@ -219,7 +218,7 @@ export default function games_math_sprint() {
                 ))}
               </div>
             </div>
-            <p className="text-center text-xs text-slate-400 mt-4">👆 Tap Start or press any key to begin</p>
+
           </div>
         )}
         {playing && (

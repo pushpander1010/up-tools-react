@@ -177,18 +177,16 @@ export default function games_stack_tower() {
   return (
     <GameShell
       name="Stack Tower"
-      startAction={startNew} startLabel="🏗️ Start Stacking"
+      startAction={startNew} startLabel={!playing ? '🏗️ Start Stacking' : '⟲ Restart'}
+      headerStats={<><span>Score <b className="text-cyan-300">{score}</b></span><span>Best <b className="text-amber-300">🏆 {best}</b></span><span>❤️ <b className="text-red-300">{lives}</b></span></>}
       title="Stack Tower — Play Free Stacking Game Online"
-      desc="Stack moving blocks as precisely as possible! Tap to place, trim the overhang, and build the tallest tower you can."
+      desc="Stack moving blocks as precisely as you can — trim the overhang, build perfect streaks, and tower into the sky."
       icon="🏗️" iconBg="rgba(59,130,246,0.08)"
       category="fun" slug="games-stack-tower"
       faq={[
         { q: "How do I play Stack Tower?", a: "Press Space, Enter, or tap the screen to place the moving block on top of the last one. The overhang gets trimmed each time." },
         { q: "What happens if I miss?", a: "If the moving block doesn't overlap at all, you lose a life. You have 3 lives total." },
         { q: "What is the perfect streak bonus?", a: "Place blocks with very little trim (under 4px) to build a perfect streak. 5 perfects in a row gives +50 bonus points!" },
-        { q: "How do I play Stack Tower — Play Free Stacking Game Online online free?", a: "Click Start and press Space, Enter, or tap to stack. Works on mobile and desktop. No download needed." },
-        { q: "Can I play Stack Tower — Play Free Stacking Game Online without downloading?", a: "Yes. This Stack Tower — Play Free Stacking Game Online runs in your browser with no install. Free on mobile and desktop." },
-        { q: "Is this Stack Tower — Play Free Stacking Game Online free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "A block slides back and forth at increasing speed.",
@@ -206,17 +204,21 @@ export default function games_stack_tower() {
     >
       <div className="min-w-0 space-y-5">
         {!playing && (
-          <div className="glass p-6 text-center">
-            <div className="text-5xl mb-3">🏗️</div>
-            <h2 className="text-xl font-bold text-white mb-2">Stack Tower</h2>
-            <p className="text-sm text-slate-400 mb-4">Tap to place, build the tallest tower!</p>
-            <div className="grid grid-cols-3 gap-3 mb-4">
-              <div className="glass p-3 rounded-xl"><div className="text-lg font-bold text-blue-400">⬆️</div><div className="text-xs text-slate-400">Stack Up</div></div>
-              <div className="glass p-3 rounded-xl"><div className="text-lg font-bold text-yellow-400">⭐</div><div className="text-xs text-slate-400">Perfect = Bonus</div></div>
-              <div className="glass p-3 rounded-xl"><div className="text-lg font-bold text-red-400">❤️×3</div><div className="text-xs text-slate-400">3 Lives</div></div>
+          <div className="relative glass p-6 text-center overflow-y-auto max-h-[70vh]"
+            onPointerDown={(e) => { if (e.target.closest('button')) return; window.dispatchEvent(new Event('ut:game-start')) }}>
+            <img src="/games/stack-tower/cover.jpg" alt="Stack Tower building game cover art" loading="eager"
+              className="w-full max-w-[420px] aspect-video object-cover rounded-2xl border border-blue-400/30 shadow-[0_0_40px_rgba(59,130,246,0.35)] mb-4 mx-auto" />
+            <h2 className="text-4xl sm:text-5xl font-black tracking-tighter bg-gradient-to-b from-blue-300 via-indigo-300 to-purple-300 bg-clip-text text-transparent">STACK TOWER</h2>
+            <p className="text-xs sm:text-sm text-slate-400 mt-1 mb-3">Precision stacking · Perfect streaks · 3 lives</p>
+            <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-blue-200">⬆️ Stack up</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-yellow-200">⭐ Perfect bonus</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-red-200">❤️×3 Lives</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-purple-200">📱 Tap to place</span>
             </div>
-            {best > 0 && <p className="text-xs text-slate-400 mb-3">🏆 Best: {best}</p>}
-            <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))} className="px-6 py-3 rounded-xl text-sm font-semibold bg-gradient-to-r from-blue-500 to-indigo-600 text-white hover:opacity-90 transition-all">🏗️ Start Stacking</button>
+            {best > 0 && <p className="text-xs text-amber-400 mb-2">🏆 Best: {best}</p>}
+            <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))} className="px-8 py-3 rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-extrabold text-lg shadow-[0_0_30px_rgba(59,130,246,0.5)] hover:scale-105 transition">🏗️ Start Stacking</button>
+            <p className="text-[11px] text-slate-500 mt-3">Press Space or tap to place blocks</p>
           </div>
         )}
 

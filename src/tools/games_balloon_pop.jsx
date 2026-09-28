@@ -274,21 +274,31 @@ export default function games_balloon_pop() {
     }
   }, [playing, gameOver])
 
+  // Keyboard: Space/Enter to start when idle
+  useEffect(() => {
+    const handler = (e) => {
+      if ((e.key === ' ' || e.key === 'Enter') && (!playing || gameOver)) {
+        e.preventDefault()
+        window.dispatchEvent(new Event('ut:game-start'))
+      }
+    }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [playing, gameOver])
+
+
   return (
     <GameShell
       name="Balloon Pop"
-      startAction={startNew} startLabel="🎈 Start Popping"
-      title="Balloon Pop — Play Free Kids Popping Game Online"
+      startAction={startNew} startLabel={playing && !gameOver ? '⟲ Restart' : '▶ Start'}
+      headerStats={<><span>⭐ {score}</span><span>Best: {best}</span><span>⏱ {timeLeft}s</span></>}
+      title="Balloon Pop — Pop Balloons Before They Float Away"
       desc="Pop balloons before they float away! Golden stars give bonus points, but missing costs you. How many can you pop in 45 seconds?"
       icon="🎈" iconBg="rgba(236,72,153,0.08)"
       category="fun" slug="games-balloon-pop"
       faq={[
-        { q: "How do I play Balloon Pop?", a: "Tap or click on balloons to pop them before they float off screen. Each pop earns points!" },
-        { q: "What are the golden balloons?", a: "Golden balloons with a star are bonus balloons worth 3x points. Pop them for extra score!" },
-        { q: "How long does a round last?", a: "Each round is 45 seconds. Pop as many balloons as you can before time runs out." },
-        { q: "How do I play Balloon Pop — Play Free Kids Popping Game Online online free?", a: "Click Start and tap the balloons as they float up. Works on mobile and desktop. No download needed." },
-        { q: "Can I play Balloon Pop — Play Free Kids Popping Game Online without downloading?", a: "Yes. This Balloon Pop — Play Free Kids Popping Game Online runs in your browser with no install. Free on mobile and desktop." },
-        { q: "Is this Balloon Pop — Play Free Kids Popping Game Online free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
+        { q: "How do I play Balloon Pop?", a: "Tap or click balloons as they float up to pop them. Golden star balloons are worth 3x points, but escaping balloons cost you points. Pop as many as you can in 45 seconds!" },
+        { q: "What happens if I miss a balloon?", a: "Regular balloons that escape reduce your score by 3 points. Golden balloons that escape don't penalize you, so focus on popping those!" },
       ]}
       howItWorks={[
         "Balloons float up from the bottom of the screen automatically.",
@@ -305,21 +315,6 @@ export default function games_balloon_pop() {
       }}
     >
       <div className="min-w-0 space-y-5">
-        {!playing && (
-          <div className="glass p-6 text-center">
-            <div className="text-5xl mb-3">🎈</div>
-            <h2 className="text-xl font-bold text-white mb-2">Balloon Pop</h2>
-            <p className="text-sm text-slate-400 mb-4">Tap balloons before they escape! Golden stars = bonus!</p>
-            <div className="grid grid-cols-3 gap-3 mb-4">
-              <div className="glass p-3 rounded-xl"><div className="text-lg font-bold text-green-400">+{POP_POINTS}</div><div className="text-xs text-slate-400">Normal Pop</div></div>
-              <div className="glass p-3 rounded-xl"><div className="text-lg font-bold text-yellow-400">+{GOLDEN_POINTS}</div><div className="text-xs text-slate-400">Golden ⭐</div></div>
-              <div className="glass p-3 rounded-xl"><div className="text-lg font-bold text-red-400">-{MISS_PENALTY}</div><div className="text-xs text-slate-400">Miss Penalty</div></div>
-            </div>
-            {best > 0 && <p className="text-xs text-slate-400 mb-3">🏆 Best: {best}</p>}
-            <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))} className="px-6 py-3 rounded-xl text-sm font-semibold bg-gradient-to-r from-pink-500 to-rose-600 text-white hover:opacity-90 transition-all">🎈 Start Popping</button>
-          </div>
-        )}
-
         {playing && (
           <>
             <div className="flex gap-3 items-center justify-between">
@@ -336,11 +331,29 @@ export default function games_balloon_pop() {
               </div>
             </div>
 
-            <div className="glass p-2">
+            <div className="glass p-2 relative">
               <canvas
                 ref={el => { canvasRef.current = el; if (el && el.width !== canvasSize) { el.width = canvasSize; el.height = canvasSize } }}
-                style={{ width: canvasSize, height: canvasSize, borderRadius: 12, touchAction: 'none', cursor: 'pointer' }}
+                style={{ width: canvasSize, height: canvasSize, borderRadius: 12, touchAction: 'none', cursor: 'pointer', opacity: (!playing && !gameOver) ? 0.3 : 1 }}
               />
+              {!playing && !gameOver && (
+                <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-5 py-4 bg-[#050d1a]/92 backdrop-blur-[2px] overflow-y-auto"
+                  onClick={(e) => { if (e.target.closest('button')) return; window.dispatchEvent(new Event('ut:game-start')) }}>
+                  <img src="/games/balloon-pop/cover.jpg" alt="Balloon Pop cover art" loading="eager"
+                    className="w-full max-w-[420px] aspect-video object-cover rounded-2xl border border-pink-400/30 shadow-[0_0_40px_rgba(236,72,153,0.35)] mb-4" />
+                  <h2 className="text-3xl font-black tracking-tighter bg-gradient-to-b from-pink-300 via-rose-300 to-red-300 bg-clip-text text-transparent">BALLOON POP</h2>
+                  <p className="text-xs text-slate-400 mt-1 mb-3">Pop balloons before they escape · 45 seconds · Free</p>
+                  <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">
+                    <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-pink-200">🎈 Tap to pop</span>
+                    <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-yellow-200">⭐ Golden bonus 3x</span>
+                    <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-red-200">⏱ 45s timed</span>
+                    <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-green-200">📱 Touch + click</span>
+                  </div>
+                  {best > 0 && <p className="text-xs text-slate-400 mb-2">🏆 Best: {best}</p>}
+                  <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))} className="px-8 py-3 rounded-full bg-gradient-to-r from-pink-500 to-rose-600 text-white font-extrabold text-lg shadow-[0_0_30px_rgba(236,72,153,0.5)] hover:scale-105 transition">▶ Start Game</button>
+                  <p className="text-[11px] text-slate-500 mt-2">Tap anywhere or press Start</p>
+                </div>
+              )}
             </div>
 
             <div className="flex justify-center gap-4 text-xs text-slate-400">

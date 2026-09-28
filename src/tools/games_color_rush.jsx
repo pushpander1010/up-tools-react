@@ -125,6 +125,14 @@ export default function games_color_rush() {
           playWrong()
           setGameOver(true)
           setPlaying(false)
+          setHighScore(prev2 => {
+            const finalScore2 = score
+            if (finalScore2 > prev2) {
+              try { localStorage.setItem(LS.HIGH, String(finalScore2)) } catch {}
+              return finalScore2
+            }
+            return prev2
+          })
           return 0
         }
         return Math.round((prev - 0.1) * 10) / 10
@@ -141,22 +149,32 @@ export default function games_color_rush() {
                    gridSize <= 4 ? 'calc((min(100vw - 4rem, 400px) - 2rem) / 4)' :
                    'calc((min(100vw - 4rem, 400px) - 2.5rem) / 5)'
 
+  // Keyboard: Space/Enter to start/restart
+  useEffect(() => {
+    const handler = (e) => {
+      if ((e.key === ' ' || e.key === 'Enter') && (!playing || gameOver)) {
+        e.preventDefault()
+        window.dispatchEvent(new Event('ut:game-start'))
+      }
+    }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [playing, gameOver])
+
+
   return (
     <GameShell
       name="COLOR RUSH"
-      startAction={() => startGame(gridSize)} startLabel="▶ Start"
+      startAction={() => startGame(gridSize)} startLabel={playing && !gameOver ? '⟲ Restart' : '▶ Start'}
+      headerStats={<><span>Score: {score}</span><span>Best: {highScore}</span><span>Lv.{level}</span></>}
       title="Color Rush Game - Test Your Eyesight"
  
       desc="Can you spot the odd color out? Challenge your visual perception with Color Rush. Increasingly subtle color differences test your eyes!"
       icon="🎨" iconBg="rgba(168,85,247,0.08)"
       category="fun" slug="games-color-rush"
       faq={[
-        { q: "How do I play Color Rush?", a: "A grid of colored squares appears with one slightly different. Find and tap the odd one before the timer runs out!" },
-        { q: "How does difficulty increase?", a: "Each level reduces the timer and makes the color difference subtler. Grid sizes of 3x3, 4x4, and 5x5 are available." },
-        { q: "What's a good score?", a: "Anything over 10 is impressive! The color differences become extremely subtle at higher levels, testing even trained eyes." },
-        { q: "Can I play Color Rush Game - Test Your Eyesight without downloading?", a: "Yes. This Color Rush Game - Test Your Eyesight runs in your browser with no install. Free on mobile and desktop." },
-        { q: "How do I use this Color Rush Game - Test Your Eyesight online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
-        { q: "Is this Color Rush Game - Test Your Eyesight free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
+        { q: "How do I play Color Rush?", a: "A grid of colored squares appears with one slightly different. Find and tap the odd one before the timer runs out! Each correct tap advances to the next level." },
+        { q: "How does difficulty increase?", a: "Each level reduces the timer and makes the color difference subtler. Choose from 3x3, 4x4, or 5x5 grid sizes at the start." },
       ]}
       howItWorks={[
         "Choose a grid size: 3×3, 4×4, or 5×5.",
@@ -175,22 +193,47 @@ export default function games_color_rush() {
       <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
         <div className="flex-1 min-w-0 max-w-xl mx-auto space-y-5 overflow-hidden">
         {!playing && !gameOver ? (
-          <div className="space-y-4">
-            <div className="glass text-center p-4">
-              <div className="text-2xl mb-2">🏆</div>
-              <div className="text-lg font-extrabold text-white">{highScore}</div>
-              <div className="text-xs text-slate-400">High Score</div>
+          <div className="relative">
+            <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-5 py-8 bg-[#050d1a]/92 backdrop-blur-[2px] rounded-2xl overflow-y-auto"
+              onClick={(e) => { if (e.target.closest('button')) return; window.dispatchEvent(new Event('ut:game-start')) }}>
+              <img src="/games/color-rush/cover.jpg" alt="Color Rush cover art" loading="eager"
+                className="w-full max-w-[420px] aspect-video object-cover rounded-2xl border border-purple-400/30 shadow-[0_0_40px_rgba(168,85,247,0.35)] mb-4" />
+              <h2 className="text-3xl font-black tracking-tighter bg-gradient-to-b from-purple-300 via-violet-300 to-fuchsia-300 bg-clip-text text-transparent">COLOR RUSH</h2>
+              <p className="text-xs text-slate-400 mt-1 mb-3">Spot the odd color · Beat the timer · Free</p>
+              <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">
+                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-purple-200">🎨 Spot the odd one</span>
+                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-red-200">⏱ Speed timer</span>
+                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-green-200">📈 Level progression</span>
+                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-cyan-200">📱 Touch friendly</span>
+              </div>
+              <div className="grid grid-cols-3 gap-2 mb-3">
+                {GRID_SIZES.map((gs) => (
+                  <button key={gs.size} onClick={(e) => { e.stopPropagation(); setGridSize(gs.size) }}
+                    className={`px-3 py-2 rounded-xl text-sm font-bold transition-all border ${gridSize === gs.size ? 'bg-purple-500/20 border-purple-500/40 text-purple-300' : 'bg-white/[0.06] border-white/[0.08] text-slate-400 hover:bg-white/[0.1]'}`}>
+                    {gs.label}
+                  </button>
+                ))}
+              </div>
+              {highScore > 0 && <p className="text-xs text-slate-400 mb-2">🏆 Best: {highScore}</p>}
+              <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))} className="px-8 py-3 rounded-full bg-gradient-to-r from-purple-500 to-violet-500 text-white font-extrabold text-lg shadow-[0_0_30px_rgba(168,85,247,0.5)] hover:scale-105 transition">▶ Start Game</button>
+              <p className="text-[11px] text-slate-500 mt-2">Pick a grid size, then start</p>
             </div>
-            <p className="text-center text-slate-400 text-sm">Choose your grid size</p>
-            <div className="grid grid-cols-3 gap-3">
-              {GRID_SIZES.map((gs) => (
-                <button key={gs.size} onClick={() => { setGridSize(gs.size); window.dispatchEvent(new Event('ut:game-start')) }}
-                  className="p-4 rounded-xl text-center transition-all hover:scale-105 active:scale-95 border border-white/[0.08]"
-                  style={{ background: 'linear-gradient(135deg, rgba(168,85,247,0.12), rgba(168,85,247,0.04))' }}>
-                  <div className="text-2xl mb-2">{gs.label}</div>
-                  <div className="text-xs text-slate-400">{gs.size * gs.size} squares</div>
-                </button>
-              ))}
+            <div className="space-y-4 opacity-20 pointer-events-none">
+              <div className="glass text-center p-4">
+                <div className="text-2xl mb-2">🏆</div>
+                <div className="text-lg font-extrabold text-white">{highScore}</div>
+                <div className="text-xs text-slate-400">High Score</div>
+              </div>
+              <p className="text-center text-slate-400 text-sm">Choose your grid size</p>
+              <div className="grid grid-cols-3 gap-3">
+                {GRID_SIZES.map((gs) => (
+                  <div key={gs.size} className="p-4 rounded-xl text-center border border-white/[0.08]"
+                    style={{ background: 'linear-gradient(135deg, rgba(168,85,247,0.12), rgba(168,85,247,0.04))' }}>
+                    <div className="text-2xl mb-2">{gs.label}</div>
+                    <div className="text-xs text-slate-400">{gs.size * gs.size} squares</div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         ) : (

@@ -386,8 +386,9 @@ export default function games_wordle() {
   return (
     <GameShell
       name="WORDLE"
-      startAction={newGame} startLabel="⟲ New Game"
+      startAction={newGame} startLabel={gameState !== 'playing' ? '▶ New Game' : '⟲ Restart'}
  
+      headerStats={<><span className="text-emerald-400">Win {stats.played ? Math.round(stats.won/stats.played*100) : 0}%</span><span className="text-amber-400">Streak <b>{stats.streak}</b></span></>}
       title="Wordle Online - Free Word Guessing Game"
       desc="Play Wordle online for free! Guess the 5-letter word in 6 tries. Get color-coded feedback after each guess. Play daily or unlimited rounds."
       icon="🔤"
@@ -399,8 +400,7 @@ export default function games_wordle() {
         { q: "What is Hard Mode?", a: "In Hard Mode, you must use revealed hints in subsequent guesses. If a letter was revealed as green or yellow, it must appear in that position or be included in your guess." },
         { q: "Can I share my results?", a: "Yes! After completing a game, tap the Share button to copy your results as an emoji grid to share with friends." },
         { q: "How are my statistics tracked?", a: "Your games played, win percentage, current streak, and guess distribution are saved locally on your device." },
-        { q: "Can I play Wordle Online - Free Word Guessing Game without downloading?", a: "Yes. This Wordle Online - Free Word Guessing Game runs in your browser with no install. Free on mobile and desktop." },
-        { q: "How do I use this Wordle Online - Free Word Guessing Game online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
+        { q: "How many words are in the puzzle pool?", a: "The answer pool contains over 500 common 5-letter English words. The full valid guess list includes over 2,000 words for more flexibility." },
       ]}
       howItWorks={[
         "Type any valid 5-letter word and press Enter to submit your guess.",
@@ -417,6 +417,26 @@ export default function games_wordle() {
     >
       <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
         <div className="flex-1 min-w-0 max-w-lg mx-auto space-y-5 overflow-hidden">
+        {/* Welcome overlay */}
+        {guesses.length === 0 && gameState === 'playing' && (
+          <div className="relative overflow-y-auto cursor-pointer" onClick={(e) => { if (e.target.closest('button') || e.target.tagName === 'INPUT') return; window.dispatchEvent(new Event('ut:game-start')) }}>
+            <img src="/games/wordle/cover.jpg" alt="Wordle word guessing game" loading="eager"
+              className="w-full aspect-video object-cover rounded-2xl border border-green-400/30 shadow-[0_0_40px_rgba(34,197,94,0.35)] mb-4" />
+            <h2 className="text-4xl sm:text-5xl font-black tracking-tighter text-center bg-gradient-to-b from-green-300 via-emerald-300 to-teal-300 bg-clip-text text-transparent mb-2">WORDLE</h2>
+            <p className="text-xs sm:text-sm text-slate-400 text-center mb-3">Guess the 5-letter word · 6 tries · Free</p>
+            <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-green-200">🟩 Color clues</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-yellow-200">🔒 Hard mode</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-blue-200">📊 Stats tracked</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-purple-200">📋 Share results</span>
+            </div>
+            <div className="text-center">
+              <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))} className="px-8 py-3 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 text-white font-extrabold text-lg shadow-[0_0_30px_rgba(34,197,94,0.5)] hover:scale-105 transition">▶ Start Game</button>
+            </div>
+            <p className="text-center text-[11px] text-slate-500 mt-3">Type a word · Get color feedback · Solve in 6</p>
+          </div>
+        )}
+
         {/* Toast */}
         {toast && <div className="text-center text-sm font-bold text-white bg-slate-800 py-2 px-4 rounded-xl animate-pulse">{toast}</div>}
 
@@ -429,9 +449,7 @@ export default function games_wordle() {
           <button onClick={() => setShowStats(s => !s)} className="px-3 py-1.5 rounded-lg text-xs font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">
             📊 Stats
           </button>
-          <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))} className="px-3 py-1.5 rounded-lg text-xs font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">
-            ⟲ New
-          </button>
+          
         </div>
 
         {/* Stats modal */}
@@ -463,7 +481,7 @@ export default function games_wordle() {
         )}
 
         {/* Game grid */}
-        <div className="flex flex-col items-center gap-1.5 py-2">
+        <div className="flex flex-col items-center gap-1.5 py-2" role="grid" aria-label="Wordle guesses">
           {Array.from({length: 6}).map((_, row) => (
             <div key={row} className={`flex gap-1.5 ${shakeRow === row ? 'animate-shake' : ''}`} style={shakeRow === row ? {animation:'shake 0.5s ease'} : {}}>
               {Array.from({length: 5}).map((_, col) => {
@@ -497,8 +515,8 @@ export default function games_wordle() {
           ))}
         </div>
 
-        {/* On-screen keyboard */}
-        <div className="space-y-1.5">
+        {/* On-screen keyboard — sticky bottom */}
+        <div className="sticky bottom-2 z-20 bg-[#030b14]/95 backdrop-blur-sm rounded-2xl p-2 border border-white/[0.06] space-y-1.5">
           {KEY_ROWS.map(row => (
             <div key={row} className="flex justify-center gap-1">
               {row === 'ZXCVBNM' && <div className="w-6"/>}

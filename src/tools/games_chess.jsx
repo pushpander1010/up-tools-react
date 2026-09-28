@@ -435,11 +435,6 @@ export default function games_chess() {
         let color
         if (isSelected) color = '#fbbf24'
         else if (isCheck) color = '#ef4444'
-        else if (isLight) '#e8d5b7'
-        else color = '#b58863'
-
-        if (isSelected) color = '#fbbf24'
-        else if (isCheck) color = '#ef4444'
         else color = isLight ? '#e8d5b7' : '#b58863'
 
         ctx.fillStyle = color
@@ -673,21 +668,31 @@ export default function games_chess() {
   }, [fitCanvas, draw]);
 
 
+  // Keyboard: Space/Enter to start new game when game over
+  useEffect(() => {
+    const handler = (e) => {
+      if ((e.key === ' ' || e.key === 'Enter') && gameOver) {
+        e.preventDefault()
+        window.dispatchEvent(new Event('ut:game-start'))
+      }
+    }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [gameOver])
+
+
   return (
     <GameShell
       name="CHESS"
-      startAction={startNewGame} startLabel="▶ Start" 
-      title="Play Chess Online - Free Chess Game with AI"
+      startAction={startNewGame} startLabel={gameOver ? '⟲ Restart' : '▶ Start'} 
+      headerStats={<><span>Score: {score}</span><span>Best: {best}</span><span>Last: {lastScore}</span></>}
+      title="Chess — Play Against AI or Learn the Game"
       desc="Play chess online against the computer! Full chess rules with check, checkmate, castling, en passant, and promotion. AI opponent included."
       icon="♟️" iconBg="rgba(251,191,36,0.08)"
       category="fun" slug="games-chess"
       faq={[
-        { q: "How do I play chess against the AI?", a: "Click/tap a white piece to select it, then click a highlighted square to move. The AI will respond automatically." },
-        { q: "What chess rules are supported?", a: "All standard rules: castling, en passant, pawn promotion (auto-promotes to queen), check, and checkmate detection." },
-        { q: "How strong is the AI?", a: "The AI uses minimax with alpha-beta pruning at depth 2. It's a good challenge for beginners and intermediate players." },
-        { q: "How do I play Play Chess Online - Free Chess Game with AI online free?", a: "Click Start and follow the on-screen steps. Use mouse, touch, or keyboard controls. No download needed." },
-        { q: "Can I play Play Chess Online - Free Chess Game with AI without downloading?", a: "Yes. This Play Chess Online - Free Chess Game with AI runs in your browser with no install. Free on mobile and desktop." },
-        { q: "How do I use this Play Chess Online - Free Chess Game with AI online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
+        { q: "How do I play chess against the AI?", a: "Click/tap a white piece to select it, then click a highlighted square to move. The AI responds automatically. You can also press Space/Enter to start a new game." },
+        { q: "What chess rules are supported?", a: "All standard rules: castling, en passant, pawn promotion (auto-promotes to queen), check, and checkmate detection. The AI difficulty can be set to Easy, Medium, or Hard." },
       ]}
       howItWorks={[
         "Click Start to begin a new game. You play as White.",
@@ -741,12 +746,38 @@ export default function games_chess() {
         </div>
 
         {/* Canvas */}
-        <div className="glass p-3 flex justify-center overflow-hidden">
+        <div className="glass p-3 flex justify-center overflow-hidden relative">
           <canvas ref={canvasRef}
             onPointerDown={handlePointerDown}
             className="rounded-xl cursor-pointer"
             style={{ touchAction: 'none' }}
           />
+          {gameOver ? (
+            <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-5 py-4 bg-[#050d1a]/92 backdrop-blur-[2px] overflow-y-auto"
+              onClick={(e) => { if (e.target.closest('button')) return; window.dispatchEvent(new Event('ut:game-start')) }}>
+              <div className="text-4xl mb-2">♟️</div>
+              <h2 className="text-2xl font-black tracking-tighter text-white mb-1">{result || 'Game Over'}</h2>
+              <p className="text-xs text-slate-400 mb-3">Score: {score} · Best: {best}</p>
+              <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))} className="px-8 py-3 rounded-full bg-gradient-to-r from-amber-500 to-yellow-500 text-white font-extrabold text-lg shadow-[0_0_30px_rgba(251,191,36,0.5)] hover:scale-105 transition">⟲ New Game</button>
+              <p className="text-[11px] text-slate-500 mt-2">Tap anywhere or press Space</p>
+            </div>
+          ) : score === 0 && moveHistory.length === 0 && (
+            <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-5 py-4 bg-[#050d1a]/92 backdrop-blur-[2px] overflow-y-auto"
+              onClick={(e) => { if (e.target.closest('button')) return; window.dispatchEvent(new Event('ut:game-start')) }}>
+              <img src="/games/chess/cover.jpg" alt="Chess cover art" loading="eager"
+                className="w-full max-w-[420px] aspect-video object-cover rounded-2xl border border-amber-400/30 shadow-[0_0_40px_rgba(251,191,36,0.35)] mb-4" />
+              <h2 className="text-3xl font-black tracking-tighter bg-gradient-to-b from-amber-300 via-yellow-300 to-orange-300 bg-clip-text text-transparent">CHESS</h2>
+              <p className="text-xs text-slate-400 mt-1 mb-3">Play vs AI · Full rules · Free</p>
+              <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">
+                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-amber-200">🤖 AI opponent</span>
+                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-red-200">♚ Check & mate</span>
+                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-cyan-200"> Castle & en passant</span>
+                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-green-200">📱 Touch + click</span>
+              </div>
+              <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))} className="px-8 py-3 rounded-full bg-gradient-to-r from-amber-500 to-yellow-500 text-white font-extrabold text-lg shadow-[0_0_30px_rgba(251,191,36,0.5)] hover:scale-105 transition">▶ Start Game</button>
+              <p className="text-[11px] text-slate-500 mt-2">Tap anywhere or press Space</p>
+            </div>
+          )}
         </div>
 
         <p className="text-center text-xs text-slate-400">

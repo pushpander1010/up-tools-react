@@ -148,19 +148,16 @@ export default function games_reaction_time() {
   return (
     <GameShell
       name="REACTION TIME"
-      startAction={startGame} startLabel="▶ Start" 
+      startAction={startGame} startLabel={phase === 'idle' || phase === 'done' ? '▶ Start' : '⟲ Restart'}
+      headerStats={<><span>Best <b className="text-amber-300">{bestTime === Infinity ? '—' : bestTime + 'ms'}</b></span><span>Round <b className="text-cyan-300">{Math.min(currentRound + 1, ROUNDS)}/{ROUNDS}</b></span></>}
       title="Reaction Time Test - How Fast Are You?"
-      desc="Reaction Time Test - How Fast Are You? - test your reaction speed! See how fast you, online free. Play online free, no download. Works on mobile and desktop."
+      desc="Test your reaction speed in this 3-round challenge — click when the screen turns green and track your average and best times."
       icon="⚡" iconBg="rgba(245,158,11,0.08)"
       category="fun" slug="games-reaction-time"
       onExit={handleExit}
       faq={[
         { q: "How does the Reaction Time Test work?", a: "Click the screen when it turns green! Wait for the red screen to change, then click as fast as you can. Click too early and you'll need to restart the round." },
         { q: "What's a good reaction time?", a: "Under 200ms is lightning fast, 200-300ms is great, 300-400ms is average. Most people average around 250-350ms." },
-        { q: "Does my history save?", a: "Yes! Your best time, number of attempts, and recent results are saved to your device." },
-        { q: "How do I play Reaction Time Test - How Fast Are You? online free?", a: "Click Start and follow the on-screen steps. Use mouse, touch, or keyboard controls. No download needed." },
-        { q: "Can I play Reaction Time Test - How Fast Are You? without downloading?", a: "Yes. This Reaction Time Test - How Fast Are You? runs in your browser with no install. Free on mobile and desktop." },
-        { q: "How do I use this Reaction Time Test - How Fast Are You? online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
       ]}
       howItWorks={[
         "Click Start to begin. The screen turns red — wait!",
@@ -200,23 +197,31 @@ export default function games_reaction_time() {
         <div
           className="relative rounded-2xl overflow-hidden border border-white/[0.08] cursor-pointer select-none transition-colors duration-200"
           style={{ background: bg, minHeight: '280px' }}
-          onClick={phase === 'idle' ? () => {window.dispatchEvent(new Event('ut:game-start'))} :
-                  phase === 'waiting' || phase === 'ready' ? handleClick :
+          onClick={phase === 'waiting' || phase === 'ready' ? handleClick :
                   phase === 'tooEarly' ? startRound :
                   phase === 'result' && currentRound + 1 < ROUNDS ? continueRounds :
-                  phase === 'done' ? () => {window.dispatchEvent(new Event('ut:game-start'))} : undefined}
+                  undefined}
         >
+          {phase === 'idle' && (
+            <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-5 py-4 bg-[#0a1030]/92 backdrop-blur-[2px] overflow-y-auto"
+              onPointerDown={(e) => { if (e.target.closest('button')) return; window.dispatchEvent(new Event('ut:game-start')) }}>
+              <img src="/games/reaction-time/cover.jpg" alt="Reaction time challenge cover art" loading="eager"
+                className="w-full max-w-[420px] aspect-video object-cover rounded-2xl border border-amber-400/30 shadow-[0_0_40px_rgba(245,158,11,0.35)] mb-4" />
+              <h2 className="text-4xl sm:text-5xl font-black tracking-tighter bg-gradient-to-b from-amber-300 via-yellow-300 to-orange-300 bg-clip-text text-transparent">REACTION TIME</h2>
+              <p className="text-xs sm:text-sm text-slate-400 mt-1 mb-3">Test your reflexes · 3 rounds · Track your best</p>
+              <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">
+                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-amber-200">⚡ 3 rounds</span>
+                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-emerald-200">📊 Avg + Best</span>
+                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-cyan-200">📱 Touch + click</span>
+                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-purple-200">💾 History saved</span>
+              </div>
+              {bestTime < Infinity && <p className="text-xs text-amber-400 mb-2">🏆 Best: {bestTime}ms</p>}
+              <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))} className="px-8 py-3 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-white font-extrabold text-lg shadow-[0_0_30px_rgba(245,158,11,0.5)] hover:scale-105 transition">▶ Start Game</button>
+              <p className="text-[11px] text-slate-500 mt-3">Click when the screen turns green</p>
+            </div>
+          )}
+          {phase !== 'idle' && (
           <div className="flex flex-col items-center justify-center min-h-[280px] sm:min-h-[380px] p-6">
-            {phase === 'idle' && (
-              <>
-                <div className="text-5xl mb-4">⚡</div>
-                <h2 className="text-xl font-bold text-white mb-2">Reaction Time Test</h2>
-                <p className="text-sm text-slate-400 text-center">Click the screen when it turns green!<br/>3 rounds · Average + Best tracked</p>
-                <div className="glow-btn mt-6 px-8 py-3 text-sm">
-                  Click to Start
-                </div>
-              </>
-            )}
             {phase === 'waiting' && (
               <>
                 <div className="text-5xl mb-4">🔴</div>
@@ -290,7 +295,8 @@ export default function games_reaction_time() {
                 </div>
               </>
             )}
-          </div>
+            </div>
+            )}
         </div>
 
         {/* History */}

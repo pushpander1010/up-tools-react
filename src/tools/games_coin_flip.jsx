@@ -157,18 +157,15 @@ export default function games_coin_flip() {
   return (
     <GameShell
       name="COIN FLIP"
-      startAction={flip} startLabel="🪙 Flip"
+      startAction={flip} startLabel={flipping ? '⏳ Flipping...' : '🪙 Flip'}
+      headerStats={<><span>Total: {data.total}</span><span>🔥 Streak: {data.streak}</span></>}
       title="Coin Flip — Virtual Toss with Stats & Streaks" 
-      desc="Coin Flip — Virtual Toss with Stats & Streaks - virtual coin toss with heads/tails, online free. Play online free, no download. Works on mobile and desktop."
+      desc="Flip a virtual coin and track heads vs tails with streaks and stats. Press Space for keyboard flipping."
       icon="🪙" iconBg="rgba(245,158,11,0.08)"
       category="fun" slug="games-coin-flip"
       faq={[
-        { q: "How does the coin flip work?", a: "It uses a cryptographically random method to simulate a fair 50/50 coin toss." },
-        { q: "Can I flip multiple coins?", a: "Yes! Use the 'Flip 10x' button for sequential 10-flip rounds with animated results." },
-        { q: "How do I play Coin Flip — Virtual Toss with Stats & Streaks online free?", a: "Click Start and follow the on-screen steps. Use mouse, touch, or keyboard controls. No download needed." },
-        { q: "Can I play Coin Flip — Virtual Toss with Stats & Streaks without downloading?", a: "Yes. This Coin Flip — Virtual Toss with Stats & Streaks runs in your browser with no install. Free on mobile and desktop." },
-        { q: "How do I use this Coin Flip — Virtual Toss with Stats & Streaks online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
-        { q: "Is this Coin Flip — Virtual Toss with Stats & Streaks free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
+        { q: "How does the coin flip work?", a: "Each flip uses a random 50/50 toss. Stats like heads/tails percentage, streaks, and flip history are tracked and saved locally." },
+        { q: "Can I flip multiple coins?", a: "Yes! Use the 'Flip 10x' button for rapid sequential flips. Press Space on desktop for quick single flips." },
       ]}
       howItWorks={[
         "Click the coin or press Space to flip.",
@@ -186,20 +183,39 @@ export default function games_coin_flip() {
       <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
         <div className="flex-1 min-w-0 max-w-2xl mx-auto space-y-5 overflow-hidden">
         {/* Coin Display */}
-        <div className="text-center">
-          <div style={{ perspective: '800px' }} className="inline-block">
-            <button onClick={() => { flip() }}
-              className="w-32 h-32 rounded-full text-6xl flex items-center justify-center transition-transform duration-500 select-none
-                bg-gradient-to-br from-yellow-400 to-yellow-600 shadow-2xl shadow-yellow-500/30 hover:scale-105 active:scale-95"
-              style={{ animation: flipping ? 'coinFlip 0.8s ease-in-out' : 'none' }}>
-              {coinSide === 'H' ? '🪙' : '🔘'}
-            </button>
+        <div className="relative">
+          <div className="text-center">
+            <div style={{ perspective: '800px' }} className="inline-block">
+              <button onClick={() => { flip() }}
+                className="w-32 h-32 rounded-full text-6xl flex items-center justify-center transition-transform duration-500 select-none
+                  bg-gradient-to-br from-yellow-400 to-yellow-600 shadow-2xl shadow-yellow-500/30 hover:scale-105 active:scale-95"
+                style={{ animation: flipping ? 'coinFlip 0.8s ease-in-out' : 'none' }}>
+                {coinSide === 'H' ? '🪙' : '🔘'}
+              </button>
+            </div>
+            <div className="mt-4 text-2xl font-extrabold" style={{ color: resultColor }}>
+              {resultText}
+            </div>
+            {data.streak > 2 && (
+              <div className="text-sm text-orange-400 mt-1">🔥 {data.streak} in a row!</div>
+            )}
           </div>
-          <div className="mt-4 text-2xl font-extrabold" style={{ color: resultColor }}>
-            {resultText}
-          </div>
-          {data.streak > 2 && (
-            <div className="text-sm text-orange-400 mt-1">🔥 {data.streak} in a row!</div>
+          {data.total === 0 && !flipping && (
+            <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-5 py-4 bg-[#050d1a]/92 backdrop-blur-[2px] rounded-2xl overflow-y-auto"
+              onClick={(e) => { if (e.target.closest('button')) return; window.dispatchEvent(new Event('ut:game-start')) }}>
+              <img src="/games/coin-flip/cover.jpg" alt="Coin Flip cover art" loading="eager"
+                className="w-full max-w-[420px] aspect-video object-cover rounded-2xl border border-yellow-400/30 shadow-[0_0_40px_rgba(245,158,11,0.35)] mb-4" />
+              <h2 className="text-3xl font-black tracking-tighter bg-gradient-to-b from-yellow-300 via-amber-300 to-orange-300 bg-clip-text text-transparent">COIN FLIP</h2>
+              <p className="text-xs text-slate-400 mt-1 mb-3">Heads or tails · Track streaks · Free</p>
+              <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">
+                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-yellow-200">🪙 50/50 toss</span>
+                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-orange-200">🔥 Streak tracking</span>
+                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-cyan-200">📊 Flip history</span>
+                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-green-200">⌨️ Space to flip</span>
+              </div>
+              <button onClick={() => window.dispatchEvent(new Event("ut:game-start"))} className="px-8 py-3 rounded-full bg-gradient-to-r from-yellow-500 to-amber-500 text-white font-extrabold text-lg shadow-[0_0_30px_rgba(245,158,11,0.5)] hover:scale-105 transition">▶ Start Flipping</button>
+              <p className="text-[11px] text-slate-500 mt-2">Tap anywhere or press Space</p>
+            </div>
           )}
         </div>
 

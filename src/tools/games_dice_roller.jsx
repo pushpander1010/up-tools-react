@@ -86,6 +86,7 @@ export default function games_dice_roller() {
   const [history, setHistory] = useState([])
   const [stats, setStats] = useState(loadStats)
   const [showHistory, setShowHistory] = useState(false)
+  const [gameStarted, setGameStarted] = useState(false)
 
   const sides = customSides ? Math.max(2, parseInt(customSides) || 6) : activeSides
 
@@ -96,6 +97,7 @@ export default function games_dice_roller() {
     const newTotal = newResults.reduce((a, b) => a + b, 0)
 
     setRolling(true)
+    setGameStarted(true)
     setResults([])
     setTotal(null)
     playRollSound()
@@ -134,35 +136,33 @@ export default function games_dice_roller() {
 
   const inputClass = "w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 
-  // Keyboard: Space to roll
+  // Keyboard: Space to roll (dispatches ut:game-start when idle for shell ad+fullscreen)
   useEffect(() => {
     const handleKey = (e) => {
       if (e.code === 'Space' && !rolling && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
         e.preventDefault()
-        rollDice()
+        if (!gameStarted) window.dispatchEvent(new Event('ut:game-start'))
+        else rollDice()
       }
     }
     window.addEventListener('keydown', handleKey)
     return () => window.removeEventListener('keydown', handleKey)
-  }, [rolling, rollDice])
+  }, [rolling, rollDice, gameStarted])
 
 
   return (
     <GameShell
       name="DICE ROLLER"
-      startAction={() => rollDice()} startLabel="🎲 Roll"
-      title="Dice Roller"
- 
-      desc="Dice Roller - roll D4–D20 virtual dice with sound effects, history, and statistics, online free. Play online free, no download. Works on mobile and desktop."
+      startAction={() => { setGameStarted(true); rollDice() }}
+      startLabel={gameStarted ? '🎲 Roll Again' : '🎲 Roll'}
+      headerStats={<><span>Rolls <b className="text-white">{stats.totalRolls}</b></span><span>Largest <b className="text-cyan-300">{stats.largestTotal || '—'}</b></span></>}
+      title="Dice Roller — Roll D4–D20 Virtual Dice Online"
+      desc="Roll D4–D20 virtual dice with sound effects, history tracking, and statistics. Supports custom sides and multiple dice."
       icon="🎲" iconBg="rgba(99,102,241,0.08)"
       category="fun" slug="games-dice-roller"
       faq={[
         { q: "What dice types are supported?", a: "D4, D6, D8, D10, D12, D20, and any custom number of sides from 2 to 100." },
-        { q: "How to roll multiple dice?", a: "Enter a number in the Count field (1–20) and click Roll. All dice roll simultaneously." },
-        { q: "How do I play Dice Roller online free?", a: "Click Start and follow the on-screen steps. Use mouse, touch, or keyboard controls. No download needed." },
-        { q: "Can I play Dice Roller without downloading?", a: "Yes. This Dice Roller runs in your browser with no install. Free on mobile and desktop." },
-        { q: "How do I use this Dice Roller online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
-        { q: "Is this Dice Roller free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
+        { q: "How to roll multiple dice?", a: "Enter a number in the Count field (1–20) and click Roll. All dice roll simultaneously and the total is shown." },
       ]}
       howItWorks={[
         "Choose a dice type (D4–D20) or enter custom sides.",
@@ -177,6 +177,24 @@ export default function games_dice_roller() {
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" }
       }}
     >
+      {!gameStarted && (
+        <div className="glass p-6 text-center overflow-y-auto max-h-[70vh]"
+          onClick={(e) => { if (!e.target.closest('button')) window.dispatchEvent(new Event('ut:game-start')) }}>
+          <img src="/games/dice-roller/cover.jpg" alt="Neon dice roller cover art" loading="eager"
+            className="w-full max-w-[420px] aspect-video object-cover rounded-2xl border border-indigo-400/30 shadow-[0_0_40px_rgba(99,102,241,0.35)] mb-4 mx-auto" />
+          <h2 className="text-4xl sm:text-5xl font-black tracking-tighter bg-gradient-to-b from-indigo-300 via-violet-300 to-purple-300 bg-clip-text text-transparent">DICE ROLLER</h2>
+          <p className="text-xs sm:text-sm text-slate-400 mt-1 mb-3">D4–D20 · Custom sides · History & stats · Free</p>
+          <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">
+            <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-indigo-200">🎲 6 dice types</span>
+            <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-violet-200">✏️ Custom sides</span>
+            <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-purple-200">📊 Roll history</span>
+            <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-cyan-200">🔊 Sound FX</span>
+          </div>
+          {stats.totalRolls > 0 && <p className="text-xs text-slate-500 mb-3">🏆 Best roll: {stats.largestTotal}</p>}
+          <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))} className="px-8 py-3 rounded-full bg-gradient-to-r from-indigo-500 to-violet-500 text-white font-extrabold text-lg shadow-[0_0_30px_rgba(99,102,241,0.5)] hover:scale-105 transition">🎲 Roll Now</button>
+          <p className="text-[11px] text-slate-500 mt-3">Press Space or tap anywhere to roll</p>
+        </div>
+      )}
       <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
         <div className="flex-1 min-w-0 max-w-2xl mx-auto space-y-5 overflow-hidden">
         {/* Dice Type Selection */}

@@ -67,6 +67,17 @@ export default function games_rock_paper_scissors() {
   const [showHistory, setShowHistory] = useState(false)
   const timerRef = useRef(null)
 
+  // Keyboard: Space/Enter to start when idle
+  useEffect(() => {
+    const handler = (e) => {
+      if (gameState === 'idle' && (e.key === ' ' || e.key === 'Enter')) {
+        e.preventDefault()
+        window.dispatchEvent(new Event('ut:game-start'))
+      }
+    }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [gameState])
 
 
   const winnerToText = (w) => w === 'win' ? 'You Win!' : w === 'lose' ? 'Computer Wins!' : 'Tie!'
@@ -145,9 +156,10 @@ export default function games_rock_paper_scissors() {
   return (
     <GameShell
       name="ROCK PAPER SCISSORS"
-      startAction={() => startGame(bestOf)} startLabel="▶ Start" 
+      startAction={() => startGame(bestOf)} startLabel={gameState === 'idle' ? '▶ Start' : '⟲ Restart'}
+      headerStats={<><span>Wins <b className="text-emerald-300">{stats.wins}</b></span><span>Streak <b className="text-amber-300">🔥 {stats.bestStreak}</b></span></>}
       title="Rock Paper Scissors Online - Play vs Computer"
-      desc="Play Rock Paper Scissors online against the computer! Choose your weapon and see if you can win. Track your wins and compete for the best streak."
+      desc="Play Rock Paper Scissors against an adaptive AI that reads your patterns. Track your win streak and compete across best-of matches."
       icon="✊"
       iconBg="rgba(234,179,8,0.08)"
       category="fun"
@@ -155,10 +167,6 @@ export default function games_rock_paper_scissors() {
       faq={[
         { q: "How does the computer choose?", a: "The computer uses an adaptive AI that slightly favors counters to your most recent choices, adding a strategic element." },
         { q: "What does 'Best of' mean?", a: "Best of 3 means the first to 2 wins. Best of 5 means first to 3 wins. Best of 1 is a single round." },
-        { q: "Is my game history saved?", a: "Your last 20 games and overall statistics (wins, losses, streak) are saved locally on your device." },
-        { q: "How do I start a new game?", a: "Click the 'New Game' button to start a fresh match, or select a different 'Best of' mode." },
-        { q: "How do I play Rock Paper Scissors Online - Play vs Computer online free?", a: "Click Start and follow the on-screen steps. Use mouse, touch, or keyboard controls. No download needed." },
-        { q: "Can I play Rock Paper Scissors Online - Play vs Computer without downloading?", a: "Yes. This Rock Paper Scissors Online - Play vs Computer runs in your browser with no install. Free on mobile and desktop." },
       ]}
       howItWorks={[
         "Select your match mode: Best of 1, 3, or 5 rounds.",
@@ -174,8 +182,28 @@ export default function games_rock_paper_scissors() {
       }}
     >
       <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
-        <div className="flex-1 min-w-0 max-w-lg mx-auto space-y-5 overflow-hidden">
-        {/* Mode selector */}
+      <div className="flex-1 min-w-0 max-w-lg mx-auto space-y-5 overflow-hidden">
+      {/* Welcome overlay */}
+      {gameState === 'idle' && (
+        <div className="relative glass p-6 text-center overflow-y-auto max-h-[70vh]"
+          onPointerDown={(e) => { if (e.target.closest('button')) return; window.dispatchEvent(new Event('ut:game-start')) }}>
+          <img src="/games/rock-paper-scissors/cover.jpg" alt="Rock Paper Scissors vs AI cover art" loading="eager"
+            className="w-full max-w-[420px] aspect-video object-cover rounded-2xl border border-amber-400/30 shadow-[0_0_40px_rgba(234,179,8,0.35)] mb-4 mx-auto" />
+          <h2 className="text-4xl sm:text-5xl font-black tracking-tighter bg-gradient-to-b from-amber-300 via-yellow-300 to-red-300 bg-clip-text text-transparent">ROCK PAPER SCISSORS</h2>
+          <p className="text-xs sm:text-sm text-slate-400 mt-1 mb-3">Vs adaptive AI · Best-of matches · Win streaks</p>
+          <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">
+            <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-amber-200">🧠 Adaptive AI</span>
+            <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-emerald-200">🔥 Win streaks</span>
+            <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-cyan-200">📊 Stats saved</span>
+            <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-purple-200">📱 Touch + keys</span>
+          </div>
+          {stats.bestStreak > 0 && <p className="text-xs text-amber-400 mb-2">🏆 Best streak: {stats.bestStreak}</p>}
+          <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))} className="px-8 py-3 rounded-full bg-gradient-to-r from-amber-500 to-red-500 text-white font-extrabold text-lg shadow-[0_0_30px_rgba(234,179,8,0.5)] hover:scale-105 transition">▶ Start Game</button>
+          <p className="text-[11px] text-slate-500 mt-3">Pick a Best-of mode, then start</p>
+        </div>
+      )}
+
+      {/* Mode selector */}
         <div className="flex gap-2 justify-center flex-wrap">
           {[1, 3, 5].map(n => (
             <button key={n} onClick={() => { setBestOf(n); window.dispatchEvent(new Event('ut:game-start')) }}

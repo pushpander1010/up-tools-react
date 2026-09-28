@@ -180,21 +180,31 @@ export default function games_connect_4() {
 
   const cellSz = 'w-11 h-11 sm:w-12 sm:h-12'
 
+  // Keyboard: Space/Enter to start new game when game over
+  useEffect(() => {
+    const handler = (e) => {
+      if ((e.key === ' ' || e.key === 'Enter') && (winner || draw)) {
+        e.preventDefault()
+        window.dispatchEvent(new Event('ut:game-start'))
+      }
+    }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [winner, draw])
+
+
   return (
     <GameShell
       name="CONNECT 4"
-      startAction={resetGame} startLabel="⟲ New Game"
-      title="Connect 4 Online - Play vs AI or Friend"
-      desc="Connect 4 Online - Play vs AI or Friend - play Connect 4 online against AI or a, online free. Play online free, no download. Works on mobile and desktop."
+      startAction={resetGame} startLabel={winner || draw ? '⟲ New Game' : '▶ Start'}
+      headerStats={<><span>🔴 {rWins}</span><span>🟡 {yWins}</span><span>🤝 {draws}</span></>}
+      title="Connect 4 — Drop Discs, Get Four in a Row"
+      desc="Drop red or yellow discs and be the first to connect four in a row. Play against a smart AI or challenge a friend locally."
       icon="🔴" iconBg="rgba(239,68,68,0.08)"
       category="fun" slug="games-connect-4"
       faq={[
-        { q: "How does the Connect 4 AI work?", a: "The AI uses the minimax algorithm with alpha-beta pruning at depth 5. It evaluates board positions to find the optimal move." },
-        { q: "How do you win?", a: "Connect 4 discs of your color in a row — horizontally, vertically, or diagonally." },
-        { q: "Can I play with a friend?", a: "Yes! Switch to '2 Player' mode to play locally with turns." },
-        { q: "How do I play Connect 4 Online - Play vs AI or Friend online free?", a: "Click Start and follow the on-screen steps. Use mouse, touch, or keyboard controls. No download needed." },
-        { q: "Can I play Connect 4 Online - Play vs AI or Friend without downloading?", a: "Yes. This Connect 4 Online - Play vs AI or Friend runs in your browser with no install. Free on mobile and desktop." },
-        { q: "How do I use this Connect 4 Online - Play vs AI or Friend online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
+        { q: "How does the Connect 4 AI work?", a: "The AI uses the minimax algorithm with alpha-beta pruning at depth 5. It evaluates board positions to find the optimal move, making it a strong opponent." },
+        { q: "Can I play with a friend?", a: "Yes! Switch to '2 Player' mode to play locally with turns. Red goes first." },
       ]}
       howItWorks={[
         "Choose AI or 2 Player mode.",
@@ -248,7 +258,24 @@ export default function games_connect_4() {
         </div>
 
         {/* Board */}
-        <div className="flex justify-center">
+        <div className="flex justify-center relative">
+          {!winner && !draw && board.every(row => row.every(cell => cell === null)) && (
+            <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-5 py-8 bg-[#050d1a]/92 backdrop-blur-[2px] rounded-2xl overflow-y-auto"
+              onClick={(e) => { if (e.target.closest('button')) return; window.dispatchEvent(new Event('ut:game-start')) }}>
+              <img src="/games/connect-4/cover.jpg" alt="Connect 4 cover art" loading="eager"
+                className="w-full max-w-[420px] aspect-video object-cover rounded-2xl border border-red-400/30 shadow-[0_0_40px_rgba(239,68,68,0.35)] mb-4" />
+              <h2 className="text-3xl font-black tracking-tighter bg-gradient-to-b from-red-300 via-yellow-300 to-red-300 bg-clip-text text-transparent">CONNECT 4</h2>
+              <p className="text-xs text-slate-400 mt-1 mb-3">Drop discs · Connect 4 · Free</p>
+              <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">
+                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-red-200">🔴🔴🔴🔴 4 in a row</span>
+                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-yellow-200">🤖 Smart AI</span>
+                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-cyan-200">👥 2-player mode</span>
+                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-green-200">📱 Touch + click</span>
+              </div>
+              <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))} className="px-8 py-3 rounded-full bg-gradient-to-r from-red-500 to-yellow-500 text-white font-extrabold text-lg shadow-[0_0_30px_rgba(239,68,68,0.5)] hover:scale-105 transition">▶ Start Game</button>
+              <p className="text-[11px] text-slate-500 mt-2">Choose mode above, then start</p>
+            </div>
+          )}
           <div className="bg-blue-600 p-2 sm:p-3 rounded-2xl border-2 border-blue-500 shadow-lg shadow-blue-900/30">
             {/* Column hover indicators */}
             <div className="grid grid-cols-7 gap-1 sm:gap-1.5 mb-1">

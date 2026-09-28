@@ -195,9 +195,10 @@ export default function games_simon_says() {
   return (
     <GameShell
       name="SIMON SAYS"
-      startAction={startGame} startLabel="▶ Start" 
+      startAction={startGame} startLabel={gameState === 'idle' || gameState === 'gameover' ? '▶ Start' : '⟲ Restart'}
+      headerStats={<><span>Rounds <b className="text-cyan-300">{score}</b></span><span>Best <b className="text-amber-300">🏆 {highScore}</b></span></>}
       title="Simon Says Game - Memory Challenge"
-      desc="Simon Says Game - Memory Challenge - play Simon Says online! Repeat the color, online free. Play online free, no download. Works on mobile and desktop."
+      desc="Test your memory in this classic color-sequence game — watch the pattern, repeat it, and see how many rounds you can survive."
       icon="🎮"
       iconBg="rgba(16,185,129,0.08)"
       category="fun"
@@ -206,9 +207,6 @@ export default function games_simon_says() {
         { q: "How do I play Simon Says?", a: "Watch the sequence of colors that light up, then repeat them in the same order by clicking the colored buttons." },
         { q: "How does the game get harder?", a: "Each round adds one more color to the sequence. The playback speed also increases at higher levels." },
         { q: "What are the keyboard controls?", a: "Use keys 1-4 or arrow keys to select colors during your turn. Press Space or Enter to start/restart." },
-        { q: "How is my high score tracked?", a: "Your highest round number is saved on your device and displayed on the game screen." },
-        { q: "Can I play Simon Says Game - Memory Challenge without downloading?", a: "Yes. This Simon Says Game - Memory Challenge runs in your browser with no install. Free on mobile and desktop." },
-        { q: "How do I use this Simon Says Game - Memory Challenge online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
       ]}
       howItWorks={[
         "Press Start and watch the colored buttons light up in sequence.",
@@ -247,6 +245,27 @@ export default function games_simon_says() {
             'bg-emerald-500/20 text-emerald-400'
           }`}>
             {showFeedback}
+          </div>
+        )}
+
+        {/* Welcome overlay */}
+        {(gameState === 'idle' || gameState === 'gameover') && (
+          <div className="relative glass p-6 text-center overflow-y-auto max-h-[70vh]"
+            onPointerDown={(e) => { if (e.target.closest('button')) return; window.dispatchEvent(new Event('ut:game-start')) }}>
+            <img src="/games/simon-says/cover.jpg" alt="Simon Says memory game cover art" loading="eager"
+              className="w-full max-w-[420px] aspect-video object-cover rounded-2xl border border-green-400/30 shadow-[0_0_40px_rgba(16,185,129,0.35)] mb-4 mx-auto" />
+            <h2 className="text-4xl sm:text-5xl font-black tracking-tighter bg-gradient-to-b from-green-300 via-emerald-300 to-blue-300 bg-clip-text text-transparent">SIMON SAYS</h2>
+            <p className="text-xs sm:text-sm text-slate-400 mt-1 mb-3">Memory challenge · Growing sequences · Speed ramps</p>
+            <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-green-200">🎵 Audio cues</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-blue-200">⚡ Speed ramps</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-amber-200">🏆 High score</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-purple-200">⌨️ 1-4 keys</span>
+            </div>
+            {highScore > 0 && <p className="text-xs text-amber-400 mb-2">🏆 Best: round {highScore}</p>}
+            {gameState === 'gameover' && <p className="text-xs text-red-400 mb-2">You reached round {score}{score >= highScore && score > 0 ? ' — New High Score!' : ''}</p>}
+            <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))} className="px-8 py-3 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 text-white font-extrabold text-lg shadow-[0_0_30px_rgba(16,185,129,0.5)] hover:scale-105 transition">▶ Start Game</button>
+            <p className="text-[11px] text-slate-500 mt-3">Watch the colors, repeat the sequence</p>
           </div>
         )}
 
@@ -295,26 +314,6 @@ export default function games_simon_says() {
             )
           })}
         </div>
-
-        {/* Start / Game over */}
-        {(gameState === 'idle' || gameState === 'gameover') && (
-          <div className="text-center space-y-3">
-            {gameState === 'gameover' && (
-              <>
-                <div className="text-4xl">😤</div>
-                <h2 className="text-xl font-bold text-white">Game Over!</h2>
-                <p className="text-sm text-slate-400">You reached round {score}{score >= highScore && score > 0 ? ' — New High Score!' : ''}</p>
-              </>
-            )}
-            {gameState === 'idle' && (
-              <>
-                <div className="text-5xl">🎵</div>
-                <h2 className="text-xl font-bold text-white">Simon Says</h2>
-                <p className="text-sm text-slate-400">Watch the sequence and repeat it. Each round gets longer and faster!</p>
-              </>
-            )}
-          </div>
-        )}
 
         <div className="text-center space-y-1">
           <p className="text-xs text-slate-400">Keyboard: 1-4 or Arrow Keys to select colors</p>

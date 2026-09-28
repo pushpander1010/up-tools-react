@@ -531,21 +531,31 @@ export default function games_bubble_shooter() {
   }, [shootBubble, startGame])
 
 
+  // Keyboard: Space/Enter to start when idle/gameover
+  useEffect(() => {
+    const handler = (e) => {
+      if ((e.key === ' ' || e.key === 'Enter') && (!playing || gameOver)) {
+        e.preventDefault()
+        window.dispatchEvent(new Event('ut:game-start'))
+      }
+    }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [playing, gameOver])
+
+
   return (
     <GameShell
       name="BUBBLE SHOOTER"
-      startAction={startGame} startLabel="▶ Start" 
-      title="Bubble Shooter Online - Free Arcade Game"
-      desc="Bubble Shooter Online - Free Arcade Game - play the classic Bubble Shooter game., online free. Play online free, no download. Works on mobile and desktop."
+      startAction={startGame} startLabel={playing && !gameOver ? '⟲ Restart' : '▶ Start'} 
+      headerStats={<><span>Score: {score}</span><span>Best: {best}</span></>}
+      title="Bubble Shooter — Match Colors and Clear the Board"
+      desc="Aim and shoot colored bubbles to match 3 or more of the same color. Pop floating clusters for bonus points and clear the board to win."
       icon="🫧" iconBg="rgba(6,182,212,0.08)"
       category="fun" slug="games-bubble-shooter"
       faq={[
-        { q:"How do I play Bubble Shooter?", a:"Move your mouse to aim and click to shoot. Match 3+ same-colored bubbles to pop them. Clear all bubbles to win!" },
-        { q:"What happens when bubbles reach the bottom?", a:"Game over! New rows push down every 5 shots if no clusters are found." },
-        { q:"How is score calculated?", a:"Each popped bubble gives 100 points. Floating clusters that drop also give bonus points." },
-        { q: "Can I play Bubble Shooter Online - Free Arcade Game without downloading?", a: "Yes. This Bubble Shooter Online - Free Arcade Game runs in your browser with no install. Free on mobile and desktop." },
-        { q: "How do I use this Bubble Shooter Online - Free Arcade Game online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
-        { q: "Is this Bubble Shooter Online - Free Arcade Game free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
+        { q:"How do I play Bubble Shooter?", a:"Move your mouse (or touch on mobile) to aim, then click to shoot. Match 3 or more same-colored bubbles to pop them. Clear all bubbles to win!" },
+        { q:"What happens when bubbles reach the bottom?", a:"Game over! New rows push down every 5 shots if no clusters are found. Keep matching to prevent the grid from filling up." },
       ]}
       howItWorks={[
         "Press Start to begin. Move mouse to aim the shooter.",
@@ -576,12 +586,30 @@ export default function games_bubble_shooter() {
             </div>
           </div>
 
-          <div className="glass p-3 flex justify-center overflow-hidden">
+          <div className="glass p-3 flex justify-center overflow-hidden relative">
             <canvas ref={canvasRef}
               onMouseMove={handleMouseMove} onClick={handleClick}
               onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}
               className="rounded-xl cursor-pointer"
-              style={{background:'#0f172a', touchAction:'none'}} />
+              style={{background:'#0f172a', touchAction:'none', opacity: (!playing && !gameOver) ? 0.3 : 1}} />
+            {!playing && !gameOver && (
+              <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-5 py-4 bg-[#050d1a]/92 backdrop-blur-[2px] overflow-y-auto"
+                onClick={(e) => { if (e.target.closest('button')) return; window.dispatchEvent(new Event('ut:game-start')) }}>
+                <img src="/games/bubble-shooter/cover.jpg" alt="Bubble Shooter cover art" loading="eager"
+                  className="w-full max-w-[420px] aspect-video object-cover rounded-2xl border border-cyan-400/30 shadow-[0_0_40px_rgba(6,182,212,0.35)] mb-4" />
+                <h2 className="text-3xl font-black tracking-tighter bg-gradient-to-b from-cyan-300 via-teal-300 to-blue-300 bg-clip-text text-transparent">BUBBLE SHOOTER</h2>
+                <p className="text-xs text-slate-400 mt-1 mb-3">Match 3+ colors · Clear the board · Free</p>
+                <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">
+                  <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-cyan-200">🎯 Aim & shoot</span>
+                  <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-green-200">🫧 Match 3+ to pop</span>
+                  <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-yellow-200">⬇️ Rows push down</span>
+                  <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-pink-200">📱 Touch + mouse</span>
+                </div>
+                {best > 0 && <p className="text-xs text-slate-400 mb-2">🏆 Best: {best}</p>}
+                <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))} className="px-8 py-3 rounded-full bg-gradient-to-r from-cyan-500 to-teal-500 text-white font-extrabold text-lg shadow-[0_0_30px_rgba(6,182,212,0.5)] hover:scale-105 transition">▶ Start Game</button>
+                <p className="text-[11px] text-slate-500 mt-2">Tap anywhere or press Start</p>
+              </div>
+            )}
           </div>
 
           <p className="text-center text-xs text-slate-400">

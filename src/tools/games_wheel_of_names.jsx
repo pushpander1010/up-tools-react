@@ -198,7 +198,7 @@ export default function games_wheel_of_names() {
   }, [])
 
   const startSpin = useCallback(() => {
-    if (isSpinning || names.length === 0) return
+    if (isSpinning || names.length < 2) return
     ensureAudio()
     setIsSpinning(true)
     spinRef.current = {
@@ -272,19 +272,18 @@ export default function games_wheel_of_names() {
   return (
     <GameShell
       name="WHEEL OF NAMES"
-      startAction={startSpin} startLabel="▶ Spin"
+      startAction={startSpin} startLabel={isSpinning ? '⏳ Spinning…' : '▶ Spin'}
  
+      headerStats={<><span className="text-indigo-300">Names <b>{names.length}</b></span><span className="text-slate-400">Theme: {theme}</span></>}
       title="Wheel of Names - Free Random Name Picker & Spinner"
-      desc="Wheel of Names - Free Random Name Picker & Spinner - spin a custom wheel of names to, online free. Play online free, no download. Works on mobile and desktop."
+      desc="Spin a customizable wheel of names to pick a random winner. Add your own names, pick a color theme, and spin — perfect for giveaways, classroom picks, and team selection."
       icon="🎡" iconBg="rgba(99,102,241,0.08)"
       category="fun" slug="games-wheel-of-names"
       faq={[
         { q: "Is the spinner truly random?", a: "Yes! The spinner uses JavaScript's built-in Math.random(), providing high-quality pseudorandom numbers." },
         { q: "Can I paste hundreds of names?", a: "Yes, the wheel dynamically renders and scales text. We recommend under 100 for optimal readability." },
-        { q: "How do I play Wheel of Names - Free Random Name Picker & Spinner online free?", a: "Click Start and follow the on-screen steps. Use mouse, touch, or keyboard controls. No download needed." },
-        { q: "Can I play Wheel of Names - Free Random Name Picker & Spinner without downloading?", a: "Yes. This Wheel of Names - Free Random Name Picker & Spinner runs in your browser with no install. Free on mobile and desktop." },
-        { q: "How do I use this Wheel of Names - Free Random Name Picker & Spinner online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
-        { q: "Is this Wheel of Names - Free Random Name Picker & Spinner free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
+        { q: "Can I remove the winner from the wheel?", a: "Yes! Toggle the 'Remove Winner' option in Settings. After a spin, you'll see a Remove button in the winner modal to drop them from future spins." },
+        { q: "How do I shuffle or reset the names?", a: "Use the Shuffle button to randomize the name order, the Numbers button to fill with 1–10, or Clear to start fresh. Changes apply instantly to the wheel." },
       ]}
       howItWorks={[
         "Enter one name per line in the text area.",
@@ -301,6 +300,26 @@ export default function games_wheel_of_names() {
     >
       <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
         <div className="flex-1 min-w-0 max-w-4xl mx-auto space-y-5 overflow-hidden">
+        {/* Welcome overlay */}
+        {!isSpinning && !winner && namesText === DEFAULT_NAMES.join('\n') && (
+          <div className="relative overflow-y-auto cursor-pointer" onClick={(e) => { if (e.target.closest('button') || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT' || e.target.tagName === 'INPUT') return; window.dispatchEvent(new Event('ut:game-start')) }}>
+            <img src="/games/wheel-of-names/cover.jpg" alt="Wheel of Names spinner game" loading="eager"
+              className="w-full aspect-video object-cover rounded-2xl border border-indigo-400/30 shadow-[0_0_40px_rgba(99,102,241,0.35)] mb-4" />
+            <h2 className="text-4xl sm:text-5xl font-black tracking-tighter text-center bg-gradient-to-b from-indigo-300 via-purple-300 to-pink-300 bg-clip-text text-transparent mb-2">WHEEL OF NAMES</h2>
+            <p className="text-xs sm:text-sm text-slate-400 text-center mb-3">Custom wheel · Random pick · Free</p>
+            <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-indigo-200">🎡 Smooth spin</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-purple-200">🎨 5 themes</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-pink-200">🔊 Tick sounds</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-green-200">🎉 Confetti</span>
+            </div>
+            <div className="text-center">
+              <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))} className="px-8 py-3 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-extrabold text-lg shadow-[0_0_30px_rgba(99,102,241,0.5)] hover:scale-105 transition">▶ Spin the Wheel</button>
+            </div>
+            <p className="text-center text-[11px] text-slate-500 mt-3">Edit names · Pick a theme · Spin to win</p>
+          </div>
+        )}
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Wheel */}
           <div className="space-y-5">
@@ -308,12 +327,7 @@ export default function games_wheel_of_names() {
               <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1 w-0 h-0 border-l-[12px] border-r-[12px] border-t-[20px] border-l-transparent border-r-transparent border-t-white z-10"/>
               <canvas ref={canvasRef} className="w-full rounded-full" style={{ aspectRatio: '1' }} aria-label="Name spinner wheel"/>
             </div>
-            <div className="text-center">
-              <button onClick={() => startSpin()} disabled={isSpinning || names.length === 0}
-                  className="glow-btn px-8 py-3 rounded-xl text-sm font-bold text-white transition-all disabled:opacity-50">
-                  🎡 Spin Wheel
-                </button>
-              </div>
+            
           </div>
 
           {/* Controls */}

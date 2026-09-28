@@ -90,6 +90,7 @@ export default function GamesSudoku() {
   const [mistakes, setMistakes] = useState(0)
   const [completed, setCompleted] = useState(false)
   const [started, setStarted] = useState(false)
+  const [showWelcome, setShowWelcome] = useState(true)
 
   /* Timer */
   const [seconds, setSeconds] = useState(0)
@@ -127,6 +128,7 @@ export default function GamesSudoku() {
     setMistakes(0)
     setCompleted(false)
     setStarted(true)
+    setShowWelcome(false)
     setSeconds(0)
     clearInterval(timerRef.current)
     timerRef.current = setInterval(() => setSeconds(s => s + 1), 1000)
@@ -285,18 +287,16 @@ export default function GamesSudoku() {
   return (
     <GameShell
       name="SUDOKU"
-      startAction={startGame} startLabel="⟲ New Game"
+      startAction={startGame} startLabel={!started ? '▶ Start' : '⟲ Restart'}
+      headerStats={<><span>⏱ <b className="text-cyan-300">{formatTime(seconds)}</b></span><span>✕ <b className="text-red-300">{mistakes}</b></span>{bestTime != null && <span className="text-amber-400">Best {formatTime(bestTime)}</span>}</>}
       title="Sudoku Puzzle Game Online Free – 3 Difficulty Levels"
-      desc="Play Sudoku online for free! Choose easy, medium, or hard. Features pencil marks, hints, timer, and mistake tracking. Pure client-side – no data leaves your browser."
+      desc="Play Sudoku online with easy, medium, or hard puzzles — pencil marks, hints, timer, and mistake tracking in a clean browser experience."
       icon="🔢" iconBg="rgba(99,102,241,0.08)"
       category="fun" slug="games-sudoku"
       faq={[
         { q: "How do pencil marks work?", a: "Toggle pencil mode (or press P) then press a number to add/remove a small candidate note in the cell." },
         { q: "What do the difficulties mean?", a: "Easy: 36 cells removed. Medium: 46. Hard: 54. All puzzles are guaranteed to have a unique solution." },
         { q: "Can I use keyboard?", a: "Yes — arrow keys to navigate, 1-9 to place, Backspace to erase, P for pencil mode." },
-        { q: "How do I play Sudoku Puzzle Game Online Free – 3 Difficulty Levels online free?", a: "Click Start and follow the on-screen steps. Use mouse, touch, or keyboard controls. No download needed." },
-        { q: "Can I play Sudoku Puzzle Game Online Free – 3 Difficulty Levels without downloading?", a: "Yes. This Sudoku Puzzle Game Online Free – 3 Difficulty Levels runs in your browser with no install. Free on mobile and desktop." },
-        { q: "How do I use this Sudoku Puzzle Game Online Free – 3 Difficulty Levels online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
       ]}
       howItWorks={[
         "Choose a difficulty and press New Game.",
@@ -326,12 +326,7 @@ export default function GamesSudoku() {
               <option value="medium" className="bg-gray-900">Medium (46 removed)</option>
               <option value="hard" className="bg-gray-900">Hard (54 removed)</option>
             </select>
-            <button
-              onClick={() => window.dispatchEvent(new Event('ut:game-start'))}
-              className="px-4 py-2 rounded-lg font-bold text-sm bg-gradient-to-r from-indigo-500 to-purple-500 text-white hover:brightness-110 transition-all"
-            >
-              {completed ? 'New Game' : 'New Game'}
-            </button>
+
           </div>
           <div className="flex items-center gap-4 text-slate-300">
             <span>⏱ {formatTime(seconds)}</span>
@@ -344,6 +339,25 @@ export default function GamesSudoku() {
         {completed && (
           <div className="text-center py-3 rounded-xl bg-green-500/10 border border-green-500/30 text-green-400 font-bold">
             🎉 Congratulations! Solved in {formatTime(seconds)} with {mistakes} mistakes!
+          </div>
+        )}
+
+        {/* ── Welcome cover ── */}
+        {!started && showWelcome && (
+          <div className="relative z-10 flex flex-col items-center justify-center text-center px-5 py-4 bg-[#050d1a]/92 backdrop-blur-[2px] rounded-2xl overflow-y-auto border border-white/[0.06]"
+            onPointerDown={(e) => { if (e.target.closest('button') || e.target.closest('select')) return; window.dispatchEvent(new Event('ut:game-start')) }}>
+            <img src="/games/sudoku/cover.jpg" alt="Sudoku puzzle cover art" loading="eager"
+              className="w-full max-w-[420px] aspect-video object-cover rounded-2xl border border-indigo-400/30 shadow-[0_0_40px_rgba(99,102,241,0.35)] mb-4" />
+            <h2 className="text-4xl sm:text-5xl font-black tracking-tighter bg-gradient-to-b from-indigo-300 via-purple-300 to-pink-300 bg-clip-text text-transparent">SUDOKU</h2>
+            <p className="text-xs sm:text-sm text-slate-400 mt-1 mb-3">3 difficulty levels · Pencil marks · Hints</p>
+            <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-indigo-200">✏️ Pencil mode</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-emerald-200">💡 Hints</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-amber-200">⏱ Timer + Best</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-cyan-200">⌨️ Full keyboard</span>
+            </div>
+            <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))} className="px-8 py-3 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-extrabold text-lg shadow-[0_0_30px_rgba(99,102,241,0.5)] hover:scale-105 transition">▶ Start Game</button>
+            <p className="text-[11px] text-slate-500 mt-3">Pick difficulty above, then start</p>
           </div>
         )}
 
@@ -381,9 +395,9 @@ export default function GamesSudoku() {
           </div>
         )}
 
-        {/* ── Number pad & controls ── */}
+        {/* ── Number pad & controls ── (sticky on scroll) */}
         {started && (
-          <div className="space-y-3">
+          <div className="space-y-3 sticky bottom-2 z-20 bg-[#030b14]/95 backdrop-blur-sm rounded-xl p-3 border border-white/[0.06]">
             {/* Number buttons 1-9 */}
             <div className="flex justify-center gap-1.5 flex-wrap">
               {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(n => (

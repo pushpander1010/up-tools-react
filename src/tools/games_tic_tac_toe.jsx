@@ -161,10 +161,11 @@ export default function games_tic_tac_toe() {
     <GameShell
       name="TIC TAC TOE"
       title="Tic Tac Toe Online - Play vs AI or Friend"
-      desc="Tic Tac Toe Online - Play vs AI or Friend - play Tic Tac Toe online against AI or a, online free. Play online free, no download. Works on mobile and desktop."
+      desc="Play Tic Tac Toe online against AI or a friend on the same device. X always goes first — get three in a row to win!"
       icon="❌" iconBg="rgba(239,68,68,0.08)"
       category="fun" slug="games-tic-tac-toe"
-      startAction={resetGame} startLabel="⟲ New Game"
+      startAction={resetGame} startLabel={(winner || draw || board.some(c => c !== null)) ? '⟲ New Game' : '▶ New Game'}
+      headerStats={<><span className="text-red-400">X <b>{xWins}</b></span><span className="text-slate-500">D <b>{draws}</b></span><span className="text-blue-400">O <b>{oWins}</b></span></>}
       extraButtons={
         <button onClick={()=>updateScores(0,0,0)} className="px-4 py-2.5 rounded-full text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">
          Reset Scores
@@ -174,9 +175,8 @@ export default function games_tic_tac_toe() {
         { q: "How does the AI work?", a: "The AI uses the minimax algorithm — it plays optimally and can never lose. Try to force a draw!" },
         { q: "Can I play with a friend?", a: "Yes! Switch to '2 Player' mode to play locally with a friend taking turns." },
         { q: "Are scores saved?", a: "Yes! X wins, O wins, and draws are all tracked and saved in your browser." },
-        { q: "How do I play Tic Tac Toe Online - Play vs AI or Friend online free?", a: "Click Start and follow the on-screen steps. Use mouse, touch, or keyboard controls. No download needed." },
-        { q: "Can I play Tic Tac Toe Online - Play vs AI or Friend without downloading?", a: "Yes. This Tic Tac Toe Online - Play vs AI or Friend runs in your browser with no install. Free on mobile and desktop." },
-        { q: "How do I use this Tic Tac Toe Online - Play vs AI or Friend online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
+        { q: "What do the colored X and O animations mean?", a: "X marks are drawn with red lines and O marks with blue circles — both animate when placed. The winning line glows green." },
+        { q: "Can the AI be beaten?", a: "No — the AI uses minimax, a perfect-play algorithm. Your best outcome against it is a draw. Try the 2 Player mode to challenge a friend!" },
       ]}
       howItWorks={[
         "Choose AI or 2 Player mode.",
@@ -193,12 +193,32 @@ export default function games_tic_tac_toe() {
       }}
     >
       <div className="space-y-5">
+        {/* Welcome overlay — shown when board is empty */}
+        {board.every(c => c === null) && !winner && !draw && (
+          <div className="relative overflow-y-auto cursor-pointer" onClick={(e) => { if (e.target.closest('button')) return; window.dispatchEvent(new Event('ut:game-start')) }}>
+            <img src="/games/tic-tac-toe/cover.jpg" alt="Tic Tac Toe neon board game" loading="eager"
+              className="w-full aspect-video object-cover rounded-2xl border border-red-400/30 shadow-[0_0_40px_rgba(239,68,68,0.35)] mb-4" />
+            <h2 className="text-4xl sm:text-5xl font-black tracking-tighter text-center bg-gradient-to-b from-red-300 via-white to-blue-300 bg-clip-text text-transparent mb-2">TIC TAC TOE</h2>
+            <p className="text-xs sm:text-sm text-slate-400 text-center mb-3">Vs AI or a friend · Three in a row · Free</p>
+            <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-red-200">🤖 Perfect AI</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-blue-200">👥 2-player</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-green-200">📊 Score tracking</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-purple-200">📱 Touch friendly</span>
+            </div>
+            <div className="text-center">
+              <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))} className="px-8 py-3 rounded-full bg-gradient-to-r from-red-500 to-blue-500 text-white font-extrabold text-lg shadow-[0_0_30px_rgba(239,68,68,0.5)] hover:scale-105 transition">▶ Start Game</button>
+            </div>
+            <p className="text-center text-[11px] text-slate-500 mt-3">Pick AI or 2 Player, then start</p>
+          </div>
+        )}
+
         {/* Mode selector */}
         <div className="flex gap-2 justify-center">
-          <button onClick={()=>{setMode('ai');window.dispatchEvent(new Event('ut:game-start'))}} className={`glow-btn px-4 py-2 text-sm transition-all ${mode==='ai'?'':'bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:bg-white/[0.1]'}`}>
+          <button onClick={()=>{setMode('ai');resetGame()}} className={`glow-btn px-4 py-2 text-sm transition-all ${mode==='ai'?'':'bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:bg-white/[0.1]'}`}>
            🤖 vs AI
          </button>
-          <button onClick={()=>{setMode('2p');window.dispatchEvent(new Event('ut:game-start'))}} className={`glow-btn px-4 py-2 text-sm transition-all ${mode==='2p'?'':'bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:bg-white/[0.1]'}`}>
+          <button onClick={()=>{setMode('2p');resetGame()}} className={`glow-btn px-4 py-2 text-sm transition-all ${mode==='2p'?'':'bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:bg-white/[0.1]'}`}>
            👥 2 Player
          </button>
         </div>

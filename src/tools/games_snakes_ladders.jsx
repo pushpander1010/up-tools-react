@@ -151,18 +151,16 @@ export default function games_snakes_ladders() {
   return (
     <GameShell
       name="Snakes and Ladders"
-      startAction={startNew} startLabel="🎲 Roll to Start"
+      startAction={startNew} startLabel={!playing ? '🎲 Roll to Start' : '⟲ Restart'}
+      headerStats={<><span>🧑 <b className="text-green-300">{playerPos}</b></span><span>🤖 <b className="text-red-300">{compPos}</b></span><span className="text-slate-400">Turn {turns + 1}</span></>}
       title="Snakes and Ladders — Play Free Board Game Online"
-      desc="Play Snakes and Ladders online for free. Roll the dice, climb ladders, dodge snakes, and race the computer to square 100!"
+      desc="Roll the dice, climb ladders, dodge snakes, and race the computer to square 100 in this classic board game."
       icon="🐍" iconBg="rgba(34,197,94,0.08)"
       category="fun" slug="games-snakes-ladders"
       faq={[
         { q: "How do I play Snakes and Ladders?", a: "Roll the dice to move your piece forward. Land on a ladder to climb up, or a snake to slide down. First to reach square 100 wins!" },
         { q: "Can I play against the computer?", a: "Yes! You play against a computer opponent who takes turns rolling the dice after you." },
         { q: "What do ladders and snakes do?", a: "Ladders let you skip ahead to a higher square. Snakes send you back down to a lower square. Plan your luck wisely!" },
-        { q: "How do I play Snakes and Ladders — Play Free Board Game Online online free?", a: "Click Start and press the Roll button or hit Space/Enter. Use mouse, touch, or keyboard. No download needed." },
-        { q: "Can I play Snakes and Ladders — Play Free Board Game Online without downloading?", a: "Yes. This Snakes and Ladders — Play Free Board Game Online runs in your browser with no install. Free on mobile and desktop." },
-        { q: "Is this Snakes and Ladders — Play Free Board Game Online free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Roll the dice by pressing Space, Enter, or tapping the Roll button.",
@@ -180,16 +178,21 @@ export default function games_snakes_ladders() {
     >
       <div className="min-w-0 space-y-5">
         {!playing && (
-          <div className="glass p-6 text-center">
-            <div className="text-5xl mb-3">🎲</div>
-            <h2 className="text-xl font-bold text-white mb-2">Snakes and Ladders</h2>
-            <p className="text-sm text-slate-400 mb-4">Roll the dice, climb ladders, dodge snakes!</p>
-            <div className="grid grid-cols-2 gap-3 mb-4">
-              <div className="glass p-3 rounded-xl"><div className="text-lg font-bold text-white">🪜 9 Ladders</div><div className="text-xs text-slate-400">Climb up!</div></div>
-              <div className="glass p-3 rounded-xl"><div className="text-lg font-bold text-white">🐍 10 Snakes</div><div className="text-xs text-slate-400">Watch out!</div></div>
+          <div className="relative glass p-6 text-center overflow-y-auto max-h-[70vh]"
+            onPointerDown={(e) => { if (e.target.closest('button')) return; window.dispatchEvent(new Event('ut:game-start')) }}>
+            <img src="/games/snakes-ladders/cover.jpg" alt="Snakes and Ladders board game cover art" loading="eager"
+              className="w-full max-w-[420px] aspect-video object-cover rounded-2xl border border-green-400/30 shadow-[0_0_40px_rgba(34,197,94,0.35)] mb-4 mx-auto" />
+            <h2 className="text-4xl sm:text-5xl font-black tracking-tighter bg-gradient-to-b from-green-300 via-emerald-300 to-yellow-300 bg-clip-text text-transparent">SNAKES &amp; LADDERS</h2>
+            <p className="text-xs sm:text-sm text-slate-400 mt-1 mb-3">Classic board game · Vs computer · Roll to race</p>
+            <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-green-200">🪜 9 Ladders</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-red-200">🐍 10 Snakes</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-cyan-200">🤖 Vs computer</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-purple-200">📱 Touch + keys</span>
             </div>
-            {best > 0 && <p className="text-xs text-slate-400 mb-3">Best efficiency: {best}</p>}
-            <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))} className="px-6 py-3 rounded-xl text-sm font-semibold bg-gradient-to-r from-green-500 to-emerald-600 text-white hover:opacity-90 transition-all">🎲 Roll to Start</button>
+            {best > 0 && <p className="text-xs text-amber-400 mb-2">🏆 Best efficiency: {best}</p>}
+            <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))} className="px-8 py-3 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 text-white font-extrabold text-lg shadow-[0_0_30px_rgba(34,197,94,0.5)] hover:scale-105 transition">🎲 Roll to Start</button>
+            <p className="text-[11px] text-slate-500 mt-3">Press Space or Enter to roll the dice</p>
           </div>
         )}
 

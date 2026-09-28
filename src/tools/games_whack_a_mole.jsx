@@ -146,6 +146,7 @@ export default function games_whack_a_mole() {
 
   const handleWhack = useCallback((idx) => {
     if (gameState !== 'playing') return
+    if (whacking >= 0) return // debounce rapid taps
     if (moles[idx] && idx === moleIndex) {
       // Hit!
       playWhack()
@@ -170,7 +171,8 @@ export default function games_whack_a_mole() {
   return (
     <GameShell
       name="WHACK-A-MOLE"
-      startAction={startGame} startLabel="▶ Start"
+      startAction={startGame} startLabel={gameState === 'playing' ? '⟲ Restart' : '▶ Start'}
+      headerStats={<><span className="text-white">Score <b>{score}</b></span><span className="text-amber-400">Best <b>{highScore}</b></span><span className={timeLeft <= 5 ? 'text-red-400' : 'text-slate-300'}>⏱ <b>{timeLeft}s</b></span></>}
       title="Whack-a-Mole Online - Free Arcade Game"
       desc="Play Whack-a-Mole online! Tap the moles as they pop up and score points before time runs out. Difficulty increases as your score grows."
       icon="🔨"
@@ -182,8 +184,7 @@ export default function games_whack_a_mole() {
         { q: "How does the difficulty increase?", a: "Every 5 points increases the level. Moles appear faster and stay visible for shorter time at higher levels." },
         { q: "What happens if I miss?", a: "Missing a mole (clicking an empty hole) plays a miss sound but doesn't reduce your score. Only whacking moles earns points." },
         { q: "How long is each round?", a: "Each round lasts 30 seconds. Try to get the highest score before time runs out!" },
-        { q: "Can I play Whack-a-Mole Online - Free Arcade Game without downloading?", a: "Yes. This Whack-a-Mole Online - Free Arcade Game runs in your browser with no install. Free on mobile and desktop." },
-        { q: "How do I use this Whack-a-Mole Online - Free Arcade Game online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
+        { q: "How does level progression work?", a: "Every 5 points increases your level. At higher levels, moles pop up faster and stay visible for shorter periods, making them harder to whack." },
       ]}
       howItWorks={[
         "Click 'Start Game' to begin a 30-second round.",
@@ -200,23 +201,7 @@ export default function games_whack_a_mole() {
     >
       <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
         <div className="flex-1 min-w-0 max-w-sm mx-auto space-y-5 overflow-hidden">
-        {/* Stats */}
-        <div className="glass p-4">
-          <div className="grid grid-cols-3 gap-4 text-center">
-            <div className="text-center">
-              <div className="text-2xl font-extrabold text-white">{score}</div>
-              <div className="text-xs text-slate-400 font-medium mt-0.5">Score</div>
-            </div>
-            <div className="text-center">
-              <div className={`text-2xl font-extrabold ${timeLeft <= 5 ? 'text-red-400 animate-pulse' : 'text-white'}`}>{timeLeft}s</div>
-              <div className="text-xs text-slate-400 font-medium mt-0.5">Time</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-extrabold text-amber-400">🏆 {highScore}</div>
-              <div className="text-xs text-slate-400 font-medium mt-0.5">Best</div>
-            </div>
-          </div>
-        </div>
+        
 
         {/* Level indicator */}
         {gameState === 'playing' && (
@@ -260,11 +245,23 @@ export default function games_whack_a_mole() {
 
         {/* Start / Game over */}
         {gameState === 'idle' && (
-          <div className="text-center space-y-3 cursor-pointer" onClick={(e) => { if (e.target.closest('button')) return; window.dispatchEvent(new Event('ut:game-start')) }}>
-            <div className="text-5xl">🔨</div>
-            <h2 className="text-xl font-bold text-white">Whack-a-Mole!</h2>
-            <p className="text-sm text-slate-400">Click or tap moles as they pop up. You have {GAME_DURATION} seconds!</p>
+          <div className="relative overflow-y-auto cursor-pointer" onClick={(e) => { if (e.target.closest('button')) return; window.dispatchEvent(new Event('ut:game-start')) }}>
+            <img src="/games/whack-a-mole/cover.jpg" alt="Whack-a-Mole arcade game" loading="eager"
+              className="w-full aspect-video object-cover rounded-2xl border border-yellow-400/30 shadow-[0_0_40px_rgba(234,179,8,0.35)] mb-4" />
+            <h2 className="text-4xl sm:text-5xl font-black tracking-tighter text-center bg-gradient-to-b from-yellow-300 via-amber-300 to-orange-300 bg-clip-text text-transparent mb-2">WHACK-A-MOLE</h2>
+            <p className="text-xs sm:text-sm text-slate-400 text-center mb-3">Tap moles · Score points · {GAME_DURATION}s per round</p>
+            <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-yellow-200">🐹 Fast moles</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-red-200">⚡ Level up</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-green-200">🏆 High score</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-blue-200">📱 Tap to whack</span>
             </div>
+            {highScore > 0 && <p className="text-center text-xs text-slate-400 mb-3">🏆 Best: {highScore} points</p>}
+            <div className="text-center">
+              <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))} className="px-8 py-3 rounded-full bg-gradient-to-r from-yellow-500 to-orange-500 text-white font-extrabold text-lg shadow-[0_0_30px_rgba(234,179,8,0.5)] hover:scale-105 transition">▶ Start Game</button>
+            </div>
+            <p className="text-center text-[11px] text-slate-500 mt-3">Click moles as they pop up · {GAME_DURATION} seconds · Difficulty increases</p>
+          </div>
         )}
 
         {gameState === 'gameover' && (

@@ -104,7 +104,7 @@ export default function games_typing_speed() {
     setTimeout(() => inputRef.current?.focus(), 100)
   }, [duration])
 
-  useEffect(() => { resetTest() }, []) // eslint-disable-line
+  useEffect(() => { resetTest(); setTimeout(() => inputRef.current?.focus(), 200) }, []) // eslint-disable-line
 
   useEffect(() => {
     if (!testStarted || testFinished) return
@@ -194,19 +194,18 @@ export default function games_typing_speed() {
   return (
     <GameShell
       name="TYPING SPEED"
-      startAction={() => resetTest()} startLabel="⟲ Restart"
+      startAction={() => resetTest()} startLabel={(testStarted || testFinished) ? '⟲ Restart' : '▶ Start'}
  
+      headerStats={<><span className="text-indigo-300">WPM <b>{wpm}</b></span><span className="text-emerald-300">ACC <b>{accuracy}%</b></span><span className="text-red-300">ERR <b>{errors}</b></span></>}
       title="Typing Speed Test - WPM Test Online Free"
-      desc="Typing Speed Test - WPM Test Online Free - test your typing speed and accuracy. Free, online free. Play online free, no download. Works on mobile and desktop."
+      desc="Test your typing speed and accuracy in real time. Type the displayed text and track your WPM, accuracy, and errors as you go."
       icon="⌨️" iconBg="rgba(6,182,212,0.08)"
       category="fun" slug="games-typing-speed"
       faq={[
         { q: "What is WPM?", a: "Words Per Minute — the standard measure of typing speed. One word equals 5 characters." },
         { q: "How is accuracy calculated?", a: "Accuracy = (total characters typed - errors) / total characters typed × 100%." },
-        { q: "How do I play Typing Speed Test - WPM Test Online Free online free?", a: "Click Start and follow the on-screen steps. Use mouse, touch, or keyboard controls. No download needed." },
-        { q: "Can I play Typing Speed Test - WPM Test Online Free without downloading?", a: "Yes. This Typing Speed Test - WPM Test Online Free runs in your browser with no install. Free on mobile and desktop." },
-        { q: "How do I use this Typing Speed Test - WPM Test Online Free online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
-        { q: "Is this Typing Speed Test - WPM Test Online Free free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
+        { q: "How does the text auto-advance work?", a: "When you finish typing the current passage, a new paragraph loads automatically so you can keep typing without interruption until the timer runs out." },
+        { q: "What happens when the timer ends?", a: "Your final WPM, accuracy, and total errors are calculated across all paragraphs typed. You can change duration and restart for a new round." },
       ]}
       howItWorks={[
         "Select your preferred duration (30s, 1min, or 2min).",
@@ -224,6 +223,26 @@ export default function games_typing_speed() {
     >
       <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
         <div className="flex-1 min-w-0 max-w-2xl mx-auto space-y-5 overflow-hidden">
+        {/* Welcome overlay */}
+        {!testStarted && !testFinished && typed.length === 0 && (
+          <div className="relative overflow-y-auto cursor-pointer" onClick={(e) => { if (e.target.closest('button') || e.target.tagName === 'INPUT') return; window.dispatchEvent(new Event('ut:game-start')) }}>
+            <img src="/games/typing-speed/cover.jpg" alt="Typing speed test keyboard" loading="eager"
+              className="w-full aspect-video object-cover rounded-2xl border border-cyan-400/30 shadow-[0_0_40px_rgba(6,182,212,0.35)] mb-4" />
+            <h2 className="text-4xl sm:text-5xl font-black tracking-tighter text-center bg-gradient-to-b from-cyan-300 via-blue-300 to-indigo-300 bg-clip-text text-transparent mb-2">TYPING SPEED</h2>
+            <p className="text-xs sm:text-sm text-slate-400 text-center mb-3">Test your WPM · Track accuracy · Free</p>
+            <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-cyan-200">⌨️ Real-time WPM</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-green-200">📊 Accuracy tracking</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-indigo-200">⏱️ 30s / 1min / 2min</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-amber-200">🔊 Key sounds</span>
+            </div>
+            <div className="text-center">
+              <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))} className="px-8 py-3 rounded-full bg-gradient-to-r from-cyan-500 to-indigo-500 text-white font-extrabold text-lg shadow-[0_0_30px_rgba(6,182,212,0.5)] hover:scale-105 transition">▶ Start Test</button>
+            </div>
+            <p className="text-center text-[11px] text-slate-500 mt-3">Type the text · Track your speed · Beat your best</p>
+          </div>
+        )}
+
         {/* Duration selector */}
         <div className="flex gap-2 items-center">
           {[30, 60, 120].map(d => (
@@ -301,15 +320,7 @@ export default function games_typing_speed() {
           </div>
         )}
 
-        {/* Controls */}
-        {!testFinished && (
-          <div className="text-center">
-            <button onClick={() => {window.dispatchEvent(new Event('ut:game-start'))}}
-               className="px-6 py-3 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">
-              ↺ Restart
-            </button>
-          </div>
-        )}
+        
       </div>
       </div>
     </GameShell>

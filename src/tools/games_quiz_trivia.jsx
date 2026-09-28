@@ -152,7 +152,7 @@ export default function games_quiz_trivia() {
     playSound('click')
   }, [category])
 
-  useEffect(() => { startQuiz(category) }, []) // eslint-disable-line
+  // Quiz starts when user clicks Start in the shell (ut:game-start)
 
   const handleCategoryChange = (cat) => {
     setCategory(cat)
@@ -213,7 +213,7 @@ export default function games_quiz_trivia() {
   return (
     <GameShell
       name="QUIZ TRIVIA"
-      startAction={() => startQuiz(category)} startLabel="▶ Start Quiz" 
+      startAction={() => startQuiz(category)} startLabel={started && !showResult ? '⟲ New Quiz' : '▶ Start Quiz'} headerStats={<><span>Score <b className="text-white">{score}</b></span><span>🔥 <b className="text-amber-400">{streak}</b></span><span>{currentQ + 1}/10</span></>} 
       title="Quiz Trivia Game Online - General Knowledge Quiz Free"
       desc="Quiz Trivia Game Online - test general knowledge free with 10 questions per round across science, history, sports, tech, and more. No sign-up."
       icon="🧠" iconBg="rgba(168,85,247,0.08)"
@@ -221,9 +221,7 @@ export default function games_quiz_trivia() {
       faq={[
         { q: "How many questions per round?", a: "10 questions per round, randomly selected from the chosen category." },
         { q: "Can I play again?", a: "Yes! Click 'Play Again' at the end of each round to start a new quiz." },
-        { q: "How do I play quiz trivia online free?", a: "Pick a category above, answer 10 multiple-choice questions, and build streaks. Free, no sign-up." },
-        { q: "Can I play quiz trivia without downloading?", a: "Yes. The quiz runs in your browser with no install. Free on mobile and desktop." },
-        { q: "Is the quiz trivia game free?", a: "Yes, completely free with no sign-up. Play unlimited rounds on any device." },
+
       ]}
       howItWorks={[
         "Select a category or play with all topics mixed.",
@@ -241,6 +239,21 @@ export default function games_quiz_trivia() {
     >
       <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
         <div className="flex-1 min-w-0 max-w-2xl mx-auto space-y-5 overflow-hidden">
+        {/* Welcome overlay */}
+        {!started && (
+          <div className="text-center rounded-2xl overflow-hidden"
+            onClick={(e) => { if (!e.target.closest('button') && !e.target.closest('select')) window.dispatchEvent(new Event('ut:game-start')) }}>
+            <img src="/games/quiz-trivia/cover.jpg" alt="Quiz Trivia game cover" loading="eager"
+              className="w-full aspect-video object-cover rounded-2xl border border-purple-400/30 shadow-[0_0_40px_rgba(168,85,247,0.25)]" />
+            <div className="mt-3 flex flex-wrap justify-center gap-1.5 text-[11px] font-bold">
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-purple-200">📚 5 categories</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-emerald-200">🎯 10 per round</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-amber-200">🔥 Streak bonus</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-cyan-200">⌨️ Keys 1-4</span>
+            </div>
+          </div>
+        )}
+
         {!showResult && started && q && (
           <>
             {/* Category + New Quiz */}
@@ -342,6 +355,10 @@ export default function games_quiz_trivia() {
             <div className="text-5xl font-extrabold text-white mb-2">{score}/10</div>
             <p className="text-slate-400 mb-2">Questions Correct</p>
             <p className="text-lg font-bold text-white mb-6">{msgs[Math.floor(score / 2.5)] || msgs[4]}</p>
+            <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))}
+              className="glow-btn px-8 py-3 text-sm">
+              🔄 Play Again
+            </button>
           </div>
         )}
         </div>

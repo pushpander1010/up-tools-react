@@ -371,7 +371,8 @@ export default function games_friendship_test() {
   return (
     <GameShell
       name="FRIENDSHIP TEST"
-      startAction={startQuiz} startLabel="▶ Start Quiz"
+      startAction={startQuiz} startLabel={step === 'home' ? '▶ Start Quiz' : '⟲ Restart'}
+      headerStats={<><span className="text-indigo-300">Best <b>{best ? `${best.score}%` : '—'}</b></span><span className="text-slate-400">Plays <b>{plays}</b></span></>}
       title="BFF Test – Best Friend Test, Friendship Quiz | How Well Do Your Friends Know You"
       desc="Take the free BFF test and best friend quiz online. Answer 10–20 fun questions about yourself, share your friendship quiz link, and see which friend knows you best. No sign-up, no download."
       icon="👫" iconBg="rgba(99,102,241,0.08)"
@@ -382,7 +383,7 @@ export default function games_friendship_test() {
         { q: "Is the friendship quiz free?", a: "Yes, completely free with no sign-up and no app download. Play unlimited BFF tests in your browser on mobile or desktop." },
         { q: "How do I share my BFF quiz with friends?", a: "After answering, tap Copy Quiz Link or WhatsApp. Drop it in your group chat, Instagram story, Snapchat, or bio — friends answer instantly with no login." },
         { q: "What questions are in the best friend quiz?", a: "64 fun questions across favorites, food, habits, social life, adventure, and deep topics — from comfort food and dream jobs to biggest fears and ideal Friday nights. Every game picks a fresh random set." },
-        { q: "Can I play the friendship test without downloading?", a: "Yes. This BFF test runs entirely in your browser with no install, free on mobile and desktop." },
+        { q: "What happens if my friend uses an old link?", a: "They'll see an 'expired link' screen prompting them to ask you for a fresh quiz. Links are versioned to keep answers in sync." },
       ]}
       howItWorks={[
         "Answer fun questions about YOURSELF.",
@@ -403,7 +404,7 @@ export default function games_friendship_test() {
         {step === 'home' && (
           <div className="ft-anim min-w-0 space-y-5">
             <img src={`${IMG}/hero.jpg`} alt="Two best friends taking a selfie quiz"
-              className="w-full h-44 sm:h-56 object-cover rounded-2xl border border-white/10" loading="eager" />
+              className="w-full h-44 sm:h-56 object-cover rounded-2xl border border-white/10" loading="lazy" />
 
             {/* How it works */}
             <div className="glass rounded-2xl p-5">
@@ -522,7 +523,8 @@ export default function games_friendship_test() {
         {/* Quiz questions */}
         {(step === 'a' || step === 'b') && q && (
           <div key={`${player}-${cur}-${q.id}`} className="ft-anim glass rounded-2xl p-6 min-w-0">
-            {/* Progress */}
+            {/* Progress — sticky top */}
+            <div className="sticky top-0 z-20 bg-[#0e1628]/95 backdrop-blur-sm -mx-6 px-6 pt-0 pb-2 -mt-6 rounded-t-2xl border-b border-white/[0.06]">
             <div className="flex items-center gap-3 mb-1 min-w-0">
               <p className="text-sm text-indigo-400 flex-1 truncate min-w-0">
                 {player === 'a' ? `${nameA}, answer about YOU` : `${nameB}, guess ${nameA}'s answer`} · {cur + 1}/{quizLength}
@@ -531,6 +533,7 @@ export default function games_friendship_test() {
             </div>
             <div className="h-2 rounded-full bg-white/[0.07] mb-4 overflow-hidden">
               <div className="h-full rounded-full bg-indigo-500 transition-all duration-300" style={{ width: `${((cur + 1) / quizLength) * 100}%` }} />
+            </div>
             </div>
             {player === 'b' && (
               <div className="flex items-center gap-2 mb-3 text-xs font-bold">

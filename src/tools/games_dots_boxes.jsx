@@ -228,18 +228,17 @@ export default function games_dots_boxes() {
   return (
     <GameShell
       name="Dots and Boxes"
-      startAction={startNew} startLabel="✏️ Start Drawing"
-      title="Dots and Boxes — Play Free Strategy Game Online"
-      desc="Play Dots and Boxes against the computer! Draw lines to complete boxes and earn points. The player with the most boxes wins."
+      startAction={startNew}
+      startLabel={playing ? '⟲ New Game' : '✏️ Start Drawing'}
+      headerStats={<><span>You <b className="text-blue-300">{playerScore}</b></span><span>🤖 <b className="text-red-300">{compScore}</b></span><span>Best <b className="text-cyan-300">{best}</b></span></>}
+      title="Dots and Boxes — Classic Strategy Grid Game"
+      desc="Draw lines to complete boxes against the computer. The player with the most boxes wins."
       icon="✏️" iconBg="rgba(139,92,246,0.08)"
       category="fun" slug="games-dots-boxes"
       faq={[
         { q: "How do I play Dots and Boxes?", a: "Click on the space between two dots to draw a line. Complete a full box around four dots to score a point." },
         { q: "What happens when I complete a box?", a: "You score a point and get an extra turn! Keep drawing lines until you can't complete a box." },
         { q: "Who does the computer play against me?", a: "The computer uses a greedy strategy: it completes boxes when possible and avoids giving you easy completions." },
-        { q: "How do I play Dots and Boxes — Play Free Strategy Game Online online free?", a: "Click Start and click between dots to draw lines. Works on mobile and desktop. No download needed." },
-        { q: "Can I play Dots and Boxes — Play Free Strategy Game Online without downloading?", a: "Yes. This Dots and Boxes — Play Free Strategy Game Online runs in your browser with no install. Free on mobile and desktop." },
-        { q: "Is this Dots and Boxes — Play Free Strategy Game Online free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Click on the gap between two dots to draw a horizontal or vertical line.",
@@ -257,17 +256,21 @@ export default function games_dots_boxes() {
     >
       <div className="min-w-0 space-y-5">
         {!playing && (
-          <div className="glass p-6 text-center">
-            <div className="text-5xl mb-3">✏️</div>
-            <h2 className="text-xl font-bold text-white mb-2">Dots and Boxes</h2>
-            <p className="text-sm text-slate-400 mb-4">Draw lines, complete boxes, outsmart the computer!</p>
-            <div className="grid grid-cols-3 gap-3 mb-4">
-              <div className="glass p-3 rounded-xl"><div className="text-lg font-bold text-blue-400">✏️</div><div className="text-xs text-slate-400">Draw Lines</div></div>
-              <div className="glass p-3 rounded-xl"><div className="text-lg font-bold text-green-400">📦</div><div className="text-xs text-slate-400">Claim Boxes</div></div>
-              <div className="glass p-3 rounded-xl"><div className="text-lg font-bold text-purple-400">🤖</div><div className="text-xs text-slate-400">vs Computer</div></div>
+          <div className="glass p-6 text-center overflow-y-auto max-h-[70vh]"
+            onClick={(e) => { if (!e.target.closest('button')) window.dispatchEvent(new Event('ut:game-start')) }}>
+            <img src="/games/dots-boxes/cover.jpg" alt="Neon dots and boxes cover art" loading="eager"
+              className="w-full max-w-[420px] aspect-video object-cover rounded-2xl border border-purple-400/30 shadow-[0_0_40px_rgba(139,92,246,0.35)] mb-4 mx-auto" />
+            <h2 className="text-4xl sm:text-5xl font-black tracking-tighter bg-gradient-to-b from-purple-300 via-violet-300 to-fuchsia-300 bg-clip-text text-transparent">Dots and Boxes</h2>
+            <p className="text-xs sm:text-sm text-slate-400 mt-1 mb-3">Draw lines · Claim boxes · Outsmart AI · Free</p>
+            <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-blue-200">✏️ Draw lines</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-green-200">📦 Claim boxes</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-purple-200">🤖 vs Computer</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-amber-200">🔄 Extra turns</span>
             </div>
-            {best > 0 && <p className="text-xs text-slate-400 mb-3">🏆 Best: {best} boxes</p>}
-            <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))} className="px-6 py-3 rounded-xl text-sm font-semibold bg-gradient-to-r from-purple-500 to-violet-600 text-white hover:opacity-90 transition-all">✏️ Start Drawing</button>
+            {best > 0 && <p className="text-xs text-slate-500 mb-3">🏆 Best: {best} boxes</p>}
+            <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))} className="px-8 py-3 rounded-full bg-gradient-to-r from-purple-500 to-violet-600 text-white font-extrabold text-lg shadow-[0_0_30px_rgba(139,92,246,0.5)] hover:scale-105 transition">✏️ Start Drawing</button>
+            <p className="text-[11px] text-slate-500 mt-3">Click between dots to draw lines</p>
           </div>
         )}
 

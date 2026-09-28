@@ -64,6 +64,8 @@ export default function games_tower_defense() {
   const [wave, setWave] = useState(0)
   const [score, setScore] = useState(0)
   const [best, setBest] = useState(()=>{try{return Number(localStorage.getItem(LS.BEST)||0)}catch{return 0}})
+  const bestRef = useRef(best)
+  useEffect(() => { bestRef.current = best }, [best])
   const [lastScore, setLastScore] = useState(()=>{try{return Number(localStorage.getItem(LS.LAST)||0)}catch{return 0}})
   const [gameOver, setGameOver] = useState(false)
   const [selectedTower, setSelectedTower] = useState(null)
@@ -276,7 +278,7 @@ export default function games_tower_defense() {
       s.animId = requestAnimationFrame(loop)
     }
     s.animId = requestAnimationFrame(loop)
-  }, [best])
+  }, [])
 
   const draw = useCallback(() => {
     const canvas = canvasRef.current
@@ -574,7 +576,8 @@ export default function games_tower_defense() {
   return (
     <GameShell
       name="TOWER DEFENSE"
-      startAction={startGame} startLabel="▶ Start" 
+      startAction={startGame} startLabel={gameOver ? '⟲ Restart' : '▶ Start'} 
+      headerStats={<><span className="text-yellow-400">💰 {gold}</span><span className="text-red-400">❤️ {lives}</span><span className="text-cyan-400">🌊 {wave}</span><span className="text-green-400">⭐ {score}</span></>}
       title="Tower Defense Game Online - Free Strategy Game"
       desc="Play Tower Defense online! Build towers to defend against waves of enemies. Choose from Arrow, Cannon, Ice, and Lightning towers. Strategy and planning required!"
       icon="🏰" iconBg="rgba(239,68,68,0.08)"
@@ -583,9 +586,8 @@ export default function games_tower_defense() {
         { q: "How do I play Tower Defense?", a: "Select a tower type from the bottom panel, then click an empty cell on the grid to place it. Click 'Next Wave' to send enemies. Earn gold by defeating enemies!" },
         { q: "What do the tower types do?", a: "Arrow (fast, cheap), Cannon (splash damage), Ice (slows enemies), Lightning (chain hits multiple enemies). Each has different range, damage, and fire rate." },
         { q: "How do I earn more gold?", a: "Defeat enemies to earn gold. You also get bonus gold between waves. Use gold to build and upgrade towers!" },
-        { q: "Can I play Tower Defense Game Online - Free Strategy Game without downloading?", a: "Yes. This Tower Defense Game Online - Free Strategy Game runs in your browser with no install. Free on mobile and desktop." },
-        { q: "How do I use this Tower Defense Game Online - Free Strategy Game online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
-        { q: "Is this Tower Defense Game Online - Free Strategy Game free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
+        { q: "How do I upgrade towers?", a: "Click an existing tower on the grid to select it, then press the upgrade key or use the UI to level it up for increased damage and range." },
+        { q: "What happens between waves?", a: "You earn bonus gold after each wave completes. Use this time to place new towers or upgrade existing ones before sending the next wave." },
       ]}
       howItWorks={[
         "Press Start to begin. You start with 200 gold.",
@@ -603,6 +605,27 @@ export default function games_tower_defense() {
     >
       <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
         <div className="flex-1 min-w-0 max-w-xl mx-auto space-y-5 overflow-hidden">
+        {/* Welcome overlay */}
+        {wave === 0 && !gameOver && (
+          <div className="relative overflow-y-auto cursor-pointer" onClick={(e) => { if (e.target.closest('button')) return; window.dispatchEvent(new Event('ut:game-start')) }}>
+            <img src="/games/tower-defense/cover.jpg" alt="Tower Defense strategy game" loading="eager"
+              className="w-full aspect-video object-cover rounded-2xl border border-red-400/30 shadow-[0_0_40px_rgba(239,68,68,0.35)] mb-4" />
+            <h2 className="text-4xl sm:text-5xl font-black tracking-tighter text-center bg-gradient-to-b from-red-300 via-orange-300 to-yellow-300 bg-clip-text text-transparent mb-2">TOWER DEFENSE</h2>
+            <p className="text-xs sm:text-sm text-slate-400 text-center mb-3">Build towers · Defend your base · Survive waves</p>
+            <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-green-200">🏹 Arrow</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-red-200">💣 Cannon</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-cyan-200">❄️ Ice</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-yellow-200">⚡ Lightning</span>
+            </div>
+            {best > 0 && <p className="text-center text-xs text-slate-400 mb-3">🏆 Best score: {best}</p>}
+            <div className="text-center">
+              <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))} className="px-8 py-3 rounded-full bg-gradient-to-r from-red-500 to-orange-500 text-white font-extrabold text-lg shadow-[0_0_30px_rgba(239,68,68,0.5)] hover:scale-105 transition">▶ Start Game</button>
+            </div>
+            <p className="text-center text-[11px] text-slate-500 mt-3">Place towers · Send waves · Earn gold</p>
+          </div>
+        )}
+
         {/* Stats */}
         <div className="glass p-4">
           <div className="grid grid-cols-4 gap-3">
@@ -641,8 +664,8 @@ export default function games_tower_defense() {
           </div>
         )}
 
-        {/* Tower selection */}
-        <div className="glass p-3">
+        {/* Tower selection — sticky bottom */}
+        <div className="sticky bottom-2 z-20 glass p-3 bg-[#030b14]/95 backdrop-blur-sm border border-white/[0.06]">
           <div className="grid grid-cols-4 gap-2">
             {TOWER_TYPES.map((tt, i) => (
               <button key={tt.id}

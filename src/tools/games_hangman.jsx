@@ -147,6 +147,7 @@ export default function games_hangman() {
   const [won, setWon] = useState(false)
   const [showOverlay, setShowOverlay] = useState(false)
   const [started, setStarted] = useState(false)
+  const [showWelcome, setShowWelcome] = useState(true)
   const inputRef = useRef(null)
   const wrongCountRef = useRef(0)
 
@@ -160,6 +161,7 @@ export default function games_hangman() {
     setWon(false)
     setShowOverlay(false)
     setStarted(false)
+    setShowWelcome(true)
   }, [category])
 
   useEffect(() => { initGame(category) }, [category, initGame])
@@ -214,6 +216,7 @@ export default function games_hangman() {
     if (started && !gameOver) {
       if (!confirm('Start a new game? Your progress will be lost.')) return
     }
+    setShowWelcome(false)
     initGame(category)
   }
 
@@ -233,19 +236,18 @@ export default function games_hangman() {
   return (
     <GameShell
       name="HANGMAN"
-      startAction={handleNewGame} startLabel="⟲ New Game"
+      startAction={handleNewGame} startLabel={started && !gameOver ? '⟲ New Game' : '▶ New Game'}
+      headerStats={<><span>❌ <b className="text-red-300">{wrongCount}/{PARTS.length}</b></span><span className="text-slate-400">{category === 'all' ? 'All Categories' : category.charAt(0).toUpperCase() + category.slice(1)}</span></>}
       title="Hangman Game Online - Free Word Guessing Game"
  
-      desc="Hangman Game Online - Free Word Guessing Game - classic word guessing game with, online free. Play online free, no download. Works on mobile and desktop."
+      desc="Classic word-guessing game — pick a category, type letters to reveal the hidden word, and avoid drawing the full hangman in 6 wrong guesses."
       icon="🪢" iconBg="rgba(244,63,94,0.08)"
       category="fun" slug="games-hangman"
       faq={[
         { q: "What is Hangman?", a: "Hangman is a classic word guessing game where you try to guess a hidden word one letter at a time. You have 6 wrong guesses before the hangman is complete." },
         { q: "How many categories are there?", a: "There are 5 categories: Animals, Countries, Technology, Food, and Sports. You can also play with 'All' to mix them." },
-        { q: "How do I play Hangman Game Online - Free Word Guessing Game online free?", a: "Click Start and follow the on-screen steps. Use mouse, touch, or keyboard controls. No download needed." },
-        { q: "Can I play Hangman Game Online - Free Word Guessing Game without downloading?", a: "Yes. This Hangman Game Online - Free Word Guessing Game runs in your browser with no install. Free on mobile and desktop." },
-        { q: "How do I use this Hangman Game Online - Free Word Guessing Game online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
-        { q: "Is this Hangman Game Online - Free Word Guessing Game free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
+        { q: "How are wrong guesses tracked?", a: "Each wrong letter adds a body part to the hangman figure. After 6 wrong guesses the game ends — so guess strategically starting with common letters!" },
+        { q: "Can I use my keyboard?", a: "Yes! Type any letter on your keyboard to guess it. On mobile, tap the on-screen letter buttons instead." },
       ]}
       howItWorks={[
         "Select a category or play with all words mixed.",
@@ -273,14 +275,28 @@ export default function games_hangman() {
               <option key={cat} value={cat} className="bg-gray-900">{cat.charAt(0).toUpperCase() + cat.slice(1)}</option>
             ))}
           </select>
-          <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))}
-            className="ml-auto px-5 py-2.5 rounded-xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-300 hover:text-white hover:bg-white/[0.1] transition-all">
-           New Game
-         </button>
+
         </div>
 
         {/* Game area */}
         <div className="glass p-6 relative">
+          {showWelcome && (
+            <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-5 py-4 bg-[#050d1a]/92 backdrop-blur-[2px] overflow-y-auto rounded-2xl"
+              onPointerDown={(e) => { if (e.target.closest('button') || e.target.closest('select')) return; window.dispatchEvent(new Event('ut:game-start')) }}>
+              <img src="/games/hangman/cover.jpg" alt="Hangman word guessing game cover art" loading="eager"
+                className="w-full max-w-[420px] aspect-video object-cover rounded-2xl border border-rose-400/30 shadow-[0_0_40px_rgba(244,63,94,0.35)] mb-4" />
+              <h2 className="text-4xl sm:text-5xl font-black tracking-tighter bg-gradient-to-b from-rose-300 via-pink-300 to-purple-300 bg-clip-text text-transparent">HANGMAN</h2>
+              <p className="text-xs sm:text-sm text-slate-400 mt-1 mb-3">Guess the word · 5 categories · 6 wrong guesses</p>
+              <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">
+                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-rose-200">📝 40+ words</span>
+                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-purple-200">🗂️ 5 categories</span>
+                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-amber-200">💡 Hints included</span>
+                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-cyan-200">⌨️ Keyboard input</span>
+              </div>
+              <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))} className="px-8 py-3 rounded-full bg-gradient-to-r from-rose-500 to-pink-500 text-white font-extrabold text-lg shadow-[0_0_30px_rgba(244,63,94,0.5)] hover:scale-105 transition">▶ Start Game</button>
+              <p className="text-[11px] text-slate-500 mt-3">Pick a category, then start</p>
+            </div>
+          )}
           {/* SVG Hangman */}
           <div className="flex gap-4 items-start flex-wrap">
             <svg width="140" height="160" viewBox="0 0 160 180" className="flex-shrink-0">
@@ -314,8 +330,8 @@ export default function games_hangman() {
             </div>
           </div>
 
-          {/* Keyboard */}
-          <div className="grid grid-cols-9 gap-1.5 mt-4">
+          {/* Keyboard — sticky on mobile */}
+          <div className="sticky bottom-2 z-20 grid grid-cols-9 gap-1.5 mt-4 bg-[#030b14]/95 backdrop-blur-sm rounded-xl p-2 border border-white/[0.06]">
             {'abcdefghijklmnopqrstuvwxyz'.split('').map(c => {
               const isGuessed = guessed.has(c)
               const isWrong = isGuessed && !word.includes(c)
@@ -340,7 +356,7 @@ export default function games_hangman() {
               <div className="text-4xl mb-3">{won ? '🎉' : '💀'}</div>
               <h2 className="text-xl font-bold text-white mb-2">{won ? 'You Won!' : 'Game Over!'}</h2>
               <p className="text-sm text-slate-400 mb-4">The word was: {word.toUpperCase()}</p>
-              <button onClick={() => initGame(category)}
+              <button onClick={() => { setShowWelcome(false); initGame(category) }}
                  className="glow-btn px-8 py-3 text-sm">
                 Play Again
               </button>

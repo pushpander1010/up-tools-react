@@ -166,19 +166,16 @@ export default function games_love_test() {
   return (
     <GameShell
       name="LOVE TEST"
-      startAction={startQuiz} startLabel="▶ Start Quiz"
+      startAction={startQuiz} startLabel={step === 'home' ? '▶ Start Quiz' : '⟲ Restart'} headerStats={<><span>Best <b className="text-pink-300">{best ? best.score + '%' : '—'}</b></span><span>Plays <b className="text-white">{plays}</b></span></>}
       title="Couple Compatibility Quiz ❤️ Romantic Love Test"
  
-      desc="Couple Compatibility Quiz ❤️ Romantic Love Test - two-player romantic quiz. Answer, online free. Play online free, no download. Works on mobile and desktop."
+      desc="A two-player romantic compatibility quiz — answer the same questions and see your love match score."
       icon="❤️" iconBg="rgba(255,95,162,0.08)"
       category="fun" slug="games-love-test"
       faq={[
         { q: "How does the love test work?", a: "Both partners answer the same romantic questions. Your compatibility score is based on how many answers match." },
         { q: "Can I share the test?", a: "Yes! Use the WhatsApp or Copy buttons to share your result with your partner." },
-        { q: "How do I play Couple Compatibility Quiz ❤️ Romantic Love Test online free?", a: "Click Start and follow the on-screen steps. Use mouse, touch, or keyboard controls. No download needed." },
-        { q: "Can I play Couple Compatibility Quiz ❤️ Romantic Love Test without downloading?", a: "Yes. This Couple Compatibility Quiz ❤️ Romantic Love Test runs in your browser with no install. Free on mobile and desktop." },
-        { q: "How do I use this Couple Compatibility Quiz ❤️ Romantic Love Test online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
-        { q: "Is this Couple Compatibility Quiz ❤️ Romantic Love Test free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
+
       ]}
       howItWorks={[
         "Enter both partners' names and select quiz length.",
@@ -196,7 +193,9 @@ export default function games_love_test() {
       <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
         <div className="flex-1 min-w-0 max-w-2xl mx-auto space-y-5 overflow-hidden">
         {step === 'home' && (
-          <>
+          <div onClick={(e) => { if (!e.target.closest('button')) window.dispatchEvent(new Event('ut:game-start')) }}>
+            <img src="/games/love-test/cover.jpg" alt="Couple compatibility quiz cover" loading="eager"
+              className="w-full aspect-video object-cover rounded-2xl border border-pink-400/30 shadow-[0_0_40px_rgba(255,95,162,0.25)] mb-2" />
             <div className="grid grid-cols-4 gap-3">
               <div className="text-center glass p-4 rounded-xl">
                 <div className="text-2xl font-extrabold text-pink-400">{best ? `${best.score}%` : '--%'}</div>
@@ -223,14 +222,9 @@ export default function games_love_test() {
                 </button>
               ))}
             </div>
-            <div className="text-center">
-              <button onClick={() => {window.dispatchEvent(new Event('ut:game-start'))}}
-                className="glow-btn px-8 py-4 rounded-2xl text-sm font-bold text-white transition-all">
-                💖 Start Quiz
-              </button>
-            </div>
+
             <p className="text-center text-xs text-slate-600">Best scores & last played are stored on this device only.</p>
-          </>
+          </div>
         )}
 
         {step === 'names' && (

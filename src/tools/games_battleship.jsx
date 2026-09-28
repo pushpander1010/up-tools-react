@@ -404,21 +404,31 @@ export default function games_battleship() {
   const playerShipsSunk = playerShips.filter(s=>s.sunk).length
 
 
+  // Keyboard: Space/Enter to start/restart
+  useEffect(() => {
+    const handler = (e) => {
+      if ((e.key === ' ' || e.key === 'Enter') && (phase === 'win' || phase === 'lose')) {
+        e.preventDefault()
+        window.dispatchEvent(new Event('ut:game-start'))
+      }
+    }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [phase])
+
+
   return (
     <GameShell
       name="BATTLESHIP"
-      startAction={startGame} startLabel="▶ Start" 
-      title="Battleship Online - Free Strategy Game"
-      desc="Battleship Online - Free Strategy Game - play the classic Battleship game against the, online free. Play online free, no download. Works on mobile and desktop."
+      startAction={startGame} startLabel={phase === 'win' || phase === 'lose' ? '⟲ Restart' : '▶ Start'} 
+      headerStats={<><span>Score: {score}</span><span>Sunk: {enemyShips.filter(s=>s.sunk).length}/{TOTAL_SHIPS}</span></>}
+      title="Battleship — Sink All Enemy Ships"
+      desc="Place your fleet, fire at enemy waters, and sink all 5 ships before time runs out. Hunt-target AI makes every game a challenge."
       icon="🚢" iconBg="rgba(245,158,11,0.08)"
       category="fun" slug="games-battleship"
       faq={[
-        { q:"How do I play Battleship?", a:"First place your 5 ships on your grid. Then take turns firing at the enemy grid. Hit all their ships to win!" },
-        { q:"How does the AI work?", a:"The AI uses hunt-target mode: it fires randomly until it gets a hit, then targets adjacent cells to sink the ship." },
-        { q:"What is the time limit?", a:"You have 2 minutes to sink all 5 enemy ships. Score is based on ships sunk and remaining time." },
-        { q: "Can I play Battleship Online - Free Strategy Game without downloading?", a: "Yes. This Battleship Online - Free Strategy Game runs in your browser with no install. Free on mobile and desktop." },
-        { q: "How do I use this Battleship Online - Free Strategy Game online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
-        { q: "Is this Battleship Online - Free Strategy Game free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
+        { q:"How do I play Battleship?", a:"First place your 5 ships on your grid by clicking cells. Press R to rotate. Then click the enemy grid to fire. Sink all 5 enemy ships before the 2-minute timer runs out!" },
+        { q:"How does the AI work?", a:"The AI uses hunt-target mode: it fires randomly until it gets a hit, then targets adjacent cells to sink the ship. Stay unpredictable to outsmart it!" },
       ]}
       howItWorks={[
         "Press Start to begin. Place your 5 ships by clicking on your grid.",
@@ -464,6 +474,24 @@ export default function games_battleship() {
           </div>
 
           {/* Boards */}
+          <div className="relative">
+          {phase === 'setup' && playerShips.length === 0 && (
+            <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-5 py-8 bg-[#050d1a]/92 backdrop-blur-[2px] rounded-2xl overflow-y-auto"
+              onClick={(e) => { if (e.target.closest('button')) return; window.dispatchEvent(new Event('ut:game-start')) }}>
+              <img src="/games/battleship/cover.jpg" alt="Battleship cover art" loading="eager"
+                className="w-full max-w-[420px] aspect-video object-cover rounded-2xl border border-amber-400/30 shadow-[0_0_40px_rgba(245,158,11,0.35)] mb-4" />
+              <h2 className="text-3xl font-black tracking-tighter bg-gradient-to-b from-amber-300 via-yellow-300 to-orange-300 bg-clip-text text-transparent">BATTLESHIP</h2>
+              <p className="text-xs text-slate-400 mt-1 mb-3">Place ships · Fire at enemy · Sink all 5 · Free</p>
+              <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">
+                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-amber-200">🚢 5 ships to place</span>
+                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-red-200">🔥 Hunt-target AI</span>
+                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-cyan-200">⏱ 2 min timer</span>
+                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-green-200">📱 Touch + click</span>
+              </div>
+              <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))} className="px-8 py-3 rounded-full bg-gradient-to-r from-amber-500 to-orange-600 text-white font-extrabold text-lg shadow-[0_0_30px_rgba(245,158,11,0.5)] hover:scale-105 transition">▶ Start Game</button>
+              <p className="text-[11px] text-slate-500 mt-2">Tap anywhere or press Start</p>
+            </div>
+          )}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {/* Player Board */}
             <div>
@@ -494,6 +522,7 @@ export default function games_battleship() {
                 </div>
               </div>
             </div>
+          </div>
           </div>
 
           {/* Ship status */}

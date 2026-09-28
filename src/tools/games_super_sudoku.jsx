@@ -115,6 +115,7 @@ export default function games_super_sudoku() {
   const [timer, setTimer] = useState(0)
   const [bestTime, setBestTime] = useState(()=>{try{return JSON.parse(localStorage.getItem(LS.BEST)||'{}')}catch{return {}}})
   const [gameStarted, setGameStarted] = useState(false)
+  const [showWelcome, setShowWelcome] = useState(true)
 
 
   const timerRef = useRef(null)
@@ -130,7 +131,7 @@ export default function games_super_sudoku() {
     const init = p.map(r=>r.map(v=>v!==0))
     const n = Array.from({length:9}, ()=>Array.from({length:9}, ()=>new Set()))
     setPuzzle(p); setSolution(s); setBoard(b); setInitial(init); setNotes(n)
-    setSelected(null); setErrors(0); setCompleted(false); setTimer(0); setGameStarted(true)
+    setSelected(null); setErrors(0); setCompleted(false); setTimer(0); setGameStarted(true); setShowWelcome(false)
     if (timerRef.current) clearInterval(timerRef.current)
     timerRef.current = setInterval(()=>setTimer(t=>t+1), 1000)
   }, [difficulty])
@@ -322,7 +323,8 @@ export default function games_super_sudoku() {
   return (
     <GameShell
       name="SUPER SUDOKU"
-      startAction={startGame} startLabel="▶ Start" 
+      startAction={startGame} startLabel={gameStarted ? '⟲ Restart' : '▶ Start'}
+      headerStats={<><span>⏱ <b className="text-cyan-300">{formatTime(timer)}</b></span><span>✕ <b className="text-red-300">{errors}</b></span>{bestTime[difficulty] && <span className="text-amber-400">Best {formatTime(bestTime[difficulty])}</span>}</>}
       title="Super Sudoku Online - Free Puzzle Game"
       desc="Play Sudoku online with multiple difficulty levels. Generate unique puzzles with guaranteed single solutions. Notes mode, timer, and error tracking."
       icon="🔢" iconBg="rgba(99,102,241,0.08)"
@@ -331,9 +333,8 @@ export default function games_super_sudoku() {
         { q:"How do I play Sudoku?", a:"Fill every row, column, and 3×3 box with numbers 1-9 without repeats. Click a cell and press a number key." },
         { q:"What is Notes mode?", a:"Press N to toggle notes mode. In notes mode, numbers you enter appear as small pencil marks to help you plan." },
         { q:"How is difficulty determined?", a:"Easy puzzles have ~36 blanks, medium ~45, hard ~52, expert ~58. More blanks = harder." },
-        { q: "How do I play Super Sudoku Online - Free Puzzle Game online free?", a: "Click Start and follow the on-screen steps. Use mouse, touch, or keyboard controls. No download needed." },
-        { q: "Can I play Super Sudoku Online - Free Puzzle Game without downloading?", a: "Yes. This Super Sudoku Online - Free Puzzle Game runs in your browser with no install. Free on mobile and desktop." },
-        { q: "How do I use this Super Sudoku Online - Free Puzzle Game online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
+        { q: "What makes Super Sudoku different?", a: "Each puzzle is algorithmically generated with a guaranteed unique solution. Expert mode removes up to 58 cells for a real challenge." },
+          { q: "How does Notes mode help?", a: "Toggle Notes (N key) to pencil-mark candidate numbers in a cell. This helps you track possibilities and solve harder puzzles systematically." },
       ]}
       howItWorks={[
         "Select a difficulty and press Start to generate a new puzzle.",
@@ -402,14 +403,31 @@ export default function games_super_sudoku() {
             </div>
           )}
 
-          {/* Canvas */}
-          <div className="glass p-3 flex justify-center overflow-hidden">
+          {/* Canvas + welcome cover */}
+          <div className="glass p-3 flex justify-center overflow-hidden relative">
+            {showWelcome && (
+              <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-5 py-4 bg-[#050d1a]/92 backdrop-blur-[2px] overflow-y-auto"
+                onPointerDown={(e) => { if (e.target.closest('button')) return; window.dispatchEvent(new Event('ut:game-start')) }}>
+                <img src="/games/super-sudoku/cover.jpg" alt="Super Sudoku puzzle cover art" loading="eager"
+                  className="w-full max-w-[420px] aspect-video object-cover rounded-2xl border border-indigo-400/30 shadow-[0_0_40px_rgba(99,102,241,0.35)] mb-4" />
+                <h2 className="text-4xl sm:text-5xl font-black tracking-tighter bg-gradient-to-b from-indigo-300 via-purple-300 to-pink-300 bg-clip-text text-transparent">SUPER SUDOKU</h2>
+                <p className="text-xs sm:text-sm text-slate-400 mt-1 mb-3">4 difficulty levels · Unique puzzles · Notes mode</p>
+                <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">
+                  <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-indigo-200">🧠 Expert mode</span>
+                  <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-emerald-200">📝 Notes/Pencil</span>
+                  <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-amber-200">⏱ Timer + Best</span>
+                  <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-cyan-200">📱 Touch + keys</span>
+                </div>
+                <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))} className="px-8 py-3 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-extrabold text-lg shadow-[0_0_30px_rgba(99,102,241,0.5)] hover:scale-105 transition">▶ Start Game</button>
+                <p className="text-[11px] text-slate-500 mt-3">Pick difficulty above, then start</p>
+              </div>
+            )}
             <canvas ref={canvasRef} onClick={handleCanvasClick}
               className="rounded-xl cursor-pointer" style={{background:'#0a0f1a',touchAction:'none'}} />
           </div>
 
-          {/* Number pad (mobile) */}
-          <div className="grid grid-cols-9 gap-1">
+          {/* Number pad (mobile) — sticky on scroll */}
+          <div className="sticky bottom-2 z-20 grid grid-cols-9 gap-1 bg-[#030b14]/95 backdrop-blur-sm rounded-xl p-2 border border-white/[0.06]">
             {[1,2,3,4,5,6,7,8,9].map(n=>(
               <button key={n} onClick={()=>placeNumber(n)}
                 className="py-2 rounded-lg text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-300 hover:bg-indigo-500/20 hover:text-white active:scale-95 transition-all">
@@ -419,7 +437,7 @@ export default function games_super_sudoku() {
           </div>
 
           <p className="text-center text-xs text-slate-400">
-            Desktop: Click cell + 1-9 keys | N = notes toggle | ← → ↑ ↓ navigate
+            Desktop: Click cell + 1-9 keys · N = notes toggle · ← → ↑ ↓ navigate · Backspace = erase
           </p>
         </div>
       </div>

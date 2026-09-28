@@ -132,18 +132,16 @@ export default function games_number_guessing() {
   return (
     <GameShell
       name="NUMBER GUESSING"
-      startAction={() => startGame(1)} startLabel="⟲ New Game" 
+      startAction={() => startGame(difficulty !== null ? difficulty : 1)} startLabel={(difficulty !== null && !gameOver) ? '⟲ New Game' : '▶ Start'} headerStats={<><span>Wins <b className="text-white">{wins}</b></span><span>🔥 <b style={{color: streak > 0 ? '#22c55e' : '#ef4444'}}>{streak}</b></span><span>Best <b className="text-white">{difficulty !== null && best[difficulty] ? best[difficulty] + ' tries' : '—'}</b></span></>} 
       title="Number Guessing Game - Guess the Number"
-      desc="Number Guessing Game - Guess the Number - test your luck and logic! Guess the secret, online free. Play online free, no download. Works on mobile and desktop."
+      desc="Guess the secret number using logic and hints — too high, too low, or just right."
       icon="🔢" iconBg="rgba(99,102,241,0.08)"
       category="fun" slug="games-number-guessing"
       faq={[
         { q: "How do I play the Number Guessing Game?", a: "Choose a difficulty, then guess numbers. You'll get hints like 'too high' or 'too low' to narrow down the answer. Use logic to find it in the fewest tries!" },
         { q: "What do the difficulty levels mean?", a: "Easy: numbers 1-50 with 10 tries. Medium: 1-100 with 7 tries. Hard: 1-500 with 10 tries. Higher difficulties require more precise guessing." },
         { q: "Does my streak save?", a: "Yes! Your wins, streak, and best scores per difficulty are saved to your device using localStorage." },
-        { q: "How do I play Number Guessing Game - Guess the Number online free?", a: "Click Start and follow the on-screen steps. Use mouse, touch, or keyboard controls. No download needed." },
-        { q: "Can I play Number Guessing Game - Guess the Number without downloading?", a: "Yes. This Number Guessing Game - Guess the Number runs in your browser with no install. Free on mobile and desktop." },
-        { q: "How do I use this Number Guessing Game - Guess the Number online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
+
       ]}
       howItWorks={[
         "Pick a difficulty: Easy (1-50), Medium (1-100), or Hard (1-500).",
@@ -198,6 +196,8 @@ export default function games_number_guessing() {
         {/* Difficulty selection or game */}
         {!difficulty && difficulty !== 0 ? (
           <div className="space-y-4">
+            <img src="/games/number-guessing/cover.jpg" alt="Number Guessing Game cover" loading="eager"
+              className="w-full aspect-video object-cover rounded-2xl border border-indigo-400/30 shadow-[0_0_40px_rgba(99,102,241,0.25)] mb-2" />
             <p className="text-center text-slate-400 text-sm">Choose your difficulty</p>
             <div className="grid grid-cols-3 gap-3">
               {DIFFICULTIES.map((d, i) => (

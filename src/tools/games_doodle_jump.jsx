@@ -19,6 +19,7 @@ export default function games_doodle_jump() {
   const [best, setBest] = useState(()=>{try{return Number(localStorage.getItem(LS.BEST)||0)}catch{return 0}})
   const [lastScore, setLastScore] = useState(()=>{try{return Number(localStorage.getItem(LS.LAST)||0)}catch{return 0}})
   const [gameOver, setGameOver] = useState(false)
+  const [showWelcome, setShowWelcome] = useState(true)
 
 
   const gRef = useRef({
@@ -139,7 +140,7 @@ export default function games_doodle_jump() {
     }
 
     placePlatforms()
-    setScore(0); setGameOver(false); setPlaying(true)
+    setScore(0); setGameOver(false); setPlaying(true); setShowWelcome(false)
     fitCanvas()
     setTimeout(() => { startLoop() }, 30)
   }, [fitCanvas, placePlatforms])
@@ -451,18 +452,17 @@ export default function games_doodle_jump() {
   return (
     <GameShell
       name="DOODLE JUMP"
-      startAction={startGame} startLabel="▶ Start" 
-      title="Doodle Jump Online - Jump & Bounce"
-      desc="Play Doodle Jump online! Guide your doodler upward by bouncing on platforms. Dodge obstacles and reach new heights. Keyboard and touch controls."
+      startAction={startGame}
+      startLabel={playing && !gameOver ? '⟲ Restart' : '▶ Start'}
+      headerStats={<><span>Score <b className="text-white">{score}</b></span><span>Best <b className="text-purple-300">{best}</b></span><span>Last <b className="text-slate-400">{lastScore}</b></span></>}
+      title="Doodle Jump — Classic Bouncing Platform Game"
+      desc="Guide your doodler upward by bouncing on platforms. Dodge fragile and moving platforms, and reach new heights."
       icon="📔" iconBg="rgba(168,85,247,0.08)"
       category="fun" slug="games-doodle-jump"
       faq={[
-        { q: "How do I play Doodle Jump?", a: "Use left/right arrow keys or A/D to move. On mobile, tilt your device or drag your finger to move. The doodler automatically bounces on platforms." },
+        { q: "How do I play Doodle Jump?", a: "Use left/right arrow keys or A/D to move. On mobile, drag your finger left/right. The doodler automatically bounces on platforms." },
         { q: "What are the different platform colors?", a: "Green = normal (stable), Blue = moving (slides left/right), Yellow/Orange = fragile (breaks on contact)!" },
-        { q: "How does scoring work?", a: "Score increases as you jump higher. The higher you go, the more points you earn. Your best score is saved!" },
-        { q: "Can I play Doodle Jump Online - Jump & Bounce without downloading?", a: "Yes. This Doodle Jump Online - Jump & Bounce runs in your browser with no install. Free on mobile and desktop." },
-        { q: "How do I use this Doodle Jump Online - Jump & Bounce online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
-        { q: "Is this Doodle Jump Online - Jump & Bounce free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
+        { q: "How does scoring work?", a: "Score increases as you jump higher. The higher you go, the more points you earn. Your best score is saved locally." },
       ]}
       howItWorks={[
         "Press Start or tap the canvas to begin.",
@@ -480,7 +480,26 @@ export default function games_doodle_jump() {
     >
       <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
         <div className="flex-1 min-w-0 max-w-xl mx-auto space-y-5 overflow-hidden">
-        {/* Stats */}
+        {showWelcome && (
+          <div className="glass p-6 text-center overflow-y-auto max-h-[70vh]"
+            onPointerDown={(e) => { if (!e.target.closest('button')) window.dispatchEvent(new Event('ut:game-start')) }}>
+            <img src="/games/doodle-jump/cover.jpg" alt="Neon doodle jump cover art" loading="eager"
+              className="w-full max-w-[420px] aspect-video object-cover rounded-2xl border border-purple-400/30 shadow-[0_0_40px_rgba(168,85,247,0.35)] mb-4 mx-auto" />
+            <h2 className="text-4xl sm:text-5xl font-black tracking-tighter bg-gradient-to-b from-purple-300 via-violet-300 to-fuchsia-300 bg-clip-text text-transparent">DOODLE JUMP</h2>
+            <p className="text-xs sm:text-sm text-slate-400 mt-1 mb-3">Bounce higher · Dodge platforms · Free</p>
+            <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-green-200">🟢 Normal</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-blue-200">🔵 Moving</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-amber-200">🟠 Fragile</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-purple-200">📱 Touch + keys</span>
+            </div>
+            {best > 0 && <p className="text-xs text-slate-500 mb-3">🏆 Best: {best}</p>}
+            <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))} className="px-8 py-3 rounded-full bg-gradient-to-r from-purple-500 to-violet-500 text-white font-extrabold text-lg shadow-[0_0_30px_rgba(168,85,247,0.5)] hover:scale-105 transition">▶ Start Game</button>
+            <p className="text-[11px] text-slate-500 mt-3">Arrow keys or drag to steer · Bounce to climb</p>
+          </div>
+        )}
+        {!showWelcome && (
+        <>
         <div className="glass p-4">
           <div className="grid grid-cols-3 gap-4">
             <div className="text-center">
@@ -524,7 +543,20 @@ export default function games_doodle_jump() {
         <p className="text-center text-xs text-slate-400">
           Desktop: ← → to move | Mobile: Drag left/right to steer
         </p>
-        </div>
+        {/* Mobile D-pad for touch play */}
+        {playing && !gameOver && (
+          <div className="sticky bottom-2 z-20 flex justify-center gap-2 py-2">
+            <button onPointerDown={() => { gRef.current.velocityX = -5; gRef.current.doodler.facingRight = false }}
+              onPointerUp={() => { gRef.current.velocityX = 0 }}
+              className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-2xl font-bold active:scale-95 flex items-center justify-center">◀</button>
+            <button onPointerDown={() => { gRef.current.velocityX = 5; gRef.current.doodler.facingRight = true }}
+              onPointerUp={() => { gRef.current.velocityX = 0 }}
+              className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-2xl font-bold active:scale-95 flex items-center justify-center">▶</button>
+          </div>
+        )}
+        </>
+      )}
+      </div>
       </div>
     </GameShell>
   )

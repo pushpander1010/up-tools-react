@@ -284,18 +284,16 @@ export default function games_endless_runner() {
   return (
     <GameShell
       name="Endless Runner"
-      startAction={startGame} startLabel="🎮 Start Running"
-      title="Endless Runner — Play Free Jumping Game Online"
-      desc="Play Endless Runner online for free. Jump over obstacles, use double-jump to survive, and beat your high score in this fast-paced canvas game."
+      startAction={startGame}
+      startLabel={playing && !gameOver ? '⟲ Restart' : '🎮 Start Running'}
+      headerStats={<><span>Score <b className="text-white">{score}</b></span><span>Best <b className="text-cyan-300">{best}</b></span></>}
+      title="Endless Runner — Auto-Run Jumping Obstacle Game"
+      desc="Jump over spikes, use double-jump to survive, and beat your high score in this fast-paced runner."
       icon="🏃" iconBg="rgba(34,211,238,0.08)"
       category="fun" slug="games-endless-runner"
       faq={[
         { q: "How do I play Endless Runner?", a: "Press Space or tap the screen to jump. Press twice for a double-jump. Avoid red spike obstacles that scroll towards you." },
         { q: "What is the double-jump?", a: "You get two jumps before landing. Press Space or tap a second time while in the air to double-jump over taller obstacles." },
-        { q: "How do I play Endless Runner — Play Free Jumping Game Online online free?", a: "Click Start and follow the on-screen steps. Use Space, arrow keys, or tap to jump. No download needed." },
-        { q: "Can I play Endless Runner — Play Free Jumping Game Online without downloading?", a: "Yes. This Endless Runner — Play Free Jumping Game Online runs in your browser with no install. Free on mobile and desktop." },
-        { q: "How do I use this Endless Runner — Play Free Jumping Game Online online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
-        { q: "Is this Endless Runner — Play Free Jumping Game Online free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Your character runs automatically — press Space or tap to jump.",
@@ -313,14 +311,21 @@ export default function games_endless_runner() {
     >
       <div className="min-w-0 space-y-5">
         {!playing && !gameOver && (
-          <div onClick={handleStartTap} className="cursor-pointer">
-            <div className="glass p-4">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="text-center"><div className="text-2xl font-extrabold text-white">{best}</div><div className="text-xs text-slate-400 font-medium mt-0.5">Best Score</div></div>
-                <div className="text-center"><div className="text-2xl font-extrabold text-cyan-400">🏃</div><div className="text-xs text-slate-400 font-medium mt-0.5">Endless Runner</div></div>
-              </div>
+          <div className="glass p-6 text-center overflow-y-auto max-h-[70vh]"
+            onClick={(e) => { if (!e.target.closest('button')) window.dispatchEvent(new Event('ut:game-start')) }}>
+            <img src="/games/endless-runner/cover.jpg" alt="Neon endless runner cover art" loading="eager"
+              className="w-full max-w-[420px] aspect-video object-cover rounded-2xl border border-cyan-400/30 shadow-[0_0_40px_rgba(34,211,238,0.35)] mb-4 mx-auto" />
+            <h2 className="text-4xl sm:text-5xl font-black tracking-tighter bg-gradient-to-b from-cyan-300 via-sky-300 to-teal-300 bg-clip-text text-transparent">ENDLESS RUNNER</h2>
+            <p className="text-xs sm:text-sm text-slate-400 mt-1 mb-3">Run · Jump · Double-jump · Free</p>
+            <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-cyan-200">🏃 Auto-run</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-emerald-200">⬆ Double-jump</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-rose-200">🔴 Dodge spikes</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-violet-200">📱 Touch + keys</span>
             </div>
-            <p className="text-center text-xs text-slate-400 mt-4">👆 Tap anywhere or press Start to play</p>
+            {best > 0 && <p className="text-xs text-slate-500 mb-3">🏆 Best: {best}</p>}
+            <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))} className="px-8 py-3 rounded-full bg-gradient-to-r from-cyan-500 to-sky-500 text-white font-extrabold text-lg shadow-[0_0_30px_rgba(34,211,238,0.5)] hover:scale-105 transition">🎮 Start Running</button>
+            <p className="text-[11px] text-slate-500 mt-3">Space / ↑ / Tap to jump · Double-tap for double jump</p>
           </div>
         )}
         {playing && (
@@ -339,6 +344,13 @@ export default function games_endless_runner() {
               />
             </div>
             <p className="text-center text-xs text-slate-400">Space / ↑ / Tap to jump • Double-tap for double jump</p>
+            {/* Mobile jump button */}
+            {playing && !gameOver && (
+              <div className="sticky bottom-2 z-20 flex justify-center py-2">
+                <button onPointerDown={(e) => { e.preventDefault(); jump() }}
+                  className="w-20 h-20 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-3xl font-bold active:scale-95 flex items-center justify-center shadow-lg">⬆</button>
+              </div>
+            )}
           </>
         )}
         {gameOver && (

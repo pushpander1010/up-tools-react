@@ -116,6 +116,7 @@ export default function games_fruit_slice() {
   const gameOverRef = useRef(false)
   const lastFrameRef = useRef(0)
   const cssSizeRef = useRef({ w: 400, h: 500 })
+  const [showWelcome, setShowWelcome] = useState(true)
 
   const syncBest = useCallback((s) => {
     setBest(prev => {
@@ -150,7 +151,7 @@ export default function games_fruit_slice() {
     scoreRef.current = 0
     gameOverRef.current = false
     lastFrameRef.current = 0
-    setScore(0); setTimeLeft(GAME_DURATION); setGameOver(false); setPlaying(true)
+    setScore(0); setTimeLeft(GAME_DURATION); setGameOver(false); setPlaying(true); setShowWelcome(false)
 
     // Start spawning
     if (spawnRef.current) clearInterval(spawnRef.current)
@@ -340,26 +341,20 @@ export default function games_fruit_slice() {
     }
   }, [])
 
-  const handleStartTap = (e) => {
-    if (e.target.tagName === 'BUTTON') return
-    if (!playing) window.dispatchEvent(new Event('ut:game-start'))
-  }
-
   return (
     <GameShell
       name="Fruit Slice"
-      startAction={startGame} startLabel="🔪 Slice Fruits"
-      title="Fruit Slice — Play Free Fruit Ninja Style Game"
-      desc="Play Fruit Slice online for free. Slice fruits with your mouse or finger, avoid bombs, and score as high as you can in 60 seconds!"
+      startAction={startGame}
+      startLabel={playing ? '⟲ Restart' : '▶ Start'}
+      headerStats={<><span>Score <b className="text-white">{score}</b></span><span>Best <b className="text-orange-300">{best}</b></span><span>⏱ <b className={`${timeLeft <= 10 ? 'text-red-400' : 'text-slate-400'}`}>{timeLeft}s</b></span></>}
+      title="Fruit Slice — Slice Fruits Timer Challenge"
+      desc="Slice flying fruits with your mouse or finger, avoid bombs, and score as high as you can in 60 seconds."
       icon="🔪" iconBg="rgba(249,115,22,0.08)"
       category="fun" slug="games-fruit-slice"
       faq={[
         { q: "How do I play Fruit Slice?", a: "Click and drag (or touch and swipe) to slice fruits as they fly up. Avoid bombs or lose points!" },
         { q: "What happens if I hit a bomb?", a: "Hitting a bomb costs you 3 points. Try to avoid them while slicing fruits for maximum score." },
         { q: "How long is each game?", a: "Each game lasts 60 seconds. Slice as many fruits as possible before time runs out!" },
-        { q: "How do I play Fruit Slice — Play Free Fruit Ninja Style Game online free?", a: "Click Start and follow the on-screen steps. Use mouse, touch, or keyboard controls. No download needed." },
-        { q: "Can I play Fruit Slice — Play Free Fruit Ninja Style Game without downloading?", a: "Yes. This Fruit Slice — Play Free Fruit Ninja Style Game runs in your browser with no install. Free on mobile and desktop." },
-        { q: "Is this Fruit Slice — Play Free Fruit Ninja Style Game free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Fruits fly upward from the bottom of the screen in random arcs.",
@@ -377,33 +372,33 @@ export default function games_fruit_slice() {
     >
       <div className="min-w-0 space-y-5">
         {!playing && (
-          <div onClick={handleStartTap} className="cursor-pointer">
-            <div className="glass p-4">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="text-center">
-                  <div className="text-3xl font-extrabold text-white">{best}</div>
-                  <div className="text-xs text-slate-400 font-medium mt-0.5">Best Score</div>
+          <div className="glass p-3 overflow-hidden relative">
+            <div className="w-full rounded-lg bg-[#0a0a1a]" style={{ minHeight: 300 }} />
+            {showWelcome && (
+              <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-5 py-4 bg-[#050d1a]/92 backdrop-blur-[2px] overflow-y-auto"
+                onPointerDown={(e) => { if (e.target.closest('button')) return; window.dispatchEvent(new Event('ut:game-start')) }}>
+                <img src="/games/fruit-slice/cover.jpg" alt="Fruit Slice arcade cover art" loading="eager"
+                  className="w-full max-w-[420px] aspect-video object-cover rounded-2xl border border-orange-400/30 shadow-[0_0_40px_rgba(249,115,22,0.35)] mb-4" />
+                <h2 className="text-4xl sm:text-5xl font-black tracking-tighter bg-gradient-to-b from-orange-300 via-red-300 to-pink-300 bg-clip-text text-transparent">FRUIT SLICE</h2>
+                <p className="text-xs sm:text-sm text-slate-400 mt-1 mb-3">60-second timer · Slice fruits · Avoid bombs</p>
+                <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">
+                  <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-orange-200">🍎 10 fruit types</span>
+                  <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-rose-200">💣 Bomb penalty</span>
+                  <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-amber-200">⏱ 60s timer</span>
+                  <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-cyan-200">📱 Touch + mouse</span>
                 </div>
-                <div className="text-center">
-                  <div className="text-3xl font-extrabold text-white">{GAME_DURATION}s</div>
-                  <div className="text-xs text-slate-400 font-medium mt-0.5">Time Limit</div>
-                </div>
+                {best > 0 && <p className="text-xs text-amber-400 mb-2 font-bold">🏆 Best: {best} fruits</p>}
+                <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))} className="px-8 py-3 rounded-full bg-gradient-to-r from-orange-500 to-red-500 text-white font-extrabold text-lg shadow-[0_0_30px_rgba(249,115,22,0.5)] hover:scale-105 transition">▶ Start Game</button>
+                <p className="text-[11px] text-slate-500 mt-3">Click & drag to slice fruits</p>
               </div>
-            </div>
-            <p className="text-center text-xs text-slate-400 mt-3">👆 Tap anywhere to start slicing</p>
+            )}
           </div>
         )}
 
         {playing && (
           <>
             <div className="flex gap-3 items-center justify-between">
-              <div className="flex gap-3">
-                <div className="px-4 py-2 glass text-sm font-bold text-white">Score: {score}</div>
-                <div className="px-4 py-2 glass text-sm font-bold text-slate-400">Best: {best}</div>
-                <div className={`px-4 py-2 glass text-sm font-bold ${timeLeft <= 10 ? 'text-red-400 animate-pulse' : 'text-slate-400'}`}>
-                  ⏱ {timeLeft}s
-                </div>
-              </div>
+              <div />
               <button onClick={() => {
                 setPlaying(false); gameOverRef.current = true
                 if (animRef.current) cancelAnimationFrame(animRef.current)
@@ -435,10 +430,7 @@ export default function games_fruit_slice() {
                 <div className="text-3xl font-extrabold text-white mb-1">{score}</div>
                 <div className="text-sm text-slate-400 mb-3">fruits sliced in {GAME_DURATION}s</div>
                 {score >= best && score > 0 && <div className="text-sm text-yellow-400 font-bold mb-3">🌟 New Best Score!</div>}
-                <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))}
-                  className="px-6 py-3 rounded-xl text-sm font-bold bg-gradient-to-r from-orange-500 to-red-500 text-white hover:brightness-110 transition-all">
-                  🔪 Play Again
-                </button>
+                <p className="text-xs text-slate-400">Use the shell button above to play again</p>
               </div>
             )}
 

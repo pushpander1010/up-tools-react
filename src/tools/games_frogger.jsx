@@ -106,7 +106,7 @@ export default function games_frogger() {
   const startGame = useCallback(() => {
     const s = gRef.current
     s.frog = { x: 6, y: 12 }
-    s.score = 0; s.lives = 5; s.level = 1
+    s.score = 0; s.lives = 3; s.level = 1
     s.goalSlots = [false,false,false,false,false]
     s.invincible = 60
     s.playing = true; s.gameOver = false
@@ -526,18 +526,17 @@ export default function games_frogger() {
   return (
     <GameShell
       name="FROGGER"
-      startAction={startGame} startLabel="▶ Start" 
-      title="Frogger Game Online - Classic Arcade"
-      desc="Play the classic Frogger game online. Guide your frog across roads and rivers to reach safety. Dodge cars, ride logs. Keyboard and touch controls!"
+      startAction={startGame}
+      startLabel={playing && !gameOver ? '⟲ Restart' : '▶ Start'}
+      headerStats={<><span>Score <b className="text-white">{score}</b></span><span>Best <b className="text-green-300">{best}</b></span><span>❤️ <b className="text-red-300">{lives}</b></span></>}
+      title="Frogger — Classic Arcade Road Crossing Game"
+      desc="Guide your frog across roads and rivers to reach safety. Dodge cars, ride logs."
       icon="🐸" iconBg="rgba(34,197,94,0.08)"
       category="fun" slug="games-frogger"
       faq={[
         { q: "How do I play Frogger?", a: "Use arrow keys or WASD to move the frog. On mobile, swipe in the direction you want to go. Cross the road and river to reach the goal." },
         { q: "What happens when I hit a car?", a: "You lose a life. You have 3 lives total. When all lives are gone, the game is over." },
         { q: "How do I get high scores?", a: "Score points by moving forward, reaching goals (50 pts each), and completing levels (200 bonus). Fill all 5 goal slots to advance!" },
-        { q: "Can I play Frogger Game Online - Classic Arcade without downloading?", a: "Yes. This Frogger Game Online - Classic Arcade runs in your browser with no install. Free on mobile and desktop." },
-        { q: "How do I use this Frogger Game Online - Classic Arcade online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
-        { q: "Is this Frogger Game Online - Classic Arcade free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
       ]}
       howItWorks={[
         "Press Start or tap the canvas to begin.",
@@ -555,46 +554,57 @@ export default function games_frogger() {
     >
       <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
         <div className="flex-1 min-w-0 max-w-xl mx-auto space-y-5 overflow-hidden">
-        {/* Stats */}
-        <div className="glass p-4">
-          <div className="grid grid-cols-4 gap-4">
-            <div className="text-center">
-              <div className="text-2xl font-extrabold text-white">{score}</div>
-              <div className="text-xs text-slate-400 font-medium mt-0.5">Score</div>
+        {!playing && !gameOver && (
+          <div className="glass p-6 text-center overflow-y-auto max-h-[70vh]"
+            onClick={(e) => { if (!e.target.closest('button')) window.dispatchEvent(new Event('ut:game-start')) }}>
+            <img src="/games/frogger/cover.jpg" alt="Neon frogger cover art" loading="eager"
+              className="w-full max-w-[420px] aspect-video object-cover rounded-2xl border border-green-400/30 shadow-[0_0_40px_rgba(34,197,94,0.35)] mb-4 mx-auto" />
+            <h2 className="text-4xl sm:text-5xl font-black tracking-tighter bg-gradient-to-b from-green-300 via-emerald-300 to-teal-300 bg-clip-text text-transparent">FROGGER</h2>
+            <p className="text-xs sm:text-sm text-slate-400 mt-1 mb-3">Cross roads · Ride logs · Fill goals · Free</p>
+            <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-red-200">🚗 Dodge cars</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-amber-200">🪵 Ride logs</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-green-200">🎯 Fill goals</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-cyan-200">📱 Swipe + keys</span>
             </div>
-            <div className="text-center">
-              <div className="text-2xl font-extrabold text-green-400">{best}</div>
-              <div className="text-xs text-slate-400 font-medium mt-0.5">Best</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-extrabold text-red-400">{lives}</div>
-              <div className="text-xs text-slate-400 font-medium mt-0.5">Lives</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-extrabold text-yellow-400">{level}</div>
-              <div className="text-xs text-slate-400 font-medium mt-0.5">Level</div>
-            </div>
+            {best > 0 && <p className="text-xs text-slate-500 mb-3">🏆 Best: {best}</p>}
+            <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))} className="px-8 py-3 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 text-white font-extrabold text-lg shadow-[0_0_30px_rgba(34,197,94,0.5)] hover:scale-105 transition">▶ Start Game</button>
+            <p className="text-[11px] text-slate-500 mt-3">Arrow keys / WASD or swipe to move</p>
           </div>
-        </div>
-
-        {/* Controls */}
-        <div className="flex gap-3 justify-center">
-        </div>
-
-        {/* Canvas */}
-        <div className="glass p-3 flex justify-center overflow-hidden">
+        )}
+        {playing && (
+          <div className="glass p-3 flex justify-center overflow-hidden">
           <canvas ref={canvasRef}
             onPointerDown={handlePointerDown}
             onPointerUp={handlePointerUp}
             className="rounded-xl cursor-pointer"
             style={{ background: '#1a4a1a', touchAction: 'none' }}
           />
-        </div>
+          </div>
+        )}
 
         {/* Mobile D-pad hint */}
         <p className="text-center text-xs text-slate-400">
           Desktop: ← → ↑ ↓ or WASD | Mobile: Swipe to move
         </p>
+        {/* Mobile D-pad for touch play */}
+        {playing && !gameOver && (
+          <div className="sticky bottom-2 z-20 grid grid-cols-3 gap-1 w-44 mx-auto py-2">
+            <div />
+            <button onPointerDown={() => { const s = gRef.current; if (s.frog.y > 0) { s.frog.y--; playHop(); if (s.playing) { s.score += 1; setScore(s.score) } } }}
+              className="w-14 h-14 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xl font-bold active:scale-95 flex items-center justify-center">▲</button>
+            <div />
+            <button onPointerDown={() => { const s = gRef.current; if (s.frog.x > 0) { s.frog.x--; playHop() } }}
+              className="w-14 h-14 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xl font-bold active:scale-95 flex items-center justify-center">◀</button>
+            <div />
+            <button onPointerDown={() => { const s = gRef.current; if (s.frog.x < COLS - 1) { s.frog.x++; playHop() } }}
+              className="w-14 h-14 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xl font-bold active:scale-95 flex items-center justify-center">▶</button>
+            <div />
+            <button onPointerDown={() => { const s = gRef.current; if (s.frog.y < ROWS - 1) { s.frog.y++; playHop() } }}
+              className="w-14 h-14 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xl font-bold active:scale-95 flex items-center justify-center">▼</button>
+            <div />
+          </div>
+        )}
         </div>
       </div>
     </GameShell>

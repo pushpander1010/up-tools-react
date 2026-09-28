@@ -300,21 +300,31 @@ export default function games_car_dodger() {
     if (!playing) window.dispatchEvent(new Event('ut:game-start'))
   }
 
+  // Keyboard: Space/Enter to start/restart
+  useEffect(() => {
+    const handler = (e) => {
+      if ((e.key === ' ' || e.key === 'Enter') && (!playing || gameOver)) {
+        e.preventDefault()
+        window.dispatchEvent(new Event('ut:game-start'))
+      }
+    }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [playing, gameOver])
+
+
   return (
     <GameShell
       name="Highway Car Dodger"
-      startAction={startGame} startLabel="🚗 Start Dodging"
-      title="Highway Car Dodger — Play Free Racing Game Online"
-      desc="Play Highway Car Dodger online for free. Dodge traffic on a 4-lane highway, earn near-miss bonuses, and beat your high score in this fast-paced racing game."
+      startAction={startGame} startLabel={playing && !gameOver ? '⟲ Restart' : '▶ Start'}
+      headerStats={<><span>Score: {score}</span><span>Best: {best}</span></>}
+      title="Highway Car Dodger — Dodge Traffic and Rack Up Near-Misses"
+      desc="Dodge speeding traffic on a 4-lane highway. Earn bonus points for near-misses and see how far you can go without crashing."
       icon="🚗" iconBg="rgba(249,115,22,0.08)"
       category="fun" slug="games-car-dodger"
       faq={[
-        { q: "How do I play Highway Car Dodger?", a: "Use left/right arrow keys or tap the left/right side of the screen to change lanes. Dodge incoming traffic and earn near-miss bonuses by passing close to other cars." },
-        { q: "What is a near-miss bonus?", a: "When you narrowly avoid another car, you earn extra points! The closer you pass without crashing, the higher the bonus." },
-        { q: "How do I play Highway Car Dodger — Play Free Racing Game Online online free?", a: "Click Start and follow the on-screen steps. Use arrow keys or touch to change lanes. No download needed." },
-        { q: "Can I play Highway Car Dodger — Play Free Racing Game Online without downloading?", a: "Yes. This Highway Car Dodger — Play Free Racing Game Online runs in your browser with no install. Free on mobile and desktop." },
-        { q: "How do I use this Highway Car Dodger — Play Free Racing Game Online online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
-        { q: "Is this Highway Car Dodger — Play Free Racing Game Online free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
+        { q: "How do I play Highway Car Dodger?", a: "Use left/right arrow keys, A/D keys, or swipe to change lanes. Dodge incoming traffic and earn near-miss bonuses by passing close to other cars without crashing." },
+        { q: "What is a near-miss bonus?", a: "When you narrowly avoid another car, you earn 5 extra points! The closer you pass without crashing, the higher the reward. Watch for the audio cue!" },
       ]}
       howItWorks={[
         "Your car stays at the bottom — use left/right arrows or swipe to change lanes.",
@@ -332,14 +342,23 @@ export default function games_car_dodger() {
     >
       <div className="min-w-0 space-y-5">
         {!playing && !gameOver && (
-          <div onClick={handleStartTap} className="cursor-pointer">
-            <div className="glass p-4">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="text-center"><div className="text-2xl font-extrabold text-white">{best}</div><div className="text-xs text-slate-400 font-medium mt-0.5">Best Score</div></div>
-                <div className="text-center"><div className="text-2xl font-extrabold text-orange-400">🏎️</div><div className="text-xs text-slate-400 font-medium mt-0.5">Highway Dodger</div></div>
+          <div className="glass p-3 relative overflow-hidden rounded-2xl">
+            <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-5 py-8 bg-[#050d1a]/92 backdrop-blur-[2px] overflow-y-auto"
+              onClick={(e) => { if (e.target.closest('button')) return; window.dispatchEvent(new Event('ut:game-start')) }}>
+              <img src="/games/car-dodger/cover.jpg" alt="Car Dodger cover art" loading="eager"
+                className="w-full max-w-[420px] aspect-video object-cover rounded-2xl border border-orange-400/30 shadow-[0_0_40px_rgba(249,115,22,0.35)] mb-4" />
+              <h2 className="text-3xl font-black tracking-tighter bg-gradient-to-b from-orange-300 via-amber-300 to-yellow-300 bg-clip-text text-transparent">HIGHWAY CAR DODGER</h2>
+              <p className="text-xs text-slate-400 mt-1 mb-3">Dodge traffic · Near-miss bonuses · Free</p>
+              <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">
+                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-orange-200">🏎️ 4-lane highway</span>
+                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-yellow-200">✨ Near-miss bonus</span>
+                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-red-200">📈 Speed increases</span>
+                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-green-200">📱 Swipe + keys</span>
               </div>
+              {best > 0 && <p className="text-xs text-slate-400 mb-2">🏆 Best: {best}</p>}
+              <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))} className="px-8 py-3 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 text-white font-extrabold text-lg shadow-[0_0_30px_rgba(249,115,22,0.5)] hover:scale-105 transition">▶ Start Game</button>
+              <p className="text-[11px] text-slate-500 mt-2">Tap anywhere or press Start</p>
             </div>
-            <p className="text-center text-xs text-slate-400 mt-4">👆 Tap anywhere or press Start to play</p>
           </div>
         )}
         {playing && (
@@ -356,6 +375,10 @@ export default function games_car_dodger() {
                 onTouchStart={handleTouchStart}
                 onTouchEnd={handleTouchEnd}
               />
+            </div>
+            <div className="sticky bottom-2 z-20 flex justify-center gap-4 py-2">
+              <button onClick={() => moveLane(-1)} className="px-6 py-3 rounded-full bg-white/[0.08] backdrop-blur-sm border border-white/10 text-cyan-100 font-bold text-lg active:scale-95 transition">← Left</button>
+              <button onClick={() => moveLane(1)} className="px-6 py-3 rounded-full bg-white/[0.08] backdrop-blur-sm border border-white/10 text-cyan-100 font-bold text-lg active:scale-95 transition">Right →</button>
             </div>
             <p className="text-center text-xs text-slate-400">← → Arrow keys or swipe to change lanes</p>
           </>

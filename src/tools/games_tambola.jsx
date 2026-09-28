@@ -249,7 +249,8 @@ export default function games_tambola() {
   return (
     <GameShell
       name="Tambola Housie"
-      startAction={startGame} startLabel="🎯 Play Tambola"
+      startAction={startGame} startLabel={(!playing || gameOver) ? '▶ Start' : '⟲ Restart'}
+      headerStats={<><span>Called <b className="text-purple-300">{calledNumbers.length}</b></span><span className="text-slate-400">/90</span>{best < 90 && <span className="text-slate-400">Best: {best}</span>}</>}
       title="Tambola Housie Online — Play Free Number Caller Game"
       desc="Play Tambola Housie online for free. Auto number caller 1-90, mark your ticket, and win with Early Five, Top Line, or Full House!"
       icon="🎯" iconBg="rgba(168,85,247,0.08)"
@@ -258,9 +259,8 @@ export default function games_tambola() {
         { q: "How do I play Tambola Housie?", a: "Numbers 1-90 are called randomly. Mark matching numbers on your ticket. Win with Early Five, Top Line, or Full House!" },
         { q: "What is a Full House?", a: "Full House means all 15 numbers on your ticket are marked. It's the ultimate win in Tambola!" },
         { q: "What is Early Five?", a: "Early Five is won when you mark the first 5 numbers on your ticket that have been called. It's a bonus win!" },
-        { q: "How do I play Tambola Housie Online — Play Free Number Caller Game online free?", a: "Click Start and follow the on-screen steps. Use mouse, touch, or keyboard controls. No download needed." },
-        { q: "Can I play Tambola Housie Online — Play Free Number Caller Game without downloading?", a: "Yes. This Tambola Housie Online — Play Free Number Caller Game runs in your browser with no install. Free on mobile and desktop." },
-        { q: "Is this Tambola Housie Online — Play Free Number Caller Game free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
+        { q: "How do I mark numbers on my ticket?", a: "When a number is called, it highlights in yellow on your ticket. Tap it to mark it — marked numbers turn green." },
+        { q: "What's the difference between Auto and manual calling?", a: "Auto mode calls a new number every 2 seconds. Manual mode lets you call one at a time with the Call button or Space/Enter key." },
       ]}
       howItWorks={[
         "A random number between 1-90 is called each round.",
@@ -278,26 +278,29 @@ export default function games_tambola() {
     >
       <div className="min-w-0 space-y-5">
         {!playing && (
-          <div onClick={handleStartTap} className="cursor-pointer">
-            <div className="glass p-4">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="text-center">
-                  <div className="text-3xl font-extrabold text-white">{best < 90 ? best : '—'}</div>
-                  <div className="text-xs text-slate-400 font-medium mt-0.5">Best Calls to Win</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-extrabold text-white">90</div>
-                  <div className="text-xs text-slate-400 font-medium mt-0.5">Numbers Range</div>
-                </div>
-              </div>
+          <div className="relative overflow-y-auto" onClick={handleStartTap}>
+            <img src="/games/tambola/cover.jpg" alt="Tambola Housie number caller game" loading="eager"
+              className="w-full aspect-video object-cover rounded-2xl border border-purple-400/30 shadow-[0_0_40px_rgba(168,85,247,0.35)] mb-4" />
+            <h2 className="text-4xl sm:text-5xl font-black tracking-tighter text-center bg-gradient-to-b from-purple-300 via-fuchsia-300 to-pink-300 bg-clip-text text-transparent mb-2">TAMBOLA</h2>
+            <p className="text-xs sm:text-sm text-slate-400 text-center mb-3">Numbers 1–90 · Mark & win · Free</p>
+            <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-purple-200">🎯 Auto caller</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-yellow-200">⭐ Early Five</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-green-200">🏠 Full House</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-blue-200">📱 Touch to mark</span>
             </div>
-            <p className="text-center text-xs text-slate-400 mt-3">👆 Tap anywhere to start playing</p>
+            {best < 90 && <p className="text-center text-xs text-slate-400 mb-3">🏆 Best: {best} calls to win</p>}
+            <div className="text-center">
+              <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))} className="px-8 py-3 rounded-full bg-gradient-to-r from-purple-500 to-fuchsia-500 text-white font-extrabold text-lg shadow-[0_0_30px_rgba(168,85,247,0.5)] hover:scale-105 transition">▶ Start Game</button>
+            </div>
+            <p className="text-center text-[11px] text-slate-500 mt-3">Numbers 1–90 · Mark your ticket · Win prizes</p>
           </div>
         )}
 
         {playing && (
           <>
-            <div className="flex gap-2 items-center justify-between flex-wrap">
+            <div className="sticky bottom-2 z-20 bg-[#030b14]/95 backdrop-blur-sm rounded-2xl p-3 border border-white/[0.06]">
+              <div className="flex gap-2 items-center justify-between flex-wrap">
               <div className="flex gap-2 items-center flex-wrap">
                 {currentNumber && (
                   <div className="w-14 h-14 rounded-full bg-gradient-to-br from-purple-500 to-fuchsia-600 flex items-center justify-center text-white text-xl font-extrabold shadow-lg shadow-purple-500/20">
@@ -319,6 +322,7 @@ export default function games_tambola() {
                   className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-all">
                   ⟵ Back
                 </button>
+              </div>
               </div>
             </div>
 
