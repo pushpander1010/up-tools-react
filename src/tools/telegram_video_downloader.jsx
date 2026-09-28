@@ -1,4 +1,5 @@
 import ToolLayout from '../components/ToolLayout'
+import DlBox from '../components/DlBox'
 
 const Steps = [
   {
@@ -54,6 +55,10 @@ export default function telegram_video_downloader() {
       }}
     >
       <div className="max-w-3xl mx-auto space-y-6">
+        <DlBox accent="sky" filePrefix="telegram-media" audio={false}
+          placeholder="Paste t.me message link here..."
+          buttonLabel="📥 Download" loadingLabel="⏳ Finding..."
+          services={[]} />
         <div className="rounded-2xl bg-amber-500/10 border border-amber-500/20 p-4">
           <p className="text-sm text-amber-300"><strong>⚠️ Only download content you have permission to download.</strong> Respect copyright and creators' rights.</p>
         </div>

@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react'
 import ToolLayout from '../components/ToolLayout'
 import useJumpToResult from '../hooks/useJumpToResult'
+import DlBox from '../components/DlBox'
 
 const QUALITIES = [
   { id: '1080p', label: '1080p', icon: '🎬', desc: 'Full HD' },
@@ -61,6 +62,13 @@ export default function tiktok_video_downloader() {
       }}
     >
       <div className="max-w-2xl mx-auto space-y-6">
+        <DlBox accent="cyan" filePrefix="tiktok-video"
+          placeholder="https://www.tiktok.com/@user/video/..."
+          buttonLabel="🎬 Download Video" loadingLabel="⏳ Finding video..."
+          services={[
+            { label: 'Download via SnapTik (no watermark)', href: 'https://snaptik.app/' },
+            { label: 'Download via SSSTik', href: 'https://ssstik.io/' },
+          ]} />
         {/* Privacy notice */}
         <div className="bg-amber-500/10 border border-amber-500/20 rounded-2xl p-4">
           <p className="text-xs text-amber-400">

@@ -1,4 +1,5 @@
 import ToolLayout from '../components/ToolLayout'
+import DlBox from '../components/DlBox'
 
 const Steps = [
   {
@@ -53,6 +54,10 @@ export default function youtube_audio_downloader() {
       }}
     >
       <div className="max-w-3xl mx-auto space-y-6">
+        <DlBox accent="red" filePrefix="youtube-audio"
+          placeholder="Paste YouTube video or Shorts URL here..."
+          buttonLabel="🎵 Get MP3" loadingLabel="⏳ Finding audio..."
+          services={[]} />
         <div className="rounded-2xl bg-amber-500/10 border border-amber-500/20 p-4">
           <p className="text-sm text-amber-300"><strong>⚠️ Copyright notice:</strong> Only download audio you have the right to keep. Respect artists and copyright holders — don't redistribute downloaded music.</p>
         </div>

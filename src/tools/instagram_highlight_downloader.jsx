@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react'
 import ToolLayout from '../components/ToolLayout'
 import useJumpToResult from '../hooks/useJumpToResult'
+import DlBox from '../components/DlBox'
 
 export default function instagram_highlight_downloader() {
   const { ref: resultRef, jumpTo } = useJumpToResult()
@@ -58,6 +59,13 @@ export default function instagram_highlight_downloader() {
       }}
     >
       <div className="max-w-2xl mx-auto space-y-6">
+        <DlBox accent="pink" filePrefix="instagram-highlight"
+          placeholder="https://www.instagram.com/s/..."
+          buttonLabel="Find Highlight" loadingLabel="⏳ Finding..."
+          services={[
+            { label: 'Download via SaveInsta', href: 'https://www.saveinsta.app/' },
+            { label: 'Download via iGram', href: 'https://igram.io/' },
+          ]} />
         <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-5 space-y-4">
           <label className="block text-sm font-semibold text-slate-300 mb-2">Instagram Username</label>
           <input type="text" value={username} onChange={e => { setUsername(e.target.value); setResult(null); setError('') }}

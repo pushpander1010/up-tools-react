@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react'
 import ToolLayout from '../components/ToolLayout'
 import useJumpToResult from '../hooks/useJumpToResult'
+import DlBox from '../components/DlBox'
 
 const FORMATS = [
   { key: '1080', label: 'MP4 - 1080p (Full HD)' },
@@ -55,6 +56,10 @@ export default function youtube_video_downloader() {
       }}
     >
       <div className="max-w-2xl mx-auto space-y-6">
+        <DlBox accent="red" filePrefix="youtube-video"
+          placeholder="Paste YouTube video URL here..."
+          buttonLabel="⬇️ Download" loadingLabel="⏳ Finding video..."
+          services={[]} />
         <input
           type="text"
           value={url}

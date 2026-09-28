@@ -1,4 +1,5 @@
 import ToolLayout from '../components/ToolLayout'
+import DlBox from '../components/DlBox'
 
 const Steps = [
   {
@@ -54,6 +55,12 @@ export default function snapchat_video_downloader() {
       }}
     >
       <div className="max-w-3xl mx-auto space-y-6">
+        <DlBox accent="yellow" filePrefix="snapchat-video"
+          placeholder="Paste Snapchat Spotlight/story link here..."
+          buttonLabel="👻 Download" loadingLabel="⏳ Finding..."
+          services={[
+            { label: 'Download via SnapSaver', href: 'https://snapsaver.app/' },
+          ]} />
         <div className="rounded-2xl bg-amber-500/10 border border-amber-500/20 p-4">
           <p className="text-sm text-amber-300"><strong>⚠️ Privacy &amp; Legal Notice:</strong> Only save content you have permission to download. Respect others' privacy — Snapchat marks saved snaps, and sharing someone's content without consent may violate their privacy.</p>
         </div>

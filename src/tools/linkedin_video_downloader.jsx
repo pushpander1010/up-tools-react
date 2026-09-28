@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react'
 import ToolLayout from '../components/ToolLayout'
 import useJumpToResult from '../hooks/useJumpToResult'
+import DlBox from '../components/DlBox'
 
 const QUALITIES = [
   { key: '720p', label: '720p HD', icon: '🎬' },
@@ -65,6 +66,13 @@ export default function linkedin_video_downloader() {
       }}
     >
       <div className="max-w-2xl mx-auto space-y-6">
+        <DlBox accent="sky" filePrefix="linkedin-video"
+          placeholder="Paste LinkedIn video URL here..."
+          buttonLabel="⬇️ Download" loadingLabel="⏳ Finding video..."
+          services={[
+            { label: 'Download via SaveFrom', href: 'https://savefrom.net/' },
+            { label: 'Download via SnapSave', href: 'https://snapsave.app/' },
+          ]} />
         {/* Warning */}
         <div className="rounded-xl border border-amber-500/20 bg-amber-500/5 p-4 text-sm text-amber-300">
           ⚠️ <strong>Privacy Notice:</strong> Only download content you have permission to download. Respect copyright and creators' rights.

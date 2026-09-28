@@ -54,6 +54,13 @@ export default function instagram_video_downloader() {
       }}
     >
       <div className="max-w-2xl mx-auto space-y-6">
+        <DlBox accent="indigo" filePrefix="instagram-video"
+          placeholder="https://www.instagram.com/reel/... or /p/..."
+          buttonLabel="🎥 Find Video" loadingLabel="⏳ Finding..."
+          services={[
+            { label: 'Download via SaveInsta', href: 'https://www.saveinsta.app/' },
+            { label: 'Download via iGram', href: 'https://igram.io/' },
+          ]} />
         <div className="rounded-2xl border border-indigo-500/30 bg-indigo-500/10 p-4">
           <p className="text-sm text-indigo-300 font-semibold">🎥 Save Instagram videos, reels & IGTV in MP4 — plus photos from public accounts, free, no login.</p>
         </div>

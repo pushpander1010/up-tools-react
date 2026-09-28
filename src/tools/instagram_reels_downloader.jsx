@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react'
 import ToolLayout from '../components/ToolLayout'
 import useJumpToResult from '../hooks/useJumpToResult'
+import DlBox from '../components/DlBox'
 
 export default function instagram_reels_downloader() {
   const { ref: resultRef, jumpTo } = useJumpToResult()
@@ -54,6 +55,13 @@ export default function instagram_reels_downloader() {
       }}
     >
       <div className="max-w-2xl mx-auto space-y-6">
+        <DlBox accent="pink" filePrefix="instagram-reel"
+          placeholder="https://www.instagram.com/reel/..."
+          buttonLabel="🎬 Find Reel" loadingLabel="⏳ Finding..."
+          services={[
+            { label: 'Download Reel via SaveInsta', href: 'https://www.saveinsta.app/' },
+            { label: 'Download Reel via SnapSave', href: 'https://www.snapsave.app/' },
+          ]} />
         <div className="rounded-2xl border border-pink-500/30 bg-pink-500/10 p-4">
           <p className="text-sm text-pink-300 font-semibold">🎬 Save Instagram Reels in high quality — video and images from public accounts, free, no login.</p>
         </div>

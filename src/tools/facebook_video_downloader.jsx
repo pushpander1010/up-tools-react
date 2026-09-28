@@ -153,8 +153,8 @@ export default function facebook_video_downloader() {
               <ul className="space-y-2 text-sm text-slate-400">
                 <li>✅ Facebook Videos</li>
                 <li>✅ Facebook Reels</li>
-                <li>✅ Facebook Stories</li>
                 <li>✅ Facebook Live Videos</li>
+                <li>✅ Stories, Status videos & photos</li>
                 <li>✅ Shared Videos</li>
               </ul>
             </div>

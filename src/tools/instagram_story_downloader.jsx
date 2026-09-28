@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react'
 import ToolLayout from '../components/ToolLayout'
 import useJumpToResult from '../hooks/useJumpToResult'
+import DlBox from '../components/DlBox'
 
 export default function instagram_story_downloader() {
   const { ref: resultRef, jumpTo } = useJumpToResult()
@@ -58,6 +59,13 @@ export default function instagram_story_downloader() {
       }}
     >
       <div className="max-w-2xl mx-auto space-y-6">
+        <DlBox accent="pink" filePrefix="instagram-story"
+          placeholder="https://www.instagram.com/stories/..."
+          buttonLabel="Find Story" loadingLabel="⏳ Finding..."
+          services={[
+            { label: 'Download via SaveInsta', href: 'https://www.saveinsta.app/' },
+            { label: 'Download via iGram', href: 'https://igram.io/' },
+          ]} />
         <div className="rounded-2xl border border-pink-500/30 bg-pink-500/10 p-4">
           <p className="text-sm text-pink-300 font-semibold">📥 Save Instagram stories, posts & reels — photos and videos from public accounts, free, no sign-up.</p>
         </div>

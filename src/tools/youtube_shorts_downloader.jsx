@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react'
 import ToolLayout from '../components/ToolLayout'
 import useJumpToResult from '../hooks/useJumpToResult'
+import DlBox from '../components/DlBox'
 
 const YT_REGEX = /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
 
@@ -47,6 +48,10 @@ export default function youtube_shorts_downloader() {
       }}
     >
       <div className="max-w-2xl mx-auto space-y-4">
+        <DlBox accent="red" filePrefix="youtube-short"
+          placeholder="https://youtube.com/shorts/..."
+          buttonLabel="📥 Download" loadingLabel="⏳ Finding..."
+          services={[]} />
         {/* Input */}
         <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4 space-y-3">
           <div>

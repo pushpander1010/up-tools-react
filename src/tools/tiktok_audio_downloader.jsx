@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react'
 import ToolLayout from '../components/ToolLayout'
 import useJumpToResult from '../hooks/useJumpToResult'
+import DlBox from '../components/DlBox'
 
 const QUALITIES = [
   { id: '320', label: '320 kbps', icon: '🎵', desc: 'Highest quality' },
@@ -56,6 +57,13 @@ export default function tiktok_audio_downloader() {
       }}
     >
       <div className="max-w-2xl mx-auto space-y-6">
+        <DlBox accent="cyan" filePrefix="tiktok-audio"
+          placeholder="https://www.tiktok.com/@user/video/..."
+          buttonLabel="🎵 Get Audio" loadingLabel="⏳ Finding audio..."
+          services={[
+            { label: 'Download via SnapTik (MP3)', href: 'https://snaptik.app/' },
+            { label: 'Download via SSSTik (MP3)', href: 'https://ssstik.io/' },
+          ]} />
         {/* Privacy notice */}
         <div className="bg-amber-500/10 border border-amber-500/20 rounded-2xl p-4">
           <p className="text-xs text-amber-400">
