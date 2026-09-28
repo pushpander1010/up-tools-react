@@ -146,11 +146,15 @@ export default function GameShell({
     const go = () => {
       try {
         if(userScrolled.current) return
-        // Anchor the board/button itself (not the game top): the canvas holds
-        // the welcome overlay + Start button, so centering it guarantees the
-        // button is actually visible. Falls back to the Start button.
+        // Dynamic: find the REAL Start button in the DOM and center it.
+        // Game overlays render "▶ Start Game"; the control bar has Start/Restart.
         const root = resultRef.current
-        const el = (root && root.querySelector('canvas')) || startBtnRef.current || root
+        if(!root) return
+        const btns = Array.from(root.querySelectorAll('button'))
+        const txt = (b) => (b.textContent || '')
+        const el = btns.find((b) => /start game/i.test(txt(b)))
+          || btns.find((b) => /start|restart|play/i.test(txt(b)))
+          || root.querySelector('canvas') || root
         el?.scrollIntoView({ behavior: 'smooth', block: 'center' })
       } catch {}
     }
