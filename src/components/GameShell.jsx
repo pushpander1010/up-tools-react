@@ -134,17 +134,20 @@ export default function GameShell({
     return () => window.removeEventListener('ut:game-start', h)
   }, [])
 
-  // Auto-scroll to the Start button shortly after the page opens, so the
-  // game is front-and-center without the user hunting for it. Skipped when
-  // the user already scrolled (e.g. back-button restores position).
+  // Auto-scroll the game into view shortly after the page opens, twice: late
+  // loaders (ads, images, SEO furniture) shift layout after the first scroll.
+  // Cancelled the moment the user scrolls themselves.
+  const userScrolled = useRef(false)
   useEffect(() => {
-    const t = setTimeout(() => {
-      try {
-        if ((window.scrollY || 0) > 120) return
-        controlsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
-      } catch {}
-    }, 450)
-    return () => clearTimeout(t)
+    const mark = () => { userScrolled.current = true }
+    window.addEventListener('wheel', mark, { passive: true })
+    window.addEventListener('touchmove', mark, { passive: true })
+    const go = () => {
+      try { if(!userScrolled.current) resultRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }) } catch {}
+    }
+    const t1 = setTimeout(go, 450)
+    const t2 = setTimeout(go, 1800)
+    return () => { clearTimeout(t1); clearTimeout(t2); window.removeEventListener('wheel', mark); window.removeEventListener('touchmove', mark) }
   }, [])
 
   // Publish the board's available height for canvas games.
@@ -211,7 +214,7 @@ export default function GameShell({
         faq={faq} howItWorks={howItWorks} schema={schema}
       >
         <InterstitialAd show={showAd} onDismiss={onAdDismiss} countdown={3} />
-        <div ref={resultRef} className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
+        <div ref={resultRef} className="flex gap-4 max-w-6xl mx-auto overflow-hidden scroll-mt-24">
           <div className="hidden lg:block w-[160px] shrink-0 sticky top-24 self-start">
             <GameAdSlot slot={AD_SLOTS.railLeft} format="vertical" className="mt-2" width={160} height={600} />
           </div>
