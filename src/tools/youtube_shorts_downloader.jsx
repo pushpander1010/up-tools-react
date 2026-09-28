@@ -1,26 +1,7 @@
-import { useState, useCallback } from 'react'
 import ToolLayout from '../components/ToolLayout'
-import useJumpToResult from '../hooks/useJumpToResult'
 import DlBox from '../components/DlBox'
 
-const YT_REGEX = /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
-
 export default function youtube_shorts_downloader() {
-  const { ref: resultRef, jumpTo } = useJumpToResult()
-  const [url, setUrl] = useState('')
-  const [quality, setQuality] = useState('720')
-  const [showWidget, setShowWidget] = useState(false)
-  const [error, setError] = useState('')
-
-  const download = useCallback(() => {
-    if (!url.trim()) { setError('Please paste a YouTube URL'); return }
-    const match = url.match(YT_REGEX)
-    if (!match) { setError('Please enter a valid YouTube URL'); return }
-    setError('')
-    setShowWidget(true)
-    jumpTo()
-  }, [url, jumpTo])
-
   return (
     <ToolLayout
       title="YouTube Shorts Downloader"
@@ -28,17 +9,17 @@ export default function youtube_shorts_downloader() {
       icon="📱" iconBg="rgba(239,68,68,0.08)"
       category="social" slug="youtube-shorts-downloader"
       faq={[
-        { q: "How do I download YouTube Shorts online free?", a: "Paste the Shorts link above, pick 360p, 720p or 1080p quality, and click Download. The video saves as MP4, free with no sign-up." },
-        { q: "How do I download YouTube Shorts in HD 1080p?", a: "Paste the shorts URL, select 1080p quality, and download. HD quality is available when the original Short was uploaded in HD." },
-        { q: "Can I download YouTube Shorts on mobile?", a: "Yes. Open this page in your phone browser, paste the Shorts link, choose quality, and save the MP4 directly to your device." },
+        { q: "How do I download YouTube Shorts online free?", a: "Paste the Shorts link above and click Download. If our server is blocked, use one of the converter buttons. The video saves as MP4, free with no sign-up." },
+        { q: "How do I download YouTube Shorts in HD 1080p?", a: "Paste the shorts URL and use a converter below, then select 1080p quality. HD quality is available when the original Short was uploaded in HD." },
+        { q: "Can I download YouTube Shorts on mobile?", a: "Yes. Open this page in your phone browser, paste the Shorts link, and save the MP4 directly to your device." },
         { q: "Do I need an app to download Shorts?", a: "No app needed. This online downloader works in any browser on Android, iPhone, and desktop." },
         { q: "Is the YouTube Shorts downloader free?", a: "Yes, completely free with no login. Download unlimited Shorts videos online." },
         { q: "What format do Shorts download in?", a: "MP4 video in 360p, 720p, or 1080p HD. MP4 plays on every phone, tablet, and computer." },
       ]}
       howItWorks={[
         "Paste a YouTube Shorts URL in the input field.",
-        "Select your preferred video quality.",
-        "Click Download to process the video.",
+        "Click Download.",
+        "If our server is blocked, use one of the converter buttons.",
       ]}
       schema={{
         "@context": "https://schema.org", "@type": "SoftwareApplication",
@@ -51,59 +32,11 @@ export default function youtube_shorts_downloader() {
         <DlBox accent="red" filePrefix="youtube-short"
           placeholder="https://youtube.com/shorts/..."
           buttonLabel="📥 Download" loadingLabel="⏳ Finding..."
-          services={[]} />
-        {/* Input */}
-        <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4 space-y-3">
-          <div>
-            <label className="block text-xs font-bold text-slate-400 mb-1">YouTube Shorts URL</label>
-            <input type="text" value={url} onChange={e => { setUrl(e.target.value); setError('') }}
-              placeholder="https://youtube.com/shorts/..."
-              className="w-full bg-black/20 border-2 border-white/[0.08] rounded-xl px-4 py-3 text-sm outline-none focus:border-red-500/40 transition-all placeholder:text-slate-600" />
-          </div>
-
-          <div>
-            <label className="block text-xs font-bold text-slate-400 mb-1">Quality</label>
-            <div className="flex gap-2">
-              {['360', '720', '1080'].map(q => (
-                <button key={q} onClick={() => setQuality(q)}
-                  className={`flex-1 py-2 rounded-xl text-sm font-bold transition-all border ${quality === q ? 'bg-red-500/15 border-red-500/30 text-red-400' : 'bg-white/[0.06] border-white/[0.08] text-slate-400'}`}>
-                  {q}p
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {error && <div className="text-xs text-red-400">{error}</div>}
-
-          <button onClick={download}
-            className="glow-btn w-full py-3 rounded-xl text-sm font-bold"
-            style={{ background: 'linear-gradient(135deg, #ef4444, #dc2626)' }}>
-            📥 Download
-          </button>
-        </div>
-
-        {/* Widget */}
-        {showWidget && (
-          <div ref={resultRef} className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4">
-            <div className="text-xs font-bold text-slate-400 mb-3">📥 Download Widget</div>
-            <div className="bg-black/20 rounded-xl p-4 text-center">
-              <p className="text-sm text-slate-400 mb-3">Click the button below to proceed with download:</p>
-              <a href={`https://loader.to/api/button/?url=${encodeURIComponent(url)}&f=mp4&color=ff0000`}
-                target="_blank" rel="noopener noreferrer"
-                className="inline-block px-6 py-3 rounded-xl text-sm font-bold bg-red-500/20 text-red-400 border border-red-500/30 hover:bg-red-500/30 transition-all">
-                🎬 Download {quality}p Video
-              </a>
-              <p className="text-xs text-slate-600 mt-3">Opens in a new tab. Follow the instructions there.</p>
-            </div>
-          </div>
-        )}
-
-        {!showWidget && (
-          <div className="text-center py-12 rounded-3xl border-2 border-dashed border-white/8 bg-white/[0.01]">
-            <div className="text-4xl mb-3 opacity-20">📱</div>
-            <p className="text-sm text-slate-600 font-medium">Paste a YouTube Shorts URL to download</p>
-          </div>
-        )}
+          fallbackText="YouTube is blocking our server right now. Paste your Shorts link into one of these free converters instead:"
+          services={[
+            { label: 'Convert via Y2Mate (MP4 + MP3)', href: 'https://www.y2mate.com/' },
+            { label: 'Download via SaveFrom', href: 'https://savefrom.net/' },
+          ]} />
       </div>
     </ToolLayout>
   )

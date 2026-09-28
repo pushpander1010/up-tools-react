@@ -57,7 +57,11 @@ export default function youtube_audio_downloader() {
         <DlBox accent="red" filePrefix="youtube-audio"
           placeholder="Paste YouTube video or Shorts URL here..."
           buttonLabel="🎵 Get MP3" loadingLabel="⏳ Finding audio..."
-          services={[]} />
+          fallbackText="YouTube is blocking our server right now. Paste your link into one of these free converters instead:"
+          services={[
+            { label: 'Convert via YTMP3 (MP3)', href: 'https://ytmp3s.com/' },
+            { label: 'Convert via Y2Mate (MP4 + MP3)', href: 'https://www.y2mate.com/' },
+          ]} />
         <div className="rounded-2xl bg-amber-500/10 border border-amber-500/20 p-4">
           <p className="text-sm text-amber-300"><strong>⚠️ Copyright notice:</strong> Only download audio you have the right to keep. Respect artists and copyright holders — don't redistribute downloaded music.</p>
         </div>
