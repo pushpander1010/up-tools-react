@@ -138,12 +138,21 @@ export default function GameShell({
   // loaders (ads, images, SEO furniture) shift layout after the first scroll.
   // Cancelled the moment the user scrolls themselves.
   const userScrolled = useRef(false)
+  const startBtnRef = useRef(null)
   useEffect(() => {
     const mark = () => { userScrolled.current = true }
     window.addEventListener('wheel', mark, { passive: true })
     window.addEventListener('touchmove', mark, { passive: true })
     const go = () => {
-      try { if(!userScrolled.current) resultRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }) } catch {}
+      try {
+        if(userScrolled.current) return
+        // Anchor the board/button itself (not the game top): the canvas holds
+        // the welcome overlay + Start button, so centering it guarantees the
+        // button is actually visible. Falls back to the Start button.
+        const root = resultRef.current
+        const el = (root && root.querySelector('canvas')) || startBtnRef.current || root
+        el?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      } catch {}
     }
     const t1 = setTimeout(go, 450)
     const t2 = setTimeout(go, 1800)
@@ -223,7 +232,7 @@ export default function GameShell({
                 glance away — no scrolling to the bottom, on page or fullscreen. */}
             <div ref={controlsRef} className={`z-30 -mx-1 px-1 py-2 bg-[#030b14]/95 backdrop-blur-sm ${fs ? '' : 'sticky top-[68px]'}`}>
               <div className="flex flex-wrap justify-center items-center gap-2 md:gap-3">
-                <button onClick={handleStart} className="px-6 py-2.5 rounded-full bg-white/[0.08] border border-white/10 text-cyan-100 font-bold text-sm hover:bg-white/15">{startLabel}</button>
+                <button ref={startBtnRef} onClick={handleStart} className="px-6 py-2.5 rounded-full bg-white/[0.08] border border-white/10 text-cyan-100 font-bold text-sm hover:bg-white/15">{startLabel}</button>
                 <button onClick={goFullscreen} className="px-6 py-2.5 rounded-full bg-white/[0.08] border border-white/10 text-cyan-100 font-bold text-sm hover:bg-white/15">⛶ Fullscreen</button>
                 {fs && <button onClick={exit} className="px-6 py-2.5 rounded-full bg-rose-500/20 border border-rose-400/40 text-rose-100 font-bold text-sm hover:bg-rose-500/30">✕ Exit game</button>}
                 {extraButtons}
