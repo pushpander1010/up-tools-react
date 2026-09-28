@@ -134,6 +134,19 @@ export default function GameShell({
     return () => window.removeEventListener('ut:game-start', h)
   }, [])
 
+  // Auto-scroll to the Start button shortly after the page opens, so the
+  // game is front-and-center without the user hunting for it. Skipped when
+  // the user already scrolled (e.g. back-button restores position).
+  useEffect(() => {
+    const t = setTimeout(() => {
+      try {
+        if ((window.scrollY || 0) > 120) return
+        controlsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      } catch {}
+    }, 450)
+    return () => clearTimeout(t)
+  }, [])
+
   // Publish the board's available height for canvas games.
   // In fs mode the root is fixed inset-0, so we can measure real chrome
   // (header + control bar + banner + footer + paddings) and tell games the
