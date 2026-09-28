@@ -408,6 +408,13 @@ export default function games_pac_man() {
     touchRef.current = { on: false, sx: 0, sy: 0, pid: null }
   }, [])
 
+  /* ── D-pad steering (mobile buttons) ── */
+  const steer = useCallback((x, y) => {
+    const s = g.current
+    if (!s || !s.running) return
+    s.pac.nextDir = { x, y }
+  }, [])
+
   /* ── lifecycle ── */
   useEffect(() => {
     g.current = { running: false, W: 0, H: 0, cell: 0, dpr: 1, maze: MAZE.map(r=>[...r]),
@@ -429,18 +436,18 @@ export default function games_pac_man() {
   return (
     <GameShell
       name="PAC-MAN"
-      startAction={startGame} startLabel="▶ Start" 
+      startAction={startGame} startLabel={phase === 'idle' ? '▶ Start' : '⟲ Restart'}
+      headerStats={<><span>Score <b className="text-white">{score}</b></span><span>Best <b className="text-yellow-300">{best}</b></span><span><b className="text-red-400">{'❤️'.repeat(Math.max(0, lives))}</b></span></>}
       title="Pac-Man Online - Classic Arcade Game"
-      desc="Pac-Man Online - Classic Arcade Game - play the classic Pac-Man arcade game in your, online free. Play online free, no download. Works on mobile and desktop."
+      desc="Play Pac-Man online free — chomp dots, dodge Blinky, Pinky, Inky and Clyde, and chain power pellets. Classic maze arcade with no download, on mobile and desktop."
       icon="👾" iconBg="rgba(250,204,21,0.08)"
       category="fun" slug="games-pac-man"
       faq={[
         { q: "How do I control Pac-Man?", a: "Use arrow keys or WASD on desktop. On mobile, swipe or use the D-pad below the game." },
         { q: "What do power pellets do?", a: "The large glowing dots make ghosts turn blue and vulnerable. Eat them for bonus points: 200, 400, 800, 1600 for consecutive ghosts!" },
         { q: "How do ghosts behave?", a: "Each ghost has a different personality. Blinky chases you directly, Pinky tries to ambush ahead, Inky uses tricky positioning, and Clyde gets scared when close!" },
-        { q: "How do I play Pac-Man Online - Classic Arcade Game online free?", a: "Click Start and follow the on-screen steps. Use mouse, touch, or keyboard controls. No download needed." },
-        { q: "Can I play Pac-Man Online - Classic Arcade Game without downloading?", a: "Yes. This Pac-Man Online - Classic Arcade Game runs in your browser with no install. Free on mobile and desktop." },
-        { q: "How do I use this Pac-Man Online - Classic Arcade Game online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
+        { q: "How many levels are there?", a: "Clear the maze to advance. Each level speeds up the ghosts, so survival gets harder the further you go." },
+        { q: "Is my best score saved?", a: "Yes. Your best score is stored in your browser on this device — no login needed." },
       ]}
       howItWorks={[
         "Arrow keys or WASD to move Pac-Man around the maze.",
@@ -457,11 +464,8 @@ export default function games_pac_man() {
       }}
     >
       <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
-        {/* Left aside ad - hide in fullscreen */}
-
-        {/* Game center */}
         <div className="flex-1 min-w-0 max-w-xl mx-auto space-y-5">
-          {/* Score bar - hide in fullscreen */}
+          {/* Score bar */}
           <div className="glass p-4">
             <div className="grid grid-cols-3 gap-4">
               <div className="text-center">
@@ -490,18 +494,25 @@ export default function games_pac_man() {
               />
               {/* Start overlay */}
               {(phase === 'idle' || (phase === 'over' && lives <= 0)) && phase !== 'won' && (
-                <div className="absolute inset-0 bg-black/90 flex flex-col items-center justify-center p-6"
+                <div className="absolute inset-0 bg-black/92 backdrop-blur-[2px] flex flex-col items-center justify-center p-6 overflow-y-auto"
                   onClick={() => {window.dispatchEvent(new Event('ut:game-start'))}}>
-                  <div className="text-5xl mb-4">👾</div>
-                  <h2 className="text-xl font-bold text-white mb-2">PAC-MAN</h2>
+                  <img src="/games/pac-man/cover.jpg" alt="Pac-Man neon maze cover art" loading="eager"
+                    className="w-full max-w-[380px] aspect-video object-cover rounded-2xl border border-yellow-400/30 shadow-[0_0_40px_rgba(250,204,21,0.35)] mb-4" />
+                  <h2 className="text-3xl font-black tracking-tighter bg-gradient-to-b from-yellow-300 via-amber-300 to-yellow-200 bg-clip-text text-transparent mb-2">PAC-MAN</h2>
+                  <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">
+                    <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-yellow-200">👻 4 ghost personalities</span>
+                    <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-cyan-200">⚡ Power pellets</span>
+                    <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-emerald-200">📱 Swipe + D-pad</span>
+                    {best > 0 && <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-slate-300">🏆 Best {best}</span>}
+                  </div>
                   <p className="text-sm text-slate-400 text-center mb-4">
                     {phase === 'idle' ? 'Eat dots. Dodge ghosts. Grab power pellets!' : `Final Score: ${score}`}
                   </p>
                   <button onClick={(e) => { e.stopPropagation(); window.dispatchEvent(new Event('ut:game-start')) }}
-                    className="glow-btn px-8 py-3 text-sm">
-                    {phase === 'idle' ? 'Start Game' : 'Play Again'}
+                    className="px-8 py-3 rounded-full bg-gradient-to-r from-yellow-500 to-amber-500 text-black font-extrabold text-base shadow-[0_0_30px_rgba(250,204,21,0.5)] hover:scale-105 transition">
+                    {phase === 'idle' ? '▶ Start Game' : '⟲ Play Again'}
                   </button>
-                  <p className="text-xs text-slate-400 mt-3">Arrow keys / WASD / Swipe</p>
+                  <p className="text-xs text-slate-500 mt-3">Arrow keys / WASD / Swipe / D-pad</p>
                 </div>
               )}
               {/* Win overlay */}
@@ -515,7 +526,6 @@ export default function games_pac_man() {
                     className="glow-btn px-8 py-3 text-sm">Play Again</button>
                 </div>
               )}
-              {/* Exit fullscreen button */}
             </div>
           </div>
 
@@ -526,14 +536,20 @@ export default function games_pac_man() {
             </div>
           )}
 
-          {/* Helper text + toolbar - hide in fullscreen */}
-          <p className="text-center text-xs text-slate-400">Swipe or use arrow keys / WASD</p>
+          {/* Mobile D-pad — sticky so it never hides under the fold */}
+          <div className="grid grid-cols-3 gap-2 md:hidden sticky bottom-2 z-20 py-2 px-6 bg-[#030b14]/92 backdrop-blur-sm rounded-2xl border border-white/5" aria-label="Direction pad">
+            <div />
+            <button onTouchStart={(e)=>{e.preventDefault(); steer(0,-1)}} onClick={()=>steer(0,-1)} className="h-14 rounded-2xl bg-white/[0.08] border border-white/10 text-yellow-100 font-black text-xl active:bg-yellow-500/30 touch-none select-none" aria-label="Up">▲</button>
+            <div />
+            <button onTouchStart={(e)=>{e.preventDefault(); steer(-1,0)}} onClick={()=>steer(-1,0)} className="h-14 rounded-2xl bg-white/[0.08] border border-white/10 text-yellow-100 font-black text-xl active:bg-yellow-500/30 touch-none select-none" aria-label="Left">◀</button>
+            <button onTouchStart={(e)=>{e.preventDefault(); steer(0,1)}} onClick={()=>steer(0,1)} className="h-14 rounded-2xl bg-white/[0.08] border border-white/10 text-yellow-100 font-black text-xl active:bg-yellow-500/30 touch-none select-none" aria-label="Down">▼</button>
+            <button onTouchStart={(e)=>{e.preventDefault(); steer(1,0)}} onClick={()=>steer(1,0)} className="h-14 rounded-2xl bg-white/[0.08] border border-white/10 text-yellow-100 font-black text-xl active:bg-yellow-500/30 touch-none select-none" aria-label="Right">▶</button>
+          </div>
+
+          {/* Helper text + toolbar */}
+          <p className="text-center text-xs text-slate-400">Swipe, D-pad, or arrow keys / WASD</p>
         </div>
-
-        {/* Right aside ad - hide in fullscreen */}
       </div>
-
-      {/* Bottom banner ad - hide in fullscreen */}
     </GameShell>
   )
 }
