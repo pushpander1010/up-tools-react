@@ -8,7 +8,6 @@ import { GAMES } from './GamesPage'
 
 const { tools, categories } = data
 const GAME_COUNT = GAMES.length
-const TOOL_COUNT = tools.filter(t => !t.slug.startsWith('games-')).length
 
 const gameChips = [
   { href: '/games/snake/', label: '🐍 Snake' }, { href: '/games/2048/', label: '🔢 2048' },
@@ -76,24 +75,24 @@ export default function HomePage() {
   return (
     <>
       <Helmet>
-        <title>UpTools - 490+ Free Online Tools, Calculators, Games & AI Tools</title>
-        <meta name="description" content="Free online tools: 490+ calculators, converters, AI writers, dev tools, finance tools, health calculators, and 49 browser games. No sign-up required." />
+        <title>UpTools - 500+ Free Online Tools, Calculators, Games & AI Tools</title>
+        <meta name="description" content="Free online tools: 500+ calculators, converters, AI writers, dev tools, finance tools, health calculators, and 49 browser games. No sign-up required." />
         <link rel="canonical" href="https://www.uptools.in/" />
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
-        <meta property="og:title" content="UpTools - 490+ Free Online Tools, Calculators, Games & AI Tools" />
-        <meta property="og:description" content="490+ free online tools: SIP, EMI, GST, income tax calculators, AI tools, and 49 browser games. No sign-up required." />
+        <meta property="og:title" content="UpTools - 500+ Free Online Tools, Calculators, Games & AI Tools" />
+        <meta property="og:description" content="500+ free online tools: SIP, EMI, GST, income tax calculators, AI tools, and 49 browser games. No sign-up required." />
         <meta property="og:url" content="https://www.uptools.in/" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="UpTools" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="UpTools - 490+ Free Online Tools & 49 Games" />
+        <meta name="twitter:title" content="UpTools - 500+ Free Online Tools & 49 Games" />
         <meta name="twitter:description" content="Calculators, converters, AI tools and browser games. Free, no sign-up." />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
           "@type": "WebSite",
           "name": "UpTools",
           "url": "https://www.uptools.in/",
-          "description": "490+ free online tools, calculators, converters, AI tools and 49 browser games.",
+          "description": "500+ free online tools, calculators, converters, AI tools and 49 browser games.",
           "potentialAction": {
             "@type": "SearchAction",
             "target": "https://www.uptools.in/?q={search_term_string}",
@@ -130,7 +129,7 @@ export default function HomePage() {
             </div>
           </div>
           <div className="flex gap-8 shrink-0">
-            {[{ v: `${TOOL_COUNT}+`, l: 'Tools' }, { v: `${GAME_COUNT}`, l: 'Games' }, { v: '0', l: 'Sign-ups' }].map(s => (
+            {[{ v: '500+', l: 'Tools' }, { v: `${GAME_COUNT}`, l: 'Games' }, { v: '0', l: 'Sign-ups' }].map(s => (
               <div key={s.l} className="text-center"><div className="text-3xl font-extrabold gradient-text">{s.v}</div><div className="text-xs text-slate-400 mt-1 font-medium">{s.l}</div></div>
             ))}
           </div>
@@ -159,7 +158,7 @@ export default function HomePage() {
           style={{ background: 'rgba(17,24,39,0.8)', border: '1px solid rgba(255,255,255,0.06)' }}>
           <span className="text-slate-400 text-lg">🔎</span>
           <input type="search" value={search} onChange={e => setSearch(e.target.value)} onKeyDown={handleKeyDown}
-            placeholder={`Search ${TOOL_COUNT}+ tools (tax, gst, currency, json)…`}
+            placeholder="Search 500+ tools (tax, gst, currency, json)…"
             className="flex-1 min-w-0 bg-transparent border-none outline-none text-white text-sm placeholder:text-slate-400" />
           {isFiltering && (
             <button onClick={clearFilters}

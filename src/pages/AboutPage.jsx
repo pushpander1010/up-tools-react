@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 
 const STATS = [
-  { value: '490+', label: 'Free tools' },
+  { value: '500+', label: 'Free tools' },
   { value: '49', label: 'Games' },
   { value: '0', label: 'Accounts required' },
   { value: '<80KB', label: 'Typical page weight' },
@@ -28,7 +28,7 @@ export default function AboutPage() {
     <>
       <Helmet>
         <title>About UpTools - Privacy-First Free Web Tools</title>
-        <meta name="description" content="UpTools is a fast, privacy-first collection of 490+ free web tools and 49 games. Calculate tax, GST, EMI and SIP; convert currency; validate PAN; format JSON; and more — no logins, instant results." />
+        <meta name="description" content="UpTools is a fast, privacy-first collection of 500+ free web tools and 49 games. Calculate tax, GST, EMI and SIP; convert currency; validate PAN; format JSON; and more — no logins, instant results." />
         <link rel="canonical" href="https://www.uptools.in/about/" />
         <meta property="og:title" content="About UpTools - Fast, Privacy-First Web Tools" />
         <meta property="og:description" content="Free calculators, converters, JSON/text utilities, and games. No logins, instant results. Learn more about our approach and privacy." />
