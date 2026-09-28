@@ -755,7 +755,7 @@ export default function games_tetris() {
             <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-5 py-4 bg-[#050d1a]/92 backdrop-blur-[2px] overflow-y-auto"
               onPointerDown={(e) => { if (e.target.closest('button')) return; window.dispatchEvent(new Event('ut:game-start')) }}>
               <img src="/games/tetris/cover.jpg" alt="Neon falling-block puzzle cover art" loading="eager"
-                className="w-full max-w-[420px] h-36 sm:h-44 object-cover rounded-2xl border border-purple-400/30 shadow-[0_0_40px_rgba(168,85,247,0.35)] mb-4" />
+                className="w-full max-w-[420px] aspect-video object-cover rounded-2xl border border-purple-400/30 shadow-[0_0_40px_rgba(168,85,247,0.35)] mb-4" />
               <h2 className="text-4xl sm:text-5xl font-black tracking-tighter bg-gradient-to-b from-purple-300 via-cyan-300 to-purple-200 bg-clip-text text-transparent">TETRIS</h2>
               <p className="text-xs sm:text-sm text-slate-400 mt-1 mb-3">Stack · Clear · Level up — classic arcade, free</p>
               <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">

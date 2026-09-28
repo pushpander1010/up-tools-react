@@ -234,7 +234,7 @@ export default function SnakeGame() {
             <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#030b14]/80 rounded-2xl z-10 px-4 py-6 text-center overflow-y-auto"
               onPointerDown={(e) => { if (e.target.closest('button')) return; fireStart() }}>
               <img src="/games/snake/cover.jpg" alt="Neon snake arcade cover art" loading="eager"
-                className="w-full max-w-[420px] h-32 sm:h-40 object-cover rounded-2xl border border-cyan-400/30 shadow-[0_0_40px_rgba(34,211,238,0.35)] mb-4" />
+                className="w-full max-w-[420px] aspect-video object-cover rounded-2xl border border-cyan-400/30 shadow-[0_0_40px_rgba(34,211,238,0.35)] mb-4" />
               <h2 className="text-6xl md:text-7xl font-black bg-gradient-to-b from-cyan-300 via-fuchsia-300 to-cyan-200 bg-clip-text text-transparent mb-3 tracking-tighter">SNAKE</h2>
               {gameOver && <p className="text-xl md:text-2xl text-rose-400 font-bold mb-4">Game Over — Score {score}</p>}
               <div className="flex flex-wrap justify-center gap-1.5 mb-4 text-[11px] font-bold">

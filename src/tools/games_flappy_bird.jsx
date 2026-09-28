@@ -450,7 +450,7 @@ export default function games_flappy_bird() {
             <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-5 py-4 bg-[#050d1a]/92 backdrop-blur-[2px] overflow-y-auto"
               onPointerDown={(e) => { if (e.target.closest('button')) return; flap() }}>
               <img src="/games/flappy-bird/cover.jpg" alt="Flappy Bird night-flight cover art" loading="eager"
-                className="w-full max-w-[420px] h-36 sm:h-44 object-cover rounded-2xl border border-yellow-400/30 shadow-[0_0_40px_rgba(251,191,36,0.35)] mb-4" />
+                className="w-full max-w-[420px] aspect-video object-cover rounded-2xl border border-yellow-400/30 shadow-[0_0_40px_rgba(251,191,36,0.35)] mb-4" />
               <h2 className="text-4xl sm:text-5xl font-black tracking-tighter bg-gradient-to-b from-yellow-300 via-amber-300 to-green-300 bg-clip-text text-transparent">FLAPPY BIRD</h2>
               <p className="text-xs sm:text-sm text-slate-400 mt-1 mb-3">Flap the gaps · Earn medals · Free</p>
               <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">

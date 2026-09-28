@@ -247,7 +247,7 @@ export default function games_2048() {
           <div onClick={handleStartTap} className="cursor-pointer">
             <div className="glass p-4 overflow-hidden">
               <img src="/games/2048/cover.jpg" alt="2048 neon number-tiles cover art" loading="eager"
-                className="w-full h-40 sm:h-52 object-cover rounded-2xl border border-amber-400/30 shadow-[0_0_40px_rgba(245,158,11,0.3)] mb-4" />
+                className="w-full aspect-video object-cover rounded-2xl border border-amber-400/30 shadow-[0_0_40px_rgba(245,158,11,0.3)] mb-4" />
               <h2 className="text-center text-4xl sm:text-5xl font-black tracking-tighter bg-gradient-to-b from-amber-300 via-orange-300 to-amber-200 bg-clip-text text-transparent">2048</h2>
               <p className="text-center text-xs sm:text-sm text-slate-400 mt-1 mb-3">Merge tiles · Chase 2048 · Free forever</p>
               <div className="flex flex-wrap justify-center gap-1.5 mb-4 text-[11px] font-bold">
