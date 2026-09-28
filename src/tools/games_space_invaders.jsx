@@ -448,18 +448,18 @@ export default function SpaceInvadersGame() {
   return (
     <GameShell
       name="SPACE INVADERS"
-      startAction={startGame} startLabel="▶ Start"
+      startAction={startGame} startLabel={phase === 'idle' ? '▶ Start' : '⟲ Restart'}
+      headerStats={<><span>Score <b className="text-white">{score}</b></span><span>Wave <b className="text-green-300">{wave}</b></span><span>Best <b className="text-cyan-300">{displayBest}</b></span></>}
       title="Space Invaders Online - Classic Arcade Shooter"
-      desc="Space Invaders Online - Classic Arcade Shooter - play Space Invaders online free., online free. Play online free, no download. Works on mobile and desktop."
-      icon="👾" iconBg="rgba(0,229,255,0.08)"
+      desc="Play Space Invaders online free — blast the alien fleet wave after wave in this classic arcade shooter. No download, no sign-up, on mobile and desktop."
+      icon="🛸" iconBg="rgba(0,229,255,0.08)"
       category="fun" slug="games-space-invaders"
       faq={[
         { q: "How do I play?", a: "Arrow keys or A/D to move, Space to shoot. On mobile drag to move, tap to shoot. Destroy all aliens each wave!" },
         { q: "Alien types?", a: "Squids (top, 2 hits, 50pts), Crabs (middle, 1 hit, 30pts), Bugs (bottom, 1 hit, 10pts)." },
-        { q: "How do I play Space Invaders Online - Classic Arcade Shooter online free?", a: "Click Start and follow the on-screen steps. Use mouse, touch, or keyboard controls. No download needed." },
-        { q: "Can I play Space Invaders Online - Classic Arcade Shooter without downloading?", a: "Yes. This Space Invaders Online - Classic Arcade Shooter runs in your browser with no install. Free on mobile and desktop." },
-        { q: "How do I use this Space Invaders Online - Classic Arcade Shooter online free?", a: "Open the game above and press Start. Free with no login, works on mobile and desktop." },
-        { q: "Is this Space Invaders Online - Classic Arcade Shooter free?", a: "Yes, completely free with no sign-up. Use it unlimited times online on any device." },
+        { q: "How many waves are there?", a: "Endless. Each cleared wave spawns a faster, lower fleet — chase your best wave count." },
+        { q: "How many lives do I get?", a: "3 lives per run. A life is lost when an alien bullet hits you or an invader lands." },
+        { q: "Is my best score saved?", a: "Yes. Best score and last wave are stored in your browser on this device — no login needed." },
       ]}
       howItWorks={["Move left/right to dodge alien fire", "Shoot to destroy aliens", "Clear all aliens to advance waves", "Aliens get faster each wave"]}
       schema={{
@@ -472,12 +472,23 @@ export default function SpaceInvadersGame() {
       <div className="flex gap-4 max-w-6xl mx-auto overflow-hidden">
         <div className="flex-1 min-w-0 max-w-lg mx-auto space-y-5 overflow-hidden">
         {phase === 'idle' && (
-          <div className="glass p-4">
+          <div className="glass p-4 overflow-hidden">
+            <img src="/games/space-invaders/cover.jpg" alt="Space Invaders alien fleet cover art" loading="eager"
+              className="w-full aspect-video object-cover rounded-2xl border border-cyan-400/30 shadow-[0_0_40px_rgba(0,229,255,0.3)] mb-4" />
+            <h2 className="text-center text-4xl sm:text-5xl font-black tracking-tighter bg-gradient-to-b from-green-300 via-cyan-300 to-green-200 bg-clip-text text-transparent">SPACE INVADERS</h2>
+            <p className="text-center text-xs sm:text-sm text-slate-400 mt-1 mb-3">Blast the fleet · Endless waves · Free</p>
+            <div className="flex flex-wrap justify-center gap-1.5 mb-4 text-[11px] font-bold">
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-green-200">👾 3 alien types</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-cyan-200">🌊 Endless waves</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-amber-200">❤️ 3 lives</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-purple-200">📱 Drag + tap</span>
+            </div>
             <div className="grid grid-cols-2 gap-4 text-center">
               <div><div className="text-2xl font-extrabold text-white">{best}</div><div className="text-xs text-slate-400">Best Score</div></div>
               <div><div className="text-2xl font-extrabold text-cyan-400">{lastWave()}</div><div className="text-xs text-slate-400">Last Wave</div></div>
             </div>
             <div className="flex justify-center mt-4">
+              <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))} className="px-8 py-3 rounded-full bg-gradient-to-r from-green-500 to-cyan-500 text-white font-extrabold text-base shadow-[0_0_30px_rgba(34,197,94,0.5)] hover:scale-105 transition">▶ Start Game</button>
             </div>
           </div>
         )}
@@ -492,9 +503,19 @@ export default function SpaceInvadersGame() {
               className="px-3 py-1.5 rounded-lg text-xs bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white transition">Menu</button>
           </div>
         )}
-        <div className="glass !p-0 overflow-hidden rounded-xl">
+        <div className="glass !p-0 overflow-hidden rounded-xl relative">
           <canvas ref={cvs} className="block rounded-xl cursor-pointer" style={{ touchAction: 'none' }}
             onPointerDown={onDown} onPointerMove={onMove} onPointerUp={onUp} />
+          {phase === 'over' && (
+            <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-5 py-4 bg-[#050d1a]/90 backdrop-blur-[2px] overflow-y-auto"
+              onPointerDown={(e) => { if (e.target.closest('button')) return; window.dispatchEvent(new Event('ut:game-start')) }}>
+              <div className="text-5xl mb-3">💥</div>
+              <h2 className="text-3xl font-black tracking-tighter text-rose-400 mb-2">GAME OVER</h2>
+              <p className="text-sm text-slate-400 mb-1">Score {score} · Wave {wave}</p>
+              <p className="text-xs text-slate-500 mb-4">Best {displayBest}</p>
+              <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))} className="px-8 py-3 rounded-full bg-gradient-to-r from-green-500 to-cyan-500 text-white font-extrabold text-base shadow-[0_0_30px_rgba(34,197,94,0.5)] hover:scale-105 transition">⟲ Play Again</button>
+            </div>
+          )}
         </div>
         <p className="text-center text-xs text-slate-400">
           {'ontouchstart' in window ? 'Drag to move · Tap to shoot' : '← → Move · Space Shoot'}
