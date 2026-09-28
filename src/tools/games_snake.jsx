@@ -93,12 +93,23 @@ export default function SnakeGame() {
     draw()
   }, [draw, food, best, die])
 
-  // Recursive timeout loop so speed ramp applies immediately as score grows.
+  // Self-perpetuating loop: reschedules itself every step so the snake keeps
+  // moving even when the score (and hence React state) doesn't change.
+  const tickRef = useRef(tick)
+  tickRef.current = tick
+  const speedRef = useRef(speedFor(0))
+  speedRef.current = speedFor(score)
   useEffect(() => {
-    if(!playing || paused) return
-    const id = setTimeout(tick, speedFor(score))
-    return () => clearTimeout(id)
-  }, [tick, playing, paused, score])
+    if(!playing) return
+    let alive = true, timer = null
+    const step = () => {
+      if(!alive) return
+      try{ tickRef.current() }catch{}
+      timer = setTimeout(step, speedRef.current)
+    }
+    timer = setTimeout(step, speedRef.current)
+    return () => { alive = false; if(timer) clearTimeout(timer) }
+  }, [playing])
 
   useEffect(() => {
     const onR = () => { fit(); draw() }
