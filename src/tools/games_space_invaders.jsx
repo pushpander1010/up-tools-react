@@ -24,6 +24,9 @@ const snd = {
   hit:      () => tone(180, 0.12, 'square', 0.05),
   wave:     () => [520, 660, 780, 990].forEach((f, i) => setTimeout(() => tone(f, 0.1, 'sine', 0.05), i * 70)),
   die:      () => { tone(200, 0.3, 'sawtooth', 0.07); setTimeout(() => tone(120, 0.4, 'sawtooth', 0.05), 150) },
+  power:    () => { tone(523, 0.1, 'sine', 0.08); setTimeout(() => tone(784, 0.12, 'sine', 0.08), 70); setTimeout(() => tone(1047, 0.15, 'sine', 0.07), 140) },
+  shield:   () => { tone(660, 0.12, 'triangle', 0.08); setTimeout(() => tone(440, 0.15, 'triangle', 0.06), 80) },
+  ufo:      () => { tone(1200, 0.1, 'square', 0.03); setTimeout(() => tone(1500, 0.1, 'square', 0.03), 120) },
 }
 
 const ROWS = 5, COLS = 9
@@ -77,7 +80,7 @@ export default function SpaceInvadersGame() {
         s.aliens.push({
           x: sx + c * (aw + gx),
           y: sy + r * (ah + gy),
-          w: aw, h: ah,
+          w: aw, h: ah, flash: 0,
           hp: r === 0 ? 2 : 1,
           pts: (ROWS - r) * 10,
           type: r < 2 ? 'squid' : r < 4 ? 'crab' : 'bug',
@@ -96,10 +99,17 @@ export default function SpaceInvadersGame() {
     const s = g.current
     const ctx = c.getContext('2d')
     const { W, H } = s
+    ctx.save()
+    if (s.shake > 0.2) ctx.translate((Math.random() - 0.5) * s.shake, (Math.random() - 0.5) * s.shake)
 
-    // bg
-    ctx.fillStyle = '#050d1a'
-    ctx.fillRect(0, 0, W, H)
+    // bg gradient + nebula
+    const bgGrad = ctx.createLinearGradient(0, 0, 0, H)
+    bgGrad.addColorStop(0, '#0a1030'); bgGrad.addColorStop(0.6, '#050d1a'); bgGrad.addColorStop(1, '#0b0618')
+    ctx.fillStyle = bgGrad
+    ctx.fillRect(-12, -12, W + 24, H + 24)
+    const neb = (x, y, r, col) => { const gr = ctx.createRadialGradient(x, y, 0, x, y, r); gr.addColorStop(0, col); gr.addColorStop(1, 'rgba(0,0,0,0)'); ctx.fillStyle = gr; ctx.fillRect(x - r, y - r, r * 2, r * 2) }
+    neb(W * 0.15, H * 0.25, W * 0.35, 'rgba(34,211,238,0.07)')
+    neb(W * 0.85, H * 0.6, W * 0.4, 'rgba(168,85,247,0.07)')
 
     // stars
     for (const st of s.stars) {
@@ -122,13 +132,36 @@ export default function SpaceInvadersGame() {
       ctx.lineTo(px + hw, py + hw * 0.5)
       ctx.closePath(); ctx.fill()
       ctx.shadowBlur = 0
+      // thruster flame (flicker)
+      const fl = 6 + Math.random() * 8
+      const fg = ctx.createLinearGradient(0, py + hw * 0.8, 0, py + hw * 0.8 + fl + 8)
+      fg.addColorStop(0, 'rgba(34,211,238,0.9)'); fg.addColorStop(1, 'rgba(34,211,238,0)')
+      ctx.fillStyle = fg
+      ctx.beginPath()
+      ctx.moveTo(px - hw * 0.3, py + hw * 0.8)
+      ctx.lineTo(px, py + hw * 0.8 + fl + 8)
+      ctx.lineTo(px + hw * 0.3, py + hw * 0.8)
+      ctx.closePath(); ctx.fill()
+      // muzzle flash
+      if (s.muzzle > 0) {
+        ctx.fillStyle = 'rgba(255,255,255,0.9)'; ctx.shadowColor = '#fff'; ctx.shadowBlur = 14
+        ctx.beginPath(); ctx.arc(px, py - hw - 6, 5, 0, Math.PI * 2); ctx.fill()
+        ctx.shadowBlur = 0
+      }
+      // shield ring
+      if (s.power.shield) {
+        ctx.strokeStyle = `rgba(34,211,238,${0.6 + Math.sin(Date.now() / 150) * 0.3})`
+        ctx.lineWidth = 2.5; ctx.shadowColor = '#00e5ff'; ctx.shadowBlur = 12
+        ctx.beginPath(); ctx.arc(px, py, hw * 1.9, 0, Math.PI * 2); ctx.stroke()
+        ctx.shadowBlur = 0
+      }
     }
 
     // aliens
     const colors = { squid: '#c084fc', crab: '#34d399', bug: '#f87171' }
     for (const a of s.aliens) {
       if (a.hp <= 0) continue
-      const col = a.hp > 1 ? '#fbbf24' : colors[a.type]
+      const col = a.flash > 0 ? '#ffffff' : a.hp > 1 ? '#fbbf24' : colors[a.type]
       ctx.fillStyle = col; ctx.shadowColor = col; ctx.shadowBlur = 4
       const { x, y, w, h } = a
       ctx.beginPath()
@@ -150,10 +183,14 @@ export default function SpaceInvadersGame() {
       ctx.fillRect(x + w * 0.6, y + h * 0.3, es, es)
     }
 
-    // player bullet
+    // player bullet (glow trails)
     for (const b of s.bullets) {
-      ctx.fillStyle = '#00e5ff'; ctx.shadowColor = '#00e5ff'; ctx.shadowBlur = 6
-      ctx.fillRect(b.x - 1.5, b.y - 6, 3, 12)
+      const trail = ctx.createLinearGradient(0, b.y - 6, 0, b.y + 14)
+      trail.addColorStop(0, 'rgba(0,229,255,0)'); trail.addColorStop(1, 'rgba(0,229,255,0.9)')
+      ctx.fillStyle = trail
+      ctx.fillRect(b.x - 1.5, b.y - 6, 3, 20)
+      ctx.fillStyle = '#fff'; ctx.shadowColor = '#00e5ff'; ctx.shadowBlur = 8
+      ctx.fillRect(b.x - 1, b.y - 6, 2, 8)
       ctx.shadowBlur = 0
     }
     // alien bullets
@@ -171,6 +208,41 @@ export default function SpaceInvadersGame() {
     }
     ctx.globalAlpha = 1
 
+    // shockwave rings
+    for (const r of s.rings) {
+      ctx.globalAlpha = Math.max(0, r.life * 2.5)
+      ctx.strokeStyle = '#fff'; ctx.lineWidth = 2.5
+      ctx.beginPath(); ctx.arc(r.x, r.y, r.r, 0, Math.PI * 2); ctx.stroke()
+    }
+    ctx.globalAlpha = 1
+    // power-up drops
+    const dropCols = { rapid: '#fbbf24', spread: '#f0abfc', shield: '#00e5ff' }
+    const dropGlyph = { rapid: '⚡', spread: '✖', shield: '◈' }
+    for (const d of s.drops) {
+      const dc = dropCols[d.kind]
+      const pulse = 1 + Math.sin(d.t * 10) * 0.12
+      ctx.save(); ctx.translate(d.x, d.y); ctx.scale(pulse, pulse)
+      ctx.fillStyle = 'rgba(5,13,26,0.9)'; ctx.strokeStyle = dc; ctx.lineWidth = 2
+      ctx.shadowColor = dc; ctx.shadowBlur = 14
+      ctx.beginPath(); ctx.arc(0, 0, 11, 0, Math.PI * 2); ctx.fill(); ctx.stroke()
+      ctx.shadowBlur = 0
+      ctx.fillStyle = dc; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'
+      ctx.fillText(dropGlyph[d.kind], 0, 1)
+      ctx.restore()
+    }
+    ctx.textBaseline = 'alphabetic'
+    // bonus UFO
+    if (s.ufo) {
+      const ux = s.ufo.x, uy = s.ufo.y
+      ctx.fillStyle = '#f0abfc'; ctx.shadowColor = '#f0abfc'; ctx.shadowBlur = 12
+      ctx.beginPath(); ctx.ellipse(ux, uy, 16, 7, 0, 0, Math.PI * 2); ctx.fill()
+      ctx.fillStyle = '#fff'
+      ctx.beginPath(); ctx.arc(ux, uy - 5, 5, Math.PI, 0); ctx.fill()
+      ctx.shadowBlur = 0
+      ctx.fillStyle = '#f0abfc'; ctx.font = 'bold 9px system-ui'; ctx.textAlign = 'center'
+      ctx.fillText('+100', ux, uy + 18)
+    }
+
     // HUD
     const fs = Math.max(12, Math.floor(W * 0.04))
     ctx.fillStyle = '#fff'; ctx.font = `bold ${fs}px system-ui`
@@ -185,6 +257,36 @@ export default function SpaceInvadersGame() {
       ctx.beginPath()
       ctx.moveTo(lx, ly - 5); ctx.lineTo(lx - 5, ly + 3); ctx.lineTo(lx + 5, ly + 3)
       ctx.closePath(); ctx.fill()
+    }
+    // active ability timers
+    let ay = fs + fs * 0.7 + 14
+    const pbar = (label, frac, col) => {
+      ctx.fillStyle = 'rgba(255,255,255,0.12)'
+      ctx.fillRect(8, ay, 90, 5)
+      ctx.fillStyle = col; ctx.shadowColor = col; ctx.shadowBlur = 6
+      ctx.fillRect(8, ay, 90 * Math.max(0, Math.min(1, frac)), 5)
+      ctx.shadowBlur = 0
+      ctx.fillStyle = col; ctx.font = 'bold 9px system-ui'; ctx.textAlign = 'left'
+      ctx.fillText(label, 102, ay + 5)
+      ay += 12
+    }
+    if (s.power.rapid > 0) pbar('⚡ RAPID', s.power.rapid / 8, '#fbbf24')
+    if (s.power.spread > 0) pbar('✖ SPREAD', s.power.spread / 10, '#f0abfc')
+    if (s.power.shield) pbar('◈ SHIELD', 1, '#00e5ff')
+
+    ctx.restore()
+
+    // wave banner
+    if (s.banner) {
+      const a = s.banner.t < 0.25 ? s.banner.t / 0.25 : s.banner.t > 1.1 ? Math.max(0, 1 - (s.banner.t - 1.1) / 0.5) : 1
+      ctx.globalAlpha = a
+      ctx.fillStyle = 'rgba(5,13,26,0.7)'
+      ctx.fillRect(0, H / 2 - 30, W, 60)
+      ctx.font = `bold ${Math.max(24, W * 0.09)}px system-ui`
+      ctx.textAlign = 'center'; ctx.shadowColor = '#00e5ff'; ctx.shadowBlur = 18
+      ctx.fillStyle = '#fff'
+      ctx.fillText(s.banner.text, W / 2, H / 2 + 8)
+      ctx.shadowBlur = 0; ctx.globalAlpha = 1
     }
 
     // overlays
@@ -223,16 +325,24 @@ export default function SpaceInvadersGame() {
     if (s.keys.left)  s.player.x = Math.max(s.player.w / 2, s.player.x - spd)
     if (s.keys.right) s.player.x = Math.min(W - s.player.w / 2, s.player.x + spd)
 
-    // shoot
+    // shoot (rapid = faster + more bullets, spread = triple shot)
     s.cooldown -= dt
-    if (s.keys.shoot && s.cooldown <= 0 && s.bullets.length < 2) {
-      s.bullets.push({ x: s.player.x, y: H - H * 0.11, vy: -420 })
-      s.cooldown = 0.22; snd.shoot()
+    const rapid = s.power.rapid > 0
+    const maxB = rapid ? 6 : 2
+    if (s.keys.shoot && s.cooldown <= 0 && s.bullets.length < maxB) {
+      const by = H - H * 0.11
+      if (s.power.spread > 0) {
+        s.bullets.push({ x: s.player.x, y: by, vy: -440 }, { x: s.player.x - 8, y: by + 4, vy: -420, vx: -60 }, { x: s.player.x + 8, y: by + 4, vy: -420, vx: 60 })
+      } else {
+        s.bullets.push({ x: s.player.x, y: by, vy: -420 })
+      }
+      s.muzzle = 0.08
+      s.cooldown = rapid ? 0.09 : 0.22; snd.shoot()
     }
 
     // bullets move
-    for (const b of s.bullets) b.y += b.vy * dt
-    s.bullets = s.bullets.filter(b => b.y > -20)
+    for (const b of s.bullets) { b.y += b.vy * dt; if (b.vx) b.x += b.vx * dt }
+    s.bullets = s.bullets.filter(b => b.y > -20 && b.x > -20 && b.x < W + 20)
 
     for (const b of s.abullets) b.y += b.vy * dt
     s.abullets = s.abullets.filter(b => b.y < H + 20)
@@ -287,15 +397,38 @@ export default function SpaceInvadersGame() {
         if (b.x > a.x && b.x < a.x + a.w && b.y > a.y && b.y < a.y + a.h) {
           a.hp--
           b.y = -999
+          a.flash = 0.12
           if (a.hp <= 0) {
             s.score += a.pts
-            for (let i = 0; i < 8; i++) s.particles.push({
+            for (let i = 0; i < 16; i++) s.particles.push({
               x: a.x + a.w / 2, y: a.y + a.h / 2,
-              vx: (Math.random() - 0.5) * 200, vy: (Math.random() - 0.5) * 200,
-              life: 0.4, col: '#ff6b6b',
+              vx: (Math.random() - 0.5) * 260, vy: (Math.random() - 0.5) * 260,
+              life: 0.5, col: i % 3 === 0 ? '#fff' : ['#ff6b6b', '#fbbf24'][i % 2],
             })
+            s.rings.push({ x: a.x + a.w / 2, y: a.y + a.h / 2, r: 4, life: 0.35 })
+            s.shake = Math.min(6, s.shake + 2)
+            if (Math.random() < 0.12 && s.drops.length < 2) {
+              const kinds = ['rapid', 'spread', 'shield']
+              s.drops.push({ x: a.x + a.w / 2, y: a.y, vy: 90, kind: kinds[Math.floor(Math.random() * 3)], t: 0 })
+            }
             snd.kill()
           } else snd.hit()
+          break
+        }
+      }
+    }
+
+    // player bullet → bonus UFO (+100)
+    if (s.ufo) {
+      for (const b of s.bullets) {
+        if (Math.abs(b.x - s.ufo.x) < 16 && Math.abs(b.y - s.ufo.y) < 12) {
+          b.y = -999
+          s.score += 100
+          for (let i = 0; i < 18; i++) s.particles.push({ x: s.ufo.x, y: s.ufo.y, vx: (Math.random() - 0.5) * 300, vy: (Math.random() - 0.5) * 300, life: 0.6, col: i % 2 ? '#f0abfc' : '#fff' })
+          s.rings.push({ x: s.ufo.x, y: s.ufo.y, r: 6, life: 0.4 })
+          s.shake = Math.min(6, s.shake + 3)
+          s.ufo = null
+          snd.power(); sync(s)
           break
         }
       }
@@ -305,7 +438,14 @@ export default function SpaceInvadersGame() {
     const py = H - H * 0.09
     for (const b of s.abullets) {
       if (Math.abs(b.x - s.player.x) < s.player.w / 2 && Math.abs(b.y - py) < H * 0.025) {
-        b.y = H + 999; s.lives--; snd.die()
+        b.y = H + 999
+        if (s.power.shield) {
+          s.power.shield = false
+          s.rings.push({ x: s.player.x, y: py, r: 6, life: 0.4 })
+          snd.shield(); sync(s); continue
+        }
+        s.lives--; snd.die()
+        s.shake = 9
         for (let i = 0; i < 5; i++) s.particles.push({
           x: s.player.x, y: py,
           vx: (Math.random() - 0.5) * 150, vy: (Math.random() - 0.5) * 150,
@@ -326,12 +466,50 @@ export default function SpaceInvadersGame() {
       s.wave++
       spawnAliens(s.wave)
       s.bullets = []; s.abullets = []
+      s.banner = { text: 'WAVE ' + s.wave, t: 0 }
       snd.wave(); sync(s)
     }
 
     // particles
     for (const p of s.particles) { p.x += p.vx * dt; p.y += p.vy * dt; p.life -= dt }
     s.particles = s.particles.filter(p => p.life > 0)
+    // shockwave rings
+    for (const r of s.rings) { r.r += 260 * dt; r.life -= dt }
+    s.rings = s.rings.filter(r => r.life > 0)
+    // shake / muzzle / hit-flash decay
+    s.shake = Math.max(0, s.shake - 30 * dt)
+    s.muzzle = Math.max(0, s.muzzle - dt)
+    for (const a of s.aliens) if (a.flash > 0) a.flash -= dt
+    // ability timers
+    if (s.power.rapid > 0) s.power.rapid -= dt
+    if (s.power.spread > 0) s.power.spread -= dt
+    // wave banner
+    if (s.banner) { s.banner.t += dt; if (s.banner.t > 1.6) s.banner = null }
+    // power-up drops fall + pickup
+    for (const d of s.drops) { d.t += dt; d.y += d.vy * dt }
+    s.drops = s.drops.filter(d => d.y < H + 20)
+    for (const d of s.drops) {
+      if (Math.abs(d.x - s.player.x) < s.player.w && Math.abs(d.y - py) < H * 0.04) {
+        d.y = H + 999
+        if (d.kind === 'rapid') s.power.rapid = 8
+        else if (d.kind === 'spread') s.power.spread = 10
+        else s.power.shield = true
+        s.rings.push({ x: s.player.x, y: py, r: 6, life: 0.4 })
+        snd.power(); sync(s)
+      }
+    }
+    // bonus UFO every ~16-24s
+    s.ufoTimer -= dt
+    if (s.ufoTimer <= 0 && !s.ufo) {
+      s.ufoTimer = 16 + Math.random() * 8
+      const dir = Math.random() < 0.5 ? 1 : -1
+      s.ufo = { x: dir > 0 ? -30 : W + 30, y: H * 0.05, dir }
+      snd.ufo()
+    }
+    if (s.ufo) {
+      s.ufo.x += s.ufo.dir * (90 + s.wave * 8) * dt
+      if ((s.ufo.dir > 0 && s.ufo.x > W + 40) || (s.ufo.dir < 0 && s.ufo.x < -40)) s.ufo = null
+    }
 
     // stars scroll
     for (const st of s.stars) { st.y += st.sp * 60 * dt; if (st.y > H) { st.y = 0; st.x = Math.random() * W } }
@@ -345,6 +523,9 @@ export default function SpaceInvadersGame() {
     const s = g.current
     s.score = 0; s.lives = 3; s.wave = 1; s.frame = 0
     s.bullets = []; s.abullets = []; s.particles = []
+    s.power = { rapid: 0, spread: 0, shield: false }
+    s.drops = []; s.rings = []; s.banner = null; s.shake = 0; s.muzzle = 0
+    s.ufo = null; s.ufoTimer = 14
     s.cooldown = 0; s.shootTimer = 0; s.lt = 0
     s.keys = { left: false, right: false, shoot: false }
     s.playing = true; s.phase = 'playing'
@@ -365,6 +546,9 @@ export default function SpaceInvadersGame() {
       aliens: [], dir: 1, speed: 0.5,
       dropRemain: 0,
       bullets: [], abullets: [], particles: [],
+      power: { rapid: 0, spread: 0, shield: false },
+      drops: [], rings: [], banner: null, shake: 0, muzzle: 0,
+      ufo: null, ufoTimer: 14,
       stars: [],
       score: 0, lives: 3, wave: 1,
       keys: { left: false, right: false, shoot: false },
@@ -460,8 +644,9 @@ export default function SpaceInvadersGame() {
         { q: "How many waves are there?", a: "Endless. Each cleared wave spawns a faster, lower fleet — chase your best wave count." },
         { q: "How many lives do I get?", a: "3 lives per run. A life is lost when an alien bullet hits you or an invader lands." },
         { q: "Is my best score saved?", a: "Yes. Best score and last wave are stored in your browser on this device — no login needed." },
+        { q: "What are the falling power-ups?", a: "Destroyed aliens sometimes drop ⚡ Rapid fire (8s), ✖ Spread shot (10s), or ◈ Shield (blocks one hit). Fly into them to grab them — and watch for the bonus UFO worth +100!" },
       ]}
-      howItWorks={["Move left/right to dodge alien fire", "Shoot to destroy aliens", "Clear all aliens to advance waves", "Aliens get faster each wave"]}
+      howItWorks={["Move left/right to dodge alien fire", "Shoot to destroy aliens", "Catch falling ⚡ Rapid, ✖ Spread and ◈ Shield power-ups", "Clear all aliens to advance waves", "Aliens get faster each wave"]}
       schema={{
         "@context": "https://schema.org", "@type": "VideoGame",
         "name": "Space Invaders", "applicationCategory": "Game",
@@ -481,6 +666,8 @@ export default function SpaceInvadersGame() {
               <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-green-200">👾 3 alien types</span>
               <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-cyan-200">🌊 Endless waves</span>
               <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-amber-200">❤️ 3 lives</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-yellow-200">⚡ Rapid + ✖ Spread + ◈ Shield</span>
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-fuchsia-200">🛸 Bonus UFO +100</span>
               <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-purple-200">📱 Drag + tap</span>
             </div>
             <div className="grid grid-cols-2 gap-4 text-center">
