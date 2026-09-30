@@ -5,16 +5,16 @@ const LS = { BEST: 'ut_momo_merge_best_v1' }
 
 // 10 momo sizes. Only ranks 0-3 drop randomly. 9+9 does NOT merge.
 const MOMOS = [
-  { r: 16, color: '#FFF7ED', edge: '#FED7AA', name: 'Mini', score: 10 },
-  { r: 22, color: '#FEF3C7', edge: '#FCD34D', name: 'Baby', score: 25 },
+  { r: 16, color: '#FFF7ED', edge: '#FDBA74', name: 'Mini', score: 10 },
+  { r: 22, color: '#FEF3C7', edge: '#FBBF24', name: 'Baby', score: 25 },
   { r: 28, color: '#FFEDD5', edge: '#FB923C', name: 'Tiny', score: 50 },
   { r: 36, color: '#FCE7F3', edge: '#F472B6', name: 'Chotu', score: 100 },
-  { r: 44, color: '#FECACA', edge: '#EF4444', name: 'Classic', score: 200 },
-  { r: 52, color: '#BBF7D0', edge: '#22C55E', name: 'Veggie', score: 350 },
-  { r: 62, color: '#BAE6FD', edge: '#0EA5E9', name: 'Jumbo', score: 550 },
-  { r: 72, color: '#DDD6FE', edge: '#8B5CF6', name: 'Royal', score: 850 },
-  { r: 84, color: '#FDE68A', edge: '#F59E0B', name: 'Golden', score: 1300 },
-  { r: 96, color: '#FBCFE8', edge: '#EC4899', name: 'King', score: 2000 },
+  { r: 44, color: '#FECACA', edge: '#F87171', name: 'Classic', score: 200 },
+  { r: 52, color: '#D1FAE5', edge: '#34D399', name: 'Veggie', score: 350 },
+  { r: 62, color: '#E0F2FE', edge: '#38BDF8', name: 'Jumbo', score: 550 },
+  { r: 72, color: '#EDE9FE', edge: '#A78BFA', name: 'Royal', score: 850 },
+  { r: 84, color: '#FEF3C7', edge: '#F59E0B', name: 'Golden', score: 1300 },
+  { r: 96, color: '#FCE7F3', edge: '#EC4899', name: 'King', score: 2000 },
 ]
 const DROP_RANKS = [0, 1, 2, 3]
 const randDrop = () => DROP_RANKS[Math.floor(Math.random() * DROP_RANKS.length)]
@@ -36,39 +36,157 @@ const sndOver = () => { tone(300, 0.3, 'sawtooth', 0.06); tone(150, 0.5, 'sawtoo
 
 let UID = 1
 
-function drawMomo(ctx, x, y, r, rank) {
+function drawFace(ctx, x, y, r, rank) {
+  const ex = r * 0.30, ey = y + r * 0.02, e = Math.max(2.2, r * 0.13)
+  const happy = rank % 3
+  ctx.save()
+  if (happy === 0) {
+    // round shiny eyes
+    ctx.fillStyle = '#26303B'
+    ctx.beginPath(); ctx.arc(x - ex, ey, e, 0, Math.PI * 2); ctx.fill()
+    ctx.beginPath(); ctx.arc(x + ex, ey, e, 0, Math.PI * 2); ctx.fill()
+    ctx.fillStyle = '#fff'
+    ctx.beginPath(); ctx.arc(x - ex + e * 0.32, ey - e * 0.32, e * 0.42, 0, Math.PI * 2); ctx.fill()
+    ctx.beginPath(); ctx.arc(x + ex + e * 0.32, ey - e * 0.32, e * 0.42, 0, Math.PI * 2); ctx.fill()
+    ctx.beginPath(); ctx.arc(x - ex - e * 0.25, ey + e * 0.35, e * 0.18, 0, Math.PI * 2); ctx.fill()
+    ctx.beginPath(); ctx.arc(x + ex - e * 0.25, ey + e * 0.35, e * 0.18, 0, Math.PI * 2); ctx.fill()
+  } else if (happy === 1) {
+    // happy closed ^ ^ eyes
+    ctx.strokeStyle = '#26303B'; ctx.lineWidth = Math.max(1.4, r * 0.05); ctx.lineCap = 'round'
+    for (const sgn of [-1, 1]) {
+      ctx.beginPath(); ctx.arc(x + sgn * ex, ey + e * 0.4, e * 0.95, 1.15 * Math.PI, 1.85 * Math.PI); ctx.stroke()
+    }
+  } else {
+    // wink: one eye + one happy arc
+    ctx.fillStyle = '#26303B'
+    ctx.beginPath(); ctx.arc(x - ex, ey, e, 0, Math.PI * 2); ctx.fill()
+    ctx.fillStyle = '#fff'
+    ctx.beginPath(); ctx.arc(x - ex + e * 0.32, ey - e * 0.32, e * 0.42, 0, Math.PI * 2); ctx.fill()
+    ctx.strokeStyle = '#26303B'; ctx.lineWidth = Math.max(1.4, r * 0.05); ctx.lineCap = 'round'
+    ctx.beginPath(); ctx.arc(x + ex, ey + e * 0.4, e * 0.95, 1.15 * Math.PI, 1.85 * Math.PI); ctx.stroke()
+  }
+  // big rosy cheeks
+  ctx.fillStyle = 'rgba(244,114,182,0.6)'
+  ctx.beginPath(); ctx.ellipse(x - ex - r * 0.26, ey + r * 0.26, r * 0.13, r * 0.09, 0, 0, Math.PI * 2); ctx.fill()
+  ctx.beginPath(); ctx.ellipse(x + ex + r * 0.26, ey + r * 0.26, r * 0.13, r * 0.09, 0, 0, Math.PI * 2); ctx.fill()
+  // mouth
+  ctx.strokeStyle = '#26303B'; ctx.lineWidth = Math.max(1.2, r * 0.04); ctx.lineCap = 'round'
+  if (happy === 1) {
+    // open joyful mouth with tongue
+    ctx.fillStyle = '#7F1D1D'
+    ctx.beginPath(); ctx.ellipse(x, ey + r * 0.34, r * 0.13, r * 0.16, 0, 0, Math.PI * 2); ctx.fill()
+    ctx.fillStyle = '#F9A8D4'
+    ctx.beginPath(); ctx.ellipse(x, ey + r * 0.41, r * 0.075, r * 0.08, 0, 0, Math.PI * 2); ctx.fill()
+  } else {
+    ctx.beginPath(); ctx.arc(x, ey + r * 0.12, r * 0.2, 0.3 * Math.PI, 0.7 * Math.PI); ctx.stroke()
+  }
+  ctx.restore()
+}
+
+function drawMomo(ctx, x, y, r, rank, squash = 1) {
   const m = MOMOS[rank]
-  // body
-  const grad = ctx.createRadialGradient(x - r * 0.3, y - r * 0.35, r * 0.2, x, y, r)
-  grad.addColorStop(0, '#FFFFFF'); grad.addColorStop(0.55, m.color); grad.addColorStop(1, m.edge)
+  const sy = Math.min(1.18, Math.max(0.82, squash))
+  let sx = 2 - sy
+  sx = Math.min(1.18, Math.max(0.82, sx))
+  ctx.save()
+  ctx.translate(x, y); ctx.scale(sx, sy); ctx.translate(-x, -y)
+  // soft shadow
+  ctx.fillStyle = 'rgba(0,0,0,0.22)'
+  ctx.beginPath(); ctx.ellipse(x, y + r * 0.92, r * 0.75, r * 0.16, 0, 0, Math.PI * 2); ctx.fill()
+  // plump body
+  const grad = ctx.createRadialGradient(x - r * 0.35, y - r * 0.4, r * 0.15, x, y, r * 1.05)
+  grad.addColorStop(0, '#FFFFFF'); grad.addColorStop(0.5, m.color); grad.addColorStop(1, m.edge)
   ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2)
   ctx.fillStyle = grad; ctx.fill()
-  ctx.lineWidth = Math.max(1.5, r * 0.06); ctx.strokeStyle = m.edge; ctx.stroke()
-  // pleat knot on top
-  ctx.beginPath(); ctx.arc(x, y - r * 0.72, r * 0.16, 0, Math.PI * 2)
-  ctx.fillStyle = m.edge; ctx.fill()
-  ctx.strokeStyle = 'rgba(0,0,0,0.12)'; ctx.lineWidth = 1; ctx.stroke()
-  for (let i = -2; i <= 2; i++) {
+  ctx.lineWidth = Math.max(1.5, r * 0.055); ctx.strokeStyle = m.edge; ctx.stroke()
+  // glossy highlight (top-left shine)
+  ctx.fillStyle = 'rgba(255,255,255,0.75)'
+  ctx.beginPath(); ctx.ellipse(x - r * 0.42, y - r * 0.45, r * 0.2, r * 0.12, -0.6, 0, Math.PI * 2); ctx.fill()
+  // pleat folds fanning from the knot
+  ctx.strokeStyle = 'rgba(120,53,15,0.20)'; ctx.lineWidth = Math.max(1, r * 0.032); ctx.lineCap = 'round'
+  for (let i = -3; i <= 3; i++) {
     ctx.beginPath()
-    ctx.moveTo(x + i * r * 0.14, y - r * 0.72 + r * 0.1)
-    ctx.quadraticCurveTo(x + i * r * 0.2, y - r * 0.4, x + i * r * 0.28, y - r * 0.18)
-    ctx.strokeStyle = 'rgba(0,0,0,0.10)'; ctx.lineWidth = Math.max(1, r * 0.03); ctx.stroke()
+    ctx.moveTo(x + i * r * 0.11, y - r * 0.78)
+    ctx.quadraticCurveTo(x + i * r * 0.17, y - r * 0.5, x + i * r * 0.30, y - r * 0.22)
+    ctx.stroke()
   }
-  // cute face (skip on tiniest? keep, scaled)
-  const e = r * 0.16, ey = y - r * 0.05, ex = r * 0.32
-  ctx.fillStyle = '#1F2937'
-  ctx.beginPath(); ctx.arc(x - ex, ey, e, 0, Math.PI * 2); ctx.fill()
-  ctx.beginPath(); ctx.arc(x + ex, ey, e, 0, Math.PI * 2); ctx.fill()
-  ctx.fillStyle = '#fff'
-  ctx.beginPath(); ctx.arc(x - ex + e * 0.3, ey - e * 0.3, e * 0.35, 0, Math.PI * 2); ctx.fill()
-  ctx.beginPath(); ctx.arc(x + ex + e * 0.3, ey - e * 0.3, e * 0.35, 0, Math.PI * 2); ctx.fill()
-  // blush
-  ctx.fillStyle = 'rgba(244,114,182,0.55)'
-  ctx.beginPath(); ctx.arc(x - ex - r * 0.22, ey + r * 0.22, r * 0.11, 0, Math.PI * 2); ctx.fill()
-  ctx.beginPath(); ctx.arc(x + ex + r * 0.22, ey + r * 0.22, r * 0.11, 0, Math.PI * 2); ctx.fill()
-  // smile
-  ctx.beginPath(); ctx.arc(x, ey + r * 0.08, r * 0.22, 0.25 * Math.PI, 0.75 * Math.PI)
-  ctx.strokeStyle = '#1F2937'; ctx.lineWidth = Math.max(1.2, r * 0.045); ctx.lineCap = 'round'; ctx.stroke()
+  // twisted knot on top
+  ctx.beginPath(); ctx.arc(x, y - r * 0.8, r * 0.15, 0, Math.PI * 2)
+  ctx.fillStyle = m.edge; ctx.fill()
+  ctx.strokeStyle = 'rgba(120,53,15,0.35)'; ctx.lineWidth = 1; ctx.stroke()
+  ctx.fillStyle = 'rgba(255,255,255,0.6)'
+  ctx.beginPath(); ctx.arc(x - r * 0.05, y - r * 0.85, r * 0.045, 0, Math.PI * 2); ctx.fill()
+  // tiny stubby arms
+  ctx.strokeStyle = m.edge; ctx.lineWidth = Math.max(2, r * 0.07); ctx.lineCap = 'round'
+  ctx.beginPath(); ctx.moveTo(x - r * 0.92, y + r * 0.15); ctx.quadraticCurveTo(x - r * 1.12, y + r * 0.3, x - r * 1.02, y + r * 0.48); ctx.stroke()
+  ctx.beginPath(); ctx.moveTo(x + r * 0.92, y + r * 0.15); ctx.quadraticCurveTo(x + r * 1.12, y + r * 0.3, x + r * 1.02, y + r * 0.48); ctx.stroke()
+  drawFace(ctx, x, y, r, rank)
+  // golden crown for King momo
+  if (rank === 9) {
+    ctx.fillStyle = '#FBBF24'
+    const cw2 = r * 0.5, cy = y - r * 1.02
+    ctx.beginPath()
+    ctx.moveTo(x - cw2, cy); ctx.lineTo(x - cw2, cy - r * 0.28); ctx.lineTo(x - cw2 * 0.5, cy - r * 0.1)
+    ctx.lineTo(x, cy - r * 0.34); ctx.lineTo(x + cw2 * 0.5, cy - r * 0.1); ctx.lineTo(x + cw2, cy - r * 0.28)
+    ctx.lineTo(x + cw2, cy); ctx.closePath(); ctx.fill()
+    ctx.strokeStyle = '#B45309'; ctx.lineWidth = 1.5; ctx.stroke()
+  }
+  ctx.restore()
+}
+
+function drawBackground(ctx, W, H, LINE_Y, t) {
+  // cozy night-kitchen gradient
+  const bg = ctx.createLinearGradient(0, 0, 0, H)
+  bg.addColorStop(0, '#1B1035'); bg.addColorStop(0.55, '#3B1D4E'); bg.addColorStop(1, '#57253B')
+  ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H)
+  // twinkling stars
+  ctx.save()
+  for (let i = 0; i < 26; i++) {
+    const sx = ((i * 97.3) % 1) * W, sy = ((i * 57.7) % 1) * (LINE_Y - 20) + 8
+    const tw = 0.25 + 0.55 * Math.abs(Math.sin(t * 1.4 + i * 1.7))
+    ctx.fillStyle = 'rgba(255,240,200,' + (tw * 0.7).toFixed(2) + ')'
+    ctx.beginPath(); ctx.arc(sx, sy, 1.3, 0, Math.PI * 2); ctx.fill()
+  }
+  ctx.restore()
+  // festive bunting across the top
+  const cols = ['#F472B6', '#FBBF24', '#34D399', '#38BDF8', '#FB923C']
+  ctx.save()
+  ctx.strokeStyle = 'rgba(255,255,255,0.35)'; ctx.lineWidth = 2
+  ctx.beginPath(); ctx.moveTo(0, 6); ctx.quadraticCurveTo(W / 2, 34, W, 6); ctx.stroke()
+  for (let i = 0; i < 9; i++) {
+    const fx = (W * (i + 0.5)) / 9
+    const fy = 6 + Math.sin((fx / W) * Math.PI) * 24
+    ctx.fillStyle = cols[i % cols.length]
+    ctx.beginPath(); ctx.moveTo(fx - 9, fy); ctx.lineTo(fx + 9, fy); ctx.lineTo(fx, fy + 15); ctx.closePath(); ctx.fill()
+  }
+  ctx.restore()
+  // rising steam wisps
+  ctx.save()
+  ctx.strokeStyle = 'rgba(255,255,255,0.10)'; ctx.lineWidth = 3; ctx.lineCap = 'round'
+  for (let i = 0; i < 3; i++) {
+    const bx = W * (0.25 + i * 0.25) + Math.sin(t * 0.9 + i * 2) * 8
+    ctx.beginPath()
+    ctx.moveTo(bx, H - 60)
+    ctx.bezierCurveTo(bx - 12, H - 160, bx + 12, H - 260, bx - 6, H - 360)
+    ctx.stroke()
+  }
+  ctx.restore()
+}
+
+function drawBasket(ctx, W, H, WALL) {
+  // bamboo steamer walls
+  const bam = ctx.createLinearGradient(0, 0, WALL, 0)
+  bam.addColorStop(0, '#B07A3B'); bam.addColorStop(0.5, '#E3B76B'); bam.addColorStop(1, '#B07A3B')
+  ctx.fillStyle = bam
+  ctx.fillRect(0, 0, WALL, H); ctx.fillRect(W - WALL, 0, WALL, H)
+  ctx.fillStyle = 'rgba(120,63,20,0.55)'
+  for (let y = 14; y < H; y += 30) { ctx.fillRect(0, y, WALL, 3); ctx.fillRect(W - WALL, y, WALL, 3) }
+  // woven basket floor
+  const fl = ctx.createLinearGradient(0, H - WALL - 14, 0, H)
+  fl.addColorStop(0, '#C99A55'); fl.addColorStop(1, '#8A5A28')
+  ctx.fillStyle = fl; ctx.fillRect(WALL, H - WALL - 6, W - 2 * WALL, WALL + 6)
+  ctx.fillStyle = 'rgba(120,63,20,0.4)'
+  for (let x = WALL + 6; x < W - WALL; x += 14) ctx.fillRect(x, H - WALL - 6, 3, WALL + 6)
 }
 
 export default function games_momo_merge() {
@@ -79,7 +197,6 @@ export default function games_momo_merge() {
   const [curRank, setCurRank] = useState(() => randDrop())
   const [nextRank, setNextRank] = useState(() => randDrop())
   const [muted, setMuted] = useState(false)
-  const [popups, setPopups] = useState([])
   const canvasRef = useRef(null)
   const wrapRef = useRef(null)
   const [cw, setCw] = useState(400)
@@ -88,11 +205,11 @@ export default function games_momo_merge() {
   const s = useCallback((fn, ...a) => { if (!mutedRef.current) fn(...a) }, [])
 
   const st = useRef({
-    balls: [], aimX: 200, dropCooldown: 0, overTimer: 0,
-    running: false, over: false, score: 0, cur: 0, next: 1, combo: 0,
+    balls: [], parts: [], popups: [], aimX: 200, dropCooldown: 0, worst: 0,
+    running: false, over: false, score: 0, cur: 0, next: 1, t: 0,
   })
 
-  const W = cw, H = 560, WALL = 8, LINE_Y = 120
+  const W = cw, H = 560, WALL = 10, LINE_Y = 128
 
   const fit = useCallback(() => {
     if (wrapRef.current) {
@@ -109,55 +226,56 @@ export default function games_momo_merge() {
   useEffect(() => { if (playing) requestAnimationFrame(fit) }, [playing, fit])
 
   const startNew = useCallback(() => {
-    const c = randDrop(); let n = randDrop()
-    st.current = { balls: [], aimX: W / 2, dropCooldown: 0, overTimer: 0, running: true, over: false, score: 0, cur: c, next: n, combo: 0 }
+    const c = randDrop(); const n = randDrop()
+    st.current = { balls: [], parts: [], popups: [], aimX: W / 2, dropCooldown: 0, worst: 0, running: true, over: false, score: 0, cur: c, next: n, t: 0 }
     UID = 1
-    setScore(0); setGameOver(false); setPlaying(true); setPopups([])
+    setScore(0); setGameOver(false); setPlaying(true)
     setCurRank(c); setNextRank(n)
   }, [W])
 
   const endGame = useCallback(() => {
-    const sc = st.current.score
-    st.current.running = false; st.current.over = true
+    const S = st.current
+    if (S.over) return
+    S.running = false; S.over = true
+    const sc = S.score
     setGameOver(true); s(sndOver)
     setBest((prev) => { const nb = Math.max(prev, sc); try { localStorage.setItem(LS.BEST, String(nb)) } catch {} return nb })
   }, [s])
+  const endRef = useRef(endGame); endRef.current = endGame
 
   const drop = useCallback(() => {
     const S = st.current
     if (!S.running || S.over || S.dropCooldown > 0) return
     const rank = S.cur, r = MOMOS[rank].r
     const x = Math.min(Math.max(S.aimX, WALL + r), W - WALL - r)
-    S.balls.push({ id: UID++, x, y: LINE_Y - 40, vx: 0, vy: 0, r, rank, fresh: true })
+    S.balls.push({ id: UID++, x, y: 44, vx: (Math.random() - 0.5) * 20, vy: 30, r, rank, age: 0, above: 0, squash: 1 })
     S.cur = S.next; S.next = randDrop()
     setCurRank(S.cur); setNextRank(S.next)
-    S.dropCooldown = 0.45
+    S.dropCooldown = 0.4
     s(sndDrop)
   }, [W, s])
-
   const dropRef = useRef(drop); dropRef.current = drop
 
-  // aim input
   useEffect(() => {
     const cv = canvasRef.current
     if (!cv) return
     const toX = (clientX) => {
       const rect = cv.getBoundingClientRect()
-      const scale = W / rect.width
-      st.current.aimX = (clientX - rect.left) * scale
+      st.current.aimX = (clientX - rect.left) * (W / rect.width)
     }
-    const mv = (e) => { if (e.touches?.[0]) toX(e.touches[0].clientX); else if (e.clientX != null) toX(e.clientX) }
-    const dn = (e) => {
+    const mv = (e) => { if (e.touches && e.touches[0]) toX(e.touches[0].clientX); else if (e.clientX != null) toX(e.clientX) }
+    const onDown = (e) => {
       if (!st.current.running) { window.dispatchEvent(new Event('ut:game-start')); return }
-      mv(e); dropRef.current()
+      e.preventDefault(); mv(e); dropRef.current()
     }
+    const onMove = (e) => { e.preventDefault(); mv(e) }
     cv.addEventListener('mousemove', mv)
-    cv.addEventListener('mousedown', dn)
-    cv.addEventListener('touchstart', (e) => { e.preventDefault(); dn(e) }, { passive: false })
-    cv.addEventListener('touchmove', (e) => { e.preventDefault(); mv(e) }, { passive: false })
+    cv.addEventListener('mousedown', onDown)
+    cv.addEventListener('touchstart', onDown, { passive: false })
+    cv.addEventListener('touchmove', onMove, { passive: false })
     return () => {
-      cv.removeEventListener('mousemove', mv); cv.removeEventListener('mousedown', dn)
-      cv.removeEventListener('touchstart', dn); cv.removeEventListener('touchmove', mv)
+      cv.removeEventListener('mousemove', mv); cv.removeEventListener('mousedown', onDown)
+      cv.removeEventListener('touchstart', onDown); cv.removeEventListener('touchmove', onMove)
     }
   }, [playing, W])
 
@@ -175,72 +293,79 @@ export default function games_momo_merge() {
     return () => window.removeEventListener('keydown', h)
   }, [W])
 
-  // physics loop
+  // physics + render loop
   useEffect(() => {
     if (!playing) return
     let raf; let last = performance.now()
     const step = (now) => {
       const dt = Math.min(0.033, (now - last) / 1000); last = now
       const S = st.current
+      S.t += dt
       if (S.running && !S.over) {
         S.dropCooldown = Math.max(0, S.dropCooldown - dt)
-        const sub = 2
+        const sub = 3
         for (let k = 0; k < sub; k++) {
           const h = dt / sub
           for (const b of S.balls) {
-            b.vy += 1500 * h
-            b.vx *= (1 - 0.4 * h); b.vy *= (1 - 0.05 * h)
+            b.age += h
+            b.vy += 1600 * h
+            b.vx *= (1 - 0.5 * h); b.vy *= (1 - 0.06 * h)
+            b.squash += (1 - b.squash) * Math.min(1, 10 * h)
             b.x += b.vx * h; b.y += b.vy * h
-            // walls + floor
             if (b.x - b.r < WALL) { b.x = WALL + b.r; b.vx = Math.abs(b.vx) * 0.4 }
             if (b.x + b.r > W - WALL) { b.x = W - WALL - b.r; b.vx = -Math.abs(b.vx) * 0.4 }
-            if (b.y + b.r > H - WALL) { b.y = H - WALL - b.r; b.vy = -Math.abs(b.vy) * 0.35; b.vx *= 0.96; if (Math.abs(b.vy) < 25) b.vy = 0 }
+            if (b.y + b.r > H - WALL) {
+              b.y = H - WALL - b.r
+              if (Math.abs(b.vy) > 120) b.squash = 0.78
+              b.vy = -Math.abs(b.vy) * 0.3; b.vx *= 0.96
+              if (Math.abs(b.vy) < 30) b.vy = 0
+            }
             if (b.y - b.r < 0) { b.y = b.r; b.vy = Math.abs(b.vy) * 0.3 }
           }
-          // circle collisions
           const B = S.balls
           for (let i = 0; i < B.length; i++) {
             for (let j = i + 1; j < B.length; j++) {
               const a = B[i], b = B[j]
               const dx = b.x - a.x, dy = b.y - a.y
-              const dist = Math.hypot(dx, dy), min = a.r + b.r
-              if (dist > 0 && dist < min) {
+              const dist = Math.hypot(dx, dy) || 0.001, min = a.r + b.r
+              if (dist < min) {
                 const nx = dx / dist, ny = dy / dist, ov = (min - dist) / 2
-                const ta = a.fresh ? 0.2 : 1, tb = b.fresh ? 0.2 : 1
-                a.x -= nx * ov * ta; a.y -= ny * ov * ta
-                b.x += nx * ov * tb; b.y += ny * ov * tb
-                const rvx = b.vx - a.vx, rvy = b.vy - a.vy
-                const vn = rvx * nx + rvy * ny
+                a.x -= nx * ov; a.y -= ny * ov
+                b.x += nx * ov; b.y += ny * ov
+                const vn = (b.vx - a.vx) * nx + (b.vy - a.vy) * ny
                 if (vn < 0) {
-                  const imp = -vn * 0.6
+                  const imp = -vn * 0.55
                   a.vx -= imp * nx; a.vy -= imp * ny
                   b.vx += imp * nx; b.vy += imp * ny
+                  if (vn < -160) { a.squash = 0.85; b.squash = 0.85 }
                 }
               }
             }
           }
-          for (const b of S.balls) b.fresh = false
         }
-        // merges: same rank, rank < 9
+        // MERGE: same rank touching (rank < 9). Touching = centres within 92% of summed radii.
         let merged = true
-        while (merged) {
+        let guard = 0
+        while (merged && guard++ < 12) {
           merged = false
           const B = S.balls
           outer: for (let i = 0; i < B.length; i++) {
             for (let j = i + 1; j < B.length; j++) {
               const a = B[i], b = B[j]
-              if (a.rank === b.rank && a.rank < 9 && Math.hypot(b.x - a.x, b.y - a.y) < (a.r + b.r) * 0.82) {
+              if (a.rank === b.rank && a.rank < 9 && Math.hypot(b.x - a.x, b.y - a.y) < (a.r + b.r) * 0.92) {
                 const nr = a.rank + 1
                 const nx = (a.x + b.x) / 2, ny = (a.y + b.y) / 2
-                S.balls = B.filter((_, k) => k !== i && k !== j)
-                const nb = { id: UID++, x: nx, y: ny, vx: (a.vx + b.vx) / 2, vy: Math.min(a.vy, b.vy) - 60, r: MOMOS[nr].r, rank: nr, fresh: false, pop: 1 }
-                S.balls.push(nb)
+                S.balls = B.filter((_, kk) => kk !== i && kk !== j)
+                S.balls.push({ id: UID++, x: nx, y: ny, vx: (a.vx + b.vx) / 2, vy: -80, r: MOMOS[nr].r, rank: nr, age: 0, above: 0, squash: 1.18 })
                 const pts = MOMOS[nr].score
-                S.combo += 1
                 S.score += pts
                 setScore(S.score)
-                setPopups((p) => [...p.slice(-5), { id: UID, x: nx, y: ny, text: `+${pts}` }])
-                setTimeout(() => setPopups((p) => p.slice(1)), 800)
+                for (let p = 0; p < 14; p++) {
+                  const an = (p / 14) * Math.PI * 2
+                  S.parts.push({ x: nx, y: ny, vx: Math.cos(an) * (90 + Math.random() * 130), vy: Math.sin(an) * (90 + Math.random() * 130) - 60, life: 0.55 + Math.random() * 0.25, max: 0.8, color: MOMOS[nr].edge, ring: false })
+                }
+                S.parts.push({ x: nx, y: ny, vx: 0, vy: 0, life: 0.35, max: 0.35, color: '#FFFFFF', ring: true, r0: MOMOS[nr].r * 0.5, r1: MOMOS[nr].r * 1.5 })
+                S.popups.push({ id: UID++, x: nx, y: ny - MOMOS[nr].r, text: '+' + pts, life: 0.9 })
                 s(sndMerge, nr)
                 merged = true
                 break outer
@@ -248,62 +373,83 @@ export default function games_momo_merge() {
             }
           }
         }
-        S.combo = Math.max(0, S.combo - dt * 1.5)
-        // game over: settled ball above line
-        const danger = S.balls.some((b) => b.y - b.r * 0.4 < LINE_Y && Math.abs(b.vy) < 60 && b.y > 0)
-        if (danger) { S.overTimer += dt; if (S.overTimer > 2) endGame() }
-        else S.overTimer = Math.max(0, S.overTimer - dt * 2)
+        // GAME OVER: any momo older than 1s resting with body above the line
+        let worst = 0
+        for (const b of S.balls) {
+          const speed = Math.hypot(b.vx, b.vy)
+          if (b.age > 1 && b.y - b.r * 0.55 < LINE_Y && speed < 260) b.above += dt
+          else b.above = 0
+          worst = Math.max(worst, b.above)
+        }
+        S.worst = worst
+        if (worst > 2) { endRef.current() }
+        for (const p of S.parts) { p.life -= dt; p.x += p.vx * dt; p.y += p.vy * dt; p.vy += 500 * dt }
+        S.parts = S.parts.filter((p) => p.life > 0)
+        for (const p of S.popups) { p.life -= dt; p.y -= 34 * dt }
+        S.popups = S.popups.filter((p) => p.life > 0)
       }
-      // draw
+      // ---- draw ----
       const cv = canvasRef.current
       if (cv) {
         const dpr = Math.min(2, window.devicePixelRatio || 1)
-        if (cv.width !== W * dpr || cv.height !== H * dpr) { cv.width = W * dpr; cv.height = H * dpr }
+        if (cv.width !== Math.round(W * dpr) || cv.height !== Math.round(H * dpr)) { cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr) }
         const ctx = cv.getContext('2d')
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
-        ctx.clearRect(0, 0, W, H)
-        // bg
-        const bg = ctx.createLinearGradient(0, 0, 0, H)
-        bg.addColorStop(0, '#0f172a'); bg.addColorStop(1, '#1e1b4b')
-        ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H)
-        // danger line
-        const S2 = st.current
-        const urg = S2.overTimer > 0
+        drawBackground(ctx, W, H, LINE_Y, S.t)
+        // danger line (pulses red as overflow timer grows)
+        const urg = Math.min(1, (S.worst || 0) / 2)
         ctx.save()
-        ctx.strokeStyle = urg ? '#EF4444' : 'rgba(239,68,68,0.45)'
-        ctx.lineWidth = urg ? 3 : 2
-        ctx.setLineDash([8, 6])
+        ctx.strokeStyle = urg > 0 ? 'rgba(239,68,68,' + (0.5 + urg * 0.5).toFixed(2) + ')' : 'rgba(255,255,255,0.4)'
+        ctx.lineWidth = urg > 0 ? 2 + urg * 2 : 2
+        ctx.setLineDash([10, 7])
+        if (urg > 0 && Math.floor(S.t * 6) % 2 === 0) ctx.lineWidth += 1
         ctx.beginPath(); ctx.moveTo(WALL, LINE_Y); ctx.lineTo(W - WALL, LINE_Y); ctx.stroke()
         ctx.setLineDash([])
-        ctx.fillStyle = urg ? '#EF4444' : 'rgba(239,68,68,0.6)'
-        ctx.font = 'bold 10px system-ui'; ctx.fillText(urg ? `⚠ ${(2 - S2.overTimer).toFixed(1)}s` : 'game over line', WALL + 6, LINE_Y - 6)
+        ctx.font = 'bold 11px system-ui'
+        ctx.fillStyle = urg > 0 ? '#FCA5A5' : 'rgba(255,255,255,0.55)'
+        ctx.fillText(urg > 0 ? '⚠ ' + (2 - (S.worst || 0)).toFixed(1) + 's — move it down!' : '─ danger line ─', WALL + 8, LINE_Y - 8)
         ctx.restore()
-        // aim guide
-        if (S2.running && !S2.over) {
-          const r = MOMOS[S2.cur].r
-          const ax = Math.min(Math.max(S2.aimX, WALL + r), W - WALL - r)
+        // aim guide + held momo + dropper claw
+        if (S.running && !S.over) {
+          const r = MOMOS[S.cur].r
+          const ax = Math.min(Math.max(S.aimX, WALL + r), W - WALL - r)
           ctx.save()
-          ctx.strokeStyle = 'rgba(255,255,255,0.25)'; ctx.setLineDash([4, 5]); ctx.lineWidth = 1.5
-          ctx.beginPath(); ctx.moveTo(ax, LINE_Y - 60); ctx.lineTo(ax, H - WALL); ctx.stroke()
-          ctx.setLineDash([]); ctx.globalAlpha = 0.9
-          drawMomo(ctx, ax, LINE_Y - 60, r, S2.cur)
+          ctx.strokeStyle = 'rgba(255,255,255,0.3)'; ctx.setLineDash([4, 6]); ctx.lineWidth = 2
+          ctx.beginPath(); ctx.moveTo(ax, 66); ctx.lineTo(ax, H - WALL); ctx.stroke()
+          ctx.setLineDash([])
+          ctx.globalAlpha = 0.95
+          drawMomo(ctx, ax, 44, r, S.cur)
+          ctx.fillStyle = 'rgba(255,255,255,0.5)'
+          ctx.fillRect(ax - 14, 8, 28, 5)
+          ctx.beginPath(); ctx.moveTo(ax - 14, 13); ctx.lineTo(ax - r * 0.5, 44 - r * 0.9); ctx.lineTo(ax - r * 0.5 + 5, 44 - r * 0.9); ctx.lineTo(ax - 9, 13); ctx.closePath(); ctx.fill()
+          ctx.beginPath(); ctx.moveTo(ax + 14, 13); ctx.lineTo(ax + r * 0.5, 44 - r * 0.9); ctx.lineTo(ax + r * 0.5 - 5, 44 - r * 0.9); ctx.lineTo(ax + 9, 13); ctx.closePath(); ctx.fill()
           ctx.restore()
         }
-        // walls
-        ctx.fillStyle = '#334155'
-        ctx.fillRect(0, 0, WALL, H); ctx.fillRect(W - WALL, 0, WALL, H); ctx.fillRect(0, H - WALL, W, WALL)
-        for (const b of S2.balls) {
-          ctx.save()
-          if (b.pop) { const sc = 1 + 0.25 * b.pop; ctx.translate(b.x, b.y); ctx.scale(sc, sc); ctx.translate(-b.x, -b.y); b.pop = Math.max(0, (b.pop || 0) - dt * 4) }
-          drawMomo(ctx, b.x, b.y, b.r, b.rank)
-          ctx.restore()
-        }
-        // popups
+        drawBasket(ctx, W, H, WALL)
+        for (const b of S.balls) drawMomo(ctx, b.x, b.y, b.r, b.rank, b.squash)
+        // particles
         ctx.save()
-        ctx.font = 'bold 15px system-ui'; ctx.textAlign = 'center'
-        for (const p of popupsRef.current) {
-          ctx.fillStyle = '#FDE047'
-          ctx.fillText(p.text, p.x, p.y - 10)
+        for (const p of S.parts) {
+          const a = Math.max(0, p.life / p.max)
+          if (p.ring) {
+            ctx.globalAlpha = a
+            ctx.strokeStyle = p.color; ctx.lineWidth = 3
+            ctx.beginPath(); ctx.arc(p.x, p.y, p.r0 + (p.r1 - p.r0) * (1 - a), 0, Math.PI * 2); ctx.stroke()
+          } else {
+            ctx.globalAlpha = a
+            ctx.fillStyle = p.color
+            ctx.beginPath(); ctx.arc(p.x, p.y, 3.5 * a + 1, 0, Math.PI * 2); ctx.fill()
+          }
+        }
+        ctx.restore()
+        // score popups
+        ctx.save()
+        ctx.font = 'bold 16px system-ui'; ctx.textAlign = 'center'
+        ctx.lineWidth = 3; ctx.strokeStyle = 'rgba(0,0,0,0.5)'
+        for (const p of S.popups) {
+          ctx.globalAlpha = Math.min(1, p.life * 2)
+          ctx.strokeText(p.text, p.x, p.y)
+          ctx.fillStyle = '#FDE047'; ctx.fillText(p.text, p.x, p.y)
         }
         ctx.restore()
       }
@@ -311,9 +457,7 @@ export default function games_momo_merge() {
     }
     raf = requestAnimationFrame(step)
     return () => cancelAnimationFrame(raf)
-  }, [playing, W, H, endGame, s])
-
-  const popupsRef = useRef(popups); popupsRef.current = popups
+  }, [playing, W, H, s])
 
   return (
     <GameShell
@@ -323,22 +467,22 @@ export default function games_momo_merge() {
         <button onClick={() => setMuted((m) => !m)} className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-300 hover:text-white transition-all">{muted ? '🔇 Muted' : '🔊 Sound'}</button>
       }
       headerStats={<><span>Score <b className="text-cyan-300">{score}</b></span><span>Best <b className="text-amber-300">🏆 {best}</b></span></>}
-      title="Momo Merge — Cute Suika-Style Momo Drop Puzzle Game"
-      desc="Drop cute momos, match same sizes to merge them into bigger momos, and beat your best before the stack crosses the line."
+      title="Momo Merge — Cute Momo Drop & Merge Puzzle Game"
+      desc="Drop cute momos into the steamer, match same sizes to merge them into bigger momos, and beat your best before the stack crosses the line."
       icon="🥟" iconBg="rgba(244,114,182,0.08)"
       category="fun" slug="games-momo-merge"
       faq={[
-        { q: 'How do I play Momo Merge?', a: 'Move to aim, click / tap / Space to drop the momo. Two momos of the same size touching each other merge into the next bigger size.' },
-        { q: 'Which momos can I drop?', a: 'The dropper gives you sizes 1–4 at random, shown as Next. Merge your way up — there are 10 sizes total, ending in the King Momo.' },
+        { q: 'How do I play Momo Merge?', a: 'Move to aim, click / tap / Space to drop the momo into the steamer. Two momos of the same size touching each other merge into the next bigger size.' },
+        { q: 'Which momos can I drop?', a: 'The dropper gives you sizes 1–4 at random, shown as Next. Merge your way up — there are 10 sizes total, ending in the crowned King Momo.' },
         { q: 'Do King Momos merge?', a: 'No. Two size-10 King Momos just sit together — exactly like the Snapchat game, nothing exists past size 10.' },
-        { q: 'How do I score?', a: 'Every merge scores points — bigger merges pay more (10 for Mini up to 2000 for King). Survive longer for a higher score.' },
-        { q: 'When is it game over?', a: 'If settled momos stack above the red dashed line for 2 seconds, the game ends.' },
+        { q: 'How do I score?', a: 'Every merge scores points — bigger merges pay more (10 for Mini up to 2000 for King), with burst effects on each merge.' },
+        { q: 'When is it game over?', a: 'If a momo rests with its body above the red danger line for 2 seconds, the run ends. The line flashes with a countdown warning first.' },
       ]}
       howItWorks={[
         'Aim with mouse, touch, or arrow keys — click, tap, or Space drops the momo.',
         'Same-size momos touching merge into the next bigger size (1→2→…→10).',
         'Only sizes 1–4 drop randomly. Size 10 never merges.',
-        'Crossing the red line for 2 seconds ends the run. Chain merges for big points!',
+        'A momo resting above the red line for 2 seconds ends the run. Chain merges for big points!',
       ]}
       schema={{
         '@context': 'https://schema.org', '@type': 'VideoGame',
@@ -355,12 +499,12 @@ export default function games_momo_merge() {
             <div className="text-6xl mb-2">🥟</div>
             <h2 className="text-4xl sm:text-5xl font-black tracking-tighter text-white">MOMO MERGE</h2>
             <p className="text-xs sm:text-sm text-slate-400 mt-1 mb-3">Drop · Match · Merge · 10 cute sizes</p>
-            <div className="flex items-center justify-center gap-1.5 mb-4 flex-wrap">
-              {MOMOS.slice(0, 6).map((m, i) => (
+            <div className="flex items-end justify-center gap-1.5 mb-4 flex-wrap">
+              {MOMOS.slice(0, 7).map((m, i) => (
                 <span key={i} className="inline-flex items-center justify-center rounded-full border font-bold text-slate-800"
-                  style={{ width: Math.min(44, 18 + m.r * 0.55), height: Math.min(44, 18 + m.r * 0.55), background: m.color, borderColor: m.edge, fontSize: 10 }}>{i + 1}</span>
+                  style={{ width: Math.min(46, 16 + m.r * 0.55), height: Math.min(46, 16 + m.r * 0.55), background: m.color, borderColor: m.edge, fontSize: 10 }}>{i + 1}</span>
               ))}
-              <span className="text-slate-500 text-xs">…10</span>
+              <span className="text-slate-500 text-xs">…10 👑</span>
             </div>
             {best > 0 && <p className="text-xs text-amber-400 mb-2">🏆 Best: {best}</p>}
             <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))} className="px-8 py-3 rounded-full bg-gradient-to-r from-pink-500 to-orange-400 text-white font-extrabold text-lg shadow hover:scale-105 transition">🥟 Start Dropping</button>
@@ -387,9 +531,9 @@ export default function games_momo_merge() {
                 {gameOver && (
                   <div className="absolute inset-0 bg-black/80 backdrop-blur-sm flex flex-col items-center justify-center z-10 p-4 text-center">
                     <div className="text-4xl mb-2">🥟</div>
-                    <h2 className="text-xl font-bold text-white mb-1">Game Over!</h2>
+                    <h2 className="text-xl font-bold text-white mb-1">Steamer Full!</h2>
                     <p className="text-sm text-slate-300 mb-1">Score: <b className="text-cyan-300">{score}</b> · Best: <b className="text-amber-300">{best}</b></p>
-                    <p className="text-[11px] text-slate-500 mb-3">The momos crossed the line!</p>
+                    <p className="text-[11px] text-slate-500 mb-3">A momo rested above the danger line!</p>
                     <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))} className="px-6 py-2.5 rounded-full bg-gradient-to-r from-pink-500 to-orange-400 text-white font-bold text-sm hover:scale-105 transition">🥟 Play Again</button>
                   </div>
                 )}
@@ -398,7 +542,7 @@ export default function games_momo_merge() {
                 <p className="text-[10px] text-slate-500 mb-1.5 text-center">MERGE CHART — same + same = next</p>
                 <div className="flex items-center justify-center gap-1 flex-wrap">
                   {MOMOS.map((m, i) => (
-                    <span key={i} title={`${m.name} (+${m.score})`} className="inline-flex items-center justify-center rounded-full border text-slate-800 font-bold"
+                    <span key={i} title={m.name + ' (+' + m.score + ')'} className="inline-flex items-center justify-center rounded-full border text-slate-800 font-bold"
                       style={{ width: 15 + m.r * 0.28, height: 15 + m.r * 0.28, background: m.color, borderColor: m.edge, fontSize: 9 }}>{i + 1}</span>
                   ))}
                 </div>
