@@ -52,6 +52,7 @@ export const GAMES = [
   { slug: 'balloon-pop', title: 'Balloon Pop', icon: '🎈', desc: 'Pop balloons in 45 seconds. Golden ones pay big!', cat: 'Arcade', color: '#ec4899' },
   { slug: 'stack-tower', title: 'Stack Tower', icon: '🗼', desc: 'Stack moving blocks sky-high. Perfect drops earn bonuses.', cat: 'Arcade', color: '#f97316' },
   { slug: 'dots-boxes', title: 'Dots & Boxes', icon: '⬛', desc: 'Outsmart the computer in this classic strategy duel.', cat: 'Board', color: '#14b8a6' },
+  { slug: 'momo-merge', title: 'Momo Merge', icon: '🥟', desc: 'Drop cute momos, merge same sizes into bigger momos. 10 sizes, game over above the line.', cat: 'Puzzle', color: '#ec4899' },
 ]
 
 const CATEGORIES = ['All', ...new Set(GAMES.map(g => g.cat))]
