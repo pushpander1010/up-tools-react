@@ -37,7 +37,7 @@ const sndOver = () => { tone(300, 0.3, 'sawtooth', 0.06); tone(150, 0.5, 'sawtoo
 let UID = 1
 
 function drawFace(ctx, x, y, r, rank) {
-  const ex = r * 0.30, ey = y + r * 0.02, e = Math.max(2.2, r * 0.13)
+  const ex = r * 0.30, ey = y + r * 0.02, e = Math.max(3, r * 0.17)
   const happy = rank % 3
   ctx.save()
   if (happy === 0) {
@@ -130,6 +130,33 @@ function drawMomo(ctx, x, y, r, rank, squash = 1) {
     ctx.lineTo(x, cy - r * 0.34); ctx.lineTo(x + cw2 * 0.5, cy - r * 0.1); ctx.lineTo(x + cw2, cy - r * 0.28)
     ctx.lineTo(x + cw2, cy); ctx.closePath(); ctx.fill()
     ctx.strokeStyle = '#B45309'; ctx.lineWidth = 1.5; ctx.stroke()
+  }
+  // cute accessories per size
+  if (rank === 2 || rank === 5) {
+    ctx.strokeStyle = '#16A34A'; ctx.lineWidth = Math.max(1.5, r * 0.05); ctx.lineCap = 'round'
+    ctx.beginPath(); ctx.moveTo(x + r * 0.3, y - r * 0.86); ctx.quadraticCurveTo(x + r * 0.42, y - r * 1.05, x + r * 0.58, y - r * 1.08); ctx.stroke()
+    ctx.fillStyle = '#22C55E'
+    ctx.beginPath(); ctx.ellipse(x + r * 0.62, y - r * 1.08, r * 0.14, r * 0.08, 0.5, 0, Math.PI * 2); ctx.fill()
+  }
+  if (rank === 3 || rank === 9) {
+    const bx = x + r * 0.55, by = y - r * 0.72, bs = r * 0.16
+    ctx.fillStyle = rank === 3 ? '#EC4899' : '#FBBF24'
+    ctx.beginPath(); ctx.moveTo(bx, by); ctx.lineTo(bx - bs * 1.4, by - bs); ctx.lineTo(bx - bs * 1.4, by + bs); ctx.closePath(); ctx.fill()
+    ctx.beginPath(); ctx.moveTo(bx, by); ctx.lineTo(bx + bs * 1.4, by - bs); ctx.lineTo(bx + bs * 1.4, by + bs); ctx.closePath(); ctx.fill()
+    ctx.fillStyle = '#fff'
+    ctx.beginPath(); ctx.arc(bx, by, bs * 0.55, 0, Math.PI * 2); ctx.fill()
+  }
+  if (rank === 7) {
+    const sx = x - r * 0.55, syy = y - r * 0.62, ss = r * 0.13
+    ctx.fillStyle = '#FDE047'
+    ctx.beginPath()
+    for (let k = 0; k < 5; k++) {
+      const an = -Math.PI / 2 + (k * 2 * Math.PI) / 5
+      const px = sx + Math.cos(an) * ss, py = syy + Math.sin(an) * ss
+      if (k === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py)
+    }
+    ctx.closePath(); ctx.fill()
+    ctx.strokeStyle = '#B45309'; ctx.lineWidth = 1; ctx.stroke()
   }
   ctx.restore()
 }
@@ -323,12 +350,33 @@ export default function games_momo_merge() {
             if (b.y - b.r < 0) { b.y = b.r; b.vy = Math.abs(b.vy) * 0.3 }
           }
           const B = S.balls
+          let touched = false
           for (let i = 0; i < B.length; i++) {
             for (let j = i + 1; j < B.length; j++) {
               const a = B[i], b = B[j]
+              if (a.dead || b.dead) continue
               const dx = b.x - a.x, dy = b.y - a.y
               const dist = Math.hypot(dx, dy) || 0.001, min = a.r + b.r
               if (dist < min) {
+                // Suika rule: ANY touch between same sizes merges instantly
+                if (a.rank === b.rank && a.rank < 9) {
+                  a.dead = b.dead = true
+                  const nr = a.rank + 1
+                  const nx = (a.x + b.x) / 2, ny = (a.y + b.y) / 2
+                  S.balls.push({ id: UID++, x: nx, y: ny, vx: (a.vx + b.vx) / 2, vy: -80, r: MOMOS[nr].r, rank: nr, age: 0, above: 0, squash: 1.18 })
+                  const pts = MOMOS[nr].score
+                  S.score += pts
+                  setScore(S.score)
+                  for (let p = 0; p < 14; p++) {
+                    const an = (p / 14) * Math.PI * 2
+                    S.parts.push({ x: nx, y: ny, vx: Math.cos(an) * (90 + Math.random() * 130), vy: Math.sin(an) * (90 + Math.random() * 130) - 60, life: 0.55 + Math.random() * 0.25, max: 0.8, color: MOMOS[nr].edge, ring: false })
+                  }
+                  S.parts.push({ x: nx, y: ny, vx: 0, vy: 0, life: 0.35, max: 0.35, color: '#FFFFFF', ring: true, r0: MOMOS[nr].r * 0.5, r1: MOMOS[nr].r * 1.5 })
+                  S.popups.push({ id: UID++, x: nx, y: ny - MOMOS[nr].r, text: '+' + pts, life: 0.9 })
+                  s(sndMerge, nr)
+                  touched = true
+                  continue
+                }
                 const nx = dx / dist, ny = dy / dist, ov = (min - dist) / 2
                 a.x -= nx * ov; a.y -= ny * ov
                 b.x += nx * ov; b.y += ny * ov
@@ -342,37 +390,9 @@ export default function games_momo_merge() {
               }
             }
           }
+          if (touched) S.balls = S.balls.filter((bb) => !bb.dead)
         }
-        // MERGE: same rank touching (rank < 9). Touching = centres within 92% of summed radii.
-        let merged = true
-        let guard = 0
-        while (merged && guard++ < 12) {
-          merged = false
-          const B = S.balls
-          outer: for (let i = 0; i < B.length; i++) {
-            for (let j = i + 1; j < B.length; j++) {
-              const a = B[i], b = B[j]
-              if (a.rank === b.rank && a.rank < 9 && Math.hypot(b.x - a.x, b.y - a.y) < (a.r + b.r) * 0.92) {
-                const nr = a.rank + 1
-                const nx = (a.x + b.x) / 2, ny = (a.y + b.y) / 2
-                S.balls = B.filter((_, kk) => kk !== i && kk !== j)
-                S.balls.push({ id: UID++, x: nx, y: ny, vx: (a.vx + b.vx) / 2, vy: -80, r: MOMOS[nr].r, rank: nr, age: 0, above: 0, squash: 1.18 })
-                const pts = MOMOS[nr].score
-                S.score += pts
-                setScore(S.score)
-                for (let p = 0; p < 14; p++) {
-                  const an = (p / 14) * Math.PI * 2
-                  S.parts.push({ x: nx, y: ny, vx: Math.cos(an) * (90 + Math.random() * 130), vy: Math.sin(an) * (90 + Math.random() * 130) - 60, life: 0.55 + Math.random() * 0.25, max: 0.8, color: MOMOS[nr].edge, ring: false })
-                }
-                S.parts.push({ x: nx, y: ny, vx: 0, vy: 0, life: 0.35, max: 0.35, color: '#FFFFFF', ring: true, r0: MOMOS[nr].r * 0.5, r1: MOMOS[nr].r * 1.5 })
-                S.popups.push({ id: UID++, x: nx, y: ny - MOMOS[nr].r, text: '+' + pts, life: 0.9 })
-                s(sndMerge, nr)
-                merged = true
-                break outer
-              }
-            }
-          }
-        }
+        // merges already handled on contact inside the collision loop above (Suika rule: any touch merges).
         // GAME OVER: any momo older than 1s resting with body above the line
         let worst = 0
         for (const b of S.balls) {
