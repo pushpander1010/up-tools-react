@@ -215,22 +215,39 @@ export default function QrReader() {
     setCameraError(null)
     setCameraLoading(true)
 
-    try {
-      const constraints = {
-        video: {
-          facingMode: { ideal: mode },
-          width: { ideal: 1280 },
-          height: { ideal: 720 },
-        },
-      }
+    if (!navigator.mediaDevices || typeof navigator.mediaDevices.getUserMedia !== "function") {
+      setCameraError({
+        message: "Camera needs a secure HTTPS connection. Please open this page with https:// and try again, or upload an image instead.",
+        type: "general",
+      })
+      setCameraLoading(false)
+      return
+    }
 
-      const s = await navigator.mediaDevices.getUserMedia(constraints)
+    try {
+      let s
+      try {
+        s = await navigator.mediaDevices.getUserMedia({
+          video: {
+            facingMode: { ideal: mode },
+            width: { ideal: 1280 },
+            height: { ideal: 720 },
+          },
+        })
+      } catch (err) {
+        // Some devices reject ideal constraints — retry with basic video
+        if (err && err.name === "OverconstrainedError") {
+          s = await navigator.mediaDevices.getUserMedia({ video: true })
+        } else {
+          throw err
+        }
+      }
       streamRef.current = s
 
-      if (videoRef.current) {
-        videoRef.current.srcObject = s
-        await videoRef.current.play().catch(() => {})
-      }
+      // NOTE: the <video> element mounts after setCameraActive(true) below,
+      // so the stream is attached in the effect watching cameraActive.
+      setCameraActive(true)
+      setFacingMode(mode)
 
       // Check torch capability
       const track = s.getVideoTracks()[0]
@@ -240,9 +257,6 @@ export default function QrReader() {
           setHasTorch(true)
         }
       }
-
-      setCameraActive(true)
-      setFacingMode(mode)
     } catch (err) {
       console.warn('Camera initialization failed:', err)
       let msg = 'Could not access the camera. Please check permissions.'
@@ -288,6 +302,14 @@ export default function QrReader() {
     const nextMode = facingMode === 'environment' ? 'user' : 'environment'
     startCamera(nextMode)
   }, [facingMode, startCamera])
+
+  // Attach the stream once the <video> element has mounted
+  useEffect(() => {
+    if (cameraActive && videoRef.current && streamRef.current) {
+      videoRef.current.srcObject = streamRef.current
+      videoRef.current.play().catch(() => {})
+    }
+  }, [cameraActive])
 
   // Process a canvas / image data with both BarcodeDetector & jsQR
   const decodeCanvas = useCallback(async (canvas) => {
@@ -587,8 +609,16 @@ export default function QrReader() {
           </div>
 
           {/* Active Camera Viewport */}
-          {cameraActive && (
+          {(cameraActive || cameraLoading) && (
             <div className="relative rounded-2xl overflow-hidden bg-black aspect-video sm:aspect-4/3 flex items-center justify-center border border-white/10 shadow-2xl">
+              {cameraLoading && !cameraActive && (
+                <div className="absolute inset-0 flex items-center justify-center bg-black">
+                  <div className="text-center">
+                    <div className="text-3xl mb-2 animate-pulse">📸</div>
+                    <div className="text-xs text-slate-300">Starting camera...</div>
+                  </div>
+                </div>
+              )}
               <video
                 ref={videoRef}
                 className="w-full h-full object-cover"
