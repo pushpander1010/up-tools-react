@@ -270,6 +270,15 @@ export default function UpiQrGenerator() {
     window.history.replaceState(null, '', window.location.pathname)
   }, [])
 
+  const faq = [
+    { q: 'What is a UPI QR code?', a: 'A scannable code containing your UPI ID and optional amount and note. When a customer scans it with GPay, PhonePe, Paytm, or BHIM, the payment details are pre-filled — they just tap pay.' },
+    { q: 'Which apps can scan my UPI QR code?', a: 'All major Indian UPI apps: Google Pay, PhonePe, Paytm, BHIM, Amazon Pay, and WhatsApp Pay.' },
+    { q: 'Is the amount mandatory?', a: 'No. Generate a QR with just your UPI ID and the payer enters the amount. Set a fixed amount for fixed-price items like a ₹100 product.' },
+    { q: 'Should I add my name to the QR code?', a: 'Yes, adding your shop or personal name builds trust — payers see the name before confirming payment, which reduces failed or wrong payments.' },
+    { q: 'Is it safe to share my UPI QR code publicly?', a: 'Yes. A UPI QR only contains your payment address — it cannot be used to withdraw money. Never share UPI PINs or OTPs with anyone.' },
+    { q: 'Is this UPI QR generator free?', a: 'Yes, completely free with no sign-up and unlimited QR codes. Your details stay in your browser.' },
+]
+
   return (
     <ToolLayout
       title="Free UPI QR Code Generator – GPay, PhonePe, Paytm"
@@ -278,14 +287,7 @@ export default function UpiQrGenerator() {
       iconBg="rgba(34,197,94,0.08)"
       category="finance"
       slug="upi-qr-generator"
-      faq={[
-        { q: 'What is a UPI QR code?', a: 'A scannable code containing your UPI ID and optional amount and note. When a customer scans it with GPay, PhonePe, Paytm, or BHIM, the payment details are pre-filled — they just tap pay.' },
-        { q: 'Which apps can scan my UPI QR code?', a: 'All major Indian UPI apps: Google Pay, PhonePe, Paytm, BHIM, Amazon Pay, and WhatsApp Pay.' },
-        { q: 'Is the amount mandatory?', a: 'No. Generate a QR with just your UPI ID and the payer enters the amount. Set a fixed amount for fixed-price items like a ₹100 product.' },
-        { q: 'Should I add my name to the QR code?', a: 'Yes, adding your shop or personal name builds trust — payers see the name before confirming payment, which reduces failed or wrong payments.' },
-        { q: 'Is it safe to share my UPI QR code publicly?', a: 'Yes. A UPI QR only contains your payment address — it cannot be used to withdraw money. Never share UPI PINs or OTPs with anyone.' },
-        { q: 'Is this UPI QR generator free?', a: 'Yes, completely free with no sign-up and unlimited QR codes. Your details stay in your browser.' },
-      ]}
+      faq={faq}
       howItWorks={[
         'Enter your UPI ID in the format username@bank, plus your name (optional).',
         'Optionally set a fixed amount and a payment note.',

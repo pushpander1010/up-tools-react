@@ -520,6 +520,15 @@ export default function QrReader() {
     saveHistory([])
   }
 
+  const faq = [
+    { q: 'Does this upload my images?', a: 'No. Everything runs locally in your browser. Camera and image processing happen on-device — your scans never leave your phone or computer.' },
+    { q: 'What QR code types can it read?', a: 'URLs, plain text, UPI payment codes, WiFi credentials, vCards, phone numbers, SMS, email addresses, and locations.' },
+    { q: 'How do I scan a QR code with my camera?', a: 'Click Start Camera, allow camera permission, and point your phone or laptop camera at the QR code. The result appears automatically — no photo needed.' },
+    { q: 'Can I scan a QR code from a screenshot?', a: 'Yes. Save the screenshot as an image and upload it or drag and drop it into the drop zone. You can also paste screenshots directly from your clipboard.' },
+    { q: 'Why is my QR code not scanning?', a: 'Common causes: blur, glare, too small, or low contrast. Hold steady, improve lighting, and fill the frame with the code. If the camera fails, try uploading a photo instead.' },
+    { q: 'Is this QR scanner free?', a: 'Yes, completely free with no sign-up and unlimited scans, on any device.' },
+]
+
   return (
     <ToolLayout
       title="Free QR Code Scanner Online – Camera & Image"
@@ -528,14 +537,7 @@ export default function QrReader() {
       iconBg="rgba(34,197,94,0.08)"
       category="utility"
       slug="qr-reader"
-      faq={[
-        { q: 'Does this upload my images?', a: 'No. Everything runs locally in your browser. Camera and image processing happen on-device — your scans never leave your phone or computer.' },
-        { q: 'What QR code types can it read?', a: 'URLs, plain text, UPI payment codes, WiFi credentials, vCards, phone numbers, SMS, email addresses, and locations.' },
-        { q: 'How do I scan a QR code with my camera?', a: 'Click Start Camera, allow camera permission, and point your phone or laptop camera at the QR code. The result appears automatically — no photo needed.' },
-        { q: 'Can I scan a QR code from a screenshot?', a: 'Yes. Save the screenshot as an image and upload it or drag and drop it into the drop zone. You can also paste screenshots directly from your clipboard.' },
-        { q: 'Why is my QR code not scanning?', a: 'Common causes: blur, glare, too small, or low contrast. Hold steady, improve lighting, and fill the frame with the code. If the camera fails, try uploading a photo instead.' },
-        { q: 'Is this QR scanner free?', a: 'Yes, completely free with no sign-up and unlimited scans, on any device.' },
-      ]}
+      faq={faq}
       howItWorks={[
         'Click Start Camera to use your device camera for live scanning.',
         'Or drag and drop an image containing a QR code onto the screen.',

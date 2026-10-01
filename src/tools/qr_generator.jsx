@@ -299,6 +299,16 @@ export default function QrGenerator() {
   const showSms = qrType === 'sms'
   const showMainContent = !showWifi && !showEmail && !showVcard
 
+  const faq = [
+    { q: "What can I make a QR code for?", a: "URLs, WiFi credentials, plain text, email addresses, phone numbers, SMS, and vCards. Pick the type, enter the details, and generate." },
+    { q: "How do I make a WiFi QR code?", a: "Choose the WiFi type, enter your network name (SSID) and password, then click Generate. Your phone can scan the code to join the WiFi instantly without typing the password." },
+    { q: "Can I make a QR code for a URL or link?", a: "Yes. Choose the URL type, paste your link, and generate. Anyone can scan it to open the link — perfect for business cards, posters, menus, or sharing a link in print." },
+    { q: "Is the QR code generator free?", a: "Yes, it is completely free with no signup and no watermarks. Generate as many QR codes as you need and download them as PNG or SVG." },
+    { q: "How do I scan a QR code?", a: "Open your phone camera and point it at the QR code. Most phones detect QR codes automatically." },
+    { q: "Do my QR codes expire?", a: "No. These QR codes encode your content directly (link, text, WiFi details) — there is no tracking server or expiry date. They work forever, even offline." },
+    { q: "What file formats can I download?", a: "You can download your QR code as a high-quality PNG or SVG, so it prints cleanly at any size." },
+]
+
   return (
     <ToolLayout
       title="QR Code Generator – Make Free QR Codes Online"
@@ -307,15 +317,7 @@ export default function QrGenerator() {
       iconBg="rgba(99,102,241,0.08)"
       category="tools"
       slug="qr-generator"
-      faq={[
-        { q: "What can I make a QR code for?", a: "URLs, WiFi credentials, plain text, email addresses, phone numbers, SMS, and vCards. Pick the type, enter the details, and generate." },
-        { q: "How do I make a WiFi QR code?", a: "Choose the WiFi type, enter your network name (SSID) and password, then click Generate. Your phone can scan the code to join the WiFi instantly without typing the password." },
-        { q: "Can I make a QR code for a URL or link?", a: "Yes. Choose the URL type, paste your link, and generate. Anyone can scan it to open the link — perfect for business cards, posters, menus, or sharing a link in print." },
-        { q: "Is the QR code generator free?", a: "Yes, it is completely free with no signup and no watermarks. Generate as many QR codes as you need and download them as PNG or SVG." },
-        { q: "How do I scan a QR code?", a: "Open your phone camera and point it at the QR code. Most phones detect QR codes automatically." },
-        { q: "Do my QR codes expire?", a: "No. These QR codes encode your content directly (link, text, WiFi details) — there is no tracking server or expiry date. They work forever, even offline." },
-        { q: "What file formats can I download?", a: "You can download your QR code as a high-quality PNG or SVG, so it prints cleanly at any size." },
-      ]}
+      faq={faq}
       howItWorks={[
         "Choose the QR code type (Text, URL, WiFi, etc.).",
         "Enter the content and set the size.",
