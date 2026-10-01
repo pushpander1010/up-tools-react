@@ -57,6 +57,93 @@ async function clientResize(file, { width, height, format, quality }) {
   })
 }
 
+function loadBitmap(file) {
+  return new Promise((resolve, reject) => {
+    const img = new Image()
+    const u = URL.createObjectURL(file)
+    img.onload = () => {
+      URL.revokeObjectURL(u)
+      resolve(img)
+    }
+    img.onerror = () => {
+      URL.revokeObjectURL(u)
+      reject(new Error("Failed to load image"))
+    }
+    img.src = u
+  })
+}
+
+function canvasToBlob(canvas, mime, q) {
+  return new Promise((resolve) => {
+    canvas.toBlob((b) => resolve(b), mime, q)
+  })
+}
+
+// Shrink output to fit under targetKB: binary-search quality, then step down
+// dimensions if even minimum quality does not fit. Always uses lossy encoding.
+async function clientFitToSize(file, { width, height, format, targetKB }) {
+  const target = Math.max(1024, Math.round(targetKB * 1024))
+  const img = await loadBitmap(file)
+  const mime = format === "webp" ? "image/webp" : "image/jpeg"
+  const baseW = width || img.width
+  const baseH = height || img.height
+  const canvas = document.createElement("canvas")
+  const ctx = canvas.getContext("2d")
+  let smallest = null
+  let scale = 1
+  for (let step = 0; step < 8; step++) {
+    const tw = Math.max(1, Math.round(baseW * scale))
+    const th = Math.max(1, Math.round(baseH * scale))
+    canvas.width = tw
+    canvas.height = th
+    if (mime === "image/jpeg") {
+      ctx.fillStyle = "#ffffff"
+      ctx.fillRect(0, 0, tw, th)
+    }
+    ctx.drawImage(img, 0, 0, tw, th)
+    let low = 5
+    let high = 92
+    let best = null
+    while (low <= high) {
+      const mid = Math.floor((low + high) / 2)
+      const blob = await canvasToBlob(canvas, mime, mid / 100)
+      if (!blob) break
+      if (!smallest || blob.size < smallest.blob.size) {
+        smallest = { blob, w: tw, h: th, q: mid }
+      }
+      if (blob.size <= target) {
+        best = { blob, q: mid }
+        low = mid + 1
+      } else {
+        high = mid - 1
+      }
+    }
+    if (best) {
+      return {
+        blob: best.blob,
+        url: URL.createObjectURL(best.blob),
+        width: tw,
+        height: th,
+        size: best.blob.size,
+        quality: best.q,
+        mime,
+        overshoot: false,
+      }
+    }
+    scale *= 0.85
+  }
+  return {
+    blob: smallest.blob,
+    url: URL.createObjectURL(smallest.blob),
+    width: smallest.w,
+    height: smallest.h,
+    size: smallest.blob.size,
+    quality: smallest.q,
+    mime,
+    overshoot: true,
+  }
+}
+
 export default function image_resizer() {
   const { ref: resultRef, jumpTo } = useJumpToResult()
   const fileInputRef = useRef(null)
@@ -67,6 +154,7 @@ export default function image_resizer() {
   const [origW, setOrigW] = useState(0)
   const [origH, setOrigH] = useState(0)
   const [quality, setQuality] = useState(85)
+  const [targetKB, setTargetKB] = useState("")
   const [format, setFormat] = useState('auto')
   const [lockAspect, setLockAspect] = useState(true)
   const [aspectRatio, setAspectRatio] = useState(1)
@@ -167,6 +255,8 @@ export default function image_resizer() {
       setError("Please enter valid width and height dimensions.")
       return
     }
+    const kb = parseFloat(targetKB)
+    const useTargetSize = !isNaN(kb) && kb > 0
 
     setLoading(true)
     setError("")
@@ -178,29 +268,43 @@ export default function image_resizer() {
 
     try {
       let out
-      try {
-        const fields = {
-          width: targetW,
-          height: targetH,
-          keep_aspect: lockAspect,
-          output_format: format,
-          quality,
+      if (useTargetSize) {
+        out = await clientFitToSize(file, { width: targetW, height: targetH, format, targetKB: kb })
+        let note = ""
+        if (out.mime === "image/jpeg" && (format === "png" || (format === "auto" && file.type === "image/png"))) {
+          note = " · PNG switched to JPEG to hit KB target"
         }
-        out = await postImage('resize', file, fields)
-      } catch {
-        // Fallback to client canvas resize
-        out = await clientResize(file, { width: targetW, height: targetH, format, quality })
-      }
+        if (out.overshoot) {
+          note += ` · closest possible (target ${kb} KB unreachable at these dimensions)`
+        }
+        outputBlobRef.current = out.blob
+        setOutputUrl(out.url)
+        setOutputInfo(`${out.width} × ${out.height} px · ${formatBytes(out.size)} · quality ${out.quality}%${note}`)
+      } else {
+        try {
+          const fields = {
+            width: targetW,
+            height: targetH,
+            keep_aspect: lockAspect,
+            output_format: format,
+            quality,
+          }
+          out = await postImage('resize', file, fields)
+        } catch {
+          // Fallback to client canvas resize
+          out = await clientResize(file, { width: targetW, height: targetH, format, quality })
+        }
 
-      outputBlobRef.current = out.blob
-      setOutputUrl(out.url)
-      setOutputInfo(`${out.width} × ${out.height} px · ${formatBytes(out.size)}`)
+        outputBlobRef.current = out.blob
+        setOutputUrl(out.url)
+        setOutputInfo(`${out.width} × ${out.height} px · ${formatBytes(out.size)}`)
+      }
     } catch (e) {
       setError(e.message || "Resize failed. Please try again.")
     } finally {
       setLoading(false)
     }
-  }, [file, width, height, lockAspect, format, quality])
+  }, [file, width, height, lockAspect, format, quality, targetKB])
 
   const download = () => {
     const blob = outputBlobRef.current
@@ -277,6 +381,7 @@ export default function image_resizer() {
       faq={[
         { q: 'What formats are supported?', a: 'JPG, PNG, WebP, GIF, BMP and TIFF input. Output as JPEG, PNG, or WebP.' },
         { q: 'Can I resize to a specific size like 1920x1080?', a: 'Yes. Enter the exact width and height in pixels, or lock the aspect ratio and set one dimension.' },
+        { q: "Can I shrink an image to a target KB size?", a: "Yes. Enter a max file size in KB and the resizer auto-tunes quality (and dimensions if needed) to fit under it. KB mode exports JPEG or WebP." },
         { q: 'Are my images private?', a: 'Your image is uploaded to our secure processing server, resized, and deleted immediately. Nothing is stored.' },
         { q: 'Is image resizing free?', a: 'Yes, all UpTools image tools are free with no watermarks and no sign-up.' },
         { q: "How do I use this Image Resizer — Resize Images Online Free online free?", a: "Enter your input above, customize the options, and copy or save the result. Free with no sign-up." },
@@ -286,6 +391,7 @@ export default function image_resizer() {
         'Upload or drag & drop an image.',
         'Set target width and height (lock aspect ratio optional).',
         'Choose quality and output format.',
+        'Optional: set a max file size in KB to auto-fit the output.',
         'Resize and download the result.',
       ]}
       schema={{
@@ -460,7 +566,22 @@ export default function image_resizer() {
                   className={inputClass}
                 />
               </div>
+              <div>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">Max Size (KB, optional)</label>
+                <input
+                  type="number"
+                  value={targetKB}
+                  onChange={(e) => setTargetKB(e.target.value)}
+                  placeholder="e.g. 100"
+                  min={1}
+                  className={inputClass}
+                />
+              </div>
             </div>
+
+            {targetKB && !isNaN(parseFloat(targetKB)) && parseFloat(targetKB) > 0 && (
+              <div className="text-xs text-slate-400">KB mode: quality auto-tunes to fit under {targetKB} KB (exports JPEG or WebP).</div>
+            )}
 
             <label className="flex items-center gap-2 text-sm text-slate-300 cursor-pointer select-none py-1">
               <input
