@@ -1,59 +1,86 @@
-import { useState, useRef, useCallback } from 'react'
+import { useState, useRef, useCallback, useEffect } from 'react'
 import ToolLayout from '../components/ToolLayout'
+import useJumpToResult from '../hooks/useJumpToResult'
 
 function rgbToHsl(r, g, b) {
-  r /= 255; g /= 255; b /= 255
-  const max = Math.max(r, g, b), min = Math.min(r, g, b)
-  let h, s, l = (max + min) / 2
+  r /= 255
+  g /= 255
+  b /= 255
+  const max = Math.max(r, g, b)
+  const min = Math.min(r, g, b)
+  let h = 0
+  let s = 0
+  const l = (max + min) / 2
+
   if (max === min) {
     h = s = 0
   } else {
     const d = max - min
     s = l > 0.5 ? d / (2 - max - min) : d / (max + min)
     switch (max) {
-      case r: h = ((g - b) / d + (g < b ? 6 : 0)) / 6; break
-      case g: h = ((b - r) / d + 2) / 6; break
-      case b: h = ((r - g) / d + 4) / 6; break
+      case r:
+        h = ((g - b) / d + (g < b ? 6 : 0)) / 6
+        break
+      case g:
+        h = ((b - r) / d + 2) / 6
+        break
+      case b:
+        h = ((r - g) / d + 4) / 6
+        break
+      default:
+        break
     }
   }
   return { h: Math.round(h * 360), s: Math.round(s * 100), l: Math.round(l * 100) }
 }
 
 function rgbToHex(r, g, b) {
-  return '#' + [r, g, b].map(x => x.toString(16).padStart(2, '0')).join('')
+  return '#' + [r, g, b].map((x) => x.toString(16).padStart(2, '0')).join('')
 }
 
 function kMeans(pixels, k = 8, maxIter = 30) {
-  // Initialize centroids from pixel sample
-  const step = Math.floor(pixels.length / k)
-  let centroids = Array.from({ length: k }, (_, i) => [...pixels[Math.min(i * step, pixels.length - 1)]])
+  if (!pixels || pixels.length === 0) return []
+  const count = Math.min(k, pixels.length)
+  const step = Math.floor(pixels.length / count)
+  let centroids = Array.from({ length: count }, (_, i) => [
+    ...pixels[Math.min(i * step, pixels.length - 1)],
+  ])
 
   for (let iter = 0; iter < maxIter; iter++) {
-    // Assign pixels to nearest centroid
-    const clusters = Array.from({ length: k }, () => [])
+    const clusters = Array.from({ length: count }, () => [])
     for (const px of pixels) {
-      let minDist = Infinity, minIdx = 0
-      for (let j = 0; j < k; j++) {
+      let minDist = Infinity
+      let minIdx = 0
+      for (let j = 0; j < count; j++) {
         const dr = px[0] - centroids[j][0]
         const dg = px[1] - centroids[j][1]
         const db = px[2] - centroids[j][2]
         const dist = dr * dr + dg * dg + db * db
-        if (dist < minDist) { minDist = dist; minIdx = j }
+        if (dist < minDist) {
+          minDist = dist
+          minIdx = j
+        }
       }
       clusters[minIdx].push(px)
     }
-    // Update centroids
+
     let moved = false
-    for (let j = 0; j < k; j++) {
+    for (let j = 0; j < count; j++) {
       if (clusters[j].length === 0) continue
       const newC = [0, 0, 0]
       for (const px of clusters[j]) {
-        newC[0] += px[0]; newC[1] += px[1]; newC[2] += px[2]
+        newC[0] += px[0]
+        newC[1] += px[1]
+        newC[2] += px[2]
       }
       newC[0] = Math.round(newC[0] / clusters[j].length)
       newC[1] = Math.round(newC[1] / clusters[j].length)
       newC[2] = Math.round(newC[2] / clusters[j].length)
-      if (newC[0] !== centroids[j][0] || newC[1] !== centroids[j][1] || newC[2] !== centroids[j][2]) {
+      if (
+        newC[0] !== centroids[j][0] ||
+        newC[1] !== centroids[j][1] ||
+        newC[2] !== centroids[j][2]
+      ) {
         moved = true
         centroids[j] = newC
       }
@@ -61,60 +88,166 @@ function kMeans(pixels, k = 8, maxIter = 30) {
     if (!moved) break
   }
 
-  // Sort by luminance for nice gradient
-  centroids.sort((a, b) => (a[0] * 299 + a[1] * 587 + a[2] * 114) - (b[0] * 299 + b[1] * 587 + b[2] * 114))
-  return centroids.map(([r, g, b]) => ({ r, g, b, hex: rgbToHex(r, g, b), hsl: rgbToHsl(r, g, b) }))
+  // Sort by luminance
+  centroids.sort(
+    (a, b) =>
+      a[0] * 299 + a[1] * 587 + a[2] * 114 - (b[0] * 299 + b[1] * 587 + b[2] * 114)
+  )
+
+  return centroids.map(([r, g, b]) => ({
+    r,
+    g,
+    b,
+    hex: rgbToHex(r, g, b),
+    hsl: rgbToHsl(r, g, b),
+  }))
 }
 
 export default function color_palette_from_image() {
+  const { ref: resultRef, jumpTo } = useJumpToResult()
   const [palette, setPalette] = useState([])
   const [preview, setPreview] = useState(null)
   const [numColors, setNumColors] = useState(8)
   const [copied, setCopied] = useState(null)
-  const canvasRef = useRef(null)
-  const fileRef = useRef(null)
+  const [dragOver, setDragOver] = useState(false)
+  const [fileName, setFileName] = useState("")
 
-  const extractColors = useCallback((file) => {
-    const reader = new FileReader()
-    reader.onload = (e) => {
-      const img = new Image()
-      img.onload = () => {
-        setPreview(e.target.result)
-        const canvas = document.createElement('canvas')
-        const maxSize = 200
-        const scale = Math.min(maxSize / img.width, maxSize / img.height, 1)
-        canvas.width = Math.round(img.width * scale)
-        canvas.height = Math.round(img.height * scale)
-        const ctx = canvas.getContext('2d')
-        ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
-        const data = ctx.getImageData(0, 0, canvas.width, canvas.height).data
-        const pixels = []
-        for (let i = 0; i < data.length; i += 16) { // sample every 4th pixel
-          pixels.push([data[i], data[i + 1], data[i + 2]])
-        }
-        const colors = kMeans(pixels, numColors)
-        setPalette(colors)
-      }
-      img.src = e.target.result
+  const fileRef = useRef(null)
+  const pixelsRef = useRef([])
+  const previewUrlRef = useRef("")
+
+  useEffect(() => {
+    return () => {
+      if (previewUrlRef.current) URL.revokeObjectURL(previewUrlRef.current)
     }
-    reader.readAsDataURL(file)
-  }, [numColors])
+  }, [])
+
+  const extractFromPixels = useCallback((pixels, count) => {
+    if (!pixels || pixels.length === 0) return
+    const colors = kMeans(pixels, count)
+    setPalette(colors)
+  }, [])
+
+  const processImage = useCallback((file) => {
+    if (!file || !file.type.startsWith('image/')) return
+    if (previewUrlRef.current) URL.revokeObjectURL(previewUrlRef.current)
+    const url = URL.createObjectURL(file)
+    previewUrlRef.current = url
+    setPreview(url)
+    setFileName(file.name.replace(/\.[^.]+$/, ''))
+
+    const img = new Image()
+    img.onload = () => {
+      const canvas = document.createElement('canvas')
+      const maxSize = 200
+      const scale = Math.min(maxSize / img.width, maxSize / img.height, 1)
+      canvas.width = Math.max(1, Math.round(img.width * scale))
+      canvas.height = Math.max(1, Math.round(img.height * scale))
+      const ctx = canvas.getContext('2d')
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
+      const data = ctx.getImageData(0, 0, canvas.width, canvas.height).data
+      const pxs = []
+      // Sample pixels skipping transparent pixels
+      for (let i = 0; i < data.length; i += 16) {
+        if (data[i + 3] > 64) {
+          pxs.push([data[i], data[i + 1], data[i + 2]])
+        }
+      }
+      pixelsRef.current = pxs
+      extractFromPixels(pxs, numColors)
+      jumpTo()
+    }
+    img.src = url
+  }, [numColors, extractFromPixels, jumpTo])
+
+  // Changing color count instantly updates palette!
+  const handleNumColorsChange = (n) => {
+    setNumColors(n)
+    if (pixelsRef.current.length > 0) {
+      extractFromPixels(pixelsRef.current, n)
+    }
+  }
 
   const handleFileChange = (e) => {
     const file = e.target.files?.[0]
-    if (file && file.type.startsWith('image/')) extractColors(file)
+    if (file) processImage(file)
   }
 
   const handleDrop = (e) => {
     e.preventDefault()
+    setDragOver(false)
     const file = e.dataTransfer.files?.[0]
-    if (file && file.type.startsWith('image/')) extractColors(file)
+    if (file) processImage(file)
   }
 
   const copyColor = (text, idx) => {
     navigator.clipboard.writeText(text)
     setCopied(idx)
-    setTimeout(() => setCopied(null), 1200)
+    setTimeout(() => setCopied(null), 1500)
+  }
+
+  const copyAllHex = () => {
+    const list = palette.map((c) => c.hex).join(', ')
+    navigator.clipboard.writeText(list)
+    setCopied('all')
+    setTimeout(() => setCopied(null), 1500)
+  }
+
+  const downloadJson = () => {
+    const data = JSON.stringify(
+      palette.map((c) => ({
+        hex: c.hex,
+        rgb: `rgb(${c.r}, ${c.g}, ${c.b})`,
+        hsl: `hsl(${c.hsl.h}, ${c.hsl.s}%, ${c.hsl.l}%)`,
+      })),
+      null,
+      2
+    )
+    const blob = new Blob([data], { type: 'application/json' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `${fileName || 'palette'}-colors.json`
+    document.body.appendChild(a)
+    a.click()
+    a.remove()
+    URL.revokeObjectURL(url)
+  }
+
+  const downloadPngSwatch = () => {
+    if (palette.length === 0) return
+    const canvas = document.createElement('canvas')
+    const sw = 160
+    const sh = 180
+    canvas.width = palette.length * sw
+    canvas.height = sh
+    const ctx = canvas.getContext('2d')
+
+    ctx.fillStyle = '#ffffff'
+    ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+    palette.forEach((c, i) => {
+      // Swatch color block
+      ctx.fillStyle = c.hex
+      ctx.fillRect(i * sw, 0, sw, 120)
+
+      // Text labels below
+      ctx.fillStyle = '#0f172a'
+      ctx.font = 'bold 15px system-ui, sans-serif'
+      ctx.textAlign = 'center'
+      ctx.fillText(c.hex.toUpperCase(), i * sw + sw / 2, 146)
+
+      ctx.fillStyle = '#64748b'
+      ctx.font = '12px system-ui, sans-serif'
+      ctx.fillText(`${c.r}, ${c.g}, ${c.b}`, i * sw + sw / 2, 166)
+    })
+
+    const a = document.createElement('a')
+    a.download = `${fileName || 'palette'}-swatch.png`
+    a.href = canvas.toDataURL('image/png')
+    document.body.appendChild(a)
+    a.click()
+    a.remove()
   }
 
   return (
@@ -144,89 +277,154 @@ export default function color_palette_from_image() {
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" }
       }}
     >
-      <div className="max-w-3xl mx-auto space-y-6">
+      <div className="max-w-3xl mx-auto space-y-4">
         {/* Upload Area */}
         <div
-          onDrop={handleDrop} onDragOver={e => e.preventDefault()}
+          onDrop={handleDrop}
+          onDragOver={(e) => { e.preventDefault(); setDragOver(true) }}
+          onDragLeave={() => setDragOver(false)}
           onClick={() => fileRef.current?.click()}
-          className="bg-white/[0.06] border-2 border-dashed border-white/[0.12] rounded-2xl p-8 text-center cursor-pointer hover:border-purple-500/30 hover:bg-purple-500/[0.03] transition-all duration-200"
+          className={`p-6 sm:p-8 rounded-2xl border-2 border-dashed text-center cursor-pointer transition-colors ${
+            dragOver ? 'border-indigo-600 bg-indigo-50' : 'border-gray-300 bg-white hover:border-gray-400 hover:bg-gray-50'
+          }`}
         >
           <input ref={fileRef} type="file" accept="image/*" onChange={handleFileChange} className="hidden" />
-          <div className="text-5xl mb-3 opacity-40">🖼️</div>
-          <p className="text-sm font-semibold text-slate-300 mb-1">Drop an image here or click to upload</p>
-          <p className="text-xs text-slate-400">PNG, JPG, GIF, WebP — up to 10 MB</p>
+          <div className="text-4xl mb-2">🎨</div>
+          <p className="text-sm font-semibold text-gray-900 mb-1">Drop image here or click to extract palette</p>
+          <p className="text-xs text-gray-500">Supports PNG, JPG, GIF, WebP, BMP</p>
         </div>
 
         {/* Options */}
-        <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-5 flex flex-wrap items-center gap-4">
-          <div className="flex items-center gap-3">
-            <label className="text-sm font-semibold text-slate-300">Colors:</label>
-            <div className="flex gap-1">
-              {[4, 6, 8, 10, 12].map(n => (
-                <button key={n} onClick={() => setNumColors(n)}
-                  className={`w-9 h-9 rounded-lg text-xs font-bold transition-all duration-200 ${numColors === n ? 'bg-purple-500/20 text-purple-400 ring-1 ring-purple-500/30' : 'bg-white/[0.04] text-slate-400 hover:text-slate-300'}`}>
+        <div className="bg-white border border-gray-200 rounded-2xl p-5 sm:p-6 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="flex flex-wrap items-center gap-3">
+            <label className="text-xs font-bold text-gray-700 uppercase tracking-wider">Number of Colors:</label>
+            <div className="flex gap-1.5">
+              {[4, 6, 8, 10, 12].map((n) => (
+                <button
+                  key={n}
+                  type="button"
+                  onClick={() => handleNumColorsChange(n)}
+                  className={`min-w-[44px] min-h-[44px] rounded-xl text-xs font-bold transition-colors border ${
+                    numColors === n
+                      ? 'bg-indigo-600 text-white border-indigo-600 shadow-sm'
+                      : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
+                  }`}
+                >
                   {n}
                 </button>
               ))}
             </div>
           </div>
-          <button onClick={() => fileRef.current?.click()}
-            className="ml-auto px-5 py-2.5 rounded-xl bg-purple-500/20 text-purple-400 text-sm font-bold hover:bg-purple-500/30 transition-all duration-200">
-            Upload Image
+
+          <button
+            type="button"
+            onClick={() => fileRef.current?.click()}
+            className="min-h-[44px] px-4 py-2 rounded-xl bg-white border border-gray-300 text-gray-700 text-xs font-semibold hover:bg-gray-50 transition-colors"
+          >
+            Change Photo
           </button>
         </div>
 
-        {/* Preview + Palette */}
+        {/* Palette & Results */}
         {preview && palette.length > 0 && (
-          <div className="space-y-5">
+          <div ref={resultRef} className="space-y-4">
             {/* Color bar preview */}
-            <div className="rounded-2xl overflow-hidden h-20 flex border border-white/[0.08]">
+            <div className="bg-white border border-gray-200 rounded-2xl p-4 shadow-sm space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-bold text-gray-700 uppercase tracking-wider">Dominant Color Spectrum</span>
+                <span className="text-xs text-gray-500">Click any strip to copy HEX</span>
+              </div>
+              <div className="rounded-xl overflow-hidden h-16 flex border border-gray-200 shadow-inner">
+                {palette.map((c, i) => (
+                  <div
+                    key={i}
+                    className="flex-1 relative group cursor-pointer"
+                    style={{ backgroundColor: c.hex }}
+                    onClick={() => copyColor(c.hex, i)}
+                  >
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 text-white font-mono text-[10px] font-bold">
+                      {copied === i ? '✓ Copied' : c.hex}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Individual color cards */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
               {palette.map((c, i) => (
-                <div key={i} className="flex-1 relative group cursor-pointer" style={{ backgroundColor: c.hex }}
-                  onClick={() => copyColor(c.hex, i)}>
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/30">
-                    <span className="text-[10px] font-bold text-white drop-shadow-lg">{copied[i] ? 'Copied!' : c.hex}</span>
+                <div
+                  key={i}
+                  className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:border-gray-300 transition-colors flex flex-col"
+                >
+                  <button
+                    type="button"
+                    className="h-20 w-full relative cursor-pointer group outline-none"
+                    style={{ backgroundColor: c.hex }}
+                    onClick={() => copyColor(c.hex, i)}
+                  >
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/30">
+                      <span className="text-[11px] font-semibold bg-white text-gray-900 px-2 py-0.5 rounded-full shadow-sm">
+                        {copied === i ? '✓ Copied' : 'Copy'}
+                      </span>
+                    </div>
+                  </button>
+                  <div className="p-3 space-y-1 bg-white">
+                    <div className="text-xs font-bold text-gray-900 tracking-wider font-mono">{c.hex.toUpperCase()}</div>
+                    <div className="text-[11px] text-gray-500 font-mono">RGB({c.r}, {c.g}, {c.b})</div>
+                    <div className="text-[11px] text-gray-500 font-mono">HSL({c.hsl.h}°, {c.hsl.s}%, {c.hsl.l}%)</div>
                   </div>
                 </div>
               ))}
             </div>
 
-            {/* Color cards */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-              {palette.map((c, i) => (
-                <div key={i} className="bg-white/[0.06] border border-white/[0.08] rounded-xl overflow-hidden group hover:scale-[1.02] transition-all duration-200">
-                  <div className="h-20 w-full relative cursor-pointer" style={{ backgroundColor: c.hex }}
-                    onClick={() => copyColor(c.hex, i)}>
-                    <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <span className="text-[10px] font-bold bg-black/40 text-white px-2 py-0.5 rounded-full backdrop-blur-sm">
-                        {copied === i ? '✓ Copied' : 'Click to copy'}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="p-3 space-y-1">
-                    <div className="text-xs font-bold text-white uppercase tracking-wider">{c.hex}</div>
-                    <div className="text-[10px] text-slate-400 font-mono">RGB({c.r}, {c.g}, {c.b})</div>
-                    <div className="text-[10px] text-slate-400 font-mono">HSL({c.hsl.h}°, {c.hsl.s}%, {c.hsl.l}%)</div>
-                  </div>
-                </div>
-              ))}
+            {/* Export Toolbar */}
+            <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-3">
+              <span className="text-xs font-bold text-gray-700 uppercase tracking-wider block">Export &amp; Share Palette</span>
+              <div className="flex flex-wrap gap-2">
+                <button
+                  type="button"
+                  onClick={downloadPngSwatch}
+                  className="min-h-[44px] flex-1 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold transition-colors flex items-center justify-center gap-1.5 shadow-sm"
+                >
+                  💾 Download Image Swatch (PNG)
+                </button>
+                <button
+                  type="button"
+                  onClick={downloadJson}
+                  className="min-h-[44px] px-4 py-2.5 rounded-xl bg-white border border-gray-300 text-gray-800 text-xs font-semibold hover:bg-gray-50 transition-colors"
+                >
+                  📄 Save JSON
+                </button>
+                <button
+                  type="button"
+                  onClick={copyAllHex}
+                  className="min-h-[44px] px-4 py-2.5 rounded-xl bg-white border border-gray-300 text-gray-800 text-xs font-semibold hover:bg-gray-50 transition-colors"
+                >
+                  {copied === 'all' ? '✓ Copied HEX List!' : '📋 Copy All HEX'}
+                </button>
+              </div>
             </div>
 
             {/* CSS Variables */}
-            <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-5">
-              <div className="flex items-center justify-between mb-3">
-                <h3 className="text-sm font-bold text-slate-300">CSS Variables</h3>
-                <button onClick={() => {
-                  const css = ':root {\n' + palette.map((c, i) => `  --palette-${i + 1}: ${c.hex};`).join('\n') + '\n}'
-                  navigator.clipboard.writeText(css)
-                  setCopied('css')
-                  setTimeout(() => setCopied(null), 1200)
-                }} className="text-xs font-bold text-purple-400 hover:text-purple-300 transition-colors">
+            <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-2">
+              <div className="flex items-center justify-between">
+                <h3 className="text-xs font-bold text-gray-700 uppercase tracking-wider">CSS Variables</h3>
+                <button
+                  type="button"
+                  onClick={() => {
+                    const css = ':root {\n' + palette.map((c, i) => `  --color-${i + 1}: ${c.hex};`).join('\n') + '\n}'
+                    navigator.clipboard.writeText(css)
+                    setCopied('css')
+                    setTimeout(() => setCopied(null), 1500)
+                  }}
+                  className="min-h-[44px] text-xs font-bold text-indigo-600 hover:text-indigo-800 transition-colors"
+                >
                   {copied === 'css' ? '✓ Copied!' : '📋 Copy CSS'}
                 </button>
               </div>
-              <pre className="text-[11px] text-slate-400 font-mono bg-black/20 rounded-xl p-3 overflow-x-auto whitespace-pre">
-                {':root {\n' + palette.map((c, i) => `  --palette-${i + 1}: ${c.hex};`).join('\n') + '\n}'}
+              <pre className="text-xs text-gray-700 font-mono bg-gray-50 border border-gray-200 rounded-xl p-3.5 overflow-x-auto whitespace-pre">
+                {':root {\n' + palette.map((c, i) => `  --color-${i + 1}: ${c.hex};`).join('\n') + '\n}'}
               </pre>
             </div>
           </div>
@@ -234,9 +432,9 @@ export default function color_palette_from_image() {
 
         {/* Empty state */}
         {!preview && (
-          <div className="text-center py-12 rounded-3xl border-2 border-dashed border-white/[0.08] bg-white/[0.01]">
-            <div className="text-4xl mb-3 opacity-20">🎨</div>
-            <p className="text-sm text-slate-600 font-medium">Upload an image to extract its color palette</p>
+          <div className="text-center py-12 rounded-2xl border border-gray-200 bg-white">
+            <div className="text-4xl mb-2 opacity-30">🎨</div>
+            <p className="text-sm text-gray-600 font-medium">Upload any photo or illustration to extract its colors</p>
           </div>
         )}
       </div>

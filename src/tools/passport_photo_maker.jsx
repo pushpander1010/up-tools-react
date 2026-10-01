@@ -3,9 +3,17 @@ import ToolLayout from '../components/ToolLayout'
 import useJumpToResult from '../hooks/useJumpToResult'
 
 const OUTPUT_SIZES = [
-  { label: 'Indian Passport (35×45mm)', width: 413, height: 531 },
-  { label: 'US Visa (2×2 in)', width: 600, height: 600 },
-  { label: 'UK/EU (3.5×4.5cm)', width: 413, height: 531 },
+  { label: 'Indian Passport (35×45 mm)', width: 413, height: 531 },
+  { label: 'US Visa / Passport (2×2 in)', width: 600, height: 600 },
+  { label: 'UK / EU / Schengen (35×45 mm)', width: 413, height: 531 },
+  { label: 'Canada Passport (50×70 mm)', width: 591, height: 827 },
+]
+
+const BG_COLORS = [
+  { label: 'Pure White', value: '#ffffff' },
+  { label: 'Off-White', value: '#f8fafc' },
+  { label: 'Light Blue', value: '#e0f2fe' },
+  { label: 'Light Gray', value: '#f1f5f9' },
 ]
 
 export default function passport_photo_maker() {
@@ -18,30 +26,46 @@ export default function passport_photo_maker() {
   const [image, setImage] = useState(null)
   const [zoom, setZoom] = useState(1)
   const [pan, setPan] = useState({ x: 0, y: 0 })
-  const [isDragging, setIsDragging] = useState(false)
-  const [dragStart, setDragStart] = useState({ x: 0, y: 0 })
+  const [rotation, setRotation] = useState(0)
+  const [flipH, setFlipH] = useState(false)
+  const [bgColor, setBgColor] = useState('#ffffff')
   const [sizeIdx, setSizeIdx] = useState(0)
-  const [hasDrawn, setHasDrawn] = useState(false)
+  const [isDragging, setIsDragging] = useState(false)
+  const [dragOver, setDragOver] = useState(false)
+
+  const dragStartRef = useRef({ startX: 0, startY: 0, initialPanX: 0, initialPanY: 0 })
+  const activeUrlRef = useRef("")
 
   const size = OUTPUT_SIZES[sizeIdx]
 
-  const handleFile = (e) => {
-    const file = e.target.files?.[0]
-    if (!file) return
-    const reader = new FileReader()
-    reader.onload = (ev) => {
-      const img = new Image()
-      img.onload = () => {
-        imgRef.current = img
-        setImage(ev.target.result)
-        setZoom(1)
-        setPan({ x: 0, y: 0 })
-        setHasDrawn(false)
-        jumpTo()
-      }
-      img.src = ev.target.result
+  useEffect(() => {
+    return () => {
+      if (activeUrlRef.current) URL.revokeObjectURL(activeUrlRef.current)
     }
-    reader.readAsDataURL(file)
+  }, [])
+
+  const processFile = (file) => {
+    if (!file || !file.type.startsWith('image/')) return
+    if (activeUrlRef.current) URL.revokeObjectURL(activeUrlRef.current)
+    const url = URL.createObjectURL(file)
+    activeUrlRef.current = url
+
+    const img = new Image()
+    img.onload = () => {
+      imgRef.current = img
+      setImage(url)
+      setZoom(1)
+      setPan({ x: 0, y: 0 })
+      setRotation(0)
+      setFlipH(false)
+      jumpTo()
+    }
+    img.src = url
+  }
+
+  const handleFileChange = (e) => {
+    const file = e.target.files?.[0]
+    if (file) processFile(file)
   }
 
   const draw = useCallback(() => {
@@ -53,64 +77,158 @@ export default function passport_photo_maker() {
     canvas.width = size.width
     canvas.height = size.height
 
-    /* White background */
-    ctx.fillStyle = '#ffffff'
+    // Background fill
+    ctx.fillStyle = bgColor
     ctx.fillRect(0, 0, size.width, size.height)
 
-    /* Scale image to fill canvas while maintaining aspect ratio */
-    const scaleX = size.width / img.width
-    const scaleY = size.height / img.height
+    // Base scale to cover the passport canvas
+    const isRotated90 = rotation === 90 || rotation === 270
+    const effectiveImgW = isRotated90 ? img.height : img.width
+    const effectiveImgH = isRotated90 ? img.width : img.height
+
+    const scaleX = size.width / effectiveImgW
+    const scaleY = size.height / effectiveImgH
     const baseScale = Math.max(scaleX, scaleY)
-    const scale = baseScale * zoom
+    const currentScale = baseScale * zoom
 
-    const drawW = img.width * scale
-    const drawH = img.height * scale
-    const x = (size.width - drawW) / 2 + pan.x
-    const y = (size.height - drawH) / 2 + pan.y
+    ctx.save()
+    ctx.translate(size.width / 2 + pan.x, size.height / 2 + pan.y)
+    ctx.rotate((rotation * Math.PI) / 180)
+    ctx.scale(flipH ? -1 : 1, 1)
 
-    ctx.drawImage(img, x, y, drawW, drawH)
-    setHasDrawn(true)
-  }, [size, zoom, pan])
+    const drawW = img.width * currentScale
+    const drawH = img.height * currentScale
+    ctx.drawImage(img, -drawW / 2, -drawH / 2, drawW, drawH)
+    ctx.restore()
 
-  useEffect(() => { draw() }, [draw])
+    // Draw subtle passport head guide oval overlay
+    ctx.save()
+    ctx.strokeStyle = 'rgba(99, 102, 241, 0.25)'
+    ctx.lineWidth = 2
+    ctx.setLineDash([6, 6])
+    ctx.beginPath()
+    const headW = size.width * 0.48
+    const headH = size.height * 0.52
+    ctx.ellipse(size.width / 2, size.height * 0.44, headW / 2, headH / 2, 0, 0, Math.PI * 2)
+    ctx.stroke()
+    ctx.restore()
+  }, [size, zoom, pan, rotation, flipH, bgColor])
 
-  const handleMouseDown = (e) => {
+  useEffect(() => {
+    draw()
+  }, [draw])
+
+  // Mouse & Touch Pan Handling
+  const handlePointerDown = (clientX, clientY) => {
     setIsDragging(true)
-    const rect = containerRef.current?.getBoundingClientRect()
-    if (rect) setDragStart({ x: e.clientX - rect.left - pan.x, y: e.clientY - rect.top - pan.y })
-  }
-  const handleMouseMove = (e) => {
-    if (!isDragging) return
-    const rect = containerRef.current?.getBoundingClientRect()
-    if (rect) setPan({ x: e.clientX - rect.left - dragStart.x, y: e.clientY - rect.top - dragStart.y })
-  }
-  const handleMouseUp = () => setIsDragging(false)
-
-  const handleTouchStart = (e) => {
-    const touch = e.touches[0]
-    setIsDragging(true)
-    const rect = containerRef.current?.getBoundingClientRect()
-    if (rect) setDragStart({ x: touch.clientX - rect.left - pan.x, y: touch.clientY - rect.top - pan.y })
-  }
-  const handleTouchMove = (e) => {
-    if (!isDragging) return
-    e.preventDefault()
-    const touch = e.touches[0]
-    const rect = containerRef.current?.getBoundingClientRect()
-    if (rect) setPan({ x: touch.clientX - rect.left - dragStart.x, y: touch.clientY - rect.top - dragStart.y })
+    dragStartRef.current = {
+      startX: clientX,
+      startY: clientY,
+      initialPanX: pan.x,
+      initialPanY: pan.y,
+    }
   }
 
-  const handleDownload = () => {
+  const handlePointerMove = useCallback((clientX, clientY) => {
+    if (!isDragging || !containerRef.current) return
+    const rect = containerRef.current.getBoundingClientRect()
+    const scaleFactor = size.width / rect.width
+    const dx = (clientX - dragStartRef.current.startX) * scaleFactor
+    const dy = (clientY - dragStartRef.current.startY) * scaleFactor
+    setPan({
+      x: Math.round(dragStartRef.current.initialPanX + dx),
+      y: Math.round(dragStartRef.current.initialPanY + dy),
+    })
+  }, [isDragging, size.width])
+
+  const handlePointerUp = useCallback(() => {
+    setIsDragging(false)
+  }, [])
+
+  useEffect(() => {
+    if (!isDragging) return
+    const onMouseMove = (e) => handlePointerMove(e.clientX, e.clientY)
+    const onTouchMove = (e) => {
+      if (e.touches[0]) handlePointerMove(e.touches[0].clientX, e.touches[0].clientY)
+    }
+    const onEnd = () => handlePointerUp()
+
+    window.addEventListener('mousemove', onMouseMove)
+    window.addEventListener('mouseup', onEnd)
+    window.addEventListener('touchmove', onTouchMove, { passive: false })
+    window.addEventListener('touchend', onEnd)
+
+    return () => {
+      window.removeEventListener('mousemove', onMouseMove)
+      window.removeEventListener('mouseup', onEnd)
+      window.removeEventListener('touchmove', onTouchMove)
+      window.removeEventListener('touchend', onEnd)
+    }
+  }, [isDragging, handlePointerMove, handlePointerUp])
+
+  const handleDownloadSingle = () => {
     const canvas = canvasRef.current
     if (!canvas) return
     const link = document.createElement('a')
     link.download = `passport-photo-${size.width}x${size.height}.jpg`
-    link.href = canvas.toDataURL('image/jpeg', 0.95)
+    link.href = canvas.toDataURL('image/jpeg', 0.98)
+    document.body.appendChild(link)
     link.click()
+    link.remove()
   }
 
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400"
-  const selectClass = "w-full bg-white/[0.06] border-2 border-white/8 rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all [color-scheme:dark]"
+  // Create a 4x6 print sheet (1200 x 1800 px at 300 DPI)
+  const handleDownloadSheet = () => {
+    const singleCanvas = canvasRef.current
+    if (!singleCanvas) return
+
+    const sheet = document.createElement('canvas')
+    sheet.width = 1800
+    sheet.height = 1200
+    const sctx = sheet.getContext('2d')
+
+    // White sheet
+    sctx.fillStyle = '#ffffff'
+    sctx.fillRect(0, 0, sheet.width, sheet.height)
+
+    // Calculate grid layout for 4x6 inches
+    const cols = size.width === 600 ? 3 : 4
+    const rows = 2
+    const totalPhotos = cols * rows
+    const photoW = size.width * (size.width === 600 ? 0.88 : 0.82)
+    const photoH = size.height * (size.width === 600 ? 0.88 : 0.82)
+
+    const gapX = (sheet.width - cols * photoW) / (cols + 1)
+    const gapY = (sheet.height - rows * photoH) / (rows + 1)
+
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        const x = gapX + c * (photoW + gapX)
+        const y = gapY + r * (photoH + gapY)
+        sctx.drawImage(singleCanvas, x, y, photoW, photoH)
+        // Thin cutting border around each photo
+        sctx.strokeStyle = '#e2e8f0'
+        sctx.lineWidth = 1
+        sctx.strokeRect(x, y, photoW, photoH)
+      }
+    }
+
+    const link = document.createElement('a')
+    link.download = `passport-photo-sheet-4x6.jpg`
+    link.href = sheet.toDataURL('image/jpeg', 0.98)
+    document.body.appendChild(link)
+    link.click()
+    link.remove()
+  }
+
+  const rotate90 = () => setRotation((r) => (r + 90) % 360)
+  const toggleFlip = () => setFlipH((v) => !v)
+  const resetPosition = () => {
+    setZoom(1)
+    setPan({ x: 0, y: 0 })
+    setRotation(0)
+    setFlipH(false)
+  }
 
   return (
     <ToolLayout
@@ -139,19 +257,44 @@ export default function passport_photo_maker() {
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" }
       }}
     >
-      <div className="max-w-2xl mx-auto space-y-6">
-        <div className="space-y-4">
-          <div>
-            <label className="block text-sm font-bold text-slate-400 mb-2">Upload Photo</label>
-            <input ref={fileInputRef} type="file" accept="image/*" onChange={handleFile}
-              className="w-full bg-white/[0.06] border-2 border-dashed border-white/12 rounded-xl px-5 py-6 text-white text-sm font-medium file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-indigo-500 file:text-white file:font-bold file:text-sm file:cursor-pointer hover:file:bg-indigo-400" />
-          </div>
+      <div className="max-w-3xl mx-auto space-y-4">
+        {/* Upload */}
+        <div
+          onClick={() => fileInputRef.current?.click()}
+          onDragOver={(e) => { e.preventDefault(); setDragOver(true) }}
+          onDragLeave={() => setDragOver(false)}
+          onDrop={(e) => {
+            e.preventDefault()
+            setDragOver(false)
+            if (e.dataTransfer.files?.[0]) processFile(e.dataTransfer.files[0])
+          }}
+          className={`p-6 sm:p-8 rounded-2xl border-2 border-dashed text-center cursor-pointer transition-colors ${
+            dragOver ? 'border-indigo-600 bg-indigo-50' : 'border-gray-300 bg-white hover:border-gray-400 hover:bg-gray-50'
+          }`}
+        >
+          <div className="text-4xl mb-2">📸</div>
+          <div className="text-sm font-semibold text-gray-900">Upload Portrait Photo</div>
+          <div className="text-xs text-gray-500 mt-1">Click to browse or drop an image file (JPG, PNG, WebP)</div>
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="image/*"
+            className="hidden"
+            onChange={handleFileChange}
+          />
+        </div>
 
-          {image && (
-            <>
+        {image && (
+          <div className="bg-white border border-gray-200 rounded-2xl p-5 sm:p-6 shadow-sm space-y-5">
+            {/* Options */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-bold text-slate-400 mb-2">Output Size</label>
-                <select value={sizeIdx} onChange={(e) => setSizeIdx(Number(e.target.value))} className={selectClass}>
+                <label className="block text-xs font-semibold text-gray-700 mb-1">Passport / Visa Standard</label>
+                <select
+                  value={sizeIdx}
+                  onChange={(e) => setSizeIdx(Number(e.target.value))}
+                  className="w-full min-h-[44px] bg-white border border-gray-300 rounded-xl px-4 py-2 text-sm text-gray-900 outline-none focus:ring-2 focus:ring-indigo-500"
+                >
                   {OUTPUT_SIZES.map((s, i) => (
                     <option key={i} value={i}>{s.label}</option>
                   ))}
@@ -159,41 +302,119 @@ export default function passport_photo_maker() {
               </div>
 
               <div>
-                <label className="block text-sm font-bold text-slate-400 mb-2">Zoom: {zoom.toFixed(1)}x</label>
-                <input type="range" min="0.5" max="3" step="0.1" value={zoom}
-                  onChange={(e) => setZoom(Number(e.target.value))}
-                  className="w-full h-2 rounded-lg appearance-none cursor-pointer accent-indigo-500 bg-white/10" />
-              </div>
-
-              <div>
-                <p className="text-xs text-slate-500 font-medium mb-2">👆 Drag the image to reposition your face</p>
-                <div ref={containerRef}
-                  className="relative w-full aspect-[35/45] max-w-xs mx-auto rounded-xl border-2 border-white/10 bg-white overflow-hidden cursor-grab active:cursor-grabbing"
-                  onMouseDown={handleMouseDown} onMouseMove={handleMouseMove} onMouseUp={handleMouseUp} onMouseLeave={handleMouseUp}
-                  onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleMouseUp}>
-                  <canvas ref={canvasRef} className="w-full h-full" style={{ pointerEvents: 'none' }} />
+                <label className="block text-xs font-semibold text-gray-700 mb-1">Background Fill</label>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
+                  {BG_COLORS.map((bg) => (
+                    <button
+                      key={bg.value}
+                      type="button"
+                      onClick={() => setBgColor(bg.value)}
+                      className={`min-h-[44px] px-2 py-1 rounded-xl text-xs font-semibold border transition-colors ${
+                        bgColor === bg.value
+                          ? 'border-indigo-600 bg-indigo-50 text-indigo-900'
+                          : 'border-gray-300 bg-white text-gray-700 hover:bg-gray-50'
+                      }`}
+                    >
+                      {bg.label}
+                    </button>
+                  ))}
                 </div>
               </div>
-            </>
-          )}
-        </div>
+            </div>
 
-        {image ? (
-          <button onClick={handleDownload} ref={resultRef}
-            className="w-full py-4 rounded-2xl bg-sky-500 text-white font-bold text-sm hover:bg-sky-400 transition-all duration-200 active:scale-[0.98]">
-            Download JPEG ({size.width}×{size.height}px)
-          </button>
-        ) : (
-          <div ref={resultRef} className="text-center py-12 rounded-3xl border-2 border-dashed border-white/8 bg-white/[0.01]">
-            <div className="text-4xl mb-3 opacity-20">📸</div>
-            <p className="text-sm text-slate-600 font-medium">Upload a photo to create your passport size image</p>
+            {/* Zoom Slider and Transform Buttons */}
+            <div className="space-y-2">
+              <div className="flex justify-between items-center text-xs font-semibold text-gray-700">
+                <span>Face Zoom</span>
+                <span className="text-indigo-600 font-bold">{zoom.toFixed(1)}×</span>
+              </div>
+              <input
+                type="range"
+                min="0.6"
+                max="3.0"
+                step="0.05"
+                value={zoom}
+                onChange={(e) => setZoom(Number(e.target.value))}
+                className="w-full accent-indigo-600 cursor-pointer"
+              />
+              <div className="flex flex-wrap gap-2 pt-1">
+                <button
+                  type="button"
+                  onClick={rotate90}
+                  className="min-h-[44px] px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-white border border-gray-300 text-gray-700 hover:bg-gray-50"
+                >
+                  ↻ Rotate 90°
+                </button>
+                <button
+                  type="button"
+                  onClick={toggleFlip}
+                  className="min-h-[44px] px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-white border border-gray-300 text-gray-700 hover:bg-gray-50"
+                >
+                  ⇄ Mirror / Flip
+                </button>
+                <button
+                  type="button"
+                  onClick={resetPosition}
+                  className="min-h-[44px] px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-white border border-gray-300 text-gray-700 hover:bg-gray-50"
+                >
+                  Reset Position
+                </button>
+              </div>
+            </div>
+
+            {/* Interactive Cropper / Preview with DYNAMIC aspect ratio! */}
+            <div className="text-center space-y-2">
+              <p className="text-xs text-gray-600 font-medium">
+                👆 Drag photo to align face inside guideline oval.
+              </p>
+
+              <div className="flex justify-center p-4 bg-gray-100 rounded-2xl border border-gray-200">
+                <div
+                  ref={containerRef}
+                  style={{
+                    aspectRatio: `${size.width} / ${size.height}`,
+                    maxWidth: size.width === 600 ? '280px' : '240px',
+                  }}
+                  className="relative w-full rounded-xl border-2 border-indigo-400 bg-white shadow-md overflow-hidden cursor-grab active:cursor-grabbing select-none touch-none"
+                  onMouseDown={(e) => handlePointerDown(e.clientX, e.clientY)}
+                  onTouchStart={(e) => {
+                    if (e.touches[0]) handlePointerDown(e.touches[0].clientX, e.touches[0].clientY)
+                  }}
+                >
+                  <canvas ref={canvasRef} className="w-full h-full block pointer-events-none" />
+                </div>
+              </div>
+
+              <div className="text-xs text-gray-500 font-medium">
+                Resolution: {size.width} × {size.height} px (300 DPI Print Quality)
+              </div>
+            </div>
+
+            {/* Action buttons */}
+            <div ref={resultRef} className="flex flex-col sm:flex-row gap-3 pt-2">
+              <button
+                type="button"
+                onClick={handleDownloadSingle}
+                className="min-h-[44px] flex-1 px-5 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm transition-colors shadow-sm flex items-center justify-center gap-2"
+              >
+                💾 Download Single Photo ({size.width}×{size.height}px)
+              </button>
+              <button
+                type="button"
+                onClick={handleDownloadSheet}
+                className="min-h-[44px] px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm transition-colors shadow-sm flex items-center justify-center gap-2"
+              >
+                🖨️ Download 4×6 Print Sheet
+              </button>
+            </div>
           </div>
         )}
 
-        {image && (
-          <p className="text-[11px] text-slate-600 text-center font-medium italic">
-            ℹ️ White background is enforced. For best results, use a well-lit photo with good contrast. Adjust zoom and position per passport guidelines.
-          </p>
+        {!image && (
+          <div ref={resultRef} className="text-center py-12 rounded-2xl border border-gray-200 bg-white">
+            <div className="text-4xl mb-2 opacity-30">📸</div>
+            <p className="text-sm text-gray-600 font-medium">Upload a photo to create official passport and visa size photos</p>
+          </div>
         )}
       </div>
     </ToolLayout>
