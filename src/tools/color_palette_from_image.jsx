@@ -284,42 +284,46 @@ export default function color_palette_from_image() {
           onDragOver={(e) => { e.preventDefault(); setDragOver(true) }}
           onDragLeave={() => setDragOver(false)}
           onClick={() => fileRef.current?.click()}
-          className={`p-6 sm:p-8 rounded-2xl border-2 border-dashed text-center cursor-pointer transition-colors ${
-            dragOver ? 'border-indigo-600 bg-indigo-50' : 'border-gray-300 bg-white hover:border-gray-400 hover:bg-gray-50'
+          className={`p-6 sm:p-8 rounded-2xl border-2 border-dashed text-center cursor-pointer transition-all duration-200 ${
+            dragOver ? 'border-indigo-500 bg-indigo-500/10' : 'border-white/[0.15] bg-white/[0.02] hover:border-white/[0.25] hover:bg-white/[0.04]'
           }`}
         >
           <input ref={fileRef} type="file" accept="image/*" onChange={handleFileChange} className="hidden" />
           <div className="text-4xl mb-2">🎨</div>
-          <p className="text-sm font-semibold text-gray-900 mb-1">Drop image here or click to extract palette</p>
-          <p className="text-xs text-gray-500">Supports PNG, JPG, GIF, WebP, BMP</p>
+          <p className="text-sm font-semibold text-white mb-1">Drop image here or click to extract palette</p>
+          <p className="text-xs text-slate-400">Supports PNG, JPG, GIF, WebP, BMP</p>
         </div>
 
         {/* Options */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-5 sm:p-6 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-5 sm:p-6 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="flex flex-wrap items-center gap-3">
-            <label className="text-xs font-bold text-gray-700 uppercase tracking-wider">Number of Colors:</label>
+            <label className="text-xs font-bold text-slate-300 uppercase tracking-wider">Number of Colors:</label>
             <div className="flex gap-1.5">
-              {[4, 6, 8, 10, 12].map((n) => (
-                <button
-                  key={n}
-                  type="button"
-                  onClick={() => handleNumColorsChange(n)}
-                  className={`min-w-[44px] min-h-[44px] rounded-xl text-xs font-bold transition-colors border ${
-                    numColors === n
-                      ? 'bg-indigo-600 text-white border-indigo-600 shadow-sm'
-                      : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
-                  }`}
-                >
-                  {n}
-                </button>
-              ))}
+              {[4, 6, 8, 10, 12].map((n) => {
+                const isSelected = numColors === n
+                return (
+                  <button
+                    key={n}
+                    type="button"
+                    onClick={() => handleNumColorsChange(n)}
+                    className={`min-w-[44px] min-h-[44px] rounded-xl text-xs font-bold transition-all duration-200 border flex items-center justify-center gap-1 ${
+                      isSelected
+                        ? 'bg-indigo-600 text-white border-indigo-600 shadow-md shadow-indigo-500/20 active:scale-95'
+                        : 'bg-white/[0.04] text-slate-200 border-white/[0.1] hover:bg-white/[0.08] active:scale-95'
+                    }`}
+                  >
+                    {isSelected && <span className="text-[11px]">✓</span>}
+                    {n}
+                  </button>
+                )
+              })}
             </div>
           </div>
 
           <button
             type="button"
             onClick={() => fileRef.current?.click()}
-            className="min-h-[44px] px-4 py-2 rounded-xl bg-white border border-gray-300 text-gray-700 text-xs font-semibold hover:bg-gray-50 transition-colors"
+            className="min-h-[44px] px-4 py-2 rounded-xl bg-white/[0.06] hover:bg-white/[0.1] border border-white/[0.1] text-slate-200 hover:text-white text-xs font-semibold transition-colors"
           >
             Change Photo
           </button>
@@ -329,12 +333,12 @@ export default function color_palette_from_image() {
         {preview && palette.length > 0 && (
           <div ref={resultRef} className="space-y-4">
             {/* Color bar preview */}
-            <div className="bg-white border border-gray-200 rounded-2xl p-4 shadow-sm space-y-3">
+            <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4 shadow-sm space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-bold text-gray-700 uppercase tracking-wider">Dominant Color Spectrum</span>
-                <span className="text-xs text-gray-500">Click any strip to copy HEX</span>
+                <span className="text-xs font-bold text-slate-300 uppercase tracking-wider">Dominant Color Spectrum</span>
+                <span className="text-xs text-slate-400">Click any strip to copy HEX</span>
               </div>
-              <div className="rounded-xl overflow-hidden h-16 flex border border-gray-200 shadow-inner">
+              <div className="rounded-xl overflow-hidden h-16 flex border border-white/[0.1] shadow-inner">
                 {palette.map((c, i) => (
                   <div
                     key={i}
@@ -342,7 +346,7 @@ export default function color_palette_from_image() {
                     style={{ backgroundColor: c.hex }}
                     onClick={() => copyColor(c.hex, i)}
                   >
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 text-white font-mono text-[10px] font-bold">
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/60 text-white font-mono text-[10px] font-bold">
                       {copied === i ? '✓ Copied' : c.hex}
                     </div>
                   </div>
@@ -355,7 +359,7 @@ export default function color_palette_from_image() {
               {palette.map((c, i) => (
                 <div
                   key={i}
-                  className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:border-gray-300 transition-colors flex flex-col"
+                  className="bg-white/[0.06] border border-white/[0.08] rounded-2xl overflow-hidden shadow-sm hover:border-white/[0.15] transition-colors flex flex-col"
                 >
                   <button
                     type="button"
@@ -363,43 +367,43 @@ export default function color_palette_from_image() {
                     style={{ backgroundColor: c.hex }}
                     onClick={() => copyColor(c.hex, i)}
                   >
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/30">
-                      <span className="text-[11px] font-semibold bg-white text-gray-900 px-2 py-0.5 rounded-full shadow-sm">
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40">
+                      <span className="text-[11px] font-semibold bg-slate-900/90 text-white border border-white/[0.1] px-2 py-0.5 rounded-full shadow-sm">
                         {copied === i ? '✓ Copied' : 'Copy'}
                       </span>
                     </div>
                   </button>
-                  <div className="p-3 space-y-1 bg-white">
-                    <div className="text-xs font-bold text-gray-900 tracking-wider font-mono">{c.hex.toUpperCase()}</div>
-                    <div className="text-[11px] text-gray-500 font-mono">RGB({c.r}, {c.g}, {c.b})</div>
-                    <div className="text-[11px] text-gray-500 font-mono">HSL({c.hsl.h}°, {c.hsl.s}%, {c.hsl.l}%)</div>
+                  <div className="p-3 space-y-1 bg-white/[0.02]">
+                    <div className="text-xs font-bold text-white tracking-wider font-mono">{c.hex.toUpperCase()}</div>
+                    <div className="text-[11px] text-slate-400 font-mono">RGB({c.r}, {c.g}, {c.b})</div>
+                    <div className="text-[11px] text-slate-400 font-mono">HSL({c.hsl.h}°, {c.hsl.s}%, {c.hsl.l}%)</div>
                   </div>
                 </div>
               ))}
             </div>
 
             {/* Export Toolbar */}
-            <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-3">
-              <span className="text-xs font-bold text-gray-700 uppercase tracking-wider block">Export &amp; Share Palette</span>
+            <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-5 shadow-sm space-y-3">
+              <span className="text-xs font-bold text-slate-300 uppercase tracking-wider block">Export &amp; Share Palette</span>
               <div className="flex flex-wrap gap-2">
                 <button
                   type="button"
                   onClick={downloadPngSwatch}
-                  className="min-h-[44px] flex-1 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold transition-colors flex items-center justify-center gap-1.5 shadow-sm"
+                  className="glow-btn min-h-[44px] flex-1 py-2.5 text-xs font-semibold flex items-center justify-center gap-1.5"
                 >
                   💾 Download Image Swatch (PNG)
                 </button>
                 <button
                   type="button"
                   onClick={downloadJson}
-                  className="min-h-[44px] px-4 py-2.5 rounded-xl bg-white border border-gray-300 text-gray-800 text-xs font-semibold hover:bg-gray-50 transition-colors"
+                  className="min-h-[44px] px-4 py-2.5 rounded-xl bg-white/[0.06] hover:bg-white/[0.1] border border-white/[0.1] text-slate-200 hover:text-white text-xs font-semibold transition-colors"
                 >
                   📄 Save JSON
                 </button>
                 <button
                   type="button"
                   onClick={copyAllHex}
-                  className="min-h-[44px] px-4 py-2.5 rounded-xl bg-white border border-gray-300 text-gray-800 text-xs font-semibold hover:bg-gray-50 transition-colors"
+                  className="min-h-[44px] px-4 py-2.5 rounded-xl bg-white/[0.06] hover:bg-white/[0.1] border border-white/[0.1] text-slate-200 hover:text-white text-xs font-semibold transition-colors"
                 >
                   {copied === 'all' ? '✓ Copied HEX List!' : '📋 Copy All HEX'}
                 </button>
@@ -407,9 +411,9 @@ export default function color_palette_from_image() {
             </div>
 
             {/* CSS Variables */}
-            <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-2">
+            <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-5 shadow-sm space-y-2">
               <div className="flex items-center justify-between">
-                <h3 className="text-xs font-bold text-gray-700 uppercase tracking-wider">CSS Variables</h3>
+                <h3 className="text-xs font-bold text-slate-300 uppercase tracking-wider">CSS Variables</h3>
                 <button
                   type="button"
                   onClick={() => {
@@ -418,12 +422,12 @@ export default function color_palette_from_image() {
                     setCopied('css')
                     setTimeout(() => setCopied(null), 1500)
                   }}
-                  className="min-h-[44px] text-xs font-bold text-indigo-600 hover:text-indigo-800 transition-colors"
+                  className="min-h-[38px] text-xs font-bold text-indigo-400 hover:text-indigo-300 transition-colors"
                 >
                   {copied === 'css' ? '✓ Copied!' : '📋 Copy CSS'}
                 </button>
               </div>
-              <pre className="text-xs text-gray-700 font-mono bg-gray-50 border border-gray-200 rounded-xl p-3.5 overflow-x-auto whitespace-pre">
+              <pre className="text-xs text-slate-300 font-mono bg-white/[0.03] border border-white/[0.08] rounded-xl p-3.5 overflow-x-auto whitespace-pre">
                 {':root {\n' + palette.map((c, i) => `  --color-${i + 1}: ${c.hex};`).join('\n') + '\n}'}
               </pre>
             </div>
@@ -432,9 +436,9 @@ export default function color_palette_from_image() {
 
         {/* Empty state */}
         {!preview && (
-          <div className="text-center py-12 rounded-2xl border border-gray-200 bg-white">
-            <div className="text-4xl mb-2 opacity-30">🎨</div>
-            <p className="text-sm text-gray-600 font-medium">Upload any photo or illustration to extract its colors</p>
+          <div className="text-center py-12 rounded-2xl border border-white/[0.08] bg-white/[0.06]">
+            <div className="text-4xl mb-2 opacity-40">🎨</div>
+            <p className="text-sm text-slate-300 font-medium">Upload any photo or illustration to extract its colors</p>
           </div>
         )}
       </div>

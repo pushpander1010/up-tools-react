@@ -178,56 +178,64 @@ export default function ImagePlaceholderGenerator() {
     >
       <div className="max-w-3xl mx-auto space-y-4">
         {/* Controls */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-5 sm:p-6 shadow-sm space-y-4">
+        <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-5 sm:p-6 shadow-sm space-y-4">
           {/* Quick presets */}
           <div>
-            <label className="block text-xs font-semibold text-gray-700 mb-2">Standard Dimensions</label>
+            <label className="block text-xs font-semibold text-slate-300 mb-2">Standard Dimensions</label>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-              {PRESET_SIZES.map((s) => (
-                <button
-                  key={s.label}
-                  type="button"
-                  onClick={() => applyPresetSize(s.w, s.h)}
-                  className={`min-h-[44px] px-3 py-2 rounded-xl text-xs font-semibold border transition-colors ${
-                    width === s.w && height === s.h
-                      ? 'bg-indigo-600 text-white border-indigo-600 shadow-sm'
-                      : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
-                  }`}
-                >
-                  {s.label}
-                </button>
-              ))}
+              {PRESET_SIZES.map((s) => {
+                const isSelected = width === s.w && height === s.h
+                return (
+                  <button
+                    key={s.label}
+                    type="button"
+                    onClick={() => applyPresetSize(s.w, s.h)}
+                    className={`min-h-[44px] px-3 py-2 rounded-xl text-xs font-semibold border transition-all duration-200 flex items-center justify-center gap-1.5 active:scale-95 ${
+                      isSelected
+                        ? 'bg-indigo-600 text-white border-indigo-600 shadow-md shadow-indigo-500/20'
+                        : 'bg-white/[0.04] text-slate-200 border-white/[0.1] hover:bg-white/[0.08]'
+                    }`}
+                  >
+                    {isSelected && <span className="text-white text-xs">✓</span>}
+                    {s.label}
+                  </button>
+                )
+              })}
             </div>
           </div>
 
           {/* Color Themes */}
           <div>
-            <label className="block text-xs font-semibold text-gray-700 mb-2">Color Palette Schemes</label>
+            <label className="block text-xs font-semibold text-slate-300 mb-2">Color Palette Schemes</label>
             <div className="grid grid-cols-2 sm:grid-cols-6 gap-2">
-              {COLOR_THEMES.map((theme) => (
-                <button
-                  key={theme.name}
-                  type="button"
-                  onClick={() => applyTheme(theme)}
-                  className={`min-h-[44px] px-2 py-2 rounded-xl text-xs font-semibold border transition-colors flex items-center justify-center gap-1.5 ${
-                    bg === theme.bg
-                      ? 'border-indigo-600 ring-2 ring-indigo-500'
-                      : 'border-gray-200 hover:border-gray-300'
-                  }`}
-                  style={{ backgroundColor: theme.bg, color: theme.fg }}
-                >
-                  {theme.name}
-                </button>
-              ))}
+              {COLOR_THEMES.map((theme) => {
+                const isSelected = bg.toLowerCase() === theme.bg.toLowerCase()
+                return (
+                  <button
+                    key={theme.name}
+                    type="button"
+                    onClick={() => applyTheme(theme)}
+                    className={`min-h-[44px] px-2 py-2 rounded-xl text-xs font-semibold border transition-all duration-200 flex items-center justify-center gap-1.5 active:scale-95 ${
+                      isSelected
+                        ? 'border-indigo-500 ring-2 ring-indigo-500/80 shadow-md shadow-indigo-500/20 scale-[1.02]'
+                        : 'border-white/[0.15] hover:border-white/[0.3]'
+                    }`}
+                    style={{ backgroundColor: theme.bg, color: theme.fg }}
+                  >
+                    {isSelected && <span>✓</span>}
+                    {theme.name}
+                  </button>
+                )
+              })}
             </div>
           </div>
 
           {/* Dimension & Text Form inputs */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
             <div>
-              <label className="block text-xs font-semibold text-gray-700 mb-1">Width (px)</label>
+              <label className="block text-xs font-semibold text-slate-300 mb-1">Width (px)</label>
               <input
-                className="w-full min-h-[44px] bg-white border border-gray-300 rounded-xl px-4 py-2 text-sm text-gray-900 font-mono outline-none focus:ring-2 focus:ring-indigo-500"
+                className="w-full min-h-[44px] bg-white/[0.04] border border-white/[0.1] rounded-xl px-4 py-2 text-sm text-white font-mono outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-colors"
                 type="number"
                 value={width}
                 min={10}
@@ -236,9 +244,9 @@ export default function ImagePlaceholderGenerator() {
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-gray-700 mb-1">Height (px)</label>
+              <label className="block text-xs font-semibold text-slate-300 mb-1">Height (px)</label>
               <input
-                className="w-full min-h-[44px] bg-white border border-gray-300 rounded-xl px-4 py-2 text-sm text-gray-900 font-mono outline-none focus:ring-2 focus:ring-indigo-500"
+                className="w-full min-h-[44px] bg-white/[0.04] border border-white/[0.1] rounded-xl px-4 py-2 text-sm text-white font-mono outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-colors"
                 type="number"
                 value={height}
                 min={10}
@@ -247,25 +255,25 @@ export default function ImagePlaceholderGenerator() {
               />
             </div>
             <div className="sm:col-span-2">
-              <label className="block text-xs font-semibold text-gray-700 mb-1">Custom Text</label>
+              <label className="block text-xs font-semibold text-slate-300 mb-1">Custom Text</label>
               <input
-                className="w-full min-h-[44px] bg-white border border-gray-300 rounded-xl px-4 py-2 text-sm text-gray-900 outline-none focus:ring-2 focus:ring-indigo-500"
+                className="w-full min-h-[44px] bg-white/[0.04] border border-white/[0.1] rounded-xl px-4 py-2 text-sm text-white outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-colors"
                 type="text"
                 value={text}
                 onChange={(e) => setText(e.target.value)}
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-gray-700 mb-1">Background Color</label>
+              <label className="block text-xs font-semibold text-slate-300 mb-1">Background Color</label>
               <div className="flex gap-2 items-center">
                 <input
                   type="color"
                   value={bg}
                   onChange={(e) => setBg(e.target.value)}
-                  className="w-12 min-h-[44px] rounded-xl border border-gray-300 p-1 bg-white cursor-pointer"
+                  className="w-12 min-h-[44px] rounded-xl border border-white/[0.1] p-1 bg-white/[0.04] cursor-pointer"
                 />
                 <input
-                  className="flex-1 min-h-[44px] bg-white border border-gray-300 rounded-xl px-3 py-2 text-xs text-gray-900 font-mono outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="flex-1 min-h-[44px] bg-white/[0.04] border border-white/[0.1] rounded-xl px-3 py-2 text-xs text-white font-mono outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-colors"
                   type="text"
                   value={bg}
                   onChange={(e) => setBg(e.target.value)}
@@ -273,16 +281,16 @@ export default function ImagePlaceholderGenerator() {
               </div>
             </div>
             <div>
-              <label className="block text-xs font-semibold text-gray-700 mb-1">Text Color</label>
+              <label className="block text-xs font-semibold text-slate-300 mb-1">Text Color</label>
               <div className="flex gap-2 items-center">
                 <input
                   type="color"
                   value={fg}
                   onChange={(e) => setFg(e.target.value)}
-                  className="w-12 min-h-[44px] rounded-xl border border-gray-300 p-1 bg-white cursor-pointer"
+                  className="w-12 min-h-[44px] rounded-xl border border-white/[0.1] p-1 bg-white/[0.04] cursor-pointer"
                 />
                 <input
-                  className="flex-1 min-h-[44px] bg-white border border-gray-300 rounded-xl px-3 py-2 text-xs text-gray-900 font-mono outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="flex-1 min-h-[44px] bg-white/[0.04] border border-white/[0.1] rounded-xl px-3 py-2 text-xs text-white font-mono outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-colors"
                   type="text"
                   value={fg}
                   onChange={(e) => setFg(e.target.value)}
@@ -290,9 +298,9 @@ export default function ImagePlaceholderGenerator() {
               </div>
             </div>
             <div className="sm:col-span-2">
-              <div className="flex justify-between items-center text-xs font-semibold text-gray-700 mb-1">
+              <div className="flex justify-between items-center text-xs font-semibold text-slate-300 mb-1">
                 <span>Font Size</span>
-                <span className="text-indigo-600 font-bold">{fontSize}px</span>
+                <span className="text-indigo-400 font-bold">{fontSize}px</span>
               </div>
               <input
                 type="range"
@@ -300,7 +308,7 @@ export default function ImagePlaceholderGenerator() {
                 max={140}
                 value={fontSize}
                 onChange={(e) => setFontSize(parseInt(e.target.value, 10))}
-                className="w-full accent-indigo-600 cursor-pointer"
+                className="w-full accent-indigo-500 cursor-pointer"
               />
             </div>
           </div>
@@ -310,14 +318,14 @@ export default function ImagePlaceholderGenerator() {
             <button
               type="button"
               onClick={downloadPng}
-              className="min-h-[44px] flex-1 px-5 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-sm transition-colors flex items-center justify-center gap-1.5"
+              className="min-h-[44px] flex-1 px-5 py-3 rounded-xl glow-btn font-bold text-sm transition-all duration-200 flex items-center justify-center gap-2 active:scale-95"
             >
               ⬇️ Download PNG Image
             </button>
             <button
               type="button"
               onClick={downloadSvg}
-              className="min-h-[44px] px-5 py-3 rounded-xl bg-white border border-gray-300 hover:bg-gray-50 text-gray-800 font-semibold text-sm transition-colors flex items-center justify-center gap-1.5"
+              className="min-h-[44px] px-5 py-3 rounded-xl bg-white/[0.06] hover:bg-white/[0.1] text-slate-200 hover:text-white border border-white/[0.1] font-semibold text-sm transition-all duration-200 flex items-center justify-center gap-2 active:scale-95"
             >
               📄 Download Vector SVG
             </button>
@@ -325,16 +333,16 @@ export default function ImagePlaceholderGenerator() {
         </div>
 
         {/* Live Preview */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-5 sm:p-6 shadow-sm space-y-4">
+        <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-5 sm:p-6 shadow-sm space-y-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-sm font-bold text-gray-900">Live Rendered Preview</h2>
-            <span className="text-xs text-gray-500 font-mono">{width} × {height} px</span>
+            <h2 className="text-sm font-bold text-white">Live Rendered Preview</h2>
+            <span className="text-xs text-slate-400 font-mono">{width} × {height} px</span>
           </div>
 
           <div
-            className="rounded-xl p-4 text-center min-h-[220px] flex items-center justify-center border border-gray-200 overflow-hidden"
+            className="rounded-xl p-4 text-center min-h-[220px] flex items-center justify-center border border-white/[0.08] overflow-hidden"
             style={{
-              background: 'repeating-conic-gradient(#e5e7eb 0% 25%, #f9fafb 0% 50%) 50% / 20px 20px',
+              background: 'repeating-conic-gradient(#1e293b 0% 25%, #0f172a 0% 50%) 50% / 20px 20px',
             }}
           >
             <canvas
@@ -347,17 +355,17 @@ export default function ImagePlaceholderGenerator() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2">
             <div className="space-y-1">
               <div className="flex items-center justify-between">
-                <label className="text-xs font-semibold text-gray-700">HTML &lt;img&gt; Tag</label>
+                <label className="text-xs font-semibold text-slate-300">HTML &lt;img&gt; Tag</label>
                 <button
                   type="button"
                   onClick={() => copyToClipboard(htmlCode, 'html')}
-                  className="text-xs font-bold text-indigo-600 hover:text-indigo-800"
+                  className="text-xs font-semibold text-indigo-400 hover:text-indigo-300 transition-colors"
                 >
                   {copiedKey === 'html' ? '✓ Copied!' : 'Copy Code'}
                 </button>
               </div>
               <textarea
-                className="w-full bg-gray-50 border border-gray-300 rounded-xl px-3 py-2 text-xs text-gray-800 font-mono h-20 resize-none outline-none focus:ring-2 focus:ring-indigo-500"
+                className="w-full bg-white/[0.04] border border-white/[0.1] rounded-xl px-3 py-2 text-xs text-slate-200 font-mono h-20 resize-none outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-colors"
                 readOnly
                 value={htmlCode}
                 onClick={(e) => e.target.select()}
@@ -365,17 +373,17 @@ export default function ImagePlaceholderGenerator() {
             </div>
             <div className="space-y-1">
               <div className="flex items-center justify-between">
-                <label className="text-xs font-semibold text-gray-700">Markdown Code</label>
+                <label className="text-xs font-semibold text-slate-300">Markdown Code</label>
                 <button
                   type="button"
                   onClick={() => copyToClipboard(mdCode, 'md')}
-                  className="text-xs font-bold text-indigo-600 hover:text-indigo-800"
+                  className="text-xs font-semibold text-indigo-400 hover:text-indigo-300 transition-colors"
                 >
                   {copiedKey === 'md' ? '✓ Copied!' : 'Copy Code'}
                 </button>
               </div>
               <textarea
-                className="w-full bg-gray-50 border border-gray-300 rounded-xl px-3 py-2 text-xs text-gray-800 font-mono h-20 resize-none outline-none focus:ring-2 focus:ring-indigo-500"
+                className="w-full bg-white/[0.04] border border-white/[0.1] rounded-xl px-3 py-2 text-xs text-slate-200 font-mono h-20 resize-none outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-colors"
                 readOnly
                 value={mdCode}
                 onClick={(e) => e.target.select()}
@@ -387,3 +395,4 @@ export default function ImagePlaceholderGenerator() {
     </ToolLayout>
   )
 }
+

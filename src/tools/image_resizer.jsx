@@ -76,6 +76,7 @@ export default function image_resizer() {
   const [error, setError] = useState("")
   const [dragOver, setDragOver] = useState(false)
   const [copied, setCopied] = useState(false)
+  const [appliedFeedback, setAppliedFeedback] = useState("")
 
   const outputBlobRef = useRef(null)
   const previewUrlRef = useRef("")
@@ -119,6 +120,7 @@ export default function image_resizer() {
       setAspectRatio(img.width / img.height)
       setOutputUrl("")
       setOutputInfo("")
+      setAppliedFeedback("")
       outputBlobRef.current = null
     }
     img.src = newPreview
@@ -126,6 +128,7 @@ export default function image_resizer() {
 
   const handleWidth = (v) => {
     setWidth(v)
+    setAppliedFeedback("")
     const num = parseInt(v, 10)
     if (lockAspect && !isNaN(num) && num > 0 && aspectRatio > 0) {
       setHeight(String(Math.round(num / aspectRatio)))
@@ -134,6 +137,7 @@ export default function image_resizer() {
 
   const handleHeight = (v) => {
     setHeight(v)
+    setAppliedFeedback("")
     const num = parseInt(v, 10)
     if (lockAspect && !isNaN(num) && num > 0 && aspectRatio > 0) {
       setWidth(String(Math.round(num * aspectRatio)))
@@ -146,11 +150,13 @@ export default function image_resizer() {
     const h = Math.round((origH * pct) / 100)
     setWidth(String(w))
     setHeight(String(h))
+    setAppliedFeedback(`${pct}% scale (${w} × ${h} px)`)
   }
 
-  const applyPresetSize = (w, h) => {
+  const applyPresetSize = (w, h, label) => {
     setWidth(String(w))
     setHeight(String(h))
+    setAppliedFeedback(`${label} (${w} × ${h} px)`)
   }
 
   const resize = useCallback(async () => {
@@ -254,12 +260,13 @@ export default function image_resizer() {
     setOrigH(0)
     setOutputUrl("")
     setOutputInfo("")
+    setAppliedFeedback("")
     outputBlobRef.current = null
     setError("")
     if (fileInputRef.current) fileInputRef.current.value = ""
   }
 
-  const inputClass = "w-full min-h-[44px] bg-white border border-gray-300 rounded-xl px-4 py-2.5 text-sm text-gray-900 font-mono outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
+  const inputClass = "w-full min-h-[44px] bg-white/[0.04] border border-white/[0.1] rounded-xl px-4 py-2.5 text-sm text-white font-mono outline-none focus:border-indigo-500/50 transition-colors"
 
   return (
     <ToolLayout
@@ -301,13 +308,13 @@ export default function image_resizer() {
             setDragOver(false)
             if (e.dataTransfer.files?.[0]) loadImage(e.dataTransfer.files[0])
           }}
-          className={`p-6 sm:p-8 rounded-2xl border-2 border-dashed text-center cursor-pointer transition-colors ${
-            dragOver ? 'border-indigo-600 bg-indigo-50' : 'border-gray-300 bg-white hover:border-gray-400 hover:bg-gray-50'
+          className={`p-6 sm:p-8 rounded-2xl border-2 border-dashed text-center cursor-pointer transition-all duration-200 ${
+            dragOver ? 'border-indigo-500 bg-indigo-500/10' : 'border-white/[0.15] bg-white/[0.02] hover:border-white/[0.25] hover:bg-white/[0.04]'
           }`}
         >
           <div className="text-4xl mb-2">🖼️</div>
-          <div className="text-sm text-gray-900 font-semibold">Drop image here or click to select</div>
-          <div className="text-xs text-gray-500 mt-1">Supports JPG, PNG, WebP, GIF, BMP, TIFF</div>
+          <div className="text-sm text-white font-semibold">Drop image here or click to select</div>
+          <div className="text-xs text-slate-400 mt-1">Supports JPG, PNG, WebP, GIF, BMP, TIFF</div>
           <input
             ref={fileInputRef}
             type="file"
@@ -319,16 +326,16 @@ export default function image_resizer() {
 
         {/* Settings */}
         {file && (
-          <div className="p-5 sm:p-6 rounded-2xl bg-white border border-gray-200 shadow-sm space-y-4">
-            <div className="flex items-center justify-between pb-3 border-b border-gray-200">
+          <div className="p-5 sm:p-6 rounded-2xl bg-white/[0.06] border border-white/[0.08] shadow-sm space-y-4">
+            <div className="flex items-center justify-between pb-3 border-b border-white/[0.08]">
               <div className="min-w-0">
-                <div className="text-sm font-bold text-gray-900 truncate">{file.name}</div>
-                <div className="text-xs text-gray-500">Original: {origW} × {origH} px · {formatBytes(file.size)}</div>
+                <div className="text-sm font-bold text-white truncate">{file.name}</div>
+                <div className="text-xs text-slate-400 font-mono">Original: {origW} × {origH} px · {formatBytes(file.size)}</div>
               </div>
               <button
                 type="button"
                 onClick={clear}
-                className="min-h-[44px] px-3 py-2 text-xs font-semibold text-gray-600 hover:text-red-600 transition-colors"
+                className="min-h-[44px] px-3 py-2 text-xs font-semibold text-slate-400 hover:text-rose-400 transition-colors"
               >
                 Change File
               </button>
@@ -336,42 +343,81 @@ export default function image_resizer() {
 
             {/* Scale % presets */}
             <div>
-              <label className="block text-xs font-semibold text-gray-700 mb-2">Quick Scale Presets</label>
+              <div className="flex items-center justify-between mb-2">
+                <label className="block text-xs font-semibold text-slate-300">Quick Scale Presets</label>
+                {origW > 0 && (
+                  <span className="text-xs text-slate-400">Original: {origW}×{origH}</span>
+                )}
+              </div>
               <div className="flex flex-wrap gap-2">
-                {PERCENT_PRESETS.map((p) => (
-                  <button
-                    key={p}
-                    type="button"
-                    onClick={() => applyPercent(p)}
-                    className="min-h-[44px] px-4 py-2 rounded-xl text-xs font-semibold bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400 transition-colors"
-                  >
-                    {p}%
-                  </button>
-                ))}
+                {PERCENT_PRESETS.map((p) => {
+                  const isPctSelected = origW > 0 && Math.round((origW * p) / 100) === parseInt(width, 10) && Math.round((origH * p) / 100) === parseInt(height, 10)
+                  return (
+                    <button
+                      key={p}
+                      type="button"
+                      onClick={() => applyPercent(p)}
+                      className={`min-h-[44px] px-4 py-2 rounded-xl text-xs font-semibold transition-all duration-200 border flex items-center justify-center gap-1 ${
+                        isPctSelected
+                          ? 'bg-indigo-600 text-white border-indigo-600 shadow-md shadow-indigo-500/20 active:scale-95 animate-[pulse_0.4s_ease-in-out_1]'
+                          : 'bg-white/[0.04] text-slate-200 border-white/[0.1] hover:bg-white/[0.08] active:scale-95'
+                      }`}
+                    >
+                      {isPctSelected && <span className="text-[11px]">✓</span>}
+                      {p}%
+                    </button>
+                  )
+                })}
               </div>
             </div>
 
             {/* Dimension presets */}
             <div>
-              <label className="block text-xs font-semibold text-gray-700 mb-2">Standard Dimensions</label>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                {SIZE_PRESETS.map((s) => (
-                  <button
-                    key={s.label}
-                    type="button"
-                    onClick={() => applyPresetSize(s.w, s.h)}
-                    className="min-h-[44px] px-3 py-2 rounded-xl text-xs font-semibold bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 text-left transition-colors"
-                  >
-                    {s.label}
-                  </button>
-                ))}
+              <div className="flex items-center justify-between mb-2">
+                <label className="block text-xs font-semibold text-slate-300">Standard Dimensions</label>
+                {width && height && (
+                  <span className="text-xs font-mono text-slate-400">{width} × {height} px</span>
+                )}
               </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {SIZE_PRESETS.map((s) => {
+                  const isSelected = String(width) === String(s.w) && String(height) === String(s.h)
+                  return (
+                    <button
+                      key={s.label}
+                      type="button"
+                      onClick={() => applyPresetSize(s.w, s.h, s.label)}
+                      className={`min-h-[44px] px-4 py-2.5 rounded-xl text-xs font-semibold transition-all duration-200 border text-left flex items-center justify-between gap-2 ${
+                        isSelected
+                          ? 'bg-indigo-600 text-white border-indigo-600 shadow-md shadow-indigo-500/20 active:scale-95 animate-[pulse_0.4s_ease-in-out_1]'
+                          : 'bg-white/[0.04] text-slate-200 border-white/[0.1] hover:bg-white/[0.08] active:scale-95'
+                      }`}
+                    >
+                      <span className="flex items-center gap-1.5 truncate">
+                        {isSelected && <span className="font-bold text-white">✓</span>}
+                        {s.label}
+                      </span>
+                      <span className={`text-[11px] font-mono shrink-0 ${isSelected ? 'text-indigo-200' : 'text-slate-400'}`}>
+                        {s.w}×{s.h}
+                      </span>
+                    </button>
+                  )
+                })}
+              </div>
+
+              {/* Inline confirmation showing applied dimensions */}
+              {appliedFeedback && (
+                <div className="mt-2.5 flex items-center gap-1.5 text-xs font-semibold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-2 rounded-xl">
+                  <span>✓</span>
+                  <span>Applied dimensions: <strong className="text-white font-mono">{appliedFeedback}</strong></span>
+                </div>
+              )}
             </div>
 
             {/* Inputs */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
               <div>
-                <label className="block text-xs font-semibold text-gray-700 mb-1">Width (px)</label>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">Width (px)</label>
                 <input
                   type="number"
                   value={width}
@@ -381,7 +427,7 @@ export default function image_resizer() {
                 />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-gray-700 mb-1">Height (px)</label>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">Height (px)</label>
                 <input
                   type="number"
                   value={height}
@@ -391,20 +437,20 @@ export default function image_resizer() {
                 />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-gray-700 mb-1">Output Format</label>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">Output Format</label>
                 <select
                   value={format}
                   onChange={(e) => setFormat(e.target.value)}
-                  className="w-full min-h-[44px] bg-white border border-gray-300 rounded-xl px-4 py-2.5 text-sm text-gray-900 outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                  className={inputClass}
                 >
-                  <option value="auto">Auto (Same as Original)</option>
-                  <option value="jpeg">JPEG (.jpg)</option>
-                  <option value="png">PNG (.png)</option>
-                  <option value="webp">WebP (.webp)</option>
+                  <option className="bg-slate-900 text-white" value="auto">Auto (Same as Original)</option>
+                  <option className="bg-slate-900 text-white" value="jpeg">JPEG (.jpg)</option>
+                  <option className="bg-slate-900 text-white" value="png">PNG (.png)</option>
+                  <option className="bg-slate-900 text-white" value="webp">WebP (.webp)</option>
                 </select>
               </div>
               <div>
-                <label className="block text-xs font-semibold text-gray-700 mb-1">Quality ({quality}%)</label>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">Quality ({quality}%)</label>
                 <input
                   type="number"
                   value={quality}
@@ -416,12 +462,12 @@ export default function image_resizer() {
               </div>
             </div>
 
-            <label className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer select-none py-1">
+            <label className="flex items-center gap-2 text-sm text-slate-300 cursor-pointer select-none py-1">
               <input
                 type="checkbox"
                 checked={lockAspect}
                 onChange={(e) => setLockAspect(e.target.checked)}
-                className="w-4 h-4 accent-indigo-600 rounded"
+                className="w-4 h-4 accent-indigo-500 rounded"
               />
               <span className="font-medium">Maintain aspect ratio</span>
             </label>
@@ -432,21 +478,21 @@ export default function image_resizer() {
                 type="button"
                 onClick={() => { resize(); jumpTo() }}
                 disabled={loading}
-                className="min-h-[44px] flex-1 px-6 py-3 rounded-xl text-sm font-semibold bg-indigo-600 hover:bg-indigo-700 text-white transition-colors disabled:opacity-50 flex items-center justify-center gap-2 shadow-sm"
+                className="glow-btn min-h-[44px] flex-1 py-3 text-sm font-bold flex items-center justify-center gap-2 disabled:opacity-50"
               >
                 {loading ? '⏳ Resizing...' : '🔄 Resize Image'}
               </button>
               <button
                 type="button"
                 onClick={clear}
-                className="min-h-[44px] px-5 py-3 rounded-xl text-sm font-semibold bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
+                className="min-h-[44px] px-5 py-3 rounded-xl text-sm font-semibold bg-white/[0.06] hover:bg-white/[0.1] text-slate-200 border border-white/[0.1] transition-colors"
               >
                 Clear
               </button>
             </div>
 
             {error && (
-              <div className="p-3 rounded-xl bg-red-50 border border-red-200 text-xs font-medium text-red-700">
+              <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-xs font-medium text-red-300">
                 {error}
               </div>
             )}
@@ -454,11 +500,11 @@ export default function image_resizer() {
             {/* Preview of Original */}
             {previewUrl && (
               <div className="pt-2 text-center">
-                <div className="text-xs font-semibold text-gray-600 mb-2">Original Preview</div>
+                <div className="text-xs font-semibold text-slate-400 mb-2">Original Preview</div>
                 <img
                   src={previewUrl}
                   alt="Original"
-                  className="max-h-56 max-w-full h-auto mx-auto rounded-xl border border-gray-200 object-contain"
+                  className="max-h-56 max-w-full h-auto mx-auto rounded-xl border border-white/[0.1] object-contain bg-black/30"
                 />
               </div>
             )}
@@ -467,30 +513,30 @@ export default function image_resizer() {
 
         {/* Output */}
         {outputUrl && (
-          <div ref={resultRef} className="p-5 sm:p-6 rounded-2xl bg-white border border-gray-200 shadow-sm text-center space-y-4">
-            <div className="p-3 rounded-xl bg-emerald-50 border border-emerald-200">
-              <div className="text-xs font-bold text-emerald-800">✓ Resized Successfully</div>
-              <div className="text-xs text-emerald-700 font-semibold mt-1">{outputInfo}</div>
+          <div ref={resultRef} className="p-5 sm:p-6 rounded-2xl bg-white/[0.06] border border-white/[0.08] shadow-sm text-center space-y-4">
+            <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
+              <div className="text-xs font-bold text-emerald-300">✓ Resized Successfully</div>
+              <div className="text-xs text-emerald-400 font-semibold font-mono mt-1">{outputInfo}</div>
             </div>
 
             <img
               src={outputUrl}
               alt="Resized"
-              className="max-h-72 max-w-full h-auto mx-auto rounded-xl border border-gray-200 object-contain"
+              className="max-h-72 max-w-full h-auto mx-auto rounded-xl border border-white/[0.1] object-contain bg-black/30"
             />
 
             <div className="flex flex-col sm:flex-row gap-3 pt-2">
               <button
                 type="button"
                 onClick={download}
-                className="min-h-[44px] flex-1 px-6 py-3.5 rounded-xl text-sm font-bold bg-emerald-600 hover:bg-emerald-700 text-white transition-colors flex items-center justify-center gap-2 shadow-sm"
+                className="glow-btn min-h-[44px] flex-1 py-3.5 text-sm font-bold flex items-center justify-center gap-2"
               >
                 ⬇️ Download Resized Image
               </button>
               <button
                 type="button"
                 onClick={copyToClipboard}
-                className="min-h-[44px] px-5 py-3.5 rounded-xl text-sm font-semibold bg-white border border-gray-300 text-gray-800 hover:bg-gray-50 transition-colors flex items-center justify-center gap-2"
+                className="min-h-[44px] px-5 py-3.5 rounded-xl text-sm font-semibold bg-white/[0.06] hover:bg-white/[0.1] text-slate-200 hover:text-white border border-white/[0.1] transition-colors flex items-center justify-center gap-2"
               >
                 {copied ? '✓ Copied!' : '📋 Copy to Clipboard'}
               </button>

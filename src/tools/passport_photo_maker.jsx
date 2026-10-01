@@ -268,13 +268,13 @@ export default function passport_photo_maker() {
             setDragOver(false)
             if (e.dataTransfer.files?.[0]) processFile(e.dataTransfer.files[0])
           }}
-          className={`p-6 sm:p-8 rounded-2xl border-2 border-dashed text-center cursor-pointer transition-colors ${
-            dragOver ? 'border-indigo-600 bg-indigo-50' : 'border-gray-300 bg-white hover:border-gray-400 hover:bg-gray-50'
+          className={`p-6 sm:p-8 rounded-2xl border-2 border-dashed text-center cursor-pointer transition-all duration-200 ${
+            dragOver ? 'border-indigo-500 bg-indigo-500/10' : 'border-white/[0.15] bg-white/[0.02] hover:border-white/[0.25] hover:bg-white/[0.04]'
           }`}
         >
           <div className="text-4xl mb-2">📸</div>
-          <div className="text-sm font-semibold text-gray-900">Upload Portrait Photo</div>
-          <div className="text-xs text-gray-500 mt-1">Click to browse or drop an image file (JPG, PNG, WebP)</div>
+          <div className="text-sm font-semibold text-white">Upload Portrait Photo</div>
+          <div className="text-xs text-slate-400 mt-1">Click to browse or drop an image file (JPG, PNG, WebP)</div>
           <input
             ref={fileInputRef}
             type="file"
@@ -285,48 +285,52 @@ export default function passport_photo_maker() {
         </div>
 
         {image && (
-          <div className="bg-white border border-gray-200 rounded-2xl p-5 sm:p-6 shadow-sm space-y-5">
+          <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-5 sm:p-6 shadow-sm space-y-5">
             {/* Options */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-semibold text-gray-700 mb-1">Passport / Visa Standard</label>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">Passport / Visa Standard</label>
                 <select
                   value={sizeIdx}
                   onChange={(e) => setSizeIdx(Number(e.target.value))}
-                  className="w-full min-h-[44px] bg-white border border-gray-300 rounded-xl px-4 py-2 text-sm text-gray-900 outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="w-full min-h-[44px] bg-white/[0.04] border border-white/[0.1] rounded-xl px-4 py-2 text-sm text-white outline-none focus:border-indigo-500/50"
                 >
                   {OUTPUT_SIZES.map((s, i) => (
-                    <option key={i} value={i}>{s.label}</option>
+                    <option key={i} value={i} className="bg-slate-900 text-white">{s.label}</option>
                   ))}
                 </select>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-gray-700 mb-1">Background Fill</label>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">Background Fill</label>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
-                  {BG_COLORS.map((bg) => (
-                    <button
-                      key={bg.value}
-                      type="button"
-                      onClick={() => setBgColor(bg.value)}
-                      className={`min-h-[44px] px-2 py-1 rounded-xl text-xs font-semibold border transition-colors ${
-                        bgColor === bg.value
-                          ? 'border-indigo-600 bg-indigo-50 text-indigo-900'
-                          : 'border-gray-300 bg-white text-gray-700 hover:bg-gray-50'
-                      }`}
-                    >
-                      {bg.label}
-                    </button>
-                  ))}
+                  {BG_COLORS.map((bg) => {
+                    const isSelected = bgColor === bg.value
+                    return (
+                      <button
+                        key={bg.value}
+                        type="button"
+                        onClick={() => setBgColor(bg.value)}
+                        className={`min-h-[44px] px-2 py-1 rounded-xl text-xs font-semibold border transition-all duration-200 flex items-center justify-center gap-1 ${
+                          isSelected
+                            ? 'border-indigo-600 bg-indigo-600 text-white shadow-md shadow-indigo-500/20 active:scale-95'
+                            : 'border-white/[0.1] bg-white/[0.04] text-slate-200 hover:bg-white/[0.08] active:scale-95'
+                        }`}
+                      >
+                        {isSelected && <span className="text-[10px]">✓</span>}
+                        {bg.label}
+                      </button>
+                    )
+                  })}
                 </div>
               </div>
             </div>
 
             {/* Zoom Slider and Transform Buttons */}
             <div className="space-y-2">
-              <div className="flex justify-between items-center text-xs font-semibold text-gray-700">
+              <div className="flex justify-between items-center text-xs font-semibold text-slate-300">
                 <span>Face Zoom</span>
-                <span className="text-indigo-600 font-bold">{zoom.toFixed(1)}×</span>
+                <span className="text-indigo-400 font-bold font-mono">{zoom.toFixed(1)}×</span>
               </div>
               <input
                 type="range"
@@ -335,27 +339,27 @@ export default function passport_photo_maker() {
                 step="0.05"
                 value={zoom}
                 onChange={(e) => setZoom(Number(e.target.value))}
-                className="w-full accent-indigo-600 cursor-pointer"
+                className="w-full accent-indigo-500 cursor-pointer"
               />
               <div className="flex flex-wrap gap-2 pt-1">
                 <button
                   type="button"
                   onClick={rotate90}
-                  className="min-h-[44px] px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-white border border-gray-300 text-gray-700 hover:bg-gray-50"
+                  className="min-h-[44px] px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-white/[0.06] hover:bg-white/[0.1] border border-white/[0.1] text-slate-200 hover:text-white transition-colors"
                 >
                   ↻ Rotate 90°
                 </button>
                 <button
                   type="button"
                   onClick={toggleFlip}
-                  className="min-h-[44px] px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-white border border-gray-300 text-gray-700 hover:bg-gray-50"
+                  className="min-h-[44px] px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-white/[0.06] hover:bg-white/[0.1] border border-white/[0.1] text-slate-200 hover:text-white transition-colors"
                 >
                   ⇄ Mirror / Flip
                 </button>
                 <button
                   type="button"
                   onClick={resetPosition}
-                  className="min-h-[44px] px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-white border border-gray-300 text-gray-700 hover:bg-gray-50"
+                  className="min-h-[44px] px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-white/[0.06] hover:bg-white/[0.1] border border-white/[0.1] text-slate-200 hover:text-white transition-colors"
                 >
                   Reset Position
                 </button>
@@ -364,18 +368,18 @@ export default function passport_photo_maker() {
 
             {/* Interactive Cropper / Preview with DYNAMIC aspect ratio! */}
             <div className="text-center space-y-2">
-              <p className="text-xs text-gray-600 font-medium">
+              <p className="text-xs text-slate-400 font-medium">
                 👆 Drag photo to align face inside guideline oval.
               </p>
 
-              <div className="flex justify-center p-4 bg-gray-100 rounded-2xl border border-gray-200">
+              <div className="flex justify-center p-4 bg-black/40 rounded-2xl border border-white/[0.08]">
                 <div
                   ref={containerRef}
                   style={{
                     aspectRatio: `${size.width} / ${size.height}`,
                     maxWidth: size.width === 600 ? '280px' : '240px',
                   }}
-                  className="relative w-full rounded-xl border-2 border-indigo-400 bg-white shadow-md overflow-hidden cursor-grab active:cursor-grabbing select-none touch-none"
+                  className="relative w-full rounded-xl border-2 border-indigo-500/70 bg-slate-900 shadow-xl overflow-hidden cursor-grab active:cursor-grabbing select-none touch-none"
                   onMouseDown={(e) => handlePointerDown(e.clientX, e.clientY)}
                   onTouchStart={(e) => {
                     if (e.touches[0]) handlePointerDown(e.touches[0].clientX, e.touches[0].clientY)
@@ -385,7 +389,7 @@ export default function passport_photo_maker() {
                 </div>
               </div>
 
-              <div className="text-xs text-gray-500 font-medium">
+              <div className="text-xs text-slate-400 font-mono font-medium">
                 Resolution: {size.width} × {size.height} px (300 DPI Print Quality)
               </div>
             </div>
@@ -395,14 +399,14 @@ export default function passport_photo_maker() {
               <button
                 type="button"
                 onClick={handleDownloadSingle}
-                className="min-h-[44px] flex-1 px-5 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm transition-colors shadow-sm flex items-center justify-center gap-2"
+                className="glow-btn min-h-[44px] flex-1 py-3 text-sm font-bold flex items-center justify-center gap-2"
               >
                 💾 Download Single Photo ({size.width}×{size.height}px)
               </button>
               <button
                 type="button"
                 onClick={handleDownloadSheet}
-                className="min-h-[44px] px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm transition-colors shadow-sm flex items-center justify-center gap-2"
+                className="min-h-[44px] px-5 py-3 rounded-xl bg-white/[0.06] hover:bg-white/[0.1] text-slate-200 hover:text-white border border-white/[0.1] font-bold text-sm transition-colors shadow-sm flex items-center justify-center gap-2"
               >
                 🖨️ Download 4×6 Print Sheet
               </button>
@@ -411,9 +415,9 @@ export default function passport_photo_maker() {
         )}
 
         {!image && (
-          <div ref={resultRef} className="text-center py-12 rounded-2xl border border-gray-200 bg-white">
-            <div className="text-4xl mb-2 opacity-30">📸</div>
-            <p className="text-sm text-gray-600 font-medium">Upload a photo to create official passport and visa size photos</p>
+          <div ref={resultRef} className="text-center py-12 rounded-2xl border border-white/[0.08] bg-white/[0.06]">
+            <div className="text-4xl mb-2 opacity-40">📸</div>
+            <p className="text-sm text-slate-300 font-medium">Upload a photo to create official passport and visa size photos</p>
           </div>
         )}
       </div>

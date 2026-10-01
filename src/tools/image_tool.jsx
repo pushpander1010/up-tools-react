@@ -180,20 +180,20 @@ export default function image_tool() {
           {/* Controls column */}
           <div className="space-y-4">
             {/* 1) Upload */}
-            <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-3">
-              <h3 className="text-sm font-bold text-gray-900">1) Upload Image</h3>
+            <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-5 shadow-sm space-y-3">
+              <h3 className="text-sm font-bold text-white">1) Upload Image</h3>
               <div
                 onDragOver={(e) => { e.preventDefault(); setDragOver(true) }}
                 onDragLeave={() => setDragOver(false)}
                 onDrop={handleDrop}
                 onClick={() => fileRef.current?.click()}
-                className={`border-2 border-dashed rounded-xl p-5 text-center cursor-pointer transition-colors ${
-                  dragOver ? 'border-indigo-600 bg-indigo-50' : 'border-gray-300 bg-gray-50 hover:border-gray-400 hover:bg-gray-100'
+                className={`border-2 border-dashed rounded-xl p-5 text-center cursor-pointer transition-all duration-200 ${
+                  dragOver ? 'border-indigo-500 bg-indigo-500/10' : 'border-white/[0.15] bg-white/[0.02] hover:border-white/[0.25] hover:bg-white/[0.04]'
                 }`}
               >
                 <div className="text-3xl mb-1">🖼️</div>
-                <p className="text-xs font-semibold text-gray-800">Drop image here or click</p>
-                <p className="text-[11px] text-gray-500 mt-0.5">JPG, PNG, WebP, GIF</p>
+                <p className="text-xs font-semibold text-white">Drop image here or click</p>
+                <p className="text-[11px] text-slate-400 mt-0.5">JPG, PNG, WebP, GIF</p>
               </div>
               <input
                 ref={fileRef}
@@ -205,42 +205,51 @@ export default function image_tool() {
             </div>
 
             {/* Presets */}
-            <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-3">
-              <h3 className="text-sm font-bold text-gray-900">Presets</h3>
+            <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-5 shadow-sm space-y-3">
+              <div className="flex items-center justify-between">
+                <h3 className="text-sm font-bold text-white">Presets</h3>
+                <span className="text-xs text-emerald-400 font-medium">✓ Quick Filters</span>
+              </div>
               <div className="grid grid-cols-3 gap-2">
-                {Object.entries(PRESETS).map(([key, p]) => (
-                  <button
-                    key={key}
-                    type="button"
-                    onClick={() => applyPreset(key)}
-                    className={`min-h-[44px] py-2 px-2 rounded-xl text-xs font-semibold transition-colors border ${
-                      filters === PRESETS[key]
-                        ? 'bg-indigo-600 text-white border-indigo-600 shadow-sm'
-                        : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
-                    }`}
-                  >
-                    {p.label}
-                  </button>
-                ))}
+                {Object.entries(PRESETS).map(([key, p]) => {
+                  const isSelected = filters === PRESETS[key]
+                  return (
+                    <button
+                      key={key}
+                      type="button"
+                      onClick={() => applyPreset(key)}
+                      className={`min-h-[44px] py-2 px-2 rounded-xl text-xs font-semibold transition-all duration-200 border flex items-center justify-center gap-1 ${
+                        isSelected
+                          ? 'bg-indigo-600 text-white border-indigo-600 shadow-md shadow-indigo-500/20 active:scale-95'
+                          : 'bg-white/[0.04] text-slate-200 border-white/[0.1] hover:bg-white/[0.08] active:scale-95'
+                      }`}
+                    >
+                      {isSelected && <span className="text-[11px]">✓</span>}
+                      {p.label}
+                    </button>
+                  )
+                })}
               </div>
             </div>
 
             {/* Transforms */}
-            <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-3">
-              <h3 className="text-sm font-bold text-gray-900">Transform</h3>
+            <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-5 shadow-sm space-y-3">
+              <h3 className="text-sm font-bold text-white">Transform</h3>
               <div className="grid grid-cols-3 gap-2">
                 <button
                   type="button"
                   onClick={rotate90}
-                  className="min-h-[44px] px-2 py-2 rounded-xl text-xs font-semibold bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
+                  className="min-h-[44px] px-2 py-2 rounded-xl text-xs font-semibold bg-white/[0.04] border border-white/[0.1] text-slate-200 hover:bg-white/[0.08] active:scale-95 transition-all"
                 >
                   ↻ Rotate 90°
                 </button>
                 <button
                   type="button"
                   onClick={toggleFlipH}
-                  className={`min-h-[44px] px-2 py-2 rounded-xl text-xs font-semibold transition-colors border ${
-                    flipH ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50'
+                  className={`min-h-[44px] px-2 py-2 rounded-xl text-xs font-semibold transition-all duration-200 border ${
+                    flipH
+                      ? 'bg-indigo-600 text-white border-indigo-600 shadow-md shadow-indigo-500/20 active:scale-95'
+                      : 'bg-white/[0.04] border-white/[0.1] text-slate-200 hover:bg-white/[0.08] active:scale-95'
                   }`}
                 >
                   ⇄ Flip H
@@ -248,8 +257,10 @@ export default function image_tool() {
                 <button
                   type="button"
                   onClick={toggleFlipV}
-                  className={`min-h-[44px] px-2 py-2 rounded-xl text-xs font-semibold transition-colors border ${
-                    flipV ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50'
+                  className={`min-h-[44px] px-2 py-2 rounded-xl text-xs font-semibold transition-all duration-200 border ${
+                    flipV
+                      ? 'bg-indigo-600 text-white border-indigo-600 shadow-md shadow-indigo-500/20 active:scale-95'
+                      : 'bg-white/[0.04] border-white/[0.1] text-slate-200 hover:bg-white/[0.08] active:scale-95'
                   }`}
                 >
                   ⇅ Flip V
@@ -258,8 +269,8 @@ export default function image_tool() {
             </div>
 
             {/* Adjustments */}
-            <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-4">
-              <h3 className="text-sm font-bold text-gray-900">2) Fine-Tune Adjustments</h3>
+            <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-5 shadow-sm space-y-4">
+              <h3 className="text-sm font-bold text-white">2) Fine-Tune Adjustments</h3>
               {[
                 ['Brightness', filters.brightness, (v) => setFilter('brightness', v), 50, 150, '%'],
                 ['Contrast', filters.contrast, (v) => setFilter('contrast', v), 50, 150, '%'],
@@ -271,8 +282,8 @@ export default function image_tool() {
               ].map(([label, val, setter, min, max, unit]) => (
                 <div key={label}>
                   <div className="flex justify-between items-center mb-1">
-                    <label className="text-xs font-semibold text-gray-700">{label}</label>
-                    <span className="text-xs font-bold text-indigo-600">{val}{unit}</span>
+                    <label className="text-xs font-semibold text-slate-300">{label}</label>
+                    <span className="text-xs font-bold text-indigo-400 font-mono">{val}{unit}</span>
                   </div>
                   <input
                     type="range"
@@ -280,7 +291,7 @@ export default function image_tool() {
                     max={max}
                     value={val}
                     onChange={(e) => setter(parseInt(e.target.value, 10))}
-                    className="w-full accent-indigo-600 cursor-pointer"
+                    className="w-full accent-indigo-500 cursor-pointer"
                   />
                 </div>
               ))}
@@ -288,14 +299,14 @@ export default function image_tool() {
                 <button
                   type="button"
                   onClick={() => setFilters(PRESETS.none)}
-                  className="min-h-[44px] flex-1 py-2 rounded-xl bg-white border border-gray-300 text-gray-700 text-xs font-semibold hover:bg-gray-50 transition-colors"
+                  className="min-h-[44px] flex-1 py-2 rounded-xl bg-white/[0.06] hover:bg-white/[0.1] border border-white/[0.1] text-slate-200 hover:text-white text-xs font-semibold transition-colors"
                 >
                   Reset Sliders
                 </button>
                 <button
                   type="button"
                   onClick={clearCanvas}
-                  className="min-h-[44px] flex-1 py-2 rounded-xl bg-white border border-gray-300 text-gray-700 text-xs font-semibold hover:bg-gray-50 transition-colors"
+                  className="min-h-[44px] flex-1 py-2 rounded-xl bg-white/[0.06] hover:bg-white/[0.1] border border-white/[0.1] text-slate-200 hover:text-white text-xs font-semibold transition-colors"
                 >
                   Clear All
                 </button>
@@ -303,23 +314,23 @@ export default function image_tool() {
             </div>
 
             {/* 3) Export */}
-            <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-3">
-              <h3 className="text-sm font-bold text-gray-900">3) Export</h3>
+            <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-5 shadow-sm space-y-3">
+              <h3 className="text-sm font-bold text-white">3) Export</h3>
               <div className="grid grid-cols-2 gap-2">
                 <div>
-                  <label className="block text-xs font-semibold text-gray-700 mb-1">Format</label>
+                  <label className="block text-xs font-semibold text-slate-300 mb-1">Format</label>
                   <select
                     value={exportFmt}
                     onChange={(e) => setExportFmt(e.target.value)}
-                    className="w-full min-h-[44px] bg-white border border-gray-300 rounded-xl px-3 py-2 text-gray-900 text-xs font-semibold outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full min-h-[44px] bg-white/[0.04] border border-white/[0.1] rounded-xl px-3 py-2 text-white text-xs font-semibold outline-none focus:border-indigo-500/50"
                   >
-                    <option value="image/png">PNG</option>
-                    <option value="image/webp">WebP</option>
-                    <option value="image/jpeg">JPEG</option>
+                    <option className="bg-slate-900 text-white" value="image/png">PNG</option>
+                    <option className="bg-slate-900 text-white" value="image/webp">WebP</option>
+                    <option className="bg-slate-900 text-white" value="image/jpeg">JPEG</option>
                   </select>
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-gray-700 mb-1">Quality</label>
+                  <label className="block text-xs font-semibold text-slate-300 mb-1">Quality</label>
                   <input
                     type="number"
                     min={0.1}
@@ -327,7 +338,7 @@ export default function image_tool() {
                     step={0.05}
                     value={exportQ}
                     onChange={(e) => setExportQ(parseFloat(e.target.value) || 0.92)}
-                    className="w-full min-h-[44px] bg-white border border-gray-300 rounded-xl px-3 py-2 text-gray-900 text-xs font-semibold outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full min-h-[44px] bg-white/[0.04] border border-white/[0.1] rounded-xl px-3 py-2 text-white font-mono text-xs font-semibold outline-none focus:border-indigo-500/50"
                   />
                 </div>
               </div>
@@ -335,7 +346,7 @@ export default function image_tool() {
                 type="button"
                 onClick={download}
                 disabled={!hasImage}
-                className="w-full min-h-[44px] py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm transition-colors disabled:opacity-40 shadow-sm"
+                className="glow-btn w-full min-h-[44px] py-3 text-sm font-bold flex items-center justify-center gap-2 disabled:opacity-40"
               >
                 📥 Download Filtered Image
               </button>
@@ -343,7 +354,7 @@ export default function image_tool() {
                 type="button"
                 onClick={copyToClipboard}
                 disabled={!hasImage}
-                className="w-full min-h-[44px] py-2.5 rounded-xl bg-white border border-gray-300 hover:bg-gray-50 text-gray-800 font-semibold text-xs transition-colors disabled:opacity-40"
+                className="w-full min-h-[44px] py-2.5 rounded-xl bg-white/[0.06] hover:bg-white/[0.1] border border-white/[0.1] text-slate-200 hover:text-white font-semibold text-xs transition-colors disabled:opacity-40 flex items-center justify-center gap-2"
               >
                 {copied ? '✓ Copied to Clipboard!' : '📋 Copy to Clipboard'}
               </button>
@@ -352,9 +363,9 @@ export default function image_tool() {
 
           {/* Canvas Preview column */}
           <div ref={resultRef} className="lg:col-span-2 space-y-4">
-            <div className="bg-white border border-gray-200 rounded-2xl p-4 sm:p-5 shadow-sm space-y-3">
-              <div className="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-gray-200">
-                <span className="text-xs font-bold text-gray-700 uppercase tracking-wider">Canvas Workspace</span>
+            <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-4 sm:p-5 shadow-sm space-y-3">
+              <div className="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-white/[0.08]">
+                <span className="text-xs font-bold text-slate-300 uppercase tracking-wider">Canvas Workspace</span>
                 {hasImage && (
                   <div className="flex items-center gap-2">
                     <button
@@ -363,7 +374,7 @@ export default function image_tool() {
                       onMouseUp={() => setShowOriginal(false)}
                       onTouchStart={() => setShowOriginal(true)}
                       onTouchEnd={() => setShowOriginal(false)}
-                      className="min-h-[44px] px-3 py-1.5 rounded-lg border border-gray-300 bg-gray-50 text-xs font-semibold text-gray-700 select-none hover:bg-gray-100"
+                      className="min-h-[38px] px-3 py-1.5 rounded-lg border border-white/[0.1] bg-white/[0.04] text-xs font-semibold text-slate-200 select-none hover:bg-white/[0.08] transition-colors"
                     >
                       Press &amp; Hold to View Original
                     </button>
@@ -372,10 +383,10 @@ export default function image_tool() {
               </div>
 
               <div
-                className="relative rounded-xl overflow-hidden border border-gray-200 flex items-center justify-center min-h-[280px]"
+                className="relative rounded-xl overflow-hidden border border-white/[0.08] flex items-center justify-center min-h-[280px]"
                 style={{
                   background: bg === 'checker'
-                    ? 'repeating-conic-gradient(#e5e7eb 0% 25%, #f9fafb 0% 50%) 0 0 / 20px 20px'
+                    ? 'repeating-conic-gradient(#1e293b 0% 25%, #0f172a 0% 50%) 0 0 / 20px 20px'
                     : bg
                 }}
               >
@@ -384,8 +395,8 @@ export default function image_tool() {
                 ) : (
                   <div className="text-center py-16 px-4">
                     <div className="text-5xl mb-2 opacity-30">🖼️</div>
-                    <div className="text-sm font-semibold text-gray-700">No image loaded</div>
-                    <div className="text-xs text-gray-500 mt-1">Upload a photo from the left panel to begin editing</div>
+                    <div className="text-sm font-semibold text-slate-300">No image loaded</div>
+                    <div className="text-xs text-slate-400 mt-1">Upload a photo from the left panel to begin editing</div>
                   </div>
                 )}
               </div>
@@ -393,21 +404,21 @@ export default function image_tool() {
               {hasImage && (
                 <div className="flex flex-wrap items-center justify-between gap-2 pt-2">
                   <div className="flex items-center gap-1.5">
-                    <span className="text-xs text-gray-500 font-medium">Canvas background:</span>
-                    {['checker', '#ffffff', '#111827'].map((v) => (
+                    <span className="text-xs text-slate-400 font-medium">Canvas background:</span>
+                    {['checker', '#090d16', '#1e293b'].map((v) => (
                       <button
                         key={v}
                         type="button"
                         onClick={() => setBg(v)}
-                        className={`min-h-[44px] px-3 py-1.5 rounded-lg text-xs font-semibold border ${
-                          bg === v ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
+                        className={`min-h-[38px] px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all ${
+                          bg === v ? 'bg-indigo-600 text-white border-indigo-600 shadow-sm' : 'bg-white/[0.04] text-slate-200 border-white/[0.1] hover:bg-white/[0.08]'
                         }`}
                       >
-                        {v === 'checker' ? 'Checker' : v === '#ffffff' ? 'White' : 'Dark'}
+                        {v === 'checker' ? 'Checker' : v === '#090d16' ? 'Black' : 'Slate'}
                       </button>
                     ))}
                   </div>
-                  <div className="text-xs text-gray-500">
+                  <div className="text-xs text-slate-400 font-mono">
                     {orig ? `${orig.width} × ${orig.height} px` : ''}
                   </div>
                 </div>
@@ -415,9 +426,9 @@ export default function image_tool() {
             </div>
 
             {/* How-to */}
-            <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm">
-              <h3 className="text-sm font-bold text-gray-900 mb-2">How to edit photos online</h3>
-              <ol className="text-xs text-gray-600 space-y-1 list-decimal list-inside leading-relaxed">
+            <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-5 shadow-sm">
+              <h3 className="text-sm font-bold text-white mb-2">How to edit photos online</h3>
+              <ol className="text-xs text-slate-400 space-y-1 list-decimal list-inside leading-relaxed">
                 <li>Upload an image using drag &amp; drop or click to choose a file.</li>
                 <li>Apply instant filter presets (Grayscale, Vivid, Noir, Sepia) or adjust individual sliders.</li>
                 <li>Rotate or flip your image as needed.</li>

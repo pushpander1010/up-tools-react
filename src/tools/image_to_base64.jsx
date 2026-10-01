@@ -129,11 +129,11 @@ export default function ImageToBase64() {
       ]}
     >
       <div className="max-w-3xl mx-auto space-y-4">
-        <div className="bg-white border border-gray-200 rounded-2xl p-5 sm:p-6 shadow-sm space-y-4">
+        <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-5 sm:p-6 shadow-sm space-y-4">
           {/* Dropzone */}
           <div
-            className={`border-2 border-dashed rounded-2xl p-6 sm:p-8 text-center cursor-pointer transition-colors ${
-              isDragging ? 'border-indigo-600 bg-indigo-50' : 'border-gray-300 bg-white hover:border-gray-400 hover:bg-gray-50'
+            className={`border-2 border-dashed rounded-2xl p-6 sm:p-8 text-center cursor-pointer transition-all duration-200 ${
+              isDragging ? 'border-indigo-500 bg-indigo-500/10' : 'border-white/[0.15] bg-white/[0.02] hover:border-white/[0.25] hover:bg-white/[0.04]'
             }`}
             onDragOver={(e) => { e.preventDefault(); setIsDragging(true) }}
             onDragLeave={() => setIsDragging(false)}
@@ -141,10 +141,10 @@ export default function ImageToBase64() {
             onClick={() => fileInputRef.current?.click()}
           >
             <div className="text-4xl mb-2">📁</div>
-            <p className="text-gray-900 text-sm font-semibold">
-              Drop an image here or <span className="text-indigo-600 underline">browse</span>
+            <p className="text-white text-sm font-semibold">
+              Drop an image here or <span className="text-indigo-400 underline">browse</span>
             </p>
-            <p className="text-gray-500 text-xs mt-1">Supports JPG, PNG, GIF, WebP, SVG, BMP, ICO</p>
+            <p className="text-slate-400 text-xs mt-1">Supports JPG, PNG, GIF, WebP, SVG, BMP, ICO</p>
             <input
               ref={fileInputRef}
               type="file"
@@ -155,42 +155,49 @@ export default function ImageToBase64() {
           </div>
 
           {error && (
-            <div className="p-3 rounded-xl bg-red-50 border border-red-200 text-xs font-medium text-red-700">
+            <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-xs font-medium text-red-300">
               {error}
             </div>
           )}
 
           {/* Format selector */}
           <div>
-            <label className="block text-xs font-semibold text-gray-700 mb-2">Output Format</label>
+            <div className="flex items-center justify-between mb-2">
+              <label className="block text-xs font-semibold text-slate-300">Output Format</label>
+              <span className="text-xs text-emerald-400 font-medium">✓ Selected: {format}</span>
+            </div>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
               {[
                 { id: 'data-url', label: 'Data URL (full)' },
                 { id: 'base64', label: 'Raw Base64' },
                 { id: 'css', label: 'CSS Background' },
                 { id: 'html', label: 'HTML <img>' },
-              ].map((f) => (
-                <button
-                  key={f.id}
-                  type="button"
-                  onClick={() => handleFormatChange(f.id)}
-                  className={`min-h-[44px] px-3 py-2 rounded-xl text-xs font-semibold transition-colors border ${
-                    format === f.id
-                      ? 'bg-indigo-600 text-white border-indigo-600 shadow-sm'
-                      : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
-                  }`}
-                >
-                  {f.label}
-                </button>
-              ))}
+              ].map((f) => {
+                const isSelected = format === f.id
+                return (
+                  <button
+                    key={f.id}
+                    type="button"
+                    onClick={() => handleFormatChange(f.id)}
+                    className={`min-h-[44px] px-3 py-2 rounded-xl text-xs font-semibold transition-all duration-200 border flex items-center justify-center gap-1.5 ${
+                      isSelected
+                        ? 'bg-indigo-600 text-white border-indigo-600 shadow-md shadow-indigo-500/20 active:scale-95'
+                        : 'bg-white/[0.04] text-slate-200 border-white/[0.1] hover:bg-white/[0.08] active:scale-95'
+                    }`}
+                  >
+                    {isSelected && <span className="text-[11px]">✓</span>}
+                    {f.label}
+                  </button>
+                )
+              })}
             </div>
           </div>
 
           {/* Output */}
           <div>
-            <label className="block text-xs font-semibold text-gray-700 mb-1">Base64 Code</label>
+            <label className="block text-xs font-semibold text-slate-300 mb-1">Base64 Code</label>
             <textarea
-              className="w-full bg-gray-50 border border-gray-300 rounded-xl px-4 py-3 text-xs text-gray-800 font-mono h-36 resize-y focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full bg-white/[0.04] border border-white/[0.1] rounded-xl px-4 py-3 text-xs text-slate-200 font-mono h-36 resize-y focus:outline-none focus:border-indigo-500/50"
               readOnly
               value={output}
               placeholder="Base64 output will appear here after selecting an image..."
@@ -204,7 +211,7 @@ export default function ImageToBase64() {
               type="button"
               onClick={copyOutput}
               disabled={!output}
-              className="min-h-[44px] flex-1 px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold transition-colors disabled:opacity-50 flex items-center justify-center gap-2 shadow-sm"
+              className="glow-btn min-h-[44px] flex-1 py-2.5 text-sm font-bold flex items-center justify-center gap-2 disabled:opacity-50"
             >
               {copied ? '✓ Copied to Clipboard!' : '📋 Copy Base64'}
             </button>
@@ -212,14 +219,14 @@ export default function ImageToBase64() {
               type="button"
               onClick={downloadText}
               disabled={!output}
-              className="min-h-[44px] px-5 py-2.5 rounded-xl bg-white border border-gray-300 hover:bg-gray-50 text-gray-800 text-sm font-semibold transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
+              className="min-h-[44px] px-5 py-2.5 rounded-xl bg-white/[0.06] hover:bg-white/[0.1] text-slate-200 hover:text-white border border-white/[0.1] text-sm font-semibold transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
             >
               💾 Save as .txt
             </button>
             <button
               type="button"
               onClick={clear}
-              className="min-h-[44px] px-4 py-2.5 rounded-xl bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 text-sm font-semibold transition-colors"
+              className="min-h-[44px] px-4 py-2.5 rounded-xl bg-white/[0.06] hover:bg-white/[0.1] text-slate-200 hover:text-white border border-white/[0.1] text-sm font-semibold transition-colors"
             >
               Clear
             </button>
@@ -227,25 +234,25 @@ export default function ImageToBase64() {
 
           {/* Preview & info */}
           {preview && (
-            <div className="pt-3 border-t border-gray-200 flex flex-col sm:flex-row items-center gap-4">
+            <div className="pt-3 border-t border-white/[0.08] flex flex-col sm:flex-row items-center gap-4">
               <img
                 src={preview}
                 alt="Preview"
-                className="max-w-[180px] max-h-[140px] rounded-lg border border-gray-200 object-contain shadow-sm"
+                className="max-w-[180px] max-h-[140px] rounded-lg border border-white/[0.1] bg-black/30 object-contain shadow-sm"
               />
-              <div className="text-xs text-gray-600 space-y-1 text-center sm:text-left">
-                <div className="font-semibold text-gray-900">{currentFile?.name}</div>
-                <div>{sizeInfo}</div>
-                <div className="text-emerald-700 font-medium">✓ Ready to embed directly in HTML, CSS, or JSON</div>
+              <div className="text-xs text-slate-400 space-y-1 text-center sm:text-left">
+                <div className="font-semibold text-white font-mono">{currentFile?.name}</div>
+                <div className="font-mono text-slate-300">{sizeInfo}</div>
+                <div className="text-emerald-400 font-medium">✓ Ready to embed directly in HTML, CSS, or JSON</div>
               </div>
             </div>
           )}
         </div>
 
         {/* About */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-5 sm:p-6 shadow-sm">
-          <h2 className="text-base font-bold text-gray-900 mb-2">About Base64 Image Encoding</h2>
-          <p className="text-sm text-gray-600 leading-relaxed">
+        <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-5 sm:p-6 shadow-sm">
+          <h2 className="text-base font-bold text-white mb-2">About Base64 Image Encoding</h2>
+          <p className="text-sm text-slate-400 leading-relaxed">
             Base64 encoding transforms binary image data into standard ASCII text characters. This allows you to embed images directly within HTML, CSS, emails, or JSON payloads without requiring separate HTTP requests. It is ideal for small icons, loaders, and standalone templates.
           </p>
         </div>

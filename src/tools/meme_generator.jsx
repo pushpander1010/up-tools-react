@@ -633,13 +633,13 @@ export default function meme_generator() {
     >
       <div className="max-w-3xl mx-auto space-y-4">
         {/* Template selector */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-3">
+        <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-5 shadow-sm space-y-3">
           <div className="flex items-center justify-between">
-            <h2 className="text-sm font-bold text-gray-900">1) Choose Template or Upload Custom</h2>
+            <h2 className="text-sm font-bold text-white">1) Choose Template or Upload Custom</h2>
             <button
               type="button"
               onClick={() => customFileInputRef.current?.click()}
-              className="min-h-[44px] px-4 py-2 rounded-xl text-xs font-semibold bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
+              className="min-h-[44px] px-4 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] hover:bg-white/[0.1] border border-white/[0.1] text-slate-200 hover:text-white transition-colors"
             >
               📸 Upload Image
             </button>
@@ -653,30 +653,36 @@ export default function meme_generator() {
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2">
-            {TEMPLATES.map((tmpl, i) => (
-              <button
-                key={tmpl.id}
-                type="button"
-                onClick={() => selectTemplate(i)}
-                className={`min-h-[64px] p-2 rounded-xl border text-center transition-colors ${
-                  !customImage && i === selectedTemplate
-                    ? 'border-indigo-600 bg-indigo-50 shadow-sm'
-                    : 'border-gray-200 bg-gray-50 hover:bg-gray-100 text-gray-700'
-                }`}
-              >
-                <div className="text-xs font-bold text-gray-900 truncate">{tmpl.name}</div>
-                <div className="text-[10px] text-gray-500 mt-0.5">{tmpl.w}×{tmpl.h}</div>
-              </button>
-            ))}
+            {TEMPLATES.map((tmpl, i) => {
+              const isSelected = !customImage && i === selectedTemplate
+              return (
+                <button
+                  key={tmpl.id}
+                  type="button"
+                  onClick={() => selectTemplate(i)}
+                  className={`min-h-[64px] p-2 rounded-xl border text-center transition-all duration-200 ${
+                    isSelected
+                      ? 'border-indigo-500 bg-indigo-600/20 text-white ring-2 ring-indigo-500/50 shadow-md shadow-indigo-500/20 active:scale-95'
+                      : 'border-white/[0.1] bg-white/[0.04] hover:bg-white/[0.08] text-slate-200 active:scale-95'
+                  }`}
+                >
+                  <div className="text-xs font-bold truncate">
+                    {isSelected && <span className="text-indigo-400 mr-1">✓</span>}
+                    {tmpl.name}
+                  </div>
+                  <div className="text-[10px] text-slate-400 mt-0.5 font-mono">{tmpl.w}×{tmpl.h}</div>
+                </button>
+              )
+            })}
           </div>
 
           {customImage && (
-            <div className="p-2.5 rounded-xl bg-indigo-50 border border-indigo-200 text-xs text-indigo-900 font-semibold flex items-center justify-between">
+            <div className="p-2.5 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-xs text-indigo-300 font-semibold flex items-center justify-between">
               <span>✓ Custom image uploaded ({customImage.width}×{customImage.height} px)</span>
               <button
                 type="button"
                 onClick={() => selectTemplate(0)}
-                className="text-xs underline text-indigo-700 hover:text-indigo-900"
+                className="text-xs underline text-indigo-400 hover:text-indigo-300"
               >
                 Switch back to presets
               </button>
@@ -685,38 +691,38 @@ export default function meme_generator() {
         </div>
 
         {/* Preview */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-3">
+        <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-5 shadow-sm space-y-3">
           <div className="flex items-center justify-between">
-            <h2 className="text-sm font-bold text-gray-900">Meme Canvas Preview</h2>
+            <h2 className="text-sm font-bold text-white">Meme Canvas Preview</h2>
             <button
               type="button"
               onClick={randomize}
-              className="min-h-[44px] px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
+              className="min-h-[44px] px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-white/[0.06] hover:bg-white/[0.1] border border-white/[0.1] text-slate-200 hover:text-white transition-colors"
             >
               🎲 Random Phrase
             </button>
           </div>
 
-          <div className="flex justify-center bg-gray-100 rounded-xl overflow-hidden p-3 border border-gray-200">
+          <div className="flex justify-center bg-black/40 rounded-xl overflow-hidden p-3 border border-white/[0.08]">
             <canvas
               ref={canvasRef}
               onClick={handleCanvasClick}
               className="max-w-full h-auto cursor-crosshair rounded-lg shadow-sm block"
             />
           </div>
-          <p className="text-center text-xs text-gray-600 bg-gray-50 py-2 rounded-lg border border-gray-200">{hintText}</p>
+          <p className="text-center text-xs text-slate-400 bg-white/[0.03] py-2 rounded-lg border border-white/[0.08]">{hintText}</p>
         </div>
 
         {/* Text Settings */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-4">
-          <div className="flex items-center justify-between pb-2 border-b border-gray-200">
-            <span className="text-xs font-bold text-gray-700 uppercase tracking-wider">Captions &amp; Styling</span>
-            <label className="flex items-center gap-2 text-xs font-semibold text-gray-700 cursor-pointer select-none">
+        <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-5 shadow-sm space-y-4">
+          <div className="flex items-center justify-between pb-2 border-b border-white/[0.08]">
+            <span className="text-xs font-bold text-slate-300 uppercase tracking-wider">Captions &amp; Styling</span>
+            <label className="flex items-center gap-2 text-xs font-semibold text-slate-300 cursor-pointer select-none">
               <input
                 type="checkbox"
                 checked={allCaps}
                 onChange={(e) => setAllCaps(e.target.checked)}
-                className="w-4 h-4 accent-indigo-600 rounded"
+                className="w-4 h-4 accent-indigo-500 rounded"
               />
               ALL CAPS (Classic Meme)
             </label>
@@ -724,29 +730,29 @@ export default function meme_generator() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Top Text Card */}
-            <div className="bg-gray-50 rounded-xl p-4 border border-gray-200 space-y-3">
+            <div className="bg-white/[0.03] rounded-xl p-4 border border-white/[0.08] space-y-3">
               <div className="flex items-center justify-between">
-                <h3 className="text-xs font-bold text-gray-800">⬆️ Top Caption</h3>
+                <h3 className="text-xs font-bold text-slate-200">⬆️ Top Caption</h3>
                 <button
                   type="button"
                   onClick={() => resetTextPos('top')}
-                  className="min-h-[44px] px-2.5 py-1 text-[11px] font-semibold text-gray-600 hover:text-gray-900"
+                  className="min-h-[38px] px-2.5 py-1 text-[11px] font-semibold text-slate-400 hover:text-white transition-colors"
                 >
                   Reset Position
                 </button>
               </div>
 
               <input
-                className="w-full min-h-[44px] bg-white border border-gray-300 rounded-xl px-3 py-2 text-sm text-gray-900 outline-none focus:ring-2 focus:ring-indigo-500"
+                className="w-full min-h-[44px] bg-white/[0.04] border border-white/[0.1] rounded-xl px-3 py-2 text-sm text-white placeholder:text-slate-500 outline-none focus:border-indigo-500/50"
                 value={topText}
                 onChange={(e) => setTopText(e.target.value)}
                 placeholder="Top text..."
               />
 
               <div className="space-y-1">
-                <div className="flex justify-between items-center text-xs text-gray-600">
+                <div className="flex justify-between items-center text-xs text-slate-400">
                   <span>Font Size</span>
-                  <span className="font-bold text-indigo-600">{topSize}px</span>
+                  <span className="font-bold text-indigo-400 font-mono">{topSize}px</span>
                 </div>
                 <input
                   type="range"
@@ -754,12 +760,12 @@ export default function meme_generator() {
                   max="72"
                   value={topSize}
                   onChange={(e) => setTopSize(+e.target.value)}
-                  className="w-full accent-indigo-600 cursor-pointer"
+                  className="w-full accent-indigo-500 cursor-pointer"
                 />
               </div>
 
               <div>
-                <label className="block text-xs text-gray-600 mb-1.5 font-medium">Text Color</label>
+                <label className="block text-xs text-slate-400 mb-1.5 font-medium">Text Color</label>
                 <div className="flex flex-wrap gap-1.5">
                   {COLOR_PRESETS.map((col) => (
                     <button
@@ -767,7 +773,7 @@ export default function meme_generator() {
                       type="button"
                       onClick={() => setTopFill(col)}
                       className={`w-9 h-9 rounded-lg border-2 transition-transform ${
-                        topFill === col ? 'ring-2 ring-indigo-600 scale-105' : 'border-gray-300'
+                        topFill === col ? 'ring-2 ring-indigo-500 scale-105 border-white' : 'border-white/20'
                       }`}
                       style={{ backgroundColor: col }}
                     />
@@ -777,29 +783,29 @@ export default function meme_generator() {
             </div>
 
             {/* Bottom Text Card */}
-            <div className="bg-gray-50 rounded-xl p-4 border border-gray-200 space-y-3">
+            <div className="bg-white/[0.03] rounded-xl p-4 border border-white/[0.08] space-y-3">
               <div className="flex items-center justify-between">
-                <h3 className="text-xs font-bold text-gray-800">⬇️ Bottom Caption</h3>
+                <h3 className="text-xs font-bold text-slate-200">⬇️ Bottom Caption</h3>
                 <button
                   type="button"
                   onClick={() => resetTextPos('bottom')}
-                  className="min-h-[44px] px-2.5 py-1 text-[11px] font-semibold text-gray-600 hover:text-gray-900"
+                  className="min-h-[38px] px-2.5 py-1 text-[11px] font-semibold text-slate-400 hover:text-white transition-colors"
                 >
                   Reset Position
                 </button>
               </div>
 
               <input
-                className="w-full min-h-[44px] bg-white border border-gray-300 rounded-xl px-3 py-2 text-sm text-gray-900 outline-none focus:ring-2 focus:ring-indigo-500"
+                className="w-full min-h-[44px] bg-white/[0.04] border border-white/[0.1] rounded-xl px-3 py-2 text-sm text-white placeholder:text-slate-500 outline-none focus:border-indigo-500/50"
                 value={bottomText}
                 onChange={(e) => setBottomText(e.target.value)}
                 placeholder="Bottom text..."
               />
 
               <div className="space-y-1">
-                <div className="flex justify-between items-center text-xs text-gray-600">
+                <div className="flex justify-between items-center text-xs text-slate-400">
                   <span>Font Size</span>
-                  <span className="font-bold text-indigo-600">{bottomSize}px</span>
+                  <span className="font-bold text-indigo-400 font-mono">{bottomSize}px</span>
                 </div>
                 <input
                   type="range"
@@ -807,12 +813,12 @@ export default function meme_generator() {
                   max="72"
                   value={bottomSize}
                   onChange={(e) => setBottomSize(+e.target.value)}
-                  className="w-full accent-indigo-600 cursor-pointer"
+                  className="w-full accent-indigo-500 cursor-pointer"
                 />
               </div>
 
               <div>
-                <label className="block text-xs text-gray-600 mb-1.5 font-medium">Text Color</label>
+                <label className="block text-xs text-slate-400 mb-1.5 font-medium">Text Color</label>
                 <div className="flex flex-wrap gap-1.5">
                   {COLOR_PRESETS.map((col) => (
                     <button
@@ -820,7 +826,7 @@ export default function meme_generator() {
                       type="button"
                       onClick={() => setBottomFill(col)}
                       className={`w-9 h-9 rounded-lg border-2 transition-transform ${
-                        bottomFill === col ? 'ring-2 ring-indigo-600 scale-105' : 'border-gray-300'
+                        bottomFill === col ? 'ring-2 ring-indigo-500 scale-105 border-white' : 'border-white/20'
                       }`}
                       style={{ backgroundColor: col }}
                     />
@@ -835,14 +841,14 @@ export default function meme_generator() {
             <button
               type="button"
               onClick={downloadMeme}
-              className="min-h-[44px] flex-1 px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm transition-colors flex items-center justify-center gap-2 shadow-sm"
+              className="glow-btn min-h-[44px] flex-1 py-3 text-sm font-bold flex items-center justify-center gap-2"
             >
               ⬇️ Download Meme (PNG)
             </button>
             <button
               type="button"
               onClick={copyToClipboard}
-              className="min-h-[44px] px-5 py-3 rounded-xl bg-white border border-gray-300 hover:bg-gray-50 text-gray-800 font-semibold text-sm transition-colors flex items-center justify-center gap-2"
+              className="min-h-[44px] px-5 py-3 rounded-xl bg-white/[0.06] hover:bg-white/[0.1] border border-white/[0.1] text-slate-200 hover:text-white font-semibold text-sm transition-colors flex items-center justify-center gap-2"
             >
               {copied ? '✓ Copied to Clipboard!' : '📋 Copy to Clipboard'}
             </button>

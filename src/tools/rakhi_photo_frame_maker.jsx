@@ -335,7 +335,7 @@ export default function rakhi_photo_frame_maker() {
         <div className="grid grid-cols-1 lg:grid-cols-[380px,1fr] gap-5">
           {/* Controls Column */}
           <div className="space-y-4">
-            <div className="bg-white border border-gray-200 rounded-2xl p-5 space-y-4 shadow-sm">
+            <div className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-5 space-y-4 shadow-sm">
               {/* Upload Dropzone */}
               <div
                 onClick={() => fileRef.current?.click()}
@@ -346,17 +346,17 @@ export default function rakhi_photo_frame_maker() {
                   setDragOver(false)
                   if (e.dataTransfer.files?.[0]) processImageFile(e.dataTransfer.files[0])
                 }}
-                className={`min-h-[50px] p-4 rounded-xl border-2 border-dashed text-center cursor-pointer transition-colors ${
-                  dragOver ? 'border-orange-600 bg-orange-50' : 'border-gray-300 bg-gray-50 hover:bg-gray-100 hover:border-gray-400'
+                className={`min-h-[50px] p-4 rounded-xl border-2 border-dashed text-center cursor-pointer transition-all duration-200 ${
+                  dragOver ? 'border-orange-500 bg-orange-500/10' : 'border-white/[0.15] bg-white/[0.02] hover:border-white/[0.25] hover:bg-white/[0.04]'
                 }`}
               >
                 <button
                   type="button"
-                  className="min-h-[44px] w-full py-2.5 rounded-xl bg-orange-600 hover:bg-orange-700 text-white font-bold text-sm shadow-sm transition-colors"
+                  className="glow-btn min-h-[44px] w-full py-2.5 text-white font-bold text-sm shadow-sm transition-colors"
                 >
                   📸 Upload Sibling / Family Photo
                 </button>
-                <p className="text-xs text-gray-500 mt-2">
+                <p className="text-xs text-slate-400 mt-2">
                   {img ? '✓ Photo loaded — click or drop to replace' : 'JPG, PNG — auto-fitted & cropped'}
                 </p>
                 <input ref={fileRef} type="file" accept="image/*" className="hidden" onChange={onUpload} />
@@ -364,91 +364,107 @@ export default function rakhi_photo_frame_maker() {
 
               {/* Frame Style */}
               <div>
-                <div className="text-xs font-bold text-gray-900 mb-2">Frame Style</div>
+                <div className="flex items-center justify-between mb-2">
+                  <div className="text-xs font-bold text-slate-300">Frame Style</div>
+                  <span className="text-xs text-orange-400 font-medium">✓ Selected: {FRAMES.find(f => f.id === frame)?.name}</span>
+                </div>
                 <div className="grid grid-cols-2 gap-2">
-                  {FRAMES.map((f) => (
-                    <button
-                      key={f.id}
-                      type="button"
-                      onClick={() => setFrame(f.id)}
-                      className={`min-h-[48px] p-2.5 rounded-xl border text-left transition-colors ${
-                        frame === f.id
-                          ? 'border-orange-600 bg-orange-50 shadow-sm'
-                          : 'border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50'
-                      }`}
-                    >
-                      <div className="text-xs font-bold text-gray-900">{f.name}</div>
-                      <div className="text-[11px] text-gray-500">{f.desc}</div>
-                    </button>
-                  ))}
+                  {FRAMES.map((f) => {
+                    const isSelected = frame === f.id
+                    return (
+                      <button
+                        key={f.id}
+                        type="button"
+                        onClick={() => setFrame(f.id)}
+                        className={`min-h-[48px] p-2.5 rounded-xl border text-left transition-all duration-200 ${
+                          isSelected
+                            ? 'border-orange-500 bg-orange-500/20 text-white ring-2 ring-orange-500/40 shadow-sm active:scale-95'
+                            : 'border-white/[0.1] bg-white/[0.04] hover:bg-white/[0.08] active:scale-95'
+                        }`}
+                      >
+                        <div className="text-xs font-bold text-white">
+                          {isSelected && <span className="text-orange-400 mr-1">✓</span>}
+                          {f.name}
+                        </div>
+                        <div className="text-[11px] text-slate-400">{f.desc}</div>
+                      </button>
+                    )
+                  })}
                 </div>
               </div>
 
               {/* Size */}
               <div>
-                <div className="text-xs font-bold text-gray-900 mb-2">Card Dimensions</div>
+                <div className="flex items-center justify-between mb-2">
+                  <div className="text-xs font-bold text-slate-300">Card Dimensions</div>
+                  <span className="text-xs text-emerald-400 font-medium">✓ {SIZES[sizeIdx].w}×{SIZES[sizeIdx].h}</span>
+                </div>
                 <div className="flex gap-2">
-                  {SIZES.map((s, i) => (
-                    <button
-                      key={s.id}
-                      type="button"
-                      onClick={() => setSizeIdx(i)}
-                      className={`min-h-[44px] flex-1 py-2 rounded-xl text-xs font-bold border transition-colors ${
-                        sizeIdx === i
-                          ? 'bg-gray-900 text-white border-gray-900 shadow-sm'
-                          : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
-                      }`}
-                    >
-                      {s.label}
-                    </button>
-                  ))}
+                  {SIZES.map((s, i) => {
+                    const isSelected = sizeIdx === i
+                    return (
+                      <button
+                        key={s.id}
+                        type="button"
+                        onClick={() => setSizeIdx(i)}
+                        className={`min-h-[44px] flex-1 py-2 rounded-xl text-xs font-bold border transition-all duration-200 flex items-center justify-center gap-1 ${
+                          isSelected
+                            ? 'bg-indigo-600 text-white border-indigo-600 shadow-md shadow-indigo-500/20 active:scale-95'
+                            : 'bg-white/[0.04] text-slate-200 border-white/[0.1] hover:bg-white/[0.08] active:scale-95'
+                        }`}
+                      >
+                        {isSelected && <span className="text-[10px]">✓</span>}
+                        {s.label}
+                      </button>
+                    )
+                  })}
                 </div>
               </div>
 
               {/* Message inputs */}
               <div className="space-y-2">
-                <label className="text-xs font-bold text-gray-900">Name / Custom Greeting on Card</label>
+                <label className="text-xs font-bold text-slate-300">Name / Custom Greeting on Card</label>
                 <input
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="e.g. Aman &amp; Priya"
-                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-gray-300 bg-white text-gray-900 placeholder:text-gray-400 text-sm outline-none focus:ring-2 focus:ring-orange-500"
+                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-white/[0.1] bg-white/[0.04] text-white placeholder:text-slate-500 text-sm outline-none focus:border-indigo-500/50"
                 />
                 <input
                   value={msg}
                   onChange={(e) => setMsg(e.target.value)}
                   placeholder="Default greeting text"
-                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-gray-300 bg-white text-gray-900 placeholder:text-gray-400 text-sm outline-none focus:ring-2 focus:ring-orange-500"
+                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-white/[0.1] bg-white/[0.04] text-white placeholder:text-slate-500 text-sm outline-none focus:border-indigo-500/50"
                 />
                 <div className="flex gap-2 pt-1">
                   <select
                     value={fontIdx}
                     onChange={(e) => setFontIdx(Number(e.target.value))}
-                    className="flex-1 min-h-[44px] px-3 py-2 rounded-xl border border-gray-300 bg-white text-gray-900 text-xs font-medium outline-none focus:ring-2 focus:ring-orange-500"
+                    className="flex-1 min-h-[44px] px-3 py-2 rounded-xl border border-white/[0.1] bg-white/[0.04] text-white text-xs font-medium outline-none focus:border-indigo-500/50"
                   >
                     {FONT_LABELS.map((f, i) => (
-                      <option key={f} value={i}>{f}</option>
+                      <option key={f} value={i} className="bg-slate-900 text-white">{f}</option>
                     ))}
                   </select>
                   <input
                     type="color"
                     value={textColor}
                     onChange={(e) => setTextColor(e.target.value)}
-                    className="w-12 min-h-[44px] rounded-xl border border-gray-300 p-1 bg-white cursor-pointer"
+                    className="w-12 min-h-[44px] rounded-xl border border-white/[0.1] p-1 bg-white/[0.04] cursor-pointer"
                   />
                 </div>
               </div>
 
               {/* Stickers */}
               <div>
-                <div className="text-xs font-bold text-gray-900 mb-2">Stickers — tap to add, drag on canvas to position</div>
+                <div className="text-xs font-bold text-slate-300 mb-2">Stickers — tap to add, drag on canvas to position</div>
                 <div className="flex flex-wrap gap-2">
                   {STICKERS.map((s) => (
                     <button
                       key={s}
                       type="button"
                       onClick={() => addSticker(s)}
-                      className="min-w-[44px] min-h-[44px] rounded-xl bg-amber-50 border border-amber-300 text-xl hover:bg-amber-100 flex items-center justify-center transition-colors"
+                      className="min-w-[44px] min-h-[44px] rounded-xl bg-white/[0.04] border border-white/[0.1] text-xl hover:bg-white/[0.08] active:scale-95 flex items-center justify-center transition-all"
                     >
                       {s}
                     </button>
@@ -458,7 +474,7 @@ export default function rakhi_photo_frame_maker() {
                   <button
                     type="button"
                     onClick={() => setStickers([])}
-                    className="min-h-[44px] text-xs text-red-600 font-semibold mt-1 hover:underline"
+                    className="min-h-[38px] text-xs text-rose-400 font-semibold mt-1 hover:underline"
                   >
                     Clear all stickers ({stickers.length})
                   </button>
@@ -471,21 +487,21 @@ export default function rakhi_photo_frame_maker() {
               <button
                 type="button"
                 onClick={download}
-                className="min-h-[44px] flex-1 py-3 rounded-xl bg-gray-900 hover:bg-black text-white font-bold text-sm shadow-sm transition-colors flex items-center justify-center gap-1.5"
+                className="glow-btn min-h-[44px] flex-1 py-3 text-white font-bold text-sm flex items-center justify-center gap-1.5"
               >
                 ⬇️ Download HD PNG
               </button>
               <button
                 type="button"
                 onClick={copyToClipboard}
-                className="min-h-[44px] px-4 py-3 rounded-xl border border-gray-300 bg-white text-gray-800 font-semibold text-sm hover:bg-gray-50 transition-colors"
+                className="min-h-[44px] px-4 py-3 rounded-xl border border-white/[0.1] bg-white/[0.06] hover:bg-white/[0.1] text-slate-200 hover:text-white font-semibold text-sm transition-colors"
               >
                 {copied ? '✓ Copied!' : '📋 Copy'}
               </button>
               <button
                 type="button"
                 onClick={share}
-                className="min-h-[44px] px-5 py-3 rounded-xl border border-gray-300 bg-white text-gray-900 font-bold text-sm hover:bg-gray-50 transition-colors"
+                className="min-h-[44px] px-5 py-3 rounded-xl border border-white/[0.1] bg-white/[0.06] hover:bg-white/[0.1] text-slate-200 hover:text-white font-bold text-sm transition-colors"
               >
                 Share
               </button>
@@ -493,8 +509,8 @@ export default function rakhi_photo_frame_maker() {
           </div>
 
           {/* Canvas Workspace Column */}
-          <div className="bg-gray-50 border border-gray-200 rounded-3xl p-4 sm:p-6 flex flex-col items-center justify-start overflow-hidden">
-            <div className="text-xs text-gray-500 font-medium mb-3">
+          <div className="bg-white/[0.03] border border-white/[0.08] rounded-3xl p-4 sm:p-6 flex flex-col items-center justify-start overflow-hidden">
+            <div className="text-xs text-slate-400 font-mono font-medium mb-3">
               Canvas aspect: {SIZES[sizeIdx].label} ({SIZES[sizeIdx].w}×{SIZES[sizeIdx].h}px)
             </div>
             <canvas
@@ -509,7 +525,7 @@ export default function rakhi_photo_frame_maker() {
                 onMove(e.touches[0])
               }}
               onTouchEnd={onUp}
-              className="max-w-full h-auto rounded-2xl shadow-lg bg-white touch-none block"
+              className="max-w-full h-auto rounded-2xl shadow-xl bg-slate-900 border border-white/[0.08] touch-none block"
               style={{
                 aspectRatio: `${SIZES[sizeIdx].w} / ${SIZES[sizeIdx].h}`,
                 maxHeight: '680px',
@@ -519,20 +535,20 @@ export default function rakhi_photo_frame_maker() {
         </div>
 
         {/* SEO Information & Guide */}
-        <div ref={resultRef} className="bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 shadow-sm">
-          <h2 className="text-xl font-bold text-gray-900">Rakhi Photo Frame with Name — Make Greeting Cards in Seconds</h2>
-          <p className="text-sm text-gray-600 leading-relaxed mt-3">
+        <div ref={resultRef} className="bg-white/[0.06] border border-white/[0.08] rounded-2xl p-6 sm:p-8 shadow-sm">
+          <h2 className="text-xl font-bold text-white">Rakhi Photo Frame with Name — Make Greeting Cards in Seconds</h2>
+          <p className="text-sm text-slate-300 leading-relaxed mt-3">
             Add your favourite photo to a festive Rakhi frame, write your name and download a HD greeting card ready for WhatsApp, Instagram, DP or printing. No app needed — 6 designer frames, 3 sizes and stickers make every card personal.
           </p>
-          <h3 className="font-bold text-gray-900 mt-6">How to create Rakhi photo frame?</h3>
-          <ol className="list-decimal pl-5 text-sm text-gray-600 space-y-1 mt-2">
+          <h3 className="font-bold text-white mt-6">How to create Rakhi photo frame?</h3>
+          <ol className="list-decimal pl-5 text-sm text-slate-300 space-y-1 mt-2">
             <li>Upload your photo (or siblings&apos; photo) — auto-fitted to frame</li>
             <li>Pick a frame: Classic Saffron, Royal Maroon, Floral Pink, Golden Glow, Modern Minimal or Festive Pop</li>
             <li>Choose size: 1:1 for DP/post, 4:5 for Instagram feed, 9:16 for Story/Status</li>
             <li>Type name/message, pick font &amp; color, add 🪢🎁🪔 stickers and drag to position</li>
             <li>Download HD PNG or Share directly to WhatsApp/Instagram</li>
           </ol>
-          <p className="text-sm text-gray-600 mt-4">
+          <p className="text-sm text-slate-400 mt-4">
             <b>Keywords:</b> rakhi photo frame, rakhi greeting card maker, happy raksha bandhan photo with name, rakhi images with name editor, rakhi dp maker — all covered in one tool without watermark.
           </p>
         </div>
