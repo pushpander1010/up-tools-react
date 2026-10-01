@@ -5912,6 +5912,44 @@
    ]
   },
   {
+   "slug": "hackolution/recon-ng",
+   "title": "Recon-ng Framework Guide",
+   "icon": "🧭",
+   "desc": "Step-by-step reference: use Recon-ng modular recon with workspaces, marketplace modules and reporting (educational).",
+   "href": "/hackolution/recon-ng/",
+   "tags": [
+    "recon-ng",
+    "recon",
+    "osint",
+    "framework",
+    "security",
+    "pentesting"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
+  },
+  {
+   "slug": "hackolution/spiderfoot",
+   "title": "SpiderFoot OSINT Automation",
+   "icon": "🕸️",
+   "desc": "SpiderFoot OSINT automation — install, scan for emails and subdomains, and clean your digital footprint (educational).",
+   "href": "/hackolution/spiderfoot/",
+   "tags": [
+    "spiderfoot",
+    "osint",
+    "email",
+    "subdomains",
+    "breach",
+    "security"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
+  },
+  {
    "slug": "hncker/nmap",
    "title": "Nmap Network Scanner",
    "icon": "🗺️",
@@ -8963,6 +9001,44 @@
    ]
   },
   {
+   "slug": "hackolution/zap",
+   "title": "ZAP Web App Scanner",
+   "icon": "🕷️",
+   "desc": "Free OWASP ZAP web app scanner: spider, passive and active scans, plus REST API automation (educational).",
+   "href": "/hackolution/zap/",
+   "tags": [
+    "zap",
+    "owasp",
+    "websecurity",
+    "scanner",
+    "security",
+    "pentesting"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
+  },
+  {
+   "slug": "hackolution/masscan",
+   "title": "Masscan Fast Port Scanner",
+   "icon": "⚡",
+   "desc": "Internet-scale port scanning with Masscan: scan whole subnets in minutes, grab banners, control rate (educational).",
+   "href": "/hackolution/masscan/",
+   "tags": [
+    "masscan",
+    "portscan",
+    "scanner",
+    "recon",
+    "security",
+    "pentesting"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
+  },
+  {
    "slug": "xml-formatter",
    "title": "XML Formatter & Validator",
    "icon": "📄",
@@ -9077,6 +9153,78 @@
    "cats": [
     "all",
     "social"
+   ]
+  },
+  {
+   "slug": "cricket-world-cup-2027-countdown",
+   "title": "Cricket World Cup 2027 Countdown & Schedule",
+   "icon": "🏏",
+   "desc": "Track ICC Mens Cricket World Cup 2027 countdown, live schedule, venues in South Africa, Zimbabwe, Namibia, plus Group stage draw with India and Pakistan.",
+   "href": "/cricket-world-cup-2027-countdown/",
+   "tags": [
+    "cricket",
+    "world cup",
+    "icc",
+    "countdown",
+    "schedule",
+    "india",
+    "pakistan",
+    "australia",
+    "south africa",
+    "sports"
+   ],
+   "cats": [
+    "all",
+    "cricket",
+    "sports"
+   ]
+  },
+  {
+   "slug": "ration-card-entitlement-calculator",
+   "title": "Ration Card Entitlement Calculator & eKYC Guide",
+   "icon": "🌾",
+   "desc": "Calculate NFSA ration quota for PHH and AAY cards, check free food grain entitlements by state, and learn how to complete mandatory face-auth eKYC online.",
+   "href": "/ration-card-entitlement-calculator/",
+   "tags": [
+    "ration card",
+    "nfsa",
+    "pmgkay",
+    "phh",
+    "aay",
+    "ekyc",
+    "face auth",
+    "food grains",
+    "india",
+    "government"
+   ],
+   "cats": [
+    "all",
+    "finance",
+    "india",
+    "tools"
+   ]
+  },
+  {
+   "slug": "lottery-sambad-today",
+   "title": "Lottery Sambad Result Guide, Draw Times & Tax Tool",
+   "icon": "🎟️",
+   "desc": "Check Nagaland Lottery Sambad draw times at 1PM, 6PM and 8PM, calculate 30% TDS on prize winnings, view official result steps, and get fun lucky numbers.",
+   "href": "/lottery-sambad-today/",
+   "tags": [
+    "lottery sambad",
+    "nagaland lottery",
+    "lottery result",
+    "draw times",
+    "tds calculator",
+    "section 194b",
+    "tax",
+    "india"
+   ],
+   "cats": [
+    "all",
+    "finance",
+    "india",
+    "tools"
    ]
   }
  ],
