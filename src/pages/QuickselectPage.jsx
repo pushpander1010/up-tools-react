@@ -14,7 +14,7 @@ function buildSteps(arr, k) {
   const push = (lo, hi, pivot, i, j, msg, done = []) =>
     steps.push({ arr: [...a], lo, hi, pivot, i, j, msg, done })
 
-  function partition(lo, hi) {
+  function partition(lo, hi, done) {
     const pivot = a[hi]
     push(lo, hi, hi, lo, lo, `Pivot = ${pivot} (last element of [${lo}…${hi}]). Scan with j, track boundary i.`)
     let i = lo
@@ -42,7 +42,7 @@ function buildSteps(arr, k) {
       push(lo, hi, lo, -1, -1, `Only one element left — answer found: ${a[lo]}.`, [...done, lo])
       return a[lo]
     }
-    const p = partition(lo, hi)
+    const p = partition(lo, hi, done)
     if (k === p) {
       push(lo, hi, p, -1, -1, `🎯 Pivot landed exactly on index ${k} — answer is ${a[p]}!`, [...done, p])
       return a[p]
