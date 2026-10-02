@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 
 const tabs = [
   { href: '/', label: 'Home', key: 'home' },
+  { href: '/learning', label: '🎓 Learning', key: 'learning' },
   { href: '/games', label: '🎮 Games', key: 'games' },
   { href: '/hackolution', label: 'HACKOLUTION', key: 'hackolution' },
   { href: '/blogs', label: 'Blogs', key: 'blogs' },

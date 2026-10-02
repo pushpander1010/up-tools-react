@@ -32,6 +32,10 @@ const AiforrichPage = lazy(() => import('./pages/AiforrichPage'))
 const AboutPage = lazy(() => import('./pages/AboutPage'))
 const BlogsPage = lazy(() => import('./pages/BlogsPage'))
 const BlogPostPage = lazy(() => import('./pages/BlogPostPage'))
+const LearningPage = lazy(() => import('./pages/LearningPage'))
+const LearningAIPage = lazy(() => import('./pages/LearningAIPage'))
+const LearningDSAPage = lazy(() => import('./pages/LearningDSAPage'))
+const QuickselectPage = lazy(() => import('./pages/QuickselectPage'))
 
 // Dynamic tool component loader
 function ToolRoute() {
@@ -41,7 +45,7 @@ function ToolRoute() {
   const [notFound, setNotFound] = useState(false)
 
   useEffect(() => {
-    if (!slug || slug === 'games' || slug === 'hncker' || slug === 'hackolution' || slug === 'hackolution/apps' || slug === 'aimakerich' || slug === 'aiforrich') {
+    if (!slug || slug === 'games' || slug === 'hncker' || slug === 'hackolution' || slug === 'hackolution/apps' || slug === 'aimakerich' || slug === 'aiforrich' || slug === 'learning' || slug.startsWith('learning/')) {
       setNotFound(true)
       return
     }
@@ -137,6 +141,10 @@ export default function App() {
                 <Route path="/about" element={<AboutPage />} />
                 <Route path="/blogs" element={<BlogsPage />} />
                 <Route path="/blogs/:slug" element={<BlogPostPage />} />
+                <Route path="/learning" element={<LearningPage />} />
+                <Route path="/learning/ai" element={<LearningAIPage />} />
+                <Route path="/learning/dsa" element={<LearningDSAPage />} />
+                <Route path="/learning/dsa/quickselect" element={<QuickselectPage />} />
                 <Route path="*" element={<ToolRoute />} />
               </Routes>
             </SidebarLayout>

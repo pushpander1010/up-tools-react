@@ -89,6 +89,18 @@ for (const [pageFile, section] of [['HnckerPage.jsx', 'hncker'], ['HackolutionPa
   } catch (e) { console.warn(`${pageFile} not found for sitemap`, e.message) }
 }
 
+// Learning hub + lessons (from src/data/learning.json — tracks + DSA list)
+try {
+  const learning = JSON.parse(readFileSync(join(root, 'src/data/learning.json'), 'utf8'))
+  urls.push({ loc: `${SITE}/learning/`, priority: '0.7', freq: 'weekly' })
+  for (const t of (learning.tracks || [])) {
+    if (t.slug) urls.push({ loc: `${SITE}/learning/${t.slug}/`, priority: '0.7', freq: 'weekly' })
+  }
+  for (const a of (learning.dsa || [])) {
+    if (a.slug) urls.push({ loc: `${SITE}/learning/dsa/${a.slug}/`, priority: '0.7', freq: 'weekly' })
+  }
+} catch (e) { console.warn('learning.json not found for sitemap', e.message) }
+
 // Section landing pages
 for (const [path, priority] of [['hncker', '0.6'], ['hackolution', '0.6'], ['hackolution/apps', '0.6'], ['games', '0.6'], ['aimakerich', '0.6'], ['aiforrich', '0.6'], ['about', '0.5'], ['privacy-policy', '0.3']]) {
   urls.push({ loc: `${SITE}/${path}/`, priority, freq: 'weekly' })

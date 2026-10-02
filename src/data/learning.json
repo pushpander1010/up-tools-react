@@ -1,0 +1,28 @@
+{
+  "tracks": [
+    {
+      "slug": "dsa",
+      "title": "DSA",
+      "icon": "🧩",
+      "desc": "Data structures and algorithms explained with step-by-step animations, practice questions and interview tips.",
+      "status": "live"
+    },
+    {
+      "slug": "ai",
+      "title": "AI",
+      "icon": "🤖",
+      "desc": "Practical AI guides — how models work, prompts, and building with AI tools. Expanding soon.",
+      "status": "coming-soon"
+    }
+  ],
+  "dsa": [
+    {
+      "slug": "quickselect",
+      "title": "Quickselect Algorithm",
+      "icon": "⚡",
+      "desc": "Find the kth smallest element in O(n) average time — animated partition walkthrough, code, questions and interview tips.",
+      "difficulty": "Medium",
+      "tags": ["selection", "partition", "quicksort", "interview-favorite"]
+    }
+  ]
+}
