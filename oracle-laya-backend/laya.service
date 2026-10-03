@@ -1,0 +1,11 @@
+[Unit]
+Description=Laya Decision API
+After=network.target
+[Service]
+User=ubuntu
+WorkingDirectory=/home/ubuntu/oracle-laya-backend
+Environment=LAYA_MODEL=convaiinnovations/laya
+ExecStart=/home/ubuntu/laya-env/bin/uvicorn server:app --host 0.0.0.0 --port 8000
+Restart=always
+[Install]
+WantedBy=multi-user.target
