@@ -99,6 +99,9 @@ try {
   for (const a of (learning.dsa || [])) {
     if (a.slug) urls.push({ loc: `${SITE}/learning/dsa/${a.slug}/`, priority: '0.7', freq: 'weekly' })
   }
+  for (const a of (learning.ai || [])) {
+    if (a.slug) urls.push({ loc: `${SITE}/learning/ai/${a.slug}/`, priority: '0.7', freq: 'weekly' })
+  }
 } catch (e) { console.warn('learning.json not found for sitemap', e.message) }
 
 // Section landing pages

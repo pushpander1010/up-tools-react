@@ -34,6 +34,7 @@ const BlogsPage = lazy(() => import('./pages/BlogsPage'))
 const BlogPostPage = lazy(() => import('./pages/BlogPostPage'))
 const LearningPage = lazy(() => import('./pages/LearningPage'))
 const LearningAIPage = lazy(() => import('./pages/LearningAIPage'))
+const HowAIWorksPage = lazy(() => import('./pages/HowAIWorksPage'))
 const LearningDSAPage = lazy(() => import('./pages/LearningDSAPage'))
 const QuickselectPage = lazy(() => import('./pages/QuickselectPage'))
 
@@ -143,6 +144,7 @@ export default function App() {
                 <Route path="/blogs/:slug" element={<BlogPostPage />} />
                 <Route path="/learning" element={<LearningPage />} />
                 <Route path="/learning/ai" element={<LearningAIPage />} />
+                <Route path="/learning/ai/how-ai-works" element={<HowAIWorksPage />} />
                 <Route path="/learning/dsa" element={<LearningDSAPage />} />
                 <Route path="/learning/dsa/quickselect" element={<QuickselectPage />} />
                 <Route path="*" element={<ToolRoute />} />

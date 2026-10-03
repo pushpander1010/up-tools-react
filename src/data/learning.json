@@ -12,7 +12,7 @@
       "title": "AI",
       "icon": "🤖",
       "desc": "Practical AI guides — how models work, prompts, and building with AI tools. Expanding soon.",
-      "status": "coming-soon"
+      "status": "live"
     }
   ],
   "dsa": [
@@ -23,6 +23,16 @@
       "desc": "Find the kth smallest element in O(n) average time — animated partition walkthrough, code, questions and interview tips.",
       "difficulty": "Medium",
       "tags": ["selection", "partition", "quicksort", "interview-favorite"]
+    }
+  ],
+  "ai": [
+    {
+      "slug": "how-ai-works",
+      "title": "How AI Actually Works",
+      "icon": "📊",
+      "desc": "What models, training and predictions really mean — with a live next-word predictor, plain-English explanation, code, questions and interview tips.",
+      "difficulty": "Beginner",
+      "tags": ["machine-learning", "llm", "next-word-prediction", "plain-english"]
     }
   ]
 }
