@@ -240,7 +240,7 @@ function getKeyStates(guesses, feedbacks) {
   const states = {}
   for (let i = 0; i < guesses.length; i++) {
     for (let j = 0; j < 5; j++) {
-      const key = guesses[i][j]
+      const key = (guesses[i][j] || '').toUpperCase()
       const fb = feedbacks[i][j]
       if (fb === 'correct') states[key] = 'correct'
       else if (fb === 'present' && states[key] !== 'correct') states[key] = 'present'
@@ -493,9 +493,9 @@ export default function games_wordle() {
 
                 let bgClass = 'bg-transparent border-2 border-slate-600'
                 if (isPastRow && fb) {
-                  if (fb === 'correct') bgClass = 'bg-emerald-500 border-emerald-500'
+                  if (fb === 'correct') bgClass = 'bg-green-500 border-green-500'
                   else if (fb === 'present') bgClass = 'bg-yellow-500 border-yellow-500'
-                  else bgClass = 'bg-slate-700 border-slate-700'
+                  else bgClass = 'bg-[#3a3a3c] border-[#3a3a3c]'
                 } else if (isCurrentRow && letter) {
                   bgClass = 'bg-transparent border-2 border-slate-400'
                 }
@@ -515,20 +515,22 @@ export default function games_wordle() {
           ))}
         </div>
 
-        {/* On-screen keyboard — sticky bottom */}
-        <div className="sticky bottom-2 z-20 bg-[#030b14]/95 backdrop-blur-sm rounded-2xl p-2 border border-white/[0.06] space-y-1.5">
+        {/* On-screen keyboard — no focus scroll, board + keys stay in view together */}
+        <div className="sticky bottom-2 z-20 bg-[#030b14]/95 backdrop-blur-sm rounded-2xl p-2 border border-white/[0.06] space-y-1.5" style={{ touchAction: 'manipulation' }}>
           {KEY_ROWS.map(row => (
             <div key={row} className="flex justify-center gap-1">
               {row === 'ZXCVBNM' && <div className="w-6"/>}
               {row.split('').map(key => {
                 const state = keyStates[key]
-                let bg = 'bg-slate-700'
-                if (state === 'correct') bg = 'bg-emerald-600'
-                else if (state === 'present') bg = 'bg-yellow-600'
-                else if (state === 'absent') bg = 'bg-slate-800'
+                let bg = 'bg-slate-600'
+                if (state === 'correct') bg = 'bg-green-500'
+                else if (state === 'present') bg = 'bg-yellow-500'
+                else if (state === 'absent') bg = 'bg-[#3a3a3c]'
                 return (
-                  <button key={key} onClick={() => handleKeyClick(key)}
-                    className={`${bg} text-white text-sm font-bold rounded-md h-12 flex-1 max-w-10 flex items-center justify-center active:scale-95 transition-transform`}>
+                  <button key={key} type="button"
+                    onPointerDown={(e) => e.preventDefault()}
+                    onClick={(e) => { handleKeyClick(key); e.currentTarget.blur() }}
+                    className={`${bg} text-white text-sm font-bold rounded-md h-12 flex-1 max-w-10 flex items-center justify-center active:scale-95 transition-transform select-none`}>
                     {key}
                   </button>
                 )
@@ -537,12 +539,16 @@ export default function games_wordle() {
             </div>
           ))}
           <div className="flex justify-center gap-1">
-            <button onClick={() => handleKeyClick('ENTER')}
-              className="bg-slate-700 text-white text-xs font-bold rounded-md h-12 px-3 flex items-center justify-center active:scale-95 transition-transform">
+            <button type="button"
+              onPointerDown={(e) => e.preventDefault()}
+              onClick={(e) => { handleKeyClick('ENTER'); e.currentTarget.blur() }}
+              className="bg-slate-600 text-white text-xs font-bold rounded-md h-12 px-3 flex items-center justify-center active:scale-95 transition-transform select-none">
               ENTER
             </button>
-            <button onClick={() => handleKeyClick('BACK')}
-              className="bg-slate-700 text-white text-xs font-bold rounded-md h-12 px-3 flex items-center justify-center active:scale-95 transition-transform">
+            <button type="button"
+              onPointerDown={(e) => e.preventDefault()}
+              onClick={(e) => { handleKeyClick('BACK'); e.currentTarget.blur() }}
+              className="bg-slate-600 text-white text-xs font-bold rounded-md h-12 px-3 flex items-center justify-center active:scale-95 transition-transform select-none">
               ⌫
             </button>
           </div>
