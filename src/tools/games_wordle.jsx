@@ -393,7 +393,7 @@ export default function games_wordle() {
   }, [])
 
   const shareResults = useCallback(() => {
-    const rows = feedbacks.map(fb => fb.map(f => f === 'correct' ? '🟩' : f === 'present' ? '🟨' : '⬛').join('')).join('\n')
+    const rows = feedbacks.map(fb => fb.map(f => f === 'correct' ? '🟦' : f === 'present' ? '🟨' : '⬛').join('')).join('\n')
     const text = `Wordle ${guesses.length}/6${hardMode ? '*' : ''}\n\n${rows}\n\nhttps://www.uptools.in/games/wordle/`
     if (navigator.share) navigator.share({ text }).catch(() => {})
     else { navigator.clipboard?.writeText(text); showToast('Copied to clipboard!') }
@@ -416,7 +416,7 @@ export default function games_wordle() {
       category="fun"
       slug="games-wordle"
       faq={[
-        { q: "How do I play Wordle?", a: "Type a 5-letter word and press Enter. Green means correct letter in correct position, yellow means correct letter wrong position, gray means letter is not in the word." },
+        { q: "How do I play Wordle?", a: "Type a 5-letter word and press Enter. Blue means correct letter in correct position, yellow means correct letter wrong position, gray means letter is not in the word." },
         { q: "What is Hard Mode?", a: "In Hard Mode, you must use revealed hints in subsequent guesses. If a letter was revealed as green or yellow, it must appear in that position or be included in your guess." },
         { q: "Can I share my results?", a: "Yes! After completing a game, tap the Share button to copy your results as an emoji grid to share with friends." },
         { q: "How are my statistics tracked?", a: "Your games played, win percentage, current streak, and guess distribution are saved locally on your device." },
@@ -424,7 +424,7 @@ export default function games_wordle() {
       ]}
       howItWorks={[
         "Type any valid 5-letter word and press Enter to submit your guess.",
-        "After each guess, tiles change color: green (correct), yellow (wrong position), gray (not in word).",
+        "After each guess, tiles change color: blue (correct), yellow (wrong position), gray (not in word).",
         "Use the color clues to narrow down the answer in 6 attempts or fewer.",
         "Toggle Hard Mode for an extra challenge — revealed hints must be used.",
       ]}
@@ -513,7 +513,7 @@ export default function games_wordle() {
 
                 let bgClass = 'bg-transparent border-2 border-slate-600'
                 if (isPastRow && fb) {
-                  if (fb === 'correct') bgClass = 'bg-green-500 border-2 border-green-500'
+                  if (fb === 'correct') bgClass = 'bg-blue-500 border-2 border-blue-500'
                   else if (fb === 'present') bgClass = 'bg-yellow-500 border-2 border-yellow-500'
                   else bgClass = 'bg-[#3a3a3c] border-2 border-[#3a3a3c]'
                 } else if (isCurrentRow && letter) {
@@ -543,9 +543,8 @@ export default function games_wordle() {
               {row.split('').map(key => {
                 const state = keyStates[key]
                 let bg = 'bg-slate-600'
-                if (state === 'correct') bg = 'bg-green-500'
+                if (state === 'correct') bg = 'bg-blue-500'
                 else if (state === 'present') bg = 'bg-yellow-500'
-                else if (state === 'absent') bg = 'bg-[#3a3a3c]'
                 return (
                   <button key={key} type="button"
                     onMouseDown={(e) => e.preventDefault()}
