@@ -143,6 +143,8 @@ export default function GameShell({
     const mark = () => { userScrolled.current = true }
     window.addEventListener('wheel', mark, { passive: true })
     window.addEventListener('touchmove', mark, { passive: true })
+    window.addEventListener('touchstart', mark, { passive: true })
+    window.addEventListener('mousedown', mark)
     const go = () => {
       try {
         if(userScrolled.current) return
@@ -160,7 +162,7 @@ export default function GameShell({
     }
     const t1 = setTimeout(go, 450)
     const t2 = setTimeout(go, 1800)
-    return () => { clearTimeout(t1); clearTimeout(t2); window.removeEventListener('wheel', mark); window.removeEventListener('touchmove', mark) }
+    return () => { clearTimeout(t1); clearTimeout(t2); window.removeEventListener('wheel', mark); window.removeEventListener('touchmove', mark); window.removeEventListener('touchstart', mark); window.removeEventListener('mousedown', mark) }
   }, [])
 
   // Publish the board's available height for canvas games.
@@ -206,7 +208,7 @@ export default function GameShell({
       }, 450)
     }
     return () => { window.removeEventListener('resize', publishBoardH); clearTimeout(t1); clearTimeout(t2); if (t3) clearTimeout(t3) }
-  }, [publishBoardH, children, fs])
+  }, [publishBoardH, fs])
 
   return (
     <div ref={rootRef} className={`relative w-full bg-[#030b14] text-white flex flex-col overflow-x-hidden overflow-y-auto ${fs ? 'fixed inset-0 z-[100] h-[100dvh] min-h-0' : 'min-h-[100dvh]'}`}>

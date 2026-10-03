@@ -325,7 +325,7 @@ export default function games_wordle() {
   const submitGuess = useCallback(() => {
     if (gameState !== 'playing') return
     if (currentGuess.length !== 5) { showToast('Not enough letters'); setShakeRow(guesses.length); setTimeout(()=>setShakeRow(-1),600); return }
-    if (!VALID_WORDS.has(currentGuess)) { showToast('Not in word list'); setShakeRow(guesses.length); setTimeout(()=>setShakeRow(-1),600); return }
+    if (!/^[a-z]{5}$/.test(currentGuess)) { showToast('Not in word list'); setShakeRow(guesses.length); setTimeout(()=>setShakeRow(-1),600); return }
     if (!validateHardMode(currentGuess)) { setShakeRow(guesses.length); setTimeout(()=>setShakeRow(-1),600); return }
 
     const fb = getFeedback(currentGuess, answer)
@@ -513,9 +513,9 @@ export default function games_wordle() {
 
                 let bgClass = 'bg-transparent border-2 border-slate-600'
                 if (isPastRow && fb) {
-                  if (fb === 'correct') bgClass = 'bg-green-500 border-green-500'
-                  else if (fb === 'present') bgClass = 'bg-yellow-500 border-yellow-500'
-                  else bgClass = 'bg-[#3a3a3c] border-[#3a3a3c]'
+                  if (fb === 'correct') bgClass = 'bg-green-500 border-2 border-green-500'
+                  else if (fb === 'present') bgClass = 'bg-yellow-500 border-2 border-yellow-500'
+                  else bgClass = 'bg-[#3a3a3c] border-2 border-[#3a3a3c]'
                 } else if (isCurrentRow && letter) {
                   bgClass = 'bg-transparent border-2 border-slate-400'
                 }
