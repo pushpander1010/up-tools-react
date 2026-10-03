@@ -257,6 +257,26 @@ const COLORS = {
   empty: 'bg-transparent border-2 border-slate-600'
 }
 
+let audioCtx = null
+function ensureAudio() {
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)()
+  if (audioCtx.state === 'suspended') audioCtx.resume()
+  return audioCtx
+}
+function playTone(freq, dur, type = 'sine', vol = 0.04) {
+  try {
+    const ctx = ensureAudio()
+    const osc = ctx.createOscillator()
+    const gain = ctx.createGain()
+    osc.type = type
+    osc.frequency.setValueAtTime(freq, ctx.currentTime)
+    gain.gain.setValueAtTime(vol, ctx.currentTime)
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + dur)
+    osc.connect(gain); gain.connect(ctx.destination)
+    osc.start(); osc.stop(ctx.currentTime + dur)
+  } catch {}
+}
+
 export default function games_wordle() {
   const [answer, setAnswer] = useState(() => ANSWERS[Math.floor(Math.random()*ANSWERS.length)])
   const [guesses, setGuesses] = useState([])
@@ -515,8 +535,8 @@ export default function games_wordle() {
           ))}
         </div>
 
-        {/* On-screen keyboard — no focus scroll, board + keys stay in view together */}
-        <div className="sticky bottom-2 z-20 bg-[#030b14]/95 backdrop-blur-sm rounded-2xl p-2 border border-white/[0.06] space-y-1.5" style={{ touchAction: 'manipulation' }}>
+        {/* On-screen keyboard — static bar, no focus steal, no scroll jump */}
+        <div className="bg-[#030b14] rounded-2xl p-2 border border-white/[0.06] space-y-1.5" style={{ touchAction: 'manipulation' }}>
           {KEY_ROWS.map(row => (
             <div key={row} className="flex justify-center gap-1">
               {row === 'ZXCVBNM' && <div className="w-6"/>}
@@ -528,8 +548,8 @@ export default function games_wordle() {
                 else if (state === 'absent') bg = 'bg-[#3a3a3c]'
                 return (
                   <button key={key} type="button"
-                    onPointerDown={(e) => e.preventDefault()}
-                    onClick={(e) => { handleKeyClick(key); e.currentTarget.blur() }}
+                    onMouseDown={(e) => e.preventDefault()}
+                    onClick={() => handleKeyClick(key)}
                     className={`${bg} text-white text-sm font-bold rounded-md h-12 flex-1 max-w-10 flex items-center justify-center active:scale-95 transition-transform select-none`}>
                     {key}
                   </button>
@@ -540,14 +560,14 @@ export default function games_wordle() {
           ))}
           <div className="flex justify-center gap-1">
             <button type="button"
-              onPointerDown={(e) => e.preventDefault()}
-              onClick={(e) => { handleKeyClick('ENTER'); e.currentTarget.blur() }}
+              onMouseDown={(e) => e.preventDefault()}
+              onClick={() => handleKeyClick('ENTER')}
               className="bg-slate-600 text-white text-xs font-bold rounded-md h-12 px-3 flex items-center justify-center active:scale-95 transition-transform select-none">
               ENTER
             </button>
             <button type="button"
-              onPointerDown={(e) => e.preventDefault()}
-              onClick={(e) => { handleKeyClick('BACK'); e.currentTarget.blur() }}
+              onMouseDown={(e) => e.preventDefault()}
+              onClick={() => handleKeyClick('BACK')}
               className="bg-slate-600 text-white text-xs font-bold rounded-md h-12 px-3 flex items-center justify-center active:scale-95 transition-transform select-none">
               ⌫
             </button>
