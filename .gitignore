@@ -25,3 +25,4 @@ dist-ssr
 
 # Local Cloudflare wrangler dev cache
 .wrangler
+__pycache__/
