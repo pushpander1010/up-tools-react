@@ -6814,6 +6814,22 @@
    ]
   },
   {
+   "slug": "laya-decision-maker",
+   "title": "Laya Decision Maker",
+   "icon": "🧠",
+   "desc": "Laya Decision Maker - ask a question, list options, and the Laya AI decision model picks the best choice with probabilities. Free online,.",
+   "href": "/laya-decision-maker/",
+   "tags": [
+    "tools",
+    "ai"
+   ],
+   "cats": [
+    "all",
+    "tools",
+    "ai"
+   ]
+  },
+  {
    "slug": "random-choice-generator",
    "title": "Random Choice Generator",
    "icon": "🎰",

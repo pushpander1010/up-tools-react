@@ -25,11 +25,6 @@ export default function random_choice_generator() {
   const [spinning, setSpinning] = useState(false)
   const [removeAfterPick, setRemoveAfterPick] = useState(false)
   const [noDuplicates, setNoDuplicates] = useState(true)
-  const [question, setQuestion] = useState('')
-  const [backendUrl, setBackendUrl] = useState(() => { try { return localStorage.getItem('laya_backend') || '' } catch { return '' } })
-  const [layaResult, setLayaResult] = useState(null)
-  const [layaLoading, setLayaLoading] = useState(false)
-  const [layaError, setLayaError] = useState('')
   const poolRef = useRef([])
   const spinRef = useRef(null)
 
@@ -88,31 +83,6 @@ export default function random_choice_generator() {
       setTimeout(() => setSpinning(false), 120)
     })
   }, [spinning, choices, history, removeAfterPick, noDuplicates, drumRoll, jumpTo])
-
-  const askLaya = useCallback(async () => {
-    setLayaError('')
-    setLayaResult(null)
-    if (!backendUrl.trim()) { setLayaError('Paste your Oracle backend URL first.'); return }
-    if (!question.trim()) { setLayaError('Type your question first.'); return }
-    if (choices.length < 2) { setLayaError('Enter at least 2 choices.'); return }
-    setLayaLoading(true)
-    try { localStorage.setItem('laya_backend', backendUrl.trim()) } catch { /* ignore */ }
-    try {
-      const base = backendUrl.trim().replace(/\/$/, '')
-      const r = await fetch(base + '/decide', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ question: question.trim(), choices }),
-      })
-      const data = await r.json().catch(() => ({}))
-      if (!r.ok) throw new Error(data.detail || data.message || ('Backend error ' + r.status))
-      setLayaResult(data)
-      drumRoll(choices, data.pick, () => { jumpTo() })
-    } catch (e) {
-      setLayaError(e.message || 'Laya backend unreachable.')
-    } finally {
-      setLayaLoading(false)
-    }
-  }, [backendUrl, question, choices, drumRoll, jumpTo])
 
   const loadPreset = useCallback((key) => {
     setInput(PRESETS[key].join('\n'))
@@ -188,31 +158,6 @@ export default function random_choice_generator() {
           style={{ background: 'linear-gradient(135deg, #f59e0b, #d97706)' }}>
           {spinning ? '⏳ Deciding...' : '🎲 Pick One!'}
         </button>
-
-        {/* Laya decision */}
-        <div className="p-4 rounded-2xl bg-white/[0.06] border border-white/[0.08] space-y-3">
-          <h3 className="text-sm font-bold text-slate-300">Ask Laya (Oracle backend)</h3>
-          <input value={question} onChange={e => setQuestion(e.target.value)}
-            placeholder="Your question, e.g. what should I have for lunch?"
-            className="w-full bg-black/20 border-2 border-white/[0.08] rounded-xl px-4 py-2.5 text-sm outline-none focus:border-amber-500/40 transition-all placeholder:text-slate-600" />
-          <input value={backendUrl} onChange={e => setBackendUrl(e.target.value)}
-            placeholder="Oracle backend URL, e.g. http://129.154.x.x:8000"
-            className="w-full bg-black/20 border-2 border-white/[0.08] rounded-xl px-4 py-2.5 text-sm outline-none focus:border-amber-500/40 transition-all placeholder:text-slate-600" />
-          <button onClick={askLaya} disabled={layaLoading || spinning}
-            className="w-full py-3 rounded-2xl text-sm font-bold bg-white/[0.06] border border-white/[0.08] text-slate-200 hover:text-white transition-all disabled:opacity-40">
-            {layaLoading ? '⏳ Laya deciding...' : '🧠 Ask Laya to Choose'}
-          </button>
-          {layaError && <p className="text-xs text-red-400">{layaError}</p>}
-          {layaResult && (
-            <div className="text-xs text-slate-300 space-y-1">
-              <div>Laya pick: <span className="font-bold text-amber-400">{layaResult.pick}</span>
-                {typeof layaResult.confidence === 'number' && <span className="text-slate-400"> ({Math.round(layaResult.confidence * 100)}%)</span>}</div>
-              {layaResult.probabilities && Object.entries(layaResult.probabilities).sort((a, b) => b[1] - a[1]).map(([opt, p]) => (
-                <div key={opt} className="flex justify-between"><span>{opt}</span><span className="text-slate-400">{Math.round(p * 1000) / 10}%</span></div>
-              ))}
-            </div>
-          )}
-        </div>
 
         {/* Winner */}
         {winner && (
