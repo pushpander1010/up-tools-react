@@ -2,11 +2,12 @@ import { useState, useCallback } from 'react'
 import ToolLayout from '../components/ToolLayout'
 import useJumpToResult from '../hooks/useJumpToResult'
 
+const LAYA_API = 'https://backend.uptools.in/laya'
+
 export default function laya_decision_maker() {
   const { ref: resultRef, jumpTo } = useJumpToResult()
   const [question, setQuestion] = useState('')
   const [input, setInput] = useState('')
-  const [backendUrl, setBackendUrl] = useState(() => { try { return localStorage.getItem('laya_backend') || '' } catch { return '' } })
   const [result, setResult] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
@@ -20,12 +21,9 @@ export default function laya_decision_maker() {
     if (!question.trim()) { setError('Type your question first.'); return }
     if (choices.length < 2) { setError('Enter at least 2 choices (one per line).'); return }
     if (choices.length > 32) { setError('Max 32 choices (Laya limit).'); return }
-    if (!backendUrl.trim()) { setError('Paste your Oracle Laya backend URL first.'); return }
     setLoading(true)
-    try { localStorage.setItem('laya_backend', backendUrl.trim()) } catch { /* ignore */ }
     try {
-      const base = backendUrl.trim().replace(/\/$/, '')
-      const r = await fetch(base + '/decide', {
+      const r = await fetch(LAYA_API + '/decide', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ question: question.trim(), choices }),
       })
@@ -37,11 +35,11 @@ export default function laya_decision_maker() {
       const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })
       setHistory(prev => [{ q: question.trim(), pick: data.pick, time }, ...prev].slice(0, 10))
     } catch (e) {
-      setError(e.message || 'Laya backend unreachable. Check the URL and that the Oracle server is running.')
+      setError(e.message || 'Laya is unreachable right now. Try again in a bit.')
     } finally {
       setLoading(false)
     }
-  }, [question, input, backendUrl, choices, jumpTo])
+  }, [question, input, choices, jumpTo])
 
   const sorted = result && result.probabilities
     ? Object.entries(result.probabilities).sort((a, b) => b[1] - a[1])
@@ -54,9 +52,9 @@ export default function laya_decision_maker() {
       icon="🧠" iconBg="rgba(245,158,11,0.08)"
       category="tools" slug="laya-decision-maker"
       faq={[
-        { q: 'How does it work?', a: 'Type your question, list your options (one per line), and click Ask Laya. The Laya AI decision model on your Oracle backend scores every option and returns the best pick with probabilities.' },
+        { q: 'How does it work?', a: 'Type your question, list your options (one per line), and click Ask Laya. The Laya AI decision model scores every option and returns the best pick with probabilities.' },
         { q: 'What is Laya?', a: 'Laya is an open-weight AI decision model. Instead of writing text, it reads your question and options and returns a calibrated choice with a probability for each option.' },
-        { q: 'Do I need the Oracle backend?', a: 'Yes. Laya runs on your Oracle server (see the setup guide in the oracle-laya-backend folder). Paste its URL once and the page remembers it.' },
+        { q: 'Is it really AI, not random?', a: 'Yes. Laya reads your question and weighs every option, then returns the best pick with a probability for each option.' },
         { q: 'What do the percentages mean?', a: 'Each option gets a probability. Higher means Laya is more confident that option fits your question best.' },
         { q: 'How is this different from a random picker?', a: 'A random picker chooses blindly. Laya reads your question and weighs each option, so the pick is reasoned, not random.' },
         { q: 'Is this Laya Decision Maker free?', a: 'Yes, completely free with no sign-up. Use it unlimited times online on any device.' },
@@ -64,7 +62,6 @@ export default function laya_decision_maker() {
       howItWorks={[
         'Type your question, e.g. what should I have for lunch?',
         'List your options, one per line (2 to 32 choices).',
-        'Paste your Oracle Laya backend URL (asked only once).',
         'Click Ask Laya and get the best pick with probabilities.',
       ]}
       schema={{
@@ -92,14 +89,6 @@ export default function laya_decision_maker() {
             placeholder={"Salad\nPizza\nBiryani"}
             rows={5}
             className="w-full bg-black/20 border-2 border-white/[0.08] rounded-xl px-4 py-3 text-sm outline-none focus:border-amber-500/40 transition-all placeholder:text-slate-600 resize-none" />
-        </div>
-
-        {/* Backend */}
-        <div>
-          <label className="block text-sm font-semibold text-slate-300 mb-2">Oracle Laya Backend URL</label>
-          <input value={backendUrl} onChange={e => setBackendUrl(e.target.value)}
-            placeholder="e.g. http://129.154.x.x:8000"
-            className="w-full bg-black/20 border-2 border-white/[0.08] rounded-xl px-4 py-3 text-sm outline-none focus:border-amber-500/40 transition-all placeholder:text-slate-600" />
         </div>
 
         {/* Ask Button */}
