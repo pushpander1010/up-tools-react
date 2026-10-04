@@ -33,6 +33,110 @@
       "desc": "What models, training and predictions really mean — with a live next-word predictor, plain-English explanation, code, questions and interview tips.",
       "difficulty": "Beginner",
       "tags": ["machine-learning", "llm", "next-word-prediction", "plain-english"]
+    },
+    {
+      "slug": "prompting-that-gets-results",
+      "title": "Prompting That Gets Results",
+      "icon": "🎯",
+      "desc": "The 4-part prompt formula — role, context, task, examples & checks. With a live prompt improver, quality-bar animation, prompt-builder code, questions and interview tips.",
+      "difficulty": "Beginner",
+      "tags": ["prompt-engineering", "few-shot", "system-prompt", "ai-productivity"]
+    },
+    {
+      "slug": "context-and-memory",
+      "title": "Context & Memory",
+      "icon": "🧠",
+      "desc": "Why AI forgets mid-conversation and how to make it remember — live sliding context-window demo where tokens fill up, the oldest messages drop, and a memory toggle keeps key facts alive. Plus memory-builder code, questions and interview tips.",
+      "difficulty": "Beginner",
+      "tags": ["context-window", "tokens", "chat-memory", "sliding-window"]
+    },
+    {
+      "slug": "hallucinations-and-verifying",
+      "title": "Hallucinations & Verifying",
+      "icon": "🔍",
+      "desc": "Why AI invents confident-sounding facts — and how to catch them. Live confident-vs-true meter: drag a slider from raw guess to source-verified answer and watch confidence stay high while the truth gets checked. Plus claim-extraction code, practice questions and interview tips.",
+      "difficulty": "Beginner",
+      "tags": ["hallucinations", "fact-checking", "ai-verification", "sources", "ai-safety"]
+    },
+    {
+      "slug": "embeddings-and-search",
+      "title": "Embeddings and Search",
+      "icon": "🧭",
+      "desc": "How AI turns words and concepts into numbers — live 2D semantic dot map where typing or clicking a word finds nearest neighbours with cosine similarity bars. Plus vector search code in Python & JavaScript, 5 practice questions, 4 FAQs and interview tips.",
+      "difficulty": "Beginner",
+      "tags": ["embeddings", "semantic-search", "vectors"]
+    },
+    {
+      "slug": "rag-chat-with-documents",
+      "title": "Chat With Your Documents (RAG)",
+      "icon": "📚",
+      "desc": "How AI searches your PDFs, wikis and notes to give fact-checked answers — live interactive RAG simulator with 3 sample documents, highlighted chunks and citations, plus a RAG on/off toggle comparing grounded answers with hallucinated guesses. Includes complete Python & JavaScript code, 5 practice questions, 4 FAQs and interview tips.",
+      "difficulty": "Beginner",
+      "tags": ["rag", "retrieval", "chat-with-docs", "grounding"]
+    },
+    {
+      "slug": "ai-agents-that-do-tasks",
+      "title": "AI Agents That Do Tasks",
+      "icon": "🤖",
+      "desc": "How AI plans, uses tools and takes autonomous actions — live interactive agent simulator showing a task broken into planned steps with real-time tool calls (shop sale announcement), play/step/reset controls, and a human-approval gate toggle. Includes Python & JavaScript code, 5 practice questions, 4 FAQs and interview tips.",
+      "difficulty": "Beginner",
+      "tags": ["ai-agents", "automation", "tools", "planning"]
+    },
+    {
+      "slug": "image-generation-basics",
+      "title": "Image Generation Basics",
+      "icon": "🎨",
+      "desc": "How AI turns words into images with diffusion — live prompt-to-image simulator with progressive denoising steps, prompt strength (CFG scale) slider, latent space visualizer, Python & JavaScript code, 5 practice questions, 4 FAQs and interview tips.",
+      "difficulty": "Beginner",
+      "tags": ["image-generation", "diffusion", "prompting"]
+    },
+    {
+      "slug": "voice-and-video-ai",
+      "title": "Voice and Video AI",
+      "icon": "🎤",
+      "desc": "How AI synthesizes human voices, clones speech, and animates talking video avatars — live interactive text-to-speech phoneme visualizer, waveform pitch & speed controls, avatar viseme frame selector, complete Python & JavaScript code, 5 practice questions, 4 FAQs and interview tips.",
+      "difficulty": "Beginner",
+      "tags": ["voice-ai", "video-ai", "tts", "avatars"]
+    },
+    {
+      "slug": "ai-for-resumes-interviews",
+      "title": "AI for Resumes and Interviews",
+      "icon": "💼",
+      "desc": "How to use AI to supercharge your resume bullets and ace interview prep — live interactive bullet optimizer with real-time impact score meter, STAR method interview answer transformer, complete Python & JavaScript code, 5 practice questions, 4 FAQs and interview tips.",
+      "difficulty": "Beginner",
+      "tags": ["resumes", "interviews", "jobs", "ai-productivity"]
+    },
+    {
+      "slug": "ai-for-small-business",
+      "title": "AI for Small Business",
+      "icon": "🏪",
+      "desc": "How small businesses use AI to automate daily operations, WhatsApp customer inquiries, catalog price lists, and evening bookkeeping — live interactive shop day workflow animator with time-saved meter and cost comparison toggle, complete Python & JavaScript code, 5 practice questions, 4 FAQs and business tips.",
+      "difficulty": "Beginner",
+      "tags": ["small-business", "automation", "whatsapp", "marketing"]
+    },
+    {
+      "slug": "ai-costs-and-tokens",
+      "title": "AI Costs and Tokens",
+      "icon": "🪙",
+      "desc": "How AI token pricing works and how to forecast, monitor, and slash LLM API bills — live interactive token highlighter with real-time cost calculation in Rupees across 3 model tiers, plus a monthly budget planner simulator. Includes complete Python & JavaScript code, 5 practice questions, 4 FAQs and cost-cutting tips.",
+      "difficulty": "Beginner",
+      "tags": ["ai-costs", "tokens", "pricing", "budgets"]
+    },
+    {
+      "slug": "privacy-and-safety",
+      "title": "Privacy and Safety with AI",
+      "icon": "🛡️",
+      "desc": "What leaves your device when you prompt AI, how providers use your data, and how to protect sensitive information — live interactive data flow animator with red/green risk meter, real-time PII sanitizer, and safety checklist. Includes Python & JavaScript anonymization code, 5 practice questions, 4 FAQs and enterprise safety tips.",
+      "difficulty": "Beginner",
+      "tags": ["privacy", "safety", "data-protection", "ai-risk"]
+    },
+    {
+      "slug": "building-with-apis",
+      "title": "Building with APIs",
+      "icon": "🔧",
+      "desc": "How software connects to AI models with REST APIs — live interactive API call builder with endpoint selector, auth headers, request payload constructor, JSON response inspector, and status code / error simulator. Includes Python & JavaScript integration code, 5 practice questions, 4 FAQs and production API tips.",
+      "difficulty": "Beginner",
+      "tags": ["apis", "building", "no-code", "integration"]
     }
   ]
 }

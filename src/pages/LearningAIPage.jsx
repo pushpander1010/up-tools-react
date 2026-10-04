@@ -3,9 +3,8 @@ import { Helmet } from 'react-helmet-async'
 import learning from '../data/learning.json'
 
 const PLANNED = [
-  { title: 'Prompting that gets results', desc: 'Give context, show examples, and check the output — with live demos.' },
-  { title: 'Build with AI tools', desc: 'Use our AI tools plus APIs to automate real work.' },
-  { title: 'AI for interviews & resumes', desc: 'Prepare smarter with AI — without sounding robotic.' },
+  { title: 'Fine-Tuning & Custom Models', desc: 'Train open-source LLMs on your proprietary domain datasets.' },
+  { title: 'Multimodal AI & Vision', desc: 'How models process images, audio, video, and text simultaneously.' },
 ]
 
 export default function LearningAIPage() {
@@ -31,7 +30,7 @@ export default function LearningAIPage() {
         <meta name="description" content="Learn how AI really works — plain-English guides with live animations. Start with How AI Actually Works: a next-word predictor, training vs inference, code, questions and interview tips." />
         <link rel="canonical" href="https://www.uptools.in/learning/ai/" />
         <meta property="og:title" content="AI Guides in Plain English with Animation | UpTools Learning" />
-        <meta property="og:description" content="No jargon, no maths degree — see how AI works with live animations. Lesson 1 is live: How AI Actually Works." />
+        <meta property="og:description" content="No jargon, no maths degree — see how AI works with live animations. Lessons 1–14 are live: How AI Works, Prompting That Gets Results, Context & Memory, Hallucinations & Verifying, Embeddings & Search, Chat With Your Documents (RAG), AI Agents That Do Tasks, Image Generation Basics, Voice & Video AI, AI for Resumes & Interviews, AI for Small Business, AI Costs and Tokens, Privacy and Safety with AI, and Building with APIs." />
         <meta property="og:url" content="https://www.uptools.in/learning/ai/" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="UpTools" />

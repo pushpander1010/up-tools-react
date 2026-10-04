@@ -494,7 +494,7 @@ export default function HowAIWorksPage() {
 
       <div className="flex items-center justify-between flex-wrap gap-3 mt-6">
         <Link to="/learning/ai" className="text-sm font-semibold text-green-300 no-underline">← All AI lessons</Link>
-        <span className="text-xs text-slate-500">Next up: Prompting that gets results (coming soon)</span>
+        <span className="text-xs text-slate-500">Next up: <Link to="/learning/ai/prompting-that-gets-results" className="text-green-300 font-semibold no-underline">Prompting that gets results →</Link></span>
       </div>
     </>
   )

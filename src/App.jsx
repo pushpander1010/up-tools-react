@@ -35,6 +35,19 @@ const BlogPostPage = lazy(() => import('./pages/BlogPostPage'))
 const LearningPage = lazy(() => import('./pages/LearningPage'))
 const LearningAIPage = lazy(() => import('./pages/LearningAIPage'))
 const HowAIWorksPage = lazy(() => import('./pages/HowAIWorksPage'))
+const PromptingPage = lazy(() => import('./pages/PromptingPage'))
+const ContextMemoryPage = lazy(() => import('./pages/ContextMemoryPage'))
+const HallucinationsPage = lazy(() => import('./pages/HallucinationsPage'))
+const EmbeddingsPage = lazy(() => import('./pages/EmbeddingsPage'))
+const RagPage = lazy(() => import('./pages/RagPage'))
+const AgentsPage = lazy(() => import('./pages/AgentsPage'))
+const ImageGenPage = lazy(() => import('./pages/ImageGenPage'))
+const VoiceVideoPage = lazy(() => import('./pages/VoiceVideoPage'))
+const ResumesPage = lazy(() => import('./pages/ResumesPage'))
+const SmallBizPage = lazy(() => import('./pages/SmallBizPage'))
+const CostsPage = lazy(() => import('./pages/CostsPage'))
+const SafetyPage = lazy(() => import('./pages/SafetyPage'))
+const ApisPage = lazy(() => import('./pages/ApisPage'))
 const LearningDSAPage = lazy(() => import('./pages/LearningDSAPage'))
 const QuickselectPage = lazy(() => import('./pages/QuickselectPage'))
 
@@ -145,6 +158,19 @@ export default function App() {
                 <Route path="/learning" element={<LearningPage />} />
                 <Route path="/learning/ai" element={<LearningAIPage />} />
                 <Route path="/learning/ai/how-ai-works" element={<HowAIWorksPage />} />
+                <Route path="/learning/ai/prompting-that-gets-results" element={<PromptingPage />} />
+                <Route path="/learning/ai/context-and-memory" element={<ContextMemoryPage />} />
+                <Route path="/learning/ai/hallucinations-and-verifying" element={<HallucinationsPage />} />
+                <Route path="/learning/ai/embeddings-and-search" element={<EmbeddingsPage />} />
+                <Route path="/learning/ai/rag-chat-with-documents" element={<RagPage />} />
+                <Route path="/learning/ai/ai-agents-that-do-tasks" element={<AgentsPage />} />
+                <Route path="/learning/ai/image-generation-basics" element={<ImageGenPage />} />
+                <Route path="/learning/ai/voice-and-video-ai" element={<VoiceVideoPage />} />
+                <Route path="/learning/ai/ai-for-resumes-interviews" element={<ResumesPage />} />
+                <Route path="/learning/ai/ai-for-small-business" element={<SmallBizPage />} />
+                <Route path="/learning/ai/ai-costs-and-tokens" element={<CostsPage />} />
+                <Route path="/learning/ai/privacy-and-safety" element={<SafetyPage />} />
+                <Route path="/learning/ai/building-with-apis" element={<ApisPage />} />
                 <Route path="/learning/dsa" element={<LearningDSAPage />} />
                 <Route path="/learning/dsa/quickselect" element={<QuickselectPage />} />
                 <Route path="*" element={<ToolRoute />} />
