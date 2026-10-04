@@ -23,7 +23,7 @@ const SAFETY_PRESETS = [
     name: '⚠️ Stack Trace & Secret Keys',
     category: 'Critical Risk (Credentials)',
     riskLevel: 'danger',
-    text: 'Error connecting to Postgres DB:\nHost: db.example.internal:5432\nUser: [DB_USER]\nPassword: [DB_PASSWORD]\nAWS_SECRET_KEY=[EXAMPLE_KEY]\nOpenAI API Key: [API_KEY]9840294820480294802934\nHow do I fix the connection timeout issue?',
+    text: 'Error connecting to Postgres DB:\nHost: db.example.internal:5432\nUser: [DB_USER]\nPassword: [DB_PASSWORD]\nAWS_SECRET_KEY=[EXAMPLE_KEY]\nOpenAI API Key: [API_KEY]\nHow do I fix the connection timeout issue?',
   },
   {
     id: 'confidential-merger',
