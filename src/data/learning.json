@@ -137,6 +137,22 @@
       "desc": "How software connects to AI models with REST APIs — live interactive API call builder with endpoint selector, auth headers, request payload constructor, JSON response inspector, and status code / error simulator. Includes Python & JavaScript integration code, 5 practice questions, 4 FAQs and production API tips.",
       "difficulty": "Beginner",
       "tags": ["apis", "building", "no-code", "integration"]
+    },
+    {
+      "slug": "finetuning-vs-prompting",
+      "title": "Fine-tuning vs Prompting",
+      "icon": "🎛️",
+      "desc": "When to prompt, when to retrieve (RAG), and when to train custom model weights — live decision flowchart animator, cost vs accuracy tradeoff simulator across 5 real-world tasks, and LoRA parameter-efficient fine-tuning visualizer. Includes complete Python & JavaScript code, 5 practice questions, 4 FAQs and model selection tips.",
+      "difficulty": "Beginner",
+      "tags": ["fine-tuning", "prompting", "training", "custom-models"]
+    },
+    {
+      "slug": "checking-ai-quality",
+      "title": "Checking AI Quality",
+      "icon": "📋",
+      "desc": "How to test, benchmark, and monitor AI outputs in production — live interactive quality scorecard with animated accuracy, tone, format, and safety gauges, plus a real-time regression test suite simulator. Includes Python & JavaScript eval code, 5 practice questions, 4 FAQs and LLM-as-a-judge evaluation tips.",
+      "difficulty": "Beginner",
+      "tags": ["evaluation", "testing", "quality", "benchmarks"]
     }
   ]
 }

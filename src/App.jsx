@@ -48,6 +48,8 @@ const SmallBizPage = lazy(() => import('./pages/SmallBizPage'))
 const CostsPage = lazy(() => import('./pages/CostsPage'))
 const SafetyPage = lazy(() => import('./pages/SafetyPage'))
 const ApisPage = lazy(() => import('./pages/ApisPage'))
+const FinetunePage = lazy(() => import('./pages/FinetunePage'))
+const QualityPage = lazy(() => import('./pages/QualityPage'))
 const LearningDSAPage = lazy(() => import('./pages/LearningDSAPage'))
 const QuickselectPage = lazy(() => import('./pages/QuickselectPage'))
 
@@ -171,6 +173,8 @@ export default function App() {
                 <Route path="/learning/ai/ai-costs-and-tokens" element={<CostsPage />} />
                 <Route path="/learning/ai/privacy-and-safety" element={<SafetyPage />} />
                 <Route path="/learning/ai/building-with-apis" element={<ApisPage />} />
+                <Route path="/learning/ai/finetuning-vs-prompting" element={<FinetunePage />} />
+                <Route path="/learning/ai/checking-ai-quality" element={<QualityPage />} />
                 <Route path="/learning/dsa" element={<LearningDSAPage />} />
                 <Route path="/learning/dsa/quickselect" element={<QuickselectPage />} />
                 <Route path="*" element={<ToolRoute />} />

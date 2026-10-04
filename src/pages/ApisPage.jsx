@@ -1565,8 +1565,8 @@ export default function ApisPage() {
         <Link to="/learning/ai/privacy-and-safety" className="text-sm font-semibold text-emerald-300 no-underline hover:text-white transition-colors">
           ← Lesson 13: Privacy and Safety with AI
         </Link>
-        <Link to="/learning/ai" className="text-sm font-semibold text-emerald-300 no-underline hover:text-white transition-colors">
-          All AI Lessons (Hub) →
+        <Link to="/learning/ai/finetuning-vs-prompting" className="text-sm font-semibold text-emerald-300 no-underline hover:text-white transition-colors">
+          Lesson 15: Fine-tuning vs Prompting →
         </Link>
       </div>
     </>
