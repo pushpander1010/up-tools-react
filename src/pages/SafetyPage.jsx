@@ -16,14 +16,14 @@ const SAFETY_PRESETS = [
     name: '🚨 Customer Support Ticket & PII',
     category: 'High Risk (PII & Financials)',
     riskLevel: 'danger',
-    text: 'Customer Order #UP-98421 Support Ticket:\nName: Rahul Sharma, Phone: +91 98765 43210, Email: rahul.sharma@gmail.com\nCredit Card on file: 4532 8912 3456 7890 (CVV: 481)\nAadhaar Number: 4892 1823 9012\nPlease summarize the refund request for order delivery failure at Bangalore address.',
+    text: 'Customer Order #UP-98421 Support Ticket:\nName: Rahul Sharma, Phone: +91 [PHONE], Email: customer@example.com\nCredit Card on file: [CARD] (CVV: [CVV])\nAadhaar Number: [AADHAAR]\nPlease summarize the refund request for order delivery failure at Bangalore address.',
   },
   {
     id: 'db-credentials',
     name: '⚠️ Stack Trace & Secret Keys',
     category: 'Critical Risk (Credentials)',
     riskLevel: 'danger',
-    text: 'Error connecting to Postgres DB:\nHost: prod-db.internal.company.com:5432\nUser: postgres_admin\nPassword: SuperSecretP@ssw0rd2026!\nAWS_SECRET_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY\nOpenAI API Key: sk-proj-abC1239840294820480294802934\nHow do I fix the connection timeout issue?',
+    text: 'Error connecting to Postgres DB:\nHost: db.example.internal:5432\nUser: [DB_USER]\nPassword: [DB_PASSWORD]\nAWS_SECRET_KEY=[EXAMPLE_KEY]\nOpenAI API Key: [API_KEY]9840294820480294802934\nHow do I fix the connection timeout issue?',
   },
   {
     id: 'confidential-merger',
