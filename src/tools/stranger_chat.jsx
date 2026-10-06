@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import ToolLayout from '../components/ToolLayout'
 
-const BACKEND_URL = 'wss://chat.uptools.in'
+const BACKEND_URL = 'wss://backend.uptools.in/chat-ws'
+const BACKEND_HEALTH = 'https://backend.uptools.in/chat-ws/health'
 const ROSE = 'linear-gradient(135deg, #f43f5e, #ec4899)'
 
 // ---- E2E helpers (ECDH P-256 + AES-GCM). Keys exchanged over signalling,
@@ -80,7 +81,7 @@ export default function stranger_chat() {
       try {
         const ctl = new AbortController()
         const killer = setTimeout(() => ctl.abort(), 8000)
-        const res = await fetch('https://chat.uptools.in/health?t=' + Date.now(), { signal: ctl.signal })
+        const res = await fetch(BACKEND_HEALTH + '?t=' + Date.now(), { signal: ctl.signal })
         clearTimeout(killer)
         if (!res.ok) throw new Error('bad')
       } catch {
