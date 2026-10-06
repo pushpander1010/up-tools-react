@@ -55,6 +55,7 @@ export default function stranger_chat() {
   const [rec, setRec] = useState(false)
   const wsRef = useRef(null)
   const aesRef = useRef(null)
+  const pendingRef = useRef([])
   const ecdhRef = useRef(null)
   const mediaRef = useRef(null)
   const chunksRef = useRef([])
@@ -131,6 +132,15 @@ export default function stranger_chat() {
           try {
             aesRef.current = await deriveAES(ecdhRef.current.privateKey, m.pub)
             setStatus('💘 Connected. Messages are end-to-end encrypted.')
+            // flush messages typed while encryption was setting up
+            const q = pendingRef.current.splice(0)
+            for (const text of q) {
+              try {
+                const c = await encText(aesRef.current, text)
+                ws.send(JSON.stringify({ t: 'msg', ...c }))
+              } catch {}
+            }
+            if (q.length) setNotice('')
           } catch {}
         }
         else if (m.t === 'msg' && m.iv && m.data) {
@@ -164,6 +174,9 @@ export default function stranger_chat() {
         const c = await encText(aesRef.current, t)
         ws.send(JSON.stringify({ t: 'msg', ...c }))
       } catch {}
+    } else if (ws && ws.readyState === 1 && !aesRef.current) {
+      pendingRef.current.push(t)
+      setNotice('Setting up encryption… your message sends by itself in a second. 💕')
     } else if (demo) {
       setTimeout(() => push('them', 'text', 'Hey! 💕 This is a demo preview — press Start above for real strangers.'), 900)
     }
@@ -216,6 +229,8 @@ export default function stranger_chat() {
   }, [rec, push])
 
   const doNext = useCallback(() => {
+    pendingRef.current = []
+    setNotice('')
     const ws = wsRef.current
     if (ws && ws.readyState === 1) { try { ws.send(JSON.stringify({ t: 'next' })) } catch {} }
     setMsgs([])
@@ -228,6 +243,7 @@ export default function stranger_chat() {
     try { wsRef.current?.send(JSON.stringify({ t: 'leave' })); wsRef.current?.close() } catch {}
     wsRef.current = null
     aesRef.current = null
+    pendingRef.current = []
     setMsgs([])
     setStage('gate')
     setStatus('Ready — press Start to meet a stranger. 💕')

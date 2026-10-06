@@ -44,6 +44,13 @@ function tryMatch(ws) {
       pairs.set(w.ws, ws)
       send(ws, { t: 'paired' })
       send(w.ws, { t: 'paired' })
+      // swap ECDH public keys so both sides derive the same AES key (E2E)
+      try {
+        const aPub = meta.get(ws)?.pub
+        const bPub = meta.get(w.ws)?.pub
+        if (bPub) send(ws, { t: 'key', pub: bPub })
+        if (aPub) send(w.ws, { t: 'key', pub: aPub })
+      } catch {}
       return
     }
   }
@@ -102,6 +109,13 @@ wss.on('connection', (ws) => {
         st.me = m.me
         st.want = ['M', 'F', 'ANY'].includes(m.want) ? m.want : 'ANY'
         st.adult = true
+        // store partner ECDH public key (small JWK) for the key swap on pair
+        if (m.pub && typeof m.pub === 'object') {
+          try {
+            const s = JSON.stringify(m.pub)
+            if (s.length < 3000) st.pub = m.pub
+          } catch {}
+        }
         tryMatch(ws)
         if (!pairs.has(ws)) send(ws, { t: 'waiting' })
         break
