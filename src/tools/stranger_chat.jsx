@@ -3,10 +3,24 @@ import ToolLayout from '../components/ToolLayout'
 
 const BACKEND_URL = 'wss://backend.uptools.in/chat-ws'
 const BACKEND_HEALTH = 'https://backend.uptools.in/chat-ws/health'
-const ICE_SERVERS = [
-  { urls: 'stun:stun.l.google.com:19302' },
-  { urls: 'turn:161.118.188.85:3478', username: 'upchat', credential: '29f799cb083db81d507fb767' },
-]
+const BACKEND_CRED = 'https://backend.uptools.in/chat-ws/turn-cred'
+const STUN_ONLY = [{ urls: 'stun:stun.l.google.com:19302' }]
+// Voice relay login: short-lived pass fetched from our own server at call
+// time (never stored in code). Falls back to direct connection if unreachable.
+async function getIceServers() {
+  try {
+    const ctl = new AbortController()
+    const killer = setTimeout(() => ctl.abort(), 8000)
+    const r = await fetch(BACKEND_CRED + '?t=' + Date.now(), { signal: ctl.signal })
+    clearTimeout(killer)
+    if (!r.ok) throw new Error('bad')
+    const c = await r.json()
+    if (c && c.username && c.password) {
+      return [...STUN_ONLY, { urls: 'turn:161.118.188.85:3478', username: c.username, credential: c.password }]
+    }
+  } catch {}
+  return STUN_ONLY
+}
 const ROSE = 'linear-gradient(135deg, #f43f5e, #ec4899)'
 
 // ---- E2E helpers (ECDH P-256 + AES-GCM). Keys exchanged over signalling,
@@ -295,8 +309,8 @@ export default function stranger_chat() {
     }
   }, [])
 
-  const makePC = useCallback((ws) => {
-    const pc = new RTCPeerConnection({ iceServers: ICE_SERVERS })
+  const makePC = useCallback((ws, ice) => {
+    const pc = new RTCPeerConnection({ iceServers: ice })
     pc.onicecandidate = (e) => {
       if (e.candidate && ws.readyState === 1) {
         try { ws.send(JSON.stringify({ t: 'ice', cand: e.candidate })) } catch {}
@@ -322,7 +336,7 @@ export default function stranger_chat() {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
       micStreamRef.current = stream
-      const pc = makePC(ws)
+      const pc = makePC(ws, await getIceServers())
       stream.getTracks().forEach(t => pc.addTrack(t, stream))
       const offer = await pc.createOffer()
       await pc.setLocalDescription(offer)
@@ -341,7 +355,7 @@ export default function stranger_chat() {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
       micStreamRef.current = stream
-      const pc = makePC(ws)
+      const pc = makePC(ws, await getIceServers())
       stream.getTracks().forEach(t => pc.addTrack(t, stream))
       await pc.setRemoteDescription(new RTCSessionDescription(offer))
       const answer = await pc.createAnswer()

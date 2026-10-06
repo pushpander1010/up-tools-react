@@ -6,6 +6,7 @@
 // Run: npm install && PORT=8080 node server.js  (Caddy reverse-proxies wss://chat.uptools.in -> 127.0.0.1:8080)
 'use strict'
 const http = require('http')
+const crypto = require('crypto')
 const { WebSocketServer } = require('ws')
 
 const PORT = process.env.PORT || 8080
@@ -16,6 +17,7 @@ const RATE_MAX = 20 // msgs per window per socket
 // waiters: [{ws, me, want}]  me: 'M'|'F', want: 'M'|'F'|'ANY'
 const waiters = []
 const pairs = new Map() // ws -> partner ws
+const credHits = new Map() // ip -> [timestamps] for /turn-cred throttle
 const meta = new Map() // ws -> {me, want, adult, blocked:Set, hits:[timestamps], reports: n}
 
 function send(ws, obj) {
@@ -77,6 +79,22 @@ const server = http.createServer((req, res) => {
   if (req.url === '/health' || req.url.split('?')[0] === '/health') {
     res.writeHead(200, { 'content-type': 'application/json', 'Access-Control-Allow-Origin': '*' })
     res.end(JSON.stringify({ ok: true, waiting: waiters.length, paired: pairs.size / 2 }))
+    return
+  }
+  if (req.url.split('?')[0] === '/turn-cred') {
+    // Short-lived TURN password (HMAC of expiry username). Secret lives only on this VM.
+    const secret = process.env.TURN_SECRET || ''
+    if (!secret) { res.writeHead(503).end('not configured'); return }
+    const ip = req.socket.remoteAddress || '?'
+    const now = Date.now()
+    credHits.set(ip, (credHits.get(ip) || []).filter(t => now - t < 60000))
+    if (credHits.get(ip).length >= 30) { res.writeHead(429).end('slow down'); return }
+    credHits.get(ip).push(now)
+    const ttl = 24 * 3600
+    const username = (Math.floor(now / 1000) + ttl) + ':upchat'
+    const password = crypto.createHmac('sha1', secret).update(username).digest('base64')
+    res.writeHead(200, { 'content-type': 'application/json', 'Access-Control-Allow-Origin': '*' })
+    res.end(JSON.stringify({ username, password, ttl }))
     return
   }
   res.writeHead(404).end('not found')
