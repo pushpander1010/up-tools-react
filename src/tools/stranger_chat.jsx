@@ -3,6 +3,10 @@ import ToolLayout from '../components/ToolLayout'
 
 const BACKEND_URL = 'wss://backend.uptools.in/chat-ws'
 const BACKEND_HEALTH = 'https://backend.uptools.in/chat-ws/health'
+const ICE_SERVERS = [
+  { urls: 'stun:stun.l.google.com:19302' },
+  { urls: 'turn:161.118.188.85:3478', username: 'upchat', credential: '29f799cb083db81d507fb767' },
+]
 const ROSE = 'linear-gradient(135deg, #f43f5e, #ec4899)'
 
 // ---- E2E helpers (ECDH P-256 + AES-GCM). Keys exchanged over signalling,
@@ -53,9 +57,17 @@ export default function stranger_chat() {
   const [demo, setDemo] = useState(false)
   const [notice, setNotice] = useState('')
   const [rec, setRec] = useState(false)
+  const [call, setCall] = useState('idle') // idle | calling | incoming | incall
+  const [callSecs, setCallSecs] = useState(0)
+  const [muted, setMuted] = useState(false)
   const wsRef = useRef(null)
   const aesRef = useRef(null)
   const pendingRef = useRef([])
+  const pcRef = useRef(null)
+  const micRef = useRef(null)
+  const micStreamRef = useRef(null)
+  const offerRef = useRef(null)
+  const callTimerRef = useRef(null)
   const ecdhRef = useRef(null)
   const mediaRef = useRef(null)
   const chunksRef = useRef([])
@@ -125,6 +137,7 @@ export default function stranger_chat() {
           push('sys', 'text', '💘 Stranger connected. Say hi! (🔒 E2E encrypted)')
         }
         else if (m.t === 'partner-left') {
+          closeCall(true)
           setStatus('Stranger left. Press Next for someone new. 💔')
           push('sys', 'text', 'Stranger disconnected.')
         }
@@ -150,6 +163,42 @@ export default function stranger_chat() {
         }
         else if ((m.t === 'img' || m.t === 'audio') && m.url) {
           push('them', m.t, m.url)
+        }
+        else if (m.t === 'call-offer' && m.sdp) {
+          if (pcRef.current || offerRef.current) {
+            try { ws.send(JSON.stringify({ t: 'call-end', busy: true })) } catch {}
+          } else {
+            offerRef.current = m.sdp
+            setCall('incoming')
+            push('sys', 'text', '📞 Incoming call…')
+          }
+        }
+        else if (m.t === 'call-answer' && m.sdp && pcRef.current) {
+          try {
+            await pcRef.current.setRemoteDescription(new RTCSessionDescription(m.sdp))
+            setCall('incall')
+            setCallSecs(0)
+            if (callTimerRef.current) clearInterval(callTimerRef.current)
+            callTimerRef.current = setInterval(() => setCallSecs(s => s + 1), 1000)
+            push('sys', 'text', '📞 Call connected 💕')
+          } catch {}
+        }
+        else if (m.t === 'ice' && m.cand && pcRef.current) {
+          try { await pcRef.current.addIceCandidate(new RTCIceCandidate(m.cand)) } catch {}
+        }
+        else if (m.t === 'call-end') {
+          if (pcRef.current || offerRef.current) {
+            try { pcRef.current?.close() } catch {}
+            pcRef.current = null
+            try { micStreamRef.current?.getTracks().forEach(t => t.stop()) } catch {}
+            micStreamRef.current = null
+            offerRef.current = null
+            if (callTimerRef.current) { clearInterval(callTimerRef.current); callTimerRef.current = null }
+            setCall('idle')
+            setCallSecs(0)
+            setMuted(false)
+            push('sys', 'text', m.busy ? 'Stranger is on another call.' : 'Call ended by stranger.')
+          }
         }
         else if (m.t === 'reported') setStatus('Reported. Finding someone new…')
       }
@@ -228,7 +277,106 @@ export default function stranger_chat() {
     }
   }, [rec, push])
 
+  // ---- voice calls (WebRTC audio, signalled over the same socket) ----
+  const fmtCall = (s) => `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`
+
+  const closeCall = useCallback((silent) => {
+    try { pcRef.current?.close() } catch {}
+    pcRef.current = null
+    try { micStreamRef.current?.getTracks().forEach(t => t.stop()) } catch {}
+    micStreamRef.current = null
+    offerRef.current = null
+    if (callTimerRef.current) { clearInterval(callTimerRef.current); callTimerRef.current = null }
+    setCall('idle')
+    setCallSecs(0)
+    setMuted(false)
+    if (!silent) {
+      try { wsRef.current?.readyState === 1 && wsRef.current.send(JSON.stringify({ t: 'call-end' })) } catch {}
+    }
+  }, [])
+
+  const makePC = useCallback((ws) => {
+    const pc = new RTCPeerConnection({ iceServers: ICE_SERVERS })
+    pc.onicecandidate = (e) => {
+      if (e.candidate && ws.readyState === 1) {
+        try { ws.send(JSON.stringify({ t: 'ice', cand: e.candidate })) } catch {}
+      }
+    }
+    pc.ontrack = (e) => {
+      try {
+        if (micRef.current) {
+          micRef.current.srcObject = e.streams[0]
+          micRef.current.play().catch(() => {})
+        }
+      } catch {}
+    }
+    pcRef.current = pc
+    return pc
+  }, [])
+
+  const startCall = useCallback(async () => {
+    const ws = wsRef.current
+    if (!ws || ws.readyState !== 1) { setNotice('Connect to a stranger first, then call. 💕'); return }
+    if (demo) { setNotice('Demo mode has no real stranger to call. Press Start above for live chat. 💕'); return }
+    if (call !== 'idle') return
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
+      micStreamRef.current = stream
+      const pc = makePC(ws)
+      stream.getTracks().forEach(t => pc.addTrack(t, stream))
+      const offer = await pc.createOffer()
+      await pc.setLocalDescription(offer)
+      ws.send(JSON.stringify({ t: 'call-offer', sdp: offer }))
+      setCall('calling')
+      push('sys', 'text', '📞 Calling…')
+    } catch {
+      setNotice('Mic blocked. Allow microphone permission to call. 🎙️')
+    }
+  }, [call, demo, makePC, push])
+
+  const acceptCall = useCallback(async () => {
+    const ws = wsRef.current
+    const offer = offerRef.current
+    if (!ws || !offer) return
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
+      micStreamRef.current = stream
+      const pc = makePC(ws)
+      stream.getTracks().forEach(t => pc.addTrack(t, stream))
+      await pc.setRemoteDescription(new RTCSessionDescription(offer))
+      const answer = await pc.createAnswer()
+      await pc.setLocalDescription(answer)
+      ws.send(JSON.stringify({ t: 'call-answer', sdp: answer }))
+      setCall('incall')
+      setCallSecs(0)
+      callTimerRef.current = setInterval(() => setCallSecs(s => s + 1), 1000)
+      push('sys', 'text', '📞 Call connected 💕')
+    } catch {
+      setNotice('Mic blocked. Allow microphone permission to call. 🎙️')
+      closeCall()
+    }
+  }, [makePC, push, closeCall])
+
+  const declineCall = useCallback(() => {
+    push('sys', 'text', 'Call declined.')
+    closeCall()
+  }, [closeCall, push])
+
+  const endCall = useCallback(() => {
+    push('sys', 'text', 'Call ended.')
+    closeCall()
+  }, [closeCall, push])
+
+  const toggleMute = useCallback(() => {
+    const track = micStreamRef.current?.getAudioTracks()?.[0]
+    if (track) {
+      track.enabled = !track.enabled
+      setMuted(!track.enabled)
+    }
+  }, [])
+
   const doNext = useCallback(() => {
+    closeCall()
     pendingRef.current = []
     setNotice('')
     const ws = wsRef.current
@@ -237,9 +385,10 @@ export default function stranger_chat() {
     setStage('matching')
     setStatus('Finding someone new… 💕')
     if (demo) setTimeout(() => { setStage('chat'); setStatus('Demo preview — no real stranger.') }, 800)
-  }, [demo])
+  }, [demo, closeCall])
 
   const doEnd = useCallback(() => {
+    closeCall()
     try { wsRef.current?.send(JSON.stringify({ t: 'leave' })); wsRef.current?.close() } catch {}
     wsRef.current = null
     aesRef.current = null
@@ -247,21 +396,22 @@ export default function stranger_chat() {
     setMsgs([])
     setStage('gate')
     setStatus('Ready — press Start to meet a stranger. 💕')
-  }, [])
+  }, [closeCall])
 
   const doReport = useCallback(() => {
+    closeCall()
     const ws = wsRef.current
     if (ws && ws.readyState === 1) { try { ws.send(JSON.stringify({ t: 'report' })) } catch {} }
     push('sys', 'text', 'Reported and blocked. Never share personal info with strangers.')
     setMsgs([])
     setStage('matching')
     setStatus('Reported. Finding someone new…')
-  }, [push])
+  }, [push, closeCall])
 
   return (
     <ToolLayout
       title="Stranger Chat - Talk to Strangers Online"
-      desc="Anonymous stranger chat: talk to strangers online with text, images and voice notes. No sign-up, 18+ only, end-to-end encrypted. Free."
+      desc="Anonymous stranger chat: talk to strangers online with text, images, voice notes and voice calls. No sign-up, 18+ only, encrypted. Free."
       icon="💘" iconBg="rgba(244,63,94,0.10)"
       category="social" slug="stranger-chat"
       faq={[
@@ -275,7 +425,7 @@ export default function stranger_chat() {
       howItWorks={[
         'Confirm 18+, choose I-am (Male/Female) and who to meet.',
         'Press Start — the server pairs you with a stranger 1-1.',
-        'Chat with text, images and voice notes. Simple, private, no names.',
+        'Chat with text, images and voice notes. Tap 📞 for a live voice call in the same style.',
         'Use Next, Report or End anytime. Stay anonymous, share nothing personal.',
       ]}
       schema={{
@@ -372,10 +522,56 @@ export default function stranger_chat() {
                 📷<input type="file" accept="image/*" className="hidden" onChange={e => { sendImage(e.target.files?.[0]); e.target.value = '' }} />
               </label>
               <button onClick={toggleRec} title="Voice note" className={`text-lg px-1 ${rec ? 'animate-pulse' : ''}`}>{rec ? '⏹️' : '🎙️'}</button>
-              <button onClick={() => setNotice('Live voice calls are coming soon — voice notes work now. 💕')} title="Voice call" className="text-lg px-1">📞</button>
+              <button onClick={startCall} title="Voice call" className="text-lg px-1">📞</button>
               <input value={draft} onChange={e => setDraft(e.target.value)} onKeyDown={e => { if (e.key === 'Enter') sendText() }}
                 placeholder="Say something sweet… 💬" className="flex-1 bg-black/20 border border-rose-500/20 rounded-full px-4 py-2 text-sm text-white outline-none focus:border-rose-500/50" />
               <button onClick={sendText} className="px-4 py-2 rounded-full text-sm font-black text-white shadow-md shadow-rose-500/25" style={{ background: ROSE }}>Send 💕</button>
+            </div>
+          </div>
+        )}
+
+        {/* Hidden remote-audio element for call sound */}
+        <audio ref={micRef} autoPlay playsInline className="hidden" />
+
+        {/* Phone-call style window */}
+        {call !== 'idle' && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-5"
+            style={{ background: 'linear-gradient(160deg, rgba(30,10,25,0.97), rgba(80,15,45,0.96))' }}>
+            <div className="w-full max-w-xs text-center rounded-3xl border border-rose-500/25 p-7"
+              style={{ background: 'linear-gradient(150deg, rgba(244,63,94,0.14), rgba(17,10,20,0.6))' }}>
+              <div className="relative w-24 h-24 mx-auto mb-4">
+                <div className="absolute inset-0 rounded-full bg-rose-500/30 animate-ping" />
+                <div className="absolute inset-0 rounded-full bg-rose-500/20 animate-pulse" />
+                <div className="relative w-24 h-24 rounded-full flex items-center justify-center text-5xl border-2 border-rose-400/50"
+                  style={{ background: ROSE }}>💕</div>
+              </div>
+              <p className="text-lg font-black text-white m-0">Stranger</p>
+              <p className="text-sm text-rose-200/90 m-0 mt-1 mb-6">
+                {call === 'calling' && 'Calling… 📞'}
+                {call === 'incoming' && 'Incoming call… 💓'}
+                {call === 'incall' && `💕 ${fmtCall(callSecs)}`}
+              </p>
+              {call === 'incoming' ? (
+                <div className="flex gap-3 justify-center">
+                  <button onClick={declineCall} className="flex-1 py-3 rounded-full text-sm font-black text-white"
+                    style={{ background: 'linear-gradient(135deg, #ef4444, #b91c1c)' }}>Decline</button>
+                  <button onClick={acceptCall} className="flex-1 py-3 rounded-full text-sm font-black text-white animate-pulse"
+                    style={{ background: 'linear-gradient(135deg, #22c55e, #059669)' }}>Accept 💕</button>
+                </div>
+              ) : (
+                <div className="flex items-center justify-center gap-4">
+                  <button onClick={toggleMute} title={muted ? 'Unmute' : 'Mute'}
+                    className={`w-14 h-14 rounded-full text-2xl border ${muted ? 'bg-amber-500/25 border-amber-500/40' : 'bg-white/[0.08] border-white/15'}`}>
+                    {muted ? '🔇' : '🎙️'}
+                  </button>
+                  <button onClick={endCall} title="End call"
+                    className="w-16 h-16 rounded-full text-3xl text-white shadow-lg shadow-red-500/40"
+                    style={{ background: 'linear-gradient(135deg, #ef4444, #b91c1c)' }}>📵</button>
+                  <button onClick={() => setNotice('Chat stays here — end the call to type again. 💕')} title="Keypad"
+                    className="w-14 h-14 rounded-full text-2xl bg-white/[0.08] border border-white/15">⌨️</button>
+                </div>
+              )}
+              <p className="text-[11px] text-rose-200/60 m-0 mt-5">🔒 Voice runs peer-to-peer, never stored</p>
             </div>
           </div>
         )}
