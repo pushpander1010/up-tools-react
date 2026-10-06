@@ -72,17 +72,36 @@ export default function stranger_chat() {
     setNotice('')
     setMsgs([])
     aesRef.current = null
+    setStage('matching')
+    setStatus('Checking server… 💕');
+    // Preflight: plain HTTPS first. If this fails, the phone's network has
+    // not picked up the new chat address yet (DNS cache) — WS would hang.
+    (async () => {
+      try {
+        const ctl = new AbortController()
+        const killer = setTimeout(() => ctl.abort(), 8000)
+        const res = await fetch('https://chat.uptools.in/health?t=' + Date.now(), { signal: ctl.signal })
+        clearTimeout(killer)
+        if (!res.ok) throw new Error('bad')
+      } catch {
+        setStatus('Your network cannot reach the chat server yet — the new address is still spreading to your provider. Toggle airplane mode on/off, or switch WiFi/mobile data, then press Retry. 💗')
+        return
+      }
+      openSocket()
+    })()
+  }, [adult, me, want, push, stage])
+
+  const openSocket = useCallback(() => {
+    setStatus('Connecting… 💕')
     try {
       const ws = new WebSocket(BACKEND_URL)
       wsRef.current = ws
-      setStage('matching')
-      setStatus('Connecting… 💕')
       const to = setTimeout(() => {
         if (ws.readyState !== 1) {
           try { ws.close() } catch {}
-          setStatus('Server is taking too long. Try again or preview the UI in demo mode below.')
+          setStatus('Server is taking too long. Press Retry, or preview the UI in demo mode below.')
         }
-      }, 6000)
+      }, 12000)
       ws.onopen = async () => {
         clearTimeout(to)
         setStatus('Connected. Finding someone special… 💕')
@@ -299,7 +318,8 @@ export default function stranger_chat() {
             <div className="text-4xl mb-3 animate-pulse">💓</div>
             <div className="w-8 h-8 mx-auto border-2 border-rose-400 border-t-transparent rounded-full animate-spin" />
             <p className="text-sm text-rose-200/90 mt-4 font-medium">Finding someone special…</p>
-            <div className="flex gap-2 justify-center mt-4">
+            <div className="flex gap-2 justify-center mt-4 flex-wrap">
+              <button onClick={connect} className="text-xs font-bold px-5 py-2 rounded-full text-white shadow-md shadow-rose-500/25" style={{ background: ROSE }}>Retry 💕</button>
               <button onClick={doEnd} className="text-xs px-4 py-2 rounded-xl bg-white/[0.06] border border-white/[0.08] text-slate-300">Cancel</button>
               <button onClick={() => { setStage('chat'); setStatus('Demo preview — no real stranger.') }} className="text-xs px-4 py-2 rounded-xl bg-white/[0.06] border border-white/[0.08] text-slate-400">Try demo instead</button>
             </div>
