@@ -56,6 +56,7 @@ export const GAMES = [
 ]
 
 const CATEGORIES = ['All', ...new Set(GAMES.map(g => g.cat))]
+const CAT_ICON = { All: '🎮', Arcade: '🕹️', Puzzle: '🧩', Board: '♟️', Word: '🔤', Trivia: '🧠', Memory: '🃏', Quick: '⚡', Quiz: '💘', Casual: '🎲', Card: '🂡', Typing: '⌨️', Strategy: '🏰' }
 const FEATURED_SLUGS = ['snake', 'tetris', '2048', 'flappy-bird', 'wordle', 'minesweeper']
 
 export default function GamesPage() {
@@ -102,20 +103,22 @@ export default function GamesPage() {
         <span className="text-slate-300 font-medium">Free Games</span>
       </nav>
 
-      {/* Hero */}
-      <section className="glass p-7 mb-6 relative overflow-hidden">
-        <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full blur-3xl pointer-events-none" style={{ background: 'rgba(244,63,94,0.1)' }} />
-        <div className="absolute -bottom-16 -left-16 w-48 h-48 rounded-full blur-3xl pointer-events-none" style={{ background: 'rgba(99,102,241,0.08)' }} />
+      {/* Hero — arcade marquee */}
+      <section className="p-7 mb-6 relative overflow-hidden rounded-3xl border border-fuchsia-500/20"
+        style={{ background: 'linear-gradient(135deg, rgba(244,63,94,0.12), rgba(99,102,241,0.12) 50%, rgba(245,158,11,0.10))' }}>
+        <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full blur-3xl pointer-events-none" style={{ background: 'rgba(244,63,94,0.18)' }} />
+        <div className="absolute -bottom-16 -left-16 w-48 h-48 rounded-full blur-3xl pointer-events-none" style={{ background: 'rgba(99,102,241,0.15)' }} />
         <div className="relative">
-          <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight m-0 mb-2"
-            style={{ background: 'linear-gradient(135deg, #fff, #f43f5e, #f97316)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-            🎮 Free Games
+          <div className="text-4xl mb-2 animate-bounce" style={{ animationDuration: '2.5s' }}>🕹️</div>
+          <h1 className="text-3xl sm:text-5xl font-black tracking-tight m-0 mb-2"
+            style={{ background: 'linear-gradient(90deg, #f43f5e, #f97316, #eab308, #22c55e, #06b6d4, #8b5cf6)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+            FREE GAMES
           </h1>
-          <p className="text-slate-400 text-sm max-w-md">{GAMES.length}+ instant browser games — no download, no sign-up. Just click and play.</p>
-          <div className="flex gap-6 mt-4">
-            <div className="text-center"><div className="text-xl font-extrabold text-white">{GAMES.length}</div><div className="text-xs text-slate-400">Games</div></div>
-            <div className="text-center"><div className="text-xl font-extrabold text-white">0</div><div className="text-xs text-slate-400">Sign-ups</div></div>
-            <div className="text-center"><div className="text-xl font-extrabold text-emerald-400">100%</div><div className="text-xs text-slate-400">Free</div></div>
+          <p className="text-slate-300 text-sm max-w-md font-medium">{GAMES.length}+ instant browser games — no download, no sign-up. Pick a card and play! 👇</p>
+          <div className="flex gap-3 mt-4">
+            <div className="px-4 py-2 rounded-2xl bg-white/[0.06] border border-white/10 text-center"><div className="text-xl font-black text-white">{GAMES.length}</div><div className="text-[11px] text-slate-400 font-semibold">Games 🎮</div></div>
+            <div className="px-4 py-2 rounded-2xl bg-white/[0.06] border border-white/10 text-center"><div className="text-xl font-black text-white">0</div><div className="text-[11px] text-slate-400 font-semibold">Sign-ups 🚫</div></div>
+            <div className="px-4 py-2 rounded-2xl bg-white/[0.06] border border-white/10 text-center"><div className="text-xl font-black text-emerald-400">100%</div><div className="text-[11px] text-slate-400 font-semibold">Free 🎉</div></div>
           </div>
         </div>
       </section>
@@ -131,12 +134,12 @@ export default function GamesPage() {
         <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
           {CATEGORIES.map(cat => (
             <button key={cat} onClick={() => setActiveCat(cat)}
-              className={`px-4 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all border shrink-0 ${
+              className={`px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all border shrink-0 ${
                 activeCat === cat
-                  ? 'bg-indigo-500/15 border-indigo-500/30 text-indigo-400'
-                  : 'bg-white/[0.04] border-white/[0.06] text-slate-400 hover:text-white hover:bg-white/[0.08]'
+                  ? 'bg-gradient-to-r from-rose-500/25 to-indigo-500/25 border-rose-500/40 text-white shadow-lg shadow-rose-500/10 scale-105'
+                  : 'bg-white/[0.04] border-white/[0.06] text-slate-400 hover:text-white hover:bg-white/[0.08] hover:scale-105'
               }`}>
-              {cat}
+              {CAT_ICON[cat] || '🎮'} {cat}
             </button>
           ))}
         </div>
@@ -163,20 +166,25 @@ export default function GamesPage() {
 
       {/* Featured */}
       <div className="mb-6">
-        <h2 className="text-sm font-bold text-slate-400 mb-3">🔥 Most Popular</h2>
+        <h2 className="text-base font-black text-white mb-3">🔥 Most Popular</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {featured.map(g => (
             <a key={g.slug} href={`/games/${g.slug}/`}
-              className="glass p-5 group relative overflow-hidden no-underline block">
-              <div className="absolute top-0 left-0 right-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity"
+              className="p-5 group relative overflow-hidden no-underline block rounded-3xl border border-white/10 bg-white/[0.04] hover:-translate-y-1 hover:shadow-2xl transition-all duration-300"
+              style={{ '--gc': g.color }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = g.color + '66'; e.currentTarget.style.boxShadow = `0 12px 40px -8px ${g.color}55` }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = ''; e.currentTarget.style.boxShadow = '' }}>
+              <div className="absolute top-0 left-0 right-0 h-1 opacity-80"
                 style={{ background: `linear-gradient(90deg, transparent, ${g.color}, transparent)` }} />
               <div className="flex items-center gap-4">
-                <div className="text-4xl group-hover:scale-110 transition-transform">{g.icon}</div>
+                <div className="text-4xl group-hover:scale-125 group-hover:-rotate-6 transition-transform p-2 rounded-2xl"
+                  style={{ background: g.color + '1a' }}>{g.icon}</div>
                 <div className="flex-1 min-w-0">
                   <h3 className="text-base font-bold text-white mb-0.5">{g.title}</h3>
                   <p className="text-xs text-slate-400 line-clamp-2">{g.desc}</p>
                 </div>
-                <span className="glow-btn text-xs py-1.5 px-3 shrink-0">Play →</span>
+                <span className="text-xs font-black py-2 px-4 shrink-0 rounded-full text-white group-hover:scale-110 transition-transform"
+                  style={{ background: `linear-gradient(135deg, ${g.color}, ${g.color}aa)` }}>▶ Play</span>
               </div>
             </a>
           ))}
@@ -185,19 +193,24 @@ export default function GamesPage() {
 
       {/* All Games */}
       <div>
-        <h2 className="text-sm font-bold text-slate-400 mb-3">🕹️ All Games ({filtered.length})</h2>
+        <h2 className="text-base font-black text-white mb-3">🕹️ All Games ({filtered.length})</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
           {filtered.map(g => (
             <a key={g.slug} href={`/games/${g.slug}/`}
-              className="glass p-4 group relative overflow-hidden no-underline block">
-              <div className="absolute top-0 left-0 right-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity"
+              className="p-4 group relative overflow-hidden no-underline block rounded-3xl border border-white/10 bg-white/[0.04] hover:-translate-y-1 transition-all duration-300"
+              onMouseEnter={e => { e.currentTarget.style.borderColor = g.color + '66'; e.currentTarget.style.boxShadow = `0 12px 32px -10px ${g.color}66` }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = ''; e.currentTarget.style.boxShadow = '' }}>
+              <div className="absolute top-0 left-0 right-0 h-1 opacity-70"
                 style={{ background: `linear-gradient(90deg, transparent, ${g.color}, transparent)` }} />
-              <div className="text-3xl mb-2 group-hover:scale-110 transition-transform">{g.icon}</div>
+              <div className="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-2 group-hover:scale-115 group-hover:-rotate-6 transition-transform"
+                style={{ background: g.color + '1a' }}>{g.icon}</div>
               <h3 className="text-sm font-bold text-white mb-0.5">{g.title}</h3>
               <p className="text-xs text-slate-400 line-clamp-2 mb-2">{g.desc}</p>
               <div className="flex items-center justify-between">
-                <span className="text-xs px-2 py-0.5 rounded-lg bg-white/[0.06] text-slate-400">{g.cat}</span>
-                <span className="glow-btn text-xs py-1 px-2.5">Play →</span>
+                <span className="text-[11px] font-bold px-2 py-0.5 rounded-full text-slate-300"
+                  style={{ background: g.color + '1a' }}>{g.cat}</span>
+                <span className="text-xs font-black text-white py-1 px-3 rounded-full"
+                  style={{ background: `linear-gradient(135deg, ${g.color}, ${g.color}aa)` }}>▶</span>
               </div>
             </a>
           ))}
