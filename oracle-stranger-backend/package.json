@@ -1,0 +1,13 @@
+{
+  "name": "oracle-stranger-backend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Anonymous 18+ stranger chat signalling + relay for uptools.in/stranger-chat (text, images, voice notes, WebRTC voice-call signalling). No message content stored.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "ws": "^8.18.0"
+  }
+}

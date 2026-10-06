@@ -5,6 +5,7 @@ const tabs = [
   { href: '/', label: 'Home', key: 'home' },
   { href: '/learning', label: '🎓 Learning', key: 'learning' },
   { href: '/games', label: '🎮 Games', key: 'games' },
+  { href: '/stranger-chat', label: '💬 Chat', key: 'chat' },
   { href: '/hackolution', label: 'HACKOLUTION', key: 'hackolution' },
   { href: '/blogs', label: 'Blogs', key: 'blogs' },
 ]

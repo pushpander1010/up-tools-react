@@ -9242,6 +9242,25 @@
     "india",
     "tools"
    ]
+  },
+  {
+   "slug": "stranger-chat",
+   "title": "Stranger Chat - Talk to Strangers Online",
+   "icon": "💬",
+   "desc": "Anonymous stranger chat: talk to strangers online with text, images and voice notes. No sign-up, 18+ only, end-to-end encrypted. Free.",
+   "href": "/stranger-chat/",
+   "tags": [
+    "stranger chat",
+    "talk to strangers",
+    "anonymous chat",
+    "random chat",
+    "chat online",
+    "18+"
+   ],
+   "cats": [
+    "all",
+    "social"
+   ]
   }
  ],
  "categories": {

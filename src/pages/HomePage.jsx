@@ -18,6 +18,7 @@ const gameChips = [
 ]
 
 const featuredSlugs = [
+  'stranger-chat',
   'timezone-converter', 'salary-converter', 'invoice-calculator',
   'ai-blog-generator', 'ai-linkedin-headline-generator', 'ai-youtube-script',
   'ai-travel-planner', 'rawcv-resume-builder', 'currency-converter',
@@ -135,6 +136,20 @@ export default function HomePage() {
           </div>
         </div>
       </div>
+
+      {/* Stranger Chat — big banner */}
+      <Link to="/stranger-chat" className="relative mb-6 overflow-hidden rounded-3xl border border-indigo-500/20 no-underline block"
+        style={{ background: 'linear-gradient(120deg, rgba(49,46,129,0.5), rgba(124,58,237,0.35))' }}>
+        <div className="flex flex-col sm:flex-row items-center gap-5 p-6 sm:p-7">
+          <img src="/assets/stranger-chat-banner.svg" alt="Anonymous stranger chat" className="w-full sm:w-64 rounded-2xl shrink-0" width="256" height="128" />
+          <div className="flex-1 text-center sm:text-left">
+            <div className="inline-block text-[11px] font-bold text-pink-300 bg-pink-500/15 border border-pink-500/25 rounded-full px-3 py-1 mb-2">NEW · 18+ ONLY</div>
+            <h2 className="text-xl sm:text-2xl font-extrabold text-white m-0">Talk to Strangers Online 💬</h2>
+            <p className="text-sm text-slate-300 mt-1 mb-4">Anonymous chat — text, images, voice notes. No sign-up. End-to-end encrypted.</p>
+            <span className="glow-btn text-sm px-6 py-2.5 rounded-xl inline-block font-bold">Start Chatting →</span>
+          </div>
+        </div>
+      </Link>
 
       {/* Games Rail */}
       <div className="glass rounded-3xl p-5 mb-6">

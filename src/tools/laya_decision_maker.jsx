@@ -147,6 +147,38 @@ export default function laya_decision_maker() {
             </div>
           </div>
         )}
+
+        {/* About Laya + self-host guide */}
+        <div className="p-5 rounded-2xl bg-white/[0.04] border border-white/[0.08] space-y-4 text-left">
+          <div>
+            <h2 className="text-sm font-bold text-slate-200 mb-1">What is Laya?</h2>
+            <p className="text-xs text-slate-400 leading-relaxed">
+              Laya (convaiinnovations/laya) is a free open-weight AI decision model.
+              Unlike a chatbot that writes text, Laya reads your question plus your list of
+              options and returns one calibrated pick with a probability for every option.
+              Higher percentage means Laya is more confident that option fits your question best.
+            </p>
+          </div>
+          <div>
+            <h2 className="text-sm font-bold text-slate-200 mb-1">How this tool uses Laya</h2>
+            <p className="text-xs text-slate-400 leading-relaxed">
+              This page sends your question and choices to our backend
+              (backend.uptools.in/laya), which runs laya==0.3.24 with
+              laya.decide() and returns the pick plus probabilities shown above.
+              2 to 32 choices per ask, no sign-up.
+            </p>
+          </div>
+          <div>
+            <h2 className="text-sm font-bold text-slate-200 mb-2">How to set up Laya yourself</h2>
+            <ol className="text-xs text-slate-400 leading-relaxed space-y-2 list-decimal list-inside">
+              <li>Install Python 3.11 and run: pip install laya==0.3.24 fastapi uvicorn huggingface_hub pydantic</li>
+              <li>Download runs automatically on first use (~2 GB model download from Hugging Face convaiinnovations/laya).</li>
+              <li>Test in Python: import laya; agent = laya.Agent(model_id_or_path=&apos;convaiinnovations/laya&apos;); then laya.decide(agent, state, questions=q) where q is your pick question with criteria = your choices.</li>
+              <li>For a server, copy the oracle-laya-backend folder to your VM, run bash install.sh, open port 8000, and start with: uvicorn server:app --host 0.0.0.0 --port 8000</li>
+              <li>Test it: POST your question plus choices JSON to /decide and you get back pick, probabilities, and confidence — same as this page shows.</li>
+            </ol>
+          </div>
+        </div>
       </div>
     </ToolLayout>
   )
