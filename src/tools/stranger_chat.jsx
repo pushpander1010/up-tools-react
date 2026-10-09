@@ -74,6 +74,7 @@ export default function stranger_chat() {
   const [call, setCall] = useState('idle') // idle | calling | incoming | incall
   const [callSecs, setCallSecs] = useState(0)
   const [muted, setMuted] = useState(false)
+  const [online, setOnline] = useState(null)
   const wsRef = useRef(null)
   const aesRef = useRef(null)
   const pendingRef = useRef([])
@@ -90,6 +91,23 @@ export default function stranger_chat() {
   useEffect(() => {
     if (listRef.current) listRef.current.scrollTop = listRef.current.scrollHeight
   }, [msgs])
+
+  useEffect(() => {
+    let stop = false
+    const fetchOnline = async () => {
+      try {
+        const r = await fetch(BACKEND_HEALTH + '?t=' + Date.now())
+        if (!r.ok) return
+        const j = await r.json()
+        if (stop) return
+        if (typeof j.online === 'number') setOnline(j.online)
+        else if (typeof j.waiting === 'number') setOnline(j.waiting + (j.paired || 0) * 2)
+      } catch {}
+    }
+    fetchOnline()
+    const iv = setInterval(fetchOnline, 30000)
+    return () => { stop = true; clearInterval(iv) }
+  }, [])
 
   const push = useCallback((who, kind, body) => {
     setMsgs(p => [...p.slice(-99), { who, kind, body, at: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) }])
@@ -456,6 +474,10 @@ export default function stranger_chat() {
           <div className="text-4xl mb-1">💘</div>
           <p className="text-base font-black text-white m-0">Find your connection</p>
           <p className="text-xs text-rose-200/80 m-0 mt-1">Anonymous 18+ chats — simple, private, no names 💕</p>
+          <div className="inline-flex items-center gap-1.5 mt-2 px-3 py-1 rounded-full bg-black/30 border border-white/10 text-xs font-bold text-white">
+            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+            {online === null ? 'connecting…' : `${online} online`}
+          </div>
         </div>
         <div className="text-xs text-slate-400 bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-2">{status}</div>
         {notice && <div className="text-xs text-amber-300 bg-amber-500/10 border border-amber-500/20 rounded-xl px-4 py-2">{notice}</div>}

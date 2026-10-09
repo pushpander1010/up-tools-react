@@ -78,7 +78,7 @@ const server = http.createServer((req, res) => {
   }
   if (req.url === '/health' || req.url.split('?')[0] === '/health') {
     res.writeHead(200, { 'content-type': 'application/json', 'Access-Control-Allow-Origin': '*' })
-    res.end(JSON.stringify({ ok: true, waiting: waiters.length, paired: pairs.size / 2 }))
+    res.end(JSON.stringify({ ok: true, online: meta.size, waiting: waiters.length, paired: pairs.size / 2 }))
     return
   }
   if (req.url.split('?')[0] === '/turn-cred') {
