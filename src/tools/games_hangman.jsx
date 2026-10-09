@@ -11,6 +11,18 @@ const WORDS = {
     { word: 'kangaroo', hint: 'Australian marsupial' },
     { word: 'crocodile', hint: 'Ancient reptile' },
     { word: 'butterfly', hint: 'Colorful flying insect' },
+    { word: 'tiger', hint: 'Big striped cat' },
+    { word: 'zebra', hint: 'Striped horse-like animal' },
+    { word: 'panda', hint: 'Black and white bear' },
+    { word: 'koala', hint: 'Australian tree climber' },
+    { word: 'owl', hint: 'Bird that hunts at night' },
+    { word: 'shark', hint: 'Ocean predator' },
+    { word: 'camel', hint: 'Desert animal with humps' },
+    { word: 'frog', hint: 'Amphibian that jumps' },
+    { word: 'lion', hint: 'King of the jungle' },
+    { word: 'wolf', hint: 'Wild dog that howls' },
+    { word: 'squirrel', hint: 'Bushy-tailed nut hoarder' },
+    { word: 'octopus', hint: 'Eight-armed sea animal' },
   ],
   countries: [
     { word: 'australia', hint: 'Country and continent' },
@@ -21,6 +33,18 @@ const WORDS = {
     { word: 'mexico', hint: 'Country south of USA' },
     { word: 'nigeria', hint: 'Most populous African country' },
     { word: 'thailand', hint: 'Southeast Asian country' },
+    { word: 'france', hint: 'Country famous for the Eiffel Tower' },
+    { word: 'italy', hint: 'Boot-shaped European country' },
+    { word: 'spain', hint: 'Country famous for flamenco' },
+    { word: 'india', hint: 'Country with the Taj Mahal' },
+    { word: 'china', hint: 'Country with the Great Wall' },
+    { word: 'egypt', hint: 'Country of pyramids and the Nile' },
+    { word: 'argentina', hint: 'South American country, home of tango' },
+    { word: 'greece', hint: 'Birthplace of the Olympics' },
+    { word: 'turkey', hint: 'Country spanning Europe and Asia' },
+    { word: 'norway', hint: 'Country of fjords and northern lights' },
+    { word: 'indonesia', hint: 'Island nation with Bali' },
+    { word: 'portugal', hint: 'Country famous for explorers and custard tarts' },
   ],
   tech: [
     { word: 'algorithm', hint: 'Step-by-step problem solving procedure' },
@@ -31,6 +55,18 @@ const WORDS = {
     { word: 'bandwidth', hint: 'Data transfer capacity' },
     { word: 'framework', hint: 'Software development structure' },
     { word: 'interface', hint: 'Point of interaction' },
+    { word: 'server', hint: 'Computer that serves data' },
+    { word: 'cloud', hint: 'Online storage and computing' },
+    { word: 'pixel', hint: 'Tiny dot on a screen' },
+    { word: 'robot', hint: 'Programmable machine' },
+    { word: 'software', hint: 'Programs and apps' },
+    { word: 'hardware', hint: 'Physical computer parts' },
+    { word: 'keyboard', hint: 'Device you type on' },
+    { word: 'cache', hint: 'Fast temporary memory' },
+    { word: 'firewall', hint: 'Network security wall' },
+    { word: 'sensor', hint: 'Device that detects changes' },
+    { word: 'drone', hint: 'Flying camera device' },
+    { word: 'laptop', hint: 'Portable computer' },
   ],
   food: [
     { word: 'spaghetti', hint: 'Italian pasta dish' },
@@ -41,6 +77,18 @@ const WORDS = {
     { word: 'croissant', hint: 'French buttery pastry' },
     { word: 'blueberry', hint: 'Small blue fruit' },
     { word: 'cinnamon', hint: 'Brown spice from tree bark' },
+    { word: 'pizza', hint: 'Cheesy Italian flatbread' },
+    { word: 'burger', hint: 'Sandwich in a bun' },
+    { word: 'pasta', hint: 'Italian staple food' },
+    { word: 'mango', hint: 'King of fruits' },
+    { word: 'apple', hint: 'Fruit that keeps the doctor away' },
+    { word: 'sushi', hint: 'Japanese dish with raw fish' },
+    { word: 'taco', hint: 'Mexican folded tortilla' },
+    { word: 'salad', hint: 'Bowl of raw vegetables' },
+    { word: 'cheese', hint: 'Made from milk' },
+    { word: 'bread', hint: 'Baked from flour dough' },
+    { word: 'honey', hint: 'Sweet syrup made by bees' },
+    { word: 'noodles', hint: 'Long thin strips of dough' },
   ],
   sports: [
     { word: 'basketball', hint: 'Sport with hoops and orange ball' },
@@ -51,10 +99,37 @@ const WORDS = {
     { word: 'archery', hint: 'Sport with bow and arrow' },
     { word: 'wrestling', hint: 'Combat sport' },
     { word: 'marathon', hint: '42km running race' },
+    { word: 'football', hint: 'World\'s most popular sport' },
+    { word: 'tennis', hint: 'Racket sport over a net' },
+    { word: 'cricket', hint: 'Bat and ball sport, huge in India' },
+    { word: 'golf', hint: 'Sport with clubs and holes' },
+    { word: 'boxing', hint: 'Fighting sport with gloves' },
+    { word: 'cycling', hint: 'Sport on two wheels' },
+    { word: 'skiing', hint: 'Gliding down snowy slopes' },
+    { word: 'surfing', hint: 'Riding ocean waves' },
+    { word: 'yoga', hint: 'Indian mind-body practice' },
+    { word: 'hockey', hint: 'Sport with sticks and a puck' },
+    { word: 'rugby', hint: 'Tough team sport with an oval ball' },
+    { word: 'kabaddi', hint: 'Indian contact team sport' },
   ],
 }
 
+const DIFFS = {
+  easy: { label: 'Easy', mult: 1, test: (w) => w.length <= 5, blurb: 'short words' },
+  normal: { label: 'Normal', mult: 2, test: () => true, blurb: 'all words' },
+  hard: { label: 'Hard', mult: 3, test: (w) => w.length >= 7, blurb: 'long words' },
+}
+
+const MAX_WRONG = 6
 const PARTS = ['head', 'body', 'larm', 'rarm', 'lleg', 'rleg']
+const STATS_KEY = 'ut-hangman-stats'
+
+function loadStats() {
+  try {
+    const s = JSON.parse(localStorage.getItem(STATS_KEY) || '{}')
+    return { wins: s.wins || 0, losses: s.losses || 0, streak: 0, best: s.best || 0, score: s.score || 0 }
+  } catch { return { wins: 0, losses: 0, streak: 0, best: 0, score: 0 } }
+}
 
 let audioCtx = null
 function ensureAudio() {
@@ -127,18 +202,9 @@ function playLose() {
   } catch {}
 }
 
-function getWords(cat) {
-  if (cat === 'all') return Object.values(WORDS).flat()
-  return WORDS[cat] || WORDS.animals
-}
-
-function pickWord(cat) {
-  const pool = getWords(cat)
-  return pool[Math.floor(Math.random() * pool.length)]
-}
-
 export default function games_hangman() {
   const [category, setCategory] = useState('all')
+  const [diff, setDiff] = useState('normal')
   const [word, setWord] = useState('')
   const [hint, setHint] = useState('')
   const [guessed, setGuessed] = useState(new Set())
@@ -148,61 +214,109 @@ export default function games_hangman() {
   const [showOverlay, setShowOverlay] = useState(false)
   const [started, setStarted] = useState(false)
   const [showWelcome, setShowWelcome] = useState(true)
-  const inputRef = useRef(null)
+  const [stats, setStats] = useState(loadStats)
+  const [lastPoints, setLastPoints] = useState(0)
   const wrongCountRef = useRef(0)
+  const bagRef = useRef({})
 
-  const initGame = useCallback((cat) => {
-    const entry = pickWord(cat || category)
+  const persist = useCallback((s) => {
+    setStats(s)
+    try { localStorage.setItem(STATS_KEY, JSON.stringify({ wins: s.wins, losses: s.losses, best: s.best, score: s.score })) } catch {}
+  }, [])
+
+  const poolFor = useCallback((cat, d) => {
+    const base = cat === 'all' ? Object.values(WORDS).flat() : (WORDS[cat] || WORDS.animals)
+    return base.filter(e => DIFFS[d].test(e.word))
+  }, [])
+
+  // Shuffle-bag draw: no repeats until the pool is exhausted.
+  const drawWord = useCallback((cat, d) => {
+    const key = cat + ':' + d
+    let bag = bagRef.current[key]
+    if (!bag || bag.length === 0) {
+      bag = [...poolFor(cat, d)]
+      for (let i = bag.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1))
+        ;[bag[i], bag[j]] = [bag[j], bag[i]]
+      }
+    }
+    const entry = bag.pop()
+    bagRef.current[key] = bag
+    return entry
+  }, [poolFor])
+
+  const initGame = useCallback((cat, d, showW) => {
+    const entry = drawWord(cat || category, d || diff)
     setWord(entry.word.toLowerCase())
     setHint(entry.hint)
     setGuessed(new Set())
     setWrongCount(0)
+    wrongCountRef.current = 0
     setGameOver(false)
     setWon(false)
     setShowOverlay(false)
-    setStarted(false)
-    setShowWelcome(true)
-  }, [category])
+    setLastPoints(0)
+    setShowWelcome(!!showW)
+  }, [category, diff, drawWord])
 
-  useEffect(() => { initGame(category) }, [category, initGame])
+  useEffect(() => { initGame(category, diff, true) }, [category, diff, initGame])
 
   useEffect(() => { wrongCountRef.current = wrongCount }, [wrongCount])
 
   const guessLetter = useCallback((letter) => {
-    if (gameOver || guessed.has(letter)) return
+    if (gameOver || showWelcome || showOverlay) return
+    if (guessed.has(letter)) return
+    setStarted(true)
+    const correct = word.includes(letter)
     const newGuessed = new Set(guessed)
     newGuessed.add(letter)
     setGuessed(newGuessed)
-    setStarted(true)
 
-    if (!word.includes(letter)) {
-      setWrongCount(prev => {
-        const next = prev + 1
-        playWrong()
-        return next
-      })
-    } else {
-      playCorrect()
-    }
+    if (!correct) playWrong()
+    else playCorrect()
 
     const wonNow = word.split('').every(c => newGuessed.has(c))
-    const newWrongCount = wrongCountRef.current + (word.includes(letter) ? 0 : 1)
+    const newWrongCount = wrongCountRef.current + (correct ? 0 : 1)
+    if (!correct) {
+      wrongCountRef.current = newWrongCount
+      setWrongCount(newWrongCount)
+    }
     if (wonNow) {
+      const pts = word.length * DIFFS[diff].mult
+      setLastPoints(pts)
+      setStats(prev => {
+        const s = { ...prev, wins: prev.wins + 1, streak: prev.streak + 1, score: prev.score + pts }
+        s.best = Math.max(s.best, s.streak)
+        try { localStorage.setItem(STATS_KEY, JSON.stringify({ wins: s.wins, losses: s.losses, best: s.best, score: s.score })) } catch {}
+        return s
+      })
       setGameOver(true)
       setWon(true)
       setShowOverlay(true)
       playWin()
-    } else if (newWrongCount >= PARTS.length) {
+    } else if (newWrongCount >= MAX_WRONG) {
+      setStats(prev => {
+        const s = { ...prev, losses: prev.losses + 1, streak: 0 }
+        try { localStorage.setItem(STATS_KEY, JSON.stringify({ wins: s.wins, losses: s.losses, best: s.best, score: s.score })) } catch {}
+        return s
+      })
       setGameOver(true)
       setWon(false)
       setShowOverlay(true)
       playLose()
     }
-  }, [gameOver, guessed, word, wrongCount])
+  }, [gameOver, showWelcome, showOverlay, guessed, word, diff])
 
   useEffect(() => {
     const handler = (e) => {
-      if (gameOver || showOverlay) return
+      if (showWelcome || showOverlay) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault()
+          window.dispatchEvent(new Event('ut:game-start'))
+        }
+        return
+      }
+      if (gameOver) return
       if (/^[a-z]$/i.test(e.key)) {
         ensureAudio()
         guessLetter(e.key.toLowerCase())
@@ -210,50 +324,56 @@ export default function games_hangman() {
     }
     window.addEventListener('keydown', handler)
     return () => window.removeEventListener('keydown', handler)
-  }, [gameOver, showOverlay, guessLetter])
+  }, [gameOver, showWelcome, showOverlay, guessLetter])
 
+  // RAW start logic for the shell (ad + fullscreen handled by GameShell).
   const handleNewGame = () => {
     if (started && !gameOver) {
       if (!confirm('Start a new game? Your progress will be lost.')) return
     }
-    setShowWelcome(false)
-    initGame(category)
+    setStarted(true)
+    initGame(category, diff, false)
   }
 
-  const handleCategoryChange = (cat) => {
+  const changeOption = (fn) => {
     if (started && !gameOver) {
-      if (!confirm('Changing category starts a new game. Continue?')) return
+      if (!confirm('Changing options starts a new game. Continue?')) return
     }
-    setCategory(cat)
+    fn()
   }
 
   const wrongLetters = [...guessed].filter(c => !word.includes(c))
-  const guessedLetters = [...guessed].filter(c => word.includes(c))
-
-  const inputClass = "w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
-
 
   return (
     <GameShell
       name="HANGMAN"
       startAction={handleNewGame} startLabel={started && !gameOver ? '⟲ New Game' : '▶ New Game'}
-      headerStats={<><span>❌ <b className="text-red-300">{wrongCount}/{PARTS.length}</b></span><span className="text-slate-400">{category === 'all' ? 'All Categories' : category.charAt(0).toUpperCase() + category.slice(1)}</span></>}
+      extraButtons={<>
+        {Object.keys(DIFFS).map(k => (
+          <button key={k} type="button" onClick={() => changeOption(() => setDiff(k))}
+            className={`text-xs font-bold px-3 py-1.5 rounded-full border transition-all ${diff === k
+              ? 'bg-rose-500/25 border-rose-500/50 text-rose-200'
+              : 'bg-white/[0.06] border-white/[0.08] text-slate-400 hover:text-white'}`}>
+            {DIFFS[k].label}
+          </button>
+        ))}
+      </>}
+      headerStats={<><span>❌ <b className="text-red-300">{wrongCount}/{MAX_WRONG}</b></span><span>🔥 <b className="text-amber-300">{stats.streak}</b></span><span>⭐ <b className="text-emerald-300">{stats.score}</b></span><span className="text-slate-400">{category === 'all' ? 'All' : category.charAt(0).toUpperCase() + category.slice(1)} · {DIFFS[diff].label}</span></>}
       title="Hangman Game Online - Free Word Guessing Game"
- 
-      desc="Classic word-guessing game — pick a category, type letters to reveal the hidden word, and avoid drawing the full hangman in 6 wrong guesses."
+      desc="Classic word-guessing game with 100 words across 5 categories and 3 difficulty levels. Guess letters, build streaks and beat your best score."
       icon="🪢" iconBg="rgba(244,63,94,0.08)"
       category="fun" slug="games-hangman"
       faq={[
-        { q: "What is Hangman?", a: "Hangman is a classic word guessing game where you try to guess a hidden word one letter at a time. You have 6 wrong guesses before the hangman is complete." },
-        { q: "How many categories are there?", a: "There are 5 categories: Animals, Countries, Technology, Food, and Sports. You can also play with 'All' to mix them." },
-        { q: "How are wrong guesses tracked?", a: "Each wrong letter adds a body part to the hangman figure. After 6 wrong guesses the game ends — so guess strategically starting with common letters!" },
-        { q: "Can I use my keyboard?", a: "Yes! Type any letter on your keyboard to guess it. On mobile, tap the on-screen letter buttons instead." },
+        { q: "How is the score calculated?", a: "Each win earns points equal to the word length times the difficulty multiplier: Easy x1, Normal x2, Hard x3. Wins also build a streak — losing resets it." },
+        { q: "What do the difficulty levels change?", a: "Easy uses short words (5 letters or less), Normal mixes all 100 words, and Hard uses long words (7+ letters) worth triple points." },
+        { q: "Is my best score saved?", a: "Yes. Your wins, best streak and total score are saved in your browser, so they survive refreshes. Nothing is uploaded anywhere." },
+        { q: "Can I play with my keyboard?", a: "Yes. Type letters to guess, and press Enter on the welcome or game-over screen to start. On mobile, tap the on-screen keys." },
       ]}
       howItWorks={[
-        "Select a category or play with all words mixed.",
+        "Pick a category and difficulty, then press Start.",
         "Type a letter using your keyboard or tap the on-screen keys.",
         "Correct letters appear in the word. Wrong ones add body parts to the hangman.",
-        "Guess the word before 6 wrong guesses to win!",
+        "Guess the word before 6 wrong guesses to score points and grow your streak!",
       ]}
       schema={{
         "@context": "https://schema.org", "@type": "VideoGame",
@@ -268,14 +388,14 @@ export default function games_hangman() {
         {/* Category selector */}
         <div className="flex gap-2 items-center flex-wrap">
           <label className="text-sm font-semibold text-slate-300">Category:</label>
-          <select value={category} onChange={e => handleCategoryChange(e.target.value)}
+          <select value={category} onChange={e => changeOption(() => setCategory(e.target.value))}
             className="bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-4 py-2.5 text-sm text-white outline-none focus:border-indigo-500/40">
             <option value="all" className="bg-gray-900">All</option>
             {Object.keys(WORDS).map(cat => (
               <option key={cat} value={cat} className="bg-gray-900">{cat.charAt(0).toUpperCase() + cat.slice(1)}</option>
             ))}
           </select>
-
+          <span className="text-[11px] text-slate-500">{poolFor(category, diff).length} words · {DIFFS[diff].blurb}</span>
         </div>
 
         {/* Game area */}
@@ -286,15 +406,18 @@ export default function games_hangman() {
               <img src="/games/hangman/cover.jpg" alt="Hangman word guessing game cover art" loading="eager"
                 className="w-full max-w-[420px] aspect-video object-cover rounded-2xl border border-rose-400/30 shadow-[0_0_40px_rgba(244,63,94,0.35)] mb-4" />
               <h2 className="text-4xl sm:text-5xl font-black tracking-tighter bg-gradient-to-b from-rose-300 via-pink-300 to-purple-300 bg-clip-text text-transparent">HANGMAN</h2>
-              <p className="text-xs sm:text-sm text-slate-400 mt-1 mb-3">Guess the word · 5 categories · 6 wrong guesses</p>
+              <p className="text-xs sm:text-sm text-slate-400 mt-1 mb-3">Guess the word · 5 categories · 3 difficulties · 6 wrong guesses</p>
               <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">
-                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-rose-200">📝 40+ words</span>
+                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-rose-200">📝 100 words</span>
                 <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-purple-200">🗂️ 5 categories</span>
                 <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-amber-200">💡 Hints included</span>
-                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-cyan-200">⌨️ Keyboard input</span>
+                <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-cyan-200">🔥 Streaks + score</span>
               </div>
+              {(stats.wins > 0 || stats.score > 0) && (
+                <p className="text-xs text-slate-400 mb-3">Best streak <b className="text-amber-300">{stats.best}</b> · Wins <b className="text-emerald-300">{stats.wins}</b> · Score <b className="text-white">{stats.score}</b></p>
+              )}
               <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))} className="px-8 py-3 rounded-full bg-gradient-to-r from-rose-500 to-pink-500 text-white font-extrabold text-lg shadow-[0_0_30px_rgba(244,63,94,0.5)] hover:scale-105 transition">▶ Start Game</button>
-              <p className="text-[11px] text-slate-500 mt-3">Pick a category, then start</p>
+              <p className="text-[11px] text-slate-500 mt-3">Pick a category and difficulty, then start</p>
             </div>
           )}
           {/* SVG Hangman */}
@@ -325,21 +448,22 @@ export default function games_hangman() {
                 <p className="text-sm text-red-400 mb-2">Wrong: {wrongLetters.map(c => c.toUpperCase()).join(', ')}</p>
               )}
               <p className="text-sm font-bold text-white min-h-[1.4em]">
-                {showOverlay && (won ? `🎉 You won! The word was: ${word.toUpperCase()}` : `💀 Game over! The word was: ${word.toUpperCase()}`)}
+                {showOverlay && (won ? `🎉 You won! +${lastPoints} pts · The word was: ${word.toUpperCase()}` : `💀 Game over! The word was: ${word.toUpperCase()}`)}
               </p>
             </div>
           </div>
 
-          {/* Keyboard — sticky on mobile */}
-          <div className="sticky bottom-2 z-20 grid grid-cols-9 gap-1.5 mt-4 bg-[#030b14]/95 backdrop-blur-sm rounded-xl p-2 border border-white/[0.06]">
+          {/* On-screen keyboard (static DOM keys: no focus yank, no scroll jump) */}
+          <div className="grid grid-cols-9 gap-1.5 mt-4 bg-[#030b14]/95 rounded-xl p-2 border border-white/[0.06]" style={{ touchAction: 'manipulation' }}>
             {'abcdefghijklmnopqrstuvwxyz'.split('').map(c => {
               const isGuessed = guessed.has(c)
               const isWrong = isGuessed && !word.includes(c)
               const isCorrect = isGuessed && word.includes(c)
               return (
-                <button key={c} disabled={isGuessed || gameOver}
+                <button key={c} type="button" disabled={isGuessed || gameOver || showWelcome}
+                  onMouseDown={(e) => e.preventDefault()}
                   onClick={() => { ensureAudio(); guessLetter(c) }}
-                  className={`h-10 rounded-lg text-sm font-bold transition-all ${
+                  className={`h-10 rounded-lg text-sm font-bold select-none transition-all ${
                     isWrong ? 'bg-red-500/20 text-red-400 border border-red-500/30' :
                     isCorrect ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' :
                     'bg-white/[0.06] border border-white/[0.08] text-slate-300 hover:text-white hover:bg-white/10 active:scale-95'
@@ -354,9 +478,10 @@ export default function games_hangman() {
           {showOverlay && (
             <div className="absolute inset-0 bg-black/80 backdrop-blur-sm rounded-2xl flex flex-col items-center justify-center z-10">
               <div className="text-4xl mb-3">{won ? '🎉' : '💀'}</div>
-              <h2 className="text-xl font-bold text-white mb-2">{won ? 'You Won!' : 'Game Over!'}</h2>
-              <p className="text-sm text-slate-400 mb-4">The word was: {word.toUpperCase()}</p>
-              <button onClick={() => { setShowWelcome(false); initGame(category) }}
+              <h2 className="text-xl font-bold text-white mb-2">{won ? `You Won! +${lastPoints} pts` : 'Game Over!'}</h2>
+              <p className="text-sm text-slate-400 mb-1">The word was: {word.toUpperCase()}</p>
+              <p className="text-xs text-slate-500 mb-4">Streak <b className="text-amber-300">{stats.streak}</b> · Best <b className="text-amber-300">{stats.best}</b> · Score <b className="text-white">{stats.score}</b></p>
+              <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))}
                  className="glow-btn px-8 py-3 text-sm">
                 Play Again
               </button>
