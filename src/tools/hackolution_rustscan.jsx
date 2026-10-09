@@ -212,7 +212,7 @@ export default function hackolution_rustscan() {
 
       <Section id="screenshots" icon="🖼️" title="Screenshots" subtitle="RustScan mid-scan in the terminal">
         <figure className="rounded-xl overflow-hidden border border-white/10" style={{ background: 'rgba(0,0,0,0.3)' }}>
-          <img src="/assets/tools/rustscan/rustscan_logo.jpg" alt="RustScan fast port scanner logo" width="1200" height="630"
+          <img src="/assets/tools/rustscan/rustscan_logo.png" alt="RustScan fast port scanner logo" width="1200" height="630"
             className="w-full h-auto object-contain" loading="lazy" />
           <figcaption className="px-4 py-2 text-xs text-slate-400">RustScan open-port sweep handing results to Nmap for service detection</figcaption>
         </figure>

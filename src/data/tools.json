@@ -9372,6 +9372,113 @@
     "all",
     "security"
    ]
+  },
+  {
+   "slug": "hackolution/httpx",
+   "title": "HTTPX Fast HTTP Prober",
+   "icon": "🌐",
+   "desc": "Probe live web hosts fast with HTTPX status, title and tech detect (educational).",
+   "href": "/hackolution/httpx/",
+   "tags": [
+    "httpx",
+    "recon",
+    "web",
+    "security",
+    "pentesting"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
+  },
+  {
+   "slug": "hackolution/katana",
+   "title": "Katana Web Crawler",
+   "icon": "⚔️",
+   "desc": "Map lab apps deeply with Katana headless crawling and JS parsing (lab use only).",
+   "href": "/hackolution/katana/",
+   "tags": [
+    "katana",
+    "crawler",
+    "recon",
+    "web",
+    "security"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
+  },
+  {
+   "slug": "hackolution/netexec",
+   "title": "NetExec Network Executor",
+   "icon": "🖧",
+   "desc": "Audit lab networks with NetExec SMB, WinRM and credential checks (lab only).",
+   "href": "/hackolution/netexec/",
+   "tags": [
+    "netexec",
+    "smb",
+    "credentials",
+    "security",
+    "pentesting"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
+  },
+  {
+   "slug": "hackolution/mobsf",
+   "title": "MobSF Mobile Security Framework",
+   "icon": "📱",
+   "desc": "Static and dynamic mobile app audits with MobSF (authorized apps only).",
+   "href": "/hackolution/mobsf/",
+   "tags": [
+    "mobsf",
+    "mobile",
+    "android",
+    "ios",
+    "security"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
+  },
+  {
+   "slug": "hackolution/ghidra",
+   "title": "Ghidra Reverse Engineering Suite",
+   "icon": "🐉",
+   "desc": "Decompile lab binaries with NSA Ghidra and its decompiler (lab use only).",
+   "href": "/hackolution/ghidra/",
+   "tags": [
+    "ghidra",
+    "reverse",
+    "decompiler",
+    "security"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
+  },
+  {
+   "slug": "hackolution/beef",
+   "title": "BeEF Browser Exploitation Framework",
+   "icon": "🥩",
+   "desc": "Demo browser risks with BeEF hook.js in authorized labs (defense training).",
+   "href": "/hackolution/beef/",
+   "tags": [
+    "beef",
+    "browser",
+    "phishing",
+    "awareness",
+    "security"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
   }
  ],
  "categories": {
