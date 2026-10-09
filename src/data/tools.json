@@ -9586,6 +9586,112 @@
     "all",
     "security"
    ]
+  },
+  {
+   "slug": "hackolution/responder",
+   "title": "Responder Poisoning Lab",
+   "icon": "📢",
+   "desc": "Demo LLMNR poisoning and credential capture with Responder (lab only).",
+   "href": "/hackolution/responder/",
+   "tags": [
+    "responder",
+    "llmnr",
+    "poisoning",
+    "credentials",
+    "security"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
+  },
+  {
+   "slug": "hackolution/enum4linux",
+   "title": "Enum4linux SMB Enumerator",
+   "icon": "📂",
+   "desc": "Enumerate users, shares and policies via SMB with Enum4linux (lab only).",
+   "href": "/hackolution/enum4linux/",
+   "tags": [
+    "enum4linux",
+    "smb",
+    "enumeration",
+    "security"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
+  },
+  {
+   "slug": "hackolution/bettercap",
+   "title": "Bettercap MITM Framework",
+   "icon": "🦈",
+   "desc": "Inspect lab traffic with Bettercap sniffing and spoofing (lab only).",
+   "href": "/hackolution/bettercap/",
+   "tags": [
+    "bettercap",
+    "mitm",
+    "sniffing",
+    "security"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
+  },
+  {
+   "slug": "hackolution/wafw00f",
+   "title": "WAFW00F Firewall Detector",
+   "icon": "🧱",
+   "desc": "Fingerprint web firewalls with WAFW00F before lab tests (lab use only).",
+   "href": "/hackolution/wafw00f/",
+   "tags": [
+    "wafw00f",
+    "waf",
+    "recon",
+    "web",
+    "security"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
+  },
+  {
+   "slug": "hackolution/frida",
+   "title": "Frida Dynamic Instrumentation",
+   "icon": "💉",
+   "desc": "Hook lab app functions live with Frida scripts (authorized apps only).",
+   "href": "/hackolution/frida/",
+   "tags": [
+    "frida",
+    "hooking",
+    "mobile",
+    "reverse",
+    "security"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
+  },
+  {
+   "slug": "hackolution/gau",
+   "title": "GAU URL Collector",
+   "icon": "🗃️",
+   "desc": "Harvest historic URLs with GAU for lab recon (authorized domains only).",
+   "href": "/hackolution/gau/",
+   "tags": [
+    "gau",
+    "urls",
+    "recon",
+    "osint",
+    "security"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
   }
  ],
  "categories": {

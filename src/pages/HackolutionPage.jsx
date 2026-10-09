@@ -60,6 +60,12 @@ const tools = [
   { slug: 'chisel', name: 'Chisel', img: '/assets/tools/chisel/chisel_logo.jpg', alt: 'Chisel fast TCP tunnel logo', desc: 'Encrypted tunnels and SOCKS pivots for labs.', tag: 'Tunnel', accent: 'linear-gradient(135deg, rgba(6,182,212,0.2), rgba(27,255,110,0.08))' },
   { slug: 'jadx', name: 'JADX', img: '/assets/tools/jadx/jadx_logo.jpg', alt: 'JADX Android decompiler logo', desc: 'Decompile APKs back to readable Java.', tag: 'Decompiler', accent: 'linear-gradient(135deg, rgba(34,197,94,0.2), rgba(27,255,110,0.08))' },
   { slug: 'binwalk', name: 'Binwalk', img: '/assets/tools/binwalk/binwalk_logo.jpg', alt: 'Binwalk firmware analyzer logo', desc: 'Extract firmware images and find backdoors.', tag: 'Firmware', accent: 'linear-gradient(135deg, rgba(251,146,60,0.2), rgba(255,204,0,0.08))' },
+  { slug: 'responder', name: 'Responder', img: '/assets/tools/responder/responder_logo.jpg', alt: 'Responder poisoning lab logo', desc: 'LLMNR poisoning and hash capture in labs.', tag: 'Poisoning', accent: 'linear-gradient(135deg, rgba(239,68,68,0.2), rgba(255,204,0,0.08))' },
+  { slug: 'enum4linux', name: 'Enum4linux', img: '/assets/tools/enum4linux/enum4linux_logo.jpg', alt: 'Enum4linux SMB enumerator logo', desc: 'Users, shares, and policy via SMB.', tag: 'SMB enum', accent: 'linear-gradient(135deg, rgba(255,204,0,0.2), rgba(27,255,110,0.08))' },
+  { slug: 'bettercap', name: 'Bettercap', img: '/assets/tools/bettercap/bettercap_logo.jpg', alt: 'Bettercap MITM framework logo', desc: 'Sniff and spoof lab traffic live.', tag: 'MITM', accent: 'linear-gradient(135deg, rgba(6,182,212,0.2), rgba(239,68,68,0.08))' },
+  { slug: 'wafw00f', name: 'WAFW00F', img: '/assets/tools/wafw00f/wafw00f_logo.jpg', alt: 'WAFW00F firewall detector logo', desc: 'Name the firewall before you test.', tag: 'WAF detect', accent: 'linear-gradient(135deg, rgba(251,146,60,0.2), rgba(239,68,68,0.08))' },
+  { slug: 'frida', name: 'Frida', img: '/assets/tools/frida/frida_logo.jpg', alt: 'Frida dynamic instrumentation logo', desc: 'Hook running apps live.', tag: 'Hooking', accent: 'linear-gradient(135deg, rgba(179,102,255,0.2), rgba(239,68,68,0.08))' },
+  { slug: 'gau', name: 'GAU', img: '/assets/tools/gau/gau_logo.jpg', alt: 'GAU URL collector logo', desc: 'Harvest historic URLs from archives.', tag: 'URL harvest', accent: 'linear-gradient(135deg, rgba(6,182,212,0.2), rgba(179,102,255,0.08))' },
 ]
 
 // YouTube videos from the HNCKER channel (@hncker) — newest first, Sep 2026
