@@ -9261,6 +9261,117 @@
     "all",
     "social"
    ]
+  },
+  {
+   "slug": "hackolution/rustscan",
+   "title": "RustScan Fast Port Scanner",
+   "icon": "⚡",
+   "desc": "Scan all ports in seconds with RustScan and hand results to Nmap (educational).",
+   "href": "/hackolution/rustscan/",
+   "tags": [
+    "rustscan",
+    "portscan",
+    "scanner",
+    "recon",
+    "security",
+    "pentesting"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
+  },
+  {
+   "slug": "hackolution/linpeas",
+   "title": "LinPEAS Privilege Escalation Scanner",
+   "icon": "🔍",
+   "desc": "Audit Linux and Windows hosts for privilege escalation paths with LinPEAS (educational).",
+   "href": "/hackolution/linpeas/",
+   "tags": [
+    "linpeas",
+    "winpeas",
+    "privesc",
+    "peass",
+    "security",
+    "pentesting"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
+  },
+  {
+   "slug": "hackolution/maigret",
+   "title": "Maigret Username OSINT Search",
+   "icon": "👤",
+   "desc": "Trace a username across 500+ sites with Maigret reports (educational).",
+   "href": "/hackolution/maigret/",
+   "tags": [
+    "maigret",
+    "username",
+    "osint",
+    "sherlock",
+    "security"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
+  },
+  {
+   "slug": "hackolution/dalfox",
+   "title": "DalFox XSS Scanner",
+   "icon": "🦊",
+   "desc": "Find cross-site scripting flaws fast with DalFox parameter mining (lab use only).",
+   "href": "/hackolution/dalfox/",
+   "tags": [
+    "dalfox",
+    "xss",
+    "web",
+    "scanner",
+    "security",
+    "pentesting"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
+  },
+  {
+   "slug": "hackolution/impacket",
+   "title": "Impacket AD Toolkit",
+   "icon": "🏭",
+   "desc": "Test Active Directory labs with Impacket roasting, dumping and relay (lab only).",
+   "href": "/hackolution/impacket/",
+   "tags": [
+    "impacket",
+    "activedirectory",
+    "kerberos",
+    "security",
+    "pentesting"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
+  },
+  {
+   "slug": "hackolution/setoolkit",
+   "title": "Social Engineer Toolkit (SET)",
+   "icon": "🎣",
+   "desc": "Run authorized phishing simulations with the SET credential harvester (defense training).",
+   "href": "/hackolution/setoolkit/",
+   "tags": [
+    "setoolkit",
+    "phishing",
+    "socialengineering",
+    "awareness",
+    "security"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
   }
  ],
  "categories": {
