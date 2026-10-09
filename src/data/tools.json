@@ -9692,6 +9692,109 @@
     "all",
     "security"
    ]
+  },
+  {
+   "slug": "hackolution/medusa",
+   "title": "Medusa Login Brute-Forcer",
+   "icon": "🐙",
+   "desc": "Audit lab logins in parallel with Medusa modules (lab only).",
+   "href": "/hackolution/medusa/",
+   "tags": [
+    "medusa",
+    "bruteforce",
+    "credentials",
+    "security"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
+  },
+  {
+   "slug": "hackolution/crunch",
+   "title": "Crunch Wordlist Generator",
+   "icon": "🍪",
+   "desc": "Build custom password lists with Crunch patterns (lab use only).",
+   "href": "/hackolution/crunch/",
+   "tags": [
+    "crunch",
+    "wordlist",
+    "passwords",
+    "security"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
+  },
+  {
+   "slug": "hackolution/dirb",
+   "title": "DIRB Directory Scanner",
+   "icon": "📁",
+   "desc": "Find hidden web objects with DIRB wordlists (lab use only).",
+   "href": "/hackolution/dirb/",
+   "tags": [
+    "dirb",
+    "fuzzing",
+    "web",
+    "security"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
+  },
+  {
+   "slug": "hackolution/steghide",
+   "title": "Steghide Data Hider",
+   "icon": "🖼️",
+   "desc": "Hide and extract files in images with Steghide (own files only).",
+   "href": "/hackolution/steghide/",
+   "tags": [
+    "steghide",
+    "steganography",
+    "forensics",
+    "security"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
+  },
+  {
+   "slug": "hackolution/arjun",
+   "title": "Arjun Parameter Finder",
+   "icon": "🎯",
+   "desc": "Discover hidden HTTP parameters with Arjun (lab use only).",
+   "href": "/hackolution/arjun/",
+   "tags": [
+    "arjun",
+    "parameters",
+    "recon",
+    "web",
+    "security"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
+  },
+  {
+   "slug": "hackolution/toutatis",
+   "title": "Toutatis Instagram OSINT",
+   "icon": "📸",
+   "desc": "Audit Instagram exposure with Toutatis lookups (authorized use only).",
+   "href": "/hackolution/toutatis/",
+   "tags": [
+    "toutatis",
+    "instagram",
+    "osint",
+    "security"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
   }
  ],
  "categories": {

@@ -66,6 +66,12 @@ const tools = [
   { slug: 'wafw00f', name: 'WAFW00F', img: '/assets/tools/wafw00f/wafw00f_logo.jpg', alt: 'WAFW00F firewall detector logo', desc: 'Name the firewall before you test.', tag: 'WAF detect', accent: 'linear-gradient(135deg, rgba(251,146,60,0.2), rgba(239,68,68,0.08))' },
   { slug: 'frida', name: 'Frida', img: '/assets/tools/frida/frida_logo.jpg', alt: 'Frida dynamic instrumentation logo', desc: 'Hook running apps live.', tag: 'Hooking', accent: 'linear-gradient(135deg, rgba(179,102,255,0.2), rgba(239,68,68,0.08))' },
   { slug: 'gau', name: 'GAU', img: '/assets/tools/gau/gau_logo.jpg', alt: 'GAU URL collector logo', desc: 'Harvest historic URLs from archives.', tag: 'URL harvest', accent: 'linear-gradient(135deg, rgba(6,182,212,0.2), rgba(179,102,255,0.08))' },
+  { slug: 'medusa', name: 'Medusa', img: '/assets/tools/medusa/medusa_logo.jpg', alt: 'Medusa login brute-forcer logo', desc: 'Parallel login audits across protocols.', tag: 'Brute-forcer', accent: 'linear-gradient(135deg, rgba(255,107,53,0.2), rgba(239,68,68,0.08))' },
+  { slug: 'crunch', name: 'Crunch', img: '/assets/tools/crunch/crunch_logo.jpg', alt: 'Crunch wordlist generator logo', desc: 'Pattern-based custom password lists.', tag: 'Wordlists', accent: 'linear-gradient(135deg, rgba(255,204,0,0.2), rgba(251,146,60,0.08))' },
+  { slug: 'dirb', name: 'DIRB', img: '/assets/tools/dirb/dirb_logo.jpg', alt: 'DIRB directory scanner logo', desc: 'Classic hidden web object scanner.', tag: 'Dir scanner', accent: 'linear-gradient(135deg, rgba(27,255,110,0.2), rgba(6,182,212,0.08))' },
+  { slug: 'steghide', name: 'Steghide', img: '/assets/tools/steghide/steghide_logo.jpg', alt: 'Steghide data hider logo', desc: 'Hide files inside images and audio.', tag: 'Steganography', accent: 'linear-gradient(135deg, rgba(179,102,255,0.2), rgba(6,182,212,0.08))' },
+  { slug: 'arjun', name: 'Arjun', img: '/assets/tools/arjun/arjun_logo.jpg', alt: 'Arjun parameter finder logo', desc: 'Discover hidden HTTP parameters.', tag: 'Param finder', accent: 'linear-gradient(135deg, rgba(6,182,212,0.2), rgba(27,255,110,0.08))' },
+  { slug: 'toutatis', name: 'Toutatis', img: '/assets/tools/toutatis/toutatis_logo.jpg', alt: 'Toutatis Instagram OSINT logo', desc: 'Instagram exposure audits by handle.', tag: 'IG OSINT', accent: 'linear-gradient(135deg, rgba(214,41,118,0.2), rgba(179,102,255,0.08))' },
 ]
 
 // YouTube videos from the HNCKER channel (@hncker) — newest first, Sep 2026
