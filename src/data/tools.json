@@ -9479,6 +9479,113 @@
     "all",
     "security"
    ]
+  },
+  {
+   "slug": "hackolution/feroxbuster",
+   "title": "Feroxbuster Content Discovery",
+   "icon": "🧭",
+   "desc": "Brute-force hidden dirs and files fast with Feroxbuster (lab use only).",
+   "href": "/hackolution/feroxbuster/",
+   "tags": [
+    "feroxbuster",
+    "fuzzing",
+    "web",
+    "security",
+    "pentesting"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
+  },
+  {
+   "slug": "hackolution/bloodhound",
+   "title": "BloodHound AD Mapper",
+   "icon": "🩸",
+   "desc": "Map attack paths in lab Active Directory with BloodHound (lab only).",
+   "href": "/hackolution/bloodhound/",
+   "tags": [
+    "bloodhound",
+    "activedirectory",
+    "graph",
+    "security",
+    "pentesting"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
+  },
+  {
+   "slug": "hackolution/certipy",
+   "title": "Certipy AD CS Auditor",
+   "icon": "📜",
+   "desc": "Audit lab certificate services with Certipy ESC attacks (lab only).",
+   "href": "/hackolution/certipy/",
+   "tags": [
+    "certipy",
+    "certificates",
+    "activedirectory",
+    "security"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
+  },
+  {
+   "slug": "hackolution/chisel",
+   "title": "Chisel Fast TCP Tunnel",
+   "icon": "🚇",
+   "desc": "Pivot through lab networks with Chisel encrypted tunnels (lab only).",
+   "href": "/hackolution/chisel/",
+   "tags": [
+    "chisel",
+    "tunnel",
+    "pivoting",
+    "security",
+    "pentesting"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
+  },
+  {
+   "slug": "hackolution/jadx",
+   "title": "JADX Android Decompiler",
+   "icon": "🤖",
+   "desc": "Decompile APKs to Java with JADX GUI and CLI (authorized apps only).",
+   "href": "/hackolution/jadx/",
+   "tags": [
+    "jadx",
+    "android",
+    "reverse",
+    "mobile",
+    "security"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
+  },
+  {
+   "slug": "hackolution/binwalk",
+   "title": "Binwalk Firmware Analyzer",
+   "icon": "🔧",
+   "desc": "Extract firmware images and spot backdoors with Binwalk (lab use only).",
+   "href": "/hackolution/binwalk/",
+   "tags": [
+    "binwalk",
+    "firmware",
+    "iot",
+    "reverse",
+    "security"
+   ],
+   "cats": [
+    "all",
+    "security"
+   ]
   }
  ],
  "categories": {

@@ -533,6 +533,12 @@
   <url><loc>https://www.uptools.in/hackolution/mobsf/</loc><lastmod>2026-10-09</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.uptools.in/hackolution/ghidra/</loc><lastmod>2026-10-09</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.uptools.in/hackolution/beef/</loc><lastmod>2026-10-09</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.uptools.in/hackolution/feroxbuster/</loc><lastmod>2026-10-09</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.uptools.in/hackolution/bloodhound/</loc><lastmod>2026-10-09</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.uptools.in/hackolution/certipy/</loc><lastmod>2026-10-09</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.uptools.in/hackolution/chisel/</loc><lastmod>2026-10-09</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.uptools.in/hackolution/jadx/</loc><lastmod>2026-10-09</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.uptools.in/hackolution/binwalk/</loc><lastmod>2026-10-09</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.uptools.in/blogs/</loc><lastmod>2026-10-09</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.uptools.in/blogs/hydra-password-attacks-explained-defense-guide/</loc><lastmod>2026-09-19</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.uptools.in/blogs/burp-suite-web-hacking-proxy-guide/</loc><lastmod>2026-09-19</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
