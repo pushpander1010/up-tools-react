@@ -10185,7 +10185,7 @@
    "slug": "online-javascript-compiler",
    "title": "Online JavaScript Compiler",
    "icon": "🟨",
-   "desc": "Online JavaScript Compiler - write and run JavaScript (Node.js) free in your browser. Instant output, no sign-up needed.",
+   "desc": "Online JavaScript Compiler - write and run JavaScript code free in your browser. Instant output, no sign-up needed.",
    "href": "/online-javascript-compiler/",
    "tags": [
     "dev",
