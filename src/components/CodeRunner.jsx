@@ -35,7 +35,7 @@ async function runPython(src, input) {
   const text = input ? input + '\n' : ''
   const chars = Array.from(text)
   let idx = 0
-  py.setStdin({ stdin: () => (idx < chars.length ? chars[idx++].codePointAt(0) : null), error: true })
+  py.setStdin({ stdin: () => (idx < chars.length ? chars[idx++].codePointAt(0) : null) })
   await py.runPythonAsync(src)
   return out
 }
