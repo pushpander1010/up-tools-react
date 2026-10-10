@@ -10087,6 +10087,118 @@
     "crypto",
     "ai"
    ]
+  },
+  {
+   "slug": "online-python-compiler",
+   "title": "Online Python Compiler",
+   "icon": "🐍",
+   "desc": "Online Python Compiler - write and run Python 3 code free in your browser. Instant output, no sign-up, perfect for interviews.",
+   "href": "/online-python-compiler/",
+   "tags": [
+    "dev",
+    "python",
+    "compiler",
+    "interpreter",
+    "online",
+    "interview"
+   ],
+   "cats": [
+    "all",
+    "dev"
+   ]
+  },
+  {
+   "slug": "online-java-compiler",
+   "title": "Online Java Compiler",
+   "icon": "☕",
+   "desc": "Online Java Compiler - compile and run Java code free in your browser. Instant output, no sign-up, ideal for interviews.",
+   "href": "/online-java-compiler/",
+   "tags": [
+    "dev",
+    "java",
+    "compiler",
+    "online",
+    "interview"
+   ],
+   "cats": [
+    "all",
+    "dev"
+   ]
+  },
+  {
+   "slug": "online-c-compiler",
+   "title": "Online C Compiler",
+   "icon": "🔧",
+   "desc": "Online C Compiler - compile and run C programs (GCC) free in your browser. Instant output, no sign-up, great for interviews.",
+   "href": "/online-c-compiler/",
+   "tags": [
+    "dev",
+    "c",
+    "compiler",
+    "gcc",
+    "online",
+    "interview"
+   ],
+   "cats": [
+    "all",
+    "dev"
+   ]
+  },
+  {
+   "slug": "online-cpp-compiler",
+   "title": "Online C++ Compiler",
+   "icon": "⚙️",
+   "desc": "Online C++ Compiler - compile and run C++ programs (GCC) free in your browser. Instant output, no sign-up, interview-ready.",
+   "href": "/online-cpp-compiler/",
+   "tags": [
+    "dev",
+    "cpp",
+    "compiler",
+    "gcc",
+    "online",
+    "interview"
+   ],
+   "cats": [
+    "all",
+    "dev"
+   ]
+  },
+  {
+   "slug": "online-csharp-compiler",
+   "title": "Online C# Compiler",
+   "icon": "💠",
+   "desc": "Online C# Compiler - compile and run C# code free in your browser. Instant output, no sign-up, ideal for interview prep.",
+   "href": "/online-csharp-compiler/",
+   "tags": [
+    "dev",
+    "csharp",
+    "compiler",
+    "online",
+    "interview"
+   ],
+   "cats": [
+    "all",
+    "dev"
+   ]
+  },
+  {
+   "slug": "online-javascript-compiler",
+   "title": "Online JavaScript Compiler",
+   "icon": "🟨",
+   "desc": "Online JavaScript Compiler - write and run JavaScript (Node.js) free in your browser. Instant output, no sign-up needed.",
+   "href": "/online-javascript-compiler/",
+   "tags": [
+    "dev",
+    "javascript",
+    "nodejs",
+    "compiler",
+    "online",
+    "interview"
+   ],
+   "cats": [
+    "all",
+    "dev"
+   ]
   }
  ],
  "categories": {
