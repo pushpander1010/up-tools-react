@@ -9796,6 +9796,97 @@
     "all",
     "security"
    ]
+  },
+  {
+   "slug": "eighth-pay-commission-calculator",
+   "title": "Eighth Pay Commission Calculator",
+   "icon": "🇮🇳",
+   "desc": "8th Pay Commission Calculator - estimate revised basic, HRA and gross salary with fitment factor, online free. Instant results, no sign-up, works on mobile.",
+   "tags": [
+    "8th pay commission",
+    "salary",
+    "fitment factor",
+    "government employees",
+    "da",
+    "hra",
+    "finance"
+   ],
+   "cats": [
+    "all",
+    "finance"
+   ]
+  },
+  {
+   "slug": "swp-calculator",
+   "title": "SWP Calculator",
+   "icon": "💸",
+   "desc": "SWP Calculator - plan systematic withdrawal from mutual funds with monthly payout and balance forecast, online free. Instant results, no sign-up, works on mobile.",
+   "tags": [
+    "swp",
+    "mutual funds",
+    "withdrawal",
+    "retirement",
+    "sip",
+    "finance"
+   ],
+   "cats": [
+    "all",
+    "finance"
+   ]
+  },
+  {
+   "slug": "diwali-muhurat-finder-2026",
+   "title": "Diwali Muhurat Finder 2026",
+   "icon": "🪔",
+   "desc": "Diwali Muhurat Finder 2026 - Lakshmi Puja shubh muhurat by city with live countdown, online free. No sign-up, works on mobile.",
+   "tags": [
+    "diwali",
+    "muhurat",
+    "lakshmi puja",
+    "2026",
+    "festival",
+    "countdown"
+   ],
+   "cats": [
+    "all",
+    "india"
+   ]
+  },
+  {
+   "slug": "chhath-puja-2026-countdown",
+   "title": "Chhath Puja 2026 Countdown",
+   "icon": "🌅",
+   "desc": "Chhath Puja 2026 Countdown - live timer, 4-day calendar and city-wise arghya timings, online free. No sign-up, works on mobile.",
+   "tags": [
+    "chhath puja",
+    "countdown",
+    "arghya",
+    "2026",
+    "festival",
+    "bihar"
+   ],
+   "cats": [
+    "all",
+    "india"
+   ]
+  },
+  {
+   "slug": "fastag-toll-calculator",
+   "title": "FASTag Toll Calculator",
+   "icon": "🛣️",
+   "desc": "FASTag Toll Calculator - check toll charges between Indian cities by route and vehicle, online free. Instant results, no sign-up, works on mobile.",
+   "tags": [
+    "fastag",
+    "toll",
+    "highway",
+    "nhai",
+    "travel",
+    "india"
+   ],
+   "cats": [
+    "all",
+    "india"
+   ]
   }
  ],
  "categories": {
