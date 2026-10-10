@@ -9887,6 +9887,206 @@
     "all",
     "india"
    ]
+  },
+  {
+   "slug": "x402-protocol-explained",
+   "title": "What Is x402? HTTP Payments for AI Agents",
+   "icon": "3",
+   "desc": "What is x402? The HTTP 402 payment protocol explained in plain English: pay-per-request for AI agents, stablecoins, and why agents pay per visit.",
+   "href": "/x402-protocol-explained/",
+   "tags": [
+    "x402",
+    "agents",
+    "payments",
+    "402",
+    "crypto",
+    "USDC",
+    "guide"
+   ],
+   "cats": [
+    "all",
+    "crypto",
+    "ai"
+   ]
+  },
+  {
+   "slug": "x402-how-it-works",
+   "title": "How x402 Works: the Agent Request Flow",
+   "icon": "9",
+   "desc": "How the x402 flow works for AI agents: read the quote, check the budget, pay in stablecoin, retry with proof, and handle errors.",
+   "href": "/x402-how-it-works/",
+   "tags": [
+    "x402",
+    "agents",
+    "payments",
+    "tutorial",
+    "crypto",
+    "guide"
+   ],
+   "cats": [
+    "all",
+    "crypto",
+    "ai"
+   ]
+  },
+  {
+   "slug": "x402-cloudflare-setup",
+   "title": "Adding x402 to a Cloudflare Worker",
+   "icon": "R",
+   "desc": "Add x402 to a Cloudflare Worker: return 402 quotes, verify payment through a facilitator, and serve content only after proof checks out.",
+   "href": "/x402-cloudflare-setup/",
+   "tags": [
+    "x402",
+    "cloudflare",
+    "worker",
+    "agents",
+    "payments",
+    "tutorial",
+    "guide"
+   ],
+   "cats": [
+    "all",
+    "crypto",
+    "ai"
+   ]
+  },
+  {
+   "slug": "x402-vs-subscriptions",
+   "title": "x402 vs API Keys and Subscriptions",
+   "icon": "V",
+   "desc": "x402 micropayments vs API keys and subscriptions: when per-request pricing wins for agent traffic and when a flat plan is cheaper.",
+   "href": "/x402-vs-subscriptions/",
+   "tags": [
+    "x402",
+    "pricing",
+    "api",
+    "subscription",
+    "agents",
+    "guide"
+   ],
+   "cats": [
+    "all",
+    "crypto",
+    "ai"
+   ]
+  },
+  {
+   "slug": "x402-stablecoin-payments",
+   "title": "How x402 Stablecoin Settlement Works",
+   "icon": "5",
+   "desc": "How x402 stablecoin settlement works: USDC on Base, the facilitator role, on-chain verification, and payouts to the seller wallet.",
+   "href": "/x402-stablecoin-payments/",
+   "tags": [
+    "x402",
+    "USDC",
+    "base",
+    "stablecoin",
+    "settlement",
+    "crypto",
+    "guide"
+   ],
+   "cats": [
+    "all",
+    "crypto",
+    "ai"
+   ]
+  },
+  {
+   "slug": "x402-pricing-strategies",
+   "title": "Pricing Content for AI Agents",
+   "icon": "7",
+   "desc": "Pricing content for AI agents: cost-plus tiers, free samples, and simple rules for setting per-request prices that bots actually pay.",
+   "href": "/x402-pricing-strategies/",
+   "tags": [
+    "x402",
+    "pricing",
+    "monetization",
+    "agents",
+    "guide"
+   ],
+   "cats": [
+    "all",
+    "crypto",
+    "ai"
+   ]
+  },
+  {
+   "slug": "x402-security-best-practices",
+   "title": "x402 Security Best Practices",
+   "icon": "Y",
+   "desc": "x402 security checklist: server-side verification, replay protection, amount checks, refund policy, and logging every paid request.",
+   "href": "/x402-security-best-practices/",
+   "tags": [
+    "x402",
+    "security",
+    "verification",
+    "agents",
+    "guide"
+   ],
+   "cats": [
+    "all",
+    "crypto",
+    "ai"
+   ]
+  },
+  {
+   "slug": "x402-agent-wallets",
+   "title": "Agent Wallets: Caps and Guardrails",
+   "icon": "8",
+   "desc": "Agent wallets 101: stablecoin wallets for bots, per-request caps, daily budgets, per-domain limits, and kill switches that stop overspend.",
+   "href": "/x402-agent-wallets/",
+   "tags": [
+    "x402",
+    "wallet",
+    "agents",
+    "USDC",
+    "guide"
+   ],
+   "cats": [
+    "all",
+    "crypto",
+    "ai"
+   ]
+  },
+  {
+   "slug": "x402-monetize-api",
+   "title": "Monetize Your API With x402",
+   "icon": "9",
+   "desc": "Monetize your API with x402 per-request pricing: pick chargeable endpoints, keep humans free, test with agents, and track revenue.",
+   "href": "/x402-monetize-api/",
+   "tags": [
+    "x402",
+    "monetization",
+    "api",
+    "revenue",
+    "agents",
+    "guide"
+   ],
+   "cats": [
+    "all",
+    "crypto",
+    "ai"
+   ]
+  },
+  {
+   "slug": "x402-faq-agents",
+   "title": "x402 FAQ for Automated Agents",
+   "icon": "4",
+   "desc": "x402 FAQ written for automated agents: detect 402 quotes, retry with payment proof, respect caps, handle errors, and control spend.",
+   "href": "/x402-faq-agents/",
+   "tags": [
+    "x402",
+    "agents",
+    "faq",
+    "api",
+    "automation",
+    "guide"
+   ],
+   "cats": [
+    "all",
+    "crypto",
+    "ai"
+   ]
   }
  ],
  "categories": {
