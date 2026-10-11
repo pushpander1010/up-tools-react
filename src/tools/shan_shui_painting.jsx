@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useCallback } from 'react'
 import ToolLayout from '../components/ToolLayout'
 import useJumpToResult from '../hooks/useJumpToResult'
 
@@ -17,8 +17,12 @@ function randomSeed() {
 
 export default function ShanShuiPainting() {
   const [seed, setSeed] = useState(() => seedFromUrl() || randomSeed())
+  const [svg, setSvg] = useState('')
+  const [loading, setLoading] = useState(true)
   const [status, setStatus] = useState('')
   const iframeRef = useRef(null)
+  const artRef = useRef(null)
+  const triesRef = useRef(0)
   const { ref: resultRef, jumpTo } = useJumpToResult()
 
   useEffect(() => {
@@ -26,22 +30,43 @@ export default function ShanShuiPainting() {
     if (s) setSeed(s)
   }, [])
 
-  const src = `${ENGINE}?seed=${encodeURIComponent(seed)}`
-
-  function getSvgEl() {
+  const pullSvg = useCallback(() => {
     const doc = iframeRef.current?.contentDocument
-    if (!doc) return null
-    return doc.getElementById('SVG')
+    const el = doc?.getElementById('SVG')
+    if (el && el.outerHTML.length > 10000) {
+      setSvg(el.outerHTML)
+      setLoading(false)
+      return
+    }
+    triesRef.current += 1
+    if (triesRef.current < 40) {
+      setTimeout(pullSvg, 500)
+    } else {
+      setLoading(false)
+      setStatus('Painting took too long — click New Painting to retry.')
+    }
+  }, [])
+
+  function handleIframeLoad() {
+    triesRef.current = 0
+    setTimeout(pullSvg, 800)
   }
 
   function handleNew() {
-    setSeed(randomSeed())
+    setSvg('')
+    setLoading(true)
     setStatus('')
+    triesRef.current = 0
+    setSeed(randomSeed())
     jumpTo()
   }
 
+  function getArtSvg() {
+    return artRef.current?.querySelector('svg')
+  }
+
   function handleDownloadSVG() {
-    const el = getSvgEl()
+    const el = getArtSvg()
     if (!el) { setStatus('Painting still loading — wait a few seconds and try again.'); return }
     const text = new XMLSerializer().serializeToString(el)
     const blob = new Blob([text], { type: 'image/svg+xml' })
@@ -54,21 +79,20 @@ export default function ShanShuiPainting() {
   }
 
   function handleDownloadPNG() {
-    const el = getSvgEl()
+    const el = getArtSvg()
     if (!el) { setStatus('Painting still loading — wait a few seconds and try again.'); return }
     setStatus('Rendering PNG…')
     const clone = el.cloneNode(true)
     clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg')
-    const w = parseInt(clone.getAttribute('width') || '1600', 10)
+    const w = parseInt(clone.getAttribute('width') || '3000', 10)
     const h = parseInt(clone.getAttribute('height') || '800', 10)
     const text = new XMLSerializer().serializeToString(clone)
     const url = URL.createObjectURL(new Blob([text], { type: 'image/svg+xml' }))
     const img = new Image()
     img.onload = () => {
-      const scale = 2
       const canvas = document.createElement('canvas')
-      canvas.width = w * scale
-      canvas.height = h * scale
+      canvas.width = w
+      canvas.height = h
       const ctx = canvas.getContext('2d')
       ctx.fillStyle = '#efede6'
       ctx.fillRect(0, 0, canvas.width, canvas.height)
@@ -107,13 +131,13 @@ export default function ShanShuiPainting() {
       category="images" slug="shan-shui-painting"
       faq={[
         { q: "What is a shan shui painting?", a: "Shan shui (mountain-water) is classical Chinese landscape art. This generator paints a new unique scroll on every click using math — no two paintings are ever the same." },
-        { q: "How do I download my painting?", a: "Click Download SVG for a tiny infinitely-scalable vector file, or Download PNG for a 2x image you can share anywhere. Both are free with no sign-up." },
+        { q: "How do I download my painting?", a: "Click SVG for a tiny infinitely-scalable vector file, or PNG for an image you can share anywhere. Both are free with no sign-up." },
         { q: "Can I share a painting with someone?", a: "Yes — Copy Link saves this exact painting's seed. Anyone opening the link sees the identical scroll." },
         { q: "Is this free?", a: "Yes, completely free with no sign-up. Generate and download unlimited paintings. The engine is MIT-licensed open source by LingDong-." },
       ]}
       howItWorks={[
-        "The generator paints a fresh landscape scroll automatically when the page loads.",
-        "Scroll sideways inside the frame to travel through the painting.",
+        "A fresh landscape scroll is painted automatically when the page loads.",
+        "Drag sideways through the frame to travel across the painting.",
         "Click New Painting for a brand-new unique scroll.",
         "Download it as SVG (vector) or PNG (image), or copy the link to share this exact scene.",
       ]}
@@ -125,15 +149,27 @@ export default function ShanShuiPainting() {
       }}
     >
       <div className="max-w-4xl mx-auto space-y-6">
+        {/* Hidden engine: generates the SVG, we display it natively below */}
+        <iframe
+          ref={iframeRef}
+          key={seed}
+          src={`${ENGINE}?seed=${encodeURIComponent(seed)}`}
+          title=""
+          aria-hidden="true"
+          tabIndex={-1}
+          onLoad={handleIframeLoad}
+          style={{ position: 'absolute', width: '100%', height: 10, opacity: 0, pointerEvents: 'none', border: 'none' }}
+        />
+
         <div ref={resultRef} className="rounded-2xl overflow-hidden border-2 border-white/8 bg-[#efede6]">
-          <iframe
-            ref={iframeRef}
-            key={seed}
-            src={src}
-            title="Shan shui generative painting"
-            className="w-full block"
-            style={{ height: '52vh', minHeight: 340, border: 'none' }}
-          />
+          {loading && (
+            <div className="flex items-center justify-center py-20">
+              <p className="text-sm text-slate-500 font-medium">🏔️ Painting your scroll…</p>
+            </div>
+          )}
+          {svg && (
+            <div ref={artRef} className="overflow-x-auto" dangerouslySetInnerHTML={{ __html: svg }} />
+          )}
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
