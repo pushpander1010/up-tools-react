@@ -2,6 +2,46 @@ import { useState, useCallback, useRef } from 'react'
 import ToolLayout from '../components/ToolLayout'
 import useJumpToResult from '../hooks/useJumpToResult'
 
+function transliterate(text) {
+  text = text.toLowerCase()
+  const CONS = [
+    ['shri', 'श्री'], ['ksh', 'क्ष'], ['gya', 'ज्ञ'], ['jnya', 'ज्ञ'],
+    ['chh', 'छ'], ['kh', 'ख'], ['gh', 'घ'], ['ch', 'च'], ['jh', 'झ'],
+    ['th', 'थ'], ['dh', 'ध'], ['ph', 'फ'], ['bh', 'भ'], ['sh', 'श'],
+    ['ny', 'ञ'], ['ng', 'ङ'], ['tr', 'त्र'], ['pr', 'प्र'],
+    ['k', 'क'], ['g', 'ग'], ['c', 'च'], ['j', 'ज'], ['t', 'त'], ['d', 'द'],
+    ['n', 'न'], ['p', 'प'], ['b', 'ब'], ['m', 'म'], ['y', 'य'], ['r', 'र'],
+    ['l', 'ल'], ['v', 'व'], ['w', 'व'], ['f', 'फ़'], ['s', 'स'], ['h', 'ह'],
+    ['z', 'ज़'], ['q', 'क'], ['x', 'क्स'],
+  ]
+  const VOWS = [
+    ['aa', 'आ', 'ा'], ['ai', 'ऐ', 'ै'], ['ae', 'ऐ', 'ै'],
+    ['au', 'औ', 'ौ'], ['ou', 'औ', 'ौ'], ['ow', 'औ', 'ौ'],
+    ['ee', 'ई', 'ी'], ['ii', 'ई', 'ी'], ['oo', 'ऊ', 'ू'], ['uu', 'ऊ', 'ू'],
+    ['ri', 'ऋ', 'ृ'], ['oa', 'ओ', 'ो'],
+    ['a', 'अ', ''], ['e', 'ए', 'े'], ['i', 'इ', 'ि'], ['u', 'उ', 'ु'], ['o', 'ओ', 'ो'],
+  ]
+  const VIRAMA = '्'
+  let result = ''
+  let i = 0
+  let afterCons = false
+  while (i < text.length) {
+    const ch = text[i]
+    if (!/[a-z]/.test(ch)) { afterCons = false; result += ch; i++; continue }
+    let best = null, bestLen = 0, bestType = null
+    for (const [rom, dev] of CONS) {
+      if (text.startsWith(rom, i) && rom.length > bestLen) { best = dev; bestLen = rom.length; bestType = 'C' }
+    }
+    for (const [rom, sa, ma] of VOWS) {
+      if (text.startsWith(rom, i) && rom.length > bestLen) { best = [sa, ma]; bestLen = rom.length; bestType = 'V' }
+    }
+    if (bestType === 'C') { if (afterCons) result += VIRAMA; result += best; i += bestLen; afterCons = true }
+    else if (bestType === 'V') { const [sa, ma] = best; result += afterCons ? ma : sa; i += bestLen; afterCons = false }
+    else { result += ch; i++; afterCons = false }
+  }
+  return result
+}
+
 const HEADERS = [
   '॥ In Loving Memory ॥',
   '॥ With Heavy Hearts ॥',
@@ -18,6 +58,9 @@ const THEMES = [
   { id: 'classic', label: 'Classic Gold', bg1: '#fbf6ea', bg2: '#f0e2c4', accent: '#8a5a00', text: '#3d2c10', sub: '#6b5320', dark: false },
   { id: 'serene', label: 'Warm Golden', bg1: '#faf0d7', bg2: '#ecd3a0', accent: '#8a5a00', text: '#4a3208', sub: '#7a5c1a', dark: false },
   { id: 'maroon', label: 'Royal Maroon', bg1: '#4a0e0e', bg2: '#2a0808', accent: '#e8b64c', text: '#f5e9d0', sub: '#c9a86a', dark: true },
+  { id: 'saffron', label: 'Saffron Dawn', bg1: '#fff8ef', bg2: '#fbe3bd', accent: '#b45309', text: '#5a3200', sub: '#8a5a1a', dark: false },
+  { id: 'slate', label: 'Slate Serene', bg1: '#f5f7f9', bg2: '#dde5ec', accent: '#3f5468', text: '#22303d', sub: '#55697c', dark: false },
+  { id: 'bark', label: 'Deep Brown', bg1: '#3d2c17', bg2: '#201304', accent: '#e8b64c', text: '#f3e6cb', sub: '#c9a86a', dark: true },
 ]
 
 function wrapText(ctx, text, maxWidth) {
@@ -71,11 +114,11 @@ function drawCard(canvas, d, themeId, headerIdx, msgIdx) {
 
   // Om / Ik Onkar mark
   ctx.fillStyle = theme.accent
-  ctx.font = 'bold 100px Georgia, serif'
+  ctx.font = 'bold 100px Georgia,"Nirmala UI","Noto Sans Devanagari",serif'
   ctx.fillText('ॐ', W / 2, y)
   y += 95
 
-  ctx.font = 'bold 44px Georgia, serif'
+  ctx.font = 'bold 44px Georgia,"Nirmala UI","Noto Sans Devanagari",serif'
   ctx.textAlign = 'left'
   ctx.textBaseline = 'alphabetic'
   const hw = ctx.measureText(header).width
@@ -87,21 +130,21 @@ function drawCard(canvas, d, themeId, headerIdx, msgIdx) {
 
   // Deceased name
   ctx.fillStyle = theme.text
-  ctx.font = 'bold 62px Georgia, serif'
+  ctx.font = 'bold 62px Georgia,"Nirmala UI","Noto Sans Devanagari",serif'
   const nameLines = wrapText(ctx, d.deceased || 'Late Name', W - 220)
   nameLines.slice(0, 2).forEach(l => { ctx.fillText(l, W / 2, y); y += 72 })
   y += 10
 
   if (d.demise) {
     ctx.fillStyle = theme.sub
-    ctx.font = 'italic 32px Georgia, serif'
+    ctx.font = 'italic 32px Georgia,"Nirmala UI","Noto Sans Devanagari",serif'
     ctx.fillText(`Left for heavenly abode: ${d.demise}`, W / 2, y)
     y += 60
   }
 
   // Message
   ctx.fillStyle = theme.text
-  ctx.font = '30px Georgia, serif'
+  ctx.font = '30px Georgia,"Nirmala UI","Noto Sans Devanagari",serif'
   const msgLines = wrapText(ctx, msg, W - 220)
   msgLines.slice(0, 8).forEach(l => { ctx.fillText(l, W / 2, y); y += 46 })
   y += 40
@@ -115,11 +158,11 @@ function drawCard(canvas, d, themeId, headerIdx, msgIdx) {
   ctx.strokeRect(110, boxY, W - 220, 380)
   y = boxY + 66
   ctx.fillStyle = theme.accent
-  ctx.font = 'bold 34px Georgia, serif'
+  ctx.font = 'bold 34px Georgia,"Nirmala UI","Noto Sans Devanagari",serif'
   ctx.fillText('RASM PAGDI', W / 2, y)
   y += 52
   ctx.fillStyle = theme.text
-  ctx.font = '32px Georgia, serif'
+  ctx.font = '32px Georgia,"Nirmala UI","Noto Sans Devanagari",serif'
   if (d.date) { ctx.fillText(`Date: ${d.date}`, W / 2, y); y += 48 }
   if (d.time) { ctx.fillText(`Time: ${d.time}`, W / 2, y); y += 48 }
   if (d.venue) {
@@ -131,14 +174,14 @@ function drawCard(canvas, d, themeId, headerIdx, msgIdx) {
   // Family
   if (d.family) {
     ctx.fillStyle = theme.sub
-    ctx.font = 'italic 30px Georgia, serif'
+    ctx.font = 'italic 30px Georgia,"Nirmala UI","Noto Sans Devanagari",serif'
     const fLines = wrapText(ctx, `— ${d.family}`, W - 220)
     fLines.slice(0, 3).forEach(l => { ctx.fillText(l, W / 2, y); y += 44 })
     y += 10
   }
   if (d.phone) {
     ctx.fillStyle = theme.sub
-    ctx.font = '30px Georgia, serif'
+    ctx.font = '30px Georgia,"Nirmala UI","Noto Sans Devanagari",serif'
     ctx.fillText(`Contact: ${d.phone}`, W / 2, y)
     y += 50
   }
@@ -157,6 +200,17 @@ export default function rasm_pagdi_invitation() {
   const [pdfBusy, setPdfBusy] = useState(false)
 
   const set = (k) => (e) => { setD(prev => ({ ...prev, [k]: e.target.value })); setRendered(false) }
+
+  const handleHindi = () => {
+    setD(prev => ({
+      ...prev,
+      deceased: transliterate(prev.deceased),
+      venue: transliterate(prev.venue),
+      family: transliterate(prev.family),
+      customMsg: transliterate(prev.customMsg),
+    }))
+    setRendered(false)
+  }
 
   const handleRender = useCallback(() => {
     const canvas = canvasRef.current
@@ -216,14 +270,15 @@ export default function rasm_pagdi_invitation() {
       icon="🪔" iconBg="rgba(232,182,76,0.08)"
       category="india" slug="rasm-pagdi-invitation"
       faq={[
-        { q: "How do I make a Rasm Pagdi invitation?", a: "Fill in the name of the departed, ceremony date, time and venue, pick one of 3 respectful formats, then click Create Invitation. Download the card as a free PNG image or PDF." },
+        { q: "How do I make a Rasm Pagdi invitation?", a: "Fill in the name of the departed, ceremony date, time and venue, pick one of 6 respectful formats, then click Create Invitation. Download the card as a free PNG image or PDF." },
         { q: "Is this Rasm Pagdi card maker free?", a: "Yes, completely free with no sign-up. Unlimited cards, free image and PDF download." },
-        { q: "What formats are available?", a: "Three respectful canvas-drawn formats: Classic Gold (cream), Warm Golden, and Royal Maroon. Each includes header line, message, and a Rasm Pagdi programme box." },
+        { q: "What formats are available?", a: "Six respectful canvas-drawn formats: Classic Gold, Warm Golden, Royal Maroon, Saffron Dawn, Slate Serene, and Deep Brown. Each includes header line, message, and a Rasm Pagdi programme box." },
+        { q: "Can I make the card in Hindi?", a: "Yes — type names and address in English, tap 'English → Hindi (देवनागरी)', and the card is drawn in Hindi script. Works fully offline. Tip: use aa, ee, oo for long vowels — raam becomes राम, seeta becomes सीता." },
         { q: "Can I share the invitation on WhatsApp?", a: "Yes — after creating the card, use Share on WhatsApp to send the ceremony details, or download the image/PDF and forward it directly." },
       ]}
       howItWorks={[
-        "Enter details: name of departed, demise date, ceremony date, time, venue, family and contact.",
-        "Choose a header line, message preset (or write your own), and one of 3 formats.",
+        "Enter details: name of departed, demise date, ceremony date, time, venue, family and contact. Use English → Hindi for a Devanagari card.",
+        "Choose a header line, message preset (or write your own), and one of 6 formats.",
         "Click Create Invitation to render the card.",
         "Download free PNG image or PDF, or share details on WhatsApp.",
       ]}
@@ -297,6 +352,11 @@ export default function rasm_pagdi_invitation() {
             </div>
           </div>
         </div>
+
+        <button onClick={handleHindi}
+          className="w-full py-3 rounded-2xl border-2 border-orange-500/50 text-orange-300 font-bold text-sm hover:bg-orange-500/10 transition-all duration-200 active:scale-[0.98]">
+          अ English → Hindi (देवनागरी)
+        </button>
 
         <button onClick={handleRender}
           className="w-full py-4 rounded-2xl bg-amber-500 text-white font-bold text-sm hover:bg-amber-400 transition-all duration-200 active:scale-[0.98]">
