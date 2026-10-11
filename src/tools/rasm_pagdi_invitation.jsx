@@ -76,7 +76,11 @@ function drawCard(canvas, d, themeId, headerIdx, msgIdx) {
   y += 95
 
   ctx.font = 'bold 44px Georgia, serif'
-  ctx.fillText(header, W / 2, y)
+  ctx.textAlign = 'left'
+  ctx.textBaseline = 'alphabetic'
+  const hw = ctx.measureText(header).width
+  ctx.fillText(header, (W - hw) / 2, y)
+  ctx.textAlign = 'center'
   y += 30
   ctx.fillRect(W / 2 - 120, y, 240, 2)
   y += 70
@@ -139,9 +143,7 @@ function drawCard(canvas, d, themeId, headerIdx, msgIdx) {
     y += 50
   }
 
-  ctx.fillStyle = theme.sub
-  ctx.font = '22px sans-serif'
-  ctx.fillText('Made free with uptools.in/rasm-pagdi-invitation', W / 2, H - 80)
+  // (no watermark — clean personal invitation)
 }
 
 export default function rasm_pagdi_invitation() {
@@ -199,7 +201,8 @@ export default function rasm_pagdi_invitation() {
   }
 
   const handleWhatsApp = () => {
-    const text = encodeURIComponent(`Rasm Pagdi Invitation\n\nIn memory of: ${d.deceased || '(name)'}\nDate: ${d.date || '-'}\nTime: ${d.time || '-'}\nVenue: ${d.venue || '-'}\n\nKindly join us in prayers. ${d.phone ? 'Contact: ' + d.phone : ''}\nMade with uptools.in/rasm-pagdi-invitation`)
+    const text = encodeURIComponent(
+    `Rasm Pagdi Invitation\n\nIn memory of: ${d.deceased || '(name)'}\nDate: ${d.date || '-'}\nTime: ${d.time || '-'}\nVenue: ${d.venue || '-'}\n\nKindly join us in prayers.${d.phone ? ' Contact: ' + d.phone : ''}`)
     window.open(`https://wa.me/?text=${text}`, '_blank')
   }
 
