@@ -232,23 +232,6 @@ export default function rasm_pagdi_invitation() {
       }}
     >
       <div className="max-w-2xl mx-auto space-y-6">
-        <div>
-          <label className={labelClass}>Example Formats</label>
-          <div className="grid grid-cols-3 gap-3">
-            {[
-              { src: '/rasm-pagdi/ex1.jpg', theme: 'classic', cap: 'Classic' },
-              { src: '/rasm-pagdi/ex2.jpg', theme: 'classic', cap: 'Ecard' },
-              { src: '/rasm-pagdi/ex3.jpg', theme: 'serene', cap: 'Golden' },
-            ].map(ex => (
-              <button key={ex.src} onClick={() => { setThemeId(ex.theme); setRendered(false) }}
-                className={`rounded-xl overflow-hidden border-2 transition-all ${themeId === ex.theme ? 'border-indigo-500' : 'border-white/8 hover:border-white/20'}`}>
-                <img src={ex.src} alt={`Rasm Pagdi invitation example - ${ex.cap}`} className="w-full block" loading="lazy" />
-                <div className="text-[11px] font-bold py-1.5 text-slate-300 bg-white/[0.03]">{ex.cap}</div>
-              </button>
-            ))}
-          </div>
-          <p className="text-[11px] text-slate-500 mt-2">Tap an example to use its style. Your card is drawn fresh with your details.</p>
-        </div>
         <div className="space-y-4">
           <div>
             <label className={labelClass}>Name of Departed *</label>
