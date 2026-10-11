@@ -1,8 +1,15 @@
-import { useState, useRef, useEffect, useCallback } from 'react'
+import { useState, useRef, useEffect, useCallback, useMemo } from 'react'
 import ToolLayout from '../components/ToolLayout'
 import useJumpToResult from '../hooks/useJumpToResult'
+import engineHtml from './shan_shui_engine.html?raw'
 
-const ENGINE = '/shan-shui-painting/engine.html'
+function buildDoc(seed) {
+  // Inject our seed and disable the engine's own URL parsing
+  // (inside srcdoc, location.href is the parent page URL).
+  return engineHtml
+    .split('SEED = "" + new Date().getTime();').join(`SEED = ${JSON.stringify(seed)};`)
+    .split('parseArgs({').join('if(0)parseArgs({')
+}
 
 function seedFromUrl() {
   try {
@@ -29,6 +36,8 @@ export default function ShanShuiPainting() {
     const s = seedFromUrl()
     if (s) setSeed(s)
   }, [])
+
+  const srcDoc = useMemo(() => buildDoc(seed), [seed])
 
   const pullSvg = useCallback(() => {
     const doc = iframeRef.current?.contentDocument
@@ -153,7 +162,7 @@ export default function ShanShuiPainting() {
         <iframe
           ref={iframeRef}
           key={seed}
-          src={`${ENGINE}?seed=${encodeURIComponent(seed)}`}
+          srcDoc={srcDoc}
           title=""
           aria-hidden="true"
           tabIndex={-1}
