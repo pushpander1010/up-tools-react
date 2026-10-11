@@ -134,7 +134,7 @@ export default function hackolution_ai_trading() {
     >
       <Helmet>
         <meta name="robots" content="index, follow" />
-        <meta property="og:image" content="https://i.ytimg.com/vi/rzjEnnUSBOU/hqdefault.jpg" />
+        <meta property="og:image" content="https://www.uptools.in/assets/logo/hackolution.png" />
       </Helmet>
 
       <Section id="video" icon="🎬" title="HACKOLUTION reel" subtitle="Learn it on the HACKOLUTION channel">
@@ -146,17 +146,19 @@ export default function hackolution_ai_trading() {
               Check out the HACKOLUTION reel breaking down top open-source algorithmic trading libraries, quantitative backtesting engines, and risk management defense.
             </p>
             <div className="flex gap-2 flex-wrap justify-center">
-              <a href="https://www.instagram.com/hackolution" target="_blank" rel="noopener noreferrer"
+              <a href="https://www.instagram.com/reel/DeXK-oeThSG" target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-bold no-underline"
-                style={{ background: 'linear-gradient(92deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5)', color: '#fff' }}>📸 Watch on Instagram @hackolution</a>
+                style={{ background: 'linear-gradient(92deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5)', color: '#fff' }}>📸 Watch the Reel</a>
               <a href="https://www.youtube.com/@hncker" target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-bold no-underline bg-white/5 border border-white/10 text-slate-200 hover:text-white transition-all">▶ YouTube Channel</a>
             </div>
           </div>
           <figure className="rounded-xl overflow-hidden border border-white/10 mt-4" style={{ background: 'rgba(0,0,0,0.3)' }}>
-            <img src="https://i.ytimg.com/vi/rzjEnnUSBOU/hqdefault.jpg" alt="HACKOLUTION reel thumbnail" width="480" height="360"
+            <a href="https://www.instagram.com/reel/DeXK-oeThSG" target="_blank" rel="noopener noreferrer" className="block">
+            <img src="/assets/logo/hackolution.png" alt="HACKOLUTION reel cover" width="512" height="512"
               className="w-full h-auto object-contain" loading="lazy" />
-            <figcaption className="px-4 py-2 text-xs text-slate-400 text-center">Watch our latest AI and automation reels on the HACKOLUTION channel</figcaption>
+            </a>
+            <figcaption className="px-4 py-2 text-xs text-slate-400 text-center">Watch the reel on the HACKOLUTION channel</figcaption>
           </figure>
         </div>
       </Section>
