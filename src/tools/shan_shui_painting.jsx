@@ -1,12 +1,14 @@
-import { useState, useRef, useEffect, useCallback, useMemo } from 'react'
+import { useState, useRef, useEffect, useMemo } from 'react'
 import ToolLayout from '../components/ToolLayout'
 import useJumpToResult from '../hooks/useJumpToResult'
 import engineHtml from './shan_shui_engine.html?raw'
 
+const CHROME_CSS = `<style>html,body{margin:0;background:#efede6}#SETTING,#SOURCE_BTN,#L,#R{display:none!important}table{border:none!important}td{padding:0!important}</style>`
+
 function buildDoc(seed) {
-  // Inject our seed and disable the engine's own URL parsing
-  // (inside srcdoc, location.href is the parent page URL).
-  return engineHtml
+  // Inject our seed, hide the engine's own buttons/menus, and disable its
+  // URL parsing (inside srcdoc, location.href is the parent page URL).
+  return CHROME_CSS + engineHtml
     .split('SEED = "" + new Date().getTime();').join(`SEED = ${JSON.stringify(seed)};`)
     .split('parseArgs({').join('if(0)parseArgs({')
 }
@@ -24,12 +26,11 @@ function randomSeed() {
 
 export default function ShanShuiPainting() {
   const [seed, setSeed] = useState(() => seedFromUrl() || randomSeed())
-  const [svg, setSvg] = useState('')
-  const [loading, setLoading] = useState(true)
+  const [ready, setReady] = useState(false)
   const [status, setStatus] = useState('')
   const iframeRef = useRef(null)
-  const artRef = useRef(null)
   const triesRef = useRef(0)
+  const busyRef = useRef(false)
   const { ref: resultRef, jumpTo } = useJumpToResult()
 
   useEffect(() => {
@@ -39,43 +40,87 @@ export default function ShanShuiPainting() {
 
   const srcDoc = useMemo(() => buildDoc(seed), [seed])
 
-  const pullSvg = useCallback(() => {
-    const doc = iframeRef.current?.contentDocument
-    const el = doc?.getElementById('SVG')
-    if (el && el.outerHTML.length > 10000) {
-      setSvg(el.outerHTML)
-      setLoading(false)
+  function engineWin() {
+    return iframeRef.current?.contentWindow || null
+  }
+
+  function checkReady() {
+    const svg = iframeRef.current?.contentDocument?.getElementById('SVG')
+    if (svg && svg.outerHTML.length > 10000) {
+      setReady(true)
+      attachEdgeExtend()
       return
     }
     triesRef.current += 1
     if (triesRef.current < 40) {
-      setTimeout(pullSvg, 500)
+      setTimeout(checkReady, 500)
     } else {
-      setLoading(false)
       setStatus('Painting took too long — click New Painting to retry.')
     }
-  }, [])
+  }
+
+  // When the user scrolls near either end, grow the scroll in that
+  // direction so the scroll never ends. Same-origin srcdoc: allowed.
+  function attachEdgeExtend() {
+    const win = engineWin()
+    if (!win || win.__edgeHook) return
+    win.__edgeHook = true
+    win.addEventListener('scroll', () => {
+      if (busyRef.current) return
+      try {
+        const max = win.document.body.scrollWidth - win.innerWidth
+        if (max < 100) return
+        if (win.scrollX > max - 350) {
+          busyRef.current = true
+          win.xcroll(600)
+          setTimeout(() => {
+            try { win.scrollTo((win.document.body.scrollWidth - win.innerWidth) / 2, 0) } catch {}
+            busyRef.current = false
+          }, 900)
+        } else if (win.scrollX < 350) {
+          busyRef.current = true
+          win.xcroll(-600)
+          setTimeout(() => {
+            try { win.scrollTo((win.document.body.scrollWidth - win.innerWidth) / 2, 0) } catch {}
+            busyRef.current = false
+          }, 900)
+        }
+      } catch {}
+    })
+  }
 
   function handleIframeLoad() {
     triesRef.current = 0
-    setTimeout(pullSvg, 800)
+    busyRef.current = false
+    setTimeout(checkReady, 800)
+  }
+
+  function travel(dir) {
+    const win = engineWin()
+    if (!win || !ready) return
+    try {
+      win.xcroll(dir * 600)
+      setTimeout(() => {
+        try { win.scrollTo((win.document.body.scrollWidth - win.innerWidth) / 2, 0) } catch {}
+      }, 600)
+    } catch {}
   }
 
   function handleNew() {
-    setSvg('')
-    setLoading(true)
+    setReady(false)
     setStatus('')
     triesRef.current = 0
+    busyRef.current = false
     setSeed(randomSeed())
     jumpTo()
   }
 
-  function getArtSvg() {
-    return artRef.current?.querySelector('svg')
+  function getLiveSvg() {
+    return iframeRef.current?.contentDocument?.getElementById('SVG') || null
   }
 
   function handleDownloadSVG() {
-    const el = getArtSvg()
+    const el = getLiveSvg()
     if (!el) { setStatus('Painting still loading — wait a few seconds and try again.'); return }
     const text = new XMLSerializer().serializeToString(el)
     const blob = new Blob([text], { type: 'image/svg+xml' })
@@ -88,7 +133,7 @@ export default function ShanShuiPainting() {
   }
 
   function handleDownloadPNG() {
-    const el = getArtSvg()
+    const el = getLiveSvg()
     if (!el) { setStatus('Painting still loading — wait a few seconds and try again.'); return }
     setStatus('Rendering PNG…')
     const clone = el.cloneNode(true)
@@ -135,20 +180,21 @@ export default function ShanShuiPainting() {
   return (
     <ToolLayout
       title="Shan Shui Painting Generator"
-      desc="Generate endless Chinese ink-wash landscape scrolls — every click paints a unique mountains-and-water scene you can download as SVG or PNG."
+      desc="An endless Chinese ink-wash landscape scroll — travel forever in either direction, then download your scene as SVG or PNG."
       icon="🏔️" iconBg="rgba(0,200,180,0.08)"
       category="images" slug="shan-shui-painting"
       faq={[
-        { q: "What is a shan shui painting?", a: "Shan shui (mountain-water) is classical Chinese landscape art. This generator paints a new unique scroll on every click using math — no two paintings are ever the same." },
+        { q: "What is a shan shui painting?", a: "Shan shui (mountain-water) is classical Chinese landscape art. This generator paints an endless unique scroll using math — no two scenes are ever the same." },
+        { q: "How do I travel through the painting?", a: "Drag sideways inside the frame, or use the arrow buttons. New mountains, water and trees are painted automatically as you reach either end — the scroll never runs out." },
         { q: "How do I download my painting?", a: "Click SVG for a tiny infinitely-scalable vector file, or PNG for an image you can share anywhere. Both are free with no sign-up." },
         { q: "Can I share a painting with someone?", a: "Yes — Copy Link saves this exact painting's seed. Anyone opening the link sees the identical scroll." },
         { q: "Is this free?", a: "Yes, completely free with no sign-up. Generate and download unlimited paintings. The engine is MIT-licensed open source by LingDong-." },
       ]}
       howItWorks={[
         "A fresh landscape scroll is painted automatically when the page loads.",
-        "Drag sideways through the frame to travel across the painting.",
+        "Drag sideways or press the arrows to travel — new scenery generates as you reach either end.",
         "Click New Painting for a brand-new unique scroll.",
-        "Download it as SVG (vector) or PNG (image), or copy the link to share this exact scene.",
+        "Download the current scene as SVG (vector) or PNG (image), or copy the link to share it.",
       ]}
       schema={{
         "@context": "https://schema.org", "@type": "SoftwareApplication",
@@ -158,26 +204,28 @@ export default function ShanShuiPainting() {
       }}
     >
       <div className="max-w-4xl mx-auto space-y-6">
-        {/* Hidden engine: generates the SVG, we display it natively below */}
-        <iframe
-          ref={iframeRef}
-          key={seed}
-          srcDoc={srcDoc}
-          title=""
-          aria-hidden="true"
-          tabIndex={-1}
-          onLoad={handleIframeLoad}
-          style={{ position: 'absolute', width: '100%', height: 10, opacity: 0, pointerEvents: 'none', border: 'none' }}
-        />
-
-        <div ref={resultRef} className="rounded-2xl overflow-hidden border-2 border-white/8 bg-[#efede6]">
-          {loading && (
+        <div ref={resultRef} className="rounded-2xl overflow-hidden border-2 border-white/8 bg-[#efede6] relative">
+          {!ready && (
             <div className="flex items-center justify-center py-20">
               <p className="text-sm text-slate-500 font-medium">🏔️ Painting your scroll…</p>
             </div>
           )}
-          {svg && (
-            <div ref={artRef} className="overflow-x-auto" dangerouslySetInnerHTML={{ __html: svg }} />
+          <iframe
+            ref={iframeRef}
+            key={seed}
+            srcDoc={srcDoc}
+            title="Endless shan shui painting — drag sideways to travel"
+            onLoad={handleIframeLoad}
+            className="w-full block"
+            style={{ height: ready ? '56vh' : 0, minHeight: ready ? 380 : 0, border: 'none', background: '#efede6' }}
+          />
+          {ready && (
+            <>
+              <button onClick={() => travel(-1)} aria-label="Travel left"
+                className="absolute left-3 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/60 text-white text-xl font-bold hover:bg-black/80 transition-all active:scale-95">‹</button>
+              <button onClick={() => travel(1)} aria-label="Travel right"
+                className="absolute right-3 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/60 text-white text-xl font-bold hover:bg-black/80 transition-all active:scale-95">›</button>
+            </>
           )}
         </div>
 
