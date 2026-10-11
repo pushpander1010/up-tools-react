@@ -621,6 +621,28 @@
    ]
   },
   {
+   "slug": "hackolution/ai-trading",
+   "title": "NautilusTrader AI Trading Bots",
+   "icon": "🤖",
+   "desc": "Trending AI trading GitHub libraries: NautilusTrader (17k+ stars Rust+Python engine), Freqtrade, Hummingbot — setup, backtesting, risk management.",
+   "href": "/hackolution/ai-trading/",
+   "tags": [
+    "ai-trading",
+    "nautilustrader",
+    "algo",
+    "trading",
+    "bot",
+    "backtest",
+    "freqtrade",
+    "hummingbot",
+    "finance"
+   ],
+   "cats": [
+    "all",
+    "finance"
+   ]
+  },
+  {
    "slug": "aimakerich/algo-trading-strategies",
    "title": "Algo Trading Strategies",
    "icon": "🤖",
@@ -5989,6 +6011,26 @@
    ]
   },
   {
+   "slug": "hackolution/freqtrade",
+   "title": "Freqtrade Crypto Trading Bot",
+   "icon": "🤖",
+   "desc": "Run the Freqtrade bot: backtest strategies, dry-run paper trade, control from Telegram (educational).",
+   "href": "/hackolution/freqtrade/",
+   "tags": [
+    "freqtrade",
+    "trading",
+    "bot",
+    "crypto",
+    "backtest",
+    "security",
+    "automation"
+   ],
+   "cats": [
+    "all",
+    "finance"
+   ]
+  },
+  {
    "slug": "noc-letter-generator",
    "title": "NOC Letter Generator — Free Format",
    "icon": "📄",
@@ -9194,6 +9236,27 @@
     "all",
     "cricket",
     "sports"
+   ]
+  },
+  {
+   "slug": "rasm-pagdi-invitation",
+   "title": "Rasm Pagdi Invitation Maker",
+   "icon": "🪔",
+   "desc": "Make a respectful Rasm Pagdi invitation card free: fill details, pick Classic Gold, Serene White or Royal Maroon format, download image or PDF, share on WhatsApp.",
+   "href": "/rasm-pagdi-invitation/",
+   "tags": [
+    "rasm pagdi",
+    "invitation",
+    "shradhanjali",
+    "card maker",
+    "india",
+    "punjab",
+    "haryana"
+   ],
+   "cats": [
+    "all",
+    "india",
+    "fun"
    ]
   },
   {
