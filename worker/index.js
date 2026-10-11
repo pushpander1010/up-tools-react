@@ -1626,8 +1626,9 @@ export default {
       });
     }
 
-    // APK downloads: strip the www trailing-slash redirect so static asset resolves
-    if (url.pathname.startsWith('/downloads/') && url.pathname !== '/downloads/' && url.pathname.endsWith('/')) {
+    // Static files: strip the www trailing-slash redirect so the asset resolves
+    // (covers /downloads/*.apk and any other file path like /shan-shui-painting/engine.html)
+    if (url.pathname.length > 1 && url.pathname.endsWith('/') && /\.[a-z0-9]+$/i.test(url.pathname.slice(0, -1))) {
       const fixed = new URL(req.url);
       fixed.pathname = url.pathname.slice(0, -1);
       return env.ASSETS.fetch(new Request(fixed.toString(), req));
