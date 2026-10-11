@@ -144,10 +144,15 @@ export default function hackolution_maigret() {
             <p className="text-xs text-slate-400 mb-5 max-w-md mx-auto">
               Check out the HACKOLUTION reel for username tracing across 500+ sites, top-site quick checks, and reading Maigret reports.
             </p>
+            <a href="https://www.instagram.com/reel/DeXK-oeThSG" target="_blank" rel="noopener noreferrer"
+              className="block max-w-md mx-auto mb-5 rounded-xl overflow-hidden border border-white/10">
+              <img src="/assets/tools/maigret/maigret_cover.jpg" alt="Maigret Instagram reel cover" width="1280" height="720"
+                className="w-full h-auto object-contain" loading="lazy" />
+            </a>
             <div className="flex gap-2 flex-wrap justify-center">
-              <a href="https://www.instagram.com/hackolution" target="_blank" rel="noopener noreferrer"
+              <a href="https://www.instagram.com/reel/DeXK-oeThSG" target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-bold no-underline"
-                style={{ background: 'linear-gradient(92deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5)', color: '#fff' }}>📸 Watch on Instagram @hackolution</a>
+                style={{ background: 'linear-gradient(92deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5)', color: '#fff' }}>📸 Watch the Reel</a>
               <a href="https://www.youtube.com/@hncker" target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-bold no-underline bg-white/5 border border-white/10 text-slate-200 hover:text-white transition-all">▶ YouTube Channel</a>
             </div>
@@ -212,9 +217,9 @@ export default function hackolution_maigret() {
 
       <Section id="screenshots" icon="🖼️" title="Screenshots" subtitle="Maigret report for a username search">
         <figure className="rounded-xl overflow-hidden border border-white/10" style={{ background: 'rgba(0,0,0,0.3)' }}>
-          <img src="/assets/tools/maigret/maigret_logo.jpg" alt="Maigret username OSINT logo" width="1200" height="630"
+          <img src="/assets/tools/maigret/maigret_cover.jpg" alt="Maigret video cover" width="1200" height="630"
             className="w-full h-auto object-contain" loading="lazy" />
-          <figcaption className="px-4 py-2 text-xs text-slate-400">Maigret HTML report — matched profiles grouped by site category</figcaption>
+          <figcaption className="px-4 py-2 text-xs text-slate-400">Maigret — find anyone by username</figcaption>
         </figure>
       </Section>
 
