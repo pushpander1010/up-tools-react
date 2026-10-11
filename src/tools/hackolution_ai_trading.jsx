@@ -134,7 +134,7 @@ export default function hackolution_ai_trading() {
     >
       <Helmet>
         <meta name="robots" content="index, follow" />
-        <meta property="og:image" content="https://www.uptools.in/assets/logo/hackolution.png" />
+        <meta property="og:image" content="https://www.uptools.in/assets/tools/ai-trading/nautilus_cover.jpg" />
       </Helmet>
 
       <Section id="video" icon="🎬" title="HACKOLUTION reel" subtitle="Learn it on the HACKOLUTION channel">
@@ -155,7 +155,7 @@ export default function hackolution_ai_trading() {
           </div>
           <figure className="rounded-xl overflow-hidden border border-white/10 mt-4" style={{ background: 'rgba(0,0,0,0.3)' }}>
             <a href="https://www.instagram.com/reel/DeXK-oeThSG" target="_blank" rel="noopener noreferrer" className="block">
-            <img src="/assets/logo/hackolution.png" alt="HACKOLUTION reel cover" width="512" height="512"
+            <img src="/assets/tools/ai-trading/nautilus_cover.jpg" alt="NautilusTrader algorithmic trading cover" width="1200" height="669"
               className="w-full h-auto object-contain" loading="lazy" />
             </a>
             <figcaption className="px-4 py-2 text-xs text-slate-400 text-center">Watch the reel on the HACKOLUTION channel</figcaption>
