@@ -10262,6 +10262,28 @@
     "all",
     "dev"
    ]
+  },
+  {
+   "slug": "shan-shui-painting",
+   "title": "Shan Shui Painting Generator",
+   "icon": "🏔️",
+   "desc": "Generate endless Chinese ink-wash landscape scrolls — every click paints a unique scene. Download as SVG or PNG, share by link. Free, no sign-up.",
+   "href": "/shan-shui-painting/",
+   "tags": [
+    "shan shui",
+    "chinese painting",
+    "landscape",
+    "generative art",
+    "svg",
+    "download",
+    "ink wash",
+    "scroll"
+   ],
+   "cats": [
+    "all",
+    "images",
+    "fun"
+   ]
   }
  ],
  "categories": {
