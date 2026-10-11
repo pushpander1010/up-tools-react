@@ -16,7 +16,7 @@ const MSGS = [
 
 const THEMES = [
   { id: 'classic', label: 'Classic Gold', bg1: '#fbf6ea', bg2: '#f0e2c4', accent: '#8a5a00', text: '#3d2c10', sub: '#6b5320', dark: false },
-  { id: 'serene', label: 'Serene White', bg1: '#ffffff', bg2: '#eef1f4', accent: '#5b6b7a', text: '#26313b', sub: '#5b6b7a', dark: false },
+  { id: 'serene', label: 'Warm Golden', bg1: '#faf0d7', bg2: '#ecd3a0', accent: '#8a5a00', text: '#4a3208', sub: '#7a5c1a', dark: false },
   { id: 'maroon', label: 'Royal Maroon', bg1: '#4a0e0e', bg2: '#2a0808', accent: '#e8b64c', text: '#f5e9d0', sub: '#c9a86a', dark: true },
 ]
 
@@ -39,7 +39,7 @@ function wrapText(ctx, text, maxWidth) {
 
 function drawCard(canvas, d, themeId, headerIdx, msgIdx) {
   const ctx = canvas.getContext('2d')
-  const W = 1080, H = 1440
+  const W = 1080, H = 1890
   canvas.width = W; canvas.height = H
   const theme = THEMES.find(t => t.id === themeId) || THEMES[0]
   const header = HEADERS[headerIdx] || HEADERS[0]
@@ -67,13 +67,13 @@ function drawCard(canvas, d, themeId, headerIdx, msgIdx) {
   })
 
   ctx.textAlign = 'center'
-  let y = 170
+  let y = 230
 
   // Om / Ik Onkar mark
   ctx.fillStyle = theme.accent
-  ctx.font = 'bold 84px Georgia, serif'
+  ctx.font = 'bold 100px Georgia, serif'
   ctx.fillText('ॐ', W / 2, y)
-  y += 70
+  y += 95
 
   ctx.font = 'bold 44px Georgia, serif'
   ctx.fillText(header, W / 2, y)
@@ -99,16 +99,16 @@ function drawCard(canvas, d, themeId, headerIdx, msgIdx) {
   ctx.fillStyle = theme.text
   ctx.font = '30px Georgia, serif'
   const msgLines = wrapText(ctx, msg, W - 220)
-  msgLines.slice(0, 6).forEach(l => { ctx.fillText(l, W / 2, y); y += 46 })
-  y += 30
+  msgLines.slice(0, 8).forEach(l => { ctx.fillText(l, W / 2, y); y += 46 })
+  y += 40
 
   // Programme box
   ctx.fillStyle = theme.dark ? 'rgba(232,182,76,0.08)' : 'rgba(138,90,0,0.06)'
   const boxY = y
-  ctx.fillRect(110, boxY, W - 220, 300)
+  ctx.fillRect(110, boxY, W - 220, 380)
   ctx.strokeStyle = theme.accent
   ctx.lineWidth = 2
-  ctx.strokeRect(110, boxY, W - 220, 300)
+  ctx.strokeRect(110, boxY, W - 220, 380)
   y = boxY + 66
   ctx.fillStyle = theme.accent
   ctx.font = 'bold 34px Georgia, serif'
@@ -122,7 +122,7 @@ function drawCard(canvas, d, themeId, headerIdx, msgIdx) {
     const vLines = wrapText(ctx, `Venue: ${d.venue}`, W - 300)
     vLines.slice(0, 2).forEach(l => { ctx.fillText(l, W / 2, y); y += 46 })
   }
-  y = boxY + 300 + 60
+  y = boxY + 380 + 70
 
   // Family
   if (d.family) {
@@ -215,7 +215,7 @@ export default function rasm_pagdi_invitation() {
       faq={[
         { q: "How do I make a Rasm Pagdi invitation?", a: "Fill in the name of the departed, ceremony date, time and venue, pick one of 3 respectful formats, then click Create Invitation. Download the card as a free PNG image or PDF." },
         { q: "Is this Rasm Pagdi card maker free?", a: "Yes, completely free with no sign-up. Unlimited cards, free image and PDF download." },
-        { q: "What formats are available?", a: "Three respectful canvas-drawn formats: Classic Gold (cream), Serene White, and Royal Maroon. Each includes header line, message, and a Rasm Pagdi programme box." },
+        { q: "What formats are available?", a: "Three respectful canvas-drawn formats: Classic Gold (cream), Warm Golden, and Royal Maroon. Each includes header line, message, and a Rasm Pagdi programme box." },
         { q: "Can I share the invitation on WhatsApp?", a: "Yes — after creating the card, use Share on WhatsApp to send the ceremony details, or download the image/PDF and forward it directly." },
       ]}
       howItWorks={[
@@ -232,6 +232,23 @@ export default function rasm_pagdi_invitation() {
       }}
     >
       <div className="max-w-2xl mx-auto space-y-6">
+        <div>
+          <label className={labelClass}>Example Formats</label>
+          <div className="grid grid-cols-3 gap-3">
+            {[
+              { src: '/rasm-pagdi/ex1.jpg', theme: 'classic', cap: 'Classic' },
+              { src: '/rasm-pagdi/ex2.jpg', theme: 'classic', cap: 'Ecard' },
+              { src: '/rasm-pagdi/ex3.jpg', theme: 'serene', cap: 'Golden' },
+            ].map(ex => (
+              <button key={ex.src} onClick={() => { setThemeId(ex.theme); setRendered(false) }}
+                className={`rounded-xl overflow-hidden border-2 transition-all ${themeId === ex.theme ? 'border-indigo-500' : 'border-white/8 hover:border-white/20'}`}>
+                <img src={ex.src} alt={`Rasm Pagdi invitation example - ${ex.cap}`} className="w-full block" loading="lazy" />
+                <div className="text-[11px] font-bold py-1.5 text-slate-300 bg-white/[0.03]">{ex.cap}</div>
+              </button>
+            ))}
+          </div>
+          <p className="text-[11px] text-slate-500 mt-2">Tap an example to use its style. Your card is drawn fresh with your details.</p>
+        </div>
         <div className="space-y-4">
           <div>
             <label className={labelClass}>Name of Departed *</label>
