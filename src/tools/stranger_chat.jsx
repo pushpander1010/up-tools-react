@@ -837,7 +837,7 @@ export default function stranger_chat() {
               <div>
                 <label className="block text-xs font-semibold text-rose-200/80 mb-1">Meet</label>
                 <div className="grid grid-cols-3 p-1 bg-black/40 border border-rose-500/20 rounded-xl">
-                  {[['ANY', 'Anyone'], ['M', 'Male'], ['F', 'Female']].map(([v, l]) => (
+                  {[['ANY', 'Any'], ['M', 'Male'], ['F', 'Female']].map(([v, l]) => (
                     <button key={v} onClick={() => setWant(v)}
                       className={`py-2 text-xs font-bold rounded-lg transition-all ${want === v ? 'bg-rose-500/25 text-rose-200 border border-rose-500/40' : 'text-slate-400 hover:text-slate-200 border border-transparent'}`}>
                       {l}
