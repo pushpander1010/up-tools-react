@@ -87,10 +87,71 @@ export default function stranger_chat() {
   const mediaRef = useRef(null)
   const chunksRef = useRef([])
   const listRef = useRef(null)
+  const nearBottomRef = useRef(true)
+  // rooms (no E2E — server relays plaintext, transport-encrypted)
+  const [room, setRoom] = useState(null) // {id, members[]} | null
+  const [myName, setMyName] = useState('')
+  const [roomPw, setRoomPw] = useState('')
+  const [joinId, setJoinId] = useState('')
+  const [joinPw, setJoinPw] = useState('')
+  const [roomLink, setRoomLink] = useState('')
+  const [peerAct, setPeerAct] = useState(null) // 'typing…' | 'sending a photo…' | 'recording voice…' | 'Name: …'
+  const typingTimerRef = useRef(null)
+  const typingOnRef = useRef(false)
+  const actTimerRef = useRef(null)
+  const showPeerAct = useCallback((text) => {
+    setPeerAct(text)
+    if (actTimerRef.current) clearTimeout(actTimerRef.current)
+    actTimerRef.current = setTimeout(() => setPeerAct(null), 4500)
+  }, [])
+  const hidePeerAct = useCallback(() => {
+    if (actTimerRef.current) clearTimeout(actTimerRef.current)
+    setPeerAct(null)
+  }, [])
+  // signal peer: {t:'typing'|'activity'} for 1-1, room-* for rooms
+  const sendSignal = useCallback((kind, payload) => {
+    const ws = wsRef.current
+    if (!ws || ws.readyState !== 1 || demo) return
+    try {
+      if (room) ws.send(JSON.stringify({ t: kind === 'typing' ? 'room-typing' : 'room-activity', ...payload }))
+      else ws.send(JSON.stringify({ t: kind, ...payload }))
+    } catch {}
+  }, [room, demo])
+  const onDraftChange = useCallback((v) => {
+    setDraft(v)
+    const ws = wsRef.current
+    if (!ws || ws.readyState !== 1) return
+    if (v.trim() && !typingOnRef.current) {
+      typingOnRef.current = true
+      sendSignal('typing', { state: true })
+    }
+    if (typingTimerRef.current) clearTimeout(typingTimerRef.current)
+    typingTimerRef.current = setTimeout(() => {
+      typingOnRef.current = false
+      sendSignal('typing', { state: false })
+    }, 1200)
+  }, [sendSignal])
+
+  const onScrollList = useCallback(() => {
+    const el = listRef.current
+    if (!el) return
+    nearBottomRef.current = el.scrollHeight - el.scrollTop - el.clientHeight < 120
+  }, [])
 
   useEffect(() => {
-    if (listRef.current) listRef.current.scrollTop = listRef.current.scrollHeight
+    // auto-scroll ONLY when user is already near bottom (never yank readers)
+    const el = listRef.current
+    if (el && nearBottomRef.current) el.scrollTop = el.scrollHeight
   }, [msgs])
+
+  // deep link: #room=<id> -> prefill join UI
+  useEffect(() => {
+    try {
+      const h = window.location.hash || ''
+      const mm = h.match(/room=([A-Za-z0-9]{4,16})/)
+      if (mm) setJoinId(mm[1].toLowerCase())
+    } catch {}
+  }, [])
 
   useEffect(() => {
     let stop = false
@@ -165,13 +226,76 @@ export default function stranger_chat() {
         if (m.t === 'waiting') setStatus('Waiting for a stranger… keep this tab open 💗')
         else if (m.t === 'paired') {
           setStage('chat')
+          hidePeerAct()
           setStatus('💘 Connected. Messages are end-to-end encrypted.')
           push('sys', 'text', '💘 Stranger connected. Say hi! (🔒 E2E encrypted)')
         }
         else if (m.t === 'partner-left') {
           closeCall(true)
+          hidePeerAct()
           setStatus('Stranger left. Press Next for someone new. 💔')
           push('sys', 'text', 'Stranger disconnected.')
+        }
+        else if (m.t === 'hello' && m.name) setMyName(m.name)
+        else if (m.t === 'room-created') {
+          setRoom({ id: m.id, members: m.members || [] })
+          const link = 'https://www.uptools.in/stranger-chat/#room=' + m.id
+          setRoomLink(link)
+          try { window.location.hash = 'room=' + m.id } catch {}
+          setStage('chat')
+          setMsgs([])
+          setStatus('🏠 Room ' + m.id + ' created. Share the link — transport-encrypted (no E2E in rooms).')
+          push('sys', 'text', '🏠 Room created. You are ' + (m.name || myName) + '. Share the link to invite up to 8 people.')
+        }
+        else if (m.t === 'room-joined') {
+          setRoom({ id: m.id, members: m.members || [] })
+          setRoomLink('https://www.uptools.in/stranger-chat/#room=' + m.id)
+          setStage('chat')
+          setMsgs([])
+          setStatus('🏠 Joined room ' + m.id + ' as ' + (m.name || '') + ' — transport-encrypted (no E2E in rooms).')
+          push('sys', 'text', '🏠 You joined as ' + (m.name || 'guest') + ' (' + ((m.members || []).length) + ' in room).')
+        }
+        else if (m.t === 'room-error') {
+          const r = m.reason === 'bad password' ? 'Wrong room password. 💔'
+            : m.reason === 'full' ? 'Room is full (8 max). 💔'
+            : m.reason === 'expired' ? 'Room expired (24h). Create a new one. 💔'
+            : 'Room not found — check the link. 💔'
+          setNotice(r)
+          setStatus(r)
+        }
+        else if (m.t === 'peer-joined' && m.name) {
+          setRoom(rm => rm ? { ...rm, members: [...new Set([...(rm.members || []), m.name])] } : rm)
+          push('sys', 'text', '🎉 ' + m.name + ' joined the room')
+        }
+        else if (m.t === 'peer-left' && m.name) {
+          setRoom(rm => rm ? { ...rm, members: (rm.members || []).filter(x => x !== m.name) } : rm)
+          push('sys', 'text', '👋 ' + m.name + ' left the room')
+        }
+        else if (m.t === 'room-msg' && typeof m.text === 'string') {
+          push('them', 'text', (m.name ? m.name + ': ' : '') + m.text)
+        }
+        else if ((m.t === 'room-img' || m.t === 'room-audio') && m.url) {
+          push('them', m.t === 'room-img' ? 'img' : 'audio', m.url)
+          if (m.name) push('sys', 'text', '— sent by ' + m.name)
+          hidePeerAct()
+        }
+        else if (m.t === 'typing') {
+          if (m.state) showPeerAct('Stranger is typing… ✍️')
+          else hidePeerAct()
+        }
+        else if (m.t === 'activity') {
+          if (m.kind === 'image') showPeerAct('Stranger is sending a photo… 📷')
+          else if (m.kind === 'voice') showPeerAct('Stranger is recording a voice note… 🎙️')
+          else hidePeerAct()
+        }
+        else if (m.t === 'room-typing' && m.name) {
+          if (m.state) showPeerAct(m.name + ' is typing… ✍️')
+          else hidePeerAct()
+        }
+        else if (m.t === 'room-activity' && m.name) {
+          if (m.kind === 'image') showPeerAct(m.name + ' is sending a photo… 📷')
+          else if (m.kind === 'voice') showPeerAct(m.name + ' is recording a voice note… 🎙️')
+          else hidePeerAct()
         }
         else if (m.t === 'key' && m.pub && ecdhRef.current && !aesRef.current) {
           try {
@@ -190,11 +314,12 @@ export default function stranger_chat() {
         }
         else if (m.t === 'msg' && m.iv && m.data) {
           if (aesRef.current) {
-            try { push('them', 'text', await decText(aesRef.current, m.iv, m.data)) } catch {}
+            try { push('them', 'text', await decText(aesRef.current, m.iv, m.data)); hidePeerAct() } catch {}
           }
         }
         else if ((m.t === 'img' || m.t === 'audio') && m.url) {
           push('them', m.t, m.url)
+          hidePeerAct()
         }
         else if (m.t === 'call-offer' && m.sdp) {
           if (pcRef.current || offerRef.current) {
@@ -248,8 +373,15 @@ export default function stranger_chat() {
     const t = draft.trim()
     if (!t) return
     setDraft('')
+    typingOnRef.current = false
+    if (typingTimerRef.current) clearTimeout(typingTimerRef.current)
+    sendSignal('typing', { state: false })
     push('me', 'text', t)
     const ws = wsRef.current
+    if (room && ws && ws.readyState === 1) {
+      try { ws.send(JSON.stringify({ t: 'room-msg', text: t.slice(0, 2000) })) } catch {}
+      return
+    }
     if (ws && ws.readyState === 1 && aesRef.current) {
       try {
         const c = await encText(aesRef.current, t)
@@ -261,28 +393,34 @@ export default function stranger_chat() {
     } else if (demo) {
       setTimeout(() => push('them', 'text', 'Hey! 💕 This is a demo preview — press Start above for real strangers.'), 900)
     }
-  }, [draft, push, demo])
+  }, [draft, push, demo, room, sendSignal])
 
   const sendImage = useCallback((f) => {
     if (!f) return
     if (f.size > 2 * 1024 * 1024) { setNotice('Image too large. Max 2MB.'); return }
+    sendSignal('activity', { kind: 'image' })
     const r = new FileReader()
     r.onload = () => {
       const url = r.result
       push('me', 'img', url)
+      sendSignal('activity', { kind: null })
       const ws = wsRef.current
-      if (ws && ws.readyState === 1) { try { ws.send(JSON.stringify({ t: 'img', url })) } catch {} }
+      if (ws && ws.readyState === 1) {
+        try { ws.send(JSON.stringify(room ? { t: 'room-img', url } : { t: 'img', url })) } catch {}
+      }
       else if (demo) setTimeout(() => push('them', 'text', 'Nice pic! 💕 (demo reply) 📸'), 1200)
     }
     r.readAsDataURL(f)
-  }, [push, demo])
+  }, [push, demo, room, sendSignal])
 
   const toggleRec = useCallback(async () => {
     if (rec) {
       try { mediaRef.current?.stop() } catch {}
       setRec(false)
+      sendSignal('activity', { kind: null })
       return
     }
+    sendSignal('activity', { kind: 'voice' })
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
       const mr = new MediaRecorder(stream)
@@ -296,7 +434,7 @@ export default function stranger_chat() {
         r.onload = () => {
           push('me', 'audio', r.result)
           const ws = wsRef.current
-          if (ws && ws.readyState === 1) { try { ws.send(JSON.stringify({ t: 'audio', url: r.result })) } catch {} }
+          if (ws && ws.readyState === 1) { try { ws.send(JSON.stringify(room ? { t: 'room-audio', url: r.result } : { t: 'audio', url: r.result })) } catch {} }
         }
         r.readAsDataURL(blob)
       }
@@ -305,9 +443,10 @@ export default function stranger_chat() {
       setRec(true)
       setNotice('')
     } catch {
+      sendSignal('activity', { kind: null })
       setNotice('Mic blocked. Allow microphone permission to send voice notes.')
     }
-  }, [rec, push])
+  }, [rec, push, room, sendSignal])
 
   // ---- voice calls (WebRTC audio, signalled over the same socket) ----
   const fmtCall = (s) => `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`
@@ -407,8 +546,105 @@ export default function stranger_chat() {
     }
   }, [])
 
+  // ---- rooms: open a bare socket (no 1-1 join) then create/join ----
+  const openRoomSocket = useCallback((action) => {
+    if (!adult) { setNotice('Please confirm you are 18 or older.'); return }
+    setNotice('')
+    const run = () => {
+      const ws = wsRef.current
+      if (ws && ws.readyState === 1) { action(ws); return }
+      try {
+        const w2 = new WebSocket(BACKEND_URL)
+        wsRef.current = w2
+        w2.onopen = () => { action(w2) }
+        w2.onmessage = wsRef.current?.onmessage || null
+        // reuse main handler: attach minimal dispatcher by reopening via openSocket path
+        w2.onmessage = async (ev) => {
+          let m
+          try { m = JSON.parse(ev.data) } catch { return }
+          if (m.t === 'hello' && m.name) setMyName(m.name)
+          else if (m.t === 'room-created') {
+            setRoom({ id: m.id, members: m.members || [] })
+            const link = 'https://www.uptools.in/stranger-chat/#room=' + m.id
+            setRoomLink(link)
+            try { window.location.hash = 'room=' + m.id } catch {}
+            setStage('chat'); setMsgs([])
+            setStatus('🏠 Room ' + m.id + ' created. Share the link — transport-encrypted (no E2E in rooms).')
+            push('sys', 'text', '🏠 Room created. You are ' + (m.name || '') + '. Share the link to invite up to 8 people.')
+          } else if (m.t === 'room-joined') {
+            setRoom({ id: m.id, members: m.members || [] })
+            setRoomLink('https://www.uptools.in/stranger-chat/#room=' + m.id)
+            setStage('chat'); setMsgs([])
+            setStatus('🏠 Joined room ' + m.id + ' — transport-encrypted (no E2E in rooms).')
+            push('sys', 'text', '🏠 You joined as ' + (m.name || 'guest') + ' (' + ((m.members || []).length) + ' in room).')
+          } else if (m.t === 'room-error') {
+            const r = m.reason === 'bad password' ? 'Wrong room password. 💔'
+              : m.reason === 'full' ? 'Room is full (8 max). 💔'
+              : m.reason === 'expired' ? 'Room expired (24h). Create a new one. 💔'
+              : m.reason === 'not in room' ? 'You left the room.' : 'Room not found — check the link. 💔'
+            setNotice(r); setStatus(r)
+          } else if (m.t === 'peer-joined' && m.name) {
+            setRoom(rm => rm ? { ...rm, members: [...new Set([...(rm.members || []), m.name])] } : rm)
+            push('sys', 'text', '🎉 ' + m.name + ' joined the room')
+          } else if (m.t === 'peer-left' && m.name) {
+            setRoom(rm => rm ? { ...rm, members: (rm.members || []).filter(x => x !== m.name) } : rm)
+            push('sys', 'text', '👋 ' + m.name + ' left the room')
+          } else if (m.t === 'room-msg' && typeof m.text === 'string') {
+            push('them', 'text', (m.name ? m.name + ': ' : '') + m.text)
+            hidePeerAct()
+          } else if ((m.t === 'room-img' || m.t === 'room-audio') && m.url) {
+            push('them', m.t === 'room-img' ? 'img' : 'audio', m.url)
+            hidePeerAct()
+          } else if (m.t === 'room-typing' && m.name) {
+            if (m.state) showPeerAct(m.name + ' is typing… ✍️')
+            else hidePeerAct()
+          } else if (m.t === 'room-activity' && m.name) {
+            if (m.kind === 'image') showPeerAct(m.name + ' is sending a photo… 📷')
+            else if (m.kind === 'voice') showPeerAct(m.name + ' is recording a voice note… 🎙️')
+            else hidePeerAct()
+          }
+        }
+      } catch { setNotice('Connection failed. Try again.') }
+    }
+    run()
+  }, [adult, push])
+
+  const createRoom = useCallback(() => {
+    setMsgs([])
+    openRoomSocket((ws) => { try { ws.send(JSON.stringify({ t: 'create-room', password: roomPw })) } catch {} })
+  }, [openRoomSocket, roomPw])
+
+  const joinRoom = useCallback(() => {
+    const id = joinId.trim().toLowerCase()
+    if (!id) { setNotice('Enter a room id from the shared link.'); return }
+    setMsgs([])
+    openRoomSocket((ws) => { try { ws.send(JSON.stringify({ t: 'join-room', id, password: joinPw })) } catch {} })
+  }, [openRoomSocket, joinId, joinPw])
+
+  // 6 built-in tap-to-send picture cards (local inline SVG, no network)
+  const PICS = [
+    { n: 'Love', svg: `<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><rect width='120' height='120' rx='24' fill='#f43f5e'/><text x='60' y='82' font-size='56' text-anchor='middle'>❤️</text></svg>` },
+    { n: 'Star', svg: `<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><rect width='120' height='120' rx='24' fill='#f59e0b'/><text x='60' y='82' font-size='56' text-anchor='middle'>⭐</text></svg>` },
+    { n: 'Like', svg: `<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><rect width='120' height='120' rx='24' fill='#22c55e'/><text x='60' y='82' font-size='56' text-anchor='middle'>👍</text></svg>` },
+    { n: 'Kiss', svg: `<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><rect width='120' height='120' rx='24' fill='#ec4899'/><text x='60' y='82' font-size='56' text-anchor='middle'>💋</text></svg>` },
+    { n: 'Fire', svg: `<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><rect width='120' height='120' rx='24' fill='#f97316'/><text x='60' y='82' font-size='56' text-anchor='middle'>🔥</text></svg>` },
+    { n: 'Party', svg: `<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><rect width='120' height='120' rx='24' fill='#8b5cf6'/><text x='60' y='82' font-size='56' text-anchor='middle'>🎉</text></svg>` },
+  ]
+  const sendPic = useCallback((p) => {
+    const url = 'data:image/svg+xml;utf8,' + encodeURIComponent(p.svg)
+    push('me', 'img', url)
+    sendSignal('activity', { kind: 'image' })
+    setTimeout(() => sendSignal('activity', { kind: null }), 1500)
+    const ws = wsRef.current
+    if (ws && ws.readyState === 1) {
+      try { ws.send(JSON.stringify(room ? { t: 'room-img', url } : { t: 'img', url })) } catch {}
+    } else if (demo) setTimeout(() => push('them', 'text', p.n + ' back to you! 💕 (demo)'), 900)
+  }, [push, demo, room, sendSignal])
+
   const doNext = useCallback(() => {
     closeCall()
+    hidePeerAct()
+    typingOnRef.current = false
     pendingRef.current = []
     setNotice('')
     const ws = wsRef.current
@@ -421,14 +657,19 @@ export default function stranger_chat() {
 
   const doEnd = useCallback(() => {
     closeCall()
-    try { wsRef.current?.send(JSON.stringify({ t: 'leave' })); wsRef.current?.close() } catch {}
+    hidePeerAct()
+    typingOnRef.current = false
+    try { wsRef.current?.send(JSON.stringify(room ? { t: 'room-leave' } : { t: 'leave' })); wsRef.current?.close() } catch {}
     wsRef.current = null
     aesRef.current = null
     pendingRef.current = []
+    setRoom(null)
+    setRoomLink('')
+    try { history.replaceState(null, '', window.location.pathname) } catch {}
     setMsgs([])
     setStage('gate')
     setStatus('Ready — press Start to meet a stranger. 💕')
-  }, [closeCall])
+  }, [closeCall, room])
 
   const doReport = useCallback(() => {
     closeCall()
@@ -450,7 +691,8 @@ export default function stranger_chat() {
         { q: 'How does stranger chat work?', a: 'Confirm 18+, pick I-am and who you want to talk to, press Start. The server pairs you 1-1 with a stranger. Text, images and voice notes are supported. Press Next anytime.' },
         { q: 'Is it free? Do I need an account?', a: 'Yes, completely free with no sign-up and no name required. Just select Male or Female and start.' },
         { q: 'Is it 18+ only?', a: 'Yes. This page is strictly 18+. You must confirm your age before chatting, per our safety policy.' },
-        { q: 'Is my chat private?', a: 'Chats use ECDH + AES-GCM end-to-end encryption. The server only relays ciphertext and stores nothing — no logs, no images, no recordings.' },
+        { q: 'Is my chat private?', a: 'Random 1-1 chats use ECDH + AES-GCM end-to-end encryption. The server only relays ciphertext and stores nothing — no logs, no images, no recordings.' },
+        { q: 'What are group rooms?', a: 'Create a room (optional password) and share the link — up to 8 people, link lasts 24h. Rooms are transport-encrypted (TLS) but NOT end-to-end encrypted, since the server relays plain text to the group.' },
         { q: 'What if someone misbehaves?', a: 'Press Report instantly: it blocks them and finds you someone new. Never share your phone, address, OTPs or photos with ID. For help mail grievance@uptools.in.' },
         { q: 'India IT Rules compliance?', a: 'We follow IT Rules 2021 for intermediaries: 18+ gating, report/block tools, no content storage, and a grievance contact (grievance@uptools.in) with 72-hour acknowledgement.' },
       ]}
@@ -508,6 +750,22 @@ export default function stranger_chat() {
             <button onClick={connect} className="w-full py-3.5 rounded-2xl text-sm font-black text-white shadow-lg shadow-rose-500/25 hover:scale-[1.01] transition-transform" style={{ background: ROSE }}>
               💘 Start Chat
             </button>
+            {/* rooms */}
+            <div className="rounded-2xl border border-rose-500/20 bg-black/20 p-3 space-y-2">
+              <p className="text-xs font-black text-rose-200 m-0">🏠 Group Room <span className="font-normal text-slate-400">(up to 8, link lasts 24h, transport-encrypted)</span></p>
+              <div className="flex gap-2">
+                <input value={roomPw} onChange={e => setRoomPw(e.target.value)} type="password" placeholder="Room password (optional)"
+                  className="flex-1 bg-black/30 border border-rose-500/20 rounded-xl px-3 py-2 text-xs text-white outline-none focus:border-rose-500/50" />
+                <button onClick={createRoom} className="px-4 py-2 rounded-xl text-xs font-black text-white" style={{ background: ROSE }}>Create Room</button>
+              </div>
+              <div className="flex gap-2">
+                <input value={joinId} onChange={e => setJoinId(e.target.value)} placeholder={joinId ? `Room id: ${joinId}` : 'Room id (from shared link)'}
+                  className="flex-1 bg-black/30 border border-rose-500/20 rounded-xl px-3 py-2 text-xs text-white outline-none focus:border-rose-500/50" />
+                <input value={joinPw} onChange={e => setJoinPw(e.target.value)} type="password" placeholder="Password"
+                  className="w-24 bg-black/30 border border-rose-500/20 rounded-xl px-3 py-2 text-xs text-white outline-none focus:border-rose-500/50" />
+                <button onClick={joinRoom} className="px-4 py-2 rounded-xl text-xs font-bold bg-white/[0.06] border border-white/[0.08] text-slate-200">Join</button>
+              </div>
+            </div>
             <label className="flex items-center gap-2 text-xs text-slate-400 cursor-pointer">
               <input type="checkbox" checked={demo} onChange={e => setDemo(e.target.checked)} className="accent-rose-500" />
               Preview the chat UI in demo mode (no real stranger, for testing)
@@ -530,19 +788,30 @@ export default function stranger_chat() {
         )}
 
         {stage === 'chat' && (
-          <div className="border border-rose-500/20 rounded-3xl overflow-hidden bg-white/[0.04]">
-            <div className="flex items-center gap-2 px-4 py-3 border-b border-rose-500/15 bg-rose-500/[0.05]">
-              <button onClick={doNext} className="text-xs px-3 py-1.5 rounded-full bg-rose-500/20 border border-rose-500/30 text-rose-200 font-bold">Next 💫</button>
-              <button onClick={doReport} className="text-xs px-3 py-1.5 rounded-full bg-red-500/10 border border-red-500/20 text-red-300 font-semibold">Report</button>
+          <div className="border border-rose-500/20 rounded-3xl overflow-hidden bg-white/[0.04] h-[70vh] flex flex-col">
+            <div className="flex items-center gap-2 px-4 py-3 border-b border-rose-500/15 bg-rose-500/[0.05] shrink-0">
+              {!room && <button onClick={doNext} className="text-xs px-3 py-1.5 rounded-full bg-rose-500/20 border border-rose-500/30 text-rose-200 font-bold">Next 💫</button>}
+              {!room && <button onClick={doReport} className="text-xs px-3 py-1.5 rounded-full bg-red-500/10 border border-red-500/20 text-red-300 font-semibold">Report</button>}
               <button onClick={doEnd} className="text-xs px-3 py-1.5 rounded-full bg-white/[0.06] border border-white/[0.08] text-slate-400">End</button>
-              <span className="ml-auto text-[11px] font-bold text-rose-300">💕 E2E</span>
+              <span className="ml-auto text-[11px] font-bold text-rose-300">{room ? `🏠 ${room.id} · ${(room.members || []).length}/8 · 🔐 transport` : '💕 E2E'}</span>
             </div>
-            <div ref={listRef} className="h-80 overflow-y-auto px-4 py-3 space-y-2">
+            {roomLink && room && (
+              <div className="flex items-center gap-2 px-4 py-2 bg-rose-500/[0.07] border-b border-rose-500/15 shrink-0">
+                <span className="text-[11px] text-rose-200 truncate flex-1">{roomLink}</span>
+                <button onClick={() => { try { navigator.clipboard.writeText(roomLink); setNotice('Room link copied — share it! 💕') } catch {} }} className="text-[11px] px-2.5 py-1 rounded-full bg-rose-500/25 border border-rose-500/30 text-white font-bold shrink-0">Copy</button>
+              </div>
+            )}
+            <div ref={listRef} onScroll={onScrollList} className="flex-1 overflow-y-auto px-4 py-3 space-y-2" style={{ scrollbarGutter: 'stable' }}>
               {msgs.length === 0 && <p className="text-xs text-slate-500 text-center pt-10">Say hi to start something beautiful. 💕</p>}
               {msgs.map((m, i) => (
                 <div key={i} className={`flex ${m.who === 'me' ? 'justify-end' : m.who === 'sys' ? 'justify-center' : 'justify-start'}`}>
-                  {m.kind === 'text' && (
-                    <div className={`max-w-[75%] px-3.5 py-2 rounded-2xl text-sm ${m.who === 'me' ? 'rounded-br-md text-white' : m.who === 'sys' ? 'bg-transparent text-slate-500 text-xs italic' : 'rounded-bl-md bg-white/[0.08] text-slate-200'}`}
+                  {m.kind === 'text' && m.who === 'sys' && (
+                    <div className="inline-block max-w-[90%] px-4 py-1.5 rounded-full text-xs font-bold text-center bg-rose-500/15 border border-rose-500/30 text-rose-100 shadow-sm shadow-rose-500/20">
+                      {m.body}
+                    </div>
+                  )}
+                  {m.kind === 'text' && m.who !== 'sys' && (
+                    <div className={`max-w-[75%] px-3.5 py-2 rounded-2xl text-sm ${m.who === 'me' ? 'rounded-br-md text-white' : 'rounded-bl-md bg-white/[0.08] text-slate-200'}`}
                       style={m.who === 'me' ? { background: ROSE } : undefined}>
                       {m.body}
                       <div className="text-[10px] opacity-60 mt-0.5">{m.at}</div>
@@ -553,15 +822,30 @@ export default function stranger_chat() {
                 </div>
               ))}
             </div>
-            <div className="flex items-center gap-2 px-3 py-3 border-t border-rose-500/15">
+            <div className="shrink-0 border-t border-rose-500/15">
+              <div className="flex gap-1.5 px-3 pt-2.5 overflow-x-auto">
+                {PICS.map((p) => (
+                  <button key={p.n} onClick={() => sendPic(p)} title={'Send ' + p.n}
+                    className="shrink-0 w-11 h-11 rounded-xl overflow-hidden border border-rose-500/25 hover:scale-110 transition-transform">
+                    <img src={'data:image/svg+xml;utf8,' + encodeURIComponent(p.svg)} alt={p.n} className="w-full h-full" />
+                  </button>
+                ))}
+              </div>
+              {peerAct && (
+                <div className="px-4 pt-2 flex justify-start">
+                  <div className="text-[11px] italic text-rose-200/90 bg-rose-500/10 border border-rose-500/20 rounded-full px-3 py-1 animate-pulse">{peerAct}</div>
+                </div>
+              )}
+              <div className="flex items-center gap-2 px-3 py-3">
               <label className="cursor-pointer text-lg px-1" title="Send image (max 2MB)">
                 📷<input type="file" accept="image/*" className="hidden" onChange={e => { sendImage(e.target.files?.[0]); e.target.value = '' }} />
               </label>
               <button onClick={toggleRec} title="Voice note" className={`text-lg px-1 ${rec ? 'animate-pulse' : ''}`}>{rec ? '⏹️' : '🎙️'}</button>
-              <button onClick={startCall} title="Voice call" className="text-lg px-1">📞</button>
-              <input value={draft} onChange={e => setDraft(e.target.value)} onKeyDown={e => { if (e.key === 'Enter') sendText() }}
+              {!room && <button onClick={startCall} title="Voice call" className="text-lg px-1">📞</button>}
+              <input value={draft} onChange={e => onDraftChange(e.target.value)} onKeyDown={e => { if (e.key === 'Enter') sendText() }}
                 placeholder="Say something sweet… 💬" className="flex-1 bg-black/20 border border-rose-500/20 rounded-full px-4 py-2 text-sm text-white outline-none focus:border-rose-500/50" />
               <button onClick={sendText} className="px-4 py-2 rounded-full text-sm font-black text-white shadow-md shadow-rose-500/25" style={{ background: ROSE }}>Send 💕</button>
+              </div>
             </div>
           </div>
         )}
