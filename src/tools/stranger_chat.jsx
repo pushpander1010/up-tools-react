@@ -461,7 +461,7 @@ export default function stranger_chat() {
       }
       r.readAsDataURL(f)
     }
-  }, [push, room, sendSignal, compressImage, deliverImageUrl])
+  }, [push, room, sendSignal, compressImage])
   const deliverImageUrl = useCallback((durl) => {
     push('me', 'img', durl)
     sendSignal('activity', { kind: null })
