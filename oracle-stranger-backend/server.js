@@ -88,6 +88,8 @@ function tryMatch(ws) {
     const om = meta.get(w.ws)
     if (!om || pairs.has(w.ws)) continue
     if (m.blocked.has(w.id) || om.blocked.has(m.id)) continue
+    // never pair two sockets from the same browser tab (Retry double-join)
+    if (m.cid && om.cid && m.cid === om.cid) continue
     if (compat({ me: m.me, want: m.want }, { me: om.me, want: om.want })) {
       waiters.splice(i, 1)
       const qi = waiters.findIndex(x => x.ws === ws)
@@ -199,6 +201,7 @@ wss.on('connection', (ws) => {
             if (s.length < 3000) st.pub = m.pub
           } catch {}
         }
+        if (typeof m.cid === 'string' && m.cid) st.cid = m.cid.slice(0, 32)
         tryMatch(ws)
         if (!pairs.has(ws)) send(ws, { t: 'waiting' })
         break

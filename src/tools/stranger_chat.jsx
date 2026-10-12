@@ -68,7 +68,6 @@ export default function stranger_chat() {
   const [status, setStatus] = useState('Ready — press Start to meet a stranger. 💕')
   const [msgs, setMsgs] = useState([])
   const [draft, setDraft] = useState('')
-  const [demo, setDemo] = useState(false)
   const [notice, setNotice] = useState('')
   const [rec, setRec] = useState(false)
   const [call, setCall] = useState('idle') // idle | calling | incoming | incall
@@ -111,12 +110,12 @@ export default function stranger_chat() {
   // signal peer: {t:'typing'|'activity'} for 1-1, room-* for rooms
   const sendSignal = useCallback((kind, payload) => {
     const ws = wsRef.current
-    if (!ws || ws.readyState !== 1 || demo) return
+    if (!ws || ws.readyState !== 1) return
     try {
       if (room) ws.send(JSON.stringify({ t: kind === 'typing' ? 'room-typing' : 'room-activity', ...payload }))
       else ws.send(JSON.stringify({ t: kind, ...payload }))
     } catch {}
-  }, [room, demo])
+  }, [room])
   const onDraftChange = useCallback((v) => {
     setDraft(v)
     const ws = wsRef.current
@@ -174,11 +173,19 @@ export default function stranger_chat() {
     setMsgs(p => [...p.slice(-99), { who, kind, body, at: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) }])
   }, [])
 
+  const cidRef = useRef(null)
+  if (!cidRef.current) {
+    try { cidRef.current = Math.random().toString(36).slice(2) + Date.now().toString(36) } catch { cidRef.current = 'x' }
+  }
   const connect = useCallback(() => {
     if (!adult) { setNotice('Please confirm you are 18 or older.'); return }
     setNotice('')
     setMsgs([])
     aesRef.current = null
+    // close any previous socket first — otherwise Retry leaves the old
+    // socket in the server queue and the server pairs us with ourselves
+    try { wsRef.current?.close() } catch {}
+    wsRef.current = null
     setStage('matching')
     setStatus('Checking server… 💕');
     // Preflight: plain HTTPS first. If this fails, the phone's network has
@@ -206,7 +213,7 @@ export default function stranger_chat() {
       const to = setTimeout(() => {
         if (ws.readyState !== 1) {
           try { ws.close() } catch {}
-          setStatus('Server is taking too long. Press Retry, or preview the UI in demo mode below.')
+          setStatus('Server is taking too long. Press Retry.')
         }
       }, 12000)
       ws.onopen = async () => {
@@ -215,9 +222,9 @@ export default function stranger_chat() {
         try {
           ecdhRef.current = await genECDH()
           const pub = await exportPub(ecdhRef.current)
-          ws.send(JSON.stringify({ t: 'join', me, want, adult: true, pub }))
+          ws.send(JSON.stringify({ t: 'join', me, want, adult: true, pub, cid: cidRef.current }))
         } catch {
-          ws.send(JSON.stringify({ t: 'join', me, want, adult: true }))
+          ws.send(JSON.stringify({ t: 'join', me, want, adult: true, cid: cidRef.current }))
         }
       }
       ws.onmessage = async (ev) => {
@@ -390,28 +397,82 @@ export default function stranger_chat() {
     } else if (ws && ws.readyState === 1 && !aesRef.current) {
       pendingRef.current.push(t)
       setNotice('Setting up encryption… your message sends by itself in a second. 💕')
-    } else if (demo) {
-      setTimeout(() => push('them', 'text', 'Hey! 💕 This is a demo preview — press Start above for real strangers.'), 900)
     }
-  }, [draft, push, demo, room, sendSignal])
+  }, [draft, push, room, sendSignal])
 
+  const [pendingImg, setPendingImg] = useState(null) // {file, url} awaiting compress/original choice
   const sendImage = useCallback((f) => {
     if (!f) return
     if (f.size > 2 * 1024 * 1024) { setNotice('Image too large. Max 2MB.'); return }
     sendSignal('activity', { kind: 'image' })
-    const r = new FileReader()
-    r.onload = () => {
-      const url = r.result
-      push('me', 'img', url)
-      sendSignal('activity', { kind: null })
-      const ws = wsRef.current
-      if (ws && ws.readyState === 1) {
-        try { ws.send(JSON.stringify(room ? { t: 'room-img', url } : { t: 'img', url })) } catch {}
+    try {
+      const url = URL.createObjectURL(f)
+      setPendingImg({ file: f, url })
+    } catch {
+      // fallback: send original directly if preview fails
+      const r = new FileReader()
+      r.onload = () => {
+        const durl = r.result
+        push('me', 'img', durl)
+        sendSignal('activity', { kind: null })
+        const ws = wsRef.current
+        if (ws && ws.readyState === 1) {
+          try { ws.send(JSON.stringify(room ? { t: 'room-img', url: durl } : { t: 'img', url: durl })) } catch {}
+        }
       }
-      else if (demo) setTimeout(() => push('them', 'text', 'Nice pic! 💕 (demo reply) 📸'), 1200)
+      r.readAsDataURL(f)
     }
-    r.readAsDataURL(f)
-  }, [push, demo, room, sendSignal])
+  }, [push, room, sendSignal])
+  const deliverImageUrl = useCallback((durl) => {
+    push('me', 'img', durl)
+    sendSignal('activity', { kind: null })
+    const ws = wsRef.current
+    if (ws && ws.readyState === 1) {
+      try { ws.send(JSON.stringify(room ? { t: 'room-img', url: durl } : { t: 'img', url: durl })) } catch {}
+    }
+  }, [push, room, sendSignal])
+  const sendImgCompressed = useCallback(async () => {
+    const p = pendingImg
+    if (!p) return
+    setPendingImg(null)
+    try {
+      const bmp = await createImageBitmap(p.file)
+      const MAXD = 1280
+      const sc = Math.min(1, MAXD / Math.max(bmp.width, bmp.height))
+      const w = Math.max(1, Math.round(bmp.width * sc))
+      const h = Math.max(1, Math.round(bmp.height * sc))
+      const cv = document.createElement('canvas')
+      cv.width = w; cv.height = h
+      cv.getContext('2d').drawImage(bmp, 0, 0, w, h)
+      const blob = await new Promise(res => cv.toBlob(res, 'image/jpeg', 0.72))
+      if (!blob) throw new Error('compress')
+      const r = new FileReader()
+      r.onload = () => deliverImageUrl(r.result)
+      r.readAsDataURL(blob)
+    } catch {
+      // compression unsupported — send original
+      const r = new FileReader()
+      r.onload = () => deliverImageUrl(r.result)
+      r.readAsDataURL(p.file)
+    }
+    try { URL.revokeObjectURL(p.url) } catch {}
+  }, [pendingImg, deliverImageUrl])
+  const sendImgOriginal = useCallback(() => {
+    const p = pendingImg
+    if (!p) return
+    setPendingImg(null)
+    try { URL.revokeObjectURL(p.url) } catch {}
+    if (p.file.size > 1400 * 1024) setNotice('Large file — may fail on slow networks. Compressed is safer. 💕')
+    const r = new FileReader()
+    r.onload = () => deliverImageUrl(r.result)
+    r.readAsDataURL(p.file)
+  }, [pendingImg, deliverImageUrl])
+  const cancelPendingImg = useCallback(() => {
+    const p = pendingImg
+    if (p) { try { URL.revokeObjectURL(p.url) } catch {} }
+    setPendingImg(null)
+    sendSignal('activity', { kind: null })
+  }, [pendingImg, sendSignal])
 
   const toggleRec = useCallback(async () => {
     if (rec) {
@@ -488,7 +549,6 @@ export default function stranger_chat() {
   const startCall = useCallback(async () => {
     const ws = wsRef.current
     if (!ws || ws.readyState !== 1) { setNotice('Connect to a stranger first, then call. 💕'); return }
-    if (demo) { setNotice('Demo mode has no real stranger to call. Press Start above for live chat. 💕'); return }
     if (call !== 'idle') return
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
@@ -503,7 +563,7 @@ export default function stranger_chat() {
     } catch {
       setNotice('Mic blocked. Allow microphone permission to call. 🎙️')
     }
-  }, [call, demo, makePC, push])
+  }, [call, makePC, push])
 
   const acceptCall = useCallback(async () => {
     const ws = wsRef.current
@@ -638,12 +698,13 @@ export default function stranger_chat() {
     const ws = wsRef.current
     if (ws && ws.readyState === 1) {
       try { ws.send(JSON.stringify(room ? { t: 'room-img', url } : { t: 'img', url })) } catch {}
-    } else if (demo) setTimeout(() => push('them', 'text', p.n + ' back to you! 💕 (demo)'), 900)
-  }, [push, demo, room, sendSignal])
+    }
+  }, [push, room, sendSignal])
 
   const doNext = useCallback(() => {
     closeCall()
     hidePeerAct()
+    setPendingImg(null)
     typingOnRef.current = false
     pendingRef.current = []
     setNotice('')
@@ -652,12 +713,12 @@ export default function stranger_chat() {
     setMsgs([])
     setStage('matching')
     setStatus('Finding someone new… 💕')
-    if (demo) setTimeout(() => { setStage('chat'); setStatus('Demo preview — no real stranger.') }, 800)
-  }, [demo, closeCall])
+  }, [closeCall])
 
   const doEnd = useCallback(() => {
     closeCall()
     hidePeerAct()
+    setPendingImg(null)
     typingOnRef.current = false
     try { wsRef.current?.send(JSON.stringify(room ? { t: 'room-leave' } : { t: 'leave' })); wsRef.current?.close() } catch {}
     wsRef.current = null
@@ -766,11 +827,6 @@ export default function stranger_chat() {
                 <button onClick={joinRoom} className="px-4 py-2 rounded-xl text-xs font-bold bg-white/[0.06] border border-white/[0.08] text-slate-200">Join</button>
               </div>
             </div>
-            <label className="flex items-center gap-2 text-xs text-slate-400 cursor-pointer">
-              <input type="checkbox" checked={demo} onChange={e => setDemo(e.target.checked)} className="accent-rose-500" />
-              Preview the chat UI in demo mode (no real stranger, for testing)
-            </label>
-            {demo && <button onClick={() => { setMsgs([]); setStage('chat'); setStatus('Demo preview — no real stranger.') }} className="w-full py-2.5 rounded-xl text-xs font-semibold bg-white/[0.06] border border-white/[0.08] text-slate-300">Open demo chat</button>}
           </div>
         )}
 
@@ -782,7 +838,6 @@ export default function stranger_chat() {
             <div className="flex gap-2 justify-center mt-4 flex-wrap">
               <button onClick={connect} className="text-xs font-bold px-5 py-2 rounded-full text-white shadow-md shadow-rose-500/25" style={{ background: ROSE }}>Retry 💕</button>
               <button onClick={doEnd} className="text-xs px-4 py-2 rounded-xl bg-white/[0.06] border border-white/[0.08] text-slate-300">Cancel</button>
-              <button onClick={() => { setStage('chat'); setStatus('Demo preview — no real stranger.') }} className="text-xs px-4 py-2 rounded-xl bg-white/[0.06] border border-white/[0.08] text-slate-400">Try demo instead</button>
             </div>
           </div>
         )}
@@ -834,6 +889,20 @@ export default function stranger_chat() {
               {peerAct && (
                 <div className="px-4 pt-2 flex justify-start">
                   <div className="text-[11px] italic text-rose-200/90 bg-rose-500/10 border border-rose-500/20 rounded-full px-3 py-1 animate-pulse">{peerAct}</div>
+                </div>
+              )}
+              {pendingImg && (
+                <div className="mx-3 mb-1 rounded-2xl border border-rose-500/25 bg-black/40 p-3 flex items-center gap-3">
+                  <img src={pendingImg.url} alt="preview" className="w-14 h-14 rounded-xl object-cover border border-white/10" />
+                  <div className="flex-1">
+                    <div className="text-xs font-bold text-white">Send this photo?</div>
+                    <div className="text-[11px] text-slate-400">Compressed is smaller and sends faster.</div>
+                  </div>
+                  <div className="flex flex-col gap-1.5">
+                    <button onClick={sendImgCompressed} className="text-[11px] font-black px-3 py-1.5 rounded-full text-white" style={{ background: ROSE }}>Compressed ⚡</button>
+                    <button onClick={sendImgOriginal} className="text-[11px] font-bold px-3 py-1.5 rounded-full bg-white/[0.08] border border-white/10 text-slate-200">Original</button>
+                    <button onClick={cancelPendingImg} className="text-[11px] px-3 py-1 text-slate-500">Cancel</button>
+                  </div>
                 </div>
               )}
               <div className="flex items-center gap-2 px-3 py-3">
