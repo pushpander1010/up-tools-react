@@ -7,27 +7,27 @@ export default function ToolCard({ tool, categories }) {
   return (
     <Link
       to={tool.href}
-      className="glass block p-4 group relative overflow-hidden no-underline"
+      className="glass block p-4 group relative overflow-hidden no-underline hover:-translate-y-1 transition-transform duration-200"
       style={{ '--card-accent': catColor }}
     >
-      {/* Top accent line on hover */}
-      <div className="absolute top-0 left-0 right-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity"
-        style={{ background: `linear-gradient(90deg, transparent, ${catColor}, transparent)` }} />
+      {/* Top accent line */}
+      <div className="absolute top-0 left-4 right-4 h-[3px] rounded-full"
+        style={{ background: catColor }} />
 
-      <div className="flex items-center gap-3 mb-2.5">
-        {/* Icon */}
-        <div className="w-10 h-10 rounded-xl flex items-center justify-center text-xl shrink-0"
-          style={{ background: `${catColor}18` }}>
+      <div className="flex items-center gap-3 mb-2.5 mt-1">
+        {/* Icon — solid playful tile */}
+        <div className="w-11 h-11 rounded-2xl flex items-center justify-center text-xl shrink-0 text-white shadow-md group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-200"
+          style={{ background: catColor }}>
           {tool.icon}
         </div>
         {/* Badge */}
-        <div className="flex gap-1.5">
-          <span className="px-2 py-0.5 rounded-full text-[10px] font-medium"
+        <div className="flex gap-1.5 flex-wrap">
+          <span className="px-2 py-0.5 rounded-full text-[10px] font-bold"
             style={{ background: `${catColor}18`, color: catColor, border: `1px solid ${catColor}35` }}>
             {categories?.[tool.cats?.[0]]?.label || 'Tool'}
           </span>
           {tool.new && (
-            <span className="px-2 py-0.5 rounded-full text-[10px] font-medium bg-emerald-500/12 text-emerald-400 border border-emerald-500/30">
+            <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
               New
             </span>
           )}
@@ -35,7 +35,7 @@ export default function ToolCard({ tool, categories }) {
       </div>
 
       {/* Title */}
-      <h3 className="text-[15px] font-semibold text-white group-hover:text-brand-light transition-colors mb-1 truncate">
+      <h3 className="text-[15px] font-bold text-white group-hover:text-brand-light transition-colors mb-1 truncate">
         {tool.title}
       </h3>
 
@@ -45,7 +45,7 @@ export default function ToolCard({ tool, categories }) {
       </p>
 
       {/* Tags */}
-      <div className="flex flex-wrap gap-1 mb-2.5">
+      <div className="flex flex-wrap gap-1 mb-3">
         {tool.tags?.slice(0, 3).map(tag => (
           <span key={tag} className="px-2 py-0.5 rounded-full text-[10px] font-medium bg-white/4 border border-white/8 text-slate-400">
             {tag}
@@ -55,10 +55,10 @@ export default function ToolCard({ tool, categories }) {
 
       {/* Open button */}
       <div className="flex items-center justify-between">
-        <span className="glow-btn text-[13px] py-1.5 px-3.5 rounded-[10px] inline-flex">
-          Open
+        <span className="text-[13px] font-extrabold inline-flex items-center gap-1 group-hover:gap-2 transition-all" style={{ color: catColor }}>
+          Open <span aria-hidden="true">→</span>
         </span>
-        <button className="text-slate-400 hover:text-white text-sm transition-colors" onClick={e => e.preventDefault()}>
+        <button className="text-slate-500 group-hover:text-amber-300 text-base transition-colors" onClick={e => e.preventDefault()} aria-label="Save tool">
           ☆
         </button>
       </div>
