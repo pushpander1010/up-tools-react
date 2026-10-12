@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import ToolCard from '../components/ToolCard'
 import InfiniteCarousel from '../components/InfiniteCarousel'
+import { categoryColor } from '../lib/categoryColors'
 import data from '../data/tools.json'
 import { GAMES } from './GamesPage'
 
@@ -199,14 +200,18 @@ export default function HomePage() {
 
       {/* Category Chips */}
       <div className="flex gap-1.5 overflow-x-auto pb-2 mb-6" style={{ scrollbarWidth: 'thin' }}>
-        {catList.map(([key, cat]) => (
-          <button key={key} onClick={() => toggleCat(key)}
-            className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-semibold border whitespace-nowrap transition-all cursor-pointer shrink-0 ${
-              activeCats.has(key) ? 'bg-brand/15 border-brand/40 text-white' : 'border-white/8 text-slate-400 hover:bg-brand/10 hover:border-brand/30 hover:text-white'
-            }`} style={{ background: activeCats.has(key) ? undefined : 'rgba(255,255,255,0.02)' }}>
-            {cat.icon} {cat.label}
-          </button>
-        ))}
+        {catList.map(([key, cat]) => {
+          const c = categoryColor(key)
+          const active = activeCats.has(key)
+          return (
+            <button key={key} onClick={() => toggleCat(key)}
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border whitespace-nowrap transition-all cursor-pointer shrink-0 ${active ? 'text-white' : 'text-slate-400 hover:text-white'}`}
+              style={active ? { background: c, borderColor: c } : { borderColor: `${c}55`, background: 'rgba(255,255,255,0.02)' }}>
+              <span className="w-2 h-2 rounded-full shrink-0" style={{ background: active ? '#fff' : c }} />
+              {cat.label}
+            </button>
+          )
+        })}
       </div>
 
       {/* Featured — Infinite Carousel */}
