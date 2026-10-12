@@ -94,6 +94,7 @@ export default function stranger_chat() {
   const [joinId, setJoinId] = useState('')
   const [joinPw, setJoinPw] = useState('')
   const [roomLink, setRoomLink] = useState('')
+  const [roomPanel, setRoomPanel] = useState(null) // null | 'create' | 'join'
   const [peerAct, setPeerAct] = useState(null) // 'typing…' | 'sending a photo…' | 'recording voice…' | 'Name: …'
   const typingTimerRef = useRef(null)
   const typingOnRef = useRef(false)
@@ -148,7 +149,7 @@ export default function stranger_chat() {
     try {
       const h = window.location.hash || ''
       const mm = h.match(/room=([A-Za-z0-9]{4,16})/)
-      if (mm) setJoinId(mm[1].toLowerCase())
+      if (mm) { setJoinId(mm[1].toLowerCase()); setRoomPanel('join') }
     } catch {}
   }, [])
 
@@ -843,20 +844,28 @@ export default function stranger_chat() {
               💘 Start Chat
             </button>
             {/* rooms */}
-            <div className="rounded-2xl border border-rose-500/20 bg-black/20 p-3 space-y-2">
-              <p className="text-xs font-black text-rose-200 m-0">🏠 Group Room <span className="font-normal text-slate-400">(up to 8, link lasts 24h, transport-encrypted)</span></p>
-              <div className="flex gap-2">
-                <input value={roomPw} onChange={e => setRoomPw(e.target.value)} type="password" placeholder="Room password (optional)"
-                  className="flex-1 bg-black/30 border border-rose-500/20 rounded-xl px-3 py-2 text-xs text-white outline-none focus:border-rose-500/50" />
-                <button onClick={createRoom} className="px-4 py-2 rounded-xl text-xs font-black text-white" style={{ background: ROSE }}>Create Room</button>
+            <div className="rounded-2xl border border-rose-500/20 bg-black/20 p-3 space-y-2 overflow-hidden">
+              <p className="text-xs font-black text-rose-200 m-0">Group Room <span className="font-normal text-slate-400">(up to 8, link lasts 24h)</span></p>
+              <div className="grid grid-cols-2 gap-2">
+                <button onClick={() => setRoomPanel(roomPanel === 'create' ? null : 'create')} className="py-2.5 rounded-xl text-xs font-black text-white" style={{ background: ROSE }}>Create Room</button>
+                <button onClick={() => setRoomPanel(roomPanel === 'join' ? null : 'join')} className="py-2.5 rounded-xl text-xs font-bold bg-white/[0.06] border border-white/[0.08] text-slate-200">Join Room</button>
               </div>
-              <div className="flex gap-2">
-                <input value={joinId} onChange={e => setJoinId(e.target.value)} placeholder={joinId ? `Room id: ${joinId}` : 'Room id (from shared link)'}
-                  className="flex-1 bg-black/30 border border-rose-500/20 rounded-xl px-3 py-2 text-xs text-white outline-none focus:border-rose-500/50" />
-                <input value={joinPw} onChange={e => setJoinPw(e.target.value)} type="password" placeholder="Password"
-                  className="w-24 bg-black/30 border border-rose-500/20 rounded-xl px-3 py-2 text-xs text-white outline-none focus:border-rose-500/50" />
-                <button onClick={joinRoom} className="px-4 py-2 rounded-xl text-xs font-bold bg-white/[0.06] border border-white/[0.08] text-slate-200">Join</button>
-              </div>
+              {roomPanel === 'create' && (
+                <div className="space-y-2">
+                  <input value={roomPw} onChange={e => setRoomPw(e.target.value)} type="password" placeholder="Room password (optional)"
+                    className="w-full min-w-0 bg-black/30 border border-rose-500/20 rounded-xl px-3 py-2 text-xs text-white outline-none focus:border-rose-500/50" />
+                  <button onClick={createRoom} className="w-full py-2.5 rounded-xl text-xs font-black text-white" style={{ background: ROSE }}>Create + Copy Link</button>
+                </div>
+              )}
+              {roomPanel === 'join' && (
+                <div className="space-y-2">
+                  <input value={joinId} onChange={e => setJoinId(e.target.value)} placeholder={joinId ? `Room id: ${joinId}` : 'Room id (from shared link)'}
+                    className="w-full min-w-0 bg-black/30 border border-rose-500/20 rounded-xl px-3 py-2 text-xs text-white outline-none focus:border-rose-500/50" />
+                  <input value={joinPw} onChange={e => setJoinPw(e.target.value)} type="password" placeholder="Password (if any)"
+                    className="w-full min-w-0 bg-black/30 border border-rose-500/20 rounded-xl px-3 py-2 text-xs text-white outline-none focus:border-rose-500/50" />
+                  <button onClick={joinRoom} className="w-full py-2.5 rounded-xl text-xs font-bold bg-white/[0.06] border border-white/[0.08] text-slate-200">Join Room</button>
+                </div>
+              )}
             </div>
           </div>
         )}
