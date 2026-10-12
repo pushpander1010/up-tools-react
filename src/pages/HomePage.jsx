@@ -128,7 +128,7 @@ export default function HomePage() {
             </div>
           </div>
           <div className="flex gap-8 shrink-0">
-            {[{ v: '500+', l: 'Tools' }, { v: `${GAME_COUNT}`, l: 'Games' }, { v: '0', l: 'Sign-ups' }].map(s => (
+            {[{ v: '600+', l: 'Tools' }, { v: `${GAME_COUNT}`, l: 'Games' }, { v: '0', l: 'Sign-ups' }].map(s => (
               <div key={s.l} className="text-center"><div className="text-3xl font-extrabold gradient-text">{s.v}</div><div className="text-xs text-slate-400 mt-1 font-medium">{s.l}</div></div>
             ))}
           </div>
