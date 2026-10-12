@@ -95,6 +95,7 @@ export default function stranger_chat() {
   const [joinPw, setJoinPw] = useState('')
   const [roomLink, setRoomLink] = useState('')
   const [roomPanel, setRoomPanel] = useState(null) // null | 'create' | 'join'
+  const [showPics, setShowPics] = useState(false)
   const [peerAct, setPeerAct] = useState(null) // 'typing…' | 'sending a photo…' | 'recording voice…' | 'Name: …'
   const typingTimerRef = useRef(null)
   const typingOnRef = useRef(false)
@@ -825,19 +826,26 @@ export default function stranger_chat() {
             </label>
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="block text-xs font-semibold text-rose-200/80 mb-1">I am 💁</label>
-                <select value={me} onChange={e => setMe(e.target.value)} className="w-full bg-black/20 border border-rose-500/20 rounded-xl px-3 py-2.5 text-sm text-white">
-                  <option value="M">Male 💙</option>
-                  <option value="F">Female 💖</option>
-                </select>
+                <label className="block text-xs font-semibold text-rose-200/80 mb-1">I am</label>
+                <div className="grid grid-cols-2 p-1 bg-black/40 border border-rose-500/20 rounded-xl">
+                  {['M', 'F'].map(v => (
+                    <button key={v} onClick={() => setMe(v)}
+                      className={`py-2 text-xs font-bold rounded-lg transition-all ${me === v ? 'bg-rose-500/25 text-rose-200 border border-rose-500/40' : 'text-slate-400 hover:text-slate-200 border border-transparent'}`}>
+                      {v === 'M' ? 'Male' : 'Female'}
+                    </button>
+                  ))}
+                </div>
               </div>
               <div>
-                <label className="block text-xs font-semibold text-rose-200/80 mb-1">Meet 💘</label>
-                <select value={want} onChange={e => setWant(e.target.value)} className="w-full bg-black/20 border border-rose-500/20 rounded-xl px-3 py-2.5 text-sm text-white">
-                  <option value="ANY">Anyone 💕</option>
-                  <option value="M">Male 💙</option>
-                  <option value="F">Female 💖</option>
-                </select>
+                <label className="block text-xs font-semibold text-rose-200/80 mb-1">Meet</label>
+                <div className="grid grid-cols-3 p-1 bg-black/40 border border-rose-500/20 rounded-xl">
+                  {[['ANY', 'Anyone'], ['M', 'Male'], ['F', 'Female']].map(([v, l]) => (
+                    <button key={v} onClick={() => setWant(v)}
+                      className={`py-2 text-xs font-bold rounded-lg transition-all ${want === v ? 'bg-rose-500/25 text-rose-200 border border-rose-500/40' : 'text-slate-400 hover:text-slate-200 border border-transparent'}`}>
+                      {l}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
             <button onClick={connect} className="w-full py-3.5 rounded-2xl text-sm font-black text-white shadow-lg shadow-rose-500/25 hover:scale-[1.01] transition-transform" style={{ background: ROSE }}>
@@ -871,24 +879,37 @@ export default function stranger_chat() {
         )}
 
         {stage === 'matching' && (
-          <div className="text-center py-12 rounded-3xl border-2 border-dashed border-rose-500/25 bg-rose-500/[0.04]">
-            <div className="text-4xl mb-3 animate-pulse">💓</div>
-            <div className="w-8 h-8 mx-auto border-2 border-rose-400 border-t-transparent rounded-full animate-spin" />
-            <p className="text-sm text-rose-200/90 mt-4 font-medium">Finding someone special…</p>
-            <div className="flex gap-2 justify-center mt-4 flex-wrap">
-              <button onClick={connect} className="text-xs font-bold px-5 py-2 rounded-full text-white shadow-md shadow-rose-500/25" style={{ background: ROSE }}>Retry 💕</button>
+          <div className="relative text-center py-14 px-6 rounded-3xl border border-rose-500/20 bg-black/30 overflow-hidden">
+            <div className="relative w-24 h-24 mx-auto flex items-center justify-center">
+              <div className="absolute inset-0 rounded-full bg-rose-500/10 animate-ping" />
+              <div className="absolute inset-2 rounded-full border border-rose-500/30 animate-pulse" />
+              <div className="relative w-14 h-14 rounded-full flex items-center justify-center text-2xl text-white" style={{ background: ROSE }}>💘</div>
+            </div>
+            <p className="text-sm text-rose-200/90 mt-5 font-bold">Finding someone special…</p>
+            <p className="text-[11px] text-slate-500 mt-1">Keep this tab open</p>
+            <div className="flex gap-2 justify-center mt-5 flex-wrap">
+              <button onClick={connect} className="text-xs font-bold px-5 py-2 rounded-full text-white shadow-md shadow-rose-500/25" style={{ background: ROSE }}>Retry</button>
               <button onClick={doEnd} className="text-xs px-4 py-2 rounded-xl bg-white/[0.06] border border-white/[0.08] text-slate-300">Cancel</button>
             </div>
           </div>
         )}
 
         {stage === 'chat' && (
-          <div className="border border-rose-500/20 rounded-3xl overflow-hidden bg-white/[0.04] h-[70vh] flex flex-col">
-            <div className="flex items-center gap-2 px-4 py-3 border-b border-rose-500/15 bg-rose-500/[0.05] shrink-0 flex-wrap">
-              {!room && <button onClick={doNext} className="text-xs px-3 py-1.5 rounded-full bg-rose-500/20 border border-rose-500/30 text-rose-200 font-bold">Next 💫</button>}
-              {!room && <button onClick={doReport} className="text-xs px-3 py-1.5 rounded-full bg-red-500/10 border border-red-500/20 text-red-300 font-semibold">Report</button>}
-              <button onClick={doEnd} className="text-xs px-3 py-1.5 rounded-full bg-white/[0.06] border border-white/[0.08] text-slate-400">End</button>
-              <span className="ml-auto text-[11px] font-bold text-rose-300">{room ? `🏠 ${room.id} · ${(room.members || []).length}/8 · 🔐 transport` : '💕 E2E'}</span>
+          <div className="border border-rose-500/20 rounded-3xl overflow-hidden bg-white/[0.04] flex flex-col h-[calc(100dvh-13rem)] min-h-[480px] max-h-[720px]">
+            <div className="h-14 px-3 flex items-center gap-2 border-b border-rose-500/15 bg-black/30 shrink-0">
+              <div className="relative shrink-0">
+                <div className="w-9 h-9 rounded-full flex items-center justify-center text-base text-white" style={{ background: ROSE }}>S</div>
+                <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-green-500 border-2 border-black" />
+              </div>
+              <div className="min-w-0 leading-tight">
+                <div className="text-[13px] font-bold text-white truncate">{room ? `Room ${room.id}` : 'Stranger'}</div>
+                <div className="text-[10px] text-green-400 font-semibold">{room ? `${(room.members || []).length}/8 online` : 'online now'}</div>
+              </div>
+              <div className="ml-auto flex items-center gap-1 shrink-0">
+                {!room && <button onClick={doNext} title="Next stranger" className="h-8 px-2.5 rounded-lg text-xs font-bold text-rose-200 hover:bg-white/[0.07] active:scale-95 transition-all">Next</button>}
+                {!room && <button onClick={doReport} title="Report" className="h-8 px-2 rounded-lg text-xs font-semibold text-slate-400 hover:text-red-300 hover:bg-white/[0.07] active:scale-95 transition-all">Report</button>}
+                <button onClick={doEnd} title="End chat" className="h-8 px-2 rounded-lg text-xs font-semibold text-slate-400 hover:text-white hover:bg-white/[0.07] active:scale-95 transition-all">End</button>
+              </div>
             </div>
             {roomLink && room && (
               <div className="flex items-center gap-2 px-4 py-2 bg-rose-500/[0.07] border-b border-rose-500/15 shrink-0 overflow-hidden">
@@ -901,15 +922,15 @@ export default function stranger_chat() {
               {msgs.map((m, i) => (
                 <div key={i} className={`flex ${m.who === 'me' ? 'justify-end' : m.who === 'sys' ? 'justify-center' : 'justify-start'}`}>
                   {m.kind === 'text' && m.who === 'sys' && (
-                    <div className="inline-block max-w-[90%] px-4 py-1.5 rounded-full text-xs font-bold text-center bg-rose-500/15 border border-rose-500/30 text-rose-100 shadow-sm shadow-rose-500/20">
+                    <div className="inline-block max-w-[90%] px-3 py-1 rounded-full text-[11px] font-medium text-center text-slate-400 bg-white/[0.05] border border-white/[0.08]">
                       {m.body}
                     </div>
                   )}
                   {m.kind === 'text' && m.who !== 'sys' && (
-                    <div className={`max-w-[75%] break-words px-3.5 py-2 rounded-2xl text-sm ${m.who === 'me' ? 'rounded-br-md text-white' : m.who === 'sys' ? 'bg-transparent text-slate-500 text-xs italic' : 'rounded-bl-md bg-white/[0.08] text-slate-200'}`}
+                    <div className={`max-w-[78%] break-words px-4 py-2.5 text-[14px] leading-relaxed ${m.who === 'me' ? 'rounded-2xl rounded-br-xs text-white shadow-sm' : 'rounded-2xl rounded-bl-xs bg-white/[0.08] border border-white/[0.08] text-slate-100'}`}
                       style={m.who === 'me' ? { background: ROSE } : undefined}>
                       {m.body}
-                      <div className="text-[10px] opacity-60 mt-0.5">{m.at}</div>
+                      <span className={`inline-block float-right ml-2 mt-1.5 select-none text-[10px] font-medium ${m.who === 'me' ? 'text-white/70' : 'text-slate-500'}`}>{m.at}</span>
                     </div>
                   )}
                   {m.kind === 'img' && <img src={m.body} alt="shared" className="max-w-[70%] rounded-2xl border border-rose-500/20" />}
@@ -918,17 +939,27 @@ export default function stranger_chat() {
               ))}
             </div>
             <div className="shrink-0 border-t border-rose-500/15">
-              <div className="flex gap-1.5 px-3 pt-2.5 overflow-x-auto">
-                {PICS.map((p) => (
-                  <button key={p.n} onClick={() => sendPic(p)} title={'Send ' + p.n}
-                    className="shrink-0 w-11 h-11 rounded-xl overflow-hidden border border-rose-500/25 hover:scale-110 transition-transform">
-                    <img src={'data:image/svg+xml;utf8,' + encodeURIComponent(p.svg)} alt={p.n} className="w-full h-full" />
-                  </button>
-                ))}
-              </div>
+              {showPics && (
+                <div className="flex gap-2 px-3 py-2 border-b border-white/[0.06] bg-black/20 overflow-x-auto">
+                  {PICS.map((p) => (
+                    <button key={p.n} onClick={() => { sendPic(p); setShowPics(false) }} title={'Send ' + p.n}
+                      className="shrink-0 w-9 h-9 rounded-xl overflow-hidden border border-white/10 hover:border-rose-500/60 hover:scale-105 active:scale-95 transition-all">
+                      <img src={'data:image/svg+xml;utf8,' + encodeURIComponent(p.svg)} alt={p.n} className="w-full h-full" />
+                    </button>
+                  ))}
+                </div>
+              )}
               {peerAct && (
                 <div className="px-4 pt-2 flex justify-start max-w-full">
-                  <div className="max-w-full truncate text-[11px] italic text-rose-200/90 bg-rose-500/10 border border-rose-500/20 rounded-full px-3 py-1 animate-pulse">{peerAct}</div>
+                  {peerAct.indexOf('typing') >= 0 ? (
+                    <div className="flex items-center gap-1.5 px-3.5 py-2.5 rounded-2xl rounded-bl-xs bg-white/[0.08] border border-white/[0.08] w-fit">
+                      <span className="w-1.5 h-1.5 rounded-full bg-slate-400 animate-bounce" style={{ animationDelay: '-0.3s' }} />
+                      <span className="w-1.5 h-1.5 rounded-full bg-slate-400 animate-bounce" style={{ animationDelay: '-0.15s' }} />
+                      <span className="w-1.5 h-1.5 rounded-full bg-slate-400 animate-bounce" />
+                    </div>
+                  ) : (
+                    <div className="max-w-full truncate text-[11px] italic text-slate-400 bg-white/[0.05] border border-white/[0.08] rounded-full px-3 py-1">{peerAct}</div>
+                  )}
                 </div>
               )}
               {pendingImg && (
@@ -945,15 +976,16 @@ export default function stranger_chat() {
                   </div>
                 </div>
               )}
-              <div className="flex items-center gap-2 px-3 py-3">
-              <label className="cursor-pointer text-lg px-1" title="Send image (max 2MB)">
+              <div className="flex items-center gap-1.5 px-2.5 py-2.5">
+              <button onClick={() => setShowPics(v => !v)} title="Stickers" className={`w-9 h-9 shrink-0 flex items-center justify-center rounded-full text-base transition-all active:scale-95 ${showPics ? 'text-rose-300 bg-white/[0.07]' : 'text-slate-400 hover:text-rose-300 hover:bg-white/[0.06]'}`}>😊</button>
+              <label className="w-9 h-9 shrink-0 flex items-center justify-center rounded-full text-base text-slate-400 hover:text-rose-300 hover:bg-white/[0.06] active:scale-95 transition-all cursor-pointer" title="Send image">
                 📷<input type="file" accept="image/*" className="hidden" onChange={e => { sendImage(e.target.files?.[0]); e.target.value = '' }} />
               </label>
-              <button onClick={toggleRec} title="Voice note" className={`text-lg px-1 ${rec ? 'animate-pulse' : ''}`}>{rec ? '⏹️' : '🎙️'}</button>
-              {!room && <button onClick={startCall} title="Voice call" className="text-lg px-1">📞</button>}
+              <button onClick={toggleRec} title="Voice note" className={`w-9 h-9 shrink-0 flex items-center justify-center rounded-full text-base transition-all active:scale-95 ${rec ? 'bg-rose-500/20 text-rose-300 animate-pulse' : 'text-slate-400 hover:text-rose-300 hover:bg-white/[0.06]'}`}>{rec ? '⏹' : '🎙'}</button>
+              {!room && <button onClick={startCall} title="Voice call" className="w-9 h-9 shrink-0 flex items-center justify-center rounded-full text-base text-slate-400 hover:text-rose-300 hover:bg-white/[0.06] active:scale-95 transition-all">📞</button>}
               <input value={draft} onChange={e => onDraftChange(e.target.value)} onKeyDown={e => { if (e.key === 'Enter') sendText() }}
-                placeholder="Say something sweet… 💬" className="flex-1 bg-black/20 border border-rose-500/20 rounded-full px-4 py-2 text-sm text-white outline-none focus:border-rose-500/50" />
-              <button onClick={sendText} className="px-4 py-2 rounded-full text-sm font-black text-white shadow-md shadow-rose-500/25" style={{ background: ROSE }}>Send 💕</button>
+                placeholder="Message…" className="flex-1 min-w-0 bg-white/[0.06] border border-white/10 rounded-full px-4 py-2.5 text-base sm:text-sm text-white outline-none placeholder:text-slate-500 focus:border-rose-500/50 transition-all" />
+              <button onClick={sendText} title="Send" className="w-9 h-9 shrink-0 rounded-full flex items-center justify-center text-white shadow-md shadow-rose-500/25 hover:scale-105 active:scale-95 transition-transform text-base" style={{ background: ROSE }}>➤</button>
               </div>
             </div>
           </div>
