@@ -846,7 +846,7 @@ export default function stranger_chat() {
                 </div>
               </div>
             </div>
-            <button onClick={connect} className="w-full py-3.5 rounded-xl text-sm font-black text-white shadow-lg shadow-rose-500/25 hover:bg-rose-500 active:scale-[0.99] transition-all bg-rose-600">
+            <button onClick={connect} className="w-full py-3.5 rounded-xl text-sm font-black text-white shadow-lg hover:brightness-110 active:scale-[0.99] transition-all" style={{ background: '#00a884' }}>
               Start Chat
             </button>
             {/* rooms */}
@@ -893,26 +893,26 @@ export default function stranger_chat() {
         )}
 
         {stage === 'chat' && (
-          <div className="border border-rose-500/20 rounded-3xl overflow-hidden bg-white/[0.04] flex flex-col h-[calc(100dvh-13rem)] min-h-[480px] max-h-[720px]">
-            <div className="h-14 px-3 flex items-center gap-2 border-b border-rose-500/15 bg-black/30 shrink-0">
+          <div className="border border-white/10 rounded-3xl overflow-hidden flex flex-col h-[calc(100dvh-13rem)] min-h-[480px] max-h-[720px]" style={{ background: '#0b141a' }}>
+            <div className="h-14 px-3 flex items-center gap-2 shrink-0" style={{ background: '#1f2c34' }}>
               <div className="relative shrink-0">
-                <div className="w-9 h-9 rounded-full flex items-center justify-center text-base text-white" style={{ background: ROSE }}>S</div>
+                <div className="w-9 h-9 rounded-full flex items-center justify-center text-base text-white font-bold" style={{ background: '#00a884' }}>S</div>
                 <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-green-500 border-2 border-black" />
               </div>
               <div className="min-w-0 leading-tight">
-                <div className="text-[13px] font-bold text-white truncate">{room ? `Room ${room.id}` : 'Stranger'}</div>
-                <div className="text-[10px] text-green-400 font-semibold">{room ? `${(room.members || []).length}/8 online` : 'online now'}</div>
+                <div className="text-[14px] font-semibold text-white truncate">{room ? `Room ${room.id}` : 'Stranger'}</div>
+                <div className="text-[11px] text-slate-400">{room ? `${(room.members || []).length}/8 online` : 'online'}</div>
               </div>
               <div className="ml-auto flex items-center gap-1 shrink-0">
-                {!room && <button onClick={doNext} title="Next stranger" className="h-8 px-2.5 rounded-lg text-xs font-bold text-rose-200 hover:bg-white/[0.07] active:scale-95 transition-all">Next</button>}
-                {!room && <button onClick={doReport} title="Report" className="h-8 px-2 rounded-lg text-xs font-semibold text-slate-400 hover:text-red-300 hover:bg-white/[0.07] active:scale-95 transition-all">Report</button>}
-                <button onClick={doEnd} title="End chat" className="h-8 px-2 rounded-lg text-xs font-semibold text-slate-400 hover:text-white hover:bg-white/[0.07] active:scale-95 transition-all">End</button>
+                {!room && <button onClick={doNext} title="Next stranger" className="h-8 px-2.5 rounded-lg text-xs font-bold text-slate-200 hover:bg-white/10 active:scale-95 transition-all">Next</button>}
+                {!room && <button onClick={doReport} title="Report" className="h-8 px-2 rounded-lg text-xs font-semibold text-slate-400 hover:text-red-300 hover:bg-white/10 active:scale-95 transition-all">Report</button>}
+                <button onClick={doEnd} title="End chat" className="h-8 px-2 rounded-lg text-xs font-semibold text-slate-400 hover:text-white hover:bg-white/10 active:scale-95 transition-all">End</button>
               </div>
             </div>
             {roomLink && room && (
-              <div className="flex items-center gap-2 px-4 py-2 bg-rose-500/[0.07] border-b border-rose-500/15 shrink-0 overflow-hidden">
-                <span className="text-[11px] text-rose-200 truncate flex-1 min-w-0">{roomLink}</span>
-                <button onClick={() => { try { navigator.clipboard.writeText(roomLink); setNotice('Room link copied — share it! 💕') } catch {} }} className="text-[11px] px-2.5 py-1 rounded-full bg-rose-500/25 border border-rose-500/30 text-white font-bold shrink-0">Copy</button>
+              <div className="flex items-center gap-2 px-4 py-2 border-b border-white/10 shrink-0 overflow-hidden" style={{ background: '#1f2c34' }}>
+                <span className="text-[11px] text-slate-300 truncate flex-1 min-w-0">{roomLink}</span>
+                <button onClick={() => { try { navigator.clipboard.writeText(roomLink); setNotice('Room link copied — share it!') } catch {} }} className="text-[11px] px-2.5 py-1 rounded-full text-white font-bold shrink-0" style={{ background: '#00a884' }}>Copy</button>
               </div>
             )}
             <div ref={listRef} onScroll={onScrollList} className="flex-1 overflow-y-auto px-4 py-3 space-y-2" style={{ scrollbarGutter: 'stable' }}>
@@ -925,8 +925,8 @@ export default function stranger_chat() {
                     </div>
                   )}
                   {m.kind === 'text' && m.who !== 'sys' && (
-                    <div className={`max-w-[78%] break-words px-4 py-2.5 text-[14px] leading-relaxed ${m.who === 'me' ? 'rounded-2xl rounded-br-xs text-white shadow-sm' : 'rounded-2xl rounded-bl-xs bg-white/[0.08] border border-white/[0.08] text-slate-100'}`}
-                      style={m.who === 'me' ? { background: ROSE } : undefined}>
+                    <div className={`max-w-[78%] break-words px-3 py-2 text-[14px] leading-relaxed shadow-sm ${m.who === 'me' ? 'rounded-lg rounded-tr-none text-white' : 'rounded-lg rounded-tl-none text-slate-100'}`}
+                      style={m.who === 'me' ? { background: '#005c4b' } : { background: '#1f2c34' }}>
                       {m.body}
                       <span className={`inline-block float-right ml-2 mt-1.5 select-none text-[10px] font-medium ${m.who === 'me' ? 'text-white/70' : 'text-slate-500'}`}>{m.at}</span>
                     </div>
@@ -936,21 +936,21 @@ export default function stranger_chat() {
                 </div>
               ))}
             </div>
-            <div className="shrink-0 border-t border-rose-500/15">
+            <div className="shrink-0" style={{ background: '#1f2c34' }}>
               {showPics && (
-                <div className="flex gap-2 px-3 py-2 border-b border-white/[0.06] bg-black/20 overflow-x-auto">
+                <div className="flex gap-2 px-3 py-2 border-b border-white/10 overflow-x-auto" style={{ background: '#1f2c34' }}>
                   {PICS.map((p) => (
                     <button key={p.n} onClick={() => { sendPic(p); setShowPics(false) }} title={'Send ' + p.n}
-                      className="shrink-0 w-9 h-9 rounded-xl overflow-hidden border border-white/10 hover:border-rose-500/60 hover:scale-105 active:scale-95 transition-all">
+                      className="shrink-0 w-9 h-9 rounded-xl overflow-hidden border border-white/10 hover:border-green-500/60 hover:scale-105 active:scale-95 transition-all">
                       <img src={'data:image/svg+xml;utf8,' + encodeURIComponent(p.svg)} alt={p.n} className="w-full h-full" />
                     </button>
                   ))}
                 </div>
               )}
               {peerAct && (
-                <div className="px-4 pt-2 flex justify-start max-w-full">
+                <div className="px-4 pt-2 flex justify-start max-w-full" style={{ background: '#1f2c34' }}>
                   {peerAct.indexOf('typing') >= 0 ? (
-                    <div className="flex items-center gap-1.5 px-3.5 py-2.5 rounded-2xl rounded-bl-xs bg-white/[0.08] border border-white/[0.08] w-fit">
+                    <div className="flex items-center gap-1.5 px-3.5 py-2.5 rounded-lg rounded-tl-none w-fit" style={{ background: '#1f2c34', border: '1px solid rgba(255,255,255,0.06)' }}>
                       <span className="w-1.5 h-1.5 rounded-full bg-slate-400 animate-bounce" style={{ animationDelay: '-0.3s' }} />
                       <span className="w-1.5 h-1.5 rounded-full bg-slate-400 animate-bounce" style={{ animationDelay: '-0.15s' }} />
                       <span className="w-1.5 h-1.5 rounded-full bg-slate-400 animate-bounce" />
@@ -974,16 +974,16 @@ export default function stranger_chat() {
                   </div>
                 </div>
               )}
-              <div className="flex items-center gap-1.5 px-2.5 py-2.5">
-              <button onClick={() => setShowPics(v => !v)} title="Stickers" className={`w-9 h-9 shrink-0 flex items-center justify-center rounded-full text-base transition-all active:scale-95 ${showPics ? 'text-rose-300 bg-white/[0.07]' : 'text-slate-400 hover:text-rose-300 hover:bg-white/[0.06]'}`}>😊</button>
-              <label className="w-9 h-9 shrink-0 flex items-center justify-center rounded-full text-base text-slate-400 hover:text-rose-300 hover:bg-white/[0.06] active:scale-95 transition-all cursor-pointer" title="Send image">
+              <div className="flex items-center gap-1.5 px-2.5 py-2" style={{ background: '#1f2c34' }}>
+              <button onClick={() => setShowPics(v => !v)} title="Stickers" className={`w-9 h-9 shrink-0 flex items-center justify-center rounded-full text-base transition-all active:scale-95 ${showPics ? 'text-green-300 bg-white/10' : 'text-slate-400 hover:text-green-300 hover:bg-white/10'}`}>😊</button>
+              <label className="w-9 h-9 shrink-0 flex items-center justify-center rounded-full text-base text-slate-400 hover:text-green-300 hover:bg-white/10 active:scale-95 transition-all cursor-pointer" title="Send image">
                 📷<input type="file" accept="image/*" className="hidden" onChange={e => { sendImage(e.target.files?.[0]); e.target.value = '' }} />
               </label>
-              <button onClick={toggleRec} title="Voice note" className={`w-9 h-9 shrink-0 flex items-center justify-center rounded-full text-base transition-all active:scale-95 ${rec ? 'bg-rose-500/20 text-rose-300 animate-pulse' : 'text-slate-400 hover:text-rose-300 hover:bg-white/[0.06]'}`}>{rec ? '⏹' : '🎙'}</button>
-              {!room && <button onClick={startCall} title="Voice call" className="w-9 h-9 shrink-0 flex items-center justify-center rounded-full text-base text-slate-400 hover:text-rose-300 hover:bg-white/[0.06] active:scale-95 transition-all">📞</button>}
+              <button onClick={toggleRec} title="Voice note" className={`w-9 h-9 shrink-0 flex items-center justify-center rounded-full text-base transition-all active:scale-95 ${rec ? 'bg-green-500/20 text-green-300 animate-pulse' : 'text-slate-400 hover:text-green-300 hover:bg-white/10'}`}>{rec ? '⏹' : '🎙'}</button>
+              {!room && <button onClick={startCall} title="Voice call" className="w-9 h-9 shrink-0 flex items-center justify-center rounded-full text-base text-slate-400 hover:text-green-300 hover:bg-white/10 active:scale-95 transition-all">📞</button>}
               <input value={draft} onChange={e => onDraftChange(e.target.value)} onKeyDown={e => { if (e.key === 'Enter') sendText() }}
-                placeholder="Message…" className="flex-1 min-w-0 bg-white/[0.06] border border-white/10 rounded-full px-4 py-2.5 text-base sm:text-sm text-white outline-none placeholder:text-slate-500 focus:border-rose-500/50 transition-all" />
-              <button onClick={sendText} title="Send" className="w-9 h-9 shrink-0 rounded-full flex items-center justify-center text-white shadow-md shadow-rose-500/25 hover:scale-105 active:scale-95 transition-transform text-base" style={{ background: ROSE }}>➤</button>
+                placeholder="Message" className="flex-1 min-w-0 rounded-full px-4 py-2.5 text-base sm:text-sm text-white outline-none placeholder:text-slate-500 focus:border-green-500/50 transition-all" style={{ background: '#2a3942', border: '1px solid rgba(255,255,255,0.06)' }} />
+              <button onClick={sendText} title="Send" className="w-9 h-9 shrink-0 rounded-full flex items-center justify-center text-white shadow-md hover:scale-105 active:scale-95 transition-transform text-base" style={{ background: '#00a884' }}>➤</button>
               </div>
             </div>
           </div>
