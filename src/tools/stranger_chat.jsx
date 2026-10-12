@@ -287,21 +287,21 @@ export default function stranger_chat() {
           hidePeerAct()
         }
         else if (m.t === 'typing') {
-          if (m.state) showPeerAct('Stranger is typing… ✍️')
+          if (m.state) showPeerAct('Stranger is typing…')
           else hidePeerAct()
         }
         else if (m.t === 'activity') {
-          if (m.kind === 'image') showPeerAct('Stranger is sending a photo… 📷')
-          else if (m.kind === 'voice') showPeerAct('Stranger is recording a voice note… 🎙️')
+          if (m.kind === 'image') showPeerAct('Stranger is sending a photo…')
+          else if (m.kind === 'voice') showPeerAct('Stranger is recording a voice note…')
           else hidePeerAct()
         }
         else if (m.t === 'room-typing' && m.name) {
-          if (m.state) showPeerAct(m.name + ' is typing… ✍️')
+          if (m.state) showPeerAct(m.name + ' is typing…')
           else hidePeerAct()
         }
         else if (m.t === 'room-activity' && m.name) {
-          if (m.kind === 'image') showPeerAct(m.name + ' is sending a photo… 📷')
-          else if (m.kind === 'voice') showPeerAct(m.name + ' is recording a voice note… 🎙️')
+          if (m.kind === 'image') showPeerAct(m.name + ' is sending a photo…')
+          else if (m.kind === 'voice') showPeerAct(m.name + ' is recording a voice note…')
           else hidePeerAct()
         }
         else if (m.t === 'key' && m.pub && ecdhRef.current && !aesRef.current) {
@@ -400,11 +400,50 @@ export default function stranger_chat() {
     }
   }, [draft, push, room, sendSignal])
 
+  // compress any image down under maxBytes (step down quality + size)
+  const compressImage = useCallback(async (file, maxBytes) => {
+    const bmp = await createImageBitmap(file)
+    const dims = [1280, 1024, 800, 640]
+    const quals = [0.72, 0.6, 0.5, 0.4]
+    for (const MAXD of dims) {
+      const sc = Math.min(1, MAXD / Math.max(bmp.width, bmp.height))
+      const w = Math.max(1, Math.round(bmp.width * sc))
+      const h = Math.max(1, Math.round(bmp.height * sc))
+      const cv = document.createElement('canvas')
+      cv.width = w; cv.height = h
+      cv.getContext('2d').drawImage(bmp, 0, 0, w, h)
+      for (const q of quals) {
+        const blob = await new Promise(res => cv.toBlob(res, 'image/jpeg', q))
+        if (blob && blob.size <= maxBytes) return blob
+      }
+    }
+    // last resort: smallest rendition regardless of size
+    const cv = document.createElement('canvas')
+    cv.width = 640; cv.height = Math.max(1, Math.round(640 * bmp.height / bmp.width))
+    cv.getContext('2d').drawImage(bmp, 0, 0, cv.width, cv.height)
+    return await new Promise(res => cv.toBlob(res, 'image/jpeg', 0.4))
+  }, [])
   const [pendingImg, setPendingImg] = useState(null) // {file, url} awaiting compress/original choice
   const sendImage = useCallback((f) => {
     if (!f) return
-    if (f.size > 2 * 1024 * 1024) { setNotice('Image too large. Max 2MB.'); return }
     sendSignal('activity', { kind: 'image' })
+    // over 2MB: compress and send straight away, no dialog
+    if (f.size > 2 * 1024 * 1024) {
+      setNotice('Large photo — compressing for fast send…');
+      (async () => {
+        try {
+          const blob = await compressImage(f, 1200 * 1024)
+          if (!blob) throw new Error('compress')
+          const r = new FileReader()
+          r.onload = () => deliverImageUrl(r.result)
+          r.readAsDataURL(blob)
+        } catch {
+          sendSignal('activity', { kind: null })
+          setNotice('Could not process that photo. Try a smaller one.')
+        }
+      })()
+      return
+    }
     try {
       const url = URL.createObjectURL(f)
       setPendingImg({ file: f, url })
@@ -422,7 +461,7 @@ export default function stranger_chat() {
       }
       r.readAsDataURL(f)
     }
-  }, [push, room, sendSignal])
+  }, [push, room, sendSignal, compressImage, deliverImageUrl])
   const deliverImageUrl = useCallback((durl) => {
     push('me', 'img', durl)
     sendSignal('activity', { kind: null })
@@ -436,15 +475,7 @@ export default function stranger_chat() {
     if (!p) return
     setPendingImg(null)
     try {
-      const bmp = await createImageBitmap(p.file)
-      const MAXD = 1280
-      const sc = Math.min(1, MAXD / Math.max(bmp.width, bmp.height))
-      const w = Math.max(1, Math.round(bmp.width * sc))
-      const h = Math.max(1, Math.round(bmp.height * sc))
-      const cv = document.createElement('canvas')
-      cv.width = w; cv.height = h
-      cv.getContext('2d').drawImage(bmp, 0, 0, w, h)
-      const blob = await new Promise(res => cv.toBlob(res, 'image/jpeg', 0.72))
+      const blob = await compressImage(p.file, 1200 * 1024)
       if (!blob) throw new Error('compress')
       const r = new FileReader()
       r.onload = () => deliverImageUrl(r.result)
@@ -456,7 +487,7 @@ export default function stranger_chat() {
       r.readAsDataURL(p.file)
     }
     try { URL.revokeObjectURL(p.url) } catch {}
-  }, [pendingImg, deliverImageUrl])
+  }, [pendingImg, deliverImageUrl, compressImage])
   const sendImgOriginal = useCallback(() => {
     const p = pendingImg
     if (!p) return
@@ -656,11 +687,11 @@ export default function stranger_chat() {
             push('them', m.t === 'room-img' ? 'img' : 'audio', m.url)
             hidePeerAct()
           } else if (m.t === 'room-typing' && m.name) {
-            if (m.state) showPeerAct(m.name + ' is typing… ✍️')
+            if (m.state) showPeerAct(m.name + ' is typing…')
             else hidePeerAct()
           } else if (m.t === 'room-activity' && m.name) {
-            if (m.kind === 'image') showPeerAct(m.name + ' is sending a photo… 📷')
-            else if (m.kind === 'voice') showPeerAct(m.name + ' is recording a voice note… 🎙️')
+            if (m.kind === 'image') showPeerAct(m.name + ' is sending a photo…')
+            else if (m.kind === 'voice') showPeerAct(m.name + ' is recording a voice note…')
             else hidePeerAct()
           }
         }
@@ -844,15 +875,15 @@ export default function stranger_chat() {
 
         {stage === 'chat' && (
           <div className="border border-rose-500/20 rounded-3xl overflow-hidden bg-white/[0.04] h-[70vh] flex flex-col">
-            <div className="flex items-center gap-2 px-4 py-3 border-b border-rose-500/15 bg-rose-500/[0.05] shrink-0">
+            <div className="flex items-center gap-2 px-4 py-3 border-b border-rose-500/15 bg-rose-500/[0.05] shrink-0 flex-wrap">
               {!room && <button onClick={doNext} className="text-xs px-3 py-1.5 rounded-full bg-rose-500/20 border border-rose-500/30 text-rose-200 font-bold">Next 💫</button>}
               {!room && <button onClick={doReport} className="text-xs px-3 py-1.5 rounded-full bg-red-500/10 border border-red-500/20 text-red-300 font-semibold">Report</button>}
               <button onClick={doEnd} className="text-xs px-3 py-1.5 rounded-full bg-white/[0.06] border border-white/[0.08] text-slate-400">End</button>
               <span className="ml-auto text-[11px] font-bold text-rose-300">{room ? `🏠 ${room.id} · ${(room.members || []).length}/8 · 🔐 transport` : '💕 E2E'}</span>
             </div>
             {roomLink && room && (
-              <div className="flex items-center gap-2 px-4 py-2 bg-rose-500/[0.07] border-b border-rose-500/15 shrink-0">
-                <span className="text-[11px] text-rose-200 truncate flex-1">{roomLink}</span>
+              <div className="flex items-center gap-2 px-4 py-2 bg-rose-500/[0.07] border-b border-rose-500/15 shrink-0 overflow-hidden">
+                <span className="text-[11px] text-rose-200 truncate flex-1 min-w-0">{roomLink}</span>
                 <button onClick={() => { try { navigator.clipboard.writeText(roomLink); setNotice('Room link copied — share it! 💕') } catch {} }} className="text-[11px] px-2.5 py-1 rounded-full bg-rose-500/25 border border-rose-500/30 text-white font-bold shrink-0">Copy</button>
               </div>
             )}
@@ -866,7 +897,7 @@ export default function stranger_chat() {
                     </div>
                   )}
                   {m.kind === 'text' && m.who !== 'sys' && (
-                    <div className={`max-w-[75%] px-3.5 py-2 rounded-2xl text-sm ${m.who === 'me' ? 'rounded-br-md text-white' : 'rounded-bl-md bg-white/[0.08] text-slate-200'}`}
+                    <div className={`max-w-[75%] break-words px-3.5 py-2 rounded-2xl text-sm ${m.who === 'me' ? 'rounded-br-md text-white' : m.who === 'sys' ? 'bg-transparent text-slate-500 text-xs italic' : 'rounded-bl-md bg-white/[0.08] text-slate-200'}`}
                       style={m.who === 'me' ? { background: ROSE } : undefined}>
                       {m.body}
                       <div className="text-[10px] opacity-60 mt-0.5">{m.at}</div>
@@ -887,21 +918,21 @@ export default function stranger_chat() {
                 ))}
               </div>
               {peerAct && (
-                <div className="px-4 pt-2 flex justify-start">
-                  <div className="text-[11px] italic text-rose-200/90 bg-rose-500/10 border border-rose-500/20 rounded-full px-3 py-1 animate-pulse">{peerAct}</div>
+                <div className="px-4 pt-2 flex justify-start max-w-full">
+                  <div className="max-w-full truncate text-[11px] italic text-rose-200/90 bg-rose-500/10 border border-rose-500/20 rounded-full px-3 py-1 animate-pulse">{peerAct}</div>
                 </div>
               )}
               {pendingImg && (
-                <div className="mx-3 mb-1 rounded-2xl border border-rose-500/25 bg-black/40 p-3 flex items-center gap-3">
-                  <img src={pendingImg.url} alt="preview" className="w-14 h-14 rounded-xl object-cover border border-white/10" />
-                  <div className="flex-1">
+                <div className="mx-3 mb-1 rounded-2xl border border-rose-500/25 bg-black/40 p-3 flex flex-wrap items-center gap-3 overflow-hidden">
+                  <img src={pendingImg.url} alt="preview" className="w-14 h-14 shrink-0 rounded-xl object-cover border border-white/10" />
+                  <div className="flex-1 min-w-0">
                     <div className="text-xs font-bold text-white">Send this photo?</div>
                     <div className="text-[11px] text-slate-400">Compressed is smaller and sends faster.</div>
                   </div>
-                  <div className="flex flex-col gap-1.5">
-                    <button onClick={sendImgCompressed} className="text-[11px] font-black px-3 py-1.5 rounded-full text-white" style={{ background: ROSE }}>Compressed ⚡</button>
-                    <button onClick={sendImgOriginal} className="text-[11px] font-bold px-3 py-1.5 rounded-full bg-white/[0.08] border border-white/10 text-slate-200">Original</button>
-                    <button onClick={cancelPendingImg} className="text-[11px] px-3 py-1 text-slate-500">Cancel</button>
+                  <div className="flex gap-1.5 flex-wrap">
+                    <button onClick={sendImgCompressed} className="text-[11px] font-black px-3 py-1.5 rounded-full text-white shrink-0" style={{ background: ROSE }}>Compressed</button>
+                    <button onClick={sendImgOriginal} className="text-[11px] font-bold px-3 py-1.5 rounded-full bg-white/[0.08] border border-white/10 text-slate-200 shrink-0">Original</button>
+                    <button onClick={cancelPendingImg} className="text-[11px] px-3 py-1 text-slate-500 shrink-0">Cancel</button>
                   </div>
                 </div>
               )}
