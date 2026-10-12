@@ -103,19 +103,15 @@ export default function HomePage() {
       </Helmet>
 
       {/* Hero */}
-      <div className="relative mb-8 overflow-hidden rounded-3xl border border-white/[0.06] p-8 sm:p-10"
-        style={{ background: 'linear-gradient(135deg, rgba(99,102,241,0.06), rgba(17,24,39,0.3))' }}>
-        <div className="absolute -top-20 -right-20 w-72 h-72 rounded-full blur-3xl opacity-30 pointer-events-none"
-          style={{ background: 'radial-gradient(circle, rgba(99,102,241,0.15), transparent 70%)' }} />
-        <div className="absolute -bottom-16 -left-16 w-48 h-48 rounded-full blur-3xl opacity-20 pointer-events-none"
-          style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.12), transparent 70%)' }} />
+      <div className="relative mb-6 overflow-hidden rounded-3xl border border-white/[0.06] p-8 sm:p-10"
+        style={{ background: '#111c33' }}>
         <div className="relative flex flex-col sm:flex-row items-start gap-8">
           <div className="flex-1">
             <div className="flex items-center gap-4 mb-5">
               <img src="/assets/logo/uptools-logo.svg" alt="UpTools" className="w-16 h-16 rounded-2xl shadow-2xl shadow-brand/30" width="64" height="64" />
               <div>
                 <h1 className="text-3xl sm:text-4xl font-extrabold gradient-text leading-tight m-0">Games & Tools</h1>
-                <p className="text-slate-400 text-sm mt-1">All in one place.</p>
+                <p className="text-slate-400 text-sm mt-1">All in one place. Free forever.</p>
               </div>
             </div>
             <p className="text-slate-400 text-sm leading-relaxed max-w-xl mb-6">
@@ -123,11 +119,11 @@ export default function HomePage() {
               <span className="text-white font-semibold"> everyday tools</span> — calculators, converters,
               AI helpers and {GAME_COUNT} instant mini-games. No sign-ups, no bloat. New here? Start with a stranger chat or a quick game below.
             </p>
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap items-center gap-3">
               <Link to="/stranger-chat" className="text-sm px-6 py-2.5 rounded-xl no-underline inline-flex items-center gap-2 font-extrabold text-white" style={{ background: '#f43f5e' }}>Meet a stranger</Link>
               <Link to="/games" className="glow-btn text-sm px-6 py-2.5 rounded-xl no-underline inline-flex items-center gap-2">Play Games</Link>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-white/8 text-slate-300">⚡ Loads fast</span>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-white/8 text-slate-300">🔒 Privacy-first</span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-white/8 text-slate-300">Loads fast</span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-white/8 text-slate-300">Privacy-first</span>
             </div>
           </div>
           <div className="flex gap-8 shrink-0">
@@ -136,6 +132,21 @@ export default function HomePage() {
             ))}
           </div>
         </div>
+      </div>
+
+      {/* Start here — 3 fun doors */}
+      <div className="grid sm:grid-cols-3 gap-3 mb-6">
+        {[
+          { to: '/stranger-chat', bg: '#f43f5e', tag: 'MOST LOVED · 18+', title: 'Meet a stranger', sub: 'Anonymous chat in 5 seconds' },
+          { to: '/games', bg: '#6366f1', tag: `${GAME_COUNT} INSTANT GAMES`, title: 'Play something', sub: 'Snake, 2048, Tetris & more' },
+          { to: '/ai-blog-generator/', bg: '#059669', tag: 'AI HELPERS', title: 'Ask the AI tools', sub: 'Writers, planners & ideas' },
+        ].map(c => (
+          <Link key={c.to} to={c.to} className="rounded-3xl p-5 no-underline block hover:brightness-110 transition-all" style={{ background: c.bg }}>
+            <p className="text-[10px] font-black tracking-widest text-white/80 m-0">{c.tag}</p>
+            <p className="text-lg font-black text-white m-0 mt-1">{c.title} →</p>
+            <p className="text-xs text-white/85 m-0 mt-0.5">{c.sub}</p>
+          </Link>
+        ))}
       </div>
 
       {/* Stranger Chat — warm invite banner */}

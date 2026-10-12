@@ -73,6 +73,20 @@ function PhoneGlyph({ size = 18 }) {
     </svg>
   )
 }
+function PersonGlyph({ size = 20 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="12" cy="8" r="4" /><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5" />
+    </svg>
+  )
+}
+function HeartGlyph({ size = 18 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12 21s-7.5-4.7-10-9.3C.4 8.6 2.3 5 5.7 5c2 0 3.4 1.1 4.3 2.6h4c.9-1.5 2.3-2.6 4.3-2.6 3.4 0 5.3 3.6 3.7 6.7C19.5 16.3 12 21 12 21z" transform="scale(0.95) translate(0.6,0.5)" />
+    </svg>
+  )
+}
 
 // ---- E2E helpers (ECDH P-256 + AES-GCM). Keys exchanged over signalling,
 // server only relays ciphertext and can never read messages. ----
@@ -855,72 +869,86 @@ export default function stranger_chat() {
       }}
     >
       <div className="max-w-2xl mx-auto space-y-4">
-        {/* Hero — warm, inviting, clean */}
-        <div className="rounded-2xl border border-rose-500/25 bg-[#1a1020] px-5 py-6 sm:px-7">
-          <div className="flex items-start gap-4">
-            <div className="w-12 h-12 rounded-2xl flex items-center justify-center text-white shrink-0" style={{ background: ROSE_SOLID }}>
-              <ChatGlyph size={24} />
+        {/* Hero — bold, playful, solid colour */}
+        <div className="rounded-3xl overflow-hidden" style={{ background: ROSE_SOLID }}>
+          <div className="px-5 py-6 sm:px-7 sm:py-7">
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/25 text-[11px] font-extrabold text-white tracking-wide">
+                <span className="w-1.5 h-1.5 rounded-full bg-green-300 animate-pulse" />
+                {online === null ? 'connecting…' : `${online} online now`}
+              </span>
+              <span className="px-2.5 py-1 rounded-full bg-black/25 text-[11px] font-extrabold text-white tracking-wide">18+ · NO SIGN-UP</span>
             </div>
-            <div className="min-w-0 flex-1">
-              <div className="flex items-center gap-2 flex-wrap">
-                <p className="text-xl font-extrabold text-white m-0 tracking-tight">Meet someone new tonight</p>
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-green-500/15 border border-green-500/30 text-[11px] font-bold text-green-300">
-                  <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-                  {online === null ? 'connecting…' : `${online} online`}
-                </span>
+            <p className="text-3xl sm:text-4xl font-black text-white m-0 mt-3 leading-[1.05] tracking-tight">Bored?<br />Say hi to<br />someone new.</p>
+            <p className="text-[13px] text-white/90 m-0 mt-2 font-medium">Anonymous 1-1 chat, group rooms, voice notes and calls. Nothing stored, ever.</p>
+            <div className="flex items-center mt-4">
+              <div className="flex -space-x-2">
+                {[['A', '#7c3aed'], ['R', '#059669'], ['S', '#d97706'], ['P', '#2563eb'], ['+', '#111827']].map(([t, c]) => (
+                  <span key={t} className="w-8 h-8 rounded-full border-2 border-white/70 flex items-center justify-center text-xs font-black text-white" style={{ background: c }}>{t}</span>
+                ))}
               </div>
-              <p className="text-[13px] text-slate-300 m-0 mt-1 leading-relaxed">Anonymous 1-1 chats, group rooms, voice notes and voice calls. No sign-up, no names — just say hi.</p>
-              <div className="flex items-center gap-2 mt-3 flex-wrap">
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/[0.06] border border-white/10 text-[11px] font-semibold text-slate-200"><ShieldGlyph size={13} /> End-to-end encrypted</span>
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/[0.06] border border-white/10 text-[11px] font-semibold text-slate-200"><BoltGlyph size={13} /> Instant matching</span>
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/[0.06] border border-white/10 text-[11px] font-semibold text-slate-200">18+ safe space</span>
-              </div>
+              <span className="text-[11px] font-bold text-white/90 ml-2">strangers waiting to talk</span>
             </div>
           </div>
+          <div className="px-5 sm:px-7 pb-5 space-y-2">
+            <div className="flex justify-start">
+              <div className="max-w-[80%] bg-white text-slate-800 text-[13px] font-medium rounded-2xl rounded-tl-md px-3.5 py-2 shadow">hey! anyone here love cricket?</div>
+            </div>
+            <div className="flex justify-end">
+              <div className="max-w-[80%] bg-[#111827] text-white text-[13px] font-medium rounded-2xl rounded-tr-md px-3.5 py-2 shadow">yess! match tonight — you watching?</div>
+            </div>
+          </div>
+        </div>
+        <div className="grid grid-cols-3 gap-2">
+          {[
+            [<PersonGlyph size={18} />, '1. Pick', 'Male / Female / Any'],
+            [<BoltGlyph size={18} />, '2. Match', 'Paired in seconds'],
+            [<ChatGlyph size={18} />, '3. Chat', 'Text, voice, rooms'],
+          ].map(([icon, t, s], i) => (
+            <div key={i} className="rounded-2xl border border-white/10 bg-[#111827] px-3 py-3 text-center">
+              <div className="w-9 h-9 mx-auto rounded-xl flex items-center justify-center text-white" style={{ background: [ROSE_SOLID, TEAL_SOLID, '#7c3aed'][i] }}>{icon}</div>
+              <p className="text-xs font-extrabold text-white m-0 mt-1.5">{t}</p>
+              <p className="text-[11px] text-slate-400 m-0">{s}</p>
+            </div>
+          ))}
         </div>
         <div className="text-xs text-slate-300 bg-white/[0.05] border border-white/10 rounded-xl px-4 py-2.5 leading-relaxed">{status}</div>
         {notice && <div className="text-xs text-amber-200 bg-amber-500/10 border border-amber-500/25 rounded-xl px-4 py-2.5">{notice}</div>}
 
         {stage === 'gate' && (
-          <div className="border border-white/10 rounded-2xl p-5 sm:p-6 space-y-5 bg-[#111827]">
+          <div className="border border-white/10 rounded-3xl p-5 sm:p-6 space-y-5 bg-[#111827]">
             <div className="text-center">
-              <p className="text-sm font-bold text-white m-0">Who do you want to meet?</p>
-              <p className="text-xs text-slate-400 m-0 mt-1">Pick in 5 seconds — change anytime with Next.</p>
+              <p className="text-base font-extrabold text-white m-0">Who do you want to meet?</p>
+              <p className="text-xs text-slate-400 m-0 mt-1">Takes 5 seconds — skip anyone with Next.</p>
+            </div>
+            <div className="grid grid-cols-2 gap-2">
+              <p className="col-span-2 text-[11px] font-extrabold text-slate-400 tracking-wide m-0">I AM</p>
+              {['M', 'F'].map(v => (
+                <button key={v} onClick={() => setMe(v)}
+                  className={`flex items-center justify-center gap-2 py-3 rounded-2xl text-sm font-extrabold border-2 transition-all cursor-pointer ${me === v ? 'text-white border-transparent' : 'text-slate-300 border-white/10 bg-white/[0.03] hover:border-white/25'}`}
+                  style={me === v ? { background: ROSE_SOLID } : undefined}>
+                  <PersonGlyph size={18} /> {v === 'M' ? 'Male' : 'Female'}
+                </button>
+              ))}
+            </div>
+            <div className="grid grid-cols-3 gap-2">
+              <p className="col-span-3 text-[11px] font-extrabold text-slate-400 tracking-wide m-0">I WANT TO MEET</p>
+              {[['ANY', 'Any'], ['M', 'Male'], ['F', 'Female']].map(([v, l]) => (
+                <button key={v} onClick={() => setWant(v)}
+                  className={`flex items-center justify-center gap-1.5 py-3 rounded-2xl text-sm font-extrabold border-2 transition-all cursor-pointer ${want === v ? 'text-white border-transparent' : 'text-slate-300 border-white/10 bg-white/[0.03] hover:border-white/25'}`}
+                  style={want === v ? { background: TEAL_SOLID } : undefined}>
+                  {l}
+                </button>
+              ))}
             </div>
             <label className="flex items-start gap-2.5 text-[13px] text-slate-200 cursor-pointer bg-white/[0.04] border border-white/10 rounded-xl px-3.5 py-3">
               <input type="checkbox" checked={adult} onChange={e => setAdult(e.target.checked)} className="mt-0.5 accent-rose-500 w-4 h-4 shrink-0" />
-              <span>I am 18 years or older and agree to the chat rules below. Be kind, stay anonymous.</span>
+              <span>I am 18 or older and agree to the rules. Be kind, stay anonymous.</span>
             </label>
-            <div className="grid grid-cols-2 gap-3">
-              <div>
-                <label className="block text-xs font-bold text-slate-300 mb-1.5">I am</label>
-                <div className="grid grid-cols-2 p-1 bg-black/40 border border-white/10 rounded-xl gap-1">
-                  {['M', 'F'].map(v => (
-                    <button key={v} onClick={() => setMe(v)}
-                      className={`py-2.5 text-[13px] font-bold rounded-lg transition-all cursor-pointer ${me === v ? 'text-white' : 'text-slate-400 hover:text-white'}`}
-                      style={me === v ? { background: ROSE_SOLID } : undefined}>
-                      {v === 'M' ? 'Male' : 'Female'}
-                    </button>
-                  ))}
-                </div>
-              </div>
-              <div>
-                <label className="block text-xs font-bold text-slate-300 mb-1.5">I want to meet</label>
-                <div className="grid grid-cols-3 p-1 bg-black/40 border border-white/10 rounded-xl gap-1">
-                  {[['ANY', 'Anyone'], ['M', 'Male'], ['F', 'Female']].map(([v, l]) => (
-                    <button key={v} onClick={() => setWant(v)}
-                      className={`py-2.5 text-[13px] font-bold rounded-lg transition-all cursor-pointer ${want === v ? 'text-white' : 'text-slate-400 hover:text-white'}`}
-                      style={want === v ? { background: TEAL_SOLID } : undefined}>
-                      {l}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-            <button onClick={connect} className="w-full py-3.5 rounded-xl text-[15px] font-extrabold text-white hover:brightness-110 active:scale-[0.99] transition-all cursor-pointer" style={{ background: ROSE_SOLID }}>
-              Start chatting — it is free
+            <button onClick={connect} className="w-full py-4 rounded-2xl text-base font-black text-white hover:brightness-110 active:scale-[0.99] transition-all cursor-pointer flex items-center justify-center gap-2" style={{ background: ROSE_SOLID }}>
+              Start chatting — it is free <span aria-hidden="true">→</span>
             </button>
-            <p className="text-center text-[11px] text-slate-500 m-0">No account. No history saved. Press Next to skip anytime.</p>
+            <p className="text-center text-[11px] text-slate-500 m-0 flex items-center justify-center gap-1.5"><ShieldGlyph size={13} /> Encrypted · No account · Nothing saved</p>
             {/* rooms */}
             <div className="rounded-2xl border border-white/10 bg-black/20 p-4 space-y-3 overflow-hidden">
               <p className="text-[13px] font-bold text-white m-0">Prefer a group vibe? <span className="font-normal text-slate-400">Up to 8 friends, link lasts 24h.</span></p>
