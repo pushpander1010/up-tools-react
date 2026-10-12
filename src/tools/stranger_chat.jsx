@@ -21,7 +21,58 @@ async function getIceServers() {
   } catch {}
   return STUN_ONLY
 }
-const ROSE = 'linear-gradient(135deg, #f43f5e, #ec4899)'
+const ROSE_SOLID = '#f43f5e'
+const TEAL_SOLID = '#00a884'
+
+function ChatGlyph({ size = 22 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+    </svg>
+  )
+}
+function ShieldGlyph({ size = 16 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z" /><path d="M9 12l2 2 4-4" />
+    </svg>
+  )
+}
+function BoltGlyph({ size = 16 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M13 2L3 14h7l-1 8 10-12h-7z" />
+    </svg>
+  )
+}
+function MicGlyph({ size = 18 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="9" y="2" width="6" height="12" rx="3" /><path d="M5 10a7 7 0 0 0 14 0M12 17v4" />
+    </svg>
+  )
+}
+function ImgGlyph({ size = 18 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="3" y="5" width="18" height="14" rx="2" /><circle cx="9" cy="10" r="1.5" /><path d="M4 18l5-5 3 3 4-4 4 4" />
+    </svg>
+  )
+}
+function SmileGlyph({ size = 18 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="9" /><path d="M8 14s1.5 2 4 2 4-2 4-2" /><path d="M9 9h.01M15 9h.01" />
+    </svg>
+  )
+}
+function PhoneGlyph({ size = 18 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2z" />
+    </svg>
+  )
+}
 
 // ---- E2E helpers (ECDH P-256 + AES-GCM). Keys exchanged over signalling,
 // server only relays ciphertext and can never read messages. ----
@@ -804,63 +855,84 @@ export default function stranger_chat() {
       }}
     >
       <div className="max-w-2xl mx-auto space-y-4">
-        {/* Hero */}
-        <div className="rounded-2xl border border-white/10 bg-black/30 px-5 py-6 text-center">
-          <p className="text-lg font-black text-white m-0 tracking-tight">Stranger Chat</p>
-          <p className="text-xs text-slate-400 m-0 mt-1">Anonymous 18+ chats. No sign-up, no names.</p>
-          <div className="inline-flex items-center gap-1.5 mt-3 px-3 py-1 rounded-full bg-white/[0.05] border border-white/10 text-xs font-bold text-slate-200">
-            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-            {online === null ? 'connecting…' : `${online} online`}
+        {/* Hero — warm, inviting, clean */}
+        <div className="rounded-2xl border border-rose-500/25 bg-[#1a1020] px-5 py-6 sm:px-7">
+          <div className="flex items-start gap-4">
+            <div className="w-12 h-12 rounded-2xl flex items-center justify-center text-white shrink-0" style={{ background: ROSE_SOLID }}>
+              <ChatGlyph size={24} />
+            </div>
+            <div className="min-w-0 flex-1">
+              <div className="flex items-center gap-2 flex-wrap">
+                <p className="text-xl font-extrabold text-white m-0 tracking-tight">Meet someone new tonight</p>
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-green-500/15 border border-green-500/30 text-[11px] font-bold text-green-300">
+                  <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+                  {online === null ? 'connecting…' : `${online} online`}
+                </span>
+              </div>
+              <p className="text-[13px] text-slate-300 m-0 mt-1 leading-relaxed">Anonymous 1-1 chats, group rooms, voice notes and voice calls. No sign-up, no names — just say hi.</p>
+              <div className="flex items-center gap-2 mt-3 flex-wrap">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/[0.06] border border-white/10 text-[11px] font-semibold text-slate-200"><ShieldGlyph size={13} /> End-to-end encrypted</span>
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/[0.06] border border-white/10 text-[11px] font-semibold text-slate-200"><BoltGlyph size={13} /> Instant matching</span>
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/[0.06] border border-white/10 text-[11px] font-semibold text-slate-200">18+ safe space</span>
+              </div>
+            </div>
           </div>
         </div>
-        <div className="text-xs text-slate-400 bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-2">{status}</div>
-        {notice && <div className="text-xs text-amber-300 bg-amber-500/10 border border-amber-500/20 rounded-xl px-4 py-2">{notice}</div>}
+        <div className="text-xs text-slate-300 bg-white/[0.05] border border-white/10 rounded-xl px-4 py-2.5 leading-relaxed">{status}</div>
+        {notice && <div className="text-xs text-amber-200 bg-amber-500/10 border border-amber-500/25 rounded-xl px-4 py-2.5">{notice}</div>}
 
         {stage === 'gate' && (
-          <div className="border border-white/10 rounded-2xl p-5 space-y-4 bg-black/30">
-            <label className="flex items-start gap-2.5 text-sm text-slate-200 cursor-pointer">
-              <input type="checkbox" checked={adult} onChange={e => setAdult(e.target.checked)} className="mt-1 accent-rose-500 w-4 h-4 shrink-0" />
-              <span>I am 18 years or older and agree to the chat rules below.</span>
+          <div className="border border-white/10 rounded-2xl p-5 sm:p-6 space-y-5 bg-[#111827]">
+            <div className="text-center">
+              <p className="text-sm font-bold text-white m-0">Who do you want to meet?</p>
+              <p className="text-xs text-slate-400 m-0 mt-1">Pick in 5 seconds — change anytime with Next.</p>
+            </div>
+            <label className="flex items-start gap-2.5 text-[13px] text-slate-200 cursor-pointer bg-white/[0.04] border border-white/10 rounded-xl px-3.5 py-3">
+              <input type="checkbox" checked={adult} onChange={e => setAdult(e.target.checked)} className="mt-0.5 accent-rose-500 w-4 h-4 shrink-0" />
+              <span>I am 18 years or older and agree to the chat rules below. Be kind, stay anonymous.</span>
             </label>
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="block text-xs font-semibold text-rose-200/80 mb-1">I am</label>
-                <div className="grid grid-cols-2 p-1 bg-black/40 border border-rose-500/20 rounded-xl">
+                <label className="block text-xs font-bold text-slate-300 mb-1.5">I am</label>
+                <div className="grid grid-cols-2 p-1 bg-black/40 border border-white/10 rounded-xl gap-1">
                   {['M', 'F'].map(v => (
                     <button key={v} onClick={() => setMe(v)}
-                      className={`py-2 text-xs font-bold rounded-lg transition-all ${me === v ? 'bg-rose-500/25 text-rose-200 border border-rose-500/40' : 'text-slate-400 hover:text-slate-200 border border-transparent'}`}>
+                      className={`py-2.5 text-[13px] font-bold rounded-lg transition-all cursor-pointer ${me === v ? 'text-white' : 'text-slate-400 hover:text-white'}`}
+                      style={me === v ? { background: ROSE_SOLID } : undefined}>
                       {v === 'M' ? 'Male' : 'Female'}
                     </button>
                   ))}
                 </div>
               </div>
               <div>
-                <label className="block text-xs font-semibold text-rose-200/80 mb-1">Meet</label>
-                <div className="grid grid-cols-3 p-1 bg-black/40 border border-rose-500/20 rounded-xl">
-                  {[['ANY', 'Any'], ['M', 'Male'], ['F', 'Female']].map(([v, l]) => (
+                <label className="block text-xs font-bold text-slate-300 mb-1.5">I want to meet</label>
+                <div className="grid grid-cols-3 p-1 bg-black/40 border border-white/10 rounded-xl gap-1">
+                  {[['ANY', 'Anyone'], ['M', 'Male'], ['F', 'Female']].map(([v, l]) => (
                     <button key={v} onClick={() => setWant(v)}
-                      className={`py-2 text-xs font-bold rounded-lg transition-all ${want === v ? 'bg-rose-500/25 text-rose-200 border border-rose-500/40' : 'text-slate-400 hover:text-slate-200 border border-transparent'}`}>
+                      className={`py-2.5 text-[13px] font-bold rounded-lg transition-all cursor-pointer ${want === v ? 'text-white' : 'text-slate-400 hover:text-white'}`}
+                      style={want === v ? { background: TEAL_SOLID } : undefined}>
                       {l}
                     </button>
                   ))}
                 </div>
               </div>
             </div>
-            <button onClick={connect} className="w-full py-3.5 rounded-xl text-sm font-black text-white shadow-lg hover:brightness-110 active:scale-[0.99] transition-all" style={{ background: '#00a884' }}>
-              Start Chat
+            <button onClick={connect} className="w-full py-3.5 rounded-xl text-[15px] font-extrabold text-white hover:brightness-110 active:scale-[0.99] transition-all cursor-pointer" style={{ background: ROSE_SOLID }}>
+              Start chatting — it is free
             </button>
+            <p className="text-center text-[11px] text-slate-500 m-0">No account. No history saved. Press Next to skip anytime.</p>
             {/* rooms */}
-            <div className="rounded-2xl border border-white/10 bg-black/20 p-3 space-y-2 overflow-hidden">
-              <p className="text-xs font-black text-rose-200 m-0">Group Room <span className="font-normal text-slate-400">(up to 8, link lasts 24h)</span></p>
+            <div className="rounded-2xl border border-white/10 bg-black/20 p-4 space-y-3 overflow-hidden">
+              <p className="text-[13px] font-bold text-white m-0">Prefer a group vibe? <span className="font-normal text-slate-400">Up to 8 friends, link lasts 24h.</span></p>
               <div className="grid grid-cols-2 gap-2">
-                <button onClick={() => setRoomPanel(roomPanel === 'create' ? null : 'create')} className="py-2.5 rounded-xl text-xs font-black text-white" style={{ background: ROSE }}>Create Room</button>
+                <button onClick={() => setRoomPanel(roomPanel === 'create' ? null : 'create')} className="py-2.5 rounded-xl text-xs font-black text-white cursor-pointer" style={{ background: ROSE_SOLID }}>Create Room</button>
                 <button onClick={() => setRoomPanel(roomPanel === 'join' ? null : 'join')} className="py-2.5 rounded-xl text-xs font-bold bg-white/[0.06] border border-white/[0.08] text-slate-200">Join Room</button>
               </div>
               {roomPanel === 'create' && (
                 <div className="space-y-2">
                   <input value={roomPw} onChange={e => setRoomPw(e.target.value)} type="password" placeholder="Room password (optional)"
                     className="w-full min-w-0 bg-black/30 border border-rose-500/20 rounded-xl px-3 py-2 text-xs text-white outline-none focus:border-rose-500/50" />
-                  <button onClick={createRoom} className="w-full py-2.5 rounded-xl text-xs font-black text-white" style={{ background: ROSE }}>Create + Copy Link</button>
+                  <button onClick={createRoom} className="w-full py-2.5 rounded-xl text-xs font-black text-white cursor-pointer" style={{ background: ROSE_SOLID }}>Create + Copy Link</button>
                 </div>
               )}
               {roomPanel === 'join' && (
@@ -877,17 +949,21 @@ export default function stranger_chat() {
         )}
 
         {stage === 'matching' && (
-          <div className="relative text-center py-14 px-6 rounded-3xl border border-rose-500/20 bg-black/30 overflow-hidden">
-            <div className="relative w-24 h-24 mx-auto flex items-center justify-center">
-              <div className="absolute inset-0 rounded-full bg-rose-500/10 animate-ping" />
-              <div className="absolute inset-2 rounded-full border border-rose-500/30 animate-pulse" />
-              <div className="relative w-14 h-14 rounded-full flex items-center justify-center text-2xl text-white" style={{ background: ROSE }}>💘</div>
+          <div className="relative text-center py-12 px-6 rounded-2xl border border-rose-500/25 bg-[#1a1020] overflow-hidden">
+            <div className="relative w-20 h-20 mx-auto flex items-center justify-center">
+              <div className="absolute inset-0 rounded-full bg-rose-500/15 animate-ping" />
+              <div className="relative w-14 h-14 rounded-full flex items-center justify-center text-white" style={{ background: ROSE_SOLID }}>
+                <ChatGlyph size={24} />
+              </div>
             </div>
-            <p className="text-sm text-rose-200/90 mt-5 font-bold">Finding someone special…</p>
-            <p className="text-[11px] text-slate-500 mt-1">Keep this tab open</p>
+            <p className="text-[15px] text-white mt-5 font-bold m-0">Finding someone you will like…</p>
+            <p className="text-xs text-slate-400 mt-1 m-0">Keep this tab open — most matches land in seconds.</p>
+            <div className="inline-flex items-center gap-1.5 mt-3 px-3 py-1.5 rounded-full bg-white/[0.06] border border-white/10 text-[11px] font-semibold text-slate-200">
+              <BoltGlyph size={13} /> Tip: say more than “hi” — mention a song, game or city
+            </div>
             <div className="flex gap-2 justify-center mt-5 flex-wrap">
-              <button onClick={connect} className="text-xs font-bold px-5 py-2 rounded-full text-white shadow-md shadow-rose-500/25" style={{ background: ROSE }}>Retry</button>
-              <button onClick={doEnd} className="text-xs px-4 py-2 rounded-xl bg-white/[0.06] border border-white/[0.08] text-slate-300">Cancel</button>
+              <button onClick={connect} className="text-xs font-bold px-6 py-2.5 rounded-full text-white cursor-pointer" style={{ background: ROSE_SOLID }}>Retry</button>
+              <button onClick={doEnd} className="text-xs px-5 py-2.5 rounded-full bg-white/[0.06] border border-white/10 text-slate-300 cursor-pointer">Cancel</button>
             </div>
           </div>
         )}
@@ -968,19 +1044,19 @@ export default function stranger_chat() {
                     <div className="text-[11px] text-slate-400">Compressed is smaller and sends faster.</div>
                   </div>
                   <div className="flex gap-1.5 flex-wrap">
-                    <button onClick={sendImgCompressed} className="text-[11px] font-black px-3 py-1.5 rounded-full text-white shrink-0" style={{ background: ROSE }}>Compressed</button>
+                    <button onClick={sendImgCompressed} className="text-[11px] font-black px-3 py-1.5 rounded-full text-white shrink-0 cursor-pointer" style={{ background: ROSE_SOLID }}>Compressed</button>
                     <button onClick={sendImgOriginal} className="text-[11px] font-bold px-3 py-1.5 rounded-full bg-white/[0.08] border border-white/10 text-slate-200 shrink-0">Original</button>
                     <button onClick={cancelPendingImg} className="text-[11px] px-3 py-1 text-slate-500 shrink-0">Cancel</button>
                   </div>
                 </div>
               )}
               <div className="flex items-center gap-1.5 px-2.5 py-2" style={{ background: '#1f2c34' }}>
-              <button onClick={() => setShowPics(v => !v)} title="Stickers" className={`w-9 h-9 shrink-0 flex items-center justify-center rounded-full text-base transition-all active:scale-95 ${showPics ? 'text-green-300 bg-white/10' : 'text-slate-400 hover:text-green-300 hover:bg-white/10'}`}>😊</button>
-              <label className="w-9 h-9 shrink-0 flex items-center justify-center rounded-full text-base text-slate-400 hover:text-green-300 hover:bg-white/10 active:scale-95 transition-all cursor-pointer" title="Send image">
-                📷<input type="file" accept="image/*" className="hidden" onChange={e => { sendImage(e.target.files?.[0]); e.target.value = '' }} />
+              <button onClick={() => setShowPics(v => !v)} title="Stickers" className={`w-9 h-9 shrink-0 flex items-center justify-center rounded-full transition-all active:scale-95 cursor-pointer ${showPics ? 'text-green-300 bg-white/10' : 'text-slate-400 hover:text-green-300 hover:bg-white/10'}`}><SmileGlyph /></button>
+              <label className="w-9 h-9 shrink-0 flex items-center justify-center rounded-full text-slate-400 hover:text-green-300 hover:bg-white/10 active:scale-95 transition-all cursor-pointer" title="Send image">
+                <ImgGlyph /><input type="file" accept="image/*" className="hidden" onChange={e => { sendImage(e.target.files?.[0]); e.target.value = '' }} />
               </label>
-              <button onClick={toggleRec} title="Voice note" className={`w-9 h-9 shrink-0 flex items-center justify-center rounded-full text-base transition-all active:scale-95 ${rec ? 'bg-green-500/20 text-green-300 animate-pulse' : 'text-slate-400 hover:text-green-300 hover:bg-white/10'}`}>{rec ? '⏹' : '🎙'}</button>
-              {!room && <button onClick={startCall} title="Voice call" className="w-9 h-9 shrink-0 flex items-center justify-center rounded-full text-base text-slate-400 hover:text-green-300 hover:bg-white/10 active:scale-95 transition-all">📞</button>}
+              <button onClick={toggleRec} title="Voice note" className={`w-9 h-9 shrink-0 flex items-center justify-center rounded-full transition-all active:scale-95 cursor-pointer ${rec ? 'bg-green-500/20 text-green-300 animate-pulse' : 'text-slate-400 hover:text-green-300 hover:bg-white/10'}`}><MicGlyph /></button>
+              {!room && <button onClick={startCall} title="Voice call" className="w-9 h-9 shrink-0 flex items-center justify-center rounded-full text-slate-400 hover:text-green-300 hover:bg-white/10 active:scale-95 transition-all cursor-pointer"><PhoneGlyph /></button>}
               <input value={draft} onChange={e => onDraftChange(e.target.value)} onKeyDown={e => { if (e.key === 'Enter') sendText() }}
                 placeholder="Message" className="flex-1 min-w-0 rounded-full px-4 py-2.5 text-base sm:text-sm text-white outline-none placeholder:text-slate-500 focus:border-green-500/50 transition-all" style={{ background: '#2a3942', border: '1px solid rgba(255,255,255,0.06)' }} />
               <button onClick={sendText} title="Send" className="w-9 h-9 shrink-0 rounded-full flex items-center justify-center text-white shadow-md hover:scale-105 active:scale-95 transition-transform text-base" style={{ background: '#00a884' }}>➤</button>
@@ -994,50 +1070,52 @@ export default function stranger_chat() {
 
         {/* Phone-call style window */}
         {call !== 'idle' && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-5"
-            style={{ background: 'linear-gradient(160deg, rgba(30,10,25,0.97), rgba(80,15,45,0.96))' }}>
-            <div className="w-full max-w-xs text-center rounded-3xl border border-rose-500/25 p-7"
-              style={{ background: 'linear-gradient(150deg, rgba(244,63,94,0.14), rgba(17,10,20,0.6))' }}>
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-5" style={{ background: 'rgba(20,8,16,0.97)' }}>
+            <div className="w-full max-w-xs text-center rounded-3xl border border-rose-500/25 p-7 bg-[#1a1020]">
               <div className="relative w-24 h-24 mx-auto mb-4">
-                <div className="absolute inset-0 rounded-full bg-rose-500/30 animate-ping" />
-                <div className="absolute inset-0 rounded-full bg-rose-500/20 animate-pulse" />
-                <div className="relative w-24 h-24 rounded-full flex items-center justify-center text-5xl border-2 border-rose-400/50"
-                  style={{ background: ROSE }}>💕</div>
+                <div className="absolute inset-0 rounded-full bg-rose-500/25 animate-ping" />
+                <div className="relative w-24 h-24 rounded-full flex items-center justify-center text-white border-2 border-rose-400/50"
+                  style={{ background: ROSE_SOLID }}><ChatGlyph size={40} /></div>
               </div>
               <p className="text-lg font-black text-white m-0">Stranger</p>
               <p className="text-sm text-rose-200/90 m-0 mt-1 mb-6">
-                {call === 'calling' && 'Calling… 📞'}
-                {call === 'incoming' && 'Incoming call… 💓'}
-                {call === 'incall' && `💕 ${fmtCall(callSecs)}`}
+                {call === 'calling' && 'Calling…'}
+                {call === 'incoming' && 'Incoming call…'}
+                {call === 'incall' && `${fmtCall(callSecs)}`}
               </p>
               {call === 'incoming' ? (
                 <div className="flex gap-3 justify-center">
-                  <button onClick={declineCall} className="flex-1 py-3 rounded-full text-sm font-black text-white"
-                    style={{ background: 'linear-gradient(135deg, #ef4444, #b91c1c)' }}>Decline</button>
-                  <button onClick={acceptCall} className="flex-1 py-3 rounded-full text-sm font-black text-white animate-pulse"
-                    style={{ background: 'linear-gradient(135deg, #22c55e, #059669)' }}>Accept 💕</button>
+                  <button onClick={declineCall} className="flex-1 py-3 rounded-full text-sm font-black text-white cursor-pointer"
+                    style={{ background: '#dc2626' }}>Decline</button>
+                  <button onClick={acceptCall} className="flex-1 py-3 rounded-full text-sm font-black text-white animate-pulse cursor-pointer"
+                    style={{ background: '#16a34a' }}>Accept</button>
                 </div>
               ) : (
                 <div className="flex items-center justify-center gap-4">
                   <button onClick={toggleMute} title={muted ? 'Unmute' : 'Mute'}
-                    className={`w-14 h-14 rounded-full text-2xl border ${muted ? 'bg-amber-500/25 border-amber-500/40' : 'bg-white/[0.08] border-white/15'}`}>
-                    {muted ? '🔇' : '🎙️'}
+                    className={`w-14 h-14 rounded-full flex items-center justify-center text-white border cursor-pointer ${muted ? 'bg-amber-500/25 border-amber-500/40' : 'bg-white/[0.08] border-white/15'}`}>
+                    <MicGlyph size={22} />
                   </button>
                   <button onClick={endCall} title="End call"
-                    className="w-16 h-16 rounded-full text-3xl text-white shadow-lg shadow-red-500/40"
-                    style={{ background: 'linear-gradient(135deg, #ef4444, #b91c1c)' }}>📵</button>
-                  <button onClick={() => setNotice('Chat stays here — end the call to type again. 💕')} title="Keypad"
-                    className="w-14 h-14 rounded-full text-2xl bg-white/[0.08] border border-white/15">⌨️</button>
+                    className="w-16 h-16 rounded-full flex items-center justify-center text-white cursor-pointer"
+                    style={{ background: '#dc2626' }}><PhoneGlyph size={26} /></button>
+                  <button onClick={() => setNotice('Chat stays here — end the call to type again.')} title="Keypad"
+                    className="w-14 h-14 rounded-full flex items-center justify-center text-white bg-white/[0.08] border border-white/15 cursor-pointer"><ChatGlyph size={22} /></button>
                 </div>
               )}
-              <p className="text-[11px] text-rose-200/60 m-0 mt-5">🔒 Voice runs peer-to-peer, never stored</p>
+              <p className="text-[11px] text-rose-200/60 m-0 mt-5">Voice runs peer-to-peer, never stored</p>
             </div>
           </div>
         )}
 
-        <div className="bg-black/30 border border-white/10 rounded-2xl p-4 text-xs text-slate-400 leading-relaxed">
-          <p className="font-bold text-slate-200 mb-1">Rules — 18+ only, stay safe</p>
-          <p>1. 18+ strictly. No nudity, no harassment, no spam. 2. Never share phone, address, OTPs, bank or ID photos. 3. Report abuse instantly — it blocks and re-matches. 4. Chats are encrypted and never stored. Grievance: grievance@uptools.in (reply within 72h, IT Rules 2021).</p>
+        <div className="bg-[#111827] border border-white/10 rounded-2xl p-5">
+          <p className="font-bold text-white text-[13px] m-0 mb-2">A fun chat is a safe chat — 18+ only</p>
+          <div className="grid sm:grid-cols-2 gap-2 text-xs text-slate-300 leading-relaxed">
+            <div className="flex gap-2"><span className="text-rose-400 font-bold">01</span><span>Be kind. No nudity, harassment or spam — Report blocks instantly.</span></div>
+            <div className="flex gap-2"><span className="text-rose-400 font-bold">02</span><span>Stay anonymous. Never share phone, address, OTPs or ID photos.</span></div>
+            <div className="flex gap-2"><span className="text-rose-400 font-bold">03</span><span>1-1 chats are end-to-end encrypted and never stored.</span></div>
+            <div className="flex gap-2"><span className="text-rose-400 font-bold">04</span><span>Need help? grievance@uptools.in — reply within 72h (IT Rules 2021).</span></div>
+          </div>
         </div>
       </div>
     </ToolLayout>

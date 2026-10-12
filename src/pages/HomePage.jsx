@@ -119,12 +119,13 @@ export default function HomePage() {
               </div>
             </div>
             <p className="text-slate-400 text-sm leading-relaxed max-w-xl mb-6">
-              Your hub for <span className="text-white font-semibold">free online games</span> and
+              Your friendly hub for <span className="text-white font-semibold">free online games</span> and
               <span className="text-white font-semibold"> everyday tools</span> — calculators, converters,
-              AI helpers and {GAME_COUNT} instant mini-games. No sign-ups, no bloat.
+              AI helpers and {GAME_COUNT} instant mini-games. No sign-ups, no bloat. New here? Start with a stranger chat or a quick game below.
             </p>
             <div className="flex flex-wrap gap-3">
-              <Link to="/games" className="glow-btn text-sm px-6 py-2.5 rounded-xl no-underline inline-flex items-center gap-2">🎮 Play Games</Link>
+              <Link to="/stranger-chat" className="text-sm px-6 py-2.5 rounded-xl no-underline inline-flex items-center gap-2 font-extrabold text-white" style={{ background: '#f43f5e' }}>Meet a stranger</Link>
+              <Link to="/games" className="glow-btn text-sm px-6 py-2.5 rounded-xl no-underline inline-flex items-center gap-2">Play Games</Link>
               <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-white/8 text-slate-300">⚡ Loads fast</span>
               <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-white/8 text-slate-300">🔒 Privacy-first</span>
             </div>
@@ -137,16 +138,17 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Stranger Chat — big banner */}
-      <Link to="/stranger-chat" className="relative mb-6 overflow-hidden rounded-3xl border border-indigo-500/20 no-underline block"
-        style={{ background: 'linear-gradient(120deg, rgba(49,46,129,0.5), rgba(124,58,237,0.35))' }}>
+      {/* Stranger Chat — warm invite banner */}
+      <Link to="/stranger-chat" className="relative mb-6 overflow-hidden rounded-3xl border border-rose-500/25 no-underline block bg-[#1a1020] hover:border-rose-500/50 transition-colors">
         <div className="flex flex-col sm:flex-row items-center gap-5 p-6 sm:p-7">
-          <img src="/assets/stranger-chat-banner.svg" alt="Anonymous stranger chat" className="w-full sm:w-64 rounded-2xl shrink-0" width="256" height="128" />
-          <div className="flex-1 text-center sm:text-left">
-            <div className="inline-block text-[11px] font-bold text-pink-300 bg-pink-500/15 border border-pink-500/25 rounded-full px-3 py-1 mb-2">NEW · 18+ ONLY</div>
-            <h2 className="text-xl sm:text-2xl font-extrabold text-white m-0">Talk to Strangers Online 💬</h2>
-            <p className="text-sm text-slate-300 mt-1 mb-4">Anonymous chat — text, images, voice notes. No sign-up. End-to-end encrypted.</p>
-            <span className="glow-btn text-sm px-6 py-2.5 rounded-xl inline-block font-bold">Start Chatting →</span>
+          <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-white shrink-0" style={{ background: '#f43f5e' }}>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" /><path d="M8 9h8M8 12.5h5" /></svg>
+          </div>
+          <div className="flex-1 text-center sm:text-left min-w-0">
+            <div className="inline-block text-[11px] font-bold text-rose-200 bg-rose-500/15 border border-rose-500/30 rounded-full px-3 py-1 mb-2">MOST LOVED · 18+ ONLY · NO SIGN-UP</div>
+            <h2 className="text-xl sm:text-2xl font-extrabold text-white m-0 tracking-tight">Bored? Meet someone new in 5 seconds</h2>
+            <p className="text-[13px] text-slate-300 mt-1 mb-4">Anonymous 1-1 chat, group rooms, voice notes and voice calls. End-to-end encrypted, nothing stored.</p>
+            <span className="inline-block text-sm px-6 py-2.5 rounded-xl font-extrabold text-white" style={{ background: '#f43f5e' }}>Say hi to a stranger →</span>
           </div>
         </div>
       </Link>
@@ -154,7 +156,7 @@ export default function HomePage() {
       {/* Games Rail */}
       <div className="glass rounded-3xl p-5 mb-6">
         <div className="flex items-center justify-between gap-4 flex-wrap mb-4">
-          <div><h2 className="text-lg font-bold text-white m-0">🎮 Free Mini Games</h2><p className="text-xs text-slate-400 mt-0.5">Instant browser games — click and play.</p></div>
+          <div><h2 className="text-lg font-bold text-white m-0">Free Mini Games</h2><p className="text-xs text-slate-400 mt-0.5">Instant browser games — click and play.</p></div>
           <Link to="/games" className="glow-btn text-xs py-1.5 px-4 rounded-xl no-underline">Play all {GAME_COUNT} →</Link>
         </div>
         <InfiniteCarousel gap={8}>
@@ -200,7 +202,7 @@ export default function HomePage() {
       {!isFiltering && featuredTools.length > 0 && (
         <div className="mb-8">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-bold text-white m-0">🔥 Featured</h2>
+            <h2 className="text-lg font-bold text-white m-0">Featured</h2>
             <span className="text-xs text-slate-400">{featuredTools.length} tools</span>
           </div>
           <InfiniteCarousel gap={12}>
