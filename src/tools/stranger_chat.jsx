@@ -804,13 +804,11 @@ export default function stranger_chat() {
       }}
     >
       <div className="max-w-2xl mx-auto space-y-4">
-        {/* Romance ribbon */}
-        <div className="text-center rounded-3xl border border-rose-500/20 px-4 py-5"
-          style={{ background: 'linear-gradient(135deg, rgba(244,63,94,0.12), rgba(236,72,153,0.10), rgba(99,102,241,0.08))' }}>
-          <div className="text-4xl mb-1">💘</div>
-          <p className="text-base font-black text-white m-0">Find your connection</p>
-          <p className="text-xs text-rose-200/80 m-0 mt-1">Anonymous 18+ chats — simple, private, no names 💕</p>
-          <div className="inline-flex items-center gap-1.5 mt-2 px-3 py-1 rounded-full bg-black/30 border border-white/10 text-xs font-bold text-white">
+        {/* Hero */}
+        <div className="rounded-2xl border border-white/10 bg-black/30 px-5 py-6 text-center">
+          <p className="text-lg font-black text-white m-0 tracking-tight">Stranger Chat</p>
+          <p className="text-xs text-slate-400 m-0 mt-1">Anonymous 18+ chats. No sign-up, no names.</p>
+          <div className="inline-flex items-center gap-1.5 mt-3 px-3 py-1 rounded-full bg-white/[0.05] border border-white/10 text-xs font-bold text-slate-200">
             <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
             {online === null ? 'connecting…' : `${online} online`}
           </div>
@@ -819,10 +817,10 @@ export default function stranger_chat() {
         {notice && <div className="text-xs text-amber-300 bg-amber-500/10 border border-amber-500/20 rounded-xl px-4 py-2">{notice}</div>}
 
         {stage === 'gate' && (
-          <div className="border border-rose-500/20 rounded-3xl p-5 space-y-4 bg-white/[0.04]">
-            <label className="flex items-start gap-2 text-sm text-slate-200 cursor-pointer">
-              <input type="checkbox" checked={adult} onChange={e => setAdult(e.target.checked)} className="mt-1 accent-rose-500" />
-              <span>I am 18 years or older and agree to the chat rules below. 💗</span>
+          <div className="border border-white/10 rounded-2xl p-5 space-y-4 bg-black/30">
+            <label className="flex items-start gap-2.5 text-sm text-slate-200 cursor-pointer">
+              <input type="checkbox" checked={adult} onChange={e => setAdult(e.target.checked)} className="mt-1 accent-rose-500 w-4 h-4 shrink-0" />
+              <span>I am 18 years or older and agree to the chat rules below.</span>
             </label>
             <div className="grid grid-cols-2 gap-3">
               <div>
@@ -848,11 +846,11 @@ export default function stranger_chat() {
                 </div>
               </div>
             </div>
-            <button onClick={connect} className="w-full py-3.5 rounded-2xl text-sm font-black text-white shadow-lg shadow-rose-500/25 hover:scale-[1.01] transition-transform" style={{ background: ROSE }}>
-              💘 Start Chat
+            <button onClick={connect} className="w-full py-3.5 rounded-xl text-sm font-black text-white shadow-lg shadow-rose-500/25 hover:bg-rose-500 active:scale-[0.99] transition-all bg-rose-600">
+              Start Chat
             </button>
             {/* rooms */}
-            <div className="rounded-2xl border border-rose-500/20 bg-black/20 p-3 space-y-2 overflow-hidden">
+            <div className="rounded-2xl border border-white/10 bg-black/20 p-3 space-y-2 overflow-hidden">
               <p className="text-xs font-black text-rose-200 m-0">Group Room <span className="font-normal text-slate-400">(up to 8, link lasts 24h)</span></p>
               <div className="grid grid-cols-2 gap-2">
                 <button onClick={() => setRoomPanel(roomPanel === 'create' ? null : 'create')} className="py-2.5 rounded-xl text-xs font-black text-white" style={{ background: ROSE }}>Create Room</button>
@@ -1037,8 +1035,8 @@ export default function stranger_chat() {
           </div>
         )}
 
-        <div className="bg-white/[0.04] border border-white/[0.08] rounded-2xl p-4 text-xs text-slate-400 leading-relaxed">
-          <p className="font-bold text-slate-300 mb-1">Rules — 18+ only, stay safe 💗</p>
+        <div className="bg-black/30 border border-white/10 rounded-2xl p-4 text-xs text-slate-400 leading-relaxed">
+          <p className="font-bold text-slate-200 mb-1">Rules — 18+ only, stay safe</p>
           <p>1. 18+ strictly. No nudity, no harassment, no spam. 2. Never share phone, address, OTPs, bank or ID photos. 3. Report abuse instantly — it blocks and re-matches. 4. Chats are encrypted and never stored. Grievance: grievance@uptools.in (reply within 72h, IT Rules 2021).</p>
         </div>
       </div>
