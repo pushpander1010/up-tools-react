@@ -704,6 +704,87 @@ export default function stranger_chat() {
     }
   }, [])
 
+  // ---- rooms: group voice channel (mesh audio, up to 8) ----
+  const [rvOn, setRvOn] = useState(false)
+  const [rvPeers, setRvPeers] = useState([]) // names in voice (excl self)
+  const rvPCs = useRef({}) // name -> RTCPeerConnection
+  const rvBoxRef = useRef(null)
+  const rvOnRef = useRef(false)
+  rvOnRef.current = rvOn
+  const rvAudio = useCallback((name) => {
+    let el = null
+    try { el = document.getElementById('rv-a-' + name) } catch {}
+    if (el) return el
+    el = document.createElement('audio')
+    el.id = 'rv-a-' + name
+    el.autoplay = true
+    el.controls = false
+    try { (rvBoxRef.current || document.body).appendChild(el) } catch {}
+    return el
+  }, [])
+  const rvDrop = useCallback((name) => {
+    try { rvPCs.current[name]?.close() } catch {}
+    delete rvPCs.current[name]
+    try { document.getElementById('rv-a-' + name)?.remove() } catch {}
+    setRvPeers(p => p.filter(x => x !== name))
+  }, [])
+  const rvMakePC = useCallback((ws, peer, ice) => {
+    try { rvPCs.current[peer]?.close() } catch {}
+    const pc = new RTCPeerConnection({ iceServers: ice })
+    pc.onicecandidate = (e) => {
+      if (e.candidate && ws.readyState === 1) {
+        try { ws.send(JSON.stringify({ t: 'room-voice-ice', to: peer, cand: e.candidate })) } catch {}
+      }
+    }
+    pc.ontrack = (e) => {
+      try {
+        const el = rvAudio(peer)
+        el.srcObject = e.streams[0]
+        el.play().catch(() => {})
+      } catch {}
+    }
+    try { micStreamRef.current?.getTracks().forEach(t => pc.addTrack(t, micStreamRef.current)) } catch {}
+    rvPCs.current[peer] = pc
+    return pc
+  }, [rvAudio])
+  const rvOfferTo = useCallback(async (peer) => {
+    const ws = wsRef.current
+    if (!ws || ws.readyState !== 1 || !rvOnRef.current) return
+    try {
+      const pc = rvMakePC(ws, peer, await getIceServers())
+      const offer = await pc.createOffer()
+      await pc.setLocalDescription(offer)
+      ws.send(JSON.stringify({ t: 'room-voice-offer', to: peer, sdp: offer }))
+      setRvPeers(p => p.includes(peer) ? p : [...p, peer])
+    } catch {}
+  }, [rvMakePC])
+  const rvLeave = useCallback((silent) => {
+    Object.keys(rvPCs.current).forEach(n => { try { rvPCs.current[n]?.close() } catch {} })
+    rvPCs.current = {}
+    try { micStreamRef.current?.getTracks().forEach(t => t.stop()) } catch {}
+    micStreamRef.current = null
+    try { rvBoxRef.current?.replaceChildren() } catch {}
+    setRvPeers([])
+    setRvOn(false)
+    setMuted(false)
+    if (!silent) {
+      try { wsRef.current?.readyState === 1 && wsRef.current.send(JSON.stringify({ t: 'room-voice-leave' })) } catch {}
+    }
+  }, [])
+  const rvToggle = useCallback(async () => {
+    const ws = wsRef.current
+    if (!ws || ws.readyState !== 1 || !room) { setNotice('Join a room first, then tap the phone for group voice.'); return }
+    if (rvOnRef.current) { push('sys', 'text', 'Left voice channel.'); rvLeave(); return }
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
+      micStreamRef.current = stream
+      setMuted(false)
+      setRvOn(true)
+      ws.send(JSON.stringify({ t: 'room-voice-join' }))
+      push('sys', 'text', 'Joined room voice — others hear you now. Tap 📞 again to leave.')
+    } catch { setNotice('Mic blocked. Allow microphone permission for voice.') }
+  }, [room, rvLeave, push])
+
   // ---- rooms: open a bare socket (no 1-1 join) then create/join ----
   const openRoomSocket = useCallback((action) => {
     if (!adult) { setNotice('Please confirm you are 18 or older.'); return }
@@ -760,12 +841,37 @@ export default function stranger_chat() {
             if (m.kind === 'image') showPeerAct(m.name + ' is sending a photo…')
             else if (m.kind === 'voice') showPeerAct(m.name + ' is recording a voice note…')
             else hidePeerAct()
+          } else if (m.t === 'room-voice-peers' && Array.isArray(m.peers)) {
+            if (rvOnRef.current) { for (const p of m.peers.slice(0, 7)) { try { await rvOfferTo(p) } catch {} } }
+            else setRvPeers(m.peers.slice(0, 7))
+          } else if (m.t === 'room-voice-join' && m.name) {
+            push('sys', 'text', '🎙 ' + m.name + ' joined voice')
+            if (rvOnRef.current) { try { await rvOfferTo(m.name) } catch {} }
+            else setRvPeers(p => p.includes(m.name) ? p : [...p, m.name])
+          } else if (m.t === 'room-voice-offer' && m.from && m.sdp) {
+            if (rvOnRef.current) {
+              try {
+                const ws0 = wsRef.current
+                const pc = rvMakePC(ws0, m.from, await getIceServers())
+                await pc.setRemoteDescription(new RTCSessionDescription(m.sdp))
+                const ans = await pc.createAnswer()
+                await pc.setLocalDescription(ans)
+                ws0.send(JSON.stringify({ t: 'room-voice-answer', to: m.from, sdp: ans }))
+                setRvPeers(p => p.includes(m.from) ? p : [...p, m.from])
+              } catch {}
+            }
+          } else if (m.t === 'room-voice-answer' && m.from && m.sdp) {
+            try { await rvPCs.current[m.from]?.setRemoteDescription(new RTCSessionDescription(m.sdp)) } catch {}
+          } else if (m.t === 'room-voice-ice' && m.from && m.cand) {
+            try { await rvPCs.current[m.from]?.addIceCandidate(new RTCIceCandidate(m.cand)) } catch {}
+          } else if (m.t === 'room-voice-leave' && m.name) {
+            rvDrop(m.name)
           }
         }
       } catch { setNotice('Connection failed. Try again.') }
     }
     run()
-  }, [adult, push])
+  }, [adult, push, rvOfferTo, rvMakePC, rvDrop])
 
   const createRoom = useCallback(() => {
     setMsgs([])
@@ -801,6 +907,7 @@ export default function stranger_chat() {
 
   const doNext = useCallback(() => {
     closeCall()
+    try { rvLeave(true) } catch {}
     hidePeerAct()
     setPendingImg(null)
     typingOnRef.current = false
@@ -811,10 +918,11 @@ export default function stranger_chat() {
     setMsgs([])
     setStage('matching')
     setStatus('Finding someone new… 💕')
-  }, [closeCall])
+  }, [closeCall, rvLeave])
 
   const doEnd = useCallback(() => {
     closeCall()
+    try { rvLeave(true) } catch {}
     hidePeerAct()
     setPendingImg(null)
     typingOnRef.current = false
@@ -828,7 +936,7 @@ export default function stranger_chat() {
     setMsgs([])
     setStage('gate')
     setStatus('Ready — press Start to meet a stranger. 💕')
-  }, [closeCall, room])
+  }, [closeCall, room, rvLeave])
 
   const doReport = useCallback(() => {
     closeCall()
@@ -1019,6 +1127,15 @@ export default function stranger_chat() {
                 <button onClick={() => { try { navigator.clipboard.writeText(roomLink); setNotice('Room link copied — share it!') } catch {} }} className="text-[11px] px-2.5 py-1 rounded-full text-white font-bold shrink-0" style={{ background: '#00a884' }}>Copy</button>
               </div>
             )}
+            {room && (rvOn || rvPeers.length > 0) && (
+              <div className="flex items-center gap-2 px-4 py-2 border-b border-green-500/20 shrink-0" style={{ background: '#0f2a22' }}>
+                <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse shrink-0" />
+                <span className="text-[11px] text-green-200 font-bold truncate flex-1 min-w-0">{rvOn ? `In voice (${rvPeers.length + 1})` : `${rvPeers.length} in voice`} — tap 📞 to {rvOn ? 'leave' : 'join'}</span>
+                {rvOn && <button onClick={toggleMute} className="text-[11px] px-2.5 py-1 rounded-full bg-white/10 text-white font-bold shrink-0">{muted ? 'Unmute' : 'Mute'}</button>}
+                {rvOn && <button onClick={() => rvLeave()} className="text-[11px] px-2.5 py-1 rounded-full bg-red-500/80 text-white font-bold shrink-0">Leave</button>}
+              </div>
+            )}
+            <div ref={rvBoxRef} className="hidden" aria-hidden="true" />
             <div ref={listRef} onScroll={onScrollList} className="flex-1 overflow-y-auto px-4 py-3 space-y-2" style={{ scrollbarGutter: 'stable' }}>
               {msgs.length === 0 && <p className="text-xs text-slate-500 text-center pt-10">Say hi to start something beautiful. 💕</p>}
               {msgs.map((m, i) => (
@@ -1085,6 +1202,7 @@ export default function stranger_chat() {
               </label>
               <button onClick={toggleRec} title="Voice note" className={`w-9 h-9 shrink-0 flex items-center justify-center rounded-full transition-all active:scale-95 cursor-pointer ${rec ? 'bg-green-500/20 text-green-300 animate-pulse' : 'text-slate-400 hover:text-green-300 hover:bg-white/10'}`}><MicGlyph /></button>
               {!room && <button onClick={startCall} title="Voice call" className="w-9 h-9 shrink-0 flex items-center justify-center rounded-full text-slate-400 hover:text-green-300 hover:bg-white/10 active:scale-95 transition-all cursor-pointer"><PhoneGlyph /></button>}
+              {room && <button onClick={rvToggle} title={rvOn ? 'Leave group voice' : 'Join group voice'} className={`w-9 h-9 shrink-0 flex items-center justify-center rounded-full active:scale-95 transition-all cursor-pointer ${rvOn ? 'bg-green-500/25 text-green-300 animate-pulse' : 'text-slate-400 hover:text-green-300 hover:bg-white/10'}`}><PhoneGlyph /></button>}
               <input value={draft} onChange={e => onDraftChange(e.target.value)} onKeyDown={e => { if (e.key === 'Enter') sendText() }}
                 placeholder="Message" className="flex-1 min-w-0 rounded-full px-4 py-2.5 text-base sm:text-sm text-white outline-none placeholder:text-slate-500 focus:border-green-500/50 transition-all" style={{ background: '#2a3942', border: '1px solid rgba(255,255,255,0.06)' }} />
               <button onClick={sendText} title="Send" className="w-9 h-9 shrink-0 rounded-full flex items-center justify-center text-white shadow-md hover:scale-105 active:scale-95 transition-transform text-base" style={{ background: '#00a884' }}>➤</button>

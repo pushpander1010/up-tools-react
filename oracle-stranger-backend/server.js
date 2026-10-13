@@ -52,6 +52,22 @@ function roomBroadcast(room, except, obj) {
     if (ws !== except && ws.readyState === 1) { try { ws.send(s) } catch {} }
   }
 }
+function roomVoiceNames(room) {
+  const out = []
+  if (!room.voice) return out
+  for (const ws of room.voice) {
+    const m = meta.get(ws)
+    if (m && ws.readyState === 1) out.push(m.name || 'Guest-????')
+  }
+  return out
+}
+function roomPeerByName(room, name) {
+  for (const ws of room.members) {
+    const m = meta.get(ws)
+    if (m && m.name === name && ws.readyState === 1) return ws
+  }
+  return null
+}
 function destroyRoom(id) {
   const r = rooms.get(id)
   if (!r) return
@@ -66,7 +82,9 @@ function leaveRoom(ws, notify = true) {
   st.roomId = null
   if (!room) return
   room.members.delete(ws)
+  if (room.voice) room.voice.delete(ws)
   if (notify) roomBroadcast(room, ws, { t: 'peer-left', name })
+  if (notify) roomBroadcast(room, ws, { t: 'room-voice-leave', name })
   if (room.members.size === 0) destroyRoom(room.id)
 }
 
@@ -245,6 +263,7 @@ wss.on('connection', (ws) => {
           passwordHash: pw ? crypto.createHash('sha256').update(pw).digest('hex') : null,
           expiresAt: Date.now() + ROOM_TTL,
           members: new Set(),
+          voice: new Set(),
           timer: null,
         }
         room.timer = setTimeout(() => {
@@ -259,7 +278,7 @@ wss.on('connection', (ws) => {
         rooms.set(roomId, room)
         room.members.add(ws)
         st.roomId = roomId
-        send(ws, { t: 'room-created', id: roomId, name: st.name, members: roomMembers(room) })
+        send(ws, { t: 'room-created', id: roomId, name: st.name, members: roomMembers(room), voice: roomVoiceNames(room) })
         break
       }
       case 'join-room': {
@@ -278,7 +297,7 @@ wss.on('connection', (ws) => {
         const isNew = !room.members.has(ws)
         room.members.add(ws)
         st.roomId = roomId
-        send(ws, { t: 'room-joined', id: roomId, name: st.name, members: roomMembers(room) })
+        send(ws, { t: 'room-joined', id: roomId, name: st.name, members: roomMembers(room), voice: roomVoiceNames(room) })
         if (isNew) roomBroadcast(room, ws, { t: 'peer-joined', name: st.name })
         break
       }
@@ -312,6 +331,35 @@ wss.on('connection', (ws) => {
         }
         break
       }
+      case 'room-voice-join': {
+        const room = st.roomId ? rooms.get(st.roomId) : null
+        if (!room || !room.members.has(ws)) break
+        if (!room.voice) room.voice = new Set()
+        room.voice.add(ws)
+        send(ws, { t: 'room-voice-peers', peers: roomVoiceNames(room).filter(n => n !== st.name) })
+        roomBroadcast(room, ws, { t: 'room-voice-join', name: st.name })
+        break
+      }
+      case 'room-voice-offer':
+      case 'room-voice-answer':
+      case 'room-voice-ice': {
+        const room = st.roomId ? rooms.get(st.roomId) : null
+        if (!room || !room.members.has(ws)) break
+        const to = String(m.to || '')
+        if (!to) break
+        const target = roomPeerByName(room, to)
+        if (!target) break
+        if (m.t === 'room-voice-offer') send(target, { t: 'room-voice-offer', from: st.name, sdp: m.sdp })
+        else if (m.t === 'room-voice-answer') send(target, { t: 'room-voice-answer', from: st.name, sdp: m.sdp })
+        else if (m.cand) send(target, { t: 'room-voice-ice', from: st.name, cand: m.cand })
+        break
+      }
+      case 'room-voice-leave': {
+        const room = st.roomId ? rooms.get(st.roomId) : null
+        if (room && room.voice) room.voice.delete(ws)
+        if (room) roomBroadcast(room, ws, { t: 'room-voice-leave', name: st.name })
+        break
+      }
       // relayed verbatim to partner (ciphertext / keys / webrtc signalling / blobs)
       case 'key':
       case 'msg':
@@ -342,7 +390,9 @@ wss.on('connection', (ws) => {
     if (roomId && rooms.get(roomId)) {
       const room = rooms.get(roomId)
       room.members.delete(ws)
+      if (room.voice) room.voice.delete(ws)
       if (name) roomBroadcast(room, ws, { t: 'peer-left', name })
+      if (name) roomBroadcast(room, ws, { t: 'room-voice-leave', name })
       if (room.members.size === 0) destroyRoom(roomId)
     }
     if (p && p.readyState === 1) send(p, { t: 'partner-left' })
