@@ -109,6 +109,18 @@ for (const [path, priority] of [['hncker', '0.6'], ['hackolution', '0.6'], ['hac
   urls.push({ loc: `${SITE}/${path}/`, priority, freq: 'weekly' })
 }
 
+// Duplicate consolidation 2026-10-13: /hackolution/<x>/ reel copies duplicate
+// /hncker/<x>/ originals (same tool, added Sep 2026) — drop the hackolution twin
+// from the sitemap so Google consolidates signals on the hncker URL (which 301s
+// the hackolution URL via LEGACY_REDIRECTS in worker/index.js).
+{
+  const locs = new Set(urls.map(u => u.loc))
+  for (let i = urls.length - 1; i >= 0; i--) {
+    const m = urls[i].loc.match(/\/hackolution\/([^/]+)\/$/)
+    if (m && locs.has(`${SITE}/hncker/${m[1]}/`)) urls.splice(i, 1)
+  }
+}
+
 const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.map(u => `  <url><loc>${u.loc}</loc><lastmod>${u.lastmod || today}</lastmod><changefreq>${u.freq}</changefreq><priority>${u.priority}</priority></url>`).join('\n')}
