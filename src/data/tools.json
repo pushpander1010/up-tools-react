@@ -10484,6 +10484,90 @@
         "all",
         "health"
       ]
+    },
+    {
+      "slug": "synced-lyrics-finder",
+      "title": "Synced Lyrics Finder — LRC Lyrics Search",
+      "icon": "🎵",
+      "desc": "Find synced lyrics free: search any song for line-timed LRC lyrics plus plain lyrics, preview with timestamps, copy or download the .lrc file. No sign-up.",
+      "href": "/synced-lyrics-finder/",
+      "tags": [
+        "lyrics",
+        "synced lyrics",
+        "lrc",
+        "lrc download",
+        "song lyrics",
+        "music",
+        "karaoke",
+        "subtitle"
+      ],
+      "cats": [
+        "all",
+        "tools"
+      ]
+    },
+    {
+      "slug": "lrc-lyrics-converter",
+      "title": "LRC Lyrics Converter — LRC to SRT & Plain Text",
+      "icon": "📝",
+      "desc": "Convert LRC lyrics free: LRC to SRT subtitles, LRC to plain text, retime previews and download .lrc, .srt or .txt. Works offline in your browser, no sign-up.",
+      "href": "/lrc-lyrics-converter/",
+      "tags": [
+        "lrc",
+        "lrc converter",
+        "lrc to srt",
+        "srt",
+        "subtitles",
+        "lyrics",
+        "plain text",
+        "music"
+      ],
+      "cats": [
+        "all",
+        "tools"
+      ]
+    },
+    {
+      "slug": "karaoke-lyrics-translator",
+      "title": "Lyrics Translator + Karaoke Mode — Translate Songs",
+      "icon": "🎤",
+      "desc": "Translate song lyrics free: English to Hindi, Spanish, French and 9 more languages, side-by-side original and translation, karaoke sing-along mode. No sign-up.",
+      "href": "/karaoke-lyrics-translator/",
+      "tags": [
+        "lyrics",
+        "translator",
+        "translate songs",
+        "hindi",
+        "spanish",
+        "karaoke",
+        "sing along",
+        "music"
+      ],
+      "cats": [
+        "all",
+        "tools"
+      ]
+    },
+    {
+      "slug": "sponsorblock-skip-checker",
+      "title": "SponsorBlock Skip Checker — YouTube Sponsor Segments",
+      "icon": "⏭️",
+      "desc": "Check any YouTube video for sponsor, intro, outro and self-promo segments free. Paste a link, see skippable timestamps and total skip time. No sign-up.",
+      "href": "/sponsorblock-skip-checker/",
+      "tags": [
+        "sponsorblock",
+        "youtube",
+        "sponsor",
+        "skip",
+        "segments",
+        "intro",
+        "outro",
+        "timestamps"
+      ],
+      "cats": [
+        "all",
+        "social"
+      ]
     }
   ],
   "categories": {
