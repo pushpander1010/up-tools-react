@@ -233,6 +233,7 @@ wss.on('connection', (ws) => {
       case 'leave': {
         unpair(ws, false)
         leaveRoom(ws, false)
+        if (partner && partner.readyState === 1) send(partner, { t: 'partner-left' })
         send(ws, { t: 'left' })
         break
       }

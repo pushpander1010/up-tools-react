@@ -24,6 +24,34 @@ async function getIceServers() {
 const ROSE_SOLID = '#f43f5e'
 const TEAL_SOLID = '#00a884'
 
+// ---- background + browser-notification helpers ----
+// Search keeps running when the user opens a new tab (same WS stays open).
+// When the tab is hidden we ping via Notification + title flash + beep.
+function ensureNotifPerm() {
+  try {
+    if (!('Notification' in window)) return
+    if (Notification.permission === 'default') Notification.requestPermission().catch(() => {})
+  } catch {}
+}
+function pingUser(title, body) {
+  try {
+    if (typeof document !== 'undefined' && !document.hidden) return // visible: in-app UI is enough
+    try {
+      const Ctor = window.AudioContext || window.webkitAudioContext
+      if (Ctor) {
+        const ctx = new Ctor()
+        const o = ctx.createOscillator(); const g = ctx.createGain()
+        o.connect(g); g.connect(ctx.destination)
+        o.frequency.value = 880; g.gain.value = 0.06
+        o.start(); setTimeout(() => { try { o.stop(); ctx.close() } catch {} }, 350)
+      }
+    } catch {}
+    if ('Notification' in window && Notification.permission === 'granted') {
+      try { new Notification(title, { body: String(body || '').slice(0, 120) }) } catch {}
+    }
+  } catch {}
+}
+
 function ChatGlyph({ size = 22 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -217,6 +245,16 @@ export default function stranger_chat() {
       const mm = h.match(/room=([A-Za-z0-9]{4,16})/)
       if (mm) { setJoinId(mm[1].toLowerCase()); setRoomPanel('join') }
     } catch {}
+    // clear flashing title when user comes back; socket stays open in background
+    const onVis = () => {
+      try {
+        if (!document.hidden && /^\(1\)|💘|^Searching/.test(document.title)) {
+          document.title = 'Stranger Chat - Talk to Strangers Online'
+        }
+      } catch {}
+    }
+    try { document.addEventListener('visibilitychange', onVis) } catch {}
+    return () => { try { document.removeEventListener('visibilitychange', onVis) } catch {} }
   }, [])
 
   useEffect(() => {
@@ -246,6 +284,8 @@ export default function stranger_chat() {
   }
   const connect = useCallback(() => {
     if (!adult) { setNotice('Please confirm you are 18 or older.'); return }
+    ensureNotifPerm()
+    try { document.title = 'Searching… — UpTools Stranger Chat' } catch {}
     setNotice('')
     setMsgs([])
     aesRef.current = null
@@ -303,12 +343,32 @@ export default function stranger_chat() {
           hidePeerAct()
           setStatus('💘 Connected. Messages are end-to-end encrypted.')
           push('sys', 'text', '💘 Stranger connected. Say hi! (🔒 E2E encrypted)')
+          try { document.title = '💘 Stranger found! — UpTools' } catch {}
+          pingUser('💘 Stranger found!', 'Say hi — someone is waiting to chat.')
         }
         else if (m.t === 'partner-left') {
-          closeCall(true)
+          // chat closes for BOTH — back to start page, no stale window
+          try { pcRef.current?.close() } catch {}
+          pcRef.current = null
+          try { micStreamRef.current?.getTracks().forEach(t => t.stop()) } catch {}
+          micStreamRef.current = null
+          offerRef.current = null
+          if (callTimerRef.current) { clearInterval(callTimerRef.current); callTimerRef.current = null }
+          setCall('idle')
           hidePeerAct()
-          setStatus('Stranger left. Press Next for someone new. 💔')
-          push('sys', 'text', 'Stranger disconnected.')
+          aesRef.current = null
+          pendingRef.current = []
+          try { ws.close() } catch {}
+          wsRef.current = null
+          setRoom(null)
+          setRoomLink('')
+          try { history.replaceState(null, '', window.location.pathname) } catch {}
+          try { document.title = 'Stranger Chat - Talk to Strangers Online' } catch {}
+          setMsgs([])
+          setStage('gate')
+          setStatus('Stranger left — chat closed. Press Start to meet someone new. 💔')
+          setNotice('')
+          pingUser('Chat closed', 'The stranger left. Start again to meet someone new.')
         }
         else if (m.t === 'hello' && m.name) setMyName(m.name)
         else if (m.t === 'room-created') {
@@ -347,11 +407,15 @@ export default function stranger_chat() {
         }
         else if (m.t === 'room-msg' && typeof m.text === 'string') {
           push('them', 'text', (m.name ? m.name + ': ' : '') + m.text)
+          try { if (document.hidden) document.title = '(1) New message — UpTools' } catch {}
+          pingUser('New message in room', (m.name ? m.name + ': ' : '') + m.text)
         }
         else if ((m.t === 'room-img' || m.t === 'room-audio') && m.url) {
           push('them', m.t === 'room-img' ? 'img' : 'audio', m.url)
           if (m.name) push('sys', 'text', '— sent by ' + m.name)
           hidePeerAct()
+          try { if (document.hidden) document.title = '(1) New message — UpTools' } catch {}
+          pingUser('New message in room', m.name ? '— sent by ' + m.name : 'New photo/voice note')
         }
         else if (m.t === 'typing') {
           if (m.state) showPeerAct('Stranger is typing…')
@@ -388,12 +452,19 @@ export default function stranger_chat() {
         }
         else if (m.t === 'msg' && m.iv && m.data) {
           if (aesRef.current) {
-            try { push('them', 'text', await decText(aesRef.current, m.iv, m.data)); hidePeerAct() } catch {}
+            try {
+              const txt = await decText(aesRef.current, m.iv, m.data)
+              push('them', 'text', txt); hidePeerAct()
+              try { if (document.hidden) document.title = '(1) New message — UpTools' } catch {}
+              pingUser('New message from stranger', txt)
+            } catch {}
           }
         }
         else if ((m.t === 'img' || m.t === 'audio') && m.url) {
           push('them', m.t, m.url)
           hidePeerAct()
+          try { if (document.hidden) document.title = '(1) New message — UpTools' } catch {}
+          pingUser('New message from stranger', m.t === 'img' ? '📷 Sent a photo' : '🎙 Sent a voice note')
         }
         else if (m.t === 'call-offer' && m.sdp) {
           if (pcRef.current || offerRef.current) {
@@ -446,6 +517,7 @@ export default function stranger_chat() {
   const sendText = useCallback(async () => {
     const t = draft.trim()
     if (!t) return
+    try { document.title = 'Stranger Chat - Talk to Strangers Online' } catch {}
     setDraft('')
     typingOnRef.current = false
     if (typingTimerRef.current) clearTimeout(typingTimerRef.current)
@@ -933,6 +1005,7 @@ export default function stranger_chat() {
     setRoom(null)
     setRoomLink('')
     try { history.replaceState(null, '', window.location.pathname) } catch {}
+    try { document.title = 'Stranger Chat - Talk to Strangers Online' } catch {}
     setMsgs([])
     setStage('gate')
     setStatus('Ready — press Start to meet a stranger. 💕')
@@ -1093,7 +1166,7 @@ export default function stranger_chat() {
               </div>
             </div>
             <p className="text-[15px] text-white mt-5 font-bold m-0">Finding someone you will like…</p>
-            <p className="text-xs text-slate-400 mt-1 m-0">Keep this tab open — most matches land in seconds.</p>
+            <p className="text-xs text-slate-400 mt-1 m-0">Search keeps running if you open a new tab — we will notify you when found.</p>
             <div className="inline-flex items-center gap-1.5 mt-3 px-3 py-1.5 rounded-full bg-white/[0.06] border border-white/10 text-[11px] font-semibold text-slate-200">
               <BoltGlyph size={13} /> Tip: say more than “hi” — mention a song, game or city
             </div>
