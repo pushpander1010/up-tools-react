@@ -87,7 +87,7 @@ const faq = [
   { q: 'What is gVisor?', a: 'gVisor is a user-space kernel that intercepts every system call an application makes. It is used as a container runtime (runsc) to give each container a strong isolation boundary, which blocks many escape techniques.' },
   { q: 'What is seccomp?', a: 'seccomp (secure computing mode) is a Linux kernel feature that restricts which system calls a process can make. Combined with dropped capabilities and a gVisor runtime, it sharply reduces the attack surface for escapes.' },
   { q: 'Do I need a GPU to run an AI agent sandbox?', a: 'No. Running a basic sandboxed agent or container escape demo needs no GPU — just Docker and a Linux environment. Real model training is a separate concern from sandboxing the agent runtime.' },
-  { q: 'How do I defend against escapes?', a: 'Run untrusted agents under gVisor (runsc) or nsjail, drop all unneeded capabilities, enforce a strict seccomp profile, avoid sharing host namespaces, and never rely on the sandbox as your only boundary.' },
+  { q: 'How do I defend against escapes?', a: 'As of 2026, with autonomous coding and browser agents everywhere, run untrusted agents under gVisor (runsc) or nsjail, drop all unneeded capabilities, enforce a strict seccomp profile, avoid sharing host namespaces, and never rely on the sandbox as your only boundary.' },
 ]
 
 const howItWorks = [
@@ -322,6 +322,13 @@ id`} />
           Performing an escape on any system you do not own or lack written permission to test is illegal. Use this
           knowledge only in your own lab, on your own machines, or within an authorized security engagement. The author
           and this site are not responsible for any misuse.
+        </p>
+      </Section>
+      <Section id="related" icon="🔗" title="Related Guides" subtitle="Keep learning in the lab">
+        <p>
+          Next, study the <a href="/hncker/burp">Burp Suite guide</a> for web traffic interception, the{' '}
+          <a href="/hncker/ffuf">ffuf guide</a> for content discovery, and the <a href="/hncker/hashcat">Hashcat guide</a> for
+          password recovery — or browse the full <a href="/hncker/">HNCKER hub</a>.
         </p>
       </Section>
     </ToolLayout>

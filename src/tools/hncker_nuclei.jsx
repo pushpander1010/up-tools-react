@@ -103,8 +103,8 @@ const schema = {
   '@graph': [
     {
       '@type': 'TechArticle',
-      headline: 'Nuclei — Fast Vulnerability Scanner (Educational)',
-      description: 'Complete step-by-step reference for installing and using Nuclei, the ProjectDiscovery vulnerability scanner. Education and authorized testing only.',
+      headline: 'Nuclei — Vulnerability Scanner (Educational)',
+      description: 'Pegasus Pro 2026 lab guide: install and use the Python menu-driven toolkit for Android penetration tests on your own devices. Educational lab use only.',
       about: 'Nuclei vulnerability scanner',
       educationalUse: 'Testing, education, and authorized research only',
     },
@@ -123,7 +123,7 @@ export default function hncker_nuclei() {
   return (
     <ToolLayout
       title="Nuclei — Vulnerability Scanner"
-      desc="Nuclei Guide - step-by-step reference to install and use Nuclei, the fast ProjectDiscovery vulnerability scanner. Educational purposes only, online free."
+      desc="Pegasus Pro 2026 lab guide: install and use the Python menu-driven toolkit for Android penetration tests on your own devices. Educational lab use only."
       icon="🎯"
       iconBg="linear-gradient(135deg, rgba(0,255,65,0.18), rgba(6,182,212,0.08))"
       category="security"
@@ -189,6 +189,9 @@ export default function hncker_nuclei() {
           { i: '🔌', t: 'Integrations', d: 'Works with HTTPX, Subfinder, and CI pipelines.' },
           { i: '🖥️', t: 'CLI-first', d: 'Runs entirely from the terminal.' },
         ]} />
+        <p>
+          <b>2026 defense note: nuclei-templates add new CVE checks weekly — update templates before each lab run, scan only apps you own, and patch every finding the same day on production.</b>
+        </p>
       </Section>
 
       <Section id="requirements" icon="⚙️" title="System Requirements" subtitle="What you need before running">
@@ -313,6 +316,9 @@ export default function hncker_nuclei() {
             </a>
           ))}
         </div>
+        <p className="text-xs text-slate-400">
+          Related HNCKER guides: <a href="/hncker/nmap" className="text-cyan-300 underline">Nmap network-scanner guide</a>, <a href="/hncker/metasploit" className="text-cyan-300 underline">Metasploit framework guide</a> and the <a href="/hncker" className="text-cyan-300 underline">HNCKER hub</a>.
+        </p>
       </Section>
 
       <Section id="disclaimer" icon="📜" title="Disclaimer" subtitle="Read before you scan anything">

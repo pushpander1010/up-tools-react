@@ -104,7 +104,7 @@ const schema = {
     {
       '@type': 'TechArticle',
       headline: "Holehe — Email Checker Guide (Educational)",
-      description: "Step-by-step Holehe reference: email registration checks across 120+ sites and inbox hygiene.",
+      description: "Pegasus Pro 2026 lab guide: install and use the Python menu-driven toolkit for Android penetration tests on your own devices. Educational lab use only.",
       about: "Holehe email checker",
       educationalUse: 'Testing, education, and authorized use only',
     },
@@ -123,7 +123,7 @@ export default function hncker_holehe() {
   return (
     <ToolLayout
       title="Holehe — Email Checker Guide"
-      desc="Step-by-step Holehe reference: check if YOUR email is registered across 120+ sites. Educational use only."
+      desc="Pegasus Pro 2026 lab guide: install and use the Python menu-driven toolkit for Android penetration tests on your own devices. Educational lab use only."
       icon="📭"
       iconBg="linear-gradient(135deg, rgba(0,255,65,0.18), rgba(6,182,212,0.08))"
       category="security"
@@ -178,6 +178,9 @@ export default function hncker_holehe() {
   { i: "⚡", t: "Fast async", d: "All checks in seconds." },
   { i: "🔍", t: "HIBP pairing", d: "Registrations plus breaches." },
 ]} />
+        <p>
+          <b>2026 note: signup flows change constantly, so update Holehe before every run and re-check stale hits manually — a dead module looks identical to a clean inbox.</b>
+        </p>
       </Section>
 
       <Section id="requirements" icon="⚙️" title="Requirements" subtitle="What you need before running">
@@ -277,6 +280,9 @@ Bank: you+bank@gmail.com
             </a>
           ))}
         </div>
+        <p className="text-xs text-slate-400">
+          Related HNCKER guides: <a href="/hncker/mosint" className="text-cyan-300 underline">Mosint email-OSINT guide</a>, <a href="/hncker/hydra" className="text-cyan-300 underline">Hydra login-defense guide</a> and the <a href="/hncker" className="text-cyan-300 underline">HNCKER hub</a>.
+        </p>
       </Section>
 
       <Section id="disclaimer" icon="📜" title="Disclaimer" subtitle="Read before you run anything">

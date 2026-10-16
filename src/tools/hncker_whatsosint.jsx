@@ -103,8 +103,8 @@ const schema = {
   '@graph': [
     {
       '@type': 'TechArticle',
-      headline: 'WhatsOSINT — WhatsApp Number Lookup Tool (Educational)',
-      description: 'Complete step-by-step reference for installing and using WhatsOSINT, a Python WhatsApp-number OSINT tool. Education and authorized research only.',
+      headline: 'WhatsOSINT Number Check: 2026 Guide (Educational)',
+      description: 'Use WhatsOSINT in 2026: check a WhatsApp number’s public profile from your terminal with the Python lookup tool. Authorized lab-only educational guide.',
       about: 'WhatsOSINT WhatsApp OSINT tool',
       educationalUse: 'Testing, education, and authorized research only',
     },
@@ -122,8 +122,8 @@ const schema = {
 export default function hncker_whatsosint() {
   return (
     <ToolLayout
-      title="WhatsOSINT — WhatsApp Number Lookup"
-      desc="WhatsOSINT Guide - step-by-step reference to install and use WhatsOSINT to check a WhatsApp number and pull its public data. Educational purposes only, free."
+      title="WhatsOSINT Number Check: 2026 Guide"
+      desc="Use WhatsOSINT in 2026: check a WhatsApp number’s public profile from your terminal with the Python lookup tool. Authorized lab-only educational guide."
       icon="💬"
       iconBg="linear-gradient(135deg, rgba(6,182,212,0.18), rgba(57,255,20,0.08))"
       category="security"
@@ -168,6 +168,11 @@ export default function hncker_whatsosint() {
         research, security awareness and red-team engagements</b>. Looking up numbers without consent can violate
         privacy laws and platform terms. This page is for <b>educational and authorized use only</b>.
       </WarningBox>
+
+      <InfoBox title="2026 note">
+        The WP Data / RapidAPI free tier and its rate limits change often — check your key quota first if a 2026
+        lookup suddenly returns errors, and prefer <span className="font-mono">CHECK_MODE=cache_first</span> while testing.
+      </InfoBox>
 
       <Section id="overview" icon="🕵️" title="What is WhatsOSINT?" subtitle="Check a WhatsApp number from the terminal">
         <p>
@@ -291,6 +296,26 @@ pip install -r requirements.txt`} />
               <span className="ml-auto text-indigo-300 text-xs font-mono break-all">{href}</span>
             </a>
           ))}
+        </div>
+      </Section>
+
+      <Section id="related" icon="🧭" title="Related Guides" subtitle="Keep learning in the lab">
+        <div className="space-y-2">
+          <a href="/hncker/phunter" className="flex items-center gap-2 rounded-lg px-3 py-2 border border-white/8 hover:border-brand/40 hover:bg-white/5 transition-all text-slate-300 hover:text-white no-underline">
+            <span>📞</span>
+            <span className="text-sm font-medium">Phunter — phone-number OSINT lookups</span>
+            <span className="ml-auto text-indigo-300 text-xs font-mono">→</span>
+          </a>
+          <a href="/hncker/sherlock" className="flex items-center gap-2 rounded-lg px-3 py-2 border border-white/8 hover:border-brand/40 hover:bg-white/5 transition-all text-slate-300 hover:text-white no-underline">
+            <span>🔎</span>
+            <span className="text-sm font-medium">Sherlock — map a username across 400+ sites</span>
+            <span className="ml-auto text-indigo-300 text-xs font-mono">→</span>
+          </a>
+          <a href="/hncker/" className="flex items-center gap-2 rounded-lg px-3 py-2 border border-white/8 hover:border-brand/40 hover:bg-white/5 transition-all text-slate-300 hover:text-white no-underline">
+            <span>🏠</span>
+            <span className="text-sm font-medium">All HNCKER guides</span>
+            <span className="ml-auto text-indigo-300 text-xs font-mono">→</span>
+          </a>
         </div>
       </Section>
 

@@ -103,8 +103,8 @@ const schema = {
   '@graph': [
     {
       '@type': 'TechArticle',
-      headline: 'Subfinder — Subdomain Discovery (Educational Guide)',
-      description: 'Step-by-step reference for using Subfinder for passive subdomain enumeration: basic discovery, all sources, recursive and bulk modes, plus how to audit your own surface.',
+      headline: 'Subfinder Subdomain Finder: 2026 Guide (Educational)',
+      description: 'Run Subfinder in 2026: passive subdomain enumeration for domains you own, from basic scans to recursive and bulk modes. Full lab-only educational guide.',
       about: 'Subfinder subdomain discovery tool',
       educationalUse: 'Testing, education, and authorized reconnaissance only',
     },
@@ -122,8 +122,8 @@ const schema = {
 export default function hncker_subfinder() {
   return (
     <ToolLayout
-      title="Subfinder — Subdomain Discovery Guide"
-      desc="Step-by-step reference: use Subfinder for passive subdomain enumeration — basic, all sources, recursive and bulk. Educational purposes only."
+      title="Subfinder Subdomain Finder: 2026 Guide"
+      desc="Run Subfinder in 2026: passive subdomain enumeration for domains you own, from basic scans to recursive and bulk modes. Full lab-only educational guide."
       icon="🌐"
       iconBg="linear-gradient(135deg, rgba(0,255,65,0.18), rgba(6,182,212,0.08))"
       category="security"
@@ -164,6 +164,11 @@ export default function hncker_subfinder() {
         permission to assess</b>. Enumerating a domain that is not yours is illegal. This page is for <b>educational and
         authorized use only</b>.
       </WarningBox>
+
+      <InfoBox title="2026 note">
+        ProjectDiscovery adds passive sources over time — reinstall from
+        <span className="font-mono"> @latest</span> so a 2026 enumeration queries the full current source list, not a stale binary.
+      </InfoBox>
 
       <Section id="overview" icon="🌐" title="What is Subfinder?" subtitle="Passive subdomain discovery from ProjectDiscovery">
         <p>
@@ -331,6 +336,26 @@ export default function hncker_subfinder() {
               <span className="ml-auto text-indigo-300 text-xs font-mono break-all">{href}</span>
             </a>
           ))}
+        </div>
+      </Section>
+
+      <Section id="related" icon="🧭" title="Related Guides" subtitle="Keep learning in the lab">
+        <div className="space-y-2">
+          <a href="/hncker/theharvester" className="flex items-center gap-2 rounded-lg px-3 py-2 border border-white/8 hover:border-brand/40 hover:bg-white/5 transition-all text-slate-300 hover:text-white no-underline">
+            <span>🌾</span>
+            <span className="text-sm font-medium">theHarvester — harvest emails and subdomains</span>
+            <span className="ml-auto text-indigo-300 text-xs font-mono">→</span>
+          </a>
+          <a href="/hncker/nuclei" className="flex items-center gap-2 rounded-lg px-3 py-2 border border-white/8 hover:border-brand/40 hover:bg-white/5 transition-all text-slate-300 hover:text-white no-underline">
+            <span>🧨</span>
+            <span className="text-sm font-medium">Nuclei — scan what your subdomains expose</span>
+            <span className="ml-auto text-indigo-300 text-xs font-mono">→</span>
+          </a>
+          <a href="/hncker/" className="flex items-center gap-2 rounded-lg px-3 py-2 border border-white/8 hover:border-brand/40 hover:bg-white/5 transition-all text-slate-300 hover:text-white no-underline">
+            <span>🏠</span>
+            <span className="text-sm font-medium">All HNCKER guides</span>
+            <span className="ml-auto text-indigo-300 text-xs font-mono">→</span>
+          </a>
         </div>
       </Section>
 

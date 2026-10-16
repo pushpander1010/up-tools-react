@@ -103,8 +103,8 @@ const schema = {
   '@graph': [
     {
       '@type': 'TechArticle',
-      headline: "GHunt — Google OSINT Guide (Educational)",
-      description: "Step-by-step GHunt reference: Google account OSINT on your own account and privacy cleanup.",
+      headline: "GHunt — Google Account OSINT Guide (Educational)",
+      description: "GHunt guide: audit what your own Google account leaks publicly — profile, Maps, Photos — and clean it all up. Educational lab-only tutorial. 2026 update.",
       about: "GHunt Google account OSINT",
       educationalUse: 'Testing, education, and authorized use only',
     },
@@ -122,8 +122,8 @@ const schema = {
 export default function hncker_ghunt() {
   return (
     <ToolLayout
-      title="GHunt — Google OSINT Guide"
-      desc="Step-by-step GHunt reference: see what YOUR Google account leaks publicly — profile, Maps, Photos. Educational use only."
+      title="GHunt — Google Account OSINT Guide"
+      desc="GHunt guide: audit what your own Google account leaks publicly — profile, Maps, Photos — and clean it all up. Educational lab-only tutorial. 2026 update."
       icon="🛰️"
       iconBg="linear-gradient(135deg, rgba(0,255,65,0.18), rgba(6,182,212,0.08))"
       category="security"
@@ -282,6 +282,12 @@ cd GHunt && pip install -r requirements.txt`} />
       <Section id="disclaimer" icon="📜" title="Disclaimer" subtitle="Read before you run anything">
         <p>
           This documentation is provided <b>strictly for educational and authorized purposes</b>. GHunt reads public Google data, but use it only on your own accounts or targets with written permission. Stalking anyone you look up is illegal. The author and this site are not responsible for any misuse.
+        </p>
+      </Section>
+      <Section id="related" icon="🔗" title="Related Guides" subtitle="Keep learning in the lab">
+        <p>
+          Continue with the <a href="/hncker/exif">ExifTool guide</a> for photo metadata and GPS cleanup, the{' '}
+          <a href="/hncker/burp">Burp Suite guide</a> for manual web testing — or browse the full <a href="/hncker/">HNCKER hub</a>.
         </p>
       </Section>
     </ToolLayout>

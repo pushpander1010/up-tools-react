@@ -104,7 +104,7 @@ const schema = {
     {
       '@type': 'TechArticle',
       headline: "John the Ripper — Hash Cracker Guide (Educational)",
-      description: "Step-by-step John the Ripper reference: wordlist attacks, rules, shadow cracking, and proper password hashing.",
+      description: "Pegasus Pro 2026 lab guide: install and use the Python menu-driven toolkit for Android penetration tests on your own devices. Educational lab use only.",
       about: "John the Ripper hasher",
       educationalUse: 'Testing, education, and authorized use only',
     },
@@ -123,7 +123,7 @@ export default function hncker_john() {
   return (
     <ToolLayout
       title="John the Ripper — Hash Cracker Guide"
-      desc="Step-by-step John the Ripper reference: crack lab password hashes with wordlists and rules. Educational use only."
+      desc="Pegasus Pro 2026 lab guide: install and use the Python menu-driven toolkit for Android penetration tests on your own devices. Educational lab use only."
       icon="🎩"
       iconBg="linear-gradient(135deg, rgba(0,255,65,0.18), rgba(6,182,212,0.08))"
       category="security"
@@ -170,6 +170,9 @@ export default function hncker_john() {
   { i: "📖", t: "Wordlists and rules", d: "One word becomes thousands." },
   { i: "📄", t: "Many formats", d: "Shadow, MD5, NTLM, bcrypt and more." },
 ]} />
+        <p>
+          <b>2026 note: fast unsalted hashes from lab dumps still fall in seconds, while bcrypt and Argon2id with long random passwords exhaust the same wordlists — hash choice is the whole lesson.</b>
+        </p>
       </Section>
 
       <Section id="requirements" icon="⚙️" title="Requirements" subtitle="What you need before running">
@@ -272,6 +275,9 @@ john --show lab.txt
             </a>
           ))}
         </div>
+        <p className="text-xs text-slate-400">
+          Related HNCKER guides: <a href="/hncker/hydra" className="text-cyan-300 underline">Hydra login-defense guide</a>, <a href="/hncker/metasploit" className="text-cyan-300 underline">Metasploit framework guide</a> and the <a href="/hncker" className="text-cyan-300 underline">HNCKER hub</a>.
+        </p>
       </Section>
 
       <Section id="disclaimer" icon="📜" title="Disclaimer" subtitle="Read before you run anything">

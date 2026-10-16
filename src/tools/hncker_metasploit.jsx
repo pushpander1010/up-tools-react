@@ -104,7 +104,7 @@ const schema = {
     {
       '@type': 'TechArticle',
       headline: "Metasploit — Exploitation Framework Guide (Educational)",
-      description: "Step-by-step Metasploit reference: msfconsole, exploit + payload pairing, Meterpreter basics on lab VMs, and defense.",
+      description: "Pegasus Pro 2026 lab guide: install and use the Python menu-driven toolkit for Android penetration tests on your own devices. Educational lab use only.",
       about: "Metasploit Framework",
       educationalUse: 'Testing, education, and authorized use only',
     },
@@ -123,7 +123,7 @@ export default function hncker_metasploit() {
   return (
     <ToolLayout
       title="Metasploit — Exploitation Framework Guide"
-      desc="Step-by-step Metasploit reference: msfconsole basics, exploit + payload + Meterpreter on Metasploitable 2 (your lab). Educational use only."
+      desc="Pegasus Pro 2026 lab guide: install and use the Python menu-driven toolkit for Android penetration tests on your own devices. Educational lab use only."
       icon="🎯"
       iconBg="linear-gradient(135deg, rgba(0,255,65,0.18), rgba(6,182,212,0.08))"
       category="security"
@@ -170,6 +170,9 @@ export default function hncker_metasploit() {
   { i: "🔍", t: "Aux scanners", d: "Version checks without exploiting." },
   { i: "🎓", t: "Lab-ready", d: "Built for Metasploitable practice." },
 ]} />
+        <p>
+          <b>2026 note: Framework 6.x adds current CVE modules every release — run msfupdate in your lab, practice on Metasploitable 2 over a host-only network, and patch the same CVEs on your real systems first.</b>
+        </p>
       </Section>
 
       <Section id="requirements" icon="⚙️" title="Requirements" subtitle="What you need before running">
@@ -287,6 +290,9 @@ hashdump
             </a>
           ))}
         </div>
+        <p className="text-xs text-slate-400">
+          Related HNCKER guides: <a href="/hncker/nmap" className="text-cyan-300 underline">Nmap network-scanner guide</a>, <a href="/hncker/hydra" className="text-cyan-300 underline">Hydra login-defense guide</a> and the <a href="/hncker" className="text-cyan-300 underline">HNCKER hub</a>.
+        </p>
       </Section>
 
       <Section id="disclaimer" icon="📜" title="Disclaimer" subtitle="Read before you run anything">

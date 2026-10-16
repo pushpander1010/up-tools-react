@@ -103,8 +103,8 @@ const schema = {
   '@graph': [
     {
       '@type': 'TechArticle',
-      headline: "SQLMap — SQL Injection Tester Guide (Educational)",
-      description: "Step-by-step SQLMap reference: confirm injection, enumerate databases, dump lab tables, tamper scripts, and defense.",
+      headline: "SQLMap Injection Testing: 2026 Guide (Educational)",
+      description: "Master SQLMap in 2026: confirm injection on DVWA lab targets, enumerate databases, dump lab tables and fix the flaws. Authorized lab-only educational guide.",
       about: "SQLMap SQL injection tester",
       educationalUse: 'Testing, education, and authorized use only',
     },
@@ -122,8 +122,8 @@ const schema = {
 export default function hncker_sqlmap() {
   return (
     <ToolLayout
-      title="SQLMap — SQL Injection Tester Guide"
-      desc="Step-by-step SQLMap reference: find, confirm and exploit SQL injection on lab targets (DVWA, OWASP Juice Shop). Educational use only."
+      title="SQLMap Injection Testing: 2026 Guide"
+      desc="Master SQLMap in 2026: confirm injection on DVWA lab targets, enumerate databases, dump lab tables and fix the flaws. Authorized lab-only educational guide."
       icon="💉"
       iconBg="linear-gradient(135deg, rgba(0,255,65,0.18), rgba(6,182,212,0.08))"
       category="security"
@@ -164,6 +164,11 @@ export default function hncker_sqlmap() {
       <WarningBox>
         SQLMap automates database theft. Run it <b>only against your own lab apps (DVWA, OWASP Juice Shop) or targets with written permission</b>. Testing any other site is illegal. This page is for <b>educational and authorized use only</b>.
       </WarningBox>
+
+      <InfoBox title="2026 note">
+        SQLMap payloads and DBMS fingerprints update upstream — run a fresh git clone (or
+        <span className="font-mono"> sqlmap --update</span>) so lab runs use current detection logic, not a stale packaged build.
+      </InfoBox>
 
       <Section id="overview" icon="💉" title="What is SQLMap?" subtitle="Automate injection — on lab targets">
         <p>
@@ -287,6 +292,26 @@ sqlmap -u "..." -D dvwa --tables --batch
               <span className="ml-auto text-indigo-300 text-xs font-mono break-all">{href}</span>
             </a>
           ))}
+        </div>
+      </Section>
+
+      <Section id="related" icon="🧭" title="Related Guides" subtitle="Keep learning in the lab">
+        <div className="space-y-2">
+          <a href="/hncker/burp" className="flex items-center gap-2 rounded-lg px-3 py-2 border border-white/8 hover:border-brand/40 hover:bg-white/5 transition-all text-slate-300 hover:text-white no-underline">
+            <span>🪤</span>
+            <span className="text-sm font-medium">Burp Suite — intercept and fuzz web requests</span>
+            <span className="ml-auto text-indigo-300 text-xs font-mono">→</span>
+          </a>
+          <a href="/hncker/nuclei" className="flex items-center gap-2 rounded-lg px-3 py-2 border border-white/8 hover:border-brand/40 hover:bg-white/5 transition-all text-slate-300 hover:text-white no-underline">
+            <span>🧨</span>
+            <span className="text-sm font-medium">Nuclei — template-driven vulnerability scans</span>
+            <span className="ml-auto text-indigo-300 text-xs font-mono">→</span>
+          </a>
+          <a href="/hncker/" className="flex items-center gap-2 rounded-lg px-3 py-2 border border-white/8 hover:border-brand/40 hover:bg-white/5 transition-all text-slate-300 hover:text-white no-underline">
+            <span>🏠</span>
+            <span className="text-sm font-medium">All HNCKER guides</span>
+            <span className="ml-auto text-indigo-300 text-xs font-mono">→</span>
+          </a>
         </div>
       </Section>
 

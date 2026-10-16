@@ -103,8 +103,8 @@ const schema = {
   '@graph': [
     {
       '@type': 'TechArticle',
-      headline: 'ffuf — Web Fuzzer (Educational Guide)',
-      description: 'Step-by-step reference for using ffuf (Fuzz Faster U Fool) for web content discovery, parameter fuzzing and login brute force, plus how to defend against fuzzing.',
+      headline: 'FFUF — Fast Web Fuzzer Guide (Educational)',
+      description: 'FFUF guide: fuzz hidden paths, parameters and logins on your own lab apps with the FUZZ keyword and filters. Educational lab-only tutorial. 2026 update.',
       about: 'ffuf web fuzzer and content discovery',
       educationalUse: 'Testing, education, and authorized penetration testing only',
     },
@@ -122,8 +122,8 @@ const schema = {
 export default function hncker_ffuf() {
   return (
     <ToolLayout
-      title="ffuf — Web Fuzzer Guide"
-      desc="ffuf Guide - step-by-step reference to use ffuf for web content discovery, parameter fuzzing and login brute force. Educational purposes only, online free."
+      title="FFUF — Fast Web Fuzzer Guide"
+      desc="FFUF guide: fuzz hidden paths, parameters and logins on your own lab apps with the FUZZ keyword and filters. Educational lab-only tutorial. 2026 update."
       icon="🔎"
       iconBg="linear-gradient(135deg, rgba(0,255,65,0.18), rgba(6,182,212,0.08))"
       category="security"
@@ -358,6 +358,12 @@ export default function hncker_ffuf() {
           web fuzzing tool, but using it against a system you do not own or lack written permission to test is illegal.
           Use it only on targets you own or within an authorized penetration-testing engagement. The author and this
           site are not responsible for any misuse.
+        </p>
+      </Section>
+      <Section id="related" icon="🔗" title="Related Guides" subtitle="Keep learning in the lab">
+        <p>
+          Continue with the <a href="/hncker/gobuster">Gobuster guide</a> for directory brute-forcing, the{' '}
+          <a href="/hncker/burp">Burp Suite guide</a> for manual web testing — or browse the full <a href="/hncker/">HNCKER hub</a>.
         </p>
       </Section>
     </ToolLayout>

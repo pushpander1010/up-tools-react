@@ -84,7 +84,7 @@ const faq = [
   { q: 'What is slowloris?', a: 'Slowloris is an application-layer DDoS tool. It opens many connections to a web server and sends requests very slowly, holding threads open for a long time. With enough sockets, it exhausts every available thread and the server stops responding.' },
   { q: 'Is DDoS illegal?', a: 'Yes. Launching a DDoS attack against any system you do not own is a federal crime in most countries, including the US (Computer Fraud and Abuse Act). This guide is strictly educational — for understanding, defense, and authorized security testing only.' },
   { q: 'How do you defend against DDoS?', a: 'The standard defenses are rate limiting, load balancers, and a Content Delivery Network (CDN) that absorbs and filters the flood. DDoS protection services, Web Application Firewalls, and connection-level protections also help stop volumetric, protocol, and application-layer attacks.' },
-  { q: 'What is a botnet?', a: 'A botnet is a network of compromised machines — PCs, servers, IoT devices — that an attacker controls remotely. For DDoS, the attacker commands the whole botnet to send traffic to one target at once, multiplying the flood from a single machine to thousands.' },
+  { q: 'What is a botnet?', a: 'A botnet is a network of compromised machines — PCs, servers, IoT devices — that an attacker controls remotely. For DDoS, the attacker commands the whole botnet to send traffic to one target at once, multiplying the flood from a single machine to thousands. As of 2026, IoT botnets still drive record multi-terabit floods — keep your own devices patched so they never join one.' },
 ]
 
 const howItWorks = [
@@ -101,8 +101,8 @@ const schema = {
   '@graph': [
     {
       '@type': 'TechArticle',
-      headline: 'How Hackers DDoS, Professionally — 3 Attack Layers Explained (Educational)',
-      description: 'Understand how DDoS attacks work professionally: volumetric floods, protocol SYN floods, and application-layer slowloris. Covers botnets, how each layer works, and how to defend with rate limiting, load balancers, and a CDN. Educational only.',
+      headline: 'DDoS Attacks Explained — 3 Layers Guide (Educational)',
+      description: 'DDoS attacks explained: volumetric floods, SYN floods and slowloris, plus defense with rate limits and CDNs. Educational lab-only guide. Updated for 2026.',
       about: 'DDoS attacks explained',
       educationalUse: 'Testing, education, and authorized use only',
     },
@@ -120,8 +120,8 @@ const schema = {
 export default function hncker_ddos() {
   return (
     <ToolLayout
-      title="How Hackers DDoS, Professionally — 3 Attack Layers Explained"
-      desc="Understand how DDoS attacks work: volumetric floods, protocol SYN floods, and application-layer slowloris. Learn the three layers, how botnets multiply the attack, and how to defend with rate limits, load balancers, and a CDN. Educational only."
+      title="DDoS Attacks Explained — 3 Layers Guide"
+      desc="DDoS attacks explained: volumetric floods, SYN floods and slowloris, plus defense with rate limits and CDNs. Educational lab-only guide. Updated for 2026."
       icon="🌊"
       iconBg="linear-gradient(135deg, rgba(0,255,65,0.18), rgba(6,182,212,0.08))"
       category="security"
@@ -281,6 +281,13 @@ export default function hncker_ddos() {
           This guide is provided <b>strictly for educational and authorized security testing</b>. Launching a DDoS attack
           against any system you do not own is a <b>federal crime</b>. Only test networks and systems you own or have written
           permission to assess. The authors and this site are not responsible for misuse.
+        </p>
+      </Section>
+      <Section id="related" icon="🔗" title="Related Guides" subtitle="Keep learning in the lab">
+        <p>
+          Harden further with the <a href="/hncker/burp">Burp Suite guide</a> for app-layer testing, the{' '}
+          <a href="/hncker/wireshark">Wireshark guide</a> for traffic analysis, and the <a href="/hncker/aircrack">Aircrack-ng guide</a> for
+          WiFi auditing — or browse the full <a href="/hncker/">HNCKER hub</a>.
         </p>
       </Section>
     </ToolLayout>

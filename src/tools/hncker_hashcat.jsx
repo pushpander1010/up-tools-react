@@ -103,8 +103,8 @@ const schema = {
   '@graph': [
     {
       '@type': 'TechArticle',
-      headline: 'Hashcat — Password Cracker (Educational Guide)',
-      description: 'Step-by-step reference for using Hashcat to recover passwords: dictionary, brute-force and rule-based attacks, hash types, and how to defend your own passwords.',
+      headline: 'Hashcat — GPU Password Recovery Guide (Educational)',
+      description: 'Hashcat guide: dictionary, brute-force and rule-based password recovery on your own hashes, plus defenses. Educational lab-only tutorial. 2026 update.',
       about: 'Hashcat password recovery tool',
       educationalUse: 'Testing, education, and authorized password recovery only',
     },
@@ -122,8 +122,8 @@ const schema = {
 export default function hncker_hashcat() {
   return (
     <ToolLayout
-      title="Hashcat — Password Cracker Guide"
-      desc="Step-by-step reference: install & use Hashcat for password recovery — dictionary, brute-force, rules, hash types. Educational purposes only."
+      title="Hashcat — GPU Password Recovery Guide"
+      desc="Hashcat guide: dictionary, brute-force and rule-based password recovery on your own hashes, plus defenses. Educational lab-only tutorial. 2026 update."
       icon="🔑"
       iconBg="linear-gradient(135deg, rgba(0,255,65,0.18), rgba(6,182,212,0.08))"
       category="security"
@@ -362,6 +362,12 @@ export default function hncker_hashcat() {
           legitimate password-recovery tool, but using it to crack passwords you do not own or lack written permission
           to recover is illegal. Use it only on your own hashes or within an authorized security engagement. The author
           and this site are not responsible for any misuse.
+        </p>
+      </Section>
+      <Section id="related" icon="🔗" title="Related Guides" subtitle="Keep learning in the lab">
+        <p>
+          Continue with the <a href="/hncker/ffuf">ffuf guide</a> for fuzzing login forms, the{' '}
+          <a href="/hncker/burp">Burp Suite guide</a> for manual web testing — or browse the full <a href="/hncker/">HNCKER hub</a>.
         </p>
       </Section>
     </ToolLayout>

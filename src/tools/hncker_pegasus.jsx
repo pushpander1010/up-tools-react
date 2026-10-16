@@ -102,7 +102,7 @@ const schema = {
     {
       '@type': 'TechArticle',
       headline: 'Pegasus Pro — Android Pentesting Toolkit (Educational)',
-      description: 'Complete step-by-step reference for installing and using Pegasus Pro, a Python menu-driven Android penetration testing toolkit. Education and authorized testing only.',
+      description: 'Pegasus Pro 2026 lab guide: install and use the Python menu-driven toolkit for Android penetration tests on your own devices. Educational lab use only.',
       about: 'Pegasus Pro Android pentesting toolkit',
       educationalUse: 'Testing, education, and authorized research only',
     },
@@ -121,7 +121,7 @@ export default function hncker_pegasus() {
   return (
     <ToolLayout
       title="Pegasus Pro — Android Pentesting Toolkit"
-      desc="Step-by-step reference: install & use Pegasus Pro, a Python menu toolkit for Android penetration testing. Educational purposes only."
+      desc="Pegasus Pro 2026 lab guide: install and use the Python menu-driven toolkit for Android penetration tests on your own devices. Educational lab use only."
       icon="🐎"
       iconBg="linear-gradient(135deg, rgba(0,255,65,0.18), rgba(6,182,212,0.08))"
       category="security"
@@ -172,6 +172,9 @@ export default function hncker_pegasus() {
           { i: '🛡️', t: 'Android security', d: 'Check device security posture.' },
           { i: '🧩', t: 'Menu-driven', d: 'One clean interface — no juggling separate tools.' },
         ]} />
+        <p>
+          <b>2026 defense note: Android 14+ restricts sideloaded toolkits harder than older releases — test only on your own devices, keep them patched, and treat unknown APKs as hostile by default.</b>
+        </p>
       </Section>
 
       <Section id="requirements" icon="⚙️" title="System Requirements" subtitle="What you need before running">
@@ -254,6 +257,9 @@ export default function hncker_pegasus() {
             </a>
           ))}
         </div>
+        <p className="text-xs text-slate-400">
+          Related HNCKER guides: <a href="/hncker/metasploit" className="text-cyan-300 underline">Metasploit framework guide</a>, <a href="/hncker/nmap" className="text-cyan-300 underline">Nmap network-scanner guide</a> and the <a href="/hncker" className="text-cyan-300 underline">HNCKER hub</a>.
+        </p>
       </Section>
 
       <Section id="disclaimer" icon="📜" title="Disclaimer" subtitle="Read before you run anything">

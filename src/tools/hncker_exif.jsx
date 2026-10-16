@@ -87,7 +87,7 @@ const faq = [
   { q: 'How do I strip metadata before sharing?', a: 'Run `exiftool -all= photo.jpg` to wipe every tag into a clean copy. To also remove the original copy, add `-overwrite_original`. On most phones, the share menu removes GPS automatically — but verify.' },
   { q: 'Is ExifTool illegal?', a: 'No. ExifTool is a legitimate open-source utility. Reading metadata from images you own, or that are public, is fine. Using location data to track or dox someone without consent is illegal — stay on the right side of the law.' },
   { q: 'Does ExifTool work on videos?', a: 'Yes. ExifTool reads metadata from many video formats too, including GPS, camera info and creation time. It also handles PDFs, office documents and audio files.' },
-  { q: 'How do I protect my own photos?', a: 'Strip metadata before posting, or disable location tagging in your camera. Always re-check the share menu on your phone before sending a photo, since some apps leak GPS even when you do not expect it.' },
+  { q: 'How do I protect my own photos?', a: 'Strip metadata before posting, or disable location tagging in your camera. As of 2026 most phones warn about location tags on share — still, always re-check the share menu before sending, since some apps leak GPS even when you do not expect it.' },
 ]
 
 const howItWorks = [
@@ -104,7 +104,7 @@ const schema = {
     {
       '@type': 'TechArticle',
       headline: 'ExifTool — Read & Strip Image Metadata (Educational Guide)',
-      description: 'Step-by-step reference for using ExifTool to read EXIF metadata — camera, software, GPS — from images, and to strip it before sharing to protect your privacy.',
+      description: 'ExifTool guide: read EXIF, GPS and camera metadata from images and strip it before sharing. Lab-only educational tutorial for privacy defense. Updated for 2026.',
       about: 'ExifTool image metadata extraction',
       educationalUse: 'Testing, education, and privacy protection only',
     },
@@ -123,7 +123,7 @@ export default function hncker_exif() {
   return (
     <ToolLayout
       title="ExifTool — Read & Strip Image Metadata Guide"
-      desc="Step-by-step reference: install & use ExifTool to read EXIF metadata — camera, software, GPS — from images, and strip it before sharing to protect your privacy. Educational purposes only."
+      desc="ExifTool guide: read EXIF, GPS and camera metadata from images and strip it before sharing. Lab-only educational tutorial for privacy defense. Updated for 2026."
       icon="🖼️"
       iconBg="linear-gradient(135deg, rgba(0,255,65,0.18), rgba(6,182,212,0.08))"
       category="security"
@@ -335,6 +335,12 @@ export default function hncker_exif() {
           a legitimate metadata utility, but using location data to <b>track, stalk or dox someone without consent is
           illegal</b>. Only read and strip metadata on your own photos or files you are authorized to handle. The
           author and this site are not responsible for any misuse.
+        </p>
+      </Section>
+      <Section id="related" icon="🔗" title="Related Guides" subtitle="Keep learning in the lab">
+        <p>
+          Continue with the <a href="/hncker/ghunt">GHunt guide</a> for auditing your Google footprint, the{' '}
+          <a href="/hncker/burp">Burp Suite guide</a> for manual web testing — or browse the full <a href="/hncker/">HNCKER hub</a>.
         </p>
       </Section>
     </ToolLayout>

@@ -93,10 +93,9 @@ const faq = [
 const howItWorks = [
   'Install STRIX with the official one-liner: curl -sSL https://strix.ai/install | bash.',
   'Configure an LLM API key (STRIX_LLM + LLM_API_KEY, or strix auth login chatgpt).',
-  'Point it at your target application or API with strix --target.',
+  'Point it at your own target application or API with strix --target.',
   'STRIX launches autonomous agents for recon, exploitation, and validation.',
-  'Each finding is validated with a real proof-of-concept exploit.',
-  'Review results and apply auto-generated fix patches.',
+  'Review PoC-validated findings and apply auto-generated fix patches.',
   'Integrate with CI/CD to scan every pull request automatically.',
 ];
 
@@ -105,8 +104,8 @@ const schema = {
   '@graph': [
     {
       '@type': 'TechArticle',
-      headline: 'STRIX — AI Penetration Testing Tool (Educational)',
-      description: 'Step-by-step guide for installing and using STRIX, an open-source AI penetration testing framework. Educational and authorized testing only.',
+      headline: 'Strix AI Pentest Framework: 2026 Guide (Educational)',
+      description: 'Use Strix in 2026: install the open-source AI pentest framework, scan your own apps with autonomous agents and patch validated findings. Lab-only guide.',
       about: 'STRIX AI penetration testing tool',
       educationalUse: 'Testing, education, and authorized research only',
     },
@@ -124,8 +123,8 @@ const schema = {
 export default function hncker_strix() {
   return (
     <ToolLayout
-      title="STRIX — AI Penetration Testing Tool"
-      desc="Step-by-step guide: install & use STRIX, the open-source AI pentest framework with autonomous agents and zero false positives. Educational only."
+      title="Strix AI Pentest Framework: 2026 Guide"
+      desc="Use Strix in 2026: install the open-source AI pentest framework, scan your own apps with autonomous agents and patch validated findings. Lab-only guide."
       icon="🤖"
       iconBg="linear-gradient(135deg, rgba(0,255,65,0.18), rgba(0,200,180,0.08))"
       category="security"
@@ -171,6 +170,11 @@ export default function hncker_strix() {
         have written permission to test is <b>illegal</b>. Only use it on your own applications or during
         authorized penetration testing engagements. This page is for <b>educational purposes only</b>.
       </WarningBox>
+
+      <InfoBox title="2026 note">
+        Strix moves fast — pull the latest installer and check docs.strix.ai before a 2026 lab run, since flags and
+        agent behavior change between releases.
+      </InfoBox>
 
       <Section id="overview" icon="🤖" title="What is STRIX?" subtitle="Autonomous AI agents that hack like real pentesters">
         <p>
@@ -312,6 +316,26 @@ export default function hncker_strix() {
               <span className="ml-auto text-xs text-slate-500">↗</span>
             </a>
           ))}
+        </div>
+      </Section>
+
+      <Section id="related" icon="🧭" title="Related Guides" subtitle="Keep learning in the lab">
+        <div className="space-y-2">
+          <a href="/hncker/nuclei" className="flex items-center gap-2 rounded-lg px-3 py-2 border border-white/8 hover:border-brand/40 hover:bg-white/5 transition-all text-slate-300 hover:text-white no-underline">
+            <span>🧨</span>
+            <span className="text-sm font-medium">Nuclei — template-driven vulnerability scans</span>
+            <span className="ml-auto text-indigo-300 text-xs font-mono">→</span>
+          </a>
+          <a href="/hncker/burp" className="flex items-center gap-2 rounded-lg px-3 py-2 border border-white/8 hover:border-brand/40 hover:bg-white/5 transition-all text-slate-300 hover:text-white no-underline">
+            <span>🪤</span>
+            <span className="text-sm font-medium">Burp Suite — intercept and fuzz web requests</span>
+            <span className="ml-auto text-indigo-300 text-xs font-mono">→</span>
+          </a>
+          <a href="/hncker/" className="flex items-center gap-2 rounded-lg px-3 py-2 border border-white/8 hover:border-brand/40 hover:bg-white/5 transition-all text-slate-300 hover:text-white no-underline">
+            <span>🏠</span>
+            <span className="text-sm font-medium">All HNCKER guides</span>
+            <span className="ml-auto text-indigo-300 text-xs font-mono">→</span>
+          </a>
         </div>
       </Section>
 

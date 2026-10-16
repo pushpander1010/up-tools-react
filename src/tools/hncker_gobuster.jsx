@@ -103,8 +103,8 @@ const schema = {
   '@graph': [
     {
       '@type': 'TechArticle',
-      headline: "Gobuster — Directory Fuzzer Guide (Educational)",
-      description: "Step-by-step Gobuster reference: directory, DNS and vhost brute-forcing on lab apps, plus defense.",
+      headline: "Gobuster — Directory & DNS Fuzzer Guide (Educational)",
+      description: "Gobuster guide: brute-force hidden directories, files, subdomains and vhosts on your own lab apps like DVWA. Educational lab-only tutorial. 2026 update.",
       about: "Gobuster directory fuzzer",
       educationalUse: 'Testing, education, and authorized use only',
     },
@@ -122,8 +122,8 @@ const schema = {
 export default function hncker_gobuster() {
   return (
     <ToolLayout
-      title="Gobuster — Directory Fuzzer Guide"
-      desc="Step-by-step Gobuster reference: directory, DNS and vhost brute-forcing on your own lab apps (DVWA, OWASP Juice Shop). Educational use only."
+      title="Gobuster — Directory & DNS Fuzzer Guide"
+      desc="Gobuster guide: brute-force hidden directories, files, subdomains and vhosts on your own lab apps like DVWA. Educational lab-only tutorial. 2026 update."
       icon="📂"
       iconBg="linear-gradient(135deg, rgba(0,255,65,0.18), rgba(6,182,212,0.08))"
       category="security"
@@ -283,6 +283,12 @@ Found: dev.target.lab admin.target.lab`} />
       <Section id="disclaimer" icon="📜" title="Disclaimer" subtitle="Read before you run anything">
         <p>
           This documentation is provided <b>strictly for educational and authorized purposes</b>. Gobuster hammers servers with thousands of requests, so run it only on your own lab apps (DVWA, OWASP Juice Shop) or targets with written permission. Fuzzing anyone else is illegal. The author and this site are not responsible for any misuse.
+        </p>
+      </Section>
+      <Section id="related" icon="🔗" title="Related Guides" subtitle="Keep learning in the lab">
+        <p>
+          Continue with the <a href="/hncker/ffuf">ffuf guide</a> for fuzzing hidden paths, the{' '}
+          <a href="/hncker/burp">Burp Suite guide</a> for manual web testing — or browse the full <a href="/hncker/">HNCKER hub</a>.
         </p>
       </Section>
     </ToolLayout>

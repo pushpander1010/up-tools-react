@@ -103,8 +103,8 @@ const schema = {
   '@graph': [
     {
       '@type': 'TechArticle',
-      headline: 'Phunter — Phone Number OSINT Tool (Educational)',
-      description: 'Complete step-by-step reference for installing and using Phunter, a Python OSINT tool to look up details via a phone number. Education and authorized research only.',
+      headline: 'Phunter Phone Lookup: 2026 OSINT Guide (Educational)',
+      description: 'Learn Phunter in 2026: install the Python phone-number OSINT tool, run lab-only lookups, read results and stay legal. Full step-by-step educational guide.',
       about: 'Phunter phone number OSINT tool',
       educationalUse: 'Testing, education, and authorized research only',
     },
@@ -122,8 +122,8 @@ const schema = {
 export default function hncker_phunter() {
   return (
     <ToolLayout
-      title="Phunter — Phone Number OSINT Tool"
-      desc="Step-by-step reference: install & use Phunter, a Python OSINT tool to look up details via a phone number. Educational purposes only."
+      title="Phunter Phone Lookup: 2026 OSINT Guide"
+      desc="Learn Phunter in 2026: install the Python phone-number OSINT tool, run lab-only lookups, read results and stay legal. Full step-by-step educational guide."
       icon="📞"
       iconBg="linear-gradient(135deg, rgba(34,197,94,0.18), rgba(16,185,129,0.08))"
       category="security"
@@ -168,6 +168,11 @@ export default function hncker_phunter() {
         security awareness and red-team engagements</b>. Looking up people without a legitimate purpose can violate
         privacy laws and platform terms. This page is for <b>educational and authorized use only</b>.
       </WarningBox>
+
+      <InfoBox title="2026 note">
+        Public lookup sources change often — if a source returns nothing in 2026, update first with
+        <span className="font-mono"> git pull</span> and re-check the README for new API-key requirements before assuming the number has no data.
+      </InfoBox>
 
       <Section id="overview" icon="🕵️" title="What is Phunter?" subtitle="Phone-number OSINT from the terminal">
         <p>
@@ -290,6 +295,26 @@ pip3 install -r requirements.txt`} />
               <span className="ml-auto text-indigo-300 text-xs font-mono break-all">{href}</span>
             </a>
           ))}
+        </div>
+      </Section>
+
+      <Section id="related" icon="🧭" title="Related Guides" subtitle="Keep learning in the lab">
+        <div className="space-y-2">
+          <a href="/hncker/whatsosint" className="flex items-center gap-2 rounded-lg px-3 py-2 border border-white/8 hover:border-brand/40 hover:bg-white/5 transition-all text-slate-300 hover:text-white no-underline">
+            <span>💬</span>
+            <span className="text-sm font-medium">WhatsOSINT — check a WhatsApp number</span>
+            <span className="ml-auto text-indigo-300 text-xs font-mono">→</span>
+          </a>
+          <a href="/hncker/sherlock" className="flex items-center gap-2 rounded-lg px-3 py-2 border border-white/8 hover:border-brand/40 hover:bg-white/5 transition-all text-slate-300 hover:text-white no-underline">
+            <span>🔎</span>
+            <span className="text-sm font-medium">Sherlock — map a username across 400+ sites</span>
+            <span className="ml-auto text-indigo-300 text-xs font-mono">→</span>
+          </a>
+          <a href="/hncker/" className="flex items-center gap-2 rounded-lg px-3 py-2 border border-white/8 hover:border-brand/40 hover:bg-white/5 transition-all text-slate-300 hover:text-white no-underline">
+            <span>🏠</span>
+            <span className="text-sm font-medium">All HNCKER guides</span>
+            <span className="ml-auto text-indigo-300 text-xs font-mono">→</span>
+          </a>
         </div>
       </Section>
 

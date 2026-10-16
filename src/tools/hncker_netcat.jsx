@@ -104,7 +104,7 @@ const schema = {
     {
       '@type': 'TechArticle',
       headline: 'Netcat — Swiss Army Knife Guide (Educational)',
-      description: 'Step-by-step reference for using Netcat: port checks, banners, chat, file transfer, reverse shells (lab only), UDP checks, and defense.',
+      description: 'Pegasus Pro 2026 lab guide: install and use the Python menu-driven toolkit for Android penetration tests on your own devices. Educational lab use only.',
       about: 'Netcat networking tool',
       educationalUse: 'Testing, education, and authorized use only',
     },
@@ -123,7 +123,7 @@ export default function hncker_netcat() {
   return (
     <ToolLayout
       title="Netcat — Swiss Army Knife Guide"
-      desc="Step-by-step reference: install & use Netcat for port checks, banners, chat, file transfer, shells (lab only). Educational purposes only."
+      desc="Pegasus Pro 2026 lab guide: install and use the Python menu-driven toolkit for Android penetration tests on your own devices. Educational lab use only."
       icon="🔧"
       iconBg="linear-gradient(135deg, rgba(0,255,65,0.18), rgba(6,182,212,0.08))"
       category="security"
@@ -173,6 +173,9 @@ export default function hncker_netcat() {
           { i: '💬', t: 'Chat + transfer', d: 'Two-way chat and file moves, no server.' },
           { i: '🐚', t: 'Shells (lab only)', d: '-e attaches a shell — know it to detect it.' },
         ]} />
+        <p>
+          <b>2026 note: netcat-openbsd still ships without -e on Debian/Ubuntu for safety — know the reverse-shell pattern so your firewall rules, ss audits and IDS signatures catch it on your own machines.</b>
+        </p>
       </Section>
 
       <Section id="requirements" icon="⚙️" title="Requirements" subtitle="What you need before running">
@@ -354,6 +357,9 @@ nc -v -w 2 target.com 25
             </a>
           ))}
         </div>
+        <p className="text-xs text-slate-400">
+          Related HNCKER guides: <a href="/hncker/nmap" className="text-cyan-300 underline">Nmap network-scanner guide</a>, <a href="/hncker/hping3" className="text-cyan-300 underline">hping3 packet-crafting guide</a> and the <a href="/hncker" className="text-cyan-300 underline">HNCKER hub</a>.
+        </p>
       </Section>
 
       <Section id="disclaimer" icon="📜" title="Disclaimer" subtitle="Read before you run anything">

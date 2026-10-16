@@ -100,8 +100,8 @@ const schema = {
   '@graph': [
     {
       '@type': 'TechArticle',
-      headline: 'Root Android the Right Way — Step-by-Step Guide (Educational)',
-      description: 'Complete guide to rooting your own Android device: unlock the bootloader, patch the boot image with Magisk, and flash it back. Covers Pixel, Samsung, Xiaomi, OnePlus and Motorola. Educational and authorized use only.',
+      headline: 'Root Android with Magisk: 2026 Guide (Educational)',
+      description: 'Root your own Android in 2026: unlock the bootloader, patch the boot image with Magisk and flash it back. Pixel, Samsung, Xiaomi covered. Lab-only guide.',
       about: 'Rooting Android with Magisk',
       educationalUse: 'Testing, education, and authorized use only',
     },
@@ -119,8 +119,8 @@ const schema = {
 export default function hncker_rooting() {
   return (
     <ToolLayout
-      title="Root Android the Right Way — Step-by-Step Guide"
-      desc="Learn how to root your own Android device the right way: unlock the bootloader, patch with Magisk, and flash. Covers Pixel, Samsung, Xiaomi, OnePlus, Motorola. Educational only."
+      title="Root Android with Magisk: 2026 Guide"
+      desc="Root your own Android in 2026: unlock the bootloader, patch the boot image with Magisk and flash it back. Pixel, Samsung, Xiaomi covered. Lab-only guide."
       icon="🔑"
       iconBg="linear-gradient(135deg, rgba(0,255,65,0.18), rgba(6,182,212,0.08))"
       category="security"
@@ -153,6 +153,11 @@ export default function hncker_rooting() {
         Rooting or modifying a device you do not own, without written permission, is <b>illegal</b>. This page is for
         <b> educational and authorized use only</b>.
       </WarningBox>
+
+      <InfoBox title="2026 note">
+        Always match the stock image to your exact build number and use the latest Magisk release — flashing an image
+        from an older firmware on a 2026 security patch level is the fastest way to a bootloop.
+      </InfoBox>
 
       <Section id="overview" icon="🔑" title="What is Rooting?" subtitle="Full control over your own Android device">
         <p>
@@ -246,6 +251,26 @@ export default function hncker_rooting() {
               <span className="ml-auto text-indigo-300 text-xs font-mono break-all">{href}</span>
             </a>
           ))}
+        </div>
+      </Section>
+
+      <Section id="related" icon="🧭" title="Related Guides" subtitle="Keep learning in the lab">
+        <div className="space-y-2">
+          <a href="/hncker/ahmyth" className="flex items-center gap-2 rounded-lg px-3 py-2 border border-white/8 hover:border-brand/40 hover:bg-white/5 transition-all text-slate-300 hover:text-white no-underline">
+            <span>📱</span>
+            <span className="text-sm font-medium">AhMyth — Android lab RAT, explained defensively</span>
+            <span className="ml-auto text-indigo-300 text-xs font-mono">→</span>
+          </a>
+          <a href="/hncker/metasploit" className="flex items-center gap-2 rounded-lg px-3 py-2 border border-white/8 hover:border-brand/40 hover:bg-white/5 transition-all text-slate-300 hover:text-white no-underline">
+            <span>🎯</span>
+            <span className="text-sm font-medium">Metasploit — exploitation framework basics</span>
+            <span className="ml-auto text-indigo-300 text-xs font-mono">→</span>
+          </a>
+          <a href="/hncker/" className="flex items-center gap-2 rounded-lg px-3 py-2 border border-white/8 hover:border-brand/40 hover:bg-white/5 transition-all text-slate-300 hover:text-white no-underline">
+            <span>🏠</span>
+            <span className="text-sm font-medium">All HNCKER guides</span>
+            <span className="ml-auto text-indigo-300 text-xs font-mono">→</span>
+          </a>
         </div>
       </Section>
 

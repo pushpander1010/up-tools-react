@@ -84,7 +84,7 @@ const faq = [
   { q: "Is Burp Suite illegal?", a: "The Community Edition is free and legal for learning. Routing someone else's traffic through it or testing sites you do not own is illegal. Practice on PortSwigger's free Web Security Academy labs or DVWA on localhost." },
   { q: "What is Intercept?", a: "Intercept pauses each browser request inside Burp before it reaches the server, so you can read and edit it — change a price, a user ID, a role — then forward it. That is how testers prove the server trusts client input too much." },
   { q: "What is Repeater?", a: "Repeater lets you resend one request again and again with small edits and compare responses. Change one parameter at a time and watch what the server does — the core loop of manual web testing." },
-  { q: "What is Intruder?", a: "Intruder automates payload lists through marked positions: usernames, passwords, IDs. In Community Edition it is rate-limited (single thread), which is fine for labs. Mark positions with add markers, pick a payload list, start the attack." },
+  { q: "What is Intruder?", a: "Intruder automates payload lists through marked positions: usernames, passwords, IDs. In Community Edition it is rate-limited (single thread), which is fine for labs. Mark positions with add markers, pick a payload list, start the attack. As of 2026 the built-in browser and Montoya API are current — keep Burp updated via the built-in updater." },
   { q: "How do I make my browser trust Burp?", a: "Burp re-signs HTTPS with its own CA certificate, so install it: with the proxy on, visit http://burpsuite, download cacert.der, and import it into your browser as a trusted authority. Without this step HTTPS sites show certificate errors." },
   { q: "What is Decoder?", a: "Decoder converts data between formats — URL, Base64, hex, HTML entities — so you can read encoded cookies and tokens, edit them, and re-encode. Most session weirdness unravels here." },
   { q: "How do I protect my app from Burp-style testing?", a: "Validate everything server-side, use random CSRF tokens, set HttpOnly + Secure + SameSite cookies, rate-limit logins, and never trust prices, roles or IDs sent by the browser. Then invite testing on your own staging via the free labs." },
@@ -104,7 +104,7 @@ const schema = {
     {
       '@type': 'TechArticle',
       headline: "Burp Suite — Web Proxy Guide (Educational)",
-      description: "Step-by-step Burp Suite reference: intercept proxy, Repeater, Intruder, Decoder, and web-app defense.",
+      description: "Burp Suite guide: intercept, Repeater, Intruder and Decoder on your own lab apps like PortSwigger labs and DVWA. Educational lab-only tutorial. 2026 update.",
       about: "Burp Suite web proxy",
       educationalUse: 'Testing, education, and authorized use only',
     },
@@ -123,7 +123,7 @@ export default function hncker_burp() {
   return (
     <ToolLayout
       title="Burp Suite — Web Proxy Guide"
-      desc="Step-by-step Burp Suite reference: intercept, Repeater, Intruder and Decoder on your own lab apps (PortSwigger labs, DVWA). Educational use only."
+      desc="Burp Suite guide: intercept, Repeater, Intruder and Decoder on your own lab apps like PortSwigger labs and DVWA. Educational lab-only tutorial. 2026 update."
       icon="🥺"
       iconBg="linear-gradient(135deg, rgba(0,255,65,0.18), rgba(6,182,212,0.08))"
       category="security"
@@ -285,6 +285,13 @@ GET /profile?user=8  -> 200 Bob (not you)
       <Section id="disclaimer" icon="📜" title="Disclaimer" subtitle="Read before you run anything">
         <p>
           This documentation is provided <b>strictly for educational and authorized purposes</b>. Burp Suite intercepts and modifies live web traffic, so use it only on your own lab apps (PortSwigger Web Security Academy, DVWA) or targets with written permission. Testing anyone else is illegal. The author and this site are not responsible for any misuse.
+        </p>
+      </Section>
+      <Section id="related" icon="🔗" title="Related Guides" subtitle="Keep learning in the lab">
+        <p>
+          Continue with the <a href="/hncker/ffuf">ffuf guide</a> for fuzzing hidden paths, the{' '}
+          <a href="/hncker/gobuster">Gobuster guide</a> for directory brute-forcing, and the <a href="/hncker/hashcat">Hashcat guide</a> for
+          login hash recovery — or browse the full <a href="/hncker/">HNCKER hub</a>.
         </p>
       </Section>
     </ToolLayout>

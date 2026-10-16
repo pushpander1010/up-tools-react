@@ -104,7 +104,7 @@ const schema = {
     {
       '@type': 'TechArticle',
       headline: 'hping3 — Packet Crafting & Network Stress-Testing (Educational)',
-      description: 'Complete step-by-step reference for installing and using hping3 to craft raw TCP/UDP/ICMP packets, scan ports and stress-test firewalls. Education and authorized testing only.',
+      description: 'Pegasus Pro 2026 lab guide: install and use the Python menu-driven toolkit for Android penetration tests on your own devices. Educational lab use only.',
       about: 'hping3 packet crafting tool',
       educationalUse: 'Testing, education, and authorized research only',
     },
@@ -123,7 +123,7 @@ export default function hncker_hping3() {
   return (
     <ToolLayout
       title="hping3 — Packet Crafting & Network Stress-Testing"
-      desc="Step-by-step reference: install & use hping3 to craft raw TCP/UDP/ICMP packets, scan ports and stress-test firewalls. Educational purposes only."
+      desc="Pegasus Pro 2026 lab guide: install and use the Python menu-driven toolkit for Android penetration tests on your own devices. Educational lab use only."
       icon="📡"
       iconBg="linear-gradient(135deg, rgba(0,255,65,0.18), rgba(6,182,212,0.08))"
       category="security"
@@ -177,6 +177,9 @@ export default function hncker_hping3() {
           { i: '🎯', t: 'Custom flags', d: 'Set SYN, ACK, FIN and more on every packet.' },
           { i: '🖥️', t: 'CLI-first', d: 'Runs entirely from the terminal.' },
         ]} />
+        <p>
+          <b>2026 defense note: modern cloud firewalls drop raw-packet floods by default — that is the point. Test your own firewall rules in an isolated lab, then apply rate-limiting and SYN-cookie protection to your real servers.</b>
+        </p>
       </Section>
 
       <Section id="requirements" icon="⚙️" title="System Requirements" subtitle="What you need before running">
@@ -308,6 +311,9 @@ export default function hncker_hping3() {
             </a>
           ))}
         </div>
+        <p className="text-xs text-slate-400">
+          Related HNCKER guides: <a href="/hncker/nmap" className="text-cyan-300 underline">Nmap network-scanner guide</a>, <a href="/hncker/netcat" className="text-cyan-300 underline">Netcat networking guide</a> and the <a href="/hncker" className="text-cyan-300 underline">HNCKER hub</a>.
+        </p>
       </Section>
 
       <Section id="disclaimer" icon="📜" title="Disclaimer" subtitle="Read before you craft any packet">

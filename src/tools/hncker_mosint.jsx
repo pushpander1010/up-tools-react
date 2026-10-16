@@ -103,8 +103,8 @@ const schema = {
   '@graph': [
     {
       '@type': 'TechArticle',
-      headline: 'Mosint — Automated Email OSINT Tool (Educational)',
-      description: 'Complete step-by-step reference for installing and using Mosint, a Go-based automated email OSINT tool. Education and authorized research only.',
+      headline: 'Mosint — Email OSINT Tool (Educational)',
+      description: 'Pegasus Pro 2026 lab guide: install and use the Python menu-driven toolkit for Android penetration tests on your own devices. Educational lab use only.',
       about: 'Mosint email OSINT tool',
       educationalUse: 'Testing, education, and authorized research only',
     },
@@ -123,7 +123,7 @@ export default function hncker_mosint() {
   return (
     <ToolLayout
       title="Mosint — Email OSINT Tool"
-      desc="Mosint Guide - step-by-step reference to install and use Mosint, a fast Go-based automated email OSINT tool. Educational purposes only, online free."
+      desc="Pegasus Pro 2026 lab guide: install and use the Python menu-driven toolkit for Android penetration tests on your own devices. Educational lab use only."
       icon="📧"
       iconBg="linear-gradient(135deg, rgba(6,182,212,0.18), rgba(34,211,238,0.08))"
       category="security"
@@ -187,6 +187,9 @@ export default function hncker_mosint() {
           { i: '🔌', t: 'Extensible sources', d: 'Plug in free API keys to enable more sources.' },
           { i: '🖥️', t: 'CLI-first', d: 'Runs entirely from the terminal — no dashboard.' },
         ]} />
+        <p>
+          <b>2026 defense note: breach dumps keep growing, so treat every address you own as already leaked — use unique aliases per service, kill dead accounts, and put hardware-key 2FA on the inbox itself.</b>
+        </p>
       </Section>
 
       <Section id="requirements" icon="⚙️" title="System Requirements" subtitle="What you need before running">
@@ -299,6 +302,9 @@ export default function hncker_mosint() {
             </a>
           ))}
         </div>
+        <p className="text-xs text-slate-400">
+          Related HNCKER guides: <a href="/hncker/holehe" className="text-cyan-300 underline">Holehe email-checker guide</a>, <a href="/hncker/hydra" className="text-cyan-300 underline">Hydra login-defense guide</a> and the <a href="/hncker" className="text-cyan-300 underline">HNCKER hub</a>.
+        </p>
       </Section>
 
       <Section id="disclaimer" icon="📜" title="Disclaimer" subtitle="Read before you scan anything">

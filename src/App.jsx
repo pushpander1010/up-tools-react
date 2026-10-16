@@ -1,5 +1,5 @@
 import { Component as ReactComponent } from 'react'
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
 import { lazy, Suspense, useState, useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
@@ -53,12 +53,25 @@ const QualityPage = lazy(() => import('./pages/QualityPage'))
 const LearningDSAPage = lazy(() => import('./pages/LearningDSAPage'))
 const QuickselectPage = lazy(() => import('./pages/QuickselectPage'))
 
+// Duplicate hackolution/* guides consolidated on hncker/* (same tool, one canonical URL).
+// Worker 301s cover production; this covers SPA client-side navigation.
+const HNCKER_CANONICAL = new Set([
+  'aircrack', 'apkleaks', 'burp', 'ddos', 'exif', 'ffuf', 'hashcat', 'holehe',
+  'hping3', 'hydra', 'metasploit', 'mosint', 'nmap', 'phunter', 'seeker',
+  'sherlock', 'sqlmap', 'subfinder', 'theharvester', 'whatsosint', 'wireshark',
+])
+
 // Dynamic tool component loader
 function ToolRoute() {
   const location = useLocation()
   const slug = location.pathname.replace(/^\//, '').replace(/\/$/, '')
   const [Component, setComponent] = useState(null)
   const [notFound, setNotFound] = useState(false)
+
+  const twin = slug.match(/^hackolution\/([^/]+)$/)
+  if (twin && HNCKER_CANONICAL.has(twin[1])) {
+    return <Navigate to={`/hncker/${twin[1]}/`} replace />
+  }
 
   useEffect(() => {
     if (!slug || slug === 'games' || slug === 'hncker' || slug === 'hackolution' || slug === 'hackolution/apps' || slug === 'aimakerich' || slug === 'aiforrich' || slug === 'learning' || slug.startsWith('learning/')) {

@@ -103,8 +103,8 @@ const schema = {
   '@graph': [
     {
       '@type': 'TechArticle',
-      headline: "theHarvester — OSINT Collector Guide (Educational)",
-      description: "Step-by-step theHarvester reference: harvest emails and subdomains from public sources, plus footprint defense.",
+      headline: "theHarvester OSINT Guide: 2026 Edition (Educational)",
+      description: "Run theHarvester in 2026: harvest emails and subdomains for your own domain from public sources, then shrink your footprint. Lab-only educational guide.",
       about: "theHarvester OSINT collector",
       educationalUse: 'Testing, education, and authorized use only',
     },
@@ -122,8 +122,8 @@ const schema = {
 export default function hncker_theharvester() {
   return (
     <ToolLayout
-      title="theHarvester — OSINT Collector Guide"
-      desc="Step-by-step theHarvester reference: harvest emails, subdomains and hosts from public sources for your own domain. Educational use only."
+      title="theHarvester OSINT Guide: 2026 Edition"
+      desc="Run theHarvester in 2026: harvest emails and subdomains for your own domain from public sources, then shrink your footprint. Lab-only educational guide."
       icon="🌾"
       iconBg="linear-gradient(135deg, rgba(0,255,65,0.18), rgba(6,182,212,0.08))"
       category="security"
@@ -156,6 +156,11 @@ export default function hncker_theharvester() {
       <WarningBox>
         theHarvester reads public sources, but use it <b>only on your own domains or targets with written permission</b>. Spamming or harassing harvested addresses is illegal. This page is for <b>educational and authorized use only</b>.
       </WarningBox>
+
+      <InfoBox title="2026 note">
+        Free OSINT sources churn constantly — refresh to the latest theHarvester 4.x and re-run
+        <span className="font-mono"> -h</span> so your 2026 lab uses sources that still respond.
+      </InfoBox>
 
       <Section id="overview" icon="🌾" title="What is theHarvester?" subtitle="See what the internet knows about you">
         <p>
@@ -268,6 +273,26 @@ sudo apt install theharvester`} />
               <span className="ml-auto text-indigo-300 text-xs font-mono break-all">{href}</span>
             </a>
           ))}
+        </div>
+      </Section>
+
+      <Section id="related" icon="🧭" title="Related Guides" subtitle="Keep learning in the lab">
+        <div className="space-y-2">
+          <a href="/hncker/subfinder" className="flex items-center gap-2 rounded-lg px-3 py-2 border border-white/8 hover:border-brand/40 hover:bg-white/5 transition-all text-slate-300 hover:text-white no-underline">
+            <span>🌐</span>
+            <span className="text-sm font-medium">Subfinder — passive subdomain discovery</span>
+            <span className="ml-auto text-indigo-300 text-xs font-mono">→</span>
+          </a>
+          <a href="/hncker/sherlock" className="flex items-center gap-2 rounded-lg px-3 py-2 border border-white/8 hover:border-brand/40 hover:bg-white/5 transition-all text-slate-300 hover:text-white no-underline">
+            <span>🔎</span>
+            <span className="text-sm font-medium">Sherlock — map a username across 400+ sites</span>
+            <span className="ml-auto text-indigo-300 text-xs font-mono">→</span>
+          </a>
+          <a href="/hncker/" className="flex items-center gap-2 rounded-lg px-3 py-2 border border-white/8 hover:border-brand/40 hover:bg-white/5 transition-all text-slate-300 hover:text-white no-underline">
+            <span>🏠</span>
+            <span className="text-sm font-medium">All HNCKER guides</span>
+            <span className="ml-auto text-indigo-300 text-xs font-mono">→</span>
+          </a>
         </div>
       </Section>
 

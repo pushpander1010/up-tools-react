@@ -117,8 +117,8 @@ const schema = {
   '@graph': [
     {
       '@type': 'TechArticle',
-      headline: 'Locate Smartphones with Seeker — GPS Location Explained (Educational)',
-      description: 'Understand how Seeker locates a smartphone: it hosts a page that asks for location permission and grabs exact GPS Latitude and Longitude from the browser. Covers the setup, how it works, and how to protect yourself. Consent and authorized use only.',
+      headline: 'Seeker Location Tool: 2026 Lab Guide (Educational)',
+      description: 'Understand Seeker in 2026: how the GPS permission-link trick works, how to test it on your own devices in a lab, and how to defend yourself. Educational.',
       about: 'Seeker smartphone locator',
       educationalUse: 'Testing, education, and authorized use only',
     },
@@ -136,8 +136,8 @@ const schema = {
 export default function hncker_seeker() {
   return (
     <ToolLayout
-      title="Locate Smartphones with Seeker — GPS Location Explained"
-      desc="Understand how Seeker locates a smartphone: it hosts a page that asks for location permission and grabs exact GPS coordinates. Covers the setup, how the trick works, and how to protect yourself. Consent and authorized use only."
+      title="Seeker Location Tool: 2026 Lab Guide"
+      desc="Understand Seeker in 2026: how the GPS permission-link trick works, how to test it on your own devices in a lab, and how to defend yourself. Educational."
       icon="📍"
       iconBg="linear-gradient(135deg, rgba(0,255,65,0.18), rgba(6,182,212,0.08))"
       category="security"
@@ -180,6 +180,11 @@ export default function hncker_seeker() {
         do not own, or without the person's written consent, is a <b>serious privacy crime</b>. Only locate your own devices, or
         ones you have clear written permission to test. Understand the trick so you can defend against it.
       </WarningBox>
+
+      <InfoBox title="2026 note">
+        Modern mobile browsers now surface clearer location-permission warnings, so in practice only your own test
+        devices will tap Allow — which is exactly the consent-based lab setup this guide assumes.
+      </InfoBox>
 
       <Section id="overview" icon="📍" title="What is Seeker?" subtitle="Locate a smartphone using social engineering">
         <p>
@@ -418,6 +423,26 @@ chmod +x install.sh
               <span className="ml-auto text-indigo-300 text-xs font-mono break-all">{href}</span>
             </a>
           ))}
+        </div>
+      </Section>
+
+      <Section id="related" icon="🧭" title="Related Guides" subtitle="Keep learning in the lab">
+        <div className="space-y-2">
+          <a href="/hncker/sherlock" className="flex items-center gap-2 rounded-lg px-3 py-2 border border-white/8 hover:border-brand/40 hover:bg-white/5 transition-all text-slate-300 hover:text-white no-underline">
+            <span>🔎</span>
+            <span className="text-sm font-medium">Sherlock — map a username across 400+ sites</span>
+            <span className="ml-auto text-indigo-300 text-xs font-mono">→</span>
+          </a>
+          <a href="/hncker/phunter" className="flex items-center gap-2 rounded-lg px-3 py-2 border border-white/8 hover:border-brand/40 hover:bg-white/5 transition-all text-slate-300 hover:text-white no-underline">
+            <span>📞</span>
+            <span className="text-sm font-medium">Phunter — phone-number OSINT lookups</span>
+            <span className="ml-auto text-indigo-300 text-xs font-mono">→</span>
+          </a>
+          <a href="/hncker/" className="flex items-center gap-2 rounded-lg px-3 py-2 border border-white/8 hover:border-brand/40 hover:bg-white/5 transition-all text-slate-300 hover:text-white no-underline">
+            <span>🏠</span>
+            <span className="text-sm font-medium">All HNCKER guides</span>
+            <span className="ml-auto text-indigo-300 text-xs font-mono">→</span>
+          </a>
         </div>
       </Section>
 

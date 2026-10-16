@@ -12,33 +12,12 @@ const apps = [
 ]
 
 const tools = [
-  { slug: 'nmap', name: 'Nmap', img: '/assets/tools/nmap/nmap_logo.png', alt: 'Nmap network scanner logo', desc: 'Map networks: host discovery, SYN scans, service and OS detection.', tag: 'Network scanner', accent: 'linear-gradient(135deg, rgba(27,255,110,0.2), rgba(0,200,180,0.08))' },
-  { slug: 'subfinder', name: 'Subfinder', img: '/assets/tools/subfinder/subfinder_logo.png', alt: 'Subfinder subdomain discovery logo', desc: 'Passive subdomain discovery from dozens of public sources.', tag: 'Subdomain recon', accent: 'linear-gradient(135deg, rgba(27,255,110,0.2), rgba(0,200,180,0.08))' },
   { slug: 'amass', name: 'Amass', img: '/assets/tools/subfinder/subfinder_logo.png', alt: 'Amass subdomain mapper logo', desc: 'In-depth attack surface mapping and subdomain enumeration.', tag: 'Subdomain mapper', accent: 'linear-gradient(135deg, rgba(27,255,110,0.2), rgba(0,200,180,0.08))' },
   { slug: 'nikto', name: 'Nikto', img: '/assets/tools/subfinder/subfinder_logo.png', alt: 'Nikto server scanner logo', desc: 'Scan web servers for 7,000+ dangerous files, outdated versions, and misconfigurations.', tag: 'Server scanner', accent: 'linear-gradient(135deg, rgba(239,68,68,0.2), rgba(27,255,110,0.08))' },
   { slug: 'recon-ng', name: 'Recon-ng', img: '/assets/tools/subfinder/subfinder_logo.png', alt: 'Recon-ng recon framework logo', desc: 'Modular recon framework: workspaces, marketplace modules, and reporting for subdomains, emails, and hosts.', tag: 'Recon framework', accent: 'linear-gradient(135deg, rgba(6,182,212,0.2), rgba(27,255,110,0.08))' },
   { slug: 'gophish', name: 'GoPhish', img: '/assets/tools/subfinder/subfinder_logo.png', alt: 'GoPhish phishing awareness logo', desc: 'Defensive phishing simulation, spotting fake URLs, and phishing-resistant 2FA.', tag: 'Phishing defense', accent: 'linear-gradient(135deg, rgba(245,158,11,0.2), rgba(27,255,110,0.08))' },
   { slug: 'shodan', name: 'Shodan', img: '/assets/tools/subfinder/subfinder_logo.png', alt: 'Shodan exposed device search logo', desc: 'Search engine for Internet-connected devices, open ports, and exposed IoT assets.', tag: 'IoT search engine', accent: 'linear-gradient(135deg, rgba(255,107,53,0.2), rgba(27,255,110,0.08))' },
   { slug: 'wpscan', name: 'WPScan', img: '/assets/tools/subfinder/subfinder_logo.png', alt: 'WPScan WordPress scanner logo', desc: 'Scan WordPress sites for vulnerable plugins, themes, and weak configs.', tag: 'WordPress scanner', accent: 'linear-gradient(135deg, rgba(6,182,212,0.2), rgba(27,255,110,0.08))' },
-  { slug: 'sherlock', name: 'Sherlock', img: '/assets/tools/sherlock/sherlock_logo.png', alt: 'Sherlock username hunter logo', desc: 'Check your username across 400+ sites and clean your footprint.', tag: 'Username OSINT', accent: 'linear-gradient(135deg, rgba(179,102,255,0.2), rgba(27,255,110,0.08))' },
-  { slug: 'hashcat', name: 'Hashcat', img: '/assets/tools/hashcat/hashcat_logo.png', alt: 'Hashcat password cracker logo', desc: 'GPU-accelerated password recovery — dictionary, brute-force and rules.', tag: 'Password cracker', accent: 'linear-gradient(135deg, rgba(255,107,53,0.2), rgba(27,255,110,0.08))' },
-  { slug: 'sqlmap', name: 'SQLMap', img: '/assets/tools/sqlmap/sqlmap_logo.png', alt: 'SQLMap SQL injection tester logo', desc: 'Automate SQL injection on lab apps — confirm, enumerate, dump.', tag: 'SQL injection', accent: 'linear-gradient(135deg, rgba(255,107,53,0.2), rgba(0,200,180,0.08))' },
-  { slug: 'holehe', name: 'Holehe', img: '/assets/tools/holehe/holehe_logo.png', alt: 'Holehe email checker logo', desc: 'Check where your email is registered across 120+ sites.', tag: 'Email OSINT', accent: 'linear-gradient(135deg, rgba(255,102,204,0.2), rgba(27,255,110,0.08))' },
-  { slug: 'exif', name: 'ExifTool', img: '/assets/tools/exif/exif_logo.png', alt: 'ExifTool image metadata logo', desc: 'Read and strip EXIF metadata — camera, software, GPS — from images.', tag: 'Image metadata', accent: 'linear-gradient(135deg, rgba(27,255,110,0.2), rgba(0,200,180,0.08))' },
-  { slug: 'whatsosint', name: 'WhatsOSINT', img: '/assets/tools/whatsosint/whatsosint_logo.png', alt: 'WhatsOSINT WhatsApp number lookup tool logo', desc: 'Check if a phone number is on WhatsApp and pull its public profile data.', tag: 'WhatsApp OSINT', accent: 'linear-gradient(135deg, rgba(6,182,212,0.2), rgba(27,255,110,0.08))' },
-  { slug: 'phunter', name: 'Phunter', img: '/assets/tools/phunter/phunter_logo.png', alt: 'Phunter phone number OSINT tool logo', desc: 'Python phone-number OSINT tool to look up public details from the terminal.', tag: 'Phone OSINT', accent: 'linear-gradient(135deg, rgba(34,197,94,0.2), rgba(16,185,129,0.08))' },
-  { slug: 'theharvester', name: 'theHarvester', img: '/assets/tools/theharvester/theharvester_logo.png', alt: 'theHarvester OSINT collector logo', desc: 'Harvest emails and subdomains for your domain from public sources.', tag: 'OSINT collector', accent: 'linear-gradient(135deg, rgba(255,204,0,0.2), rgba(27,255,110,0.08))' },
-  { slug: 'seeker', name: 'Seeker', img: '/assets/tools/seeker/seeker_logo.png', alt: 'Seeker smartphone locator logo', desc: 'Understand how Seeker locates a smartphone via a location-permission page — and how to protect yourself.', tag: 'GPS locator', accent: 'linear-gradient(135deg, rgba(27,255,110,0.2), rgba(6,182,212,0.08))' },
-  { slug: 'hydra', name: 'Hydra', img: '/assets/tools/hydra/hydra_logo.png', alt: 'Hydra login brute-forcer logo', desc: 'Brute-force SSH, FTP and web logins on lab VMs with Hydra and wordlists.', tag: 'Login brute-forcer', accent: 'linear-gradient(135deg, rgba(255,107,53,0.2), rgba(27,255,110,0.08))' },
-  { slug: 'burp', name: 'Burp Suite', img: '/assets/tools/burp/burp_logo.png', alt: 'Burp Suite web proxy logo', desc: 'Intercept and replay web traffic: proxy, Repeater, Intruder on lab apps.', tag: 'Web proxy', accent: 'linear-gradient(135deg, rgba(179,102,255,0.2), rgba(27,255,110,0.08))' },
-  { slug: 'metasploit', name: 'Metasploit', img: '/assets/tools/metasploit/metasploit_logo.png', alt: 'Metasploit exploit framework logo', desc: 'Exploit lab VMs: msfconsole, exploit + payload, Meterpreter basics.', tag: 'Exploit framework', accent: 'linear-gradient(135deg, rgba(255,204,0,0.2), rgba(27,255,110,0.08))' },
-  { slug: 'aircrack', name: 'Aircrack-ng', img: '/assets/tools/aircrack/aircrack_logo.png', alt: 'Aircrack-ng WiFi auditor logo', desc: 'Audit your own WiFi: monitor mode, handshake capture, passphrase test.', tag: 'WiFi auditor', accent: 'linear-gradient(135deg, rgba(6,182,212,0.2), rgba(27,255,110,0.08))' },
-  { slug: 'wireshark', name: 'Wireshark', img: '/assets/tools/wireshark/wireshark_logo.png', alt: 'Wireshark packet analyzer logo', desc: 'Capture and read packets: filters, TCP streams, plaintext vs TLS.', tag: 'Packet analyzer', accent: 'linear-gradient(135deg, rgba(34,197,94,0.2), rgba(27,255,110,0.08))' },
-  { slug: 'ddos', name: 'DDoS', img: '/assets/tools/ddos/ddos_logo.png', alt: 'DDoS attack breakdown logo', desc: 'How DDoS floods work — botnets, impact and defense layers.', tag: 'Attack defense', accent: 'linear-gradient(135deg, rgba(255,107,53,0.2), rgba(27,255,110,0.08))' },
-  { slug: 'hping3', name: 'hping3', img: '/assets/tools/hping3/hping3_logo.png', alt: 'hping3 packet crafter logo', desc: 'Craft TCP/UDP packets: port scans, firewall tests, flood labs.', tag: 'Packet crafter', accent: 'linear-gradient(135deg, rgba(255,204,0,0.2), rgba(27,255,110,0.08))' },
-  { slug: 'mosint', name: 'Mosint', img: '/assets/tools/mosint/mosint_logo.png', alt: 'Mosint email OSINT logo', desc: 'Map email addresses to breach dumps and linked accounts.', tag: 'Email OSINT', accent: 'linear-gradient(135deg, rgba(255,102,204,0.2), rgba(27,255,110,0.08))' },
-  { slug: 'apkleaks', name: 'APKLeaks', img: '/assets/tools/apkleaks/apkleaks_output.png', alt: 'APKLeaks APK secrets scanner logo', desc: 'Scan APK files for secrets, endpoints and hardcoded keys.', tag: 'APK scanner', accent: 'linear-gradient(135deg, rgba(34,197,94,0.2), rgba(27,255,110,0.08))' },
-  { slug: 'ffuf', name: 'ffuf', img: '/assets/tools/ffuf/ffuf_logo.png', alt: 'ffuf web fuzzer logo', desc: 'Fuzz hidden pages and directories on lab apps with wordlists.', tag: 'Web fuzzer', accent: 'linear-gradient(135deg, rgba(27,255,110,0.2), rgba(0,200,180,0.08))' },
   { slug: 'zap', name: 'OWASP ZAP', img: '/assets/tools/subfinder/subfinder_logo.png', alt: 'OWASP ZAP web app scanner logo', desc: 'Free OWASP web app scanner: spider, passive and active scans, REST API automation.', tag: 'Web app scanner', accent: 'linear-gradient(135deg, rgba(239,68,68,0.2), rgba(27,255,110,0.08))' },
   { slug: 'spiderfoot', name: 'SpiderFoot', img: '/assets/tools/subfinder/subfinder_logo.png', alt: 'SpiderFoot OSINT automation logo', desc: 'Automate OSINT — emails, subdomains, breaches and footprint cleanup with 100+ modules.', tag: 'OSINT automation', accent: 'linear-gradient(135deg, rgba(179,102,255,0.2), rgba(27,255,110,0.08))' },
   { slug: 'masscan', name: 'Masscan', img: '/assets/tools/subfinder/subfinder_logo.png', alt: 'Masscan fast port scanner logo', desc: 'Internet-scale port scanning: scan whole subnets in minutes, grab banners, control packet rate.', tag: 'Port scanner', accent: 'linear-gradient(135deg, rgba(250,204,21,0.2), rgba(27,255,110,0.08))' },
@@ -109,17 +88,20 @@ export default function HackolutionPage() {
   return (
     <>
       <Helmet>
-        <title>HACKOLUTION - Tools, Instagram & YouTube Videos</title>
-        <meta name="description" content="Follow HACKOLUTION on Instagram, browse the free security tools, and watch full tutorials on YouTube." />
+        <title>HACKOLUTION — Free Ethical Hacking Tools, Android Apps & Tutorials</title>
+        <meta name="description" content="HACKOLUTION: 41 free ethical-hacking tool guides (Nmap alternatives, OSINT automation, AD labs), 6 ad-free Android APKs, full YouTube tutorials and Instagram reels. Learn security the legal way — lab only." />
         <link rel="canonical" href="https://www.uptools.in/hackolution/" />
-        <meta property="og:title" content="HACKOLUTION - Tools, Instagram & YouTube Videos | UpTools" />
-        <meta property="og:description" content="Follow HACKOLUTION on Instagram, browse the free security tools, and watch full tutorials on YouTube." />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content="HACKOLUTION — Free Ethical Hacking Tools, Android Apps & Tutorials | UpTools" />
+        <meta property="og:description" content="41 free security tool guides, ad-free Android APKs and full video tutorials. Popular guides (Nmap, Burp, Metasploit…) now live on HNCKER." />
         <meta property="og:url" content="https://www.uptools.in/hackolution/" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="UpTools" />
+        <meta property="og:image" content="https://www.uptools.in/assets/logo/hackolution.png" />
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="HACKOLUTION - Tools, Instagram & YouTube Videos | UpTools" />
-        <meta name="twitter:description" content="Follow HACKOLUTION on Instagram, browse the free security tools, and watch full tutorials on YouTube." />
+        <meta name="twitter:title" content="HACKOLUTION — Free Ethical Hacking Tools, Android Apps & Tutorials | UpTools" />
+        <meta name="twitter:description" content="41 free security tool guides, ad-free Android APKs and full video tutorials on UpTools." />
+        <meta name="twitter:image" content="https://www.uptools.in/assets/logo/hackolution.png" />
       </Helmet>
 
       {/* Breadcrumb */}
@@ -206,6 +188,22 @@ export default function HackolutionPage() {
           </InfiniteCarousel>
         </div>
       </div>
+
+      {/* Moved to HNCKER — keeps one canonical guide per tool */}
+      <Link to="/hncker/"
+        className="glass rounded-3xl p-5 mb-6 flex flex-col sm:flex-row items-center justify-between gap-4 no-underline group hover:border-neon/40 transition-all"
+        style={{ background: 'linear-gradient(135deg, rgba(57,255,20,0.06), rgba(6,182,212,0.04))', borderColor: 'rgba(57,255,20,0.18)' }}>
+        <div className="flex items-center gap-3">
+          <div className="w-11 h-11 rounded-xl flex items-center justify-center text-xl font-black shrink-0"
+            style={{ background: 'linear-gradient(135deg, #39ff14, #00ffa3)', color: '#080d1a' }}>HN</div>
+          <div>
+            <div className="text-sm font-bold text-white">Looking for Nmap, Burp, Metasploit, Wireshark…?</div>
+            <p className="text-xs text-slate-400 m-0 mt-0.5">The 21 most popular guides moved to HNCKER — same content, one address, better videos.</p>
+          </div>
+        </div>
+        <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold shrink-0 group-hover:scale-105 transition-transform"
+          style={{ background: 'linear-gradient(135deg, #39ff14, #00ffa3)', color: '#080d1a' }}>Open HNCKER ↗</span>
+      </Link>
 
       {/* Tools — Infinite Carousel */}
       <div className="glass rounded-3xl mb-6 overflow-hidden" style={{ borderColor: 'rgba(27,255,110,0.1)' }}>

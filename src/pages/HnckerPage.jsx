@@ -87,17 +87,20 @@ export default function HnckerPage() {
   return (
     <>
       <Helmet>
-        <title>HNCKER - Apps, Tools, Instagram & Videos</title>
-        <meta name="description" content="Follow HNCKER on Instagram, browse the free security tools, watch our tech videos, and download free Android apps." />
+        <title>HNCKER — Free Ethical Hacking Tools, Android Apps & Video Tutorials</title>
+        <meta name="description" content="HNCKER: 33 free ethical-hacking tool guides (Nmap, Burp Suite, Metasploit, Wireshark, OSINT), free Android security apps, full YouTube tutorials and Instagram reels. Learn hacking the legal way — lab only." />
         <link rel="canonical" href="https://www.uptools.in/hncker/" />
-        <meta property="og:title" content="HNCKER - Apps, Tools, Instagram & Videos | UpTools" />
-        <meta property="og:description" content="Follow HNCKER on Instagram, browse the free security tools, watch our tech videos, and download free Android apps." />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content="HNCKER — Free Ethical Hacking Tools, Android Apps & Video Tutorials | UpTools" />
+        <meta property="og:description" content="33 free security tool guides with working lab examples, free Android apps, full YouTube tutorials and Instagram reels." />
         <meta property="og:url" content="https://www.uptools.in/hncker/" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="UpTools" />
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="HNCKER - Apps, Tools, Instagram & Videos | UpTools" />
-        <meta name="twitter:description" content="Follow HNCKER on Instagram, browse the free security tools, watch our tech videos, and download free Android apps." />
+        <meta property="og:image" content="https://www.uptools.in/assets/og/default.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="HNCKER — Free Ethical Hacking Tools, Android Apps & Video Tutorials | UpTools" />
+        <meta name="twitter:description" content="33 free security tool guides with working lab examples, free Android apps and full video tutorials." />
+        <meta name="twitter:image" content="https://www.uptools.in/assets/og/default.png" />
       </Helmet>
 
       {/* Breadcrumb */}

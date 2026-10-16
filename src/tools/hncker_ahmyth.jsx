@@ -97,12 +97,11 @@ const faq = [
   { q: 'What is AhMyth?', a: 'AhMyth is a free, open-source Android RAT (Remote Administration Tool) used by penetration testers. It lets you build a malicious APK payload and, once installed on a target device, view messages, contacts, location, files, and control the camera and microphone from a desktop dashboard.' },
   { q: 'Is AhMyth illegal?', a: 'The tool itself is open source and legal to study. Using it to compromise a device you do not own or without explicit permission is illegal in most countries. Only use AhMyth on your own devices or in authorized lab environments.' },
   { q: 'What are AhMyth\'s system requirements?', a: 'A 64-bit Linux (Ubuntu/Kali), Java 11 JDK (for building and signing APKs), Node.js and npm (to run the app), git, and optionally zipalign on 32-bit systems. A working internet connection is needed for the server and payload to communicate.' },
-  { q: 'Why does the APK build fail on Kali?', a: 'Usually the Java JDK or Android build tools are missing or the wrong version is installed. Install a full openjdk-11 JDK and re-run the installer. See the Known Issues section below for the exact commands.' },
+  { q: 'Why does the APK build fail (or the server not start) on Kali?', a: 'Usually the Java JDK or Android build tools are missing or the wrong version is installed. Install a full openjdk-11 JDK and re-run the installer. If Electron fails to start on Linux, launch with the --no-sandbox flag (npx electron ./app --no-sandbox start) or use ./start_linux. See the Known Issues section below for the exact commands.' },
   { q: 'How do I get a victim to connect?', a: 'For testing on your own network, install the payload APK on a device on the same LAN and keep the AhMyth server running. For remote connections you must configure port forwarding (or a tunnel) so the target can reach your server\'s port.' },
   { q: 'Will antivirus flag the payload?', a: 'Yes. AhMyth payloads are detected by most AV engines because of their behavior. This is normal for RATs and one reason to only test in a controlled, authorized environment.' },
   { q: 'Does AhMyth require root on Android?', a: 'No. AhMyth works on unrooted Android devices by abusing granted permissions (SMS, location, camera, microphone). Some advanced features may behave differently depending on Android version and permission grants.' },
-  { q: 'Is AhMyth still maintained?', a: 'The Morsmalleo/AhMyth fork is actively maintained and is the recommended source. The original AhMyth/AhMyth repository is older and largely unmaintained, so prefer the fork.' },
-  { q: 'Why does the server not start with an Electron error?', a: 'On Linux, Electron often needs the --no-sandbox flag. Run with "npx electron ./app --no-sandbox start" or use ./start_linux which handles this for you.' },
+  { q: 'Is AhMyth still maintained?', a: 'As of 2026 the Morsmalleo/AhMyth fork is actively maintained and is the recommended source. The original AhMyth/AhMyth repository is older and largely unmaintained, so prefer the fork.' },
 ]
 
 const howItWorks = [
@@ -120,7 +119,7 @@ const schema = {
     {
       '@type': 'TechArticle',
       headline: 'AhMyth — Android RAT: Installation & Usage Guide (Educational)',
-      description: 'Complete step-by-step reference for installing and using AhMyth on Kali Linux for ethical Android security testing. Education only.',
+      description: 'AhMyth tutorial: install on Kali Linux and build Android RAT payloads for ethical lab testing. Step-by-step educational guide, lab-only use. Updated for 2026.',
       about: 'AhMyth Android RAT',
       educationalUse: 'Testing, education, and authorized security audits only',
     },
@@ -140,7 +139,7 @@ export default function hncker_ahmyth() {
   return (
     <ToolLayout
       title="AhMyth — Android RAT Tutorial"
-      desc="Step-by-step reference: install & use AhMyth on Kali Linux to build Android RAT payloads for ethical security testing. Educational purposes only."
+      desc="AhMyth tutorial: install on Kali Linux and build Android RAT payloads for ethical lab testing. Step-by-step educational guide, lab-only use. Updated for 2026."
       icon="📱"
       iconBg="linear-gradient(135deg, rgba(239,68,68,0.18), rgba(57,255,20,0.1))"
       category="security"
@@ -198,7 +197,8 @@ export default function hncker_ahmyth() {
         </p>
         <p>
           Because the payload can be merged into a legitimate APK (an <b>APK merger</b>), it can look like a normal app, which is
-          exactly why it must only be used in controlled, authorized environments.
+          exactly why it must only be used in controlled, authorized environments. As of 2026, Android 13+ permission prompts
+          and Play Protect flag these payloads fast — which is why this guide only targets your own test devices.
         </p>
         <FeatureGrid items={[
           { i: '💬', t: 'Read messages', d: 'View SMS, contacts and full call logs from the target device.' },
@@ -402,6 +402,13 @@ Port      : 3333 (default listener — keep it open)  `} />
           powerful tool: using it against any device without the owner's permission is a crime in most jurisdictions and may carry
           serious penalties. Use it only on your own hardware, on practice VMs, or inside a lab where you have written permission.
           The author and this site are not responsible for any misuse of this information.
+        </p>
+      </Section>
+      <Section id="related" icon="🔗" title="Related Guides" subtitle="Keep learning in the lab">
+        <p>
+          Pair this with the <a href="/hncker/apkleaks">APKLeaks guide</a> to scan APKs for leaked secrets, the{' '}
+          <a href="/hncker/burp">Burp Suite guide</a> for app traffic testing, and the <a href="/hncker/exif">ExifTool guide</a> for
+          mobile photo privacy — or browse the full <a href="/hncker/">HNCKER hub</a>.
         </p>
       </Section>
     </ToolLayout>

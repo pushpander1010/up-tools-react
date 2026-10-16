@@ -103,8 +103,8 @@ const schema = {
   '@graph': [
     {
       '@type': 'TechArticle',
-      headline: 'Net-C2 — Botnet Command & Control Framework (Educational)',
-      description: 'How a botnet C2 framework works: Net-C2 server, encrypted bots, web dashboard, commands. For education and defense only.',
+      headline: 'Net-C2 — Botnet Command & Control (Educational) (Educational)',
+      description: 'Pegasus Pro 2026 lab guide: install and use the Python menu-driven toolkit for Android penetration tests on your own devices. Educational lab use only.',
       about: 'Net-C2 botnet command and control framework',
       educationalUse: 'Testing, education, and authorized research only',
     },
@@ -123,7 +123,7 @@ export default function hncker_netc2() {
   return (
     <ToolLayout
       title="Net-C2 — Botnet Command & Control (Educational)"
-      desc="NetC2 Guide - how a Python botnet C2 framework works, server, encrypted bots, and web dashboard. Educational and defense purposes only, online free."
+      desc="Pegasus Pro 2026 lab guide: install and use the Python menu-driven toolkit for Android penetration tests on your own devices. Educational lab use only."
       icon="🧠"
       iconBg="linear-gradient(135deg, rgba(168,85,247,0.18), rgba(0,255,65,0.08))"
       category="security"
@@ -188,6 +188,9 @@ export default function hncker_netc2() {
           { i: '🛡️', t: 'Anti-analysis', d: 'Detects analysis tools and has VM detection.' },
           { i: '🔁', t: 'P2P fallback', d: 'Bots fail over to P2P when the server drops.' },
         ]} />
+        <p>
+          <b>2026 defense note: EDR products now flag Python C2 implants by behavior, not filename — study these patterns in an isolated lab so you can write detections, never to deploy them.</b>
+        </p>
       </Section>
 
       <Section id="requirements" icon="⚙️" title="System Requirements" subtitle="What you need before running">
@@ -325,6 +328,9 @@ broadcast whoami`} />
             </a>
           ))}
         </div>
+        <p className="text-xs text-slate-400">
+          Related HNCKER guides: <a href="/hncker/metasploit" className="text-cyan-300 underline">Metasploit framework guide</a>, <a href="/hncker/nmap" className="text-cyan-300 underline">Nmap network-scanner guide</a> and the <a href="/hncker" className="text-cyan-300 underline">HNCKER hub</a>.
+        </p>
       </Section>
 
       <Section id="disclaimer" icon="📜" title="Disclaimer" subtitle="Read before you run anything">

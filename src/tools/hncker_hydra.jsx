@@ -104,7 +104,7 @@ const schema = {
     {
       '@type': 'TechArticle',
       headline: "Hydra — Login Brute-Forcer Guide (Educational)",
-      description: "Step-by-step Hydra reference: SSH, FTP and web-form brute force on lab VMs, plus lockout-proof defense.",
+      description: "Pegasus Pro 2026 lab guide: install and use the Python menu-driven toolkit for Android penetration tests on your own devices. Educational lab use only.",
       about: "Hydra login brute-forcer",
       educationalUse: 'Testing, education, and authorized use only',
     },
@@ -123,7 +123,7 @@ export default function hncker_hydra() {
   return (
     <ToolLayout
       title="Hydra — Login Brute-Forcer Guide"
-      desc="Step-by-step Hydra reference: brute-force SSH, FTP and web logins on your own lab VMs with wordlists. Educational use only."
+      desc="Pegasus Pro 2026 lab guide: install and use the Python menu-driven toolkit for Android penetration tests on your own devices. Educational lab use only."
       icon="🐧"
       iconBg="linear-gradient(135deg, rgba(0,255,65,0.18), rgba(6,182,212,0.08))"
       category="security"
@@ -170,6 +170,9 @@ export default function hncker_hydra() {
   { i: "⚡", t: "Parallel tasks", d: "-t 16 default: speed vs noise." },
   { i: "🌐", t: "Web forms", d: "http-post-form with ^USER^/^PASS^." },
 ]} />
+        <p>
+          <b>2026 note: Hydra 9.x plus rockyou wordlists still cracks default lab credentials in seconds — which is exactly why 2FA and fail2ban remain non-negotiable on every real login.</b>
+        </p>
       </Section>
 
       <Section id="requirements" icon="⚙️" title="Requirements" subtitle="What you need before running">
@@ -278,6 +281,9 @@ sudo apt install hydra`} />
             </a>
           ))}
         </div>
+        <p className="text-xs text-slate-400">
+          Related HNCKER guides: <a href="/hncker/john" className="text-cyan-300 underline">John the Ripper hash guide</a>, <a href="/hncker/metasploit" className="text-cyan-300 underline">Metasploit framework guide</a> and the <a href="/hncker" className="text-cyan-300 underline">HNCKER hub</a>.
+        </p>
       </Section>
 
       <Section id="disclaimer" icon="📜" title="Disclaimer" subtitle="Read before you run anything">

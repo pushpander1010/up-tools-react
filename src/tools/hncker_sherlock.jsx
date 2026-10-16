@@ -103,8 +103,8 @@ const schema = {
   '@graph': [
     {
       '@type': 'TechArticle',
-      headline: "Sherlock — Username Hunter Guide (Educational)",
-      description: "Step-by-step Sherlock reference: username footprinting across 400+ sites and self-cleanup.",
+      headline: "Sherlock Username Search: 2026 Guide (Educational)",
+      description: "Audit your username footprint with Sherlock in 2026: scan 400+ sites for your own handle, export hits and clean up exposures. Lab-only educational guide.",
       about: "Sherlock username hunter",
       educationalUse: 'Testing, education, and authorized use only',
     },
@@ -122,8 +122,8 @@ const schema = {
 export default function hncker_sherlock() {
   return (
     <ToolLayout
-      title="Sherlock — Username Hunter Guide"
-      desc="Step-by-step Sherlock reference: find where a username exists across 400+ sites — your own handle audit. Educational use only."
+      title="Sherlock Username Search: 2026 Guide"
+      desc="Audit your username footprint with Sherlock in 2026: scan 400+ sites for your own handle, export hits and clean up exposures. Lab-only educational guide."
       icon="🔎"
       iconBg="linear-gradient(135deg, rgba(0,255,65,0.18), rgba(6,182,212,0.08))"
       category="security"
@@ -164,6 +164,11 @@ export default function hncker_sherlock() {
       <WarningBox>
         Sherlock maps people's public profiles. Use it <b>only on your own usernames or targets with written permission</b>. Stalking, doxxing or harassing anyone you find is illegal. This page is for <b>educational and authorized use only</b>.
       </WarningBox>
+
+      <InfoBox title="2026 note">
+        Site lists drift as platforms change their pages — update to the latest Sherlock release
+        (<span className="font-mono">git pull</span> or <span className="font-mono">pip install -U sherlock-project</span>) before trusting a 2026 audit.
+      </InfoBox>
 
       <Section id="overview" icon="🔎" title="What is Sherlock?" subtitle="Map a username across 400+ sites">
         <p>
@@ -276,6 +281,26 @@ export default function hncker_sherlock() {
               <span className="ml-auto text-indigo-300 text-xs font-mono break-all">{href}</span>
             </a>
           ))}
+        </div>
+      </Section>
+
+      <Section id="related" icon="🧭" title="Related Guides" subtitle="Keep learning in the lab">
+        <div className="space-y-2">
+          <a href="/hncker/holehe" className="flex items-center gap-2 rounded-lg px-3 py-2 border border-white/8 hover:border-brand/40 hover:bg-white/5 transition-all text-slate-300 hover:text-white no-underline">
+            <span>📧</span>
+            <span className="text-sm font-medium">Holehe — check an email across 120+ sites</span>
+            <span className="ml-auto text-indigo-300 text-xs font-mono">→</span>
+          </a>
+          <a href="/hncker/theharvester" className="flex items-center gap-2 rounded-lg px-3 py-2 border border-white/8 hover:border-brand/40 hover:bg-white/5 transition-all text-slate-300 hover:text-white no-underline">
+            <span>🌾</span>
+            <span className="text-sm font-medium">theHarvester — harvest emails and subdomains</span>
+            <span className="ml-auto text-indigo-300 text-xs font-mono">→</span>
+          </a>
+          <a href="/hncker/" className="flex items-center gap-2 rounded-lg px-3 py-2 border border-white/8 hover:border-brand/40 hover:bg-white/5 transition-all text-slate-300 hover:text-white no-underline">
+            <span>🏠</span>
+            <span className="text-sm font-medium">All HNCKER guides</span>
+            <span className="ml-auto text-indigo-300 text-xs font-mono">→</span>
+          </a>
         </div>
       </Section>
 

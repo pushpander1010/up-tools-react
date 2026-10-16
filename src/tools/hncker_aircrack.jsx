@@ -104,7 +104,7 @@ const schema = {
     {
       '@type': 'TechArticle',
       headline: "Aircrack-ng — WiFi Auditor Guide (Educational)",
-      description: "Step-by-step Aircrack-ng reference: monitor mode, handshake capture and wordlist audit of your own WiFi, plus hardening.",
+      description: "Aircrack-ng guide: audit your own WiFi with monitor mode, handshake capture and wordlist cracking. Step-by-step lab-only tutorial for education. 2026 update.",
       about: "Aircrack-ng WiFi auditor",
       educationalUse: 'Testing, education, and authorized use only',
     },
@@ -123,7 +123,7 @@ export default function hncker_aircrack() {
   return (
     <ToolLayout
       title="Aircrack-ng — WiFi Auditor Guide"
-      desc="Step-by-step Aircrack-ng reference: audit YOUR OWN WiFi — monitor mode, handshake capture, wordlist crack. Educational use only."
+      desc="Aircrack-ng guide: audit your own WiFi with monitor mode, handshake capture and wordlist cracking. Step-by-step lab-only tutorial for education. 2026 update."
       icon="📶"
       iconBg="linear-gradient(135deg, rgba(0,255,65,0.18), rgba(6,182,212,0.08))"
       category="security"
@@ -225,7 +225,7 @@ sudo airmon-ng start wlan0
         <CodeBlock title="terminal" lines={`aircrack-ng -w rockyou.txt home-01.cap
 # KEY FOUND! [ labpass123 ]`} />
         <InfoBox title="Offline guessing">
-          Offline means unlimited tries with zero noise. Weak lab passphrases fall here; strong ones exhaust every list — proving the defense works.
+          Offline means unlimited tries with zero noise. Weak lab passphrases fall here; strong ones exhaust every list — proving the defense works. In 2026 most testers convert the capture to HC22000 format and finish the crack in Hashcat on GPU.
         </InfoBox>
       </Section>
 
@@ -284,6 +284,13 @@ sudo airmon-ng start wlan0
       <Section id="disclaimer" icon="📜" title="Disclaimer" subtitle="Read before you run anything">
         <p>
           This documentation is provided <b>strictly for educational and authorized purposes</b>. Aircrack-ng captures wireless handshakes, so use it only on your own router and devices. Attacking anyone else's WiFi is illegal. The author and this site are not responsible for any misuse.
+        </p>
+      </Section>
+      <Section id="related" icon="🔗" title="Related Guides" subtitle="Keep learning in the lab">
+        <p>
+          Crack the capture faster with the <a href="/hncker/hashcat">Hashcat guide</a> (HC22000 mode), sniff the air with the{' '}
+          <a href="/hncker/wireshark">Wireshark guide</a>, and learn flood defense in the <a href="/hncker/ddos">DDoS guide</a> —
+          or browse the full <a href="/hncker/">HNCKER hub</a>.
         </p>
       </Section>
     </ToolLayout>

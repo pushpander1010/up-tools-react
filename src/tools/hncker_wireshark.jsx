@@ -103,8 +103,8 @@ const schema = {
   '@graph': [
     {
       '@type': 'TechArticle',
-      headline: "Wireshark — Packet Analyzer Guide (Educational)",
-      description: "Step-by-step Wireshark reference: capture, display filters, follow TCP streams, plaintext vs TLS, and defense.",
+      headline: "Wireshark Packet Capture: 2026 Guide (Educational)",
+      description: "Learn Wireshark in 2026: capture your own lab traffic, filter packets, follow TCP streams and verify your encryption works. Lab-only educational guide.",
       about: "Wireshark packet analyzer",
       educationalUse: 'Testing, education, and authorized use only',
     },
@@ -122,8 +122,8 @@ const schema = {
 export default function hncker_wireshark() {
   return (
     <ToolLayout
-      title="Wireshark — Packet Analyzer Guide"
-      desc="Step-by-step Wireshark reference: capture, display filters, follow TCP streams and spot plaintext passwords. Educational use only."
+      title="Wireshark Packet Capture: 2026 Guide"
+      desc="Learn Wireshark in 2026: capture your own lab traffic, filter packets, follow TCP streams and verify your encryption works. Lab-only educational guide."
       icon="🦈"
       iconBg="linear-gradient(135deg, rgba(0,255,65,0.18), rgba(6,182,212,0.08))"
       category="security"
@@ -164,6 +164,11 @@ export default function hncker_wireshark() {
       <WarningBox>
         Wireshark exposes everything crossing a wire. Capture <b>only on networks and machines you own or have written permission to monitor</b>. Reading anyone else's traffic is illegal. This page is for <b>educational and authorized use only</b>.
       </WarningBox>
+
+      <InfoBox title="2026 note">
+        Wireshark 4.x is the current stable line — on 2026 distros add your user to the
+        <span className="font-mono"> wireshark</span> group at install time so captures work without sudo.
+      </InfoBox>
 
       <Section id="overview" icon="🦈" title="What is Wireshark?" subtitle="See every packet on the wire">
         <p>
@@ -286,6 +291,26 @@ Statistics -> Conversations (top talkers)`} />
               <span className="ml-auto text-indigo-300 text-xs font-mono break-all">{href}</span>
             </a>
           ))}
+        </div>
+      </Section>
+
+      <Section id="related" icon="🧭" title="Related Guides" subtitle="Keep learning in the lab">
+        <div className="space-y-2">
+          <a href="/hncker/nmap" className="flex items-center gap-2 rounded-lg px-3 py-2 border border-white/8 hover:border-brand/40 hover:bg-white/5 transition-all text-slate-300 hover:text-white no-underline">
+            <span>🌐</span>
+            <span className="text-sm font-medium">Nmap — map ports and services first</span>
+            <span className="ml-auto text-indigo-300 text-xs font-mono">→</span>
+          </a>
+          <a href="/hncker/burp" className="flex items-center gap-2 rounded-lg px-3 py-2 border border-white/8 hover:border-brand/40 hover:bg-white/5 transition-all text-slate-300 hover:text-white no-underline">
+            <span>🪤</span>
+            <span className="text-sm font-medium">Burp Suite — inspect the traffic you capture</span>
+            <span className="ml-auto text-indigo-300 text-xs font-mono">→</span>
+          </a>
+          <a href="/hncker/" className="flex items-center gap-2 rounded-lg px-3 py-2 border border-white/8 hover:border-brand/40 hover:bg-white/5 transition-all text-slate-300 hover:text-white no-underline">
+            <span>🏠</span>
+            <span className="text-sm font-medium">All HNCKER guides</span>
+            <span className="ml-auto text-indigo-300 text-xs font-mono">→</span>
+          </a>
         </div>
       </Section>
 

@@ -95,11 +95,9 @@ const faq = [
   { q: 'What is APKLeaks?', a: 'APKLeaks is a free, open-source command-line scanner that pulls URIs, API endpoints and hardcoded secrets out of Android APK files. It targets mobile app security testing and bug bounty workflows.' },
   { q: 'Is APKLeaks illegal?', a: 'The tool is open source and legal to study. Running it on apps you do not own or lack permission to test may violate the app\'s terms and applicable law. Only scan apps you own or have explicit authorization to assess.' },
   { q: 'Does APKLeaks need a rooted Android device?', a: 'No. APKLeaks works on the APK file itself — you do not need a device at all. It decompiles the package and scans the resulting code for sensitive data.' },
-  { q: 'How does APKLeaks decompile the APK?', a: 'It uses the jadx disassembler under the hood. If jadx is not already installed, APKLeaks will prompt you to download it automatically on first run.' },
-  { q: 'What exactly does it extract?', a: 'By default it scans for URIs, URLs, API endpoints and secret patterns (like AWS access keys) using its built-in regex rules. You can supply your own patterns with a custom JSON rules file.' },
+  { q: 'How does APKLeaks decompile the APK?', a: 'It uses the jadx disassembler under the hood. If jadx is not already installed, APKLeaks will prompt you to download it automatically on first run. As of 2026 the Docker image (dwisiswant0/apkleaks:latest) is the most reliable setup since it bundles a matching jadx.' },
+  { q: 'What exactly does it extract?', a: 'By default it scans for URIs, URLs, API endpoints and secret patterns (like AWS access keys) using its built-in regex rules. You can also supply your own patterns with a custom JSON rules file via -p / --pattern, e.g. apkleaks -f app.apk -p custom-rules.json.' },
   { q: 'Why did the scan return nothing?', a: 'The APK may be heavily obfuscated. Try passing disassembler arguments to jadx, e.g. -a "--deobf --log-level DEBUG", or add custom regex patterns with --pattern rules.json.' },
-  { q: 'Can I add my own search rules?', a: 'Yes. Pass a custom JSON file of regex patterns with the -p / --pattern option, e.g. apkleaks -f app.apk -p custom-rules.json.' },
-  { q: 'How is APKLeaks different from MobSF?', a: 'APKLeaks is a lightweight, CLI-first scanner focused specifically on secrets and endpoints. MobSF is a full mobile app security framework with a web dashboard and many more checks. Many pentesters use both.' },
   { q: 'Does it support output to a file?', a: 'Yes. Use -o output.txt to write results to a file (a random file is created if you omit it), and --json to save in JSON format.' },
 ]
 
@@ -116,7 +114,7 @@ const schema = {
   '@graph': [
     {
       '@type': 'TechArticle',
-      headline: 'APKLeaks — Scan Android APKs for URLs, Endpoints & Secrets (Educational)',
+      headline: 'APKLeaks — Android APK Scanner Guide (Educational)',
       description: 'Complete step-by-step reference for installing and using APKLeaks to extract URLs, endpoints and hardcoded secrets from Android APK files. Education only.',
       about: 'APKLeaks Android APK scanner',
       educationalUse: 'Testing, education, and authorized security audits only',
@@ -135,7 +133,7 @@ const schema = {
 export default function hncker_apkleaks() {
   return (
     <ToolLayout
-      title="APKLeaks — Android APK Scanner"
+      title="APKLeaks — Android APK Scanner Guide"
       desc="Step-by-step reference: install & use APKLeaks to extract URLs, API endpoints and hardcoded secrets from Android APK files. Educational purposes only."
       icon="📱"
       iconBg="linear-gradient(135deg, rgba(239,68,68,0.18), rgba(57,255,20,0.1))"
@@ -364,6 +362,13 @@ docker run -it --rm -v /tmp:/tmp dwisiswant0/apkleaks:latest -f /tmp/file.apk`} 
           or without the owner's permission, may violate the law and the app's terms of service. Use it only on your own apps,
           on practice targets, or inside an authorized bug-bounty / pentest engagement. The author and this site are not
           responsible for any misuse of this information.
+        </p>
+      </Section>
+      <Section id="related" icon="🔗" title="Related Guides" subtitle="Keep learning in the lab">
+        <p>
+          Go deeper with the <a href="/hncker/ahmyth">AhMyth guide</a> for Android lab testing, the{' '}
+          <a href="/hncker/burp">Burp Suite guide</a> for API traffic checks, and the <a href="/hncker/exif">ExifTool guide</a> for
+          app media privacy — or browse the full <a href="/hncker/">HNCKER hub</a>.
         </p>
       </Section>
     </ToolLayout>

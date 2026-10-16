@@ -101,8 +101,8 @@ const schema = {
   '@graph': [
     {
       '@type': 'TechArticle',
-      headline: 'How Hackers Find Vulnerabilities — the 6-Step Method Explained (Educational)',
-      description: 'Understand how hackers find vulnerabilities in a website they have never seen: recon, scanning, enumeration, mapping the attack surface, finding the bug, and exploiting. A clear step-by-step method for ethical learning and authorized security testing only.',
+      headline: 'Find Website Vulnerabilities: 6-Step Method (Educational)',
+      description: 'Learn the 6-step method hackers use to find website flaws in 2026: recon, scan, enumerate, map the surface, exploit — on lab targets only. Educational guide.',
       about: 'how hackers find vulnerabilities',
       educationalUse: 'Testing, education, and authorized use only',
     },
@@ -120,8 +120,8 @@ const schema = {
 export default function hncker_vulns() {
   return (
     <ToolLayout
-      title="How Hackers Find Vulnerabilities — 6-Step Method Explained"
-      desc="Learn exactly how hackers find vulnerabilities in a website they have never seen: recon, scan, enumerate, map the attack surface, find the bug, and exploit. A clear six-step method for ethical learning and authorized testing. Educational only."
+      title="Find Website Vulnerabilities: 6-Step Method"
+      desc="Learn the 6-step method hackers use to find website flaws in 2026: recon, scan, enumerate, map the surface, exploit — on lab targets only. Educational guide."
       icon="🎯"
       iconBg="linear-gradient(135deg, rgba(0,255,65,0.18), rgba(6,182,212,0.08))"
       category="security"
@@ -133,8 +133,8 @@ export default function hncker_vulns() {
       <Helmet>
         <meta name="robots" content="index, follow" />
         <meta property="og:image" content="https://www.uptools.in/assets/tools/vulns/vulns_poster.jpg" />
-        <meta property="og:title" content="How Hackers Find Vulnerabilities — 6-Step Method Explained | HNCKER" />
-        <meta property="og:description" content="Recon, scan, enumerate, map, find, exploit — the six-step method hackers use to break into a website. Educational only." />
+        <meta property="og:title" content="Find Website Vulnerabilities: 6-Step Method | HNCKER" />
+        <meta property="og:description" content="Recon, scan, enumerate, map, exploit — find website flaws on lab targets in 2026. Educational only." />
       </Helmet>
 
       <Section id="video" icon="🎬" title="Video Tutorial" subtitle="Watch the HNCKER walkthrough">
@@ -157,6 +157,11 @@ export default function hncker_vulns() {
         system you do not own, or without written permission, is a <b>crime</b>. Never test a target you don't have permission to
         assess. Understanding how attackers work is how defenders stop them.
       </WarningBox>
+
+      <InfoBox title="2026 note">
+        Versions in examples age out — always fingerprint the live lab target first, since the known-weak build in a
+        screenshot may already be patched in 2026 lab images. The method stays the same; the versions change.
+      </InfoBox>
 
       <Section id="overview" icon="🧭" title="The 6-Step Method" subtitle="From a completely unknown website to a mapped target with a real weakness">
         <p>
@@ -199,6 +204,26 @@ PORT     STATE  SERVICE   VERSION
           exposed surface, close unused ports, patch known-vulnerable software versions, and audit for default credentials —
           that removes most of the doors an attacker would map.
         </InfoBox>
+      </Section>
+
+      <Section id="related" icon="🧭" title="Related Guides" subtitle="Keep learning in the lab">
+        <div className="space-y-2">
+          <a href="/hncker/nuclei" className="flex items-center gap-2 rounded-lg px-3 py-2 border border-white/8 hover:border-brand/40 hover:bg-white/5 transition-all text-slate-300 hover:text-white no-underline">
+            <span>🧨</span>
+            <span className="text-sm font-medium">Nuclei — template-driven vulnerability scans</span>
+            <span className="ml-auto text-indigo-300 text-xs font-mono">→</span>
+          </a>
+          <a href="/hncker/subfinder" className="flex items-center gap-2 rounded-lg px-3 py-2 border border-white/8 hover:border-brand/40 hover:bg-white/5 transition-all text-slate-300 hover:text-white no-underline">
+            <span>🌐</span>
+            <span className="text-sm font-medium">Subfinder — passive subdomain discovery</span>
+            <span className="ml-auto text-indigo-300 text-xs font-mono">→</span>
+          </a>
+          <a href="/hncker/" className="flex items-center gap-2 rounded-lg px-3 py-2 border border-white/8 hover:border-brand/40 hover:bg-white/5 transition-all text-slate-300 hover:text-white no-underline">
+            <span>🏠</span>
+            <span className="text-sm font-medium">All HNCKER guides</span>
+            <span className="ml-auto text-indigo-300 text-xs font-mono">→</span>
+          </a>
+        </div>
       </Section>
 
       <Section id="recap" icon="🔁" title="Recap" subtitle="The method in one line">

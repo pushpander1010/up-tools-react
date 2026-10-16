@@ -104,7 +104,7 @@ const schema = {
     {
       '@type': 'TechArticle',
       headline: "Nmap — Network Scanner Guide (Educational)",
-      description: "Step-by-step reference for Nmap: host discovery, SYN scans, service and OS detection, NSE scripts, and defense.",
+      description: "Pegasus Pro 2026 lab guide: install and use the Python menu-driven toolkit for Android penetration tests on your own devices. Educational lab use only.",
       about: "Nmap network scanner",
       educationalUse: 'Testing, education, and authorized use only',
     },
@@ -123,7 +123,7 @@ export default function hncker_nmap() {
   return (
     <ToolLayout
       title="Nmap — Network Scanner Guide"
-      desc="Step-by-step Nmap reference: host discovery, port scans, service detection and OS fingerprinting on scanme.nmap.org. Educational use only."
+      desc="Pegasus Pro 2026 lab guide: install and use the Python menu-driven toolkit for Android penetration tests on your own devices. Educational lab use only."
       icon="🗺️"
       iconBg="linear-gradient(135deg, rgba(0,255,65,0.18), rgba(6,182,212,0.08))"
       category="security"
@@ -170,6 +170,9 @@ export default function hncker_nmap() {
   { i: "🔍", t: "Versions + OS", d: "-sV fingerprints software, -O the OS." },
   { i: "🧪", t: "NSE scripts", d: "--script runs checks for vulns and misconfigs." },
 ]} />
+        <p>
+          <b>Nmap 7.97+ with the latest NSE scripts maps a lab subnet in seconds — scan your own network first in 2026, because anything it finds, an attacker's scan finds too.</b>
+        </p>
       </Section>
 
       <Section id="requirements" icon="⚙️" title="Requirements" subtitle="What you need before running">
@@ -184,7 +187,7 @@ export default function hncker_nmap() {
 
       <Section id="installation" icon="🛠️" title="Installation" subtitle="One command to install">
         <CodeBlock title="terminal" lines={`nmap --version
-# Nmap version 7.9x ready`} />
+# Nmap version 7.97+ ready (2026)`} />
         <CodeBlock title="debian / ubuntu" lines={`sudo apt update
 sudo apt install nmap`} />
         <InfoBox title="Kali has it already">
@@ -280,6 +283,9 @@ sudo apt install nmap`} />
             </a>
           ))}
         </div>
+        <p className="text-xs text-slate-400">
+          Related HNCKER guides: <a href="/hncker/nuclei" className="text-cyan-300 underline">Nuclei vulnerability-scanner guide</a>, <a href="/hncker/netcat" className="text-cyan-300 underline">Netcat networking guide</a> and the <a href="/hncker" className="text-cyan-300 underline">HNCKER hub</a>.
+        </p>
       </Section>
 
       <Section id="disclaimer" icon="📜" title="Disclaimer" subtitle="Read before you run anything">
