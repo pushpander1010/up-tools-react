@@ -1023,30 +1023,46 @@ export default function stranger_chat() {
 
   return (
     <ToolLayout
-      title="Stranger Chat - Talk to Strangers Online"
-      desc="Anonymous stranger chat: talk to strangers online with text, images, voice notes and voice calls. No sign-up, 18+ only, encrypted. Free."
+      title="Talk to Strangers Online — Free Random Chat, No Signup"
+      desc="Talk with strangers online: free anonymous random chat with text, images, voice notes and voice calls. No signup, 18+ only, encrypted. Best Omegle alternative in India."
       icon="💘" iconBg="rgba(244,63,94,0.10)"
       category="social" slug="stranger-chat"
       faq={[
-        { q: 'How does stranger chat work?', a: 'Confirm 18+, pick I-am and who you want to talk to, press Start. The server pairs you 1-1 with a stranger. Text, images and voice notes are supported. Press Next anytime.' },
-        { q: 'Is it free? Do I need an account?', a: 'Yes, completely free with no sign-up and no name required. Just select Male or Female and start.' },
+        { q: 'How can I talk with strangers online here?', a: 'Confirm 18+, pick I-am (Male/Female) and who you want to meet, press Start. The server pairs you 1-1 with a random stranger in seconds. Chat with text, images and voice notes, or tap the phone icon for a live voice call. Press Next anytime to meet someone new.' },
+        { q: 'Is this stranger chat free? Do I need an account?', a: 'Yes, completely free with no signup, no download and no name required. Open the page, select Male or Female, and start talking to strangers instantly — on mobile or desktop.' },
+        { q: 'Is this a good Omegle alternative?', a: 'Yes. Since Omegle shut down, people looking for random chat want the same thrill without the risks. Here you get instant 1-1 matching, Next/Report buttons, 18+ gating, human moderation and end-to-end encrypted 1-1 chats — safer than Omegle ever was.' },
+        { q: 'Can I do random video chat here?', a: 'Right now this page offers text chat, images, voice notes and live voice calls — no video yet, which also keeps it safer and lighter on mobile data. Voice calls run peer-to-peer and are never recorded.' },
+        { q: 'Can I talk to strangers in India?', a: 'Yes. Most chatters here are from India, so you will mostly meet people from Indian cities — great for English practice, late-night timepass or making new friends. It also works worldwide in any modern browser.' },
         { q: 'Is it 18+ only?', a: 'Yes. This page is strictly 18+. You must confirm your age before chatting, per our safety policy.' },
         { q: 'Is my chat private?', a: 'Random 1-1 chats use ECDH + AES-GCM end-to-end encryption. The server only relays ciphertext and stores nothing — no logs, no images, no recordings.' },
         { q: 'What are group rooms?', a: 'Create a room (optional password) and share the link — up to 8 people, link lasts 24h. Rooms are transport-encrypted (TLS) but NOT end-to-end encrypted, since the server relays plain text to the group.' },
         { q: 'What if someone misbehaves?', a: 'Press Report instantly: it blocks them and finds you someone new. Never share your phone, address, OTPs or photos with ID. For help mail grievance@uptools.in.' },
+        { q: 'What are the chat rules?', a: 'Be kind: no nudity, harassment, spam or hate speech. Stay anonymous — never share personal contacts or OTPs. Rule-breakers get reported and blocked immediately.' },
+        { q: 'Why is nobody online / matching slow?', a: 'Late-night IST is busiest. Keep the matching tab open — the search keeps running in the background and notifies you when a stranger joins. If it is slow, press Retry or create a group room and share the link with friends.' },
         { q: 'India IT Rules compliance?', a: 'We follow IT Rules 2021 for intermediaries: 18+ gating, report/block tools, no content storage, and a grievance contact (grievance@uptools.in) with 72-hour acknowledgement.' },
       ]}
       howItWorks={[
-        'Confirm 18+, choose I-am (Male/Female) and who to meet.',
-        'Press Start — the server pairs you with a stranger 1-1.',
-        'Chat with text, images and voice notes. Tap 📞 for a live voice call in the same style.',
+        'Confirm 18+, choose I-am (Male/Female) and who to meet — no signup needed.',
+        'Press Start — the server pairs you with a random stranger 1-1 in seconds.',
+        'Chat with text, images and voice notes. Tap the phone icon for a live voice call.',
         'Use Next, Report or End anytime. Stay anonymous, share nothing personal.',
       ]}
       schema={{
-        '@context': 'https://schema.org', '@type': 'SoftwareApplication',
-        name: 'Stranger Chat - Talk to Strangers Online', applicationCategory: 'SocialNetworkingApplication',
-        operatingSystem: 'Web', url: 'https://www.uptools.in/stranger-chat/',
-        offers: { '@type': 'Offer', price: '0', priceCurrency: 'INR' },
+        '@context': 'https://schema.org', '@graph': [
+          {
+            '@type': 'SoftwareApplication',
+            name: 'Talk to Strangers Online — Free Random Chat, No Signup', applicationCategory: 'SocialNetworkingApplication',
+            operatingSystem: 'Web', url: 'https://www.uptools.in/stranger-chat/',
+            offers: { '@type': 'Offer', price: '0', priceCurrency: 'INR' },
+          },
+          {
+            '@type': 'FAQPage', mainEntity: [
+              { '@type': 'Question', name: 'How can I talk with strangers online here?', acceptedAnswer: { '@type': 'Answer', text: 'Confirm 18+, pick I-am and who to meet, press Start. The server pairs you 1-1 with a random stranger in seconds.' } },
+              { '@type': 'Question', name: 'Is this stranger chat free?', acceptedAnswer: { '@type': 'Answer', text: 'Yes, completely free with no signup and no download, on mobile or desktop.' } },
+              { '@type': 'Question', name: 'Is this a good Omegle alternative?', acceptedAnswer: { '@type': 'Answer', text: 'Yes — instant 1-1 matching, Next/Report buttons, 18+ gating and encrypted chats.' } },
+            ],
+          },
+        ],
       }}
     >
       <div className="max-w-2xl mx-auto space-y-4">
@@ -1061,7 +1077,7 @@ export default function stranger_chat() {
               <span className="px-2.5 py-1 rounded-full bg-black/25 text-[11px] font-extrabold text-white tracking-wide">18+ · NO SIGN-UP</span>
             </div>
             <p className="text-3xl sm:text-4xl font-black text-white m-0 mt-3 leading-[1.05] tracking-tight">Bored?<br />Say hi to<br />someone new.</p>
-            <p className="text-[13px] text-white/90 m-0 mt-2 font-medium">Anonymous 1-1 chat, group rooms, voice notes and calls. Nothing stored, ever.</p>
+            <p className="text-[13px] text-white/90 m-0 mt-2 font-medium">Talk with strangers online — free anonymous random chat with text, images, voice notes and voice calls. No signup, 18+ only, nothing stored.</p>
             <div className="flex items-center mt-4">
               <div className="flex -space-x-2">
                 {[['A', '#7c3aed'], ['R', '#059669'], ['S', '#d97706'], ['P', '#2563eb'], ['+', '#111827']].map(([t, c]) => (
@@ -1326,6 +1342,15 @@ export default function stranger_chat() {
             </div>
           </div>
         )}
+
+        <div className="bg-[#111827] border border-white/10 rounded-2xl p-5">
+          <h2 className="font-bold text-white text-[15px] m-0 mb-2">The Omegle alternative that keeps you anonymous</h2>
+          <p className="text-xs text-slate-300 leading-relaxed m-0">Since Omegle shut down, millions search for random chat and talk-with-strangers sites. This page brings back that thrill — open the page, press Start, and meet a random stranger 1-1 in seconds. No account, no download, no credit card. Text, images, voice notes and live voice calls all work right in the browser, on mobile or desktop.</p>
+          <h2 className="font-bold text-white text-[15px] m-0 mt-4 mb-2">Why people talk to strangers here</h2>
+          <p className="text-xs text-slate-300 leading-relaxed m-0">Late-night timepass, English speaking practice, making new friends across India, or just curing boredom — random 1-1 chat with Next and Report buttons keeps every conversation fresh. Prefer your own crowd? Create a group room for up to 8 people and share the link — it lasts 24 hours, with optional password.</p>
+          <h2 className="font-bold text-white text-[15px] m-0 mt-4 mb-2">Safe, private and moderated</h2>
+          <p className="text-xs text-slate-300 leading-relaxed m-0">Strictly 18+. Random 1-1 chats are end-to-end encrypted and never stored — no logs, no images, no recordings. Report blocks a misbehaving stranger instantly. Never share your phone number, address, OTPs or ID photos with anyone you meet here.</p>
+        </div>
 
         <div className="bg-[#111827] border border-white/10 rounded-2xl p-5">
           <p className="font-bold text-white text-[13px] m-0 mb-2">A fun chat is a safe chat — 18+ only</p>
