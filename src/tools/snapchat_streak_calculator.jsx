@@ -33,8 +33,8 @@ export default function snapchat_streak_calculator() {
 
   return (
     <ToolLayout
-      title="Snapchat Streak Calculator"
-      desc="Snapchat Streak Calculator - calculate your Snapchat streak duration and track, online free. Free online, instant results. No sign-up, works on mobile."
+      title="Snapchat Streak Calculator – Days, Emojis & Rules"
+      desc="How long is your Snapstreak? Calculate streak days, learn the hourglass rules and how to keep it alive. Free Snapchat streak counter, no sign-up."
       icon="🔥" iconBg="rgba(255,252,0,0.08)"
       category="social" slug="snapchat-streak-calculator"
       faq={[

@@ -77,7 +77,7 @@ export default function whatsapp_dp_downloader() {
   return (
     <ToolLayout
       title="WhatsApp DP Downloader"
-      desc="WhatsApp DP downloader — download WhatsApp profile pictures online free, by image link or by phone number. Save any visible profile picture in full resolution. Works as a WhatsApp DP saver, no app or sign-up needed."
+      desc="Download any visible WhatsApp DP free online in full HD size — by image link or phone number. Fast WhatsApp DP viewer and saver, no app needed."
       icon="📸" iconBg="rgba(37,211,102,0.08)"
       category="whatsapp" slug="whatsapp-dp-downloader"
       faq={[
@@ -87,6 +87,8 @@ export default function whatsapp_dp_downloader() {
         { q: "Why can't I just enter a phone number to get the DP?", a: "WhatsApp does not expose profile pictures by phone number without a logged-in session. That's why we offer both lanes: the image link downloads it directly, and the number lane opens the chat so you can save it manually." },
         { q: "What resolution do I get?", a: "WhatsApp stores profile pictures at up to 640x640 pixels. The image-link lane pulls the highest-quality version available." },
         { q: "Is it legal to download someone's WhatsApp profile picture?", a: "Downloading for personal viewing is generally acceptable, but using or sharing someone's photo without permission may violate their privacy rights." },
+        { q: "Can I view a hidden or blocked WhatsApp DP?", a: "No. If someone's privacy is set to 'My Contacts' or 'Nobody', or they blocked you, WhatsApp never sends their photo to your device — no website can bypass that. This tool only downloads pictures visible to you." },
+        { q: "Can any site download a WhatsApp DP from just a number?", a: "No. WhatsApp hides profile pictures behind login, so no server can pull a DP from a number alone. Sites claiming otherwise mislead you — use the image-link lane here, or save the contact and open the chat." },
       ]}
       howItWorks={[
         "Choose a lane: by image link (real download) or by phone number (opens the chat).",

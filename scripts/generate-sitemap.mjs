@@ -121,6 +121,16 @@ for (const [path, priority] of [['hncker', '0.6'], ['hackolution', '0.6'], ['hac
   }
 }
 
+// Duplicate consolidation 2026-10-17: three WhatsApp DP twins duplicate
+// /whatsapp-dp-downloader/ (same tool) — drop the twins from the sitemap so
+// Google consolidates signals on the survivor (which 301s the twin URLs
+// via LEGACY_REDIRECTS in worker/index.js).
+{
+  for (let i = urls.length - 1; i >= 0; i--) {
+    if (/\/(whatsapp-profile-picture-downloader|whatsapp-private-dp-viewer|whatsapp-dp-by-number)\/$/.test(urls[i].loc)) urls.splice(i, 1)
+  }
+}
+
 const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.map(u => `  <url><loc>${u.loc}</loc><lastmod>${u.lastmod || today}</lastmod><changefreq>${u.freq}</changefreq><priority>${u.priority}</priority></url>`).join('\n')}

@@ -1489,8 +1489,12 @@ export default {
 
     // Legacy redirects: old tool slugs -> renamed React tool pages
     const LEGACY_REDIRECTS = {
-      '/whatsapp-private-dp-viewer': '/whatsapp-profile-picture-downloader',
-      '/whatsapp-private-dp-viewer/': '/whatsapp-profile-picture-downloader/',
+      '/whatsapp-private-dp-viewer': '/whatsapp-dp-downloader',
+      '/whatsapp-private-dp-viewer/': '/whatsapp-dp-downloader/',
+      '/whatsapp-profile-picture-downloader': '/whatsapp-dp-downloader',
+      '/whatsapp-profile-picture-downloader/': '/whatsapp-dp-downloader/',
+      '/whatsapp-dp-by-number': '/whatsapp-dp-downloader',
+      '/whatsapp-dp-by-number/': '/whatsapp-dp-downloader/',
       // Broken slugs -> real pages (safety net for external links/bookmarks)
       '/income-tax-calculator': '/income-tax-tool',
       '/income-tax-calculator/': '/income-tax-tool/',

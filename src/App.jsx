@@ -73,6 +73,13 @@ function ToolRoute() {
     return <Navigate to={`/hncker/${twin[1]}/`} replace />
   }
 
+  // Duplicate WhatsApp DP pages consolidated on /whatsapp-dp-downloader/
+  // (same tool, one canonical URL). Worker 301s cover production; this
+  // covers SPA client-side navigation.
+  if (/^(whatsapp-profile-picture-downloader|whatsapp-private-dp-viewer|whatsapp-dp-by-number)$/.test(slug)) {
+    return <Navigate to="/whatsapp-dp-downloader/" replace />
+  }
+
   useEffect(() => {
     if (!slug || slug === 'games' || slug === 'hncker' || slug === 'hackolution' || slug === 'hackolution/apps' || slug === 'aimakerich' || slug === 'aiforrich' || slug === 'learning' || slug.startsWith('learning/')) {
       setNotFound(true)
