@@ -51,7 +51,7 @@ export default function medicine_info() {
   const inputClass = "w-full bg-white/[0.06] border-2 border-white/[0.08] rounded-xl px-5 py-3.5 text-white font-semibold outline-none focus:border-indigo-500/40 transition-all duration-200 placeholder:text-slate-400 [color-scheme:dark]"
 
   return (
-    <ToolLayout title="Medicine Information" desc="Medicine Information - search FDA-approved drug information — uses, dosage, warnings, side effects,, online free. Free online, no sign-up. Works on any device."
+    <ToolLayout title="Medicine Information" desc="Search FDA-approved drug information — uses, dosage, warnings, side effects and interactions. Free online, no sign-up, works on any device."
       icon="💊" iconBg="rgba(99,102,241,0.08)" category="health" slug="medicine-info"
       faq={[
         { q: 'Where does this data come from?', a: 'All information is sourced from the openFDA API, the official database of FDA-approved drug labels in the United States.' },

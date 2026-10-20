@@ -1495,6 +1495,9 @@ export default {
       '/whatsapp-profile-picture-downloader/': '/whatsapp-dp-downloader/',
       '/whatsapp-dp-by-number': '/whatsapp-dp-downloader',
       '/whatsapp-dp-by-number/': '/whatsapp-dp-downloader/',
+      // Medicine lookup dupe -> canonical medicine-info page (2026-10)
+      '/drug-information-tool': '/medicine-info',
+      '/drug-information-tool/': '/medicine-info/',
       // Broken slugs -> real pages (safety net for external links/bookmarks)
       '/income-tax-calculator': '/income-tax-tool',
       '/income-tax-calculator/': '/income-tax-tool/',
