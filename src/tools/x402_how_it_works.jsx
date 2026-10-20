@@ -106,7 +106,7 @@ const schema = {
   ],
 }
 
-export default function x402_how_it_works_agents() {
+export default function x402_how_it_works() {
   return (
     <ToolLayout
       title="How x402 Works: the Agent Request Flow"
