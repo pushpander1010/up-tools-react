@@ -5778,6 +5778,25 @@
       ]
     },
     {
+      "slug": "hackolution/wifi-analyzer",
+      "title": "WiFi Analyzer — Find Who Uses Your WiFi",
+      "icon": "\ud83d\udcf6",
+      "desc": "Free Android app: list every device on your WiFi in seconds, kick strangers off, pick the clearest channel. As seen on the HACKOLUTION reel.",
+      "href": "/hackolution/wifi-analyzer/",
+      "tags": [
+        "wifi-analyzer",
+        "wifi",
+        "scanner",
+        "network",
+        "android",
+        "security"
+      ],
+      "cats": [
+        "all",
+        "security"
+      ]
+    },
+    {
       "slug": "hncker/nmap",
       "title": "Nmap Network Scanner",
       "icon": "\ud83d\uddfa\ufe0f",
