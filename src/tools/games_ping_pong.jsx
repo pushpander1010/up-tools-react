@@ -26,6 +26,7 @@ const DESIGN_W = 600, DESIGN_H = 360
 const PADDLE_W = 12, PADDLE_H = 70, BALL_SIZE = 10
 const WIN_SCORE = 7
 const AI_SPEED = { easy: 2.5, medium: 4, hard: 6 }
+const WINS_KEY = 'uptools-pingpong-wins'
 
 export default function games_ping_pong() {
   const canvasRef = useRef(null)
@@ -34,6 +35,7 @@ export default function games_ping_pong() {
   const [gameRunning, setGameRunning] = useState(false)
   const [gamePaused, setGamePaused] = useState(false)
   const [showWelcome, setShowWelcome] = useState(true)
+  const [wins, setWins] = useState(() => { try { return parseInt(localStorage.getItem(WINS_KEY) || '0', 10) } catch { return 0 } })
   const [, setTick] = useState(0)
   const gameRef = useRef({
     player: { y: DESIGN_H / 2 - PADDLE_H / 2, score: 0 },
@@ -200,7 +202,10 @@ export default function games_ping_pong() {
       const playerWon = winner === 'Player 1'
       text = playerWon ? '🎉 You Win!' : '💀 AI Wins!'
       color = playerWon ? '#00e5a0' : '#ff6b6b'
-      if (playerWon) { playTone(523, 0.15); setTimeout(() => playTone(659, 0.15), 120); setTimeout(() => playTone(784, 0.15), 240); setTimeout(() => playTone(1047, 0.25), 360) }
+      if (playerWon) {
+        setWins(prev => { const n = prev + 1; try { localStorage.setItem(WINS_KEY, String(n)) } catch {} return n })
+        playTone(523, 0.15); setTimeout(() => playTone(659, 0.15), 120); setTimeout(() => playTone(784, 0.15), 240); setTimeout(() => playTone(1047, 0.25), 360)
+      }
       else { playTone(400, 0.2, 'sawtooth', 0.1); setTimeout(() => playTone(300, 0.2, 'sawtooth', 0.1), 150); setTimeout(() => playTone(200, 0.3, 'sawtooth', 0.1), 300) }
     } else {
       text = winner === 'Player 1' ? '🎉 Player 1 Wins!' : '🎉 Player 2 Wins!'
@@ -438,6 +443,7 @@ export default function games_ping_pong() {
                 className="w-full max-w-[420px] aspect-video object-cover rounded-2xl border border-cyan-400/30 shadow-[0_0_40px_rgba(0,229,255,0.35)] mb-4" />
               <h2 className="text-4xl sm:text-5xl font-black tracking-tighter bg-gradient-to-b from-cyan-300 via-sky-300 to-red-300 bg-clip-text text-transparent">PING PONG</h2>
               <p className="text-xs sm:text-sm text-slate-400 mt-1 mb-3">Vs AI or a friend · First to 7 · Free</p>
+              {wins > 0 && <p className="text-sm font-bold text-cyan-300 mb-3">🏆 Wins: {wins}</p>}
               <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">
                 <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-indigo-200">🤖 3 AI levels</span>
                 <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-emerald-200">👥 2-player local</span>

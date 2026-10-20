@@ -142,6 +142,14 @@ export default function games_quiz_trivia() {
   const [selectedIdx, setSelectedIdx] = useState(null)
   const [showResult, setShowResult] = useState(false)
   const [started, setStarted] = useState(false)
+  const [best, setBest] = useState(() => { try { return parseInt(localStorage.getItem('uptools-quiz-best') || '0', 10) } catch { return 0 } })
+
+  // Persist best score when a round finishes
+  useEffect(() => {
+    if (showResult) {
+      setBest(prev => { const nb = Math.max(prev, score); try { localStorage.setItem('uptools-quiz-best', String(nb)) } catch {} return nb })
+    }
+  }, [showResult, score])
 
 
   const startQuiz = useCallback((cat) => {
@@ -251,6 +259,7 @@ export default function games_quiz_trivia() {
               <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-amber-200">🔥 Streak bonus</span>
               <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-cyan-200">⌨️ Keys 1-4</span>
             </div>
+            {best > 0 && <p className="mt-3 text-sm font-bold text-purple-300">🏆 Best Score: {best}/10</p>}
           </div>
         )}
 

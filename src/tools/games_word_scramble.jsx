@@ -112,7 +112,13 @@ export default function games_word_scramble() {
   const [feedback, setFeedback] = useState({ text: '', color: '' })
   const [showOverlay, setShowOverlay] = useState(false)
   const [overlayText, setOverlayText] = useState({ title: '', message: '' })
+  const [best, setBest] = useState(() => { try { return parseInt(localStorage.getItem('uptools-wordscramble-best') || '0', 10) } catch { return 0 } })
   const inputRef = useRef(null)
+
+  // Persist best score live
+  useEffect(() => {
+    setBest(prev => { const nb = Math.max(prev, score); if (nb > prev) { try { localStorage.setItem('uptools-wordscramble-best', String(nb)) } catch {} } return nb })
+  }, [score])
 
 
   const nextWord = useCallback((cat) => {
@@ -213,6 +219,7 @@ export default function games_word_scramble() {
               className="w-full aspect-video object-cover rounded-2xl border border-purple-400/30 shadow-[0_0_40px_rgba(168,85,247,0.35)] mb-4" />
             <h2 className="text-4xl sm:text-5xl font-black tracking-tighter text-center bg-gradient-to-b from-purple-300 via-violet-300 to-pink-300 bg-clip-text text-transparent mb-2">WORD SCRAMBLE</h2>
             <p className="text-xs sm:text-sm text-slate-400 text-center mb-3">Unscramble letters · 5 categories · Free</p>
+            {best > 0 && <p className="text-center text-sm font-bold text-purple-300 mb-3">🏆 Best Score: {best}</p>}
             <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">
               <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-purple-200">🔀 Shuffle words</span>
               <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-amber-200">💡 Hints available</span>
