@@ -90,7 +90,7 @@ export default function color_tool() {
   return (
     <ToolLayout
       title="Color Tool"
-      desc="Color Tool - pick colors, convert between HEX, RGB, HSL, and CMYK formats. Generate complementary,, online free. Free online, no sign-up. Works on any device."
+      desc="Pick colors and convert between HEX, RGB, HSL and CMYK formats while building complementary and analogous schemes."
       icon="🎨" iconBg="rgba(139,92,246,0.08)"
       category="design" slug="color-tool"
       faq={[

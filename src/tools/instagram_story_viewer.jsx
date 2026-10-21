@@ -37,7 +37,7 @@ export default function instagram_story_viewer() {
   return (
     <ToolLayout
       title="Instagram Story Viewer"
-      desc="Instagram Story Viewer - view Instagram stories anonymously. Watch stories without the poster, online free. Free online, no sign-up. Works on any device."
+      desc="Watch stories from public Instagram accounts anonymously without appearing in the viewer list at all."
       icon="👁️" iconBg="rgba(6,182,212,0.08)"
       category="social" slug="instagram-story-viewer"
       faq={[

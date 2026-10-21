@@ -50,7 +50,7 @@ export default function best_of_five_calculator() {
   return (
     <ToolLayout
       title="Best of Five Calculator"
-      desc="Best of Five Calculator - automatically pick the five strongest subjects from board, online free. Free online, instant results. No sign-up, works on mobile."
+      desc="Pick your five strongest board-exam subjects automatically and compute the best-of-five percentage with clear totals."
       icon="📝" iconBg="rgba(99,102,241,0.08)"
       category="education" slug="best-of-five-calculator"
       faq={[

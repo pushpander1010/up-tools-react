@@ -66,7 +66,7 @@ export default function vehicle_registration_details() {
   return (
     <ToolLayout
       title="Vehicle Registration Details"
-      desc="Vehicle Registration Details - check vehicle registration format for India, UK, US, and more, online free. Free online, no sign-up. Works on any device."
+      desc="Check vehicle registration number formats and regional RTO codes for India, the UK, the US, and more."
       icon="🚗" iconBg="rgba(99,102,241,0.08)"
       category="dev" slug="vehicle-registration-details"
       faq={[

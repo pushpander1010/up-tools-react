@@ -72,7 +72,7 @@ export default function InstagramReelsIdeas() {
   return (
     <ToolLayout
       title="Instagram Reels Ideas"
-      desc="Instagram Reels Ideas - get creative ideas for your next Instagram Reels. Never run out of content, online free. Free online, no sign-up. Works on any device."
+      desc="Get fresh, creative Reel ideas tailored to your niche so you never run out of content to post again."
       icon="🎬" iconBg="rgba(236,72,153,0.08)"
       category="social" slug="instagram-reels-ideas"
       faq={[

@@ -29,7 +29,7 @@ export default function bank_branch_finder() {
   return (
     <ToolLayout
       title="Bank Branch Finder"
-      desc="Bank Branch Finder - find bank branches, ATMs, and contact details. Search for nearest bank, online free. Free online, instant results. No login needed."
+      desc="Find nearby bank branches and ATMs with addresses, IFSC codes and contact details through fast location search."
       icon="🏦" iconBg="rgba(34,197,94,0.08)"
       category="finance" slug="bank-branch-finder"
       faq={[

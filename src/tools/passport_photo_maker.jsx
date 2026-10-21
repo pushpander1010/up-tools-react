@@ -233,7 +233,7 @@ export default function passport_photo_maker() {
   return (
     <ToolLayout
       title="Passport Photo Maker – Free Online Passport Size Photo Editor"
-      desc="Create passport size photos from any image. Drag to position, zoom to resize. Supports Indian passport (35×45mm), US visa (2×2in), and UK/EU sizes at 300 DPI print resolution."
+      desc="Turn a photo into a print-ready passport or visa picture with the correct size, crop and background."
       icon="📸" iconBg="rgba(14,165,233,0.08)"
       category="images" slug="passport-photo-maker"
       faq={[

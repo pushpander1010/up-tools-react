@@ -64,7 +64,7 @@ export default function markdown_preview() {
   return (
     <ToolLayout
       title="Markdown Preview"
-      desc="Markdown Preview - write Markdown and see rendered output in real-time. Live preview editor, online free. Free online, no sign-up. Works on any device."
+      desc="Write Markdown in the side editor and watch it render into formatted output in real time as you type."
       icon="📝" iconBg="rgba(99,102,241,0.08)"
       category="text" slug="markdown-preview"
       faq={[

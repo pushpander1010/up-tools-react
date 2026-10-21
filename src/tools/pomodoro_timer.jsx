@@ -68,7 +68,7 @@ export default function pomodoro_timer() {
   return (
     <ToolLayout
       title="Pomodoro Timer"
-      desc="Pomodoro Timer - stay focused with the Pomodoro Technique. 25-minute focus sessions with short and, online free. Free online, no sign-up. Works on any device."
+      desc="Stay focused with timed 25-minute Pomodoro work sessions separated by structured short restorative breaks."
       icon="🍅" iconBg="rgba(239,68,68,0.08)"
       category="productivity" slug="pomodoro-timer"
       faq={[

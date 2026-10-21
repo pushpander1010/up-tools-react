@@ -198,7 +198,7 @@ export default function image_converter() {
   return (
     <ToolLayout
       title="Image Converter — Convert JPG, PNG, WebP Online"
-      desc="Convert images between JPG, PNG, WebP, GIF, BMP and TIFF for free. Preserve transparency with PNG, shrink photos with WebP or JPG. No sign-up, files deleted after conversion."
+      desc="Convert images between JPG, PNG, WebP, GIF, BMP and TIFF formats with adjustable quality and size settings."
       icon="🔄" iconBg="rgba(99,102,241,0.08)"
       category="image" slug="image-converter"
       faq={[

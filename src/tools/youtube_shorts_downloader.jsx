@@ -5,7 +5,7 @@ export default function youtube_shorts_downloader() {
   return (
     <ToolLayout
       title="YouTube Shorts Downloader"
-      desc="YouTube Shorts downloader — download Shorts videos online free in HD 720p and 1080p MP4. Paste the link, pick quality, save on any device, no app needed."
+      desc="Download YouTube Shorts videos in HD 720p or 1080p MP4 quality directly without installing extra apps."
       icon="📱" iconBg="rgba(239,68,68,0.08)"
       category="social" slug="youtube-shorts-downloader"
       faq={[

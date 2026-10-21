@@ -94,7 +94,7 @@ export default function pdf_splitter() {
   return (
     <ToolLayout
       title="PDF Splitter"
-      desc="PDF Splitter - split PDF files by page range, extract pages, or create separate documents. Free and, online free. Free online, no sign-up. Works on any device."
+      desc="Split a PDF by page range or extract selected pages into separate new documents quickly and very neatly."
       icon="✂️" iconBg="rgba(6,182,212,0.08)"
       category="utility" slug="pdf-splitter"
       faq={[

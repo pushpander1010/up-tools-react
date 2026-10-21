@@ -64,7 +64,7 @@ export default function instagram_content_calendar() {
   return (
     <ToolLayout
       title="Instagram Content Calendar"
-      desc="Instagram Content Calendar - generate a weekly content calendar with post ideas, types, and, online free. Free online, no sign-up. Works on any device."
+      desc="Generate a weekly Instagram content calendar with post ideas, formats and themed publishing schedules."
       icon="📅" iconBg="rgba(245,158,11,0.08)"
       category="social" slug="instagram-content-calendar"
       faq={[

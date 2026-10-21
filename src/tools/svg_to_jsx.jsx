@@ -168,7 +168,7 @@ export default function svg_to_jsx() {
   return (
     <ToolLayout
       title="SVG to JSX Converter"
-      desc="SVG to JSX Converter - convert SVG markup to React-compatible JSX. Automatically transforms, online free. Free online, instant results. No sign-up needed."
+      desc="Convert SVG markup into React-compatible JSX with attributes automatically transformed to camelCase."
       icon="🔄" iconBg="rgba(16,185,129,0.08)"
       category="developer" slug="svg-to-jsx"
       faq={[

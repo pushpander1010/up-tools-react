@@ -90,7 +90,7 @@ export default function ListSorter() {
   return (
     <ToolLayout
       title="List Sorter"
-      desc="List Sorter - sort, shuffle, reverse, and deduplicate lists with advanced options, online free. Free online, no sign-up. Works on any device."
+      desc="Sort, shuffle, reverse and deduplicate line-based lists with case-sensitive ordering options included."
       icon="📋" iconBg="rgba(99,102,241,0.08)"
       category="text" slug="list-sorter"
       faq={[

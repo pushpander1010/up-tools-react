@@ -81,7 +81,7 @@ export default function instagram_follower_list_exporter() {
   return (
     <ToolLayout
       title="Instagram Follower List Exporter"
-      desc="Instagram Follower List Exporter - upload your Instagram data export and convert your followers, online free. Free online, no sign-up. Works on any device."
+      desc="Turn your Instagram data export into a clean, searchable and sortable list of all your followers quickly."
       icon="📤" iconBg="rgba(34,197,94,0.08)"
       category="social" slug="instagram-follower-list-exporter"
       faq={[

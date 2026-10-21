@@ -215,7 +215,7 @@ export default function mermaid_diagram_editor() {
   return (
     <ToolLayout
       title="Mermaid Diagram Editor"
-      desc="Mermaid Diagram Editor - create flowcharts, sequence diagrams, class diagrams, and more using, online free. Free online, no sign-up. Works on any device."
+      desc="Create flowcharts, sequence diagrams and class diagrams from simple Mermaid code with live preview pane."
       icon="📊" iconBg="rgba(6,182,212,0.08)"
       category="dev" slug="mermaid-diagram-editor"
       faq={[

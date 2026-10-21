@@ -197,7 +197,7 @@ export default function periodic_table() {
   return (
     <ToolLayout
       title="Interactive Periodic Table of Elements"
-      desc="Interactive Periodic Table of Elements - all 118 elements. Click any element for full details., online free. Free online, no sign-up. Works on any device."
+      desc="Explore an interactive periodic table with key properties and facts for all 118 known chemical elements."
       icon="⚛️" iconBg="rgba(99,102,241,0.08)"
       category="education" slug="periodic-table"
       faq={[

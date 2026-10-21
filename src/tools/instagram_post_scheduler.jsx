@@ -45,7 +45,7 @@ export default function instagram_post_scheduler() {
   return (
     <ToolLayout
       title="Instagram Post Scheduler"
-      desc="Instagram Post Scheduler - plan your weekly Instagram posts with optimal timing. Generate a content, online free. Free online, no sign-up. Works on any device."
+      desc="Plan a full week of Instagram posts with ideas, captions, hashtags and the best times to publish them."
       icon="📋" iconBg="rgba(168,85,247,0.08)"
       category="social" slug="instagram-post-scheduler"
       faq={[

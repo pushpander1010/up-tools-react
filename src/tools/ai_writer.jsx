@@ -104,7 +104,7 @@ export default function ai_writer() {
   return (
     <ToolLayout
       title="AI Writing Assistant"
-      desc="AI Writing Assistant - summarize, rewrite, translate, extract keywords, generate outlines, and, online free. Free online, no sign-up. Works on any device."
+      desc="Summarize, rewrite, translate, extract keywords and generate outlines to draft clear content from rough ideas quickly."
       icon="✍️" iconBg="rgba(99,102,241,0.08)"
       category="ai" slug="ai-writer"
       faq={[

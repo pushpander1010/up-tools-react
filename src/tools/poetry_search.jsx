@@ -73,7 +73,7 @@ export default function poetry_search() {
   return (
     <ToolLayout
       title="Poetry Search"
-      desc="Poetry Search - search thousands of poems by title, author, or first line, online free. Free online, no sign-up. Works on any device."
+      desc="Search thousands of classic poems by title, author name or opening line with instant matching results."
       icon="📖" iconBg="rgba(99,102,241,0.08)"
       category="text" slug="poetry-search"
       faq={[

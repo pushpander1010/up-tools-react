@@ -32,7 +32,7 @@ export default function text_case_converter() {
   return (
     <ToolLayout
       title="Text Case Converter"
-      desc="Text Case Converter - convert text to UPPERCASE, lowercase, Title Case, camelCase, snake_case,, online free. Free online, instant results. No sign-up needed."
+      desc="Convert text between uppercase, lowercase, title case, camelCase, snake_case, and several other styles."
       icon="🔤" iconBg="rgba(99,102,241,0.08)"
       category="text" slug="text-case-converter"
       faq={[

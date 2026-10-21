@@ -93,7 +93,7 @@ export default function instagram_fake_follower_checker() {
   return (
     <ToolLayout
       title="Instagram Fake Follower Checker"
-      desc="Instagram Fake Follower Checker - analyze your follower list for suspicious accounts using, online free. Free online, instant results. No login needed."
+      desc="Spot suspicious or low-quality followers by analyzing profile signals across your full follower list."
       icon="🕵️" iconBg="rgba(239,68,68,0.08)"
       category="social" slug="instagram-fake-follower-checker"
       faq={[

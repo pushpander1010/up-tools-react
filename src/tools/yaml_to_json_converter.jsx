@@ -147,7 +147,7 @@ export default function yaml_to_json_converter() {
   return (
     <ToolLayout
       title="YAML ⇄ JSON Converter"
-      desc="YAML ⇄ JSON Converter - convert between YAML and JSON formats instantly. Parse, format, and, online free. Free online, instant results. No sign-up needed."
+      desc="Convert data between YAML and JSON formats instantly with parsing, formatting, and syntax error detection."
       icon="🔄" iconBg="rgba(99,102,241,0.08)"
       category="dev" slug="yaml-to-json-converter"
       faq={[

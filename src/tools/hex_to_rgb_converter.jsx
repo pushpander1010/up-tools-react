@@ -115,7 +115,7 @@ export default function HexToRgbConverter() {
   return (
     <ToolLayout
       title="HEX ↔ RGB Converter"
-      desc="HEX ↔ RGB Converter - convert between HEX, RGB & HSL color formats with live preview, online free. Free online, instant results. No sign-up needed."
+      desc="Convert colors between HEX, RGB and HSL formats with instant live preview for accurate design matching."
       icon="🌈" iconBg="rgba(99,102,241,0.08)"
       category="dev" slug="hex-to-rgb-converter"
       faq={[

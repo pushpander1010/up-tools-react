@@ -25,7 +25,7 @@ export default function ipl_team_stats() {
   return (
     <ToolLayout
       title="IPL Team Statistics"
-      desc="IPL Team Statistics - all-time records, wins, titles, and performance stats for all IPL franchises, online free. Free online, no sign-up. Works on any device."
+      desc="Explore all-time IPL team records covering titles, wins, losses and overall franchise performance history."
       icon="📈" iconBg="rgba(234,179,8,0.08)"
       category="sports" slug="ipl-team-stats"
       faq={[

@@ -75,7 +75,7 @@ export default function css_minifier() {
   return (
     <ToolLayout
       title="CSS Minifier & Beautifier"
-      desc="CSS Minifier & Beautifier - minify CSS to reduce file size, or beautify it for readability with, online free. Free online, no sign-up. Works on any device."
+      desc="Minify CSS to shrink file size for production or beautify compressed CSS into readable, indented code."
       icon="🎨" iconBg="rgba(99,102,241,0.08)"
       category="dev" slug="css-minifier"
       faq={[

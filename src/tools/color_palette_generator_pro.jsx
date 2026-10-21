@@ -79,7 +79,7 @@ export default function color_palette_generator_pro() {
   return (
     <ToolLayout
       title="Color Palette Generator"
-      desc="Color Palette Generator - generate color palettes from a base color. Analogous, complementary,, online free. Free online, no sign-up. Works on any device."
+      desc="Generate harmonious palettes from one base color using analogous, complementary and triadic color harmony rules."
       icon="🎨" iconBg="rgba(168,85,247,0.08)"
       category="utility" slug="color-palette-generator-pro"
       faq={[

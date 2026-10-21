@@ -253,7 +253,7 @@ export default function color_palette_from_image() {
   return (
     <ToolLayout
       title="Color Palette from Image"
-      desc="Color Palette from Image - extract a beautiful color palette from any image. Upload and get HEX,, online free. Free online, no sign-up. Works on any device."
+      desc="Upload any image to extract a harmonious color palette with HEX and RGB codes ready for your design."
       icon="🎨" iconBg="rgba(168,85,247,0.08)"
       category="design" slug="color-palette-from-image"
       faq={[

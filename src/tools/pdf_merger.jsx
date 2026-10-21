@@ -70,7 +70,7 @@ export default function pdf_merger() {
   return (
     <ToolLayout
       title="PDF Merger"
-      desc="PDF Merger - merge multiple PDF files into one document. Free, fast, and private - no upload needed, online free. Free online, no sign-up. Works on any device."
+      desc="Combine multiple PDF files into a single document with all pages neatly arranged in your chosen order."
       icon="📄" iconBg="rgba(239,68,68,0.08)"
       category="utility" slug="pdf-merger"
       faq={[

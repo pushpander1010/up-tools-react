@@ -84,7 +84,7 @@ export default function whatsapp_link_generator() {
   return (
     <ToolLayout
       title="WhatsApp Link Generator"
-      desc="WhatsApp Link Generator - generate WhatsApp click-to-chat links instantly. Create wa.me links with, online free. Free online, no sign-up. Works on any device."
+      desc="Create WhatsApp click-to-chat links with a prefilled message that opens directly in any chat window."
       icon="💬" iconBg="rgba(37,211,102,0.08)"
       category="whatsapp" slug="whatsapp-link-generator"
       faq={[

@@ -56,7 +56,7 @@ ${company} HR Team` : ''
   return (
     <ToolLayout
       title="Offer Letter Generator"
-      desc="Offer Letter Generator - create professional offer letters with candidate details, CTC and joining date, online free. Free online, no sign-up. Works on any device."
+      desc="Draft a professional job offer letter with candidate name, role, CTC and joining date details included."
       icon="📄" iconBg="rgba(245,158,11,0.08)"
       category="finance" slug="offer-letter-generator"
       faq={[

@@ -41,7 +41,7 @@ export default function cra_noa_checklist() {
   return (
     <ToolLayout
       title="CRA Notice of Assessment Checklist"
-      desc="CRA Notice of Assessment Checklist - checklist for preparing your CRA Notice of Assessment review., online free. Free online, instant results. No login needed."
+      desc="Review your CRA Notice of Assessment step by step with a checklist for slips, balances and filing details."
       icon="🍁" iconBg="rgba(220,38,38,0.08)"
       category="canada" slug="cra-noa-checklist"
       faq={[

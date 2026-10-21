@@ -4,7 +4,7 @@ export default function fifa_world_cup_red_cards() {
   return (
     <ToolLayout
       title="FIFA World Cup 2026 Red Cards"
-      desc="FIFA World Cup 2026 Red Cards - track every red card shown at the 2026 FIFA World Cup. Full list of, online free. Free online, no sign-up. Works on any device."
+      desc="Track every red card shown at the 2026 FIFA World Cup with the full list of players and match details."
       icon="🟥" iconBg="rgba(239,68,68,0.08)"
       category="fifa" slug="fifa-world-cup-red-cards"
       faq={[

@@ -88,7 +88,7 @@ export default function xml_formatter() {
   return (
     <ToolLayout
       title="XML Formatter & Validator"
-      desc="XML Formatter & Validator - format (pretty-print), minify, or validate XML documents instantly in, online free. Free online, instant results. No login needed."
+      desc="Format, pretty-print, minify, or validate XML documents with clear error reporting and tree structure."
       icon="📄" iconBg="rgba(99,102,241,0.08)"
       category="dev" slug="xml-formatter"
       faq={[

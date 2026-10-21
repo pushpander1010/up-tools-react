@@ -34,7 +34,7 @@ export default function power_converter() {
   return (
     <ToolLayout
       title="Power Converter"
-      desc="Power Converter - convert between Watts, Horsepower, Kilowatts, and BTU/h instantly, online free. Free online, instant results. No sign-up needed."
+      desc="Convert power units between watts, kilowatts, horsepower and BTU per hour accurately within seconds."
       icon="🔌" iconBg="rgba(236,72,153,0.08)"
       category="dev" slug="power-converter"
       faq={[

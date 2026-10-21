@@ -39,7 +39,7 @@ export default function frequency_converter() {
   return (
     <ToolLayout
       title="Frequency Converter"
-      desc="Frequency Converter - convert between Hz, kHz, MHz, GHz, and RPM instantly. Essential tool for, online free. Free online, instant results. No sign-up needed."
+      desc="Convert frequency values between hertz, kilohertz, megahertz, gigahertz and RPM accurately in one step."
       icon="Hz" iconBg="rgba(6,182,212,0.08)"
       category="dev" slug="frequency-converter"
       faq={[

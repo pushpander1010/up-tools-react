@@ -34,7 +34,7 @@ export default function density_converter() {
   return (
     <ToolLayout
       title="Density Converter"
-      desc="Density Converter - convert between kg/m³, g/cm³, lb/ft³, and lb/in³ instantly, online free. Free online, instant results. No sign-up needed."
+      desc="Convert density values between kilograms per cubic metre, grams per cubic centimetre and pounds per cubic foot."
       icon="⚖️" iconBg="rgba(99,102,241,0.08)"
       category="dev" slug="density-converter"
       faq={[

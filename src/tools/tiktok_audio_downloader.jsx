@@ -33,7 +33,7 @@ export default function tiktok_audio_downloader() {
   return (
     <ToolLayout
       title="TikTok Audio Downloader"
-      desc="TikTok Audio Downloader - download TikTok music, sounds, and background audio as MP3. Extract audio, online free. Free online in HD. No app or login needed."
+      desc="Extract and download audio, music, and sounds from TikTok videos as MP3 files ready for offline use."
       icon="🎵" iconBg="rgba(0,0,0,0.08)"
       category="social" slug="tiktok-audio-downloader"
       faq={[

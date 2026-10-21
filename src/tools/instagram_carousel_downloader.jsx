@@ -37,7 +37,7 @@ export default function instagram_carousel_downloader() {
   return (
     <ToolLayout
       title="Instagram Carousel Downloader"
-      desc="Instagram Carousel Downloader - download all images from Instagram carousel posts. Save every slide in, online free. Free online in HD. No app or login needed."
+      desc="Download every image slide from an Instagram carousel post in full quality directly to your device gallery."
       icon="🎠" iconBg="rgba(168,85,247,0.08)"
       category="social" slug="instagram-carousel-downloader"
       faq={[

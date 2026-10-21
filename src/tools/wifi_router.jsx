@@ -81,7 +81,7 @@ export default function wifi_router() {
   return (
     <ToolLayout
       title="WiFi Router Tools"
-      desc="WiFi Router Tools - default passwords (educational), Wi-Fi QR generator, MAC Vendor lookup, online free. Free online, no sign-up. Works on any device."
+      desc="Look up default router passwords for setup, generate Wi-Fi QR codes, and identify MAC address vendors."
       icon="📡" iconBg="rgba(34,197,94,0.08)"
       category="networking" slug="wifi-router"
       faq={[

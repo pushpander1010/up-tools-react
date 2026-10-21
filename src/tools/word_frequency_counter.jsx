@@ -32,7 +32,7 @@ export default function word_frequency_counter() {
   return (
     <ToolLayout
       title="Word Frequency Counter"
-      desc="Word Frequency Counter - analyze text and count word frequency. See the most common words with, online free. Free online, no sign-up. Works on any device."
+      desc="Analyze any text to find the most common words with ranked frequency counts and density percentages."
       icon="📊" iconBg="rgba(99,102,241,0.08)"
       category="text" slug="word-frequency-counter"
       faq={[

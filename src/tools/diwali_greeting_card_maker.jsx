@@ -172,7 +172,7 @@ export default function diwali_greeting_card_maker() {
   return (
     <ToolLayout
       title="Diwali Greeting Card Maker"
-      desc="Create beautiful canvas-drawn Diwali greeting cards — choose a theme, message, and download or share on WhatsApp."
+      desc="Design a personalized Happy Diwali greeting card with your name across festive themes ready to share on WhatsApp."
       icon="🪔" iconBg="rgba(245,158,11,0.08)"
       category="india" slug="diwali-greeting-card-maker"
       faq={[

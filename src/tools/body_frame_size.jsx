@@ -96,7 +96,7 @@ export default function body_frame_size() {
   return (
     <ToolLayout
       title="Body Frame Size Calculator"
-      desc="Body Frame Size Calculator - determine your body frame size (small, medium, or large), online free. Free online, instant results. No sign-up, works on mobile."
+      desc="Determine whether your body frame is small, medium or large from wrist and height measurements with clear charts."
       icon="🦴" iconBg="rgba(239,68,68,0.08)"
       category="health" slug="body-frame-size"
       faq={[

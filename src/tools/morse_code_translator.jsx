@@ -53,7 +53,7 @@ export default function morse_code_translator() {
   return (
     <ToolLayout
       title="Morse Code Translator"
-      desc="Morse Code Translator - convert text to Morse code and back. Copy or share results instantly, online free. Free online, no sign-up. Works on any device."
+      desc="Translate text into Morse code and decode Morse signals back into readable English with audio playback."
       icon="📡" iconBg="rgba(6,182,212,0.08)"
       category="dev" slug="morse-code-translator"
       faq={[

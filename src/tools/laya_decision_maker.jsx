@@ -48,7 +48,7 @@ export default function laya_decision_maker() {
   return (
     <ToolLayout
       title="Laya Decision Maker"
-      desc="Laya Decision Maker - ask a question, list your options, and the Laya AI decision model picks the best choice with probabilities. Free online, no sign-up."
+      desc="List your options and ask a question to get an AI-ranked recommendation with probability scores for each choice."
       icon="🧠" iconBg="rgba(245,158,11,0.08)"
       category="tools" slug="laya-decision-maker"
       faq={[

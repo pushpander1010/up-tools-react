@@ -35,7 +35,7 @@ export default function energy_converter() {
   return (
     <ToolLayout
       title="Energy Converter"
-      desc="Energy Converter - convert between Joules, Calories, BTU, kWh, and Erg instantly, online free. Free online, instant results. No sign-up needed."
+      desc="Convert energy values between joules, calories, BTUs, kilowatt-hours and ergs with precise instant results."
       icon="⚡" iconBg="rgba(245,158,11,0.08)"
       category="dev" slug="energy-converter"
       faq={[

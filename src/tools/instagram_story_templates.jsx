@@ -109,7 +109,7 @@ export default function instagram_story_templates() {
   return (
     <ToolLayout
       title="Instagram Story Templates"
-      desc="Instagram Story Templates - browse ready-made story templates for any occasion. Business, personal,, online free. Free online, no sign-up. Works on any device."
+      desc="Browse ready-made Instagram Story layouts for business promos, personal updates and special event posts."
       icon="📱" iconBg="rgba(236,72,153,0.08)"
       category="social" slug="instagram-story-templates"
       faq={[

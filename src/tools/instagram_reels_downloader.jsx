@@ -31,7 +31,7 @@ export default function instagram_reels_downloader() {
   return (
     <ToolLayout
       title="Instagram Reels Downloader"
-      desc="Instagram Reels downloader — download Instagram Reels videos online free in HD up to 1080p. Paste the reel link, save any public reel MP4, no login needed."
+      desc="Download any public Instagram Reel as an HD MP4 video in up to 1080p quality using just a single link."
       icon="🎬" iconBg="rgba(236,72,153,0.08)"
       category="social" slug="instagram-reels-downloader"
       faq={[

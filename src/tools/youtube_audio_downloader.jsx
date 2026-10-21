@@ -30,7 +30,7 @@ export default function youtube_audio_downloader() {
   return (
     <ToolLayout
       title="YouTube Audio Downloader"
-      desc="YouTube Audio Downloader - learn how to download audio from YouTube videos as MP3 — step-by-step guide, online free. Free online in HD. No app or login needed."
+      desc="Follow a step-by-step guide to extracting audio from YouTube videos as MP3 files for offline listening."
       icon="🎵" iconBg="rgba(239,68,68,0.08)"
       category="social" slug="youtube-audio-downloader"
       faq={[

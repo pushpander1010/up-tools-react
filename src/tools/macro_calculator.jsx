@@ -31,7 +31,7 @@ export default function macro_calculator() {
   return (
     <ToolLayout
       title="Macro Calculator"
-      desc="Macro Calculator - calculate macronutrient ratios: protein, carbs, and fats for your, online free. Free online, instant results. No sign-up, works on mobile."
+      desc="Calculate daily protein, carbohydrate and fat targets based on your calories, weight and fitness goal."
       icon="🥗" iconBg="rgba(34,197,94,0.08)"
       category="health" slug="macro-calculator"
       faq={[

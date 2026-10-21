@@ -47,7 +47,7 @@ export default function habit_tracker() {
   return (
     <ToolLayout
       title="Habit Tracker"
-      desc="Habit Tracker - track daily habits and build streaks. Monitor your progress and stay motivated, online free. Free online, no sign-up. Works on any device."
+      desc="Track daily habits, build streaks and review your progress over time to stay consistent and motivated."
       icon="📊" iconBg="rgba(34,197,94,0.08)"
       category="health" slug="habit-tracker"
       faq={[

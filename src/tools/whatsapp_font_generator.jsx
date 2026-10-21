@@ -28,7 +28,7 @@ export default function whatsapp_font_generator() {
   return (
     <ToolLayout
       title="WhatsApp Font Generator"
-      desc="WhatsApp Font Generator - generate styled text for WhatsApp: bold, italic, strikethrough,, online free. Free online, no sign-up. Works on any device."
+      desc="Style text for WhatsApp with bold, italic, strikethrough, and decorative Unicode fonts ready to paste."
       icon="✍️" iconBg="rgba(37,211,102,0.08)"
       category="whatsapp" slug="whatsapp-font-generator"
       faq={[

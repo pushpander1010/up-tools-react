@@ -39,7 +39,7 @@ export default function world_clock() {
   return (
     <ToolLayout
       title="World Clock"
-      desc="World Clock - check current time in 200+ cities worldwide. Real-time updates with timezone, online free. Free online, no sign-up. Works on any device."
+      desc="Check the current time in more than 200 cities worldwide with live updates and full timezone details."
       icon="🌍" iconBg="rgba(14,165,233,0.08)"
       category="utility" slug="world-clock"
       faq={[

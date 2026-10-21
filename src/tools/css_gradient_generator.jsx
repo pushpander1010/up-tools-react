@@ -40,7 +40,7 @@ export default function css_gradient_generator() {
   return (
     <ToolLayout
       title="CSS Gradient Generator"
-      desc="CSS Gradient Generator - create beautiful CSS gradients with live preview. Build linear, radial,, online free. Free online, no sign-up. Works on any device."
+      desc="Create smooth linear, radial and conic CSS gradients with live preview and copy-ready stylesheet code."
       icon="🎨" iconBg="rgba(168,85,247,0.08)"
       category="dev" slug="css-gradient-generator"
       faq={[

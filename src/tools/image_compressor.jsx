@@ -246,7 +246,7 @@ export default function image_compressor() {
   return (
     <ToolLayout
       title="Image Compressor — Reduce File Size Online"
-      desc="Compress JPG, PNG and WebP images online for free. Target an exact file size (100 KB, 500 KB, 1 MB) with automatic quality tuning, or set quality manually. No sign-up, files deleted after processing."
+      desc="Compress JPG, PNG and WebP images down to a target size like 100 KB while preserving sharp visual quality."
       icon="🗜️" iconBg="rgba(99,102,241,0.08)"
       category="image" slug="image-compressor"
       faq={[

@@ -110,7 +110,7 @@ export default function password_generator() {
   return (
     <ToolLayout
       title="Password Generator"
-      desc="Password Generator - generate cryptographically secure passwords with real-time strength analysis, online free. Free online, no sign-up. Works on any device."
+      desc="Create strong random passwords with custom length, symbols and live strength feedback shown clearly."
       icon="🔐" iconBg="rgba(239,68,68,0.08)"
       category="security" slug="password-generator"
       faq={[

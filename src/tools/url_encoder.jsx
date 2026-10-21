@@ -34,7 +34,7 @@ export default function url_encoder() {
   return (
     <ToolLayout
       title="URL Encoder / Decoder"
-      desc="URL Encoder / Decoder - encode special characters for URLs or decode encoded URLs back to readable, online free. Free online, no sign-up. Works on any device."
+      desc="Encode special characters into URL-safe format or decode any encoded URLs back into readable plain text."
       icon="🔗" iconBg="rgba(6,182,212,0.08)"
       category="dev" slug="url-encoder"
       faq={[

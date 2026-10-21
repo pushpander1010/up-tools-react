@@ -135,7 +135,7 @@ export default function whatsapp_stickers() {
   return (
     <ToolLayout
       title="WhatsApp Sticker Maker"
-      desc="WhatsApp Sticker Maker - make WhatsApp stickers in your browser: upload, zoom, rotate, add text,, online free. Free online, no sign-up. Works on any device."
+      desc="Design custom WhatsApp stickers right in your browser by uploading images, cropping, and adding text."
       icon="🎨" iconBg="rgba(37,211,102,0.08)"
       category="whatsapp" slug="whatsapp-stickers"
       faq={[

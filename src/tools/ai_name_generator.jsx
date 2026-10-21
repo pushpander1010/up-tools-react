@@ -88,7 +88,7 @@ export default function ai_name_generator() {
   return (
     <ToolLayout
       title="AI Name Generator"
-      desc="AI Name Generator - generate baby names, business names, brand names, startup names, character, online free. Free online, no sign-up. Works on any device."
+      desc="Generate creative names for babies, businesses, brands, startups and characters from themes, styles and keywords."
       icon="✨" iconBg="rgba(234,179,8,0.08)"
       category="ai" slug="ai-name-generator"
       faq={[

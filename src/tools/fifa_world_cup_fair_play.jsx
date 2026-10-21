@@ -4,7 +4,7 @@ export default function fifa_world_cup_fair_play() {
   return (
     <ToolLayout
       title="FIFA World Cup 2026 Fair Play"
-      desc="FIFA World Cup 2026 Fair Play - which teams played the cleanest — and who's in the, online free. Play online free, no download. Works on mobile and desktop."
+      desc="See which 2026 World Cup teams played the cleanest with fair-play standings ranked by cards and fouls."
       icon="🤝" iconBg="rgba(34,197,94,0.08)"
       category="fifa" slug="fifa-world-cup-fair-play"
       faq={[

@@ -111,7 +111,7 @@ export default function RomanNumeralConverter() {
   return (
     <ToolLayout
       title="Roman Numeral Converter"
-      desc="Roman Numeral Converter - convert numbers (1–3999) to Roman numerals and Roman numerals back to, online free. Free online, instant results. No sign-up needed."
+      desc="Convert any number from 1 to 3999 into Roman numerals and translate Roman numerals back into digits accurately."
       icon="🏛️" iconBg="rgba(99,102,241,0.08)"
       category="tools" slug="roman-numeral-converter"
       faq={[

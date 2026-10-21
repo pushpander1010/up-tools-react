@@ -78,7 +78,7 @@ export default function unit_converter_pro() {
   return (
     <ToolLayout
       title="Unit Converter"
-      desc="Unit Converter - convert between units of length, weight, temperature, volume, area, speed,, online free. Free online, instant results. No sign-up needed."
+      desc="Convert between units of length, weight, temperature, volume, area, speed, and many more everyday measures."
       icon="🔄" iconBg="rgba(99,102,241,0.08)"
       category="tools" slug="unit-converter"
       faq={[

@@ -48,7 +48,7 @@ export default function sleep_calculator() {
   return (
     <ToolLayout
       title="Sleep Calculator"
-      desc="Sleep Calculator - find the perfect bedtime or wake-up time based on sleep cycles of, online free. Free online, instant results. No sign-up, works on mobile."
+      desc="Find your ideal bedtimes or wake-up times based on complete 90-minute sleep cycles for deeper, better rest."
       icon="😴" iconBg="rgba(139,92,246,0.08)"
       category="health" slug="sleep-calculator"
       faq={[

@@ -116,7 +116,7 @@ export default function instagram_username_generator() {
   return (
     <ToolLayout
       title="Instagram Username Generator"
-      desc="Instagram Username Generator - generate unique, creative Instagram username ideas. Choose from, online free. Free online, no sign-up. Works on any device."
+      desc="Generate unique and memorable Instagram username ideas based on your name, keywords or chosen niche."
       icon="👤" iconBg="rgba(99,102,241,0.08)"
       category="social" slug="instagram-username-generator"
       faq={[

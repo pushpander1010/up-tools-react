@@ -79,7 +79,7 @@ export default function food_randomizer() {
   return (
     <ToolLayout
       title="Random Food Generator"
-      desc="Random Food Generator - discover delicious dishes from around the world by category, online free. Free online, no sign-up. Works on any device."
+      desc="Discover random dishes from world cuisines by category, diet or mood when you cannot decide what to eat."
       icon="🍽️" iconBg="rgba(245,158,11,0.08)"
       category="fun" slug="food-randomizer"
       faq={[

@@ -54,7 +54,7 @@ export default function ideal_weight_calculator() {
   return (
     <ToolLayout
       title="Ideal Weight Calculator"
-      desc="Ideal Weight Calculator - calculate your ideal body weight using the Devine formula., online free. Free online, instant results. No sign-up, works on mobile."
+      desc="Estimate your ideal body weight from height and frame using the Devine formula with a healthy range."
       icon="⚖️" iconBg="rgba(34,197,94,0.08)"
       category="health" slug="ideal-weight-calculator"
       faq={[

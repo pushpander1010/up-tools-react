@@ -277,7 +277,7 @@ export default function regex_visualizer() {
   return (
     <ToolLayout
       title="Regex Visualizer & Tester"
-      desc="Regex Visualizer and Tester - test, debug and understand regular expressions with live match highlighting. Free online, no login needed."
+      desc="Test and debug regular expressions with live match highlighting plus a clear visual breakdown of the pattern."
       icon="🔬" iconBg="rgba(244,63,94,0.08)"
       category="dev" slug="regex-visualizer"
       faq={[

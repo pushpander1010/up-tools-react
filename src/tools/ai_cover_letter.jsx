@@ -67,7 +67,7 @@ Tone: ${tone}. Do not use placeholder brackets — use the details provided.`
   return (
     <ToolLayout
       title="AI Cover Letter Generator"
-      desc="AI Cover Letter Generator - generate professional cover letters instantly with AI. Fill in your, online free. Free online, no sign-up. Works on any device."
+      desc="Create a polished professional cover letter from your role, skills and experience with clean formatting ready to send."
       icon="📄" iconBg="rgba(99,102,241,0.08)"
       category="ai" slug="ai-cover-letter"
       faq={[

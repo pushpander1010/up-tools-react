@@ -73,7 +73,7 @@ export default function whatsapp_business_name_generator() {
   return (
     <ToolLayout
       title="WhatsApp Business Name Generator"
-      desc="WhatsApp Business Name Generator - generate professional, catchy business names for your WhatsApp, online free. Free online, no sign-up. Works on any device."
+      desc="Generate professional, catchy business name ideas tailored for your WhatsApp storefront and profile."
       icon="💼" iconBg="rgba(37,211,102,0.08)"
       category="whatsapp" slug="whatsapp-business-name-generator"
       faq={[

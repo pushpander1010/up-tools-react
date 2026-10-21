@@ -97,7 +97,7 @@ export default function instagram_story_ideas_generator() {
   return (
     <ToolLayout
       title="Instagram Story Ideas Generator"
-      desc="Instagram Story Ideas Generator - get 10 fresh story ideas for any niche. Never run out of content, online free. Free online, no sign-up. Works on any device."
+      desc="Get ten fresh Instagram Story ideas for any niche, from polls and quizzes to behind-the-scenes clips."
       icon="💡" iconBg="rgba(168,85,247,0.08)"
       category="social" slug="instagram-story-ideas-generator"
       faq={[

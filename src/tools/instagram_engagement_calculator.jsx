@@ -34,7 +34,7 @@ export default function instagram_engagement_calculator() {
   return (
     <ToolLayout
       title="Instagram Engagement Calculator"
-      desc="Instagram Engagement Calculator - calculate your Instagram engagement rate instantly., online free. Free online, instant results. No sign-up, works on mobile."
+      desc="Calculate any Instagram account engagement rate from likes, comments and follower counts in seconds."
       icon="📊" iconBg="rgba(99,102,241,0.08)"
       category="social" slug="instagram-engagement-calculator"
       faq={[

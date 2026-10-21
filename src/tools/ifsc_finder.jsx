@@ -90,7 +90,7 @@ export default function ifsc_finder() {
   return (
     <ToolLayout
       title="IFSC Code Finder"
-      desc="IFSC Code Finder - find Indian bank branch details using IFSC code. Get bank name, branch,, online free. Free online, instant results. No login needed."
+      desc="Find any Indian bank branch by IFSC code with bank name, branch address, MICR code and contact details shown clearly."
       icon="🏦" iconBg="rgba(34,197,94,0.08)"
       category="finance" slug="ifsc-finder"
       faq={[

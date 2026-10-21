@@ -39,7 +39,7 @@ export default function uuid_generator_pro() {
   return (
     <ToolLayout
       title="UUID Generator"
-      desc="UUID Generator - generate UUID v4 with customizable format and count, online free. Instant results, no sign-up, works on any device."
+      desc="Generate version 4 UUIDs in bulk quantities with customizable formatting, casing, and separator options."
       icon="🆔" iconBg="rgba(99,102,241,0.08)"
       category="dev" slug="uuid-generator"
       faq={[

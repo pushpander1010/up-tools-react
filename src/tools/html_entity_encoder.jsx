@@ -72,7 +72,7 @@ export default function html_entity_encoder() {
   return (
     <ToolLayout
       title="HTML Entity Encoder / Decoder"
-      desc="HTML Entity Encoder / Decoder - encode special characters to HTML entities for safe embedding, or, online free. Free online, no sign-up. Works on any device."
+      desc="Encode special characters into safe HTML entities for embedding, or decode entities back into plain characters."
       icon="🔤" iconBg="rgba(99,102,241,0.08)"
       category="dev" slug="html-entity-encoder"
       faq={[

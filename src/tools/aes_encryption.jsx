@@ -109,7 +109,7 @@ export default function AesEncryption() {
   return (
     <ToolLayout
       title="AES Encryption Tool"
-      desc="AES Encryption Tool - encrypt & decrypt text with AES-256-GCM using the Web Crypto API. Client-side, online free. Free online, no sign-up. Works on any device."
+      desc="Encrypt and decrypt text with AES-256-GCM securely in your browser using the Web Crypto API for full privacy."
       icon="🔐" iconBg="rgba(99,102,241,0.08)"
       category="security" slug="aes-encryption"
       faq={[

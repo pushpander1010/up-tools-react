@@ -160,7 +160,7 @@ export default function css_animation_generator() {
   return (
     <ToolLayout
       title="CSS Animation Generator"
-      desc="CSS Animation Generator - build CSS @keyframes visually with live preview. Adjust timing, duration,, online free. Free online, no sign-up. Works on any device."
+      desc="Design CSS keyframe animations visually with live preview, then copy clean code for timing, easing and loops."
       icon="✨" iconBg="rgba(139,92,246,0.08)"
       category="dev" slug="css-animation-generator"
       faq={[

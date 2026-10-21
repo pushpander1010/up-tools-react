@@ -65,7 +65,7 @@ Use natural, conversational language. Add pattern interrupts for retention.`
   return (
     <ToolLayout
       title="AI YouTube Script Writer"
-      desc="AI YouTube Script Writer - write complete, retention-optimized YouTube video scripts with hooks,, online free. Free online, no sign-up. Works on any device."
+      desc="Write a complete retention-optimized YouTube script from your topic, with hooks, pacing and a strong call to action."
       icon="🎬" iconBg="rgba(239,68,68,0.08)"
       category="ai" slug="ai-youtube-script"
       faq={[

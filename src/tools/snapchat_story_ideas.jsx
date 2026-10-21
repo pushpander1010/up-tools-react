@@ -66,7 +66,7 @@ export default function snapchat_story_ideas() {
   return (
     <ToolLayout
       title="Snapchat Story Ideas Generator"
-      desc="Snapchat Story Ideas Generator - generate creative Snapchat story ideas. Never run out of content, online free. Free online, no sign-up. Works on any device."
+      desc="Generate fresh, creative Snapchat story ideas tailored to your vibe so you always have something to post next."
       icon="👻" iconBg="rgba(250,204,21,0.08)"
       category="social" slug="snapchat-story-ideas"
       faq={[

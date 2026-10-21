@@ -40,7 +40,7 @@ export default function instagram_igtv_downloader() {
   return (
     <ToolLayout
       title="Instagram IGTV Downloader"
-      desc="Instagram IGTV Downloader - download Instagram IGTV long-form videos in HD quality. Save any public, online free. Free online in HD. No app or login needed."
+      desc="Download long-form IGTV videos from public Instagram posts in HD quality as MP4 files within seconds."
       icon="📺" iconBg="rgba(236,72,153,0.08)"
       category="social" slug="instagram-igtv-downloader"
       faq={[

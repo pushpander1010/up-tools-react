@@ -60,7 +60,7 @@ export default function ColorContrastChecker() {
   return (
     <ToolLayout
       title="Color Contrast Checker"
-      desc="Color Contrast Checker - wCAG contrast checker for accessible colors. Test foreground/background, online free. Free online, instant results. No login needed."
+      desc="Test foreground and background color pairs for WCAG contrast ratios to ensure accessible, readable designs."
       icon="👁️" iconBg="rgba(99,102,241,0.08)"
       category="dev" slug="color-contrast-checker"
       faq={[

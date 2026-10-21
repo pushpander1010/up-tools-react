@@ -33,7 +33,7 @@ export default function instagram_growth_calculator() {
   return (
     <ToolLayout
       title="Instagram Growth Calculator"
-      desc="Instagram Growth Calculator - project your Instagram follower growth based on, online free. Free online, instant results. No sign-up, works on mobile."
+      desc="Project future Instagram follower counts and growth trends based on your current daily pace and history."
       icon="📈" iconBg="rgba(34,197,94,0.08)"
       category="social" slug="instagram-growth-calculator"
       faq={[

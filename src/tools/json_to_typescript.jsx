@@ -125,7 +125,7 @@ export default function json_to_typescript() {
   return (
     <ToolLayout
       title="JSON to TypeScript Generator"
-      desc="JSON to TypeScript Generator - convert JSON data to TypeScript interfaces with proper type, online free. Free online, no sign-up. Works on any device."
+      desc="Convert JSON data into TypeScript interfaces with accurate types inferred for every nested field value."
       icon="🔷" iconBg="rgba(59,130,246,0.08)"
       category="developer" slug="json-to-typescript"
       faq={[

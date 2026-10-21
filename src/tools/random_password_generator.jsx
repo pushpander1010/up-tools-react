@@ -91,7 +91,7 @@ export default function random_password_generator() {
   return (
     <ToolLayout
       title="Random Password Generator"
-      desc="Random Password Generator - generate strong, cryptographically secure passwords. Customize length, online free. Free online, no sign-up. Works on any device."
+      desc="Create strong, cryptographically secure passwords with customizable length, symbols, and character sets."
       icon="🔐" iconBg="rgba(34,197,94,0.08)"
       category="dev" slug="random-password-generator"
       faq={[

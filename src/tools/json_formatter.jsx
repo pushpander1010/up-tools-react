@@ -176,7 +176,7 @@ export default function json_formatter_online() {
   return (
     <ToolLayout
       title="JSON Formatter"
-      desc="JSON Formatter - format, beautify, minify, and validate JSON instantly. Copy to clipboard, tree view, online free. Free online, no sign-up. Works on any device."
+      desc="Format, beautify, minify and validate JSON with a readable tree view plus clear error highlighting for fixes."
       icon="📦" iconBg="rgba(99,102,241,0.08)"
       category="dev" slug="json-formatter"
       faq={[

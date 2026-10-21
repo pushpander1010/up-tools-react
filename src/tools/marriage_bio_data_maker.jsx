@@ -108,7 +108,7 @@ export default function marriage_bio_data_maker() {
   return (
     <ToolLayout
       title="Marriage Bio Data Maker"
-      desc="Marriage Bio Data Maker - create professional marriage biodata cards with personal, education, family, and partner preference details online free. Free online, no sign-up. Works on any device."
+      desc="Create a printable marriage bio-data with personal, education, family and partner preference sections."
       icon="💍" iconBg="rgba(168,85,247,0.08)"
       category="document" slug="marriage-bio-data-maker"
       faq={[

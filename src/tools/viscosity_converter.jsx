@@ -32,7 +32,7 @@ export default function viscosity_converter() {
   return (
     <ToolLayout
       title="Viscosity Converter"
-      desc="Viscosity Converter - convert viscosity units: Centipoise, Stokes, poise, Pa·s. Instant, online free. Free online, instant results. No sign-up needed."
+      desc="Convert viscosity between centipoise, poise, Stokes, and pascal-seconds with accurate engineering factors."
       icon="🧴" iconBg="rgba(6,182,212,0.08)"
       category="converter" slug="viscosity-converter"
       faq={[

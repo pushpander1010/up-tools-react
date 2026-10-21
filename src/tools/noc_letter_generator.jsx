@@ -75,7 +75,7 @@ ${form.issuerName || ''}`
   return (
     <ToolLayout
       title="NOC Letter Generator"
-      desc="NOC Letter Generator - create a professional No Objection Certificate online free. Free online, no sign-up. Works on any device."
+      desc="Draft a formal No Objection Certificate letter with issuer, recipient and purpose details filled in."
       icon="📝" iconBg="rgba(99,102,241,0.08)"
       category="documents" slug="noc-letter-generator"
       faq={[

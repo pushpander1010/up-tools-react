@@ -76,7 +76,7 @@ export default function DuplicateLineRemover() {
   return (
     <ToolLayout
       title="Duplicate Line Remover"
-      desc="Duplicate Line Remover - remove duplicate lines, count unique entries, and clean up your text. All, online free. Free online, no sign-up. Works on any device."
+      desc="Remove duplicate lines from any list or text, count unique entries, and sort or clean everything in one step."
       icon="🗑️" iconBg="rgba(99,102,241,0.08)"
       category="text" slug="duplicate-line-remover"
       faq={[

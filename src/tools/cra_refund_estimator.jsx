@@ -25,7 +25,7 @@ export default function cra_refund_estimator() {
   return (
     <ToolLayout
       title="CRA Refund Estimator"
-      desc="CRA Refund Estimator - estimate CRA refund or balance owing using tax paid vs tax owed, online free. Free online, no sign-up. Works on any device."
+      desc="Estimate your CRA tax refund or balance owing by comparing withheld tax against your actual tax payable."
       icon="🍁" iconBg="rgba(220,38,38,0.08)"
       category="canada" slug="cra-refund-estimator"
       faq={[

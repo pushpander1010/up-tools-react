@@ -38,7 +38,7 @@ export default function string_builder() {
   return (
     <ToolLayout
       title="String Builder"
-      desc="String Builder - transform text with 8 built-in modes: uppercase, lowercase, title case, slug,, online free. Free online, no sign-up. Works on any device."
+      desc="Transform text with eight built-in modes including uppercase, lowercase, title case, slug, and more."
       icon="🔧" iconBg="rgba(6,182,212,0.08)"
       category="dev" slug="string-builder"
       faq={[

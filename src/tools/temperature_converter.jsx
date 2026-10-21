@@ -92,7 +92,7 @@ export default function temperature_converter() {
   return (
     <ToolLayout
       title="Temperature Converter"
-      desc="Temperature Converter - convert between Celsius, Fahrenheit, Kelvin, and Rankine. See all 4, online free. Free online, instant results. No sign-up needed."
+      desc="Convert temperatures between Celsius, Fahrenheit, Kelvin, and Rankine with all four scales shown together."
       icon="🌡️" iconBg="rgba(239,68,68,0.08)"
       category="dev" slug="temperature-converter"
       faq={[

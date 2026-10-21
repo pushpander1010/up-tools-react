@@ -34,7 +34,7 @@ export default function base64_encoder() {
   return (
     <ToolLayout
       title="Base64 Encoder & Decoder"
-      desc="Base64 Encoder & Decoder - encode text to Base64 or decode Base64 strings back to text. Works with, online free. Free online, no sign-up. Works on any device."
+      desc="Encode plain text to Base64 or decode Base64 strings back to readable text with full Unicode support built in."
       icon="🧬" iconBg="rgba(6,182,212,0.08)"
       category="dev" slug="base64-encoder"
       faq={[

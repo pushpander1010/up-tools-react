@@ -375,7 +375,7 @@ export default function image_resizer() {
   return (
     <ToolLayout
       title="Image Resizer — Resize Images Online Free"
-      desc="Resize JPG, PNG, WebP and GIF images online for free. Set exact width and height in pixels, keep the aspect ratio, and export to JPG, PNG or WebP. No upload history, no sign-up."
+      desc="Resize JPG, PNG and WebP images to exact pixel dimensions while keeping the original aspect ratio intact."
       icon="📐" iconBg="rgba(99,102,241,0.08)"
       category="image" slug="image-resizer"
       faq={[

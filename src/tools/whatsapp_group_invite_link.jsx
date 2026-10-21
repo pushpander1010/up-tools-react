@@ -19,7 +19,7 @@ export default function whatsapp_group_invite_link() {
   return (
     <ToolLayout
       title="WhatsApp Group Invite Link"
-      desc="WhatsApp Group Invite Link - learn how to create, share, and manage WhatsApp group invite links., online free. Free online, no sign-up. Works on any device."
+      desc="Learn how to create, share, reset, and manage WhatsApp group invite links so members can join easily."
       icon="🔗" iconBg="rgba(37,211,102,0.08)"
       category="whatsapp" slug="whatsapp-group-invite-link"
       faq={[

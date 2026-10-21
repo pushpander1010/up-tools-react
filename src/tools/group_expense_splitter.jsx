@@ -131,7 +131,7 @@ export default function group_expense_splitter() {
   return (
     <ToolLayout
       title="Group Expense Splitter"
-      desc="Group Expense Splitter - split bills and expenses with friends, roommates, or travel groups online free. Free online, no sign-up. Works on any device."
+      desc="Split group expenses by adding members and payments to get per-person balances and a simple settle-up plan."
       icon="💰" iconBg="rgba(245,158,11,0.08)"
       category="finance" slug="group-expense-splitter"
       faq={[

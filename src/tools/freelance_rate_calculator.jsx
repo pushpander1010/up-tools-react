@@ -35,7 +35,7 @@ export default function freelance_rate_calculator() {
   return (
     <ToolLayout
       title="Freelance Rate Calculator"
-      desc="Freelance Rate Calculator – compute hourly, daily and per-project rates based on target income and expenses. Free online, no sign-up. Works on any device."
+      desc="Price freelance work from target income, hours and expenses with hourly, daily and per-project rate breakdowns."
       icon="💼" iconBg="rgba(99,102,241,0.08)"
       category="finance" slug="freelance-rate-calculator"
       faq={[

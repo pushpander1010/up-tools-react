@@ -35,7 +35,7 @@ export default function instagram_post_downloader() {
   return (
     <ToolLayout
       title="Instagram Post Downloader"
-      desc="Instagram Post Downloader - download Instagram photos, videos, and carousel posts in full quality., online free. Free online in HD. No app or login needed."
+      desc="Download photos, videos and carousel posts from public Instagram links in full quality with one click."
       icon="📷" iconBg="rgba(236,72,153,0.08)"
       category="social" slug="instagram-post-downloader"
       faq={[

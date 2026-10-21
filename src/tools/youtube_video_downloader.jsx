@@ -5,7 +5,7 @@ export default function youtube_video_downloader() {
   return (
     <ToolLayout
       title="YouTube Video Downloader"
-      desc="YouTube Video Downloader - download YouTube videos and audio in HD quality. Save videos as MP4 or, online free. Free online in HD. No app or login needed."
+      desc="Download YouTube videos and audio in HD quality as MP4 or MP3 files for easy offline viewing anywhere."
       icon="🎥" iconBg="rgba(239,68,68,0.08)"
       category="social" slug="youtube-video-downloader"
       faq={[

@@ -40,7 +40,7 @@ export default function calorie_intake_calculator() {
   return (
     <ToolLayout
       title="Calorie Intake Calculator"
-      desc="Calorie Intake Calculator - calculate your daily calorie needs based on age, weight,, online free. Free online, instant results. No sign-up, works on mobile."
+      desc="Calculate your ideal daily calorie intake for maintenance, loss or gain based on body stats and activity level."
       icon="🔥" iconBg="rgba(245,158,11,0.08)"
       category="health" slug="calorie-intake-calculator"
       faq={[

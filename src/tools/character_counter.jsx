@@ -25,7 +25,7 @@ export default function character_counter() {
   return (
     <ToolLayout
       title="Character & Word Counter"
-      desc="Character & Word Counter - count characters, words, sentences, lines and paragraphs in your text., online free. Free online, no sign-up. Works on any device."
+      desc="Count characters, words, sentences, lines and paragraphs in your text with accurate live totals as you type."
       icon="🔢" iconBg="rgba(99,102,241,0.08)"
       category="text" slug="character-counter"
       faq={[

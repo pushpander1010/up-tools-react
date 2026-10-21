@@ -38,7 +38,7 @@ export default function lunar_calendar() {
   return (
     <ToolLayout
       title="Lunar Calendar"
-      desc="Lunar Calendar - view lunar calendar with moon phases, lunar dates, and zodiac information, online free. Free online, no sign-up. Works on any device."
+      desc="View the lunar calendar with moon phases, lunar dates and zodiac details for any chosen day or month."
       icon="🌙" iconBg="rgba(99,102,241,0.08)"
       category="utility" slug="lunar-calendar"
       faq={[

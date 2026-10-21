@@ -52,7 +52,7 @@ export default function rss_feed_reader() {
   return (
     <ToolLayout
       title="RSS Feed Reader"
-      desc="RSS Feed Reader - read any RSS or Atom feed as clean, readable articles. Browse news, blogs, and, online free. Free online, no sign-up. Works on any device."
+      desc="Read any RSS or Atom feed as clean, readable articles covering news, blogs, and your favorite publishers."
       icon="📰" iconBg="rgba(245,158,11,0.08)"
       category="dev" slug="rss-feed-reader"
       faq={[

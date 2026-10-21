@@ -81,7 +81,7 @@ export default function weather_forecast() {
   return (
     <ToolLayout
       title="Weather Forecast"
-      desc="Weather Forecast - check current weather and 7-day forecast for any city worldwide, online free. Free online, no sign-up. Works on any device."
+      desc="Check current conditions and the 7-day forecast for any city worldwide with hourly details and alerts."
       icon="🌤️" iconBg="rgba(6,182,212,0.08)"
       category="dev" slug="weather-forecast"
       faq={[

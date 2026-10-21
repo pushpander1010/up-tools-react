@@ -35,7 +35,7 @@ export default function instagram_reach_calculator() {
   return (
     <ToolLayout
       title="Instagram Reach Calculator"
-      desc="Instagram Reach Calculator - calculate your Instagram reach rate, impressions ratio,, online free. Free online, instant results. No sign-up, works on mobile."
+      desc="Measure Instagram reach rate and impressions ratio to understand how far your posts actually travel."
       icon="📡" iconBg="rgba(6,182,212,0.08)"
       category="social" slug="instagram-reach-calculator"
       faq={[

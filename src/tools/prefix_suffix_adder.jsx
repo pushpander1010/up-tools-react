@@ -53,7 +53,7 @@ export default function PrefixSuffixAdder() {
   return (
     <ToolLayout
       title="Prefix & Suffix Adder"
-      desc="Prefix & Suffix Adder - add prefix, suffix, or both to each line of text. Perfect for batch editing, online free. Free online, no sign-up. Works on any device."
+      desc="Add a prefix, suffix or both to every line of text for fast and accurate batch list editing and cleanup."
       icon="📎" iconBg="rgba(99,102,241,0.08)"
       category="text" slug="prefix-suffix-adder"
       faq={[

@@ -82,7 +82,7 @@ export default function TextToImage() {
   return (
     <ToolLayout
       title="Text to Image"
-      desc="Text to Image - convert text to a downloadable PNG image. Customize font, colors, and layout, online free. Free online, no sign-up. Works on any device."
+      desc="Turn any text into a downloadable PNG image with customizable fonts, colors, background, and layout styles."
       icon="📝" iconBg="rgba(99,102,241,0.08)"
       category="images" slug="text-to-image"
       faq={[

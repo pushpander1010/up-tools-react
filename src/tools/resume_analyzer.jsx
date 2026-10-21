@@ -112,7 +112,7 @@ export default function resume_analyzer() {
   return (
     <ToolLayout
       title="Resume Analyzer"
-      desc="Resume Analyzer - analyze your resume for ATS readability, keyword density, and JD match. Supports, online free. Free online, no sign-up. Works on any device."
+      desc="Analyze your resume for ATS readability, keyword density and job-description match with clear improvement suggestions."
       icon="📄" iconBg="rgba(34,197,94,0.08)"
       category="career" slug="resume-analyzer"
       faq={[

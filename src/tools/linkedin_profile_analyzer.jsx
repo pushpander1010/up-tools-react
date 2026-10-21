@@ -99,7 +99,7 @@ export default function linkedin_profile_analyzer() {
   return (
     <ToolLayout
       title="LinkedIn Profile Strength Analyzer"
-      desc="LinkedIn Profile Strength Analyzer - analyze your LinkedIn profile strength and get actionable tips, online free. Free online, no sign-up. Works on any device."
+      desc="Analyze your LinkedIn profile strength and get practical tips to improve every key section and skill."
       icon="💼" iconBg="rgba(10,102,194,0.08)"
       category="social" slug="linkedin-profile-analyzer"
       faq={[

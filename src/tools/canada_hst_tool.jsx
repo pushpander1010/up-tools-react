@@ -86,7 +86,7 @@ export default function canada_hst_tool() {
   return (
     <ToolLayout
       title="GST/HST Calculator (Canada)"
-      desc="GST/HST Calculator (Canada) - add or remove tax by province - supports HST provinces, online free. Free online, instant results. No sign-up, works on mobile."
+      desc="Add or remove GST and HST for any Canadian province with correct combined rates and a clear tax breakdown."
       icon="💵" iconBg="rgba(220,38,38,0.08)"
       category="canada" slug="canada-hst-tool"
       faq={[

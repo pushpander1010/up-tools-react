@@ -36,7 +36,7 @@ export default function wedding_budget_planner() {
   return (
     <ToolLayout
       title="Wedding Budget Planner"
-      desc="Wedding Budget Planner - plan and track your wedding expenses by category with planned vs actual comparison online free. Free online, no sign-up. Works on any device."
+      desc="Plan an Indian wedding budget across venue, food, decor, and photography while tracking planned versus actual spend."
       icon="💒" iconBg="rgba(236,72,153,0.08)"
       category="finance" slug="wedding-budget-planner"
       faq={[

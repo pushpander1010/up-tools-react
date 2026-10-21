@@ -93,7 +93,7 @@ export default function word_counter_plus() {
   return (
     <ToolLayout
       title="Advanced Word Counter"
-      desc="Advanced Word Counter - count words, characters, sentences, paragraphs, and estimate reading time., online free. Free online, no sign-up. Works on any device."
+      desc="Count words, characters, sentences and paragraphs in your text while estimating reading and speaking time accurately."
       icon="📝" iconBg="rgba(99,102,241,0.08)"
       category="text" slug="word-counter-plus"
       faq={[

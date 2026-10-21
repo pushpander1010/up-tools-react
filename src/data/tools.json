@@ -69,7 +69,7 @@
       "slug": "aadhaar-validator",
       "title": "Aadhaar Number Validator",
       "icon": "\ud83c\uddee\ud83c\uddf3",
-      "desc": "Aadhaar Number Validator - validate your 12-digit Aadhaar number instantly using the Verhoeff, online free. Free online,.",
+      "desc": "Validate a 12-digit Aadhaar number instantly using the Verhoeff checksum algorithm for correct format and structure.",
       "href": "/aadhaar-validator/",
       "tags": [
         "india",
@@ -84,7 +84,7 @@
       "slug": "accent-mark-generator",
       "title": "Accent Mark Generator",
       "icon": "\ud83c\udfa8",
-      "desc": "Accent Mark Generator - add accent marks and diacritics to text. Quick buttons for common, online free. Free online, no.",
+      "desc": "Add accent marks and diacritics to any text with quick-click buttons for common French, Spanish and German characters.",
       "href": "/accent-mark-generator/",
       "tags": [
         "language",
@@ -99,7 +99,7 @@
       "slug": "word-counter-plus",
       "title": "Advanced Word Counter",
       "icon": "\ud83d\udcdd",
-      "desc": "Advanced Word Counter - count words, characters, sentences, paragraphs, and estimate reading time., online free. Free online,.",
+      "desc": "Count words, characters, sentences and paragraphs in your text while estimating reading and speaking time accurately.",
       "href": "/word-counter-plus/",
       "tags": [
         "text"
@@ -113,7 +113,7 @@
       "slug": "aes-encryption",
       "title": "AES Encryption Tool",
       "icon": "\ud83d\udd10",
-      "desc": "AES Encryption Tool - encrypt & decrypt text with AES-256-GCM using the Web Crypto API. Client-side, online free. Free online,.",
+      "desc": "Encrypt and decrypt text with AES-256-GCM securely in your browser using the Web Crypto API for full privacy.",
       "href": "/aes-encryption/",
       "tags": [
         "security",
@@ -129,7 +129,7 @@
       "slug": "age-calculator",
       "title": "Age Calculator",
       "icon": "\ud83c\udf82",
-      "desc": "Age Calculator - calculate your exact age in years, months, and days. Find your zodiac, online free. Free online, instant.",
+      "desc": "Calculate your exact age in years, months and days from your birthdate, including zodiac sign and birthday countdown.",
       "href": "/age-calculator/",
       "tags": [
         "identity"
@@ -158,7 +158,7 @@
       "slug": "age-calculator-pro",
       "title": "Age Calculator Pro",
       "icon": "\ud83c\udf82",
-      "desc": "Age Calculator Pro - calculate your age at any date. See total days, hours, minutes,, online free. Free online, instant.",
+      "desc": "Calculate your exact age at any given date with totals for days, hours and minutes plus a clear year-by-year breakdown.",
       "href": "/age-calculator-pro/",
       "tags": [
         "tools"
@@ -210,7 +210,7 @@
       "slug": "ai-blog-generator",
       "title": "AI Blog Post Generator",
       "icon": "\ud83d\udcdd",
-      "desc": "AI Blog Post Generator - generate full SEO-optimized blog posts instantly with AI. Enter a topic,, online free. Free online,.",
+      "desc": "Generate a complete SEO-optimized blog post from any topic, with headline, outline, sections and meta description included.",
       "href": "/ai-blog-generator/",
       "tags": [
         "ai",
@@ -246,7 +246,7 @@
       "slug": "ai-business-name-generator",
       "title": "AI Business Name Generator",
       "icon": "\ud83d\udca1",
-      "desc": "AI Business Name Generator - generate unique, catchy business names with AI. Get 20 name ideas with, online free. Free online,.",
+      "desc": "Generate twenty unique and catchy business name ideas from your keywords, complete with meanings and style suggestions.",
       "href": "/ai-business-name-generator/",
       "tags": [
         "ai",
@@ -281,7 +281,7 @@
       "slug": "ai-cover-letter",
       "title": "AI Cover Letter Generator",
       "icon": "\ud83d\udcc4",
-      "desc": "AI Cover Letter Generator - generate professional cover letters instantly with AI. Fill in your, online free. Free online, no.",
+      "desc": "Create a polished professional cover letter from your role, skills and experience with clean formatting ready to send.",
       "href": "/ai-cover-letter/",
       "tags": [
         "ai",
@@ -394,7 +394,7 @@
       "slug": "ai-name-generator",
       "title": "AI Name Generator",
       "icon": "\ud83e\udd16",
-      "desc": "AI Name Generator - generate baby names, business names, brand names, startup names, character, online free. Free online, no.",
+      "desc": "Generate creative names for babies, businesses, brands, startups and characters from themes, styles and keywords.",
       "href": "/ai-name-generator/",
       "tags": [
         "ai",
@@ -410,7 +410,7 @@
       "slug": "ai-plagiarism",
       "title": "AI Plagiarism Checker",
       "icon": "\ud83d\udee1\ufe0f",
-      "desc": "AI Plagiarism Checker & Paraphraser - check originality, paraphrase for higher uniqueness, or, online free. Free online,.",
+      "desc": "Check text originality, detect repeated phrasing and paraphrase passages to improve uniqueness and readability.",
       "href": "/ai-plagiarism/",
       "tags": [
         "ai",
@@ -443,7 +443,7 @@
       "slug": "ai-prompts",
       "title": "AI Prompts Library",
       "icon": "\ud83e\udde0",
-      "desc": "AI Prompts Library - copy-paste prompts for image editing, web dev, SEO, resumes, data science, free online.",
+      "desc": "Browse a curated library of copy-paste AI prompts for image editing, web development, SEO, resumes and data science.",
       "href": "/ai-prompts/",
       "tags": [
         "ai",
@@ -460,7 +460,7 @@
       "slug": "resume-analyzer",
       "title": "AI Resume Analyzer",
       "icon": "\ud83d\udcbc",
-      "desc": "Resume Analyzer - analyze your resume for ATS readability, keyword density, and JD match. Supports, online free. Free online,.",
+      "desc": "Analyze your resume for ATS readability, keyword density and job-description match with clear improvement suggestions.",
       "href": "/resume-analyzer/",
       "tags": [
         "ai",
@@ -476,7 +476,7 @@
       "slug": "rawcv-resume-builder",
       "title": "AI Resume Builder (rawcv)",
       "icon": "\ud83d\udcc4",
-      "desc": "Build an ATS-friendly resume with AI. Free, no login, no watermark.",
+      "desc": "Build a polished ATS-friendly resume with guided sections, smart formatting and a clean download ready for applications.",
       "href": "https://www.rawcv.com/build",
       "tags": [
         "ai",
@@ -552,7 +552,7 @@
       "slug": "ai-writer",
       "title": "AI Writing Assistant",
       "icon": "\u270d\ufe0f",
-      "desc": "AI Writing Assistant - summarize, rewrite, translate, extract keywords, generate outlines, and, online free. Free online, no.",
+      "desc": "Summarize, rewrite, translate, extract keywords and generate outlines to draft clear content from rough ideas quickly.",
       "href": "/ai-writer/",
       "tags": [
         "ai",
@@ -568,7 +568,7 @@
       "slug": "ai-youtube-script",
       "title": "AI YouTube Script Writer",
       "icon": "\ud83c\udfac",
-      "desc": "AI YouTube Script Writer - write complete, retention-optimized YouTube video scripts with hooks,, online free. Free online, no.",
+      "desc": "Write a complete retention-optimized YouTube script from your topic, with hooks, pacing and a strong call to action.",
       "href": "/ai-youtube-script/",
       "tags": [
         "ai",
@@ -734,7 +734,7 @@
       "slug": "ascii-art-generator",
       "title": "ASCII Art Generator",
       "icon": "\ud83c\udfa8",
-      "desc": "ASCII Art Generator - convert text to ASCII art with multiple fonts. Create styled text for social, online free. Free online,.",
+      "desc": "Convert words and phrases into stylish ASCII art using multiple fonts, perfect for social posts and playful messages.",
       "href": "/ascii-art-generator/",
       "tags": [
         "text",
@@ -750,7 +750,7 @@
       "slug": "bank-branch-finder",
       "title": "Bank Branch Finder",
       "icon": "\ud83c\udfe6",
-      "desc": "Bank Branch Finder - find bank branches, ATMs, and contact details. Search for nearest bank, online free. Free online, instant.",
+      "desc": "Find nearby bank branches and ATMs with addresses, IFSC codes and contact details through fast location search.",
       "href": "/bank-branch-finder/",
       "tags": [
         "banking",
@@ -765,7 +765,7 @@
       "slug": "barcode-generator",
       "title": "Barcode Generator",
       "icon": "\ud83d\udcca",
-      "desc": "Barcode Generator - generate CODE128, EAN-13, UPC-A and Code 39 barcodes. Download as PNG, online free. Free online, no.",
+      "desc": "Generate CODE128, EAN-13, UPC-A and Code 39 barcodes from your data and download them as crisp PNG images.",
       "href": "/barcode-generator/",
       "tags": [
         "dev",
@@ -780,7 +780,7 @@
       "slug": "base64-encoder",
       "title": "Base64 Encoder & Decoder",
       "icon": "\ud83e\uddec",
-      "desc": "Base64 Encoder & Decoder - encode text to Base64 or decode Base64 strings back to text. Works with, online free. Free online,.",
+      "desc": "Encode plain text to Base64 or decode Base64 strings back to readable text with full Unicode support built in.",
       "href": "/base64-encoder/",
       "tags": [
         "dev",
@@ -830,7 +830,7 @@
       "slug": "best-of-five-calculator",
       "title": "Best of Five Calculator",
       "icon": "\ud83e\uddee",
-      "desc": "Best of Five Calculator - automatically pick the five strongest subjects from board, online free. Free online, instant.",
+      "desc": "Pick your five strongest board-exam subjects automatically and compute the best-of-five percentage with clear totals.",
       "href": "/best-of-five-calculator/",
       "tags": [
         "education",
@@ -865,7 +865,7 @@
       "slug": "bible-verse",
       "title": "Bible Verse Lookup",
       "icon": "\u271d\ufe0f",
-      "desc": "Bible Verse - look up Bible verses with multiple translations, online free. Free online, no sign-up. Works on any device, anytime.",
+      "desc": "Look up Bible verses by reference across multiple translations with clean reading and easy verse comparison.",
       "href": "/bible-verse/",
       "tags": [
         "bible",
@@ -939,7 +939,7 @@
       "slug": "binary-code-translator",
       "title": "Binary Code Translator",
       "icon": "\ud83d\udd22",
-      "desc": "Binary Code Translator - convert text to binary, hexadecimal, and decimal codes. Also reverse, online free. Free online, no.",
+      "desc": "Translate text into binary, hexadecimal and decimal codes, or decode any of those formats back into plain text.",
       "href": "/binary-code-translator/",
       "tags": [
         "dev",
@@ -993,7 +993,7 @@
       "slug": "bmi-calculator",
       "title": "BMI Calculator",
       "icon": "\u2696\ufe0f",
-      "desc": "BMI Calculator - calculate your Body Mass Index instantly. Supports metric (kg/cm) and, online free. Free online, instant.",
+      "desc": "Calculate your Body Mass Index from height and weight in metric or imperial units with a clear health category.",
       "href": "/bmi-calculator/",
       "tags": [
         "health"
@@ -1007,7 +1007,7 @@
       "slug": "bmr-calculator",
       "title": "BMR Calculator",
       "icon": "\ud83d\udd25",
-      "desc": "BMR Calculator - basal metabolic rate with Mifflin-St Jeor, Harris-Benedict &, online free. Free online, instant results. No.",
+      "desc": "Estimate your basal metabolic rate with Mifflin-St Jeor and Harris-Benedict formulas plus daily calorie guidance.",
       "href": "/bmr-calculator/",
       "tags": [
         "health"
@@ -1021,7 +1021,7 @@
       "slug": "body-fat-percentage-calculator",
       "title": "Body Fat Percentage Calculator",
       "icon": "\ud83d\udcca",
-      "desc": "Body Fat Percentage Calculator - calculate body fat percentage using the Navy method., online free. Free online, instant.",
+      "desc": "Estimate body fat percentage with the U.S. Navy method from waist, neck, hip and height measurements.",
       "href": "/body-fat-percentage-calculator/",
       "tags": [
         "health",
@@ -1036,7 +1036,7 @@
       "slug": "body-frame-size",
       "title": "Body Frame Size Calculator",
       "icon": "\ud83e\uddb4",
-      "desc": "Body Frame Size Calculator - determine your body frame size (small, medium, or large), online free. Free online, instant.",
+      "desc": "Determine whether your body frame is small, medium or large from wrist and height measurements with clear charts.",
       "href": "/body-frame-size/",
       "tags": [
         "health"
@@ -1144,7 +1144,7 @@
       "slug": "calendar-generator",
       "title": "Calendar Generator",
       "icon": "\ud83d\udcc5",
-      "desc": "Calendar Generator - generate printable monthly or yearly calendars. Customize year, month, start, online free. Free online,.",
+      "desc": "Generate printable monthly or yearly calendars for any year with custom week start, holidays and clean layouts.",
       "href": "/calendar-generator/",
       "tags": [
         "productivity",
@@ -1180,7 +1180,7 @@
       "slug": "calorie-calculator",
       "title": "Calorie Calculator",
       "icon": "\ud83c\udf4e",
-      "desc": "Calorie Calculator - calculate your daily calorie needs using the Mifflin-St Jeor, online free. Free online, instant results..",
+      "desc": "Estimate your daily calorie needs from age, weight, height and activity level using the Mifflin-St Jeor formula.",
       "href": "/calorie-calculator/",
       "tags": [
         "health",
@@ -1196,7 +1196,7 @@
       "slug": "calorie-intake-calculator",
       "title": "Calorie Intake Calculator",
       "icon": "\ud83d\udd25",
-      "desc": "Calorie Intake Calculator - calculate your daily calorie needs based on age, weight,, online free. Free online, instant.",
+      "desc": "Calculate your ideal daily calorie intake for maintenance, loss or gain based on body stats and activity level.",
       "href": "/calorie-intake-calculator/",
       "tags": [
         "health",
@@ -1226,7 +1226,7 @@
       "slug": "canada-hst-tool",
       "title": "Canada GST/HST Calculator",
       "icon": "\ud83d\udcb8",
-      "desc": "GST/HST Calculator (Canada) - add or remove tax by province - supports HST provinces, online free. Free online, instant.",
+      "desc": "Add or remove GST and HST for any Canadian province with correct combined rates and a clear tax breakdown.",
       "href": "/canada-hst-tool/",
       "tags": [
         "canada",
@@ -1263,7 +1263,7 @@
       "slug": "canada-tax-bracket-calculator",
       "title": "Canada Tax Brackets",
       "icon": "\ud83c\udf41",
-      "desc": "Canada Federal Tax Calculator - estimate federal income tax in Canada using current, online free. Free online, instant.",
+      "desc": "Estimate Canadian federal income tax from your earnings using current brackets, rates and marginal calculations.",
       "href": "/canada-tax-bracket-calculator/",
       "tags": [
         "canada",
@@ -1401,7 +1401,7 @@
       "slug": "cgpa-calculator",
       "title": "CGPA Calculator",
       "icon": "\ud83c\udf93",
-      "desc": "CGPA Calculator - calculate CGPA on a 10-point Indian grading scale. Converts to, online free. Free online, instant results..",
+      "desc": "Calculate CGPA on the Indian 10-point grading scale from subject grades and convert it to an equivalent percentage.",
       "href": "/cgpa-calculator/",
       "tags": [
         "education"
@@ -1416,7 +1416,7 @@
       "slug": "character-counter",
       "title": "Character & Word Counter",
       "icon": "\ud83d\udd21",
-      "desc": "Character & Word Counter - count characters, words, sentences, lines and paragraphs in your text., online free. Free online,.",
+      "desc": "Count characters, words, sentences, lines and paragraphs in your text with accurate live totals as you type.",
       "href": "/character-counter/",
       "tags": [
         "text"
@@ -1452,7 +1452,7 @@
       "slug": "code-to-image",
       "title": "Code to Image",
       "icon": "\ud83d\udcf8",
-      "desc": "Code to Image Converter - convert code snippets to beautiful shareable images. Choose themes,, online free. Free online,.",
+      "desc": "Turn code snippets into beautiful shareable images with syntax highlighting, custom themes and clean exports.",
       "href": "/code-to-image/",
       "tags": [
         "dev",
@@ -1515,7 +1515,7 @@
       "slug": "color-contrast-checker",
       "title": "Color Contrast Checker",
       "icon": "\ud83d\udc41\ufe0f",
-      "desc": "Color Contrast Checker - wCAG contrast checker for accessible colors. Test foreground/background, online free. Free online,.",
+      "desc": "Test foreground and background color pairs for WCAG contrast ratios to ensure accessible, readable designs.",
       "href": "/color-contrast-checker/",
       "tags": [
         "design",
@@ -1531,7 +1531,7 @@
       "slug": "color-palette-from-image",
       "title": "Color Palette from Image",
       "icon": "\ud83c\udfa8",
-      "desc": "Color Palette from Image - extract a beautiful color palette from any image. Upload and get HEX,, online free. Free online, no.",
+      "desc": "Upload any image to extract a harmonious color palette with HEX and RGB codes ready for your design.",
       "href": "/color-palette-from-image/",
       "tags": [
         "images",
@@ -1561,7 +1561,7 @@
       "slug": "color-palette-generator-pro",
       "title": "Color Palette Pro",
       "icon": "\ud83c\udf08",
-      "desc": "Color Palette Generator - generate color palettes from a base color. Analogous, complementary,, online free. Free online, no.",
+      "desc": "Generate harmonious palettes from one base color using analogous, complementary and triadic color harmony rules.",
       "href": "/color-palette-generator-pro/",
       "tags": [
         "images"
@@ -1575,7 +1575,7 @@
       "slug": "color-picker",
       "title": "Color Picker",
       "icon": "\ud83c\udfa8",
-      "desc": "Color Picker & Converter - pick colors, convert between HEX, RGB, and HSL, check WCAG contrast,, online free. Free online,.",
+      "desc": "Pick any color and convert it between HEX, RGB and HSL formats while checking contrast for accessible combinations.",
       "href": "/color-picker/",
       "tags": [
         "images",
@@ -1591,7 +1591,7 @@
       "slug": "color-tool",
       "title": "Color Picker & Converter",
       "icon": "\ud83c\udfa8",
-      "desc": "Color Tool - pick colors, convert between HEX, RGB, HSL, and CMYK formats. Generate complementary,, online free. Free online,.",
+      "desc": "Pick colors and convert between HEX, RGB, HSL and CMYK formats while building complementary and analogous schemes.",
       "href": "/color-tool/",
       "tags": [
         "design",
@@ -1628,7 +1628,7 @@
       "slug": "contact",
       "title": "Contact UpTools",
       "icon": "\u2709\ufe0f",
-      "desc": "Contact Us - get in touch with the UpTools team. Report bugs, suggest features, or ask questions, online free. Free online, no.",
+      "desc": "Reach the UpTools team to report bugs, suggest new tools or ask questions with a simple message form.",
       "href": "/contact/",
       "tags": [
         "text"
@@ -1642,7 +1642,7 @@
       "slug": "countdown-timer",
       "title": "Countdown Timer",
       "icon": "\u23f2\ufe0f",
-      "desc": "Countdown Timer - set a countdown timer with custom or preset durations. Start, pause, and reset, online free. Free online, no.",
+      "desc": "Set a custom countdown with preset durations, start, pause and reset controls plus a clear completion alert.",
       "href": "/countdown-timer/",
       "tags": [
         "productivity",
@@ -1699,7 +1699,7 @@
       "slug": "cra-noa-checklist",
       "title": "CRA NOA Checklist",
       "icon": "\ud83c\udf41",
-      "desc": "CRA Notice of Assessment Checklist - checklist for preparing your CRA Notice of Assessment review., online free. Free online,.",
+      "desc": "Review your CRA Notice of Assessment step by step with a checklist for slips, balances and filing details.",
       "href": "/cra-noa-checklist/",
       "tags": [
         "canada",
@@ -1715,7 +1715,7 @@
       "slug": "cra-refund-estimator",
       "title": "CRA Refund Estimator",
       "icon": "\ud83c\udf41",
-      "desc": "CRA Refund Estimator - estimate CRA refund or balance owing using tax paid vs tax owed, online free. Free online, no sign-up..",
+      "desc": "Estimate your CRA tax refund or balance owing by comparing withheld tax against your actual tax payable.",
       "href": "/cra-refund-estimator/",
       "tags": [
         "canada",
@@ -1794,7 +1794,7 @@
       "slug": "cron-expression-generator",
       "title": "Cron Expression Generator",
       "icon": "\u23f0",
-      "desc": "Cron Expression Generator - build cron expressions with a visual interface. Set minute, hour, day,, online free. Free online,.",
+      "desc": "Build correct cron expressions visually by setting minutes, hours, days and months with a plain-English preview.",
       "href": "/cron-expression-generator/",
       "tags": [
         "dev"
@@ -1915,7 +1915,7 @@
       "slug": "css-animation-generator",
       "title": "CSS Animation Generator",
       "icon": "\ud83c\udfac",
-      "desc": "CSS Animation Generator - build CSS @keyframes visually with live preview. Adjust timing, duration,, online free. Free online,.",
+      "desc": "Design CSS keyframe animations visually with live preview, then copy clean code for timing, easing and loops.",
       "href": "/css-animation-generator/",
       "tags": [
         "dev",
@@ -1930,7 +1930,7 @@
       "slug": "css-filter-generator",
       "title": "CSS Filter Generator",
       "icon": "\ud83c\udfac",
-      "desc": "CSS Filter Generator - visual CSS filter builder with live preview. Adjust blur, brightness,, online free. Free online, no.",
+      "desc": "Build CSS image filters visually with live preview for blur, brightness, contrast, saturation and hue effects.",
       "href": "/css-filter-generator/",
       "tags": [
         "dev",
@@ -1945,7 +1945,7 @@
       "slug": "css-gradient-generator",
       "title": "CSS Gradient Generator",
       "icon": "\ud83c\udfa8",
-      "desc": "CSS Gradient Generator - create beautiful CSS gradients with live preview. Build linear, radial,, online free. Free online, no.",
+      "desc": "Create smooth linear, radial and conic CSS gradients with live preview and copy-ready stylesheet code.",
       "href": "/css-gradient-generator/",
       "tags": [
         "dev"
@@ -1959,7 +1959,7 @@
       "slug": "css-minifier",
       "title": "CSS Minifier & Beautifier",
       "icon": "\ud83c\udfa8",
-      "desc": "CSS Minifier & Beautifier - minify CSS to reduce file size, or beautify it for readability with, online free. Free online, no.",
+      "desc": "Minify CSS to shrink file size for production or beautify compressed CSS into readable, indented code.",
       "href": "/css-minifier/",
       "tags": [
         "dev",
@@ -2053,7 +2053,7 @@
       "slug": "days-between-dates",
       "title": "Days Between Dates",
       "icon": "\ud83d\udcc5",
-      "desc": "Days Between Dates Calculator - calculate days, weeks, months, and years between two, online free. Free online, instant.",
+      "desc": "Calculate the days, weeks, months and years between two dates with a clear breakdown of elapsed time.",
       "href": "/days-between-dates/",
       "tags": [
         "time",
@@ -2087,7 +2087,7 @@
       "slug": "density-converter",
       "title": "Density Converter",
       "icon": "\ud83d\udce6",
-      "desc": "Density Converter - convert between kg/m\u00b3, g/cm\u00b3, lb/ft\u00b3, and lb/in\u00b3 instantly, online free. Free online, instant results. No.",
+      "desc": "Convert density values between kilograms per cubic metre, grams per cubic centimetre and pounds per cubic foot.",
       "href": "/density-converter/",
       "tags": [
         "conversion",
@@ -2137,7 +2137,7 @@
       "slug": "diwali-greeting-card-maker",
       "title": "Diwali Greeting Card Maker",
       "icon": "\ud83e\ude94",
-      "desc": "Make a Happy Diwali greeting card with your name: 3 festive themes, instant download and WhatsApp share. Free, no sign-up.",
+      "desc": "Design a personalized Happy Diwali greeting card with your name across festive themes ready to share on WhatsApp.",
       "tags": [
         "diwali",
         "greeting-card",
@@ -2219,7 +2219,7 @@
       "slug": "domain-finder",
       "title": "Domain Name Finder",
       "icon": "\ud83d\udd0d",
-      "desc": "Find brandable domain names and check live availability. Generate domain ideas from keywords and see which are actually free.",
+      "desc": "Brainstorm brandable domain name ideas from keywords and check live availability to find one you can register.",
       "href": "/domain-finder/",
       "tags": [
         "networking",
@@ -2251,7 +2251,7 @@
       "slug": "duplicate-line-remover",
       "title": "Duplicate Line Remover",
       "icon": "\ud83d\uddd1\ufe0f",
-      "desc": "Duplicate Line Remover - remove duplicate lines, count unique entries, and clean up your text. All, online free. Free online,.",
+      "desc": "Remove duplicate lines from any list or text, count unique entries, and sort or clean everything in one step.",
       "href": "/duplicate-line-remover/",
       "tags": [
         "text",
@@ -2307,7 +2307,7 @@
       "slug": "email-validator",
       "title": "Email Validator",
       "icon": "\u2709\ufe0f",
-      "desc": "Email Validator - validate email format, verify MX records, check disposable domains, and test, online free. Free online,.",
+      "desc": "Validate email address format, verify MX records and detect disposable domains to keep your list clean.",
       "href": "/email-validator/",
       "tags": [
         "security",
@@ -2346,7 +2346,7 @@
       "slug": "emoji-picker",
       "title": "Emoji Picker",
       "icon": "\ud83d\ude04",
-      "desc": "Emoji Picker - browse, search & copy 1500+ emojis organized by category, online free. Free online, no sign-up. Works on any.",
+      "desc": "Browse and search more than 1500 emojis by category, then click any emoji to copy it for chats and posts.",
       "href": "/emoji-picker/",
       "tags": [
         "fun",
@@ -2362,7 +2362,7 @@
       "slug": "energy-converter",
       "title": "Energy Converter",
       "icon": "\u26a1",
-      "desc": "Energy Converter - convert between Joules, Calories, BTU, kWh, and Erg instantly, online free. Free online, instant results..",
+      "desc": "Convert energy values between joules, calories, BTUs, kilowatt-hours and ergs with precise instant results.",
       "href": "/energy-converter/",
       "tags": [
         "conversion",
@@ -2415,7 +2415,7 @@
       "slug": "exif-tool",
       "title": "EXIF Tool",
       "icon": "\ud83d\udd75\ufe0f",
-      "desc": "EXIF Data Viewer - view and analyze image metadata (EXIF, GPS, camera info). Remove metadata for, online free. Free online, no.",
+      "desc": "View image EXIF metadata including camera, GPS and exposure details, and strip it before sharing privately.",
       "href": "/exif-tool/",
       "tags": [
         "images",
@@ -2451,7 +2451,7 @@
       "slug": "experience-letter-generator",
       "title": "Experience Letter Generator \u2014 Free Format",
       "icon": "\ud83d\udcdc",
-      "desc": "Create a formal experience letter online free. Enter employee, company, role and tenure, preview the letter, copy or download. No sign-up.",
+      "desc": "Create a formal employment experience letter by entering employee, company, role and tenure details for download.",
       "href": "/experience-letter-generator/",
       "tags": [
         "experience-letter",
@@ -2471,7 +2471,7 @@
       "slug": "facebook-video-downloader",
       "title": "Facebook Video Downloader",
       "icon": "\ud83d\udcf9",
-      "desc": "Facebook Video Downloader - download Facebook videos, Reels, and Stories in HD quality instantly, online free. Free online in.",
+      "desc": "Save Facebook videos, Reels and Stories in HD quality by pasting the video link and choosing your preferred format.",
       "href": "/facebook-video-downloader/",
       "tags": [
         "social",
@@ -2534,7 +2534,7 @@
       "slug": "favicon-generator",
       "title": "Favicon Generator",
       "icon": "\ud83c\udfa8",
-      "desc": "Favicon Generator - generate favicons from text with customizable colors. Download in multiple sizes, online free. Free.",
+      "desc": "Design a custom favicon from text and colors, then download it in every size needed for browsers and apps.",
       "href": "/favicon-generator/",
       "tags": [
         "dev",
@@ -2863,7 +2863,7 @@
       "slug": "find-and-replace",
       "title": "Find & Replace",
       "icon": "\ud83d\udd0d",
-      "desc": "Find & Replace - find and replace text across your content. Supports regex, case-sensitive, online free. Free online, instant.",
+      "desc": "Find and replace words or phrases across large text with case-sensitive and regular-expression matching options.",
       "href": "/find-and-replace/",
       "tags": [
         "text",
@@ -2898,7 +2898,7 @@
       "slug": "food-randomizer",
       "title": "Food Randomizer",
       "icon": "\ud83c\udf7d\ufe0f",
-      "desc": "Random Food Generator - discover delicious dishes from around the world by category, online free. Free online, no sign-up..",
+      "desc": "Discover random dishes from world cuisines by category, diet or mood when you cannot decide what to eat.",
       "href": "/food-randomizer/",
       "tags": [
         "food",
@@ -2951,7 +2951,7 @@
       "slug": "games",
       "title": "Free Mini Games",
       "icon": "\ud83c\udfae",
-      "desc": "Free Mini Games - play Snake, Tetris, 2048, Pac-Man, Wordle and more online free. No download, no sign-up.",
+      "desc": "Play classic mini games like Snake, Tetris, 2048, Pac-Man and Wordle directly in your browser for quick fun.",
       "href": "/games/",
       "tags": [
         "fun"
@@ -3017,7 +3017,7 @@
       "slug": "freelance-rate-calculator",
       "title": "Freelance Rate Calculator \u2014 Hourly & Project Rates",
       "icon": "\ud83d\udcbb",
-      "desc": "Price your freelance work right: target income, hours and expenses give hourly, daily and per-project rates with full breakdown. Free, no sign-up.",
+      "desc": "Price freelance work from target income, hours and expenses with hourly, daily and per-project rate breakdowns.",
       "href": "/freelance-rate-calculator/",
       "tags": [
         "freelance",
@@ -3038,7 +3038,7 @@
       "slug": "frequency-converter",
       "title": "Frequency Converter",
       "icon": "\ud83d\udcfb",
-      "desc": "Frequency Converter - convert between Hz, kHz, MHz, GHz, and RPM instantly. Essential tool for, online free. Free online,.",
+      "desc": "Convert frequency values between hertz, kilohertz, megahertz, gigahertz and RPM accurately in one step.",
       "href": "/frequency-converter/",
       "tags": [
         "conversion",
@@ -3053,7 +3053,7 @@
       "slug": "fuel-cost-calculator",
       "title": "Fuel Cost Calculator",
       "icon": "\u26fd",
-      "desc": "Fuel Cost Calculator - calculate exact fuel cost for your trip. Compare efficiency, online free. Free online, instant results..",
+      "desc": "Estimate exact trip fuel cost from distance, mileage and fuel price with efficiency comparisons for planning.",
       "href": "/fuel-cost-calculator/",
       "tags": [
         "tools"
@@ -3244,7 +3244,7 @@
       "slug": "gpa-calculator",
       "title": "GPA Calculator",
       "icon": "\ud83c\udf93",
-      "desc": "GPA Calculator - calculate semester and cumulative GPA with unweighted (4.0) or, online free. Free online, instant results. No.",
+      "desc": "Calculate semester and cumulative GPA on weighted or unweighted scales from course grades and credit hours.",
       "href": "/gpa-calculator/",
       "tags": [
         "education"
@@ -3258,7 +3258,7 @@
       "slug": "graphing-calculator",
       "title": "Graphing Calculator",
       "icon": "\ud83d\udcc8",
-      "desc": "Graphing Calculator - plot up to 3 functions. Supports sin, cos, tan, log, sqrt, abs,, online free. Free online, instant.",
+      "desc": "Plot up to three math functions with support for sine, cosine, tangent, logarithms, roots and absolute values.",
       "href": "/graphing-calculator/",
       "tags": [
         "math",
@@ -3293,7 +3293,7 @@
       "slug": "group-expense-splitter",
       "title": "Group Expense Splitter \u2014 Split Bills Fairly",
       "icon": "\ud83e\uddee",
-      "desc": "Split group expenses fairly: add members and expenses, get per-person balances and a settle-up plan. Perfect for roommates and trips. Free, no sign-up.",
+      "desc": "Split group expenses by adding members and payments to get per-person balances and a simple settle-up plan.",
       "href": "/group-expense-splitter/",
       "tags": [
         "split",
@@ -3337,7 +3337,7 @@
       "slug": "gst-invoice-generator",
       "title": "GST Invoice Generator",
       "icon": "\ud83e\uddfe",
-      "desc": "GST Invoice Generator - generate a GST-compliant invoice total: item amount, CGST, SGST/IGST and, online free. Free online, no.",
+      "desc": "Generate GST-compliant invoice totals with item amounts plus CGST, SGST or IGST breakup shown clearly.",
       "href": "/gst-invoice-generator/",
       "tags": [
         "tax",
@@ -3375,7 +3375,7 @@
       "slug": "habit-tracker",
       "title": "Habit Tracker",
       "icon": "\ud83d\udcca",
-      "desc": "Habit Tracker - track daily habits and build streaks. Monitor your progress and stay motivated, online free. Free online, no.",
+      "desc": "Track daily habits, build streaks and review your progress over time to stay consistent and motivated.",
       "href": "/habit-tracker/",
       "tags": [
         "productivity",
@@ -3405,7 +3405,7 @@
       "slug": "hash-generator",
       "title": "Hash Generator",
       "icon": "#\ufe0f\u20e3",
-      "desc": "Hash Generator - generate SHA-1, SHA-256, SHA-384, SHA-512 hashes from any text, online free. Free online, no sign-up. Works.",
+      "desc": "Generate SHA-1, SHA-256, SHA-384 and SHA-512 hashes from any text for verification and integrity checks.",
       "href": "/hash-generator/",
       "tags": [
         "dev",
@@ -3463,7 +3463,7 @@
       "slug": "hex-to-rgb-converter",
       "title": "HEX \u2194 RGB Converter",
       "icon": "\ud83c\udf08",
-      "desc": "HEX \u2194 RGB Converter - convert between HEX, RGB & HSL color formats with live preview, online free. Free online, instant.",
+      "desc": "Convert colors between HEX, RGB and HSL formats with instant live preview for accurate design matching.",
       "href": "/hex-to-rgb-converter/",
       "tags": [
         "design",
@@ -3745,7 +3745,7 @@
       "slug": "html-entity-encoder",
       "title": "HTML Entity Encoder/Decoder",
       "icon": "\ud83d\udd24",
-      "desc": "HTML Entity Encoder / Decoder - encode special characters to HTML entities for safe embedding, or, online free. Free online,.",
+      "desc": "Encode special characters into safe HTML entities for embedding, or decode entities back into plain characters.",
       "href": "/html-entity-encoder/",
       "tags": [
         "dev",
@@ -3761,7 +3761,7 @@
       "slug": "html-preview",
       "title": "HTML Preview",
       "icon": "\ud83c\udf10",
-      "desc": "HTML Preview - write HTML and see a live preview instantly. Edit markup and CSS, render in real time, online free. Free.",
+      "desc": "Write HTML and CSS in the editor and watch a live rendered preview update instantly as you type and edit.",
       "href": "/html-preview/",
       "tags": [
         "dev"
@@ -3775,7 +3775,7 @@
       "slug": "html-to-markdown",
       "title": "HTML \u21c4 Markdown Converter",
       "icon": "\ud83d\udcdd",
-      "desc": "HTML \u21c4 Markdown Converter - convert between HTML and Markdown formats instantly. Supports, online free. Free online, instant.",
+      "desc": "Convert HTML markup to clean Markdown or Markdown back to HTML while preserving headings, links and lists.",
       "href": "/html-to-markdown/",
       "tags": [
         "dev",
@@ -3790,7 +3790,7 @@
       "slug": "http-status-codes",
       "title": "HTTP Status Codes Reference",
       "icon": "\ud83c\udf10",
-      "desc": "HTTP Status Codes Reference - complete reference for all HTTP status codes with descriptions., online free. Free online, no.",
+      "desc": "Look up every HTTP status code with clear meanings, categories and practical guidance for debugging responses.",
       "href": "/http-status-codes/",
       "tags": [
         "dev",
@@ -3825,7 +3825,7 @@
       "slug": "ideal-weight-calculator",
       "title": "Ideal Weight Calculator",
       "icon": "\u2696\ufe0f",
-      "desc": "Ideal Weight Calculator - calculate your ideal body weight using the Devine formula., online free. Free online, instant.",
+      "desc": "Estimate your ideal body weight from height and frame using the Devine formula with a healthy range.",
       "href": "/ideal-weight-calculator/",
       "tags": [
         "health",
@@ -3840,7 +3840,7 @@
       "slug": "ifsc-bulk-lookup",
       "title": "IFSC Bulk Lookup",
       "icon": "\ud83c\udfe6",
-      "desc": "IFSC Bulk Lookup - search multiple IFSC codes at once. Get bank branch details instantly. Download, online free. Free online,.",
+      "desc": "Look up multiple IFSC codes at once and get bank names, branch addresses and MICR details in one table.",
       "href": "/ifsc-bulk-lookup/",
       "tags": [
         "banking",
@@ -3855,7 +3855,7 @@
       "slug": "ifsc-finder",
       "title": "IFSC Finder",
       "icon": "\ud83c\udfe7",
-      "desc": "IFSC Code Finder - find Indian bank branch details using IFSC code. Get bank name, branch,, online free. Free online, instant.",
+      "desc": "Find any Indian bank branch by IFSC code with bank name, branch address, MICR code and contact details shown clearly.",
       "href": "/ifsc-finder/",
       "tags": [
         "banking",
@@ -3870,7 +3870,7 @@
       "slug": "instagram-profile-picture-downloader",
       "title": "IG Profile Pic Downloader",
       "icon": "\ud83d\udcf8",
-      "desc": "Instagram profile picture downloader \u2014 view and download any public IG photo online free in full resolution.",
+      "desc": "View and download any public Instagram profile picture in full resolution as a clear high-quality image file.",
       "href": "/instagram-profile-picture-downloader/",
       "tags": [
         "instagram",
@@ -3887,7 +3887,7 @@
       "slug": "image-compressor",
       "title": "Image Compressor",
       "icon": "\ud83d\udce6",
-      "desc": "Compress JPG, PNG and WebP to a target size like 100 KB or 1 MB \u2014 free.",
+      "desc": "Compress JPG, PNG and WebP images down to a target size like 100 KB while preserving sharp visual quality.",
       "href": "/image-compressor/",
       "tags": [
         "images"
@@ -3901,7 +3901,7 @@
       "slug": "image-converter",
       "title": "Image Converter",
       "icon": "\ud83d\uddbc\ufe0f",
-      "desc": "Convert images between JPG, PNG, WebP, GIF, BMP and TIFF \u2014 free.",
+      "desc": "Convert images between JPG, PNG, WebP, GIF, BMP and TIFF formats with adjustable quality and size settings.",
       "href": "/image-converter/",
       "tags": [
         "images"
@@ -3915,7 +3915,7 @@
       "slug": "image-placeholder-generator",
       "title": "Image Placeholder Generator",
       "icon": "\ud83d\uddbc\ufe0f",
-      "desc": "Image Placeholder Generator - generate custom placeholder images for mockups. All processing done, online free. Free online,.",
+      "desc": "Generate custom placeholder images with exact dimensions, colors and labels for mockups and layouts.",
       "href": "/image-placeholder-generator/",
       "tags": [
         "design",
@@ -3932,7 +3932,7 @@
       "slug": "image-resizer",
       "title": "Image Resizer",
       "icon": "\ud83d\uddbc\ufe0f",
-      "desc": "Resize images online to exact pixels. JPG, PNG, WebP \u2014 free.",
+      "desc": "Resize JPG, PNG and WebP images to exact pixel dimensions while keeping the original aspect ratio intact.",
       "href": "/image-resizer/",
       "tags": [
         "images"
@@ -3946,7 +3946,7 @@
       "slug": "image-to-base64",
       "title": "Image to Base64",
       "icon": "\ud83d\uddbc\ufe0f",
-      "desc": "Image to Base64 - convert any image to a Base64 data URL. All processing done in your browser \u2014, online free. Free online, no.",
+      "desc": "Convert any image into a Base64 data URL for embedding directly in HTML, CSS or JSON code projects easily.",
       "href": "/image-to-base64/",
       "tags": [
         "dev",
@@ -4104,7 +4104,7 @@
       "slug": "indian-stock-market-live",
       "title": "Indian Stock Market Live: Nifty 50 & Sensex Today",
       "icon": "\ud83d\udcc8",
-      "desc": "Live Nifty 50, Sensex and Bank Nifty prices with top Indian stock quotes, today gainers and losers, 52-week range and 6-month charts. Free, no signup.",
+      "desc": "Track live Nifty 50, Sensex and Bank Nifty prices with top movers, 52-week ranges and intraday price charts.",
       "href": "/indian-stock-market-live/",
       "tags": [
         "stocks",
@@ -4129,7 +4129,7 @@
       "slug": "instagram-auditor",
       "title": "Instagram Auditor",
       "icon": "\ud83d\udcca",
-      "desc": "Instagram Auditor - find non-followers, fans & mutuals. Upload your Instagram data export for, online free. Free online, no.",
+      "desc": "Audit your Instagram audience by finding non-followers, loyal fans and mutuals from your data export file.",
       "href": "/instagram-auditor/",
       "tags": [
         "social",
@@ -4146,7 +4146,7 @@
       "slug": "instagram-best-time-to-post",
       "title": "Instagram Best Time to Post",
       "icon": "\u23f0",
-      "desc": "Instagram Best Time to Post - find the optimal times to post on Instagram for maximum reach and, online free. Free online, no.",
+      "desc": "Discover the best days and times to post on Instagram for higher reach and stronger audience engagement.",
       "href": "/instagram-best-time-to-post/",
       "tags": [
         "social",
@@ -4162,7 +4162,7 @@
       "slug": "instagram-bio-generator",
       "title": "Instagram Bio Generator",
       "icon": "\u2728",
-      "desc": "Instagram Bio Generator - create engaging and creative Instagram bios with AI. Get multiple, online free. Free online, no.",
+      "desc": "Create catchy Instagram bios in different styles and tones tailored to your profile, niche and personality.",
       "href": "/instagram-bio-generator/",
       "tags": [
         "social",
@@ -4179,7 +4179,7 @@
       "slug": "instagram-bio-link-generator",
       "title": "Instagram Bio Link Generator",
       "icon": "\ud83d\udd17",
-      "desc": "Instagram Bio Link Generator - create a beautiful link-in-bio page. Generate HTML you can host, online free. Free online, no.",
+      "desc": "Build a simple link-in-bio landing page that groups all your important links together in one neat place.",
       "href": "/instagram-bio-link-generator/",
       "tags": [
         "social",
@@ -4196,7 +4196,7 @@
       "slug": "instagram-caption-generator",
       "title": "Instagram Caption Generator",
       "icon": "\ud83d\udcac",
-      "desc": "Instagram Caption Generator - generate engaging captions for your Instagram posts. Multiple styles, online free. Free online,.",
+      "desc": "Generate engaging Instagram captions in multiple styles, from witty one-liners to thoughtful stories.",
       "href": "/instagram-caption-generator/",
       "tags": [
         "social",
@@ -4213,7 +4213,7 @@
       "slug": "instagram-carousel-downloader",
       "title": "Instagram Carousel Downloader",
       "icon": "\ud83d\uddbc\ufe0f",
-      "desc": "Instagram Carousel Downloader - download all images from Instagram carousel posts. Save every slide in, online free. Free.",
+      "desc": "Download every image slide from an Instagram carousel post in full quality directly to your device gallery.",
       "href": "/instagram-carousel-downloader/",
       "tags": [
         "social",
@@ -4229,7 +4229,7 @@
       "slug": "instagram-content-calendar",
       "title": "Instagram Content Calendar",
       "icon": "\ud83d\udcc5",
-      "desc": "Instagram Content Calendar - generate a weekly content calendar with post ideas, types, and, online free. Free online, no.",
+      "desc": "Generate a weekly Instagram content calendar with post ideas, formats and themed publishing schedules.",
       "href": "/instagram-content-calendar/",
       "tags": [
         "social",
@@ -4246,7 +4246,7 @@
       "slug": "instagram-dp-downloader",
       "title": "Instagram DP Downloader",
       "icon": "\ud83d\udc64",
-      "desc": "Instagram DP downloader \u2014 download Instagram profile pictures online free in HD. View any public photo by username, no login needed.",
+      "desc": "Download any public Instagram profile picture in HD quality by entering the account username in the box.",
       "href": "/instagram-dp-downloader/",
       "tags": [
         "social",
@@ -4262,7 +4262,7 @@
       "slug": "instagram-engagement-calculator",
       "title": "Instagram Engagement Calculator",
       "icon": "\ud83d\udcca",
-      "desc": "Instagram Engagement Calculator - calculate your Instagram engagement rate instantly., online free. Free online, instant.",
+      "desc": "Calculate any Instagram account engagement rate from likes, comments and follower counts in seconds.",
       "href": "/instagram-engagement-calculator/",
       "tags": [
         "social",
@@ -4278,7 +4278,7 @@
       "slug": "instagram-fake-follower-checker",
       "title": "Instagram Fake Follower Checker",
       "icon": "\ud83e\udd16",
-      "desc": "Instagram Fake Follower Checker - analyze your follower list for suspicious accounts using, online free. Free online, instant.",
+      "desc": "Spot suspicious or low-quality followers by analyzing profile signals across your full follower list.",
       "href": "/instagram-fake-follower-checker/",
       "tags": [
         "social",
@@ -4295,7 +4295,7 @@
       "slug": "instagram-follower-list-exporter",
       "title": "Instagram Follower List Exporter",
       "icon": "\ud83d\udccb",
-      "desc": "Instagram Follower List Exporter - upload your Instagram data export and convert your followers, online free. Free online, no.",
+      "desc": "Turn your Instagram data export into a clean, searchable and sortable list of all your followers quickly.",
       "href": "/instagram-follower-list-exporter/",
       "tags": [
         "social",
@@ -4312,7 +4312,7 @@
       "slug": "instagram-following-list-exporter",
       "title": "Instagram Following List Exporter",
       "icon": "\ud83d\udccb",
-      "desc": "Instagram Following List Exporter - upload your Instagram data export and convert your following, online free. Free online, no.",
+      "desc": "Turn your Instagram data export into a clean, searchable and sortable list of every account you follow.",
       "href": "/instagram-following-list-exporter/",
       "tags": [
         "social",
@@ -4329,7 +4329,7 @@
       "slug": "instagram-growth-calculator",
       "title": "Instagram Growth Calculator",
       "icon": "\ud83d\udcc8",
-      "desc": "Instagram Growth Calculator - project your Instagram follower growth based on, online free. Free online, instant results. No.",
+      "desc": "Project future Instagram follower counts and growth trends based on your current daily pace and history.",
       "href": "/instagram-growth-calculator/",
       "tags": [
         "social",
@@ -4345,7 +4345,7 @@
       "slug": "instagram-hashtag-generator",
       "title": "Instagram Hashtag Generator",
       "icon": "#\ufe0f\u20e3",
-      "desc": "Instagram Hashtag Generator - generate trending Instagram hashtags instantly. Get the best hashtags, online free. Free online,.",
+      "desc": "Generate relevant trending hashtags for any topic to boost the reach of your Instagram posts and Reels.",
       "href": "/instagram-hashtag-generator/",
       "tags": [
         "social",
@@ -4361,7 +4361,7 @@
       "slug": "instagram-highlight-downloader",
       "title": "Instagram Highlight Downloader",
       "icon": "\u2b50",
-      "desc": "Instagram Highlight Downloader - download Instagram story highlights from any public profile. Save, online free. Free online.",
+      "desc": "Save story highlights from any public Instagram profile to watch again later or keep for offline viewing.",
       "href": "/instagram-highlight-downloader/",
       "tags": [
         "social",
@@ -4377,7 +4377,7 @@
       "slug": "instagram-igtv-downloader",
       "title": "Instagram IGTV Downloader",
       "icon": "\ud83d\udcfa",
-      "desc": "Instagram IGTV Downloader - download Instagram IGTV long-form videos in HD quality. Save any public, online free. Free online.",
+      "desc": "Download long-form IGTV videos from public Instagram posts in HD quality as MP4 files within seconds.",
       "href": "/instagram-igtv-downloader/",
       "tags": [
         "social",
@@ -4394,7 +4394,7 @@
       "slug": "instagram-post-downloader",
       "title": "Instagram Post Downloader",
       "icon": "\ud83d\udcf8",
-      "desc": "Instagram Post Downloader - download Instagram photos, videos, and carousel posts in full quality., online free. Free online.",
+      "desc": "Download photos, videos and carousel posts from public Instagram links in full quality with one click.",
       "href": "/instagram-post-downloader/",
       "tags": [
         "social",
@@ -4410,7 +4410,7 @@
       "slug": "instagram-post-scheduler",
       "title": "Instagram Post Scheduler",
       "icon": "\u23f0",
-      "desc": "Instagram Post Scheduler - plan your weekly Instagram posts with optimal timing. Generate a content, online free. Free online,.",
+      "desc": "Plan a full week of Instagram posts with ideas, captions, hashtags and the best times to publish them.",
       "href": "/instagram-post-scheduler/",
       "tags": [
         "social",
@@ -4427,7 +4427,7 @@
       "slug": "instagram-reach-calculator",
       "title": "Instagram Reach Calculator",
       "icon": "\ud83c\udfaf",
-      "desc": "Instagram Reach Calculator - calculate your Instagram reach rate, impressions ratio,, online free. Free online, instant.",
+      "desc": "Measure Instagram reach rate and impressions ratio to understand how far your posts actually travel.",
       "href": "/instagram-reach-calculator/",
       "tags": [
         "social",
@@ -4443,7 +4443,7 @@
       "slug": "instagram-reels-downloader",
       "title": "Instagram Reels Downloader",
       "icon": "\ud83c\udfac",
-      "desc": "Instagram Reels downloader \u2014 download Reels videos online free in HD up to 1080p. No login needed.",
+      "desc": "Download any public Instagram Reel as an HD MP4 video in up to 1080p quality using just a single link.",
       "href": "/instagram-reels-downloader/",
       "tags": [
         "social",
@@ -4460,7 +4460,7 @@
       "slug": "instagram-reels-ideas",
       "title": "Instagram Reels Ideas Generator",
       "icon": "\ud83c\udfac",
-      "desc": "Instagram Reels Ideas - get creative ideas for your next Instagram Reels. Never run out of content, online free. Free online,.",
+      "desc": "Get fresh, creative Reel ideas tailored to your niche so you never run out of content to post again.",
       "href": "/instagram-reels-ideas/",
       "tags": [
         "social",
@@ -4493,7 +4493,7 @@
       "slug": "instagram-story-ideas-generator",
       "title": "Instagram Story Ideas Generator",
       "icon": "\ud83d\udca1",
-      "desc": "Instagram Story Ideas Generator - get 10 fresh story ideas for any niche. Never run out of content, online free. Free online,.",
+      "desc": "Get ten fresh Instagram Story ideas for any niche, from polls and quizzes to behind-the-scenes clips.",
       "href": "/instagram-story-ideas-generator/",
       "tags": [
         "social",
@@ -4510,7 +4510,7 @@
       "slug": "instagram-story-templates",
       "title": "Instagram Story Templates",
       "icon": "\ud83d\udcf1",
-      "desc": "Instagram Story Templates - browse ready-made story templates for any occasion. Business, personal,, online free. Free online,.",
+      "desc": "Browse ready-made Instagram Story layouts for business promos, personal updates and special event posts.",
       "href": "/instagram-story-templates/",
       "tags": [
         "social",
@@ -4527,7 +4527,7 @@
       "slug": "instagram-story-viewer",
       "title": "Instagram Story Viewer",
       "icon": "\ud83d\udc41\ufe0f",
-      "desc": "Instagram Story Viewer - view Instagram stories anonymously. Watch stories without the poster, online free. Free online, no.",
+      "desc": "Watch stories from public Instagram accounts anonymously without appearing in the viewer list at all.",
       "href": "/instagram-story-viewer/",
       "tags": [
         "social",
@@ -4543,7 +4543,7 @@
       "slug": "instagram-username-generator",
       "title": "Instagram Username Generator",
       "icon": "\ud83d\udc64",
-      "desc": "Instagram Username Generator - generate unique, creative Instagram username ideas. Choose from, online free. Free online, no.",
+      "desc": "Generate unique and memorable Instagram username ideas based on your name, keywords or chosen niche.",
       "href": "/instagram-username-generator/",
       "tags": [
         "social",
@@ -4559,7 +4559,7 @@
       "slug": "instagram-video-downloader",
       "title": "Instagram Video Downloader",
       "icon": "\ud83c\udfa5",
-      "desc": "Instagram Video Downloader - download Instagram videos, reels, and IGTV in high quality. Save MP4, online free. Free online in.",
+      "desc": "Download Instagram videos, Reels and IGTV clips from public post links as HD MP4 files within seconds.",
       "href": "/instagram-video-downloader/",
       "tags": [
         "social",
@@ -4658,7 +4658,7 @@
       "slug": "ip-address",
       "title": "IP Address & ISP Lookup",
       "icon": "\ud83c\udf10",
-      "desc": "IP Address & ISP Lookup - detect your public IP address, location, ISP, timezone, and coordinates, online free. Free online,.",
+      "desc": "Check your public IP address along with location, ISP name, timezone and precise geographic coordinates.",
       "href": "/ip-address/",
       "tags": [
         "networking",
@@ -4725,7 +4725,7 @@
       "slug": "ipl-team-stats",
       "title": "IPL Team Statistics",
       "icon": "\ud83d\udcc8",
-      "desc": "IPL Team Statistics - all-time records, wins, titles, and performance stats for all IPL franchises, online free. Free online,.",
+      "desc": "Explore all-time IPL team records covering titles, wins, losses and overall franchise performance history.",
       "href": "/ipl-team-stats/",
       "tags": [
         "cricket",
@@ -4741,7 +4741,7 @@
       "slug": "jee-percentile-predictor",
       "title": "JEE Main Percentile Predictor",
       "icon": "\ud83c\udf93",
-      "desc": "Predict your JEE Main percentile from marks: shift-difficulty adjustment, estimated rank range and Advanced qualifying chance. Free, no sign-up.",
+      "desc": "Estimate your JEE Main percentile, expected rank range and Advanced qualifying chance from your marks.",
       "tags": [
         "jee",
         "percentile",
@@ -4798,7 +4798,7 @@
       "slug": "json-formatter",
       "title": "JSON Formatter",
       "icon": "\ud83d\udee0\ufe0f",
-      "desc": "JSON Formatter - format, beautify, minify, and validate JSON instantly. Copy to clipboard, tree view, online free. Free.",
+      "desc": "Format, beautify, minify and validate JSON with a readable tree view plus clear error highlighting for fixes.",
       "href": "/json-formatter/",
       "tags": [
         "dev"
@@ -4812,7 +4812,7 @@
       "slug": "json-to-csv-converter",
       "title": "JSON to CSV Converter",
       "icon": "\ud83d\udcca",
-      "desc": "JSON to CSV Converter - convert a JSON array of objects into CSV instantly. Handles nested, online free. Free online, instant.",
+      "desc": "Convert a JSON array of objects into CSV rows quickly, including full support for nested data fields.",
       "href": "/json-to-csv-converter/",
       "tags": [
         "dev"
@@ -4827,7 +4827,7 @@
       "slug": "json-to-typescript",
       "title": "JSON to TypeScript",
       "icon": "\ud83d\udcd0",
-      "desc": "JSON to TypeScript Generator - convert JSON data to TypeScript interfaces with proper type, online free. Free online, no.",
+      "desc": "Convert JSON data into TypeScript interfaces with accurate types inferred for every nested field value.",
       "href": "/json-to-typescript/",
       "tags": [
         "dev",
@@ -4842,7 +4842,7 @@
       "slug": "jwt-debugger",
       "title": "JWT Debugger",
       "icon": "\ud83d\udee1\ufe0f",
-      "desc": "JWT Debugger - decode & inspect JWT tokens client-side. View header, payload, and signature info, online free. Free online, no.",
+      "desc": "Decode and inspect any JWT token to view its header claims, payload data and signature details safely.",
       "href": "/jwt-debugger/",
       "tags": [
         "dev",
@@ -4962,7 +4962,7 @@
       "slug": "linkedin-profile-analyzer",
       "title": "LinkedIn Profile Analyzer",
       "icon": "\ud83d\udcbc",
-      "desc": "LinkedIn Profile Strength Analyzer - analyze your LinkedIn profile strength and get actionable tips, online free. Free online,.",
+      "desc": "Analyze your LinkedIn profile strength and get practical tips to improve every key section and skill.",
       "href": "/linkedin-profile-analyzer/",
       "tags": [
         "social",
@@ -4978,7 +4978,7 @@
       "slug": "linkedin-video-downloader",
       "title": "LinkedIn Video Downloader",
       "icon": "\ud83d\udcbc",
-      "desc": "LinkedIn Video Downloader - download videos from LinkedIn posts, articles, and courses in HD quality., online free. Free.",
+      "desc": "Download videos from public LinkedIn posts and articles in HD quality as MP4 files with just one link.",
       "href": "/linkedin-video-downloader/",
       "tags": [
         "social",
@@ -4993,7 +4993,7 @@
       "slug": "list-sorter",
       "title": "List Sorter",
       "icon": "\ud83d\udccb",
-      "desc": "List Sorter - sort, shuffle, reverse, and deduplicate lists with advanced options, online free. Free online, no sign-up. Works.",
+      "desc": "Sort, shuffle, reverse and deduplicate line-based lists with case-sensitive ordering options included.",
       "href": "/list-sorter/",
       "tags": [
         "text",
@@ -5050,7 +5050,7 @@
       "slug": "lorem-ipsum-generator",
       "title": "Lorem Ipsum Generator",
       "icon": "\ud83d\udcc4",
-      "desc": "Lorem Ipsum Generator - generate Lorem Ipsum placeholder text with customizable paragraphs,, online free. Free online, no.",
+      "desc": "Generate Lorem Ipsum placeholder text with custom paragraph, sentence and word counts for any layout.",
       "href": "/lorem-ipsum-generator/",
       "tags": [
         "text"
@@ -5098,7 +5098,7 @@
       "slug": "lunar-calendar",
       "title": "Lunar Calendar",
       "icon": "\ud83c\udf19",
-      "desc": "Lunar Calendar - view lunar calendar with moon phases, lunar dates, and zodiac information, online free. Free online, no.",
+      "desc": "View the lunar calendar with moon phases, lunar dates and zodiac details for any chosen day or month.",
       "href": "/lunar-calendar/",
       "tags": [
         "time",
@@ -5113,7 +5113,7 @@
       "slug": "macro-calculator",
       "title": "Macro Calculator",
       "icon": "\ud83e\udd57",
-      "desc": "Macro Calculator - calculate macronutrient ratios: protein, carbs, and fats for your, online free. Free online, instant.",
+      "desc": "Calculate daily protein, carbohydrate and fat targets based on your calories, weight and fitness goal.",
       "href": "/macro-calculator/",
       "tags": [
         "health",
@@ -5169,7 +5169,7 @@
       "slug": "markdown-preview",
       "title": "Markdown Preview",
       "icon": "\ud83d\udcdd",
-      "desc": "Markdown Preview - write Markdown and see rendered output in real-time. Live preview editor, online free. Free online, no.",
+      "desc": "Write Markdown in the side editor and watch it render into formatted output in real time as you type.",
       "href": "/markdown-preview/",
       "tags": [
         "dev",
@@ -5312,7 +5312,7 @@
       "slug": "marriage-bio-data-maker",
       "title": "Marriage Bio-Data Maker \u2014 Shaadi Profile",
       "icon": "\ud83d\udc92",
-      "desc": "Make a beautiful marriage bio-data online free. Personal, education, family and partner-preference sections with printable card. No sign-up.",
+      "desc": "Create a printable marriage bio-data with personal, education, family and partner preference sections.",
       "href": "/marriage-bio-data-maker/",
       "tags": [
         "marriage",
@@ -5382,7 +5382,7 @@
       "slug": "meeting-scheduler",
       "title": "Meeting Scheduler",
       "icon": "\ud83c\udf0d",
-      "desc": "Meeting Scheduler - find the best meeting time across multiple timezones. Schedule meetings with, online free. Free online, no.",
+      "desc": "Find the best meeting time across world time zones by comparing availability side by side in one view.",
       "href": "/meeting-scheduler/",
       "tags": [
         "productivity",
@@ -5398,7 +5398,7 @@
       "slug": "meme-generator",
       "title": "Meme Generator",
       "icon": "\ud83d\ude02",
-      "desc": "Meme Generator - choose a classic meme template, add your text, and download. 100% client-side, online free. Free online, no.",
+      "desc": "Pick a classic meme template, add your own top and bottom text, and download your finished meme image.",
       "href": "/meme-generator/",
       "tags": [
         "fun",
@@ -5414,7 +5414,7 @@
       "slug": "mermaid-diagram-editor",
       "title": "Mermaid Diagram Editor",
       "icon": "\ud83d\udcca",
-      "desc": "Mermaid Diagram Editor - create flowcharts, sequence diagrams, class diagrams, and more using, online free. Free online, no.",
+      "desc": "Create flowcharts, sequence diagrams and class diagrams from simple Mermaid code with live preview pane.",
       "href": "/mermaid-diagram-editor/",
       "tags": [
         "dev",
@@ -5466,7 +5466,7 @@
       "slug": "morse-code-translator",
       "title": "Morse Code Translator",
       "icon": "\ud83d\udce1",
-      "desc": "Morse Code Translator - convert text to Morse code and back. Copy or share results instantly, online free. Free online, no.",
+      "desc": "Translate text into Morse code and decode Morse signals back into readable English with audio playback.",
       "href": "/morse-code-translator/",
       "tags": [
         "language",
@@ -5563,7 +5563,7 @@
       "slug": "name-age-guesser",
       "title": "Name Age & Gender Guesser",
       "icon": "\ud83d\udd2e",
-      "desc": "Name Age & Gender Guesser - predict age, gender, and nationality from any first name. Free, online free. Free online, no.",
+      "desc": "Predict the likely age, gender and nationality behind any given first name with smart data insights.",
       "href": "/name-age-guesser/",
       "tags": [
         "name",
@@ -5601,7 +5601,7 @@
       "slug": "nba-stats",
       "title": "NBA Stats",
       "icon": "\ud83c\udfc0",
-      "desc": "NBA Stats - look up NBA player stats, team standings, and game scores. Free live NBA statistics, online free. Free online, no.",
+      "desc": "Look up NBA player statistics, team standings and recent game scores together in one simple dashboard.",
       "href": "/nba-stats/",
       "tags": [
         "nba",
@@ -5830,7 +5830,7 @@
       "slug": "noc-letter-generator",
       "title": "NOC Letter Generator \u2014 Free Format",
       "icon": "\ud83d\udcc4",
-      "desc": "Generate a No Objection Certificate letter online free. Enter issuer, person, purpose and property or vehicle details, preview live, copy or download. No sign-up.",
+      "desc": "Draft a formal No Objection Certificate letter with issuer, recipient and purpose details filled in.",
       "href": "/noc-letter-generator/",
       "tags": [
         "noc",
@@ -5851,7 +5851,7 @@
       "slug": "note-taking-app",
       "title": "Note Taking App",
       "icon": "\ud83d\udcdd",
-      "desc": "Note Taking App - quick note-taking tool with auto-save to your browser. Save, clear, and export, online free. Free online, no.",
+      "desc": "Jot down quick notes that autosave in your browser, then organize, copy or export them anytime later.",
       "href": "/note-taking-app/",
       "tags": [
         "productivity",
@@ -5906,7 +5906,7 @@
       "slug": "numbers-to-words",
       "title": "Numbers to Words",
       "icon": "\ud83d\udd22",
-      "desc": "Numbers to Words - convert numbers to English words with Indian or international numbering system, online free. Free online,.",
+      "desc": "Convert any number into correct English words using the Indian or international numbering system easily.",
       "href": "/numbers-to-words/",
       "tags": [
         "text",
@@ -5922,7 +5922,7 @@
       "slug": "offer-letter-generator",
       "title": "Offer Letter Generator \u2014 Free HR Template",
       "icon": "\ud83d\udcdd",
-      "desc": "Generate a professional job offer letter in seconds. Enter candidate, company, role, CTC and joining date, preview live, copy or download. Free, no sign-up.",
+      "desc": "Draft a professional job offer letter with candidate name, role, CTC and joining date details included.",
       "href": "/offer-letter-generator/",
       "tags": [
         "offer-letter",
@@ -5964,7 +5964,7 @@
       "slug": "ovulation-calculator",
       "title": "Ovulation Calculator",
       "icon": "\ud83d\udd04",
-      "desc": "Ovulation Calculator - calculate ovulation date and fertility window for family, online free. Free online, instant results. No.",
+      "desc": "Estimate your ovulation date and fertile window from your last cycle dates and average cycle length.",
       "href": "/ovulation-calculator/",
       "tags": [
         "health",
@@ -5997,7 +5997,7 @@
       "slug": "pan-validator",
       "title": "PAN Format Validator",
       "icon": "\ud83e\udeaa",
-      "desc": "PAN Format Validator - validate Indian PAN card numbers instantly. Check format, identify entity, online free. Free online,.",
+      "desc": "Validate Indian PAN numbers by checking the format pattern and identifying the holder category type.",
       "href": "/pan-validator/",
       "tags": [
         "identity",
@@ -6012,7 +6012,7 @@
       "slug": "pan-aadhaar-link-status",
       "title": "PAN\u2013Aadhaar Link Status Guide",
       "icon": "\ud83d\udd17",
-      "desc": "PAN\u2013Aadhaar Link Status Checker (Guide) - validate PAN/Aadhaar format and jump to the official, online free. Free online,.",
+      "desc": "Check your PAN and Aadhaar number formats and follow the guided steps to verify their official link status.",
       "href": "/pan-aadhaar-link-status/",
       "tags": [
         "identity",
@@ -6027,7 +6027,7 @@
       "slug": "passphrase-generator",
       "title": "Passphrase Generator",
       "icon": "\ud83d\udd10",
-      "desc": "Passphrase Generator - generate strong, memorable passphrases (diceware-style) with customizable, online free. Free online, no.",
+      "desc": "Generate strong yet memorable diceware-style passphrases with custom word counts and separators added.",
       "href": "/passphrase-generator/",
       "tags": [
         "security"
@@ -6042,7 +6042,7 @@
       "slug": "passport-photo-maker",
       "title": "Passport Photo Maker",
       "icon": "\ud83d\udcf7",
-      "desc": "Make a passport photo online free: upload, crop and download print-ready 35x45mm, 2x2 inch US visa or EU size ID photos.",
+      "desc": "Turn a photo into a print-ready passport or visa picture with the correct size, crop and background.",
       "tags": [
         "passport-photo",
         "id-photo",
@@ -6060,7 +6060,7 @@
       "slug": "password-generator",
       "title": "Password Generator",
       "icon": "\ud83d\udd10",
-      "desc": "Password Generator - generate cryptographically secure passwords with real-time strength analysis, online free. Free online,.",
+      "desc": "Create strong random passwords with custom length, symbols and live strength feedback shown clearly.",
       "href": "/password-generator/",
       "tags": [
         "security"
@@ -6075,7 +6075,7 @@
       "slug": "password-strength-checker",
       "title": "Password Strength Checker",
       "icon": "\ud83d\udd12",
-      "desc": "Password Strength Checker - analyze password security with entropy calculation, criteria checks,, online free. Free online,.",
+      "desc": "Test password strength with entropy scoring, crack-time estimates and clear improvement suggestions.",
       "href": "/password-strength-checker/",
       "tags": [
         "security",
@@ -6091,7 +6091,7 @@
       "slug": "pdf-merger",
       "title": "PDF Merger",
       "icon": "\ud83d\udcd1",
-      "desc": "PDF Merger - merge multiple PDF files into one document. Free, fast, and private - no upload needed, online free. Free online,.",
+      "desc": "Combine multiple PDF files into a single document with all pages neatly arranged in your chosen order.",
       "href": "/pdf-merger/",
       "tags": [
         "tools"
@@ -6105,7 +6105,7 @@
       "slug": "pdf-splitter",
       "title": "PDF Splitter",
       "icon": "\u2702\ufe0f",
-      "desc": "PDF Splitter - split PDF files by page range, extract pages, or create separate documents. Free and, online free. Free online,.",
+      "desc": "Split a PDF by page range or extract selected pages into separate new documents quickly and very neatly.",
       "href": "/pdf-splitter/",
       "tags": [
         "tools"
@@ -6160,7 +6160,7 @@
       "slug": "periodic-table",
       "title": "Periodic Table",
       "icon": "\ud83e\uddea",
-      "desc": "Interactive Periodic Table of Elements - all 118 elements. Click any element for full details., online free. Free online, no.",
+      "desc": "Explore an interactive periodic table with key properties and facts for all 118 known chemical elements.",
       "href": "/periodic-table/",
       "tags": [
         "education",
@@ -6176,7 +6176,7 @@
       "slug": "phone-specs",
       "title": "Phone Specifications",
       "icon": "\ud83d\udcf1",
-      "desc": "Phone Specifications - search, view and compare smartphone specs online free. 100+ phones with full details, no sign-up, works.",
+      "desc": "Search and compare full smartphone specifications across more than a hundred popular phone models side by side.",
       "href": "/phone-specs/",
       "tags": [
         "phone",
@@ -6193,7 +6193,7 @@
       "slug": "phonetic-alphabet-converter",
       "title": "Phonetic Alphabet Converter",
       "icon": "\ud83d\udd24",
-      "desc": "Phonetic Alphabet Converter - convert text to NATO phonetic alphabet. Perfect for clear, online free. Free online, instant.",
+      "desc": "Convert any text into NATO phonetic alphabet words for clear, reliable and unambiguous spelling aloud.",
       "href": "/phonetic-alphabet-converter/",
       "tags": [
         "language",
@@ -6278,7 +6278,7 @@
       "slug": "pinterest-video-downloader",
       "title": "Pinterest Video Downloader",
       "icon": "\ud83d\udccc",
-      "desc": "Pinterest Video Downloader - free Pinterest video downloader. Download Pinterest pins, videos, and, online free. Free online.",
+      "desc": "Download Pinterest videos and pins from any public board link in high quality with just a single click.",
       "href": "/pinterest-video-downloader/",
       "tags": [
         "social",
@@ -6293,7 +6293,7 @@
       "slug": "pixel-art-editor",
       "title": "Pixel Art Editor",
       "icon": "\ud83c\udfa8",
-      "desc": "Pixel Art Editor - create pixel art in your browser. Click to paint, right-click to erase, online free. Free online, no.",
+      "desc": "Draw pixel art on a customizable grid with color palettes, then export your finished sprite image file.",
       "href": "/pixel-art-editor/",
       "tags": [
         "fun",
@@ -6309,7 +6309,7 @@
       "slug": "poetry-search",
       "title": "Poetry Search",
       "icon": "\ud83d\udcd6",
-      "desc": "Poetry Search - search thousands of poems by title, author, or first line, online free. Free online, no sign-up. Works on any.",
+      "desc": "Search thousands of classic poems by title, author name or opening line with instant matching results.",
       "href": "/poetry-search/",
       "tags": [
         "poetry",
@@ -6327,7 +6327,7 @@
       "slug": "pokemon-stats",
       "title": "Pokemon Stats Directory",
       "icon": "\ud83e\uddec",
-      "desc": "Pokemon Stats - browse all Pokemon with stats, types, and CSV export, online free. Fast search, no sign-up, works on mobile.",
+      "desc": "Browse every Pokemon with base stats, types and abilities, plus fast search by name or Pokedex number.",
       "href": "/pokemon-stats/",
       "tags": [
         "fun",
@@ -6342,7 +6342,7 @@
       "slug": "pomodoro-timer",
       "title": "Pomodoro Timer",
       "icon": "\ud83c\udf45",
-      "desc": "Pomodoro Timer - stay focused with the Pomodoro Technique. 25-minute focus sessions with short and, online free. Free online,.",
+      "desc": "Stay focused with timed 25-minute Pomodoro work sessions separated by structured short restorative breaks.",
       "href": "/pomodoro-timer/",
       "tags": [
         "tools",
@@ -6379,7 +6379,7 @@
       "slug": "power-converter",
       "title": "Power Converter",
       "icon": "\ud83d\udcaa",
-      "desc": "Power Converter - convert between Watts, Horsepower, Kilowatts, and BTU/h instantly, online free. Free online, instant.",
+      "desc": "Convert power units between watts, kilowatts, horsepower and BTU per hour accurately within seconds.",
       "href": "/power-converter/",
       "tags": [
         "conversion",
@@ -6415,7 +6415,7 @@
       "slug": "prefix-suffix-adder",
       "title": "Prefix & Suffix Adder",
       "icon": "\ud83d\udcce",
-      "desc": "Prefix & Suffix Adder - add prefix, suffix, or both to each line of text. Perfect for batch editing, online free. Free online,.",
+      "desc": "Add a prefix, suffix or both to every line of text for fast and accurate batch list editing and cleanup.",
       "href": "/prefix-suffix-adder/",
       "tags": [
         "text",
@@ -6431,7 +6431,7 @@
       "slug": "pressure-converter",
       "title": "Pressure Converter",
       "icon": "\ud83d\udd27",
-      "desc": "Pressure Converter - convert between PSI, bar, Pascal, ATM, and mmHg instantly, online free. Free online, instant results. No.",
+      "desc": "Convert pressure between PSI, bar, Pascal, atmospheres, and mmHg with precise bidirectional calculations.",
       "href": "/pressure-converter/",
       "tags": [
         "conversion",
@@ -6558,7 +6558,7 @@
       "slug": "quote-generator",
       "title": "Quote Generator",
       "icon": "\ud83d\udcac",
-      "desc": "Quote Generator - generate inspiring quotes by category. Save favorites and share, online free. Free online, no sign-up. Works.",
+      "desc": "Browse inspiring quotes by category, save your favorites, and share them easily with friends and followers.",
       "href": "/quote-generator/",
       "tags": [
         "quotes",
@@ -6576,7 +6576,7 @@
       "slug": "quran-verse",
       "title": "Quran Verse Lookup",
       "icon": "\u262a\ufe0f",
-      "desc": "Quran Verse - browse the Holy Quran with Arabic text and English translations, online free. Free online, no sign-up. Works on.",
+      "desc": "Browse the Holy Quran with original Arabic text alongside clear English translations by chapter and verse.",
       "href": "/quran-verse/",
       "tags": [
         "quran",
@@ -6656,7 +6656,7 @@
       "slug": "laya-decision-maker",
       "title": "Laya Decision Maker",
       "icon": "\ud83e\udde0",
-      "desc": "Laya Decision Maker - ask a question, list options, and the Laya AI decision model picks the best choice with probabilities. Free online,.",
+      "desc": "List your options and ask a question to get an AI-ranked recommendation with probability scores for each choice.",
       "href": "/laya-decision-maker/",
       "tags": [
         "tools",
@@ -6672,7 +6672,7 @@
       "slug": "random-choice-generator",
       "title": "Random Choice Generator",
       "icon": "\ud83c\udfb0",
-      "desc": "Random Choice Generator - decision maker with dramatic drum roll animation. Enter choices and pick, online free. Free online,.",
+      "desc": "Enter your options and let a dramatic drum-roll animation reveal one randomly selected winner from the list.",
       "href": "/random-choice-generator/",
       "tags": [
         "tools",
@@ -6688,7 +6688,7 @@
       "slug": "random-fact-generator",
       "title": "Random Fact Generator",
       "icon": "\ud83e\udde0",
-      "desc": "Random Fact Generator - discover amazing facts from science, history, nature & more, online free. Free online, no sign-up..",
+      "desc": "Discover fascinating facts from science, history, nature, and more with a fresh surprise on every click.",
       "href": "/random-fact-generator/",
       "tags": [
         "facts",
@@ -6705,7 +6705,7 @@
       "slug": "random-number-generator",
       "title": "Random Number Generator",
       "icon": "\ud83c\udfb2",
-      "desc": "Random Number Generator - generate cryptographically secure random numbers. Choose range and count, online free. Free online,.",
+      "desc": "Generate cryptographically secure random numbers within any custom range, one value or whole sets at once.",
       "href": "/random-number-generator/",
       "tags": [
         "text",
@@ -6721,7 +6721,7 @@
       "slug": "random-password-generator",
       "title": "Random Password Generator",
       "icon": "\ud83d\udd11",
-      "desc": "Random Password Generator - generate strong, cryptographically secure passwords. Customize length, online free. Free online,.",
+      "desc": "Create strong, cryptographically secure passwords with customizable length, symbols, and character sets.",
       "href": "/random-password-generator/",
       "tags": [
         "security"
@@ -6754,7 +6754,7 @@
       "slug": "regex-tester",
       "title": "Regex Tester",
       "icon": "\ud83e\uddea",
-      "desc": "Regex Tester - test regular expressions online with live matching and group capture. Instant,, online free. Free online,.",
+      "desc": "Test regular expressions with live pattern matching, highlighted results, and captured group inspection.",
       "href": "/regex-tester/",
       "tags": [
         "dev"
@@ -6768,7 +6768,7 @@
       "slug": "regex-visualizer",
       "title": "Regex Visualizer & Tester",
       "icon": "\ud83d\udd0d",
-      "desc": "Regex Visualizer & Tester - test, debug, and understand regular expressions with live match, online free. Free online, instant.",
+      "desc": "Test and debug regular expressions with live match highlighting plus a clear visual breakdown of the pattern.",
       "href": "/regex-visualizer/",
       "tags": [
         "dev",
@@ -6783,7 +6783,7 @@
       "slug": "rent-agreement-generator",
       "title": "Rent Agreement Draft Generator \u2014 Free Format",
       "icon": "\ud83c\udfd8\ufe0f",
-      "desc": "Draft a rent agreement online free. Enter landlord, tenant, property, rent, deposit and tenure, get a formatted draft with print and download. No sign-up.",
+      "desc": "Draft a formatted rent agreement from landlord, tenant, property, rent, deposit, and tenure details for printing.",
       "href": "/rent-agreement-generator/",
       "tags": [
         "rent-agreement",
@@ -6805,7 +6805,7 @@
       "slug": "rent-receipt-generator",
       "title": "Rent Receipt Generator \u2014 Monthly HRA Receipts",
       "icon": "\ud83e\uddfe",
-      "desc": "Generate printable monthly rent receipts for HRA claims. Enter tenant, landlord, rent and FY months, get itemised receipts with yearly HRA total. Free, no sign-up.",
+      "desc": "Generate printable monthly rent receipts for HRA claims with itemized entries and an annual total summary.",
       "href": "/rent-receipt-generator/",
       "tags": [
         "rent",
@@ -6867,7 +6867,7 @@
       "slug": "reverse-text",
       "title": "Reverse Text",
       "icon": "\ud83d\udd04",
-      "desc": "Reverse Text - reverse text characters, words, or lines instantly. All processing is done in your, online free. Free online,.",
+      "desc": "Reverse text by characters, words, or lines while keeping everything processed privately in your browser.",
       "href": "/reverse-text/",
       "tags": [
         "text",
@@ -6903,7 +6903,7 @@
       "slug": "roman-numeral-converter",
       "title": "Roman Numeral Converter",
       "icon": "\ud83c\udfdb\ufe0f",
-      "desc": "Roman Numeral Converter - convert numbers (1\u20133999) to Roman numerals and Roman numerals back to, online free. Free online,.",
+      "desc": "Convert any number from 1 to 3999 into Roman numerals and translate Roman numerals back into digits accurately.",
       "href": "/roman-numeral-converter/",
       "tags": [
         "math",
@@ -7002,7 +7002,7 @@
       "slug": "rss-feed-reader",
       "title": "RSS Feed Reader",
       "icon": "\ud83d\udcf0",
-      "desc": "RSS Feed Reader - read any RSS or Atom feed as clean, readable articles. Browse news, blogs, and, online free. Free online, no.",
+      "desc": "Read any RSS or Atom feed as clean, readable articles covering news, blogs, and your favorite publishers.",
       "href": "/rss-feed-reader/",
       "tags": [
         "rss",
@@ -7080,7 +7080,7 @@
       "slug": "salary-slip-generator",
       "title": "Salary Slip Generator \u2014 Printable Pay Slip",
       "icon": "\ud83d\udcbc",
-      "desc": "Create a professional salary slip online free. Enter employee details, earnings and deductions, get auto gross/net pay with printable slip. No sign-up.",
+      "desc": "Build a professional salary slip from employee details, earnings, and deductions with automatic gross and net pay.",
       "href": "/salary-slip-generator/",
       "tags": [
         "salary",
@@ -7143,7 +7143,7 @@
       "slug": "scientific-calculator",
       "title": "Scientific Calculator",
       "icon": "\ud83e\uddee",
-      "desc": "Scientific Calculator - full-featured scientific calculator with trig functions,, online free. Free online, instant results..",
+      "desc": "Solve advanced math with trigonometric, logarithmic, exponential, and root functions in a full scientific layout.",
       "href": "/scientific-calculator/",
       "tags": [
         "tools"
@@ -7218,7 +7218,7 @@
       "slug": "sin-validator",
       "title": "SIN Validator",
       "icon": "\ud83c\udf41",
-      "desc": "SIN Validator - validate Canadian SIN numbers with checksum (Luhn). Privacy-first, online free. Free online, instant results..",
+      "desc": "Validate Canadian Social Insurance Numbers by checking their format and Luhn checksum digit for errors.",
       "href": "/sin-validator/",
       "tags": [
         "canada",
@@ -7276,7 +7276,7 @@
       "slug": "sleep-calculator",
       "title": "Sleep Calculator",
       "icon": "\ud83d\ude34",
-      "desc": "Sleep Calculator - find the perfect bedtime or wake-up time based on sleep cycles of, online free. Free online, instant.",
+      "desc": "Find your ideal bedtimes or wake-up times based on complete 90-minute sleep cycles for deeper, better rest.",
       "href": "/sleep-calculator/",
       "tags": [
         "health",
@@ -7291,7 +7291,7 @@
       "slug": "snapchat-score-calculator",
       "title": "Snapchat Score Calculator",
       "icon": "\ud83d\udcca",
-      "desc": "Snapchat Score Calculator - calculate your estimated Snapchat score and learn how it, online free. Free online, instant.",
+      "desc": "Estimate your Snapchat score from your snaps and stories while learning exactly how each activity raises it.",
       "href": "/snapchat-score-calculator/",
       "tags": [
         "snapchat",
@@ -7307,7 +7307,7 @@
       "slug": "snapchat-story-ideas",
       "title": "Snapchat Story Ideas Generator",
       "icon": "\ud83d\udca1",
-      "desc": "Snapchat Story Ideas Generator - generate creative Snapchat story ideas. Never run out of content, online free. Free online,.",
+      "desc": "Generate fresh, creative Snapchat story ideas tailored to your vibe so you always have something to post next.",
       "href": "/snapchat-story-ideas/",
       "tags": [
         "snapchat",
@@ -7323,7 +7323,7 @@
       "slug": "snapchat-streak-calculator",
       "title": "Snapchat Streak Calculator",
       "icon": "\ud83d\udd25",
-      "desc": "Snapchat Streak Calculator - calculate your Snapchat streak duration and track, online free. Free online, instant results. No.",
+      "desc": "Calculate exactly how long your Snapchat streak has lasted and track key milestones from its start date.",
       "href": "/snapchat-streak-calculator/",
       "tags": [
         "snapchat",
@@ -7339,7 +7339,7 @@
       "slug": "snapchat-username-generator",
       "title": "Snapchat Username Generator",
       "icon": "\ud83d\udc7b",
-      "desc": "Snapchat Username Generator - generate unique and cool Snapchat usernames instantly. Perfect for, online free. Free online, no.",
+      "desc": "Generate unique, catchy Snapchat username ideas based on your name, interests, and your preferred style.",
       "href": "/snapchat-username-generator/",
       "tags": [
         "snapchat",
@@ -7370,7 +7370,7 @@
       "slug": "speed-converter",
       "title": "Speed Converter",
       "icon": "\ud83d\ude80",
-      "desc": "Speed Converter - convert between km/h, mph, knots, m/s, and ft/s. Visual speed gauge with, online free. Free online, instant.",
+      "desc": "Convert speed between km/h, mph, knots, meters per second, and feet per second with a clear visual gauge.",
       "href": "/speed-converter/",
       "tags": [
         "conversion",
@@ -7399,7 +7399,7 @@
       "slug": "sql-formatter",
       "title": "SQL Formatter",
       "icon": "\ud83d\uddc4\ufe0f",
-      "desc": "SQL Formatter - format, minify, and beautify SQL queries with customizable keyword case and, online free. Free online, no.",
+      "desc": "Format, beautify, or minify SQL queries with customizable keyword casing and clean, readable indentation.",
       "href": "/sql-formatter/",
       "tags": [
         "dev",
@@ -7433,7 +7433,7 @@
       "slug": "ssc-cgl-eligibility",
       "title": "SSC CGL Eligibility Checker \u2014 Age & Posts",
       "icon": "\ud83c\udf93",
-      "desc": "Check SSC CGL eligibility instantly: enter DOB, category and education, get age as on 1st August plus eligible posts with reasons. Free, no sign-up.",
+      "desc": "Check SSC CGL eligibility from birth date, category, and education with age and qualifying posts explained.",
       "href": "/ssc-cgl-eligibility/",
       "tags": [
         "ssc",
@@ -7473,7 +7473,7 @@
       "slug": "stopwatch-timer",
       "title": "Stopwatch & Timer",
       "icon": "\u23f1\ufe0f",
-      "desc": "Stopwatch & Timer - precision stopwatch with lap tracking and countdown timer with notifications, online free. Free online, no.",
+      "desc": "Time tasks with a precision stopwatch featuring lap tracking plus a countdown timer with notifications.",
       "href": "/stopwatch-timer/",
       "tags": [
         "tools"
@@ -7503,7 +7503,7 @@
       "slug": "string-builder",
       "title": "String Builder",
       "icon": "\ud83d\udd27",
-      "desc": "String Builder - transform text with 8 built-in modes: uppercase, lowercase, title case, slug,, online free. Free online, no.",
+      "desc": "Transform text with eight built-in modes including uppercase, lowercase, title case, slug, and more.",
       "href": "/string-builder/",
       "tags": [
         "dev",
@@ -7559,7 +7559,7 @@
       "slug": "subnet-calculator",
       "title": "Subnet Calculator",
       "icon": "\ud83c\udf10",
-      "desc": "Subnet Calculator - calculate network address, broadcast, host range, wildcard mask, online free. Free online, instant.",
+      "desc": "Calculate network address, broadcast address, host range, wildcard mask, and CIDR details for any subnet.",
       "href": "/subnet-calculator/",
       "tags": [
         "dev",
@@ -7575,7 +7575,7 @@
       "slug": "sukanya-calculator",
       "title": "Sukanya Samriddhi Yojana (SSY) Calculator",
       "icon": "\ud83d\udc67",
-      "desc": "Project your Sukanya Samriddhi Yojana returns: yearly deposit, rate and girl child age give maturity amount plus year-wise table. Free, no sign-up.",
+      "desc": "Project Sukanya Samriddhi Yojana maturity payouts from yearly deposits, interest rate, and the child's age.",
       "href": "/sukanya-calculator/",
       "tags": [
         "sukanya",
@@ -7615,7 +7615,7 @@
       "slug": "svg-to-jsx",
       "title": "SVG to JSX Converter",
       "icon": "\u269b\ufe0f",
-      "desc": "SVG to JSX Converter - convert SVG markup to React-compatible JSX. Automatically transforms, online free. Free online, instant.",
+      "desc": "Convert SVG markup into React-compatible JSX with attributes automatically transformed to camelCase.",
       "href": "/svg-to-jsx/",
       "tags": [
         "dev",
@@ -7630,7 +7630,7 @@
       "slug": "tdee-calculator",
       "title": "TDEE Calculator",
       "icon": "\ud83c\udfcb\ufe0f",
-      "desc": "TDEE Calculator - find your Total Daily Energy Expenditure, BMR, and macro targets for, online free. Free online, instant.",
+      "desc": "Calculate total daily energy expenditure, basal metabolic rate, and calorie plus macro targets for your goal.",
       "href": "/tdee-calculator/",
       "tags": [
         "health"
@@ -7681,7 +7681,7 @@
       "slug": "temperature-converter",
       "title": "Temperature Converter",
       "icon": "\ud83c\udf21\ufe0f",
-      "desc": "Temperature Converter - convert between Celsius, Fahrenheit, Kelvin, and Rankine. See all 4, online free. Free online, instant.",
+      "desc": "Convert temperatures between Celsius, Fahrenheit, Kelvin, and Rankine with all four scales shown together.",
       "href": "/temperature-converter/",
       "tags": [
         "conversion",
@@ -7711,7 +7711,7 @@
       "slug": "text-case-converter",
       "title": "Text Case Converter",
       "icon": "\ud83d\udd21",
-      "desc": "Text Case Converter - convert text to UPPERCASE, lowercase, Title Case, camelCase, snake_case,, online free. Free online,.",
+      "desc": "Convert text between uppercase, lowercase, title case, camelCase, snake_case, and several other styles.",
       "href": "/text-case-converter/",
       "tags": [
         "text"
@@ -7725,7 +7725,7 @@
       "slug": "diff-checker",
       "title": "Text Diff Checker",
       "icon": "\ud83d\udd0d",
-      "desc": "Text Diff Checker - compare two texts side-by-side with line-by-line and character-level diff, online free. Free online,.",
+      "desc": "Compare two texts side by side with line-by-line and character-level differences clearly highlighted.",
       "href": "/diff-checker/",
       "tags": [
         "dev",
@@ -7756,7 +7756,7 @@
       "slug": "text-statistics",
       "title": "Text Statistics",
       "icon": "\ud83d\udcca",
-      "desc": "Text Statistics - advanced text statistics: characters, words, sentences, syllables, reading time,, online free. Free online,.",
+      "desc": "Analyze any text for word and character counts, sentences, syllables, readability, and estimated reading time.",
       "href": "/text-statistics/",
       "tags": [
         "text",
@@ -7772,7 +7772,7 @@
       "slug": "text-to-image",
       "title": "Text to Image",
       "icon": "\ud83d\udcdd",
-      "desc": "Text to Image - convert text to a downloadable PNG image. Customize font, colors, and layout, online free. Free online, no.",
+      "desc": "Turn any text into a downloadable PNG image with customizable fonts, colors, background, and layout styles.",
       "href": "/text-to-image/",
       "tags": [
         "images",
@@ -7827,7 +7827,7 @@
       "slug": "tiktok-audio-downloader",
       "title": "TikTok Audio Downloader",
       "icon": "\ud83c\udfb5",
-      "desc": "TikTok Audio Downloader - download TikTok music, sounds, and background audio as MP3. Extract audio, online free. Free online.",
+      "desc": "Extract and download audio, music, and sounds from TikTok videos as MP3 files ready for offline use.",
       "href": "/tiktok-audio-downloader/",
       "tags": [
         "downloader",
@@ -7842,7 +7842,7 @@
       "slug": "tiktok-hashtag-generator",
       "title": "TikTok Hashtag Generator",
       "icon": "\ud83c\udfb5",
-      "desc": "TikTok Hashtag Generator - generate trending TikTok hashtags to boost your reach and views. 15+, online free. Free online, no.",
+      "desc": "Generate trending TikTok hashtags tailored to your topic to boost reach, engagement, and video views.",
       "href": "/tiktok-hashtag-generator/",
       "tags": [
         "social",
@@ -7859,7 +7859,7 @@
       "slug": "tiktok-video-downloader",
       "title": "TikTok Video Downloader",
       "icon": "\ud83c\udfb5",
-      "desc": "TikTok Video Downloader - download TikTok videos without watermark in HD quality. Works on all devices, online free. Free.",
+      "desc": "Download TikTok videos without watermark in crisp HD quality for easy offline viewing and resharing.",
       "href": "/tiktok-video-downloader/",
       "tags": [
         "social",
@@ -7910,7 +7910,7 @@
       "slug": "todo-list-maker",
       "title": "Todo List Maker",
       "icon": "\u2705",
-      "desc": "To-Do List Maker - simple, fast to-do list that saves to your browser. Track tasks with categories, online free. Free online,.",
+      "desc": "Organize tasks with categories and priorities in a fast to-do list that saves automatically in your browser.",
       "href": "/todo-list-maker/",
       "tags": [
         "productivity",
@@ -7943,7 +7943,7 @@
       "slug": "twitter-video-downloader",
       "title": "Twitter/X Video Downloader",
       "icon": "\ud83d\udc26",
-      "desc": "Twitter/X Video Downloader - download videos, GIFs, and media from X (formerly Twitter) in HD quality., online free. Free.",
+      "desc": "Download videos, GIFs, and media from X posts in HD quality for easy offline viewing and resharing later.",
       "href": "/twitter-video-downloader/",
       "tags": [
         "social",
@@ -7995,7 +7995,7 @@
       "slug": "unit-converter",
       "title": "Unit Converter",
       "icon": "\ud83d\udccf",
-      "desc": "Unit Converter - convert between units of length, weight, temperature, volume, area, speed,, online free. Free online, instant.",
+      "desc": "Convert between units of length, weight, temperature, volume, area, speed, and many more everyday measures.",
       "href": "/unit-converter/",
       "tags": [
         "dev"
@@ -8009,7 +8009,7 @@
       "slug": "unix-timestamp-converter",
       "title": "Unix Timestamp Converter",
       "icon": "\u23f1\ufe0f",
-      "desc": "Unix Timestamp Converter - convert Unix timestamps to dates and vice versa. Auto-detects seconds, online free. Free online,.",
+      "desc": "Convert Unix timestamps to readable dates and back, with automatic detection of seconds or milliseconds.",
       "href": "/unix-timestamp-converter/",
       "tags": [
         "dev",
@@ -8065,7 +8065,7 @@
       "slug": "url-encoder",
       "title": "URL Encoder/Decoder",
       "icon": "\ud83d\udd17",
-      "desc": "URL Encoder / Decoder - encode special characters for URLs or decode encoded URLs back to readable, online free. Free online,.",
+      "desc": "Encode special characters into URL-safe format or decode any encoded URLs back into readable plain text.",
       "href": "/url-encoder/",
       "tags": [
         "dev"
@@ -8079,7 +8079,7 @@
       "slug": "slug-generator",
       "title": "URL Slug Generator",
       "icon": "\ud83d\udd17",
-      "desc": "URL Slug Generator - convert any text to a clean, SEO-optimized URL slug instantly. Supports, online free. Free online, no.",
+      "desc": "Turn any headline or phrase into a clean, SEO-friendly URL slug with proper hyphenation and lowercase casing.",
       "href": "/slug-generator/",
       "tags": [
         "dev",
@@ -8116,7 +8116,7 @@
       "slug": "uuid-generator",
       "title": "UUID / GUID Generator",
       "icon": "\ud83c\udd94",
-      "desc": "UUID Generator - generate UUID v4 with customizable format and count, online free. Instant results, no sign-up, works on any.",
+      "desc": "Generate version 4 UUIDs in bulk quantities with customizable formatting, casing, and separator options.",
       "href": "/uuid-generator/",
       "tags": [
         "dev"
@@ -8173,7 +8173,7 @@
       "slug": "vehicle-registration-details",
       "title": "Vehicle Registration Details",
       "icon": "\ud83d\ude97",
-      "desc": "Vehicle Registration Details - check vehicle registration format for India, UK, US, and more, online free. Free online, no.",
+      "desc": "Check vehicle registration number formats and regional RTO codes for India, the UK, the US, and more.",
       "href": "/vehicle-registration-details/",
       "tags": [
         "identity",
@@ -8188,7 +8188,7 @@
       "slug": "viscosity-converter",
       "title": "Viscosity Converter",
       "icon": "\ud83e\uddf4",
-      "desc": "Viscosity Converter - convert viscosity units: Centipoise, Stokes, poise, Pa\u00b7s. Instant, online free. Free online, instant.",
+      "desc": "Convert viscosity between centipoise, poise, Stokes, and pascal-seconds with accurate engineering factors.",
       "href": "/viscosity-converter/",
       "tags": [
         "conversion",
@@ -8203,7 +8203,7 @@
       "slug": "water-intake-calculator",
       "title": "Water Intake Calculator",
       "icon": "\ud83d\udca7",
-      "desc": "Water Intake Calculator - calculate your ideal daily water intake based on body weight, online free. Free online, instant.",
+      "desc": "Calculate your ideal daily water intake from body weight, activity level, and local climate conditions.",
       "href": "/water-intake-calculator/",
       "tags": [
         "health",
@@ -8218,7 +8218,7 @@
       "slug": "weather-forecast",
       "title": "Weather Forecast",
       "icon": "\ud83c\udf24\ufe0f",
-      "desc": "Weather Forecast - check current weather and 7-day forecast for any city worldwide, online free. Free online, no sign-up..",
+      "desc": "Check current conditions and the 7-day forecast for any city worldwide with hourly details and alerts.",
       "href": "/weather-forecast/",
       "tags": [
         "weather",
@@ -8235,7 +8235,7 @@
       "slug": "wedding-budget-planner",
       "title": "Wedding Budget Planner \u2014 Shaadi Expense Tracker",
       "icon": "\ud83d\udc8d",
-      "desc": "Plan your Indian wedding budget: allocate across venue, food, decor, photo and more, track planned vs actual spend with progress bars. Free, no sign-up.",
+      "desc": "Plan an Indian wedding budget across venue, food, decor, and photography while tracking planned versus actual spend.",
       "href": "/wedding-budget-planner/",
       "tags": [
         "wedding",
@@ -8257,7 +8257,7 @@
       "slug": "whatsapp-business-name-generator",
       "title": "WhatsApp Business Name Generator",
       "icon": "\ud83d\udcbc",
-      "desc": "WhatsApp Business Name Generator - generate professional, catchy business names for your WhatsApp, online free. Free online,.",
+      "desc": "Generate professional, catchy business name ideas tailored for your WhatsApp storefront and profile.",
       "href": "/whatsapp-business-name-generator/",
       "tags": [
         "whatsapp",
@@ -8325,7 +8325,7 @@
       "slug": "whatsapp-chat",
       "title": "WhatsApp Click-to-Chat",
       "icon": "\ud83d\udcac",
-      "desc": "WhatsApp Click-to-Chat - send a WhatsApp message by just entering the phone number and text. Copy, online free. Free online,.",
+      "desc": "Open a WhatsApp chat with any phone number by entering it with your message, no contact saving needed.",
       "href": "/whatsapp-chat/",
       "tags": [
         "whatsapp",
@@ -8341,7 +8341,7 @@
       "slug": "whatsapp-dp-downloader",
       "title": "WhatsApp DP Downloader",
       "icon": "\ud83d\udce5",
-      "desc": "WhatsApp DP downloader \u2014 download WhatsApp profile pictures online free, by image link or by phone number. Save any visible.",
+      "desc": "Download any visible WhatsApp profile picture in full size using an image link or phone number lookup.",
       "href": "/whatsapp-dp-downloader/",
       "tags": [
         "whatsapp",
@@ -8358,7 +8358,7 @@
       "slug": "whatsapp-emoji-translator",
       "title": "WhatsApp Emoji Translator",
       "icon": "\ud83d\ude0a",
-      "desc": "WhatsApp Emoji Translator - convert your text to emojis! Make your WhatsApp messages more fun and, online free. Free online,.",
+      "desc": "Convert plain words and phrases into playful emoji combinations perfect for lively WhatsApp messages.",
       "href": "/whatsapp-emoji-translator/",
       "tags": [
         "whatsapp",
@@ -8393,7 +8393,7 @@
       "slug": "whatsapp-font-generator",
       "title": "WhatsApp Font Generator",
       "icon": "\u270d\ufe0f",
-      "desc": "WhatsApp Font Generator - generate styled text for WhatsApp: bold, italic, strikethrough,, online free. Free online, no.",
+      "desc": "Style text for WhatsApp with bold, italic, strikethrough, and decorative Unicode fonts ready to paste.",
       "href": "/whatsapp-font-generator/",
       "tags": [
         "whatsapp",
@@ -8410,7 +8410,7 @@
       "slug": "whatsapp-group-invite-link",
       "title": "WhatsApp Group Invite Link",
       "icon": "\ud83d\udd17",
-      "desc": "WhatsApp Group Invite Link - learn how to create, share, and manage WhatsApp group invite links., online free. Free online, no.",
+      "desc": "Learn how to create, share, reset, and manage WhatsApp group invite links so members can join easily.",
       "href": "/whatsapp-group-invite-link/",
       "tags": [
         "whatsapp",
@@ -8427,7 +8427,7 @@
       "slug": "whatsapp-group-name-generator",
       "title": "WhatsApp Group Name Generator",
       "icon": "\ud83d\udcac",
-      "desc": "WhatsApp Group Name Generator - generate creative and funny WhatsApp group names for any occasion!, online free. Free online,.",
+      "desc": "Generate creative and funny WhatsApp group name ideas for friends, family, colleagues, and every occasion.",
       "href": "/whatsapp-group-name-generator/",
       "tags": [
         "whatsapp",
@@ -8444,7 +8444,7 @@
       "slug": "whatsapp-link-generator",
       "title": "WhatsApp Link Generator",
       "icon": "\ud83d\udcac",
-      "desc": "WhatsApp Link Generator - generate WhatsApp click-to-chat links instantly. Create wa.me links with, online free. Free online,.",
+      "desc": "Create WhatsApp click-to-chat links with a prefilled message that opens directly in any chat window.",
       "href": "/whatsapp-link-generator/",
       "tags": [
         "whatsapp",
@@ -8478,7 +8478,7 @@
       "slug": "whatsapp-status-saver",
       "title": "WhatsApp Status Saver",
       "icon": "\ud83d\udcbe",
-      "desc": "WhatsApp Status Saver \u2014 save status photos and videos online free in HD by link or number.",
+      "desc": "Save WhatsApp status photos and videos in crisp HD quality directly to your device for offline viewing.",
       "href": "/whatsapp-status-saver/",
       "tags": [
         "whatsapp",
@@ -8495,7 +8495,7 @@
       "slug": "whatsapp-stickers",
       "title": "WhatsApp Sticker Maker",
       "icon": "\ud83e\udde9",
-      "desc": "WhatsApp Sticker Maker - make WhatsApp stickers in your browser: upload, zoom, rotate, add text,, online free. Free online, no.",
+      "desc": "Design custom WhatsApp stickers right in your browser by uploading images, cropping, and adding text.",
       "href": "/whatsapp-stickers/",
       "tags": [
         "whatsapp",
@@ -8546,7 +8546,7 @@
       "slug": "wifi-router",
       "title": "WiFi Router Tools",
       "icon": "\ud83d\udce1",
-      "desc": "WiFi Router Tools - default passwords (educational), Wi-Fi QR generator, MAC Vendor lookup, online free. Free online, no.",
+      "desc": "Look up default router passwords for setup, generate Wi-Fi QR codes, and identify MAC address vendors.",
       "href": "/wifi-router/",
       "tags": [
         "wifi",
@@ -8581,7 +8581,7 @@
       "slug": "word-counter",
       "title": "Word Counter",
       "icon": "\ud83d\udcdd",
-      "desc": "Word Counter - count words, characters, sentences, paragraphs, and lines in your text. Instant,, online free. Free online, no.",
+      "desc": "Count words, characters, sentences, paragraphs, and lines in your text with live statistics as you type.",
       "href": "/word-counter/",
       "tags": [
         "text"
@@ -8595,7 +8595,7 @@
       "slug": "word-frequency-counter",
       "title": "Word Frequency Counter",
       "icon": "\ud83d\udcc8",
-      "desc": "Word Frequency Counter - analyze text and count word frequency. See the most common words with, online free. Free online, no.",
+      "desc": "Analyze any text to find the most common words with ranked frequency counts and density percentages.",
       "href": "/word-frequency-counter/",
       "tags": [
         "text"
@@ -8625,7 +8625,7 @@
       "slug": "world-clock",
       "title": "World Clock",
       "icon": "\ud83c\udf0d",
-      "desc": "World Clock - check current time in 200+ cities worldwide. Real-time updates with timezone, online free. Free online, no.",
+      "desc": "Check the current time in more than 200 cities worldwide with live updates and full timezone details.",
       "href": "/world-clock/",
       "tags": [
         "time",
@@ -8640,7 +8640,7 @@
       "slug": "fifa-world-cup-fair-play",
       "title": "World Cup 2026 Fair Play",
       "icon": "\u2696\ufe0f",
-      "desc": "FIFA World Cup 2026 Fair Play - which teams played the cleanest \u2014 and who's in the, online free. Play online free, no.",
+      "desc": "See which 2026 World Cup teams played the cleanest with fair-play standings ranked by cards and fouls.",
       "href": "/fifa-world-cup-fair-play/",
       "tags": [
         "fifa",
@@ -8658,7 +8658,7 @@
       "slug": "fifa-world-cup-red-cards",
       "title": "World Cup 2026 Red Cards",
       "icon": "\ud83d\udfe5",
-      "desc": "FIFA World Cup 2026 Red Cards - track every red card shown at the 2026 FIFA World Cup. Full list of, online free. Free online,.",
+      "desc": "Track every red card shown at the 2026 FIFA World Cup with the full list of players and match details.",
       "href": "/fifa-world-cup-red-cards/",
       "tags": [
         "fifa",
@@ -8751,7 +8751,7 @@
       "slug": "xml-formatter",
       "title": "XML Formatter & Validator",
       "icon": "\ud83d\udcc4",
-      "desc": "XML Formatter & Validator - format (pretty-print), minify, or validate XML documents instantly in, online free. Free online,.",
+      "desc": "Format, pretty-print, minify, or validate XML documents with clear error reporting and tree structure.",
       "href": "/xml-formatter/",
       "tags": [
         "dev",
@@ -8767,7 +8767,7 @@
       "slug": "yaml-to-json-converter",
       "title": "YAML \u21c4 JSON Converter",
       "icon": "\ud83d\udd04",
-      "desc": "YAML \u21c4 JSON Converter - convert between YAML and JSON formats instantly. Parse, format, and, online free. Free online, instant.",
+      "desc": "Convert data between YAML and JSON formats instantly with parsing, formatting, and syntax error detection.",
       "href": "/yaml-to-json-converter/",
       "tags": [
         "dev",
@@ -8783,7 +8783,7 @@
       "slug": "youtube-audio-downloader",
       "title": "YouTube Audio Downloader",
       "icon": "\ud83c\udfb5",
-      "desc": "YouTube Audio Downloader - learn how to download audio from YouTube videos as MP3 \u2014 step-by-step guide, online free. Free.",
+      "desc": "Follow a step-by-step guide to extracting audio from YouTube videos as MP3 files for offline listening.",
       "href": "/youtube-audio-downloader/",
       "tags": [
         "downloader",
@@ -8817,7 +8817,7 @@
       "slug": "youtube-shorts-downloader",
       "title": "YouTube Shorts Downloader",
       "icon": "\ud83d\udcf1",
-      "desc": "YouTube Shorts downloader \u2014 download Shorts videos online free in HD 720p and 1080p MP4. No app needed.",
+      "desc": "Download YouTube Shorts videos in HD 720p or 1080p MP4 quality directly without installing extra apps.",
       "href": "/youtube-shorts-downloader/",
       "tags": [
         "social",
@@ -8853,7 +8853,7 @@
       "slug": "youtube-video-downloader",
       "title": "YouTube Video Downloader",
       "icon": "\ud83c\udfa5",
-      "desc": "YouTube Video Downloader - download YouTube videos and audio in HD quality. Save videos as MP4 or, online free. Free online in.",
+      "desc": "Download YouTube videos and audio in HD quality as MP4 or MP3 files for easy offline viewing anywhere.",
       "href": "/youtube-video-downloader/",
       "tags": [
         "social",
@@ -9514,7 +9514,7 @@
       "slug": "eighth-pay-commission-calculator",
       "title": "Eighth Pay Commission Calculator",
       "icon": "\ud83c\uddee\ud83c\uddf3",
-      "desc": "8th Pay Commission Calculator - estimate revised basic, HRA and gross salary with fitment factor, online free. Instant results, no sign-up, works on mobile.",
+      "desc": "Estimate revised basic pay, HRA, and gross salary under the 8th Pay Commission using fitment factors.",
       "tags": [
         "8th pay commission",
         "salary",
@@ -9533,7 +9533,7 @@
       "slug": "swp-calculator",
       "title": "SWP Calculator",
       "icon": "\ud83d\udcb8",
-      "desc": "SWP Calculator - plan systematic withdrawal from mutual funds with monthly payout and balance forecast, online free. Instant results, no sign-up, works on mobile.",
+      "desc": "Plan systematic withdrawals from mutual funds with monthly payouts and a projected balance forecast.",
       "tags": [
         "swp",
         "mutual funds",
@@ -9551,7 +9551,7 @@
       "slug": "diwali-muhurat-finder-2026",
       "title": "Diwali Muhurat Finder 2026",
       "icon": "\ud83e\ude94",
-      "desc": "Diwali Muhurat Finder 2026 - Lakshmi Puja shubh muhurat by city with live countdown, online free. No sign-up, works on mobile.",
+      "desc": "Find the 2026 Diwali Lakshmi Puja shubh muhurat for your city, with exact timings plus a live countdown.",
       "tags": [
         "diwali",
         "muhurat",
@@ -9569,7 +9569,7 @@
       "slug": "chhath-puja-2026-countdown",
       "title": "Chhath Puja 2026 Countdown",
       "icon": "\ud83c\udf05",
-      "desc": "Chhath Puja 2026 Countdown - live timer, 4-day calendar and city-wise arghya timings, online free. No sign-up, works on mobile.",
+      "desc": "Follow Chhath Puja 2026 with a live countdown, the four-day ritual calendar, and city arghya timings.",
       "tags": [
         "chhath puja",
         "countdown",
@@ -9587,7 +9587,7 @@
       "slug": "fastag-toll-calculator",
       "title": "FASTag Toll Calculator",
       "icon": "\ud83d\udee3\ufe0f",
-      "desc": "FASTag Toll Calculator - check toll charges between Indian cities by route and vehicle, online free. Instant results, no sign-up, works on mobile.",
+      "desc": "Check FASTag toll charges between Indian cities by route and vehicle type before starting your trip.",
       "tags": [
         "fastag",
         "toll",
@@ -9917,7 +9917,7 @@
       "slug": "shan-shui-painting",
       "title": "Shan Shui Painting Generator",
       "icon": "\ud83c\udfd4\ufe0f",
-      "desc": "Generate endless Chinese ink-wash landscape scrolls \u2014 every click paints a unique scene. Download as SVG or PNG, share by link. Free, no sign-up.",
+      "desc": "Generate endless Chinese ink-wash landscape scrolls where every click paints a unique downloadable scene.",
       "href": "/shan-shui-painting/",
       "tags": [
         "shan shui",

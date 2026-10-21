@@ -34,7 +34,7 @@ export default function ovulation_calculator() {
   return (
     <ToolLayout
       title="Ovulation Calculator"
-      desc="Ovulation Calculator - calculate ovulation date and fertility window for family, online free. Free online, instant results. No sign-up, works on mobile."
+      desc="Estimate your ovulation date and fertile window from your last cycle dates and average cycle length."
       icon="🌸" iconBg="rgba(236,72,153,0.08)"
       category="health" slug="ovulation-calculator"
       faq={[

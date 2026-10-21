@@ -5,7 +5,7 @@ export default function twitter_video_downloader() {
   return (
     <ToolLayout
       title="Twitter/X Video Downloader"
-      desc="Twitter/X Video Downloader - download videos, GIFs, and media from X (formerly Twitter) in HD quality., online free. Free online in HD. No app or login needed."
+      desc="Download videos, GIFs, and media from X posts in HD quality for easy offline viewing and resharing later."
       icon="🐦" iconBg="rgba(29,161,242,0.08)"
       category="social" slug="twitter-video-downloader"
       faq={[

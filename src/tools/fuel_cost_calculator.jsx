@@ -124,7 +124,7 @@ export default function fuel_cost_calculator() {
   return (
     <ToolLayout
       title="Fuel Cost Calculator"
-      desc="Fuel Cost Calculator - calculate exact fuel cost for your trip. Compare efficiency, online free. Free online, instant results. No sign-up, works on mobile."
+      desc="Estimate exact trip fuel cost from distance, mileage and fuel price with efficiency comparisons for planning."
       icon="⛽" iconBg="rgba(249,115,22,0.08)"
       category="tools" slug="fuel-cost-calculator"
       faq={[

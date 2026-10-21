@@ -319,7 +319,7 @@ export default function pixel_art_editor() {
   return (
     <ToolLayout
       title="Pixel Art Editor"
-      desc="Pixel Art Editor - create pixel art in your browser. Click to paint, right-click to erase, online free. Free online, no sign-up. Works on any device."
+      desc="Draw pixel art on a customizable grid with color palettes, then export your finished sprite image file."
       icon="🎨" iconBg="rgba(99,102,241,0.08)"
       category="fun" slug="pixel-art-editor"
       faq={[

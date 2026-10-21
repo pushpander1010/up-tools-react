@@ -35,7 +35,7 @@ export default function sukanya_calculator() {
   return (
     <ToolLayout
       title="Sukanya Samriddhi Yojana Calculator"
-      desc="Sukanya Samriddhi Yojana Calculator – project maturity amount, total deposits and interest earned. Free online, no sign-up. Works on any device."
+      desc="Project Sukanya Samriddhi Yojana maturity payouts from yearly deposits, interest rate, and the child's age."
       icon="🏦" iconBg="rgba(16,185,129,0.08)"
       category="finance" slug="sukanya-calculator"
       faq={[

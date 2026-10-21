@@ -67,7 +67,7 @@ export default function json_to_csv_converter() {
   return (
     <ToolLayout
       title="JSON to CSV Converter"
-      desc="JSON to CSV Converter - convert a JSON array of objects into CSV instantly. Handles nested, online free. Free online, instant results. No sign-up needed."
+      desc="Convert a JSON array of objects into CSV rows quickly, including full support for nested data fields."
       icon="📊" iconBg="rgba(6,182,212,0.08)"
       category="dev" slug="json-to-csv-converter"
       faq={[

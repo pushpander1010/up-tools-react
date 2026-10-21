@@ -93,7 +93,7 @@ export default function random_choice_generator() {
   return (
     <ToolLayout
       title="Random Choice Generator"
-      desc="Random Choice Generator - decision maker with dramatic drum roll animation. Enter choices and pick, online free. Free online, no sign-up. Works on any device."
+      desc="Enter your options and let a dramatic drum-roll animation reveal one randomly selected winner from the list."
       icon="🎲" iconBg="rgba(245,158,11,0.08)"
       category="tools" slug="random-choice-generator"
       faq={[

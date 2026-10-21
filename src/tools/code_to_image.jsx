@@ -263,7 +263,7 @@ export default function code_to_image() {
   return (
     <ToolLayout
       title="Code to Image Converter"
-      desc="Code to Image Converter - convert code snippets to beautiful shareable images. Choose themes,, online free. Free online, instant results. No sign-up needed."
+      desc="Turn code snippets into beautiful shareable images with syntax highlighting, custom themes and clean exports."
       icon="📸" iconBg="rgba(251,146,60,0.08)"
       category="dev" slug="code-to-image"
       faq={[

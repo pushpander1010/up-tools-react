@@ -35,7 +35,7 @@ export default function pressure_converter() {
   return (
     <ToolLayout
       title="Pressure Converter"
-      desc="Pressure Converter - convert between PSI, bar, Pascal, ATM, and mmHg instantly, online free. Free online, instant results. No sign-up needed."
+      desc="Convert pressure between PSI, bar, Pascal, atmospheres, and mmHg with precise bidirectional calculations."
       icon="🌡️" iconBg="rgba(239,68,68,0.08)"
       category="dev" slug="pressure-converter"
       faq={[

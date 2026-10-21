@@ -66,7 +66,7 @@ export default function snapchat_username_generator() {
   return (
     <ToolLayout
       title="Snapchat Username Generator"
-      desc="Snapchat Username Generator - generate unique and cool Snapchat usernames instantly. Perfect for, online free. Free online, no sign-up. Works on any device."
+      desc="Generate unique, catchy Snapchat username ideas based on your name, interests, and your preferred style."
       icon="👻" iconBg="rgba(255,252,0,0.08)"
       category="social" slug="snapchat-username-generator"
       faq={[

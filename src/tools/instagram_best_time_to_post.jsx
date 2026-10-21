@@ -39,7 +39,7 @@ export default function instagram_best_time_to_post() {
   return (
     <ToolLayout
       title="Instagram Best Time to Post"
-      desc="Instagram Best Time to Post - find the optimal times to post on Instagram for maximum reach and, online free. Free online, no sign-up. Works on any device."
+      desc="Discover the best days and times to post on Instagram for higher reach and stronger audience engagement."
       icon="⏰" iconBg="rgba(245,158,11,0.08)"
       category="social" slug="instagram-best-time-to-post"
       faq={[

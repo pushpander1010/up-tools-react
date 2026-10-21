@@ -614,7 +614,7 @@ export default function meme_generator() {
   return (
     <ToolLayout
       title="Meme Generator"
-      desc="Meme Generator - choose a classic meme template, add your text, and download. 100% client-side, online free. Free online, no sign-up. Works on any device."
+      desc="Pick a classic meme template, add your own top and bottom text, and download your finished meme image."
       icon="😂" iconBg="rgba(99,102,241,0.08)"
       category="fun" slug="meme-generator"
       faq={[

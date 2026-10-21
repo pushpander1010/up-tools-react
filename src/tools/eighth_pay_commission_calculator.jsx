@@ -48,7 +48,7 @@ export default function eighth_pay_commission_calculator() {
   return (
     <ToolLayout
       title="Eighth Pay Commission Calculator"
-      desc="8th Pay Commission Calculator - estimate revised basic, HRA and gross salary with fitment factor, online free. Instant results, no sign-up, works on mobile."
+      desc="Estimate revised basic pay, HRA, and gross salary under the 8th Pay Commission using fitment factors."
       icon="🇮🇳" iconBg="rgba(249,115,22,0.08)"
       category="finance" slug="eighth-pay-commission-calculator"
       faq={[

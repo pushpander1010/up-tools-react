@@ -37,7 +37,7 @@ export default function bmi_calculator() {
   return (
     <ToolLayout
       title="BMI Calculator"
-      desc="BMI Calculator - calculate your Body Mass Index instantly. Supports metric (kg/cm) and, online free. Free online, instant results. No sign-up, works on mobile."
+      desc="Calculate your Body Mass Index from height and weight in metric or imperial units with a clear health category."
       icon="⚖️" iconBg="rgba(20,184,166,0.08)"
       category="health" slug="bmi-calculator"
       faq={[

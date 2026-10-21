@@ -60,7 +60,7 @@ export default function password_strength_checker() {
   return (
     <ToolLayout
       title="Password Strength Checker"
-      desc="Password Strength Checker - analyze password security with entropy calculation, criteria checks,, online free. Free online, instant results. No login needed."
+      desc="Test password strength with entropy scoring, crack-time estimates and clear improvement suggestions."
       icon="🔒" iconBg="rgba(99,102,241,0.08)"
       category="security" slug="password-strength-checker"
       faq={[

@@ -71,7 +71,7 @@ export default function rent_receipt_generator() {
   return (
     <ToolLayout
       title="Rent Receipt Generator"
-      desc="Rent Receipt Generator - create printable rent receipts with HRA total for tenants and landlords, online free. Free online, no sign-up. Works on any device."
+      desc="Generate printable monthly rent receipts for HRA claims with itemized entries and an annual total summary."
       icon="🏠" iconBg="rgba(34,197,94,0.08)"
       category="finance" slug="rent-receipt-generator"
       faq={[

@@ -27,7 +27,7 @@ export default function random_number_generator() {
   return (
     <ToolLayout
       title="Random Number Generator"
-      desc="Random Number Generator - generate cryptographically secure random numbers. Choose range and count, online free. Free online, no sign-up. Works on any device."
+      desc="Generate cryptographically secure random numbers within any custom range, one value or whole sets at once."
       icon="🔢" iconBg="rgba(99,102,241,0.08)"
       category="dev" slug="random-number-generator"
       faq={[

@@ -33,7 +33,7 @@ export default function pan_aadhaar_link_status() {
   return (
     <ToolLayout
       title="PAN–Aadhaar Link Status Checker (Guide)"
-      desc="PAN–Aadhaar Link Status Checker (Guide) - validate PAN/Aadhaar format and jump to the official, online free. Free online, instant results. No login needed."
+      desc="Check your PAN and Aadhaar number formats and follow the guided steps to verify their official link status."
       icon="🆔" iconBg="rgba(234,179,8,0.08)"
       category="finance" slug="pan-aadhaar-link-status"
       faq={[

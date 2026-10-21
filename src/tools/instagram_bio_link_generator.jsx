@@ -80,7 +80,7 @@ export default function instagram_bio_link_generator() {
   return (
     <ToolLayout
       title="Instagram Bio Link Generator"
-      desc="Instagram Bio Link Generator - create a beautiful link-in-bio page. Generate HTML you can host, online free. Free online, no sign-up. Works on any device."
+      desc="Build a simple link-in-bio landing page that groups all your important links together in one neat place."
       icon="🔗" iconBg="rgba(236,72,153,0.08)"
       category="social" slug="instagram-bio-link-generator"
       faq={[

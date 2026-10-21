@@ -160,7 +160,7 @@ export default function diff_checker() {
   return (
     <ToolLayout
       title="Text Diff Checker"
-      desc="Text Diff Checker - compare two texts side-by-side with line-by-line and character-level diff, online free. Free online, instant results. No login needed."
+      desc="Compare two texts side by side with line-by-line and character-level differences clearly highlighted."
       icon="📝" iconBg="rgba(99,102,241,0.08)"
       category="text" slug="diff-checker"
       faq={[

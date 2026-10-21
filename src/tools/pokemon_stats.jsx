@@ -97,7 +97,7 @@ export default function pokemon_stats() {
   return (
     <ToolLayout
       title="Pokemon Stats"
-      desc="Pokemon Stats - browse all Pokemon with stats, types, and CSV export, online free. Fast search, no sign-up, works on mobile and desktop."
+      desc="Browse every Pokemon with base stats, types and abilities, plus fast search by name or Pokedex number."
       icon="⚡" iconBg="rgba(245,158,11,0.08)"
       category="fun" slug="pokemon-stats"
       faq={[

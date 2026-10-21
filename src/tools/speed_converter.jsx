@@ -91,7 +91,7 @@ export default function speed_converter() {
   return (
     <ToolLayout
       title="Speed Converter"
-      desc="Speed Converter - convert between km/h, mph, knots, m/s, and ft/s. Visual speed gauge with, online free. Free online, instant results. No sign-up needed."
+      desc="Convert speed between km/h, mph, knots, meters per second, and feet per second with a clear visual gauge."
       icon="🚀" iconBg="rgba(6,182,212,0.08)"
       category="dev" slug="speed-converter"
       faq={[

@@ -118,7 +118,7 @@ export default function unix_timestamp_converter() {
   return (
     <ToolLayout
       title="Unix Timestamp Converter"
-      desc="Unix Timestamp Converter - convert Unix timestamps to dates and vice versa. Auto-detects seconds, online free. Free online, instant results. No sign-up needed."
+      desc="Convert Unix timestamps to readable dates and back, with automatic detection of seconds or milliseconds."
       icon="⏱️" iconBg="rgba(168,85,247,0.08)"
       category="dev" slug="unix-timestamp-converter"
       faq={[

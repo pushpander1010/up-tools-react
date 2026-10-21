@@ -159,7 +159,7 @@ export default function ImagePlaceholderGenerator() {
   return (
     <ToolLayout
       title="Image Placeholder Generator"
-      desc="Image Placeholder Generator - generate custom placeholder images for mockups. All processing done, online free. Free online, no sign-up. Works on any device."
+      desc="Generate custom placeholder images with exact dimensions, colors and labels for mockups and layouts."
       icon="🖼️" iconBg="rgba(99,102,241,0.08)"
       category="images" slug="image-placeholder-generator"
       faq={[

@@ -35,7 +35,7 @@ export default function instagram_highlight_downloader() {
   return (
     <ToolLayout
       title="Instagram Highlight Downloader"
-      desc="Instagram Highlight Downloader - download Instagram story highlights from any public profile. Save, online free. Free online in HD. No app or login needed."
+      desc="Save story highlights from any public Instagram profile to watch again later or keep for offline viewing."
       icon="📱" iconBg="rgba(236,72,153,0.08)"
       category="social" slug="instagram-highlight-downloader"
       faq={[

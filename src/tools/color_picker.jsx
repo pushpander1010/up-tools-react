@@ -122,7 +122,7 @@ export default function color_picker() {
   return (
     <ToolLayout
       title="Color Picker & Converter"
-      desc="Color Picker & Converter - pick colors, convert between HEX, RGB, and HSL, check WCAG contrast,, online free. Free online, instant results. No sign-up needed."
+      desc="Pick any color and convert it between HEX, RGB and HSL formats while checking contrast for accessible combinations."
       icon="🎨" iconBg="rgba(99,102,241,0.08)"
       category="dev" slug="color-picker"
       faq={[

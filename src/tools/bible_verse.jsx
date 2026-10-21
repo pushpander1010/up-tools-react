@@ -77,7 +77,7 @@ export default function bible_verse() {
   return (
     <ToolLayout
       title="Bible Verse"
-      desc="Bible Verse - look up Bible verses with multiple translations, online free. Free online, no sign-up. Works on any device, anytime."
+      desc="Look up Bible verses by reference across multiple translations with clean reading and easy verse comparison."
       icon="✝️" iconBg="rgba(99,102,241,0.08)"
       category="text" slug="bible-verse"
       faq={[

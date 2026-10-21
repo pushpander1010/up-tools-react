@@ -154,7 +154,7 @@ export default function subnet_calculator() {
   return (
     <ToolLayout
       title="Subnet Calculator"
-      desc="Subnet Calculator - calculate network address, broadcast, host range, wildcard mask, online free. Free online, instant results. No sign-up, works on mobile."
+      desc="Calculate network address, broadcast address, host range, wildcard mask, and CIDR details for any subnet."
       icon="🌐" iconBg="rgba(6,182,212,0.08)"
       category="dev" slug="subnet-calculator"
       faq={[

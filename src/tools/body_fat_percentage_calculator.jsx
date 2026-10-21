@@ -29,7 +29,7 @@ export default function body_fat_percentage_calculator() {
   return (
     <ToolLayout
       title="Body Fat Percentage Calculator"
-      desc="Body Fat Percentage Calculator - calculate body fat percentage using the Navy method., online free. Free online, instant results. No sign-up, works on mobile."
+      desc="Estimate body fat percentage with the U.S. Navy method from waist, neck, hip and height measurements."
       icon="📊" iconBg="rgba(239,68,68,0.08)"
       category="health" slug="body-fat-percentage-calculator"
       faq={[

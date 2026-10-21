@@ -80,7 +80,7 @@ export default function meeting_scheduler() {
   return (
     <ToolLayout
       title="Meeting Scheduler"
-      desc="Meeting Scheduler - find the best meeting time across multiple timezones. Schedule meetings with, online free. Free online, no sign-up. Works on any device."
+      desc="Find the best meeting time across world time zones by comparing availability side by side in one view."
       icon="🌍" iconBg="rgba(99,102,241,0.08)"
       category="productivity" slug="meeting-scheduler"
       faq={[

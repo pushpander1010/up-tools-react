@@ -71,7 +71,7 @@ export default function binary_code_translator() {
   return (
     <ToolLayout
       title="Binary Code Translator"
-      desc="Binary Code Translator - convert text to binary, hexadecimal, and decimal codes. Also reverse, online free. Free online, no sign-up. Works on any device."
+      desc="Translate text into binary, hexadecimal and decimal codes, or decode any of those formats back into plain text."
       icon="💻" iconBg="rgba(99,102,241,0.08)"
       category="dev" slug="binary-code-translator"
       faq={[

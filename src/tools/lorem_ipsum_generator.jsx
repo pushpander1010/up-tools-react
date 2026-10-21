@@ -50,7 +50,7 @@ export default function lorem_ipsum_generator() {
   return (
     <ToolLayout
       title="Lorem Ipsum Generator"
-      desc="Lorem Ipsum Generator - generate Lorem Ipsum placeholder text with customizable paragraphs,, online free. Free online, no sign-up. Works on any device."
+      desc="Generate Lorem Ipsum placeholder text with custom paragraph, sentence and word counts for any layout."
       icon="📝" iconBg="rgba(99,102,241,0.08)"
       category="text" slug="lorem-ipsum-generator"
       faq={[

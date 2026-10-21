@@ -36,7 +36,7 @@ export default function passphrase_generator() {
   return (
     <ToolLayout
       title="Passphrase Generator"
-      desc="Passphrase Generator - generate strong, memorable passphrases (diceware-style) with customizable, online free. Free online, no sign-up. Works on any device."
+      desc="Generate strong yet memorable diceware-style passphrases with custom word counts and separators added."
       icon="🔑" iconBg="rgba(239,68,68,0.08)"
       category="security" slug="passphrase-generator"
       faq={[

@@ -87,7 +87,7 @@ export default function whatsapp_group_name_generator() {
   return (
     <ToolLayout
       title="WhatsApp Group Name Generator"
-      desc="WhatsApp Group Name Generator - generate creative and funny WhatsApp group names for any occasion!, online free. Free online, no sign-up. Works on any device."
+      desc="Generate creative and funny WhatsApp group name ideas for friends, family, colleagues, and every occasion."
       icon="💬" iconBg="rgba(37,211,102,0.08)"
       category="whatsapp" slug="whatsapp-group-name-generator"
       faq={[

@@ -161,7 +161,7 @@ export default function random_fact_generator() {
   return (
     <ToolLayout
       title="Random Fact Generator"
-      desc="Random Fact Generator - discover amazing facts from science, history, nature & more, online free. Free online, no sign-up. Works on any device."
+      desc="Discover fascinating facts from science, history, nature, and more with a fresh surprise on every click."
       icon="🧠" iconBg="rgba(99,102,241,0.08)"
       category="fun" slug="random-fact-generator"
       faq={[

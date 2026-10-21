@@ -75,7 +75,7 @@ export default function quran_verse() {
   return (
     <ToolLayout
       title="Quran Verse"
-      desc="Quran Verse - browse the Holy Quran with Arabic text and English translations, online free. Free online, no sign-up. Works on any device."
+      desc="Browse the Holy Quran with original Arabic text alongside clear English translations by chapter and verse."
       icon="🕌" iconBg="rgba(34,197,94,0.08)"
       category="text" slug="quran-verse"
       faq={[

@@ -42,7 +42,7 @@ export default function linkedin_video_downloader() {
   return (
     <ToolLayout
       title="LinkedIn Video Downloader"
-      desc="LinkedIn Video Downloader - download videos from LinkedIn posts, articles, and courses in HD quality., online free. Free online in HD. No app or login needed."
+      desc="Download videos from public LinkedIn posts and articles in HD quality as MP4 files with just one link."
       icon="💼" iconBg="rgba(14,165,233,0.08)"
       category="social" slug="linkedin-video-downloader"
       faq={[

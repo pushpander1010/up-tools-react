@@ -170,7 +170,7 @@ export default function HtmlToMarkdown() {
   return (
     <ToolLayout
       title="HTML ⇄ Markdown Converter"
-      desc="HTML ⇄ Markdown Converter - convert between HTML and Markdown formats instantly. Supports, online free. Free online, instant results. No sign-up needed."
+      desc="Convert HTML markup to clean Markdown or Markdown back to HTML while preserving headings, links and lists."
       icon="📝" iconBg="rgba(99,102,241,0.08)"
       category="dev" slug="html-to-markdown"
       faq={[

@@ -107,7 +107,7 @@ export default function stopwatch_timer() {
   return (
     <ToolLayout
       title="Stopwatch & Timer"
-      desc="Stopwatch & Timer - precision stopwatch with lap tracking and countdown timer with notifications, online free. Free online, no sign-up. Works on any device."
+      desc="Time tasks with a precision stopwatch featuring lap tracking plus a countdown timer with notifications."
       icon="⏱️" iconBg="rgba(99,102,241,0.08)"
       category="productivity" slug="stopwatch-timer"
       faq={[

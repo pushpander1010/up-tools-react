@@ -116,7 +116,7 @@ export default function email_validator() {
   return (
     <ToolLayout
       title="Email Validator"
-      desc="Email Validator - validate email format, verify MX records, check disposable domains, and test, online free. Free online, instant results. No login needed."
+      desc="Validate email address format, verify MX records and detect disposable domains to keep your list clean."
       icon="✉️" iconBg="rgba(34,197,94,0.08)"
       category="security" slug="email-validator"
       faq={[

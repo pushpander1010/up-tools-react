@@ -42,7 +42,7 @@ export default function canada_tax_bracket_calculator() {
   return (
     <ToolLayout
       title="Canada Federal Tax Calculator"
-      desc="Canada Federal Tax Calculator - estimate federal income tax in Canada using current, online free. Free online, instant results. No sign-up, works on mobile."
+      desc="Estimate Canadian federal income tax from your earnings using current brackets, rates and marginal calculations."
       icon="🍁" iconBg="rgba(220,38,38,0.08)"
       category="canada" slug="canada-tax-bracket-calculator"
       faq={[

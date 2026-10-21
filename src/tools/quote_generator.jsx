@@ -115,7 +115,7 @@ export default function quote_generator() {
   return (
     <ToolLayout
       title="Quote Generator"
-      desc="Quote Generator - generate inspiring quotes by category. Save favorites and share, online free. Free online, no sign-up. Works on any device."
+      desc="Browse inspiring quotes by category, save your favorites, and share them easily with friends and followers."
       icon="💬" iconBg="rgba(99,102,241,0.08)"
       category="text" slug="quote-generator"
       faq={[

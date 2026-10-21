@@ -102,7 +102,7 @@ export default function games() {
   return (
     <ToolLayout
       title="Free Online Games"
-      desc="Free online games: 40+ arcade, puzzle, word, board and casual browser games including Snake, Tetris, 2048, Pac-Man and Wordle. No sign-ups, mobile-friendly."
+      desc="Play classic mini games like Snake, Tetris, 2048, Pac-Man and Wordle directly in your browser for quick fun."
       icon="🎮" iconBg="rgba(99,102,241,0.08)"
       category="fun" slug="games"
       faq={[

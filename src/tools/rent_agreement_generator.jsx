@@ -141,7 +141,7 @@ Address: ________________`
   return (
     <ToolLayout
       title="Rent Agreement Draft Generator"
-      desc="Rent Agreement Draft Generator - create a professional rental agreement online free. Free online, no sign-up. Works on any device."
+      desc="Draft a formatted rent agreement from landlord, tenant, property, rent, deposit, and tenure details for printing."
       icon="🏠" iconBg="rgba(16,185,129,0.08)"
       category="documents" slug="rent-agreement-generator"
       faq={[

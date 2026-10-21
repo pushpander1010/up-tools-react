@@ -37,7 +37,7 @@ export default function age_calculator_pro() {
   return (
     <ToolLayout
       title="Age Calculator Pro"
-      desc="Age Calculator Pro - calculate your age at any date. See total days, hours, minutes,, online free. Free online, instant results. No sign-up, works on mobile."
+      desc="Calculate your exact age at any given date with totals for days, hours and minutes plus a clear year-by-year breakdown."
       icon="⏰" iconBg="rgba(139,92,246,0.08)"
       category="health" slug="age-calculator-pro"
       faq={[

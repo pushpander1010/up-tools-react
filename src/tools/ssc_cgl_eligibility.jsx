@@ -85,7 +85,7 @@ export default function ssc_cgl_eligibility() {
   return (
     <ToolLayout
       title="SSC CGL Eligibility Checker"
-      desc="SSC CGL Eligibility Checker - check your age and education eligibility for all CGL posts. Free online tool, no sign-up."
+      desc="Check SSC CGL eligibility from birth date, category, and education with age and qualifying posts explained."
       icon="📋" iconBg="rgba(34,197,94,0.08)"
       category="education" slug="ssc-cgl-eligibility"
       faq={[

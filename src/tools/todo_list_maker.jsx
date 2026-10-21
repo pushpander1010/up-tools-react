@@ -46,7 +46,7 @@ export default function todo_list_maker() {
   return (
     <ToolLayout
       title="To-Do List Maker"
-      desc="To-Do List Maker - simple, fast to-do list that saves to your browser. Track tasks with categories, online free. Free online, no sign-up. Works on any device."
+      desc="Organize tasks with categories and priorities in a fast to-do list that saves automatically in your browser."
       icon="✅" iconBg="rgba(34,197,94,0.08)"
       category="productivity" slug="todo-list-maker"
       faq={[

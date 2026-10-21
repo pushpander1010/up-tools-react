@@ -102,7 +102,7 @@ export default function indian_stock_market_live() {
   return (
     <ToolLayout
       title="Indian Stock Market Live: Nifty 50 & Sensex Today"
-      desc="Live Nifty 50, Sensex, Bank Nifty and top Indian stock prices with real-time change, 52-week range and 6-month charts. Track today's gainers and losers on the NSE — free, no signup."
+      desc="Track live Nifty 50, Sensex and Bank Nifty prices with top movers, 52-week ranges and intraday price charts."
       icon="📈" iconBg="rgba(52,211,153,0.08)"
       category="finance" slug="indian-stock-market-live"
       faq={[

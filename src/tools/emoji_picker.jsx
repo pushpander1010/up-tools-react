@@ -47,7 +47,7 @@ export default function EmojiPicker() {
   return (
     <ToolLayout
       title="Emoji Picker"
-      desc="Emoji Picker - browse, search & copy 1500+ emojis organized by category, online free. Free online, no sign-up. Works on any device."
+      desc="Browse and search more than 1500 emojis by category, then click any emoji to copy it for chats and posts."
       icon="😄" iconBg="rgba(99,102,241,0.08)"
       category="fun" slug="emoji-picker"
       faq={[

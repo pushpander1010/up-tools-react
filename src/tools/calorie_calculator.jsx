@@ -145,7 +145,7 @@ export default function calorie_calculator() {
   return (
     <ToolLayout
       title="Calorie Calculator"
-      desc="Calorie Calculator - calculate your daily calorie needs using the Mifflin-St Jeor, online free. Free online, instant results. No sign-up, works on mobile."
+      desc="Estimate your daily calorie needs from age, weight, height and activity level using the Mifflin-St Jeor formula."
       icon="🔥" iconBg="rgba(239,68,68,0.08)"
       category="health" slug="calorie-calculator"
       faq={FAQs}

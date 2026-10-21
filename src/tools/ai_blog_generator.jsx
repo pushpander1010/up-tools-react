@@ -67,7 +67,7 @@ ${keywords ? '- Naturally incorporate these keywords: ' + keywords : ''}
   return (
     <ToolLayout
       title="AI Blog Post Generator"
-      desc="AI Blog Post Generator - generate full SEO-optimized blog posts instantly with AI. Enter a topic,, online free. Free online, no sign-up. Works on any device."
+      desc="Generate a complete SEO-optimized blog post from any topic, with headline, outline, sections and meta description included."
       icon="📝" iconBg="rgba(99,102,241,0.08)"
       category="ai" slug="ai-blog-generator"
       faq={[

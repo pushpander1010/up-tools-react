@@ -71,7 +71,7 @@ export default function countdown_timer() {
   return (
     <ToolLayout
       title="Countdown Timer"
-      desc="Countdown Timer - set a countdown timer with custom or preset durations. Start, pause, and reset, online free. Free online, no sign-up. Works on any device."
+      desc="Set a custom countdown with preset durations, start, pause and reset controls plus a clear completion alert."
       icon="⏱️" iconBg="rgba(6,182,212,0.08)"
       category="text" slug="countdown-timer"
       faq={[

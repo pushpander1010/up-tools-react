@@ -93,7 +93,7 @@ export default function exif_tool() {
   return (
     <ToolLayout
       title="EXIF Data Viewer"
-      desc="EXIF Data Viewer - view and analyze image metadata (EXIF, GPS, camera info). Remove metadata for, online free. Free online, no sign-up. Works on any device."
+      desc="View image EXIF metadata including camera, GPS and exposure details, and strip it before sharing privately."
       icon="🔍" iconBg="rgba(6,182,212,0.08)"
       category="utility" slug="exif-tool"
       faq={[

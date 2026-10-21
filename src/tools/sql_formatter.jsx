@@ -256,7 +256,7 @@ export default function sql_formatter() {
   return (
     <ToolLayout
       title="SQL Formatter"
-      desc="SQL Formatter - format, minify, and beautify SQL queries with customizable keyword case and, online free. Free online, no sign-up. Works on any device."
+      desc="Format, beautify, or minify SQL queries with customizable keyword casing and clean, readable indentation."
       icon="🗄️" iconBg="rgba(245,158,11,0.08)"
       category="developer" slug="sql-formatter"
       faq={[

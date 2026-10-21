@@ -114,7 +114,7 @@ export default function domain_finder() {
   return (
     <ToolLayout
       title="Domain Finder"
-      desc="Find brandable domain names and check live availability. Generate domain ideas from keywords and see which are actually free to register."
+      desc="Brainstorm brandable domain name ideas from keywords and check live availability to find one you can register."
       icon="🌐" iconBg="rgba(99,102,241,0.08)"
       category="business" slug="domain-finder"
       faq={[

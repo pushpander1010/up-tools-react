@@ -51,7 +51,7 @@ export default function FindAndReplace() {
   return (
     <ToolLayout
       title="Find & Replace"
-      desc="Find & Replace - find and replace text across your content. Supports regex, case-sensitive, online free. Free online, instant results. No login needed."
+      desc="Find and replace words or phrases across large text with case-sensitive and regular-expression matching options."
       icon="🔍" iconBg="rgba(99,102,241,0.08)"
       category="text" slug="find-and-replace"
       faq={[

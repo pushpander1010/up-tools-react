@@ -57,7 +57,7 @@ export default function fastag_toll_calculator() {
   return (
     <ToolLayout
       title="FASTag Toll Calculator"
-      desc="FASTag Toll Calculator - check toll charges between Indian cities by route and vehicle, online free. Instant results, no sign-up, works on mobile."
+      desc="Check FASTag toll charges between Indian cities by route and vehicle type before starting your trip."
       icon="🛣️" iconBg="rgba(59,130,246,0.08)"
       category="travel" slug="fastag-toll-calculator"
       faq={[

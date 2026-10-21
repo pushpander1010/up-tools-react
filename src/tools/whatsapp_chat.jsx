@@ -53,7 +53,7 @@ export default function whatsapp_chat() {
   return (
     <ToolLayout
       title="WhatsApp Click-to-Chat"
-      desc="WhatsApp Click-to-Chat - send a WhatsApp message by just entering the phone number and text. Copy, online free. Free online, no sign-up. Works on any device."
+      desc="Open a WhatsApp chat with any phone number by entering it with your message, no contact saving needed."
       icon="💬" iconBg="rgba(37,211,102,0.08)"
       category="whatsapp" slug="whatsapp-chat"
       faq={[

@@ -58,7 +58,7 @@ ${companyName}`
   return (
     <ToolLayout
       title="Experience Letter Generator"
-      desc="Experience Letter Generator - create professional experience letters for employees online free. Free online, no sign-up. Works on any device."
+      desc="Create a formal employment experience letter by entering employee, company, role and tenure details for download."
       icon="📄" iconBg="rgba(34,197,94,0.08)"
       category="document" slug="experience-letter-generator"
       faq={[

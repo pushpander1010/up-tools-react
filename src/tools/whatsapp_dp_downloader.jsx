@@ -77,7 +77,7 @@ export default function whatsapp_dp_downloader() {
   return (
     <ToolLayout
       title="WhatsApp DP Downloader"
-      desc="Download any visible WhatsApp DP free online in full HD size — by image link or phone number. Fast WhatsApp DP viewer and saver, no app needed."
+      desc="Download any visible WhatsApp profile picture in full size using an image link or phone number lookup."
       icon="📸" iconBg="rgba(37,211,102,0.08)"
       category="whatsapp" slug="whatsapp-dp-downloader"
       faq={[

@@ -64,7 +64,7 @@ Format as a numbered list. Make names memorable, unique, and brandable.`
   return (
     <ToolLayout
       title="AI Business Name Generator"
-      desc="AI Business Name Generator - generate unique, catchy business names with AI. Get 20 name ideas with, online free. Free online, no sign-up. Works on any device."
+      desc="Generate twenty unique and catchy business name ideas from your keywords, complete with meanings and style suggestions."
       icon="💡" iconBg="rgba(245,158,11,0.08)"
       category="ai" slug="ai-business-name-generator"
       faq={[

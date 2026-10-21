@@ -30,7 +30,7 @@ export default function instagram_video_downloader() {
   return (
     <ToolLayout
       title="Instagram Video Downloader"
-      desc="Instagram Video Downloader - download Instagram videos, reels, and IGTV in high quality. Save MP4, online free. Free online in HD. No app or login needed."
+      desc="Download Instagram videos, Reels and IGTV clips from public post links as HD MP4 files within seconds."
       icon="🎥" iconBg="rgba(99,102,241,0.08)"
       category="social" slug="instagram-video-downloader"
       faq={[

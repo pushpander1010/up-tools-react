@@ -52,7 +52,7 @@ export default function chhath_puja_2026_countdown() {
   return (
     <ToolLayout
       title="Chhath Puja 2026 Countdown"
-      desc="Chhath Puja 2026 Countdown - live timer, 4-day calendar and city-wise arghya timings, online free. No sign-up, works on mobile."
+      desc="Follow Chhath Puja 2026 with a live countdown, the four-day ritual calendar, and city arghya timings."
       icon="🌅" iconBg="rgba(249,115,22,0.08)"
       category="festivals" slug="chhath-puja-2026-countdown"
       faq={[

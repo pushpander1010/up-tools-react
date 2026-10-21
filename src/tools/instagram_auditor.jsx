@@ -249,7 +249,7 @@ export default function instagram_auditor() {
   return (
     <ToolLayout
       title="Instagram Auditor"
-      desc="Instagram Auditor - find non-followers, fans & mutuals. Upload your Instagram data export for, online free. Free online, no sign-up. Works on any device."
+      desc="Audit your Instagram audience by finding non-followers, loyal fans and mutuals from your data export file."
       icon="🔍" iconBg="rgba(236,72,153,0.08)"
       category="social" slug="instagram-auditor"
       faq={[

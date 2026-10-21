@@ -61,7 +61,7 @@ export default function contact() {
   return (
     <ToolLayout
       title="Contact Us"
-      desc="Contact Us - get in touch with the UpTools team. Report bugs, suggest features, or ask questions, online free. Free online, no sign-up. Works on any device."
+      desc="Reach the UpTools team to report bugs, suggest new tools or ask questions with a simple message form."
       icon="📬" iconBg="rgba(99,102,241,0.08)"
       category="text" slug="contact"
       faq={[

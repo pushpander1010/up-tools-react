@@ -136,7 +136,7 @@ export default function scientific_calculator() {
   return (
     <ToolLayout
       title="Scientific Calculator"
-      desc="Scientific Calculator - full-featured scientific calculator with trig functions,, online free. Free online, instant results. No sign-up, works on mobile."
+      desc="Solve advanced math with trigonometric, logarithmic, exponential, and root functions in a full scientific layout."
       icon="🧮" iconBg="rgba(245,158,11,0.08)"
       category="tools" slug="scientific-calculator"
       faq={[

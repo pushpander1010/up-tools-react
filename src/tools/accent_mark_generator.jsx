@@ -35,7 +35,7 @@ export default function accent_mark_generator() {
   return (
     <ToolLayout
       title="Accent Mark Generator"
-      desc="Accent Mark Generator - add accent marks and diacritics to text. Quick buttons for common, online free. Free online, no sign-up. Works on any device."
+      desc="Add accent marks and diacritics to any text with quick-click buttons for common French, Spanish and German characters."
       icon="🎨" iconBg="rgba(99,102,241,0.08)"
       category="text" slug="accent-mark-generator"
       faq={[

@@ -61,7 +61,7 @@ export default function tdee_calculator() {
   return (
     <ToolLayout
       title="TDEE Calculator"
-      desc="TDEE Calculator - find your Total Daily Energy Expenditure, BMR, and macro targets for, online free. Free online, instant results. No sign-up, works on mobile."
+      desc="Calculate total daily energy expenditure, basal metabolic rate, and calorie plus macro targets for your goal."
       icon="🔥" iconBg="rgba(239,68,68,0.08)"
       category="health" slug="tdee-calculator"
       faq={[

@@ -94,7 +94,7 @@ export default function cgpa_calculator() {
   return (
     <ToolLayout
       title="CGPA Calculator"
-      desc="CGPA Calculator - calculate CGPA on a 10-point Indian grading scale. Converts to, online free. Free online, instant results. No sign-up, works on mobile."
+      desc="Calculate CGPA on the Indian 10-point grading scale from subject grades and convert it to an equivalent percentage."
       icon="📊" iconBg="rgba(16,185,129,0.08)"
       category="education" slug="cgpa-calculator"
       faq={[

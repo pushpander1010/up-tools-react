@@ -64,7 +64,7 @@ export default function phone_specs() {
   return (
     <ToolLayout
       title="Phone Specifications"
-      desc="Phone Specifications - search, view and compare smartphone specs online free. 100+ phones with full details, no sign-up, works on mobile."
+      desc="Search and compare full smartphone specifications across more than a hundred popular phone models side by side."
       icon="📱" iconBg="rgba(99,102,241,0.08)"
       category="tools" slug="phone-specs"
       faq={[

@@ -68,7 +68,7 @@ export default function facebook_video_downloader() {
   return (
     <ToolLayout
       title="Facebook Video Downloader"
-      desc="Facebook Video Downloader - download Facebook videos, Reels, and Stories in HD quality instantly, online free. Free online in HD. No app or login needed."
+      desc="Save Facebook videos, Reels and Stories in HD quality by pasting the video link and choosing your preferred format."
       icon="📹" iconBg="rgba(24,119,242,0.08)"
       category="social" slug="facebook-video-downloader"
       faq={[

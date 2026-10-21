@@ -14,7 +14,7 @@ export default function pinterest_video_downloader() {
   return (
     <ToolLayout
       title="Pinterest Video Downloader"
-      desc="Pinterest Video Downloader - free Pinterest video downloader. Download Pinterest pins, videos, and, online free. Free online in HD. No app or login needed."
+      desc="Download Pinterest videos and pins from any public board link in high quality with just a single click."
       icon="📌" iconBg="rgba(239,68,68,0.08)"
       category="social" slug="pinterest-video-downloader"
       faq={[

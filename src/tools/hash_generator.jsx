@@ -43,7 +43,7 @@ export default function hash_generator() {
   return (
     <ToolLayout
       title="Hash Generator"
-      desc="Hash Generator - generate SHA-1, SHA-256, SHA-384, SHA-512 hashes from any text, online free. Free online, no sign-up. Works on any device."
+      desc="Generate SHA-1, SHA-256, SHA-384 and SHA-512 hashes from any text for verification and integrity checks."
       icon="🔐" iconBg="rgba(99,102,241,0.08)"
       category="dev" slug="hash-generator"
       faq={[

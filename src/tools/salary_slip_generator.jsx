@@ -63,7 +63,7 @@ export default function salary_slip_generator() {
   return (
     <ToolLayout
       title="Salary Slip Generator"
-      desc="Salary Slip Generator - create professional salary slips with earnings, deductions and net pay, online free. Free online, no sign-up. Works on any device."
+      desc="Build a professional salary slip from employee details, earnings, and deductions with automatic gross and net pay."
       icon="💼" iconBg="rgba(59,130,246,0.08)"
       category="finance" slug="salary-slip-generator"
       faq={[

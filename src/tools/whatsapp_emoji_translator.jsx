@@ -46,7 +46,7 @@ export default function whatsapp_emoji_translator() {
   return (
     <ToolLayout
       title="WhatsApp Emoji Translator"
-      desc="WhatsApp Emoji Translator - convert your text to emojis! Make your WhatsApp messages more fun and, online free. Free online, no sign-up. Works on any device."
+      desc="Convert plain words and phrases into playful emoji combinations perfect for lively WhatsApp messages."
       icon="😊" iconBg="rgba(37,211,102,0.08)"
       category="whatsapp" slug="whatsapp-emoji-translator"
       faq={[

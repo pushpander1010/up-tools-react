@@ -41,7 +41,7 @@ export default function gst_invoice_generator() {
   return (
     <ToolLayout
       title="GST Invoice Generator"
-      desc="GST Invoice Generator - generate a GST-compliant invoice total: item amount, CGST, SGST/IGST and, online free. Free online, no sign-up. Works on any device."
+      desc="Generate GST-compliant invoice totals with item amounts plus CGST, SGST or IGST breakup shown clearly."
       icon="🧾" iconBg="rgba(34,197,94,0.08)"
       category="finance" slug="gst-invoice-generator"
       faq={[

@@ -190,7 +190,7 @@ export default function BarcodeGenerator() {
   return (
     <ToolLayout
       title="Barcode Generator"
-      desc="Barcode Generator - generate CODE128, EAN-13, UPC-A and Code 39 barcodes. Download as PNG, online free. Free online, no sign-up. Works on any device."
+      desc="Generate CODE128, EAN-13, UPC-A and Code 39 barcodes from your data and download them as crisp PNG images."
       icon="📊" iconBg="rgba(99,102,241,0.08)"
       category="dev" slug="barcode-generator"
       faq={[

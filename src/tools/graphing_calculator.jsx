@@ -344,7 +344,7 @@ export default function graphing_calculator() {
   return (
     <ToolLayout
       title="Graphing Calculator"
-      desc="Graphing Calculator - plot up to 3 functions. Supports sin, cos, tan, log, sqrt, abs,, online free. Free online, instant results. No sign-up, works on mobile."
+      desc="Plot up to three math functions with support for sine, cosine, tangent, logarithms, roots and absolute values."
       icon="📐" iconBg="rgba(99,102,241,0.08)"
       category="math" slug="graphing-calculator"
       faq={[

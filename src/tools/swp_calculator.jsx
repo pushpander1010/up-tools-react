@@ -47,7 +47,7 @@ export default function swp_calculator() {
   return (
     <ToolLayout
       title="SWP Calculator"
-      desc="SWP Calculator - plan systematic withdrawal from mutual funds with monthly payout and balance forecast, online free. Instant results, no sign-up, works on mobile."
+      desc="Plan systematic withdrawals from mutual funds with monthly payouts and a projected balance forecast."
       icon="💸" iconBg="rgba(34,197,94,0.08)"
       category="finance" slug="swp-calculator"
       faq={[

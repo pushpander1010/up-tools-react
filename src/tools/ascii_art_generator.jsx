@@ -112,7 +112,7 @@ export default function ascii_art_generator() {
   return (
     <ToolLayout
       title="ASCII Art Generator"
-      desc="ASCII Art Generator - convert text to ASCII art with multiple fonts. Create styled text for social, online free. Free online, no sign-up. Works on any device."
+      desc="Convert words and phrases into stylish ASCII art using multiple fonts, perfect for social posts and playful messages."
       icon="🎨" iconBg="rgba(245,158,11,0.08)"
       category="text" slug="ascii-art-generator"
       faq={[

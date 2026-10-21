@@ -54,7 +54,7 @@ export default function diwali_muhurat_finder_2026() {
   return (
     <ToolLayout
       title="Diwali Muhurat Finder 2026"
-      desc="Diwali Muhurat Finder 2026 - Lakshmi Puja shubh muhurat by city with live countdown, online free. No sign-up, works on mobile."
+      desc="Find the 2026 Diwali Lakshmi Puja shubh muhurat for your city, with exact timings plus a live countdown."
       icon="🪔" iconBg="rgba(249,115,22,0.08)"
       category="festivals" slug="diwali-muhurat-finder-2026"
       faq={[

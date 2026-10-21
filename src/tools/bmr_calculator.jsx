@@ -53,7 +53,7 @@ export default function bmr_calculator() {
   return (
     <ToolLayout
       title="BMR Calculator"
-      desc="BMR Calculator - basal metabolic rate with Mifflin-St Jeor, Harris-Benedict &, online free. Free online, instant results. No sign-up, works on mobile."
+      desc="Estimate your basal metabolic rate with Mifflin-St Jeor and Harris-Benedict formulas plus daily calorie guidance."
       icon="🔥" iconBg="rgba(245,158,11,0.08)"
       category="health" slug="bmr-calculator"
       faq={[

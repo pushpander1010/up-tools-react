@@ -48,7 +48,7 @@ export default function name_age_guesser() {
   return (
     <ToolLayout
       title="Name Age & Gender Guesser"
-      desc="Name Age & Gender Guesser - predict age, gender, and nationality from any first name. Free, online free. Free online, no sign-up. Works on any device."
+      desc="Predict the likely age, gender and nationality behind any given first name with smart data insights."
       icon="🔮" iconBg="rgba(168,85,247,0.08)"
       category="fun" slug="name-age-guesser"
       faq={[

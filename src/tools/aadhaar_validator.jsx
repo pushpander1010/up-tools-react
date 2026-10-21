@@ -78,7 +78,7 @@ export default function aadhaar_validator() {
   return (
     <ToolLayout
       title="Aadhaar Number Validator"
-      desc="Aadhaar Number Validator - validate your 12-digit Aadhaar number instantly using the Verhoeff, online free. Free online, instant results. No login needed."
+      desc="Validate a 12-digit Aadhaar number instantly using the Verhoeff checksum algorithm for correct format and structure."
       icon="🪪" iconBg="rgba(99,102,241,0.08)"
       category="dev" slug="aadhaar-validator"
       faq={[

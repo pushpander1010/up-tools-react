@@ -149,7 +149,7 @@ export default function JwtDebugger() {
   return (
     <ToolLayout
       title="JWT Debugger"
-      desc="JWT Debugger - decode & inspect JWT tokens client-side. View header, payload, and signature info, online free. Free online, no sign-up. Works on any device."
+      desc="Decode and inspect any JWT token to view its header claims, payload data and signature details safely."
       icon="🛡️" iconBg="rgba(99,102,241,0.08)"
       category="dev" slug="jwt-debugger"
       faq={[

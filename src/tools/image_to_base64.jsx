@@ -111,7 +111,7 @@ export default function ImageToBase64() {
   return (
     <ToolLayout
       title="Image to Base64"
-      desc="Image to Base64 - convert any image to a Base64 data URL. All processing done in your browser —, online free. Free online, no sign-up. Works on any device."
+      desc="Convert any image into a Base64 data URL for embedding directly in HTML, CSS or JSON code projects easily."
       icon="🖼️" iconBg="rgba(99,102,241,0.08)"
       category="images" slug="image-to-base64"
       faq={[

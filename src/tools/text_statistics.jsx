@@ -112,7 +112,7 @@ export default function TextStatistics() {
   return (
     <ToolLayout
       title="Text Statistics"
-      desc="Text Statistics - advanced text statistics: characters, words, sentences, syllables, reading time,, online free. Free online, no sign-up. Works on any device."
+      desc="Analyze any text for word and character counts, sentences, syllables, readability, and estimated reading time."
       icon="📊" iconBg="rgba(99,102,241,0.08)"
       category="text" slug="text-statistics"
       faq={[

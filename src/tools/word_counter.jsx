@@ -21,7 +21,7 @@ export default function word_counter() {
   return (
     <ToolLayout
       title="Word Counter"
-      desc="Word Counter - count words, characters, sentences, paragraphs, and lines in your text. Instant,, online free. Free online, no sign-up. Works on any device."
+      desc="Count words, characters, sentences, paragraphs, and lines in your text with live statistics as you type."
       icon="📝" iconBg="rgba(99,102,241,0.08)"
       category="text" slug="word-counter"
       faq={[

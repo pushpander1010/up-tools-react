@@ -72,7 +72,7 @@ export default function instagram_hashtag_generator() {
   return (
     <ToolLayout
       title="Instagram Hashtag Generator"
-      desc="Instagram Hashtag Generator - generate trending Instagram hashtags instantly. Get the best hashtags, online free. Free online, no sign-up. Works on any device."
+      desc="Generate relevant trending hashtags for any topic to boost the reach of your Instagram posts and Reels."
       icon="📊" iconBg="rgba(236,72,153,0.08)"
       category="social" slug="instagram-hashtag-generator"
       faq={[

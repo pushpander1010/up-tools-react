@@ -102,7 +102,7 @@ export default function http_status_codes() {
   return (
     <ToolLayout
       title="HTTP Status Codes Reference"
-      desc="HTTP Status Codes Reference - complete reference for all HTTP status codes with descriptions., online free. Free online, no sign-up. Works on any device."
+      desc="Look up every HTTP status code with clear meanings, categories and practical guidance for debugging responses."
       icon="🌐" iconBg="rgba(14,165,233,0.08)"
       category="developer" slug="http-status-codes"
       faq={[

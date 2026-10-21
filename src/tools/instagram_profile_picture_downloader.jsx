@@ -47,7 +47,7 @@ export default function instagram_profile_picture_downloader() {
   return (
     <ToolLayout
       title="Instagram Profile Picture Downloader"
-      desc="Instagram profile picture downloader — view and download any public IG profile photo online free in full resolution by username. No login or app needed."
+      desc="View and download any public Instagram profile picture in full resolution as a clear high-quality image file."
       icon="🖼️" iconBg="rgba(236,72,153,0.08)"
       category="social" slug="instagram-profile-picture-downloader"
       faq={[

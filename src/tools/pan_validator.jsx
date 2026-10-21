@@ -166,7 +166,7 @@ export default function pan_validator() {
   return (
     <ToolLayout
       title="PAN Format Validator"
-      desc="PAN Format Validator - validate Indian PAN card numbers instantly. Check format, identify entity, online free. Free online, instant results. No login needed."
+      desc="Validate Indian PAN numbers by checking the format pattern and identifying the holder category type."
       icon="🪪" iconBg="rgba(168,85,247,0.08)"
       category="text" slug="pan-validator"
       faq={[

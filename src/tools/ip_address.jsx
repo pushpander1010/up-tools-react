@@ -58,7 +58,7 @@ export default function ip_address() {
   return (
     <ToolLayout
       title="IP Address & ISP Lookup"
-      desc="IP Address & ISP Lookup - detect your public IP address, location, ISP, timezone, and coordinates, online free. Free online, no sign-up. Works on any device."
+      desc="Check your public IP address along with location, ISP name, timezone and precise geographic coordinates."
       icon="🌐" iconBg="rgba(14,165,233,0.08)"
       category="networking" slug="ip-address"
       faq={[

@@ -130,7 +130,7 @@ export default function ai_plagiarism() {
   return (
     <ToolLayout
       title="AI Plagiarism Checker & Paraphraser"
-      desc="AI Plagiarism Checker & Paraphraser - check originality, paraphrase for higher uniqueness, or, online free. Free online, instant results. No login needed."
+      desc="Check text originality, detect repeated phrasing and paraphrase passages to improve uniqueness and readability."
       icon="🔍" iconBg="rgba(168,85,247,0.08)"
       category="ai" slug="ai-plagiarism"
       faq={[

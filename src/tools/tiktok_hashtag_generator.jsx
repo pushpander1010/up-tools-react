@@ -48,7 +48,7 @@ export default function tiktok_hashtag_generator() {
   return (
     <ToolLayout
       title="TikTok Hashtag Generator"
-      desc="TikTok Hashtag Generator - generate trending TikTok hashtags to boost your reach and views. 15+, online free. Free online, no sign-up. Works on any device."
+      desc="Generate trending TikTok hashtags tailored to your topic to boost reach, engagement, and video views."
       icon="🎵" iconBg="rgba(0,0,0,0.08)"
       category="social" slug="tiktok-hashtag-generator"
       faq={[

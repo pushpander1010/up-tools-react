@@ -51,7 +51,7 @@ export default function jee_percentile_predictor() {
   return (
     <ToolLayout
       title="JEE Main Percentile Predictor"
-      desc="Predict your JEE Main NTA percentile and All India Rank based on marks scored, shift difficulty, and number of candidates — free online estimator."
+      desc="Estimate your JEE Main percentile, expected rank range and Advanced qualifying chance from your marks."
       icon="🎓" iconBg="rgba(34,197,94,0.08)"
       category="education" slug="jee-percentile-predictor"
       faq={[

@@ -60,7 +60,7 @@ export default function InstagramCaptionGenerator() {
   return (
     <ToolLayout
       title="Instagram Caption Generator"
-      desc="Instagram Caption Generator - generate engaging captions for your Instagram posts. Multiple styles, online free. Free online, no sign-up. Works on any device."
+      desc="Generate engaging Instagram captions in multiple styles, from witty one-liners to thoughtful stories."
       icon="💬" iconBg="rgba(236,72,153,0.08)"
       category="social" slug="instagram-caption-generator"
       faq={[

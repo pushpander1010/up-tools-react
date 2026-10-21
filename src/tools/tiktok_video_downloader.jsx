@@ -38,7 +38,7 @@ export default function tiktok_video_downloader() {
   return (
     <ToolLayout
       title="TikTok Video Downloader"
-      desc="TikTok Video Downloader - download TikTok videos without watermark in HD quality. Works on all devices, online free. Free online in HD. No app or login needed."
+      desc="Download TikTok videos without watermark in crisp HD quality for easy offline viewing and resharing."
       icon="🎬" iconBg="rgba(0,0,0,0.08)"
       category="social" slug="tiktok-video-downloader"
       faq={[

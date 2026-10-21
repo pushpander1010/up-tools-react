@@ -36,7 +36,7 @@ export default function cron_expression_generator() {
   return (
     <ToolLayout
       title="Cron Expression Generator"
-      desc="Cron Expression Generator - build cron expressions with a visual interface. Set minute, hour, day,, online free. Free online, no sign-up. Works on any device."
+      desc="Build correct cron expressions visually by setting minutes, hours, days and months with a plain-English preview."
       icon="⏰" iconBg="rgba(6,182,212,0.08)"
       category="dev" slug="cron-expression-generator"
       faq={[

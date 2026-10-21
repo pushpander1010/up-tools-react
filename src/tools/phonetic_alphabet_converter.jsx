@@ -43,7 +43,7 @@ export default function phonetic_alphabet_converter() {
   return (
     <ToolLayout
       title="Phonetic Alphabet Converter"
-      desc="Phonetic Alphabet Converter - convert text to NATO phonetic alphabet. Perfect for clear, online free. Free online, instant results. No sign-up needed."
+      desc="Convert any text into NATO phonetic alphabet words for clear, reliable and unambiguous spelling aloud."
       icon="🔤" iconBg="rgba(99,102,241,0.08)"
       category="utility" slug="phonetic-alphabet-converter"
       faq={[

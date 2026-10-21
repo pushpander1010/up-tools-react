@@ -119,7 +119,7 @@ export default function InstagramBioGenerator() {
   return (
     <ToolLayout
       title="Instagram Bio Generator"
-      desc="Instagram Bio Generator - create engaging and creative Instagram bios with AI. Get multiple, online free. Free online, no sign-up. Works on any device."
+      desc="Create catchy Instagram bios in different styles and tones tailored to your profile, niche and personality."
       icon="📝" iconBg="rgba(236,72,153,0.08)"
       category="social" slug="instagram-bio-generator"
       faq={[

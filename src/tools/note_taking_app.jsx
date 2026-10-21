@@ -39,7 +39,7 @@ export default function note_taking_app() {
   return (
     <ToolLayout
       title="Note Taking App"
-      desc="Note Taking App - quick note-taking tool with auto-save to your browser. Save, clear, and export, online free. Free online, no sign-up. Works on any device."
+      desc="Jot down quick notes that autosave in your browser, then organize, copy or export them anytime later."
       icon="📝" iconBg="rgba(99,102,241,0.08)"
       category="text" slug="note-taking-app"
       faq={[

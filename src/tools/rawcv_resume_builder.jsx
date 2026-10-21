@@ -175,7 +175,7 @@ ${skills.length ? `<div class="section"><div class="section-title">Skills</div><
   return (
     <ToolLayout
       title="AI Resume Builder (RawCV)"
-      desc="AI Resume Builder (RawCV) - build a professional ATS-friendly resume with AI. Free,, online free. Free online, no sign-up. Works on any device."
+      desc="Build a polished ATS-friendly resume with guided sections, smart formatting and a clean download ready for applications."
       icon="📝" iconBg="rgba(99,102,241,0.08)"
       category="text" slug="rawcv-resume-builder"
       faq={[

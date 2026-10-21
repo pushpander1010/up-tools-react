@@ -37,7 +37,7 @@ export default function ReverseText() {
   return (
     <ToolLayout
       title="Reverse Text"
-      desc="Reverse Text - reverse text characters, words, or lines instantly. All processing is done in your, online free. Free online, no sign-up. Works on any device."
+      desc="Reverse text by characters, words, or lines while keeping everything processed privately in your browser."
       icon="🔄" iconBg="rgba(99,102,241,0.08)"
       category="text" slug="reverse-text"
       faq={[

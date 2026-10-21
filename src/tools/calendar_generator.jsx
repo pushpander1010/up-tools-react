@@ -60,7 +60,7 @@ export default function calendar_generator() {
   return (
     <ToolLayout
       title="Calendar Generator"
-      desc="Calendar Generator - generate printable monthly or yearly calendars. Customize year, month, start, online free. Free online, no sign-up. Works on any device."
+      desc="Generate printable monthly or yearly calendars for any year with custom week start, holidays and clean layouts."
       icon="📅" iconBg="rgba(99,102,241,0.08)"
       category="tools" slug="calendar-generator"
       faq={[

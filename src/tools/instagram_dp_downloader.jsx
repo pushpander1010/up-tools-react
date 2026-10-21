@@ -34,7 +34,7 @@ export default function instagram_dp_downloader() {
   return (
     <ToolLayout
       title="Instagram DP Downloader"
-      desc="Instagram DP downloader — download Instagram profile pictures online free in HD. View any public profile photo by username, save full-size, no login needed."
+      desc="Download any public Instagram profile picture in HD quality by entering the account username in the box."
       icon="🖼️" iconBg="rgba(99,102,241,0.08)"
       category="social" slug="instagram-dp-downloader"
       faq={[

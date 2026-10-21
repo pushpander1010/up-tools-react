@@ -41,7 +41,7 @@ export default function snapchat_score_calculator() {
   return (
     <ToolLayout
       title="Snapchat Score Calculator"
-      desc="Snapchat Score Calculator - calculate your estimated Snapchat score and learn how it, online free. Free online, instant results. No sign-up, works on mobile."
+      desc="Estimate your Snapchat score from your snaps and stories while learning exactly how each activity raises it."
       icon="👻" iconBg="rgba(255,252,0,0.08)"
       category="social" slug="snapchat-score-calculator"
       faq={[

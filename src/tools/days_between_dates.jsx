@@ -26,7 +26,7 @@ export default function days_between_dates() {
   return (
     <ToolLayout
       title="Days Between Dates Calculator"
-      desc="Days Between Dates Calculator - calculate days, weeks, months, and years between two, online free. Free online, instant results. No sign-up, works on mobile."
+      desc="Calculate the days, weeks, months and years between two dates with a clear breakdown of elapsed time."
       icon="📅" iconBg="rgba(14,165,233,0.08)"
       category="utility" slug="days-between-dates"
       faq={[

@@ -126,7 +126,7 @@ export default function age_calculator() {
   return (
     <ToolLayout
       title="Age Calculator"
-      desc="Age Calculator - calculate your exact age in years, months, and days. Find your zodiac, online free. Free online, instant results. No sign-up, works on mobile."
+      desc="Calculate your exact age in years, months and days from your birthdate, including zodiac sign and birthday countdown."
       icon="🎂" iconBg="rgba(99,102,241,0.08)"
       category="text" slug="age-calculator"
       faq={[

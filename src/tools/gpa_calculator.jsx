@@ -126,7 +126,7 @@ export default function gpa_calculator() {
   return (
     <ToolLayout
       title="GPA Calculator"
-      desc="GPA Calculator - calculate semester and cumulative GPA with unweighted (4.0) or, online free. Free online, instant results. No sign-up, works on mobile."
+      desc="Calculate semester and cumulative GPA on weighted or unweighted scales from course grades and credit hours."
       icon="🎓" iconBg="rgba(59,130,246,0.08)"
       category="education" slug="gpa-calculator"
       faq={[

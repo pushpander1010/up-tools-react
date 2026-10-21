@@ -31,7 +31,7 @@ export default function regex_tester() {
   return (
     <ToolLayout
       title="Regex Tester"
-      desc="Regex Tester - test regular expressions online with live matching and group capture. Instant,, online free. Free online, instant results. No login needed."
+      desc="Test regular expressions with live pattern matching, highlighted results, and captured group inspection."
       icon="🔍" iconBg="rgba(99,102,241,0.08)"
       category="dev" slug="regex-tester"
       faq={[

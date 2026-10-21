@@ -42,7 +42,7 @@ export default function sin_validator() {
   return (
     <ToolLayout
       title="SIN Validator"
-      desc="SIN Validator - validate Canadian SIN numbers with checksum (Luhn). Privacy-first, online free. Free online, instant results. No login needed."
+      desc="Validate Canadian Social Insurance Numbers by checking their format and Luhn checksum digit for errors."
       icon="🍁" iconBg="rgba(220,38,38,0.08)"
       category="canada" slug="sin-validator"
       faq={[

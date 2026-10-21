@@ -39,7 +39,7 @@ export default function html_preview() {
   return (
     <ToolLayout
       title="HTML Preview"
-      desc="HTML Preview - write HTML and see a live preview instantly. Edit markup and CSS, render in real time, online free. Free online, no sign-up. Works on any device."
+      desc="Write HTML and CSS in the editor and watch a live rendered preview update instantly as you type and edit."
       icon="🌐" iconBg="rgba(99,102,241,0.08)"
       category="dev" slug="html-preview"
       faq={[

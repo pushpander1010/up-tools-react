@@ -40,7 +40,7 @@ export default function water_intake_calculator() {
   return (
     <ToolLayout
       title="Water Intake Calculator"
-      desc="Water Intake Calculator - calculate your ideal daily water intake based on body weight, online free. Free online, instant results. No sign-up, works on mobile."
+      desc="Calculate your ideal daily water intake from body weight, activity level, and local climate conditions."
       icon="💧" iconBg="rgba(56,189,248,0.08)"
       category="health" slug="water-intake-calculator"
       faq={[

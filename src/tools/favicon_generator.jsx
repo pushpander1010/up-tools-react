@@ -46,7 +46,7 @@ export default function favicon_generator() {
   return (
     <ToolLayout
       title="Favicon Generator"
-      desc="Favicon Generator - generate favicons from text with customizable colors. Download in multiple sizes, online free. Free online, no sign-up. Works on any device."
+      desc="Design a custom favicon from text and colors, then download it in every size needed for browsers and apps."
       icon="🎯" iconBg="rgba(245,158,11,0.08)"
       category="generator" slug="favicon-generator"
       faq={[

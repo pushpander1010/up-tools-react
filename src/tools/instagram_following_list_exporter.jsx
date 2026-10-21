@@ -70,7 +70,7 @@ export default function instagram_following_list_exporter() {
   return (
     <ToolLayout
       title="Instagram Following List Exporter"
-      desc="Instagram Following List Exporter - upload your Instagram data export and convert your following, online free. Free online, no sign-up. Works on any device."
+      desc="Turn your Instagram data export into a clean, searchable and sortable list of every account you follow."
       icon="📤" iconBg="rgba(6,182,212,0.08)"
       category="social" slug="instagram-following-list-exporter"
       faq={[

@@ -111,7 +111,7 @@ export default function NumbersToWords() {
   return (
     <ToolLayout
       title="Numbers to Words"
-      desc="Numbers to Words - convert numbers to English words with Indian or international numbering system, online free. Free online, no sign-up. Works on any device."
+      desc="Convert any number into correct English words using the Indian or international numbering system easily."
       icon="🔢" iconBg="rgba(99,102,241,0.08)"
       category="text" slug="numbers-to-words"
       faq={[

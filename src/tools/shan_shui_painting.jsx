@@ -180,7 +180,7 @@ export default function ShanShuiPainting() {
   return (
     <ToolLayout
       title="Shan Shui Painting Generator"
-      desc="An endless Chinese ink-wash landscape scroll — travel forever in either direction, then download your scene as SVG or PNG."
+      desc="Generate endless Chinese ink-wash landscape scrolls where every click paints a unique downloadable scene."
       icon="🏔️" iconBg="rgba(0,200,180,0.08)"
       category="images" slug="shan-shui-painting"
       faq={[

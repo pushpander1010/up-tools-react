@@ -50,7 +50,7 @@ export default function CssFilterGenerator() {
   return (
     <ToolLayout
       title="CSS Filter Generator"
-      desc="CSS Filter Generator - visual CSS filter builder with live preview. Adjust blur, brightness,, online free. Free online, no sign-up. Works on any device."
+      desc="Build CSS image filters visually with live preview for blur, brightness, contrast, saturation and hue effects."
       icon="🎬" iconBg="rgba(99,102,241,0.08)"
       category="dev" slug="css-filter-generator"
       faq={[

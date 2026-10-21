@@ -43,7 +43,7 @@ export default function ifsc_bulk_lookup() {
   return (
     <ToolLayout
       title="IFSC Bulk Lookup"
-      desc="IFSC Bulk Lookup - search multiple IFSC codes at once. Get bank branch details instantly. Download, online free. Free online, no sign-up. Works on any device."
+      desc="Look up multiple IFSC codes at once and get bank names, branch addresses and MICR details in one table."
       icon="🏦" iconBg="rgba(34,197,94,0.08)"
       category="finance" slug="ifsc-bulk-lookup"
       faq={[
