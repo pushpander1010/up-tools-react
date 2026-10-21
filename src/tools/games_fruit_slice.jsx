@@ -360,34 +360,22 @@ export default function games_fruit_slice() {
     })
   }, [])
 
-  const handleMouseDown = useCallback((e) => {
+  const handlePointerDown = useCallback((e) => {
+    const canvas = canvasRef.current
+    // Capture the pointer so we keep receiving move events even on fast swipes
+    // that leave the canvas — mouse events don't do this, pointer events do.
+    if (canvas && e.pointerId != null) { try { canvas.setPointerCapture(e.pointerId) } catch {} }
     isDragging.current = true
     lastMouse.current = { x: e.clientX, y: e.clientY }
     handleSlice(e.clientX, e.clientY)
   }, [handleSlice])
 
-  const handleMouseMove = useCallback((e) => {
+  const handlePointerMove = useCallback((e) => {
     if (!isDragging.current) return
     handleSlice(e.clientX, e.clientY)
   }, [handleSlice])
 
-  const handleMouseUp = useCallback(() => { isDragging.current = false }, [])
-
-  const handleTouchStart = useCallback((e) => {
-    e.preventDefault()
-    isDragging.current = true
-    const t = e.touches[0]
-    lastMouse.current = { x: t.clientX, y: t.clientY }
-    handleSlice(t.clientX, t.clientY)
-  }, [handleSlice])
-
-  const handleTouchMove = useCallback((e) => {
-    e.preventDefault()
-    const t = e.touches[0]
-    handleSlice(t.clientX, t.clientY)
-  }, [handleSlice])
-
-  const handleTouchEnd = useCallback(() => { isDragging.current = false }, [])
+  const handlePointerUp = useCallback(() => { isDragging.current = false }, [])
 
   useEffect(() => { fitCanvas() }, [fitCanvas])
   // The canvas only mounts AFTER start (playing=false hides it), so re-fit
@@ -491,13 +479,10 @@ export default function games_fruit_slice() {
               <canvas ref={canvasRef}
                 className="w-full rounded-lg cursor-crosshair"
                 style={{ touchAction: 'none', display: 'block', maxWidth: '100%' }}
-                onMouseDown={handleMouseDown}
-                onMouseMove={handleMouseMove}
-                onMouseUp={handleMouseUp}
-                onMouseLeave={handleMouseUp}
-                onTouchStart={handleTouchStart}
-                onTouchMove={handleTouchMove}
-                onTouchEnd={handleTouchEnd}
+                onPointerDown={handlePointerDown}
+                onPointerMove={handlePointerMove}
+                onPointerUp={handlePointerUp}
+                onPointerCancel={handlePointerUp}
               />
             </div>
 
