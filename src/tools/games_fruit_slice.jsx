@@ -143,30 +143,30 @@ function spawnExplosion(x, y, killY) {
   const parts = []
   // Central flash (bright expanding glow)
   parts.push({
-    x, y, r: 8, alive: true, killY, isFlash: true,
+    x, y, r: 18, alive: true, killY, isFlash: true,
     life: 1,
-    update(dt) { this.life -= dt * 0.09; this.r += dt * 6; if (this.life <= 0) this.alive = false },
+    update(dt) { this.life -= dt * 0.08; this.r += dt * 9; if (this.life <= 0) this.alive = false },
     draw(ctx) {
       const a = Math.max(0, this.life)
       const g = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.r)
       g.addColorStop(0, `rgba(255,255,214,${0.95 * a})`)
-      g.addColorStop(0.45, `rgba(251,191,36,${0.7 * a})`)
+      g.addColorStop(0.45, `rgba(251,191,36,${0.75 * a})`)
       g.addColorStop(1, 'rgba(239,68,68,0)')
       ctx.fillStyle = g
       ctx.beginPath(); ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2); ctx.fill()
     },
     contains() { return false }, sliced: false, isBomb: false
   })
-  // Shockwave rings (two staggered)
-  for (let k = 0; k < 2; k++) {
+  // Shockwave rings (three staggered)
+  for (let k = 0; k < 3; k++) {
     parts.push({
       x, y, r: 5, alive: true, killY, isRing: true,
-      life: 1, delay: k * 7,
-      update(dt) { if (this.delay > 0) { this.delay -= dt; return } this.life -= dt * 0.055; this.r += dt * 7; if (this.life <= 0) this.alive = false },
+      life: 1, delay: k * 6,
+      update(dt) { if (this.delay > 0) { this.delay -= dt; return } this.life -= dt * 0.05; this.r += dt * 8; if (this.life <= 0) this.alive = false },
       draw(ctx) {
         const a = Math.max(0, this.life)
-        ctx.strokeStyle = `rgba(255,170,60,${0.8 * a})`
-        ctx.lineWidth = 4 * a + 1
+        ctx.strokeStyle = `rgba(255,170,60,${0.85 * a})`
+        ctx.lineWidth = 5 * a + 1.5
         ctx.beginPath(); ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2); ctx.stroke()
       },
       contains() { return false }, sliced: false, isBomb: false
@@ -174,13 +174,13 @@ function spawnExplosion(x, y, killY) {
   }
   // Fire sparks
   const colors = ['#fde68a', '#fbbf24', '#f97316', '#ef4444', '#ffffff']
-  for (let i = 0; i < 26; i++) {
+  for (let i = 0; i < 40; i++) {
     const angle = Math.random() * Math.PI * 2
-    const speed = 3 + Math.random() * 7
+    const speed = 3 + Math.random() * 9
     parts.push({
       x, y,
       vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed - 2,
-      r: 2 + Math.random() * 3, gravity: 0.16, color: colors[Math.floor(Math.random() * colors.length)],
+      r: 2 + Math.random() * 4, gravity: 0.16, color: colors[Math.floor(Math.random() * colors.length)],
       alive: true, killY,
       update(dt) { this.x += this.vx * dt; this.vy += this.gravity * dt; this.y += this.vy * dt; this.vx *= 0.98; if (this.y > this.killY) this.alive = false },
       draw(ctx) {
@@ -208,6 +208,7 @@ export default function games_fruit_slice() {
   const fruitsRef = useRef([])
   const slashTrail = useRef([])
   const shakeRef = useRef(0)
+  const flashRef = useRef(0)
   const scoreRef = useRef(0)
   const isDragging = useRef(false)
   const lastMouse = useRef({ x: 0, y: 0 })
@@ -250,6 +251,7 @@ export default function games_fruit_slice() {
     fruitsRef.current = []
     slashTrail.current = []
     shakeRef.current = 0
+    flashRef.current = 0
     scoreRef.current = 0
     gameOverRef.current = false
     lastFrameRef.current = 0
@@ -345,6 +347,13 @@ export default function games_fruit_slice() {
       }
       ctx.restore()
 
+      // Full-screen bomb flash overlay
+      if (flashRef.current > 0.01) {
+        ctx.fillStyle = `rgba(255,170,50,${flashRef.current * 0.4})`
+        ctx.fillRect(0, 0, w, h)
+        flashRef.current *= 0.82
+      }
+
       animRef.current = requestAnimationFrame(drawFrame)
     }
     animRef.current = requestAnimationFrame(drawFrame)
@@ -371,7 +380,8 @@ export default function games_fruit_slice() {
           scoreRef.current = Math.max(0, scoreRef.current - 3)
           setScore(scoreRef.current)
           // Big explosion: flash + shockwave + sparks + screen shake
-          shakeRef.current = 14
+          shakeRef.current = 16
+          flashRef.current = 1
           fruitsRef.current.push(...spawnExplosion(fruit.x, fruit.y, fruit.killY))
         } else {
           playSlice()
