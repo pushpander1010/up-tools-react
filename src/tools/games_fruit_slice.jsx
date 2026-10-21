@@ -57,7 +57,7 @@ class Fruit {
     this.x = Math.random() * (canvasW - 80) + 40
     this.y = canvasH + 20
     this.vx = (Math.random() - 0.5) * 4
-    this.vy = -(6 + Math.random() * 5)
+    this.vy = -(12 + Math.random() * 6)
     this.r = 22 + Math.random() * 10
     this.gravity = 0.18
     const f = FRUITS[Math.floor(Math.random() * FRUITS.length)]
@@ -138,6 +138,63 @@ function spawnFruit(canvasW, canvasH) {
   return f
 }
 
+// Build a proper bomb-blast particle burst: flash + shockwave rings + fire sparks
+function spawnExplosion(x, y, killY) {
+  const parts = []
+  // Central flash (bright expanding glow)
+  parts.push({
+    x, y, r: 8, alive: true, killY, isFlash: true,
+    life: 1,
+    update(dt) { this.life -= dt * 0.09; this.r += dt * 6; if (this.life <= 0) this.alive = false },
+    draw(ctx) {
+      const a = Math.max(0, this.life)
+      const g = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.r)
+      g.addColorStop(0, `rgba(255,255,214,${0.95 * a})`)
+      g.addColorStop(0.45, `rgba(251,191,36,${0.7 * a})`)
+      g.addColorStop(1, 'rgba(239,68,68,0)')
+      ctx.fillStyle = g
+      ctx.beginPath(); ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2); ctx.fill()
+    },
+    contains() { return false }, sliced: false, isBomb: false
+  })
+  // Shockwave rings (two staggered)
+  for (let k = 0; k < 2; k++) {
+    parts.push({
+      x, y, r: 5, alive: true, killY, isRing: true,
+      life: 1, delay: k * 7,
+      update(dt) { if (this.delay > 0) { this.delay -= dt; return } this.life -= dt * 0.055; this.r += dt * 7; if (this.life <= 0) this.alive = false },
+      draw(ctx) {
+        const a = Math.max(0, this.life)
+        ctx.strokeStyle = `rgba(255,170,60,${0.8 * a})`
+        ctx.lineWidth = 4 * a + 1
+        ctx.beginPath(); ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2); ctx.stroke()
+      },
+      contains() { return false }, sliced: false, isBomb: false
+    })
+  }
+  // Fire sparks
+  const colors = ['#fde68a', '#fbbf24', '#f97316', '#ef4444', '#ffffff']
+  for (let i = 0; i < 26; i++) {
+    const angle = Math.random() * Math.PI * 2
+    const speed = 3 + Math.random() * 7
+    parts.push({
+      x, y,
+      vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed - 2,
+      r: 2 + Math.random() * 3, gravity: 0.16, color: colors[Math.floor(Math.random() * colors.length)],
+      alive: true, killY,
+      update(dt) { this.x += this.vx * dt; this.vy += this.gravity * dt; this.y += this.vy * dt; this.vx *= 0.98; if (this.y > this.killY) this.alive = false },
+      draw(ctx) {
+        ctx.globalAlpha = 0.9
+        ctx.fillStyle = this.color
+        ctx.beginPath(); ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2); ctx.fill()
+        ctx.globalAlpha = 1
+      },
+      contains() { return false }, sliced: false, isBomb: false
+    })
+  }
+  return parts
+}
+
 export default function games_fruit_slice() {
   const [playing, setPlaying] = useState(false)
   const [score, setScore] = useState(0)
@@ -150,6 +207,7 @@ export default function games_fruit_slice() {
   const canvasRef = useRef(null)
   const fruitsRef = useRef([])
   const slashTrail = useRef([])
+  const shakeRef = useRef(0)
   const scoreRef = useRef(0)
   const isDragging = useRef(false)
   const lastMouse = useRef({ x: 0, y: 0 })
@@ -191,6 +249,7 @@ export default function games_fruit_slice() {
     fitCanvas()
     fruitsRef.current = []
     slashTrail.current = []
+    shakeRef.current = 0
     scoreRef.current = 0
     gameOverRef.current = false
     lastFrameRef.current = 0
@@ -252,6 +311,13 @@ export default function games_fruit_slice() {
       ctx.fillStyle = vig
       ctx.fillRect(0, 0, w, h)
 
+      // Apply screen shake (bomb blasts) to dynamic elements only
+      ctx.save()
+      if (shakeRef.current > 0.5) {
+        ctx.translate((Math.random() - 0.5) * shakeRef.current, (Math.random() - 0.5) * shakeRef.current)
+        shakeRef.current *= 0.88
+      }
+
       // Draw and update fruits
       fruitsRef.current.forEach(f => { f.update(dt); f.draw(ctx) })
       fruitsRef.current = fruitsRef.current.filter(f => f.alive)
@@ -277,6 +343,7 @@ export default function games_fruit_slice() {
         for (let i = 1; i < pts.length; i++) ctx.lineTo(pts[i].x, pts[i].y)
         ctx.stroke()
       }
+      ctx.restore()
 
       animRef.current = requestAnimationFrame(drawFrame)
     }
@@ -303,19 +370,9 @@ export default function games_fruit_slice() {
           playBomb()
           scoreRef.current = Math.max(0, scoreRef.current - 3)
           setScore(scoreRef.current)
-          // Show bomb particles
-          for (let i = 0; i < 8; i++) {
-            const angle = (Math.PI * 2 * i) / 8
-            const speed = 3 + Math.random() * 3
-            fruitsRef.current.push({
-              x: fruit.x, y: fruit.y,
-              vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed,
-              r: 4, gravity: 0.1, color: '#ef4444', alive: true, killY: fruit.killY,
-              update(dt) { this.x += this.vx * dt; this.vy += this.gravity * dt; this.y += this.vy * dt; if (this.y > this.killY) this.alive = false },
-              draw(ctx) { ctx.fillStyle = this.color; ctx.beginPath(); ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2); ctx.fill() },
-              contains() { return false }, isBomb: false, sliced: false, rotation: 0, rotSpeed: 0
-            })
-          }
+          // Big explosion: flash + shockwave + sparks + screen shake
+          shakeRef.current = 14
+          fruitsRef.current.push(...spawnExplosion(fruit.x, fruit.y, fruit.killY))
         } else {
           playSlice()
           scoreRef.current += 1
