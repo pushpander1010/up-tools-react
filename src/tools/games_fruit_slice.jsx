@@ -6,8 +6,30 @@ const GAME_DURATION = 60
 const FRUIT_SPAWN_INTERVAL = 800
 const SLASH_TRAIL_LIFETIME = 150
 
-const FRUIT_COLORS = ['#f43f5e', '#f97316', '#eab308', '#22c55e', '#3b82f6', '#a855f7', '#ec4899']
-const FRUIT_NAMES = ['🍎', '🍊', '🍋', '🍇', '🫐', '🍑', '🍓', '🍉', '🥝', '🍒']
+const FRUITS = [
+  { emoji: '🍎', color: '#ef4444' },
+  { emoji: '🍊', color: '#f97316' },
+  { emoji: '🍋', color: '#facc15' },
+  { emoji: '🍇', color: '#a855f7' },
+  { emoji: '🫐', color: '#3b82f6' },
+  { emoji: '🍑', color: '#fb923c' },
+  { emoji: '🍓', color: '#f43f5e' },
+  { emoji: '🍉', color: '#22c55e' },
+  { emoji: '🥝', color: '#84cc16' },
+  { emoji: '🍒', color: '#dc2626' },
+]
+
+// lighten (amt>0) or darken (amt<0) a #rrggbb color
+function shade(hex, amt) {
+  const n = parseInt(hex.slice(1), 16)
+  let r = (n >> 16) & 255, g = (n >> 8) & 255, b = n & 255
+  if (amt >= 0) {
+    r = Math.round(r + (255 - r) * amt); g = Math.round(g + (255 - g) * amt); b = Math.round(b + (255 - b) * amt)
+  } else {
+    r = Math.round(r * (1 + amt)); g = Math.round(g * (1 + amt)); b = Math.round(b * (1 + amt))
+  }
+  return `rgb(${r},${g},${b})`
+}
 
 let audioCtx = null
 function ensureAudio() {
@@ -36,10 +58,11 @@ class Fruit {
     this.y = canvasH + 20
     this.vx = (Math.random() - 0.5) * 4
     this.vy = -(6 + Math.random() * 5)
-    this.r = 18 + Math.random() * 10
+    this.r = 22 + Math.random() * 10
     this.gravity = 0.18
-    this.color = FRUIT_COLORS[Math.floor(Math.random() * FRUIT_COLORS.length)]
-    this.emoji = FRUIT_NAMES[Math.floor(Math.random() * FRUIT_NAMES.length)]
+    const f = FRUITS[Math.floor(Math.random() * FRUITS.length)]
+    this.emoji = f.emoji
+    this.color = f.color
     this.alive = true
     this.sliced = false
     this.isBomb = false
@@ -60,25 +83,45 @@ class Fruit {
     ctx.translate(this.x, this.y)
     ctx.rotate(this.rotation)
     if (this.isBomb) {
-      ctx.fillStyle = '#1f2937'
+      // Bomb: dark sphere with radial gradient + red rim + fuse + spark
+      const bg = ctx.createRadialGradient(-this.r * 0.3, -this.r * 0.3, this.r * 0.1, 0, 0, this.r)
+      bg.addColorStop(0, '#4b5563')
+      bg.addColorStop(0.7, '#1f2937')
+      bg.addColorStop(1, '#0b0f19')
+      ctx.fillStyle = bg
       ctx.beginPath(); ctx.arc(0, 0, this.r, 0, Math.PI * 2); ctx.fill()
-      ctx.strokeStyle = '#ef4444'
-      ctx.lineWidth = 3
+      // red warning ring
+      ctx.strokeStyle = 'rgba(239,68,68,0.8)'
+      ctx.lineWidth = 2.5
       ctx.beginPath(); ctx.arc(0, 0, this.r + 2, 0, Math.PI * 2); ctx.stroke()
-      ctx.fillStyle = '#ef4444'
-      ctx.font = `${this.r}px sans-serif`
+      // gloss
+      ctx.fillStyle = 'rgba(255,255,255,0.18)'
+      ctx.beginPath(); ctx.ellipse(-this.r * 0.35, -this.r * 0.4, this.r * 0.35, this.r * 0.18, -0.5, 0, Math.PI * 2); ctx.fill()
+      // emoji
+      ctx.font = `${this.r * 1.7}px sans-serif`
       ctx.textAlign = 'center'; ctx.textBaseline = 'middle'
-      ctx.fillText('💣', 0, 0)
+      ctx.fillText('💣', 0, this.r * 0.05)
     } else {
-      ctx.fillStyle = this.color
+      // Soft colored glow behind the fruit
+      const glow = ctx.createRadialGradient(0, 0, this.r * 0.4, 0, 0, this.r * 1.5)
+      glow.addColorStop(0, this.color + '55')
+      glow.addColorStop(1, this.color + '00')
+      ctx.fillStyle = glow
+      ctx.beginPath(); ctx.arc(0, 0, this.r * 1.5, 0, Math.PI * 2); ctx.fill()
+      // Juicy sphere base
+      const grd = ctx.createRadialGradient(-this.r * 0.35, -this.r * 0.35, this.r * 0.1, 0, 0, this.r)
+      grd.addColorStop(0, shade(this.color, 0.45))
+      grd.addColorStop(0.65, this.color)
+      grd.addColorStop(1, shade(this.color, -0.45))
+      ctx.fillStyle = grd
       ctx.beginPath(); ctx.arc(0, 0, this.r, 0, Math.PI * 2); ctx.fill()
-      ctx.strokeStyle = 'rgba(255,255,255,0.3)'
-      ctx.lineWidth = 2
-      ctx.beginPath(); ctx.arc(-this.r * 0.3, -this.r * 0.3, this.r * 0.25, 0, Math.PI * 2); ctx.stroke()
-      ctx.fillStyle = '#fff'
-      ctx.font = `${this.r * 0.7}px sans-serif`
+      // Glossy highlight
+      ctx.fillStyle = 'rgba(255,255,255,0.28)'
+      ctx.beginPath(); ctx.ellipse(-this.r * 0.35, -this.r * 0.42, this.r * 0.4, this.r * 0.2, -0.5, 0, Math.PI * 2); ctx.fill()
+      // Large fruit emoji on top
+      ctx.font = `${this.r * 1.9}px sans-serif`
       ctx.textAlign = 'center'; ctx.textBaseline = 'middle'
-      ctx.fillText(this.emoji, 0, 0)
+      ctx.fillText(this.emoji, 0, this.r * 0.06)
     }
     ctx.restore()
   }
@@ -193,34 +236,45 @@ export default function games_fruit_slice() {
       const w = cssSizeRef.current.w || 400
       const h = cssSizeRef.current.h || 500
 
-      // Background
-      ctx.fillStyle = '#0a0a1a'
+      // Background — deep gradient
+      ctx.fillStyle = '#0a0a18'
       ctx.fillRect(0, 0, w, h)
-
-      // Subtle gradient
       const grd = ctx.createLinearGradient(0, 0, 0, h)
-      grd.addColorStop(0, 'rgba(30,20,60,0.3)')
-      grd.addColorStop(1, 'rgba(10,10,30,0.3)')
+      grd.addColorStop(0, '#1a1430')
+      grd.addColorStop(0.5, '#0d0d20')
+      grd.addColorStop(1, '#060612')
       ctx.fillStyle = grd
+      ctx.fillRect(0, 0, w, h)
+      // Vignette
+      const vig = ctx.createRadialGradient(w / 2, h / 2, Math.min(w, h) * 0.35, w / 2, h / 2, Math.max(w, h) * 0.75)
+      vig.addColorStop(0, 'rgba(0,0,0,0)')
+      vig.addColorStop(1, 'rgba(0,0,0,0.45)')
+      ctx.fillStyle = vig
       ctx.fillRect(0, 0, w, h)
 
       // Draw and update fruits
       fruitsRef.current.forEach(f => { f.update(dt); f.draw(ctx) })
       fruitsRef.current = fruitsRef.current.filter(f => f.alive)
 
-      // Draw slash trail
+      // Draw slash trail — glowing blade
       const now = Date.now()
       slashTrail.current = slashTrail.current.filter(p => now - p.t < SLASH_TRAIL_LIFETIME)
       if (slashTrail.current.length > 1) {
-        ctx.strokeStyle = 'rgba(255,255,255,0.8)'
-        ctx.lineWidth = 3
-        ctx.lineCap = 'round'
-        ctx.lineJoin = 'round'
+        const pts = slashTrail.current
+        // outer glow
+        ctx.lineCap = 'round'; ctx.lineJoin = 'round'
+        ctx.strokeStyle = 'rgba(120,220,255,0.35)'
+        ctx.lineWidth = 9
         ctx.beginPath()
-        ctx.moveTo(slashTrail.current[0].x, slashTrail.current[0].y)
-        for (let i = 1; i < slashTrail.current.length; i++) {
-          ctx.lineTo(slashTrail.current[i].x, slashTrail.current[i].y)
-        }
+        ctx.moveTo(pts[0].x, pts[0].y)
+        for (let i = 1; i < pts.length; i++) ctx.lineTo(pts[i].x, pts[i].y)
+        ctx.stroke()
+        // bright core
+        ctx.strokeStyle = 'rgba(255,255,255,0.95)'
+        ctx.lineWidth = 3.5
+        ctx.beginPath()
+        ctx.moveTo(pts[0].x, pts[0].y)
+        for (let i = 1; i < pts.length; i++) ctx.lineTo(pts[i].x, pts[i].y)
         ctx.stroke()
       }
 
@@ -264,16 +318,38 @@ export default function games_fruit_slice() {
           playSlice()
           scoreRef.current += 1
           setScore(scoreRef.current)
-          // Slice particles
-          for (let i = 0; i < 6; i++) {
+          // Two juicy halves fly apart
+          for (const dir of [-1, 1]) {
+            fruitsRef.current.push({
+              x: fruit.x, y: fruit.y,
+              vx: dir * (2 + Math.random() * 3), vy: -(2 + Math.random() * 4),
+              r: fruit.r, gravity: 0.2, color: fruit.color, alive: true, killY: fruit.killY,
+              isHalf: true, rotation: dir * (Math.random() * 0.5 + 0.3), rotSpeed: dir * (0.1 + Math.random() * 0.12),
+              update(dt) { this.x += this.vx * dt; this.vy += this.gravity * dt; this.y += this.vy * dt; this.rotation += this.rotSpeed * dt; if (this.y > this.killY) this.alive = false },
+              draw(ctx) {
+                ctx.save(); ctx.translate(this.x, this.y); ctx.rotate(this.rotation)
+                // flesh (lighter inner half)
+                ctx.fillStyle = shade(this.color, 0.32)
+                ctx.beginPath(); ctx.arc(0, 0, this.r, Math.PI, 0); ctx.closePath(); ctx.fill()
+                // skin rim along curved edge
+                ctx.strokeStyle = this.color
+                ctx.lineWidth = this.r * 0.22
+                ctx.beginPath(); ctx.arc(0, 0, this.r * 0.85, Math.PI, 0); ctx.stroke()
+                ctx.restore()
+              },
+              contains() { return false }, isBomb: false, sliced: false
+            })
+          }
+          // Juice droplets
+          for (let i = 0; i < 5; i++) {
             const angle = Math.random() * Math.PI * 2
             const speed = 2 + Math.random() * 4
             fruitsRef.current.push({
               x: fruit.x, y: fruit.y,
               vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed - 3,
-              r: 3 + Math.random() * 3, gravity: 0.12, color: fruit.color, alive: true, killY: fruit.killY,
+              r: 2 + Math.random() * 3, gravity: 0.14, color: fruit.color, alive: true, killY: fruit.killY,
               update(dt) { this.x += this.vx * dt; this.vy += this.gravity * dt; this.y += this.vy * dt; if (this.y > this.killY) this.alive = false },
-              draw(ctx) { ctx.fillStyle = this.color; ctx.globalAlpha = 0.7; ctx.beginPath(); ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2); ctx.fill(); ctx.globalAlpha = 1 },
+              draw(ctx) { ctx.fillStyle = this.color; ctx.globalAlpha = 0.85; ctx.beginPath(); ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2); ctx.fill(); ctx.globalAlpha = 1 },
               contains() { return false }, isBomb: false, sliced: false, rotation: 0, rotSpeed: 0
             })
           }
