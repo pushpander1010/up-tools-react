@@ -4,7 +4,7 @@ import GameShell from '../components/GameShell'
 const LS_KEY = 'ut_fruit_slice_best_v1'
 const GAME_DURATION = 60
 const FRUIT_SPAWN_INTERVAL = 800
-const SLASH_TRAIL_LIFETIME = 150
+const SLASH_TRAIL_LIFETIME = 240
 
 const FRUITS = [
   { emoji: '🍎', color: '#ef4444' },
@@ -287,8 +287,10 @@ export default function games_fruit_slice() {
     const canvas = canvasRef.current
     if (!canvas) return
     const rect = canvas.getBoundingClientRect()
-    const x = (px - rect.left) * (canvas.width / rect.width)
-    const y = (py - rect.top) * (canvas.height / rect.height)
+    // Use CSS pixels (same space as fruit.x/y) — the draw loop's 2x
+    // setTransform handles retina scaling, so don't multiply by DPR here.
+    const x = px - rect.left
+    const y = py - rect.top
     if (isDragging.current) {
       slashTrail.current.push({ x, y, t: Date.now() })
     }
