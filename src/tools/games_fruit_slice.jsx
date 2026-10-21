@@ -195,6 +195,51 @@ function spawnExplosion(x, y, killY) {
   return parts
 }
 
+// A sliceable fruit half (can be cut again into smaller pieces)
+function makePiece(x, y, dir, r, color, depth, killY) {
+  return {
+    x, y,
+    vx: dir * (2 + Math.random() * 3),
+    vy: -(2 + Math.random() * 4),
+    r, gravity: 0.2, color, alive: true, killY,
+    isPiece: true, depth,
+    rotation: dir * (Math.random() * 0.5 + 0.3),
+    rotSpeed: dir * (0.1 + Math.random() * 0.12),
+    update(dt) { this.x += this.vx * dt; this.vy += this.gravity * dt; this.y += this.vy * dt; this.rotation += this.rotSpeed * dt; if (this.y > this.killY) this.alive = false },
+    draw(ctx) {
+      ctx.save(); ctx.translate(this.x, this.y); ctx.rotate(this.rotation)
+      ctx.fillStyle = shade(this.color, 0.32)
+      ctx.beginPath(); ctx.arc(0, 0, this.r, Math.PI, 0); ctx.closePath(); ctx.fill()
+      ctx.strokeStyle = this.color
+      ctx.lineWidth = Math.max(1.5, this.r * 0.22)
+      ctx.beginPath(); ctx.arc(0, 0, this.r * 0.85, Math.PI, 0); ctx.stroke()
+      ctx.restore()
+    },
+    contains(px, py) {
+      const dx = px - this.x, dy = py - this.y
+      return Math.sqrt(dx * dx + dy * dy) < this.r + 4
+    },
+    sliced: false, isBomb: false
+  }
+}
+
+function spawnJuice(x, y, color, killY, count = 5) {
+  const drops = []
+  for (let i = 0; i < count; i++) {
+    const angle = Math.random() * Math.PI * 2
+    const speed = 2 + Math.random() * 4
+    drops.push({
+      x, y,
+      vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed - 3,
+      r: 2 + Math.random() * 3, gravity: 0.14, color, alive: true, killY,
+      update(dt) { this.x += this.vx * dt; this.vy += this.gravity * dt; this.y += this.vy * dt; if (this.y > this.killY) this.alive = false },
+      draw(ctx) { ctx.globalAlpha = 0.85; ctx.fillStyle = this.color; ctx.beginPath(); ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2); ctx.fill(); ctx.globalAlpha = 1 },
+      contains() { return false }, sliced: false, isBomb: false, rotation: 0, rotSpeed: 0
+    })
+  }
+  return drops
+}
+
 export default function games_fruit_slice() {
   const [playing, setPlaying] = useState(false)
   const [score, setScore] = useState(0)
@@ -383,45 +428,26 @@ export default function games_fruit_slice() {
           shakeRef.current = 16
           flashRef.current = 1
           fruitsRef.current.push(...spawnExplosion(fruit.x, fruit.y, fruit.killY))
+        } else if (fruit.isPiece) {
+          playSlice()
+          scoreRef.current += 1
+          setScore(scoreRef.current)
+          // A half can be cut again into smaller pieces
+          if (fruit.depth < 2) {
+            const nr = fruit.r * 0.7
+            fruitsRef.current.push(makePiece(fruit.x, fruit.y, -1, nr, fruit.color, fruit.depth + 1, fruit.killY))
+            fruitsRef.current.push(makePiece(fruit.x, fruit.y, 1, nr, fruit.color, fruit.depth + 1, fruit.killY))
+          }
+          fruitsRef.current.push(...spawnJuice(fruit.x, fruit.y, fruit.color, fruit.killY, 4))
         } else {
           playSlice()
           scoreRef.current += 1
           setScore(scoreRef.current)
-          // Two juicy halves fly apart
-          for (const dir of [-1, 1]) {
-            fruitsRef.current.push({
-              x: fruit.x, y: fruit.y,
-              vx: dir * (2 + Math.random() * 3), vy: -(2 + Math.random() * 4),
-              r: fruit.r, gravity: 0.2, color: fruit.color, alive: true, killY: fruit.killY,
-              isHalf: true, rotation: dir * (Math.random() * 0.5 + 0.3), rotSpeed: dir * (0.1 + Math.random() * 0.12),
-              update(dt) { this.x += this.vx * dt; this.vy += this.gravity * dt; this.y += this.vy * dt; this.rotation += this.rotSpeed * dt; if (this.y > this.killY) this.alive = false },
-              draw(ctx) {
-                ctx.save(); ctx.translate(this.x, this.y); ctx.rotate(this.rotation)
-                // flesh (lighter inner half)
-                ctx.fillStyle = shade(this.color, 0.32)
-                ctx.beginPath(); ctx.arc(0, 0, this.r, Math.PI, 0); ctx.closePath(); ctx.fill()
-                // skin rim along curved edge
-                ctx.strokeStyle = this.color
-                ctx.lineWidth = this.r * 0.22
-                ctx.beginPath(); ctx.arc(0, 0, this.r * 0.85, Math.PI, 0); ctx.stroke()
-                ctx.restore()
-              },
-              contains() { return false }, isBomb: false, sliced: false
-            })
-          }
-          // Juice droplets
-          for (let i = 0; i < 5; i++) {
-            const angle = Math.random() * Math.PI * 2
-            const speed = 2 + Math.random() * 4
-            fruitsRef.current.push({
-              x: fruit.x, y: fruit.y,
-              vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed - 3,
-              r: 2 + Math.random() * 3, gravity: 0.14, color: fruit.color, alive: true, killY: fruit.killY,
-              update(dt) { this.x += this.vx * dt; this.vy += this.gravity * dt; this.y += this.vy * dt; if (this.y > this.killY) this.alive = false },
-              draw(ctx) { ctx.fillStyle = this.color; ctx.globalAlpha = 0.85; ctx.beginPath(); ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2); ctx.fill(); ctx.globalAlpha = 1 },
-              contains() { return false }, isBomb: false, sliced: false, rotation: 0, rotSpeed: 0
-            })
-          }
+          // Split into two sliceable halves
+          const nr = fruit.r * 0.75
+          fruitsRef.current.push(makePiece(fruit.x, fruit.y, -1, nr, fruit.color, 0, fruit.killY))
+          fruitsRef.current.push(makePiece(fruit.x, fruit.y, 1, nr, fruit.color, 0, fruit.killY))
+          fruitsRef.current.push(...spawnJuice(fruit.x, fruit.y, fruit.color, fruit.killY, 5))
         }
       }
     })
