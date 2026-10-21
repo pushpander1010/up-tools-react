@@ -1468,7 +1468,7 @@
       "slug": "games-coin-flip",
       "title": "Coin Flip",
       "icon": "\ud83e\ude99",
-      "desc": "Coin Flip \u2014 Virtual Toss with Stats & Streaks - virtual coin toss with heads/tails, online free. Play online free, no.",
+      "desc": "Flip a virtual coin and track heads vs tails with streaks, stats, and history.",
       "href": "/games/coin-flip/",
       "tags": [
         "fun"
@@ -2123,7 +2123,7 @@
       "slug": "games-dice-roller",
       "title": "Dice Roller",
       "icon": "\ud83c\udfb2",
-      "desc": "Dice Roller - roll D4\u2013D20 virtual dice with sound effects, history, and statistics, online free. Play online free, no.",
+      "desc": "Roll virtual dice from D4 to D20 with sound effects, history, and statistics.",
       "href": "/games/dice-roller/",
       "tags": [
         "fun"
@@ -3390,7 +3390,7 @@
       "slug": "games-hangman",
       "title": "Hangman",
       "icon": "\ud83e\udea2",
-      "desc": "Hangman Game Online - Free Word Guessing Game - classic word guessing game with, online free. Play online free, no download..",
+      "desc": "Guess the hidden word letter by letter before you run out of guesses. Multiple word categories.",
       "href": "/games/hangman/",
       "tags": [
         "fun",
@@ -5064,7 +5064,7 @@
       "slug": "games-love-test",
       "title": "Love Compatibility Test",
       "icon": "\ud83d\udc98",
-      "desc": "Couple Compatibility Quiz \u2764\ufe0f Romantic Love Test - two-player romantic quiz. Answer, online free. Play online free, no.",
+      "desc": "Fun two-player love compatibility quiz for couples. Answer questions and see your match score.",
       "href": "/games/love-test/",
       "tags": [
         "fun",
@@ -6264,7 +6264,7 @@
       "slug": "games-ping-pong",
       "title": "Ping Pong",
       "icon": "\ud83c\udfd3",
-      "desc": "Ping Pong Game Online - Play Pong Free - classic Pong against AI or a friend. First, online free. Play online free, no.",
+      "desc": "Play classic Pong against the AI or a friend on one keyboard. First to 7 points wins.",
       "href": "/games/ping-pong/",
       "tags": [
         "fun"
@@ -6543,7 +6543,7 @@
       "slug": "games-quiz-trivia",
       "title": "Quiz Trivia",
       "icon": "\ud83e\udde0",
-      "desc": "Quiz Trivia Game Online - test general knowledge free with 10 questions per round across science, history, sports, tech, and.",
+      "desc": "Test your general knowledge with 10-question trivia rounds across science, history, sports, and tech.",
       "href": "/games/quiz-trivia/",
       "tags": [
         "fun",
@@ -7958,7 +7958,7 @@
       "slug": "games-typing-speed",
       "title": "Typing Speed Test",
       "icon": "\u2328\ufe0f",
-      "desc": "Typing Speed Test - WPM Test Online Free - test your typing speed and accuracy. Free, online free. Play online free, no.",
+      "desc": "Test your typing speed and accuracy. Measure your WPM in timed challenges.",
       "href": "/games/typing-speed/",
       "tags": [
         "fun",
@@ -8531,7 +8531,7 @@
       "slug": "games-wheel-of-names",
       "title": "Wheel of Names",
       "icon": "\ud83c\udfa1",
-      "desc": "Wheel of Names - Free Random Name Picker & Spinner - spin a custom wheel of names to, online free. Play online free, no.",
+      "desc": "Spin a custom wheel of names to pick a random winner. Add your own entries and spin.",
       "href": "/games/wheel-of-names/",
       "tags": [
         "fun",
@@ -8610,7 +8610,7 @@
       "slug": "games-word-scramble",
       "title": "Word Scramble",
       "icon": "\ud83d\udd00",
-      "desc": "Word Scramble Game Online - Unscramble Words Free - unscramble jumbled letters to, online free. Play online free, no download..",
+      "desc": "Unscramble jumbled letters to find the hidden word. Five word categories with hints.",
       "href": "/games/word-scramble/",
       "tags": [
         "fun",
