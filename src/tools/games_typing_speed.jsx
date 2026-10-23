@@ -61,6 +61,7 @@ export default function games_typing_speed() {
   const [startTime, setStartTime] = useState(null)
   const [typedCharsTotal, setTypedCharsTotal] = useState(0)
   const [errorsCompleted, setErrorsCompleted] = useState(0)
+  const [best, setBest] = useState(() => { try { return Number(localStorage.getItem('ut_typing_best_v1') || 0) } catch { return 0 } })
   const inputRef = useRef(null)
   const timerRef = useRef(null)
   const displayRef = useRef(null)
@@ -175,9 +176,11 @@ export default function games_typing_speed() {
       }
       const totalChars = typedCharsTotal + typed.length
       const totalErrors = errorsCompleted + segErrors
-      setWpm(calcWPM(totalChars, totalErrors, elapsed))
+      const finalWpm = calcWPM(totalChars, totalErrors, elapsed)
+      setWpm(finalWpm)
       setAccuracy(calcAccuracy(totalChars, totalErrors))
       setErrors(totalErrors)
+      setBest(prev => { const b = Math.max(prev, finalWpm); try { localStorage.setItem('ut_typing_best_v1', String(b)) } catch {} return b })
       try { playTone(440, 0.25, 'triangle', 0.06); setTimeout(() => playTone(349, 0.25, 'triangle', 0.06), 150) } catch {}
     }
   }, [testFinished]) // eslint-disable-line
@@ -196,7 +199,7 @@ export default function games_typing_speed() {
       name="TYPING SPEED"
       startAction={() => resetTest()} startLabel={(testStarted || testFinished) ? '⟲ Restart' : '▶ Start'}
  
-      headerStats={<><span className="text-indigo-300">WPM <b>{wpm}</b></span><span className="text-emerald-300">ACC <b>{accuracy}%</b></span><span className="text-red-300">ERR <b>{errors}</b></span></>}
+      headerStats={<><span className="text-indigo-300">WPM <b>{wpm}</b></span><span className="text-emerald-300">ACC <b>{accuracy}%</b></span><span className="text-red-300">ERR <b>{errors}</b></span><span className="text-amber-300">Best <b>{best}</b></span></>}
       title="Typing Speed Test - WPM Test Online Free"
       desc="Test your typing speed and accuracy in real time. Type the displayed text and track your WPM, accuracy, and errors as you go."
       icon="⌨️" iconBg="rgba(6,182,212,0.08)"
