@@ -169,11 +169,15 @@ export default function games_car_dodger() {
     const ctx = c.getContext('2d')
     const w = c.width, h = c.height
     ctx.clearRect(0, 0, w, h)
-    // Road background
-    ctx.fillStyle = '#1e293b'
+    // Road background (grass)
+    const grassGrad = ctx.createLinearGradient(0, 0, 0, h)
+    grassGrad.addColorStop(0, '#14532d'); grassGrad.addColorStop(1, '#0c3a20')
+    ctx.fillStyle = grassGrad
     ctx.fillRect(0, 0, w, h)
-    // Road surface
-    ctx.fillStyle = '#334155'
+    // Road surface (asphalt)
+    const roadGrad = ctx.createLinearGradient(0, 0, 0, h)
+    roadGrad.addColorStop(0, '#3b4a5a'); roadGrad.addColorStop(1, '#2a3542')
+    ctx.fillStyle = roadGrad
     ctx.fillRect(5, 0, w - 10, h)
     // Lane markings
     const dashLen = 30, gap = 20
