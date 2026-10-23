@@ -145,7 +145,9 @@ export default function games_pac_man() {
     const { maze, pac, ghosts } = s
     const cell = s.cell, W = s.W, H = s.H
 
-    ctx.fillStyle = '#000'; ctx.fillRect(0, 0, W, H)
+    const bg = ctx.createLinearGradient(0, 0, 0, H)
+    bg.addColorStop(0, '#0a0a2e'); bg.addColorStop(0.5, '#060616'); bg.addColorStop(1, '#0a0a1e')
+    ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H)
 
     // maze
     for (let r = 0; r < ROWS; r++) {
@@ -166,8 +168,11 @@ export default function games_pac_man() {
           ctx.fillStyle = '#ffcc00'
           ctx.beginPath(); ctx.arc(x+cell/2, y+cell/2, cell*0.12, 0, Math.PI*2); ctx.fill()
         } else if (v === 3) {
-          ctx.fillStyle = '#ffcc00'
-          ctx.beginPath(); ctx.arc(x+cell/2, y+cell/2, cell*0.3, 0, Math.PI*2); ctx.fill()
+          ctx.save()
+          ctx.fillStyle = '#ffcc00'; ctx.shadowColor = '#ffcc00'; ctx.shadowBlur = 14
+          const pulse = 1 + Math.sin(Date.now() / 180) * 0.12
+          ctx.beginPath(); ctx.arc(x+cell/2, y+cell/2, cell*0.3*pulse, 0, Math.PI*2); ctx.fill()
+          ctx.restore()
         }
       }
     }
@@ -181,8 +186,10 @@ export default function games_pac_man() {
     else if (pac.dir.x === -1) angle = Math.PI
     else if (pac.dir.y === -1) angle = -Math.PI/2
     else if (pac.dir.y === 1) angle = Math.PI/2
-    ctx.fillStyle = '#ffff00'
+    ctx.save()
+    ctx.fillStyle = '#ffff00'; ctx.shadowColor = '#ffff00'; ctx.shadowBlur = 18
     ctx.beginPath(); ctx.arc(px, py, pr, angle + pac.mouth, angle + Math.PI*2 - pac.mouth); ctx.lineTo(px, py); ctx.fill()
+    ctx.restore()
 
     // Ghosts
     ghosts.forEach(gh => {
@@ -193,9 +200,12 @@ export default function games_pac_man() {
       } else {
         ctx.fillStyle = gh.color
       }
+      ctx.save()
+      ctx.shadowColor = ctx.fillStyle; ctx.shadowBlur = 12
       ctx.beginPath(); ctx.arc(gx, gy - gr*0.15, gr, Math.PI, 0); ctx.lineTo(gx+gr, gy+gr*0.7)
       for (let i = 3; i >= 0; i--) { const wx = gx + gr*(2*i/3-1), wy = gy+gr*0.7+(i%2===0?gr*0.3:0); ctx.lineTo(wx, wy) }
       ctx.closePath(); ctx.fill()
+      ctx.restore()
       if (!gh.scared) {
         ctx.fillStyle = '#fff'
         ctx.beginPath(); ctx.arc(gx-gr*0.3, gy-gr*0.2, gr*0.2, 0, Math.PI*2); ctx.fill()
