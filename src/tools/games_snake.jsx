@@ -60,9 +60,39 @@ export default function SnakeGame() {
     ctx.beginPath()
     for(let i=0;i<=GRID;i++){ const p=Math.min(i*cell+0.5, sz-0.5); ctx.moveTo(p,0.5); ctx.lineTo(p,sz-0.5); ctx.moveTo(0.5,p); ctx.lineTo(sz-0.5,p) }
     ctx.stroke()
-    const pad = cell > 14 ? 2 : 1
-    if(s.food){ ctx.save(); ctx.shadowColor='#f472b6'; ctx.shadowBlur=18; ctx.fillStyle='#f472b6'; ctx.fillRect(s.food.x*cell+pad,s.food.y*cell+pad,cell-pad*2,cell-pad*2); ctx.restore() }
-    for(let i=0;i<s.snake.length;i++){ const p=s.snake[i]; ctx.save(); ctx.fillStyle=i===0?'#22d3ee':'#e879f9'; ctx.shadowColor=i===0?'#22d3ee':'#e879f9'; ctx.shadowBlur=12; ctx.fillRect(p.x*cell+1,p.y*cell+1,cell-2,cell-2); ctx.restore() }
+    // Food — glowing round berry with a highlight
+    if(s.food){
+      const fx = s.food.x*cell + cell/2, fy = s.food.y*cell + cell/2
+      ctx.save()
+      ctx.shadowColor='#f472b6'; ctx.shadowBlur=20
+      ctx.fillStyle='#f472b6'
+      ctx.beginPath(); ctx.arc(fx, fy, cell*0.38, 0, Math.PI*2); ctx.fill()
+      ctx.shadowBlur=0
+      ctx.fillStyle='rgba(255,255,255,0.75)'
+      ctx.beginPath(); ctx.arc(fx-cell*0.12, fy-cell*0.12, cell*0.1, 0, Math.PI*2); ctx.fill()
+      ctx.restore()
+    }
+    // Snake — rounded segments, head with eyes
+    for(let i=0;i<s.snake.length;i++){
+      const p=s.snake[i], x=p.x*cell+1, y=p.y*cell+1, w=cell-2
+      const rr = cell*0.32
+      ctx.save()
+      if(i===0){ ctx.fillStyle='#22d3ee'; ctx.shadowColor='#22d3ee'; ctx.shadowBlur=14 }
+      else { ctx.fillStyle='#e879f9'; ctx.shadowColor='#e879f9'; ctx.shadowBlur=10 }
+      ctx.beginPath()
+      ctx.moveTo(x+rr,y); ctx.arcTo(x+w,y,x+w,y+w,rr); ctx.arcTo(x+w,y+w,x,y+w,rr); ctx.arcTo(x,y+w,x,y,rr); ctx.arcTo(x,y,x+w,y,rr)
+      ctx.closePath(); ctx.fill()
+      ctx.shadowBlur=0
+      // Eyes on the head, looking in the movement direction
+      if(i===0 && cell>6){
+        const ex = s.dir.x, ey = s.dir.y, px = -ey, py = ex
+        const cx = x+cell/2, cy = y+cell/2
+        ctx.fillStyle='#0a0a1a'
+        ctx.beginPath(); ctx.arc(cx+px*cell*0.22+ex*cell*0.16, cy+py*cell*0.22+ey*cell*0.16, cell*0.09, 0, Math.PI*2); ctx.fill()
+        ctx.beginPath(); ctx.arc(cx-px*cell*0.22+ex*cell*0.16, cy-py*cell*0.22+ey*cell*0.16, cell*0.09, 0, Math.PI*2); ctx.fill()
+      }
+      ctx.restore()
+    }
   }, [])
 
   const die = useCallback(() => {
