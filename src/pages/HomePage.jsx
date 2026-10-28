@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback, useRef } from 'react'
+import { useState, useMemo, useCallback, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import ToolCard from '../components/ToolCard'
@@ -29,7 +29,14 @@ const featuredSlugs = [
 ]
 
 export default function HomePage() {
-  const [search, setSearch] = useState('')
+  // Hydrate the search box from ?q= so the declared SearchAction (sitelinks
+  // searchbox) actually resolves to a working result page instead of the
+  // unfiltered homepage.
+  const [search, setSearch] = useState(() => {
+    if (typeof window === 'undefined') return ''
+    const q = new URLSearchParams(window.location.search).get('q')
+    return q ? q.slice(0, 80) : ''
+  })
   const [activeCats, setActiveCats] = useState(new Set())
   const [visibleCount, setVisibleCount] = useState(48)
   const resultsRef = useRef(null)
@@ -38,6 +45,11 @@ export default function HomePage() {
   const catList = useMemo(() => Object.entries(categories).filter(([k]) => k !== 'all'), [])
 
   const isFiltering = search.length > 0 || activeCats.size > 0
+
+  // Deep-linked searches (?q=) should show every match, not the first 48.
+  useEffect(() => {
+    if (search) setVisibleCount(600)
+  }, [search])
 
   const filteredTools = useMemo(() => {
     return tools.filter(t => {

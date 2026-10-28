@@ -7,6 +7,7 @@ const dist = join(__dirname, '..', 'dist')
 const toolsDir = join(__dirname, '..', 'src', 'tools')
 const publicOgDir = join(__dirname, '..', 'public', 'assets', 'og')
 const SITE = 'https://www.uptools.in'
+const SCHEMA = 'https://' + 'schema' + '.org'
 
 function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;') }
 function escAttr(s) { return s.replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;') }
@@ -94,6 +95,62 @@ const toolFiles = readdirSync(toolsDir).filter(f=>f.endsWith('.jsx')||f.endsWith
 const template = readFileSync(join(dist,'index.html'),'utf-8')
 const SKIP_SLUGS = new Set(['games','contact','hncker','hackolution','hackolution/apps','aimakerich','aiforrich','privacy-policy'])
 
+// ---------- Internal-linking helpers (added Oct 2026) ----------
+// Every prerendered tool page links to 10 topical siblings so crawlers have a
+// real path into all 570 tools (avg static links/page was 3.1 before this).
+const ALL_TOOLS = (() => {
+  try { return JSON.parse(readFileSync(join(__dirname, '..', 'src/data/tools.json'), 'utf8')).tools }
+  catch { return [] }
+})()
+const normSlug = (t) => (t.href || '/' + t.slug + '/').replace(/^\/+|\/+$/g, '')
+const hrefOf = (t) => t.href || '/' + t.slug + '/'
+
+function relatedFor(slug) {
+  const me = ALL_TOOLS.find(t => normSlug(t) === slug)
+  const pool = ALL_TOOLS.filter(t => normSlug(t) !== slug)
+  if (!me) return pool.slice(0, 10)
+  const myTags = new Set(me.tags || [])
+  const primaryCat = (me.cats || []).find(c => c !== 'all') || null
+  const scored = pool.map(t => {
+    let sc = 0
+    for (const g of (t.tags || [])) if (myTags.has(g)) sc += 3
+    const cats = (t.cats || []).filter(c => c !== 'all')
+    if (primaryCat && cats.includes(primaryCat)) sc += 5
+    // keep editorial sections (guides) out of tool-page related lists unless
+    // the source page is in the same section — otherwise algo-trading guides
+    // leak into currency/calculator pages and dilute topical relevance.
+    const sec = (x) => (normSlug(x).split('/').length > 1 ? normSlug(x).split('/')[0] : '')
+    if (sec(t) && sec(t) !== sec(me)) sc -= 6
+    return { t, sc }
+  })
+  scored.sort((a, b) => (b.sc - a.sc) || a.t.title.localeCompare(b.t.title))
+  const seen = new Set(), out = []
+  for (const { t } of scored) {
+    if (out.length >= 10) break
+    if (seen.has(normSlug(t))) continue
+    seen.add(normSlug(t)); out.push(t)
+  }
+  return out
+}
+
+// SERP-safe titles/descriptions: brand suffix only when it fits in ~60 chars.
+function serpTitle(t) {
+  let x = (t || '').trim()
+  if (x.length > 60) {
+    const dash = x.split('\u2014')[0].trim().length >= 20 ? x.split('\u2014')[0].trim() : null
+    if (dash && dash.length <= 60) x = dash
+    else if (x.includes(' - ') && x.split(' - ')[0].trim().length >= 18 && x.split(' - ')[0].trim().length <= 60) x = x.split(' - ')[0].trim()
+  }
+  if (x.length > 60) { const cut = x.slice(0, 57); x = cut.slice(0, cut.lastIndexOf(' ')) + '\u2026' }
+  return x
+}
+function serpDesc(d) {
+  let x = (d || '').replace(/\s+/g, ' ').trim()
+  if (x.length > 158) { const cut = x.slice(0, 155); x = cut.slice(0, cut.lastIndexOf(' ')) + '\u2026' }
+  return x
+}
+
+
 let count=0
 for(const file of toolFiles){
   let slug = file.replace(/\.(jsx|tsx)$/,'').replace(/_/g,'-').replace(/^tool-/,'')
@@ -144,8 +201,10 @@ for(const file of toolFiles){
 
   let html = template
   // title / desc / canonical
-  html = html.replace(/<title>.*?<\/title>/, `<title>${title} | UpTools</title>`)
-  const descTag = `<meta name="description" content="${escAttr(rawDesc)}" />`
+  const serp = serpTitle(rawTitle)
+  const titleWithBrand = (serp.length + 10) <= 60 ? `${serp} | UpTools` : serp
+  html = html.replace(/<title>.*?<\/title>/, `<title>${escAttr(titleWithBrand)}</title>`)
+  const descTag = `<meta name="description" content="${escAttr(serpDesc(rawDesc))}" />`
   if(/<meta name="description"/.test(html)) html = html.replace(/<meta name="description"[^>]*\/>/, descTag)
   else html = html.replace(/<\/title>/, `</title>\n    ${descTag}`)
   html = html.replace(/<link rel="canonical"[^>]*\/>/, `<link rel="canonical" href="${SITE}/${slug}/" />`)
@@ -163,8 +222,8 @@ for(const file of toolFiles){
     if(re.test(html)) html = html.replace(re, tag)
     else html = html.replace('</head>', `    ${tag}\n  </head>`)
   }
-  upsertMeta('og:title', `${rawTitle} | UpTools`)
-  upsertMeta('og:description', rawDesc)
+  upsertMeta('og:title', titleWithBrand)
+  upsertMeta('og:description', serpDesc(rawDesc))
   upsertMeta('og:url', `${SITE}/${slug}/`)
   upsertMeta('og:type', 'website')
   upsertMeta('og:site_name', 'UpTools')
@@ -175,8 +234,8 @@ for(const file of toolFiles){
   if(!/og:image:height/.test(html)) html = html.replace('</head>', `    <meta property="og:image:height" content="630" />\n  </head>`)
   else html = html.replace(/<meta property="og:image:height"[^>]*>/, `<meta property="og:image:height" content="630" />`)
   upsertName('twitter:card', 'summary_large_image')
-  upsertName('twitter:title', `${rawTitle} | UpTools`)
-  upsertName('twitter:description', rawDesc)
+  upsertName('twitter:title', titleWithBrand)
+  upsertName('twitter:description', serpDesc(rawDesc))
   // twitter:image
   const twImgTag = `<meta name="twitter:image" content="${SITE}${ogImage}" />`
   if(/twitter:image/.test(html)) html = html.replace(/<meta name="twitter:image"[^>]*\/?>/, twImgTag)
@@ -212,7 +271,13 @@ for(const file of toolFiles){
     for(const p of pairs) noscript += `\n        <dt>${esc(p.q)}</dt><dd>${esc(p.a)}</dd>`
     noscript += `\n      </dl>`
   }
-  noscript += `\n      <p><a href="/">All tools</a> · <a href="/sitemap.xml">Sitemap</a> · <a href="/games/">Games</a></p>\n    </noscript>`
+  const rels = relatedFor(slug)
+  if(rels.length){
+    noscript += `\n      <h2>Related tools</h2>\n      <ul>`
+    for(const r of rels) noscript += `\n        <li><a href="${escAttr(hrefOf(r))}">${esc(r.title)}</a> \u2014 ${esc((r.desc||'').slice(0,110))}</li>`
+    noscript += `\n      </ul>`
+  }
+  noscript += `\n      <p><a href="/all-tools/">All tools A\u2013Z</a> · <a href="/">Home</a> · <a href="/sitemap.xml">Sitemap</a> · <a href="/games/">Games</a></p>\n    </noscript>`
   if(/<noscript>[\s\S]*?<\/noscript>/.test(html)){
     html = html.replace(/<noscript>[\s\S]*?<\/noscript>/, noscript)
   } else {
@@ -302,8 +367,10 @@ function gamesHubSeo() {
 
 function buildHtml(slug, title, desc, opts = {}) {
   let html = template
-  html = html.replace(/<title>.*?<\/title>/, `<title>${esc(title)}</title>`)
-  const descTag = `<meta name="description" content="${escAttr(desc)}" />`
+  const hubSerp = serpTitle(title)
+  const hubTitleTag = (hubSerp.length + 10) <= 60 ? `${hubSerp} | UpTools` : hubSerp
+  html = html.replace(/<title>.*?<\/title>/, `<title>${escAttr(hubTitleTag)}</title>`)
+  const descTag = `<meta name="description" content="${escAttr(serpDesc(desc))}" />`
   if (/<meta name="description"/.test(html)) html = html.replace(/<meta name="description"[^>]*\/>/, descTag)
   else html = html.replace(/<\/title>/, `</title>\n    ${descTag}`)
   html = html.replace(/<link rel="canonical"[^>]*\/>/, `<link rel="canonical" href="${SITE}/${slug}/" />`)
@@ -312,7 +379,7 @@ function buildHtml(slug, title, desc, opts = {}) {
     const re = new RegExp(`<meta property="${property}"[^>]*\\/?>`)
     if (re.test(html)) html = html.replace(re, tag); else html = html.replace('</head>', `    ${tag}\n  </head>`)
   }
-  upsert('og:title', title); upsert('og:description', desc); upsert('og:url', SITE + '/' + slug + '/'); upsert('og:type', 'website'); upsert('og:site_name', 'UpTools')
+  upsert('og:title', hubTitleTag); upsert('og:description', serpDesc(desc)); upsert('og:url', SITE + '/' + slug + '/'); upsert('og:type', 'website'); upsert('og:site_name', 'UpTools')
   upsert('og:image', opts.ogImage ? SITE + opts.ogImage : SITE + '/assets/og/default.png')
   if (!/og:image:width/.test(html)) html = html.replace('</head>', `    <meta property="og:image:width" content="1200" />\n  </head>`)
   if (!/og:image:height/.test(html)) html = html.replace('</head>', `    <meta property="og:image:height" content="630" />\n  </head>`)
@@ -340,6 +407,22 @@ buildHtml('hackolution/apps','Hackolution Apps','Download free Android APK apps 
 buildHtml('games','UpTools - Free Online Games','Play free online arcade, puzzle, card and word games on UpTools - Snake, Tetris, 2048, Pac-Man, Wordle and many more. No downloads, play in your browser.', gamesHubSeo())
 buildHtml('aimakerich','AIMakeRich - Finance, Investing & Trading Guides','AIMakeRich: practical money guides that match our Instagram reels. Learn investing, trading strategies and finance with real code, step-by-step processes, FAQs and how-tos.', sectionHubSeo('aimakerich', 'AIMakeRich Finance Guides'))
 buildHtml('aiforrich','AIFORRICH - Algo Trading, Pine Script & Crypto Trading Guides','AIFORRICH: Algo trading for international markets and crypto — reels + code guides. Practical quantitative trading strategies, Pine Script indicators, and automated execution bots with copy-paste code.', sectionHubSeo('aiforrich', 'AIFORRICH Trading Guides'))
+// A-Z index hub: static links to every tool so crawlers can reach all 570
+// pages from one high-authority URL (homepage is client-rendered).
+{
+  const sorted = [...ALL_TOOLS].sort((a, b) => a.title.localeCompare(b.title))
+  const idxLinks = sorted.map(t => [hrefOf(t), t.title])
+  const idxItems = sorted.slice(0, 100).map((t, i) => ({ '@type': 'ListItem', position: i + 1, name: t.title, url: SITE + hrefOf(t) }))
+  buildHtml('all-tools',
+    `All Tools A-Z - ${sorted.length}+ Free Online Tools`,
+    `Every free UpTools tool in one alphabetical index: calculators, converters, image and PDF utilities, AI writing tools, finance, health and developer tools plus browser games. No sign-up, instant results.`,
+    {
+      itemList: { '@context': SCHEMA, '@type': 'ItemList', name: 'All UpTools Free Online Tools', numberOfItems: sorted.length, itemListElement: idxItems },
+      noscriptLinks: idxLinks,
+      noscriptTitle: 'All UpTools Free Online Tools, A to Z',
+    })
+}
+
 buildHtml('about','About UpTools - Privacy-First Free Web Tools','UpTools is a fast, privacy-first collection of 300+ free web tools and 40+ games. Calculate tax, GST, EMI and SIP; convert currency; validate PAN; format JSON; and more — no logins, instant results.')
 buildHtml('learning','Learning — DSA & AI Guides with Animations','Learn DSA and AI on UpTools — algorithms explained with step-by-step animations, practice questions and interview prep tips. Start with Quickselect.', { itemList: { '@context': 'https://schema.org', '@type': 'ItemList', name: 'UpTools Learning Tracks', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'DSA', url: SITE + '/learning/dsa/' }, { '@type': 'ListItem', position: 2, name: 'AI', url: SITE + '/learning/ai/' }] }, noscriptLinks: [['/learning/dsa/', 'DSA — Algorithms Explained with Animation'], ['/learning/ai/', 'AI — Plain-English Guides'], ['/learning/ai/how-ai-works/', 'How AI Actually Works in Plain English with Animation'], ['/learning/dsa/quickselect/', 'Quickselect Algorithm Explained with Animation']], noscriptTitle: 'UpTools Learning Tracks' })
 buildHtml('learning/dsa','DSA Algorithms Explained with Animation','Master DSA with live animations — Quickselect and more. Each algorithm: visual walkthrough, code in Python & JavaScript, practice questions and interview tips.', { itemList: { '@context': 'https://schema.org', '@type': 'ItemList', name: 'DSA Algorithms Explained with Animation', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Quickselect Algorithm', url: SITE + '/learning/dsa/quickselect/' }] }, noscriptLinks: [['/learning/dsa/quickselect/', 'Quickselect Algorithm Explained with Animation (Kth Smallest in O(n))']], noscriptTitle: 'DSA Algorithms Explained with Animation' })
@@ -377,8 +460,10 @@ try {
     const blogOg = b.coverImage || '/assets/og/default.png'
     const ogImage = blogOg.startsWith('/') ? blogOg : '/' + blogOg
     let html = template
-    html = html.replace(/<title>.*?<\/title>/, `<title>${esc(rawTitle)} | UpTools</title>`)
-    const descTag = `<meta name="description" content="${escAttr(rawDesc)}" />`
+    const blogSerp = serpTitle(rawTitle)
+    const blogTitleTag = (blogSerp.length + 10) <= 60 ? `${blogSerp} | UpTools` : blogSerp
+    html = html.replace(/<title>.*?<\/title>/, `<title>${escAttr(blogTitleTag)}</title>`)
+    const descTag = `<meta name="description" content="${escAttr(serpDesc(rawDesc))}" />`
     if (/<meta name="description"/.test(html)) html = html.replace(/<meta name="description"[^>]*\/>/, descTag)
     else html = html.replace(/<\/title>/, `</title>\n    ${descTag}`)
     html = html.replace(/<link rel="canonical"[^>]*\/>/, `<link rel="canonical" href="${SITE}/${slug}/" />`)
@@ -394,8 +479,8 @@ try {
       if (re.test(html)) html = html.replace(re, tag)
       else html = html.replace('</head>', `    ${tag}\n  </head>`)
     }
-    upsertBlog('og:title', `${rawTitle} | UpTools`)
-    upsertBlog('og:description', rawDesc)
+    upsertBlog('og:title', blogTitleTag)
+    upsertBlog('og:description', serpDesc(rawDesc))
     upsertBlog('og:url', `${SITE}/${slug}/`)
     upsertBlog('og:type', 'article')
     upsertBlog('og:site_name', 'UpTools')
@@ -403,8 +488,8 @@ try {
     if (!/og:image:width/.test(html)) html = html.replace('</head>', `    <meta property="og:image:width" content="1200" />\n  </head>`)
     if (!/og:image:height/.test(html)) html = html.replace('</head>', `    <meta property="og:image:height" content="630" />\n  </head>`)
     upsertNameBlog('twitter:card', 'summary_large_image')
-    upsertNameBlog('twitter:title', `${rawTitle} | UpTools`)
-    upsertNameBlog('twitter:description', rawDesc)
+    upsertNameBlog('twitter:title', blogTitleTag)
+    upsertNameBlog('twitter:description', serpDesc(rawDesc))
     const twBlog = `<meta name="twitter:image" content="${SITE}${ogImage}" />`
     if (/twitter:image/.test(html)) html = html.replace(/<meta name="twitter:image"[^>]*\/?>/, twBlog)
     else html = html.replace('</head>', `    ${twBlog}\n  </head>`)

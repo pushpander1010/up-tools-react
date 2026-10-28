@@ -13,6 +13,7 @@ export default function Footer() {
       </p>
       <div className="flex flex-wrap justify-center gap-3 text-xs text-slate-400">
         <Link to="/" className="hover:text-white transition-colors">Home</Link>
+        <Link to="/all-tools" className="hover:text-white transition-colors">All Tools</Link>
         <Link to="/games" className="hover:text-white transition-colors">Games</Link>
         <Link to="/hncker" className="hover:text-white transition-colors">HNCKER</Link>
         <Link to="/hackolution" className="hover:text-white transition-colors">HACKOLUTION</Link>

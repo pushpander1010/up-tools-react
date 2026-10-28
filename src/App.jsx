@@ -30,6 +30,7 @@ const HackolutionApps = lazy(() => import('./pages/HackolutionApps'))
 const AimakerichPage = lazy(() => import('./pages/AimakerichPage'))
 const AiforrichPage = lazy(() => import('./pages/AiforrichPage'))
 const AboutPage = lazy(() => import('./pages/AboutPage'))
+const AllToolsPage = lazy(() => import('./pages/AllToolsPage'))
 const BlogsPage = lazy(() => import('./pages/BlogsPage'))
 const BlogPostPage = lazy(() => import('./pages/BlogPostPage'))
 const LearningPage = lazy(() => import('./pages/LearningPage'))
@@ -175,6 +176,7 @@ export default function App() {
                 <Route path="/aimakerich" element={<AimakerichPage />} />
                 <Route path="/aiforrich" element={<AiforrichPage />} />
                 <Route path="/about" element={<AboutPage />} />
+                <Route path="/all-tools" element={<AllToolsPage />} />
                 <Route path="/blogs" element={<BlogsPage />} />
                 <Route path="/blogs/:slug" element={<BlogPostPage />} />
                 <Route path="/learning" element={<LearningPage />} />
