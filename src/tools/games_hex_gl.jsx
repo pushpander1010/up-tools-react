@@ -1,4 +1,5 @@
 import { useState, useCallback } from 'react'
+import GameShell from '../components/GameShell'
 
 export default function games_hex_gl() {
   const [launched, setLaunched] = useState(false)

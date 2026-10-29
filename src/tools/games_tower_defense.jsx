@@ -139,7 +139,7 @@ export default function games_tower_defense() {
 
     const loop = (ts) => {
       if (!s.playing) { s.animId = requestAnimationFrame(loop); return }
-      const dt = Math.min(ts - (s.lastTick || ts), 32)
+      const dt = Math.max(0, Math.min(ts - (s.lastTick || ts), 32))
       s.lastTick = ts
 
       if (!s.gameOver) {
@@ -158,8 +158,12 @@ export default function games_tower_defense() {
           if (!e.alive) continue
           if (e.slowTimer > 0) e.slowTimer -= dt
           const spd = e.slowTimer > 0 ? e.speed * 0.5 : e.speed
-          e.pathProgress += spd * dt
-          const idx = Math.floor(e.pathProgress)
+          e.pathProgress += (Number.isFinite(spd) ? spd : 0) * dt
+          const rawIdx = Math.floor(e.pathProgress)
+          // A non-finite progress (or one past the path end) used to destructure
+          // PATH[NaN] and crash the whole game loop with
+          // "undefined is not iterable" (Oct 2026 bug).
+          const idx = Math.max(0, Number.isFinite(rawIdx) ? rawIdx : PATH.length - 1)
           if (idx >= PATH.length - 1) {
             e.alive = false
             s.lives--
@@ -307,8 +311,10 @@ export default function games_tower_defense() {
     // Path direction arrows
     ctx.fillStyle = 'rgba(255,200,50,0.15)'
     for (let i = 0; i < PATH.length - 1; i++) {
-      const [r1, c1] = PATH[i]
-      const [r2, c2] = PATH[i + 1]
+      const a = PATH[i], b = PATH[i + 1]
+      if (!Array.isArray(a) || !Array.isArray(b)) continue
+      const [r1, c1] = a
+      const [r2, c2] = b
       const dr = r2 - r1, dc = c2 - c1
       const cx = c1 * cellW + cellW/2
       const cy = r1 * cellW + cellW/2
