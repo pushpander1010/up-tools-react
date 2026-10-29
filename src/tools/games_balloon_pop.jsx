@@ -66,8 +66,11 @@ export default function games_balloon_pop() {
       const vpW = window.innerWidth
       const w = Math.min(380, parentW - 16, (window.__utBoardH || 1e9) - 16, vpW - 32)
       const size = Math.max(260, w)
-      c.width = size
-      c.height = size
+      // Back the canvas with dpr pixels (crisp on retina) while keeping world
+      // coordinates in CSS px: draw() applies ctx.setTransform(dpr,...).
+      const dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1))
+      c.width = Math.round(size * dpr)
+      c.height = Math.round(size * dpr)
       setCanvasSize(size)
     }
   }
@@ -115,8 +118,10 @@ export default function games_balloon_pop() {
 
     const loop = (ts) => {
       if (!stateRef.current.running) return
-      const w = canvas.width
-      const h = canvas.height
+      const dpr = canvas.width / (parseFloat(canvas.style.width) || canvas.width || 1)
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+      const w = canvas.width / dpr
+      const h = canvas.height / dpr
       ctx.clearRect(0, 0, w, h)
 
       // Background gradient
@@ -226,8 +231,9 @@ export default function games_balloon_pop() {
 
     const getPos = (e) => {
       const rect = canvas.getBoundingClientRect()
-      const scaleX = canvas.width / rect.width
-      const scaleY = canvas.height / rect.height
+      const dpr = canvas.width / (parseFloat(canvas.style.width) || canvas.width || 1)
+      const scaleX = (canvas.width / dpr) / rect.width
+      const scaleY = (canvas.height / dpr) / rect.height
       const clientX = e.touches ? e.touches[0].clientX : e.clientX
       const clientY = e.touches ? e.touches[0].clientY : e.clientY
       return { x: (clientX - rect.left) * scaleX, y: (clientY - rect.top) * scaleY }
@@ -333,7 +339,13 @@ export default function games_balloon_pop() {
 
             <div className="glass p-2 relative">
               <canvas
-                ref={el => { canvasRef.current = el; if (el && el.width !== canvasSize) { el.width = canvasSize; el.height = canvasSize } }}
+                ref={el => {
+                  canvasRef.current = el
+                  if (!el) return
+                  const dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1))
+                  const target = Math.round(canvasSize * dpr)
+                  if (el.width !== target) { el.width = target; el.height = target }
+                }}
                 style={{ width: canvasSize, height: canvasSize, borderRadius: 12, touchAction: 'none', cursor: 'pointer', opacity: (!playing && !gameOver) ? 0.3 : 1 }}
               />
               {!playing && !gameOver && (

@@ -80,7 +80,13 @@ export default function games_car_dodger() {
     const h = Math.min(560, maxH, Math.floor(w * 1.3))
     sizeRef.current = { w: Math.max(280, w), h: Math.max(350, h) }
     const c = canvasRef.current
-    if (c) { c.width = sizeRef.current.w; c.height = sizeRef.current.h }
+    if (c) {
+      // Render at device pixel ratio so the canvas is crisp on retina/phones.
+      const dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1))
+      const lw = sizeRef.current.w, lh = sizeRef.current.h
+      c.width = Math.round(lw * dpr); c.height = Math.round(lh * dpr)
+      c.style.width = lw + 'px'; c.style.height = lh + 'px'
+    }
   }, [])
 
   useEffect(() => { fitCanvas() }, [fitCanvas])
@@ -167,7 +173,9 @@ export default function games_car_dodger() {
     const c = canvasRef.current
     if (!c) return
     const ctx = c.getContext('2d')
-    const w = c.width, h = c.height
+    const dpr = c.width / (parseFloat(c.style.width) || c.width || 1)
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+    const w = c.width / dpr, h = c.height / dpr
     ctx.clearRect(0, 0, w, h)
     // Road background (grass)
     const grassGrad = ctx.createLinearGradient(0, 0, 0, h)
