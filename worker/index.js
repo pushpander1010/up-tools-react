@@ -1671,10 +1671,34 @@ export default {
       '/games-space-invaders': '/games/space-invaders',
       '/games-space-invaders/': '/games/space-invaders/',
     };
+    const SECURITY_HEADERS = {
+      'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload',
+      'X-Content-Type-Options': 'nosniff',
+      'X-Frame-Options': 'SAMEORIGIN',
+      'Referrer-Policy': 'strict-origin-when-cross-origin',
+      'Permissions-Policy': 'camera=(self), microphone=(self), geolocation=(self)',
+      'Content-Security-Policy': "frame-ancestors 'self'; upgrade-insecure-requests",
+    };
+
+    const withSecurityHeaders = (res) => {
+      const hdrs = new Headers(res.headers);
+      for (const [k, v] of Object.entries(SECURITY_HEADERS)) {
+        if (!hdrs.has(k)) hdrs.set(k, v);
+      }
+      return new Response(res.body, {
+        status: res.status,
+        statusText: res.statusText,
+        headers: hdrs,
+      });
+    };
+
     if (LEGACY_REDIRECTS[url.pathname]) {
       return new Response(null, {
         status: 301,
-        headers: { Location: 'https://www.uptools.in' + LEGACY_REDIRECTS[url.pathname] },
+        headers: {
+          Location: 'https://www.uptools.in' + LEGACY_REDIRECTS[url.pathname],
+          ...SECURITY_HEADERS,
+        },
       });
     }
 
@@ -1683,10 +1707,12 @@ export default {
     if (url.pathname.length > 1 && url.pathname.endsWith('/') && /\.[a-z0-9]+$/i.test(url.pathname.slice(0, -1))) {
       const fixed = new URL(req.url);
       fixed.pathname = url.pathname.slice(0, -1);
-      return env.ASSETS.fetch(new Request(fixed.toString(), req));
+      const assetRes = await env.ASSETS.fetch(new Request(fixed.toString(), req));
+      return withSecurityHeaders(assetRes);
     }
 
     // Serve static assets for all other routes
-    return env.ASSETS.fetch(req);
+    const assetRes = await env.ASSETS.fetch(req);
+    return withSecurityHeaders(assetRes);
   }
 };

@@ -104,7 +104,7 @@ const schema = {
     {
       '@type': 'TechArticle',
       headline: 'Mosint — Email OSINT Tool (Educational)',
-      description: 'Pegasus Pro 2026 lab guide: install and use the Python menu-driven toolkit for Android penetration tests on your own devices. Educational lab use only.',
+      description: 'Mosint 2026 email OSINT guide: install and run the Go-based email reconnaissance tool to check breaches, social links, DNS records, and pastebin leaks.',
       about: 'Mosint email OSINT tool',
       educationalUse: 'Testing, education, and authorized research only',
     },
@@ -123,7 +123,7 @@ export default function hncker_mosint() {
   return (
     <ToolLayout
       title="Mosint — Email OSINT Tool"
-      desc="Pegasus Pro 2026 lab guide: install and use the Python menu-driven toolkit for Android penetration tests on your own devices. Educational lab use only."
+      desc="Mosint 2026 email OSINT guide: install and run the Go-based email reconnaissance tool to check breaches, social links, DNS records, and pastebin leaks."
       icon="📧"
       iconBg="linear-gradient(135deg, rgba(6,182,212,0.18), rgba(34,211,238,0.08))"
       category="security"

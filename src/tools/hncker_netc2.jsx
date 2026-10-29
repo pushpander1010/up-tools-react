@@ -104,7 +104,7 @@ const schema = {
     {
       '@type': 'TechArticle',
       headline: 'Net-C2 — Botnet Command & Control (Educational) (Educational)',
-      description: 'Pegasus Pro 2026 lab guide: install and use the Python menu-driven toolkit for Android penetration tests on your own devices. Educational lab use only.',
+      description: 'Net-C2 architecture guide: understand how command-and-control (C2) frameworks, encrypted beacons, and listeners operate, and how SOC teams detect C2 traffic.',
       about: 'Net-C2 botnet command and control framework',
       educationalUse: 'Testing, education, and authorized research only',
     },
@@ -123,7 +123,7 @@ export default function hncker_netc2() {
   return (
     <ToolLayout
       title="Net-C2 — Botnet Command & Control (Educational)"
-      desc="Pegasus Pro 2026 lab guide: install and use the Python menu-driven toolkit for Android penetration tests on your own devices. Educational lab use only."
+      desc="Net-C2 architecture guide: understand how command-and-control (C2) frameworks, encrypted beacons, and listeners operate, and how SOC teams detect C2 traffic."
       icon="🧠"
       iconBg="linear-gradient(135deg, rgba(168,85,247,0.18), rgba(0,255,65,0.08))"
       category="security"

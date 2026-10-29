@@ -86,7 +86,7 @@ export default function aimakerich_markets_today() {
   return (
     <ToolLayout
       title="Markets Today — 10 August 2026"
-      desc="Daily market bulletin: global cues, top news with market sentiment, Nifty/Bank Nifty/Sensex key levels, and stocks to watch with buy price, target and stop loss for 10 August 2026."
+      desc="10 August 2026 Indian Stock Market Bulletin: Nifty, Bank Nifty & Sensex support/resistance levels, global cues, FII/DII flows, and top stocks to watch."
       icon="📰"
       iconBg="linear-gradient(135deg, rgba(0,200,180,0.18), rgba(251,191,36,0.08))"
       category="finance"

@@ -105,8 +105,26 @@ try {
 } catch (e) { console.warn('learning.json not found for sitemap', e.message) }
 
 // Section landing pages
-for (const [path, priority] of [['hncker', '0.6'], ['hackolution', '0.6'], ['hackolution/apps', '0.6'], ['games', '0.6'], ['aimakerich', '0.6'], ['aiforrich', '0.6'], ['about', '0.5'], ['all-tools', '0.8'], ['privacy-policy', '0.3']]) {
-  urls.push({ loc: `${SITE}/${path}/`, priority, freq: 'weekly' })
+for (const [path, priority] of [['hncker', '0.7'], ['hackolution', '0.7'], ['hackolution/apps', '0.6'], ['games', '0.8'], ['aimakerich', '0.7'], ['aiforrich', '0.7'], ['about', '0.5'], ['contact', '0.5'], ['all-tools', '0.8'], ['privacy-policy', '0.3']]) {
+  const loc = `${SITE}/${path}/`
+  if (!seenLocs.has(loc)) {
+    seenLocs.add(loc)
+    urls.push({ loc, priority, freq: 'weekly' })
+  }
+}
+
+// Final deduplication pass by loc
+{
+  const unique = []
+  const seen = new Set()
+  for (const u of urls) {
+    if (!seen.has(u.loc)) {
+      seen.add(u.loc)
+      unique.push(u)
+    }
+  }
+  urls.length = 0
+  urls.push(...unique)
 }
 
 // Duplicate consolidation 2026-10-13: /hackolution/<x>/ reel copies duplicate

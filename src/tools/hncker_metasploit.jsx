@@ -104,7 +104,7 @@ const schema = {
     {
       '@type': 'TechArticle',
       headline: "Metasploit — Exploitation Framework Guide (Educational)",
-      description: "Pegasus Pro 2026 lab guide: install and use the Python menu-driven toolkit for Android penetration tests on your own devices. Educational lab use only.",
+      description: "Metasploit Framework 2026 beginner-to-pro guide: msfconsole workflow, auxiliary scanners, exploit selection, payloads, and Meterpreter basics on lab VMs.",
       about: "Metasploit Framework",
       educationalUse: 'Testing, education, and authorized use only',
     },
@@ -123,7 +123,7 @@ export default function hncker_metasploit() {
   return (
     <ToolLayout
       title="Metasploit — Exploitation Framework Guide"
-      desc="Pegasus Pro 2026 lab guide: install and use the Python menu-driven toolkit for Android penetration tests on your own devices. Educational lab use only."
+      desc="Metasploit Framework 2026 beginner-to-pro guide: msfconsole workflow, auxiliary scanners, exploit selection, payloads, and Meterpreter basics on lab VMs."
       icon="🎯"
       iconBg="linear-gradient(135deg, rgba(0,255,65,0.18), rgba(6,182,212,0.08))"
       category="security"

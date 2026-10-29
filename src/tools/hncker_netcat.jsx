@@ -104,7 +104,7 @@ const schema = {
     {
       '@type': 'TechArticle',
       headline: 'Netcat — Swiss Army Knife Guide (Educational)',
-      description: 'Pegasus Pro 2026 lab guide: install and use the Python menu-driven toolkit for Android penetration tests on your own devices. Educational lab use only.',
+      description: 'Netcat (nc) 2026 Swiss Army knife guide: port scanning, banner grabbing, TCP/UDP debugging, file transfers, and reverse/bind shell mechanics in a safe lab.',
       about: 'Netcat networking tool',
       educationalUse: 'Testing, education, and authorized use only',
     },
@@ -123,7 +123,7 @@ export default function hncker_netcat() {
   return (
     <ToolLayout
       title="Netcat — Swiss Army Knife Guide"
-      desc="Pegasus Pro 2026 lab guide: install and use the Python menu-driven toolkit for Android penetration tests on your own devices. Educational lab use only."
+      desc="Netcat (nc) 2026 Swiss Army knife guide: port scanning, banner grabbing, TCP/UDP debugging, file transfers, and reverse/bind shell mechanics in a safe lab."
       icon="🔧"
       iconBg="linear-gradient(135deg, rgba(0,255,65,0.18), rgba(6,182,212,0.08))"
       category="security"

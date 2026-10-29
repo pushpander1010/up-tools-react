@@ -104,7 +104,7 @@ const schema = {
     {
       '@type': 'TechArticle',
       headline: 'hping3 — Packet Crafting & Network Stress-Testing (Educational)',
-      description: 'Pegasus Pro 2026 lab guide: install and use the Python menu-driven toolkit for Android penetration tests on your own devices. Educational lab use only.',
+      description: 'hping3 2026 network guide: craft custom TCP, UDP, and ICMP packets, test firewall rules, run stealth port scans, and audit network resilience in your lab.',
       about: 'hping3 packet crafting tool',
       educationalUse: 'Testing, education, and authorized research only',
     },
@@ -123,7 +123,7 @@ export default function hncker_hping3() {
   return (
     <ToolLayout
       title="hping3 — Packet Crafting & Network Stress-Testing"
-      desc="Pegasus Pro 2026 lab guide: install and use the Python menu-driven toolkit for Android penetration tests on your own devices. Educational lab use only."
+      desc="hping3 2026 network guide: craft custom TCP, UDP, and ICMP packets, test firewall rules, run stealth port scans, and audit network resilience in your lab."
       icon="📡"
       iconBg="linear-gradient(135deg, rgba(0,255,65,0.18), rgba(6,182,212,0.08))"
       category="security"

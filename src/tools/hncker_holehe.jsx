@@ -104,7 +104,7 @@ const schema = {
     {
       '@type': 'TechArticle',
       headline: "Holehe — Email Checker Guide (Educational)",
-      description: "Pegasus Pro 2026 lab guide: install and use the Python menu-driven toolkit for Android penetration tests on your own devices. Educational lab use only.",
+      description: "Holehe 2026 OSINT guide: check where an email address is registered across 120+ websites from the terminal without alerting the target. Lab & privacy audit use.",
       about: "Holehe email checker",
       educationalUse: 'Testing, education, and authorized use only',
     },
@@ -123,7 +123,7 @@ export default function hncker_holehe() {
   return (
     <ToolLayout
       title="Holehe — Email Checker Guide"
-      desc="Pegasus Pro 2026 lab guide: install and use the Python menu-driven toolkit for Android penetration tests on your own devices. Educational lab use only."
+      desc="Holehe 2026 OSINT guide: check where an email address is registered across 120+ websites from the terminal without alerting the target. Lab & privacy audit use."
       icon="📭"
       iconBg="linear-gradient(135deg, rgba(0,255,65,0.18), rgba(6,182,212,0.08))"
       category="security"

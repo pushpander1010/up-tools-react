@@ -104,7 +104,7 @@ const schema = {
     {
       '@type': 'TechArticle',
       headline: 'Nuclei — Vulnerability Scanner (Educational)',
-      description: 'Pegasus Pro 2026 lab guide: install and use the Python menu-driven toolkit for Android penetration tests on your own devices. Educational lab use only.',
+      description: 'ProjectDiscovery Nuclei 2026 guide: run fast YAML template-based vulnerability scans across web apps, APIs, and cloud configs with zero false positives.',
       about: 'Nuclei vulnerability scanner',
       educationalUse: 'Testing, education, and authorized research only',
     },
@@ -123,7 +123,7 @@ export default function hncker_nuclei() {
   return (
     <ToolLayout
       title="Nuclei — Vulnerability Scanner"
-      desc="Pegasus Pro 2026 lab guide: install and use the Python menu-driven toolkit for Android penetration tests on your own devices. Educational lab use only."
+      desc="ProjectDiscovery Nuclei 2026 guide: run fast YAML template-based vulnerability scans across web apps, APIs, and cloud configs with zero false positives."
       icon="🎯"
       iconBg="linear-gradient(135deg, rgba(0,255,65,0.18), rgba(6,182,212,0.08))"
       category="security"

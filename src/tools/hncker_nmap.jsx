@@ -104,7 +104,7 @@ const schema = {
     {
       '@type': 'TechArticle',
       headline: "Nmap — Network Scanner Guide (Educational)",
-      description: "Pegasus Pro 2026 lab guide: install and use the Python menu-driven toolkit for Android penetration tests on your own devices. Educational lab use only.",
+      description: "Nmap 2026 network scanner guide: master host discovery (-sn), SYN stealth scans (-sS), service/version detection (-sV), OS fingerprinting (-O), and NSE scripts.",
       about: "Nmap network scanner",
       educationalUse: 'Testing, education, and authorized use only',
     },
@@ -123,7 +123,7 @@ export default function hncker_nmap() {
   return (
     <ToolLayout
       title="Nmap — Network Scanner Guide"
-      desc="Pegasus Pro 2026 lab guide: install and use the Python menu-driven toolkit for Android penetration tests on your own devices. Educational lab use only."
+      desc="Nmap 2026 network scanner guide: master host discovery (-sn), SYN stealth scans (-sS), service/version detection (-sV), OS fingerprinting (-O), and NSE scripts."
       icon="🗺️"
       iconBg="linear-gradient(135deg, rgba(0,255,65,0.18), rgba(6,182,212,0.08))"
       category="security"

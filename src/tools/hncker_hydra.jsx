@@ -104,7 +104,7 @@ const schema = {
     {
       '@type': 'TechArticle',
       headline: "Hydra — Login Brute-Forcer Guide (Educational)",
-      description: "Pegasus Pro 2026 lab guide: install and use the Python menu-driven toolkit for Android penetration tests on your own devices. Educational lab use only.",
+      description: "THC-Hydra 2026 lab guide: audit SSH, FTP, HTTP, and SMB authentication strength using wordlists on your own lab VMs, and learn how to defend with fail2ban.",
       about: "Hydra login brute-forcer",
       educationalUse: 'Testing, education, and authorized use only',
     },
@@ -123,7 +123,7 @@ export default function hncker_hydra() {
   return (
     <ToolLayout
       title="Hydra — Login Brute-Forcer Guide"
-      desc="Pegasus Pro 2026 lab guide: install and use the Python menu-driven toolkit for Android penetration tests on your own devices. Educational lab use only."
+      desc="THC-Hydra 2026 lab guide: audit SSH, FTP, HTTP, and SMB authentication strength using wordlists on your own lab VMs, and learn how to defend with fail2ban."
       icon="🐧"
       iconBg="linear-gradient(135deg, rgba(0,255,65,0.18), rgba(6,182,212,0.08))"
       category="security"

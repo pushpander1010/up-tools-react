@@ -2,7 +2,9 @@ import { useState, useMemo, useCallback, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import ToolCard from '../components/ToolCard'
+import { getSavedSlugs } from '../lib/savedTools'
 import InfiniteCarousel from '../components/InfiniteCarousel'
+import FAQ from '../components/FAQ'
 import { categoryColor } from '../lib/categoryColors'
 import data from '../data/tools.json'
 import { GAMES } from './GamesPage'
@@ -10,28 +12,72 @@ import { GAMES } from './GamesPage'
 const { tools, categories } = data
 const GAME_COUNT = GAMES.length
 
+const QUICK_POPULAR_LINKS = [
+  { to: '/income-tax-tool/', label: '₹ Income Tax Calculator' },
+  { to: '/gst-calculator/', label: '🧮 GST Calculator' },
+  { to: '/emi-calculator/', label: '🏦 EMI Calculator' },
+  { to: '/sip-calculator/', label: '📈 SIP Calculator' },
+  { to: '/gold-rate-india/', label: '🥇 Gold Rate India' },
+  { to: '/indian-stock-market-live/', label: '📊 Live Nifty & Stocks' },
+  { to: '/currency-converter/', label: '💱 Currency Converter' },
+  { to: '/json-formatter/', label: '{ } JSON Formatter' },
+  { to: '/password-generator/', label: '🔑 Password Generator' },
+]
+
 const gameChips = [
-  { href: '/games/snake/', label: '🐍 Snake' }, { href: '/games/2048/', label: '🔢 2048' },
-  { href: '/games/tetris/', label: '🧱 Tetris' }, { href: '/games/pac-man/', label: '👾 Pac-Man' },
-  { href: '/games/typing-speed/', label: '⌨️ Typing Test' }, { href: '/games/hangman/', label: '🪢 Hangman' },
-  { href: '/games/quiz-trivia/', label: '🧠 Quiz' }, { href: '/games/tic-tac-toe/', label: '⭕ Tic-Tac-Toe' },
-  { href: '/games/memory-match/', label: '🃏 Memory' }, { href: '/games/flappy-bird/', label: '🐦 Flappy Bird' },
+  { href: '/games/snake/', label: '🐍 Snake' },
+  { href: '/games/2048/', label: '🔢 2048' },
+  { href: '/games/tetris/', label: '🧱 Tetris' },
+  { href: '/games/wordle/', label: '🔤 Wordle' },
+  { href: '/games/chess/', label: '♟️ Chess' },
+  { href: '/games/pac-man/', label: '👾 Pac-Man' },
+  { href: '/games/sudoku/', label: '🔢 Sudoku' },
+  { href: '/games/typing-speed/', label: '⌨️ Typing Test' },
+  { href: '/games/hangman/', label: '🪢 Hangman' },
+  { href: '/games/quiz-trivia/', label: '🧠 Trivia Quiz' },
+  { href: '/games/tic-tac-toe/', label: '⭕ Tic-Tac-Toe' },
+  { href: '/games/flappy-bird/', label: '🐦 Flappy Bird' },
 ]
 
 const featuredSlugs = [
-  'stranger-chat',
-  'timezone-converter', 'salary-converter', 'invoice-calculator',
-  'ai-blog-generator', 'ai-linkedin-headline-generator', 'ai-youtube-script',
-  'ai-travel-planner', 'rawcv-resume-builder', 'currency-converter',
-  'password-generator', 'json-formatter', 'gst-calculator',
-  'jee-percentile-predictor', 'flames-calculator', 'daily-horoscope',
-  'gold-jewellery-price-calculator',
+  'income-tax-tool',
+  'gst-calculator',
+  'emi-calculator',
+  'sip-calculator',
+  'gold-rate-india',
+  'indian-stock-market-live',
+  'currency-converter',
+  'ctc-salary-calculator',
+  'ppf-calculator',
+  'fd-calculator',
+  'json-formatter',
+  'password-generator',
+  'qr-generator',
+  'rawcv-resume-builder',
+  'ai-blog-generator',
+  'bmi-calculator',
+]
+
+const HOME_FAQS = [
+  {
+    q: 'What is UpTools and are all tools genuinely free?',
+    a: 'UpTools (uptools.in) is a privacy-first online platform offering 570+ free calculators, financial & tax estimators, converters, AI writing utilities, developer tools, interactive AI/DSA courses, and 50 browser games. Every tool is 100% free with no sign-up, paywall, or usage cap.',
+  },
+  {
+    q: 'Are the Indian Finance & Tax calculators updated for 2026 rules?',
+    a: 'Yes. Our Income Tax Calculator, GST Calculator (0%, 5%, 12%, 18%, 28% CGST/SGST/IGST), CTC to In-Hand Salary Calculator, EMI, SIP, PPF, EPF, and TDS calculators use current Indian slabs, standard deductions, and compounding formulas, alongside live market feeds for Gold Rates, Mutual Fund NAVs, and Nifty 50 stocks.',
+  },
+  {
+    q: 'Is my data private when I use calculators or developer utilities?',
+    a: 'Yes. Over 98% of tools on UpTools run entirely inside your web browser using client-side JavaScript and the Web Crypto API. Your salary figures, tax details, JSON payloads, and passwords never leave your device.',
+  },
+  {
+    q: 'Can I use UpTools on mobile phones and tablets without installing an app?',
+    a: 'Absolutely. Every calculator, converter, learning simulator, and arcade game is responsive, touch-friendly, and runs directly in mobile Chrome, Safari, Edge, or Firefox with zero downloads.',
+  },
 ]
 
 export default function HomePage() {
-  // Hydrate the search box from ?q= so the declared SearchAction (sitelinks
-  // searchbox) actually resolves to a working result page instead of the
-  // unfiltered homepage.
   const [search, setSearch] = useState(() => {
     if (typeof window === 'undefined') return ''
     const q = new URLSearchParams(window.location.search).get('q')
@@ -39,14 +85,47 @@ export default function HomePage() {
   })
   const [activeCats, setActiveCats] = useState(new Set())
   const [visibleCount, setVisibleCount] = useState(48)
+  const [savedSlugs, setSavedSlugs] = useState(() => getSavedSlugs())
+  const searchInputRef = useRef(null)
   const resultsRef = useRef(null)
   const allToolsRef = useRef(null)
+
+  useEffect(() => {
+    const syncSaved = () => setSavedSlugs(getSavedSlugs())
+    window.addEventListener('ut:saved-changed', syncSaved)
+    return () => window.removeEventListener('ut:saved-changed', syncSaved)
+  }, [])
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('focus') === '1') {
+      searchInputRef.current?.focus()
+    }
+  }, [])
+
+  const toggleSaveTool = useCallback((slug) => {
+    try {
+      const next = getSavedSlugs()
+      if (next.has(slug)) next.delete(slug)
+      else next.add(slug)
+      localStorage.setItem('uptools-saved-tools', JSON.stringify([...next]))
+      setSavedSlugs(new Set(next))
+    } catch {}
+  }, [])
+
+  const catCounts = useMemo(() => {
+    const counts = {}
+    for (const t of tools) {
+      for (const c of (t.cats || [])) {
+        counts[c] = (counts[c] || 0) + 1
+      }
+    }
+    return counts
+  }, [])
 
   const catList = useMemo(() => Object.entries(categories).filter(([k]) => k !== 'all'), [])
 
   const isFiltering = search.length > 0 || activeCats.size > 0
 
-  // Deep-linked searches (?q=) should show every match, not the first 48.
   useEffect(() => {
     if (search) setVisibleCount(600)
   }, [search])
@@ -57,18 +136,28 @@ export default function HomePage() {
       const words = q ? q.split(/\s+/) : []
       const title = t.title.toLowerCase()
       const desc = (t.desc || '').toLowerCase()
-      const matchSearch = !q || words.every(w => title.includes(w)) || words.filter(w => desc.includes(w)).length >= words.length
+      const tags = (t.tags || []).join(' ').toLowerCase()
+      const matchSearch = !q || words.every(w => title.includes(w) || desc.includes(w) || tags.includes(w))
       const matchCat = activeCats.size === 0 || t.cats?.some(c => activeCats.has(c))
       return matchSearch && matchCat
     })
   }, [search, activeCats])
 
-  const featuredTools = useMemo(() => tools.filter(t => featuredSlugs.includes(t.slug)), [])
+  const featuredTools = useMemo(() => {
+    const bySlug = new Map(tools.map(t => [t.slug, t]))
+    return featuredSlugs.map(s => bySlug.get(s)).filter(Boolean)
+  }, [])
+
+  const savedToolsList = useMemo(
+    () => tools.filter(t => savedSlugs.has(t.slug)),
+    [savedSlugs]
+  )
 
   const toggleCat = useCallback((cat) => {
     setActiveCats(prev => {
       const next = new Set(prev)
-      if (next.has(cat)) next.delete(cat); else next.add(cat)
+      if (next.has(cat)) next.delete(cat)
+      else next.add(cat)
       return next
     })
   }, [])
@@ -89,206 +178,446 @@ export default function HomePage() {
   return (
     <>
       <Helmet>
-        <title>UpTools - 500+ Free Online Tools, Calculators, Games & AI Tools</title>
-        <meta name="description" content="Free online tools: 500+ calculators, converters, AI writers, dev tools, finance tools, health calculators, and 49 browser games. No sign-up required." />
+        <title>UpTools — 570+ Free Online Calculators, AI Tools, Converters &amp; Games</title>
+        <meta
+          name="description"
+          content="570+ free online calculators (Income Tax, GST, EMI, SIP, Gold Rate), converters, AI writing tools, developer utilities, and 50 browser games. Instant, privacy-first, no sign-up."
+        />
         <link rel="canonical" href="https://www.uptools.in/" />
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
-        <meta property="og:title" content="UpTools - 500+ Free Online Tools, Calculators, Games & AI Tools" />
-        <meta property="og:description" content="500+ free online tools: SIP, EMI, GST, income tax calculators, AI tools, and 49 browser games. No sign-up required." />
+        <meta property="og:title" content="UpTools — 570+ Free Online Calculators, AI Tools, Converters & Games" />
+        <meta
+          property="og:description"
+          content="570+ free online tools: Income Tax, GST, EMI, SIP calculators, live gold & stock rates, AI tools, developer utilities, and 50 browser games."
+        />
         <meta property="og:url" content="https://www.uptools.in/" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="UpTools" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="UpTools - 500+ Free Online Tools & 49 Games" />
-        <meta name="twitter:description" content="Calculators, converters, AI tools and browser games. Free, no sign-up." />
-        <script type="application/ld+json">{JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "WebSite",
-          "name": "UpTools",
-          "url": "https://www.uptools.in/",
-          "description": "500+ free online tools, calculators, converters, AI tools and 49 browser games.",
-          "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://www.uptools.in/?q={search_term_string}",
-            "query-input": "required name=search_term_string"
-          }
-        })}</script>
+        <meta name="twitter:title" content="UpTools — 570+ Free Online Tools & 50 Browser Games" />
+        <meta name="twitter:description" content="Calculators, converters, AI tools, and browser games. 100% free, no sign-up." />
       </Helmet>
 
-      {/* Hero */}
-      <div className="relative mb-6 overflow-hidden rounded-3xl border border-white/[0.06] p-8 sm:p-10"
-        style={{ background: '#111c33' }}>
-        <div className="relative flex flex-col sm:flex-row items-start gap-8">
-          <div className="flex-1">
-            <div className="flex items-center gap-4 mb-5">
-              <img src="/assets/logo/uptools-logo.svg" alt="UpTools" className="w-16 h-16 rounded-2xl shadow-2xl shadow-brand/30" width="64" height="64" />
-              <div>
-                <h1 className="text-3xl sm:text-4xl font-extrabold gradient-text leading-tight m-0">Games & Tools</h1>
-                <p className="text-slate-400 text-sm mt-1">All in one place. Free forever.</p>
-              </div>
+      {/* ─── HERO COMMAND CENTER ─── */}
+      <section
+        className="glass relative mb-6 overflow-hidden p-6 sm:p-10"
+        style={{
+          background: 'linear-gradient(135deg, rgba(30, 41, 75, 0.78) 0%, rgba(13, 20, 38, 0.92) 60%, rgba(16, 28, 52, 0.85) 100%)',
+        }}
+      >
+        <div
+          className="absolute -top-24 -right-24 w-80 h-80 rounded-full blur-3xl pointer-events-none opacity-35"
+          style={{ background: 'radial-gradient(circle, rgba(99,102,241,0.45), transparent 70%)' }}
+        />
+        <div
+          className="absolute -bottom-24 -left-24 w-72 h-72 rounded-full blur-3xl pointer-events-none opacity-25"
+          style={{ background: 'radial-gradient(circle, rgba(16,185,129,0.35), transparent 70%)' }}
+        />
+
+        <div className="relative">
+          {/* Top Trust Pill */}
+          <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-indigo-500/15 border border-indigo-500/30 text-indigo-200">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span>{tools.length}+ Free Browser Utilities · {GAME_COUNT} Instant Games · 100% Client-Side</span>
             </div>
-            <p className="text-slate-400 text-sm leading-relaxed max-w-xl mb-6">
-              Your friendly hub for <span className="text-white font-semibold">free online games</span> and
-              <span className="text-white font-semibold"> everyday tools</span> — calculators, converters,
-              AI helpers and {GAME_COUNT} instant mini-games. No sign-ups, no bloat. New here? Start with a stranger chat or a quick game below.
-            </p>
-            <div className="flex flex-wrap items-center gap-3">
-              <Link to="/stranger-chat" className="text-sm px-6 py-2.5 rounded-xl no-underline inline-flex items-center gap-2 font-extrabold text-white" style={{ background: '#f43f5e' }}>Meet a stranger</Link>
-              <Link to="/games" className="glow-btn text-sm px-6 py-2.5 rounded-xl no-underline inline-flex items-center gap-2">Play Games</Link>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-white/8 text-slate-300">Loads fast</span>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-white/8 text-slate-300">Privacy-first</span>
+            <div className="hidden sm:flex items-center gap-2 text-xs text-slate-400">
+              <span>🔒 No Sign-Up</span>
+              <span>·</span>
+              <span>⚡ Instant Results</span>
+              <span>·</span>
+              <Link to="/all-tools/" className="text-indigo-300 hover:text-white font-semibold no-underline">
+                Browse A–Z Index →
+              </Link>
             </div>
           </div>
-          <div className="flex gap-8 shrink-0">
-            {[{ v: '600+', l: 'Tools' }, { v: `${GAME_COUNT}`, l: 'Games' }, { v: '0', l: 'Sign-ups' }].map(s => (
-              <div key={s.l} className="text-center"><div className="text-3xl font-extrabold gradient-text">{s.v}</div><div className="text-xs text-slate-400 mt-1 font-medium">{s.l}</div></div>
+
+          {/* Main Heading & Value Proposition */}
+          <div className="max-w-3xl mb-6">
+            <h1 className="text-2xl sm:text-4xl lg:text-[42px] font-extrabold gradient-text leading-[1.15] tracking-tight m-0 mb-3">
+              Free Online Calculators, AI Tools, Converters &amp; Browser Games
+            </h1>
+            <p className="text-slate-300 text-sm sm:text-base leading-relaxed m-0">
+              Your fast, privacy-first toolkit for everyday work — calculate <strong className="text-white font-semibold">Income Tax, GST, EMI &amp; SIP</strong>, check <strong className="text-white font-semibold">live Gold &amp; Nifty 50 rates</strong>, format JSON, generate secure passwords, learn <strong className="text-white font-semibold">AI &amp; DSA with animations</strong>, or play {GAME_COUNT} instant games in your browser.
+            </p>
+          </div>
+
+          {/* Integrated Command Search Bar */}
+          <div className="mb-4">
+            <div
+              className="flex items-center gap-3 rounded-2xl px-4 sm:px-5 py-3.5 transition-all duration-200 focus-within:border-indigo-400/60 focus-within:shadow-[0_0_0_4px_rgba(99,102,241,0.18),0_12px_32px_rgba(0,0,0,0.35)]"
+              style={{
+                background: 'rgba(6, 10, 20, 0.85)',
+                border: '1px solid rgba(255, 255, 255, 0.14)',
+              }}
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#818cf8"
+                strokeWidth="2.2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="shrink-0"
+                aria-hidden="true"
+              >
+                <circle cx="11" cy="11" r="8" />
+                <path d="m21 21-4.3-4.3" />
+              </svg>
+              <input
+                ref={searchInputRef}
+                id="global-tool-search"
+                type="search"
+                aria-label="Search all free tools and calculators"
+                value={search}
+                onChange={e => setSearch(e.target.value)}
+                onKeyDown={handleKeyDown}
+                placeholder={`Search ${tools.length}+ tools (e.g. income tax, gst, sip, json, qr, resume, gold rate)…`}
+                className="flex-1 min-w-0 bg-transparent border-none outline-none text-white text-sm sm:text-base placeholder:text-slate-400"
+              />
+              {isFiltering ? (
+                <button
+                  type="button"
+                  onClick={clearFilters}
+                  className="px-3 py-1 rounded-lg text-xs font-semibold bg-white/10 border border-white/15 text-slate-200 hover:text-white transition-all cursor-pointer shrink-0"
+                >
+                  Clear ✕
+                </button>
+              ) : (
+                <kbd className="hidden sm:inline-block px-2 py-0.5 rounded-md text-xs font-mono bg-white/[0.06] text-slate-400 border border-white/10">
+                  Press /
+                </kbd>
+              )}
+            </div>
+          </div>
+
+          {/* Quick Popular Tool Pills (Crawlable Internal Links) */}
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 shrink-0 mr-1">
+              Popular:
+            </span>
+            {QUICK_POPULAR_LINKS.map(item => (
+              <Link
+                key={item.to}
+                to={item.to}
+                className="px-3 py-1.5 rounded-full text-xs font-medium bg-white/[0.05] hover:bg-indigo-500/20 border border-white/[0.09] hover:border-indigo-400/40 text-slate-200 hover:text-white transition-all whitespace-nowrap no-underline shrink-0"
+              >
+                {item.label}
+              </Link>
             ))}
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Start here — 3 fun doors */}
-      <div className="grid sm:grid-cols-3 gap-3 mb-6">
+      {/* ─── 4 CORE HUB CARDS (Bento Navigation) ─── */}
+      <section aria-label="Explore UpTools Hubs" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 mb-6">
         {[
-          { to: '/stranger-chat', bg: '#f43f5e', tag: 'MOST LOVED · 18+', title: 'Meet a stranger', sub: 'Anonymous chat in 5 seconds' },
-          { to: '/games', bg: '#6366f1', tag: `${GAME_COUNT} INSTANT GAMES`, title: 'Play something', sub: 'Snake, 2048, Tetris & more' },
-          { to: '/ai-blog-generator/', bg: '#059669', tag: 'AI HELPERS', title: 'Ask the AI tools', sub: 'Writers, planners & ideas' },
-        ].map(c => (
-          <Link key={c.to} to={c.to} className="rounded-3xl p-5 no-underline block hover:brightness-110 transition-all" style={{ background: c.bg }}>
-            <p className="text-[10px] font-black tracking-widest text-white/80 m-0">{c.tag}</p>
-            <p className="text-lg font-black text-white m-0 mt-1">{c.title} →</p>
-            <p className="text-xs text-white/85 m-0 mt-0.5">{c.sub}</p>
+          {
+            to: '/income-tax-tool/',
+            badge: 'FINANCE & TAX SUITE',
+            badgeColor: '#10b981',
+            icon: '💰',
+            title: 'Tax, GST & Live Markets',
+            desc: 'Income Tax FY 2026-27, GST, EMI, SIP, Gold Rates & Live Nifty 50.',
+          },
+          {
+            to: '/learning/',
+            badge: 'INTERACTIVE ACADEMY',
+            badgeColor: '#6366f1',
+            icon: '🎓',
+            title: 'Learn AI & DSA Visually',
+            desc: '18 plain-English guides with live step-by-step interactive animations.',
+          },
+          {
+            to: '/games/',
+            badge: `${GAME_COUNT} BROWSER GAMES`,
+            badgeColor: '#f59e0b',
+            icon: '🕹️',
+            title: 'Instant Arcade & Puzzles',
+            desc: 'Snake, Tetris, 2048, Wordle, Chess & Sudoku — click and play.',
+          },
+          {
+            to: '/stranger-chat/',
+            badge: 'LIVE LOUNGE · 18+',
+            badgeColor: '#f43f5e',
+            icon: '💬',
+            title: 'Anonymous Stranger Chat',
+            desc: 'Instant 1-on-1 text & voice rooms with end-to-end privacy.',
+          },
+        ].map(hub => (
+          <Link
+            key={hub.to}
+            to={hub.to}
+            className="glass p-5 no-underline group relative overflow-hidden hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between"
+          >
+            <div
+              className="absolute top-0 left-4 right-4 h-[2px] rounded-full opacity-80"
+              style={{ background: `linear-gradient(90deg, transparent, ${hub.badgeColor}, transparent)` }}
+            />
+            <div>
+              <div className="flex items-center justify-between gap-2 mb-2.5">
+                <span
+                  className="text-[10px] font-extrabold tracking-wider px-2.5 py-0.5 rounded-full"
+                  style={{
+                    background: `${hub.badgeColor}18`,
+                    color: hub.badgeColor,
+                    border: `1px solid ${hub.badgeColor}38`,
+                  }}
+                >
+                  {hub.badge}
+                </span>
+                <span className="text-xl">{hub.icon}</span>
+              </div>
+              <h2 className="text-base font-bold text-white group-hover:text-indigo-300 transition-colors m-0 mb-1">
+                {hub.title} →
+              </h2>
+              <p className="text-xs text-slate-400 leading-relaxed m-0">
+                {hub.desc}
+              </p>
+            </div>
           </Link>
         ))}
-      </div>
+      </section>
 
-      {/* Stranger Chat — warm invite banner */}
-      <Link to="/stranger-chat" className="relative mb-6 overflow-hidden rounded-3xl border border-rose-500/25 no-underline block bg-[#1a1020] hover:border-rose-500/50 transition-colors">
-        <div className="flex flex-col sm:flex-row items-center gap-5 p-6 sm:p-7">
-          <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-white shrink-0" style={{ background: '#f43f5e' }}>
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" /><path d="M8 9h8M8 12.5h5" /></svg>
+      {/* ─── SAVED TOOLS (if user starred any) ─── */}
+      {savedToolsList.length > 0 && (
+        <section className="mb-7">
+          <div className="flex items-center justify-between mb-3">
+            <h2 className="text-base sm:text-lg font-extrabold text-white m-0 flex items-center gap-2">
+              <span className="text-amber-400">★</span> Your Saved Tools
+            </h2>
+            <span className="text-xs text-slate-400">{savedToolsList.length} bookmarked</span>
           </div>
-          <div className="flex-1 text-center sm:text-left min-w-0">
-            <div className="inline-block text-[11px] font-bold text-rose-200 bg-rose-500/15 border border-rose-500/30 rounded-full px-3 py-1 mb-2">MOST LOVED · 18+ ONLY · NO SIGN-UP</div>
-            <h2 className="text-xl sm:text-2xl font-extrabold text-white m-0 tracking-tight">Bored? Meet someone new in 5 seconds</h2>
-            <p className="text-[13px] text-slate-300 mt-1 mb-4">Anonymous 1-1 chat, group rooms, voice notes and voice calls. End-to-end encrypted, nothing stored.</p>
-            <span className="inline-block text-sm px-6 py-2.5 rounded-xl font-extrabold text-white" style={{ background: '#f43f5e' }}>Say hi to a stranger →</span>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3.5">
+            {savedToolsList.map(tool => (
+              <ToolCard
+                key={tool.slug}
+                tool={tool}
+                categories={categories}
+                savedSet={savedSlugs}
+                onToggleSave={toggleSaveTool}
+              />
+            ))}
           </div>
-        </div>
-      </Link>
+        </section>
+      )}
 
-      {/* Games Rail */}
-      <div className="glass rounded-3xl p-5 mb-6">
-        <div className="flex items-center justify-between gap-4 flex-wrap mb-4">
-          <div><h2 className="text-lg font-bold text-white m-0">Free Mini Games</h2><p className="text-xs text-slate-400 mt-0.5">Instant browser games — click and play.</p></div>
-          <Link to="/games" className="glow-btn text-xs py-1.5 px-4 rounded-xl no-underline">Play all {GAME_COUNT} →</Link>
-        </div>
-        <InfiniteCarousel gap={8}>
-          {gameChips.map(g => (
-            <a key={g.href} href={g.href}
-              className="flex-none px-4 py-2 rounded-full text-xs font-semibold bg-white/4 border border-white/8 text-slate-300 hover:border-brand/40 hover:text-white hover:bg-brand/10 transition-all no-underline whitespace-nowrap">
-              {g.label}
-            </a>
-          ))}
-        </InfiniteCarousel>
-      </div>
-
-      {/* Search */}
-      <div className="mb-4">
-        <div className="flex items-center gap-3 rounded-2xl px-5 py-3.5 transition-all duration-300 focus-within:shadow-[0_0_0_3px_rgba(99,102,241,0.15),0_4px_20px_rgba(0,0,0,0.2)]"
-          style={{ background: 'rgba(17,24,39,0.8)', border: '1px solid rgba(255,255,255,0.06)' }}>
-          <span className="text-slate-400 text-lg">🔎</span>
-          <input type="search" value={search} onChange={e => setSearch(e.target.value)} onKeyDown={handleKeyDown}
-            placeholder="Search 500+ tools (tax, gst, currency, json)…"
-            className="flex-1 min-w-0 bg-transparent border-none outline-none text-white text-sm placeholder:text-slate-400" />
-          {isFiltering && (
-            <button onClick={clearFilters}
-              className="px-3 py-1 rounded-lg text-xs font-semibold bg-white/5 border border-white/8 text-slate-400 hover:text-white transition-all cursor-pointer">
-              Clear
+      {/* ─── CATEGORY FILTER PILLS ─── */}
+      <section aria-label="Filter tools by category" className="mb-6">
+        <div className="flex items-center justify-between mb-2.5">
+          <h2 className="text-xs font-bold uppercase tracking-wider text-slate-400 m-0">
+            Filter by Category
+          </h2>
+          {activeCats.size > 0 && (
+            <button
+              type="button"
+              onClick={() => setActiveCats(new Set())}
+              className="text-xs text-indigo-400 hover:text-indigo-300 font-semibold cursor-pointer bg-transparent border-none"
+            >
+              Reset category filter ({activeCats.size})
             </button>
           )}
         </div>
-      </div>
-
-      {/* Category Chips */}
-      <div className="flex gap-1.5 overflow-x-auto pb-2 mb-6" style={{ scrollbarWidth: 'thin' }}>
-        {catList.map(([key, cat]) => {
-          const c = categoryColor(key)
-          const active = activeCats.has(key)
-          return (
-            <button key={key} onClick={() => toggleCat(key)}
-              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border whitespace-nowrap transition-all cursor-pointer shrink-0 ${active ? 'text-white' : 'text-slate-400 hover:text-white'}`}
-              style={active ? { background: c, borderColor: c } : { borderColor: `${c}55`, background: 'rgba(255,255,255,0.02)' }}>
-              <span className="w-2 h-2 rounded-full shrink-0" style={{ background: active ? '#fff' : c }} />
-              {cat.label}
-            </button>
-          )
-        })}
-      </div>
-
-      {/* Featured — Infinite Carousel */}
-      {!isFiltering && featuredTools.length > 0 && (
-        <div className="mb-8">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-bold text-white m-0">Featured</h2>
-            <span className="text-xs text-slate-400">{featuredTools.length} tools</span>
-          </div>
-          <InfiniteCarousel gap={12}>
-            {featuredTools.map(tool => (
-              <div key={tool.slug} className="flex-none w-[280px]">
-                <ToolCard tool={tool} categories={categories} />
-              </div>
-            ))}
-          </InfiniteCarousel>
+        <div className="flex gap-1.5 overflow-x-auto pb-2 scrollbar-none">
+          {catList.map(([key, cat]) => {
+            const c = categoryColor(key)
+            const active = activeCats.has(key)
+            const count = catCounts[key] || 0
+            return (
+              <button
+                key={key}
+                type="button"
+                onClick={() => toggleCat(key)}
+                className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border whitespace-nowrap transition-all cursor-pointer shrink-0 ${
+                  active ? 'text-white shadow-md' : 'text-slate-300 hover:text-white'
+                }`}
+                style={
+                  active
+                    ? { background: c, borderColor: c }
+                    : { borderColor: `${c}45`, background: 'rgba(255,255,255,0.03)' }
+                }
+              >
+                <span className="w-2 h-2 rounded-full shrink-0" style={{ background: active ? '#fff' : c }} />
+                <span>{cat.label}</span>
+                {count > 0 && (
+                  <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${active ? 'bg-black/25 text-white' : 'bg-white/[0.06] text-slate-400'}`}>
+                    {count}
+                  </span>
+                )}
+              </button>
+            )
+          })}
         </div>
-      )}
+      </section>
 
-      {/* ─── SEARCH RESULTS (only when filtering) ─── */}
+      {/* ─── SEARCH / FILTER RESULTS ─── */}
       {isFiltering && (
-        <div ref={resultsRef} className="scroll-mt-20 mb-8">
+        <section ref={resultsRef} className="scroll-mt-20 mb-8">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-bold text-white m-0">
-              🔍 Search Results
-              {search && <span className="text-sm font-normal text-slate-400 ml-2">"{search}"</span>}
+            <h2 className="text-lg font-extrabold text-white m-0">
+              🔍 Matching Tools
+              {search && <span className="text-sm font-normal text-slate-400 ml-2">for &ldquo;{search}&rdquo;</span>}
             </h2>
             <span className="text-xs text-slate-400">{filteredTools.length} tools found</span>
           </div>
           {filteredTools.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3.5">
               {filteredTools.slice(0, 96).map(tool => (
-                <ToolCard key={tool.slug} tool={tool} categories={categories} />
+                <ToolCard
+                  key={tool.slug}
+                  tool={tool}
+                  categories={categories}
+                  savedSet={savedSlugs}
+                  onToggleSave={toggleSaveTool}
+                />
               ))}
             </div>
           ) : (
-            <div className="text-center py-12 rounded-3xl border-2 border-dashed border-white/8 bg-white/[0.01]">
-              <div className="text-4xl mb-3 opacity-20">🔍</div>
-              <p className="text-sm text-slate-400 font-medium mb-2">No tools match "{search}"</p>
-              <button onClick={clearFilters} className="glow-btn text-xs px-4 py-1.5 rounded-xl">Clear filters</button>
+            <div className="glass text-center py-12 px-6">
+              <div className="text-4xl mb-3">🔍</div>
+              <p className="text-sm text-slate-300 font-semibold mb-1">No tools match &ldquo;{search}&rdquo;</p>
+              <p className="text-xs text-slate-400 mb-4">Try a broader keyword like tax, gst, pdf, image, json, or ai.</p>
+              <button type="button" onClick={clearFilters} className="glow-btn text-xs px-4 py-2 rounded-xl">
+                Reset All Filters
+              </button>
             </div>
           )}
-        </div>
+        </section>
       )}
 
-      {/* ─── ALL TOOLS (first 48 + show more — keeps initial DOM small for INP) ─── */}
-      <div ref={allToolsRef}>
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-bold text-white m-0">🧰 All Tools</h2>
-          <span className="text-xs text-slate-400">{tools.length} tools</span>
+      {/* ─── MOST POPULAR & FLAGSHIP TOOLS ─── */}
+      {!isFiltering && featuredTools.length > 0 && (
+        <section className="mb-8">
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <h2 className="text-lg sm:text-xl font-extrabold text-white m-0">
+                ⭐ Most Popular Calculators &amp; Utilities
+              </h2>
+              <p className="text-xs text-slate-400 m-0 mt-0.5">
+                Frequently used finance, tax, developer, and AI tools
+              </p>
+            </div>
+            <Link to="/all-tools/" className="text-xs font-semibold text-indigo-300 hover:text-white no-underline">
+              View all {tools.length} →
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3.5">
+            {featuredTools.map(tool => (
+              <ToolCard
+                key={tool.slug}
+                tool={tool}
+                categories={categories}
+                savedSet={savedSlugs}
+                onToggleSave={toggleSaveTool}
+              />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* ─── FREE MINI GAMES RAIL ─── */}
+      <section className="glass p-5 sm:p-6 mb-8">
+        <div className="flex items-center justify-between gap-4 flex-wrap mb-4">
+          <div>
+            <h2 className="text-base sm:text-lg font-extrabold text-white m-0">
+              🎮 Free Instant Browser Games
+            </h2>
+            <p className="text-xs text-slate-400 m-0 mt-0.5">
+              Play classic arcade, word, board, and puzzle games with zero downloads
+            </p>
+          </div>
+          <Link to="/games/" className="glow-btn text-xs py-2 px-4 rounded-xl no-underline">
+            Play all {GAME_COUNT} games →
+          </Link>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+        <InfiniteCarousel gap={8}>
+          {gameChips.map(g => (
+            <Link
+              key={g.href}
+              to={g.href}
+              className="flex-none px-4 py-2 rounded-full text-xs font-semibold bg-white/[0.04] border border-white/[0.08] text-slate-200 hover:border-indigo-500/40 hover:text-white hover:bg-indigo-500/15 transition-all no-underline whitespace-nowrap"
+            >
+              {g.label}
+            </Link>
+          ))}
+        </InfiniteCarousel>
+      </section>
+
+      {/* ─── ALL TOOLS DIRECTORY (Initial 48 + Show More) ─── */}
+      <section ref={allToolsRef} className="mb-10">
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <h2 className="text-lg sm:text-xl font-extrabold text-white m-0">
+              🧰 All Free Online Tools
+            </h2>
+            <p className="text-xs text-slate-400 m-0 mt-0.5">
+              Browse the complete catalog of {tools.length} browser-based utilities
+            </p>
+          </div>
+          <Link to="/all-tools/" className="text-xs font-semibold text-indigo-300 hover:text-white no-underline">
+            Alphabetical A–Z Index →
+          </Link>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3.5">
           {tools.slice(0, visibleCount).map(tool => (
-            <ToolCard key={tool.slug} tool={tool} categories={categories} />
+            <ToolCard
+              key={tool.slug}
+              tool={tool}
+              categories={categories}
+              savedSet={savedSlugs}
+              onToggleSave={toggleSaveTool}
+            />
           ))}
         </div>
         {visibleCount < tools.length && (
-          <div className="text-center mt-6">
-            <button onClick={() => setVisibleCount(c => c + 96)}
-              className="glow-btn text-sm px-6 py-2.5 rounded-xl cursor-pointer">
-              Show more tools ({tools.length - visibleCount} remaining)
+          <div className="flex flex-wrap items-center justify-center gap-3 mt-7">
+            <button
+              type="button"
+              onClick={() => setVisibleCount(c => c + 96)}
+              className="glow-btn text-sm px-6 py-2.5 rounded-xl cursor-pointer"
+            >
+              Show More Tools ({tools.length - visibleCount} remaining)
             </button>
+            <Link
+              to="/all-tools/"
+              className="px-5 py-2.5 rounded-xl text-sm font-semibold bg-white/[0.05] hover:bg-white/[0.1] border border-white/10 text-slate-200 hover:text-white transition-colors no-underline"
+            >
+              Open Full A–Z Directory →
+            </Link>
           </div>
         )}
-      </div>
+      </section>
+
+      {/* ─── SEO TOPICAL OVERVIEW & FAQ ─── */}
+      <section className="glass p-6 sm:p-8 mb-6">
+        <h2 className="text-lg sm:text-xl font-extrabold text-white m-0 mb-3">
+          Why Millions Choose UpTools for Daily Calculations &amp; Web Utilities
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 text-xs sm:text-sm text-slate-300 leading-relaxed">
+          <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/[0.06]">
+            <h3 className="text-sm font-bold text-white m-0 mb-1.5">🇮🇳 India &amp; Global Finance Suite</h3>
+            <p className="m-0 text-slate-400">
+              Compare Old vs New Tax Regimes, split CGST/SGST and IGST accurately, project SIP &amp; PPF wealth, check live 24K/22K Gold Rates across Indian cities, and track Nifty 50 &amp; Sensex movers in real time.
+            </p>
+          </div>
+          <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/[0.06]">
+            <h3 className="text-sm font-bold text-white m-0 mb-1.5">💻 Developer, Security &amp; AI Powerhouse</h3>
+            <p className="m-0 text-slate-400">
+              Format and validate JSON, test regular expressions, generate Web Crypto passwords &amp; UUIDs, build ATS-ready resumes, generate SEO blog outlines with AI, and explore 70+ ethical cybersecurity &amp; OSINT lab guides.
+            </p>
+          </div>
+          <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/[0.06]">
+            <h3 className="text-sm font-bold text-white m-0 mb-1.5">🔒 100% Privacy-First &amp; Lightning Fast</h3>
+            <p className="m-0 text-slate-400">
+              No registrations, no email walls, and no server storage of your personal inputs. Calculations happen locally on your phone or laptop so pages load in milliseconds even on mobile networks.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <FAQ questions={HOME_FAQS} title="UpTools Platform" />
     </>
   )
 }

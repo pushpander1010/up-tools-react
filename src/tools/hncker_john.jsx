@@ -104,7 +104,7 @@ const schema = {
     {
       '@type': 'TechArticle',
       headline: "John the Ripper — Hash Cracker Guide (Educational)",
-      description: "Pegasus Pro 2026 lab guide: install and use the Python menu-driven toolkit for Android penetration tests on your own devices. Educational lab use only.",
+      description: "John the Ripper 2026 guide: audit password hash strength using wordlist, single-crack, and rule-based modes on lab hashes (zip2john, ssh2john, shadow files).",
       about: "John the Ripper hasher",
       educationalUse: 'Testing, education, and authorized use only',
     },
@@ -123,7 +123,7 @@ export default function hncker_john() {
   return (
     <ToolLayout
       title="John the Ripper — Hash Cracker Guide"
-      desc="Pegasus Pro 2026 lab guide: install and use the Python menu-driven toolkit for Android penetration tests on your own devices. Educational lab use only."
+      desc="John the Ripper 2026 guide: audit password hash strength using wordlist, single-crack, and rule-based modes on lab hashes (zip2john, ssh2john, shadow files)."
       icon="🎩"
       iconBg="linear-gradient(135deg, rgba(0,255,65,0.18), rgba(6,182,212,0.08))"
       category="security"

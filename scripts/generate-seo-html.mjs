@@ -108,7 +108,14 @@ function ogImageForSlug(slug){
 
 const toolFiles = readdirSync(toolsDir).filter(f=>f.endsWith('.jsx')||f.endsWith('.tsx'))
 const template = readFileSync(join(dist,'index.html'),'utf-8')
-const SKIP_SLUGS = new Set(['games','contact','hncker','hackolution','hackolution/apps','aimakerich','aiforrich','privacy-policy'])
+const SKIP_SLUGS = new Set(['games','hncker','hackolution','hackolution/apps','aimakerich','aiforrich','privacy-policy'])
+
+function injectRootSeo(html, innerHtml) {
+  const block = `<div id="root">\n      <div class="seo-prerender">\n${innerHtml}\n      </div>\n    </div>\n    <script type="module"`
+  let out = html.replace(/<div id="root">[\s\S]*?<\/div>\s*<script type="module"/, block)
+  out = out.replace(/<noscript>[\s\S]*?<\/noscript>\s*/g, '')
+  return out
+}
 
 // ---------- Internal-linking helpers (added Oct 2026) ----------
 // Every prerendered tool page links to 10 topical siblings so crawlers have a
@@ -243,22 +250,22 @@ for(const file of toolFiles){
   // title / desc / canonical
   const serp = serpTitle(rawTitle)
   const titleWithBrand = (serp.length + 10) <= 60 ? `${serp} | UpTools` : serp
-  html = html.replace(/<title>.*?<\/title>/, `<title>${escAttr(titleWithBrand)}</title>`)
-  const descTag = `<meta name="description" content="${escAttr(serpDesc(rawDesc))}" />`
-  if(/<meta name="description"/.test(html)) html = html.replace(/<meta name="description"[^>]*\/>/, descTag)
+  html = html.replace(/<title[^>]*>.*?<\/title>/, `<title data-rh="true">${escAttr(titleWithBrand)}</title>`)
+  const descTag = `<meta data-rh="true" name="description" content="${escAttr(serpDesc(rawDesc))}" />`
+  if(/<meta[^>]*name="description"/.test(html)) html = html.replace(/<meta[^>]*name="description"[^>]*\/>/, descTag)
   else html = html.replace(/<\/title>/, `</title>\n    ${descTag}`)
-  html = html.replace(/<link rel="canonical"[^>]*\/>/, `<link rel="canonical" href="${SITE}/${slug}/" />`)
+  html = html.replace(/<link[^>]*rel="canonical"[^>]*\/>/, `<link data-rh="true" rel="canonical" href="${SITE}/${slug}/" />`)
 
   // og/twitter — replace if present, else inject
   function upsertMeta(property, value){
-    const tag = `<meta property="${property}" content="${escAttr(value)}" />`
-    const re = new RegExp(`<meta property="${property}"[^>]*\\/?>`)
+    const tag = `<meta data-rh="true" property="${property}" content="${escAttr(value)}" />`
+    const re = new RegExp(`<meta[^>]*property="${property}"[^>]*\\/?>`)
     if(re.test(html)) html = html.replace(re, tag)
     else html = html.replace('</head>', `    ${tag}\n  </head>`)
   }
   function upsertName(name, value){
-    const tag = `<meta name="${name}" content="${escAttr(value)}" />`
-    const re = new RegExp(`<meta name="${name}"[^>]*\\/?>`)
+    const tag = `<meta data-rh="true" name="${name}" content="${escAttr(value)}" />`
+    const re = new RegExp(`<meta[^>]*name="${name}"[^>]*\\/?>`)
     if(re.test(html)) html = html.replace(re, tag)
     else html = html.replace('</head>', `    ${tag}\n  </head>`)
   }
@@ -277,57 +284,50 @@ for(const file of toolFiles){
   upsertName('twitter:title', titleWithBrand)
   upsertName('twitter:description', serpDesc(rawDesc))
   // twitter:image
-  const twImgTag = `<meta name="twitter:image" content="${SITE}${ogImage}" />`
-  if(/twitter:image/.test(html)) html = html.replace(/<meta name="twitter:image"[^>]*\/?>/, twImgTag)
+  const twImgTag = `<meta data-rh="true" name="twitter:image" content="${SITE}${ogImage}" />`
+  if(/twitter:image/.test(html)) html = html.replace(/<meta[^>]*name="twitter:image"[^>]*\/?>/, twImgTag)
   else html = html.replace('</head>', `    ${twImgTag}\n  </head>`)
 
   // Inject static JSON-LD
   const pairs = extractFaq(content)
   if(pairs.length>0 && !hasFaqPageSchema(content)){
     html = html.replace('</head>', '    '+faqJsonLd(pairs)+'\n  </head>')
-  } else if(pairs.length>0){
-    // still inject static FAQ for crawler even if Helmet has it — dedupe by skipping, but we now prefer static
-    // our earlier check skips dupes; Helmet will still render client-side. Keep skip to avoid double FAQPage.
   }
   html = html.replace('</head>', '    '+breadcrumbJsonLd(slug, rawTitle)+'\n  </head>')
-  // Static app schema — WebApplication when the tool declares it (interactive
-  // browser tools), else SoftwareApplication. Ensures dist/*.html is crawlable
-  // without JS (Helmet alone is not indexed). Always inject static one; client
-  // Helmet will hydrate same data without conflict (Google merges).
   const cat = extractCategory(content)
   const appType = /["']@type["']\s*:\s*["']VideoGame["']/.test(content) || slug.startsWith('games/') ? 'VideoGame'
     : /["']@type["']\s*:\s*["']WebApplication["']/.test(content) ? 'WebApplication'
     : 'SoftwareApplication'
   html = html.replace('</head>', '    '+softwareJsonLd(rawTitle, rawDesc, slug, cat, appType)+'\n  </head>')
-  // Games: also emit HowTo so the step list is machine-readable (was noscript-only).
   const howTo = howToJsonLd(rawTitle, extractHowItWorks(content), slug)
   if (howTo) html = html.replace('</head>', '    '+howTo+'\n  </head>')
 
-  // Per-page crawlable body: replace generic noscript with page-specific one
+  // Per-page crawlable body inside #root (replaces empty #root so HTML crawlers see H1, H2, >220 words & internal links)
   const steps = extractHowItWorks(content)
-  let noscript = `    <noscript>\n      <h1>${esc(rawTitle)}</h1>\n      <p>${esc(rawDesc)}</p>`
+  let rootBody = `        <h1>${esc(rawTitle)}</h1>\n        <p>${esc(rawDesc)}</p>\n        <p>Welcome to the free online <strong>${esc(rawTitle)}</strong> on UpTools. This browser-based utility is engineered for instant, accurate results on both desktop and mobile devices with zero registration, no downloads, and complete client-side privacy.</p>`
+  rootBody += `\n        <h2>How to Use ${esc(rawTitle)}</h2>\n        <ol>`
   if(steps.length){
-    noscript += `\n      <h2>How it works</h2>\n      <ol>`
-    for(const s of steps) noscript += `\n        <li>${esc(s)}</li>`
-    noscript += `\n      </ol>`
+    for(const s of steps) rootBody += `\n          <li>${esc(s)}</li>`
+  } else {
+    rootBody += `\n          <li>Open the ${esc(rawTitle)} tool in your browser on desktop, tablet, or mobile.</li>`
+    rootBody += `\n          <li>Enter your values or select your preferred configuration options.</li>`
+    rootBody += `\n          <li>View the instant calculation or output and copy or share your result with one click.</li>`
   }
+  rootBody += `\n        </ol>`
+  rootBody += `\n        <h2>Key Features &amp; Benefits</h2>\n        <ul>\n          <li><strong>100% Free &amp; Unlimited:</strong> Use ${esc(rawTitle)} as many times as you need without creating an account or hitting paywalls.</li>\n          <li><strong>Privacy-First Browser Processing:</strong> Inputs and calculations run directly in your browser so your sensitive data stays on your device.</li>\n          <li><strong>Mobile &amp; Desktop Ready:</strong> Responsive interface designed for fast touch and keyboard workflows.</li>\n        </ul>`
   if(pairs.length){
-    noscript += `\n      <h2>FAQ</h2>\n      <dl>`
-    for(const p of pairs) noscript += `\n        <dt>${esc(p.q)}</dt><dd>${esc(p.a)}</dd>`
-    noscript += `\n      </dl>`
+    rootBody += `\n        <h2>Frequently Asked Questions</h2>\n        <dl>`
+    for(const p of pairs) rootBody += `\n          <dt>${esc(p.q)}</dt><dd>${esc(p.a)}</dd>`
+    rootBody += `\n        </dl>`
   }
   const rels = relatedFor(slug)
   if(rels.length){
-    noscript += `\n      <h2>Related tools</h2>\n      <ul>`
-    for(const r of rels) noscript += `\n        <li><a href="${escAttr(hrefOf(r))}">${esc(r.title)}</a> \u2014 ${esc((r.desc||'').slice(0,110))}</li>`
-    noscript += `\n      </ul>`
+    rootBody += `\n        <h2>Related Tools &amp; Calculators</h2>\n        <ul>`
+    for(const r of rels) rootBody += `\n          <li><a href="${escAttr(hrefOf(r))}">${esc(r.title)}</a> \u2014 ${esc((r.desc||'').slice(0,120))}</li>`
+    rootBody += `\n        </ul>`
   }
-  noscript += `\n      <p><a href="/all-tools/">All tools A\u2013Z</a> · <a href="/">Home</a> · <a href="/sitemap.xml">Sitemap</a> · <a href="/games/">Games</a></p>\n    </noscript>`
-  if(/<noscript>[\s\S]*?<\/noscript>/.test(html)){
-    html = html.replace(/<noscript>[\s\S]*?<\/noscript>/, noscript)
-  } else {
-    html = html.replace('</body>', noscript+'\n  </body>')
-  }
+  rootBody += `\n        <h2>Explore More on UpTools</h2>\n        <p><a href="/">UpTools Home</a> · <a href="/all-tools/">All 570+ Tools A\u2013Z</a> · <a href="/income-tax-tool/">Income Tax Calculator</a> · <a href="/gst-calculator/">GST Calculator</a> · <a href="/emi-calculator/">EMI Calculator</a> · <a href="/sip-calculator/">SIP Calculator</a> · <a href="/games/">Free Browser Games</a> · <a href="/learning/">AI &amp; DSA Learning</a> · <a href="/blogs/">Trending Blogs</a> · <a href="/about/">About</a> · <a href="/contact/">Contact</a> · <a href="/privacy-policy/">Privacy Policy</a> · <a href="/sitemap.xml">Sitemap</a></p>`
+  html = injectRootSeo(html, rootBody)
 
   const outDir = join(dist, slug)
   mkdirSync(outDir, { recursive:true })
@@ -414,41 +414,42 @@ function buildHtml(slug, title, desc, opts = {}) {
   let html = template
   const hubSerp = serpTitle(title)
   const hubTitleTag = (hubSerp.length + 10) <= 60 ? `${hubSerp} | UpTools` : hubSerp
-  html = html.replace(/<title>.*?<\/title>/, `<title>${escAttr(hubTitleTag)}</title>`)
-  const descTag = `<meta name="description" content="${escAttr(serpDesc(desc))}" />`
-  if (/<meta name="description"/.test(html)) html = html.replace(/<meta name="description"[^>]*\/>/, descTag)
+  html = html.replace(/<title[^>]*>.*?<\/title>/, `<title data-rh="true">${escAttr(hubTitleTag)}</title>`)
+  const descTag = `<meta data-rh="true" name="description" content="${escAttr(serpDesc(desc))}" />`
+  if (/<meta[^>]*name="description"/.test(html)) html = html.replace(/<meta[^>]*name="description"[^>]*\/>/, descTag)
   else html = html.replace(/<\/title>/, `</title>\n    ${descTag}`)
-  html = html.replace(/<link rel="canonical"[^>]*\/>/, `<link rel="canonical" href="${SITE}/${slug}/" />`)
+  html = html.replace(/<link[^>]*rel="canonical"[^>]*\/>/, `<link data-rh="true" rel="canonical" href="${SITE}/${slug}/" />`)
   function upsert(property, value) {
-    const tag = `<meta property="${property}" content="${escAttr(value)}" />`
-    const re = new RegExp(`<meta property="${property}"[^>]*\\/?>`)
+    const tag = `<meta data-rh="true" property="${property}" content="${escAttr(value)}" />`
+    const re = new RegExp(`<meta[^>]*property="${property}"[^>]*\\/?>`)
     if (re.test(html)) html = html.replace(re, tag); else html = html.replace('</head>', `    ${tag}\n  </head>`)
   }
   upsert('og:title', hubTitleTag); upsert('og:description', serpDesc(desc)); upsert('og:url', SITE + '/' + slug + '/'); upsert('og:type', 'website'); upsert('og:site_name', 'UpTools')
   upsert('og:image', opts.ogImage ? SITE + opts.ogImage : SITE + '/assets/og/default.png')
   if (!/og:image:width/.test(html)) html = html.replace('</head>', `    <meta property="og:image:width" content="1200" />\n  </head>`)
   if (!/og:image:height/.test(html)) html = html.replace('</head>', `    <meta property="og:image:height" content="630" />\n  </head>`)
-  const tw = `<meta name="twitter:card" content="summary_large_image" />`; if (!/twitter:card/.test(html)) html = html.replace('</head>', `    ${tw}\n  </head>`)
-  const twImg = `<meta name="twitter:image" content="${opts.ogImage ? SITE + opts.ogImage : SITE + '/assets/og/default.png'}" />`; if (/twitter:image/.test(html)) html = html.replace(/<meta name="twitter:image"[^>]*\/?>/, twImg); else html = html.replace('</head>', `    ${twImg}\n  </head>`)
+  const tw = `<meta data-rh="true" name="twitter:card" content="summary_large_image" />`; if (!/twitter:card/.test(html)) html = html.replace('</head>', `    ${tw}\n  </head>`)
+  const twImg = `<meta data-rh="true" name="twitter:image" content="${opts.ogImage ? SITE + opts.ogImage : SITE + '/assets/og/default.png'}" />`; if (/twitter:image/.test(html)) html = html.replace(/<meta[^>]*name="twitter:image"[^>]*\/?>/, twImg); else html = html.replace('</head>', `    ${twImg}\n  </head>`)
   // WebSite JSON-LD on hubs + WebPage JSON-LD everywhere (crawlable entity without JS)
   const webPageLd = { '@context': 'https://schema.org', '@type': 'WebPage', name: title, description: desc, url: `${SITE}/${slug}/`, isPartOf: { '@type': 'WebSite', name: 'UpTools', url: SITE + '/' } }
   html = html.replace('</head>', `    <script type="application/ld+json">${JSON.stringify(webPageLd)}</script>\n  </head>`)
   if (opts.itemList) {
     html = html.replace('</head>', `    <script type="application/ld+json">${JSON.stringify(opts.itemList)}</script>\n  </head>`)
   }
+  const escH = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+  let hubBody = `        <h1>${escH(opts.noscriptTitle || title)}</h1>\n        <p>${escH(desc)}</p>\n        <h2>Overview &amp; Key Highlights</h2>\n        <p>Explore <strong>${escH(opts.noscriptTitle || title)}</strong> on UpTools. Every guide, interactive simulator, calculator, and browser utility on UpTools is built to run directly in your browser with instant performance, full mobile responsiveness, and zero sign-up requirements.</p>\n        <ul>\n          <li><strong>Interactive &amp; Practical:</strong> Hands-on browser tools, visual animations, runnable code examples, and step-by-step explanations.</li>\n          <li><strong>100% Free &amp; Privacy-First:</strong> No registration, no account walls, and client-side execution so your data stays on your device.</li>\n          <li><strong>Always Up to Date:</strong> Regularly updated for 2026 rules, modern web standards, and real-world workflows.</li>\n        </ul>`
   if (opts.noscriptLinks && opts.noscriptLinks.length) {
-    const escH = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-    let ns = `    <noscript>\n      <h1>${escH(opts.noscriptTitle || title)}</h1>\n      <p>${escH(desc)}</p>\n      <ul>`
-    for (const [href, label] of opts.noscriptLinks) ns += `\n        <li><a href="${href}">${escH(label)}</a></li>`
-    ns += `\n      </ul>\n      <p><a href="/">All tools</a> · <a href="/sitemap.xml">Sitemap</a></p>\n    </noscript>`
-    if (/<noscript>[\s\S]*?<\/noscript>/.test(html)) html = html.replace(/<noscript>[\s\S]*?<\/noscript>/, ns)
-    else html = html.replace('</body>', ns + '\n  </body>')
+    hubBody += `\n        <h2>Browse Included Tools &amp; Guides</h2>\n        <ul>`
+    for (const [href, label] of opts.noscriptLinks) hubBody += `\n          <li><a href="${href}">${escH(label)}</a></li>`
+    hubBody += `\n        </ul>`
   }
+  hubBody += `\n        <h2>Popular UpTools Sections &amp; Calculators</h2>\n        <ul>\n          <li><a href="/">UpTools Home — 570+ Free Online Tools</a></li>\n          <li><a href="/all-tools/">All Tools A\u2013Z Directory</a></li>\n          <li><a href="/learning/">AI &amp; DSA Interactive Learning Hub</a> · <a href="/learning/ai/">AI Guides</a> · <a href="/learning/dsa/">DSA Algorithms</a></li>\n          <li><a href="/games/">50+ Free Browser Games</a></li>\n          <li><a href="/blogs/">Trending Tech, Finance &amp; AI Blogs</a></li>\n          <li><a href="/income-tax-tool/">Income Tax Calculator India</a> · <a href="/gst-calculator/">GST Calculator</a> · <a href="/emi-calculator/">EMI Calculator</a> · <a href="/sip-calculator/">SIP Calculator</a></li>\n          <li><a href="/about/">About UpTools</a> · <a href="/contact/">Contact Us</a> · <a href="/privacy-policy/">Privacy Policy</a> · <a href="/sitemap.xml">XML Sitemap</a></li>\n        </ul>`
+  html = injectRootSeo(html, hubBody)
   const outDir = join(dist, slug)
   const outFile = join(outDir, 'index.html')
   if (existsSync(outFile)) {
     const prev = readFileSync(outFile, 'utf8')
-    if (prev.includes('Related tools')) {
+    if (prev.includes('Related Tools &amp; Calculators')) {
       console.warn('  ⚠ skipped hub overwrite of richer page:', slug)
       return
     }
@@ -477,7 +478,8 @@ buildHtml('aiforrich','AIFORRICH - Algo Trading, Pine Script & Crypto Trading Gu
     })
 }
 
-buildHtml('about','About UpTools - Privacy-First Free Web Tools','UpTools is a fast, privacy-first collection of 300+ free web tools and 40+ games. Calculate tax, GST, EMI and SIP; convert currency; validate PAN; format JSON; and more — no logins, instant results.')
+buildHtml('about','About UpTools - Privacy-First Free Web Tools','UpTools is a fast, privacy-first collection of 570+ free web tools and 50+ games. Calculate tax, GST, EMI and SIP; convert currency; validate PAN; format JSON; and more — no logins, instant results.')
+buildHtml('privacy-policy','Privacy Policy — Client-Side Data & Cookie Policy','Read the UpTools Privacy Policy. Learn how our 600+ free online calculators, converters, AI tools, and games process data locally in your browser with no sign-up.')
 buildHtml('learning','Learning — DSA & AI Guides with Animations','Learn DSA and AI on UpTools — algorithms explained with step-by-step animations, practice questions and interview prep tips. Start with Quickselect.', { itemList: { '@context': 'https://schema.org', '@type': 'ItemList', name: 'UpTools Learning Tracks', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'DSA', url: SITE + '/learning/dsa/' }, { '@type': 'ListItem', position: 2, name: 'AI', url: SITE + '/learning/ai/' }] }, noscriptLinks: [['/learning/dsa/', 'DSA — Algorithms Explained with Animation'], ['/learning/ai/', 'AI — Plain-English Guides'], ['/learning/ai/how-ai-works/', 'How AI Actually Works in Plain English with Animation'], ['/learning/dsa/quickselect/', 'Quickselect Algorithm Explained with Animation']], noscriptTitle: 'UpTools Learning Tracks' })
 buildHtml('learning/dsa','DSA Algorithms Explained with Animation','Master DSA with live animations — Quickselect and more. Each algorithm: visual walkthrough, code in Python & JavaScript, practice questions and interview tips.', { itemList: { '@context': 'https://schema.org', '@type': 'ItemList', name: 'DSA Algorithms Explained with Animation', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Quickselect Algorithm', url: SITE + '/learning/dsa/quickselect/' }] }, noscriptLinks: [['/learning/dsa/quickselect/', 'Quickselect Algorithm Explained with Animation (Kth Smallest in O(n))']], noscriptTitle: 'DSA Algorithms Explained with Animation' })
 buildHtml('learning/ai','AI Guides in Plain English with Animation | UpTools','Learn how AI really works — plain-English guides with live animations. Lessons 1–16 are live: How AI Actually Works (next-word predictor), Prompting That Gets Results (live prompt improver), Context & Memory (sliding context window demo with memory toggle), Hallucinations & Verifying (confident-vs-true meter), Embeddings & Search (2D semantic dot map with cosine similarity), Chat With Your Documents (RAG simulator with grounded citations), AI Agents That Do Tasks (autonomous task planning, ReAct loop & human approval gate), Image Generation Basics (diffusion model denoising stages & CFG scale), Voice & Video AI (neural TTS, mel-spectrograms, vocoders & talking avatar visemes), AI for Resumes & Interviews (Google X-Y-Z bullet transformer & STAR interview simulator), AI for Small Business (shop day operations workflow, WhatsApp concierge bot & automated bookkeeping), AI Costs & Tokens (live token counter, cost in Rupees across 3 model tiers & monthly budget planner), Privacy & Safety with AI (live data flow animator, PII sanitizer, sharing risk meter & security checklist), Building with APIs (live API call builder, Bearer auth headers, SSE token streaming, HTTP status codes 200/401/429/500 & exponential backoff), Fine-tuning vs Prompting (interactive decision flowchart animator, cost vs accuracy tradeoff simulator, LoRA PEFT concepts & break-even volume calculator), and Checking AI Quality (interactive quality scorecard, animated accuracy/tone/format/safety gauges & regression test runner).', { itemList: { '@context': 'https://schema.org', '@type': 'ItemList', name: 'AI Guides in Plain English with Animation', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'How AI Actually Works', url: SITE + '/learning/ai/how-ai-works/' }, { '@type': 'ListItem', position: 2, name: 'Prompting That Gets Results', url: SITE + '/learning/ai/prompting-that-gets-results/' }, { '@type': 'ListItem', position: 3, name: 'Context & Memory', url: SITE + '/learning/ai/context-and-memory/' }, { '@type': 'ListItem', position: 4, name: 'Hallucinations & Verifying', url: SITE + '/learning/ai/hallucinations-and-verifying/' }, { '@type': 'ListItem', position: 5, name: 'Embeddings and Search', url: SITE + '/learning/ai/embeddings-and-search/' }, { '@type': 'ListItem', position: 6, name: 'Chat With Your Documents (RAG)', url: SITE + '/learning/ai/rag-chat-with-documents/' }, { '@type': 'ListItem', position: 7, name: 'AI Agents That Do Tasks', url: SITE + '/learning/ai/ai-agents-that-do-tasks/' }, { '@type': 'ListItem', position: 8, name: 'Image Generation Basics', url: SITE + '/learning/ai/image-generation-basics/' }, { '@type': 'ListItem', position: 9, name: 'Voice and Video AI', url: SITE + '/learning/ai/voice-and-video-ai/' }, { '@type': 'ListItem', position: 10, name: 'AI for Resumes and Interviews', url: SITE + '/learning/ai/ai-for-resumes-interviews/' }, { '@type': 'ListItem', position: 11, name: 'AI for Small Business', url: SITE + '/learning/ai/ai-for-small-business/' }, { '@type': 'ListItem', position: 12, name: 'AI Costs and Tokens', url: SITE + '/learning/ai/ai-costs-and-tokens/' }, { '@type': 'ListItem', position: 13, name: 'Privacy and Safety with AI', url: SITE + '/learning/ai/privacy-and-safety/' }, { '@type': 'ListItem', position: 14, name: 'Building with APIs', url: SITE + '/learning/ai/building-with-apis/' }, { '@type': 'ListItem', position: 15, name: 'Fine-tuning vs Prompting', url: SITE + '/learning/ai/finetuning-vs-prompting/' }, { '@type': 'ListItem', position: 16, name: 'Checking AI Quality', url: SITE + '/learning/ai/checking-ai-quality/' }] }, noscriptLinks: [['/learning/ai/how-ai-works/', 'How AI Actually Works in Plain English with Animation'], ['/learning/ai/prompting-that-gets-results/', 'Prompting That Gets Results — The 4-Part Formula'], ['/learning/ai/context-and-memory/', 'Context & Memory — Why AI Forgets and How to Make It Remember'], ['/learning/ai/hallucinations-and-verifying/', 'Hallucinations & Verifying — Catch AI Made-Up Facts'], ['/learning/ai/embeddings-and-search/', 'Embeddings and Search — 2D Semantic Dot Map & Vector Search'], ['/learning/ai/rag-chat-with-documents/', 'Chat With Your Documents (RAG) — Live Grounding & Citation Simulator'], ['/learning/ai/ai-agents-that-do-tasks/', 'AI Agents That Do Tasks — Autonomous Planning, ReAct Loop & Tools'], ['/learning/ai/image-generation-basics/', 'Image Generation Basics — Diffusion Denoising Stages & CFG Scale'], ['/learning/ai/voice-and-video-ai/', 'Voice & Video AI — Neural TTS, Vocoders & Talking Avatars'], ['/learning/ai/ai-for-resumes-interviews/', 'AI for Resumes & Interviews — ATS Optimization, Bullet Power & Mock Prep'], ['/learning/ai/ai-for-small-business/', 'AI for Small Business — Automate Daily Ops, WhatsApp & Marketing'], ['/learning/ai/ai-costs-and-tokens/', 'AI Costs and Tokens — Live Token Counter, Pricing in Rupees & Budget Planner'], ['/learning/ai/privacy-and-safety/', 'Privacy & Safety with AI — Live Data Flow Animator, PII Sanitizer & Security Checklist'], ['/learning/ai/building-with-apis/', 'Building with APIs — Live REST API Builder, Bearer Auth & Error Simulator'], ['/learning/ai/finetuning-vs-prompting/', 'Fine-tuning vs Prompting — Interactive Decision Flowchart & Cost/Accuracy Tradeoff Simulator'], ['/learning/ai/checking-ai-quality/', 'Checking AI Quality — Interactive Scorecard, Gauges & Regression Evals']], noscriptTitle: 'AI Guides in Plain English with Animation' })
@@ -516,20 +518,20 @@ try {
     let html = template
     const blogSerp = serpTitle(rawTitle)
     const blogTitleTag = (blogSerp.length + 10) <= 60 ? `${blogSerp} | UpTools` : blogSerp
-    html = html.replace(/<title>.*?<\/title>/, `<title>${escAttr(blogTitleTag)}</title>`)
-    const descTag = `<meta name="description" content="${escAttr(serpDesc(rawDesc))}" />`
-    if (/<meta name="description"/.test(html)) html = html.replace(/<meta name="description"[^>]*\/>/, descTag)
+    html = html.replace(/<title[^>]*>.*?<\/title>/, `<title data-rh="true">${escAttr(blogTitleTag)}</title>`)
+    const descTag = `<meta data-rh="true" name="description" content="${escAttr(serpDesc(rawDesc))}" />`
+    if (/<meta[^>]*name="description"/.test(html)) html = html.replace(/<meta[^>]*name="description"[^>]*\/>/, descTag)
     else html = html.replace(/<\/title>/, `</title>\n    ${descTag}`)
-    html = html.replace(/<link rel="canonical"[^>]*\/>/, `<link rel="canonical" href="${SITE}/${slug}/" />`)
+    html = html.replace(/<link[^>]*rel="canonical"[^>]*\/>/, `<link data-rh="true" rel="canonical" href="${SITE}/${slug}/" />`)
     const upsertBlog = (property, value) => {
-      const tag = `<meta property="${property}" content="${escAttr(value)}" />`
-      const re = new RegExp(`<meta property="${property}"[^>]*\\/?>`)
+      const tag = `<meta data-rh="true" property="${property}" content="${escAttr(value)}" />`
+      const re = new RegExp(`<meta[^>]*property="${property}"[^>]*\\/?>`)
       if (re.test(html)) html = html.replace(re, tag)
       else html = html.replace('</head>', `    ${tag}\n  </head>`)
     }
     const upsertNameBlog = (name, value) => {
-      const tag = `<meta name="${name}" content="${escAttr(value)}" />`
-      const re = new RegExp(`<meta name="${name}"[^>]*\\/?>`)
+      const tag = `<meta data-rh="true" name="${name}" content="${escAttr(value)}" />`
+      const re = new RegExp(`<meta[^>]*name="${name}"[^>]*\\/?>`)
       if (re.test(html)) html = html.replace(re, tag)
       else html = html.replace('</head>', `    ${tag}\n  </head>`)
     }
@@ -544,8 +546,8 @@ try {
     upsertNameBlog('twitter:card', 'summary_large_image')
     upsertNameBlog('twitter:title', blogTitleTag)
     upsertNameBlog('twitter:description', serpDesc(rawDesc))
-    const twBlog = `<meta name="twitter:image" content="${SITE}${ogImage}" />`
-    if (/twitter:image/.test(html)) html = html.replace(/<meta name="twitter:image"[^>]*\/?>/, twBlog)
+    const twBlog = `<meta data-rh="true" name="twitter:image" content="${SITE}${ogImage}" />`
+    if (/twitter:image/.test(html)) html = html.replace(/<meta[^>]*name="twitter:image"[^>]*\/?>/, twBlog)
     else html = html.replace('</head>', `    ${twBlog}\n  </head>`)
     const articleLd = { '@context':'https://schema.org','@type':'BlogPosting', headline: rawTitle, description: rawDesc, image: `${SITE}${ogImage}`, datePublished: b.date, dateModified: b.date, author: { '@type':'Organization', name: 'UpTools', url: SITE+'/' }, publisher: { '@type':'Organization', name:'UpTools', logo:{'@type':'ImageObject', url: SITE+'/assets/logo/uptools-logo.svg'}}, mainEntityOfPage:{'@type':'WebPage','@id': `${SITE}/${slug}/`}, keywords: (b.keywords||b.tags||[]).join(', '), articleSection: b.category }
     html = html.replace('</head>', `    <script type="application/ld+json">${JSON.stringify(articleLd)}</script>\n  </head>`)
@@ -556,16 +558,20 @@ try {
       html = html.replace('</head>', `    <script type="application/ld+json">${JSON.stringify(faqLd)}</script>\n  </head>`)
     }
     const stripHtml = (s) => s.replace(/<[^>]+>/g, ' ').replace(/\s+/g,' ').trim()
-    let noscript = `    <noscript>\n      <h1>${esc(rawTitle)}</h1>\n      <p>${esc(rawDesc)}</p>`
-    if (b.content) noscript += `\n      <p>${esc(stripHtml(b.content).slice(0, 2000))}</p>`
+    let blogBody = `        <h1>${esc(rawTitle)}</h1>\n        <p>${esc(rawDesc)}</p>`
+    if (b.content) blogBody += `\n        <h2>Article Summary &amp; Analysis</h2>\n        <p>${esc(stripHtml(b.content).slice(0, 2200))}</p>`
     if (b.faq && b.faq.length) {
-      noscript += `\n      <h2>FAQ</h2>\n      <dl>`
-      for (const f of b.faq) noscript += `\n        <dt>${esc(f.q)}</dt><dd>${esc(f.a)}</dd>`
-      noscript += `\n      </dl>`
+      blogBody += `\n        <h2>Frequently Asked Questions</h2>\n        <dl>`
+      for (const f of b.faq) blogBody += `\n          <dt>${esc(f.q)}</dt><dd>${esc(f.a)}</dd>`
+      blogBody += `\n        </dl>`
     }
-    noscript += `\n      <p><a href="/blogs/">All blogs</a> · <a href="/">All tools</a> · <a href="/sitemap.xml">Sitemap</a></p>\n    </noscript>`
-    if (/<noscript>[\s\S]*?<\/noscript>/.test(html)) html = html.replace(/<noscript>[\s\S]*?<\/noscript>/, noscript)
-    else html = html.replace('</body>', noscript+'\n  </body>')
+    if (b.relatedTools && b.relatedTools.length) {
+      blogBody += `\n        <h2>Related Tools on UpTools</h2>\n        <ul>`
+      for (const rt of b.relatedTools) blogBody += `\n          <li><a href="/${escAttr(rt.slug)}/">${esc(rt.name)}</a> \u2014 ${esc(rt.desc || '')}</li>`
+      blogBody += `\n        </ul>`
+    }
+    blogBody += `\n        <h2>Explore More</h2>\n        <p><a href="/blogs/">All Trending Blogs</a> · <a href="/">UpTools Home</a> · <a href="/all-tools/">All 570+ Tools A\u2013Z</a> · <a href="/games/">Free Browser Games</a> · <a href="/learning/">AI &amp; DSA Learning</a> · <a href="/sitemap.xml">Sitemap</a></p>`
+    html = injectRootSeo(html, blogBody)
     const outDir = join(dist, slug)
     mkdirSync(outDir, { recursive:true })
     writeFileSync(join(outDir,'index.html'), html)
@@ -576,14 +582,14 @@ try {
     const rawDesc = 'Explore trending stories from India, USA & UK on iPhone 17, Asia Cup 2026, US Open tennis, Premier League, and the best AI tools — curated by UpTools.'
     const slug = 'blogs'
     let html = template
-    html = html.replace(/<title>.*?<\/title>/, `<title>${esc(rawTitle)} | UpTools</title>`)
-    const descTag = `<meta name="description" content="${escAttr(rawDesc)}" />`
-    if (/<meta name="description"/.test(html)) html = html.replace(/<meta name="description"[^>]*\/>/, descTag)
+    html = html.replace(/<title[^>]*>.*?<\/title>/, `<title data-rh="true">${esc(rawTitle)} | UpTools</title>`)
+    const descTag = `<meta data-rh="true" name="description" content="${escAttr(rawDesc)}" />`
+    if (/<meta[^>]*name="description"/.test(html)) html = html.replace(/<meta[^>]*name="description"[^>]*\/>/, descTag)
     else html = html.replace(/<\/title>/, `</title>\n    ${descTag}`)
-    html = html.replace(/<link rel="canonical"[^>]*\/>/, `<link rel="canonical" href="${SITE}/${slug}/" />`)
+    html = html.replace(/<link[^>]*rel="canonical"[^>]*\/>/, `<link data-rh="true" rel="canonical" href="${SITE}/${slug}/" />`)
     const upsert2 = (property, value) => {
-      const tag=`<meta property="${property}" content="${escAttr(value)}" />`
-      const re=new RegExp(`<meta property="${property}"[^>]*\\/?>`)
+      const tag=`<meta data-rh="true" property="${property}" content="${escAttr(value)}" />`
+      const re=new RegExp(`<meta[^>]*property="${property}"[^>]*\\/?>`)
       if(re.test(html)) html=html.replace(re,tag); else html=html.replace('</head>',`    ${tag}\n  </head>`)
     }
     upsert2('og:title', `${rawTitle} | UpTools`); upsert2('og:description', rawDesc); upsert2('og:url', SITE+'/'+slug+'/'); upsert2('og:type','website'); upsert2('og:site_name','UpTools')
@@ -596,17 +602,14 @@ try {
     const blogs2 = Array.isArray(rawBlogs2) ? rawBlogs2 : (rawBlogs2.blogs || [])
     const il = { '@context':'https://schema.org','@type':'ItemList', name:'UpTools Trending Blogs', itemListElement: blogs2.map((b,i)=>({ '@type':'ListItem', position:i+1, name:b.title, url: `${SITE}/blogs/${b.slug}/` })) }
     html = html.replace('</head>', `    <script type="application/ld+json">${JSON.stringify(il)}</script>\n  </head>`)
-    // Static crawlable post links: the /blogs/ hub is client-rendered, so without
-    // this Googlebot sees no <a href> to individual posts (discovery gap Sep 2026).
     const escHub = (s) => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
-    let hubNoscript = `    <noscript>\n      <h1>UpTools Trending Blogs — Tech, Cricket, Sports & AI News</h1>\n      <p>Latest trending stories from India, USA & UK.</p>\n      <ul>`
+    let hubBody = `        <h1>UpTools Trending Blogs — Tech, Cricket, Sports &amp; AI News</h1>\n        <p>${escHub(rawDesc)}</p>\n        <h2>Latest Articles &amp; Guides</h2>\n        <ul>`
     const sortedBlogs = [...blogs2].sort((a, b) => (b.date || '').localeCompare(a.date || ''))
     for (const b of sortedBlogs) {
-      hubNoscript += `\n        <li><a href="/blogs/${b.slug}/">${escHub(b.title)}</a></li>`
+      hubBody += `\n          <li><a href="/blogs/${b.slug}/">${escHub(b.title)}</a> \u2014 ${escHub((b.desc || '').slice(0, 120))}</li>`
     }
-    hubNoscript += `\n      </ul>\n      <p><a href="/">All tools</a> · <a href="/sitemap.xml">Sitemap</a></p>\n    </noscript>`
-    if (/<noscript>[\s\S]*?<\/noscript>/.test(html)) html = html.replace(/<noscript>[\s\S]*?<\/noscript>/, hubNoscript)
-    else html = html.replace('</body>', hubNoscript + '\n  </body>')
+    hubBody += `\n        </ul>\n        <h2>Explore UpTools</h2>\n        <p><a href="/">UpTools Home</a> · <a href="/all-tools/">All 570+ Tools A\u2013Z</a> · <a href="/games/">Free Browser Games</a> · <a href="/learning/">AI &amp; DSA Learning</a> · <a href="/sitemap.xml">Sitemap</a></p>`
+    html = injectRootSeo(html, hubBody)
     const outDir=join(dist,slug); mkdirSync(outDir,{recursive:true}); writeFileSync(join(outDir,'index.html'),html)
     blogCount++
   }

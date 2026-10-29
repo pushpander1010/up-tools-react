@@ -78,8 +78,8 @@ export default function color_palette_generator_pro() {
 
   return (
     <ToolLayout
-      title="Color Palette Generator"
-      desc="Generate harmonious palettes from one base color using analogous, complementary and triadic color harmony rules."
+      title="Color Palette Studio & CSS Generator"
+      desc="Generate 3 to 8 color palettes (analogous, complementary, triadic, split, monochromatic) from any base hex color and export ready-to-use CSS variables."
       icon="🎨" iconBg="rgba(168,85,247,0.08)"
       category="utility" slug="color-palette-generator-pro"
       faq={[

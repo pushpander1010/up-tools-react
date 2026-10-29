@@ -1,28 +1,30 @@
 import { Component as ReactComponent } from 'react'
-import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
+import { Routes, Route, useLocation, Navigate, Link } from 'react-router-dom'
 import { lazy, Suspense, useState, useEffect } from 'react'
+import { Helmet } from 'react-helmet-async'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import MeshBackground from './components/MeshBackground'
 import GameAdSlot from './components/GameAdSlot'
 import { AD_SLOTS } from './config/ads'
+import HomePage from './pages/HomePage'
 
 class ErrorBoundary extends ReactComponent {
   state = { error: null }
   static getDerivedStateFromError(error) { return { error } }
   render() {
     if (this.state.error) return (
-      <div className="text-center py-20">
-        <h1 className="text-xl font-bold text-white mb-4">Something went wrong</h1>
-        <p className="text-sm text-slate-400 mb-4 font-mono">{String(this.state.error)}</p>
-        <a href="/" className="glow-btn text-xs px-4 py-2 rounded-xl no-underline inline-block">← Back to Home</a>
+      <div className="glass max-w-lg mx-auto text-center py-16 px-6 my-10">
+        <div className="text-4xl mb-3">⚠️</div>
+        <h1 className="text-xl font-bold text-white mb-2">Something went wrong</h1>
+        <p className="text-xs text-slate-400 mb-6 font-mono">{String(this.state.error)}</p>
+        <a href="/" className="glow-btn text-xs px-5 py-2.5 rounded-xl no-underline inline-block">← Back to Home</a>
       </div>
     )
     return this.props.children
   }
 }
 
-const HomePage = lazy(() => import('./pages/HomePage'))
 const GamesPage = lazy(() => import('./pages/GamesPage'))
 const HnckerPage = lazy(() => import('./pages/HnckerPage'))
 const HackolutionPage = lazy(() => import('./pages/HackolutionPage'))
@@ -30,6 +32,7 @@ const HackolutionApps = lazy(() => import('./pages/HackolutionApps'))
 const AimakerichPage = lazy(() => import('./pages/AimakerichPage'))
 const AiforrichPage = lazy(() => import('./pages/AiforrichPage'))
 const AboutPage = lazy(() => import('./pages/AboutPage'))
+const PrivacyPolicyPage = lazy(() => import('./pages/PrivacyPolicyPage'))
 const AllToolsPage = lazy(() => import('./pages/AllToolsPage'))
 const BlogsPage = lazy(() => import('./pages/BlogsPage'))
 const BlogPostPage = lazy(() => import('./pages/BlogPostPage'))
@@ -70,38 +73,50 @@ function ToolRoute() {
   const [notFound, setNotFound] = useState(false)
 
   const twin = slug.match(/^hackolution\/([^/]+)$/)
-  if (twin && HNCKER_CANONICAL.has(twin[1])) {
-    return <Navigate to={`/hncker/${twin[1]}/`} replace />
-  }
-
-  // Duplicate WhatsApp DP pages consolidated on /whatsapp-dp-downloader/
-  // (same tool, one canonical URL). Worker 301s cover production; this
-  // covers SPA client-side navigation.
-  if (/^(whatsapp-profile-picture-downloader|whatsapp-private-dp-viewer|whatsapp-dp-by-number)$/.test(slug)) {
-    return <Navigate to="/whatsapp-dp-downloader/" replace />
-  }
+  const isCanonicalRedirect = (twin && HNCKER_CANONICAL.has(twin[1])) ||
+    /^(whatsapp-profile-picture-downloader|whatsapp-private-dp-viewer|whatsapp-dp-by-number)$/.test(slug)
 
   useEffect(() => {
+    if (isCanonicalRedirect) return
     if (!slug || slug === 'games' || slug === 'hncker' || slug === 'hackolution' || slug === 'hackolution/apps' || slug === 'aimakerich' || slug === 'aiforrich' || slug === 'learning' || slug.startsWith('learning/')) {
       setNotFound(true)
       return
     }
-    // Filenames map 1:1 from the slug. Do NOT prefix digit-leading names: the only
-    // such file is 401k_calculator.jsx, and a `tool_` prefix made /401k-calculator/
-    // import a file that has never existed, so the route always fell through to 404
-    // while still being prerendered and listed in the sitemap.
     const compName = slug.replace(/\//g, '_').replace(/-/g, '_')
 
     import(`./tools/${compName}.jsx`)
       .then(mod => setComponent(() => mod.default))
       .catch(() => setNotFound(true))
-  }, [slug])
+  }, [slug, isCanonicalRedirect])
+
+  if (twin && HNCKER_CANONICAL.has(twin[1])) {
+    return <Navigate to={`/hncker/${twin[1]}/`} replace />
+  }
+
+  if (/^(whatsapp-profile-picture-downloader|whatsapp-private-dp-viewer|whatsapp-dp-by-number)$/.test(slug)) {
+    return <Navigate to="/whatsapp-dp-downloader/" replace />
+  }
 
   if (notFound) {
     return (
-      <div className="text-center py-20">
-        <h1 className="text-2xl font-bold text-white mb-4">Page Not Found</h1>
-        <a href="/" className="glow-btn text-sm px-5 py-2 rounded-xl no-underline inline-block">← Home</a>
+      <div className="glass max-w-xl mx-auto text-center py-16 px-6 my-8">
+        <Helmet>
+          <title>Page Not Found | UpTools</title>
+          <meta name="robots" content="noindex, follow" />
+        </Helmet>
+        <div className="text-4xl mb-3">🧭</div>
+        <h1 className="text-2xl font-extrabold text-white mb-2">Page Not Found</h1>
+        <p className="text-sm text-slate-400 mb-6">
+          The page you’re looking for may have moved or doesn’t exist. Explore our popular tools below:
+        </p>
+        <div className="flex flex-wrap justify-center gap-2 mb-6">
+          <Link to="/income-tax-tool/" className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/5 border border-white/10 text-slate-300 hover:text-white no-underline">Income Tax Calculator</Link>
+          <Link to="/gst-calculator/" className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/5 border border-white/10 text-slate-300 hover:text-white no-underline">GST Calculator</Link>
+          <Link to="/emi-calculator/" className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/5 border border-white/10 text-slate-300 hover:text-white no-underline">EMI Calculator</Link>
+          <Link to="/all-tools/" className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/5 border border-white/10 text-slate-300 hover:text-white no-underline">All Tools A–Z</Link>
+          <Link to="/games/" className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/5 border border-white/10 text-slate-300 hover:text-white no-underline">Free Games</Link>
+        </div>
+        <Link to="/" className="glow-btn text-sm px-6 py-2.5 rounded-xl no-underline inline-block">← Back to Home</Link>
       </div>
     )
   }
@@ -176,6 +191,7 @@ export default function App() {
                 <Route path="/aimakerich" element={<AimakerichPage />} />
                 <Route path="/aiforrich" element={<AiforrichPage />} />
                 <Route path="/about" element={<AboutPage />} />
+                <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
                 <Route path="/all-tools" element={<AllToolsPage />} />
                 <Route path="/blogs" element={<BlogsPage />} />
                 <Route path="/blogs/:slug" element={<BlogPostPage />} />
