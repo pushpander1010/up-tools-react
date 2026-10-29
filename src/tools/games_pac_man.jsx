@@ -507,7 +507,7 @@ export default function games_pac_man() {
                 <div className="absolute inset-0 bg-black/92 backdrop-blur-[2px] flex flex-col items-center justify-center p-6 overflow-y-auto"
                   onClick={() => {window.dispatchEvent(new Event('ut:game-start'))}}>
                   <img src="/games/pac-man/cover.jpg" alt="Pac-Man neon maze cover art" loading="eager"
-                    className="w-full max-w-[380px] aspect-video object-cover rounded-2xl border border-yellow-400/30 shadow-[0_0_40px_rgba(250,204,21,0.35)] mb-4" />
+                    className="w-full max-w-[380px] aspect-video object-cover rounded-2xl border border-yellow-400/30 shadow-[0_0_40px_rgba(250,204,21,0.35)] mb-4 ut-cover" />
                   <h2 className="text-3xl font-black tracking-tighter bg-gradient-to-b from-yellow-300 via-amber-300 to-yellow-200 bg-clip-text text-transparent mb-2">PAC-MAN</h2>
                   <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">
                     <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-yellow-200">👻 4 ghost personalities</span>

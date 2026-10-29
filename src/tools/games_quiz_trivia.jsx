@@ -252,7 +252,7 @@ export default function games_quiz_trivia() {
           <div className="text-center rounded-2xl overflow-hidden"
             onClick={(e) => { if (!e.target.closest('button') && !e.target.closest('select')) window.dispatchEvent(new Event('ut:game-start')) }}>
             <img src="/games/quiz-trivia/cover.jpg" alt="Quiz Trivia game cover" loading="eager"
-              className="w-full aspect-video object-cover rounded-2xl border border-purple-400/30 shadow-[0_0_40px_rgba(168,85,247,0.25)]" />
+              className="w-full aspect-video object-cover rounded-2xl border border-purple-400/30 shadow-[0_0_40px_rgba(168,85,247,0.25)] ut-cover" />
             <div className="mt-3 flex flex-wrap justify-center gap-1.5 text-[11px] font-bold">
               <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-purple-200">📚 5 categories</span>
               <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-emerald-200">🎯 10 per round</span>

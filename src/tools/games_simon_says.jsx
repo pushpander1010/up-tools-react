@@ -253,7 +253,7 @@ export default function games_simon_says() {
           <div className="relative glass p-6 text-center overflow-y-auto max-h-[70vh]"
             onPointerDown={(e) => { if (e.target.closest('button')) return; window.dispatchEvent(new Event('ut:game-start')) }}>
             <img src="/games/simon-says/cover.jpg" alt="Simon Says memory game cover art" loading="eager"
-              className="w-full max-w-[420px] aspect-video object-cover rounded-2xl border border-green-400/30 shadow-[0_0_40px_rgba(16,185,129,0.35)] mb-4 mx-auto" />
+              className="w-full max-w-[420px] aspect-video object-cover rounded-2xl border border-green-400/30 shadow-[0_0_40px_rgba(16,185,129,0.35)] mb-4 mx-auto ut-cover" />
             <h2 className="text-4xl sm:text-5xl font-black tracking-tighter bg-gradient-to-b from-green-300 via-emerald-300 to-blue-300 bg-clip-text text-transparent">SIMON SAYS</h2>
             <p className="text-xs sm:text-sm text-slate-400 mt-1 mb-3">Memory challenge · Growing sequences · Speed ramps</p>
             <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">

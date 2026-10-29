@@ -197,7 +197,7 @@ export default function games_color_rush() {
             <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-5 py-8 bg-[#050d1a]/92 backdrop-blur-[2px] rounded-2xl overflow-y-auto"
               onClick={(e) => { if (e.target.closest('button')) return; window.dispatchEvent(new Event('ut:game-start')) }}>
               <img src="/games/color-rush/cover.jpg" alt="Color Rush cover art" loading="eager"
-                className="w-full max-w-[420px] aspect-video object-cover rounded-2xl border border-purple-400/30 shadow-[0_0_40px_rgba(168,85,247,0.35)] mb-4" />
+                className="w-full max-w-[420px] aspect-video object-cover rounded-2xl border border-purple-400/30 shadow-[0_0_40px_rgba(168,85,247,0.35)] mb-4 ut-cover" />
               <h2 className="text-3xl font-black tracking-tighter bg-gradient-to-b from-purple-300 via-violet-300 to-fuchsia-300 bg-clip-text text-transparent">COLOR RUSH</h2>
               <p className="text-xs text-slate-400 mt-1 mb-3">Spot the odd color · Beat the timer · Free</p>
               <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">

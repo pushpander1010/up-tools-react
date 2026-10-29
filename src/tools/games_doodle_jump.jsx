@@ -484,7 +484,7 @@ export default function games_doodle_jump() {
           <div className="glass p-6 text-center overflow-y-auto max-h-[70vh]"
             onPointerDown={(e) => { if (!e.target.closest('button')) window.dispatchEvent(new Event('ut:game-start')) }}>
             <img src="/games/doodle-jump/cover.jpg" alt="Neon doodle jump cover art" loading="eager"
-              className="w-full max-w-[420px] aspect-video object-cover rounded-2xl border border-purple-400/30 shadow-[0_0_40px_rgba(168,85,247,0.35)] mb-4 mx-auto" />
+              className="w-full max-w-[420px] aspect-video object-cover rounded-2xl border border-purple-400/30 shadow-[0_0_40px_rgba(168,85,247,0.35)] mb-4 mx-auto ut-cover" />
             <h2 className="text-4xl sm:text-5xl font-black tracking-tighter bg-gradient-to-b from-purple-300 via-violet-300 to-fuchsia-300 bg-clip-text text-transparent">DOODLE JUMP</h2>
             <p className="text-xs sm:text-sm text-slate-400 mt-1 mb-3">Bounce higher · Dodge platforms · Free</p>
             <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">

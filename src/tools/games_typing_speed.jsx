@@ -230,7 +230,7 @@ export default function games_typing_speed() {
         {!testStarted && !testFinished && typed.length === 0 && (
           <div className="relative overflow-y-auto cursor-pointer" onClick={(e) => { if (e.target.closest('button') || e.target.tagName === 'INPUT') return; window.dispatchEvent(new Event('ut:game-start')) }}>
             <img src="/games/typing-speed/cover.jpg" alt="Typing speed test keyboard" loading="eager"
-              className="w-full aspect-video object-cover rounded-2xl border border-cyan-400/30 shadow-[0_0_40px_rgba(6,182,212,0.35)] mb-4" />
+              className="w-full aspect-video object-cover rounded-2xl border border-cyan-400/30 shadow-[0_0_40px_rgba(6,182,212,0.35)] mb-4 ut-cover" />
             <h2 className="text-4xl sm:text-5xl font-black tracking-tighter text-center bg-gradient-to-b from-cyan-300 via-blue-300 to-indigo-300 bg-clip-text text-transparent mb-2">TYPING SPEED</h2>
             <p className="text-xs sm:text-sm text-slate-400 text-center mb-3">Test your WPM · Track accuracy · Free</p>
             <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">

@@ -441,7 +441,7 @@ export default function games_wordle() {
         {guesses.length === 0 && gameState === 'playing' && (
           <div className="relative overflow-y-auto cursor-pointer" onClick={(e) => { if (e.target.closest('button') || e.target.tagName === 'INPUT') return; window.dispatchEvent(new Event('ut:game-start')) }}>
             <img src="/games/wordle/cover.jpg" alt="Wordle word guessing game" loading="eager"
-              className="w-full aspect-video object-cover rounded-2xl border border-green-400/30 shadow-[0_0_40px_rgba(34,197,94,0.35)] mb-4" />
+              className="w-full aspect-video object-cover rounded-2xl border border-green-400/30 shadow-[0_0_40px_rgba(34,197,94,0.35)] mb-4 ut-cover" />
             <h2 className="text-4xl sm:text-5xl font-black tracking-tighter text-center bg-gradient-to-b from-green-300 via-emerald-300 to-teal-300 bg-clip-text text-transparent mb-2">WORDLE</h2>
             <p className="text-xs sm:text-sm text-slate-400 text-center mb-3">Guess the 5-letter word · 6 tries · Free</p>
             <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">

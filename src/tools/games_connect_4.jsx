@@ -268,7 +268,7 @@ export default function games_connect_4() {
             <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-5 py-8 bg-[#050d1a]/92 backdrop-blur-[2px] rounded-2xl overflow-y-auto"
               onClick={(e) => { if (e.target.closest('button')) return; setStarted(true); window.dispatchEvent(new Event('ut:game-start')) }}>
               <img src="/games/connect-4/cover.jpg" alt="Connect 4 cover art" loading="eager"
-                className="w-full max-w-[420px] aspect-video object-cover rounded-2xl border border-red-400/30 shadow-[0_0_40px_rgba(239,68,68,0.35)] mb-4" />
+                className="w-full max-w-[420px] aspect-video object-cover rounded-2xl border border-red-400/30 shadow-[0_0_40px_rgba(239,68,68,0.35)] mb-4 ut-cover" />
               <h2 className="text-3xl font-black tracking-tighter bg-gradient-to-b from-red-300 via-yellow-300 to-red-300 bg-clip-text text-transparent">CONNECT 4</h2>
               <p className="text-xs text-slate-400 mt-1 mb-3">Drop discs · Connect 4 · Free</p>
               <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">

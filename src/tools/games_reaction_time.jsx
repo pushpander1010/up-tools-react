@@ -206,7 +206,7 @@ export default function games_reaction_time() {
             <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-5 py-4 bg-[#0a1030]/92 backdrop-blur-[2px] overflow-y-auto"
               onPointerDown={(e) => { if (e.target.closest('button')) return; window.dispatchEvent(new Event('ut:game-start')) }}>
               <img src="/games/reaction-time/cover.jpg" alt="Reaction time challenge cover art" loading="eager"
-                className="w-full max-w-[420px] aspect-video object-cover rounded-2xl border border-amber-400/30 shadow-[0_0_40px_rgba(245,158,11,0.35)] mb-4" />
+                className="w-full max-w-[420px] aspect-video object-cover rounded-2xl border border-amber-400/30 shadow-[0_0_40px_rgba(245,158,11,0.35)] mb-4 ut-cover" />
               <h2 className="text-4xl sm:text-5xl font-black tracking-tighter bg-gradient-to-b from-amber-300 via-yellow-300 to-orange-300 bg-clip-text text-transparent">REACTION TIME</h2>
               <p className="text-xs sm:text-sm text-slate-400 mt-1 mb-3">Test your reflexes · 3 rounds · Track your best</p>
               <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">

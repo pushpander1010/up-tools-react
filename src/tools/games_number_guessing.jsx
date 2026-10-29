@@ -197,7 +197,7 @@ export default function games_number_guessing() {
         {!difficulty && difficulty !== 0 ? (
           <div className="space-y-4">
             <img src="/games/number-guessing/cover.jpg" alt="Number Guessing Game cover" loading="eager"
-              className="w-full aspect-video object-cover rounded-2xl border border-indigo-400/30 shadow-[0_0_40px_rgba(99,102,241,0.25)] mb-2" />
+              className="w-full aspect-video object-cover rounded-2xl border border-indigo-400/30 shadow-[0_0_40px_rgba(99,102,241,0.25)] mb-2 ut-cover" />
             <p className="text-center text-slate-400 text-sm">Choose your difficulty</p>
             <div className="grid grid-cols-3 gap-3">
               {DIFFICULTIES.map((d, i) => (

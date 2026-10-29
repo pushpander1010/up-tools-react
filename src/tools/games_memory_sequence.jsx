@@ -195,7 +195,7 @@ export default function GamesMemorySequence() {
           <div className="relative rounded-2xl overflow-hidden"
             onClick={(e) => { if (!e.target.closest('button')) window.dispatchEvent(new Event('ut:game-start')) }}>
             <img src="/games/memory-sequence/cover.jpg" alt="Memory Sequence game cover" loading="eager"
-              className="w-full aspect-video object-cover rounded-2xl border border-red-400/30 shadow-[0_0_40px_rgba(239,68,68,0.25)]" />
+              className="w-full aspect-video object-cover rounded-2xl border border-red-400/30 shadow-[0_0_40px_rgba(239,68,68,0.25)] ut-cover" />
             <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-5 py-4 bg-[#050d1a]/80 backdrop-blur-[2px] rounded-2xl">
               <h2 className="text-3xl sm:text-4xl font-black tracking-tighter bg-gradient-to-b from-red-300 via-orange-300 to-yellow-300 bg-clip-text text-transparent mb-2">MEMORY SEQUENCE</h2>
               <p className="text-xs text-slate-400 mb-3">Watch · Remember · Repeat</p>

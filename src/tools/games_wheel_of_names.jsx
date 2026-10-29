@@ -304,7 +304,7 @@ export default function games_wheel_of_names() {
         {!isSpinning && !winner && namesText === DEFAULT_NAMES.join('\n') && (
           <div className="relative overflow-y-auto cursor-pointer" onClick={(e) => { if (e.target.closest('button') || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT' || e.target.tagName === 'INPUT') return; window.dispatchEvent(new Event('ut:game-start')) }}>
             <img src="/games/wheel-of-names/cover.jpg" alt="Wheel of Names spinner game" loading="eager"
-              className="w-full aspect-video object-cover rounded-2xl border border-indigo-400/30 shadow-[0_0_40px_rgba(99,102,241,0.35)] mb-4" />
+              className="w-full aspect-video object-cover rounded-2xl border border-indigo-400/30 shadow-[0_0_40px_rgba(99,102,241,0.35)] mb-4 ut-cover" />
             <h2 className="text-4xl sm:text-5xl font-black tracking-tighter text-center bg-gradient-to-b from-indigo-300 via-purple-300 to-pink-300 bg-clip-text text-transparent mb-2">WHEEL OF NAMES</h2>
             <p className="text-xs sm:text-sm text-slate-400 text-center mb-3">Custom wheel · Random pick · Free</p>
             <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">

@@ -197,7 +197,7 @@ export default function games_tic_tac_toe() {
         {board.every(c => c === null) && !winner && !draw && (
           <div className="relative overflow-y-auto cursor-pointer" onClick={(e) => { if (e.target.closest('button')) return; window.dispatchEvent(new Event('ut:game-start')) }}>
             <img src="/games/tic-tac-toe/cover.jpg" alt="Tic Tac Toe neon board game" loading="eager"
-              className="w-full aspect-video object-cover rounded-2xl border border-red-400/30 shadow-[0_0_40px_rgba(239,68,68,0.35)] mb-4" />
+              className="w-full aspect-video object-cover rounded-2xl border border-red-400/30 shadow-[0_0_40px_rgba(239,68,68,0.35)] mb-4 ut-cover" />
             <h2 className="text-4xl sm:text-5xl font-black tracking-tighter text-center bg-gradient-to-b from-red-300 via-white to-blue-300 bg-clip-text text-transparent mb-2">TIC TAC TOE</h2>
             <p className="text-xs sm:text-sm text-slate-400 text-center mb-3">Vs AI or a friend · Three in a row · Free</p>
             <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">

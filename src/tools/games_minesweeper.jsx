@@ -259,7 +259,7 @@ export default function games_minesweeper() {
         {gameState==='idle' && !board && (
           <div className="text-center py-4">
             <img src="/games/minesweeper/cover.jpg" alt="Minesweeper game cover" loading="eager"
-              className="w-full max-w-md mx-auto aspect-video object-cover rounded-2xl border border-red-400/30 shadow-[0_0_40px_rgba(239,68,68,0.25)] mb-4" />
+              className="w-full max-w-md mx-auto aspect-video object-cover rounded-2xl border border-red-400/30 shadow-[0_0_40px_rgba(239,68,68,0.25)] mb-4 ut-cover" />
             <div className="text-5xl mb-4">💣</div>
             <h2 className="text-xl font-bold text-white mb-2">Minesweeper</h2>
             <p className="text-sm text-slate-400 mb-2">Select a difficulty, then click a cell to start!</p>

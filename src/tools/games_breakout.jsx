@@ -503,7 +503,7 @@ export default function BreakoutGame() {
         {phase === 'idle' && (
           <div className="glass p-4 overflow-hidden">
             <img src="/games/breakout/cover.jpg" alt="Breakout neon brick breaker cover art" loading="eager"
-              className="w-full aspect-video object-cover rounded-2xl border border-cyan-400/30 shadow-[0_0_40px_rgba(0,229,255,0.3)] mb-4" />
+              className="w-full aspect-video object-cover rounded-2xl border border-cyan-400/30 shadow-[0_0_40px_rgba(0,229,255,0.3)] mb-4 ut-cover" />
             <h2 className="text-center text-4xl sm:text-5xl font-black tracking-tighter bg-gradient-to-b from-cyan-300 via-sky-300 to-cyan-200 bg-clip-text text-transparent">BREAKOUT</h2>
             <p className="text-center text-xs sm:text-sm text-slate-400 mt-1 mb-3">Smash bricks · Grab power-ups · Free</p>
             <div className="flex flex-wrap justify-center gap-1.5 mb-4 text-[11px] font-bold">

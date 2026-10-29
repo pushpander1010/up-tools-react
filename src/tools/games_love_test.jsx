@@ -195,7 +195,7 @@ export default function games_love_test() {
         {step === 'home' && (
           <div onClick={(e) => { if (!e.target.closest('button')) window.dispatchEvent(new Event('ut:game-start')) }}>
             <img src="/games/love-test/cover.jpg" alt="Couple compatibility quiz cover" loading="eager"
-              className="w-full aspect-video object-cover rounded-2xl border border-pink-400/30 shadow-[0_0_40px_rgba(255,95,162,0.25)] mb-2" />
+              className="w-full aspect-video object-cover rounded-2xl border border-pink-400/30 shadow-[0_0_40px_rgba(255,95,162,0.25)] mb-2 ut-cover" />
             <div className="grid grid-cols-4 gap-3">
               <div className="text-center glass p-4 rounded-xl">
                 <div className="text-2xl font-extrabold text-pink-400">{best ? `${best.score}%` : '--%'}</div>

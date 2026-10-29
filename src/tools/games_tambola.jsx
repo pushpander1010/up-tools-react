@@ -280,7 +280,7 @@ export default function games_tambola() {
         {!playing && (
           <div className="relative overflow-y-auto" onClick={handleStartTap}>
             <img src="/games/tambola/cover.jpg" alt="Tambola Housie number caller game" loading="eager"
-              className="w-full aspect-video object-cover rounded-2xl border border-purple-400/30 shadow-[0_0_40px_rgba(168,85,247,0.35)] mb-4" />
+              className="w-full aspect-video object-cover rounded-2xl border border-purple-400/30 shadow-[0_0_40px_rgba(168,85,247,0.35)] mb-4 ut-cover" />
             <h2 className="text-4xl sm:text-5xl font-black tracking-tighter text-center bg-gradient-to-b from-purple-300 via-fuchsia-300 to-pink-300 bg-clip-text text-transparent mb-2">TAMBOLA</h2>
             <p className="text-xs sm:text-sm text-slate-400 text-center mb-3">Numbers 1–90 · Mark & win · Free</p>
             <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">

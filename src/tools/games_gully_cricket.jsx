@@ -192,7 +192,7 @@ export default function games_gully_cricket() {
               <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-5 py-4 bg-[#050d1a]/92 backdrop-blur-[2px] overflow-y-auto"
                 onPointerDown={(e) => { if (e.target.closest('button')) return; window.dispatchEvent(new Event('ut:game-start')) }}>
                 <img src="/games/gully-cricket/cover.jpg" alt="Gully Cricket batting game cover art" loading="eager"
-                  className="w-full max-w-[420px] aspect-video object-cover rounded-2xl border border-green-400/30 shadow-[0_0_40px_rgba(34,197,94,0.35)] mb-4" />
+                  className="w-full max-w-[420px] aspect-video object-cover rounded-2xl border border-green-400/30 shadow-[0_0_40px_rgba(34,197,94,0.35)] mb-4 ut-cover" />
                 <h2 className="text-4xl sm:text-5xl font-black tracking-tighter bg-gradient-to-b from-green-300 via-emerald-300 to-yellow-300 bg-clip-text text-transparent">GULLY CRICKET</h2>
                 <p className="text-xs sm:text-sm text-slate-400 mt-1 mb-3">12 balls · Time your swing · Hit sixes!</p>
                 <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">

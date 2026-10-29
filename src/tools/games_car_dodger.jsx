@@ -358,7 +358,7 @@ export default function games_car_dodger() {
             <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-5 py-8 bg-[#050d1a]/92 backdrop-blur-[2px] overflow-y-auto"
               onClick={(e) => { if (e.target.closest('button')) return; window.dispatchEvent(new Event('ut:game-start')) }}>
               <img src="/games/car-dodger/cover.jpg" alt="Car Dodger cover art" loading="eager"
-                className="w-full max-w-[420px] aspect-video object-cover rounded-2xl border border-orange-400/30 shadow-[0_0_40px_rgba(249,115,22,0.35)] mb-4" />
+                className="w-full max-w-[420px] aspect-video object-cover rounded-2xl border border-orange-400/30 shadow-[0_0_40px_rgba(249,115,22,0.35)] mb-4 ut-cover" />
               <h2 className="text-3xl font-black tracking-tighter bg-gradient-to-b from-orange-300 via-amber-300 to-yellow-300 bg-clip-text text-transparent">HIGHWAY CAR DODGER</h2>
               <p className="text-xs text-slate-400 mt-1 mb-3">Dodge traffic · Near-miss bonuses · Free</p>
               <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">

@@ -65,6 +65,21 @@ function extractCategory(content) {
   const m = content.match(/"applicationCategory"\s*:\s*"([^"]+)"/)
   return m ? m[1] : 'UtilitiesApplication'
 }
+// HowTo schema for interactive pages (games especially): the static page now
+// carries the same step list a crawler sees in the noscript block.
+function howToJsonLd(title, steps, slug) {
+  if (!steps || !steps.length) return ''
+  const data = {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'How to play ' + title,
+    description: 'Step-by-step instructions for ' + title + ' on UpTools.',
+    totalTime: 'PT2M',
+    step: steps.map((s, i) => ({ '@type': 'HowToStep', position: i + 1, name: 'Step ' + (i + 1), text: s })),
+  }
+  return '<script type="application/ld+json">' + JSON.stringify(data) + '</script>'
+}
+
 function softwareJsonLd(title, desc, slug, category, appType = 'SoftwareApplication') {
   const schema = {
     '@context':'https://schema.org',
@@ -280,8 +295,13 @@ for(const file of toolFiles){
   // without JS (Helmet alone is not indexed). Always inject static one; client
   // Helmet will hydrate same data without conflict (Google merges).
   const cat = extractCategory(content)
-  const appType = /["']@type["']\s*:\s*["']WebApplication["']/.test(content) ? 'WebApplication' : 'SoftwareApplication'
+  const appType = /["']@type["']\s*:\s*["']VideoGame["']/.test(content) || slug.startsWith('games/') ? 'VideoGame'
+    : /["']@type["']\s*:\s*["']WebApplication["']/.test(content) ? 'WebApplication'
+    : 'SoftwareApplication'
   html = html.replace('</head>', '    '+softwareJsonLd(rawTitle, rawDesc, slug, cat, appType)+'\n  </head>')
+  // Games: also emit HowTo so the step list is machine-readable (was noscript-only).
+  const howTo = howToJsonLd(rawTitle, extractHowItWorks(content), slug)
+  if (howTo) html = html.replace('</head>', '    '+howTo+'\n  </head>')
 
   // Per-page crawlable body: replace generic noscript with page-specific one
   const steps = extractHowItWorks(content)

@@ -440,7 +440,7 @@ export default function games_ping_pong() {
             <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-5 py-4 bg-[#050d1a]/92 backdrop-blur-[2px] overflow-y-auto"
               onPointerDown={(e) => { if (e.target.closest('button')) return; window.dispatchEvent(new Event('ut:game-start')) }}>
               <img src="/games/ping-pong/cover.jpg" alt="Neon table tennis versus cover art" loading="eager"
-                className="w-full max-w-[420px] aspect-video object-cover rounded-2xl border border-cyan-400/30 shadow-[0_0_40px_rgba(0,229,255,0.35)] mb-4" />
+                className="w-full max-w-[420px] aspect-video object-cover rounded-2xl border border-cyan-400/30 shadow-[0_0_40px_rgba(0,229,255,0.35)] mb-4 ut-cover" />
               <h2 className="text-4xl sm:text-5xl font-black tracking-tighter bg-gradient-to-b from-cyan-300 via-sky-300 to-red-300 bg-clip-text text-transparent">PING PONG</h2>
               <p className="text-xs sm:text-sm text-slate-400 mt-1 mb-3">Vs AI or a friend · First to 7 · Free</p>
               {wins > 0 && <p className="text-sm font-bold text-cyan-300 mb-3">🏆 Wins: {wins}</p>}

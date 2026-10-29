@@ -224,7 +224,7 @@ export default function games_memory_match() {
           <div className="relative rounded-2xl overflow-hidden"
             onClick={(e) => { if (!e.target.closest('button')) window.dispatchEvent(new Event('ut:game-start')) }}>
             <img src="/games/memory-match/cover.jpg" alt="Memory Match game cover" loading="eager"
-              className="w-full aspect-video object-cover rounded-2xl border border-violet-400/30 shadow-[0_0_40px_rgba(139,92,246,0.25)]" />
+              className="w-full aspect-video object-cover rounded-2xl border border-violet-400/30 shadow-[0_0_40px_rgba(139,92,246,0.25)] ut-cover" />
             <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-5 py-4 bg-[#050d1a]/80 backdrop-blur-[2px] rounded-2xl">
               <h2 className="text-3xl sm:text-4xl font-black tracking-tighter bg-gradient-to-b from-violet-300 via-indigo-300 to-purple-300 bg-clip-text text-transparent mb-2">MEMORY MATCH</h2>
               <p className="text-xs text-slate-400 mb-3">Flip cards · Find pairs · Fewest moves wins</p>

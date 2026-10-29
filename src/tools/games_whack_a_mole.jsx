@@ -247,7 +247,7 @@ export default function games_whack_a_mole() {
         {gameState === 'idle' && (
           <div className="relative overflow-y-auto cursor-pointer" onClick={(e) => { if (e.target.closest('button')) return; window.dispatchEvent(new Event('ut:game-start')) }}>
             <img src="/games/whack-a-mole/cover.jpg" alt="Whack-a-Mole arcade game" loading="eager"
-              className="w-full aspect-video object-cover rounded-2xl border border-yellow-400/30 shadow-[0_0_40px_rgba(234,179,8,0.35)] mb-4" />
+              className="w-full aspect-video object-cover rounded-2xl border border-yellow-400/30 shadow-[0_0_40px_rgba(234,179,8,0.35)] mb-4 ut-cover" />
             <h2 className="text-4xl sm:text-5xl font-black tracking-tighter text-center bg-gradient-to-b from-yellow-300 via-amber-300 to-orange-300 bg-clip-text text-transparent mb-2">WHACK-A-MOLE</h2>
             <p className="text-xs sm:text-sm text-slate-400 text-center mb-3">Tap moles · Score points · {GAME_DURATION}s per round</p>
             <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[11px] font-bold">

@@ -202,7 +202,7 @@ export default function games_math_sprint() {
         {!playing && !gameOver && (
           <div onClick={handleStartTap} className="cursor-pointer">
             <img src="/games/math-sprint/cover.jpg" alt="Math Sprint game cover" loading="eager"
-              className="w-full aspect-video object-cover rounded-2xl border border-purple-400/30 shadow-[0_0_40px_rgba(168,85,247,0.25)] mb-3" />
+              className="w-full aspect-video object-cover rounded-2xl border border-purple-400/30 shadow-[0_0_40px_rgba(168,85,247,0.25)] mb-3 ut-cover" />
             <div className="glass p-4">
               <div className="grid grid-cols-3 gap-4 mb-4">
                 <div className="text-center"><div className="text-2xl font-extrabold text-white">{best}</div><div className="text-xs text-slate-400 font-medium mt-0.5">Best Score</div></div>
