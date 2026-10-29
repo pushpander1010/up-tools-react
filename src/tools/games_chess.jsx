@@ -382,6 +382,10 @@ export default function games_chess() {
   const [castling, setCastling] = useState({ kingSide: true, queenSide: true })
   const [difficulty, setDifficulty] = useState('medium')
   const [score, setScore] = useState(0)
+  // The intro cover used to be gated on gameplay progress (score 0 / no moves),
+  // which is exactly the state right after Start -> the cover stayed up, ate every
+  // board tap and re-fired the interstitial instead of playing. Gate it explicitly.
+  const [started, setStarted] = useState(false)
   const [best, setBest] = useState(()=>{try{return Number(localStorage.getItem(LS.BEST)||0)}catch{return 0}})
   const [lastScore, setLastScore] = useState(()=>{try{return Number(localStorage.getItem(LS.LAST)||0)}catch{return 0}})
   const [thinking, setThinking] = useState(false)
@@ -627,6 +631,7 @@ export default function games_chess() {
     setMoveHistory([])
     setCastling({ kingSide: true, queenSide: true })
     setThinking(false)
+    setStarted(true)
   }, [])
 
   // Canvas click handler
@@ -758,12 +763,12 @@ export default function games_chess() {
               <div className="text-4xl mb-2">♟️</div>
               <h2 className="text-2xl font-black tracking-tighter text-white mb-1">{result || 'Game Over'}</h2>
               <p className="text-xs text-slate-400 mb-3">Score: {score} · Best: {best}</p>
-              <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))} className="px-8 py-3 rounded-full bg-gradient-to-r from-amber-500 to-yellow-500 text-white font-extrabold text-lg shadow-[0_0_30px_rgba(251,191,36,0.5)] hover:scale-105 transition">⟲ New Game</button>
+              <button onClick={() => { setStarted(true); window.dispatchEvent(new Event('ut:game-start')) }} className="px-8 py-3 rounded-full bg-gradient-to-r from-amber-500 to-yellow-500 text-white font-extrabold text-lg shadow-[0_0_30px_rgba(251,191,36,0.5)] hover:scale-105 transition">⟲ New Game</button>
               <p className="text-[11px] text-slate-500 mt-2">Tap anywhere or press Space</p>
             </div>
-          ) : score === 0 && moveHistory.length === 0 && (
+          ) : !started && score === 0 && moveHistory.length === 0 && (
             <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-5 py-4 bg-[#050d1a]/92 backdrop-blur-[2px] overflow-y-auto"
-              onClick={(e) => { if (e.target.closest('button')) return; window.dispatchEvent(new Event('ut:game-start')) }}>
+              onClick={(e) => { if (e.target.closest('button')) return; setStarted(true); window.dispatchEvent(new Event('ut:game-start')) }}>
               <img src="/games/chess/cover.jpg" alt="Chess cover art" loading="eager"
                 className="w-full max-w-[420px] aspect-video object-cover rounded-2xl border border-amber-400/30 shadow-[0_0_40px_rgba(251,191,36,0.35)] mb-4" />
               <h2 className="text-3xl font-black tracking-tighter bg-gradient-to-b from-amber-300 via-yellow-300 to-orange-300 bg-clip-text text-transparent">CHESS</h2>

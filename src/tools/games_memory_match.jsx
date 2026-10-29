@@ -141,7 +141,9 @@ export default function games_memory_match() {
     setFlippedIds([])
     setMoves(0)
     setTimer(0)
-    setGameStarted(false)
+    // must be TRUE: the welcome cover renders on !gameStarted, so setting it
+    // false here left the cover mounted over the board after every Start.
+    setGameStarted(true)
     setGameOver(false)
     clearInterval(timerRef.current)
     lockRef.current = false

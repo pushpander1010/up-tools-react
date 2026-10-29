@@ -82,7 +82,10 @@ function aiFire(board, lastHits) {
 }
 
 export default function games_battleship() {
-  const [phase, setPhase] = useState('setup') // setup, play, win, lose
+  const [phase, setPhase] = useState('setup')
+  // Cover gate below uses "phase==='setup' && no ships yet", which is exactly the
+  // state that Start produces -> cover never hid and ate the placement taps.
+  const [started, setStarted] = useState(false) // setup, play, win, lose
   const [playerBoard, setPlayerBoard] = useState({})
   const [enemyBoard, setEnemyBoard] = useState({})
   const [playerShips, setPlayerShips] = useState([])
@@ -122,7 +125,7 @@ export default function games_battleship() {
     setSunkPlayer(0); setSunkEnemy(0)
     setShipsToPlace([...SHIPS])
     setPlacingShip(SHIPS[0]); setPlacingDir('h')
-    setPhase('setup'); setScore(0); setMessage('Place your Carrier (5 cells). Press R to rotate.')
+    setPhase('setup'); setScore(0); setStarted(true); setMessage('Place your Carrier (5 cells). Press R to rotate.')
     setTimer(TIMER_DURATION)
     if (timerRef.current) clearInterval(timerRef.current)
   }, [])
@@ -475,9 +478,9 @@ export default function games_battleship() {
 
           {/* Boards */}
           <div className="relative">
-          {phase === 'setup' && playerShips.length === 0 && (
+          {!started && phase === 'setup' && playerShips.length === 0 && (
             <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-5 py-8 bg-[#050d1a]/92 backdrop-blur-[2px] rounded-2xl overflow-y-auto"
-              onClick={(e) => { if (e.target.closest('button')) return; window.dispatchEvent(new Event('ut:game-start')) }}>
+              onClick={(e) => { if (e.target.closest('button')) return; setStarted(true); window.dispatchEvent(new Event('ut:game-start')) }}>
               <img src="/games/battleship/cover.jpg" alt="Battleship cover art" loading="eager"
                 className="w-full max-w-[420px] aspect-video object-cover rounded-2xl border border-amber-400/30 shadow-[0_0_40px_rgba(245,158,11,0.35)] mb-4" />
               <h2 className="text-3xl font-black tracking-tighter bg-gradient-to-b from-amber-300 via-yellow-300 to-orange-300 bg-clip-text text-transparent">BATTLESHIP</h2>
@@ -488,7 +491,7 @@ export default function games_battleship() {
                 <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-cyan-200">⏱ 2 min timer</span>
                 <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-green-200">📱 Touch + click</span>
               </div>
-              <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))} className="px-8 py-3 rounded-full bg-gradient-to-r from-amber-500 to-orange-600 text-white font-extrabold text-lg shadow-[0_0_30px_rgba(245,158,11,0.5)] hover:scale-105 transition">▶ Start Game</button>
+              <button onClick={() => { setStarted(true); window.dispatchEvent(new Event('ut:game-start')) }} className="px-8 py-3 rounded-full bg-gradient-to-r from-amber-500 to-orange-600 text-white font-extrabold text-lg shadow-[0_0_30px_rgba(245,158,11,0.5)] hover:scale-105 transition">▶ Start Game</button>
               <p className="text-[11px] text-slate-500 mt-2">Tap anywhere or press Start</p>
             </div>
           )}
