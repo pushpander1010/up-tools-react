@@ -46,7 +46,7 @@ export default function AllToolsPage() {
   return (
     <>
       <Helmet>
-        <title>All Tools A–Z — {tools.length}+ Free Online Calculators &amp; Utilities | UpTools</title>
+        <title>{`All Tools A–Z — ${tools.length}+ Free Online Calculators & Utilities | UpTools`}</title>
         <meta
           name="description"
           content={`Browse all ${tools.length}+ free UpTools calculators, converters, AI writing utilities, finance & tax estimators, developer tools, and ${GAMES.length} browser games in one A to Z index.`}

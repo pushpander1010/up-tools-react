@@ -91,7 +91,7 @@ export default function ToolLayout({
   return (
     <>
       <Helmet>
-        <title>{title} | UpTools</title>
+        <title>{`${title} | UpTools`}</title>
         <meta name="description" content={desc} />
         <link rel="canonical" href={canonicalUrl} />
         <meta property="og:title" content={`${title} | UpTools`} />

@@ -74,7 +74,7 @@ export default function BlogPostPage() {
   return (
     <>
       <Helmet>
-        <title>{blog.title} | UpTools</title>
+        <title>{`${blog.title} | UpTools`}</title>
         <meta name="description" content={blog.desc} />
         <link rel="canonical" href={url} />
         <meta property="og:title" content={`${blog.title} | UpTools`} />

@@ -421,6 +421,19 @@ export default function HomePage() {
           )}
         </div>
         <div className="flex gap-1.5 overflow-x-auto pb-2 scrollbar-none">
+          <button
+            type="button"
+            onClick={() => setActiveCats(new Set())}
+            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border whitespace-nowrap transition-all cursor-pointer shrink-0 ${
+              activeCats.size === 0 ? 'text-white shadow-md bg-indigo-600 border-indigo-500' : 'text-slate-300 hover:text-white border-white/15 bg-white/[0.03]'
+            }`}
+          >
+            <span className="w-2 h-2 rounded-full shrink-0 bg-white" />
+            <span>All Tools</span>
+            <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${activeCats.size === 0 ? 'bg-black/25 text-white' : 'bg-white/[0.06] text-slate-400'}`}>
+              {tools.length}
+            </span>
+          </button>
           {catList.map(([key, cat]) => {
             const c = categoryColor(key)
             const active = activeCats.has(key)

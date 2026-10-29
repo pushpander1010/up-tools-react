@@ -8,6 +8,7 @@ import MeshBackground from './components/MeshBackground'
 import GameAdSlot from './components/GameAdSlot'
 import { AD_SLOTS } from './config/ads'
 import HomePage from './pages/HomePage'
+import AllToolsPage from './pages/AllToolsPage'
 
 class ErrorBoundary extends ReactComponent {
   state = { error: null }
@@ -33,7 +34,6 @@ const AimakerichPage = lazy(() => import('./pages/AimakerichPage'))
 const AiforrichPage = lazy(() => import('./pages/AiforrichPage'))
 const AboutPage = lazy(() => import('./pages/AboutPage'))
 const PrivacyPolicyPage = lazy(() => import('./pages/PrivacyPolicyPage'))
-const AllToolsPage = lazy(() => import('./pages/AllToolsPage'))
 const BlogsPage = lazy(() => import('./pages/BlogsPage'))
 const BlogPostPage = lazy(() => import('./pages/BlogPostPage'))
 const LearningPage = lazy(() => import('./pages/LearningPage'))
