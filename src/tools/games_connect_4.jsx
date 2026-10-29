@@ -122,6 +122,11 @@ export default function games_connect_4() {
   const [draw, setDraw] = useState(false)
   const [lastDrop, setLastDrop] = useState(null)
   const [animating, setAnimating] = useState(false)
+  // The intro overlay used to cover the board forever: it only hid once a disc
+  // existed, but it also swallowed every column click (z-10, full inset), so the
+  // only thing a click could do was re-fire ut:game-start -> another interstitial
+  // -> board reset. Track an explicit "started" flag and stop covering the board.
+  const [started, setStarted] = useState(false)
   const [hoverCol, setHoverCol] = useState(-1)
   const boardRef = useRef(null)
 
@@ -132,7 +137,7 @@ export default function games_connect_4() {
 
   const resetGame = useCallback(() => {
     setBoard(Array.from({length:ROWS}, ()=>Array(COLS).fill(null)))
-    setIsRed(true); setWinLine(null); setWinner(null); setDraw(false); setLastDrop(null); setAnimating(false)
+    setIsRed(true); setWinLine(null); setWinner(null); setDraw(false); setLastDrop(null); setAnimating(false); setStarted(true)
   }, [])
 
   const handleDrop = useCallback((col) => {
@@ -259,9 +264,9 @@ export default function games_connect_4() {
 
         {/* Board */}
         <div className="flex justify-center relative">
-          {!winner && !draw && board.every(row => row.every(cell => cell === null)) && (
+          {!started && !winner && !draw && board.every(row => row.every(cell => cell === null)) && (
             <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-5 py-8 bg-[#050d1a]/92 backdrop-blur-[2px] rounded-2xl overflow-y-auto"
-              onClick={(e) => { if (e.target.closest('button')) return; window.dispatchEvent(new Event('ut:game-start')) }}>
+              onClick={(e) => { if (e.target.closest('button')) return; setStarted(true); window.dispatchEvent(new Event('ut:game-start')) }}>
               <img src="/games/connect-4/cover.jpg" alt="Connect 4 cover art" loading="eager"
                 className="w-full max-w-[420px] aspect-video object-cover rounded-2xl border border-red-400/30 shadow-[0_0_40px_rgba(239,68,68,0.35)] mb-4" />
               <h2 className="text-3xl font-black tracking-tighter bg-gradient-to-b from-red-300 via-yellow-300 to-red-300 bg-clip-text text-transparent">CONNECT 4</h2>
@@ -272,7 +277,7 @@ export default function games_connect_4() {
                 <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-cyan-200">👥 2-player mode</span>
                 <span className="px-2.5 py-1 rounded-full bg-white/[0.07] border border-white/10 text-green-200">📱 Touch + click</span>
               </div>
-              <button onClick={() => window.dispatchEvent(new Event('ut:game-start'))} className="px-8 py-3 rounded-full bg-gradient-to-r from-red-500 to-yellow-500 text-white font-extrabold text-lg shadow-[0_0_30px_rgba(239,68,68,0.5)] hover:scale-105 transition">▶ Start Game</button>
+              <button onClick={() => { setStarted(true); window.dispatchEvent(new Event('ut:game-start')) }} className="px-8 py-3 rounded-full bg-gradient-to-r from-red-500 to-yellow-500 text-white font-extrabold text-lg shadow-[0_0_30px_rgba(239,68,68,0.5)] hover:scale-105 transition">▶ Start Game</button>
               <p className="text-[11px] text-slate-500 mt-2">Choose mode above, then start</p>
             </div>
           )}
