@@ -232,6 +232,8 @@ export default function whatsapp_dp_downloader() {
               <li>The image link expires after a while — download soon after copying it.</li>
               <li>You can only download a DP you can actually see in WhatsApp.</li>
               <li>For <b className="text-slate-300">WhatsApp DP download by number</b>, see our <a className="text-emerald-300 underline" href="/whatsapp-dp-by-number/">WhatsApp DP by Number</a> guide.</li>
+              <li>To save a full-size photo from a chat link, use the <a className="text-emerald-300 underline" href="/whatsapp-profile-picture-downloader/">WhatsApp Profile Picture Downloader</a>.</li>
+              <li>Locked or hidden picture? See the <a className="text-emerald-300 underline" href="/whatsapp-private-dp-viewer/">WhatsApp Private DP Viewer</a>.</li>
             </ul>
           </div>
         </div>
