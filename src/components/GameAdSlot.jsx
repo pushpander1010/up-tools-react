@@ -17,29 +17,42 @@ export default function GameAdSlot({ slot = '8865234201', format = 'auto', class
 
   // Render the ad once per mount, when the browser is idle, so the async ad
   // load never contends with first paint or user interaction (INP).
+  // RETRY: __loadAds() injects the AdSense script async, so on a cold visit
+  // window.adsbygoogle does not exist yet. The old code bailed out permanently
+  // in that case, so first-visit impressions (most traffic) never served.
   useEffect(() => {
+    let cancelled = false
+    let tries = 0
+    let idleId = null
+    let timer = null
+
     const fire = () => {
+      if (cancelled) return
       try {
         if (window.__loadAds) window.__loadAds();
         const ins = adRef.current;
-        if (!ins || ins.hasAttribute('data-loaded') || !window.adsbygoogle) return;
+        if (!ins || ins.hasAttribute('data-loaded')) return;
         // Skip hidden slots (CSS `hidden lg:block` rails on mobile etc.)
         const rect = ins.getBoundingClientRect();
         if (rect.width === 0 && rect.height === 0) return;
+        if (!window.adsbygoogle || typeof window.adsbygoogle.push !== 'function') {
+          if (tries++ < 20) timer = setTimeout(fire, 300);
+          return;
+        }
         ins.setAttribute('data-loaded', 'true');
-        (window.adsbygoogle = window.adsbygoogle || []).push({});
+        window.adsbygoogle.push({});
       } catch (e) {
         console.warn('AdSense push error:', e);
       }
     };
-    let idleId = null;
-    let timer = null;
+
     if ('requestIdleCallback' in window) {
       idleId = window.requestIdleCallback(fire, { timeout: 4000 });
     } else {
       timer = setTimeout(fire, 1500);
     }
     return () => {
+      cancelled = true
       if (idleId !== null && 'cancelIdleCallback' in window) window.cancelIdleCallback(idleId);
       if (timer !== null) clearTimeout(timer);
     };
