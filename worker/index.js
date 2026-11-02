@@ -1489,12 +1489,6 @@ export default {
 
     // Legacy redirects: old tool slugs -> renamed React tool pages
     const LEGACY_REDIRECTS = {
-      '/whatsapp-private-dp-viewer': '/whatsapp-dp-downloader',
-      '/whatsapp-private-dp-viewer/': '/whatsapp-dp-downloader/',
-      '/whatsapp-profile-picture-downloader': '/whatsapp-dp-downloader',
-      '/whatsapp-profile-picture-downloader/': '/whatsapp-dp-downloader/',
-      '/whatsapp-dp-by-number': '/whatsapp-dp-downloader',
-      '/whatsapp-dp-by-number/': '/whatsapp-dp-downloader/',
       // Medicine lookup dupe -> canonical medicine-info page (2026-10)
       '/drug-information-tool': '/medicine-info',
       '/drug-information-tool/': '/medicine-info/',

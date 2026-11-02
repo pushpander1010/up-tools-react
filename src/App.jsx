@@ -73,8 +73,7 @@ function ToolRoute() {
   const [notFound, setNotFound] = useState(false)
 
   const twin = slug.match(/^hackolution\/([^/]+)$/)
-  const isCanonicalRedirect = (twin && HNCKER_CANONICAL.has(twin[1])) ||
-    /^(whatsapp-profile-picture-downloader|whatsapp-private-dp-viewer|whatsapp-dp-by-number)$/.test(slug)
+  const isCanonicalRedirect = !!(twin && HNCKER_CANONICAL.has(twin[1]))
 
   useEffect(() => {
     if (isCanonicalRedirect) return
@@ -91,10 +90,6 @@ function ToolRoute() {
 
   if (twin && HNCKER_CANONICAL.has(twin[1])) {
     return <Navigate to={`/hncker/${twin[1]}/`} replace />
-  }
-
-  if (/^(whatsapp-profile-picture-downloader|whatsapp-private-dp-viewer|whatsapp-dp-by-number)$/.test(slug)) {
-    return <Navigate to="/whatsapp-dp-downloader/" replace />
   }
 
   if (notFound) {

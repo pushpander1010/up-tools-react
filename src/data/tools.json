@@ -8355,6 +8355,57 @@
       ]
     },
     {
+      "slug": "whatsapp-profile-picture-downloader",
+      "title": "WhatsApp Profile Picture Downloader",
+      "icon": "🖼️",
+      "desc": "Download any visible WhatsApp profile picture in full size — paste a number or chat link, no app or sign-up needed.",
+      "href": "/whatsapp-profile-picture-downloader/",
+      "tags": [
+        "whatsapp",
+        "social",
+        "download"
+      ],
+      "cats": [
+        "all",
+        "whatsapp",
+        "social"
+      ]
+    },
+    {
+      "slug": "whatsapp-private-dp-viewer",
+      "title": "WhatsApp Private DP Viewer",
+      "icon": "🔒",
+      "desc": "View and save hidden or private WhatsApp DPs online — why locked profile pictures stay invisible and which methods actually work.",
+      "href": "/whatsapp-private-dp-viewer/",
+      "tags": [
+        "whatsapp",
+        "social",
+        "viewer"
+      ],
+      "cats": [
+        "all",
+        "whatsapp",
+        "social"
+      ]
+    },
+    {
+      "slug": "whatsapp-dp-by-number",
+      "title": "WhatsApp DP Download by Number",
+      "icon": "🔢",
+      "desc": "Download a WhatsApp DP with just a phone number: what works, what is blocked, and how to save any visible profile photo free.",
+      "href": "/whatsapp-dp-by-number/",
+      "tags": [
+        "whatsapp",
+        "social",
+        "guide"
+      ],
+      "cats": [
+        "all",
+        "whatsapp",
+        "social"
+      ]
+    },
+    {
       "slug": "whatsapp-emoji-translator",
       "title": "WhatsApp Emoji Translator",
       "icon": "😊",
