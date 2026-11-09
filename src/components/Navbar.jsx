@@ -7,6 +7,7 @@ const tabs = [
   { href: '/learning', label: '🎓 Learning', key: 'learning' },
   { href: '/games', label: '🎮 Games', key: 'games' },
   { href: '/blogs', label: '📰 Blogs', key: 'blogs' },
+  { href: '/daily-stock-recommendation', label: '📈 Stock Picks', key: 'stock-picks' },
   { href: '/hncker', label: '🛡️ Cyber Lab', key: 'hncker' },
   { href: '/stranger-chat', label: '💬 Chat', key: 'chat' },
 ]
