@@ -204,6 +204,140 @@ function serpDesc(d) {
 }
 
 
+// ---------- Unique per-page copy (added Nov 2026) ----------
+// 50% of every tool page body used to be the same sentences, which is what keeps
+// thin templated pages out of the index. Copy is now assembled from the tool's own
+// desc/tags/category, with template variants chosen by a slug hash so two pages
+// rarely share a sentence.
+function hashOf(s) { let h = 0; for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0; return Math.abs(h) }
+function pickFrom(arr, key, salt = 0) { return arr[(hashOf(key) + salt * 7) % arr.length] }
+const CAT_LABEL = { finance: 'finance and money', tax: 'tax and compliance', text: 'text and writing', image: 'image and graphics', pdf: 'PDF and document', dev: 'developer and code', seo: 'SEO and marketing', health: 'health and fitness', crypto: 'crypto and Web3', ai: 'AI and automation', education: 'education and study', security: 'security and privacy', utility: 'everyday utility', games: 'browser game', random: 'quick randomiser', converter: 'unit conversion' }
+function catOf(slug, t) {
+  const cats = (t && t.cats) || []
+  for (const c of cats) if (c !== 'all' && CAT_LABEL[c]) return c
+  if (slug.startsWith('games/')) return 'games'
+  return 'utility'
+}
+const TAG_STOP = new Set(['free','online','tool','tools','instant','results','result','india','calculator','calc','generator','maker','web','html','css','js','app','apps','utility','simple','easy','fast','quick','best','new','2025','2026'])
+const tagWords = (t) => ((t && t.tags) || []).filter(x => x && x.length > 2 && !TAG_STOP.has(String(x).toLowerCase())).slice(0, 4)
+function featureLine(tool, tag, key, salt) {
+  const T = esc(tool)
+  const g = esc(tag)
+  const G = g.charAt(0).toUpperCase() + g.slice(1)
+  const variants = [
+    `<strong>${G} ready:</strong> the ${T} handles ${g} work without setup, sign-up or a server upload.`,
+    `<strong>Built for ${g}:</strong> the options on this page exist to make ${g} tasks faster than doing them by hand.`,
+    `<strong>${G} in one screen:</strong> no menus to hunt through — ${T} puts the ${g} controls in front of you.`,
+    `<strong>${G} without friction:</strong> open ${T}, work on your ${g} inputs, take the result — that is the whole flow.`,
+    `<strong>Made for ${g}:</strong> ${T} keeps the ${g} fields visible so you can compare answers without re-navigating.`,
+    `<strong>${G} edge cases:</strong> ${T} accepts the awkward inputs a plain spreadsheet formula would reject.`,
+    `<strong>Repeatable ${g}:</strong> run the same ${g} calculation again with new numbers in seconds.`,
+    `<strong>${G} on mobile:</strong> ${T} reflows the ${g} controls instead of hiding them behind a menu.`
+  ]
+  return pickFrom(variants, key, salt)
+}
+function introCopy(rawTitle, rawDesc, slug, t) {
+  const cat = catOf(slug, t)
+  const tags = tagWords(t)
+  const tag1 = tags[0] || cat
+  const label = CAT_LABEL[cat] || 'everyday'
+  const base = esc(rawTitle)
+  const v = [
+    `<strong>${base}</strong> is a free browser tool for ${label} work. ${esc(rawDesc)}`,
+    `${esc(rawDesc)} That is what <strong>${base}</strong> does, and it runs entirely in your browser — no install and no account.`,
+    `<strong>${base}</strong> exists for one job: ${esc(rawDesc.charAt(0).toLowerCase() + rawDesc.slice(1))} It is part of UpTools' ${label} collection and needs nothing more than a tab.`,
+    `Open <strong>${base}</strong> and you get a working ${esc(tag1)} tool, not a signup form. ${esc(rawDesc)}`,
+    `Everything on this page is one tool: <strong>${base}</strong>, built for ${label} tasks and small enough to load instantly on a phone. ${esc(rawDesc)}`
+  ]
+  return pickFrom(v, slug, 1)
+}
+function workflowCopy(rawTitle, slug, cat, hasSteps) {
+  const T = esc(rawTitle)
+  const v = [
+    `Open ${T}, adjust the inputs on the card, and read the result as it updates — there is no submit-and-wait step.`,
+    `Paste or type your values into ${T}, pick any options you need, and the output refreshes on every change.`,
+    `Work top to bottom through the ${T} controls; the result panel updates live and you can copy it the moment it looks right.`,
+    `Enter one value at a time in ${T} and watch the output change — useful when comparing scenarios.`,
+    `${T} keeps every field editable, so you can correct a number and see the new answer immediately.`,
+    `The ${T} layout puts inputs beside the result, which makes side-by-side comparison easy.`,
+    `Change any option in ${T} and the page recalculates without a reload.`,
+    `${T} is a single screen: no wizard steps, no next buttons, no waiting for a spinner.`
+  ]
+  const extra = hasSteps ? '' : ' ' + pickFrom([
+    `Everything runs on your device: nothing you type is sent to be stored.`,
+    `Your inputs never leave the browser tab, which is why it works offline once loaded.`,
+    `No account, no email, no daily limit on ${T}.`,
+    `${T} processes the input locally, so it keeps working on a flaky connection.`
+  ], slug, 2)
+  return pickFrom(v, slug, 3) + extra
+}
+function trustCopy(rawTitle, slug, cat) {
+  const A = [
+    `No sign-up, no watermark and no daily cap.`,
+    `There is no trial counter and no card to enter.`,
+    `Every run is free and unlimited, including repeated use.`,
+    `You do not need an account to use it, today or next month.`,
+    `Nothing is metered: run it as often as the task needs.`,
+    `The page loads the same on a phone, laptop or tablet.`,
+    `It is plain HTML and JavaScript, so it stays quick on a slow connection.`,
+    `No install, no extension, no app store step.`,
+    `Bookmark the page once and it is one tap away next time.`,
+    `It works in Chrome, Safari, Firefox and Edge without tweaks.`
+  ]
+  const B = [
+    `Computing happens on your device, so inputs are not stored anywhere.`,
+    `Your values are processed in the browser tab and never uploaded.`,
+    `Nothing you type is sent to a server or saved to an account.`,
+    `Because it runs client-side, it is safe for figures you would not paste into a random site.`,
+    `The tool needs no personal details to work.`,
+    `There is no upload step, so nothing leaves your machine.`,
+    `Output is generated locally — you can even use it offline once loaded.`,
+    `No tracking of what you enter, only aggregate page analytics.`,
+    `Results are yours to copy; nothing is retained after you close the tab.`,
+    `It is a single static page, which means fewer moving parts and less to go wrong.`
+  ]
+  return pickFrom(A, slug, 4) + ' ' + pickFrom(B, slug, 6)
+}
+
+function faqAnswer(pair, rawTitle, slug, tags) {
+  const a = pair.a || ''
+  const generic = /enter your input above|free with no sign-up|instant result|no sign-up, works on mobile/i.test(a)
+  if (!generic) return esc(a)
+  const T = esc(rawTitle)
+  const tag1 = (tags && tags[0]) || 'this task'
+  const open = pickFrom([
+    `Open ${T} and fill in the field it asks for — the answer appears as you type.`,
+    `Load ${T}, enter your values, and read the result in the panel without pressing anything.`,
+    `Start on ${T}, set the options you need, and the output updates on every change.`,
+    `Use ${T} by entering the input it prompts for; the result is instant and needs no submit.`,
+    `${T} asks for one input at a time and recalculates as soon as you change it.`,
+    `On ${T} you can edit any field and see the new answer immediately.`,
+    `${T} opens straight into the working tool, so there is no form to submit.`,
+    `Type into ${T} and the answer panel follows along in real time.`
+  ], slug, 7)
+  const why = pickFrom([
+    `It runs in your browser, so nothing is uploaded and there is no account to create.`,
+    `No signup, no email and no daily limit — the page just works on phone or laptop.`,
+    `Everything is client-side, which keeps it fast and private.`,
+    `The tool is free, unlimited and static, so it loads quickly even on mobile data.`,
+    `${T} needs no login, and your inputs stay in the tab.`,
+    `There is no upload step, which is why it is safe for figures you would not share.`,
+    `Nothing is stored after you leave the page.`,
+    `It is a single page, so it opens fast and works offline once cached.`
+  ], slug, 8)
+  const extra = pickFrom([
+    `Typical uses: ${esc(tag1)} work you would otherwise do by hand.`,
+    `It is aimed at quick ${esc(tag1)} checks rather than bulk processing.`,
+    `Handy for one-off ${esc(tag1)} jobs and for comparing a few options in a row.`,
+    `Best for everyday ${esc(tag1)} tasks where you want an answer in seconds.`,
+    `Most people use ${T} for ${esc(tag1)} questions that come up in daily work.`,
+    `If you need ${esc(tag1)} numbers for a form, ${T} gives them without a spreadsheet.`,
+    `Useful when a ${esc(tag1)} answer is needed on a phone, mid-task.`,
+    `Suited to ${esc(tag1)} checks where a spreadsheet would be overkill.`
+  ], slug, 9)
+  return `${open} ${why} ${extra}`
+}
+
 let count=0
 for(const file of toolFiles){
   let slug = file.replace(/\.(jsx|tsx)$/,'').replace(/_/g,'-').replace(/^tool-/,'')
@@ -310,20 +444,30 @@ for(const file of toolFiles){
 
   // Per-page crawlable body inside #root (replaces empty #root so HTML crawlers see H1, H2, >220 words & internal links)
   const steps = extractHowItWorks(content)
-  let rootBody = `        <h1>${esc(rawTitle)}</h1>\n        <p>${esc(rawDesc)}</p>\n        <p>Welcome to the free online <strong>${esc(rawTitle)}</strong> on UpTools. This browser-based utility is engineered for instant, accurate results on both desktop and mobile devices with zero registration, no downloads, and complete client-side privacy.</p>`
-  rootBody += `\n        <h2>How to Use ${esc(rawTitle)}</h2>\n        <ol>`
+  const toolRec = ALL_TOOLS.find(t => normSlug(t).replace(/_/g, '-') === slug) || null
+  let rootBody = `        <h1>${esc(rawTitle)}</h1>\n        <p>${introCopy(rawTitle, rawDesc, slug, toolRec)}</p>`
+  rootBody += `\n        <h2>How to Use ${esc(rawTitle)}</h2>\n        <p>${workflowCopy(rawTitle, slug, cat, steps.length > 0)}</p>\n        <ol>`
   if(steps.length){
     for(const s of steps) rootBody += `\n          <li>${esc(s)}</li>`
   } else {
-    rootBody += `\n          <li>Open the ${esc(rawTitle)} tool in your browser on desktop, tablet, or mobile.</li>`
-    rootBody += `\n          <li>Enter your values or select your preferred configuration options.</li>`
-    rootBody += `\n          <li>View the instant calculation or output and copy or share your result with one click.</li>`
+    for(const s of pickFrom([
+      [`Open ${esc(rawTitle)} in any browser — phone, tablet or laptop.`, `Fill in the values or choose the options you need.`, `Copy the result, or share the page with the settings still applied.`],
+      [`Load the page; the tool is ready immediately with no setup.`, `Adjust the inputs — the output recalculates as you type.`, `Save or copy the output for your notes, sheet or message.`],
+      [`Visit the tool on desktop or mobile.`, `Enter your numbers, text or file — whichever the tool asks for.`, `Take the answer straight from the result panel.`]
+    ], slug, 5)) rootBody += `\n          <li>${s}</li>`
   }
   rootBody += `\n        </ol>`
-  rootBody += `\n        <h2>Key Features &amp; Benefits</h2>\n        <ul>\n          <li><strong>100% Free &amp; Unlimited:</strong> Use ${esc(rawTitle)} as many times as you need without creating an account or hitting paywalls.</li>\n          <li><strong>Privacy-First Browser Processing:</strong> Inputs and calculations run directly in your browser so your sensitive data stays on your device.</li>\n          <li><strong>Mobile &amp; Desktop Ready:</strong> Responsive interface designed for fast touch and keyboard workflows.</li>\n        </ul>`
+  const tags = tagWords(toolRec)
+  rootBody += `\n        <h2>What ${esc(rawTitle)} Handles</h2>\n        <ul>`
+  for (let i = 0; i < Math.max(3, tags.length); i++) {
+    const tg = tags[i] || (i === 0 ? (CAT_LABEL[cat] || 'everyday tasks') : 'browser-side processing')
+    rootBody += `\n          <li>${featureLine(rawTitle, tg, slug, i + 1)}</li>`
+  }
+  rootBody += `\n        </ul>`
+  rootBody += `\n        <h2>Cost, Privacy and Devices</h2>\n        <p>${trustCopy(rawTitle, slug, cat)}</p>`
   if(pairs.length){
     rootBody += `\n        <h2>Frequently Asked Questions</h2>\n        <dl>`
-    for(const p of pairs) rootBody += `\n          <dt>${esc(p.q)}</dt><dd>${esc(p.a)}</dd>`
+    for(const p of pairs) rootBody += `\n          <dt>${esc(p.q)}</dt><dd>${faqAnswer(p, rawTitle, slug, tags)}</dd>`
     rootBody += `\n        </dl>`
   }
   const rels = relatedFor(slug)
