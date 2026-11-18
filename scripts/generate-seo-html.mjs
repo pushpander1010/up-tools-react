@@ -111,8 +111,14 @@ const template = readFileSync(join(dist,'index.html'),'utf-8')
 const SKIP_SLUGS = new Set(['games','hncker','hackolution','hackolution/apps','aimakerich','aiforrich','privacy-policy'])
 
 function injectRootSeo(html, innerHtml) {
-  const block = `<div id="root">\n      <div class="seo-prerender">\n${innerHtml}\n      </div>\n    </div>\n    <script type="module"`
-  let out = html.replace(/<div id="root">[\s\S]*?<\/div>\s*<script type="module"/, block)
+  const block = `<div id="root">\n      <div class="seo-prerender">\n${innerHtml}\n      </div>\n    </div>`
+  // 1. Template already carries a prerender block (home shell is baked into index.html):
+  //    replace that whole block so each page gets ITS OWN body, never the home copy.
+  let out = html
+  const pre = /<div id="root">[\s\S]*?<div class="seo-prerender">[\s\S]*?<\/div>\s*<\/div>/
+  if (pre.test(html)) { out = html.replace(pre, block) }
+  else if (/<div id="root">\s*<\/div>/.test(html)) { out = html.replace(/<div id="root">\s*<\/div>/, block) }
+  else { out = html }
   out = out.replace(/<noscript>[\s\S]*?<\/noscript>\s*/g, '')
   return out
 }
@@ -326,7 +332,7 @@ for(const file of toolFiles){
     for(const r of rels) rootBody += `\n          <li><a href="${escAttr(hrefOf(r))}">${esc(r.title)}</a> \u2014 ${esc((r.desc||'').slice(0,120))}</li>`
     rootBody += `\n        </ul>`
   }
-  rootBody += `\n        <h2>Explore More on UpTools</h2>\n        <p><a href="/">UpTools Home</a> · <a href="/all-tools/">All 570+ Tools A\u2013Z</a> · <a href="/income-tax-tool/">Income Tax Calculator</a> · <a href="/gst-calculator/">GST Calculator</a> · <a href="/emi-calculator/">EMI Calculator</a> · <a href="/sip-calculator/">SIP Calculator</a> · <a href="/games/">Free Browser Games</a> · <a href="/learning/">AI &amp; DSA Learning</a> · <a href="/blogs/">Trending Blogs</a> · <a href="/about/">About</a> · <a href="/contact/">Contact</a> · <a href="/privacy-policy/">Privacy Policy</a> · <a href="/sitemap.xml">Sitemap</a></p>`
+  rootBody += `\n        <h2>Explore More on UpTools</h2>\n        <p><a href="/">UpTools Home</a> · <a href="/all-tools/">All 570+ Tools A\u2013Z</a> · <a href="/income-tax-tool/">Income Tax Calculator</a> · <a href="/gst-calculator/">GST Calculator</a> · <a href="/emi-calculator/">EMI Calculator</a> · <a href="/sip-calculator/">SIP Calculator</a> · <a href="/games/">Free Browser Games</a> · <a href="/learning/">AI &amp; DSA Learning</a> · <a href="/blogs/">Trending Blogs</a> · <a href="/hncker/">HNCKER Security Guides</a> · <a href="/hackolution/">HACKOLUTION</a> · <a href="/hackolution/apps/">Free Android Apps</a> · <a href="/aiforrich/">AIFORRICH Trading Guides</a> · <a href="/aimakerich/">AIMakeRich Finance Guides</a> · <a href="/recoverypro-privacy/">RecoveryPRO Privacy</a> · <a href="/about/">About</a> · <a href="/contact/">Contact</a> · <a href="/privacy-policy/">Privacy Policy</a> · <a href="/sitemap.xml">Sitemap</a></p>`
   html = injectRootSeo(html, rootBody)
 
   const outDir = join(dist, slug)
@@ -443,11 +449,11 @@ function buildHtml(slug, title, desc, opts = {}) {
     for (const [href, label] of opts.noscriptLinks) hubBody += `\n          <li><a href="${href}">${escH(label)}</a></li>`
     hubBody += `\n        </ul>`
   }
-  hubBody += `\n        <h2>Popular UpTools Sections &amp; Calculators</h2>\n        <ul>\n          <li><a href="/">UpTools Home — 570+ Free Online Tools</a></li>\n          <li><a href="/all-tools/">All Tools A\u2013Z Directory</a></li>\n          <li><a href="/learning/">AI &amp; DSA Interactive Learning Hub</a> · <a href="/learning/ai/">AI Guides</a> · <a href="/learning/dsa/">DSA Algorithms</a></li>\n          <li><a href="/games/">50+ Free Browser Games</a></li>\n          <li><a href="/blogs/">Trending Tech, Finance &amp; AI Blogs</a></li>\n          <li><a href="/income-tax-tool/">Income Tax Calculator India</a> · <a href="/gst-calculator/">GST Calculator</a> · <a href="/emi-calculator/">EMI Calculator</a> · <a href="/sip-calculator/">SIP Calculator</a></li>\n          <li><a href="/about/">About UpTools</a> · <a href="/contact/">Contact Us</a> · <a href="/privacy-policy/">Privacy Policy</a> · <a href="/sitemap.xml">XML Sitemap</a></li>\n        </ul>`
+  hubBody += `\n        <h2>Popular UpTools Sections &amp; Calculators</h2>\n        <ul>\n          <li><a href="/">UpTools Home — 570+ Free Online Tools</a></li>\n          <li><a href="/all-tools/">All Tools A\u2013Z Directory</a></li>\n          <li><a href="/learning/">AI &amp; DSA Interactive Learning Hub</a> · <a href="/learning/ai/">AI Guides</a> · <a href="/learning/dsa/">DSA Algorithms</a></li>\n          <li><a href="/games/">50+ Free Browser Games</a></li>\n          <li><a href="/blogs/">Trending Tech, Finance &amp; AI Blogs</a></li>\n          <li><a href="/income-tax-tool/">Income Tax Calculator India</a> · <a href="/gst-calculator/">GST Calculator</a> · <a href="/emi-calculator/">EMI Calculator</a> · <a href="/sip-calculator/">SIP Calculator</a></li>\n          <li><a href="/hncker/">HNCKER Security Guides</a> · <a href="/hackolution/">HACKOLUTION</a> · <a href="/hackolution/apps/">Free Android Apps</a> · <a href="/aiforrich/">AIFORRICH</a> · <a href="/aimakerich/">AIMakeRich</a> · <a href="/recoverypro-privacy/">RecoveryPRO Privacy</a></li>\n          <li><a href="/about/">About UpTools</a> · <a href="/contact/">Contact Us</a> · <a href="/privacy-policy/">Privacy Policy</a> · <a href="/sitemap.xml">XML Sitemap</a></li>\n        </ul>`
   html = injectRootSeo(html, hubBody)
   const outDir = join(dist, slug)
   const outFile = join(outDir, 'index.html')
-  if (existsSync(outFile)) {
+  if (existsSync(outFile) && !(opts.noscriptLinks && opts.noscriptLinks.length)) {
     const prev = readFileSync(outFile, 'utf8')
     if (prev.includes('Related Tools &amp; Calculators')) {
       console.warn('  ⚠ skipped hub overwrite of richer page:', slug)
