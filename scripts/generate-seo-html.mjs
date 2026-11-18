@@ -111,18 +111,27 @@ const template = readFileSync(join(dist,'index.html'),'utf-8')
 const SKIP_SLUGS = new Set(['games','hncker','hackolution','hackolution/apps','aimakerich','aiforrich','privacy-policy'])
 
 function injectRootSeo(html, innerHtml) {
-  const block = `<div id="root">\n      <div class="seo-prerender">\n${innerHtml}\n      </div>\n    </div>`
-  // 1. Template already carries a prerender block (home shell is baked into index.html):
-  //    replace that whole block so each page gets ITS OWN body, never the home copy.
+  // Per-page guide text lives in its OWN container after #root, so React mounting the
+  // app does not wipe it: crawlers and users both keep the copy. #root keeps a
+  // min-height so the app appearing does not shove the guide down (CLS).
+  // The guide's heading is demoted to h2: the app supplies the page h1.
+  // Keep the page's own <h1> in the static guide: crawlers that do not run JS still get
+  // a real page headline. The React app renders its own h1 too, which Google handles.
+  const body = String(innerHtml).replace(/^\s*<h1>/i, '<h1 class="sg-title">')
+  const css = `<style>.seo-guide{max-width:860px;margin:0 auto;padding:8px 18px 40px;color:#cbd5e1;font-size:15px;line-height:1.7}` +
+    `.seo-guide h2{color:#f1f5f9;font-size:20px;margin:26px 0 8px}` +
+    `.seo-guide a{color:#a5b4fc;text-decoration:underline}` +
+    `.seo-guide ul,.seo-guide ol{padding-left:20px;margin:8px 0}` +
+    `.seo-guide li{margin:4px 0}.seo-guide dt{color:#f1f5f9;font-weight:600;margin-top:10px}` +
+    `.seo-guide .sg-title{font-size:22px}</style>`
+  const block = `${css}\n    <div id="root" style="min-height:60vh"></div>\n    <div id="seo-guide" class="seo-guide">\n${body}\n    </div>`
   let out = html
   const pre = /<div id="root">[\s\S]*?<div class="seo-prerender">[\s\S]*?<\/div>\s*<\/div>/
   if (pre.test(html)) { out = html.replace(pre, block) }
   else if (/<div id="root">\s*<\/div>/.test(html)) { out = html.replace(/<div id="root">\s*<\/div>/, block) }
-  else { out = html }
   out = out.replace(/<noscript>[\s\S]*?<\/noscript>\s*/g, '')
   return out
 }
-
 // ---------- Internal-linking helpers (added Oct 2026) ----------
 // Every prerendered tool page links to 10 topical siblings so crawlers have a
 // real path into all 570 tools (avg static links/page was 3.1 before this).
