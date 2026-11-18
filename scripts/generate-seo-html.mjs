@@ -281,37 +281,38 @@ function workflowCopy(rawTitle, slug, cat, hasSteps) {
   return pickFrom(v, slug, 3) + extra
 }
 function trustCopy(rawTitle, slug, cat) {
+  const T = esc(rawTitle)
   const A = [
-    `No sign-up, no watermark and no daily cap.`,
-    `There is no trial counter and no card to enter.`,
-    `Every run is free and unlimited, including repeated use.`,
-    `You do not need an account to use it, today or next month.`,
-    `Nothing is metered: run it as often as the task needs.`,
-    `The page loads the same on a phone, laptop or tablet.`,
-    `It is plain HTML and JavaScript, so it stays quick on a slow connection.`,
-    `No install, no extension, no app store step.`,
-    `Bookmark the page once and it is one tap away next time.`,
-    `It works in Chrome, Safari, Firefox and Edge without tweaks.`
+    `${T} needs no sign-up, no watermark and no daily cap.`,
+    `There is no trial counter on ${T} and no card to enter.`,
+    `Every run of ${T} is free and unlimited, including repeated use.`,
+    `You do not need an account to use ${T}, today or next month.`,
+    `${T} is not metered: run it as often as the task needs.`,
+    `${T} loads the same on a phone, laptop or tablet.`,
+    `${T} is plain HTML and JavaScript, so it stays quick on a slow connection.`,
+    `No install, no extension and no app store step for ${T}.`,
+    `Bookmark ${T} once and it is one tap away next time.`,
+    `${T} works in Chrome, Safari, Firefox and Edge without tweaks.`
   ]
   const B = [
-    `Computing happens on your device, so inputs are not stored anywhere.`,
-    `Your values are processed in the browser tab and never uploaded.`,
-    `Nothing you type is sent to a server or saved to an account.`,
-    `Because it runs client-side, it is safe for figures you would not paste into a random site.`,
-    `The tool needs no personal details to work.`,
-    `There is no upload step, so nothing leaves your machine.`,
-    `Output is generated locally — you can even use it offline once loaded.`,
-    `No tracking of what you enter, only aggregate page analytics.`,
-    `Results are yours to copy; nothing is retained after you close the tab.`,
-    `It is a single static page, which means fewer moving parts and less to go wrong.`
+    `${T} computes on your device, so inputs are not stored anywhere.`,
+    `In ${T} your values are processed in the browser tab and never uploaded.`,
+    `Nothing you type into ${T} is sent to a server or saved to an account.`,
+    `Because ${T} runs client-side, it is safe for figures you would not paste into a random site.`,
+    `${T} needs no personal details to work.`,
+    `${T} has no upload step, so nothing leaves your machine.`,
+    `${T} generates output locally — you can even use it offline once loaded.`,
+    `${T} does not record what you enter, only aggregate page analytics.`,
+    `${T} leaves results yours to copy; nothing is retained after you close the tab.`,
+    `${T} is a single static page, which means fewer moving parts and less to go wrong.`
   ]
   return pickFrom(A, slug, 4) + ' ' + pickFrom(B, slug, 6)
 }
 
+
 function faqAnswer(pair, rawTitle, slug, tags) {
   const a = pair.a || ''
-  const generic = /enter your input above|free with no sign-up|instant result|no sign-up, works on mobile/i.test(a)
-  if (!generic) return esc(a)
+  if (!DUP_ANSWER(a)) return esc(a)
   const T = esc(rawTitle)
   const tag1 = (tags && tags[0]) || 'this task'
   const open = pickFrom([
@@ -346,6 +347,20 @@ function faqAnswer(pair, rawTitle, slug, tags) {
   ], slug, 9)
   return `${open} ${why} ${extra}`
 }
+
+// Pre-scan: FAQ answers that repeat across many tools are boilerplate; they get
+// rewritten per page so no two pages ship the same sentence.
+const ANS_COUNT = new Map()
+function bumpAnswers(content) {
+  const re = /\{\s*q:\s*"((?:[^"\\]|\\.)*)"\s*,\s*a:\s*"((?:[^"\\]|\\.)*)"/g
+  let m
+  while ((m = re.exec(content))) {
+    const a = m[2].replace(/\\"/g, '"')
+    ANS_COUNT.set(a, (ANS_COUNT.get(a) || 0) + 1)
+  }
+}
+for (const file of toolFiles) { try { bumpAnswers(readFileSync(join(toolsDir, file), 'utf8')) } catch (e) { console.warn('ans-scan failed', file, e.message) } }
+const DUP_ANSWER = (a) => (ANS_COUNT.get(a) || 0) > 2 || /enter your input above|free with no sign-up|instant result|no sign-up, works on mobile/i.test(a)
 
 let count=0
 for(const file of toolFiles){
